@@ -68,44 +68,44 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
     // X
     if (in[0]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "int2d", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int2d", 1);
         return types::Function::Error;
     }
     pDblX = in[0]->getAs<types::Double>();//->clone()->getAs<types::Double>();
     if (pDblX->isComplex())
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "int2d", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int2d", 1);
         return types::Function::Error;
     }
 
     if (pDblX->getRows() != 3)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d : A 3 by N matrix expected.\n"), "int2d", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A 3 by N matrix expected.\n"), "int2d", 1);
         return types::Function::Error;
     }
 
     // Y
     if (in[1]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "int2d", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int2d", 2);
         return types::Function::Error;
     }
     pDblY = in[1]->getAs<types::Double>();//->clone()->getAs<types::Double>();
     if (pDblY->isComplex())
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "int2d", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int2d", 2);
         return types::Function::Error;
     }
 
     if (pDblY->getRows() != 3)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d : A 3 by N matrix expected.\n"), "int2d", 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A 3 by N matrix expected.\n"), "int2d", 2);
         return types::Function::Error;
     }
 
     if (pDblY->getCols() != pDblX->getCols())
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d : Same size of input argument %d expected.\n"), "int2d", 2, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: Same size of input argument %d expected.\n"), "int2d", 2, 1);
         return types::Function::Error;
     }
 
@@ -125,7 +125,7 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
         double ret = int2d_f(&x, &y);
         if (ret == 0)
         {
-            Scierror(50, _("%s: Argument #%d : Variable returned by scilab argument function is incorrect.\n"), "int2d", 3);
+            Scierror(50, _("%s: Argument #%d: Variable returned by scilab argument function is incorrect.\n"), "int2d", 3);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -151,7 +151,7 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
 
         if (pList->getSize() == 0)
         {
-            Scierror(50, _("%s: Argument #%d : Subroutine not found in list: %s\n"), "int2d", 3, "(string empty)");
+            Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "int2d", 3, "(string empty)");
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -166,14 +166,14 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : The first argument in the list must be a Scilab function.\n"), "int2d", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: The first argument in the list must be a Scilab function.\n"), "int2d", 3);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A function expected.\n"), "int2d", 3);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A function expected.\n"), "int2d", 3);
         DifferentialEquation::removeDifferentialEquationFunctions();
         return types::Function::Error;
     }
@@ -183,7 +183,7 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
     {
         if (in[3]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "int2d", 4);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int2d", 4);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -191,14 +191,14 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
         pDblParams = in[3]->getAs<types::Double>();
         if (pDblParams->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "int2d", 4);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "int2d", 4);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
 
         if (pDblParams->getSize() != 5)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d : %d expected.\n"), "int2d", 4, 5);
+            Scierror(999, _("%s: Wrong size for input argument #%d: %d expected.\n"), "int2d", 4, 5);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -207,17 +207,17 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
         {
             if (pDblParams->get(0) < 0.0e0)
             {
-                sciprint(_("%ls: Warning : Wrong value for the first element of argument #%d : The default value will be used.\n"), L"int2d", 4);
+                sciprint(_("%ls: Warning: Wrong value for the first element of argument #%d: The default value will be used.\n"), L"int2d", 4);
             }
 
             if (pDblParams->get(2) < 1)
             {
-                sciprint(_("%ls: Warning : Wrong value for the third element of argument #%d : The default value will be used.\n"), L"int2d", 4);
+                sciprint(_("%ls: Warning: Wrong value for the third element of argument #%d: The default value will be used.\n"), L"int2d", 4);
             }
 
             if (pDblParams->get(3) < 1)
             {
-                sciprint(_("%ls: Warning : Wrong value for the fourth element of argument #%d : The default value will be used.\n"), L"int2d", 4);
+                sciprint(_("%ls: Warning: Wrong value for the fourth element of argument #%d: The default value will be used.\n"), L"int2d", 4);
             }
         }
 
@@ -231,13 +231,26 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
     // *** Perform operation. ***
     int size = pDblX->getCols();
 
-    double* dwork   = (double*)malloc(9 * maxtri * sizeof(double));
-    int* iwork      = (int*)malloc(2 * maxtri * sizeof(int));
+    double* dwork   = (double*)MALLOC(9 * maxtri * sizeof(double));
+    int* iwork      = (int*)MALLOC(2 * maxtri * sizeof(int));
 
-    C2F(twodq)(int2d_f, &size, pDblX->get(), pDblY->get(), &tol, &iclose, &maxtri, &mevals, &result, &err, &nu, &nd, &nevals, &iflag, dwork, iwork);
+    try
+    {
+        C2F(twodq)(int2d_f, &size, pDblX->get(), pDblY->get(), &tol, &iclose, &maxtri, &mevals, &result, &err, &nu, &nd, &nevals, &iflag, dwork, iwork);
+    }
+    catch (ScilabError &e)
+    {
+        char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
+        sciprint(_("%s: exception caught in '%s' subroutine.\n"), "int2d", "twodq");
+        Scierror(999, pstrMsg);
+        FREE(dwork);
+        FREE(iwork);
+        DifferentialEquation::removeDifferentialEquationFunctions();
+        return types::Function::Error;
+    }
 
-    free(dwork);
-    free(iwork);
+    FREE(dwork);
+    FREE(iwork);
     DifferentialEquation::removeDifferentialEquationFunctions();
 
     if (iflag)
@@ -271,7 +284,7 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
             }
             default :// normaly nerver call.
             {
-                Scierror(999, _("%s: twodq return with error %d.\n"), "int2d", iflag);
+                Scierror(999, _("%s: twodq return with state %d.\n"), "int2d", iflag);
             }
         }
         return types::Function::Error;

@@ -97,7 +97,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     bool bListInfo  = false;
 
     // *** check the minimal number of input args. ***
-    if (in.size() < 6 || in.size() > 13)
+    if ((int)in.size() < 6 || (int)in.size() > 13)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "daskr", 6, 13);
         return types::Function::Error;
@@ -114,7 +114,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     // x0 = [y0, yd0]
     if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "daskr", iPos + 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "daskr", iPos + 1);
         return types::Function::Error;
     }
 
@@ -122,13 +122,13 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
     if (pDblX0->isComplex())
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "daskr", iPos + 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "daskr", iPos + 1);
         return types::Function::Error;
     }
 
     if (pDblX0->getCols() > 2)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d : A real matrix with %d to %d colomn(s) expected.\n"), "daskr", iPos + 1, 1, 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A real matrix with %d to %d colomn(s) expected.\n"), "daskr", iPos + 1, 1, 2);
         return types::Function::Error;
     }
 
@@ -137,11 +137,11 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
         info[10] = 1;
     }
 
-    YSize = (int*)malloc(sizeOfYSize * sizeof(int));
+    YSize = (int*)MALLOC(sizeOfYSize * sizeof(int));
     *YSize = pDblX0->getRows();
 
-    pdYData = (double*)malloc(*YSize * sizeof(double));
-    pdYdotData = (double*)malloc(*YSize * sizeof(double));
+    pdYData = (double*)MALLOC(*YSize * sizeof(double));
+    pdYdotData = (double*)MALLOC(*YSize * sizeof(double));
 
     C2F(dcopy)(YSize, pDblX0->get(), &iOne, pdYData, &iOne);
     if (pDblX0->getCols() == 2)
@@ -157,7 +157,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     iPos++;
     if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "daskr", iPos + 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "daskr", iPos + 1);
         return types::Function::Error;
     }
 
@@ -165,7 +165,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
     if (pDblT0->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d : A scalar expected.\n"), "daskr", iPos + 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "daskr", iPos + 1);
         return types::Function::Error;
     }
 
@@ -173,7 +173,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     iPos++;
     if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "daskr", iPos + 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "daskr", iPos + 1);
         return types::Function::Error;
     }
 
@@ -181,7 +181,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
     if (pDblT->isComplex())
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "daskr", iPos + 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "daskr", iPos + 1);
         return types::Function::Error;
     }
 
@@ -200,11 +200,11 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 pDblAtol = in[iPos]->getAs<types::Double>();
                 if (pDblAtol->getSize() != pDblX0->getRows() && pDblAtol->isScalar() == false)
                 {
-                    Scierror(267, _("%s: Wrong size for input argument #%d : A scalar or a matrix of size %d expected.\n"), "daskr", iPos + 1, pDblX0->getRows());
+                    Scierror(267, _("%s: Wrong size for input argument #%d: A scalar or a matrix of size %d expected.\n"), "daskr", iPos + 1, pDblX0->getRows());
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYdotData);
-                    free(pdYData);
-                    free(YSize);
+                    FREE(pdYdotData);
+                    FREE(pdYData);
+                    FREE(YSize);
                     return types::Function::Error;
                 }
             }
@@ -213,11 +213,11 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 pDblRtol = in[iPos]->getAs<types::Double>();
                 if (pDblAtol->getSize() != pDblRtol->getSize())
                 {
-                    Scierror(267, _("%s: Wrong size for input argument #%d : Atol and Rtol must have the same size.\n"), "daskr", iPos + 1, pDblX0->getRows());
+                    Scierror(267, _("%s: Wrong size for input argument #%d: Atol and Rtol must have the same size.\n"), "daskr", iPos + 1, pDblX0->getRows());
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYdotData);
-                    free(pdYData);
-                    free(YSize);
+                    FREE(pdYdotData);
+                    FREE(pdYData);
+                    FREE(YSize);
                     return types::Function::Error;
                 }
             }
@@ -226,11 +226,11 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 pDblNg = in[iPos]->getAs<types::Double>();
                 if (pDblNg->isScalar() == false)
                 {
-                    Scierror(999, _("%s: Wrong size for input argument #%d : A scalar expected.\n"), "daskr", iPos + 1);
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "daskr", iPos + 1);
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYdotData);
-                    free(pdYData);
-                    free(YSize);
+                    FREE(pdYdotData);
+                    FREE(pdYData);
+                    FREE(YSize);
                     return types::Function::Error;
                 }
                 ng = (int)pDblNg->get(0);
@@ -238,23 +238,23 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
             else if (pDblHd == NULL && bFuncF == true)
             {
                 pDblHd = in[iPos]->getAs<types::Double>();
-                if (in.size() != iPos + 1)
+                if ((int)in.size() != iPos + 1)
                 {
                     Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "daskr", iPos + 1);
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYdotData);
-                    free(pdYData);
-                    free(YSize);
+                    FREE(pdYdotData);
+                    FREE(pdYData);
+                    FREE(YSize);
                     return types::Function::Error;
                 }
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A function expected.\n"), "daskr", iPos + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A function expected.\n"), "daskr", iPos + 1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYdotData);
-                free(pdYData);
-                free(YSize);
+                FREE(pdYdotData);
+                FREE(pdYData);
+                FREE(YSize);
                 return types::Function::Error;
             }
         }
@@ -288,11 +288,11 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A matrix or a list expected.\n"), "daskr", iPos + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A matrix or a list expected.\n"), "daskr", iPos + 1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYdotData);
-                free(pdYData);
-                free(YSize);
+                FREE(pdYdotData);
+                FREE(pdYData);
+                FREE(YSize);
                 return types::Function::Error;
             }
         }
@@ -328,11 +328,11 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A matrix or a list expected.\n"), "daskr", iPos + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A matrix or a list expected.\n"), "daskr", iPos + 1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYdotData);
-                free(pdYData);
-                free(YSize);
+                FREE(pdYdotData);
+                FREE(pdYData);
+                FREE(YSize);
                 return types::Function::Error;
             }
 
@@ -342,9 +342,9 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "daskr", pst);
                 FREE(pst);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYdotData);
-                free(pdYData);
-                free(YSize);
+                FREE(pdYdotData);
+                FREE(pdYData);
+                FREE(YSize);
                 return types::Function::Error;
             }
         }
@@ -354,21 +354,21 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
             if (pList->getSize() == 0)
             {
-                Scierror(50, _("%s: Argument #%d : Subroutine not found in list: %s\n"), "daskr", iPos + 1, "(string empty)");
+                Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "daskr", iPos + 1, "(string empty)");
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYdotData);
-                free(pdYData);
-                free(YSize);
+                FREE(pdYdotData);
+                FREE(pdYData);
+                FREE(YSize);
                 return types::Function::Error;
             }
 
             if (bFuncF && bListInfo)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "daskr", iPos + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "daskr", iPos + 1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYdotData);
-                free(pdYData);
-                free(YSize);
+                FREE(pdYdotData);
+                FREE(pdYData);
+                FREE(YSize);
                 return types::Function::Error;
             }
 
@@ -409,19 +409,19 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 if (bOK == false)
                 {
                     char* pst = wide_string_to_UTF8(pStr->get(0));
-                    Scierror(50, _("%s: Argument #%d : Subroutine not found in list: %s\n"), "daskr", iPos + 1, pst);
+                    Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "daskr", iPos + 1, pst);
                     FREE(pst);
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYdotData);
-                    free(pdYData);
-                    free(YSize);
+                    FREE(pdYdotData);
+                    FREE(pdYData);
+                    FREE(YSize);
                     return types::Function::Error;
                 }
 
                 int* sizeTemp = YSize;
                 int totalSize = sizeOfpdYData;
 
-                YSize = (int*)malloc((sizeOfYSize + pList->getSize() - 1) * sizeof(int));
+                YSize = (int*)MALLOC((sizeOfYSize + pList->getSize() - 1) * sizeof(int));
                 memcpy(YSize, sizeTemp, sizeOfYSize * sizeof(int));
 
                 std::vector<types::Double*> vpDbl;
@@ -429,11 +429,11 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 {
                     if (pList->get(iter + 1)->isDouble() == false)
                     {
-                        Scierror(999, _("%s: Wrong type for input argument #%d : Argument %d in the list must be a matrix.\n"), "daskr", iPos + 1, iter + 1);
+                        Scierror(999, _("%s: Wrong type for input argument #%d: Argument %d in the list must be a matrix.\n"), "daskr", iPos + 1, iter + 1);
                         DifferentialEquation::removeDifferentialEquationFunctions();
-                        free(pdYdotData);
-                        free(pdYData);
-                        free(YSize);
+                        FREE(pdYdotData);
+                        FREE(pdYData);
+                        FREE(YSize);
                         return types::Function::Error;
                     }
 
@@ -443,7 +443,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 }
 
                 double* pdYDataTemp = pdYData;
-                pdYData = (double*)malloc(totalSize * sizeof(double));
+                pdYData = (double*)MALLOC(totalSize * sizeof(double));
                 C2F(dcopy)(&sizeOfpdYData, pdYDataTemp, &iOne, pdYData, &iOne);
 
                 int position = sizeOfpdYData;
@@ -455,8 +455,8 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 vpDbl.clear();
                 sizeOfpdYData = totalSize;
                 sizeOfYSize += pList->getSize() - 1;
-                free(pdYDataTemp);
-                free(sizeTemp);
+                FREE(pdYDataTemp);
+                FREE(sizeTemp);
             }
             else if (pList->get(0)->isCallable())
             {
@@ -512,11 +512,11 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 // list(double,... then this list is the info argument
                 if (pList->getSize() != 14)
                 {
-                    Scierror(267, _("%s: Wrong size for input argument #%d : A list of size %d expected.\n"), "daskr", iPos + 1, 7);
+                    Scierror(267, _("%s: Wrong size for input argument #%d: A list of size %d expected.\n"), "daskr", iPos + 1, 7);
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYdotData);
-                    free(pdYData);
-                    free(YSize);
+                    FREE(pdYdotData);
+                    FREE(pdYData);
+                    FREE(YSize);
                     return types::Function::Error;
                 }
 
@@ -526,16 +526,16 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                     {
                         if (i == 1 || i == 5 || i == 7 || i == 9 || i == 13)
                         {
-                            Scierror(999, _("%s: Wrong type for input argument #%d : Element %d in the info list must be a scalar.\n"), "daskr", iPos + 1, i);
+                            Scierror(999, _("%s: Wrong type for input argument #%d: Element %d in the info list must be a scalar.\n"), "daskr", iPos + 1, i);
                         }
                         else
                         {
-                            Scierror(999, _("%s: Wrong type for input argument #%d : Element %d in the info list must be a matrix.\n"), "daskr", iPos + 1, i);
+                            Scierror(999, _("%s: Wrong type for input argument #%d: Element %d in the info list must be a matrix.\n"), "daskr", iPos + 1, i);
                         }
                         DifferentialEquation::removeDifferentialEquationFunctions();
-                        free(pdYdotData);
-                        free(pdYData);
-                        free(YSize);
+                        FREE(pdYdotData);
+                        FREE(pdYData);
+                        FREE(YSize);
                         return types::Function::Error;
                     }
                 }
@@ -563,11 +563,11 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 }
                 else if (pDblTemp->getSize() != 0)
                 {
-                    Scierror(267, _("%s: Wrong size for input argument #%d : Argument %d in te list must be of size %d.\n"), "daskr", iPos + 1, 3, 2);
+                    Scierror(267, _("%s: Wrong size for input argument #%d: Argument %d in te list must be of size %d.\n"), "daskr", iPos + 1, 3, 2);
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYdotData);
-                    free(pdYData);
-                    free(YSize);
+                    FREE(pdYdotData);
+                    FREE(pdYData);
+                    FREE(YSize);
                     return types::Function::Error;
                 }
 
@@ -690,52 +690,52 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : The first argument in the list must be a string, a function or a matrix in case of argument info.\n"), "daskr", iPos + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: The first argument in the list must be a string, a function or a matrix in case of argument info.\n"), "daskr", iPos + 1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYdotData);
-                free(pdYData);
-                free(YSize);
+                FREE(pdYdotData);
+                FREE(pdYData);
+                FREE(YSize);
                 return types::Function::Error;
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A matrix or a function expected.\n"), "daskr", iPos + 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A matrix or a function expected.\n"), "daskr", iPos + 1);
             DifferentialEquation::removeDifferentialEquationFunctions();
-            free(pdYdotData);
-            free(pdYData);
-            free(YSize);
+            FREE(pdYdotData);
+            FREE(pdYData);
+            FREE(YSize);
             return types::Function::Error;
         }
     }
 
     if (bFuncF == false)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "daskr", in.size() + 3);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "daskr", (int)in.size() + 3);
         DifferentialEquation::removeDifferentialEquationFunctions();
-        free(pdYdotData);
-        free(pdYData);
-        free(YSize);
+        FREE(pdYdotData);
+        FREE(pdYData);
+        FREE(YSize);
         return types::Function::Error;
     }
 
     if (pDblNg == NULL)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "daskr", in.size() + 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "daskr", (int)in.size() + 2);
         DifferentialEquation::removeDifferentialEquationFunctions();
-        free(pdYdotData);
-        free(pdYData);
-        free(YSize);
+        FREE(pdYdotData);
+        FREE(pdYData);
+        FREE(YSize);
         return types::Function::Error;
     }
 
     if (bFuncG == false)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "daskr", in.size() + 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "daskr", (int)in.size() + 1);
         DifferentialEquation::removeDifferentialEquationFunctions();
-        free(pdYdotData);
-        free(pdYData);
-        free(YSize);
+        FREE(pdYdotData);
+        FREE(pdYData);
+        FREE(YSize);
         return types::Function::Error;
     }
 
@@ -760,7 +760,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     {
         if (pDblAtol->isScalar())
         {
-            atol  = (double*)malloc(sizeof(double));
+            atol  = (double*)MALLOC(sizeof(double));
             *atol = pDblAtol->get(0);
         }
         else
@@ -771,7 +771,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        atol  = (double*)malloc(sizeof(double));
+        atol  = (double*)MALLOC(sizeof(double));
         *atol = 1.e-7;
     }
 
@@ -779,7 +779,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     {
         if (pDblRtol->isScalar())
         {
-            rtol  = (double*)malloc(sizeof(double));
+            rtol  = (double*)MALLOC(sizeof(double));
             *rtol = pDblRtol->get(0);
         }
         else
@@ -795,12 +795,12 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
             int iSize = pDblAtol->getSize();
             int iZero = 0;
 
-            rtol = (double*)malloc(iSize * sizeof(double));
+            rtol = (double*)MALLOC(iSize * sizeof(double));
             C2F(dcopy)(&iSize, &dblSrc, &iZero, rtol, &iOne);
         }
         else
         {
-            rtol    = (double*)malloc(sizeof(double));
+            rtol    = (double*)MALLOC(sizeof(double));
             *rtol   = 1.e-9;
         }
     }
@@ -861,7 +861,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
         // LENIWP is the length ot the iwork segment containing
         // the matrix indexes of the preconditioner P
         // (compressed sparse row format)
-        int LENIWP = 25 * pDblX0->getRows() + 1;
+        LENIWP = 25 * pDblX0->getRows() + 1;
         iworksize += LENIWP;
     }
 
@@ -875,9 +875,9 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
         iworksize += pDblX0->getRows();
     }
 
-    iwork = (int*)malloc(iworksize * sizeof(int));
-    rwork = (double*)malloc(rworksize * sizeof(double));
-    root  = (int*)malloc(ng * sizeof(int));
+    iwork = (int*)MALLOC(iworksize * sizeof(int));
+    rwork = (double*)MALLOC(rworksize * sizeof(double));
+    root  = (int*)MALLOC(ng * sizeof(int));
 
     if (pDblHd != NULL)
     {
@@ -885,18 +885,18 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
         {
             Scierror(77, _("%s: Wrong size for input argument(s) %d: %d expected.\n"), "daskr", in.size(), iworksize + rworksize);
             DifferentialEquation::removeDifferentialEquationFunctions();
-            free(pdYdotData);
-            free(pdYData);
-            free(YSize);
-            free(iwork);
-            free(rwork);
+            FREE(pdYdotData);
+            FREE(pdYData);
+            FREE(YSize);
+            FREE(iwork);
+            FREE(rwork);
             if (pDblAtol == NULL || pDblAtol->isScalar())
             {
-                free(atol);
+                FREE(atol);
             }
             if (pDblRtol == NULL || pDblRtol->isScalar())
             {
-                free(rtol);
+                FREE(rtol);
             }
             return types::Function::Error;
         }
@@ -991,6 +991,8 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     std::list<types::Double*> lpDblOut;
     int size = pDblX0->getRows();
     int rowsOut = 1 + pDblX0->getRows() * 2;
+    int iret = 0;
+    int ididtmp = 0;
 
     for (int i = 0; i < pDblT->getSize(); i++)
     {
@@ -1011,56 +1013,71 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
             continue;
         }
 
-        // SUBROUTINE DDASKR(RES, NEQ, T, Y, YPRIME, TOUT, INFO, RTOL, ATOL,
-        //                  IDID, RWORK, LRW, IWORK, LIW, RPAR, IPAR, JAC, PSOL,
-        //                  RT, NRT, JROOT)
-        C2F(ddaskr)(dassl_f, YSize, &t0, pdYData, pdYdotData, &t,
-                    info, rtol, atol, &idid, rwork, &rworksize,
-                    iwork, &iworksize, rpar, ipar,
-                    info[14] == 1 ? (void*)daskr_pjac : (void*)dassl_jac,
-                    daskr_psol, dasrt_g, &ng, root);
-
-        // values of idid says the same things that in ddasrt function,
-        // except these two values.
-        int ididtmp = idid;
-        // The integration to TSTOP was successfully completed (T=TSTOP)
-        if (idid == 4)
+        try
         {
-            idid = 2;
+            // SUBROUTINE DDASKR(RES, NEQ, T, Y, YPRIME, TOUT, INFO, RTOL, ATOL,
+            //                  IDID, RWORK, LRW, IWORK, LIW, RPAR, IPAR, JAC, PSOL,
+            //                  RT, NRT, JROOT)
+            C2F(ddaskr)(dassl_f, YSize, &t0, pdYData, pdYdotData, &t,
+                        info, rtol, atol, &idid, rwork, &rworksize,
+                        iwork, &iworksize, rpar, ipar,
+                        info[14] == 1 ? (void*)daskr_pjac : (void*)dassl_jac,
+                        daskr_psol, dasrt_g, &ng, root);
+
+            // values of idid says the same things that in ddasrt function,
+            // except these two values.
+            ididtmp = idid;
+            // The integration to TSTOP was successfully completed (T=TSTOP)
+            if (idid == 4)
+            {
+                idid = 2;
+            }
+
+            // One or more root found (eq to idid = 4 for dassl)
+            if (idid == 5)
+            {
+                idid = 4;
+            }
+
+            if (idid == 6)
+            {
+                idid = 3;
+            }
+
+            // use the same error function that dasrt
+            iret = checkDasslError(idid);
+            if (iret == 1) // error
+            {
+                Scierror(999, _("%s: ddaskr return with state %d.\n"), "daskr", ididtmp);
+            }
+        }
+        catch (ScilabError &e)
+        {
+            char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
+            sciprint(_("%s: exception caught in '%s' subroutine.\n"), "daskr", "ddaskr");
+            Scierror(999, pstrMsg);
+            // set iret to 1 for free allocated memory
+            iret = 1;
         }
 
-        // One or more root found (eq to idid = 4 for dassl)
-        if (idid == 5)
+        // free memory when error occurred
+        if (iret == 1)
         {
-            idid = 4;
-        }
-
-        if (idid == 6)
-        {
-            idid = 3;
-        }
-
-        // use the same error function that dasrt
-        int iret = checkDasslError(idid);
-
-        if (iret == 1) // error
-        {
-            Scierror(999, _("%s: ddaskr return with state %d.\n"), "daskr", ididtmp);
             lpDblOut.clear();
             DifferentialEquation::removeDifferentialEquationFunctions();
-            free(pdYdotData);
-            free(pdYData);
-            free(YSize);
-            free(iwork);
-            free(rwork);
-            free(root);
+            FREE(pdYdotData);
+            FREE(pdYData);
+            FREE(YSize);
+            FREE(iwork);
+            FREE(rwork);
+            FREE(root);
             if (pDblAtol == NULL || pDblAtol->isScalar())
             {
-                free(atol);
+                FREE(atol);
             }
             if (pDblRtol == NULL || pDblRtol->isScalar())
             {
-                free(rtol);
+                FREE(rtol);
             }
             return types::Function::Error;
         }
@@ -1072,7 +1089,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
         if (iret == 2) // warning
         {
-            if(ididtmp == -1 || ididtmp == 5 || ididtmp == 6)
+            if (ididtmp == -1 || ididtmp == 5 || ididtmp == 6)
             {
                 pDblOut->set(0, t0);
             }
@@ -1144,23 +1161,23 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
         out.push_back(pDblHdOut);
     }
 
-    // *** free memory. ***
+    // *** FREE memory. ***
     if (pDblAtol == NULL || pDblAtol->isScalar())
     {
-        free(atol);
+        FREE(atol);
     }
 
     if (pDblRtol == NULL || pDblRtol->isScalar())
     {
-        free(rtol);
+        FREE(rtol);
     }
 
-    free(pdYData);
-    free(pdYdotData);
-    free(YSize);
-    free(rwork);
-    free(iwork);
-    free(root);
+    FREE(pdYData);
+    FREE(pdYdotData);
+    FREE(YSize);
+    FREE(rwork);
+    FREE(iwork);
+    FREE(root);
 
     DifferentialEquation::removeDifferentialEquationFunctions();
 

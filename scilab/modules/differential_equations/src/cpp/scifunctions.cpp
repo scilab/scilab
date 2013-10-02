@@ -18,43 +18,43 @@ extern "C"
 }
 
 // ode / odedc
-int ode_f(int* n, double* t, double* y, double* ydot)
+void ode_f(int* n, double* t, double* y, double* ydot)
 {
     DifferentialEquationFunctions* deFunction = NULL;
     deFunction = DifferentialEquation::getDifferentialEquationFunctions();
 
     if (deFunction == NULL)
     {
-        return 0;
+        throw ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
-    return deFunction->execOdeF(n, t, y, ydot);
+    deFunction->execOdeF(n, t, y, ydot);
 }
 
-int ode_jac(int *n, double *t, double *y, int *ml, int *mu, double *J, int *nrpd)
+void ode_jac(int *n, double *t, double *y, int *ml, int *mu, double *J, int *nrpd)
 {
     DifferentialEquationFunctions* deFunction = NULL;
     deFunction = DifferentialEquation::getDifferentialEquationFunctions();
 
     if (deFunction == NULL)
     {
-        return 0;
+        throw ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
-    return deFunction->execFunctionJac(n, t, y, ml, mu, J, nrpd);
+    deFunction->execFunctionJac(n, t, y, ml, mu, J, nrpd);
 }
 
-int ode_g(int* n, double* t, double* y, int* ng, double* gout)
+void ode_g(int* n, double* t, double* y, int* ng, double* gout)
 {
     DifferentialEquationFunctions* deFunction = NULL;
     deFunction = DifferentialEquation::getDifferentialEquationFunctions();
 
     if (deFunction == NULL)
     {
-        return 0;
+        throw ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
-    return deFunction->execFunctionG(n, t, y, ng, gout);
+    deFunction->execFunctionG(n, t, y, ng, gout);
 }
 
 // intg
@@ -65,7 +65,7 @@ double intg_f(double* x)
 
     if (deFunction == NULL)
     {
-        return 0;
+        throw ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     return deFunction->execIntgF(x);
@@ -79,157 +79,168 @@ double int2d_f(double* x, double* y)
 
     if (deFunction == NULL)
     {
-        return 0;
+        throw ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     return deFunction->execInt2dF(x, y);
 }
 
 // int3d
-double int3d_f(double* x, int* numfun, double* funvls)
+void int3d_f(double* x, int* numfun, double* funvls)
 {
     DifferentialEquationFunctions* deFunction = NULL;
     deFunction = DifferentialEquation::getDifferentialEquationFunctions();
 
     if (deFunction == NULL)
     {
-        return 0;
+        throw ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
-    return deFunction->execInt3dF(x, numfun, funvls);
+    deFunction->execInt3dF(x, numfun, funvls);
 }
 
 // bvode
-int bvode_gsub(int* i, double* z, double* g)
+void bvode_gsub(int* i, double* z, double* g)
 {
     DifferentialEquationFunctions* deFunction = NULL;
     deFunction = DifferentialEquation::getDifferentialEquationFunctions();
 
     if (deFunction == NULL)
     {
-        return 0;
+        throw ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
-    return deFunction->execBvodeGsub(i, z, g);
+
+    deFunction->execBvodeGsub(i, z, g);
 }
-int bvode_dgsub(int* i, double* z, double* g)
+void bvode_dgsub(int* i, double* z, double* g)
 {
     DifferentialEquationFunctions* deFunction = NULL;
     deFunction = DifferentialEquation::getDifferentialEquationFunctions();
 
     if (deFunction == NULL)
     {
-        return 0;
+        throw ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
-    return deFunction->execBvodeDgsub(i, z, g);
+
+    deFunction->execBvodeDgsub(i, z, g);
 }
-int bvode_fsub(double* x, double* z, double* d)
+void bvode_fsub(double* x, double* z, double* d)
 {
     DifferentialEquationFunctions* deFunction = NULL;
     deFunction = DifferentialEquation::getDifferentialEquationFunctions();
 
     if (deFunction == NULL)
     {
-        return 0;
+        throw ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
-    return deFunction->execBvodeFsub(x, z, d);
+
+    deFunction->execBvodeFsub(x, z, d);
 }
-int bvode_dfsub(double* x, double* z, double* d)
+void bvode_dfsub(double* x, double* z, double* d)
 {
     DifferentialEquationFunctions* deFunction = NULL;
     deFunction = DifferentialEquation::getDifferentialEquationFunctions();
 
     if (deFunction == NULL)
     {
-        return 0;
+        throw ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
-    return deFunction->execBvodeDfsub(x, z, d);
+
+    deFunction->execBvodeDfsub(x, z, d);
 }
-int bvode_guess(double* x, double* z, double* d)
+void bvode_guess(double* x, double* z, double* d)
 {
     DifferentialEquationFunctions* deFunction = NULL;
     deFunction = DifferentialEquation::getDifferentialEquationFunctions();
 
     if (deFunction == NULL)
     {
-        return 0;
+        throw ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
-    return deFunction->execBvodeGuess(x, z, d);
+
+    deFunction->execBvodeGuess(x, z, d);
 }
 
 // impl
-int impl_f(int* neq, double* t, double* y, double* s, double* r, int* ires)
+void impl_f(int* neq, double* t, double* y, double* s, double* r, int* ires)
 {
     DifferentialEquationFunctions* deFunction = NULL;
     deFunction = DifferentialEquation::getDifferentialEquationFunctions();
 
     if (deFunction == NULL)
     {
-        return 0;
+        throw ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
-    return deFunction->execImplF(neq, t, y, s, r, ires);
+
+    deFunction->execImplF(neq, t, y, s, r, ires);
 }
-int impl_g(int* neq, double* t, double* y, double* ml, double* mu, double* p, int* nrowp)
+void impl_g(int* neq, double* t, double* y, double* ml, double* mu, double* p, int* nrowp)
 {
     DifferentialEquationFunctions* deFunction = NULL;
     deFunction = DifferentialEquation::getDifferentialEquationFunctions();
 
     if (deFunction == NULL)
     {
-        return 0;
+        throw ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
-    return deFunction->execImplG(neq, t, y, ml, mu, p, nrowp);
+
+    deFunction->execImplG(neq, t, y, ml, mu, p, nrowp);
 }
-int impl_jac(int* neq, double* t, double* y, double* s, double* ml, double* mu, double* p, int* nrowp)
+void impl_jac(int* neq, double* t, double* y, double* s, double* ml, double* mu, double* p, int* nrowp)
 {
     DifferentialEquationFunctions* deFunction = NULL;
     deFunction = DifferentialEquation::getDifferentialEquationFunctions();
 
     if (deFunction == NULL)
     {
-        return 0;
+        throw ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
-    return deFunction->execImplJac(neq, t, y, s, ml, mu, p, nrowp);
+
+    deFunction->execImplJac(neq, t, y, s, ml, mu, p, nrowp);
 }
 
 // dassl, dasrt, daskr
-int dassl_f(double* t, double* y, double* ydot, double* delta, int* ires, double* rpar, int* ipar)
+void dassl_f(double* t, double* y, double* ydot, double* delta, int* ires, double* rpar, int* ipar)
 {
     DifferentialEquationFunctions* deFunction = NULL;
     deFunction = DifferentialEquation::getDifferentialEquationFunctions();
 
     if (deFunction == NULL)
     {
-        return 0;
+        throw ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
-    return deFunction->execDasslF(t, y, ydot, delta, ires, rpar, ipar);
+
+    deFunction->execDasslF(t, y, ydot, delta, ires, rpar, ipar);
 }
-int dassl_jac(double* t, double* y, double* ydot, double* pd, double* cj, double* rpar, int* ipar)
+void dassl_jac(double* t, double* y, double* ydot, double* pd, double* cj, double* rpar, int* ipar)
 {
     DifferentialEquationFunctions* deFunction = NULL;
     deFunction = DifferentialEquation::getDifferentialEquationFunctions();
 
     if (deFunction == NULL)
     {
-        return 0;
+        throw ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
-    return deFunction->execDasslJac(t, y, ydot, pd, cj, rpar, ipar);
+
+    deFunction->execDasslJac(t, y, ydot, pd, cj, rpar, ipar);
 }
 
 // dasrt
-int dasrt_g(int* ny, double* t, double* y, int* ng, double* gout, double* rpar, int* ipar)
+void dasrt_g(int* ny, double* t, double* y, int* ng, double* gout, double* rpar, int* ipar)
 {
     DifferentialEquationFunctions* deFunction = NULL;
     deFunction = DifferentialEquation::getDifferentialEquationFunctions();
 
     if (deFunction == NULL)
     {
-        return 0;
+        throw ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
-    return deFunction->execDasrtG(ny, t, y, ng, gout, rpar, ipar);
+
+    deFunction->execDasrtG(ny, t, y, ng, gout, rpar, ipar);
 }
 
 //daskr
-int daskr_psol(int* neq, double* t, double* y, double* ydot, double* savr, double* wk,
+void daskr_psol(int* neq, double* t, double* y, double* ydot, double* savr, double* wk,
                double* cj, double* wght, double* wp, int* iwp, double* b, double* eplin,
                int* ier, double* rpar, int* ipar)
 {
@@ -238,12 +249,13 @@ int daskr_psol(int* neq, double* t, double* y, double* ydot, double* savr, doubl
 
     if (deFunction == NULL)
     {
-        return 0;
+        throw ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
-    return deFunction->execDaskrPsol(neq, t, y, ydot, savr, wk, cj, wght, wp, iwp,
+
+    deFunction->execDaskrPsol(neq, t, y, ydot, savr, wk, cj, wght, wp, iwp,
                                      b, eplin, ier, rpar, ipar);
 }
-int daskr_pjac(double* res, int* ires, int* neq, double* t, double* y, double* ydot,
+void daskr_pjac(double* res, int* ires, int* neq, double* t, double* y, double* ydot,
                double* rewt, double* savr, double* wk, double* h, double* cj,
                double* wp, int* iwp, int* ier, double* rpar, int* ipar)
 {
@@ -252,8 +264,9 @@ int daskr_pjac(double* res, int* ires, int* neq, double* t, double* y, double* y
 
     if (deFunction == NULL)
     {
-        return 0;
+        throw ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
-    return deFunction->execDaskrPjac(res, ires, neq, t, y, ydot, rewt, savr, wk, h, cj,
+
+    deFunction->execDaskrPjac(res, ires, neq, t, y, ydot, rewt, savr, wk, h, cj,
                                      wp, iwp, ier, rpar, ipar);
 }

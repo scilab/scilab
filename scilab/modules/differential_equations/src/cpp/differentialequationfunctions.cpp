@@ -21,6 +21,7 @@ extern "C"
 #include "scifunctions.h"
 #include "Ex-odedc.h"
 #include "Ex-daskr.h"
+#include "localization.h"
 }
 
 /*
@@ -204,85 +205,98 @@ DifferentialEquationFunctions::~DifferentialEquationFunctions()
 }
 
 /*------------------------------- public -------------------------------------------*/
-int DifferentialEquationFunctions::execDasrtG(int* ny, double* t, double* y, int* ng, double* gout, double* rpar, int* ipar)
+void DifferentialEquationFunctions::execDasrtG(int* ny, double* t, double* y, int* ng, double* gout, double* rpar, int* ipar)
 {
+    char errorMsg[256];
     if (m_pCallGFunction)
     {
-        return callDasrtMacroG(ny, t, y, ng, gout, rpar, ipar);
+        callDasrtMacroG(ny, t, y, ng, gout, rpar, ipar);
     }
     else if (m_pStringGFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGFunctionDyn->get(0));
         if (func == NULL)
         {
-            return 0;
+            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringGFunctionDyn->get(0));
+            throw ScilabError(errorMsg);
         }
         ((dasrt_g_t)(func->functionPtr))(ny, t, y, ng, gout, rpar, ipar);
-        return 1;
+    }
+    else if(m_pStringGFunctionStatic)
+    {
+        ((dasrt_g_t)m_staticFunctionMap[m_pStringGFunctionStatic->get(0)])(ny, t, y, ng, gout, rpar, ipar);
     }
     else
     {
-        ((dasrt_g_t)m_staticFunctionMap[m_pStringGFunctionStatic->get(0)])(ny, t, y, ng, gout, rpar, ipar);
-        return 1;
+        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "g");
+        throw ScilabError(errorMsg);
     }
-    return 0;
 }
 
-int DifferentialEquationFunctions::execDasslF(double* t, double* y, double* ydot, double* delta, int* ires, double* rpar, int* ipar)
+void DifferentialEquationFunctions::execDasslF(double* t, double* y, double* ydot, double* delta, int* ires, double* rpar, int* ipar)
 {
+    char errorMsg[256];
     if (m_pCallFFunction)
     {
-        return callDasslMacroF(t, y, ydot, delta, ires, rpar, ipar);
+        callDasslMacroF(t, y, ydot, delta, ires, rpar, ipar);
     }
     else if (m_pStringFFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
         if (func == NULL)
         {
-            return 0;
+            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            throw ScilabError(errorMsg);
         }
         ((dassl_f_t)(func->functionPtr))(t, y, ydot, delta, ires, rpar, ipar);
-        return 1;
+    }
+    else if(m_pStringFFunctionStatic)
+    {
+        ((dassl_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(t, y, ydot, delta, ires, rpar, ipar);
     }
     else
     {
-        ((dassl_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(t, y, ydot, delta, ires, rpar, ipar);
-        return 1;
+        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
+        throw ScilabError(errorMsg);
     }
-    return 0;
 }
 
-int DifferentialEquationFunctions::execDasslJac(double* t, double* y, double* ydot, double* pd, double* cj, double* rpar, int* ipar)
+void DifferentialEquationFunctions::execDasslJac(double* t, double* y, double* ydot, double* pd, double* cj, double* rpar, int* ipar)
 {
+    char errorMsg[256];
     if (m_pCallJacFunction)
     {
-        return callDasslMacroJac(t, y, ydot, pd, cj, rpar, ipar);
+        callDasslMacroJac(t, y, ydot, pd, cj, rpar, ipar);
     }
     else if (m_pStringJacFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringJacFunctionDyn->get(0));
         if (func == NULL)
         {
-            return 0;
+            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringJacFunctionDyn->get(0));
+            throw ScilabError(errorMsg);
         }
         ((dassl_jac_t)(func->functionPtr))(t, y, ydot, pd, cj, rpar, ipar);
-        return 1;
     }
     else if (m_pStringJacFunctionStatic)
     {
         ((dassl_jac_t)m_staticFunctionMap[m_pStringJacFunctionStatic->get(0)])(t, y, ydot, pd, cj, rpar, ipar);
-        return 1;
     }
-    return 1;
+    else
+    {
+        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "jacobian");
+        throw ScilabError(errorMsg);
+    }
 }
 
-int DifferentialEquationFunctions::execDaskrPjac(double* res, int* ires, int* neq, double* t, double* y, double* ydot,
+void DifferentialEquationFunctions::execDaskrPjac(double* res, int* ires, int* neq, double* t, double* y, double* ydot,
         double* rewt, double* savr, double* wk, double* h, double* cj,
         double* wp, int* iwp, int* ier, double* rpar, int* ipar)
 {
+    char errorMsg[256];
     if (m_pCallPjacFunction)
     {
-        return callDaskrMacroPjac(res, ires, neq, t, y, ydot, rewt, savr,
+        callDaskrMacroPjac(res, ires, neq, t, y, ydot, rewt, savr,
                                   wk, h, cj, wp, iwp, ier, rpar, ipar);
     }
     else if (m_pStringPjacFunctionDyn)
@@ -290,28 +304,32 @@ int DifferentialEquationFunctions::execDaskrPjac(double* res, int* ires, int* ne
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringPjacFunctionDyn->get(0));
         if (func == NULL)
         {
-            return 0;
+            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringPjacFunctionDyn->get(0));
+            throw ScilabError(errorMsg);
         }
         ((daskr_pjac_t)(func->functionPtr))(res, ires, neq, t, y, ydot, rewt, savr,
                                             wk, h, cj, wp, iwp, ier, rpar, ipar);
-        return 1;
     }
     else if (m_pStringPjacFunctionStatic)
     {
         ((daskr_pjac_t)m_staticFunctionMap[m_pStringPjacFunctionStatic->get(0)])(res, ires, neq, t, y, ydot, rewt, savr,
                 wk, h, cj, wp, iwp, ier, rpar, ipar);
-        return 1;
     }
-    return 1;
+    else
+    {
+        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "pjac");
+        throw ScilabError(errorMsg);
+    }
 }
 
-int DifferentialEquationFunctions::execDaskrPsol(int* neq, double* t, double* y, double* ydot, double* savr, double* wk,
+void DifferentialEquationFunctions::execDaskrPsol(int* neq, double* t, double* y, double* ydot, double* savr, double* wk,
         double* cj, double* wght, double* wp, int* iwp, double* b, double* eplin,
         int* ier, double* rpar, int* ipar)
 {
+    char errorMsg[256];
     if (m_pCallPsolFunction)
     {
-        return callDaskrMacroPsol(neq, t, y, ydot, savr, wk, cj, wght,
+        callDaskrMacroPsol(neq, t, y, ydot, savr, wk, cj, wght,
                                   wp, iwp, b, eplin, ier, rpar, ipar);
     }
     else if (m_pStringPsolFunctionDyn)
@@ -319,253 +337,308 @@ int DifferentialEquationFunctions::execDaskrPsol(int* neq, double* t, double* y,
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringPsolFunctionDyn->get(0));
         if (func == NULL)
         {
-            return 0;
+            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringPsolFunctionDyn->get(0));
+            throw ScilabError(errorMsg);
         }
         ((daskr_psol_t)(func->functionPtr))(neq, t, y, ydot, savr, wk, cj, wght,
                                             wp, iwp, b, eplin, ier, rpar, ipar);
-        return 1;
     }
     else if (m_pStringPsolFunctionStatic)
     {
         ((daskr_psol_t)m_staticFunctionMap[m_pStringPsolFunctionStatic->get(0)])(neq, t, y, ydot, savr, wk, cj, wght,
                 wp, iwp, b, eplin, ier, rpar, ipar);
-        return 1;
     }
-    return 1;
+    else
+    {
+        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "psol");
+        throw ScilabError(errorMsg);
+    }
 }
 
-int DifferentialEquationFunctions::execImplF(int* neq, double* t, double* y, double* s, double* r, int* ires)
+void DifferentialEquationFunctions::execImplF(int* neq, double* t, double* y, double* s, double* r, int* ires)
 {
+    char errorMsg[256];
     if (m_pCallFFunction)
     {
-        return callImplMacroF(neq, t, y, s, r, ires);
+        callImplMacroF(neq, t, y, s, r, ires);
     }
     else if (m_pStringFFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
         if (func == NULL)
         {
-            return 0;
+            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            throw ScilabError(errorMsg);
         }
         ((impl_f_t)(func->functionPtr))(neq, t, y, s, r, ires);
-        return 1;
+    }
+    else if(m_pStringFFunctionStatic)
+    {
+        ((impl_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(neq, t, y, s, r, ires);
     }
     else
     {
-        ((impl_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(neq, t, y, s, r, ires);
-        return 1;
+        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
+        throw ScilabError(errorMsg);
     }
-    return 0;
 }
 
-int DifferentialEquationFunctions::execImplG(int* neq, double* t, double* y, double* ml, double* mu, double* p, int* nrowp)
+void DifferentialEquationFunctions::execImplG(int* neq, double* t, double* y, double* ml, double* mu, double* p, int* nrowp)
 {
+    char errorMsg[256];
     if (m_pCallGFunction)
     {
-        return callImplMacroG(neq, t, y, ml, mu, p, nrowp);
+        callImplMacroG(neq, t, y, ml, mu, p, nrowp);
     }
     else if (m_pStringGFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGFunctionDyn->get(0));
         if (func == NULL)
         {
-            return 0;
+            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringGFunctionDyn->get(0));
+            throw ScilabError(errorMsg);
         }
         ((impl_g_t)(func->functionPtr))(neq, t, y, ml, mu, p, nrowp);
-        return 1;
+    }
+    else if(m_pStringGFunctionStatic)
+    {
+        ((impl_g_t)m_staticFunctionMap[m_pStringGFunctionStatic->get(0)])(neq, t, y, ml, mu, p, nrowp);
     }
     else
     {
-        ((impl_g_t)m_staticFunctionMap[m_pStringGFunctionStatic->get(0)])(neq, t, y, ml, mu, p, nrowp);
-        return 1;
+        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "g");
+        throw ScilabError(errorMsg);
     }
-    return 0;
 }
 
-int DifferentialEquationFunctions::execImplJac(int* neq, double* t, double* y, double* s, double* ml, double* mu, double* p, int* nrowp)
+void DifferentialEquationFunctions::execImplJac(int* neq, double* t, double* y, double* s, double* ml, double* mu, double* p, int* nrowp)
 {
+    char errorMsg[256];
     if (m_pCallJacFunction)
     {
-        return callImplMacroJac(neq, t, y, s, ml, mu, p, nrowp);
+        callImplMacroJac(neq, t, y, s, ml, mu, p, nrowp);
     }
     else if (m_pStringJacFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringJacFunctionDyn->get(0));
         if (func == NULL)
         {
-            return 0;
+            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringJacFunctionDyn->get(0));
+            throw ScilabError(errorMsg);
         }
         ((impl_jac_t)(func->functionPtr))(neq, t, y, s, ml, mu, p, nrowp);
-        return 1;
     }
     else if (m_pStringJacFunctionStatic)
     {
         ((impl_jac_t)m_staticFunctionMap[m_pStringJacFunctionStatic->get(0)])(neq, t, y, s, ml, mu, p, nrowp);
-        return 1;
     }
-    return 1;
+    else
+    {
+        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "jacobian");
+        throw ScilabError(errorMsg);
+    }
 }
 
-int DifferentialEquationFunctions::execBvodeGuess(double *x, double *z, double *d)
+void DifferentialEquationFunctions::execBvodeGuess(double *x, double *z, double *d)
 {
+    char errorMsg[256];
     if (m_pCallGuessFunction)
     {
-        return callBvodeMacroGuess(x, z, d);
+        callBvodeMacroGuess(x, z, d);
     }
     else if (m_pStringGuessFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGuessFunctionDyn->get(0));
         if (func == NULL)
         {
-            return 0;
+            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringGuessFunctionDyn->get(0));
+            throw ScilabError(errorMsg);
         }
         ((bvode_ddd_t)(func->functionPtr))(x, z, d);
-        return 1;
     }
     else if (m_pStringGuessFunctionStatic)
     {
         ((bvode_ddd_t)m_staticFunctionMap[m_pStringGuessFunctionStatic->get(0)])(x, z, d);
-        return 1;
     }
-    return 1;
+    else
+    {
+        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "guess");
+        throw ScilabError(errorMsg);
+    }
 }
 
-int DifferentialEquationFunctions::execBvodeDfsub(double *x, double *z, double *d)
+void DifferentialEquationFunctions::execBvodeDfsub(double *x, double *z, double *d)
 {
+    char errorMsg[256];
     if (m_pCallDfsubFunction)
     {
-        return callBvodeMacroDfsub(x, z, d);
+        callBvodeMacroDfsub(x, z, d);
     }
     else if (m_pStringDfsubFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringDfsubFunctionDyn->get(0));
         if (func == NULL)
         {
-            return 0;
+            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringDfsubFunctionDyn->get(0));
+            throw ScilabError(errorMsg);
         }
         ((bvode_ddd_t)(func->functionPtr))(x, z, d);
-        return 1;
     }
-    else // function static
+    else if (m_pStringDfsubFunctionStatic)// function static
     {
         ((bvode_ddd_t)m_staticFunctionMap[m_pStringDfsubFunctionStatic->get(0)])(x, z, d);
-        return 1;
+    }
+    else
+    {
+        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "fsub");
+        throw ScilabError(errorMsg);
     }
 }
 
-int DifferentialEquationFunctions::execBvodeFsub(double *x, double *z, double *d)
+void DifferentialEquationFunctions::execBvodeFsub(double *x, double *z, double *d)
 {
+    char errorMsg[256];
     if (m_pCallFsubFunction)
     {
-        return callBvodeMacroFsub(x, z, d);
+        callBvodeMacroFsub(x, z, d);
     }
     else if (m_pStringFsubFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFsubFunctionDyn->get(0));
         if (func == NULL)
         {
-            return 0;
+            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFsubFunctionDyn->get(0));
+            throw ScilabError(errorMsg);
         }
         ((bvode_ddd_t)(func->functionPtr))(x, z, d);
-        return 1;
     }
-    else // function static
+    else if(m_pStringFsubFunctionStatic) // function static
     {
         ((bvode_ddd_t)m_staticFunctionMap[m_pStringFsubFunctionStatic->get(0)])(x, z, d);
-        return 1;
+    }
+    else
+    {
+        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "fsub");
+        throw ScilabError(errorMsg);
     }
 }
 
-int DifferentialEquationFunctions::execBvodeDgsub(int *i, double *z, double *g)
+void DifferentialEquationFunctions::execBvodeDgsub(int *i, double *z, double *g)
 {
+    char errorMsg[256];
     if (m_pCallDgsubFunction)
     {
-        return callBvodeMacroDgsub(i, z, g);
+        callBvodeMacroDgsub(i, z, g);
     }
     else if (m_pStringDgsubFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringDgsubFunctionDyn->get(0));
         if (func == NULL)
         {
-            return 0;
+            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringDgsubFunctionDyn->get(0));
+            throw ScilabError(errorMsg);
         }
         ((bvode_idd_t)(func->functionPtr))(i, z, g);
-        return 1;
     }
-    else // function static
+    else if(m_pStringDgsubFunctionStatic) // function static
     {
         ((bvode_idd_t)m_staticFunctionMap[m_pStringDgsubFunctionStatic->get(0)])(i, z, g);
-        return 1;
+    }
+    else
+    {
+        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "gsub");
+        throw ScilabError(errorMsg);
     }
 }
 
-int DifferentialEquationFunctions::execBvodeGsub(int *i, double *z, double *g)
+void DifferentialEquationFunctions::execBvodeGsub(int *i, double *z, double *g)
 {
+    char errorMsg[256];
     if (m_pCallGsubFunction)
     {
-        return callBvodeMacroGsub(i, z, g);
+        callBvodeMacroGsub(i, z, g);
     }
     else if (m_pStringGsubFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGsubFunctionDyn->get(0));
         if (func == NULL)
         {
-            return 0;
+            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringGsubFunctionDyn->get(0));
+            throw ScilabError(errorMsg);
         }
         ((bvode_idd_t)(func->functionPtr))(i, z, g);
-        return 1;
     }
-    else // function static
+    else if(m_pStringGsubFunctionStatic) // function static
     {
         ((bvode_idd_t)m_staticFunctionMap[m_pStringGsubFunctionStatic->get(0)])(i, z, g);
-        return 1;
+    }
+    else
+    {
+        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "gsub");
+        throw ScilabError(errorMsg);
     }
 }
 
-int DifferentialEquationFunctions::execFevalF(int *nn, double *x1, double *x2, double *xres, int *itype)
+void DifferentialEquationFunctions::execFevalF(int *nn, double *x1, double *x2, double *xres, int *itype)
 {
+    char errorMsg[256];
     if (m_pCallFFunction)
     {
-        return callFevalMacroF(nn, x1, x2, xres, itype);
+        callFevalMacroF(nn, x1, x2, xres, itype);
     }
     else if (m_pStringFFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
         if (func == NULL)
         {
-            return 1;
+            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            throw ScilabError(errorMsg);
         }
-        return ((feval_f_t)(func->functionPtr))(nn, x1, x2, xres, itype);
+
+        ((feval_f_t)(func->functionPtr))(nn, x1, x2, xres, itype);
     }
-    else // function static
+    else if(m_pStringFFunctionStatic) // function static
     {
-        return ((feval_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(nn, x1, x2, xres, itype);
+        ((feval_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(nn, x1, x2, xres, itype);
+    }
+    else
+    {
+        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
+        throw ScilabError(errorMsg);
     }
 }
 
-double DifferentialEquationFunctions::execInt3dF(double* x, int* numfun, double* funvls)
+void DifferentialEquationFunctions::execInt3dF(double* x, int* numfun, double* funvls)
 {
+    char errorMsg[256];
     if (m_pCallFFunction)
     {
-        return callInt3dMacroF(x, numfun, funvls);
+        callInt3dMacroF(x, numfun, funvls);
     }
     else if (m_pStringFFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
         if (func == NULL)
         {
-            return 0;
+            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            throw ScilabError(errorMsg);
         }
-        return ((int3d_f_t)(func->functionPtr))(x, numfun, funvls);
+        ((int3d_f_t)(func->functionPtr))(x, numfun, funvls);
     }
-    else // function static
+    else if(m_pStringFFunctionStatic) // function static
     {
-        return ((int3d_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(x, numfun, funvls);
+        ((int3d_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(x, numfun, funvls);
+    }
+    else
+    {
+        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
+        throw ScilabError(errorMsg);
     }
 }
 
 double DifferentialEquationFunctions::execInt2dF(double* x, double* y)
 {
+    char errorMsg[256];
     if (m_pCallFFunction)
     {
         return callInt2dMacroF(x, y);
@@ -575,18 +648,25 @@ double DifferentialEquationFunctions::execInt2dF(double* x, double* y)
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
         if (func == NULL)
         {
-            return 0;
+            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            throw ScilabError(errorMsg);
         }
         return ((int2d_f_t)(func->functionPtr))(x, y);
     }
-    else // function static
+    else if(m_pStringFFunctionStatic) // function static
     {
         return ((int2d_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(x, y);
+    }
+    else
+    {
+        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
+        throw ScilabError(errorMsg);
     }
 }
 
 double DifferentialEquationFunctions::execIntgF(double* x)
 {
+    char errorMsg[256];
     if (m_pCallFFunction)
     {
         return callIntgMacroF(x);
@@ -596,88 +676,110 @@ double DifferentialEquationFunctions::execIntgF(double* x)
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
         if (func == NULL)
         {
-            return 0;
+            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            throw ScilabError(errorMsg);
         }
         return ((intg_f_t)(func->functionPtr))(x);
     }
-    else // function static
+    else if(m_pStringFFunctionStatic) // function static
     {
         return ((intg_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(x);
     }
+    else
+    {
+        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
+        throw ScilabError(errorMsg);
+    }
 }
 
-int DifferentialEquationFunctions::execOdeF(int* n, double* t, double* y, double* yout)
+void DifferentialEquationFunctions::execOdeF(int* n, double* t, double* y, double* yout)
 {
+    char errorMsg[256];
     if (m_pCallFFunction)
     {
-        return callOdeMacroF(n, t, y, yout);
+        callOdeMacroF(n, t, y, yout);
     }
     else if (m_pStringFFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
         if (func == NULL)
         {
-            return 0;
+            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            throw ScilabError(errorMsg);
         }
-        return ((ode_f_t)(func->functionPtr))(n, t, y, yout);
+        ((ode_f_t)(func->functionPtr))(n, t, y, yout);
     }
-    else // function static
+    else if(m_pStringFFunctionStatic) // function static
     {
         if (m_wstrCaller == L"ode")
         {
             ((ode_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(n, t, y, yout);
-            return 1;
         }
-        else if (m_wstrCaller == L"odedc")
+        else // if (m_wstrCaller == L"odedc")
         {
             ((odedc_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(&m_odedcFlag, n, &m_odedcYDSize, t, y, yout);
-            return 1;
         }
-        return 0;
+    }
+    else
+    {
+        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
+        throw ScilabError(errorMsg);
     }
 }
 
-int DifferentialEquationFunctions::execFunctionJac(int *n, double *t, double *y, int *ml, int *mu, double *J, int *nrpd)
+void DifferentialEquationFunctions::execFunctionJac(int *n, double *t, double *y, int *ml, int *mu, double *J, int *nrpd)
 {
+    char errorMsg[256];
     if (m_pCallJacFunction)
     {
-        return callMacroJac(n, t, y, ml, mu, J, nrpd);
+        callMacroJac(n, t, y, ml, mu, J, nrpd);
     }
     else if (m_pStringJacFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringJacFunctionDyn->get(0));
         if (func == NULL)
         {
-            return 0;
+            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringJacFunctionDyn->get(0));
+            throw ScilabError(errorMsg);
         }
-        return ((func_jac_t)(func->functionPtr))(n, t, y, ml, mu, J, nrpd);
+        ((func_jac_t)(func->functionPtr))(n, t, y, ml, mu, J, nrpd);
     }
-    else // function static
+    else if(m_pStringJacFunctionStatic) // function static
     {
         ((func_jac_t)m_staticFunctionMap[m_pStringJacFunctionStatic->get(0)])(n, t, y, ml, mu, J, nrpd);
-        return 1;
+    }
+    else
+    {
+        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "jacobian");
+        throw ScilabError(errorMsg);
     }
 }
 
-int DifferentialEquationFunctions::execFunctionG(int* n, double* t, double* y, int* ng, double* gout)
+void DifferentialEquationFunctions::execFunctionG(int* n, double* t, double* y, int* ng, double* gout)
 {
+    char errorMsg[256];
     if (m_pCallGFunction)
     {
-        return callMacroG(n, t, y, ng, gout);
+        callMacroG(n, t, y, ng, gout);
     }
     else if (m_pStringGFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGFunctionDyn->get(0));
         if (func == NULL)
         {
-            return 0;
+            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringGFunctionDyn->get(0));
+            throw ScilabError(errorMsg);
         }
-        return ((func_g_t)(func->functionPtr))(n, t, y, ng, gout);
+        ((func_g_t)(func->functionPtr))(n, t, y, ng, gout);
     }
-    else // function static
+    else if (m_pStringGFunctionStatic)// function static
     {
         ((func_g_t)m_staticFunctionMap[m_pStringGFunctionStatic->get(0)])(n, t, y, ng, gout);
-        return 1;
+    }
+    else
+    {
+        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "g");
+        throw ScilabError(errorMsg);
     }
 }
 
@@ -1045,1832 +1147,2033 @@ int DifferentialEquationFunctions::getOdedcFlag()
 }
 
 /*------------------------------- private -------------------------------------------*/
-int DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, double* ydot)
+void DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, double* ydot)
 {
-    if (m_pCallFFunction)
+    char errorMsg[256];
+    int one         = 1;
+    int iRetCount   = 1;
+
+    typed_list in;
+    typed_list out;
+    types::optional_list opt;
+    ast::ExecVisitor execFunc;
+
+    types::Double* pDblY    = NULL;
+    types::Double* pDblYC   = NULL;
+    types::Double* pDblYD   = NULL;
+    types::Double* pDblFlag = NULL;
+
+    // create input args
+    types::Double* pDblT = new types::Double(*t);
+    pDblT->IncreaseRef();
+
+    if (m_odedcYDSize) // odedc
     {
-        int one         = 1;
-        int iRetCount   = 1;
+        pDblYC = new types::Double(*n, 1);
+        pDblYC->set(y);
+        pDblYC->IncreaseRef();
+        pDblYD = new types::Double(m_odedcYDSize, 1);
+        pDblYD->set(y + *n);
+        pDblYD->IncreaseRef();
+        pDblFlag = new types::Double(m_odedcFlag);
+        pDblFlag->IncreaseRef();
+    }
+    else // ode
+    {
+        pDblY = new types::Double(m_odeYRows, m_odeYCols);
+        pDblY->set(y);
+        pDblY->IncreaseRef();
+    }
 
-        typed_list in;
-        typed_list out;
-        types::optional_list opt;
-        ast::ExecVisitor execFunc;
+    // push_back
+    in.push_back(pDblT);
+    if (m_odedcYDSize) // odedc
+    {
+        in.push_back(pDblYC);
+        in.push_back(pDblYD);
+        in.push_back(pDblFlag);
+    }
+    else
+    {
+        in.push_back(pDblY);
+    }
 
-        types::Double* pDblY    = NULL;
-        types::Double* pDblYC   = NULL;
-        types::Double* pDblYD   = NULL;
-        types::Double* pDblFlag = NULL;
+    for (int i = 0; i < (int)m_FArgs.size(); i++)
+    {
+        m_FArgs[i]->IncreaseRef();
+        in.push_back(m_FArgs[i]);
+    }
 
-        // create input args
-        types::Double* pDblT = new types::Double(*t);
-        pDblT->IncreaseRef();
+    bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        if (m_odedcYDSize) // odedc
+    for (int i = 0; i < (int)m_FArgs.size(); i++)
+    {
+        m_FArgs[i]->DecreaseRef();
+    }
+
+    if (bOk == false)
+    {
+        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallFFunction->getName().c_str());
+        throw ScilabError(errorMsg);
+    }
+
+    if (out.size() != iRetCount)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[0]->IncreaseRef();
+
+    pDblT->DecreaseRef();
+    if (pDblT->isDeletable())
+    {
+        delete pDblT;
+    }
+
+    if (m_odedcYDSize) // odedc
+    {
+        pDblYC->DecreaseRef();
+        if (pDblYC->isDeletable())
         {
-            pDblYC = new types::Double(*n, 1);
-            pDblYC->set(y);
-            pDblYC->IncreaseRef();
-            pDblYD = new types::Double(m_odedcYDSize, 1);
-            pDblYD->set(y + *n);
-            pDblYD->IncreaseRef();
-            pDblFlag = new types::Double(m_odedcFlag);
-            pDblFlag->IncreaseRef();
+            delete pDblYC;
         }
-        else // ode
+        pDblYD->DecreaseRef();
+        if (pDblYD->isDeletable())
         {
-            pDblY = new types::Double(m_odeYRows, m_odeYCols);
-            pDblY->set(y);
-            pDblY->IncreaseRef();
+            delete pDblYD;
         }
-
-        // push_back
-        in.push_back(pDblT);
-        if (m_odedcYDSize) // odedc
+        pDblFlag->DecreaseRef();
+        if (pDblFlag->isDeletable())
         {
-            in.push_back(pDblYC);
-            in.push_back(pDblYD);
-            in.push_back(pDblFlag);
-        }
-        else
-        {
-            in.push_back(pDblY);
-        }
-
-        for (int i = 0; i < m_FArgs.size(); i++)
-        {
-            m_FArgs[i]->IncreaseRef();
-            in.push_back(m_FArgs[i]);
-        }
-
-        bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
-
-        for (int i = 0; i < m_FArgs.size(); i++)
-        {
-            m_FArgs[i]->DecreaseRef();
-        }
-
-        if (bOk == false)
-        {
-            return 0;
-        }
-
-        if (out.size() != iRetCount)
-        {
-            return 0;
-        }
-
-        out[0]->IncreaseRef();
-
-        pDblT->DecreaseRef();
-        if (pDblT->isDeletable())
-        {
-            delete pDblT;
-        }
-
-        if (m_odedcYDSize) // odedc
-        {
-            pDblYC->DecreaseRef();
-            if (pDblYC->isDeletable())
-            {
-                delete pDblY;
-            }
-            pDblYD->DecreaseRef();
-            if (pDblYD->isDeletable())
-            {
-                delete pDblY;
-            }
-            pDblFlag->DecreaseRef();
-            if (pDblFlag->isDeletable())
-            {
-                delete pDblFlag;
-            }
-        }
-        else
-        {
-            pDblY->DecreaseRef();
-            if (pDblY->isDeletable())
-            {
-                delete pDblY;
-            }
-        }
-
-        out[0]->DecreaseRef();
-        if (out[0]->isDouble())
-        {
-            if (m_odedcFlag && m_odedcYDSize)
-            {
-                C2F(dcopy)(&m_odedcYDSize, out[0]->getAs<types::Double>()->get(), &one, ydot, &one);
-            }
-            else
-            {
-                C2F(dcopy)(n, out[0]->getAs<types::Double>()->get(), &one, ydot, &one);
-            }
-
-            if (out[0]->isDeletable())
-            {
-                delete out[0];
-            }
-            return 1;
+            delete pDblFlag;
         }
     }
-    return 0;
-}
-
-int DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, int* ml, int* mu, double* J, int* nrpd)
-{
-    if (m_pCallJacFunction)
+    else
     {
-        int iRetCount   = 1;
-        int one         = 1;
-        int size        = (*n) * (*nrpd);
-
-        typed_list in;
-        typed_list out;
-        types::optional_list opt;
-        ast::ExecVisitor execFunc;
-
-        types::Double* pDblY = new types::Double(m_odeYRows, m_odeYCols);
-        pDblY->set(y);
-        types::Double* pDblT = new types::Double(*t);
-
-        pDblT->IncreaseRef();
-        pDblY->IncreaseRef();
-
-        in.push_back(pDblT);
-        in.push_back(pDblY);
-
-        for (int i = 0; i < m_JacArgs.size(); i++)
-        {
-            in.push_back(m_JacArgs[i]);
-        }
-
-        bool bOk = m_pCallJacFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
-
-        if (bOk == false)
-        {
-            return 0;
-        }
-
-        out[0]->IncreaseRef();
-        pDblT->DecreaseRef();
         pDblY->DecreaseRef();
-
-        if (pDblT->isDeletable())
-        {
-            delete pDblT;
-        }
-
         if (pDblY->isDeletable())
         {
             delete pDblY;
         }
-
-        if (out.size() != iRetCount)
-        {
-            return 0;
-        }
-
-        out[0]->DecreaseRef();
-        if (out[0]->isDouble())
-        {
-            // dimension y(*), pd(nrowpd,*)
-            C2F(dcopy)(&size, out[0]->getAs<types::Double>()->get(), &one, J, &one);
-            return 1;
-        }
     }
-    return 0;
+
+    out[0]->DecreaseRef();
+
+    if (out[0]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+    types::Double* pDblOut = out[0]->getAs<types::Double>();
+    if (pDblOut->isComplex())
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    if (m_odedcFlag && m_odedcYDSize)
+    {
+        C2F(dcopy)(&m_odedcYDSize, pDblOut->get(), &one, ydot, &one);
+    }
+    else
+    {
+        C2F(dcopy)(n, pDblOut->get(), &one, ydot, &one);
+    }
+
+    if (out[0]->isDeletable())
+    {
+        delete out[0];
+    }
 }
 
-int DifferentialEquationFunctions::callMacroG(int* n, double* t, double* y, int* ng, double* gout)
+void DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, int* ml, int* mu, double* J, int* nrpd)
 {
-    if (m_pCallGFunction)
+    char errorMsg[256];
+    int iRetCount   = 1;
+    int one         = 1;
+    int size        = (*n) * (*nrpd);
+
+    typed_list in;
+    typed_list out;
+    types::optional_list opt;
+    ast::ExecVisitor execFunc;
+
+    types::Double* pDblY = new types::Double(m_odeYRows, m_odeYCols);
+    pDblY->set(y);
+    types::Double* pDblT = new types::Double(*t);
+
+    pDblT->IncreaseRef();
+    pDblY->IncreaseRef();
+
+    in.push_back(pDblT);
+    in.push_back(pDblY);
+
+    for (int i = 0; i < (int)m_JacArgs.size(); i++)
     {
-        int iRetCount   = 1;
-        int one         = 1;
-
-        typed_list in;
-        typed_list out;
-        types::optional_list opt;
-        ast::ExecVisitor execFunc;
-
-        types::Double* pDblY = new types::Double(m_odeYRows, m_odeYCols);
-        pDblY->set(y);
-        types::Double* pDblT = new types::Double(*t);
-
-        pDblT->IncreaseRef();
-        pDblY->IncreaseRef();
-
-        in.push_back(pDblT);
-        in.push_back(pDblY);
-
-        for (int i = 0; i < m_odeGArgs.size(); i++)
-        {
-            in.push_back(m_odeGArgs[i]);
-        }
-
-        bool bOk = m_pCallGFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
-
-        if (bOk == false)
-        {
-            return 0;
-        }
-
-        if (out.size() != iRetCount)
-        {
-            return 0;
-        }
-
-        out[0]->IncreaseRef();
-
-        pDblT->DecreaseRef();
-        pDblY->DecreaseRef();
-
-        if (pDblT->isDeletable())
-        {
-            delete pDblT;
-        }
-
-        if (pDblY->isDeletable())
-        {
-            delete pDblY;
-        }
-
-        out[0]->DecreaseRef();
-        if (out[0]->isDouble())
-        {
-            C2F(dcopy)(ng, out[0]->getAs<types::Double>()->get(), &one, gout, &one);
-            if (out[0]->isDeletable())
-            {
-                delete out[0];
-            }
-            return 1;
-        }
+        in.push_back(m_JacArgs[i]);
     }
-    return 0;
+
+    bool bOk = m_pCallJacFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+    if (bOk == false)
+    {
+        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallJacFunction->getName().c_str());
+        throw ScilabError(errorMsg);
+    }
+
+    out[0]->IncreaseRef();
+    pDblT->DecreaseRef();
+    pDblY->DecreaseRef();
+
+    if (pDblT->isDeletable())
+    {
+        delete pDblT;
+    }
+
+    if (pDblY->isDeletable())
+    {
+        delete pDblY;
+    }
+
+    if (out.size() != iRetCount)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[0]->DecreaseRef();
+    if (out[0]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    // dimension y(*), pd(nrowpd,*)
+    C2F(dcopy)(&size, out[0]->getAs<types::Double>()->get(), &one, J, &one);
+}
+
+void DifferentialEquationFunctions::callMacroG(int* n, double* t, double* y, int* ng, double* gout)
+{
+    char errorMsg[256];
+    int iRetCount   = 1;
+    int one         = 1;
+
+    typed_list in;
+    typed_list out;
+    types::optional_list opt;
+    ast::ExecVisitor execFunc;
+
+    types::Double* pDblY = new types::Double(m_odeYRows, m_odeYCols);
+    pDblY->set(y);
+    types::Double* pDblT = new types::Double(*t);
+
+    pDblT->IncreaseRef();
+    pDblY->IncreaseRef();
+
+    in.push_back(pDblT);
+    in.push_back(pDblY);
+
+    for (int i = 0; i < (int)m_odeGArgs.size(); i++)
+    {
+        in.push_back(m_odeGArgs[i]);
+    }
+
+    bool bOk = m_pCallGFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+    if (bOk == false)
+    {
+        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallGFunction->getName().c_str());
+        throw ScilabError(errorMsg);
+    }
+
+    if (out.size() != iRetCount)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallGFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[0]->IncreaseRef();
+
+    pDblT->DecreaseRef();
+    pDblY->DecreaseRef();
+
+    if (pDblT->isDeletable())
+    {
+        delete pDblT;
+    }
+
+    if (pDblY->isDeletable())
+    {
+        delete pDblY;
+    }
+
+    out[0]->DecreaseRef();
+    if (out[0]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallGFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    C2F(dcopy)(ng, out[0]->getAs<types::Double>()->get(), &one, gout, &one);
+    if (out[0]->isDeletable())
+    {
+        delete out[0];
+    }
 }
 
 double DifferentialEquationFunctions::callIntgMacroF(double* t)
 {
-    if (m_pCallFFunction)
+    char errorMsg[256];
+    int one         = 1;
+    int iRetCount   = 1;
+
+    typed_list in;
+    typed_list out;
+    types::optional_list opt;
+    ast::ExecVisitor execFunc;
+
+    // create input args
+    types::Double* pDblT = new types::Double(*t);
+    pDblT->IncreaseRef();
+
+    // push_back
+    in.push_back(pDblT);
+
+    for (int i = 0; i < (int)m_FArgs.size(); i++)
     {
-        int one         = 1;
-        int iRetCount   = 1;
-
-        typed_list in;
-        typed_list out;
-        types::optional_list opt;
-        ast::ExecVisitor execFunc;
-
-        // create input args
-        types::Double* pDblT = new types::Double(*t);
-        pDblT->IncreaseRef();
-
-        // push_back
-        in.push_back(pDblT);
-
-        for (int i = 0; i < m_FArgs.size(); i++)
-        {
-            m_FArgs[i]->IncreaseRef();
-            in.push_back(m_FArgs[i]);
-        }
-
-        bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
-
-        for (int i = 0; i < m_FArgs.size(); i++)
-        {
-            m_FArgs[i]->DecreaseRef();
-        }
-
-        if (bOk == false)
-        {
-            return 0;
-        }
-
-        if (out.size() != iRetCount)
-        {
-            return 0;
-        }
-
-        out[0]->IncreaseRef();
-
-        pDblT->DecreaseRef();
-        if (pDblT->isDeletable())
-        {
-            delete pDblT;
-        }
-
-        out[0]->DecreaseRef();
-        if (out[0]->isDouble())
-        {
-            types::Double* pDblOut = out[0]->getAs<types::Double>();
-            if (pDblOut->getSize() != 1)
-            {
-                return 0;
-            }
-            double res = pDblOut->get(0);
-            if (out[0]->isDeletable())
-            {
-                delete out[0];
-            }
-            return res;
-        }
+        m_FArgs[i]->IncreaseRef();
+        in.push_back(m_FArgs[i]);
     }
-    return 0;
+
+    bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+    for (int i = 0; i < (int)m_FArgs.size(); i++)
+    {
+        m_FArgs[i]->DecreaseRef();
+    }
+
+    if (bOk == false)
+    {
+        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallFFunction->getName().c_str());
+        throw ScilabError(errorMsg);
+    }
+
+    if (out.size() != iRetCount)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[0]->IncreaseRef();
+
+    pDblT->DecreaseRef();
+    if (pDblT->isDeletable())
+    {
+        delete pDblT;
+    }
+
+    out[0]->DecreaseRef();
+    if (out[0]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+
+    }
+
+    types::Double* pDblOut = out[0]->getAs<types::Double>();
+    if (pDblOut->getSize() != 1)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A Scalar expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    double res = pDblOut->get(0);
+    if (out[0]->isDeletable())
+    {
+        delete out[0];
+    }
+
+    return res;
 }
 
 double DifferentialEquationFunctions::callInt2dMacroF(double* x, double* y)
 {
-    if (m_pCallFFunction)
+    char errorMsg[256];
+    int one         = 1;
+    int iRetCount   = 1;
+
+    typed_list in;
+    typed_list out;
+    types::optional_list opt;
+    ast::ExecVisitor execFunc;
+
+    // create input args
+    types::Double* pDblX = new types::Double(*x);
+    pDblX->IncreaseRef();
+    types::Double* pDblY = new types::Double(*y);
+    pDblY->IncreaseRef();
+
+    // push_back
+    in.push_back(pDblX);
+    in.push_back(pDblY);
+
+    for (int i = 0; i < (int)m_FArgs.size(); i++)
     {
-        int one         = 1;
-        int iRetCount   = 1;
+        m_FArgs[i]->IncreaseRef();
+        in.push_back(m_FArgs[i]);
+    }
 
-        typed_list in;
-        typed_list out;
-        types::optional_list opt;
-        ast::ExecVisitor execFunc;
+    bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        // create input args
-        types::Double* pDblX = new types::Double(*x);
-        pDblX->IncreaseRef();
-        types::Double* pDblY = new types::Double(*y);
+    for (int i = 0; i < (int)m_FArgs.size(); i++)
+    {
+        m_FArgs[i]->DecreaseRef();
+    }
+
+    if (bOk == false)
+    {
+        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallFFunction->getName().c_str());
+        throw ScilabError(errorMsg);
+    }
+
+    if (out.size() != iRetCount)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[0]->IncreaseRef();
+
+    pDblX->DecreaseRef();
+    if (pDblX->isDeletable())
+    {
+        delete pDblX;
+    }
+
+    pDblY->DecreaseRef();
+    if (pDblY->isDeletable())
+    {
+        delete pDblY;
+    }
+
+    out[0]->DecreaseRef();
+    if (out[0]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    types::Double* pDblOut = out[0]->getAs<types::Double>();
+    if (pDblOut->getSize() != 1)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A Scalar expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    double res = pDblOut->get(0);
+    if (out[0]->isDeletable())
+    {
+        delete out[0];
+    }
+
+    return res;
+}
+
+void DifferentialEquationFunctions::callInt3dMacroF(double* xyz, int* numfun, double* funvls)
+{
+    char errorMsg[256];
+    int one         = 1;
+    int iRetCount   = 1;
+
+    typed_list in;
+    typed_list out;
+    types::optional_list opt;
+    ast::ExecVisitor execFunc;
+
+    // create input args
+    types::Double* pDblXYZ = new types::Double(3, 1);
+    pDblXYZ->set(xyz);
+    pDblXYZ->IncreaseRef();
+    types::Double* pDblNumfun = new types::Double(*numfun);
+    pDblNumfun->IncreaseRef();
+
+    // push_back
+    in.push_back(pDblXYZ);
+    in.push_back(pDblNumfun);
+
+    for (int i = 0; i < (int)m_FArgs.size(); i++)
+    {
+        m_FArgs[i]->IncreaseRef();
+        in.push_back(m_FArgs[i]);
+    }
+
+    bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+    for (int i = 0; i < (int)m_FArgs.size(); i++)
+    {
+        m_FArgs[i]->DecreaseRef();
+    }
+
+    if (bOk == false)
+    {
+        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallFFunction->getName().c_str());
+        throw ScilabError(errorMsg);
+    }
+
+    if (out.size() != iRetCount)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[0]->IncreaseRef();
+
+    pDblXYZ->DecreaseRef();
+    if (pDblXYZ->isDeletable())
+    {
+        delete pDblXYZ;
+    }
+
+    pDblNumfun->DecreaseRef();
+    if (pDblNumfun->isDeletable())
+    {
+        delete pDblNumfun;
+    }
+
+    out[0]->DecreaseRef();
+    if (out[0]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    types::Double* pDblOut = out[0]->getAs<types::Double>();
+    if (pDblOut->getSize() != *numfun)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: Matrix of size %d expected.\n"), pstrName, 1, numfun);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    C2F(dcopy)(numfun, pDblOut->get(), &one, funvls, &one);
+    if (out[0]->isDeletable())
+    {
+        delete out[0];
+    }
+}
+
+void DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double* x2, double* xres, int* itype)
+{
+    char errorMsg[256];
+    int one         = 1;
+    int iRetCount   = 1;
+
+    typed_list in;
+    typed_list out;
+    types::optional_list opt;
+    ast::ExecVisitor execFunc;
+
+    types::Double* pDblX = NULL;
+    types::Double* pDblY = NULL;
+
+    // create input args
+
+    pDblX = new types::Double(*x1);
+    pDblX->IncreaseRef();
+    in.push_back(pDblX);
+
+    if (*nn == 2)
+    {
+        pDblY = new types::Double(*x2);
         pDblY->IncreaseRef();
-
-        // push_back
-        in.push_back(pDblX);
         in.push_back(pDblY);
+    }
 
-        for (int i = 0; i < m_FArgs.size(); i++)
-        {
-            m_FArgs[i]->IncreaseRef();
-            in.push_back(m_FArgs[i]);
-        }
+    for (int i = 0; i < (int)m_FArgs.size(); i++)
+    {
+        m_FArgs[i]->IncreaseRef();
+        in.push_back(m_FArgs[i]);
+    }
 
-        bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+    bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        for (int i = 0; i < m_FArgs.size(); i++)
-        {
-            m_FArgs[i]->DecreaseRef();
-        }
+    for (int i = 0; i < (int)m_FArgs.size(); i++)
+    {
+        m_FArgs[i]->DecreaseRef();
+    }
 
-        if (bOk == false)
-        {
-            return 0;
-        }
+    if (bOk == false)
+    {
+        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallFFunction->getName().c_str());
+        throw ScilabError(errorMsg);
+    }
 
-        if (out.size() != iRetCount)
-        {
-            return 0;
-        }
+    if (out.size() != iRetCount)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
 
-        out[0]->IncreaseRef();
+    out[0]->IncreaseRef();
 
-        pDblX->DecreaseRef();
-        if (pDblX->isDeletable())
-        {
-            delete pDblX;
-        }
+    pDblX->DecreaseRef();
+    if (pDblX->isDeletable())
+    {
+        delete pDblX;
+    }
 
+    if (*nn == 2)
+    {
         pDblY->DecreaseRef();
         if (pDblY->isDeletable())
         {
             delete pDblY;
         }
-
-        out[0]->DecreaseRef();
-        if (out[0]->isDouble())
-        {
-            types::Double* pDblOut = out[0]->getAs<types::Double>();
-            if (pDblOut->getSize() != 1)
-            {
-                return 0;
-            }
-            double res = pDblOut->get(0);
-            if (out[0]->isDeletable())
-            {
-                delete out[0];
-            }
-            return res;
-        }
     }
-    return 0;
-}
 
-double DifferentialEquationFunctions::callInt3dMacroF(double* xyz, int* numfun, double* funvls)
-{
-    if (m_pCallFFunction)
+    out[0]->DecreaseRef();
+    if (out[0]->isDouble() == false)
     {
-        int one         = 1;
-        int iRetCount   = 1;
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
 
-        typed_list in;
-        typed_list out;
-        types::optional_list opt;
-        ast::ExecVisitor execFunc;
-
-        // create input args
-        types::Double* pDblXYZ = new types::Double(3, 1);
-        pDblXYZ->set(xyz);
-        pDblXYZ->IncreaseRef();
-        types::Double* pDblNumfun = new types::Double(*numfun);
-        pDblNumfun->IncreaseRef();
-
-        // push_back
-        in.push_back(pDblXYZ);
-        in.push_back(pDblNumfun);
-
-        for (int i = 0; i < m_FArgs.size(); i++)
-        {
-            m_FArgs[i]->IncreaseRef();
-            in.push_back(m_FArgs[i]);
-        }
-
-        bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
-
-        for (int i = 0; i < m_FArgs.size(); i++)
-        {
-            m_FArgs[i]->DecreaseRef();
-        }
-
-        if (bOk == false)
-        {
-            return 0;
-        }
-
-        if (out.size() != iRetCount)
-        {
-            return 0;
-        }
-
-        out[0]->IncreaseRef();
-
-        pDblXYZ->DecreaseRef();
-        if (pDblXYZ->isDeletable())
-        {
-            delete pDblXYZ;
-        }
-
-        pDblNumfun->DecreaseRef();
-        if (pDblNumfun->isDeletable())
-        {
-            delete pDblNumfun;
-        }
-
-        out[0]->DecreaseRef();
-        if (out[0]->isDouble())
-        {
-            types::Double* pDblOut = out[0]->getAs<types::Double>();
-            if (pDblOut->getSize() != *numfun)
-            {
-                return 0;
-            }
-            C2F(dcopy)(numfun, pDblOut->get(), &one, funvls, &one);
-            if (out[0]->isDeletable())
-            {
-                delete out[0];
-            }
-            return 1;
-        }
     }
-    return 0;
-}
 
-int DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double* x2, double* xres, int* itype)
-{
-    if (m_pCallFFunction)
+    types::Double* pDblOut = out[0]->getAs<types::Double>();
+    if (pDblOut->getSize() != 1)
     {
-        int one         = 1;
-        int iRetCount   = 1;
-
-        typed_list in;
-        typed_list out;
-        types::optional_list opt;
-        ast::ExecVisitor execFunc;
-
-        types::Double* pDblX = NULL;
-        types::Double* pDblY = NULL;
-
-        // create input args
-
-        pDblX = new types::Double(*x1);
-        pDblX->IncreaseRef();
-        in.push_back(pDblX);
-
-        if (*nn == 2)
-        {
-            pDblY = new types::Double(*x2);
-            pDblY->IncreaseRef();
-            in.push_back(pDblY);
-        }
-
-        for (int i = 0; i < m_FArgs.size(); i++)
-        {
-            m_FArgs[i]->IncreaseRef();
-            in.push_back(m_FArgs[i]);
-        }
-
-        bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
-
-        for (int i = 0; i < m_FArgs.size(); i++)
-        {
-            m_FArgs[i]->DecreaseRef();
-        }
-
-        if (bOk == false)
-        {
-            return 1;
-        }
-
-        if (out.size() != iRetCount)
-        {
-            return 1;
-        }
-
-        out[0]->IncreaseRef();
-
-        pDblX->DecreaseRef();
-        if (pDblX->isDeletable())
-        {
-            delete pDblX;
-        }
-
-        if (*nn == 2)
-        {
-            pDblY->DecreaseRef();
-            if (pDblY->isDeletable())
-            {
-                delete pDblY;
-            }
-        }
-
-        out[0]->DecreaseRef();
-        if (out[0]->isDouble())
-        {
-            types::Double* pDblOut = out[0]->getAs<types::Double>();
-            if (pDblOut->getSize() != 1)
-            {
-                return 1;
-            }
-
-            if (pDblOut->isComplex())
-            {
-                *itype = 1;
-                xres[0] = pDblOut->get(0);
-                xres[1] = pDblOut->getImg(0);
-            }
-            else
-            {
-                *itype = 0;
-                xres[0] = pDblOut->get(0);
-            }
-
-            if (out[0]->isDeletable())
-            {
-                delete out[0];
-            }
-            return 0;
-        }
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A Scalar expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
     }
-    return 1;
-}
 
-int DifferentialEquationFunctions::callBvodeMacroGsub(int* i, double* z, double* g)
-{
-    if (m_pCallGsubFunction)
+    if (pDblOut->isComplex())
     {
-        int one         = 1;
-        int iRetCount   = 1;
-
-        typed_list in;
-        typed_list out;
-        types::optional_list opt;
-        ast::ExecVisitor execFunc;
-
-        types::Double* pDblI = NULL;
-        types::Double* pDblZ = NULL;
-
-        pDblI = new types::Double(*i);
-        pDblI->IncreaseRef();
-        in.push_back(pDblI);
-
-        pDblZ = new types::Double(m_bvodeM, 1);
-        pDblZ->set(z);
-        pDblZ->IncreaseRef();
-        in.push_back(pDblZ);
-
-
-        for (int i = 0; i < m_GsubArgs.size(); i++)
-        {
-            in.push_back(m_GsubArgs[i]);
-        }
-
-        bool bOk = m_pCallGsubFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
-
-        if (bOk == false)
-        {
-            return 0;
-        }
-
-        if (out.size() != iRetCount)
-        {
-            return 0;
-        }
-
-        out[0]->IncreaseRef();
-
-        pDblI->DecreaseRef();
-        if (pDblI->isDeletable())
-        {
-            delete pDblI;
-        }
-
-        pDblZ->DecreaseRef();
-        if (pDblZ->isDeletable())
-        {
-            delete pDblZ;
-        }
-
-        out[0]->DecreaseRef();
-        if (out[0]->isDouble())
-        {
-            types::Double* pDblOut = out[0]->getAs<types::Double>();
-            if (pDblOut->getSize() != 1)
-            {
-                return 0;
-            }
-
-            *g = pDblOut->get(0);
-            if (out[0]->isDeletable())
-            {
-                delete out[0];
-            }
-            return 1;
-        }
+        *itype = 1;
+        xres[0] = pDblOut->get(0);
+        xres[1] = pDblOut->getImg(0);
     }
-    return 0;
-}
-
-int DifferentialEquationFunctions::callBvodeMacroDgsub(int* i, double* z, double* g)
-{
-    if (m_pCallDgsubFunction)
+    else
     {
-        int one         = 1;
-        int iRetCount   = 1;
-
-        typed_list in;
-        typed_list out;
-        types::optional_list opt;
-        ast::ExecVisitor execFunc;
-
-        types::Double* pDblI = NULL;
-        types::Double* pDblZ = NULL;
-
-        pDblI = new types::Double(*i);
-        pDblI->IncreaseRef();
-        in.push_back(pDblI);
-
-        pDblZ = new types::Double(m_bvodeM, 1);
-        pDblZ->set(z);
-        pDblZ->IncreaseRef();
-        in.push_back(pDblZ);
-
-        for (int i = 0; i < m_DgsubArgs.size(); i++)
-        {
-            in.push_back(m_DgsubArgs[i]);
-        }
-
-        bool bOk = m_pCallDgsubFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
-
-        if (bOk == false)
-        {
-            return 0;
-        }
-
-        if (out.size() != iRetCount)
-        {
-            return 0;
-        }
-
-        out[0]->IncreaseRef();
-
-        pDblI->DecreaseRef();
-        if (pDblI->isDeletable())
-        {
-            delete pDblI;
-        }
-
-        pDblZ->DecreaseRef();
-        if (pDblZ->isDeletable())
-        {
-            delete pDblZ;
-        }
-
-        out[0]->DecreaseRef();
-        if (out[0]->isDouble())
-        {
-            types::Double* pDblOut = out[0]->getAs<types::Double>();
-            if (pDblOut->getSize() != m_bvodeM)
-            {
-                return 0;
-            }
-
-            C2F(dcopy)(&m_bvodeM, pDblOut->get(), &one, g, &one);
-            if (out[0]->isDeletable())
-            {
-                delete out[0];
-            }
-            return 1;
-        }
+        *itype = 0;
+        xres[0] = pDblOut->get(0);
     }
-    return 0;
-}
 
-int DifferentialEquationFunctions::callBvodeMacroFsub(double* x, double* z, double* d)
-{
-    if (m_pCallFsubFunction)
+    if (out[0]->isDeletable())
     {
-        int one         = 1;
-        int iRetCount   = 1;
-
-        typed_list in;
-        typed_list out;
-        types::optional_list opt;
-        ast::ExecVisitor execFunc;
-
-        types::Double* pDblX = NULL;
-        types::Double* pDblZ = NULL;
-
-        pDblX = new types::Double(*x);
-        pDblX->IncreaseRef();
-        in.push_back(pDblX);
-
-        pDblZ = new types::Double(m_bvodeM, 1);
-        pDblZ->set(z);
-        pDblZ->IncreaseRef();
-        in.push_back(pDblZ);
-
-
-        for (int i = 0; i < m_FsubArgs.size(); i++)
-        {
-            in.push_back(m_FsubArgs[i]);
-        }
-
-        bool bOk = m_pCallFsubFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
-
-        if (bOk == false)
-        {
-            return 0;
-        }
-
-        if (out.size() != iRetCount)
-        {
-            return 0;
-        }
-
-        out[0]->IncreaseRef();
-
-        pDblX->DecreaseRef();
-        if (pDblX->isDeletable())
-        {
-            delete pDblX;
-        }
-
-        pDblZ->DecreaseRef();
-        if (pDblZ->isDeletable())
-        {
-            delete pDblZ;
-        }
-
-        out[0]->DecreaseRef();
-        if (out[0]->isDouble())
-        {
-            types::Double* pDblOut = out[0]->getAs<types::Double>();
-            if (pDblOut->getSize() != m_bvodeN)
-            {
-                return 0;
-            }
-
-            C2F(dcopy)(&m_bvodeN, pDblOut->get(), &one, d, &one);
-            if (out[0]->isDeletable())
-            {
-                delete out[0];
-            }
-            return 1;
-        }
+        delete out[0];
     }
-    return 0;
 }
 
-int DifferentialEquationFunctions::callBvodeMacroDfsub(double* x, double* z, double* d)
+void DifferentialEquationFunctions::callBvodeMacroGsub(int* i, double* z, double* g)
 {
-    if (m_pCallDfsubFunction)
+    char errorMsg[256];
+    int one         = 1;
+    int iRetCount   = 1;
+
+    typed_list in;
+    typed_list out;
+    types::optional_list opt;
+    ast::ExecVisitor execFunc;
+
+    types::Double* pDblI = NULL;
+    types::Double* pDblZ = NULL;
+
+    pDblI = new types::Double(*i);
+    pDblI->IncreaseRef();
+    in.push_back(pDblI);
+
+    pDblZ = new types::Double(m_bvodeM, 1);
+    pDblZ->set(z);
+    pDblZ->IncreaseRef();
+    in.push_back(pDblZ);
+
+
+    for (int i = 0; i < (int)m_GsubArgs.size(); i++)
     {
-        int one         = 1;
-        int iRetCount   = 1;
-
-        typed_list in;
-        typed_list out;
-        types::optional_list opt;
-        ast::ExecVisitor execFunc;
-
-        types::Double* pDblX = NULL;
-        types::Double* pDblZ = NULL;
-
-        pDblX = new types::Double(*x);
-        pDblX->IncreaseRef();
-        in.push_back(pDblX);
-
-        pDblZ = new types::Double(m_bvodeM, 1);
-        pDblZ->set(z);
-        pDblZ->IncreaseRef();
-        in.push_back(pDblZ);
-
-
-        for (int i = 0; i < m_DfsubArgs.size(); i++)
-        {
-            in.push_back(m_DfsubArgs[i]);
-        }
-
-        bool bOk = m_pCallDfsubFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
-
-        if (bOk == false)
-        {
-            return 0;
-        }
-
-        if (out.size() != iRetCount)
-        {
-            return 0;
-        }
-
-        out[0]->IncreaseRef();
-
-        pDblX->DecreaseRef();
-        if (pDblX->isDeletable())
-        {
-            delete pDblX;
-        }
-
-        pDblZ->DecreaseRef();
-        if (pDblZ->isDeletable())
-        {
-            delete pDblZ;
-        }
-
-        out[0]->DecreaseRef();
-        if (out[0]->isDouble())
-        {
-            types::Double* pDblOut = out[0]->getAs<types::Double>();
-            int size = m_bvodeN * m_bvodeM;
-            if (pDblOut->getSize() != size)
-            {
-                return 0;
-            }
-
-            C2F(dcopy)(&size, pDblOut->get(), &one, d, &one);
-            if (out[0]->isDeletable())
-            {
-                delete out[0];
-            }
-            return 1;
-        }
+        in.push_back(m_GsubArgs[i]);
     }
-    return 0;
-}
 
-int DifferentialEquationFunctions::callBvodeMacroGuess(double* x, double* z, double* d)
-{
-    if (m_pCallGuessFunction)
+    bool bOk = m_pCallGsubFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+    if (bOk == false)
     {
-        int one         = 1;
-        int iRetCount   = 2;
-
-        typed_list in;
-        typed_list out;
-        types::optional_list opt;
-        ast::ExecVisitor execFunc;
-
-        types::Double* pDblX = NULL;
-
-        pDblX = new types::Double(*x);
-        pDblX->IncreaseRef();
-        in.push_back(pDblX);
-
-        for (int i = 0; i < m_GuessArgs.size(); i++)
-        {
-            in.push_back(m_GuessArgs[i]);
-        }
-
-        bool bOk = m_pCallGuessFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
-
-        if (bOk == false)
-        {
-            return 0;
-        }
-
-        if (out.size() != iRetCount)
-        {
-            return 0;
-        }
-
-        out[0]->IncreaseRef();
-        out[1]->IncreaseRef();
-
-        pDblX->DecreaseRef();
-        if (pDblX->isDeletable())
-        {
-            delete pDblX;
-        }
-
-        out[0]->DecreaseRef();
-        if (out[0]->isDouble() == false)
-        {
-            return 0;
-        }
-
-        out[1]->DecreaseRef();
-        if (out[1]->isDouble() == false)
-        {
-            return 0;
-        }
-
-        types::Double* pDblOutZ = out[0]->getAs<types::Double>();
-        if (pDblOutZ->getSize() != m_bvodeM)
-        {
-            return 0;
-        }
-
-        types::Double* pDblOutD = out[1]->getAs<types::Double>();
-        if (pDblOutD->getSize() != m_bvodeN)
-        {
-            return 0;
-        }
-
-        C2F(dcopy)(&m_bvodeM, pDblOutZ->get(), &one, z, &one);
-        C2F(dcopy)(&m_bvodeN, pDblOutD->get(), &one, d, &one);
-        if (out[0]->isDeletable())
-        {
-            delete out[0];
-        }
-        if (out[1]->isDeletable())
-        {
-            delete out[1];
-        }
-        return 1;
+        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallGsubFunction->getName().c_str());
+        throw ScilabError(errorMsg);
     }
-    return 0;
+
+    if (out.size() != iRetCount)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallGsubFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[0]->IncreaseRef();
+
+    pDblI->DecreaseRef();
+    if (pDblI->isDeletable())
+    {
+        delete pDblI;
+    }
+
+    pDblZ->DecreaseRef();
+    if (pDblZ->isDeletable())
+    {
+        delete pDblZ;
+    }
+
+    out[0]->DecreaseRef();
+    if (out[0]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallGsubFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    types::Double* pDblOut = out[0]->getAs<types::Double>();
+    if (pDblOut->getSize() != 1)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallGsubFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A Scalar expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    *g = pDblOut->get(0);
+    if (out[0]->isDeletable())
+    {
+        delete out[0];
+    }
 }
 
-int DifferentialEquationFunctions::callImplMacroF(int* neq, double* t, double* y, double*s, double* r, int* ires)
+void DifferentialEquationFunctions::callBvodeMacroDgsub(int* i, double* z, double* g)
 {
+    char errorMsg[256];
+    int one         = 1;
+    int iRetCount   = 1;
+
+    typed_list in;
+    typed_list out;
+    types::optional_list opt;
+    ast::ExecVisitor execFunc;
+
+    types::Double* pDblI = NULL;
+    types::Double* pDblZ = NULL;
+
+    pDblI = new types::Double(*i);
+    pDblI->IncreaseRef();
+    in.push_back(pDblI);
+
+    pDblZ = new types::Double(m_bvodeM, 1);
+    pDblZ->set(z);
+    pDblZ->IncreaseRef();
+    in.push_back(pDblZ);
+
+    for (int i = 0; i < (int)m_DgsubArgs.size(); i++)
+    {
+        in.push_back(m_DgsubArgs[i]);
+    }
+
+    bool bOk = m_pCallDgsubFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+    if (bOk == false)
+    {
+        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallDgsubFunction->getName().c_str());
+        throw ScilabError(errorMsg);
+    }
+
+    if (out.size() != iRetCount)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallDgsubFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[0]->IncreaseRef();
+
+    pDblI->DecreaseRef();
+    if (pDblI->isDeletable())
+    {
+        delete pDblI;
+    }
+
+    pDblZ->DecreaseRef();
+    if (pDblZ->isDeletable())
+    {
+        delete pDblZ;
+    }
+
+    out[0]->DecreaseRef();
+    if (out[0]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallDgsubFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    types::Double* pDblOut = out[0]->getAs<types::Double>();
+    if (pDblOut->getSize() != m_bvodeM)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallDgsubFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A Matrix of size %d expected.\n"), pstrName, 1, m_bvodeM);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    C2F(dcopy)(&m_bvodeM, pDblOut->get(), &one, g, &one);
+    if (out[0]->isDeletable())
+    {
+        delete out[0];
+    }
+}
+
+void DifferentialEquationFunctions::callBvodeMacroFsub(double* x, double* z, double* d)
+{
+    char errorMsg[256];
+    int one         = 1;
+    int iRetCount   = 1;
+
+    typed_list in;
+    typed_list out;
+    types::optional_list opt;
+    ast::ExecVisitor execFunc;
+
+    types::Double* pDblX = NULL;
+    types::Double* pDblZ = NULL;
+
+    pDblX = new types::Double(*x);
+    pDblX->IncreaseRef();
+    in.push_back(pDblX);
+
+    pDblZ = new types::Double(m_bvodeM, 1);
+    pDblZ->set(z);
+    pDblZ->IncreaseRef();
+    in.push_back(pDblZ);
+
+
+    for (int i = 0; i < (int)m_FsubArgs.size(); i++)
+    {
+        in.push_back(m_FsubArgs[i]);
+    }
+
+    bool bOk = m_pCallFsubFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+    if (bOk == false)
+    {
+        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallFsubFunction->getName().c_str());
+        throw ScilabError(errorMsg);
+    }
+
+    if (out.size() != iRetCount)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFsubFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[0]->IncreaseRef();
+
+    pDblX->DecreaseRef();
+    if (pDblX->isDeletable())
+    {
+        delete pDblX;
+    }
+
+    pDblZ->DecreaseRef();
+    if (pDblZ->isDeletable())
+    {
+        delete pDblZ;
+    }
+
+    out[0]->DecreaseRef();
+    if (out[0]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFsubFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    types::Double* pDblOut = out[0]->getAs<types::Double>();
+    if (pDblOut->getSize() != m_bvodeN)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFsubFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 1, m_bvodeN);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    C2F(dcopy)(&m_bvodeN, pDblOut->get(), &one, d, &one);
+    if (out[0]->isDeletable())
+    {
+        delete out[0];
+    }
+}
+
+void DifferentialEquationFunctions::callBvodeMacroDfsub(double* x, double* z, double* d)
+{
+    char errorMsg[256];
+    int one         = 1;
+    int iRetCount   = 1;
+
+    typed_list in;
+    typed_list out;
+    types::optional_list opt;
+    ast::ExecVisitor execFunc;
+
+    types::Double* pDblX = NULL;
+    types::Double* pDblZ = NULL;
+
+    pDblX = new types::Double(*x);
+    pDblX->IncreaseRef();
+    in.push_back(pDblX);
+
+    pDblZ = new types::Double(m_bvodeM, 1);
+    pDblZ->set(z);
+    pDblZ->IncreaseRef();
+    in.push_back(pDblZ);
+
+
+    for (int i = 0; i < (int)m_DfsubArgs.size(); i++)
+    {
+        in.push_back(m_DfsubArgs[i]);
+    }
+
+    bool bOk = m_pCallDfsubFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+    if (bOk == false)
+    {
+        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallDfsubFunction->getName().c_str());
+        throw ScilabError(errorMsg);
+    }
+
+    if (out.size() != iRetCount)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallDfsubFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[0]->IncreaseRef();
+
+    pDblX->DecreaseRef();
+    if (pDblX->isDeletable())
+    {
+        delete pDblX;
+    }
+
+    pDblZ->DecreaseRef();
+    if (pDblZ->isDeletable())
+    {
+        delete pDblZ;
+    }
+
+    out[0]->DecreaseRef();
+    if (out[0]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallDfsubFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    types::Double* pDblOut = out[0]->getAs<types::Double>();
+    int size = m_bvodeN * m_bvodeM;
+    if (pDblOut->getSize() != size)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallDfsubFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 1, size);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    C2F(dcopy)(&size, pDblOut->get(), &one, d, &one);
+    if (out[0]->isDeletable())
+    {
+        delete out[0];
+    }
+}
+
+void DifferentialEquationFunctions::callBvodeMacroGuess(double* x, double* z, double* d)
+{
+    char errorMsg[256];
+    int one         = 1;
+    int iRetCount   = 2;
+
+    typed_list in;
+    typed_list out;
+    types::optional_list opt;
+    ast::ExecVisitor execFunc;
+
+    types::Double* pDblX = NULL;
+
+    pDblX = new types::Double(*x);
+    pDblX->IncreaseRef();
+    in.push_back(pDblX);
+
+    for (int i = 0; i < (int)m_GuessArgs.size(); i++)
+    {
+        in.push_back(m_GuessArgs[i]);
+    }
+
+    bool bOk = m_pCallGuessFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+    if (bOk == false)
+    {
+        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallGuessFunction->getName().c_str());
+        throw ScilabError(errorMsg);
+    }
+
+    if (out.size() != iRetCount)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallGuessFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[0]->IncreaseRef();
+    out[1]->IncreaseRef();
+
+    pDblX->DecreaseRef();
+    if (pDblX->isDeletable())
+    {
+        delete pDblX;
+    }
+
+    out[0]->DecreaseRef();
+    if (out[0]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallGuessFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[1]->DecreaseRef();
+    if (out[1]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallGuessFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 2);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    types::Double* pDblOutZ = out[0]->getAs<types::Double>();
+    if (pDblOutZ->getSize() != m_bvodeM)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallGuessFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 1, m_bvodeM);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    types::Double* pDblOutD = out[1]->getAs<types::Double>();
+    if (pDblOutD->getSize() != m_bvodeN)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallGuessFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 1, m_bvodeN);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    C2F(dcopy)(&m_bvodeM, pDblOutZ->get(), &one, z, &one);
+    C2F(dcopy)(&m_bvodeN, pDblOutD->get(), &one, d, &one);
+    if (out[0]->isDeletable())
+    {
+        delete out[0];
+    }
+
+    if (out[1]->isDeletable())
+    {
+        delete out[1];
+    }
+}
+
+void DifferentialEquationFunctions::callImplMacroF(int* neq, double* t, double* y, double*s, double* r, int* ires)
+{
+    char errorMsg[256];
+    int one         = 1;
+    int iRetCount   = 1;
     *ires = 2;
-    if (m_pCallFFunction)
+
+    typed_list in;
+    typed_list out;
+    types::optional_list opt;
+    ast::ExecVisitor execFunc;
+
+    types::Double* pDblT = new types::Double(*t);
+    pDblT->IncreaseRef();
+    in.push_back(pDblT);
+
+    types::Double* pDblY = new types::Double(*neq, 1);
+    pDblY->set(y);
+    pDblY->IncreaseRef();
+    in.push_back(pDblY);
+
+    types::Double* pDblS = new types::Double(*neq, 1);
+    pDblS->set(s);
+    pDblS->IncreaseRef();
+    in.push_back(pDblS);
+
+    for (int i = 0; i < (int)m_FArgs.size(); i++)
     {
-        int one         = 1;
-        int iRetCount   = 1;
-
-        typed_list in;
-        typed_list out;
-        types::optional_list opt;
-        ast::ExecVisitor execFunc;
-
-        types::Double* pDblT = new types::Double(*t);
-        pDblT->IncreaseRef();
-        in.push_back(pDblT);
-
-        types::Double* pDblY = new types::Double(*neq, 1);
-        pDblY->set(y);
-        pDblY->IncreaseRef();
-        in.push_back(pDblY);
-
-        types::Double* pDblS = new types::Double(*neq, 1);
-        pDblS->set(s);
-        pDblS->IncreaseRef();
-        in.push_back(pDblS);
-
-        for (int i = 0; i < m_FArgs.size(); i++)
-        {
-            m_FArgs[i]->IncreaseRef();
-            in.push_back(m_FArgs[i]);
-        }
-
-        bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
-
-        for (int i = 0; i < m_FArgs.size(); i++)
-        {
-            m_FArgs[i]->DecreaseRef();
-        }
-
-        if (bOk == false)
-        {
-            return 0;
-        }
-
-        if (out.size() != iRetCount)
-        {
-            return 0;
-        }
-
-        out[0]->IncreaseRef();
-
-        pDblT->DecreaseRef();
-        if (pDblT->isDeletable())
-        {
-            delete pDblT;
-        }
-
-        pDblY->DecreaseRef();
-        if (pDblY->isDeletable())
-        {
-            delete pDblY;
-        }
-
-        pDblS->DecreaseRef();
-        if (pDblS->isDeletable())
-        {
-            delete pDblS;
-        }
-
-        out[0]->DecreaseRef();
-        if (out[0]->isDouble() == false)
-        {
-            return 0;
-        }
-
-        types::Double* pDblOutR = out[0]->getAs<types::Double>();
-        if (pDblOutR->getSize() != *neq)
-        {
-            return 0;
-        }
-
-        C2F(dcopy)(neq, pDblOutR->get(), &one, r, &one);
-        *ires = 1;
-        if (out[0]->isDeletable())
-        {
-            delete out[0];
-        }
-        return 1;
+        m_FArgs[i]->IncreaseRef();
+        in.push_back(m_FArgs[i]);
     }
-    return 0;
+
+    bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+    for (int i = 0; i < (int)m_FArgs.size(); i++)
+    {
+        m_FArgs[i]->DecreaseRef();
+    }
+
+    if (bOk == false)
+    {
+        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallFFunction->getName().c_str());
+        throw ScilabError(errorMsg);
+    }
+
+    if (out.size() != iRetCount)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[0]->IncreaseRef();
+
+    pDblT->DecreaseRef();
+    if (pDblT->isDeletable())
+    {
+        delete pDblT;
+    }
+
+    pDblY->DecreaseRef();
+    if (pDblY->isDeletable())
+    {
+        delete pDblY;
+    }
+
+    pDblS->DecreaseRef();
+    if (pDblS->isDeletable())
+    {
+        delete pDblS;
+    }
+
+    out[0]->DecreaseRef();
+    if (out[0]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    types::Double* pDblOutR = out[0]->getAs<types::Double>();
+    if (pDblOutR->getSize() != *neq)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A Matrix of size %d expected.\n"), pstrName, 1, *neq);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    C2F(dcopy)(neq, pDblOutR->get(), &one, r, &one);
+    *ires = 1;
+    if (out[0]->isDeletable())
+    {
+        delete out[0];
+    }
 }
 
-int DifferentialEquationFunctions::callImplMacroG(int* neq, double* t, double* y, double* ml, double* mu, double* p, int* nrowp)
+void DifferentialEquationFunctions::callImplMacroG(int* neq, double* t, double* y, double* ml, double* mu, double* p, int* nrowp)
 {
-    if (m_pCallGFunction)
+    char errorMsg[256];
+    int one         = 1;
+    int iRetCount   = 1;
+
+    typed_list in;
+    typed_list out;
+    types::optional_list opt;
+    ast::ExecVisitor execFunc;
+
+    types::Double* pDblT = new types::Double(*t);
+    pDblT->IncreaseRef();
+    in.push_back(pDblT);
+
+    types::Double* pDblY = new types::Double(*neq, 1);
+    pDblY->set(y);
+    pDblY->IncreaseRef();
+    in.push_back(pDblY);
+
+    types::Double* pDblP = new types::Double(*nrowp, *neq);
+    pDblP->set(p);
+    pDblP->IncreaseRef();
+    in.push_back(pDblP);
+
+    for (int i = 0; i < (int)m_odeGArgs.size(); i++)
     {
-        int one         = 1;
-        int iRetCount   = 1;
-
-        typed_list in;
-        typed_list out;
-        types::optional_list opt;
-        ast::ExecVisitor execFunc;
-
-        types::Double* pDblT = new types::Double(*t);
-        pDblT->IncreaseRef();
-        in.push_back(pDblT);
-
-        types::Double* pDblY = new types::Double(*neq, 1);
-        pDblY->set(y);
-        pDblY->IncreaseRef();
-        in.push_back(pDblY);
-
-        types::Double* pDblP = new types::Double(*nrowp, *neq);
-        pDblP->set(p);
-        pDblP->IncreaseRef();
-        in.push_back(pDblP);
-
-        for (int i = 0; i < m_odeGArgs.size(); i++)
-        {
-            m_odeGArgs[i]->IncreaseRef();
-            in.push_back(m_odeGArgs[i]);
-        }
-
-        bool bOk = m_pCallGFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
-
-        for (int i = 0; i < m_FArgs.size(); i++)
-        {
-            m_FArgs[i]->DecreaseRef();
-        }
-
-        if (bOk == false)
-        {
-            return 0;
-        }
-
-        if (out.size() != iRetCount)
-        {
-            return 0;
-        }
-
-        out[0]->IncreaseRef();
-
-        pDblT->DecreaseRef();
-        if (pDblT->isDeletable())
-        {
-            delete pDblT;
-        }
-
-        pDblY->DecreaseRef();
-        if (pDblY->isDeletable())
-        {
-            delete pDblY;
-        }
-
-        out[0]->DecreaseRef();
-        if (out[0]->isDouble() == false)
-        {
-            return 0;
-        }
-
-        types::Double* pDblOutP = out[0]->getAs<types::Double>();
-        if (pDblOutP->getCols() != *neq || pDblOutP->getRows() != *nrowp)
-        {
-            return 0;
-        }
-
-        int size = *neq * *nrowp;
-        C2F(dcopy)(&size, pDblOutP->get(), &one, p, &one);
-        if (out[0]->isDeletable())
-        {
-            delete out[0];
-        }
-        return 1;
+        m_odeGArgs[i]->IncreaseRef();
+        in.push_back(m_odeGArgs[i]);
     }
-    return 0;
+
+    bool bOk = m_pCallGFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+    for (int i = 0; i < (int)m_FArgs.size(); i++)
+    {
+        m_FArgs[i]->DecreaseRef();
+    }
+
+    if (bOk == false)
+    {
+        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallGFunction->getName().c_str());
+        throw ScilabError(errorMsg);
+    }
+
+    if (out.size() != iRetCount)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallGFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[0]->IncreaseRef();
+
+    pDblT->DecreaseRef();
+    if (pDblT->isDeletable())
+    {
+        delete pDblT;
+    }
+
+    pDblY->DecreaseRef();
+    if (pDblY->isDeletable())
+    {
+        delete pDblY;
+    }
+
+    out[0]->DecreaseRef();
+    if (out[0]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallGFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    types::Double* pDblOutP = out[0]->getAs<types::Double>();
+    if (pDblOutP->getCols() != *neq || pDblOutP->getRows() != *nrowp)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallGFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"), pstrName, 1, *neq, *nrowp);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    int size = *neq * *nrowp;
+    C2F(dcopy)(&size, pDblOutP->get(), &one, p, &one);
+    if (out[0]->isDeletable())
+    {
+        delete out[0];
+    }
 }
 
-int DifferentialEquationFunctions::callImplMacroJac(int* neq, double* t, double* y, double* s, double* ml, double* mu, double* p, int* nrowp)
+void DifferentialEquationFunctions::callImplMacroJac(int* neq, double* t, double* y, double* s, double* ml, double* mu, double* p, int* nrowp)
 {
-    if (m_pCallJacFunction)
+    char errorMsg[256];
+    int one         = 1;
+    int iRetCount   = 1;
+
+    typed_list in;
+    typed_list out;
+    types::optional_list opt;
+    ast::ExecVisitor execFunc;
+
+    types::Double* pDblT = new types::Double(*t);
+    pDblT->IncreaseRef();
+    in.push_back(pDblT);
+
+    types::Double* pDblY = new types::Double(*neq, 1);
+    pDblY->set(y);
+    pDblY->IncreaseRef();
+    in.push_back(pDblY);
+
+    types::Double* pDblS = new types::Double(*neq, 1);
+    pDblS->set(s);
+    pDblS->IncreaseRef();
+    in.push_back(pDblS);
+
+    for (int i = 0; i < (int)m_JacArgs.size(); i++)
     {
-        int one         = 1;
-        int iRetCount   = 1;
-
-        typed_list in;
-        typed_list out;
-        types::optional_list opt;
-        ast::ExecVisitor execFunc;
-
-        types::Double* pDblT = new types::Double(*t);
-        pDblT->IncreaseRef();
-        in.push_back(pDblT);
-
-        types::Double* pDblY = new types::Double(*neq, 1);
-        pDblY->set(y);
-        pDblY->IncreaseRef();
-        in.push_back(pDblY);
-
-        types::Double* pDblS = new types::Double(*neq, 1);
-        pDblS->set(s);
-        pDblS->IncreaseRef();
-        in.push_back(pDblS);
-
-        for (int i = 0; i < m_JacArgs.size(); i++)
-        {
-            m_JacArgs[i]->IncreaseRef();
-            in.push_back(m_JacArgs[i]);
-        }
-
-        bool bOk = m_pCallJacFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
-
-        for (int i = 0; i < m_FArgs.size(); i++)
-        {
-            m_FArgs[i]->DecreaseRef();
-        }
-
-        if (bOk == false)
-        {
-            return 0;
-        }
-
-        if (out.size() != iRetCount)
-        {
-            return 0;
-        }
-
-        out[0]->IncreaseRef();
-
-        pDblT->DecreaseRef();
-        if (pDblT->isDeletable())
-        {
-            delete pDblT;
-        }
-
-        pDblY->DecreaseRef();
-        if (pDblY->isDeletable())
-        {
-            delete pDblY;
-        }
-
-        pDblS->DecreaseRef();
-        if (pDblS->isDeletable())
-        {
-            delete pDblS;
-        }
-
-        out[0]->DecreaseRef();
-        if (out[0]->isDouble() == false)
-        {
-            return 0;
-        }
-
-        types::Double* pDblOutP = out[0]->getAs<types::Double>();
-        if (pDblOutP->getCols() != *neq || pDblOutP->getRows() != *nrowp)
-        {
-            return 0;
-        }
-
-        int size = *neq * *nrowp;
-        C2F(dcopy)(&size, pDblOutP->get(), &one, p, &one);
-        if (out[0]->isDeletable())
-        {
-            delete out[0];
-        }
-        return 1;
+        m_JacArgs[i]->IncreaseRef();
+        in.push_back(m_JacArgs[i]);
     }
-    return 0;
+
+    bool bOk = m_pCallJacFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+    for (int i = 0; i < (int)m_FArgs.size(); i++)
+    {
+        m_FArgs[i]->DecreaseRef();
+    }
+
+    if (bOk == false)
+    {
+        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallJacFunction->getName().c_str());
+        throw ScilabError(errorMsg);
+    }
+
+    if (out.size() != iRetCount)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[0]->IncreaseRef();
+
+    pDblT->DecreaseRef();
+    if (pDblT->isDeletable())
+    {
+        delete pDblT;
+    }
+
+    pDblY->DecreaseRef();
+    if (pDblY->isDeletable())
+    {
+        delete pDblY;
+    }
+
+    pDblS->DecreaseRef();
+    if (pDblS->isDeletable())
+    {
+        delete pDblS;
+    }
+
+    out[0]->DecreaseRef();
+    if (out[0]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    types::Double* pDblOutP = out[0]->getAs<types::Double>();
+    if (pDblOutP->getCols() != *neq || pDblOutP->getRows() != *nrowp)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"), pstrName, 1, *neq, *nrowp);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    int size = *neq * *nrowp;
+    C2F(dcopy)(&size, pDblOutP->get(), &one, p, &one);
+    if (out[0]->isDeletable())
+    {
+        delete out[0];
+    }
 }
 
-int DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double* ydot, double* delta, int* ires, double* rpar, int* ipar)
+void DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double* ydot, double* delta, int* ires, double* rpar, int* ipar)
 {
-    if (m_pCallFFunction)
+    char errorMsg[256];
+    int one         = 1;
+    int iRetCount   = 2;
+
+    typed_list in;
+    typed_list out;
+    types::optional_list opt;
+    ast::ExecVisitor execFunc;
+
+    types::Double* pDblT = new types::Double(*t);
+    pDblT->IncreaseRef();
+    in.push_back(pDblT);
+
+    types::Double* pDblY = new types::Double(m_odeYRows, 1);
+    pDblY->set(y);
+    pDblY->IncreaseRef();
+    in.push_back(pDblY);
+
+    types::Double* pDblYdot = new types::Double(m_odeYRows, 1);
+    pDblYdot->set(ydot);
+    pDblYdot->IncreaseRef();
+    in.push_back(pDblYdot);
+
+    for (int i = 0; i < (int)m_FArgs.size(); i++)
     {
-        int one         = 1;
-        int iRetCount   = 2;
-
-        typed_list in;
-        typed_list out;
-        types::optional_list opt;
-        ast::ExecVisitor execFunc;
-
-        types::Double* pDblT = new types::Double(*t);
-        pDblT->IncreaseRef();
-        in.push_back(pDblT);
-
-        types::Double* pDblY = new types::Double(m_odeYRows, 1);
-        pDblY->set(y);
-        pDblY->IncreaseRef();
-        in.push_back(pDblY);
-
-        types::Double* pDblYdot = new types::Double(m_odeYRows, 1);
-        pDblYdot->set(ydot);
-        pDblYdot->IncreaseRef();
-        in.push_back(pDblYdot);
-
-        for (int i = 0; i < m_FArgs.size(); i++)
-        {
-            m_FArgs[i]->IncreaseRef();
-            in.push_back(m_FArgs[i]);
-        }
-
-        bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
-
-        for (int i = 0; i < m_FArgs.size(); i++)
-        {
-            m_FArgs[i]->DecreaseRef();
-        }
-
-        if (bOk == false)
-        {
-            return 0;
-        }
-
-        if (out.size() != iRetCount)
-        {
-            return 0;
-        }
-
-        out[0]->IncreaseRef();
-        out[1]->IncreaseRef();
-
-        pDblT->DecreaseRef();
-        if (pDblT->isDeletable())
-        {
-            delete pDblT;
-        }
-
-        pDblY->DecreaseRef();
-        if (pDblY->isDeletable())
-        {
-            delete pDblY;
-        }
-
-        pDblYdot->DecreaseRef();
-        if (pDblYdot->isDeletable())
-        {
-            delete pDblYdot;
-        }
-
-        out[0]->DecreaseRef();
-        if (out[0]->isDouble() == false)
-        {
-            return 0;
-        }
-
-        out[1]->DecreaseRef();
-        if (out[1]->isDouble() == false)
-        {
-            return 0;
-        }
-
-        types::Double* pDblOutDelta = out[0]->getAs<types::Double>();
-        if (pDblOutDelta->getSize() != m_odeYRows)
-        {
-            return 0;
-        }
-
-        types::Double* pDblOutIres = out[1]->getAs<types::Double>();
-        if (pDblOutIres->getSize() != 1)
-        {
-            return 0;
-        }
-
-        C2F(dcopy)(&m_odeYRows, pDblOutDelta->get(), &one, delta, &one);
-        *ires = (int)pDblOutIres->get(0);
-        if (out[0]->isDeletable())
-        {
-            delete out[0];
-        }
-        return 1;
+        m_FArgs[i]->IncreaseRef();
+        in.push_back(m_FArgs[i]);
     }
-    return 0;
+
+    bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+    for (int i = 0; i < (int)m_FArgs.size(); i++)
+    {
+        m_FArgs[i]->DecreaseRef();
+    }
+
+    if (bOk == false)
+    {
+        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallFFunction->getName().c_str());
+        throw ScilabError(errorMsg);
+    }
+
+    if (out.size() != iRetCount)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[0]->IncreaseRef();
+    out[1]->IncreaseRef();
+
+    pDblT->DecreaseRef();
+    if (pDblT->isDeletable())
+    {
+        delete pDblT;
+    }
+
+    pDblY->DecreaseRef();
+    if (pDblY->isDeletable())
+    {
+        delete pDblY;
+    }
+
+    pDblYdot->DecreaseRef();
+    if (pDblYdot->isDeletable())
+    {
+        delete pDblYdot;
+    }
+
+    out[0]->DecreaseRef();
+    if (out[0]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[1]->DecreaseRef();
+    if (out[1]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 2);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    types::Double* pDblOutDelta = out[0]->getAs<types::Double>();
+    if (pDblOutDelta->getSize() != m_odeYRows)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 1, m_odeYRows);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    types::Double* pDblOutIres = out[1]->getAs<types::Double>();
+    if (pDblOutIres->getSize() != 1)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A Scalar expected.\n"), pstrName, 2);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    C2F(dcopy)(&m_odeYRows, pDblOutDelta->get(), &one, delta, &one);
+    *ires = (int)pDblOutIres->get(0);
+    if (out[0]->isDeletable())
+    {
+        delete out[0];
+    }
 }
 
-int DifferentialEquationFunctions::callDasslMacroJac(double* t, double* y, double* ydot, double* pd, double* cj, double* rpar, int* ipar)
+void DifferentialEquationFunctions::callDasslMacroJac(double* t, double* y, double* ydot, double* pd, double* cj, double* rpar, int* ipar)
 {
-    if (m_pCallJacFunction)
+    char errorMsg[256];
+    int one         = 1;
+    int iRetCount   = 1;
+
+    typed_list in;
+    typed_list out;
+    types::optional_list opt;
+    ast::ExecVisitor execFunc;
+
+    types::Double* pDblT = new types::Double(*t);
+    pDblT->IncreaseRef();
+    in.push_back(pDblT);
+
+    types::Double* pDblY = new types::Double(m_odeYRows, 1);
+    pDblY->set(y);
+    pDblY->IncreaseRef();
+    in.push_back(pDblY);
+
+    types::Double* pDblYdot = new types::Double(m_odeYRows, 1);
+    pDblYdot->set(ydot);
+    pDblYdot->IncreaseRef();
+    in.push_back(pDblYdot);
+
+    types::Double* pDblCj = new types::Double(*cj);
+    pDblCj->IncreaseRef();
+    in.push_back(pDblCj);
+
+    for (int i = 0; i < (int)m_JacArgs.size(); i++)
     {
-        int one         = 1;
-        int iRetCount   = 1;
-
-        typed_list in;
-        typed_list out;
-        types::optional_list opt;
-        ast::ExecVisitor execFunc;
-
-        types::Double* pDblT = new types::Double(*t);
-        pDblT->IncreaseRef();
-        in.push_back(pDblT);
-
-        types::Double* pDblY = new types::Double(m_odeYRows, 1);
-        pDblY->set(y);
-        pDblY->IncreaseRef();
-        in.push_back(pDblY);
-
-        types::Double* pDblYdot = new types::Double(m_odeYRows, 1);
-        pDblYdot->set(ydot);
-        pDblYdot->IncreaseRef();
-        in.push_back(pDblYdot);
-
-        types::Double* pDblCj = new types::Double(*cj);
-        pDblCj->IncreaseRef();
-        in.push_back(pDblCj);
-
-        for (int i = 0; i < m_JacArgs.size(); i++)
-        {
-            m_JacArgs[i]->IncreaseRef();
-            in.push_back(m_JacArgs[i]);
-        }
-
-        bool bOk = m_pCallJacFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
-
-        for (int i = 0; i < m_FArgs.size(); i++)
-        {
-            m_FArgs[i]->DecreaseRef();
-        }
-
-        if (bOk == false)
-        {
-            return 0;
-        }
-
-        if (out.size() != iRetCount)
-        {
-            return 0;
-        }
-
-        out[0]->IncreaseRef();
-
-        pDblT->DecreaseRef();
-        if (pDblT->isDeletable())
-        {
-            delete pDblT;
-        }
-
-        pDblY->DecreaseRef();
-        if (pDblY->isDeletable())
-        {
-            delete pDblY;
-        }
-
-        pDblYdot->DecreaseRef();
-        if (pDblYdot->isDeletable())
-        {
-            delete pDblYdot;
-        }
-
-        pDblCj->DecreaseRef();
-        if (pDblCj->isDeletable())
-        {
-            delete pDblCj;
-        }
-
-        out[0]->DecreaseRef();
-        if (out[0]->isDouble() == false)
-        {
-            return 0;
-        }
-
-        types::Double* pDblOutPd = out[0]->getAs<types::Double>();
-        if ( (pDblOutPd->getCols() != m_odeYRows) ||
-                (!m_bandedJac && pDblOutPd->getRows() != m_odeYRows) ||
-                (m_bandedJac && pDblOutPd->getRows() != (2 * m_ml + m_mu + 1)))
-        {
-            return 0;
-        }
-
-        int size = pDblOutPd->getSize();
-        C2F(dcopy)(&size, pDblOutPd->get(), &one, pd, &one);
-        if (out[0]->isDeletable())
-        {
-            delete out[0];
-        }
-        return 1;
+        m_JacArgs[i]->IncreaseRef();
+        in.push_back(m_JacArgs[i]);
     }
-    return 0;
+
+    bool bOk = m_pCallJacFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+    for (int i = 0; i < (int)m_FArgs.size(); i++)
+    {
+        m_FArgs[i]->DecreaseRef();
+    }
+
+    if (bOk == false)
+    {
+        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallJacFunction->getName().c_str());
+        throw ScilabError(errorMsg);
+    }
+
+    if (out.size() != iRetCount)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[0]->IncreaseRef();
+
+    pDblT->DecreaseRef();
+    if (pDblT->isDeletable())
+    {
+        delete pDblT;
+    }
+
+    pDblY->DecreaseRef();
+    if (pDblY->isDeletable())
+    {
+        delete pDblY;
+    }
+
+    pDblYdot->DecreaseRef();
+    if (pDblYdot->isDeletable())
+    {
+        delete pDblYdot;
+    }
+
+    pDblCj->DecreaseRef();
+    if (pDblCj->isDeletable())
+    {
+        delete pDblCj;
+    }
+
+    out[0]->DecreaseRef();
+    if (out[0]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    types::Double* pDblOutPd = out[0]->getAs<types::Double>();
+    if ( (pDblOutPd->getCols() != m_odeYRows) ||
+            (!m_bandedJac && pDblOutPd->getRows() != m_odeYRows) ||
+            (m_bandedJac && pDblOutPd->getRows() != (2 * m_ml + m_mu + 1)))
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"), pstrName, 1, m_odeYRows, (2 * m_ml + m_mu + 1));
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    int size = pDblOutPd->getSize();
+    C2F(dcopy)(&size, pDblOutPd->get(), &one, pd, &one);
+    if (out[0]->isDeletable())
+    {
+        delete out[0];
+    }
 }
 
-int DifferentialEquationFunctions::callDasrtMacroG(int* ny, double* t, double* y, int* ng, double* gout, double* rpar, int* ipar)
+void DifferentialEquationFunctions::callDasrtMacroG(int* ny, double* t, double* y, int* ng, double* gout, double* rpar, int* ipar)
 {
-    if (m_pCallGFunction)
+    char errorMsg[256];
+    int one         = 1;
+    int iRetCount   = 1;
+
+    typed_list in;
+    typed_list out;
+    types::optional_list opt;
+    ast::ExecVisitor execFunc;
+
+    types::Double* pDblT = new types::Double(*t);
+    pDblT->IncreaseRef();
+    in.push_back(pDblT);
+
+    types::Double* pDblY = new types::Double(*ny, 1);
+    pDblY->set(y);
+    pDblY->IncreaseRef();
+    in.push_back(pDblY);
+
+    for (int i = 0; i < (int)m_odeGArgs.size(); i++)
     {
-        int one         = 1;
-        int iRetCount   = 1;
-
-        typed_list in;
-        typed_list out;
-        types::optional_list opt;
-        ast::ExecVisitor execFunc;
-
-        types::Double* pDblT = new types::Double(*t);
-        pDblT->IncreaseRef();
-        in.push_back(pDblT);
-
-        types::Double* pDblY = new types::Double(*ny, 1);
-        pDblY->set(y);
-        pDblY->IncreaseRef();
-        in.push_back(pDblY);
-
-        for (int i = 0; i < m_odeGArgs.size(); i++)
-        {
-            m_odeGArgs[i]->IncreaseRef();
-            in.push_back(m_odeGArgs[i]);
-        }
-
-        bool bOk = m_pCallGFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
-
-        for (int i = 0; i < m_FArgs.size(); i++)
-        {
-            m_FArgs[i]->DecreaseRef();
-        }
-
-        if (bOk == false)
-        {
-            return 0;
-        }
-
-        if (out.size() != iRetCount)
-        {
-            return 0;
-        }
-
-        out[0]->IncreaseRef();
-
-        pDblT->DecreaseRef();
-        if (pDblT->isDeletable())
-        {
-            delete pDblT;
-        }
-
-        pDblY->DecreaseRef();
-        if (pDblY->isDeletable())
-        {
-            delete pDblY;
-        }
-
-        out[0]->DecreaseRef();
-        if (out[0]->isDouble() == false)
-        {
-            return 0;
-        }
-
-        types::Double* pDblOutGout = out[0]->getAs<types::Double>();
-        if (pDblOutGout->getSize() != *ng)
-        {
-            return 0;
-        }
-
-        C2F(dcopy)(ng, pDblOutGout->get(), &one, gout, &one);
-        if (out[0]->isDeletable())
-        {
-            delete out[0];
-        }
-        return 1;
+        m_odeGArgs[i]->IncreaseRef();
+        in.push_back(m_odeGArgs[i]);
     }
-    return 0;
+
+    bool bOk = m_pCallGFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+    for (int i = 0; i < (int)m_FArgs.size(); i++)
+    {
+        m_FArgs[i]->DecreaseRef();
+    }
+
+    if (bOk == false)
+    {
+        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallGFunction->getName().c_str());
+        throw ScilabError(errorMsg);
+    }
+
+    if (out.size() != iRetCount)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallGFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[0]->IncreaseRef();
+
+    pDblT->DecreaseRef();
+    if (pDblT->isDeletable())
+    {
+        delete pDblT;
+    }
+
+    pDblY->DecreaseRef();
+    if (pDblY->isDeletable())
+    {
+        delete pDblY;
+    }
+
+    out[0]->DecreaseRef();
+    if (out[0]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallGFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    types::Double* pDblOutGout = out[0]->getAs<types::Double>();
+    if (pDblOutGout->getSize() != *ng)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallGFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 1, *ng);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    C2F(dcopy)(ng, pDblOutGout->get(), &one, gout, &one);
+    if (out[0]->isDeletable())
+    {
+        delete out[0];
+    }
 }
 
-int DifferentialEquationFunctions::callDaskrMacroPjac(double* res, int* ires, int* neq, double* t, double* y, double* ydot,
+void DifferentialEquationFunctions::callDaskrMacroPjac(double* res, int* ires, int* neq, double* t, double* y, double* ydot,
         double* rewt, double* savr, double* wk, double* h, double* cj,
         double* wp, int* iwp, int* ier, double* rpar, int* ipar)
 {
     // macro : [R, iR, ier] = psol(neq, t, y, ydot, h, cj, rewt, savr)
-    if (m_pCallPjacFunction)
+    char errorMsg[256];
+    int one         = 1;
+    int iRetCount   = 3;
+
+    typed_list in;
+    typed_list out;
+    types::optional_list opt;
+    ast::ExecVisitor execFunc;
+
+    types::Double* pDblNeq = new types::Double((double)(*neq));
+    pDblNeq->IncreaseRef();
+    in.push_back(pDblNeq);
+
+    types::Double* pDblT = new types::Double(*t);
+    pDblT->IncreaseRef();
+    in.push_back(pDblT);
+
+    types::Double* pDblY = new types::Double(m_odeYRows, 1);
+    pDblY->set(y);
+    pDblY->IncreaseRef();
+    in.push_back(pDblY);
+
+    types::Double* pDblYdot = new types::Double(m_odeYRows, 1);
+    pDblYdot->set(ydot);
+    pDblYdot->IncreaseRef();
+    in.push_back(pDblYdot);
+
+    types::Double* pDblH = new types::Double(*h);
+    pDblH->IncreaseRef();
+    in.push_back(pDblH);
+
+    types::Double* pDblCj = new types::Double(*cj);
+    pDblCj->IncreaseRef();
+    in.push_back(pDblCj);
+
+    types::Double* pDblRewt = new types::Double(m_odeYRows, 1);
+    pDblRewt->set(rewt);
+    pDblRewt->IncreaseRef();
+    in.push_back(pDblRewt);
+
+    types::Double* pDblSavr = new types::Double(m_odeYRows, 1);
+    pDblSavr->set(savr);
+    pDblSavr->IncreaseRef();
+    in.push_back(pDblSavr);
+
+    for (int i = 0; i < (int)m_pJacArgs.size(); i++)
     {
-        int one         = 1;
-        int iRetCount   = 3;
-
-        typed_list in;
-        typed_list out;
-        types::optional_list opt;
-        ast::ExecVisitor execFunc;
-
-        types::Double* pDblNeq = new types::Double((double)(*neq));
-        pDblNeq->IncreaseRef();
-        in.push_back(pDblNeq);
-
-        types::Double* pDblT = new types::Double(*t);
-        pDblT->IncreaseRef();
-        in.push_back(pDblT);
-
-        types::Double* pDblY = new types::Double(m_odeYRows, 1);
-        pDblY->set(y);
-        pDblY->IncreaseRef();
-        in.push_back(pDblY);
-
-        types::Double* pDblYdot = new types::Double(m_odeYRows, 1);
-        pDblYdot->set(ydot);
-        pDblYdot->IncreaseRef();
-        in.push_back(pDblYdot);
-
-        types::Double* pDblH = new types::Double(*h);
-        pDblH->IncreaseRef();
-        in.push_back(pDblH);
-
-        types::Double* pDblCj = new types::Double(*cj);
-        pDblCj->IncreaseRef();
-        in.push_back(pDblCj);
-
-        types::Double* pDblRewt = new types::Double(m_odeYRows, 1);
-        pDblRewt->set(rewt);
-        pDblRewt->IncreaseRef();
-        in.push_back(pDblRewt);
-
-        types::Double* pDblSavr = new types::Double(m_odeYRows, 1);
-        pDblSavr->set(savr);
-        pDblSavr->IncreaseRef();
-        in.push_back(pDblSavr);
-
-        for (int i = 0; i < m_pJacArgs.size(); i++)
-        {
-            in.push_back(m_pJacArgs[i]);
-        }
-
-        bool bOk = m_pCallPjacFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
-
-        if (bOk == false)
-        {
-            return 0;
-        }
-
-        if (out.size() != iRetCount)
-        {
-            return 0;
-        }
-
-        out[0]->IncreaseRef();
-
-        pDblNeq->DecreaseRef();
-        if (pDblNeq->isDeletable())
-        {
-            delete pDblNeq;
-        }
-
-        pDblT->DecreaseRef();
-        if (pDblT->isDeletable())
-        {
-            delete pDblT;
-        }
-
-        pDblY->DecreaseRef();
-        if (pDblY->isDeletable())
-        {
-            delete pDblY;
-        }
-
-        pDblYdot->DecreaseRef();
-        if (pDblYdot->isDeletable())
-        {
-            delete pDblYdot;
-        }
-
-        pDblH->DecreaseRef();
-        if (pDblH->isDeletable())
-        {
-            delete pDblH;
-        }
-
-        pDblCj->DecreaseRef();
-        if (pDblCj->isDeletable())
-        {
-            delete pDblCj;
-        }
-
-        pDblRewt->DecreaseRef();
-        if (pDblRewt->isDeletable())
-        {
-            delete pDblRewt;
-        }
-
-        pDblSavr->DecreaseRef();
-        if (pDblSavr->isDeletable())
-        {
-            delete pDblSavr;
-        }
-
-        // check type of output arguments
-        if (out[0]->isDouble() == false ||
-                out[1]->isDouble() == false ||
-                out[2]->isDouble() == false)
-        {
-            return 0;
-        }
-
-        //  return [R, iR, ier]
-        types::Double* pDblOutWp  = out[0]->getAs<types::Double>();
-        types::Double* pDblOutIwp = out[1]->getAs<types::Double>();
-        types::Double* pDblOutIer = out[2]->getAs<types::Double>();
-
-        // check size of output argument
-        if ((pDblOutWp->getSize() != *neq * *neq) ||
-                (pDblOutIwp->getSize() != 2 * *neq * *neq) ||
-                (pDblOutIer->isScalar() == false))
-        {
-            return 0;
-        }
-
-        // copy output macro results in output variables
-        int size = pDblOutWp->getSize();
-        C2F(dcopy)(&size, pDblOutWp->get(), &one, wp, &one);
-
-        double* pdblIwp = pDblOutIwp->get();
-        for (int i = 0; i < pDblOutIwp->getSize(); i++)
-        {
-            iwp[i] = (int)pdblIwp[i];
-        }
-
-        *ier = (int)(pDblOutIer->get(0));
-
-        // delete output macro result
-        out[0]->DecreaseRef();
-        if (out[0]->isDeletable())
-        {
-            delete out[0];
-        }
-
-        out[1]->DecreaseRef();
-        if (out[1]->isDeletable())
-        {
-            delete out[1];
-        }
-
-        out[2]->DecreaseRef();
-        if (out[2]->isDeletable())
-        {
-            delete out[2];
-        }
-
-        return 1;
+        in.push_back(m_pJacArgs[i]);
     }
-    return 0;
+
+    bool bOk = m_pCallPjacFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+    if (bOk == false)
+    {
+        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallPjacFunction->getName().c_str());
+        throw ScilabError(errorMsg);
+    }
+
+    if (out.size() != iRetCount)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallPjacFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[0]->IncreaseRef();
+
+    pDblNeq->DecreaseRef();
+    if (pDblNeq->isDeletable())
+    {
+        delete pDblNeq;
+    }
+
+    pDblT->DecreaseRef();
+    if (pDblT->isDeletable())
+    {
+        delete pDblT;
+    }
+
+    pDblY->DecreaseRef();
+    if (pDblY->isDeletable())
+    {
+        delete pDblY;
+    }
+
+    pDblYdot->DecreaseRef();
+    if (pDblYdot->isDeletable())
+    {
+        delete pDblYdot;
+    }
+
+    pDblH->DecreaseRef();
+    if (pDblH->isDeletable())
+    {
+        delete pDblH;
+    }
+
+    pDblCj->DecreaseRef();
+    if (pDblCj->isDeletable())
+    {
+        delete pDblCj;
+    }
+
+    pDblRewt->DecreaseRef();
+    if (pDblRewt->isDeletable())
+    {
+        delete pDblRewt;
+    }
+
+    pDblSavr->DecreaseRef();
+    if (pDblSavr->isDeletable())
+    {
+        delete pDblSavr;
+    }
+
+    // check type of output arguments
+    if (out[0]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallPjacFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    if (out[1]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallPjacFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 2);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    if(out[2]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallPjacFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 3);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    //  return [R, iR, ier]
+    types::Double* pDblOutWp  = out[0]->getAs<types::Double>();
+    types::Double* pDblOutIwp = out[1]->getAs<types::Double>();
+    types::Double* pDblOutIer = out[2]->getAs<types::Double>();
+
+    // check size of output argument
+    if (pDblOutWp->getSize() != *neq * *neq)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallPjacFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 1, *neq * *neq);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    if (pDblOutIwp->getSize() != 2 * *neq * *neq)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallPjacFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 2, 2 * *neq * *neq);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    if (pDblOutIer->isScalar() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallPjacFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A Scalar expected.\n"), pstrName, 3);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    // copy output macro results in output variables
+    int size = pDblOutWp->getSize();
+    C2F(dcopy)(&size, pDblOutWp->get(), &one, wp, &one);
+
+    double* pdblIwp = pDblOutIwp->get();
+    for (int i = 0; i < pDblOutIwp->getSize(); i++)
+    {
+        iwp[i] = (int)pdblIwp[i];
+    }
+
+    *ier = (int)(pDblOutIer->get(0));
+
+    // delete output macro result
+    out[0]->DecreaseRef();
+    if (out[0]->isDeletable())
+    {
+        delete out[0];
+    }
+
+    out[1]->DecreaseRef();
+    if (out[1]->isDeletable())
+    {
+        delete out[1];
+    }
+
+    out[2]->DecreaseRef();
+    if (out[2]->isDeletable())
+    {
+        delete out[2];
+    }
 }
 
-int DifferentialEquationFunctions::callDaskrMacroPsol(int* neq, double* t, double* y, double* ydot, double* savr, double* wk,
+void DifferentialEquationFunctions::callDaskrMacroPsol(int* neq, double* t, double* y, double* ydot, double* savr, double* wk,
         double* cj, double* wght, double* wp, int* iwp, double* b, double* eplin,
         int* ier, double* rpar, int* ipar)
 {
     // macro : [b, ier] = psol(R, iR, b)
-    if (m_pCallPsolFunction)
+    char errorMsg[256];
+    int one         = 1;
+    int iRetCount   = 2;
+
+    typed_list in;
+    typed_list out;
+    types::optional_list opt;
+    ast::ExecVisitor execFunc;
+
+    // input arguments psol(R, iR, b)
+    types::Double* pDblR = new types::Double(1, *neq * *neq);
+    pDblR->set(wp);
+    pDblR->IncreaseRef();
+    in.push_back(pDblR);
+
+    types::Double* pDblIR = new types::Double(1, 2 * *neq * *neq);
+    double* pdblIR = pDblIR->get();
+    for (int i = 0; i < pDblIR->getSize(); i++)
     {
-        int one         = 1;
-        int iRetCount   = 2;
-
-        typed_list in;
-        typed_list out;
-        types::optional_list opt;
-        ast::ExecVisitor execFunc;
-
-        // input arguments psol(R, iR, b)
-        types::Double* pDblR = new types::Double(1, *neq * *neq);
-        pDblR->set(wp);
-        pDblR->IncreaseRef();
-        in.push_back(pDblR);
-
-        types::Double* pDblIR = new types::Double(1, 2 * *neq * *neq);
-        double* pdblIR = pDblIR->get();
-        for (int i = 0; i < pDblIR->getSize(); i++)
-        {
-            pdblIR[i] = (double)iwp[i];
-        }
-        pDblIR->IncreaseRef();
-        in.push_back(pDblIR);
-
-        types::Double* pDblB = new types::Double(1, *neq);
-        pDblB->set(b);
-        pDblB->IncreaseRef();
-        in.push_back(pDblB);
-
-        // optional arguments
-        for (int i = 0; i < m_pSolArgs.size(); i++)
-        {
-            in.push_back(m_pSolArgs[i]);
-        }
-
-        // call macro
-        bool bOk = m_pCallPsolFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
-
-        if (bOk == false)
-        {
-            return 0;
-        }
-
-        // get output
-        if (out.size() != iRetCount)
-        {
-            return 0;
-        }
-
-        out[0]->IncreaseRef();
-
-        // free input arguments
-        pDblR->DecreaseRef();
-        if (pDblR->isDeletable())
-        {
-            delete pDblR;
-        }
-
-        pDblIR->DecreaseRef();
-        if (pDblIR->isDeletable())
-        {
-            delete pDblIR;
-        }
-
-        pDblB->DecreaseRef();
-        if (pDblB->isDeletable())
-        {
-            delete pDblB;
-        }
-
-        // check output result
-        if (out[0]->isDouble() == false || out[1]->isDouble() == false)
-        {
-            return 0;
-        }
-
-        // return arguments [b, ier] = psol()
-        types::Double* pDblOutB  = out[0]->getAs<types::Double>();
-        if (pDblOutB->getSize() != *neq) // size of b is neq
-        {
-            return 0;
-        }
-
-        // get scalar ier
-        types::Double* pDblOutIer = out[1]->getAs<types::Double>();
-        if (pDblOutIer->isScalar() == false)
-        {
-            return 0;
-        }
-
-        // copy output macro results in output variables
-        C2F(dcopy)(neq, pDblOutB->get(), &one, b, &one);
-        *ier = (int)(pDblOutIer->get(0));
-
-        // free output arguments
-        out[0]->DecreaseRef();
-        if (out[0]->isDeletable())
-        {
-            delete out[0];
-        }
-
-        out[1]->DecreaseRef();
-        if (out[1]->isDeletable())
-        {
-            delete out[1];
-        }
-
-        return 1;
+        pdblIR[i] = (double)iwp[i];
     }
-    return 0;
+    pDblIR->IncreaseRef();
+    in.push_back(pDblIR);
+
+    types::Double* pDblB = new types::Double(1, *neq);
+    pDblB->set(b);
+    pDblB->IncreaseRef();
+    in.push_back(pDblB);
+
+    // optional arguments
+    for (int i = 0; i < (int)m_pSolArgs.size(); i++)
+    {
+        in.push_back(m_pSolArgs[i]);
+    }
+
+    // call macro
+    bool bOk = m_pCallPsolFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+    if (bOk == false)
+    {
+        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallPsolFunction->getName().c_str());
+        throw ScilabError(errorMsg);
+    }
+
+    // get output
+    if (out.size() != iRetCount)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallPsolFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    out[0]->IncreaseRef();
+
+    // free input arguments
+    pDblR->DecreaseRef();
+    if (pDblR->isDeletable())
+    {
+        delete pDblR;
+    }
+
+    pDblIR->DecreaseRef();
+    if (pDblIR->isDeletable())
+    {
+        delete pDblIR;
+    }
+
+    pDblB->DecreaseRef();
+    if (pDblB->isDeletable())
+    {
+        delete pDblB;
+    }
+
+    // check output result
+    if (out[0]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallPsolFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    if (out[1]->isDouble() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallPsolFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 2);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    // return arguments [b, ier] = psol()
+    types::Double* pDblOutB  = out[0]->getAs<types::Double>();
+    if (pDblOutB->getSize() != *neq) // size of b is neq
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallPsolFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 1, *neq);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    // get scalar ier
+    types::Double* pDblOutIer = out[1]->getAs<types::Double>();
+    if (pDblOutIer->isScalar() == false)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallPsolFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A Scalar expected.\n"), pstrName, 2);
+        FREE(pstrName);
+        throw ScilabError(errorMsg);
+    }
+
+    // copy output macro results in output variables
+    C2F(dcopy)(neq, pDblOutB->get(), &one, b, &one);
+    *ier = (int)(pDblOutIer->get(0));
+
+    // free output arguments
+    out[0]->DecreaseRef();
+    if (out[0]->isDeletable())
+    {
+        delete out[0];
+    }
+
+    out[1]->DecreaseRef();
+    if (out[1]->isDeletable())
+    {
+        delete out[1];
+    }
 }

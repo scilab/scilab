@@ -131,7 +131,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d : It must be one of the following strings : adams, stiff, rk, rkf, fix, root or discrete.\n"), "odedc", 1);
+            Scierror(999, _("%s: Wrong value for input argument #%d: It must be one of the following strings: adams, stiff, rk, rkf, fix, root or discrete.\n"), "odedc", 1);
             return types::Function::Error;
         }
     }
@@ -169,19 +169,19 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         pDblY0 = in[iPos]->getAs<types::Double>();
         if (pDblY0->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "odedc", iPos + 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "odedc", iPos + 1);
             return types::Function::Error;
         }
 
         if (pDblY0->getCols() != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d : A real colunm vector expected (n x 1).\n"), "odedc", iPos + 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A real colunm vector expected (n x 1).\n"), "odedc", iPos + 1);
             return types::Function::Error;
         }
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix\n"), "odedc", iPos + 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix\n"), "odedc", iPos + 1);
         return types::Function::Error;
     }
 
@@ -189,7 +189,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     iPos++;
     if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "odedc", iPos + 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), "odedc", iPos + 1);
         return types::Function::Error;
     }
 
@@ -197,13 +197,13 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
     if (pDblNd->isComplex() || pDblNd->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "odedc", iPos + 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), "odedc", iPos + 1);
         return types::Function::Error;
     }
 
     if (pDblNd->get(0) > pDblY0->getSize())
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d : Value must not exceeds dimension of argument %d.\n"), "odedc", iPos + 1, iPos);
+        Scierror(999, _("%s: Wrong value for input argument #%d: Value must not exceeds dimension of argument %d.\n"), "odedc", iPos + 1, iPos);
         return types::Function::Error;
     }
 
@@ -211,7 +211,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     iPos++;
     if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "odedc", iPos + 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "odedc", iPos + 1);
         return types::Function::Error;
     }
 
@@ -219,13 +219,13 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
     if (pDblStdel->isComplex())
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "odedc", iPos + 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), "odedc", iPos + 1);
         return types::Function::Error;
     }
 
     if (pDblStdel->getSize() > 2)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d : %d or %d values expected.\n"), "odedc", iPos + 1, 1, 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: %d or %d values expected.\n"), "odedc", iPos + 1, 1, 2);
         return types::Function::Error;
     }
 
@@ -233,7 +233,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     iPos++;
     if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "odedc", iPos + 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "odedc", iPos + 1);
         return types::Function::Error;
     }
 
@@ -241,7 +241,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
     if (pDblT0->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "odedc", iPos + 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "odedc", iPos + 1);
         return types::Function::Error;
     }
 
@@ -249,7 +249,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     iPos++;
     if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "odedc", iPos + 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "odedc", iPos + 1);
         return types::Function::Error;
     }
 
@@ -259,7 +259,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     sizeYc = pDblY0->getSize() - (int)pDblNd->get(0);
     if (sizeYc < 0)
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d : Value of nd exceeds dimension of y0.\n"), "odedc", 2);
+        Scierror(999, _("%s: Wrong value for input argument #%d: Value of nd exceeds dimension of y0.\n"), "odedc", 2);
         return types::Function::Error;
     }
 
@@ -270,9 +270,9 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     deFunctionsManager->setOdeYRows(pDblY0->getRows());
     deFunctionsManager->setOdeYCols(pDblY0->getCols());
 
-    YSize = (int*)malloc(sizeOfYSize * sizeof(int));
+    YSize = (int*)MALLOC(sizeOfYSize * sizeof(int));
     *YSize = pDblY0->getSize();
-    pdYData = (double*)malloc(pDblY0->getSize() * sizeof(double));
+    pdYData = (double*)MALLOC(pDblY0->getSize() * sizeof(double));
     C2F(dcopy)(YSize, pDblY0->get(), &one, pdYData, &one);
 
     if (meth == 4)
@@ -281,17 +281,17 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         {
             Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "odedc", 7);
             DifferentialEquation::removeDifferentialEquationFunctions();
-            free(pdYData);
-            free(YSize);
+            FREE(pdYData);
+            FREE(YSize);
             return types::Function::Error;
         }
 
         if (in[6]->isCallable() == false && in[6]->isString() == false && in[6]->isList() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A function expected.\n"), "odedc", 7);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A function expected.\n"), "odedc", 7);
             DifferentialEquation::removeDifferentialEquationFunctions();
-            free(pdYData);
-            free(YSize);
+            FREE(pdYData);
+            FREE(YSize);
             return types::Function::Error;
         }
     }
@@ -307,8 +307,8 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 {
                     Scierror(267, _("%s: Arg %d and arg %d must have equal dimensions.\n"), "odedc", pStrType ? 2 : 1, iPos + 1);
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYData);
-                    free(YSize);
+                    FREE(pdYData);
+                    FREE(YSize);
                     return types::Function::Error;
                 }
             }
@@ -319,8 +319,8 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 {
                     Scierror(267, _("%s: Arg %d and arg %d must have equal dimensions.\n"), "odedc", pStrType ? 2 : 1, iPos + 1);
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYData);
-                    free(YSize);
+                    FREE(pdYData);
+                    FREE(YSize);
                     return types::Function::Error;
                 }
             }
@@ -334,10 +334,10 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 {
                     if (in[iPos + 1]->isDouble() == false)
                     {
-                        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "odedc", iPos + 2);
+                        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "odedc", iPos + 2);
                         DifferentialEquation::removeDifferentialEquationFunctions();
-                        free(pdYData);
-                        free(YSize);
+                        FREE(pdYData);
+                        FREE(YSize);
                         return types::Function::Error;
                     }
 
@@ -349,17 +349,17 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 {
                     Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "odedc", iPos + 2);
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYData);
-                    free(YSize);
+                    FREE(pdYData);
+                    FREE(YSize);
                     return types::Function::Error;
                 }
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A function expected.\n"), "odedc", iPos + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A function expected.\n"), "odedc", iPos + 1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYData);
-                free(YSize);
+                FREE(pdYData);
+                FREE(YSize);
                 return types::Function::Error;
             }
         }
@@ -383,10 +383,10 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "odedc", iPos + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "odedc", iPos + 1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYData);
-                free(YSize);
+                FREE(pdYData);
+                FREE(YSize);
                 return types::Function::Error;
             }
         }
@@ -412,10 +412,10 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "odedc", iPos + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "odedc", iPos + 1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYData);
-                free(YSize);
+                FREE(pdYData);
+                FREE(YSize);
                 return types::Function::Error;
             }
 
@@ -425,8 +425,8 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "odedc", pst);
                 FREE(pst);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYData);
-                free(YSize);
+                FREE(pdYData);
+                FREE(YSize);
                 return types::Function::Error;
             }
         }
@@ -436,19 +436,19 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
             if (pList->getSize() == 0)
             {
-                Scierror(50, _("%s: Argument #%d : Subroutine not found in list: %s\n"), "odedc", iPos + 1, "(string empty)");
+                Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "odedc", iPos + 1, "(string empty)");
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYData);
-                free(YSize);
+                FREE(pdYData);
+                FREE(YSize);
                 return types::Function::Error;
             }
 
             if (bFuncF && (bFuncJac || pDblNg) && (bFuncG || meth != 3))
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "odedc", iPos + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "odedc", iPos + 1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYData);
-                free(YSize);
+                FREE(pdYData);
+                FREE(YSize);
                 return types::Function::Error;
             }
 
@@ -485,11 +485,11 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 if (bOK == false)
                 {
                     char* pst = wide_string_to_UTF8(pStr->get(0));
-                    Scierror(50, _("%s: Argument #%d : Subroutine not found in list: %s\n"), "odedc", iPos + 1, pst);
+                    Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "odedc", iPos + 1, pst);
                     FREE(pst);
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYData);
-                    free(YSize);
+                    FREE(pdYData);
+                    FREE(YSize);
                     return types::Function::Error;
                 }
 
@@ -497,7 +497,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 int* sizeTemp = YSize;
                 int totalSize = sizeOfpdYData;
 
-                YSize = (int*)malloc((sizeOfYSize + pList->getSize() - 1) * sizeof(int));
+                YSize = (int*)MALLOC((sizeOfYSize + pList->getSize() - 1) * sizeof(int));
                 memcpy(YSize, sizeTemp, sizeOfYSize * sizeof(int));
 
                 std::vector<types::Double*> vpDbl;
@@ -505,9 +505,9 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 {
                     if (pList->get(iter + 1)->isDouble() == false)
                     {
-                        Scierror(999, _("%s: Wrong type for input argument #%d : Argument %d in the list must be a matrix.\n"), "odedc", iPos + 1, iter + 1);
-                        free(pdYData);
-                        free(YSize);
+                        Scierror(999, _("%s: Wrong type for input argument #%d: Argument %d in the list must be a matrix.\n"), "odedc", iPos + 1, iter + 1);
+                        FREE(pdYData);
+                        FREE(YSize);
                         return types::Function::Error;
                     }
 
@@ -518,7 +518,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
                 // store in pdYData "args" input
                 double* pdYDataTemp = pdYData;
-                pdYData = (double*)malloc(totalSize * sizeof(double));
+                pdYData = (double*)MALLOC(totalSize * sizeof(double));
                 C2F(dcopy)(&sizeOfpdYData, pdYDataTemp, &one, pdYData, &one);
 
                 int position = sizeOfpdYData;
@@ -530,8 +530,8 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 vpDbl.clear();
                 sizeOfpdYData = totalSize;
                 sizeOfYSize += pList->getSize() - 1;
-                free(pdYDataTemp);
-                free(sizeTemp);
+                FREE(pdYDataTemp);
+                FREE(sizeTemp);
             }
             else if (pList->get(0)->isCallable())
             {
@@ -565,19 +565,19 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : The first argument in the list must be a string or a function.\n"), "odedc", iPos + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: The first argument in the list must be a string or a function.\n"), "odedc", iPos + 1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYData);
-                free(YSize);
+                FREE(pdYData);
+                FREE(YSize);
                 return types::Function::Error;
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A matrix or a function expected.\n"), "odedc", iPos + 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A matrix or a function expected.\n"), "odedc", iPos + 1);
             DifferentialEquation::removeDifferentialEquationFunctions();
-            free(pdYData);
-            free(YSize);
+            FREE(pdYData);
+            FREE(YSize);
             return types::Function::Error;
         }
     }
@@ -587,24 +587,24 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         int val = (meth == 3) ? 3 : 1;
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "odedc", in.size() + val);
         DifferentialEquation::removeDifferentialEquationFunctions();
-        free(pdYData);
-        free(YSize);
+        FREE(pdYData);
+        FREE(YSize);
         return types::Function::Error;
     }
     if (pDblNg == NULL && meth == 3)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "odedc", in.size() + 2);
         DifferentialEquation::removeDifferentialEquationFunctions();
-        free(pdYData);
-        free(YSize);
+        FREE(pdYData);
+        FREE(YSize);
         return types::Function::Error;
     }
     if (bFuncG == false && meth == 3)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "odedc", in.size() + 1);
         DifferentialEquation::removeDifferentialEquationFunctions();
-        free(pdYData);
-        free(YSize);
+        FREE(pdYData);
+        FREE(YSize);
         return types::Function::Error;
     }
 
@@ -676,19 +676,19 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
     if (iopt == 1 && (pDblOdeOptions->get(4) > pDblOdeOptions->get(3))) // hmin > hmax ?
     {
-        Scierror(9999, _("%s: Wrong value of hmin and hmax : hmin = %d is greater than hmax = %d.\n"), "odedc", pDblOdeOptions->get(4), pDblOdeOptions->get(3));
+        Scierror(9999, _("%s: Wrong value of hmin and hmax: hmin = %d is greater than hmax = %d.\n"), "odedc", pDblOdeOptions->get(4), pDblOdeOptions->get(3));
         DifferentialEquation::removeDifferentialEquationFunctions();
-        free(pdYData);
-        free(YSize);
+        FREE(pdYData);
+        FREE(YSize);
         return types::Function::Error;
     }
 
     if (jt < 0 || jt > 5)
     {
-        Scierror(9999, _("%s: Wrong value of Jacobian type : A number between %d and %d expected.\n"), "odedc", 0, 5);
+        Scierror(9999, _("%s: Wrong value of Jacobian type: A number between %d and %d expected.\n"), "odedc", 0, 5);
         DifferentialEquation::removeDifferentialEquationFunctions();
-        free(pdYData);
-        free(YSize);
+        FREE(pdYData);
+        FREE(YSize);
         return types::Function::Error;
     }
 
@@ -720,7 +720,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     {
         if (pDblRtol->isScalar())
         {
-            rtol = (double*)malloc(sizeof(double));
+            rtol = (double*)MALLOC(sizeof(double));
             *rtol = pDblRtol->get(0);
         }
         else
@@ -731,7 +731,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        rtol = (double*)malloc(sizeof(double));
+        rtol = (double*)MALLOC(sizeof(double));
         if (meth == 6 || meth == 7)
         {
             *rtol = 1.e-3;
@@ -746,7 +746,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     {
         if (pDblAtol->isScalar())
         {
-            atol = (double*)malloc(sizeof(double));
+            atol = (double*)MALLOC(sizeof(double));
             *atol = pDblAtol->get(0);
         }
         else
@@ -757,7 +757,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        atol = (double*)malloc(sizeof(double));
+        atol = (double*)MALLOC(sizeof(double));
         if (meth == 6 || meth == 7)
         {
             *atol = 1.e-4;
@@ -802,7 +802,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
     switch (meth)
     {
-        case 3 : // lsodar (root)
+        case 3: // lsodar (root)
         {
             //             lrn = 20 + nyh*(mxordn+1) + 3*neq + 3*ng,
             //             lrs = 20 + nyh*(mxords+1) + 3*neq + lmat + 3*ng,
@@ -820,9 +820,9 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
             lrs = lrn;
             dStructTabSize = 246 - 241;
             iStructTabSize = 59 - 50;
-            jroot = (int*)malloc((int)pDblNg->get(0) * sizeof(int));
+            jroot = (int*)MALLOC((int)pDblNg->get(0) * sizeof(int));
         }
-        case 0 : // lsoda
+        case 0: // lsoda
         {
             //             lrn = 20 + nyh*(mxordn+1) + 3*neq,
             //             lrs = 20 + nyh*(mxords+1) + 3*neq + lmat,
@@ -857,11 +857,11 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
             break;
         }
-        case 1 : // lsode (adams) (non stiff)
+        case 1: // lsode (adams) (non stiff)
         {
             maxord = mxordn;
         }
-        case 2 : // lsode (stiff)
+        case 2: // lsode (stiff)
         {
             //          20 + nyh*(maxord + 1) + 3*neq + lmat
             //        where
@@ -897,25 +897,25 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
             iStructTabSize = 41;
             break;
         }
-        case 4 : // lsdisc (discrete)
+        case 4: // lsdisc (discrete)
         {
             rworkSize = sizeYc;
             iworkSize = 1;
             break;
         }
-        case 5 : // lsrgk (rk)
+        case 5: // lsrgk (rk)
         {
             rworkSize = 3 * (sizeYc);
             iworkSize = 1;
             break;
         }
-        case 6 : // rkf45 (rkf)
+        case 6: // rkf45 (rkf)
         {
             rworkSize = 3 + 8 * (sizeYc);
             iworkSize = 5;
             break;
         }
-        case 7 : // rksimp (fix)
+        case 7: // rksimp (fix)
         {
             rworkSize = 3 + 8 * (sizeYc);
             iworkSize = 1;
@@ -926,8 +926,8 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     rwSize = rworkSize + dStructTabSize;
     iwSize = iworkSize + iStructTabSize;
 
-    rwork = (double*)malloc(rworkSize * sizeof(double));
-    iwork = (int*)malloc(iworkSize * sizeof(int));
+    rwork = (double*)MALLOC(rworkSize * sizeof(double));
+    iwork = (int*)MALLOC(iworkSize * sizeof(int));
 
     if (meth < 4)
     {
@@ -935,29 +935,29 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         {
             if (pDblW->getSize() != rwSize || pDblIw->getSize() != iwSize)
             {
-                Scierror(9999, _("%s: Wrong size for w and iw : w = %d and iw = %d expected.\n"), "odedc", rwSize, iwSize);
+                Scierror(9999, _("%s: Wrong size for w and iw: w = %d and iw = %d expected.\n"), "odedc", rwSize, iwSize);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYData);
-                free(YSize);
+                FREE(pdYData);
+                FREE(YSize);
                 if (jroot)
                 {
-                    free(jroot);
+                    FREE(jroot);
                 }
                 if (itol == 1 || itol == 3)
                 {
-                    free(atol);
+                    FREE(atol);
                 }
                 if (itol < 3)
                 {
-                    free(rtol);
+                    FREE(rtol);
                 }
                 return types::Function::Error;
             }
 
             istate = 2; // 1 means this is the first call | 2  means this is not the first call
 
-            dStructTab = (double*)malloc(dStructTabSize * sizeof(double));
-            iStructTab = (int*)malloc(iStructTabSize * sizeof(int));
+            dStructTab = (double*)MALLOC(dStructTabSize * sizeof(double));
+            iStructTab = (int*)MALLOC(iStructTabSize * sizeof(int));
 
             C2F(dcopy)(&rworkSize, pDblW->get(), &one, rwork, &one);
             C2F(dcopy)(&dStructTabSize, pDblW->get() + rworkSize, &one, dStructTab, &one);
@@ -1040,7 +1040,6 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     }
 
     // *** Perform operation. ***
-    double ret      = 0;
     double nhpass   = 0;
     double delta    = 0;
     double tleft    = pDblT0->get(0);
@@ -1052,7 +1051,8 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     bool bUpdate    = false;
     bool bOneStep   = false;
 
-    char* strMeth;
+    std::string strMeth;
+    int err = 0;
 
     if (pDblStdel->isScalar() == false)
     {
@@ -1064,7 +1064,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         bOneStep = true;
         if (getWarningMode() && pDblT->isScalar() == false)
         {
-            sciprint(_("itask = %d : At most one value of t is allowed, the last element of t is used.\n"), itask);
+            sciprint(_("itask = %d: At most one value of t is allowed, the last element of t is used.\n"), itask);
         }
     }
 
@@ -1091,32 +1091,38 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 {
                     sciprint(_("update at t = %lf\n"), tright);
                 }
-
-                if (ode_f(&sizeYc, &tright, pdYData, pdYData + sizeYc) == 0)
+                try
                 {
-                    Scierror(999, _("%s: Update failed at t = %lf\n"), "odedc", tright);
+                    ode_f(&sizeYc, &tright, pdYData, pdYData + sizeYc);
+                }
+                catch (ScilabError &e)
+                {
+                    char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
+                    sciprint(_("%s: Update failed at t = %lf\n"), "odedc", tright);
+                    Scierror(999, pstrMsg);
+
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYData);
-                    free(YSize);
+                    FREE(pdYData);
+                    FREE(YSize);
                     if (jroot)
                     {
-                        free(jroot);
+                        FREE(jroot);
                     }
                     if (dStructTab)
                     {
-                        free(dStructTab);
+                        FREE(dStructTab);
                     }
                     if (iStructTab)
                     {
-                        free(iStructTab);
+                        FREE(iStructTab);
                     }
                     if (itol == 1 || itol == 3)
                     {
-                        free(atol);
+                        FREE(atol);
                     }
                     if (itol < 3)
                     {
-                        free(rtol);
+                        FREE(rtol);
                     }
                     return types::Function::Error;
                 }
@@ -1124,7 +1130,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 deFunctionsManager->resetOdedcFlag();
                 nhpass++;
 
-                double* copy = (double*)malloc(*YSize * sizeof(double));
+                double* copy = (double*)MALLOC(*YSize * sizeof(double));
                 C2F(dcopy)(YSize, pdYData, &one, copy, &one);
                 pDblYOutList.push_back(copy);
                 pDblTOutList.push_back(tleft);
@@ -1140,81 +1146,96 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                     sciprint(_("integ. from tleft= %lf to tf= %lf\n"), tleft, tright);
                 }
 
-                switch (meth)
+                try
                 {
-                    case 0 : // lsoda
+                    switch (meth)
                     {
-                        strMeth = "lsoda";
-                        ret = C2F(lsoda)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &jt);
-                        break;
+                        case 1: // lsode (adams)
+                        case 2: // lsode (stiff)
+                        {
+                            strMeth = "lsode";
+                            int jacType = 10 * meth + jt;
+                            C2F(lsode)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &jacType);
+                            break;
+                        }
+                        case 3: // lsodar
+                        {
+                            strMeth = "lsodar";
+                            int ng = (int)pDblNg->get(0);
+                            C2F(lsodar)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &jt, ode_g, &ng, jroot);
+                            break;
+                        }
+                        case 4: // lsdisc (discrete)
+                        {
+                            strMeth = "lsdisc";
+                            C2F(lsdisc)(ode_f, &sizeYc, pdYData, &tleft, &tright, rwork, &rworkSize, &istate);
+                            break;
+                        }
+                        case 5: // lsrgk (rk)
+                        {
+                            strMeth = "lsrgk";
+                            C2F(lsrgk)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &meth);
+                            break;
+                        }
+                        case 6: // rkf45 (rkf)
+                        {
+                            strMeth = "rkf45";
+                            C2F(rkf45)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &meth);
+                            break;
+                        }
+                        case 7: // rksimp (fix)
+                        {
+                            strMeth = "rksimp";
+                            C2F(rksimp)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &meth);
+                            break;
+                        }
+                        default: // case 0: // lsoda
+                        {
+                            strMeth = "lsoda";
+                            C2F(lsoda)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &jt);
+                        }
                     }
-                    case 1 : // lsode (adams)
-                    case 2 : // lsode (stiff)
+
+                    // check error
+                    err = checkOdeError(meth, istate);
+                    if (err == 1) // error case
                     {
-                        strMeth = "lsode";
-                        int jacType = 10 * meth + jt;
-                        ret = C2F(lsode)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &jacType);
-                        break;
-                    }
-                    case 3 : // lsodar
-                    {
-                        strMeth = "lsodar";
-                        int ng = (int)pDblNg->get(0);
-                        ret = C2F(lsodar)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &jt, ode_g, &ng, jroot);
-                        break;
-                    }
-                    case 4 : // lsdisc (discrete)
-                    {
-                        strMeth = "lsdisc";
-                        ret = C2F(lsdisc)(ode_f, &sizeYc, pdYData, &tleft, &tright, rwork, &rworkSize, &istate);
-                        break;
-                    }
-                    case 5 : // lsrgk (rk)
-                    {
-                        strMeth = "lsrgk";
-                        ret = C2F(lsrgk)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &meth);
-                        break;
-                    }
-                    case 6 : // rkf45 (rkf)
-                    {
-                        strMeth = "rkf45";
-                        ret = C2F(rkf45)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &meth);
-                        break;
-                    }
-                    case 7 : // rksimp (fix)
-                    {
-                        strMeth = "rksimp";
-                        ret = C2F(rksimp)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &meth);
-                        break;
+                        Scierror(999, _("%s: %s exit with state %d.\n"), "odedc", strMeth.c_str(), istate);
                     }
                 }
-                // check error
-                int err = checkOdeError(meth, istate);
+                catch (ScilabError &e)
+                {
+                    char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
+                    sciprint(_("%s: exception caught in '%s' subroutine.\n"), "odedc", strMeth.c_str());
+                    Scierror(999, pstrMsg);
+                    FREE(pstrMsg);
+                    err = 1;
+                }
+
                 if (err == 1) // error case
                 {
-                    Scierror(999, _("%s: %s exit with state %d.\n"), "odedc", strMeth, istate);
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYData);
-                    free(YSize);
+                    FREE(pdYData);
+                    FREE(YSize);
                     if (jroot)
                     {
-                        free(jroot);
+                        FREE(jroot);
                     }
                     if (dStructTab)
                     {
-                        free(dStructTab);
+                        FREE(dStructTab);
                     }
                     if (iStructTab)
                     {
-                        free(iStructTab);
+                        FREE(iStructTab);
                     }
                     if (itol == 1 || itol == 3)
                     {
-                        free(atol);
+                        FREE(atol);
                     }
                     if (itol < 3)
                     {
-                        free(rtol);
+                        FREE(rtol);
                     }
                     return types::Function::Error;
                 }
@@ -1228,7 +1249,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                     break;
                 }
 
-                double* copy = (double*)malloc(*YSize * sizeof(double));
+                double* copy = (double*)MALLOC(*YSize * sizeof(double));
                 C2F(dcopy)(YSize, pdYData, &one, copy, &one);
                 pDblYOutList.push_back(copy);
                 pDblTOutList.push_back(tleft);
@@ -1312,81 +1333,97 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
             }
 
             rwork[0] = hf; // tcrit = hf
-            switch (meth)
+            try
             {
-                case 0 : // lsoda
+                switch (meth)
                 {
-                    strMeth = "lsoda";
-                    ret = C2F(lsoda)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &jt);
-                    break;
+                    case 1: // lsode (adams)
+                    case 2: // lsode (stiff)
+                    {
+                        strMeth = "lsode";
+                        int jacType = 10 * meth + jt;
+                        C2F(lsode)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &jacType);
+                        break;
+                    }
+                    case 3: // lsodar
+                    {
+                        strMeth = "lsodar";
+                        int ng = (int)pDblNg->get(0);
+                        C2F(lsodar)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &jt, ode_g, &ng, jroot);
+                        break;
+                    }
+                    case 4: // lsdisc (discrete)
+                    {
+                        strMeth = "lsdisc";
+                        C2F(lsdisc)(ode_f, &sizeYc, pdYData, &tleft, &tright, rwork, &rworkSize, &istate);
+                        break;
+                    }
+                    case 5: // lsrgk (rk)
+                    {
+                        strMeth = "lsrgk";
+                        C2F(lsrgk)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &meth);
+                        break;
+                    }
+                    case 6: // rkf45 (rkf)
+                    {
+                        strMeth = "rkf45";
+                        C2F(rkf45)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &meth);
+                        break;
+                    }
+                    case 7: // rksimp (fix)
+                    {
+                        strMeth = "rksimp";
+                        C2F(rksimp)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &meth);
+                        break;
+                    }
+                    default: // case 0: // lsoda
+                    {
+                        strMeth = "lsoda";
+                        C2F(lsoda)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &jt);
+                        break;
+                    }
                 }
-                case 1 : // lsode (adams)
-                case 2 : // lsode (stiff)
+
+                // check error
+                err = checkOdeError(meth, istate);
+                if (err == 1) // error case
                 {
-                    strMeth = "lsode";
-                    int jacType = 10 * meth + jt;
-                    ret = C2F(lsode)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &jacType);
-                    break;
-                }
-                case 3 : // lsodar
-                {
-                    strMeth = "lsodar";
-                    int ng = (int)pDblNg->get(0);
-                    ret = C2F(lsodar)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &jt, ode_g, &ng, jroot);
-                    break;
-                }
-                case 4 : // lsdisc (discrete)
-                {
-                    strMeth = "lsdisc";
-                    ret = C2F(lsdisc)(ode_f, &sizeYc, pdYData, &tleft, &tright, rwork, &rworkSize, &istate);
-                    break;
-                }
-                case 5 : // lsrgk (rk)
-                {
-                    strMeth = "lsrgk";
-                    ret = C2F(lsrgk)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &meth);
-                    break;
-                }
-                case 6 : // rkf45 (rkf)
-                {
-                    strMeth = "rkf45";
-                    ret = C2F(rkf45)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &meth);
-                    break;
-                }
-                case 7 : // rksimp (fix)
-                {
-                    strMeth = "rksimp";
-                    ret = C2F(rksimp)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &meth);
-                    break;
+                    Scierror(999, _("%s: %s exit with state %d.\n"), "odedc", strMeth.c_str(), istate);
                 }
             }
-            // check error
-            int err = checkOdeError(meth, istate);
+            catch (ScilabError &e)
+            {
+                char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
+                sciprint(_("%s: exception caught in '%s' subroutine.\n"), "odedc", strMeth.c_str());
+                Scierror(999, pstrMsg);
+                FREE(pstrMsg);
+                err = 1;
+            }
+
             if (err == 1) // error case
             {
-                Scierror(999, _("%s: %s exit with state %d.\n"), "odedc", strMeth, istate);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYData);
-                free(YSize);
+                FREE(pdYData);
+                FREE(YSize);
                 if (jroot)
                 {
-                    free(jroot);
+                    FREE(jroot);
                 }
                 if (dStructTab)
                 {
-                    free(dStructTab);
+                    FREE(dStructTab);
                 }
                 if (iStructTab)
                 {
-                    free(iStructTab);
+                    FREE(iStructTab);
                 }
                 if (itol == 1 || itol == 3)
                 {
-                    free(atol);
+                    FREE(atol);
                 }
                 if (itol < 3)
                 {
-                    free(rtol);
+                    FREE(rtol);
                 }
                 return types::Function::Error;
             }
@@ -1400,31 +1437,37 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                     sciprint(_("update at t = %lf\n"), tright);
                 }
 
-                if (ode_f(&sizeYc, &tright, pdYData, pdYData + sizeYc) == 0)
+                try
                 {
-                    Scierror(999, _("%s: Update failed at t = %lf\n"), "odedc", tright);
+                    ode_f(&sizeYc, &tright, pdYData, pdYData + sizeYc);
+                }
+                catch (ScilabError &e)
+                {
+                    char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
+                    sciprint(_("%s: Update failed at t = %lf\n"), "odedc", tright);
+                    Scierror(999, pstrMsg);
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYData);
-                    free(YSize);
+                    FREE(pdYData);
+                    FREE(YSize);
                     if (jroot)
                     {
-                        free(jroot);
+                        FREE(jroot);
                     }
                     if (dStructTab)
                     {
-                        free(dStructTab);
+                        FREE(dStructTab);
                     }
                     if (iStructTab)
                     {
-                        free(iStructTab);
+                        FREE(iStructTab);
                     }
                     if (itol == 1 || itol == 3)
                     {
-                        free(atol);
+                        FREE(atol);
                     }
                     if (itol < 3)
                     {
-                        free(rtol);
+                        FREE(rtol);
                     }
                     return types::Function::Error;
                 }
@@ -1497,8 +1540,8 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
             if (dStructTab == NULL)
             {
-                dStructTab = (double*)malloc(dStructTabSize * sizeof(double));
-                iStructTab = (int*)malloc(iStructTabSize * sizeof(int));
+                dStructTab = (double*)MALLOC(dStructTabSize * sizeof(double));
+                iStructTab = (int*)MALLOC(iStructTabSize * sizeof(int));
             }
 
             C2F(dcopy)(&dSize, ls0001d, &one, dStructTab, &one);
@@ -1550,7 +1593,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         }
 
         types::Double* pDblRd = new types::Double(1, sizeOfRd);
-        //rd : The first entry contains the stopping time.
+        //rd: The first entry contains the stopping time.
         pDblRd->set(0, C2F(lsr001).tlast);
         for (int i = 0; i < pDblNg->get(0); i++)
         {
@@ -1584,31 +1627,31 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         out.push_back(pDblIwOut); // iw
     }
 
-    // *** free. ***
+    // *** FREE. ***
     if (itol == 1 || itol == 3) // atol is scalar
     {
-        free(atol);
+        FREE(atol);
     }
 
     if (itol < 3) // rtol is scalar
     {
-        free(rtol);
+        FREE(rtol);
     }
 
-    free(pdYData);
-    free(YSize);
-    free(rwork);
-    free(iwork);
+    FREE(pdYData);
+    FREE(YSize);
+    FREE(rwork);
+    FREE(iwork);
 
     if (jroot)
     {
-        free(jroot);
+        FREE(jroot);
     }
 
     if (dStructTab)
     {
-        free(dStructTab);
-        free(iStructTab);
+        FREE(dStructTab);
+        FREE(iStructTab);
     }
 
     DifferentialEquation::removeDifferentialEquationFunctions();

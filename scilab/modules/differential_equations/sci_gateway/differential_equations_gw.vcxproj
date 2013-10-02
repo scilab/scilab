@@ -247,6 +247,9 @@
     <ClCompile Include="cpp\sci_odedc.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ast\ast-tools\ast-tools.vcxproj">
+      <Project>{1f4a0344-99ed-461b-bd53-1593788fb34d}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\console\src\c\console.vcxproj">
       <Project>{445d3b85-c9b1-498b-9c88-0a3c2390b1cc}</Project>
     </ProjectReference>

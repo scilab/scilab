@@ -39,12 +39,12 @@ extern "C"
     void C2F(lcomp) (int*, double*, double*, double*);
 
     // odedc
-    typedef int(*odedc_f_t)(int*, int*, int*, double *, double*, double*);
-    void C2F(fcd)   (int*, int*, int*, double *, double*, double*);
-    void C2F(fcd1)  (int*, int*, int*, double *, double*, double*);
-    void C2F(fexcd) (int*, int*, int*, double *, double*, double*);
-    void C2F(phis)  (int*, int*, int*, double *, double*, double*);
-    void C2F(phit)  (int*, int*, int*, double *, double*, double*);
+    typedef int(*odedc_f_t)(int*, int*, int*, double*, double*, double*);
+    void C2F(fcd)   (int*, int*, int*, double*, double*, double*);
+    void C2F(fcd1)  (int*, int*, int*, double*, double*, double*);
+    void C2F(fexcd) (int*, int*, int*, double*, double*, double*);
+    void C2F(phis)  (int*, int*, int*, double*, double*, double*);
+    void C2F(phit)  (int*, int*, int*, double*, double*, double*);
 
     // intg
     double C2F(intgex)(double*);
@@ -130,15 +130,15 @@ public :
     int getOdedcYDSize();
     int getOdedcFlag();
 
-    int execOdeF(int* n, double* t, double* y, double* ydot);
-    int execFunctionJac(int *n, double *t, double *y, int *ml, int *mu, double *J, int *nrpd);
-    int execFunctionG(int* n, double* t, double* y, int* ng, double* gout);
+    void execOdeF(int* n, double* t, double* y, double* ydot);
+    void execFunctionJac(int* n, double* t, double* y, int* ml, int* mu, double* J, int* nrpd);
+    void execFunctionG(int* n, double* t, double* y, int* ng, double* gout);
 
     double execIntgF(double* x);
     double execInt2dF(double* x, double* y);
-    double execInt3dF(double* x, int* numfun, double* funvls);
+    void execInt3dF(double* x, int* numfun, double* funvls);
 
-    int execFevalF(int *nn, double *x1, double *x2, double *xres, int *itype);
+    void execFevalF(int* nn, double* x1, double* x2, double* xres, int* itype);
 
     // bvode
     void setFsubFunction(types::Callable*);
@@ -162,33 +162,33 @@ public :
     void setBvodeM(int);
     void setBvodeN(int);
 
-    int execBvodeGsub(int*, double*, double*);
-    int execBvodeDgsub(int*, double*, double*);
-    int execBvodeFsub(double*, double*, double*);
-    int execBvodeDfsub(double*, double*, double*);
-    int execBvodeGuess(double*, double*, double*);
+    void execBvodeGsub(int*, double*, double*);
+    void execBvodeDgsub(int*, double*, double*);
+    void execBvodeFsub(double*, double*, double*);
+    void execBvodeDfsub(double*, double*, double*);
+    void execBvodeGuess(double*, double*, double*);
 
     // impl
-    int execImplF(int*, double*, double*, double*, double*, int*);
-    int execImplG(int*, double*, double*, double*, double*, double*, int*);
-    int execImplJac(int*, double*, double*, double*, double*, double*, double*, int*);
+    void execImplF(int*, double*, double*, double*, double*, int*);
+    void execImplG(int*, double*, double*, double*, double*, double*, int*);
+    void execImplJac(int*, double*, double*, double*, double*, double*, double*, int*);
 
     //dassl dasrt
-    int execDasslF(double*, double*, double*, double*, int*, double*, int*);
-    int execDasslJac(double*, double*, double*, double*, double*, double*, int*);
+    void execDasslF(double*, double*, double*, double*, int*, double*, int*);
+    void execDasslJac(double*, double*, double*, double*, double*, double*, int*);
     void setMu(int);
     void setMl(int);
 
     // dasrt
-    int execDasrtG(int*, double*, double*, int*, double*, double*, int*);
+    void execDasrtG(int*, double*, double*, int*, double*, double*, int*);
 
     // daskr
-    int execDaskrPsol(int* neq, double* t, double* y, double* ydot, double* savr, double* wk,
-                      double* cj, double* wght, double* wp, int* iwp, double* b, double* eplin,
-                      int* iter, double* rpar, int* ipar);
-    int execDaskrPjac(double* res, int* ires, int* neq, double* t, double* y, double* ydot,
-                      double* rewt, double* savr, double* wk, double* h, double* cj,
-                      double* wp, int* iwp, int* ier, double* rpar, int* ipar);
+    void execDaskrPsol(int* neq, double* t, double* y, double* ydot, double* savr, double* wk,
+                       double* cj, double* wght, double* wp, int* iwp, double* b, double* eplin,
+                       int* iter, double* rpar, int* ipar);
+    void execDaskrPjac(double* res, int* ires, int* neq, double* t, double* y, double* ydot,
+                       double* rewt, double* savr, double* wk, double* h, double* cj,
+                       double* wp, int* iwp, int* ier, double* rpar, int* ipar);
 
 
 private :
@@ -237,9 +237,9 @@ private :
     std::vector<types::InternalType*> m_pJacArgs;
 
     // ode / odedc
-    int callOdeMacroF(int* n, double* t, double* y, double* ydot);
-    int callMacroJac(int *n, double *t, double *y, int *ml, int *mu, double *J, int *nrpd);
-    int callMacroG(int* n, double* t, double* y, int* ng, double* gout);
+    void callOdeMacroF(int* n, double* t, double* y, double* ydot);
+    void callMacroJac(int *n, double *t, double *y, int *ml, int *mu, double *J, int *nrpd);
+    void callMacroG(int* n, double* t, double* y, int* ng, double* gout);
 
     // intg
     double callIntgMacroF(double* x);
@@ -248,10 +248,10 @@ private :
     double callInt2dMacroF(double* x, double* y);
 
     // int3d
-    double callInt3dMacroF(double* x, int* numfun, double* funvls);
+    void callInt3dMacroF(double* x, int* numfun, double* funvls);
 
     // feval
-    int callFevalMacroF(int *nn, double *x1, double *x2, double *xres, int *itype);
+    void callFevalMacroF(int *nn, double *x1, double *x2, double *xres, int *itype);
 
     // bvode
     types::Callable* m_pCallFsubFunction;
@@ -278,31 +278,31 @@ private :
     std::vector<types::InternalType*> m_DgsubArgs;
     std::vector<types::InternalType*> m_GuessArgs;
 
-    int callBvodeMacroGsub  (int* i, double* z, double* g);
-    int callBvodeMacroDgsub (int* i, double* z, double* g);
-    int callBvodeMacroFsub  (double* x, double* z, double* d);
-    int callBvodeMacroDfsub (double* x, double* z, double* d);
-    int callBvodeMacroGuess (double* x, double* z, double* d);
+    void callBvodeMacroGsub  (int* i, double* z, double* g);
+    void callBvodeMacroDgsub (int* i, double* z, double* g);
+    void callBvodeMacroFsub  (double* x, double* z, double* d);
+    void callBvodeMacroDfsub (double* x, double* z, double* d);
+    void callBvodeMacroGuess (double* x, double* z, double* d);
 
     // impl
-    int callImplMacroF(int*, double*, double*, double*, double*, int*);
-    int callImplMacroG(int*, double*, double*, double*, double*, double*, int*);
-    int callImplMacroJac(int*, double*, double*, double*, double*, double*, double*, int*);
+    void callImplMacroF(int*, double*, double*, double*, double*, int*);
+    void callImplMacroG(int*, double*, double*, double*, double*, double*, int*);
+    void callImplMacroJac(int*, double*, double*, double*, double*, double*, double*, int*);
 
     // dassl dasrt
-    int callDasslMacroF(double*, double*, double*, double*, int*, double*, int*);
-    int callDasslMacroJac(double*, double*, double*, double*, double*, double*, int*);
+    void callDasslMacroF(double*, double*, double*, double*, int*, double*, int*);
+    void callDasslMacroJac(double*, double*, double*, double*, double*, double*, int*);
 
     // dasrt
-    int callDasrtMacroG(int*, double*, double*, int*, double*, double*, int*);
+    void callDasrtMacroG(int*, double*, double*, int*, double*, double*, int*);
 
     // daskr
-    int callDaskrMacroPsol(int* neq, double* t, double* y, double* ydot, double* savr, double* wk,
-                           double* cj, double* wght, double* wp, int* iwp, double* b, double* eplin,
-                           int* iter, double* rpar, int* ipar);
-    int callDaskrMacroPjac(double* res, int* ires, int* neq, double* t, double* y, double* ydot,
-                           double* rewt, double* savr, double* wk, double* h, double* cj,
-                           double* wp, int* iwp, int* ier, double* rpar, int* ipar);
+    void callDaskrMacroPsol(int* neq, double* t, double* y, double* ydot, double* savr, double* wk,
+                            double* cj, double* wght, double* wp, int* iwp, double* b, double* eplin,
+                            int* iter, double* rpar, int* ipar);
+    void callDaskrMacroPjac(double* res, int* ires, int* neq, double* t, double* y, double* ydot,
+                            double* rewt, double* savr, double* wk, double* h, double* cj,
+                            double* wp, int* iwp, int* ier, double* rpar, int* ipar);
 };
 
 class DIFFERENTIAL_EQUATIONS_IMPEXP DifferentialEquation

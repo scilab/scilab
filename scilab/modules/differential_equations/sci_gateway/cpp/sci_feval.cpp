@@ -24,6 +24,7 @@ extern "C"
 #include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "sciprint.h"
 #include "scifunctions.h"
 #include "feval.h"
 }
@@ -96,20 +97,6 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
     {
         types::Callable* pCall = in[iPos]->getAs<types::Callable>();
         deFunctionsManager->setFFunction(pCall);
-
-        // check function
-        int iflag   = 0;
-        double x    = 1;
-        double y    = 1;
-        double res[2];
-
-        int ret  = deFunctionsManager->execFevalF(&nn, &x, &y, res, &iflag);
-        if (ret)
-        {
-            Scierror(50, _("%s: Argument #%d : Variable returned by scilab argument function is incorrect.\n"), "int3d", 4);
-            DifferentialEquation::removeDifferentialEquationFunctions();
-            return types::Function::Error;
-        }
     }
     else if (in[iPos]->isString())
     {
@@ -161,7 +148,7 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
 
     // *** Perform operation. ***
     int itype       = 0; // output value
-    double* res     = (double*)malloc(2 * sizeof(double));
+    double* res     = (double*)MALLOC(2 * sizeof(double));
     int sizeOfY     = pDblY ? pDblY->getSize() : 1;
 
     if (nn == 2)
@@ -181,12 +168,17 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
             // if pDblY == NULL, nn == 1 so valY will be never used.
             double valY = pDblY ? pDblY->get(y) : 0;
 
-            int iret = deFunctionsManager->execFevalF(&nn, &valX, &valY, res, &itype);
-
-            if (iret)
+            try
             {
-                Scierror(999, _("%s: Error during the function execution.\n"), "feval");
+                deFunctionsManager->execFevalF(&nn, &valX, &valY, res, &itype);
+            }
+            catch (ScilabError &e)
+            {
+                char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
+                sciprint(_("%s: exception caught in '%s' subroutine.\n"), "feval", "execFevalF");
+                Scierror(999, pstrMsg);
                 DifferentialEquation::removeDifferentialEquationFunctions();
+                FREE(res);
                 delete pDblOut;
                 return types::Function::Error;
             }
@@ -208,7 +200,7 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
 
     out.push_back(pDblOut);
 
-    free(res);
+    FREE(res);
     DifferentialEquation::removeDifferentialEquationFunctions();
 
     return types::Function::OK;
