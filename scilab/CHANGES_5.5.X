@@ -1,6 +1,11 @@
                  Changes between version 5.5.0-beta-1 and 5.5.0
                  ==============================================
 
+Scilab Bug Fixes
+================
+
+* Bug #12943 fixed - Datatips misworked when 2D plots were rotated.
+
 
                  Changes between version 5.4.1 and 5.5.0-beta-1
                  ==============================================

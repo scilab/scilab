@@ -25,6 +25,7 @@ import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.forge.scirenderer.tranformations.Vector4d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axes.Box;
+import org.scilab.modules.graphic_objects.axes.Camera.ViewType;
 import org.scilab.modules.graphic_objects.contouredObject.Line;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
@@ -274,7 +275,7 @@ public class AxesDrawer {
             /**
              * Draw hidden part of box.
              */
-            if (!visitor.is2DView()) {
+            if (axes.getViewAsEnum() == ViewType.VIEW_2D) {
                 appearance.setLineColor(ColorFactory.createColor(colorMap, axes.getHiddenAxisColor()));
                 appearance.setLineWidth(axes.getLineThickness().floatValue());
                 appearance.setLinePattern(HIDDEN_BORDER_PATTERN.asPattern());
@@ -867,23 +868,37 @@ public class AxesDrawer {
         AxesDrawer axesDrawer;
         Transformation projection;
         Transformation projection2d;
-
-        Vector3d point = new Vector3d(coordinates);
+        double[] coords = coordinates;
 
         if (currentVisitor != null) {
+            if (axes.getViewAsEnum() == ViewType.VIEW_2D) {
+                // No need to projet/unproject since the product is identity
+                return new double[] {coords[0], coords[1], coords[2]};
+            }
+
             Integer[] size = currentVisitor.getFigure().getAxesSize();
             Dimension canvasDimension = new Dimension(size[0], size[1]);
+            double[][] factors = axes.getScaleTranslateFactors();
 
             axesDrawer = currentVisitor.getAxesDrawer();
+            coords[0] = coords[0] * factors[0][0] + factors[1][0];
+            coords[1] = coords[1] * factors[0][1] + factors[1][1];
+            coords[2] = coords[2] * factors[0][2] + factors[1][2];
 
             projection = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), canvasDimension, false);
             projection2d = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), canvasDimension, true);
 
+            Vector3d point = new Vector3d(coords);
             point = projection2d.project(point);
             point = projection.unproject(point);
+
+            coords = point.getData();
+            coords[0] = (coords[0] - factors[1][0]) / factors[0][0];
+            coords[1] = (coords[1] - factors[1][1]) / factors[0][1];
+            coords[2] = (coords[2] - factors[1][2]) / factors[0][2];
         }
 
-        return new double[] {point.getX(), point.getY(), point.getZ()};
+        return coords;
     }
 
     /**
