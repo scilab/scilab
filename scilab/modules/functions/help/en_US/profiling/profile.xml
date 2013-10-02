@@ -2,7 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
- * Copyright (C) 2013 - Samuel GOUGEON : Specify unit of CPU time. Presentation of results c improved
+ * Copyright (C) 2013 - Samuel GOUGEON
+ * Copyright (C) 2013 - Scilab Enterprises - Simon MARCHETTO
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,7 +15,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="profile">
     <refnamediv>
         <refname>profile</refname>
-        <refpurpose>Returns the profiling data of a function</refpurpose>
+        <refpurpose>Returns the profiling results of a function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -32,21 +33,21 @@
             <varlistentry>
                 <term>c</term>
                 <listitem>
-                    <para>a nx3 matrix containing the execution profiles
+                    <para>a nx3 matrix containing the profiling results:
                         <itemizedlist>
                             <listitem>
                                 <para>
-                                    <literal>c(i,1)</literal> : number of times the line #i of the function has been executed
+                                    <literal>c(i,1)</literal> : number of times the line i of the function has been executed
                                 </para>
                             </listitem>
                             <listitem>
                                 <para>
-                                    <literal>c(i,2)</literal> : cumulated CPU time [in seconds] spent to execute the line #i
+                                    <literal>c(i,2)</literal> : cumulated CPU time [in seconds] spent to execute the line i of the function
                                 </para>
                             </listitem>
                             <listitem>
                                 <para>
-                                    <literal>c(i,3)</literal> : Measurement of the interpreter effort to execute once the line #i [arbitrary unit]
+                                    <literal>c(i,3)</literal> : Measurement of the interpreter effort to execute once the line i of the function [arbitrary unit]
                                 </para>
                             </listitem>
                         </itemizedlist>
@@ -58,41 +59,55 @@
     <refsection>
         <title>Description</title>
         <para>
-            To use <literal>profile</literal> on a function, the profiling of this function must be first activated with <link linkend="add_profiling">add_profiling</link>.
+            To use <literal>profile</literal> on a function, the profiling of this function must have been first activated:
+          <itemizedlist>
+               <listitem><para>either by using the <link linkend="add_profiling">add_profiling</link> command.</para></listitem>
+               <listitem><para>or if the function has beed defined with the <link linkend="deff">deff</link> command, by setting the optional argument of <link linkend="deff">deff</link> to "p".</para></listitem>
+          </itemizedlist>
+	</para>
+        <para>
+          Once the function executed, calling <literal>profile</literal> returns a matrix, where each row contains the profiling results for the corresponding function line (including the header line of the function), such as the number of calls, and the total CPU time spent in that line, and a measurement of the interpretor effort to execute the line, as following:
         </para>
         <para>
-            Then, when this function is executed, the system counts how many times each line is executed, and how many cpu time is spent for
-            each line execution [in seconds]. The <literal>profile</literal> function returns these data in the first two columns of the returned matrix.
-            The third column gives a measure of interpretor effort for one execution of the corresponding line.
+          <informaltable border="1">
+              <tr><td>Number of calls</td><td>Total CPU time (s)</td><td>Interpretor effort</td></tr>
+              <tr><td>1</td><td>0</td><td>0</td></tr>
+              <tr><td>300</td><td>0.1</td><td>0</td></tr>
+              <tr><td>300</td><td>3.59</td><td>5</td></tr>
+              <tr><td>...</td><td>...</td><td>...</td></tr>
+          </informaltable>
         </para>
         <para>
-            Note: the n-th line of <literal>c</literal> corresponds to n-th line of the
-            function (including the first line).
+          Here we can see that the 3th line of the function has been called 300 times, for a total CPU time of 3.59 seconds.
         </para>
         <para>
-            Due to the precision of the processor clock (typically one
-            micro second), some executed lines may appear with a cpu time of 0, even if
-            total cpu time really spent is larger.
+          Note: due to the precision limit of CPU time measure (typically one micro second), some executed lines which execution is very fast may appear with a CPU total time of 0.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-function x=foo(a, n)
- x=0;
- for i=1:n
-   if x<10 then
-     x=x+a
-   else
-     x=x+1
-   end
- end
- x=x^2+1
+// Function to be profiled
+function x = foo(n)
+  if n > 0 then
+    x = 0;
+    for k = 1:n
+      s = svd(rand(n, n));
+      x = x + s(1);
+    end
+  else
+    x = [];
+  end
 endfunction
 
-add_profiling("foo")
-foo(0.1,100) //run the function
-profile(foo) //extract profile information
+// Enables the profiling of the function
+add_profiling("foo");
+
+// Executes the function
+foo(200);
+
+// Returns the function profiling results
+profile(foo)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
