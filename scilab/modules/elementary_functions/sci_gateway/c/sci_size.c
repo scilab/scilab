@@ -104,10 +104,9 @@ int sci_size(char *fname, unsigned long fname_len)
                         }
                     }
                 }
-                else            // string
+                else // string
                 {
                     char *pStr = NULL;
-
                     if (getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &pStr) == 0)
                     {
                         if (pStr)
@@ -116,14 +115,17 @@ int sci_size(char *fname, unsigned long fname_len)
                             {
                                 iValue = I_SIZE_ROW;
                             }
+
                             if (strcmp(pStr, C_SIZE_COL) == 0)
                             {
                                 iValue = I_SIZE_COL;
                             }
+
                             if (strcmp(pStr, C_SIZE_ROWCOL) == 0)
                             {
                                 iValue = I_SIZE_ROWCOL;
                             }
+
                             freeAllocatedSingleString(pStr);
                             pStr = NULL;
                             if ((iValue != I_SIZE_ROW) && (iValue != I_SIZE_COL) && (iValue != I_SIZE_ROWCOL))
@@ -132,7 +134,13 @@ int sci_size(char *fname, unsigned long fname_len)
                                 Scierror(44, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"), fname, 2, "r", "c", "*");
                                 return 0;
                             }
-
+                        }
+                    }
+                    else
+                    {
+                        if (pStr)
+                        {
+                            freeAllocatedSingleString(pStr);
                         }
                     }
                 }

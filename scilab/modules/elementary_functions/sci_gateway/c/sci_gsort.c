@@ -165,6 +165,7 @@ int sci_gsort(char *fname, unsigned long fname_len)
 
         if ((pstData[0] != ROW_SORT) && (pstData[0] != COLUMN_SORT) && (pstData[0] != GLOBAL_SORT) && (pstData[0] != LIST_SORT))
         {
+            FREE(pstData);
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' expected.\n"), fname, 2, "r", "c", "g", "lr", "lc");
             return 1;
         }

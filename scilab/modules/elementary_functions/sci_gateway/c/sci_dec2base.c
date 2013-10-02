@@ -160,13 +160,6 @@ int sci_dec2base(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    convertedValues = (char **)MALLOC(sizeof(char*) * (m * n));
-    if (convertedValues == NULL)
-    {
-        Scierror(999, _("%s: No more memory.\n"), fname);
-        return 0;
-    }
-
     convertedValues = convertMatrixOfDec2Base(dValues, m * n, iBaseUsed, nbDigits, &err);
     if ((err != ERROR_CONVERTBASE_OK) || (convertedValues == NULL))
     {
