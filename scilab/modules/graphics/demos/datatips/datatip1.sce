@@ -34,7 +34,7 @@ function datatip1
     datatipCreate(p2,[0.8 0.4]);
     datatipSetStyle(p2,2,%f) //directional arrow no box
 
-    datatipManagerMode(gcf(),"on") //activate the interactive editor
+    datatipManagerMode(fig,"on") //activate the interactive editor
 
 
     demo_viewCode("datatip1.sce");

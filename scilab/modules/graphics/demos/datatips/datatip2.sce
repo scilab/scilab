@@ -46,6 +46,8 @@ function datatip2
     end
     //datatipSetDisplay(c,mydisp) // Change the default datatip label
 
+    datatipManagerMode(fig,"on") //activate the interactive editor
+
     demo_viewCode("datatip2.sce");
 
 endfunction
