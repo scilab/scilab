@@ -111,7 +111,6 @@ clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=16, rect=[-3,0,3,0.5]);
                     d=rand(1,10000,'normal');
                     clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=16, rect=[-3,0,3,0.5]);
                 </scilab:image>
-                
             </member>
             <member>
                 Exemple #2: histogramme d'un échantillon de loi binomiale B(6,0.5)
@@ -137,7 +136,6 @@ xtitle("l''histogramme non normalisé")
                     histplot(c, d, normalization=%f, style=5)
                     xtitle("l''histogramme non normalisé")
                 </scilab:image>
-                
             </member>
             <member>
                 Exemple #3: histogramme d'un échantillon de loi exponentielle E(lambda)
@@ -175,6 +173,9 @@ legend(["histogramme d''un échantillon E(lambda)" "densité exacte"]);
             </member>
             <member>
                 <link linkend="plot2d">plot2d</link>
+            </member>
+            <member>
+                <link linkend="bar">bar</link>
             </member>
             <member>
                 <link linkend="dsearch">dsearch</link>

@@ -229,6 +229,9 @@ legend(["normalized histogram" "frequency polygon chart"]);
                 <link linkend="plot2d">plot2d</link>
             </member>
             <member>
+                <link linkend="bar">bar</link>
+            </member>
+            <member>
                 <link linkend="dsearch">dsearch</link>
             </member>
         </simplelist>
