@@ -461,7 +461,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         if (res != 0)
         {
             Scierror(999, _("Transfer did not complete successfully: %s\n"), errorBuffer);
-            FREE(file);
+            fclose(file);
             return NULL;
         }
 

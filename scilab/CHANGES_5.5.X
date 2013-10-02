@@ -8,6 +8,8 @@ Scilab Bug Fixes
 
 * Bug #12943 fixed - Datatips misworked when 2D plots were rotated.
 
+* Bug #12948 fixed - When host is not found, getURL provokes a Crash To Desktop.
+
 
                  Changes between version 5.4.1 and 5.5.0-beta-1
                  ==============================================
