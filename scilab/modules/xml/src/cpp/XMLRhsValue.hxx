@@ -25,113 +25,114 @@ extern "C"
 namespace org_modules_xml
 {
 
-    /**
-     * @file
-     * @author Calixte DENIZET <calixte.denizet@scilab.org>
-     *
-     * Base class for the XML objects.
-     */
-    class XMLRhsValue
-    {
+/**
+ * @file
+ * @author Calixte DENIZET <calixte.denizet@scilab.org>
+ *
+ * Base class for the XML objects.
+ */
+class XMLRhsValue
+{
 
 public:
-        /**
-         * @anchor get
-         * @param fname the function name
-         * @param addr the Scilab's variable address
-         * @param obj a pointer to the object to retrieve
-         * @return true if all is ok
-         */
-        static bool get(char *fname, int *addr, XMLDocument ** obj, void *pvApiCtx)
+    /**
+     * @anchor get
+     * @param fname the function name
+     * @param addr the Scilab's variable address
+     * @param obj a pointer to the object to retrieve
+     * @return true if all is ok
+     */
+    static bool get(char *fname, int *addr, XMLDocument ** obj, void *pvApiCtx)
+    {
+        return get < XMLDocument > (fname, addr, obj, pvApiCtx);
+    }
+
+    /**
+     * @ref get
+     */
+    static bool get(char *fname, int *addr, XMLElement ** obj, void *pvApiCtx)
+    {
+        return get < XMLElement > (fname, addr, obj, pvApiCtx);
+    }
+
+    /**
+     * @ref get
+     */
+    static bool get(char *fname, int *addr, XMLAttr ** obj, void *pvApiCtx)
+    {
+        return get < XMLAttr > (fname, addr, obj, pvApiCtx);
+    }
+
+    /**
+     * @ref get
+     */
+    static bool get(char *fname, int *addr, XMLNs ** obj, void *pvApiCtx)
+    {
+        return get < XMLNs > (fname, addr, obj, pvApiCtx);
+    }
+
+    /**
+     * @ref get
+     */
+    static bool get(char *fname, int *addr, XMLNodeList ** obj, void *pvApiCtx)
+    {
+        return get < XMLNodeList > (fname, addr, obj, pvApiCtx);
+    }
+
+    /**
+     * @ref get
+     */
+    static bool get(char *fname, int *addr, std::string ** obj, void *pvApiCtx)
+    {
+        char **str = 0;
+        int row = 0;
+        int col = 0;
+
+        std::string * code = new std::string("");
+
+        if (getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &str))
         {
-            return get < XMLDocument > (fname, addr, obj, pvApiCtx);
+            delete code;
+            return false;
         }
 
-        /**
-         * @ref get
-         */
-        static bool get(char *fname, int *addr, XMLElement ** obj, void *pvApiCtx)
+        for (int i = 0; i < row; i++)
         {
-            return get < XMLElement > (fname, addr, obj, pvApiCtx);
-        }
-
-        /**
-         * @ref get
-         */
-        static bool get(char *fname, int *addr, XMLAttr ** obj, void *pvApiCtx)
-        {
-            return get < XMLAttr > (fname, addr, obj, pvApiCtx);
-        }
-
-        /**
-         * @ref get
-         */
-        static bool get(char *fname, int *addr, XMLNs ** obj, void *pvApiCtx)
-        {
-            return get < XMLNs > (fname, addr, obj, pvApiCtx);
-        }
-
-        /**
-         * @ref get
-         */
-        static bool get(char *fname, int *addr, XMLNodeList ** obj, void *pvApiCtx)
-        {
-            return get < XMLNodeList > (fname, addr, obj, pvApiCtx);
-        }
-
-        /**
-         * @ref get
-         */
-        static bool get(char *fname, int *addr, std::string ** obj, void *pvApiCtx)
-        {
-            char **str = 0;
-            int row = 0;
-            int col = 0;
-
-            std::string * code = new std::string("");
-
-            if (getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &str))
+            for (int j = 0; j < col; j++)
             {
-                return false;
+                *code += str[i + row * j];
             }
 
-            for (int i = 0; i < row; i++)
+            if (i != row - 1)
             {
-                for (int j = 0; j < col; j++)
-                {
-                    *code += str[i + row * j];
-                }
-
-                if (i != row - 1)
-                {
-                    *code += "\n";
-                }
+                *code += "\n";
             }
-            freeAllocatedMatrixOfString(row, col, str);
-            *obj = code;
-
-            return true;
         }
+        freeAllocatedMatrixOfString(row, col, str);
+        *obj = code;
+
+        return true;
+    }
 
 private:
 
-        /**
-         * @ref get
-         */
-        template < class T > static bool get(char *fname, int *addr, T ** obj, void *pvApiCtx)
+    /**
+     * @ref get
+     */
+    template < class T > static bool get(char *fname, int *addr, T ** obj, void *pvApiCtx)
+    {
+        int id = getXMLObjectId(addr, pvApiCtx);
+
+        *obj = XMLObject::getFromId < T > (id);
+        if (!*obj)
         {
-            int id = getXMLObjectId(addr, pvApiCtx);
-
-            *obj = XMLObject::getFromId < T > (id);
-            if (!*obj)
-            {
-                Scierror(999, "%s: XML object does not exist\n", fname);
-                return false;
-            }
-
-            return true;
+            Scierror(999, "%s: XML object does not exist\n", fname);
+            return false;
         }
-    };
+
+        return true;
+    }
+};
 }
 
 #endif

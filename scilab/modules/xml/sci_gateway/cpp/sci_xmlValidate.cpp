@@ -125,6 +125,7 @@ int sci_xmlValidate(char *fname, unsigned long fname_len)
                 delete[]s;
             }
         }
+        freeAllocatedMatrixOfString(row, col, path);
     }
     else
     {

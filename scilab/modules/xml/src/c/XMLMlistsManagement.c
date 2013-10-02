@@ -273,6 +273,7 @@ static int compareStrToMlistType(const char **str, int nb, int *mlist, void *pvA
     err = getMatrixOfStringInList(pvApiCtx, mlist, 1, &rows, &cols, lengths, NULL);
     if (err.iErr)
     {
+        FREE(lengths);
         return 0;
     }
 
@@ -285,6 +286,8 @@ static int compareStrToMlistType(const char **str, int nb, int *mlist, void *pvA
     err = getMatrixOfStringInList(pvApiCtx, mlist, 1, &rows, &cols, lengths, mlist_type);
     if (err.iErr)
     {
+        freeAllocatedMatrixOfString(rows, cols, mlist_type);
+        FREE(lengths);
         return 0;
     }
 
