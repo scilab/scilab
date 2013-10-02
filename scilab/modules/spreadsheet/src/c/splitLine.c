@@ -226,8 +226,8 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
         if (!addToken(retstr, &curr_str, (char*)(idx - len), len))
         {
             *toks = 0;
-            FREE(substitutedstring);
             freeArrayOfString(retstr, strlen(substitutedstring));
+            FREE(substitutedstring);
             return NULL;
         }
     }

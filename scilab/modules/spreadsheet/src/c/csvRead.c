@@ -202,6 +202,11 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
         result->pstrComments = pComments;
         result->nbComments = nbComments;
     }
+    else
+    {
+        freeArrayOfString(pComments, nbComments);
+    }
+
 
     return result;
 }
@@ -643,10 +648,17 @@ static char **extractComments(const char **lines, int nbLines,
 
         if ( (answer == CAN_NOT_COMPILE_PATTERN) || (answer == DELIMITER_NOT_ALPHANUMERIC))
         {
+            if (pComments)
+            {
+                freeArrayOfString(pComments, *nbcomments);
+            }
+
             *nbcomments = 0;
+
             *iErr = answer;
             return NULL;
         }
+
         if ( answer == PCRE_FINISHED_OK )
         {
             (*nbcomments)++;

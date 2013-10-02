@@ -97,6 +97,7 @@ int sci_xls_open(char *fname, unsigned long fname_len)
         if (!FileExist(filename_IN))
         {
             Scierror(999, _("The file %s does not exist.\n"), filename_IN);
+            FREE(filename_IN);
             return 0;
         }
     }

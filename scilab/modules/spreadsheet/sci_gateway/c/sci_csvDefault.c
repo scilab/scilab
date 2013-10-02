@@ -155,6 +155,10 @@ static int sci_csvDefault_one_rhs(char *fname)
     fieldname = csv_getArgumentAsString(pvApiCtx, 1, fname, &iErr);
     if (iErr)
     {
+        if (fieldname)
+        {
+            FREE(fieldname);
+        }
         return 0;
     }
 
@@ -277,6 +281,10 @@ static int sci_csvDefault_two_rhs(char *fname)
     fieldname = csv_getArgumentAsString(pvApiCtx, 1, fname, &iErr);
     if (iErr)
     {
+        if (fieldvalue)
+        {
+            FREE(fieldvalue);
+        }
         return 0;
     }
 
@@ -354,6 +362,12 @@ static int sci_csvDefault_two_rhs(char *fname)
             {
                 FREE(fieldname);
                 fieldname = NULL;
+            }
+
+            if (fieldvalue)
+            {
+                FREE(fieldvalue);
+                fieldvalue = NULL;
             }
             return 0;
         }
