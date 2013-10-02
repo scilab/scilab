@@ -65,5 +65,8 @@ int checkNamedVarType(void* _pvCtx, const char *_pstName, int _iType);
 */
 int checkNamedVarFormat(void* _pvCtx, const char *_pstName);
 
+
+SciErr sciErrInit();
+
 #endif /* __INTERNAL_COMMON_API__ */
 
