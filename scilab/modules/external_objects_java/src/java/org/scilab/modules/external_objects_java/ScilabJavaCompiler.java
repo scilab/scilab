@@ -41,6 +41,8 @@ import javax.tools.ToolProvider;
 import javax.tools.JavaCompiler.CompilationTask;
 import javax.tools.JavaFileObject.Kind;
 
+import org.scilab.modules.commons.ScilabCommonsUtils;
+
 /**
  * Class to provide a java compiler to JIMS.
  * Try to find the compiler provide with JDK and if it is not found, use the Eclipse Compiler for Java
@@ -53,6 +55,7 @@ public class ScilabJavaCompiler {
     private static final String BINPATH = System.getProperty("java.io.tmpdir") + File.separator + "JIMS" + File.separator + "bin";
 
     private static JavaCompiler compiler;
+    private static boolean ecjLoaded = false;
 
     static {
         new File(System.getProperty("java.io.tmpdir") + File.separator + "JIMS").mkdir();
@@ -85,7 +88,14 @@ public class ScilabJavaCompiler {
             }
 
             if (compiler == null) {
-                throw new ScilabJavaException("No java compiler in the classpath\nCheck for tools.jar (comes from JDK) or ecj-3.6.x.jar (Eclipse Compiler for Java)");
+                if (ecjLoaded) {
+                    throw new ScilabJavaException("No java compiler in the classpath\nCheck for tools.jar (comes from JDK) or ecj-3.6.x.jar (Eclipse Compiler for Java)");
+                }
+
+                // Compiler should be in thirdparty so we load it
+                ScilabCommonsUtils.loadOnUse("external_objects_java");
+                ecjLoaded = true;
+                findCompiler();
             }
         }
     }

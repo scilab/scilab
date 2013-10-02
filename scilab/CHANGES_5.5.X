@@ -4,6 +4,8 @@
 Scilab Bug Fixes
 ================
 
+* Bug #12938 fixed - No java compiler was available in Linux binary version.
+
 * Bug #12943 fixed - Datatips misworked when 2D plots were rotated.
 
 

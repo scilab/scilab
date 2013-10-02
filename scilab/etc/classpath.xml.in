@@ -191,9 +191,7 @@ The option is "disableUnderMode" and can be:
 
 <path value="$SCILAB/modules/external_objects_java/jar/org.scilab.modules.external_objects_java.jar" />
 
-<!--
 <path value="$SCILAB/thirdparty/ecj.jar" load="onUse">
     <load on="external_objects_java"/>
 </path>
--->
 </classpaths>
