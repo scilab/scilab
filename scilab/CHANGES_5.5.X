@@ -10,6 +10,8 @@ Scilab Bug Fixes
 
 * Bug #12948 fixed - When host is not found, getURL provokes a Crash To Desktop.
 
+* Bug #12950 fixed - getURL ignores the proxy settings on Windows.
+
 
                  Changes between version 5.4.1 and 5.5.0-beta-1
                  ==============================================
