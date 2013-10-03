@@ -332,7 +332,7 @@ public class Editor {
         copyStyle = new JMenuItem(Messages.gettext("Copy style"));
         copyStyle.setToolTipText(Messages.gettext("Copy the style of the axes"));
         pasteStyle = new JMenuItem(Messages.gettext("Paste style"));
-        pasteStyle.setToolTipText(Messages.gettext("Paste the copied style on this axes"));
+        pasteStyle.setToolTipText(Messages.gettext("Paste the copied style on these axes"));
 
         copy.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {

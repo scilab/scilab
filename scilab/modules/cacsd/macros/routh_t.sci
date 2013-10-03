@@ -80,7 +80,7 @@ function [r,num]=routh_t(h,k,normalized)
             else // for a normalized table
                 if r(i-1,1)==0 then
                     if type(k)<>1 then
-                        error(msprintf(gettext("%s: Wrong type for input argument #%d: An scalar expected.\n"),"routh_t",2));
+                        error(msprintf(gettext("%s: Wrong type for input argument #%d: A scalar expected.\n"),"routh_t",2));
                     end
                     r(i-1,1)=poly(0,'eps') 
                 end

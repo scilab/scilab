@@ -35,7 +35,7 @@ public class ActionPasteStyle extends BaseAction {
     * Constructor
     *
     * @param newAxes The new axes that was pasted
-    * @param oldAxes The the old axes
+    * @param oldAxes The old axes
     * @param colorMap The old colormap from the figure
     * @param background The old background color from the figure
     */
