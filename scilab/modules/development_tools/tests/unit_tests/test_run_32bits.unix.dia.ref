@@ -1,0 +1,24 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+OS = getos();
+[v info] = getversion();
+arch = info(2);
+if OS == "Linux" then
+    assert_checkequal(OS, "Linux")
+    if arch == "x86" then
+        assert_checkequal(arch, "x86")
+    end
+elseif OS == "Windows" then
+    assert_checkequal(OS, "Windows")
+    if arch == "x86" then
+        assert_checkequal(arch, "x86")
+    end
+else
+    assert_checkequal(OS, "Darwin")
+end
