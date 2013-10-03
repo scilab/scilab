@@ -386,15 +386,17 @@ static char *getAxe(char const* pFigureUID, scicos_block * block)
 
         getPlot3d(pAxe, block);
     }
+    else
+    {
+        return NULL;
+    }
 
     /*
      * then cache with local storage
      */
-    if (pAxe != NULL && sco->scope.cachedAxeUID == NULL)
-    {
-        sco->scope.cachedAxeUID = strdup(pAxe);
-        releaseGraphicObjectProperty(__GO_PARENT__, pAxe, jni_string, 1);
-    }
+    sco->scope.cachedAxeUID = strdup(pAxe);
+
+    releaseGraphicObjectProperty(__GO_PARENT__, pAxe, jni_string, 1);
     return sco->scope.cachedAxeUID;
 }
 
@@ -430,32 +432,30 @@ static char *getPlot3d(char *pAxeUID, scicos_block * block)
             createDataObject(pPlot3d, __GO_PLOT3D__);
             setGraphicObjectRelationship(pAxeUID, pPlot3d);
         }
+        else
+        {
+            return NULL;
+        }
     }
 
     /*
      * Setup on first access
      */
-    if (pPlot3d != NULL)
+    setBounds(block, pAxeUID, pPlot3d);
+    setPlot3dSettings(pPlot3d);
+    setDefaultValues(block, pPlot3d);
+
     {
-
-        setBounds(block, pAxeUID, pPlot3d);
-        setPlot3dSettings(pPlot3d);
-        setDefaultValues(block, pPlot3d);
-
-        {
-            int iClipState = 1; //on
-            setGraphicObjectProperty(pPlot3d, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
-        }
+        int iClipState = 1; //on
+        setGraphicObjectProperty(pPlot3d, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
     }
 
     /*
      * then cache with a local storage
      */
-    if (pPlot3d != NULL && sco->scope.cachedPlot3dUID == NULL)
-    {
-        sco->scope.cachedPlot3dUID = strdup(pPlot3d);
-        releaseGraphicObjectProperty(__GO_PARENT__, pPlot3d, jni_string, 1);
-    }
+    sco->scope.cachedPlot3dUID = strdup(pPlot3d);
+
+    releaseGraphicObjectProperty(__GO_PARENT__, pPlot3d, jni_string, 1);
     return sco->scope.cachedPlot3dUID;
 }
 

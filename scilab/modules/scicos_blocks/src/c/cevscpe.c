@@ -674,15 +674,17 @@ static char *getAxe(char const* pFigureUID, scicos_block * block)
             getSegs(pAxe, block, i);
         }
     }
+    else
+    {
+        return NULL;
+    }
 
     /*
      * then cache with a local storage
      */
-    if (pAxe != NULL && sco->scope.cachedAxeUID == NULL)
-    {
-        sco->scope.cachedAxeUID = strdup(pAxe);
-        releaseGraphicObjectProperty(__GO_PARENT__, pAxe, jni_string, 1);
-    }
+    sco->scope.cachedAxeUID = strdup(pAxe);
+
+    releaseGraphicObjectProperty(__GO_PARENT__, pAxe, jni_string, 1);
     return sco->scope.cachedAxeUID;
 }
 
@@ -698,13 +700,13 @@ static char *getSegs(char *pAxeUID, scicos_block * block, int input)
     sco_data *sco = getScoData(block);
 
     // assert the sco is not NULL
-    if (sco == NULL)
+    if (sco == NULL || sco->scope.cachedSegsUIDs == NULL)
     {
         return NULL;
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedSegsUIDs != NULL && sco->scope.cachedSegsUIDs[input] != NULL)
+    if (sco->scope.cachedSegsUIDs[input] != NULL)
     {
         return sco->scope.cachedSegsUIDs[input];
     }
@@ -723,48 +725,47 @@ static char *getSegs(char *pAxeUID, scicos_block * block, int input)
             createDataObject(pSegs, __GO_SEGS__);
             setGraphicObjectRelationship(pAxeUID, pSegs);
         }
+        else
+        {
+            return NULL;
+        }
     }
 
     /*
      * Setup on first access
      */
-    if (pSegs != NULL)
+    setGraphicObjectProperty(pSegs, __GO_NUMBER_ARROWS__, &sco->internal.maxNumberOfPoints[input], jni_int, 1);
+
+    // Setup properties
+    setGraphicObjectProperty(pSegs, __GO_LINE_THICKNESS__, &d__1, jni_double, 1);
+    setGraphicObjectProperty(pSegs, __GO_ARROW_SIZE__, &d__0, jni_double, 1);
+
+    color = block->ipar[2 + input];
+    if (color > 0)
     {
-        setGraphicObjectProperty(pSegs, __GO_NUMBER_ARROWS__, &sco->internal.maxNumberOfPoints[input], jni_int, 1);
+        setGraphicObjectProperty(pSegs, __GO_LINE_MODE__, &b__true, jni_bool, 1);
+        setGraphicObjectProperty(pSegs, __GO_SEGS_COLORS__, &color, jni_int_vector, 1);
+    }
+    else
+    {
+        int iMarkSize = 4;
+        color = -color;
+        setGraphicObjectProperty(pSegs, __GO_MARK_MODE__, &b__true, jni_bool, 1);
+        setGraphicObjectProperty(pSegs, __GO_MARK_STYLE__, &color, jni_int, 1);
+        setGraphicObjectProperty(pSegs, __GO_MARK_SIZE__, &iMarkSize, jni_int, 1);
+    }
 
-        // Setup properties
-        setGraphicObjectProperty(pSegs, __GO_LINE_THICKNESS__, &d__1, jni_double, 1);
-        setGraphicObjectProperty(pSegs, __GO_ARROW_SIZE__, &d__0, jni_double, 1);
-
-        color = block->ipar[2 + input];
-        if (color > 0)
-        {
-            setGraphicObjectProperty(pSegs, __GO_LINE_MODE__, &b__true, jni_bool, 1);
-            setGraphicObjectProperty(pSegs, __GO_SEGS_COLORS__, &color, jni_int_vector, 1);
-        }
-        else
-        {
-            int iMarkSize = 4;
-            color = -color;
-            setGraphicObjectProperty(pSegs, __GO_MARK_MODE__, &b__true, jni_bool, 1);
-            setGraphicObjectProperty(pSegs, __GO_MARK_STYLE__, &color, jni_int, 1);
-            setGraphicObjectProperty(pSegs, __GO_MARK_SIZE__, &iMarkSize, jni_int, 1);
-        }
-
-        {
-            int iClipState = 1; //on
-            setGraphicObjectProperty(pSegs, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
-        }
+    {
+        int iClipState = 1; //on
+        setGraphicObjectProperty(pSegs, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
     }
 
     /*
      * then cache with a local storage
      */
-    if (pSegs != NULL && sco->scope.cachedSegsUIDs != NULL && sco->scope.cachedSegsUIDs[input] == NULL)
-    {
-        sco->scope.cachedSegsUIDs[input] = strdup(pSegs);
-        releaseGraphicObjectProperty(__GO_PARENT__, pSegs, jni_string, 1);
-    }
+    sco->scope.cachedSegsUIDs[input] = strdup(pSegs);
+
+    releaseGraphicObjectProperty(__GO_PARENT__, pSegs, jni_string, 1);
     return sco->scope.cachedSegsUIDs[input];
 }
 
