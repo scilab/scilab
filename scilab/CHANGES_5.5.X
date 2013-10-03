@@ -30,6 +30,8 @@ New Features
  - iscolumn - Check if a variable is a column vector. See bug #10456 fixed.
  - issquare - Check if a variable is a square matrix. See bug #10456 fixed.
  - cross - Vector cross product. See bug #9941 fixed.
+ - members - Number of occurrences and linear indexes of common values between
+             two matrices of the same type.See bug #12705 fixed.
 
 * Add a complete set of functions to read and write any HDF5 file from Scilab.
 
