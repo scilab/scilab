@@ -94,7 +94,7 @@ ipar[10+lfil:9+lfil++ny+ievt] = reading mask
             {
                 /*     read a new buffer */
                 m = ipar[6] * ipar[7];
-                F2C(cvstr)(&three, &(ipar[2]), type, &job, (unsigned long)strlen(type));
+                F2C(cvstr)(&three, &(ipar[2]), type, &job, sizeof(type));
                 for (i = 2; i >= 0; i--)
                     if (type[i] != ' ')
                     {
@@ -158,7 +158,7 @@ ipar[10+lfil:9+lfil++ny+ievt] = reading mask
     }
     else if (*flag == 4)
     {
-        F2C(cvstr)(&(ipar[1]), &(ipar[10]), str, &job, (unsigned long)strlen(str));
+        F2C(cvstr)(&(ipar[1]), &(ipar[10]), str, &job, sizeof(str));
         str[ipar[1]] = '\0';
         wcfopen(fd, str, "rb");
         if (!fd )
@@ -171,7 +171,7 @@ ipar[10+lfil:9+lfil++ny+ievt] = reading mask
         /* skip first records */
         if (ipar[9] > 1)
         {
-            F2C(cvstr)(&three, &(ipar[2]), type, &job, (unsigned long)strlen(type));
+            F2C(cvstr)(&three, &(ipar[2]), type, &job, sizeof(type));
             for (i = 2; i >= 0; i--)
                 if (type[i] != ' ')
                 {
@@ -191,7 +191,7 @@ ipar[10+lfil:9+lfil++ny+ievt] = reading mask
         }
         /* read first buffer */
         m = ipar[6] * ipar[7];
-        F2C(cvstr)(&three, &(ipar[2]), type, &job, (unsigned long)strlen(type));
+        F2C(cvstr)(&three, &(ipar[2]), type, &job, sizeof(type));
         for (i = 2; i >= 0; i--)
             if (type[i] != ' ')
             {

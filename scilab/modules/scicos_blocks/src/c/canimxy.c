@@ -371,7 +371,6 @@ static BOOL pushData(scicos_block * block, int row)
     coordinates = sco->internal.coordinates[row];
 
     return setGraphicObjectProperty(pPolylineUID, __GO_DATA_MODEL_COORDINATES__, coordinates, jni_double_vector, sco->internal.maxNumberOfPoints);
-    return result;
 }
 
 /*****************************************************************************

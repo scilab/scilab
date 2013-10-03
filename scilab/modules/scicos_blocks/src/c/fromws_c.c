@@ -125,14 +125,8 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
     fromwork_struct *ptr = NULL;
 
     /* for path of TMPDIR/workspace */
-    char env[256];
-    char sep[2];
-#ifdef _MSC_VER
-    sep[0] = '\\';
-#else
-    sep[0] = '/';
-#endif
-    sep[1] = '\0';
+    char filePrefix[] = "TMPDIR/Workspace/";
+    char* env;
 
     /*retrieve dimensions of output port*/
     my       = GetOutPortRows(block, 1); /* number of rows of Outputs*/
@@ -143,15 +137,13 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
     if (flag == 4)
     {
         /* convert scilab code of the variable name to C string */
-        C2F(cvstr)(&(Fnlength), &(FName), str, (j = 1, &j), (unsigned long)strlen(str));
+        C2F(cvstr)(&(Fnlength), &(FName), str, (j = 1, &j), sizeof(str));
         str[Fnlength] = '\0';
 
         /* retrieve path of TMPDIR/workspace */
-        strcpy(env, getenv("TMPDIR"));
-        strcat(env, sep);
-        strcat(env, "Workspace");
-        strcat(env, sep);
-        strcat(env, str);
+        env = scicos_malloc(sizeof(filePrefix) + Fnlength);
+        memcpy(env, filePrefix, sizeof(filePrefix));
+        memcpy(env + (sizeof(filePrefix) - 1), str, Fnlength + 1);
 
         /* open tmp file */
         /* "r" : read */
@@ -159,12 +151,13 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
         status = "rb";
 
         filename = expandPathVariable(env);
+        scicos_free(env);
         if (filename)
         {
             C2F(mopen)(&fd, filename, status, &swap, &res, &ierr);
-            FREE(filename);
-            filename = NULL;
         }
+        FREE(filename);
+        filename = NULL;
 
         if (ierr != 0)
         {
@@ -1543,6 +1536,7 @@ static int Ishm(int *fd, int *Ytype, int *nPoints, int *my, int *ny, int *YsubTy
             (ptr_i[35] != 1))
     {
         Coserror(_("Invalid variable type : error in hypermat scilab coding.\n"));
+        scicos_free(ptr_i);
         return 0;
     }
 
