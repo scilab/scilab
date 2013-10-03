@@ -4,6 +4,8 @@
 Scilab Bug Fixes
 ================
 
+* Bug #5016 fixed - condestsp could return different results when repeated calls were performed.
+
 * Bug #7570 fixed - The switch criterion on x and y is now explicited in beta() help page.
 
 * Bug #7705 fixed - In the Genetic algorithms help pages, documented the

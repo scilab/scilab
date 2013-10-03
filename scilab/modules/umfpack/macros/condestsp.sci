@@ -121,6 +121,7 @@ function [K1] = condestsp(A, arg2, arg3)
 
     // 1/ choose starting matrix X (n,t)
     X = ones(n,t)
+    rand("seed", 0);
     X(:,2:t) = fsign(rand(n,t-1)-0.5)
     X = test_on_columns(X) / n
     Y = zeros(X) ; Z = zeros(X)
