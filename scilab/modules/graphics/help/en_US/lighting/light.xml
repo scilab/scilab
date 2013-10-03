@@ -17,9 +17,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>light()
-            light(&lt;LightProperty&gt;)
-            light(axes_handle, &lt;LightProperty&gt;)
+        <synopsis>l=light()
+            l=light(&lt;LightProperty&gt;)
+            l=light(axes_handle, &lt;LightProperty&gt;)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -35,8 +35,95 @@
                 <term>&lt;LightProperty&gt;</term>
                 <listitem>
                     <para>
-                        Optional argument specifying the light properties (see <link linkend="light">light</link>).
+                        Optional argument specifying the light properties. The optional arguments are set using
+                        sintax: <literal>"light(propname1=propvalue1, propname2=propvalue2, ..., propnameN=propvalueN)"</literal>.
                     </para>
+                    <para>Following there is the list of optional arguments:</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>visible: </term>
+                            <listitem>
+                                <para>
+                                    This field defines if the light is enabled <literal>"on"</literal>
+                                    or disabled <literal>"off"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>type: </term>
+                            <listitem>
+                                <para>This field defines the type of light used. There are two
+                                    types available:<literal>"directional"</literal> and <literal>"point"</literal>.
+                                    Directional lights are positioned infinitely far from the surface
+                                    thus emitting parallel rays.
+                                </para>
+                                <para>
+                                    Point lights are defined as a point in space thus emitting rays in all
+                                    directions.
+                                    The default value is <literal>"point"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>direction: </term>
+                            <listitem>
+                                <para>This field defines the ray direction for directional light.
+                                    The direction can be chaged using a 3 element vector <literal>"[x, y, z]"</literal>
+                                    representing a vector starting from the origin.
+                                </para>
+                                <para>
+                                    The default value is <literal>"[0 0 1]"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>position: </term>
+                            <listitem>
+                                <para>This field defines the light position for point light.
+                                    The position can be changed using a 3 element vector <literal>"[x, y, z]"</literal>.
+                                </para>
+                                <para>
+                                    The default value is <literal>"[0 0 1]"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>ambient_color: </term>
+                            <listitem>
+                                <para>This field defines the ambient color of the light.
+                                    The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
+                                    with each element in the range [0, 1].
+                                </para>
+                                <para>
+                                    The default value is <literal>"[0.1 0.1 0.1]"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>diffuse_color: </term>
+                            <listitem>
+                                <para>This field defines the diffuse color of the light.
+                                    The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
+                                    with each element in the range [0, 1].
+                                </para>
+                                <para>
+                                    The default value is <literal>"[1 1 1]"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>specular_color: </term>
+                            <listitem>
+                                <para>This field defines the specular color of the light.
+                                    The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
+                                    with each element in the range [0, 1].
+                                </para>
+                                <para>
+                                    The default value is <literal>"[1 1 1]"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -44,8 +131,12 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>light</literal> function, creates a light object in the specified axes
+            The <literal>light</literal> function, creates a light entity (see <link linkend="light">light_property</link> for the light entity properties) in the specified axes
             and sets the properties specified with &lt;LightProperty&gt; optional arguments.
+        </para>
+        <para>
+            For a more detailed explanation about how lighting affects the surface
+            appearance see <link linkend="lighting">lighting</link>.
         </para>
     </refsection>
     <refsection>
@@ -67,6 +158,9 @@ l = light(visible="on", type="point", position=[0 0 1]);
             </member>
             <member>
                 <link linkend="light_properties">light properties</link>
+            </member>
+            <member>
+                <link linkend="surface_properties">surface properties</link>
             </member>
             <member>
                 <link linkend="delete">delete</link>

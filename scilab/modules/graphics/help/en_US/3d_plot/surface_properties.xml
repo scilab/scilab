@@ -443,7 +443,11 @@
             <varlistentry>
                 <term>material_shininess: </term>
                 <listitem>
-                    <para>This field defines the shininess level of the surface.
+                    <para>This field defines the shininess level of the surface. This parameter
+                    controls the shinines color spreading in the surface. Any positive value can
+                    be used. Good values to use are in the [0 10] range, where low values generates 
+                    strong highlight and high values generates barely perceptible highlights.
+                    The default value is <literal>"2"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -453,6 +457,7 @@
                     <para>This field defines the ambient color of the surface.
                         The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
                         with each element in the range [0, 1].
+                        The default value is <literal>"[1 1 1]"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -463,6 +468,7 @@
                         The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
                         with each element in the range [0, 1]. Notice that this field is
                         only used when use_color_material is disabled.
+                        The default value is <literal>"[1 1 1]"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -472,6 +478,7 @@
                     <para>This field defines the specular color of the surface.
                         The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
                         with each element in the range [0, 1].
+                        The default value is <literal>"[1 1 1]"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
