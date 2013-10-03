@@ -39,7 +39,7 @@ SciErr getMatrixOfBoolean(void* _pvCtx, int* _piAddress, int* _piRows, int* _piC
     sciErr = getVarType(_pvCtx, _piAddress, &iType);
     if (sciErr.iErr || iType != sci_boolean)
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getMatrixOfBoolean", _("boolean matrix"));
+        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s expected"), "getMatrixOfBoolean", _("boolean matrix"));
         return sciErr;
     }
 
@@ -215,7 +215,7 @@ SciErr readNamedMatrixOfBoolean(void* _pvCtx, const char* _pstName, int* _piRows
 
     if (_piBool)
     {
-        memcpy(_piBool, piBool, sizeof(int) * *_piRows * *_piCols);
+        memcpy(_piBool, piBool, sizeof(int) **_piRows **_piCols);
     }
 
     return sciErr;

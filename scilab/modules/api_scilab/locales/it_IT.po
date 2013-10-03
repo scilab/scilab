@@ -22,7 +22,7 @@ msgid "%s: Invalid argument address"
 msgstr "%s: L'indirizzo dell'argomento non è valido"
 
 #, c-format
-msgid "%s: Invalid argument type, %s excepted"
+msgid "%s: Invalid argument type, %s expected"
 msgstr "%s: L'argomento non è di tipo valido, %s è escluso"
 
 msgid "boolean matrix"
@@ -119,7 +119,7 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: matrix argument excepted"
+msgid "%s: matrix argument expected"
 msgstr "%s: escluso un argomento della matrice"
 
 #, c-format

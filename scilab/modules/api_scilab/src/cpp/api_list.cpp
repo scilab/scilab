@@ -278,7 +278,7 @@ SciErr getListItemNumber(void* _pvCtx, int* _piAddress, int* _piNbItem)
             *_piNbItem = _piAddress[1];
             break;
         default :
-            addErrorMessage(&sciErr, API_ERROR_INVALID_LIST_TYPE, _("%s: Invalid argument type, %s excepted"), "getListItemNumber", _("list"));
+            addErrorMessage(&sciErr, API_ERROR_INVALID_LIST_TYPE, _("%s: Invalid argument type, %s expected"), "getListItemNumber", _("list"));
             return sciErr;
     }
     return sciErr;
@@ -488,7 +488,7 @@ static SciErr readCommonNamedList(void* _pvCtx, const char* _pstName, int _iList
 
     if (piAddr[0] != _iListType)
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_LIST_TYPE, _("%s: Invalid argument type, %s excepted"), "readNamedList", getListTypeName(_iListType));
+        addErrorMessage(&sciErr, API_ERROR_INVALID_LIST_TYPE, _("%s: Invalid argument type, %s expected"), "readNamedList", getListTypeName(_iListType));
         return sciErr;
     }
 
@@ -531,7 +531,7 @@ SciErr getCommonListInList(void* _pvCtx, int* _piParent, int _iItemPos, int _iLi
 
     if ((*_piAddress)[0] != _iListType)
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_LIST_TYPE, _("%s: Invalid argument type, %s excepted"), "getListInList", getListTypeName(_iListType));
+        addErrorMessage(&sciErr, API_ERROR_INVALID_LIST_TYPE, _("%s: Invalid argument type, %s expected"), "getListInList", getListTypeName(_iListType));
         return sciErr;
     }
     return sciErr;
@@ -565,7 +565,7 @@ SciErr getCommomListInNamedList(void* _pvCtx, const char* _pstName, int* _piPare
 
     if (piAddr[0] != _iListType)
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_LIST_TYPE, _("%s: Invalid argument type, %s excepted"), "getListInNamedList", getListTypeName(_iListType));
+        addErrorMessage(&sciErr, API_ERROR_INVALID_LIST_TYPE, _("%s: Invalid argument type, %s expected"), "getListInNamedList", getListTypeName(_iListType));
         return sciErr;
     }
 
@@ -1215,10 +1215,10 @@ static SciErr readCommonMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pst
         return sciErr;
     }
 
-    memcpy(_pdblReal, pdblReal, sizeof(double) * *_piRows * *_piCols);
+    memcpy(_pdblReal, pdblReal, sizeof(double) **_piRows **_piCols);
     if (_iComplex)
     {
-        memcpy(_pdblImg, pdblImg, sizeof(double) * *_piRows * *_piCols);
+        memcpy(_pdblImg, pdblImg, sizeof(double) **_piRows **_piCols);
     }
     return sciErr;
 }
@@ -1628,7 +1628,7 @@ SciErr readMatrixOfBooleanInNamedList(void* _pvCtx, const char* _pstName, int* _
         return sciErr;
     }
 
-    memcpy(_piBool, piBool, *_piRows * *_piCols * sizeof(int));
+    memcpy(_piBool, piBool, *_piRows **_piCols * sizeof(int));
     return sciErr;
 }
 
@@ -2223,7 +2223,7 @@ static SciErr readCommonMatrixOfIntgerInNamedList(void* _pvCtx, const char* _pst
         return sciErr;
     }
 
-    memcpy(_pvData, pvData, (_iPrecision % 10 ) * *_piRows * *_piCols);
+    memcpy(_pvData, pvData, (_iPrecision % 10 ) **_piRows **_piCols);
     return sciErr;
 }
 
@@ -2527,10 +2527,10 @@ static SciErr readCommonSparseMatrixInNamedList(void* _pvCtx, const char* _pstNa
         return sciErr;
     }
 
-    memcpy(_pdblReal, pdblReal, sizeof(double) * *_piNbItem);
+    memcpy(_pdblReal, pdblReal, sizeof(double) **_piNbItem);
     if (_iComplex)
     {
-        memcpy(_pdblImg, pdblImg, sizeof(double) * *_piNbItem);
+        memcpy(_pdblImg, pdblImg, sizeof(double) **_piNbItem);
     }
 
     return sciErr;

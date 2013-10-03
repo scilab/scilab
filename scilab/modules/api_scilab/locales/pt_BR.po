@@ -22,7 +22,7 @@ msgid "%s: Invalid argument address"
 msgstr "%s: Endereço de argumento inválido"
 
 #, c-format
-msgid "%s: Invalid argument type, %s excepted"
+msgid "%s: Invalid argument type, %s expected"
 msgstr "%s: Tipo de argumento inválido; aceita-se %s"
 
 msgid "boolean matrix"
@@ -113,7 +113,7 @@ msgstr ""
 "%s: Quantidade incorreta de argumentos de saída: esperava-se pelo menos %d.\n"
 
 #, c-format
-msgid "%s: matrix argument excepted"
+msgid "%s: matrix argument expected"
 msgstr "%s: o argumento não é uma matriz"
 
 #, c-format

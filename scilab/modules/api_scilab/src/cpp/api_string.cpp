@@ -58,7 +58,7 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
 
     if (iType != sci_strings)
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getMatrixOfString", _("string matrix"));
+        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s expected"), "getMatrixOfString", _("string matrix"));
         return sciErr;
     }
 
@@ -77,7 +77,7 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
     piOffset = _piAddress + 4;
 
     //non cummulative length
-    for (int i = 0 ; i < *_piRows * *_piCols ; i++)
+    for (int i = 0 ; i < *_piRows **_piCols ; i++)
     {
         _piLength[i] = piOffset[i + 1] - piOffset[i];
     }
@@ -87,10 +87,10 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
         return sciErr;
     }
 
-    piData = piOffset + *_piRows * *_piCols + 1;
+    piData = piOffset + *_piRows **_piCols + 1;
 
     int sum = 0;
-    for (int i = 0 ; i < *_piRows * *_piCols ; i++)
+    for (int i = 0 ; i < *_piRows **_piCols ; i++)
     {
         if (_pstStrings[i] == NULL)
         {
@@ -291,7 +291,7 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
 
     if (iType != sci_strings)
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getMatrixOfWideString", _("string matrix"));
+        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s expected"), "getMatrixOfWideString", _("string matrix"));
         return sciErr;
     }
 
@@ -307,7 +307,7 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
         return sciErr;
     }
 
-    strSize = (*_piRows * *_piCols);
+    strSize = (*_piRows **_piCols);
     piLenStrings = (int*)MALLOC(sizeof(int) * strSize);
 
     // get length UTF size
@@ -345,7 +345,7 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
         return sciErr;
     }
 
-    for (int i = 0; i < (*_piRows * *_piCols); i++)
+    for (int i = 0; i < (*_piRows **_piCols); i++)
     {
         wchar_t* wString = to_wide_string(pstStrings[i]);
         if (wString)
@@ -379,7 +379,7 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
         return sciErr;
     }
 
-    for (int i = 0; i < (*_piRows * *_piCols); i++)
+    for (int i = 0; i < (*_piRows **_piCols); i++)
     {
         if (pstStrings[i])
         {
@@ -614,8 +614,8 @@ int getAllocatedMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int*
         return sciErr.iErr;
     }
 
-    int* piLen = (int*)MALLOC(sizeof(int) * *_piRows * *_piCols);
-    *_pstData = (char**)MALLOC(sizeof(char*) * *_piRows * *_piCols);
+    int* piLen = (int*)MALLOC(sizeof(int) **_piRows **_piCols);
+    *_pstData = (char**)MALLOC(sizeof(char*) **_piRows **_piCols);
 
     sciErr = getMatrixOfString(_pvCtx, _piAddress, _piRows, _piCols, piLen, NULL);
     if (sciErr.iErr)
@@ -630,7 +630,7 @@ int getAllocatedMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int*
         return sciErr.iErr;
     }
 
-    for (int i = 0 ; i < *_piRows * *_piCols ; i++)
+    for (int i = 0 ; i < *_piRows **_piCols ; i++)
     {
         (*_pstData)[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));//+1 for null termination
     }
@@ -661,8 +661,8 @@ int getAllocatedMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, 
         return sciErr.iErr;
     }
 
-    int* piLen = (int*)MALLOC(sizeof(int) * *_piRows * *_piCols);
-    *_pwstData = (wchar_t**)MALLOC(sizeof(wchar_t*) * *_piRows * *_piCols);
+    int* piLen = (int*)MALLOC(sizeof(int) **_piRows **_piCols);
+    *_pwstData = (wchar_t**)MALLOC(sizeof(wchar_t*) **_piRows **_piCols);
 
     sciErr = getMatrixOfWideString(_pvCtx, _piAddress, _piRows, _piCols, piLen, NULL);
     if (sciErr.iErr)
@@ -677,7 +677,7 @@ int getAllocatedMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, 
         return sciErr.iErr;
     }
 
-    for (int i = 0 ; i < *_piRows * *_piCols ; i++)
+    for (int i = 0 ; i < *_piRows **_piCols ; i++)
     {
         (*_pwstData)[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (piLen[i] + 1));//+1 for null termination
     }
@@ -779,7 +779,7 @@ int getAllocatedNamedMatrixOfString(void* _pvCtx, const char* _pstName, int* _pi
         return sciErr.iErr;
     }
 
-    int* piLen = (int*)MALLOC(sizeof(int) * *_piRows * *_piCols);
+    int* piLen = (int*)MALLOC(sizeof(int) **_piRows **_piCols);
 
     sciErr = readNamedMatrixOfString(_pvCtx, _pstName, _piRows, _piCols, piLen, NULL);
     if (sciErr.iErr)
@@ -794,8 +794,8 @@ int getAllocatedNamedMatrixOfString(void* _pvCtx, const char* _pstName, int* _pi
         return sciErr.iErr;
     }
 
-    *_pstData = (char**)MALLOC(sizeof(char*) * *_piRows * *_piCols);
-    for (int i = 0 ; i < *_piRows * *_piCols ; i++)
+    *_pstData = (char**)MALLOC(sizeof(char*) **_piRows **_piCols);
+    for (int i = 0 ; i < *_piRows **_piCols ; i++)
     {
         (*_pstData)[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));//+1 for null termination
     }
@@ -830,7 +830,7 @@ int getAllocatedNamedMatrixOfWideString(void* _pvCtx, const char* _pstName, int*
         return sciErr.iErr;
     }
 
-    piLen = (int*)MALLOC(sizeof(int) * *_piRows * *_piCols);
+    piLen = (int*)MALLOC(sizeof(int) **_piRows **_piCols);
 
     sciErr = readNamedMatrixOfWideString(_pvCtx, _pstName, &iRows, &iCols, piLen, NULL);
     if (sciErr.iErr)
@@ -845,9 +845,9 @@ int getAllocatedNamedMatrixOfWideString(void* _pvCtx, const char* _pstName, int*
         return sciErr.iErr;
     }
 
-    *_pwstData = (wchar_t**)MALLOC(sizeof(wchar_t*) * *_piRows * *_piCols);
+    *_pwstData = (wchar_t**)MALLOC(sizeof(wchar_t*) **_piRows **_piCols);
 
-    for (int i = 0 ; i < *_piRows * *_piCols ; i++)
+    for (int i = 0 ; i < *_piRows **_piCols ; i++)
     {
         *_pwstData[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (piLen[i] + 1));//+1 for null termination
     }

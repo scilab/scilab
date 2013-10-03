@@ -37,7 +37,7 @@ SciErr getMatrixOfHandle(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
     sciErr = getVarType(_pvCtx, _piAddress, &iType);
     if (sciErr.iErr || iType != sci_handles)
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getMatrixOfHandle", _("handle matrix"));
+        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s expected"), "getMatrixOfHandle", _("handle matrix"));
         return sciErr;
     }
 

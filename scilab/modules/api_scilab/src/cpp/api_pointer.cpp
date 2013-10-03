@@ -41,7 +41,7 @@ SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
 
     if (iType != sci_pointer)
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getPointer", _("pointer"));
+        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s expected"), "getPointer", _("pointer"));
         return sciErr;
     }
 

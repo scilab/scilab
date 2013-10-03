@@ -36,7 +36,7 @@ SciErr getMatrixOfIntegerPrecision(void* _pvCtx, int* _piAddress, int* _piPrecis
 
     if (_piAddress[0] != sci_ints)
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getMatrixOfIntegerPrecision", _("int matrix"));
+        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s expected"), "getMatrixOfIntegerPrecision", _("int matrix"));
         return sciErr;
     }
 
@@ -704,7 +704,7 @@ SciErr getNamedMatrixOfIntegerPrecision(void* _pvCtx, const char* _pstName, int*
     //check variable type
     if (piAddr[0] != sci_ints)
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getNamedMatrixOfIntegerPrecision", _("int matrix"));
+        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s expected"), "getNamedMatrixOfIntegerPrecision", _("int matrix"));
         return sciErr;
     }
 
@@ -768,7 +768,7 @@ SciErr readCommonNamedMatrixOfInteger(void* _pvCtx, const char* _pstName, int _i
         addErrorMessage(&sciErr, API_ERROR_READ_NAMED_INT, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfInteger", _pstName);
         return sciErr;
     }
-    iSize = *_piRows * *_piCols;
+    iSize = *_piRows **_piCols;
 
     if (pvData == NULL || _pvData == NULL)
     {

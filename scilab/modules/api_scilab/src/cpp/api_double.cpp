@@ -57,7 +57,7 @@ SciErr getComplexZMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, in
         return sciErr;
     }
 
-    iSize = *_piRows * *_piCols;
+    iSize = *_piRows **_piCols;
     SciToF77(pdblReal, iSize, iSize);
     *_pdblZ	= (doublecomplex*)pdblReal;
     return sciErr;
@@ -73,7 +73,7 @@ SciErr getMatrixOfDoubleAsInteger(void* _pvCtx, int* _piAddress, int* _piRows, i
         return sciErr;
     }
 
-    iSize = *_piRows * *_piCols;
+    iSize = *_piRows **_piCols;
     *_piReal = (int*)pdblReal;
 
     //Warning we overwrite double by int !!!!
@@ -92,7 +92,7 @@ SciErr getComplexMatrixOfDoubleAsInteger(void* _pvCtx, int* _piAddress, int* _pi
         return sciErr;
     }
 
-    iSize = *_piRows * *_piCols;
+    iSize = *_piRows **_piCols;
     *_piReal = (int*)pdblReal;
     *_piImg = (int*)pdblImg;
 
@@ -116,7 +116,7 @@ SciErr getCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, char _cType, int _
     sciErr = getVarType(_pvCtx, _piAddress, &iType);
     if (sciErr.iErr || iType != sci_matrix)
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), _iComplex ? "getComplexMatrixOfDouble" : "getMatrixOfDouble", _("double matrix"));
+        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s expected"), _iComplex ? "getComplexMatrixOfDouble" : "getMatrixOfDouble", _("double matrix"));
         return sciErr;
     }
 
@@ -133,7 +133,7 @@ SciErr getCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, char _cType, int _
     }
     if (isVarComplex(_pvCtx, _piAddress) && _pdblImg != NULL)
     {
-        *_pdblImg	= (double*)(_piAddress + 4) + *_piRows * *_piCols;
+        *_pdblImg	= (double*)(_piAddress + 4) + *_piRows **_piCols;
     }
 
     if (_cType == 'i')

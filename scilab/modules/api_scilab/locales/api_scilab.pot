@@ -57,7 +57,7 @@ msgstr ""
 # File: src/cpp/api_string.cpp, line: 63
 # File: src/cpp/api_string.cpp, line: 309
 #, c-format
-msgid "%s: Invalid argument type, %s excepted"
+msgid "%s: Invalid argument type, %s expected"
 msgstr ""
 
 #
@@ -364,7 +364,7 @@ msgstr ""
 #
 # File: src/cpp/api_common.cpp, line: 235
 #, c-format
-msgid "%s: matrix argument excepted"
+msgid "%s: matrix argument expected"
 msgstr ""
 
 #
