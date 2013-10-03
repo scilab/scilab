@@ -91,6 +91,8 @@ Scilab Bug Fixes
 
 * Bug #9701 fixed - optim with "qn" option was failing for large problems.
 
+* Bug #10012 fixed - lmisolver and lmitool called with no input now produce errors.
+
 * Bug #10175 fixed - Clearer example added for sp2adj to adj2sp conversion (and backwards conversion).
 
 * Bug #10234 fixed - reglin function moved from CACSD to Statistics module.

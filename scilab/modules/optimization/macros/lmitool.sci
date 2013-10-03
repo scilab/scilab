@@ -11,6 +11,10 @@ function [txtdo]=lmitool(PROBNAME,XNAME,DNAME)
     [LHS,RHS]=argn(0);
     txtdo=[]
 
+    if RHS < 1 then
+        error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),"lmitool",1,3))
+    end
+
     if RHS ~=3 then
         messagebox([gettext("Welcome to LMITOOL");"      ";"   ";
         gettext("LMITOOL is a Scilab package for LMI optimization");
