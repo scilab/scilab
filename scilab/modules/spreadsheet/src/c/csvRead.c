@@ -83,20 +83,14 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
             result->pstrComments = NULL;
             result->nbComments = 0;
         }
-        if (expandedFilename)
-        {
-            FREE(expandedFilename);
-            expandedFilename = NULL;
-        }
+
+        FREE(expandedFilename);
         return result;
     }
 
     C2F(mopen)(&fd, expandedFilename, (char*)READ_ONLY_TEXT_MODE, &f_swap, &res, &errMOPEN);
-    if (expandedFilename)
-    {
-        FREE(expandedFilename);
-        expandedFilename = NULL;
-    }
+    FREE(expandedFilename);
+
     if (errMOPEN != MOPEN_NO_ERROR)
     {
         result = (csvResult*)(MALLOC(sizeof(csvResult)));
@@ -191,11 +185,7 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
     }
 
     result = csvTextScan((const char**)lines, nblines, (const char*)separator, (const char*)decimal);
-    if (lines)
-    {
-        freeArrayOfString(lines, nblines);
-        lines = NULL;
-    }
+    freeArrayOfString(lines, nblines);
 
     if (result)
     {
@@ -622,7 +612,7 @@ static char **replaceStrings(const char **lines, int nbLines, const char **torep
                 replacedStrings[j] = strdup(lines[j]);
             }
             // Make replacements within the target replacedStrings.
-            for (i = 0; i < nr; i = i++)
+            for (i = 0; i < nr; i++)
             {
                 for (j = 0; j < nbLines; j++)
                 {

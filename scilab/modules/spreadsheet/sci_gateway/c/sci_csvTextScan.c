@@ -277,18 +277,22 @@ int sci_csvTextScan(char *fname, unsigned long fname_len)
                         {
                             Scierror(999, _("%s: Memory allocation error.\n"), fname);
                         }
+                        break;
+
                         default:
                         case STRINGTOCOMPLEX_ERROR:
                         {
                             Scierror(999, _("%s: can not convert data.\n"), fname);
                         }
+                        break;
                     }
                 }
 
+                freeCsvResult(result);
+                freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
+
                 if (sciErr.iErr)
                 {
-                    freeCsvResult(result);
-                    freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
                     printError(&sciErr, 0);
                     Scierror(17, _("%s: Memory allocation error.\n"), fname);
                     return 0;
@@ -325,8 +329,6 @@ int sci_csvTextScan(char *fname, unsigned long fname_len)
     {
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
     }
-    freeCsvResult(result);
-    freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
 
     return 0;
 }
