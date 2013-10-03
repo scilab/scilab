@@ -6,6 +6,8 @@ Scilab Bug Fixes
 
 * Bug #5016 fixed - condestsp could return different results when repeated calls were performed.
 
+* Bug #7047 fixed - milk_drop is now obsolete. It will be removed in Scilab 5.5.1, but will be kept as a demo.
+
 * Bug #7570 fixed - The switch criterion on x and y is now explicited in beta() help page.
 
 * Bug #7705 fixed - In the Genetic algorithms help pages, documented the
@@ -271,6 +273,8 @@ Obsolete & Removed Functions
 
 * fprintf removed, please use mfprintf for files opened with mopen or write for files
   opened with file instead.
+
+* milk_drop tagged as obsolete. Will be removed in Scilab 5.5.1.
 
 
 Scilab Bug Fixes

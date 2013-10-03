@@ -13,7 +13,8 @@ subdemolist=[                                                                   
 "Set of rectangles"                                ,"basic_functions_5.dem.sce" ; ..
 "Colored matrix"                                   ,"basic_functions_6.dem.sce" ; ..
 "Colored histogram"                                ,"basic_functions_7.dem.sce" ; ..
-"Pie Chart"                                        ,"basic_functions_8.dem.sce" ]
+"Pie Chart"                                        ,"basic_functions_8.dem.sce" ; ..
+"Milk Drop"                                        ,"basic_functions_9.dem.sce" ]
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
 clear demopath;
