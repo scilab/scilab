@@ -293,11 +293,11 @@ SciErr fillCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, int _iComplex, in
     if (_pdblReal != NULL)
     {
         *_pdblReal		= (double*)(_piAddress + 4);
-    }
 
-    if (_iComplex != 0 && _pdblImg != NULL)
-    {
-        *_pdblImg	= *_pdblReal + _iRows * _iCols;
+        if (_iComplex != 0 && _pdblImg != NULL)
+        {
+            *_pdblImg	= *_pdblReal + _iRows * _iCols;
+        }
     }
 
     return sciErr;

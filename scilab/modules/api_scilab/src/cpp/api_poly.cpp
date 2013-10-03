@@ -68,6 +68,7 @@ SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int
     pstVarName[4] = 0;
 
     strcpy(_pstVarName, pstVarName);
+    FREE(pstVarName);
 
     return sciErr;
 }

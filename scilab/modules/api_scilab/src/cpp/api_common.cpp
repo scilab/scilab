@@ -1278,30 +1278,29 @@ int isNamedVarExist(void *_pvCtx, const char *_pstName)
 int checkNamedVarFormat(void* _pvCtx, const char *_pstName)
 {
 #define FORBIDDEN_CHARS " */\\.,;:^@><!=+-&|()~\n\t'\""
-    int iRet = 1;
 
     // check pointer
     if (_pstName == NULL)
     {
-        iRet = 0;
+        return 0;
     }
 
     // check length _pstName =< nlgh
     if ((strlen(_pstName) == 0 || strlen(_pstName) > nlgh))
     {
-        iRet = 0;
+        return 0;
     }
 
     // forbidden characters
     if (strpbrk(_pstName, FORBIDDEN_CHARS) != NULL)
     {
-        iRet = 0;
+        return 0;
     }
 
     // variable does not begin by a digit
     if (isdigit(_pstName[0]))
     {
-        iRet = 0;
+        return 0;
     }
 
     // check that we have only ascii characters
@@ -1309,14 +1308,13 @@ int checkNamedVarFormat(void* _pvCtx, const char *_pstName)
     {
         if (!isascii(_pstName[i]))
         {
-            iRet = 0;
+            return 0;
         }
-        break;
     }
 
     // add here some others rules
 
-    return iRet;
+    return 1;
 }
 /*--------------------------------------------------------------------------*/
 int deleteNamedVariable(void* _pvCtx, const char* _pstName)
