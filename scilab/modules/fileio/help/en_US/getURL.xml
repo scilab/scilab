@@ -147,4 +147,17 @@
             </member>
         </simplelist>
     </refsection>
+    
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Function <literal>getURL()</literal> introduced
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+    
 </refentry>

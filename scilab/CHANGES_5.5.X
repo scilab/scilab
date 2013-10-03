@@ -8,13 +8,17 @@ Scilab Bug Fixes
 
 * Bug #12943 fixed - Datatips misworked when 2D plots were rotated.
 
-* Bug #12948 fixed - When host is not found, getURL provokes a Crash To Desktop.
+* Bug #12948 fixed - When host is not found, getURL caused a Crash To Desktop.
 
-* Bug #12950 fixed - getURL ignores the proxy settings on Windows.
+* Bug #12950 fixed - getURL ignored the proxy settings on Windows.
 
-* Bug #12956 fixed - splitURL with no protocol in URL provokes an access violation exception.
+* Bug #12956 fixed - splitURL with no protocol in URL provokes an access
+                     violation exception.
 
-* Bug #12971 fixed - getURL() downloaded file name is wrong
+* Bug #12957 fixed - splitURL and getURL were not declared as new 5.5 functions.
+
+* Bug #12971 fixed - getURL() downloaded file name was wrong.
+
 
 
 Xcos Bug Fixes
