@@ -130,16 +130,8 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-help_from_sci()   // Open an empty source code template in the scinotes editor.
-// Save this template as test_fun.sci in the current directory before running
-// the next example commands.
-
-help_from_sci("test_fun")        // return the xml skeleton as a text string
-
-help_from_sci("test_fun",".")    // create the xml help file in the current directory.
-
-// create both a xml help file and a demo file in the current directory.
-help_from_sci("test_fun",".",".")
+// Open an source code template in the scinotes editor and return its help and demo texts
+[helptxt, demotxt] = help_from_sci()
 
 // From a toolbox root directory a typical calling sequence would be:
 // help_from_sci("macros","help\en_US","demos")

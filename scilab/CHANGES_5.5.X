@@ -29,6 +29,8 @@ Scilab Bug Fixes
 
 * Bug #7047 fixed - milk_drop is now obsolete. It will be removed in Scilab 5.5.1, but will be kept as a demo.
 
+* Bug #7133 fixed - help_from_sci with no input argument now launches a full demonstration.
+
 * Bug #7570 fixed - The switch criterion on x and y is now explicited in beta() help page.
 
 * Bug #7705 fixed - In the Genetic algorithms help pages, documented the
