@@ -4,6 +4,8 @@
 Scilab Bug Fixes
 ================
 
+* Bug #7570 fixed - The switch criterion on x and y is now explicited in beta() help page.
+
 * Bug #7705 fixed - In the Genetic algorithms help pages, documented the
                     "dimension", "minbounds" and "maxbounds" fields.
 
