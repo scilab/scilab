@@ -13,6 +13,13 @@ New Features
 * modulo() and pmodulo() now support integers & hypermatrices (See bug #13002).
 
 
+Obsolete & Removed Functions
+============================
+
+* msd and st_deviation tagged as obsolete (See bug #7593). Will be removed in Scilab 5.5.1.
+  Please use stdev instead.
+
+
 Scilab Bug Fixes
 ================
 
@@ -38,6 +45,8 @@ Scilab Bug Fixes
 * Bug #7133 fixed - help_from_sci with no input argument now launches a full demonstration.
 
 * Bug #7570 fixed - The switch criterion on x and y is now explicited in beta() help page.
+
+* Bug #7593 fixed - stdev now encompasses msd and st_deviation thanks to a new optional input argument.
 
 * Bug #7705 fixed - In the Genetic algorithms help pages, documented the
                     "dimension", "minbounds" and "maxbounds" fields.
@@ -395,6 +404,8 @@ Obsolete & Removed Functions
   opened with file instead.
 
 * milk_drop tagged as obsolete. Will be removed in Scilab 5.5.1.
+
+* st_deviation and msd tagged as obsolete, please use stdev intead. Will be removed in Scilab 5.5.1.
 
 
 Scilab Bug Fixes

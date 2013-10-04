@@ -106,7 +106,7 @@ SEP #107: Add an xcosAddToolsMenu and xcosUpdateBlock to ease external tools int
 SEP #108: 3-D arrows with xarrows
 SEP #109: New input argument for neldermead_search(), to control warnings.
 SEP #110: /* RESERVED */
-SEP #111: /* RESERVED */
+SEP #111: New input argument to stdev. st_deviation and msd tagged as obsolete.
 SEP #112: variance and variancef can now return the mean of the input in a new output argument and take the a priori mean as input.
 SEP #113: resize_matrix hypermatrices support.
 SEP #114: New function jcreatejar.
