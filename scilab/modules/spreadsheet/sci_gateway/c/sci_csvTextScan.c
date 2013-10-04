@@ -330,6 +330,7 @@ int sci_csvTextScan(char *fname, unsigned long fname_len)
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
     }
 
+    freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
     return 0;
 }
 // =============================================================================
