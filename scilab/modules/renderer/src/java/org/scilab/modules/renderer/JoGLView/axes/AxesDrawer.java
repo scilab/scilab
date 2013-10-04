@@ -837,18 +837,26 @@ public class AxesDrawer {
 
         currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
         boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
+        double[][] factors = axes.getScaleTranslateFactors();
 
         Vector3d point = new Vector3d(coordinates);
         point = ScaleUtils.applyLogScale(point, logFlags);
+        double[] coords = point.getData();
 
         if (currentVisitor != null) {
             axesDrawer = currentVisitor.getAxesDrawer();
+
+            coords[0] = coords[0] * factors[0][0] + factors[1][0];
+            coords[1] = coords[1] * factors[0][1] + factors[1][1];
+            coords[2] = coords[2] * factors[0][2] + factors[1][2];
+
             Integer[] size = currentVisitor.getFigure().getAxesSize();
             Dimension canvasDimension = new Dimension(size[0], size[1]);
             height = (double) size[1];
 
             projection = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), canvasDimension, false);
 
+            point = new Vector3d(coords);
             point = projection.project(point);
         }
 

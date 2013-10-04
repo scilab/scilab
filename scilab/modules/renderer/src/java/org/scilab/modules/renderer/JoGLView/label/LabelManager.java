@@ -139,7 +139,11 @@ public class LabelManager {
         labelPositioner.setAutoRotation(label.getAutoRotation());
         labelPositioner.setUserRotationAngle(180.0 * label.getFontAngle() / Math.PI);
 
-        Vector3d labelUserPosition = new Vector3d(label.getPosition());
+        double[][] factors = parentAxes.getScaleTranslateFactors();
+        /* Un scale/translate the label position to be drawn */
+        Vector3d labelUserPosition = computeUnscaledAxesCoords(new Vector3d(label.getPosition()), factors);
+
+
 
         /* Logarithmic scaling must be applied to the label's user position to obtain object coordinates */
         labelUserPosition = ScaleUtils.applyLogScale(labelUserPosition, logFlags);
@@ -161,6 +165,7 @@ public class LabelManager {
             /* Apply inverse scaling to obtain user coordinates */
             objectCornerPos = ScaleUtils.applyInverseLogScale(objectCornerPos, logFlags);
 
+            objectCornerPos = computeScaledAxesCoords(objectCornerPos, factors);
             label.setPosition(new Double[] {objectCornerPos.getX(), objectCornerPos.getY(), objectCornerPos.getZ()});
 
             /*
@@ -176,6 +181,7 @@ public class LabelManager {
         Vector3d[] projCorners = labelPositioner.getProjCorners();
 
         Vector3d[] corners = computeCorners(projection, projCorners, parentAxes);
+
         Double[] coordinates = cornersToCoordinateArray(corners);
 
         /* Set the computed coordinates */
@@ -221,6 +227,39 @@ public class LabelManager {
     }
 
     /**
+     * Computes the given scaled/translated coordinate for the given vector and factors
+     * Used to keep the Label position and Corners in Axes coordinates
+     * @param unscaled The un scaled/translated vector
+     * @param factors The Axes factors
+     * @return The new Coordinates
+     */
+    private Vector3d computeScaledAxesCoords(Vector3d unscaled, double[][] factors) {
+
+        double[] coord = unscaled.getData();
+        coord[0] = (coord[0] - factors[1][0]) / factors[0][0];
+        coord[1] = (coord[1] - factors[1][1]) / factors[0][1];
+        coord[2] = (coord[2] - factors[1][2]) / factors[0][2];
+
+        return new Vector3d(coord);
+    }
+
+    /**
+     * Computes the given un scaled/translated coordinate for the given vector and factors
+     * Used to draw the Label in the correct position
+     * @param scaled The scaled/translated vector
+     * @param factors The Axes factors
+     * @return The new Coordinates
+     */
+    private Vector3d computeUnscaledAxesCoords(Vector3d scaled, double[][] factors) {
+
+        double[] coord = scaled.getData();
+        coord[0] = coord[0] * factors[0][0] + factors[1][0];
+        coord[1] = coord[1] * factors[0][1] + factors[1][1];
+        coord[2] = coord[2] * factors[0][2] + factors[1][2];
+
+        return new Vector3d(coord);
+    }
+    /**
      * Computes and returns the corners (in user coordinates) of a label's bounding box.
      * @param projection the projection from object coordinates to window coordinates.
      * @param projCorners the corners of the label's bounding box in window coordinates (4-element array).
@@ -231,6 +270,7 @@ public class LabelManager {
         Vector3d[] corners = new Vector3d[4];
         boolean[] logFlags = new boolean[] {parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
 
+        double[][] factors = parentAxes.getScaleTranslateFactors();
         corners[0] = projection.unproject(projCorners[0]);
         corners[1] = projection.unproject(projCorners[1]);
         corners[2] = projection.unproject(projCorners[2]);
@@ -241,6 +281,12 @@ public class LabelManager {
         corners[1] = ScaleUtils.applyInverseLogScale(corners[1], logFlags);
         corners[2] = ScaleUtils.applyInverseLogScale(corners[2], logFlags);
         corners[3] = ScaleUtils.applyInverseLogScale(corners[3], logFlags);
+
+        /* Used to keep corners in axes scaled/translated coordinates */
+        corners[0] = computeScaledAxesCoords(corners[0], factors);
+        corners[1] = computeScaledAxesCoords(corners[1], factors);
+        corners[2] = computeScaledAxesCoords(corners[2], factors);
+        corners[3] = computeScaledAxesCoords(corners[3], factors);
 
         return corners;
     }
