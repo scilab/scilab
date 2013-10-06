@@ -45,6 +45,7 @@ int sci_fileinfo(char *fname, unsigned long fname_len)
         {
             int result = 0;
             double *infos = fileinfo(InputString_Parameter[0], &result);
+            freeArrayOfString(InputString_Parameter, mn);
 
             if (infos)
             {
@@ -53,7 +54,6 @@ int sci_fileinfo(char *fname, unsigned long fname_len)
                 CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &m_out, &n_out, &infos);
                 LhsVar(1) = Rhs + 1;
                 FREE(infos);
-                infos = NULL;
             }
             else
             {
@@ -67,7 +67,6 @@ int sci_fileinfo(char *fname, unsigned long fname_len)
                 LhsVar(1) = Rhs + 1;
             }
 
-            freeArrayOfString(InputString_Parameter, mn);
 
             if (Lhs == 2)
             {
@@ -80,25 +79,23 @@ int sci_fileinfo(char *fname, unsigned long fname_len)
             }
 
             PutLhsVar();
+            return 0;
         }
         else
         {
-            if ( (m != 1) && (n == 1) )
+            if (m != 1 && n == 1) //column vector only
             {
                 int *results = (int*)MALLOC(sizeof(int) * mn);
                 double *infos = filesinfo(InputString_Parameter, mn, results);
+                freeArrayOfString(InputString_Parameter, mn);
                 if (infos)
                 {
                     int m_out = 0;
-                    int n_out = m;
+                    int n_out = 0;
                     double *transposeInfos = NULL;
-
-                    m_out = FILEINFO_ARRAY_SIZE;
-
 
                     transposeInfos = transposeMatrixDouble(FILEINFO_ARRAY_SIZE, m, infos);
                     FREE(infos);
-                    infos = NULL;
 
                     n_out = FILEINFO_ARRAY_SIZE;
                     m_out = m;
@@ -106,7 +103,6 @@ int sci_fileinfo(char *fname, unsigned long fname_len)
                     CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &m_out, &n_out, &transposeInfos);
                     LhsVar(1) = Rhs + 1;
                     FREE(transposeInfos);
-                    transposeInfos = NULL;
                 }
                 else
                 {
@@ -115,9 +111,17 @@ int sci_fileinfo(char *fname, unsigned long fname_len)
                     int l_out = 0;
 
                     /* returns [] */
-
+                    FREE(results);
                     CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &m_out, &n_out, &l_out);
                     LhsVar(1) = Rhs + 1;
+                    if (Lhs == 2)
+                    {
+                        CreateVar(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &m_out, &n_out, &l_out);
+                        LhsVar(2) = Rhs + 2;
+                    }
+
+                    PutLhsVar();
+                    return 0;
                 }
 
                 if (Lhs == 2)
@@ -135,26 +139,22 @@ int sci_fileinfo(char *fname, unsigned long fname_len)
                     LhsVar(2) = Rhs + 2;
                 }
 
-                freeArrayOfString(InputString_Parameter, mn);
-                if (results)
-                {
-                    FREE(results);
-                    results = NULL;
-                }
-
+                FREE(results);
                 PutLhsVar();
             }
             else
             {
-                freeArrayOfString(InputString_Parameter, mn);
                 Scierror(999, _("%s: Wrong size for input argument #%d: A m-by-1 array expected.\n"), fname, 1);
+                return 0;
             }
         }
     }
     else
     {
         Scierror(999, _("%s: Wrong type for input argument: A string expected.\n"), fname);
+        return 0;
     }
+
     return 0;
 }
 /*--------------------------------------------------------------------------*/

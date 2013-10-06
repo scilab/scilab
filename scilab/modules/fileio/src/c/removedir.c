@@ -257,6 +257,7 @@ static int DeleteDirectory(char *refcstrRootDirectory)
         sciprint(_("Warning: Error while opening %s: %s\n"), refcstrRootDirectory, strerror(errno));
         return -1;
     }
+
     while ((ent = readdir(dir)) != NULL)
     {
         char *filename = NULL;
@@ -264,17 +265,14 @@ static int DeleteDirectory(char *refcstrRootDirectory)
         {
             continue ;
         }
+
         filename = MALLOC(sizeof(char) * (strlen(refcstrRootDirectory) + 1 + strlen(ent->d_name) + 1 + 1)) ;
         sprintf(filename, "%s/%s", refcstrRootDirectory, ent->d_name);
         if (isdir(filename))
         {
             /* Delete recursively */
             DeleteDirectory(filename);
-            if (filename)
-            {
-                FREE(filename);
-                filename = NULL;
-            }
+            FREE(filename);
         }
         else
         {
@@ -283,11 +281,8 @@ static int DeleteDirectory(char *refcstrRootDirectory)
             {
                 sciprint(_("Warning: Could not remove file %s: %s\n"), filename, strerror(errno));
             }
-            if (filename)
-            {
-                FREE(filename);
-                filename = NULL;
-            }
+
+            FREE(filename);
         }
     }
     if (rmdir(refcstrRootDirectory) != 0)
@@ -297,8 +292,7 @@ static int DeleteDirectory(char *refcstrRootDirectory)
 
     if (dir)
     {
-        FREE(dir);
-        dir = NULL;
+        closedir(dir);
     }
 
     return 0;

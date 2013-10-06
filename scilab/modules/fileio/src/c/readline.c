@@ -38,7 +38,7 @@ int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
     {
         case MGETL_NO_ERROR:
         {
-            if ((lines[0]) && (lines) && (nbLinesReaded == 1))
+            if (lines && lines[0] && nbLinesReaded == 1)
             {
                 /* current limitation (bsiz) of line readed by scilab */
                 if ((int)strlen(lines[0]) < bsiz)

@@ -32,6 +32,7 @@ char *getlongpathname(char *shortpathname, BOOL *convertok)
     if (wcshortpathname)
     {
         wchar_t *wcLongName = getlongpathnameW(wcshortpathname, convertok);
+        FREE(wcshortpathname);
         if (wcLongName)
         {
             LongName = wide_string_to_UTF8(wcLongName);

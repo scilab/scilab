@@ -62,176 +62,120 @@ int sci_chdir(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        if (iType1 != sci_strings )
+        if (iType1 != sci_strings)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
             return 0;
         }
 
-        // get value of lenStVarOne
-        sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, NULL);
-        if (sciErr.iErr)
+        if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &pStVarOne))
         {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-            return 0;
-        }
-
-        if ( (m1 != n1) && (n1 != 1) )
-        {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-            return 0;
-        }
-
-        pStVarOne = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStVarOne + 1));
-        if (pStVarOne == NULL)
-        {
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
-            return 0;
-        }
-
-        sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
     }
 
     expandedPath = expandPathVariableW(pStVarOne);
-    if (pStVarOne)
+    FREE(pStVarOne);
+
+    if (expandedPath == NULL)
     {
-        FREE(pStVarOne);
-        pStVarOne = NULL;
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
     }
 
-    if (expandedPath)
+    /* get value of PWD scilab variable (compatiblity scilab 4.x) */
+    if (wcscmp(expandedPath, L"PWD") == 0)
     {
-        /* get value of PWD scilab variable (compatiblity scilab 4.x) */
-        if (wcscmp(expandedPath, L"PWD") == 0)
+        sciErr = getNamedVarType(pvApiCtx, "PWD", &iType1);
+        if (sciErr.iErr)
         {
-            sciErr = getNamedVarType(pvApiCtx, "PWD", &iType1);
-            if (sciErr.iErr)
+            FREE(expandedPath);
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read named argument %s.\n"), fname, "PWD");
+            return 0;
+        }
+
+        if (iType1 == sci_strings)
+        {
+            wchar_t *VARVALUE = NULL;
+            if (getAllocatedNamedSingleWideString(pvApiCtx, "PWD", &VARVALUE))
             {
-                printError(&sciErr, 0);
+                FREE(expandedPath);
                 Scierror(999, _("%s: Can not read named argument %s.\n"), fname, "PWD");
                 return 0;
             }
 
-            if (iType1 == sci_strings)
-            {
-                wchar_t *VARVALUE = NULL;
-                int VARVALUElen = 0;
-                int m = 0, n = 0;
-                sciErr = readNamedMatrixOfWideString(pvApiCtx, "PWD", &m, &n, &VARVALUElen, &VARVALUE);
-                if (sciErr.iErr)
-                {
-                    printError(&sciErr, 0);
-                    Scierror(999, _("%s: Can not read named argument %s.\n"), fname, "PWD");
-                    return 0;
-                }
+            FREE(expandedPath);
+            expandedPath = VARVALUE;
+        }
+    }
 
-                if ( (m == 1) && (n == 1) )
-                {
-                    VARVALUE = (wchar_t*)MALLOC(sizeof(wchar_t) * (VARVALUElen + 1));
-                    if (VARVALUE)
-                    {
-                        readNamedMatrixOfWideString(pvApiCtx, "PWD", &m, &n, &VARVALUElen, &VARVALUE);
-                        FREE(expandedPath);
-                        expandedPath = VARVALUE;
-                    }
-                }
-            }
+    if (strcmp(fname, "chdir") == 0) /* chdir output boolean */
+    {
+        int iOutput = FALSE;
+        if (scichdirW(expandedPath))
+        {
+            iOutput = FALSE;
+        }
+        else
+        {
+            iOutput = TRUE;
         }
 
-        if (strcmp(fname, "chdir") == 0) /* chdir output boolean */
+        if (createScalarBoolean(pvApiCtx, Rhs + 1, iOutput))
         {
-            BOOL *bOutput = (BOOL*)MALLOC(sizeof(BOOL));
+            FREE(expandedPath);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 0;
+        }
 
+        LhsVar(1) = Rhs + 1;
+        PutLhsVar();
+    }
+    else /* cd output string current path */
+    {
+        if ( isdirW(expandedPath) || (wcscmp(expandedPath, L"/") == 0) ||
+                (wcscmp(expandedPath, L"\\") == 0) )
+        {
             int ierr = scichdirW(expandedPath);
-
-            if (ierr)
+            wchar_t *currentDir = scigetcwdW(&ierr);
+            if ( (ierr == 0) && currentDir)
             {
-                bOutput[0] = FALSE;
+                sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, 1, 1, &currentDir);
             }
             else
             {
-                bOutput[0] = TRUE;
+                sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, NULL);
             }
 
-            sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, 1, bOutput);
+            FREE(expandedPath);
+            FREE(currentDir);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                FREE(bOutput);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 0;
             }
 
             LhsVar(1) = Rhs + 1;
-
-            if (bOutput)
-            {
-                FREE(bOutput);
-                bOutput = NULL;
-            }
-
             PutLhsVar();
         }
-        else /* cd output string current path */
+        else
         {
-            if ( isdirW(expandedPath) || (wcscmp(expandedPath, L"/") == 0) ||
-                    (wcscmp(expandedPath, L"\\") == 0) )
+            char *path = wide_string_to_UTF8(expandedPath);
+            FREE(expandedPath);
+            if (path)
             {
-                int ierr = scichdirW(expandedPath);
-                wchar_t *currentDir = scigetcwdW(&ierr);
-                if ( (ierr == 0) && currentDir)
-                {
-                    sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, 1, 1, &currentDir);
-                }
-                else
-                {
-                    sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, NULL);
-                }
-
-                if (sciErr.iErr)
-                {
-                    printError(&sciErr, 0);
-                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
-                    return 0;
-                }
-
-                LhsVar(1) = Rhs + 1;
-                if (currentDir)
-                {
-                    FREE(currentDir);
-                    currentDir = NULL;
-                }
-                PutLhsVar();
+                Scierror(998, _("%s: Cannot go to directory %s\n"), fname, path);
+                FREE(path);
+                path = NULL;
             }
             else
             {
-                char *path = wide_string_to_UTF8(expandedPath);
-                if (path)
-                {
-                    Scierror(998, _("%s: Cannot go to directory %s\n"), fname, path);
-                    FREE(path);
-                    path = NULL;
-                }
-                else
-                {
-                    Scierror(998, _("%s: Cannot go to directory.\n"), fname);
-                }
+                Scierror(998, _("%s: Cannot go to directory.\n"), fname);
             }
         }
-
-        FREE(expandedPath);
-        expandedPath = NULL;
-    }
-    else
-    {
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
     }
 
     return 0;

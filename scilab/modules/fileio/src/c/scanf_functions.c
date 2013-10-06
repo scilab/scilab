@@ -190,7 +190,7 @@ Complete:
             }
             else if ( (cur_type == SF_C) || (cur_type == SF_S) )
             {
-                if ( (temp = (char **) MALLOC(nrow * ncol * sizeof(char **))) == NULL)
+                if ( (temp = (char **) MALLOC(nrow * ncol * sizeof(char *))) == NULL)
                 {
                     return MEM_LACK;
                 }

@@ -33,7 +33,8 @@ int sci_scanf(char *fname, unsigned long fname_len)
     int args = 0, retval = 0, retval_s = 0, lline = 0, iflag = 0, err = 0, n_count = 0;
     entry *data = NULL;
     rec_entry buf[MAXSCAN];
-    sfdir type[MAXSCAN], type_s[MAXSCAN];
+    sfdir type[MAXSCAN] = {SF_C};
+    sfdir type_s[MAXSCAN] = {SF_C};
 
     Nbvars = 0;
     CheckRhs(1, 2);

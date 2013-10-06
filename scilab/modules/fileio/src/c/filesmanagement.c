@@ -287,10 +287,10 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 {
     if (ScilabFileList)
     {
-        char fullpath[PATH_MAX * 4];
+        char fullpath[PATH_MAX * 4] = {0};
         int i = 0;
 
-        if ((strcmp(filename, "") == 0) || (filename == NULL))
+        if (filename == NULL || strcmp(filename, "") == 0)
         {
             return FALSE;
         }
@@ -298,7 +298,7 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
         if ( get_full_path( fullpath, filename, PATH_MAX * 4 ) == NULL )
         {
             /* if we are a problem */
-            strcpy(fullpath, filename);
+            strncpy(fullpath, filename, sizeof(fullpath));
         }
 
         for (i = 0; i < CurrentMaxFiles; i++)
@@ -319,12 +319,12 @@ int GetIdFromFilename(char *filename)
 {
     if (ScilabFileList)
     {
-        char fullpath[PATH_MAX * 4];
+        char fullpath[PATH_MAX * 4] = {0};
         int i = 0;
         if ( get_full_path( fullpath, filename, PATH_MAX * 4 ) == NULL )
         {
             /* if we are a problem */
-            strcpy(fullpath, filename);
+            strncpy(fullpath, filename, sizeof(fullpath));
         }
 
         for (i = 0; i < CurrentMaxFiles; i++)

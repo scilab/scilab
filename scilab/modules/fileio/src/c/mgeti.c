@@ -118,8 +118,8 @@ void C2F(mgeti)(int* _pF, long long* _pVal, int* _iSize, char* _iOpt, int* _iErr
             for (i = 0 ; i < *_iSize ; i++)
             {
                 unsigned long long val;
-                val = readLongLong(fa, iEndian);
-                if (feof(fa))
+                *_iErr = readLongLong(fa, iEndian, &val);
+                if (*_iErr || feof(fa))
                 {
                     iCount = i;
                     break;
@@ -133,8 +133,8 @@ void C2F(mgeti)(int* _pF, long long* _pVal, int* _iSize, char* _iOpt, int* _iErr
             for (i = 0 ; i < *_iSize ; i++)
             {
                 unsigned int val;
-                val = readInt(fa, iEndian);
-                if (feof(fa))
+                *_iErr = readInt(fa, iEndian, &val);
+                if (*_iErr || feof(fa))
                 {
                     iCount = i;
                     break;
@@ -147,8 +147,8 @@ void C2F(mgeti)(int* _pF, long long* _pVal, int* _iSize, char* _iOpt, int* _iErr
             for (i = 0 ; i < *_iSize ; i++)
             {
                 unsigned short val;
-                val = readShort(fa, iEndian);
-                if (feof(fa))
+                *_iErr = readShort(fa, iEndian, &val);
+                if (*_iErr || feof(fa))
                 {
                     iCount = i;
                     break;
@@ -161,8 +161,8 @@ void C2F(mgeti)(int* _pF, long long* _pVal, int* _iSize, char* _iOpt, int* _iErr
             for (i = 0 ; i < *_iSize ; i++)
             {
                 unsigned char val;
-                val = readChar(fa, iEndian);
-                if (feof(fa))
+                *_iErr = readChar(fa, iEndian, &val);
+                if (*_iErr || feof(fa))
                 {
                     iCount = i;
                     break;

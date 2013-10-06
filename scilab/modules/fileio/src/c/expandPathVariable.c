@@ -147,6 +147,7 @@ wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
             SciErr sciErr = getNamedVarType(pvApiCtx, varname, &iType);
             if (sciErr.iErr)
             {
+                FREE(varname);
                 return NULL;
             }
 

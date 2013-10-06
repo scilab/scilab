@@ -46,7 +46,7 @@ char swap_char(char _val)
     return _val;
 }
 /*--------------------------------------------------------------------------*/
-void writeInt(int _val, FILE* _pF, int _iEndian)
+int writeInt(int _val, FILE* _pF, int _iEndian)
 {
     //reverse _val bytes and write
     int newVal = _val;
@@ -55,10 +55,10 @@ void writeInt(int _val, FILE* _pF, int _iEndian)
         newVal = swap_int(_val);
     }
 
-    fwrite(&newVal, sizeof(unsigned char), sizeof(int), _pF);
+    return fwrite(&newVal, sizeof(int), 1, _pF) != 1 ? -1 : 0;
 }
 /*--------------------------------------------------------------------------*/
-void writeLongLong(long long _val, FILE* _pF, int _iEndian)
+int writeLongLong(long long _val, FILE* _pF, int _iEndian)
 {
     //reverse _val bytes and write
     long long newVal = _val;
@@ -67,10 +67,10 @@ void writeLongLong(long long _val, FILE* _pF, int _iEndian)
         newVal = swap_long_long(_val);
     }
 
-    fwrite(&newVal, sizeof(unsigned char), sizeof(long long), _pF);
+    return fwrite(&newVal, sizeof(long long), 1, _pF) != 1 ? -1 : 0;
 }
 /*--------------------------------------------------------------------------*/
-void writeShort(short _val, FILE* _pF, int _iEndian)
+int writeShort(short _val, FILE* _pF, int _iEndian)
 {
     //reverse _val bytes and write
     short newVal = _val;
@@ -79,62 +79,67 @@ void writeShort(short _val, FILE* _pF, int _iEndian)
         newVal = swap_short(_val);
     }
 
-    fwrite(&newVal, sizeof(unsigned char), 2, _pF);
+    return fwrite(&newVal, sizeof(short), 1, _pF) != 1 ? -1 : 0;
 }
 /*--------------------------------------------------------------------------*/
-void writeChar(short _val, FILE* _pF, int _iEndian)
+int writeChar(char _val, FILE* _pF, int _iEndian)
 {
-    //reverse _val bytes and write
-    fwrite(&_val, sizeof(unsigned char), 1, _pF);
+    return fwrite(&_val, sizeof(char), 1, _pF) != 1 ? -1 : 0;
 }
 /*--------------------------------------------------------------------------*/
-int readInt(FILE* _pF, int _iEndian)
+int readInt(FILE* _pF, int _iEndian, unsigned int* val)
 {
-    int val = 0;
-    fread(&val, sizeof(int), 1, _pF);
+    if (fread(val, sizeof(int), 1, _pF) != 1)
+    {
+        return -1;
+    }
+
     if (_iEndian == BIG_ENDIAN)
     {
-        return swap_int(val);
+        *val = swap_int(*val);
     }
-    else
-    {
-        return val;
-    }
+
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
-long long readLongLong(FILE* _pF, int _iEndian)
+int readLongLong(FILE* _pF, int _iEndian, unsigned long long* val)
 {
-    long long val = 0;
-    fread(&val, sizeof(long long), 1, _pF);
+    if (fread(val, sizeof(long long), 1, _pF) != 1)
+    {
+        return -1;
+    }
+
     if (_iEndian == BIG_ENDIAN)
     {
-        return swap_long_long(val);
+        *val = swap_long_long(*val);
     }
-    else
-    {
-        return val;
-    }
+
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
-short readShort(FILE* _pF, int _iEndian)
+int readShort(FILE* _pF, int _iEndian, unsigned short* val)
 {
-    short val = 0;
-    fread(&val, 2, 1, _pF);
+    if (fread(val, sizeof(short), 1, _pF) != 1)
+    {
+        return -1;
+    }
+
     if (_iEndian == BIG_ENDIAN)
     {
-        return swap_short(val);
+        *val = swap_short(*val);
     }
-    else
-    {
-        return val;
-    }
+
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
-char readChar(FILE* _pF, int _iEndian)
+int readChar(FILE* _pF, int _iEndian, unsigned char* val)
 {
-    char val = 0;
-    fread(&val, 1, 1, _pF);
-    return val;
+    if (fread(val, sizeof(char), 1, _pF) != 1)
+    {
+        return -1;
+    }
+
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 int checkType(char _type)

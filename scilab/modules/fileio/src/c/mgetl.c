@@ -22,6 +22,7 @@
 #include "BOOL.h"
 #include "strsubst.h"
 #include "charEncoding.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 #define LINE_MAX 4096
 #define CR '\r'
@@ -78,17 +79,14 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                     Line = tmpLine;
                 }
             }
+
             while ( Line != NULL )
             {
                 nbLines++;
                 strLines = (char **)REALLOC(strLines, nbLines * sizeof(char *));
                 if (strLines == NULL)
                 {
-                    if (Line)
-                    {
-                        FREE(Line);
-                        Line = NULL;
-                    }
+                    FREE(Line);
                     *nbLinesOut = 0;
                     *ierr = MGETL_MEMORY_ALLOCATION_ERROR;
                     return NULL;
@@ -96,26 +94,17 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
 
                 strLines[nbLines - 1] = convertAnsiToUtf(removeEOL(Line));
 
-                if (Line)
-                {
-                    FREE(Line);
-                    Line = NULL;
-                }
+                FREE(Line);
 
                 if (strLines[nbLines - 1] == NULL)
                 {
                     *nbLinesOut = 0;
                     *ierr = MGETL_MEMORY_ALLOCATION_ERROR;
+                    freeArrayOfString(strLines, nbLines);
                     return NULL;
                 }
 
                 Line = getNextLine(fa);
-            }
-
-            if (Line)
-            {
-                FREE(Line);
-                Line = NULL;
             }
 
             *nbLinesOut = nbLines;

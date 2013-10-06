@@ -65,6 +65,7 @@ int sci_fullpath(char *fname, unsigned long fname_len)
 
     if (getAllocatedMatrixOfString(pvApiCtx, piAddressVarOne, &mOne, &nOne, &pStVarOne) != 0)
     {
+        freeAllocatedMatrixOfString(mOne, nOne, pStVarOne);
         Scierror(999, _("%s: No more memory.\n"), fname);
         return 0;
     }

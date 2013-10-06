@@ -82,6 +82,11 @@ double * filesinfo(char **filenames, int dim_filenames, int *ierrs)
         int i = 0;
         int j = 0;
         FILES_INFO_ARRAY = (double*)MALLOC(sizeof(double ) * (dim_filenames * FILEINFO_ARRAY_SIZE));
+        if (FILES_INFO_ARRAY == NULL)
+        {
+            return NULL;
+        }
+
         for (i = 0; i < dim_filenames; i++)
         {
             int k = 0;

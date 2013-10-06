@@ -15,6 +15,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "Scierror.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_pathsep(char *fname, unsigned long fname_len)
 {
@@ -25,21 +26,19 @@ int sci_pathsep(char *fname, unsigned long fname_len)
     CheckLhs(1, 1);
 
     separator = (char*)MALLOC(sizeof(char) * (strlen(PATH_SEPARATOR) + 1));
-    if (separator)
+    if (separator == NULL)
     {
-        strcpy(separator, PATH_SEPARATOR);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
     }
 
+    strcpy(separator, PATH_SEPARATOR);
     n1 = 1;
     m1 = (int)strlen(separator);
     CreateVarFromPtr(Rhs + 1, STRING_DATATYPE, &m1, &n1, &separator);
-    LhsVar(1) = Rhs + 1;
+    FREE(separator);
 
-    if (separator)
-    {
-        FREE(separator);
-        separator = NULL;
-    }
+    LhsVar(1) = Rhs + 1;
     PutLhsVar();
 
     return 0;

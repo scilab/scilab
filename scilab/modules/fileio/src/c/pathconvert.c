@@ -61,14 +61,10 @@ wchar_t *pathconvertW(wchar_t* wcpath, BOOL flagtrail, BOOL flagexpand, PathConv
             convertedPath = windowstocygwinpath(expandedPath, &bConvCyg);
         }
 
+        FREE(expandedPath);
+
         if (convertedPath)
         {
-            if (expandedPath)
-            {
-                FREE(expandedPath);
-                expandedPath = NULL;
-            }
-
             if (flagtrail)
             {
                 int currentLen = (int) wcslen(convertedPath);
@@ -129,8 +125,9 @@ char *pathconvert(char* path, BOOL flagtrail, BOOL flagexpand, PathConvertType P
             {
                 convertedPath = wide_string_to_UTF8(wcconvertedPath);
                 FREE(wcconvertedPath);
-                wcconvertedPath = NULL;
             }
+
+            FREE(wcpath);
         }
     }
     return convertedPath;
@@ -212,10 +209,10 @@ static wchar_t *windowstocygwinpath(wchar_t *windowspath, BOOL *bConverted)
 
     if (windowspath)
     {
-        wchar_t *wcdrv = MALLOC(sizeof(wchar_t*) * ((int)wcslen(windowspath) + 1));
-        wchar_t* wcdir = MALLOC(sizeof(wchar_t*) * ((int)wcslen(windowspath) + 1));
-        wchar_t* wcname = MALLOC(sizeof(wchar_t*) * ((int)wcslen(windowspath) + 1));
-        wchar_t* wcext = MALLOC(sizeof(wchar_t*) * ((int)wcslen(windowspath) + 1));
+        wchar_t *wcdrv = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(windowspath) + 1));
+        wchar_t* wcdir = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(windowspath) + 1));
+        wchar_t* wcname = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(windowspath) + 1));
+        wchar_t* wcext = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(windowspath) + 1));
 
         splitpathW(windowspath, FALSE, wcdrv, wcdir, wcname, wcext);
         if (wcscmp(wcdrv, L"") != 0)

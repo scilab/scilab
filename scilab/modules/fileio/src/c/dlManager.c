@@ -13,15 +13,14 @@
 #ifndef _MSC_VER
 #define _GNU_SOURCE             /* basename crashes this extension otherwise */
 #endif
+#include "MALLOC.h"
 #include <curl/curl.h>
 #include <libxml/uri.h>
 #include <string.h>
 #include "dlManager.h"
 #include "Scierror.h"
 #include "SCIHOME.h"
-#include "getos.h"
 #include "PATH_MAX.h"
-#include "MALLOC.h"
 #include "isdir.h"
 #include "charEncoding.h"
 #include "localization.h"
@@ -36,13 +35,13 @@ static char errorBuffer[CURL_ERROR_SIZE];
 /* ==================================================================== */
 static int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd);
 /* ==================================================================== */
-struct inputString
+typedef struct __INPUTSTRING__
 {
     char *ptr;
     size_t len;
-};
+} inputString;
 /* ==================================================================== */
-static void init_string(struct inputString *s)
+static void init_string(inputString *s)
 {
     s->len = 0;
     s->ptr = (char*)CALLOC(s->len + 1, sizeof(char));
@@ -51,10 +50,18 @@ static void init_string(struct inputString *s)
         Scierror(999, "Internal error: calloc() failed.\n");
         return;
     }
-    s->ptr[0] = '\0';
 }
 /* ==================================================================== */
-static size_t writefunc(void *ptr, size_t size, size_t nmemb, struct inputString *s)
+static void free_string(inputString *s)
+{
+    if (s->len && s->ptr)
+    {
+        FREE(s->ptr);
+        s->ptr = NULL;
+    }
+}
+/* ==================================================================== */
+static size_t writefunc(void *ptr, size_t size, size_t nmemb, inputString *s)
 {
     size_t new_len = s->len + size * nmemb;
 
@@ -89,13 +96,14 @@ static char *getFileNameFromURL(char *url)
     }
     else
     {
-        char bname[PATH_MAX];
+        char bname[PATH_MAX] = {0};
 
         if (c->path == NULL)
         {
             Scierror(43, "Internal error: c->path is null ?!\n");
         }
-        strcpy(bname, basename(c->path));
+
+        strncpy(bname, basename(c->path), sizeof(bname));
         filename = (char *)MALLOC((strlen(bname) + 1) * sizeof(char));
         strcpy(filename, bname);
     }
@@ -105,19 +113,27 @@ static char *getFileNameFromURL(char *url)
 /* ==================================================================== */
 int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
 {
-    FILE * pFile;
-    long lSize;
-    char * buffer;
-    size_t result;
+    FILE* pFile = NULL;
+    long lSize = 0;
+    char* buffer = NULL;
+    size_t result = 0;
 
-    char *configPtr;
+    char* configPtr = NULL;
 
-    char *host, *user, *password, *userpwd;
-    long port;
-    int useproxy;
+    char* host = NULL;
+    char* user = NULL;
+    char* password = NULL;
+    char* userpwd = NULL;
+    long port = 0;
+    int useproxy = 0;
 
-    char *tp, *field, *value, *eqptr;
-    int eqpos = 0 , tplen;
+    char *tp = NULL;
+    char *field = NULL;
+    char *value = NULL;
+    char *eqptr = NULL;
+
+    int eqpos = 0;
+    int tplen = 0;
 
     //construct ATOMS config file path
     configPtr = (char *)MALLOC(PATH_MAX * sizeof(char));
@@ -163,7 +179,7 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
     buffer = (char*)MALLOC((lSize + 1) * sizeof(char));
     if (buffer == NULL)
     {
-        FREE(pFile);
+        fclose(pFile);
         return 0;
     }
     buffer[lSize] = '\0';
@@ -175,6 +191,9 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
         Scierror(999, _("Failed to read the scicurl_config file '%s'.\n"), configPtr);
         return 0;
     }
+
+    //add null terminated
+    buffer[result] = '\0';
 
     host = user = password = userpwd = NULL;
     useproxy = 0;
@@ -302,12 +321,11 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
     char *filename = NULL;
 
     curl = curl_easy_init();
-
     if (curl)
     {
         FILE *file;
 
-        struct inputString buffer;
+        inputString buffer;
 
         init_string(&buffer);
 
@@ -433,7 +451,6 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         } /* end of the set of the proxy */
 
         res = curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
-
         if (res != CURLE_OK)
         {
             Scierror(999, _("Failed to set write function [%s]\n"), errorBuffer);
@@ -444,6 +461,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         res = curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
         if (res != CURLE_OK)
         {
+            free_string(&buffer);
             Scierror(999, _("Failed to set write data [%s]\n"), errorBuffer);
             return NULL;
         }
@@ -452,14 +470,15 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         res = curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
         if (res != CURLE_OK)
         {
+            free_string(&buffer);
             Scierror(999, _("Failed to set 'Follow Location' [%s]\n"), errorBuffer);
             return NULL;
         }
 
         res = curl_easy_perform(curl);
-
         if (res != 0)
         {
+            free_string(&buffer);
             Scierror(999, _("Transfer did not complete successfully: %s\n"), errorBuffer);
             fclose(file);
             return NULL;
@@ -475,7 +494,6 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         curl_easy_cleanup(curl);
 
         fclose(file);
-
         return filename;
     }
     else
@@ -483,7 +501,6 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         Scierror(999, "Failed opening the curl handle.\n");
         return NULL;
     }
-    return NULL;
 }
 /* ==================================================================== */
 static char *Curl_basename(char *path)
