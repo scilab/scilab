@@ -38,6 +38,13 @@ saved_LDFLAGS="$LDFLAGS"
 compiler_manage_static_libs=no
 USE_STATIC_SYSTEM_LIB=yes
 
+
+if test "x$enable_static_system_lib" == "xno"; then
+# The user ask for an explicit disable.
+   USE_STATIC_SYSTEM_LIB=no
+fi
+
+
 LDFLAGS="$LDFLAGS -static-libstdc++ -static-libgcc"
 AC_MSG_CHECKING([whether g++ accepts -static-libstdc++ -static-libgcc])
 AC_LANG_PUSH(C++)
