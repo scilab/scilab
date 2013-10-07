@@ -26,12 +26,12 @@
 /*--------------------------------------------------------------------------*/
 int sci_scicos_time(char *fname, unsigned long fname_len)
 {
-    int un = 1, l1 = 0;
+    int one = 1, l1 = 0;
 
     CheckRhs(-1, 0);
     CheckLhs(1, 1);
 
-    CreateVar(1, MATRIX_OF_DOUBLE_DATATYPE, (un = 1, &un), (un = 1, &un), &l1);
+    CreateVar(1, MATRIX_OF_DOUBLE_DATATYPE, &one, &one, &l1);
 
     *stk(l1) = get_scicos_time();
 

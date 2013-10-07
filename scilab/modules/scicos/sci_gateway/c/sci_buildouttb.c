@@ -108,10 +108,6 @@ int sci_buildouttb(char *fname, unsigned long fname_len)
     else
     {
         Scierror(888, _("%s : lnktyp argument must be double or integer.\n"), fname);
-        if (lnksz != NULL)
-        {
-            FREE(lnksz);
-        }
         return 0;
     }
 
@@ -191,10 +187,7 @@ int sci_buildouttb(char *fname, unsigned long fname_len)
     if ((lnktyp = MALLOC(n_lnktyp * sizeof(int))) == NULL)
     {
         Scierror(999, _("%s : No more free memory.\n"), fname);
-        if (lnksz != NULL)
-        {
-            FREE(lnksz);
-        }
+        FREE(lnksz);
         return 0;
     }
 
@@ -381,6 +374,13 @@ int sci_buildouttb(char *fname, unsigned long fname_len)
                     lnktyp[j] = (int) IC_UINT32(M2.D)[j];
                 }
                 break;
+
+            default :
+                /* Invalid integer type */
+                Scierror(999, _("%s: Wrong value for input argument #%d: An integer expected.\n"), fname, 2);
+                FREE(lnksz);
+                FREE(lnktyp);
+                return;
         }
     }
     else

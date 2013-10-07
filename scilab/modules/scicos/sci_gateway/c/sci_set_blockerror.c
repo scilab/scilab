@@ -42,7 +42,7 @@ int sci_set_blockerror(char *fname, unsigned long fname_len)
     }
     else
     {
-        GetRhsVar(1, MATRIX_OF_INTEGER_DATATYPE, (one = 1, &one), (one = 1, &one), &l1);
+        GetRhsVar(1, MATRIX_OF_INTEGER_DATATYPE, &one, &one, &l1);
         set_block_error(*istk(l1));
 
         LhsVar(1) = 0;

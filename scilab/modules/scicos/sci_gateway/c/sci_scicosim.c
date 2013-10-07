@@ -428,7 +428,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_state_evtspt = (int *) (listentry(il_state, 7));
     m1e7 = il_state_evtspt[1];
     n1e7 = il_state_evtspt[2];
-    if ((m1e7 * n1e7) == 0)
+    if ((m1e7 * n1e7) <= 0)
     {
         l_state_evtspt = NULL;
     }
@@ -1904,7 +1904,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     /**********************
     * set oz, ozsz, oztyp
     **********************/
-    if (noz == 0)
+    if (noz <= 0)
     {
         oz = NULL;
         ozsz = NULL;
@@ -2042,7 +2042,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     /****************************
     * set opar, oparsz, opartyp
     ****************************/
-    if (nopar == 0)
+    if (nopar <= 0)
     {
         opar = NULL;
         oparsz = NULL;
@@ -2340,6 +2340,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
                             FREE(lfunpt);
                             freeparam;
                             FREE(outtb_elem);
+                            return 0;
                             break;
                     }
                     break;

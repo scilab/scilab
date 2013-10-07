@@ -773,7 +773,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
 
         /* 12 : block array of crossed surfaces (jroot) */
         Blocks[kf].jroot = NULL;
-        if (Blocks[kf].ng != 0)
+        if (Blocks[kf].ng > 0)
         {
             if ((Blocks[kf].jroot = CALLOC(Blocks[kf].ng, sizeof(int))) == NULL)
             {
@@ -1457,7 +1457,7 @@ static void cossim(double *told)
     }
 
     jroot = NULL;
-    if (ng != 0)
+    if (ng > 0)
     {
         if ((jroot = MALLOC(sizeof(int) * ng)) == NULL )
         {
@@ -1472,7 +1472,7 @@ static void cossim(double *told)
     }
 
     zcros = NULL;
-    if (ng != 0)
+    if (ng > 0)
     {
         if ((zcros = MALLOC(sizeof(int) * ng)) == NULL )
         {
@@ -2192,7 +2192,7 @@ static void cossimdaskr(double *told)
 
     // CI=1.0;   /* for function Get_Jacobian_ci */
     jroot = NULL;
-    if (ng != 0)
+    if (ng > 0)
     {
         if ((jroot = MALLOC(sizeof(int) * ng)) == NULL )
         {
@@ -2206,12 +2206,12 @@ static void cossimdaskr(double *told)
     }
 
     zcros = NULL;
-    if (ng != 0)
+    if (ng > 0)
     {
         if ((zcros = MALLOC(sizeof(int) * ng)) == NULL )
         {
             *ierr = 10000;
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
@@ -2220,16 +2220,16 @@ static void cossimdaskr(double *told)
     }
 
     Mode_save = NULL;
-    if (nmod != 0)
+    if (nmod > 0)
     {
         if ((Mode_save = MALLOC(sizeof(int) * nmod)) == NULL )
         {
             *ierr = 10000;
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
@@ -2246,15 +2246,15 @@ static void cossimdaskr(double *told)
         yy = N_VNewEmpty_Serial(*neq);
         if (check_flag((void *)yy, "N_VNew_Serial", 0))
         {
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -2269,15 +2269,15 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -2298,15 +2298,15 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -2337,15 +2337,15 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -2383,15 +2383,15 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -2425,15 +2425,15 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -2460,15 +2460,15 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -2502,15 +2502,15 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -2540,15 +2540,15 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -2575,15 +2575,15 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -2619,15 +2619,15 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -2661,15 +2661,15 @@ static void cossimdaskr(double *told)
                 {
                     N_VDestroy_Serial(yy);
                 }
-                if (ng != 0)
+                if (ng > 0)
                 {
                     FREE(jroot);
                 }
-                if (ng != 0)
+                if (ng > 0)
                 {
                     FREE(zcros);
                 }
-                if (nmod != 0)
+                if (nmod > 0)
                 {
                     FREE(Mode_save);
                 }
@@ -2723,15 +2723,15 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -6702,12 +6702,8 @@ int write_xml_states(int nvar, const char * xmlfile, char **ids, double *x)
     if (model == NULL)
     {
         sciprint(_("Error: Cannot find file '%s'.\n"), xmlfile);
-        for (i = 0; i < nvar; i++)
-        {
-            FREE(xv[i]);
-        }
-        FREE(xv);
-        return -1;/* file does not exist */
+        err = -1;
+        goto err_free_xv;
     }
 
     elements = ezxml_child(model, "elements");
@@ -6731,20 +6727,23 @@ int write_xml_states(int nvar, const char * xmlfile, char **ids, double *x)
 
 
     wcfopen(fd, (char*)xmlfile, "wb");
-    if (fd < 0)
+    if (fd == NULL)
     {
-        sciprint(_("Error: cannot write to  '%s'  \n"), xmlfile);
-        for (i = 0; i < nvar; i++)
-        {
-            FREE(xv[i]);
-        }
-        FREE(xv);
-        return -3;/* cannot write to file*/
+        err = -3;/* cannot write to file*/
+        goto err_free_s;
     }
 
     fputs (s, fd);
     fclose(fd);
 
+err_free_s:
+    free(s);
+err_free_xv:
+    for (i = 0; i < nvar; i++)
+    {
+        FREE(xv[i]);
+    }
+    FREE(xv);
     return err;
 }
 /*--------------------------------------------------------------------------*/
