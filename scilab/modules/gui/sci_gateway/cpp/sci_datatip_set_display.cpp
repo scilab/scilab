@@ -26,47 +26,55 @@ extern "C"
 
 int sci_datatip_set_display(char *fname, unsigned long fname_len)
 {
-
     SciErr sciErr;
     CheckInputArgument(pvApiCtx, 1, 2);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
-    int stkAdr = 0;
-    int nbRow = 0, nbCol = 0;
-    char* datatipUID = NULL;
+    char* datatipUID    = NULL;
+    int* piAddr         = NULL;
+    char* pstData       = NULL;
+    int iRet            = 0;
+    int iErr            = 0;
+    long long llHandle  = 0;
+
     int iType = 0;
     int *piType = &iType;
-    int* piAddr = NULL;
-    int iRet = 0;
-    char* pstData = NULL;
 
-    GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
-    datatipUID = (char *)getObjectFromHandle((unsigned long) * (hstk(stkAdr)));
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    iErr = getScalarHandle(pvApiCtx, piAddr, &llHandle);
+    if (iErr)
+    {
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        return 1;
+    }
+
+    datatipUID = (char *)getObjectFromHandle((unsigned long) llHandle);
 
     if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
     {
-
         getGraphicObjectProperty(datatipUID, __GO_TYPE__, jni_int, (void**) &piType);
         if (iType == __GO_DATATIP__)
         {
-
             if (nbInputArgument(pvApiCtx) == 1)
             {
-
                 setGraphicObjectProperty(datatipUID, __GO_DATATIP_DISPLAY_FNC__, "", jni_string, 1);
-                LhsVar(1) = 0;
-                PutLhsVar();
-                return FALSE;
-
+                AssignOutputVariable(pvApiCtx, 1) = 0;
+                ReturnArguments(pvApiCtx);
+                return 0;
             }
             else if (nbInputArgument(pvApiCtx) == 2)
             {
-
                 sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    return 0;
+                    return 1;
                 }
 
                 if (isStringType(pvApiCtx, piAddr))
@@ -84,51 +92,39 @@ int sci_datatip_set_display(char *fname, unsigned long fname_len)
                         setGraphicObjectProperty(datatipUID, __GO_DATATIP_DISPLAY_FNC__, pstData, jni_string, 1);
 
                         freeAllocatedSingleString(pstData);
-                        LhsVar(1) = 0;
-                        PutLhsVar();
-                        return FALSE;
+                        AssignOutputVariable(pvApiCtx, 1) = 0;
+                        ReturnArguments(pvApiCtx);
+                        return 0;
                     }
                     else
                     {
-
                         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
-                        return FALSE;
-
+                        return 1;
                     }
                 }
                 else
                 {
-
                     Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
-                    return FALSE;
-
+                    return 1;
                 }
 
             }
             else
             {
-
                 Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname, 1, 2);
-                return FALSE;
-
+                return 1;
             }
 
         }
         else
         {
-
             Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Datatip");
-            return FALSE;
-
+            return 1;
         }
-
     }
     else
     {
-
         Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Datatip");
-        return FALSE;
-
+        return 1;
     }
-
 }

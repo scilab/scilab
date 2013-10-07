@@ -10,7 +10,6 @@
  *
  */
 
-#include <cstring>
 #include "DatatipManager.hxx"
 
 extern "C"
@@ -28,21 +27,25 @@ using namespace org_scilab_modules_gui_datatip;
 
 int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
 {
-    int n = 0, iRows = 0, iCols = 0, l1 = 0, i = 0;
-    int* piAddr	= NULL;;
-    int stkAdr = 0;
     const char* pstFigureUID = NULL;
-    int * pbValue = NULL;
-    bool enabled = false;
-    int iType = 0;
-    int iLen = 0;
-    char *pstData = NULL;
+
+    int* piAddr         = NULL;
+    int* pbValue        = NULL;
+    char* pstData       = NULL;
+    int iRows           = 0;
+    int iCols           = 0;
+    int stkAdr          = 0;
+    int iType           = 0;
+    int iLen            = 0;
+    int iErr            = 0;
+    bool enabled        = false;
+    long long llHandle  = 0;
 
     SciErr sciErr;
     CheckInputArgument(pvApiCtx, 0, 2);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
-    if (Rhs == 0)
+    if (nbInputArgument(pvApiCtx) == 0)
     {
         pstFigureUID = getCurrentFigure();
         if (pstFigureUID)
@@ -51,20 +54,20 @@ int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
             DatatipManager::setEnabled(getScilabJavaVM(), pstFigureUID, (!enabled));
         }
     }
-    else if (Rhs == 1)
+    else if (nbInputArgument(pvApiCtx) == 1)
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            return 0;
+            return 1;
         }
 
         sciErr = getVarType(pvApiCtx, piAddr, &iType);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            return 0;
+            return 1;
         }
 
         switch (iType)
@@ -74,12 +77,12 @@ int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    return 0;
+                    return 1;
                 }
                 if (iRows * iCols != 1)
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 1);
-                    return 0;
+                    return 1;
                 }
                 pstFigureUID = getCurrentFigure();
                 enabled = pbValue[0] == 0 ? false : true;
@@ -89,25 +92,25 @@ int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    return 0;
+                    return 1;
                 }
                 if (iRows * iCols != 1)
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 1);
-                    return 0;
+                    return 1;
                 }
                 sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &iLen, NULL);
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    return 0;
+                    return 1;
                 }
                 pstData = (char*) malloc(sizeof(char) * (iLen + 1));
                 sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &iLen, &pstData);
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    return 0;
+                    return 1;
                 }
                 if (strcmp("on", pstData) == 0 || strcmp("T", pstData) == 0 || strcmp("1", pstData) == 0)
                 {
@@ -123,18 +126,18 @@ int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
                 {
                     free(pstData);
                     Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, "on", "off");
-                    return 0;
+                    return 1;
                 }
                 free(pstData);
                 break;
             case sci_handles :
-                GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &iRows, &iCols, &stkAdr);
-                if (iRows * iCols != 1)
+                iErr = getScalarHandle(pvApiCtx, piAddr, &llHandle);
+                if (iErr)
                 {
-                    Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
-                    return FALSE;
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    return 1;
                 }
-                pstFigureUID = (char *)getObjectFromHandle((unsigned long) * (hstk(stkAdr)));
+                pstFigureUID = (char *)getObjectFromHandle((unsigned long) llHandle);
                 if (pstFigureUID)
                 {
                     enabled = !(DatatipManager::isEnabled(getScilabJavaVM(), pstFigureUID));
@@ -142,31 +145,38 @@ int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
                 break;
             default :
                 Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 1);
-                return FALSE;
+                return 1;
         }
     }
-    else if (Rhs == 2)
+    else if (nbInputArgument(pvApiCtx) == 2)
     {
-        GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &iRows, &iCols, &stkAdr);
-        if (iRows * iCols != 1)
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+        if (sciErr.iErr)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
-            return FALSE;
+            printError(&sciErr, 0);
+            return 1;
         }
-        pstFigureUID = (char *)getObjectFromHandle((unsigned long) * (hstk(stkAdr)));
+
+        iErr = getScalarHandle(pvApiCtx, piAddr, &llHandle);
+        if (iErr)
+        {
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+            return 1;
+        }
+        pstFigureUID = (char *)getObjectFromHandle((unsigned long) llHandle);
 
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            return FALSE;
+            return 1;
         }
 
         sciErr = getVarType(pvApiCtx, piAddr, &iType);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            return FALSE;
+            return 1;
         }
 
         switch (iType)
@@ -176,12 +186,12 @@ int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    return FALSE;
+                    return 1;
                 }
                 if (iRows * iCols != 1)
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 1);
-                    return FALSE;
+                    return 1;
                 }
                 pstFigureUID = getCurrentFigure();
                 enabled = pbValue[0] == 0 ? false : true;
@@ -191,25 +201,25 @@ int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    return 0;
+                    return 1;
                 }
                 if (iRows * iCols != 1)
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 1);
-                    return 0;
+                    return 1;
                 }
                 sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &iLen, NULL);
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    return 0;
+                    return 1;
                 }
                 pstData = (char*) malloc(sizeof(char) * (iLen + 1));
                 sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &iLen, &pstData);
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    return 0;
+                    return 1;
                 }
                 if (strcmp("on", pstData) == 0 || strcmp("T", pstData) == 0 || strcmp("1", pstData) == 0)
                 {
@@ -225,19 +235,19 @@ int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
                 {
                     free(pstData);
                     Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, "on", "off");
-                    return 0;
+                    return 1;
                 }
                 free(pstData);
                 break;
             default :
                 Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 2);
-                return FALSE;
+                return 1;
         }
     }
     else
     {
         Scierror(999, _("%s: Wrong number for input argument: %d expected.\n"), fname, 2);
-        return FALSE;
+        return 1;
     }
 
     if (pstFigureUID)
@@ -245,9 +255,8 @@ int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
         DatatipManager::setEnabled(getScilabJavaVM(), pstFigureUID, enabled);
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
-
-    return TRUE;
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
+    return 0;
 }
 
