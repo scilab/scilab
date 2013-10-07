@@ -12,6 +12,8 @@ Scilab Bug Fixes
 
 * Bug #12950 fixed - getURL ignores the proxy settings on Windows.
 
+* Bug #12956 fixed - splitURL with no protocol in URL provokes an access violation exception.
+
 
                  Changes between version 5.4.1 and 5.5.0-beta-1
                  ==============================================

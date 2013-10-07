@@ -62,7 +62,16 @@ int sci_splitURL(char *fname, int fname_len)
     }
 
     // protocol (http, ftp...)
-    if (createSingleString(pvApiCtx, iRhs + 1, c->scheme))
+    if (c->scheme != NULL)
+    {
+        ret = createSingleString(pvApiCtx, iRhs + 1, c->scheme);
+    }
+    else
+    {
+        ret = createSingleString(pvApiCtx, iRhs + 1, emptyString);
+    }
+
+    if (ret)
     {
         goto err;
     }
@@ -70,7 +79,16 @@ int sci_splitURL(char *fname, int fname_len)
     AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
 
     // server
-    if (createSingleString(pvApiCtx, iRhs + 2, c->server))
+    if (c->server != NULL)
+    {
+        ret =  createSingleString(pvApiCtx, iRhs + 2, c->server);
+    }
+    else
+    {
+        ret = createSingleString(pvApiCtx, iRhs + 2, emptyString);
+    }
+
+    if (ret)
     {
         goto err;
     }
