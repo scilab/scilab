@@ -132,21 +132,9 @@ int openHDF5File(char *name, int _iAppendMode)
 
     scichdir(currentpath);
 
-    if (currentpath)
-    {
-        FREE(currentpath);
-        currentpath = NULL;
-    }
-    if (filename)
-    {
-        FREE(filename);
-        filename = NULL;
-    }
-    if (pathdest)
-    {
-        FREE(pathdest);
-        pathdest = NULL;
-    }
+    FREE(currentpath);
+    FREE(filename);
+    FREE(pathdest);
 
     return file;
 }

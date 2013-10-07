@@ -45,6 +45,7 @@ int sci_is_hdf5_file(char *fname, unsigned long fname_len)
 
     if (getAllocatedSingleString(pvApiCtx, piAddr, &pstFile))
     {
+        freeAllocatedSingleString(pstFile);
         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
         return 1;
     }
@@ -60,7 +61,7 @@ int sci_is_hdf5_file(char *fname, unsigned long fname_len)
     }
 
     FREE(pstFileName);
-    FREE(pstFile);
+    freeAllocatedSingleString(pstFile);
     AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
     ReturnArguments(pvApiCtx);
     return 0;

@@ -420,8 +420,14 @@ void closeDataSet(int _id)
 {
     if (_id > 0)
     {
-        H5Dclose(_id);
+        herr_t status = H5Dclose(_id);
+        if (status < 0)
+        {
+            return;
+        }
     }
+
+    return;
 }
 
 int getDataSetId(int _iFile)
