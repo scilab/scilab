@@ -13,21 +13,20 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xinfo" xml:lang="en">
     <refnamediv>
         <refname>xinfo</refname>
-        <refpurpose>escreve um string de informação na subjanela de
-            mensagens
+        <refpurpose>Define o texto exibido na barra de status da atual janela.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>xinfo(info)</synopsis>
+        <synopsis>xinfo(texto)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
-                <term>info</term>
+                <term>texto</term>
                 <listitem>
-                    <para>string</para>
+                    <para>cadeia de caracteres exibida na barra de status</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -35,8 +34,14 @@
     <refsection>
         <title>Descrição</title>
         <para>
-            <literal>xinfo</literal> escreve o string <literal>info</literal> na
-            subjanela de mensagens da janela de gráficos corrente.
+            <literal>xinfo</literal> define o texto exhibido na barra de status (painel na parte inferior das janelas) da atual janela.
         </para>
+    </refsection>
+    <refsection>
+      <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+f = scf(100001);
+xinfo("ID figure : " + string(f.figure_id));
+     ]]></programlisting>
     </refsection>
 </refentry>

@@ -17,13 +17,13 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>xinfo(info)</synopsis>
+        <synopsis>xinfo(text)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
         <variablelist>
             <varlistentry>
-                <term>info</term>
+                <term>text</term>
                 <listitem>
                     <para>文字列</para>
                 </listitem>
@@ -33,8 +33,15 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>xinfo</literal> は文字列d <literal>info</literal> をカレントの
+            <literal>xinfo</literal> は文字列d <literal>text</literal> をカレントの
             グラフィックウインドウのメッセージサブウインドウに描画します.
         </para>
+    </refsection>
+    <refsection>
+      <title>例</title>
+        <programlisting role="example"><![CDATA[
+f = scf(100001);
+xinfo("ID figure : " + string(f.figure_id));
+     ]]></programlisting>
     </refsection>
 </refentry>

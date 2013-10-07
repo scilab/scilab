@@ -26,9 +26,11 @@ Scilab Bug Fixes
 
 * Bug #12957 fixed - splitURL and getURL were not declared as new 5.5 functions.
 
+* Bug #12962 fixed - xinfo documentation was not clear.
+
 * Bug #12963 fixed - drawaxis did not place the axis correctly.
 
-* Bug #12971 fixed - getURL() downloaded file name was wrong.
+* Bug #12971 fixed - getURL downloaded file name was wrong.
 
 * Bug #12978 fixed - exportUI returned an error when input argument was a figure handle.
 
