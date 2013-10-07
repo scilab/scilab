@@ -9,7 +9,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
 
-function [s]=variancef(x,fre,orien)
+function [s,m]=variancef(x,fre,orien)
     //
     //This function  computes  the variance  of the values  of   a vector or
     //matrix x, each  of  them  counted with  a  frequency signaled   by the
@@ -40,23 +40,28 @@ function [s]=variancef(x,fre,orien)
     if rhs==2 then
         sumfre=sum(fre)
         if sumfre <= 1 then error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be > %d.\n"),"variancef", 2, 1)), end
-        s=(sum(((x-meanf(x,fre)).^2).*fre))/(sumfre-1),
+        m = meanf(x,fre)
+        s=(sum(((x-m).^2).*fre))/(sumfre-1),
         return,
     end
     if orien=="*",
         sumfre=sum(fre)
         if sumfre <= 1 then error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be > %d.\n"),"variancef", 2, 1)),end
-        s=(sum(((x-meanf(x,fre)).^2).*fre))/(sumfre-1),
+        m = meanf(x,fre)
+        s=(sum(((x-m).^2).*fre))/(sumfre-1),
     elseif orien=="r"|orien==1,
         sumfre=sum(fre,"r")
         if or(sumfre==0) then error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be > %d.\n"),"variancef",2,1)),end
-        s=(sum(((x-ones(size(x,"r"),1)*meanf(x,fre,"r")).^2).*fre))./ ..
-        (sumfre-1)
+        m = meanf(x,fre,"r")
+        m2 = ones(size(x,"r"),1)*m
+        s=(sum(((x-m2).^2).*fre))./(sumfre-1)
     elseif orien=="c"|orien==2,
         sumfre=sum(fre,"c")
         if or(sumfre==0) then error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be > %d.\n"),"variancef",2,1)),end
-        s=(sum((x-(meanf(x,fre,"c")*ones(1,size(x,"c")))).^2,"c"))./..
-        (sumfre-1)
+        m = meanf(x,fre,"c")
+        m2 = m*ones(1,size(x,"c"))
+        s=(sum((x-m2).^2,"c"))./(sumfre-1)
     else error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d expected.\n"),"variancef",3,"*","c","r",1,2))
     end
+
 endfunction

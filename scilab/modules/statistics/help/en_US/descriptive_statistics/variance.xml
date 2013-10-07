@@ -14,16 +14,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="variance">
     <refnamediv>
         <refname>variance</refname>
-        <refpurpose>variance of the values of a vector or matrix (or hypermatrix) real or complex</refpurpose>
+        <refpurpose>variance and mean of the values of a vector or matrix (or hypermatrix) real or complex</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>s = variance(x [,orien [,w]])
-            s = variance(x,'r') or s = variance(x,1)
-            s = variance(x,'c') or s = variance(x,2)
-            s = variance(x,'*',1)
-            s = variance(x,'r',1)
-            s = variance(x,'c',1)
+            [s,m] = variance(x,'r') or s = variance(x,1)
+            [s,m] = variance(x,'c') or s = variance(x,2)
+            [s,m] = variance(x,'*',1)
+            [s,m] = variance(x,'r',1)
+            [s,m] = variance(x,'c',1)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -86,6 +86,9 @@
             <literal>s = variance(x,'r')</literal> (or,  equivalently, <literal>s = variance(x,1)</literal>)
             is the rowwise variance: s is a row vector, with s(i) the variance of <literal>s(i) = variance(x(:,i))</literal>.
         </para>
+        <para>
+            The second output argument <literal>m</literal> is the mean of the input, with respect to the <literal>orien</literal> parameter.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -114,6 +117,9 @@ s = variance(x, "*", 1)	// should be smaller than the previous one
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="variancef">variancef</link>
+            </member>
             <member>
                 <link linkend="mtlb_var">mtlb_var</link>
             </member>

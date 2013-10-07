@@ -9,7 +9,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
 
-function [s] = variance(x, orien, w)
+function [s,m] = variance(x, orien, w)
     //
     //This function computes  the  variance  of  the values of  a  vector or
     //matrix x.
@@ -73,9 +73,10 @@ function [s] = variance(x, orien, w)
     end
     s = sum(abs(x - m).^2, orien) / d
 
-    if transposed
+    m = m(1, :);
+    if transposed then
         s = s.'
+        m = m.'
     end
 
 endfunction
-
