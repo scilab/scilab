@@ -18,6 +18,7 @@
 #include "localization.h"
 #include "api_scilab.h"
 #include "locale.h"
+#include "freeArrayOfString.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
@@ -30,7 +31,7 @@ int sci_strtod(char *fname, unsigned long fname_len)
     int iRows = 0, iCols = 0;
     int iRowsiCols = 0;
     char **Input_StringMatrix_1 = NULL;
-    char *Input_SingleString_1 = NULL;
+    char *Input_SingleString_2 = NULL;
     int first_nb = 0;
     int x, y; //loop indexes
     char keys[] = "1234567890";
@@ -60,31 +61,32 @@ int sci_strtod(char *fname, unsigned long fname_len)
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
-        if (isStringType(pvApiCtx, piAddr2) == 0)
+        if (isStringType(pvApiCtx, piAddr2) == 0 || isScalar(pvApiCtx, piAddr2) == 0)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), fname, 2);
             return 0;
         }
-        if (getAllocatedSingleString(pvApiCtx, piAddr2, &Input_SingleString_1))
+        if (getAllocatedSingleString(pvApiCtx, piAddr2, &Input_SingleString_2))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), fname, 2);
             return 0;
         }
         //Test on optional argument value
-        if (Input_SingleString_1[0] != '.' && Input_SingleString_1[0] != ',')
+        if (Input_SingleString_2[0] != '.' && Input_SingleString_2[0] != ',')
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: '.' or ',' expected.\n"), fname, 2);
         }
     }
     else
     {
-        Input_SingleString_1 = strdup(".");
+        Input_SingleString_2 = strdup(".");
     }
 
     //get variable address
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)
     {
+        FREE(Input_SingleString_2);
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
@@ -114,12 +116,14 @@ int sci_strtod(char *fname, unsigned long fname_len)
 
     if (isStringType(pvApiCtx, piAddr) == 0) //Check type
     {
+        FREE(Input_SingleString_2);
         Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings or empty matrix expected.\n"), fname, 1);
         return 0;
     }
 
     if (getAllocatedMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &Input_StringMatrix_1))
     {
+        FREE(Input_SingleString_2);
         Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings or empty matrix expected.\n"), fname, 1);
         return 0;
     }
@@ -132,7 +136,7 @@ int sci_strtod(char *fname, unsigned long fname_len)
         if (OutputStrings == NULL)
         {
             freeAllocatedMatrixOfString(iRows, iCols, Input_StringMatrix_1);
-            freeAllocatedSingleString(Input_SingleString_1);
+            freeAllocatedSingleString(Input_SingleString_2);
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
@@ -144,21 +148,22 @@ int sci_strtod(char *fname, unsigned long fname_len)
         FREE(OutputStrings);
         OutputStrings = NULL;
         freeAllocatedMatrixOfString(iRows, iCols, Input_StringMatrix_1);
-        freeAllocatedSingleString(Input_SingleString_1);
+        freeAllocatedSingleString(Input_SingleString_2);
         Scierror(999, _("%s: No more memory.\n"), fname);
         return 0;
     }
+
     for (x = 0 ; x < iRowsiCols ; x++)
     {
         //Double part
         char *stopstring = NULL;
         int iSign = 0;
 
-        if (Input_SingleString_1[0] == ',')
+        if (Input_SingleString_2[0] == ',')
         {
             iSign = (int)strcspn(Input_StringMatrix_1[x], symbol2);
         }
-        else if (Input_SingleString_1[0] == '.')
+        else if (Input_SingleString_2[0] == '.')
         {
             iSign = (int)strcspn(Input_StringMatrix_1[x], symbol1);
         }
@@ -206,7 +211,7 @@ int sci_strtod(char *fname, unsigned long fname_len)
                 }
                 else // strtod("  000xxx")
                 {
-                    if (Input_SingleString_1[0] == ',')
+                    if (Input_SingleString_2[0] == ',')
                     {
 #ifdef _MSC_VER
                         setlocale(LC_NUMERIC, "French_France.1252");
@@ -229,7 +234,7 @@ int sci_strtod(char *fname, unsigned long fname_len)
         }
         else //all characters are digits
         {
-            if (Input_SingleString_1[0] == ',')
+            if (Input_SingleString_2[0] == ',')
             {
 #ifdef _MSC_VER
                 setlocale(LC_NUMERIC, "French_France.1252");
@@ -260,7 +265,7 @@ int sci_strtod(char *fname, unsigned long fname_len)
             if (OutputStrings[x] == NULL)
             {
                 freeAllocatedMatrixOfString(iRows, iCols, Input_StringMatrix_1);
-                freeAllocatedSingleString(Input_SingleString_1);
+                freeAllocatedSingleString(Input_SingleString_2);
                 freeAllocatedMatrixOfString(iRows, iCols, OutputStrings);
                 FREE(OutputDoubles);
                 OutputDoubles = NULL;
@@ -270,7 +275,7 @@ int sci_strtod(char *fname, unsigned long fname_len)
 
             if (stopstring)
             {
-                if (Input_SingleString_1[0] == ',')
+                if (Input_SingleString_2[0] == ',')
                 {
                     strcpy(OutputStrings[x], stopstring);
                 }
@@ -298,21 +303,22 @@ int sci_strtod(char *fname, unsigned long fname_len)
 
     if (iLhs == 2)
     {
-        sciErr = createMatrixOfString(pvApiCtx, iRhs + 2, iRows, iCols, (char**)OutputStrings);
+        sciErr = createMatrixOfString(pvApiCtx, iRhs + 2, iRows, iCols, OutputStrings);
         if (sciErr.iErr)
         {
+            freeArrayOfString(OutputStrings, iRows * iCols);
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
 
         AssignOutputVariable(pvApiCtx, 2) = iRhs + 2;
-        freeAllocatedMatrixOfString(iRows, iCols, OutputStrings);
+        freeArrayOfString(OutputStrings, iRows * iCols);
     }
 
     FREE(OutputDoubles);
     freeAllocatedMatrixOfString(iRows, iCols, Input_StringMatrix_1);
-    freeAllocatedSingleString(Input_SingleString_1);
+    freeAllocatedSingleString(Input_SingleString_2);
     ReturnArguments(pvApiCtx);
     return 0;
 }

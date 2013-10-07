@@ -35,11 +35,13 @@ char **partfunction(char** stringInput, int m, int n, int *vectInput, int row)
         int lengthstringInput = 0;
         wchar_t *wcInput = to_wide_string(stringInput[i]);
         wchar_t *wcOutput = NULL;
-        if (wcInput)
+        if (wcInput == NULL)
         {
-            lengthstringInput = (int)wcslen(wcInput);
+            freeArrayOfString(parts, mn);
+            return NULL;
         }
 
+        lengthstringInput = (int)wcslen(wcInput);
         wcOutput = (wchar_t*)MALLOC(sizeof(wchar_t) * ((row) + 1));
 
         for (j = 0; j < row; j++)
@@ -55,16 +57,8 @@ char **partfunction(char** stringInput, int m, int n, int *vectInput, int row)
         }
         wcOutput[j] = '\0';
         parts[i] = wide_string_to_UTF8(wcOutput);
-        if (wcOutput)
-        {
-            FREE(wcOutput);
-            wcOutput = NULL;
-        }
-        if (wcInput)
-        {
-            FREE(wcInput);
-            wcInput = NULL;
-        }
+        FREE(wcOutput);
+        FREE(wcInput);
     }
     return parts;
 }

@@ -373,21 +373,9 @@ static stringToComplexError ParseComplexValue(const char *tx, BOOL bConvertByNAN
             }
         }
 
-        if (rnum_string)
-        {
-            FREE(rnum_string);
-            rnum_string = NULL;
-        }
-        if (inum_string)
-        {
-            FREE(inum_string);
-            inum_string = NULL;
-        }
-        if (modifiedTxt)
-        {
-            FREE(modifiedTxt);
-            modifiedTxt = NULL;
-        }
+        FREE(rnum_string);
+        FREE(inum_string);
+        FREE(modifiedTxt);
     }
     return ierr;
 }

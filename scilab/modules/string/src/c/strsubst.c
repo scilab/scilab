@@ -175,22 +175,18 @@ char *strsub_reg(char* input_string, const char* string_to_search, const char* r
 
     if (wcreplacement_string == NULL)
     {
+        FREE(wcinput_string);
         *ierr = (int)NOT_ENOUGH_MEMORY_FOR_VECTOR;
         return strdup(input_string);
     }
 
-    if (w == PCRE_FINISHED_OK)
-    {
-        len = (int)wcslen(wcreplacement_string) + (int)wcslen(wcinput_string);
-    }
-    else
-    {
-        len = (int)wcslen(wcinput_string);
-    }
+    len = (int)wcslen(wcreplacement_string) + (int)wcslen(wcinput_string);
 
     wcreplacedString = (wchar_t*)MALLOC (sizeof(wchar_t) * (len + 1));
     if (wcreplacedString == NULL)
     {
+        FREE(replacement_string);
+        FREE(wcinput_string);
         return NULL;
     }
 
@@ -215,22 +211,13 @@ char *strsub_reg(char* input_string, const char* string_to_search, const char* r
         wcstrOutput_Start = to_wide_string(strOutput_Start);
         wcstrOutput_End = to_wide_string(strOutput_End);
 
-        if (strOutput_Start)
-        {
-            FREE(strOutput_Start);
-            strOutput_Start = NULL;
-        }
-        if (strOutput_End)
-        {
-            FREE(strOutput_End);
-            strOutput_End = NULL;
-        }
+        FREE(strOutput_Start);
+        FREE(strOutput_End);
 
         if (wcstrOutput_Start)
         {
             wcOutput_Start = (int)wcslen(wcstrOutput_Start);
             FREE(wcstrOutput_Start);
-            wcstrOutput_Start = NULL;
         }
         else
         {
@@ -241,7 +228,6 @@ char *strsub_reg(char* input_string, const char* string_to_search, const char* r
         {
             wcOutput_End = (int)wcslen(wcstrOutput_End);
             FREE(wcstrOutput_End);
-            wcstrOutput_End = NULL;
         }
         else
         {
@@ -255,23 +241,11 @@ char *strsub_reg(char* input_string, const char* string_to_search, const char* r
         wcscat(wcreplacedString, wctail);
         replacedString = wide_string_to_UTF8(wcreplacedString);
 
-        if (wcreplacedString)
-        {
-            FREE(wcreplacedString);
-            wcreplacedString = NULL;
-        }
+        FREE(wcreplacedString);
     }
 
-    if (wcinput_string)
-    {
-        FREE(wcinput_string);
-        wcinput_string = NULL;
-    };
-    if (wcreplacement_string)
-    {
-        FREE(wcreplacement_string);
-        wcreplacement_string = NULL;
-    };
+    FREE(wcinput_string);
+    FREE(wcreplacement_string);
 
     return replacedString;
 }

@@ -33,7 +33,7 @@ int sci_isascii(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
-    int iType1		= 0;
+    int iType1 = 0;
 
     CheckRhs(1, 1);
     CheckLhs(0, 1);
@@ -54,18 +54,17 @@ int sci_isascii(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (iType1 == sci_matrix)
+    if (isDoubleType(pvApiCtx, piAddressVarOne))
     {
         return isasciiMatrix(fname, piAddressVarOne);
     }
-    else if (iType1 == sci_strings)
+
+    if (isStringType(pvApiCtx, piAddressVarOne))
     {
         return isasciiStrings(fname, piAddressVarOne);
     }
-    else
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Real matrix or matrix of strings expected.\n"), fname, 1);
-    }
+
+    Scierror(999, _("%s: Wrong type for input argument #%d: Real matrix or matrix of strings expected.\n"), fname, 1);
     return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -162,6 +161,14 @@ static int isasciiStrings(char *fname, int *piAddressVarOne)
     int m1 = 0, n1 = 0;
     wchar_t **pwcStVarOne = NULL;
     int *lenStVarOne = NULL;
+    int mOut = 0;
+    int nOut = 0;
+    int x = 0;
+
+    BOOL *bOutputMatrix = NULL;
+    int lengthAllStrings = 0;
+
+    int i = 0;
 
     sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
     if (sciErr.iErr)
@@ -172,131 +179,109 @@ static int isasciiStrings(char *fname, int *piAddressVarOne)
     }
 
     lenStVarOne = (int*)MALLOC(sizeof(int) * (m1 * n1));
-
-    if (lenStVarOne)
-    {
-        BOOL *bOutputMatrix = NULL;
-        int i = 0;
-        int lengthAllStrings = 0;
-
-        sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, NULL);
-        if (sciErr.iErr)
-        {
-            if (lenStVarOne)
-            {
-                FREE(lenStVarOne);
-                lenStVarOne = NULL;
-            }
-
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-            return 0;
-        }
-
-        pwcStVarOne = (wchar_t**)MALLOC(sizeof(wchar_t*) * (m1 * n1));
-        for (i = 0; i < (m1 * n1); i++)
-        {
-            lengthAllStrings = lengthAllStrings + lenStVarOne[i];
-
-            pwcStVarOne[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStVarOne[i] + 1));
-
-            if (pwcStVarOne[i] == NULL)
-            {
-                if (lenStVarOne)
-                {
-                    FREE(lenStVarOne);
-                    lenStVarOne = NULL;
-                }
-
-                freeArrayOfWideString(pwcStVarOne, m1 * n1);
-                Scierror(999, _("%s: Memory allocation error.\n"), fname);
-                return 0;
-            }
-        }
-
-        sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pwcStVarOne);
-        if (sciErr.iErr)
-        {
-            if (lenStVarOne)
-            {
-                FREE(lenStVarOne);
-                lenStVarOne = NULL;
-            }
-
-            freeArrayOfWideString(pwcStVarOne, m1 * n1);
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-            return 0;
-        }
-
-        bOutputMatrix = (BOOL*)MALLOC(sizeof(BOOL) * lengthAllStrings);
-        if (bOutputMatrix)
-        {
-            int mOut = 0;
-            int nOut = 0;
-            int x = 0;
-
-            for (i = 0; i < (m1 * n1); i++)
-            {
-                int j = 0;
-                wchar_t* wcInput = pwcStVarOne[i];
-                int len = (int)wcslen(wcInput);
-
-                for (j = 0; j < len; j++)
-                {
-                    if (iswascii(wcInput[j]))
-                    {
-                        bOutputMatrix[x] = (int)TRUE;
-                    }
-                    else
-                    {
-                        bOutputMatrix[x] = (int)FALSE;
-                    }
-                    x++;
-                }
-            }
-
-            mOut = 1;
-            nOut = lengthAllStrings;
-
-            sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, mOut, nOut, bOutputMatrix);
-            if (sciErr.iErr)
-            {
-                printError(&sciErr, 0);
-                Scierror(999, _("%s: Memory allocation error.\n"), fname);
-                return 0;
-            }
-
-            if (lenStVarOne)
-            {
-                FREE(lenStVarOne);
-                lenStVarOne = NULL;
-            }
-            freeArrayOfWideString(pwcStVarOne, m1 * n1);
-            if (bOutputMatrix)
-            {
-                FREE(bOutputMatrix);
-                bOutputMatrix = NULL;
-            }
-
-            LhsVar(1) = Rhs + 1;
-            PutLhsVar();
-        }
-        else
-        {
-            if (lenStVarOne)
-            {
-                FREE(lenStVarOne);
-                lenStVarOne = NULL;
-            }
-            freeArrayOfWideString(pwcStVarOne, m1 * n1);
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
-        }
-    }
-    else
+    if (lenStVarOne == NULL)
     {
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
     }
+
+
+    sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, NULL);
+    if (sciErr.iErr)
+    {
+        if (lenStVarOne)
+        {
+            FREE(lenStVarOne);
+            lenStVarOne = NULL;
+        }
+
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        return 0;
+    }
+
+    pwcStVarOne = (wchar_t**)MALLOC(sizeof(wchar_t*) * (m1 * n1));
+    for (i = 0; i < (m1 * n1); i++)
+    {
+        lengthAllStrings = lengthAllStrings + lenStVarOne[i];
+
+        pwcStVarOne[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStVarOne[i] + 1));
+
+        if (pwcStVarOne[i] == NULL)
+        {
+            if (lenStVarOne)
+            {
+                FREE(lenStVarOne);
+                lenStVarOne = NULL;
+            }
+
+            freeArrayOfWideString(pwcStVarOne, m1 * n1);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 0;
+        }
+    }
+
+    sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pwcStVarOne);
+    if (sciErr.iErr)
+    {
+        if (lenStVarOne)
+        {
+            FREE(lenStVarOne);
+            lenStVarOne = NULL;
+        }
+
+        freeArrayOfWideString(pwcStVarOne, m1 * n1);
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        return 0;
+    }
+
+    bOutputMatrix = (BOOL*)MALLOC(sizeof(BOOL) * lengthAllStrings);
+    if (bOutputMatrix == NULL)
+    {
+        freeArrayOfWideString(pwcStVarOne, m1 * n1);
+        FREE(lenStVarOne);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
+
+    for (i = 0; i < (m1 * n1); i++)
+    {
+        int j = 0;
+        wchar_t* wcInput = pwcStVarOne[i];
+        int len = (int)wcslen(wcInput);
+
+        for (j = 0; j < len; j++)
+        {
+            if (iswascii(wcInput[j]))
+            {
+                bOutputMatrix[x] = (int)TRUE;
+            }
+            else
+            {
+                bOutputMatrix[x] = (int)FALSE;
+            }
+            x++;
+        }
+    }
+
+    freeArrayOfWideString(pwcStVarOne, m1 * n1);
+    FREE(lenStVarOne);
+
+    mOut = 1;
+    nOut = lengthAllStrings;
+
+    sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, mOut, nOut, bOutputMatrix);
+    FREE(bOutputMatrix);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
+
+    LhsVar(1) = Rhs + 1;
+    PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/
