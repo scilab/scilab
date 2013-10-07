@@ -142,6 +142,11 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
 
         /* retrieve path of TMPDIR/workspace */
         env = scicos_malloc(sizeof(filePrefix) + Fnlength);
+        if (env == NULL)
+        {
+            set_block_error(-16);
+            return;
+        }
         memcpy(env, filePrefix, sizeof(filePrefix));
         memcpy(env + (sizeof(filePrefix) - 1), str, Fnlength + 1);
 
