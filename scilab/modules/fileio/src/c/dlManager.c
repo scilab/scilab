@@ -89,7 +89,7 @@ static char *getFileNameFromURL(char *url)
         return NULL;
     }
 
-    if (c->path == NULL || strcmp(c->path, "/") == 0)
+    if (c->path == NULL || strstr(c->path, "/") == 0 || strcmp(c->path, "/") == 0)
     {
         filename = (char *)MALLOC((strlen(DEFAULT_FILENAME) + 1) * sizeof(char));
         strcpy(filename, DEFAULT_FILENAME);
@@ -97,12 +97,6 @@ static char *getFileNameFromURL(char *url)
     else
     {
         char bname[PATH_MAX] = {0};
-
-        if (c->path == NULL)
-        {
-            Scierror(43, "Internal error: c->path is null ?!\n");
-        }
-
         strncpy(bname, basename(c->path), sizeof(bname));
         filename = (char *)MALLOC((strlen(bname) + 1) * sizeof(char));
         strcpy(filename, bname);

@@ -14,6 +14,8 @@ Scilab Bug Fixes
 
 * Bug #12956 fixed - splitURL with no protocol in URL provokes an access violation exception.
 
+* Bug #12971 fixed - getURL() downloaded file name is wrong
+
 
                  Changes between version 5.4.1 and 5.5.0-beta-1
                  ==============================================
