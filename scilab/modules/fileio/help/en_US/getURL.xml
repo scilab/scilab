@@ -130,7 +130,7 @@
             contour3d();
             
             // Use authentication
-            getURL("http://http://httpbin.org/basic-auth/user/passwd",TMPDIR+"/testfile.html","user","passwd")
+            getURL("http://httpbin.org/basic-auth/user/passwd",TMPDIR+"/testfile.html","user","passwd")
             
             // Needs IPv6 connectivity
             getURL("http://ipv6.google.com/intl/en_com/images/srpr/logo3w.png")
