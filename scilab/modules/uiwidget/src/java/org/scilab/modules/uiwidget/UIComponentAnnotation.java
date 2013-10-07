@@ -12,7 +12,6 @@
 
 package org.scilab.modules.uiwidget;
 
-import java.lang.annotation.Annotation;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 

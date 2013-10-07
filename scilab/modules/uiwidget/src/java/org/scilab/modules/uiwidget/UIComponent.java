@@ -14,17 +14,16 @@ package org.scilab.modules.uiwidget;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
-import java.awt.KeyboardFocusManager;
 import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
 import java.awt.LayoutManager;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.font.TextAttribute;
@@ -38,7 +37,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.EventListener;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -56,19 +54,17 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 
 import org.flexdock.view.View;
-import org.xml.sax.Attributes;
-
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.utils.ScilabRelief;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.uiwidget.callback.UICallback;
 import org.scilab.modules.uiwidget.components.NoLayout;
 import org.scilab.modules.uiwidget.components.UIFocusListener;
 import org.scilab.modules.uiwidget.components.UIMouseListener;
 import org.scilab.modules.uiwidget.components.UITab;
 import org.scilab.modules.uiwidget.components.UITools;
-import org.scilab.modules.uiwidget.callback.UICallback;
-import org.scilab.modules.types.ScilabType;
+import org.xml.sax.Attributes;
 
 /**
  * Main class to handle Java components.

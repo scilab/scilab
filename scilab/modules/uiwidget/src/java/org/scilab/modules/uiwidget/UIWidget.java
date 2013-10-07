@@ -13,22 +13,13 @@
 package org.scilab.modules.uiwidget;
 
 import java.awt.Component;
-import java.awt.Container;
 import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
-import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 
-import org.scilab.modules.graphic_objects.GraphicObjectBuilder;
-import org.scilab.modules.types.ScilabDouble;
-import org.scilab.modules.types.ScilabInteger;
 import org.scilab.modules.types.ScilabHandle;
-import org.scilab.modules.types.ScilabStackPutter;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.types.ScilabTypeEnum;

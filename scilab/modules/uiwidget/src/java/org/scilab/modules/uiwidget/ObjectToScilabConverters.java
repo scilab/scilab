@@ -29,12 +29,12 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
-import org.scilab.modules.types.ScilabHandle;
-import org.scilab.modules.types.ScilabStackPutter;
-import org.scilab.modules.uiwidget.callback.UICallback;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.types.ScilabHandle;
+import org.scilab.modules.types.ScilabStackPutter;
+import org.scilab.modules.uiwidget.callback.UICallback;
 
 /**
  * Class to provide easy way to convert a Java object into a Scilab variable and to put the result

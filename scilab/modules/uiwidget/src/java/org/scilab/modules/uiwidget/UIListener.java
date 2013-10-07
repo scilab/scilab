@@ -14,9 +14,6 @@ package org.scilab.modules.uiwidget;
 
 import java.awt.Component;
 
-import org.scilab.modules.uiwidget.UIComponent;
-import org.scilab.modules.uiwidget.UIWidgetException;
-
 /**
  * Abstract class to handle EventListener
  */

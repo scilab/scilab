@@ -12,12 +12,9 @@
 
 package org.scilab.modules.uiwidget;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Insets;
@@ -26,9 +23,8 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.net.URL;
-import java.net.MalformedURLException;
 import java.io.File;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -46,24 +42,23 @@ import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 import javax.swing.border.Border;
 
-import org.scilab.modules.uiwidget.components.UILabel;
-import org.scilab.modules.uiwidget.components.UIMenuItem;
-import org.scilab.modules.uiwidget.components.UITab;
-import org.scilab.modules.uiwidget.components.UISplit;
-import org.scilab.modules.uiwidget.components.UIButton;
-import org.scilab.modules.uiwidget.components.UIToolBar;
-import org.scilab.modules.uiwidget.components.UITools;
-import org.scilab.modules.uiwidget.components.UIPanel;
-import org.scilab.modules.uiwidget.components.UISlider;
-import org.scilab.modules.uiwidget.components.UIProgressBar;
-
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
-import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
+import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.uiwidget.components.UIButton;
+import org.scilab.modules.uiwidget.components.UILabel;
+import org.scilab.modules.uiwidget.components.UIMenuItem;
+import org.scilab.modules.uiwidget.components.UIPanel;
+import org.scilab.modules.uiwidget.components.UIProgressBar;
+import org.scilab.modules.uiwidget.components.UISlider;
+import org.scilab.modules.uiwidget.components.UISplit;
+import org.scilab.modules.uiwidget.components.UITab;
+import org.scilab.modules.uiwidget.components.UIToolBar;
+import org.scilab.modules.uiwidget.components.UITools;
 
 /**
  * Main class which handle conversion between String and basic Java objects
