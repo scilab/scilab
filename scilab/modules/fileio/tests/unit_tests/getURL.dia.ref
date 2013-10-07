@@ -1,83 +1,63 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - Sylvestre LEDRU
+// Copyright (C) 2013 - Scilab Enterprises
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//getURL
+function checkFile(filename, expectedFileName, minimalFileSize)
+    assert_checkequal(filename, expectedFileName)
+    info = fileinfo(filename);
+    assert_checktrue(info(1) > minimalFileSize);
+    deletefile(filename);
+endfunction
+function checkFileAndContent(filename, expectedFileName, minimalFileSize, keywordToFind)
+	fd = mopen(filename, "r");
+	assert_checktrue(grep(mgetl(fd), keywordToFind) <> []);
+	mclose(fd);
+	checkFile(filename, expectedFileName, minimalFileSize);
+endfunction
+function checkContent(filename, content, keyword, keywordToFind)
+	assert_checktrue(length(content) > 10);
+	assert_checktrue(grep(content, keywordToFind) <> []);
+	deletefile(filename);
+endfunction
 cd TMPDIR;
-myFile=getURL("http://www.scilab.org");
-assert_checkequal(myFile, "index.html")
- ans  =
- 
-  T  
-inf=fileinfo(myFile);
-assert_checktrue(inf(1) > 1000); // The homepage of Scilab is likely to be bigger than 1k
-myFile=getURL("http://www.scilab.org/");
-assert_checkequal(myFile, "index.html")
- ans  =
- 
-  T  
-inf=fileinfo(myFile);
-assert_checktrue(inf(1) > 1000); // The homepage of Scilab is likely to be bigger than 1k
-myFile=getURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README");
-assert_checkequal(myFile, "README");
-inf=fileinfo(myFile);
-assert_checktrue(inf(1) > 10); // The file size should be more than 10
-targetFile=TMPDIR+"/README_Debian";
-myFile=getURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README",targetFile);
-assert_checkequal(myFile, targetFile);
-inf=fileinfo(targetFile);
-assert_checktrue(inf(1) > 10); // The file size should be more than 10
-f1 = mopen(targetFile,"r");
-assert_checktrue(grep(mgetl(f1),"Linux") <> []);
-mclose(f1);
-targetFile="README";
-myFile=getURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README",TMPDIR);
-assert_checkequal(myFile, TMPDIR+"/"+targetFile);
-inf=fileinfo(TMPDIR+"/"+targetFile);
-assert_checktrue(inf(1) > 10); // The file size should be more than 10
-f1 = mopen(TMPDIR+"/"+targetFile,"r");
-assert_checktrue(grep(mgetl(f1),"Linux") <> []);
-mclose(f1);
+// Check downloaded file
+filename = getURL("http://www.scilab.org");
+checkFile(filename, "index.html", 1000);
+filename = getURL("http://www.scilab.org/");
+checkFile(filename, "index.html", 1000);
+filename = getURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README");
+checkFile(filename, "README", 10);
+targetFile = TMPDIR + "/README_Debian";
+filename = getURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README", targetFile);
+checkFileAndContent(filename, targetFile, 10, "Linux");
+filename = getURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README", TMPDIR);
+checkFileAndContent(filename, TMPDIR + "/README", 10, "Linux");
 // HTTPS
-myFile=getURL("https://encrypted.google.com");
-assert_checkequal(myFile, "index.html");
-inf=fileinfo(myFile);
-assert_checktrue(inf(1) > 10); // The file size should be more than 10
-targetFile=TMPDIR+"/testauth";
-myFile=getURL("http://httpbin.org/basic-auth/user/passwd",targetFile,"user","passwd");
-assert_checkequal(myFile, targetFile);
-inf=fileinfo(targetFile);
-assert_checktrue(inf(1) > 10); // The file size should be more than 10
-f1 = mopen(targetFile,"r");
-assert_checktrue(grep(mgetl(f1),"authenticated") <> []);
-mclose(f1);
-// Badly formated URL
-assert_checkerror("getURL(''http://plop@ae:www.scilab.org:80'');", [], 999);
-[f, HTMLContent]=getURL("http://www.scilab.org:80");
-assert_checktrue(length(HTMLContent) > 10);
-assert_checktrue(grep(HTMLContent,"html") <> []);
-[f, HTMLContent]=getURL("http://plop:ae@www.scilab.org:80");
-assert_checktrue(length(HTMLContent) > 10);
-assert_checktrue(grep(HTMLContent,"html") <> []);
-[f, HTMLContent]=getURL("http://www.scilab.org/aze");
-assert_checktrue(length(HTMLContent) > 10);
-assert_checkequal(grep(HTMLContent,"404"), []);
-[f, HTMLContent]=getURL("http://www.scilab.org");
-assert_checktrue(length(HTMLContent) > 10);
-assert_checktrue(grep(HTMLContent,"html") <> []);
-[f, HTMLContent]=getURL("http://www.scilab.org/");
-assert_checktrue(length(HTMLContent) > 10);
-assert_checktrue(grep(HTMLContent,"html") <> []);
-[f, HTMLContent]=getURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README");
-assert_checktrue(length(HTMLContent) > 0);
-assert_checktrue(grep(HTMLContent,"Linux") <> []);
+filename = getURL("https://encrypted.google.com");
+checkFileAndContent(filename, "index.html", 100, "html");
+targetFile = TMPDIR+"/testauth";
+filename = getURL("http://httpbin.org/basic-auth/user/passwd", targetFile, "user", "passwd");
+checkFileAndContent(filename, targetFile, 10, "authenticated");
+// Check returned content
+[f, content] = getURL("http://www.scilab.org:80");
+checkContent(f, content, 1000, "html");
+[f, content] = getURL("http://plop:ae@www.scilab.org:80");
+checkContent(f, content, 1000, "html");
+[f, content] = getURL("http://www.scilab.org/aze");
+checkContent(f, content, 100, "aze");
+[f, content] = getURL("http://www.scilab.org");
+checkContent(f, content, 1000, "html");
+[f, content] = getURL("http://www.scilab.org/");
+checkContent(f, content, 1000, "html");
+[f, content] = getURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README");
+checkContent(f, content, 10, "Linux");
 // HTTPS
-[f, HTMLContent]=getURL("https://encrypted.google.com");
-assert_checktrue(length(HTMLContent) > 100);
-[f, HTMLContent]=getURL("http://httpbin.org/basic-auth/user/passwd",TMPDIR,"user","passwd");
-assert_checktrue(length(HTMLContent) > 10);
-assert_checktrue(grep(HTMLContent,"authenticated") <> []);
+[f, content] = getURL("https://encrypted.google.com");
+checkContent(f, content, 100, "html");
+[f, content] = getURL("http://httpbin.org/basic-auth/user/passwd", TMPDIR, "user", "passwd");
+checkContent(f, content, 10, "authenticated");
 // Badly formated URL
 assert_checkerror("getURL(''http://plop@ae:www.scilab.org:80'');", [], 999);
