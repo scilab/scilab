@@ -57,6 +57,7 @@ import org.scilab.modules.uiwidget.components.UIProgressBar;
 import org.scilab.modules.uiwidget.components.UISlider;
 import org.scilab.modules.uiwidget.components.UISplit;
 import org.scilab.modules.uiwidget.components.UITab;
+import org.scilab.modules.uiwidget.components.UITextfield;
 import org.scilab.modules.uiwidget.components.UIToolBar;
 import org.scilab.modules.uiwidget.components.UITools;
 
@@ -366,6 +367,27 @@ public final class StringConverters {
                     return UILabel.Alignment.TRAILING;
                 } else {
                     return UILabel.Alignment.CENTER;
+                }
+            }
+        });
+        converters.put(UITextfield.Alignment.class, new StringConverter() {
+            public Object convert(String str) {
+                if (str == null || str.isEmpty()) {
+                    return UITextfield.Alignment.CENTER;
+                }
+
+                str = str.toLowerCase();
+
+                if (str.equals("leading")) {
+                    return UITextfield.Alignment.LEADING;
+                } else if (str.equals("left")) {
+                    return UITextfield.Alignment.LEFT;
+                } else if (str.equals("right")) {
+                    return UITextfield.Alignment.RIGHT;
+                } else if (str.equals("trailing")) {
+                    return UITextfield.Alignment.TRAILING;
+                } else {
+                    return UITextfield.Alignment.CENTER;
                 }
             }
         });
