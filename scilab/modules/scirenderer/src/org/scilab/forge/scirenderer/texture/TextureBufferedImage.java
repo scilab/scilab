@@ -49,7 +49,7 @@ public class TextureBufferedImage extends BufferedImage {
         int[] pixels = ((DataBufferInt) getRaster().getDataBuffer()).getData();
 
         for (int i = 0; i < pixels.length; i++) {
-            pixels[i] = (pixels[i] >> 24) | (pixels[i] << 8);
+            pixels[i] = (pixels[i] & 0xFF00FF00) | ((pixels[i] << 16) & 0x00FF0000) | ((pixels[i] >> 16) & 0xFF);
         }
 
         //updateFrame(this);
@@ -79,7 +79,7 @@ public class TextureBufferedImage extends BufferedImage {
         ByteBuffer buffer = ByteBuffer.allocate(pixels.length * 4);
         buffer.order(ByteOrder.nativeOrder());
         for (int i = 0; i < pixels.length; i++) {
-            buffer.putInt(((pixels[i] >> 24) & 0xFF) | ((pixels[i] << 8) & 0xFFFFFF00));
+            buffer.putInt((pixels[i] & 0xFF00FF00) | ((pixels[i] << 16) & 0x00FF0000) | ((pixels[i] >> 16) & 0xFF));
         }
         buffer.rewind();
 

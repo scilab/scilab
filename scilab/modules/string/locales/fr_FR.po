@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-24 14:40+0000\n"
+"PO-Revision-Date: 2013-09-16 10:02+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: fr\n"
 
 msgid "WARNING : \n"
@@ -390,9 +390,19 @@ msgid "%s: Unknown error.\n"
 msgstr "%s : Erreur inconnue.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: $ expected.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : $ attendu.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: a function expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une fonction attendue.\n"
+
+#, c-format
+msgid "%s: $ is the only implicit variable supported in selected indices"
+msgstr ""
+"%s : $ est la seule variable implicite supportée dans les indices "
+"sélectionnés."
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"

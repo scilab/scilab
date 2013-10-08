@@ -77,9 +77,9 @@ void ScilabJavaEnvironment::finish()
     {
         ScilabEnvironments::unregisterScilabEnvironment(envId);
         envId = -1;
+        instance->Finalize();
         delete instance;
         instance = 0;
-        instance->Finalize();
         usable = false;
     }
 }
@@ -397,6 +397,7 @@ std::vector<std::string> ScilabJavaEnvironment::getCompletion(int id, char ** fi
     {
         v.push_back(fields[i]);
     }
+    delete[] fields;
 
     return v;
 }

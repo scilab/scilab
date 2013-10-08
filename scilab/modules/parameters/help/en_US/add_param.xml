@@ -55,6 +55,9 @@
                 <listitem>
                     <para>an error flag which is set to %T if list_name is not of type plist (this list has not been initialized by a call to init_param).
                     </para>
+                    <caution>
+                        This argument is obsolete and will be removed in Scilab 5.5.1.
+                    </caution>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -67,7 +70,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 mylist = init_param();
 mylist = add_param(mylist,'minbound',[0 0 0]);
  ]]></programlisting>
@@ -91,5 +94,14 @@ mylist = add_param(mylist,'minbound',[0 0 0]);
                 <link linkend="is_param">is_param</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Second output argument (err) tagged as obsolete.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

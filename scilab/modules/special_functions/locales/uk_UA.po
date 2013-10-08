@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-16 04:18+0000\n"
+"PO-Revision-Date: 2013-09-15 06:59+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: uk\n"
 
 #, c-format
@@ -52,12 +52,18 @@ msgid "%s: Wrong type for argument %d: A matrix expected.\n"
 msgstr "%s: помилковий тип параметра %d: слід використовувати матрицю.\n"
 
 #, c-format
-msgid "%s: Wrong type for first input argument.\n"
-msgstr "%s: помилковий тип першого вхідного параметра.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Integer or vector of integers "
+"expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано ціле число "
+"або вектор з цілих чисел.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: помилковий тип вхідного параметра №%d.\n"
+msgid "%s: Wrong type for input argument #%d: Integer >= %d expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано ціле число "
+">= %d.\n"
 
 #, c-format
 msgid "%s: Only one of arg1 and arg2 may be a vector.\n"
@@ -65,11 +71,11 @@ msgstr "%s: вектором може бути лише один з двох п�
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Matrix with elements in (%d,%d) "
+"%s: Wrong value for input argument #%d: Matrix with elements in [%d,%d] "
 "expected.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати матрицю "
-"з елементами у (%d,%d).\n"
+"%s: помилкове значення вхідного параметра №%d: мало бути використано матрицю "
+"з елементами з діапазону [%d,%d].\n"
 
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"

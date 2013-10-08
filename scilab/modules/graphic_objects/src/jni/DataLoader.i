@@ -66,6 +66,7 @@ NIO_BUFFER_TYPEMAP(float, BUFF, java.nio.FloatBuffer);
 %apply int* BUFF {int* buffer};
 %apply unsigned char* BUFF {unsigned char* buffer};
 %apply float* BUFF {float* buffer};
+%apply float* BUFF {float* position};
 
 %typemap(jni) JavaDirectBuffer "jobject"
 %typemap(jtype) JavaDirectBuffer "java.nio.ByteBuffer"

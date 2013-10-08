@@ -270,9 +270,6 @@
     <ClInclude Include="..\..\includes\callFunctionFromGateway.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\callinter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\callinterf.h">
       <Filter>Header Files</Filter>
     </ClInclude>

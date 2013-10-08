@@ -76,7 +76,7 @@ function draw_cylinder(g_pente,orig)
     yy = (0:1:14)';
 
     if orig then
-        Z                       = -sqrt(1-ones(yy)*(xx^2))+a*yy*ones(xx);
+        Z                       = -sqrt(1-ones(yy)*(xx.^2))+a*yy*ones(xx);
         plot3d(xx,yy,Z');
     else
         my_figure_handle        = scf(100001);
@@ -598,7 +598,7 @@ function start_simu()
     y = Y(3,:)
     r = 0.1; //bias to have the curve above the surface
     a  = -tan(slope/180*%pi);
-    z = -sqrt(1-x^2)+a*y+r;
+    z = -sqrt(1-x.^2)+a*y+r;
     my_figure_handle = scf(100001);
     curAxe = gca();
     traj_handle=curAxe.children(1).children(5);

@@ -61,10 +61,85 @@
                 <listitem>
                     <para>
                         this field defines a [<literal>m</literal>x<literal>n</literal>]
-                        <literal>color</literal> data matrix using the current colormap. The color
-                        associated to <literal>color(i,j)</literal> is used do draw a small square
+                        <literal>color</literal> data matrix (double, (u)int8, (u)int16, (u)int32) or hypermatrix.
+			The colors are interpreted according to the image_type property.
+			The color associated to <literal>color(i,j)</literal> is used do draw a small square
                         of length 1 with center at location <literal>(x=j,y=(m-i+1))</literal>.
                     </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>image_type: </term>
+                <listitem>
+                    <para>
+                        this field defines the image type. It could be one of the values: "rgb", "rgba", "gray", "index",
+			"red", "green", "blue", "rgb332", "rgb444", "rgb555", "rgba5551".
+                    </para>
+		    <para>
+		      Colors are determinated by the data type and by image_type:
+		    </para>
+		    <itemizedlist>
+		      <listitem>
+			<para>
+			  When image_type is equals to index, the data are just considered as an index in the colormap.
+			</para>
+		      </listitem>
+		      <listitem>
+			<para>
+			  When image_type is equals to rgb, hypermat of int8 or uint8 will give the RGB components, hypermat of doubles will give normalized RGB components (values between 0 and 1), matrices of int8 or uint8 where number of rows is a multiple of 3 will give the RGB components, matrices of int32 will give RGB colors, matrices of uint32 will give RGBA colors where the alpha channel will be set to 0xFF.
+			</para>
+		      </listitem>
+		      <listitem>
+			<para>
+			  When image_type is equals to rgba, hypermat of int8 or uint8 will give the RGBA components, hypermat of doubles will give normalized RGBA components (values between 0 and 1), matrices of int8 or uint8 where number of rows is a multiple of 4 will give the RGB components, matrices of int32 will give RGBA colors, matrices of uint32 will give RGBA colors.
+			</para>
+		      </listitem>
+		      <listitem>
+			<para>
+			  When image_type is equals to gray, matrices of int8 or uint8 will give Gray level color (R-G-B=GRAY-GRAY-GRAY), for other types, data will be considered as RGB ones and converted into gray colors (0.299*R+0.587*G+0.114*B).
+			</para>
+		      </listitem>
+		      <listitem>
+			<para>
+			  When image_type is equals to red, matrices of int8 or uint8 will give Red level color (R-G-B=RED-00-00), for other types, data will be considered as RGB ones and converted into red colors (a mask is applied to keep the Red component).
+			</para>
+		      </listitem>
+		      <listitem>
+			<para>
+			  When image_type is equals to green, matrices of int8 or uint8 will give Green level color (R-G-B=00-GREEN-00), for other types, data will be considered as RGB ones and converted into green colors (a mask is applied to keep the Green component).
+			</para>
+		      </listitem>
+		      <listitem>
+			<para>
+			  When image_type is equals to blue, matrices of int8 or uint8 will give Blue level color (R-G-B=00-00-BLUE), for other types, data will be considered as RGB ones and converted into blue colors (a mask is applied to keep the Blue component).
+			</para>
+		      </listitem>
+		      <listitem>
+			<para>
+			  When image_type is equals to rgb332, matrices of int8 or uint8 will give RGB colors where R component is wrote on 3 bits, G component on 3 bits and B component on 2 bits. For other data types, RGB (8-8-8) data are converted into RGB (3-3-2).
+			</para>
+		      </listitem>
+		      <listitem>
+			<para>
+			  When image_type is equals to rgb444, matrices of int16 or uint16 will give RGB colors where each components is wrote on 4 bits. For other data types, RGB (8-8-8) data are converted into RGB (4-4-4).
+			</para>
+		      </listitem>
+		      <listitem>
+			<para>
+			  When image_type is equals to rgb555, matrices of int16 or uint16 will give RGB colors where each components is wrote on 5 bits. For other data types, RGB (8-8-8) data are converted into RGB (5-5-5).
+			</para>
+		      </listitem>
+		      <listitem>
+			<para>
+			  When image_type is equals to rgb4444, matrices of int16 or uint16 will give RGBA colors where each components is wrote on 4 bits. For other data types, RGBA (8-8-8-8) data are converted into RGBA (4-4-4-4).
+			</para>
+		      </listitem>
+		      <listitem>
+			<para>
+			  When image_type is equals to rgb5551, matrices of int16 or uint16 will give RGBA colors where each non-alpha components is wrote on 5 bits and the alpha component on 1 bit. For other data types, RGBA (8-8-8-8) data are converted into RGBA (5-5-5-1).
+			</para>
+		      </listitem>
+		    </itemizedlist>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -127,6 +202,11 @@ e=gce(); // get current entity
 
 e.data=e.data($:-1:1) // reverse order
  ]]></programlisting>
+<scilab:image>
+Matplot((1:xget("lastpattern")));
+e=gce();
+e.data=e.data($:-1:1);
+</scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

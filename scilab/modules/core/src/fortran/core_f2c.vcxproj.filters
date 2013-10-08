@@ -95,7 +95,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\callinter.h">
+    <ClInclude Include="..\..\includes\callinter.h.f">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\stack.h">

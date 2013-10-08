@@ -20,11 +20,11 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis> y = dae(initial, t0, t, res)
-            [y [,hd]] = dae(initial, t0, t [,rtol, [atol]], res [,jac] [,hd])
+            [y [,hd]] = dae(initial, t0, t [[,rtol], atol], res [,jac] [,hd])
             [y, rd] = dae("root", initial, t0, t, res, ng, surface)
-            [y, rd [,hd]] = dae("root", initial, t0, t [,rtol, [atol]], res [,jac], ng, surface [,hd])
+            [y, rd [,hd]] = dae("root", initial, t0, t [[,rtol], atol], res [,jac], ng, surface [,hd])
             [y, rd] = dae("root2", initial, t0, t, res, ng, surface)
-            [y, rd [,hd]] = dae("root2", initial, t0, t [,rtol, [atol]], res [,jac], ng, surface [, psol, pjac] [, hd])
+            [y, rd [,hd]] = dae("root2", initial, t0, t [[,rtol], atol], res [,jac], ng, surface [, psol, pjac] [, hd])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -62,6 +62,16 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>atol</term>
+                <listitem>
+                    <para>a real scalar or a column vector of same size as
+                        <literal>x0</literal>, the absolute error
+                        tolerance of solution. If <literal>atol</literal> is a vector the
+                        tolerances are specified for each component of the state.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>rtol</term>
                 <listitem>
                     <para>
@@ -73,20 +83,10 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>atol</term>
-                <listitem>
-                    <para>a real scalar or a column vector of same size as
-                        <literal>x0</literal>, the absolute error
-                        tolerance of solution. If <literal>atol</literal> is a vector the
-                        tolerances are specified for each component of the state.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>res</term>
                 <listitem>
                     <para>
-                        an <link linkend="external" role="" version="">external</link> function computes the value of
+                        an <link linkend="external" role="" version="">external</link> function, computes the value of
                         <literal>g(t,y,ydot)</literal>. It may be
                     </para>
                     <variablelist>
@@ -140,8 +140,8 @@ r=res(t,y,ydot,p1,p2,...)
                             <term>a character string</term>
                             <listitem>
                                 <para>
-                                    it must refer to the name of a C or fortran routine,
-                                    assuming that &lt;<literal>r_name</literal>&gt; is the given name.
+                                    it must refer to the name of a C or Fortran routine.
+                                    Assuming that &lt;<literal>r_name</literal>&gt; is the given name,
                                 </para>
                                 <itemizedlist>
                                     <listitem>
@@ -161,7 +161,9 @@ r=res(t,y,ydot,p1,p2,...)
                                         </para>
                                     </listitem>
                                     <listitem>
-                                        <para>The C calling sequence must be</para>
+                                        <para>
+                                            The C calling sequence must be
+                                        </para>
                                         <para>
                                             <literal>C2F(&lt;r_name&gt;)(double *t, double *x, double
                                                 *xdot, double *res, integer *ires, double *rpar, integer
@@ -224,7 +226,7 @@ r=res(t,y,ydot,p1,p2,...)
                 <term>jac</term>
                 <listitem>
                     <para>
-                        an <link linkend="external">external</link> computes the value of
+                        an <link linkend="external">external</link>, computes the value of
                         <literal>dg/dx+cj*dg/dxdot</literal> for a given value of parameter
                         <literal>cj</literal>. It may be
                     </para>
@@ -265,8 +267,8 @@ r=jac(t,x,xdot,p1,p2,...)
                         <varlistentry>
                             <term>a character string</term>
                             <listitem>
-                                <para>it must refer to the name of a C or fortran routine
-                                    assuming that &lt;j_name&gt; is the given name.
+                                <para>it must refer to the name of a C or Fortran routine.
+                                    Assuming that &lt;j_name&gt; is the given name,
                                 </para>
                                 <itemizedlist>
                                     <listitem>
@@ -288,7 +290,9 @@ r=jac(t,x,xdot,p1,p2,...)
                                         </para>
                                     </listitem>
                                     <listitem>
-                                        <para>The C calling sequence must be</para>
+                                        <para>
+                                            The C calling sequence must be
+                                        </para>
                                         <para>
                                             <literal>C2F(&lt;j_name&gt;)(double *t, double *x, double
                                                 *xdot, double *r, double *cj, integer *ires, double *rpar, integer *ipar)
@@ -310,7 +314,7 @@ r=jac(t,x,xdot,p1,p2,...)
                 <term>surface</term>
                 <listitem>
                     <para>
-                        an <link linkend="external">external</link> computes the value of the column vector
+                        an <link linkend="external">external</link>, computes the value of the column vector
                         <literal>surface(t,x)</literal> with <literal>ng</literal>
                         components. Each component defines a surface.
                     </para>
@@ -345,15 +349,13 @@ r=surface(t,x,p1,p2,...)
                         <varlistentry>
                             <term>a character string</term>
                             <listitem>
-                                <para>it must refer to the name of a C or fortran routine.
+                                <para>it must refer to the name of a C or Fortran routine.
                                     Assuming that &lt;s_name&gt; is the given name,
                                 </para>
                                 <itemizedlist>
                                     <listitem>
                                         <para>
-                                            <literal>The Fortran calling sequence must
-                                                be
-                                            </literal>
+                                            The Fortran calling sequence must be
                                         </para>
                                         <para>
                                             <literal>&lt;s_name&gt;(nx, t, x, ng, r, rpar,
@@ -370,7 +372,9 @@ r=surface(t,x,p1,p2,...)
                                         </para>
                                     </listitem>
                                     <listitem>
-                                        <para>The C calling sequence must be</para>
+                                        <para>
+                                            The C calling sequence must be
+                                        </para>
                                         <para>
                                             <literal>C2F(&lt;s_name&gt;)(double *t, double *x, double
                                                 *xdot, double *r, double *cj, integer *ires, double *rpar, integer *ipar)
@@ -382,7 +386,7 @@ r=surface(t,x,p1,p2,...)
                                     where <literal>t, x, rpar, ipar</literal> have similar
                                     definition as above, <literal>ng</literal> is the number of
                                     surfaces, <literal>nx</literal> the dimension of the state and
-                                    r is the results array.
+                                    <literal>r</literal> is the results array.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -435,7 +439,7 @@ r=surface(t,x,p1,p2,...)
                         </literal>
                         ,
                         each column is the vector <literal>[t;x(t);xdot(t)]</literal> where
-                        <literal>t</literal> is time index for which the solution had been
+                        <literal>t</literal> is time index for which the solution has been
                         computed. Else <literal>y</literal> is the vector
                         <literal>[x(t);xdot(t)]</literal>.
                     </para>
@@ -465,7 +469,7 @@ x(t0) = x0 and xdot(t0) = xdot0
             <literal>g(t,x0,xdot0)=0</literal>.
         </para>
         <para>
-            if <literal>xdot0</literal> is given in the <emphasis>initial</emphasis>
+            If <literal>xdot0</literal> is given in the <emphasis>initial</emphasis>
             argument it may be either a compatible derivative
             satisfying <literal>g(t,x0,xdot0)=0</literal> or an approximate value. In the latter case
             <link linkend="daeoptions">%DAEOPTIONS</link>(7) must be set to 1.

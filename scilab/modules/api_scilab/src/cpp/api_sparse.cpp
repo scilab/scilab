@@ -45,13 +45,11 @@ SciErr getComplexSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* 
 
 SciErr getCommonSparseMatrix(void* _pvCtx, int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+    SciErr sciErr = sciErrInit();
     int iPos	= 0;
     int iType	= 0;
 
-    if (	_piAddress == NULL)
+    if (_piAddress == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), _iComplex ? "getComplexSparseMatrix" : "getSparseMatrix");
         return sciErr;
@@ -66,7 +64,7 @@ SciErr getCommonSparseMatrix(void* _pvCtx, int* _piAddress, int _iComplex, int* 
 
     if (iType != sci_sparse)
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), _iComplex ? "getComplexSparseMatrix" : "getSparseMatrix", _("sparse matrix"));
+        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s expected"), _iComplex ? "getComplexSparseMatrix" : "getSparseMatrix", _("sparse matrix"));
         return sciErr;
     }
 
@@ -137,9 +135,8 @@ SciErr allocComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols,
 
 SciErr allocCommonSparseMatrix(void* _pvCtx, int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+    SciErr sciErr = sciErrInit();
+
 #if 0
     int iNewPos     = Top - Rhs + _iVar;
     int iAddr       = *Lstk(iNewPos);
@@ -190,32 +187,30 @@ SciErr allocCommonSparseMatrix(void* _pvCtx, int _iVar, int _iComplex, int _iRow
 
 SciErr fillCommonSparseMatrix(void* _pvCtx, int *_piAddress, int _iComplex, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg, int* _piTotalSize)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+    SciErr sciErr = sciErrInit();
     if (_piAddress == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "fillCommonSparseMatrix");
         return sciErr;
     }
 
-    _piAddress[0]		= sci_sparse;
-    _piAddress[1]		= Min(_iRows, _iRows * _iCols);
-    _piAddress[2]		= Min(_iCols, _iRows * _iCols);
-    _piAddress[3]		= _iComplex;
+    _piAddress[0] = sci_sparse;
+    _piAddress[1] = Min(_iRows, _iRows * _iCols);
+    _piAddress[2] = Min(_iCols, _iRows * _iCols);
+    _piAddress[3] = _iComplex;
 
-    _piAddress[4]		= _iNbItem;
+    _piAddress[4] = _iNbItem;
 
-    *_piNbItemRow	= _piAddress + 5;//4 for header + 1 for NbItem
-    *_piColPos		= *_piNbItemRow + _iRows;
-    *_pdblReal		= (double*)(*_piColPos + _iNbItem + !((_iRows + _iNbItem) % 2));
+    *_piNbItemRow = _piAddress + 5;//4 for header + 1 for NbItem
+    *_piColPos = *_piNbItemRow + _iRows;
+    *_pdblReal = (double*)(*_piColPos + _iNbItem + !((_iRows + _iNbItem) % 2));
 
     if (_iComplex == 1)
     {
-        *_pdblImg			= *_pdblReal + _iNbItem;
+        *_pdblImg = *_pdblReal + _iNbItem;
     }
 
-    *_piTotalSize	= _iNbItem * (_iComplex + 1);
+    *_piTotalSize = _iNbItem * (_iComplex + 1);
     return sciErr;
 }
 
@@ -231,9 +226,6 @@ SciErr createComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols
 
 SciErr createCommonSparseMatrix(void* _pvCtx, int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
     int* piNbItemRow    = NULL;
     int* piColPos       = NULL;
     int iOne            = 1;
@@ -243,7 +235,7 @@ SciErr createCommonSparseMatrix(void* _pvCtx, int _iVar, int _iComplex, int _iRo
     if (_iRows == 0 && _iCols == 0)
     {
         double dblReal = 0;
-        sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
+        SciErr sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
         if (sciErr.iErr)
         {
             addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
@@ -251,7 +243,7 @@ SciErr createCommonSparseMatrix(void* _pvCtx, int _iVar, int _iComplex, int _iRo
         return sciErr;
     }
 
-    sciErr = allocCommonSparseMatrix(_pvCtx, _iVar, _iComplex, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
+    SciErr sciErr = allocCommonSparseMatrix(_pvCtx, _iVar, _iComplex, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_CREATE_SPARSE, _("%s: Unable to create variable in Scilab memory"), _iComplex ? "createComplexSparseMatrix" : "createSparseMatrix");
@@ -280,9 +272,8 @@ SciErr createNamedComplexSparseMatrix(void* _pvCtx, const char* _pstName, int _i
 
 SciErr createCommonNamedSparseMatrix(void* _pvCtx, const char* _pstName, int _iComplex, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+    SciErr sciErr = sciErrInit();
+
 #if 0
     int iVarID[nsiz];
     int iSaveRhs        = Rhs;
@@ -375,18 +366,15 @@ SciErr readNamedComplexSparseMatrix(void* _pvCtx, const char* _pstName, int* _pi
 
 SciErr readCommonNamedSparseMatrix(void* _pvCtx, const char* _pstName, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
-    int* piAddr		= NULL;
-    int* piNbItemRow	= 0;
-    int* piColPos		= 0;
-    int iOne		= 1;
+    int* piAddr = NULL;
+    int* piNbItemRow = 0;
+    int* piColPos = 0;
+    int iOne = 1;
 
     double* pdblReal	= NULL;
     double* pdblImg		= NULL;
 
-    sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
+    SciErr sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_READ_NAMED_SPARSE, _("%s: Unable to get variable \"%s\""), _iComplex ? "readNamedComplexSparseMatrix" : "readNamedSparseMatrix", _pstName);
@@ -463,16 +451,13 @@ int getAllocatedComplexSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows,
 /*--------------------------------------------------------------------------*/
 static int getCommonAllocatedSparseMatrix(void* _pvCtx, int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
-    int* piNbItemRow	= NULL;
-    int* piColPos		= NULL;
-    int iOne		= 1;
-    double* pdblReal	= NULL;
-    double* pdblImg		= NULL;
+    int* piNbItemRow = NULL;
+    int* piColPos = NULL;
+    int iOne = 1;
+    double* pdblReal = NULL;
+    double* pdblImg = NULL;
 
-    sciErr = getCommonSparseMatrix(_pvCtx, _piAddress, _iComplex, _piRows, _piCols, _piNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
+    SciErr sciErr = getCommonSparseMatrix(_pvCtx, _piAddress, _iComplex, _piRows, _piCols, _piNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_SPARSE, _("%s: Unable to get argument #%d"), _iComplex ? "getAllocatedComplexSparseMatrix" : "getAllocatedSparseMatrix", getRhsFromAddress(_pvCtx, _piAddress));
@@ -480,18 +465,18 @@ static int getCommonAllocatedSparseMatrix(void* _pvCtx, int* _piAddress, int _iC
         return sciErr.iErr;
     }
 
-    *_piNbItemRow = (int*)MALLOC(sizeof(int) * *_piRows);
-    memcpy(*_piNbItemRow, piNbItemRow, sizeof(int) * *_piRows);
+    *_piNbItemRow = (int*)MALLOC(sizeof(int) **_piRows);
+    memcpy(*_piNbItemRow, piNbItemRow, sizeof(int) **_piRows);
 
-    *_piColPos = (int*)MALLOC(sizeof(int) * *_piNbItem);
-    memcpy(*_piColPos, piColPos, sizeof(int) * *_piNbItem);
+    *_piColPos = (int*)MALLOC(sizeof(int) **_piNbItem);
+    memcpy(*_piColPos, piColPos, sizeof(int) **_piNbItem);
 
-    *_pdblReal = (double*)MALLOC(sizeof(double) * *_piNbItem);
+    *_pdblReal = (double*)MALLOC(sizeof(double) **_piNbItem);
     C2F(dcopy)(_piNbItem, pdblReal, &iOne, *_pdblReal, &iOne);
 
     if (_iComplex)
     {
-        *_pdblImg = (double*)MALLOC(sizeof(double) * *_piNbItem);
+        *_pdblImg = (double*)MALLOC(sizeof(double) **_piNbItem);
         C2F(dcopy)(_piNbItem, pdblImg, &iOne, *_pdblImg, &iOne);
     }
 
@@ -510,10 +495,7 @@ int getNamedAllocatedComplexSparseMatrix(void* _pvCtx, const char* _pstName, int
 /*--------------------------------------------------------------------------*/
 static int getCommonNamedAllocatedSparseMatrix(void* _pvCtx, const char* _pstName, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
-    sciErr = readCommonNamedSparseMatrix(_pvCtx, _pstName, _iComplex, _piRows, _piCols, _piNbItem, NULL, NULL, NULL, NULL);
+    SciErr sciErr = readCommonNamedSparseMatrix(_pvCtx, _pstName, _iComplex, _piRows, _piCols, _piNbItem, NULL, NULL, NULL, NULL);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_GET_NAMED_ALLOC_SPARSE, _("%s: Unable to get argument \"%s\""), _iComplex ? "getNamedAllocatedComplexSparseMatrix" : "getNamedAllocatedSparseMatrix", _pstName);
@@ -521,13 +503,13 @@ static int getCommonNamedAllocatedSparseMatrix(void* _pvCtx, const char* _pstNam
         return sciErr.iErr;
     }
 
-    *_piNbItemRow		= (int*)MALLOC(sizeof(int) * *_piRows);
-    *_piColPos			= (int*)MALLOC(sizeof(int) * *_piNbItem);
+    *_piNbItemRow = (int*)MALLOC(sizeof(int) **_piRows);
+    *_piColPos = (int*)MALLOC(sizeof(int) **_piNbItem);
 
-    *_pdblReal			= (double*)MALLOC(sizeof(double) * *_piNbItem);
+    *_pdblReal = (double*)MALLOC(sizeof(double) **_piNbItem);
     if (_iComplex)
     {
-        *_pdblImg			= (double*)MALLOC(sizeof(double) * *_piNbItem);
+        *_pdblImg = (double*)MALLOC(sizeof(double) **_piNbItem);
     }
 
     sciErr = readCommonNamedSparseMatrix(_pvCtx, _pstName, _iComplex, _piRows, _piCols, _piNbItem, *_piNbItemRow, *_piColPos, *_pdblReal, *_pdblImg);

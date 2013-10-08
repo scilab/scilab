@@ -27,6 +27,7 @@
 #endif
 
 #include <math.h>
+#include <assert.h>
 #include <stdlib.h>
 
 #ifdef _MSC_VER
@@ -150,92 +151,10 @@ typedef enum
 #define SCSUINT32_COP unsigned int
 #define SCSUNKNOW_COP double
 
-/* scicos_block macros definition :
-*
-* 1  - GetNin(blk)
-* 2  - GetInPortPtrs(blk,x)
-* 3  - GetNout(blk)
-* 4  - GetOutPortPtrs(blk,x)
-* 5  - GetInPortRows(blk,x)
-* 6  - GetInPortCols(blk,x)
-* 7  - GetInPortSize(blk,x,y)
-* 8  - GetInType(blk,x)
-* 9  - GetOutPortRows(blk,x)
-* 10 - GetOutPortCols(blk,x)
-* 11 - GetOutPortSize(blk,x,y)
-* 12 - GetOutType(blk,x)
-* 13 - GetRealInPortPtrs(blk,x)
-* 14 - GetImagInPortPtrs(blk,x)
-* 15 - GetRealOutPortPtrs(blk,x)
-* 16 - GetImagOutPortPtrs(blk,x)
-* 17 - Getint8InPortPtrs(blk,x)
-* 18 - Getint16InPortPtrs(blk,x)
-* 19 - Getint32InPortPtrs(blk,x)
-* 20 - Getuint8InPortPtrs(blk,x)
-* 21 - Getuint16InPortPtrs(blk,x)
-* 22 - Getuint32InPortPtrs(blk,x)
-* 23 - Getint8OutPortPtrs(blk,x)
-* 24 - Getint16OutPortPtrs(blk,x)
-* 25 - Getint32OutPortPtrs(blk,x)
-* 26 - Getuint8OutPortPtrs(blk,x)
-* 27 - Getuint16OutPortPtrs(blk,x)
-* 28 - Getuint32OutPortPtrs(blk,x)
-*
-* 30 - GetNipar(blk)
-* 31 - GetIparPtrs(blk)
-* 32 - GetNrpar(blk)
-* 33 - GetRparPtrs(blk)
-*
-* 34 - GetWorkPtrs(blk)
-* 35 - GetNstate(blk)
-* 36 - GetState(blk)
-* 37 - GetDerState(blk))
-* 38 - GetResState(blk)
-* 39 - GetXpropPtrs(blk)
-*
-* 40 - GetNdstate(blk)
-* 41 - GetDstate(blk)
-*
-* 42 - GetNevIn(blk)
-* 43 - GetNevOut(blk)
-* 44 - GetNevOutPtrs(blk)
-*
-* 45 - GetNopar(blk)
-* 46 - GetOparType(blk,x)
-* 47 - GetOparSize(blk,x,y)
-* 48 - GetOparPtrs(blk,x)
-* 49 - GetRealOparPtrs(blk,x)
-* 50 - GetImagOparPtrs(blk,x)
-* 51 - Getint8OparPtrs(blk,x)
-* 52 - Getint16OparPtrs(blk,x)
-* 53 - Getint32OparPtrs(blk,x)
-* 54 - Getuint8OparPtrs(blk,x)
-* 55 - Getuint16OparPtrs(blk,x)
-* 56 - Getuint32OparPtrs(blk,x)
-* 57 - GetNoz(blk)
-* 58 - GetOzType(blk,x)
-* 59 - GetOzSize(blk,x,y)
-* 60 - GetOzPtrs(blk,x)
-* 61 - GetRealOzPtrs(blk,x)
-* 62 - GetImagOzPtrs(blk,x)
-* 63 - Getint8OzPtrs(blk,x)
-* 64 - Getint16OzPtrs(blk,x)
-* 65 - Getint32OzPtrs(blk,x)
-* 66 - Getuint8OzPtrs(blk,x)
-* 67 - Getuint16OzPtrs(blk,x)
-* 68 - Getuint32OzPtrs(blk,x)
-* 69 - GetSizeOfOz(blk,x)
-* 70 - GetSizeOfOpar(blk,x)
-* 71 - GetSizeOfOut(blk,x)
-* 72 - GetSizeOfIn(blk,x)
-*
-* 73 - GetNg(blk)
-* 74 - GetGPtrs(blk)
-* 75 - GetJrootPtrs(blk)
-* 76 - GetNmode(blk)
-* 77 - GetModePtrs(blk)
-* 78 - GetLabelPtrs(blk)
-*/
+/** \name Getters
+ *  These macros should be used to ease programming and debugging of new blocks.
+ */
+///@{
 
 /**
 \brief Get number of regular input port.
@@ -245,7 +164,7 @@ typedef enum
 /**
 \brief Get regular input port pointer of port number x.
 */
-#define GetInPortPtrs(blk,x) ((((x)>0)&((x)<=(blk->nin))) ? (blk->inptr[x-1]) : NULL)
+#define GetInPortPtrs(blk,x) (assert((x)>0), assert((x)<=(blk->nin)), blk->inptr[(x)-1])
 
 /**
 \brief Get number of regular output port.
@@ -255,59 +174,55 @@ typedef enum
 /**
 \brief Get regular output port pointer of port number x.
 */
-#define GetOutPortPtrs(blk,x) ((((x)>0)&((x)<=(blk->nout))) ? (blk->outptr[x-1]) : NULL)
+#define GetOutPortPtrs(blk,x) (assert((x)>0), assert((x)<=(blk->nout)), blk->outptr[x-1])
 
 /**
 \brief Get number of rows (first dimension) of regular input port number x.
 */
-#define GetInPortRows(blk,x) ((((x)>0)&((x)<=(blk->nin))) ? (blk->insz[x-1]) : 0)
+#define GetInPortRows(blk,x) (assert((x)>0), assert((x)<=(blk->nin)), blk->insz[x-1])
 
 /**
 \brief Get number of columns (second dimension) of regular input port number x.
 */
-#define GetInPortCols(blk,x) ((((x)>0)&((x)<=(blk->nin))) ? (blk->insz[blk->nin+(x-1)]) : 0)
+#define GetInPortCols(blk,x) (assert((x)>0), assert((x)<=(blk->nin)), blk->insz[blk->nin+(x-1)])
 
 /**
 \brief Get regular input port size number x.
-*/
-/*  usage :
 *   GetInPortSize(blk,x,1) : get first dimension of input port number x
 *   GetInPortSize(blk,x,2) : get second dimension of input port number x
 */
-#define GetInPortSize(blk,x,y) ((((x)>0)&((x)<=(blk->nin))) ? \
-	((((y)>0)&((y)<=2)) ? (blk->insz[(y-1)*blk->nin+(x-1)]) : 0) : 0)
+#define GetInPortSize(blk,x,y) (assert((x)>0), assert((x)<=(blk->nin)), \
+	assert((y)>0), assert((y)<=2), blk->insz[(y-1)*blk->nin+(x-1)])
 
 /**
 \brief Get type of regular input port number x.
 */
-#define GetInType(blk,x) ((((x)>0)&((x)<=(blk->nin))) ? \
-	(blk->insz[2*(blk->nin)+(x-1)]) : 0)
+#define GetInType(blk,x) (assert((x)>0), assert((x)<=(blk->nin)), \
+	blk->insz[2*(blk->nin)+(x-1)])
 
 /**
 \brief Get number of rows (first dimension) of regular output port number x.
 */
-#define GetOutPortRows(blk,x) ((((x)>0)&((x)<=(blk->nout))) ? (blk->outsz[x-1]) : 0)
+#define GetOutPortRows(blk,x) (assert((x)>0), assert((x)<=(blk->nout)), blk->outsz[x-1])
 
 /**
 \brief Get number of columns (second dimension) of regular output port number x.
 */
-#define GetOutPortCols(blk,x) ((((x)>0)&((x)<=(blk->nout))) ? (blk->outsz[blk->nout+(x-1)]) : 0)
+#define GetOutPortCols(blk,x) (assert((x)>0), assert((x)<=(blk->nout)), blk->outsz[blk->nout+(x-1)])
 
 /**
 \brief Get regular output port size number x.
-*/
-/*  usage :
 *   GetOutPortSize(blk,x,1) : get first dimension of output port number x
 *   GetOutPortSize(blk,x,2) : get second dimension of output port number x
 */
-#define GetOutPortSize(blk,x,y) ((((x)>0)&((x)<=(blk->nout))) ? \
-	((((y)>0)&((y)<=2)) ? (blk->outsz[(y-1)*blk->nout+(x-1)]) : 0) : 0)
+#define GetOutPortSize(blk,x,y) (assert((x)>0), assert((x)<=(blk->nout)), \
+    assert((y)>0), assert((y)<=2), blk->outsz[(y-1)*blk->nout+(x-1)])
 
 /**
 \brief Get type of regular output port number x.
 */
-#define GetOutType(blk,x) ((((x)>0)&((x)<=(blk->nout))) ? \
-	(blk->outsz[2*(blk->nout)+(x-1)]) : 0)
+#define GetOutType(blk,x) (assert((x)>0), assert((x)<=(blk->nout)), \
+	blk->outsz[2*(blk->nout)+(x-1)])
 
 /**
 \brief Get pointer of real part of regular input port number x.
@@ -317,9 +232,9 @@ typedef enum
 /**
 \brief Get pointer of imaginary part of regular input port number x.
 */
-#define GetImagInPortPtrs(blk,x) (((x)>0)&((x)<=(blk->nin)) ? \
+#define GetImagInPortPtrs(blk,x) (assert((x)>0), assert((x)<=(blk->nin)), \
 	(SCSREAL_COP *) ((SCSREAL_COP *)blk->inptr[x-1]+ \
-	((blk->insz[(x-1)])*(blk->insz[blk->nin+(x-1)]))) : NULL)
+	((blk->insz[(x-1)])*(blk->insz[blk->nin+(x-1)]))))
 
 /**
 \brief Get pointer of real part of regular output port number x.
@@ -329,9 +244,9 @@ typedef enum
 /**
 \brief Get pointer of imaginary part of regular output port number x.
 */
-#define GetImagOutPortPtrs(blk,x) (((x)>0)&((x)<=(blk->nout)) ? \
+#define GetImagOutPortPtrs(blk,x) (assert((x)>0), assert((x)<=(blk->nout)), \
 	(SCSREAL_COP *) ((SCSREAL_COP *)blk->outptr[x-1]+ \
-	((blk->outsz[(x-1)])*(blk->outsz[blk->nout+(x-1)]))) : NULL)
+	((blk->outsz[(x-1)])*(blk->outsz[blk->nout+(x-1)]))))
 
 /**
 \brief Get pointer of int8 typed regular input port number x.
@@ -476,23 +391,20 @@ typedef enum
 /**
 \brief Get type of object parameters number x.
 */
-#define GetOparType(blk,x) (((x>0)&(x<=blk->nopar)) ? (blk->opartyp[x-1]) : 0)
+#define GetOparType(blk,x) (assert(x>0), assert(x<=blk->nopar), blk->opartyp[x-1])
 
 /**
 \brief Get size of object parameters number x.
-
-*/
-/*  usage :
 *   GetOparSize(blk,x,1) : get first dimension of opar
 *   GetOparSize(blk,x,2) : get second dimension of opar
 */
-#define GetOparSize(blk,x,y) (((x>0)&(x<=blk->nopar)) ? \
-	((((y)>0)&((y)<=2)) ? (blk->oparsz[(y-1)*blk->nopar+(x-1)]) : 0) : 0)
+#define GetOparSize(blk,x,y) (assert((x)>0), assert(x<=blk->nopar), \
+    assert((y)>0), assert((y)<=2), blk->oparsz[(y-1)*blk->nopar+(x-1)])
 
 /**
 \brief Get pointer of object parameters number x.
 */
-#define GetOparPtrs(blk,x) (((x>0)&(x<=blk->nopar)) ? (blk->oparptr[x-1]) : 0)
+#define GetOparPtrs(blk,x) (assert((x)>0), assert((x)<=(blk)->nopar), (blk)->oparptr[(x)-1])
 
 /**
 \brief Get pointer of real object parameters number x.
@@ -502,9 +414,9 @@ typedef enum
 /**
 \brief Get pointer of imaginary part of object parameters number x.
 */
-#define GetImagOparPtrs(blk,x) (((x)>0)&((x)<=(blk->nopar)) ? \
+#define GetImagOparPtrs(blk,x) (assert((x)>0), assert((x)<=(blk->nopar)), \
 	(SCSREAL_COP *) ((SCSREAL_COP *)blk->oparptr[x-1]+ \
-	((blk->oparsz[x-1])*(blk->oparsz[blk->nopar+(x-1)]))) : NULL)
+	((blk->oparsz[x-1])*(blk->oparsz[blk->nopar+(x-1)])))
 
 /**
 \brief Get pointer of int8 typed object parameters number x.
@@ -544,23 +456,20 @@ typedef enum
 /**
 \brief Get type of object state number x.
 */
-#define GetOzType(blk,x) (((x>0)&(x<=blk->noz)) ? (blk->oztyp[x-1]) : 0)
+#define GetOzType(blk,x) (assert((x)>0), assert((x)<=(blk)->noz), (blk)->oztyp[(x)-1])
 
 /**
 \brief Get size of object state number x.
-
-*/
-/*  usage :
 *   GetOzSize(blk,x,1) : get first dimension of oz
 *   GetOzSize(blk,x,2) : get second dimension of oz
 */
-#define GetOzSize(blk,x,y) (((x>0)&(x<=blk->noz)) ? \
-	((((y)>0)&((y)<=2)) ? (blk->ozsz[(y-1)*blk->noz+(x-1)]) : 0) : 0)
+#define GetOzSize(blk,x,y) (assert((x)>0), assert((x)<=(blk)->noz), \
+	assert((y)>0), assert((y)<=2), (blk)->ozsz[((y)-1)*(blk)->noz+((x)-1)])
 
 /**
 \brief Get pointer of object state number x.
 */
-#define GetOzPtrs(blk,x) (((x>0)&(x<=blk->noz)) ? (blk->ozptr[x-1]) : 0)
+#define GetOzPtrs(blk,x) (assert((x)>0), assert((x)<=(blk)->noz), (blk)->ozptr[(x)-1])
 
 /**
 \brief Get pointer of real object state number x.
@@ -570,9 +479,9 @@ typedef enum
 /**
 \brief Get pointer of imaginary part of object state number x.
 */
-#define GetImagOzPtrs(blk,x) (((x)>0)&((x)<=(blk->noz)) ? \
+#define GetImagOzPtrs(blk,x) (assert((x)>0), assert((x)<=(blk)->noz), \
 	(SCSREAL_COP *) ((SCSREAL_COP *)blk->ozptr[x-1]+ \
-	((blk->ozsz[x-1])*(blk->ozsz[blk->noz+(x-1)]))) : NULL)
+	((blk->ozsz[x-1])*(blk->ozsz[blk->noz+(x-1)])))
 
 /**
 \brief Get pointer of int8 typed object state number x.
@@ -668,6 +577,8 @@ typedef enum
 \brief Get pointer of the block label
 */
 #define GetLabelPtrs(blk) (blk->label)
+
+///@}
 
 #endif /* __SCICOS_BLOCK_H__ */
 

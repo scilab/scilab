@@ -13,17 +13,17 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xarrows">
     <refnamediv>
         <refname>xarrows</refname>
-        <refpurpose>draw a set of arrows</refpurpose>
+        <refpurpose>draw a set of arrows in 2D or in 3D.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>xarrows(nx, ny, [arsize, color])</synopsis>
+        <synopsis>xarrows(nx, ny [,nz] [,arsize, color])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>nx, ny</term>
+                <term>nx, ny, nz</term>
                 <listitem>
                     <para>real vectors or matrices of same size.</para>
                 </listitem>
@@ -58,18 +58,20 @@
         <title>Description</title>
         <para>
             <function>xarrows</function> draws a set of arrows
-            given by <varname>nx</varname> and <varname>ny</varname>.
-            If <varname>nx</varname> and <varname>ny</varname> are vectors,
+            given by <varname>nx</varname>, <varname>ny</varname> and <varname>nz</varname>.
+	    If <varname>nz</varname> is not given, then the arrows are drawn in 2D.
+            If <varname>nx</varname>, <varname>ny</varname> and <varname>nz</varname> are vectors,
             the <literal>i</literal>-th arrow is defined by
-            <literal>(nx(i),ny(i))--&gt;(nx(i+1),ny(i+1))</literal>.
-            If <varname>nx</varname> and <varname>ny</varname> are matrices:
+            <literal>(nx(i),ny(i),nz(i))--&gt;(nx(i+1),ny(i+1),nz(i+1))</literal>.
+            If <varname>nx</varname>, <varname>ny</varname> and <varname>nz</varname> are matrices:
         </para>
         <programlisting role="no-scilab-exec"><![CDATA[
 nx=[xi_1 x1_2 ...; xf_1 xf_2 ...]
 ny=[yi_1 y1_2 ...; yf_1 yf_2 ...]
+nz=[zi_1 z1_2 ...; zf_1 zf_2 ...]
  ]]></programlisting>
         <para>
-            the <literal>k</literal>-th arrow is defined by <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>.
+            the <literal>k</literal>-th arrow is defined by <literal>(xi_k,yi_k,zi_k)--&gt;(xf_k,yf_k,zf_k)</literal>.
         </para>
         <para>
             <function>xarrows</function> uses the current graphics
@@ -97,5 +99,34 @@ xset("clipoff")
             xarrows(x1, y1, -1, [1:7,9])
             xset("clipoff")
         </scilab:image>
+        <programlisting role="example"><![CDATA[
+N = 100;
+zi = linspace(-1,2,N);
+zf = zi;
+theta = (zi - min(zi))/(max(zi)-min(zi))*720;
+xi = zeros(1,N);  xf = cosd(theta);
+yi = zeros(1,N);  yf = sind(theta);
+clf, plot3d([-1 1 1 1],[-1 -1 -1 1],[-1 -1 2 2])
+xarrows([xi;xf],[yi;yf],[zi;zf],0.7, 32*rand(1,N))
+ ]]></programlisting>
+        <scilab:image>
+N = 100;
+zi = linspace(-1,2,N);
+zf = zi;
+theta = (zi - min(zi))/(max(zi)-min(zi))*720;
+xi = zeros(1,N);  xf = cosd(theta);
+yi = zeros(1,N);  yf = sind(theta);
+clf, plot3d([-1 1 1 1],[-1 -1 -1 1],[-1 -1 2 2])
+xarrows([xi;xf],[yi;yf],[zi;zf],0.7, 32*rand(1,N))
+        </scilab:image>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Arrows can be drawn in 3D.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

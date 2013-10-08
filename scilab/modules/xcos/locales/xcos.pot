@@ -14,9 +14,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-09-13 12:32+0100\n"
+"Revision-Date: 2013-09-27 17:13+0100\n"
 
-# File: sci_gateway/c/gw_xcos.c, line: 55
+# File: sci_gateway/c/gw_xcos.c, line: 56
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""
@@ -68,130 +68,130 @@ msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 863
+# File: scilab_fake_localization_file.c, line: 866
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 206
 msgid "Straight"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 864
+# File: scilab_fake_localization_file.c, line: 867
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 207
 msgid "Horizontal"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 865
+# File: scilab_fake_localization_file.c, line: 868
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 208
 msgid "Vertical"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 884
+# File: scilab_fake_localization_file.c, line: 887
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 244
 msgid "No trace nor debug printing"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 885
+# File: scilab_fake_localization_file.c, line: 888
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 245
 msgid "Light Simulation trace (Discrete and Continuous part switches)"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 886
+# File: scilab_fake_localization_file.c, line: 889
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 246
 msgid "Per block execution trace and Debug block calls"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 887
+# File: scilab_fake_localization_file.c, line: 890
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 247
 msgid "Debug block calls without trace"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 898
+# File: scilab_fake_localization_file.c, line: 901
 msgid "Number of recently opened files to display: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 910
+# File: scilab_fake_localization_file.c, line: 913
 msgid "Default file format"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 929
+# File: scilab_fake_localization_file.c, line: 932
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 205
 msgid "Link Style"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 943
+# File: scilab_fake_localization_file.c, line: 946
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 103
 msgid "Diagram background"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 949
+# File: scilab_fake_localization_file.c, line: 952
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 102
 msgid "Grid"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 963
+# File: scilab_fake_localization_file.c, line: 966
 msgid "Default simulation settings"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 965
+# File: scilab_fake_localization_file.c, line: 968
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 214
 msgid "Final integration time"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 971
+# File: scilab_fake_localization_file.c, line: 974
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 215
 msgid "Real time scaling"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 977
+# File: scilab_fake_localization_file.c, line: 980
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 216
 msgid "Integrator absolute tolerance"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 983
+# File: scilab_fake_localization_file.c, line: 986
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 217
 msgid "Integrator relative tolerance"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 989
+# File: scilab_fake_localization_file.c, line: 992
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 218
 msgid "Tolerance on time"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 995
+# File: scilab_fake_localization_file.c, line: 998
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 219
 msgid "Max integration time interval"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1001
+# File: scilab_fake_localization_file.c, line: 1004
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 220
 msgid "Solver kind"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1015
+# File: scilab_fake_localization_file.c, line: 1018
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 221
 msgid "Maximum step size (0 means no limit)"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1024
+# File: scilab_fake_localization_file.c, line: 1027
 msgid "Default trace settings"
 msgstr ""
 
@@ -462,20 +462,20 @@ msgid "Please take a look into the Scilab console"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 62
+# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 64
 #, c-format
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 65
+# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 67
 #, c-format
 msgid ""
 "Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 67
+# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 69
 #, c-format
 msgid "Unable to import %s .\n"
 msgstr ""
@@ -1890,7 +1890,7 @@ msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr ""
 
 #
-# File: macros/xcosPalGenerateAllIcons.sci, line: 34
+# File: macros/xcosPalGenerateAllIcons.sci, line: 32
 #, c-format
 msgid "%s: Wrong value for input argument #%d: No block found.\n"
 msgstr ""

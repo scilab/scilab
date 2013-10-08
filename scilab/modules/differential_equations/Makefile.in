@@ -974,11 +974,11 @@ libscidifferential_equations_algo_la-Ex-odedc.lo: src/c/Ex-odedc.c
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_algo_la-Ex-odedc.lo `test -f 'src/c/Ex-odedc.c' || echo '$(srcdir)/'`src/c/Ex-odedc.c
 
 libscidifferential_equations_algo_la-Ex-daskr.lo: src/c/Ex-daskr.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_algo_la-Ex-daskr.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_algo_la-Ex-daskr.Tpo -c -o libscidifferential_equations_algo_la-Ex-daskr.lo `test -f 'src/c/Ex-daskr.c' || echo '$(srcdir)/'`src/c/Ex-daskr.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_algo_la-Ex-daskr.Tpo $(DEPDIR)/libscidifferential_equations_algo_la-Ex-daskr.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/Ex-daskr.c' object='libscidifferential_equations_algo_la-Ex-daskr.lo' libtool=yes @AMDEPBACKSLASH@
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_algo_la-Ex-daskr.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_algo_la-Ex-daskr.Tpo -c -o libscidifferential_equations_algo_la-Ex-daskr.lo `test -f 'src/c/Ex-daskr.c' || echo '$(srcdir)/'`src/c/Ex-daskr.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscidifferential_equations_algo_la-Ex-daskr.Tpo $(DEPDIR)/libscidifferential_equations_algo_la-Ex-daskr.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/Ex-daskr.c' object='libscidifferential_equations_algo_la-Ex-daskr.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_algo_la-Ex-daskr.lo `test -f 'src/c/Ex-daskr.c' || echo '$(srcdir)/'`src/c/Ex-daskr.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_algo_la-Ex-daskr.lo `test -f 'src/c/Ex-daskr.c' || echo '$(srcdir)/'`src/c/Ex-daskr.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -1093,11 +1093,11 @@ libscidifferential_equations_la-sci_dasrt.lo: sci_gateway/cpp/sci_dasrt.cpp
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscidifferential_equations_la-sci_dasrt.lo `test -f 'sci_gateway/cpp/sci_dasrt.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_dasrt.cpp
 
 libscidifferential_equations_la-sci_daskr.lo: sci_gateway/cpp/sci_daskr.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscidifferential_equations_la-sci_daskr.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-sci_daskr.Tpo -c -o libscidifferential_equations_la-sci_daskr.lo `test -f 'sci_gateway/cpp/sci_daskr.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_daskr.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_la-sci_daskr.Tpo $(DEPDIR)/libscidifferential_equations_la-sci_daskr.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_daskr.cpp' object='libscidifferential_equations_la-sci_daskr.lo' libtool=yes @AMDEPBACKSLASH@
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscidifferential_equations_la-sci_daskr.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-sci_daskr.Tpo -c -o libscidifferential_equations_la-sci_daskr.lo `test -f 'sci_gateway/cpp/sci_daskr.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_daskr.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscidifferential_equations_la-sci_daskr.Tpo $(DEPDIR)/libscidifferential_equations_la-sci_daskr.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_daskr.cpp' object='libscidifferential_equations_la-sci_daskr.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscidifferential_equations_la-sci_daskr.lo `test -f 'sci_gateway/cpp/sci_daskr.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_daskr.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscidifferential_equations_la-sci_daskr.lo `test -f 'sci_gateway/cpp/sci_daskr.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_daskr.cpp
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<
@@ -1244,10 +1244,10 @@ ddasrt.lo: src/fortran/ddasrt.f
 	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ddasrt.lo `test -f 'src/fortran/ddasrt.f' || echo '$(srcdir)/'`src/fortran/ddasrt.f
 
 ddaskr.lo: src/fortran/ddaskr.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ddaskr.lo `test -f 'src/fortran/ddaskr.f' || echo '$(srcdir)/'`src/fortran/ddaskr.f
+	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ddaskr.lo `test -f 'src/fortran/ddaskr.f' || echo '$(srcdir)/'`src/fortran/ddaskr.f
 
 daux.lo: src/fortran/daux.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o daux.lo `test -f 'src/fortran/daux.f' || echo '$(srcdir)/'`src/fortran/daux.f
+	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o daux.lo `test -f 'src/fortran/daux.f' || echo '$(srcdir)/'`src/fortran/daux.f
 
 stodi.lo: src/fortran/stodi.f
 	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o stodi.lo `test -f 'src/fortran/stodi.f' || echo '$(srcdir)/'`src/fortran/stodi.f

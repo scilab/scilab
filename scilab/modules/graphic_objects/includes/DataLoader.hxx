@@ -81,6 +81,17 @@ extern "C"
     void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double scale[], double translation[], int logMask);
 
     /**
+     * Fill the given buffer with normal data from the given object.
+     * @param[in] the id of the given object.
+     * @param[in] the buffer with position data.
+     * @param[out] the buffer to fill.
+     * @param[in] the buffer length in number of elements.
+     * @param[in] the number of coordinate taken by one element in the buffer.
+     */
+    void fillNormals(char* id, float* position, float* buffer, int bufferLength, int elementsSize);
+
+
+    /**
      * Fill the given buffer with color data from the given object.
      * @param[in] the id of the given object.
      * @param[in] the buffer to fill.

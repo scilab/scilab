@@ -11,8 +11,6 @@
 // <-- JVM MANDATORY -->
 //
 
-exec("SCI/modules/external_objects_java/tests/unit_tests/ecjclasspath.sce", -1);
-
 c = jcompile("Test", ["public class Test {";
 "public int field;";
 "public Test(int n) {";

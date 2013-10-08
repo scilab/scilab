@@ -58,14 +58,14 @@ int sci_mpi_bcast(char *fname, unsigned long fname_len)
     }
 
     iRet = MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    if(iRet != MPI_SUCCESS)
+    if (iRet != MPI_SUCCESS)
     {
         char error_string[MPI_MAX_ERROR_STRING];
         int length_of_error_string = 0;
         MPI_Error_string(iRet, error_string, &length_of_error_string);
-        Scierror(999, _("%s: Could not get comm rank to the node %d: %s\n"), fname, rootID, error_string);
+        Scierror(999, _("%s: Could not get communicator rank of the node %d: %s\n"), fname, rootID, error_string);
         return 0;
-    }    
+    }
 
     if (rank == rootID)
     {
@@ -92,7 +92,7 @@ int sci_mpi_bcast(char *fname, unsigned long fname_len)
     {
         piBuffer = (int*)MALLOC(sizeof(int) * iBufferSize);
     }
-    
+
     /* Second, restore the data with the right size */
     iRet = MPI_Bcast(piBuffer, iBufferSize, MPI_INT, (int)rootID, MPI_COMM_WORLD);
     if (iRet != MPI_SUCCESS)
@@ -108,7 +108,7 @@ int sci_mpi_bcast(char *fname, unsigned long fname_len)
     FREE(piBuffer);
     if (iRet)
     {
-        Scierror(999, _("%s: Unable to deserialize data !\n"), fname);
+        Scierror(999, _("%s: Unable to deserialize data.\n"), fname);
         return 0;
     }
 

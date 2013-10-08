@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: \n"
 
 msgid "bike simulation, stable trajectory"
@@ -65,9 +65,6 @@ msgstr "ODE 1D 向量域"
 msgid "chemical process (implicit)"
 msgstr "化學處理過程(隱性)"
 
-msgid "Lorentz differential equation"
-msgstr "Lorentz 微分方程"
-
 msgid "Lorenz differential equation"
 msgstr "Lorentz 微分方程"
 
@@ -104,6 +101,22 @@ msgstr "%s: 輸入參數的個數錯誤: 應該是 %d 或 %d.\n"
 #, c-format
 msgid "%s: Invalid option %s: real matrix expected.\n"
 msgstr "%s:無效選項 %s:實數矩陣才對.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: (%d,%d) expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"

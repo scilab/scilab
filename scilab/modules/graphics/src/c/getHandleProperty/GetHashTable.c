@@ -46,13 +46,13 @@ typedef struct
  * don't forget to modify it each time the propertyTable
  * is modified.
  */
-#define NB_PROPERTIES_TAB 163
+#define NB_PROPERTIES 178
 
 /**
  * list of all property names and associated functions in scilab
  * This is inserted in the hashTable
  */
-static getHashTableCouple propertyTable[NB_PROPERTIES_TAB] =
+static getHashTableCouple propertyTable[NB_PROPERTIES] =
 {
     {"figures_id", get_figures_id_property},
     {"visible", get_visible_property},
@@ -216,6 +216,21 @@ static getHashTableCouple propertyTable[NB_PROPERTIES_TAB] =
     {"resizefcn", get_figure_resizefcn_property},
     {"tooltipstring", GetUicontrolTooltipString},
     {"closerequestfcn", get_figure_closerequestfcn_property},
+    {"tip_data", get_tip_data_property},
+    {"tip_orientation", get_tip_orientation_property},
+    {"tip_3component", get_tip_3component_property},
+    {"tip_auto_orientation", get_tip_auto_orientation_property},
+    {"tip_interp_mode", get_tip_interp_mode_property},
+    {"tip_box_mode", get_tip_box_mode_property},
+    {"tip_label_mode", get_tip_label_mode_property},
+    {"tip_disp_function", get_tip_disp_function_property},
+    {"ambient_color", get_ambient_color_property},
+    {"diffuse_color", get_diffuse_color_property},
+    {"specular_color", get_specular_color_property},
+    {"use_color_material", get_use_color_material_property},
+    {"material_shininess", get_material_shininess_property},
+    {"light_type", get_light_type_property},
+    {"direction", get_direction_property},
     {"image_type", get_image_type_property}
 };
 
@@ -239,7 +254,7 @@ GetPropertyHashTable *createScilabGetHashTable(void)
     }
 
     /* insert every couple */
-    for (i = 0; i < NB_PROPERTIES_TAB; i++)
+    for (i = 0; i < NB_PROPERTIES; i++)
     {
         insertGetHashtable(getHashTable, propertyTable[i].key, propertyTable[i].accessor);
     }
@@ -282,13 +297,13 @@ char **getDictionaryGetProperties(int *sizearray)
 
     *sizearray = 0;
 
-    dictionary = (char **)MALLOC(sizeof(char *) * NB_PROPERTIES_TAB);
+    dictionary = (char **)MALLOC(sizeof(char *) * NB_PROPERTIES);
     if (dictionary)
     {
         int i = 0;
 
-        *sizearray = NB_PROPERTIES_TAB;
-        for (i = 0; i < NB_PROPERTIES_TAB; i++)
+        *sizearray = NB_PROPERTIES;
+        for (i = 0; i < NB_PROPERTIES; i++)
         {
             char *propertyname = (char *)MALLOC(sizeof(char) * (strlen(propertyTable[i].key) + 1));
 
@@ -303,4 +318,3 @@ char **getDictionaryGetProperties(int *sizearray)
 }
 
 /*--------------------------------------------------------------------------*/
-#undef NB_PROPERTIES_TAB

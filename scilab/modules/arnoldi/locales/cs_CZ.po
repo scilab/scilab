@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-04-18 21:14+0000\n"
+"PO-Revision-Date: 2013-09-24 11:51+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: A real expected.\n"
@@ -328,6 +328,7 @@ msgid ""
 "%s: Impossible to use the Cholesky factorization with complex sparse "
 "matrices.\n"
 msgstr ""
+"%s: Choleského faktorizaci nelze použít v komplexních řídkých maticích.\n"
 
 #, c-format
 msgid "%s: Error with %s: info = %d.\n"

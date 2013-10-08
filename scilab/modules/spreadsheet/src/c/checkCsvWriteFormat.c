@@ -45,22 +45,18 @@ int checkCsvWriteFormat(const char *format)
 // =============================================================================
 static char *replaceInFormat(const char *format)
 {
-    char *newFormat = NULL;
     if (format)
     {
-        int i = 0;
-        for (i = 0; i < NB_FORMAT_SUPPORTED; i++)
+        char *cleanedFormat = getCleanedFormat(format);
+        if (cleanedFormat)
         {
-            char *cleanedFormat = getCleanedFormat(format);
-            if (cleanedFormat)
-            {
-                newFormat = os_strdup("%s");
-                FREE(cleanedFormat);
-                cleanedFormat = NULL;
-            }
+            FREE(cleanedFormat);
+            cleanedFormat = NULL;
+            return os_strdup("%s");
         }
     }
-    return newFormat;
+
+    return NULL;
 }
 // =============================================================================
 static char *getCleanedFormat(const char *format)

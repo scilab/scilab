@@ -28,12 +28,10 @@ using namespace types;
 
 SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+    SciErr sciErr = sciErrInit();
     int iType = 0;
 
-    if (	_piAddress == NULL)
+    if (_piAddress == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getPointer");
         return sciErr;
@@ -48,7 +46,7 @@ SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
 
     if (iType != sci_pointer)
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getPointer", _("pointer"));
+        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s expected"), "getPointer", _("pointer"));
         return sciErr;
     }
 
@@ -58,9 +56,7 @@ SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
 
 SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+    SciErr sciErr = sciErrInit();
 
     if (_pvCtx == NULL)
     {
@@ -96,9 +92,7 @@ SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)
 
 SciErr createNamedPointer(void* _pvCtx, const char* _pstName, void* _pvPtr)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+    SciErr sciErr = sciErrInit();
     wchar_t* pwstName = to_wide_string(_pstName);
 
     Pointer* pP = new Pointer(_pvPtr);
@@ -110,13 +104,10 @@ SciErr createNamedPointer(void* _pvCtx, const char* _pstName, void* _pvPtr)
 
 SciErr readNamedPointer(void* _pvCtx, const char* _pstName, void** _pvPtr)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
-    int* piAddr				= NULL;
-    void *pvPtr				= NULL;
+    int* piAddr = NULL;
+    void *pvPtr = NULL;
 
-    sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
+    SciErr sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_READ_POINTER, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfBoolean", _pstName);

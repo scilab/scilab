@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-24 14:41+0000\n"
+"PO-Revision-Date: 2013-09-17 14:54+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -656,8 +656,8 @@ msgstr "Xcos ヘルプ"
 msgid "Block Help"
 msgstr "ブロックヘルプ"
 
-msgid "Xcos Demos"
-msgstr "Xcosデモ"
+msgid "Xcos Demonstrations"
+msgstr "Xcos デモ"
 
 msgid "About Xcos"
 msgstr "Xcosについて"
@@ -706,6 +706,9 @@ msgstr "レイアウトを選択"
 
 msgid "(Modify the layout requires to restart Scilab)"
 msgstr "(レイアウトの変更にはScilabの再起動が必要です)"
+
+msgid "Save layout on exiting"
+msgstr "終了時に配置を保存"
 
 msgid "Keys binding"
 msgstr "キーの割付"
@@ -769,6 +772,10 @@ msgstr "コマンドが長過ぎます (文字長が %d  を超えています);
 
 msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr "[表示を続けますか? n(no) で中止、任意のキーで続けます]"
+
+#, c-format
+msgid "MPI error: %s\n"
+msgstr "MPIエラー: %s\n"
 
 #, c-format
 msgid ""

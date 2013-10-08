@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-23 21:42+0000\n"
+"PO-Revision-Date: 2013-09-24 19:22+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
@@ -99,6 +99,7 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána dvojitá matice.
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Five row vector expected.\n"
 msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván pětiřádkový vektor.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
@@ -434,7 +435,7 @@ msgid "Invalid selection."
 msgstr "Neplatná volba."
 
 msgid "Cannot get the current stack of errors."
-msgstr ""
+msgstr "Nelze získat současný zásobník chyb."
 
 msgid "HDF5 description"
 msgstr "Popis HDF5"
@@ -629,6 +630,9 @@ msgstr "Neznámý objekt HDF5"
 msgid "Cannot retrieve numeric index."
 msgstr "Nelze získat číselný index."
 
+msgid "Invalid option: must be C or FORTRAN."
+msgstr "Neplatná volba: Musí být C nebo FORTRAN"
+
 msgid "Cannot open object at the given position."
 msgstr "Nelze otevřít objekt v dané pozici."
 
@@ -683,7 +687,7 @@ msgstr "Nelze vytvořit měkký odkaz: %s."
 
 #, c-format
 msgid "Cannot create a hard link to the external object: %s."
-msgstr ""
+msgstr "Nelze vytvořit pevný odkaz na externí objekt: %s"
 
 #, c-format
 msgid "Cannot create the external link: %s."
@@ -723,9 +727,6 @@ msgstr "Nelze přečíst vstupní argumentu #%d."
 #, c-format
 msgid "Can not get the type of input argument #%d."
 msgstr "Nelze získat typ vstupního argumentu #%d."
-
-msgid "Complex datatype not handled for now."
-msgstr "Komplexní datové typy nelze nyní zpracovat."
 
 #, c-format
 msgid "%s: Can not read input argument #%d."

@@ -16,7 +16,16 @@
 // add_params() did not check its input arguments.
 
 p = init_param();
-refMsg = msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "add_param", 3);
+refMsg = msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"), "add_param", 2, 3);
 assert_checkerror("p = add_param();", refMsg);
 assert_checkerror("p = add_param(p);", refMsg);
-assert_checkerror("p = add_param(p, ''field1'');", refMsg);
+
+// set two times the same field.
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: key ""%s"" already defined.\n"), "add_param", 2, "field1");
+p = add_param(p, "field1");
+assert_checkerror("p = add_param(p, ""field1"");", refMsg);
+
+// Input list must be a plist.
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: %s expected.\n"), "add_param", 1, "plist");
+l = list("field1");
+assert_checkerror("l = add_param(l, ""field1"");", refMsg);

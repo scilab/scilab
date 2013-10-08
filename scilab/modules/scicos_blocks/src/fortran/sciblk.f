@@ -1,23 +1,23 @@
 c     Scicos
-c     
+c
 c     Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-c     
+c
 c     This program is free software; you can redistribute it and/or modify
 c     it under the terms of the GNU General Public License as published by
 c     the Free Software Foundation; either version 2 of the License, or
 c     (at your option) any later version.
-c     
+c
 c     This program is distributed in the hope that it will be useful,
 c     but WITHOUT ANY WARRANTY; without even the implied warranty of
 c     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 c     GNU General Public License for more details.
-c     
+c
 c     You should have received a copy of the GNU General Public License
 c     along with this program; if not, write to the Free Software
 c     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
-c     
+c
 c     See the file ./license.txt
-c     
+c
 
       subroutine sciblk(flag,nevprt,t,xd,x,nx,z,nz,tvec,
      &     ntvec,rpar,nrpar,ipar,nipar,u,nu,y,ny)
@@ -26,7 +26,7 @@ c     Copyright INRIA
 C     routine used to evaluate a block defined by a scilab function
 C     scilab function syntax must be
 C     [y,x,z,tvec,xd]=func(flag,nevprt,t,x,z,rpar,ipar,u)
-C     with 
+C     with
 C        t      scalar current time
 C        x      column vector continuous state
 C        z      column vector discrete state
@@ -51,7 +51,7 @@ C
       common /scsptr/ ptr
 C
       if (ddt .eq. 4) then
-c     to build with f2c      
+c     to build with f2c
 c       write (buf(1:12),"(3i4)") top, ptr
 c       call basout(io,wte," sciblk  top:"//buf(1:4)//" ptr :"//
 c    &       buf(5:8)      )
@@ -76,9 +76,9 @@ C
       if (err .gt. 0) goto 9999
       call dtosci(u,nu,1)
       if (err .gt. 0) goto 9999
-C     
-C     macro execution 
-C     
+C
+C     macro execution
+C
       pt = pt + 1
       if (pt .gt. psiz) then
         call error(26)
@@ -93,15 +93,15 @@ C
       niv = niv + 1
       fun = 0
       fin = ptr
-C     
+C
       icall = 5
       krec = -1
-!      include "callinter.h"
+      include "callinter.h.f"
  200  lhs = ids(1,pt)
       rhs = ids(2,pt)
       flag= ids(3,pt)
       pt = pt - 1
-C+    
+C+
 C     transfer output variables to fortran
 
       if(flag.eq.1) then
@@ -135,10 +135,10 @@ c  x'  computation
          call scitod(y,ny,1)
       endif
       if (err .gt. 0) goto 9999
-C+    
+C+
       niv = niv - 1
       return
-C     
+C
  9999 continue
       iero = -1
       flag=iero

@@ -37,12 +37,10 @@ using namespace types;
 /********************************/
 SciErr getMatrixOfBoolean(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int** _piBool)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+    SciErr sciErr = sciErrInit();
     int iType = 0;
 
-    if (	_piAddress == NULL)
+    if (_piAddress == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getMatrixOfBoolean");
         return sciErr;
@@ -51,7 +49,7 @@ SciErr getMatrixOfBoolean(void* _pvCtx, int* _piAddress, int* _piRows, int* _piC
     sciErr = getVarType(_pvCtx, _piAddress, &iType);
     if (sciErr.iErr || iType != sci_boolean)
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getMatrixOfBoolean", _("boolean matrix"));
+        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s expected"), "getMatrixOfBoolean", _("boolean matrix"));
         return sciErr;
     }
 
@@ -71,9 +69,7 @@ SciErr getMatrixOfBoolean(void* _pvCtx, int* _piAddress, int* _piRows, int* _piC
 
 SciErr allocMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int** _piBool)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+    SciErr sciErr = sciErrInit();
 
     if (_pvCtx == NULL)
     {
@@ -106,9 +102,7 @@ SciErr allocMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int
 
 SciErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, const int* _piBool)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+    SciErr sciErr = sciErrInit();
     int* piBool		= NULL;
 
     if (_iRows == 0 && _iCols == 0)
@@ -135,10 +129,9 @@ SciErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, co
 
 SciErr createNamedMatrixOfBoolean(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const int* _piBool)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+    SciErr sciErr = sciErrInit();
 #if 0
+
     int iVarID[nsiz];
     int iSaveRhs			= Rhs;
     int iSaveTop			= Top;
@@ -201,9 +194,7 @@ SciErr createNamedMatrixOfBoolean(void* _pvCtx, const char* _pstName, int _iRows
 
 SciErr readNamedMatrixOfBoolean(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piBool)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+    SciErr sciErr = sciErrInit();
     int* piAddr				= NULL;
     int* piBool				= NULL;
 
@@ -223,7 +214,7 @@ SciErr readNamedMatrixOfBoolean(void* _pvCtx, const char* _pstName, int* _piRows
 
     if (_piBool)
     {
-        memcpy(_piBool, piBool, sizeof(int) * *_piRows * *_piCols);
+        memcpy(_piBool, piBool, sizeof(int) **_piRows **_piCols);
     }
 
     return sciErr;
@@ -244,9 +235,7 @@ int isNamedBooleanType(void* _pvCtx, const char* _pstName)
 /*--------------------------------------------------------------------------*/
 int getScalarBoolean(void* _pvCtx, int* _piAddress, int* _piBool)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+    SciErr sciErr = sciErrInit();
     int iRows	= 0;
     int iCols	= 0;
 
@@ -277,9 +266,7 @@ int getScalarBoolean(void* _pvCtx, int* _piAddress, int* _piBool)
 /*--------------------------------------------------------------------------*/
 int getNamedScalarBoolean(void* _pvCtx, const char* _pstName, int* _piBool)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+    SciErr sciErr = sciErrInit();
     int iRows	= 0;
     int iCols	= 0;
 
@@ -310,9 +297,7 @@ int getNamedScalarBoolean(void* _pvCtx, const char* _pstName, int* _piBool)
 /*--------------------------------------------------------------------------*/
 int createScalarBoolean(void* _pvCtx, int _iVar, int _iBool)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+    SciErr sciErr = sciErrInit();
     int* piBool = NULL;
 
     sciErr = allocMatrixOfBoolean(_pvCtx, _iVar, 1, 1, &piBool);
@@ -329,10 +314,7 @@ int createScalarBoolean(void* _pvCtx, int _iVar, int _iBool)
 /*--------------------------------------------------------------------------*/
 int createNamedScalarBoolean(void* _pvCtx, const char* _pstName, int _iBool)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
-
+    SciErr sciErr = sciErrInit();
     sciErr = createNamedMatrixOfBoolean(_pvCtx, _pstName, 1, 1, &_iBool);
     if (sciErr.iErr)
     {

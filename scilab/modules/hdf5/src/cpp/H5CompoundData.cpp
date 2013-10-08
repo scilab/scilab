@@ -46,6 +46,7 @@ H5CompoundData::~H5CompoundData()
 {
     infos->erase(infos->begin(), infos->end());
     delete infos;
+    delete[] fieldinfos;
     delete[] cumprod;
     H5Tclose(type);
 }

@@ -85,8 +85,8 @@ int sci_addlocalizationdomain(void* pvApiCtx, unsigned long fname_len)
     expandedPath = expandPathVariable(pstPath);
     pstRet = bindtextdomain(pstDomain, expandedPath);
 
-    freeAllocatedSingleString(pstDomain);
     freeAllocatedSingleString(pstPath);
+    freeAllocatedSingleString(pstDomain);
     FREE(expandedPath);
 
     if (pstRet == NULL)

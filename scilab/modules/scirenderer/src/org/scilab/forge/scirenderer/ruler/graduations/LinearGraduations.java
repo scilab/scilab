@@ -12,8 +12,6 @@
 
 package org.scilab.forge.scirenderer.ruler.graduations;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 

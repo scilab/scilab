@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: ja\n"
 
 #, c-format
@@ -112,6 +112,9 @@ msgstr "unloader.sce を生成中 ...\n"
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr "%s: 入力引数 #%d の型が正しくありません: 文字列の配列を指定してください.\n"
 
+msgid "Generating localization\n"
+msgstr ""
+
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
 msgstr "%s: ファイル '%s' が存在しないか, 読込みアクセス許可がありません.\n"
@@ -140,3 +143,7 @@ msgstr "%s: このモジュールはCまたはFortranコンパイラを必要と
 
 msgid "Building sources...\n"
 msgstr "ソースを構築中...\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""

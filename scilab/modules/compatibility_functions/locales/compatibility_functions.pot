@@ -14,28 +14,83 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-09-13 12:32+0100\n"
+"Revision-Date: 2013-09-27 17:14+0100\n"
 
-# File: macros/%b_cumprod.sci, line: 19
-# File: macros/%b_cumsum.sci, line: 19
+# File: macros/%b_cumprod.sci, line: 31
+# File: macros/%b_cumsum.sci, line: 31
+# File: macros/%b_prod.sci, line: 31
+# File: macros/%b_sum.sci, line: 31
+# File: macros/mtlb_realmax.sci, line: 24
+# File: macros/mtlb_realmin.sci, line: 24
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: macros/%b_cumprod.sci, line: 21
-# File: macros/%b_cumsum.sci, line: 21
+# File: macros/%b_cumprod.sci, line: 38
+# File: macros/%b_cumsum.sci, line: 38
+# File: macros/%b_prod.sci, line: 38
+# File: macros/%b_sum.sci, line: 38
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: macros/%b_cumprod.sci, line: 28
-# File: macros/%b_cumprod.sci, line: 40
-# File: macros/%b_cumsum.sci, line: 28
-# File: macros/%b_cumsum.sci, line: 40
+# File: macros/%b_cumprod.sci, line: 41
+# File: macros/%b_cumsum.sci, line: 41
+# File: macros/%b_prod.sci, line: 41
+# File: macros/%b_sum.sci, line: 41
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
+msgstr ""
+
+#
+# File: macros/%b_cumprod.sci, line: 45
+# File: macros/%b_cumprod.sci, line: 61
+# File: macros/%b_cumsum.sci, line: 45
+# File: macros/%b_cumsum.sci, line: 61
+# File: macros/%b_prod.sci, line: 45
+# File: macros/%b_prod.sci, line: 61
+# File: macros/%b_sum.sci, line: 45
+# File: macros/%b_sum.sci, line: 61
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: macros/%b_cumprod.sci, line: 48
+# File: macros/%b_cumsum.sci, line: 48
+# File: macros/%b_prod.sci, line: 48
+# File: macros/%b_sum.sci, line: 48
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
+#
+# File: macros/%b_cumprod.sci, line: 52
+# File: macros/%b_cumsum.sci, line: 52
+# File: macros/%b_prod.sci, line: 52
+# File: macros/%b_sum.sci, line: 52
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgstr ""
+
+#
+# File: macros/%b_cumprod.sci, line: 57
+# File: macros/%b_cumsum.sci, line: 57
+# File: macros/%b_prod.sci, line: 57
+# File: macros/%b_sum.sci, line: 57
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: macros/%b_cumprod.sci, line: 65
+# File: macros/%b_cumsum.sci, line: 65
+# File: macros/%b_prod.sci, line: 65
+# File: macros/%b_sum.sci, line: 65
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr ""
 
 #
@@ -392,13 +447,6 @@ msgstr ""
 # File: macros/mtlb_qz.sci, line: 21
 #, c-format
 msgid "%s: pencil is not diagonalizable.\n"
-msgstr ""
-
-#
-# File: macros/mtlb_realmax.sci, line: 24
-# File: macros/mtlb_realmin.sci, line: 24
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #

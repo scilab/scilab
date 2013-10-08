@@ -7,166 +7,73 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-09-19 14:28+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-09-17 15:36+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16774)\n"
+
+#, c-format
+msgid "%s: Function %s is obsolete.\n"
+msgstr "%s: Функция %s устарела.\n"
+
+msgid "Warning"
+msgstr "Внимание"
+
+#, c-format
+msgid "%s: Please see documentation for more details.\n"
+msgstr "%s: Пожалуйста, смотрите подробности в документации.\n"
+
+#, c-format
+msgid ""
+"%s: This function will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+"%s: Эта функция будет окончательно удалена в  Scilab %s\n"
+"\n"
+
+msgid "Invalid operation"
+msgstr "Недопустимая операция"
+
+msgid "Invalid field name"
+msgstr "Недопустимое имя поля"
+
+#, c-format
+msgid "Cannot set the field: %s"
+msgstr "Нельзя установить поле:  %s"
+
+msgid "Invalid operator: '"
+msgstr "Недопустимый оператор: '"
+
+msgid "Invalid operator: .*"
+msgstr "Недопустимый оператор: .*"
+
+msgid "Invalid operator: ./"
+msgstr "Недопустимый оператор: ./"
+
+msgid "Invalid operator: .\\"
+msgstr "Недопустимый оператор: .\\"
+
+msgid "Invalid operator: .*."
+msgstr "Недопустимый оператор: .*."
+
+msgid "Invalid operator: ./."
+msgstr "Недопустимый оператор: ./."
+
+msgid "Invalid operator: .\\."
+msgstr "Недопустимый оператор: .\\."
+
+msgid "Invalid operator: .^"
+msgstr "Недопустимый оператор: .^"
+
+msgid "Invalid operator: .'"
+msgstr "Недопустимый оператор: .'"
 
 msgid "Exception thrown in file"
 msgstr "Выдан сигнал исключения в файле"
 
 msgid "at line"
 msgstr "на строке"
-
-#, c-format
-msgid "Invalid environment: identifier %d is invalid"
-msgstr "Недопустимое окружение: идентификатор %d недопустим"
-
-msgid "Invalid environment"
-msgstr "Недопустимое окружение"
-
-msgid "Cannot allocate memory"
-msgstr "Невозможно выделить память"
-
-msgid "Invalid variable: cannot retrieve the data"
-msgstr "Недопустимая переменная: невозможно вернуть данные"
-
-msgid "Invalid variable: cannot create data"
-msgstr "Недопустимая переменная: невозможно создать данные"
-
-msgid "External Class expected"
-msgstr "Ожидался внешний класс"
-
-msgid "Incompatible External Objects"
-msgstr "Несовместимые внешние объекты"
-
-msgid "External object expected"
-msgstr "Ожидался внешний объект"
-
-msgid "Unable to wrap. Unmanaged datatype ?"
-msgstr "Невозможно завернуть. Неуправляемый тип данных?"
-
-msgid "Invalid String"
-msgstr "Недопустимая строка"
-
-msgid "A single string expected"
-msgstr "Ожидалась отдельная строка"
-
-msgid "A single String expected"
-msgstr "Ожидалась отдельная строка"
-
-#, c-format
-msgid "Wrong type for argument #%d: A string expected."
-msgstr "Неверный тип аргумента №%d: ожидалась строка."
-
-#, c-format
-msgid "Cannot open the given file %s."
-msgstr "Невозможно открыть указанный файл %s."
-
-#, c-format
-msgid "Wrong number of arguments : more than %d expected."
-msgstr "Неверное количество аргументов: ожидалось больше %d."
-
-#, c-format
-msgid "A strictly positive integer is expected at position %d."
-msgstr "Ожидалось строго положительное целое число в позиции %d."
-
-msgid "Invalid name"
-msgstr "Недопустимое имя"
-
-#, c-format
-msgid "Wrong type for input argument #%d: A String expected."
-msgstr "Неверный тип входного аргумента №%d: ожидалась строка."
-
-#, c-format
-msgid "Invalid dimension for argument #%d: A row or a column expected."
-msgstr "Недопустимый размер аргумента №%d: ожидалась строка или столбец."
-
-msgid "The argument must be 'rc' or 'cr'."
-msgstr "Аргумент должен быть 'rc' или 'cr'."
-
-#, c-format
-msgid "Invalid dimensions for input argument #%d: A single string expected."
-msgstr ""
-"Недопустимые размеры входного аргумента №%d: ожидалась одиночное строковое "
-"значение."
-
-msgid "Invalid dimensions: arguments #2 and #3 must have the same."
-msgstr ""
-"Недопустимые размеры: аргументы #2 и #3 должны быть одинакового размера."
-
-msgid "Invalid variable: cannot create the data"
-msgstr "Недопустимая переменная: невозможно создать данные"
-
-#, c-format
-msgid "Wrong type for input argument #%d: External Object expected."
-msgstr "Неверный тип входного аргумента №%d: ожидался внешний объект."
-
-msgid "Incompatible External Object"
-msgstr "Несовместимый внешний объект"
-
-#, c-format
-msgid "Wrong type for input argument #%d: A string expected."
-msgstr "Неверный тип входного аргумента №%d: ожидалась строка."
-
-#, c-format
-msgid "Wrong type for input argument #%d: A boolean expected."
-msgstr "Неверный тип входного аргумента №%d: ожидалось логическое значение."
-
-#, c-format
-msgid "Wrong type for input argument #%d: A single boolean expected."
-msgstr ""
-"Неверный тип входного аргумента №%d: ожидалось отдельное логическое значение."
-
-#, c-format
-msgid "Wrong type for input argument #%d: An External Object expected."
-msgstr "Неверный тип входного аргумента №%d: ожидался внешний объект."
-
-msgid "Cannot create the identifier"
-msgstr "Невозможно стоздать идентификатор"
-
-msgid "The class name cannot end with a dot."
-msgstr "Имя класса не может заканчиваться точкой."
-
-msgid "The class name cannot start with a dot."
-msgstr "Имя класса не может начинаться с точки."
-
-msgid "A variable with this name is already existing"
-msgstr "Переменная с таким именем уже существует"
-
-msgid "Bad number of output arguments"
-msgstr "Плохое количество выходных аргументов"
-
-msgid "Wrong number of arguments : more than 2 arguments expected"
-msgstr "Неверное количество аргументов: ожидалось больше двух аргументов"
-
-msgid "Cannot invoke on null object"
-msgstr ""
-
-#, c-format
-msgid "Wrong type for input argument #%d: A List expected."
-msgstr "Неверный тип входного аргумента №%d: ожидался список."
-
-#, c-format
-msgid "Wrong type for input argument #%d: An Integer32 expected."
-msgstr "Неверный тип входного аргумента №%d: ожидался Int32."
-
-msgid "Cannot invoke on null object."
-msgstr ""
-
-msgid "Wrong number of arguments : more than 1 argument expected"
-msgstr "Неверное количество аргументов: ожидалось более одного аргумента"
-
-msgid "Wrong number of arguments : more than 1 argument expected."
-msgstr "Неверное количество аргументов: ожидалось более одного аргумента."
-
-#, c-format
-msgid "Cannot wrap argument %d."
-msgstr "Невозможно завернуть аргумент %d."
-
-msgid "Can only wrap as a reference to a named variable"
-msgstr "Можно только обернуть как указатель на именованную переменную"

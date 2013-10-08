@@ -125,6 +125,7 @@ int sci_xmlValidate(char *fname, void* pvApiCtx)
                 delete[]s;
             }
         }
+        freeAllocatedMatrixOfString(row, col, path);
     }
     else
     {

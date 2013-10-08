@@ -79,12 +79,6 @@ libscihelptools_la_root_DATA =  license.txt
 libscihelptools_la_etcdir = $(mydatadir)/etc
 libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start etc/MAIN_CHAPTERS etc/fopconf.xml etc/SciDocConf.xml
 
-#### helptools : bin files ####
-libscihelptools_la_bindir = $(mydatadir)/bin
-libscihelptools_la_bin_DATA = bin/scivalid \
-bin/man2sci \
-bin/manrev2sci
-
 #### helptools : gateway declaration ####
 libscihelptools_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscihelptools_la_sci_gateway_DATA = sci_gateway/helptools_gateway.xml
@@ -104,12 +98,6 @@ libscihelptools_la_data_css_DATA = data/css/scilab_code.css \
 data/css/c_code.css \
 data/css/xml_code.css \
 data/css/style.css
-
-#### helptools : xsl files ####
-libscihelptools_la_xsl_convertdir = $(mydatadir)/xsl/convert
-libscihelptools_la_xsl_convert_DATA = \
-xsl/convert/man2manrev.xsl \
-xsl/convert/manrev2sci.xsl
 
 libscihelptools_la_xsl_fodir = $(mydatadir)/xsl/fo
 libscihelptools_la_xsl_fo_DATA = xsl/fo/docbook.xsl

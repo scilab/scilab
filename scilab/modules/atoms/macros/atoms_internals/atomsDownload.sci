@@ -57,7 +57,7 @@ function atomsDownload(url_in,file_out,md5sum)
     // =========================================================================
 
     if regexp(url_in,"/^(https?|ftp|file):\/\//","o") <> 1 then
-        error(msprintf(gettext("%s: Wrong value for input argument #%d: String that start with ''http(s)?://'',''ftp://'' or ''file://'' expected.\n"),"atomsDownload",1));
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: String that starts with ''http(s)?://'',''ftp://'' or ''file://'' expected.\n"),"atomsDownload",1));
     end
 
     if (rhs>2) & (length(md5sum)<>32) then
@@ -226,7 +226,7 @@ function atomsDownload(url_in,file_out,md5sum)
         file_in = pathconvert(part(url_in,length(url_pattern)+1:length(url_in)),%F);
 
         if copyfile(file_in,file_out) <> 1 then
-            mprintf(gettext("%s: The following file hasn''t been copied:\n"),"atomsDownload");
+            mprintf(gettext("%s: The following file has not been copied:\n"),"atomsDownload");
             mprintf(gettext("\t - source    : ''%s''\n"),file_in);
             mprintf(gettext("\t - destination : ''%s''\n"),file_out);
             atomsCloseProgressBar(winId);
@@ -243,7 +243,7 @@ function atomsDownload(url_in,file_out,md5sum)
         filemd5 = getmd5(file_out);
 
         if filemd5 <> md5sum then
-            mprintf(gettext("%s: The downloaded file doesn''t check the MD5SUM:\n"),"atomsDownload");
+            mprintf(gettext("%s: The downloaded file does not match the MD5SUM:\n"),"atomsDownload");
             mprintf(gettext("\t - file      : ''%s''\n"),file_out);
             mprintf(gettext("\t - MD5SUM expected : ''%s''\n"),md5sum);
             mprintf(gettext("\t - MD5SUM watched  : ''%s''\n"),filemd5);

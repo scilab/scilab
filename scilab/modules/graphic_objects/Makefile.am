@@ -33,7 +33,10 @@ GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp \
                               src/jni/GraphicObjectBuilder.cpp
 
 GRAPHIC_OBJECTS_C_SOURCES = src/jni/DataLoader_wrap.c \
-							src/jni/ScilabNativeView_wrap.c
+							src/jni/ScilabNativeView_wrap.c \
+							src/jni/PolylineData_wrap.c \
+							src/jni/SurfaceData_wrap.c \
+                                                        src/jni/ObjectData_wrap.c
 
 GRAPHIC_OBJECTS_CXX_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/getGraphicObjectProperty.cpp \
@@ -70,7 +73,10 @@ GRAPHIC_OBJECTS_CXX_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/CurrentFigure.cpp \
 								src/cpp/CurrentObject.cpp \
 								src/cpp/CurrentSubwin.cpp \
-								src/cpp/Texture.cpp
+								src/cpp/createObjectData.cpp \
+								src/cpp/pickSurface.cpp \
+								src/cpp/Texture.cpp \
+								src/cpp/NormalGenerator.cpp
 
 GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
 
@@ -90,13 +96,13 @@ libscigraphic_objects_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
 			-I$(top_srcdir)/modules/operations/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/
 			$(AM_CPPFLAGS)
 
 # Without the graphic_objects module
 libscigraphic_objects_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/
 			$(AM_CPPFLAGS)
 
 GRAPHIC_OBJECTS_DISABLE_C_SOURCES = src/nographic_objects/nographic_objects.c
@@ -119,9 +125,14 @@ INCLUDE_FLAGS = $(libscigraphic_objects_la_CPPFLAGS)
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/DataLoader.i \
-				src/jni/ScilabNativeView.i
+				src/jni/ScilabNativeView.i \
+				src/jni/PolylineData.i \
+				src/jni/SurfaceData.i \
+				src/jni/graphic_objects.i \
+				src/jni/ObjectData.i
+
 if SWIG
-  BUILT_SOURCES += swig
+BUILT_SOURCES+=swig
 endif
 
 libscigraphic_objects_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la

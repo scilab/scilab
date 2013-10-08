@@ -67,5 +67,17 @@
     <PRIMITIVE gatewayId="25" primitiveId="34" primitiveName="uiDisplayTree" />
     <PRIMITIVE gatewayId="25" primitiveId="35" primitiveName="uiputfile" />
     <PRIMITIVE gatewayId="25" primitiveId="36" primitiveName="about" />
-    <PRIMITIVE gatewayId="25" primitiveId="37" primitiveName="fire_closing_finished" />
+    <PRIMITIVE gatewayId="25" primitiveId="37" primitiveName="useeditor" />
+    <PRIMITIVE gatewayId="25" primitiveId="38" primitiveName="fire_closing_finished" />
+    <PRIMITIVE gatewayId="25" primitiveId="39" primitiveName="openged" />
+    <PRIMITIVE gatewayId="25" primitiveId="40" primitiveName="datatipCreate" />
+    <PRIMITIVE gatewayId="25" primitiveId="41" primitiveName="datatipRemove" />
+    <PRIMITIVE gatewayId="25" primitiveId="42" primitiveName="plotbrowser" />
+    <PRIMITIVE gatewayId="25" primitiveId="43" primitiveName="datatipManagerMode" />
+    <PRIMITIVE gatewayId="25" primitiveId="44" primitiveName="datatipToggle" />
+    <PRIMITIVE gatewayId="25" primitiveId="45" primitiveName="datatipMove" />
+    <PRIMITIVE gatewayId="25" primitiveId="46" primitiveName="datatipSetStyle" />
+    <PRIMITIVE gatewayId="25" primitiveId="47" primitiveName="datatipSetDisplay" />
+    <PRIMITIVE gatewayId="25" primitiveId="48" primitiveName="datatipSetInterp" />
+    <PRIMITIVE gatewayId="25" primitiveId="49" primitiveName="datatipSetOrientation" />
 </GATEWAY>

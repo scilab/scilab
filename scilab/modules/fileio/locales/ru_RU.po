@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-07-29 17:06+0000\n"
+"PO-Revision-Date: 2013-09-27 14:47+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: ru\n"
 
 #, c-format
@@ -424,7 +424,7 @@ msgstr "Не удалось установить прокси user:password [%s]
 
 #, c-format
 msgid "Failed to set write function [%s]\n"
-msgstr ""
+msgstr "Не удалось установить функцию записи [%s]\n"
 
 #, c-format
 msgid "Failed to set write data [%s]\n"
@@ -587,51 +587,6 @@ msgstr ""
 "или повреждённым.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: Неверное количество входных параметров.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A String expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидался дескриптор файла.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидался корректный дескриптор "
-"файла.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалось имя файла.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A filename or file descriptor "
-"expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалось имя или дескриптор "
-"файла.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: Неверное количество выходных параметров.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался дескриптор файла.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 "%s: Неверное количество входных аргументов: ожидалось как минимум %d.\n"
@@ -651,6 +606,10 @@ msgstr "%s: Опции проигнорированы.\n"
 #, c-format
 msgid "%s: Wrong type for input argument: String expected.\n"
 msgstr "%s: Неверный тип входного параметра: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Неверное количество входных параметров.\n"
 
 msgid "Impossible to create directory "
 msgstr "Невозможно создать каталог "
@@ -673,15 +632,3 @@ msgstr "Не определено"
 
 msgid "The system cannot find the file specified."
 msgstr "Система не может найти указанный файл."
-
-#, c-format
-msgid "%s: Incorrect format.\n"
-msgstr "%s: Некорректный формат.\n"
-
-#, c-format
-msgid "%s: Invalid conversion.\n"
-msgstr "%s: Неправильное преобразование.\n"
-
-#, c-format
-msgid "%s: end of input reached before final conversion.\n"
-msgstr "%s: входной поток закончился до окончания преобразования.\n"

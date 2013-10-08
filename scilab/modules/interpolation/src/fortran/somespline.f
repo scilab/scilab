@@ -54,7 +54,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       double precision x(n), y(n), d(n), A_d(n), A_sd(n-1), qdy(n-1), 
      $                 lll(n-1)
 
-      include 'constinterp.h'
+      include 'constinterp.h.f'
       integer i
       double precision r
 
@@ -285,7 +285,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       double precision t(m), st(m), dst(m), d2st(m), d3st(m), 
      $                 x(n), y(n), d(n)
       
-      include 'constinterp.h'
+      include 'constinterp.h.f'
       integer i, j
       integer  isearch, isanan
       external isearch, isanan
@@ -532,7 +532,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       double precision x(nx), y(ny), u(nx, ny), C(4,4,nx-1,ny-1),
      $                 p(nx, ny), q(nx, ny), r(nx, ny)
       integer i, j
-      include 'constinterp.h'
+      include 'constinterp.h.f'
 
       if (type .eq. MONOTONE) then
 *        approximation des derivees par SUBROUTINE DPCHIM(N,X,F,D,INCFD)
@@ -584,7 +584,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       double precision x(nx), y(ny), u(nx, ny), C(4,4,nx-1,ny-1),
      $                 p(nx, ny), q(nx, ny), r(nx, ny), A_d(*),
      $                 A_sd(*), d(ny), ll(*), qdu(*), u_temp(ny) 
-      include 'constinterp.h'
+      include 'constinterp.h.f'
       integer i, j
 
       ! compute du/dx
@@ -661,7 +661,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       integer n, inc, type
       double precision x(n), u(inc,*), du(inc,*)
 
-      include 'constinterp.h'
+      include 'constinterp.h.f'
       double precision dx_l, du_l, dx_r, du_r, w_l, w_r
       integer i, k
 
@@ -876,7 +876,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       
       double precision xx, yy
       integer i, j, k
-      include 'constinterp.h'
+      include 'constinterp.h.f'
       integer  isanan
       double precision EvalBicubic
       external isanan, returnananfortran, EvalBicubic
@@ -940,7 +940,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       
       double precision xx, yy
       integer k, i, j
-      include 'constinterp.h'
+      include 'constinterp.h.f'
       integer  isanan
       double precision EvalBicubic
       external isanan, returnananfortran, EvalBicubic
@@ -1033,7 +1033,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       
       double precision xx, yy
       integer k, i, j
-      include 'constinterp.h'
+      include 'constinterp.h.f'
       integer  isanan
       double precision EvalBicubic
       external isanan, returnananfortran, EvalBicubic
@@ -1136,7 +1136,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       integer k
       logical flag_x, flag_y, flag_z
       double precision x, y, z
-      include 'constinterp.h'
+      include 'constinterp.h.f'
       integer  isanan
       double precision db3val
       external isanan, returnananfortran, db3val
@@ -1209,7 +1209,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       integer k
       logical flag_x, flag_y, flag_z
       double precision x, y, z
-      include 'constinterp.h'
+      include 'constinterp.h.f'
       integer  isanan
       double precision db3val
       external isanan, returnananfortran, db3val

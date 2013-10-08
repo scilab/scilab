@@ -63,7 +63,7 @@ int sci_mpi_wait(char *fname, unsigned long fname_len)
         int length_of_error_string;
 
         MPI_Error_string(iRet, error_string, &length_of_error_string);
-        Scierror(999, _("%s: Failed to wait %d: %s\n"), fname, NodeID, error_string);
+        Scierror(999, _("%s: MPI_Wait failed while waiting %d: %s\n"), fname, NodeID, error_string);
         return 0;
     }
 
@@ -83,7 +83,7 @@ int sci_mpi_wait(char *fname, unsigned long fname_len)
     FREE(piBuffer);
     if (iRet)
     {
-        Scierror(999, _("%s: Unable to deserialize data!\n"), fname);
+        Scierror(999, _("%s: Unable to deserialize data.\n"), fname);
         return 0;
     }
 

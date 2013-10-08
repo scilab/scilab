@@ -32,5 +32,4 @@ function demo_bubbleSort()
     a = gca();
     e = a.children(1).children(1);
     x = bubbleSort(x, e);
-    delete(gcf())
 endfunction

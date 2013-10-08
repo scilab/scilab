@@ -24,13 +24,11 @@ public enum ScilabIntegerTypeEnum {
 
     public static ScilabIntegerTypeEnum swigToEnum(int swigValue) {
         ScilabIntegerTypeEnum[] swigValues = ScilabIntegerTypeEnum.class.getEnumConstants();
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue) {
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
             return swigValues[swigValue];
-        }
         for (ScilabIntegerTypeEnum swigEnum : swigValues)
-            if (swigEnum.swigValue == swigValue) {
+            if (swigEnum.swigValue == swigValue)
                 return swigEnum;
-            }
         throw new IllegalArgumentException("No enum " + ScilabIntegerTypeEnum.class + " with value " + swigValue);
     }
 

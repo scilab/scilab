@@ -68,7 +68,7 @@ int setchampdata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
     /* check dim */
     if (nbCol[0] != 1 || nbCol[1] != 1)
     {
-        Scierror(999, _("%s: Wrong type for argument #%d: Columns vectors expected.\n"), "Tlist", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Columns vectors expected.\n"), "Tlist", 1);
         return SET_PROPERTY_ERROR;
     }
 
@@ -78,7 +78,7 @@ int setchampdata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
 
     if (nbRow[2] != nbRow[0] || nbCol[2] != nbRow[1] || nbRow[3] != nbRow[2] || nbCol[3] != nbCol[2])
     {
-        Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"), "Tlist", 3, 4);
+        Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"), "Tlist", 3, 4);
         return SET_PROPERTY_ERROR;
     }
 
@@ -121,16 +121,16 @@ int setgrayplotdata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
 
     if (nbCol[0] != 1 || nbCol[1] != 1)
     {
-        Scierror(999, _("%s: Wrong type for argument #%d: Columns vectors expected.\n"), "Tlist", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Column vector expected.\n"), "Tlist", 1);
         return SET_PROPERTY_ERROR;
     }
 
     if (nbRow[2] != nbRow[0] || nbCol[2] != nbRow[1])
     {
-        Scierror(999, _("%s: Wrong size for arguments #%d: Incompatible length.\n"), "Tlist", 3);
+        Scierror(999, _("%s: Wrong size for input argument #%d: Incompatible length.\n"), "Tlist", 3);
         /* Was previously: */
 #if 0
-        Scierror(999, _("%s: Wrong size for arguments #%d: Incompatible length.\n"), "Tlist", "Tlist", 3);
+        Scierror(999, _("%s: Wrong size for input argument #%d: Incompatible length.\n"), "Tlist", "Tlist", 3);
 #endif
         return 0;
     }
@@ -198,7 +198,7 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
     {
         if (!(m1 == m2 && m2 == m3 && n1 == n2 && n2 == n3))
         {
-            Scierror(999, _("%s: Wrong size for arguments #%d, #%d and #%d: Incompatible length.\n"), "Tlist", 1, 2, 3);
+            Scierror(999, _("%s: Wrong size for input arguments #%d, #%d and #%d: Incompatible lengths.\n"), "Tlist", 1, 2, 3);
             return SET_PROPERTY_ERROR;
         }
     }
@@ -206,17 +206,17 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
     {
         if (m2 * n2 != n3)
         {
-            Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"), "Tlist", 2, 3);
+            Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"), "Tlist", 2, 3);
             return SET_PROPERTY_ERROR;
         }
         if (m1 * n1 != m3)
         {
-            Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"), "Tlist", 1, 3);
+            Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"), "Tlist", 1, 3);
             return SET_PROPERTY_ERROR;
         }
         if (m1 * n1 <= 1 || m2 * n2 <= 1)
         {
-            Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Should be >= %d.\n"), "Tlist", 1, 2, 2);
+            Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Should be >= %d.\n"), "Tlist", 1, 2, 2);
             return SET_PROPERTY_ERROR;
         }
     }
@@ -269,7 +269,7 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
         /* case isfac=1;*/
         if (isFac3d == 0)
         {
-            Scierror(999, _("Can not change the %s of graphic object: its type is %s.\n"), "typeof3d", "SCI_PLOT3D");
+            Scierror(999, _("Cannot change the %s of graphic object: its type is %s.\n"), "typeof3d", "SCI_PLOT3D");
             return SET_PROPERTY_ERROR;
         }
     }
@@ -278,7 +278,7 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
         /* case isfac=0;*/
         if (isFac3d == 1)
         {
-            Scierror(999, _("Can not change the %s of graphic object: its type is %s.\n"), "typeof3d", "SCI_FAC3D");
+            Scierror(999, _("Cannot change the %s of graphic object: its type is %s.\n"), "typeof3d", "SCI_FAC3D");
             return SET_PROPERTY_ERROR;
         }
     }
@@ -441,7 +441,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
 
         if (!(valueType  == sci_tlist))
         {
-            Scierror(999, "Incorrect argument, must be a Tlist!\n");
+            Scierror(999, _("Wrong type for input argument: A tlist expected.\n"));
             return SET_PROPERTY_ERROR;
         }
 
@@ -463,7 +463,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
 
         if (!(valueType  == sci_tlist))
         {
-            Scierror(999, _("Wrong type for input argument: Tlist expected.\n"));
+            Scierror(999, _("Wrong type for input argument: A tlist expected.\n"));
             return SET_PROPERTY_ERROR;
         }
 
@@ -486,7 +486,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
 
         if (!(valueType  == sci_tlist))
         {
-            Scierror(999, _("Wrong type for input argument: Tlist expected.\n"));
+            Scierror(999, _("Wrong type for input argument: A tlist expected.\n"));
             return SET_PROPERTY_ERROR;
         }
 
@@ -553,7 +553,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
                 sciErr = getHypermatType(_pvCtx, _pvData, &htype);
                 if (sciErr.iErr)
                 {
-                    Scierror(202, _("%s: Cannot get the hypermatrix data type for argument %d.\n"), "data", 1);
+                    Scierror(202, _("%s: Cannot get the hypermatrix data type for argument #%d.\n"), "data", 1);
                     return 1;
                 }
 
@@ -562,13 +562,13 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
                     sciErr = getHypermatOfIntegerPrecision(_pvCtx, _pvData, &precision);
                     if (sciErr.iErr)
                     {
-                        Scierror(202, _("%s: Cannot get the hypermatrix data type for argument %d.\n"), "data", 1);
+                        Scierror(202, _("%s: Cannot get the hypermatrix data type for argument #%d.\n"), "data", 1);
                         return 1;
                     }
 
                     if (precision != SCI_UINT8 && precision != SCI_INT8)
                     {
-                        Scierror(202, _("%s: A Wrong type for argument %d: A real or integer expected.\n"), "data", 1);
+                        Scierror(202, _("%s: Wrong type for input argument #%d: A real or integer expected.\n"), "data", 1);
                         return 1;
                     }
 
@@ -583,7 +583,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
 
                     if (sciErr.iErr || ndims != 3 || (dims[1] != 1 && dims[2] != 3 && dims[2] != 4))
                     {
-                        Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), "data", 1);
+                        Scierror(202, _("%s: Wrong type for input argument #%d: A real or integer expected.\n"), "data", 1);
                         return 1;
                     }
 
@@ -627,7 +627,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
 
                     if (sciErr.iErr || ndims != 3 || (dims[2] != 1 && dims[2] != 3 && dims[2] != 4))
                     {
-                        Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), "data", 1);
+                        Scierror(202, _("%s: Wrong type for input argument #%d: A real or integer expected.\n"), "data", 1);
                         return 1;
                     }
 
@@ -646,7 +646,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
                 }
                 else
                 {
-                    Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), "data", 1);
+                    Scierror(202, _("%s: Wrong type for input argument #%d: A real or integer expected.\n"), "data", 1);
                     return 1;
                 }
 
@@ -675,7 +675,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
             sciErr = getMatrixOfIntegerPrecision(_pvCtx, _pvData, &precision);
             if (sciErr.iErr)
             {
-                Scierror(999, _("%s: Cannot get the integer precision for argument %d.\n"), "data", 1);
+                Scierror(999, _("%s: Cannot get the integer type for argument #%d.\n"), "data", 1);
                 printError(&sciErr, 0);
                 return 1;
             }
@@ -686,7 +686,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
                     sciErr = getMatrixOfInteger8(_pvCtx, _pvData, &m, &n, (char **)(&l));
                     if (sciErr.iErr)
                     {
-                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), "data", 1);
+                        Scierror(202, _("%s: Cannot get the data for argument #%d.\n"), "data", 1);
                         printError(&sciErr, 0);
                         return 1;
                     }
@@ -699,7 +699,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
                     sciErr = getMatrixOfUnsignedInteger8(_pvCtx, _pvData, &m, &n, (unsigned char **)(&l));
                     if (sciErr.iErr)
                     {
-                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), "data", 1);
+                        Scierror(202, _("%s: Cannot get the data for argument #%d.\n"), "data", 1);
                         printError(&sciErr, 0);
                         return 1;
                     }
@@ -712,7 +712,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
                     sciErr = getMatrixOfInteger16(_pvCtx, _pvData, &m, &n, (short **)(&l));
                     if (sciErr.iErr)
                     {
-                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), "data", 1);
+                        Scierror(202, _("%s: Cannot get the data for argument #%d.\n"), "data", 1);
                         printError(&sciErr, 0);
                         return 1;
                     }
@@ -725,7 +725,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
                     sciErr = getMatrixOfUnsignedInteger16(_pvCtx, _pvData, &m, &n, (unsigned short **)(&l));
                     if (sciErr.iErr)
                     {
-                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), "data", 1);
+                        Scierror(202, _("%s: Cannot get the data for argument #%d.\n"), "data", 1);
                         printError(&sciErr, 0);
                         return 1;
                     }
@@ -738,7 +738,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
                     sciErr = getMatrixOfInteger32(_pvCtx, _pvData, &m, &n, (int **)(&l));
                     if (sciErr.iErr)
                     {
-                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), "data", 1);
+                        Scierror(202, _("%s: Cannot get the data for argument #%d.\n"), "data", 1);
                         printError(&sciErr, 0);
                         return 1;
                     }
@@ -751,7 +751,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
                     sciErr = getMatrixOfUnsignedInteger32(_pvCtx, _pvData, &m, &n, (unsigned int **)(&l));
                     if (sciErr.iErr)
                     {
-                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), "data", 1);
+                        Scierror(202, _("%s: Cannot get the data for argument #%d.\n"), "data", 1);
                         printError(&sciErr, 0);
                         return 1;
                     }
@@ -761,7 +761,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
                     }
                     break;
                 default :
-                    Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), "data", 1);
+                    Scierror(202, _("%s: Wrong type for input argument #%d: A real or integer expected.\n"), "data", 1);
                     return 1;
             }
 
@@ -776,7 +776,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
                     }
                     else
                     {
-                        Scierror(202, _("%s: Wrong dimension for argument %d: The number of rows must be a multiple of 3.\n"), "data", 1);
+                        Scierror(202, _("%s: Wrong size for input argument #%d: The number of rows must be a multiple of 3.\n"), "data", 1);
                         return 1;
                     }
                 }
@@ -789,7 +789,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
                     }
                     else
                     {
-                        Scierror(202, _("%s: Wrong dimension for argument %d: The number of rows must be a multiple of 4.\n"), "data", 1);
+                        Scierror(202, _("%s: Wrong size for input argument #%d: The number of rows must be a multiple of 4.\n"), "data", 1);
                         return 1;
                     }
                 }
@@ -831,7 +831,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
     {
         if (valueType != sci_matrix)
         {
-            Scierror(999, _("Incompatible type for property %s.\n"), "data");
+            Scierror(999, _("Incompatible type for property ''%s''.\n"), "data");
             return SET_PROPERTY_ERROR;
         }
 

@@ -4,7 +4,7 @@
 # Copyright (C) INRIA   - 2007 - Vincent COUVERT
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
-# Copyright (C) DIGITEO - 2010 - ClÃ©ment DAVID
+# Copyright (C) DIGITEO - 2010 - Clément DAVID
 #
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -130,7 +130,16 @@ src/jni/LookAndFeelManager.cpp \
 src/jni/Juigetfile.cpp \
 src/cpp/CallJuigetfile.cpp \
 src/cpp/displaytree.cpp \
-src/jni/ScilabDisplayTree.cpp
+src/jni/ScilabDisplayTree.cpp \
+src/jni/EditorManager.cpp \
+src/jni/StartGED.cpp \
+src/jni/StartPlotBrowser.cpp \
+src/jni/DatatipManager.cpp \
+src/jni/DatatipCreate.cpp \
+src/jni/DatatipDelete.cpp \
+src/jni/DatatipDrag.cpp \
+src/jni/DatatipSetStyle.cpp \
+src/jni/DatatipOrientation.cpp
 
 GIWS_WRAPPERS = \
 src/jni/SwingView.giws.xml \
@@ -140,9 +149,13 @@ src/jni/Jxgetmouse.giws.xml \
 src/jni/LookAndFeelManager.giws.xml \
 src/jni/UIElementMapper.giws.xml \
 src/jni/Juigetfile.giws.xml \
-src/jni/ScilabDisplayTree.giws.xml
+src/jni/ScilabDisplayTree.giws.xml \
+src/jni/EditorManager.giws.xml \
+src/jni/Datatip.giws.xml \
+src/jni/StartGED.giws.xml \
+src/jni/StartPlotBrowser.giws.xml
 
-SWIG_WRAPPERS = src/jni/ScilabTermination.i 
+SWIG_WRAPPERS = src/jni/ScilabTermination.i
 
 BUILT_SOURCES=
 if GIWS
@@ -192,7 +205,19 @@ sci_gateway/cpp/sci_raise_window.cpp \
 sci_gateway/cpp/sci_usecanvas.cpp \
 sci_gateway/cpp/sci_helpbrowser.cpp \
 sci_gateway/cpp/gui_gw.cpp \
-sci_gateway/cpp/sci_fire_closing_finished.cpp
+sci_gateway/cpp/sci_fire_closing_finished.cpp \
+sci_gateway/cpp/sci_useeditor.cpp \
+sci_gateway/cpp/sci_openged.cpp \
+sci_gateway/cpp/sci_datatipcreate.cpp \
+sci_gateway/cpp/sci_datatipremove.cpp \
+sci_gateway/cpp/sci_plotbrowser.cpp \
+sci_gateway/cpp/sci_datatip_manager_mode.cpp \
+sci_gateway/cpp/sci_datatip_toggle.cpp \
+sci_gateway/cpp/sci_datatipmove.cpp \
+sci_gateway/cpp/sci_datatip_set_style.cpp \
+sci_gateway/cpp/sci_datatip_set_display.cpp \
+sci_gateway/cpp/sci_datatip_set_interp.cpp \
+sci_gateway/cpp/sci_datatip_set_orient.cpp
 
 libscigui_la_CPPFLAGS = \
 -I$(srcdir)/includes/ \
@@ -267,8 +292,11 @@ libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 # Generated with:
 #    $ find images/ -type f -printf "%p \\\\\n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png |sort -u
 libscigui_la_iconsdir=$(mydatadir)/
-nobase_libscigui_la_icons_DATA = images/icons/16x16/actions/document-new.png \
+
+nobase_libscigui_la_icons_DATA = \
 images/icons/16x16/actions/code-navigator.png \
+images/icons/16x16/actions/color-fill.png \
+images/icons/16x16/actions/document-new.png \
 images/icons/16x16/actions/document-open.png \
 images/icons/16x16/actions/document-open-sci.png \
 images/icons/16x16/actions/document-print.png \
@@ -306,6 +334,7 @@ images/icons/16x16/actions/short.png \
 images/icons/16x16/actions/SizeColumnsToFit.png \
 images/icons/16x16/actions/system-search.png \
 images/icons/16x16/actions/transform-rotate.png \
+images/icons/16x16/actions/tree-collapse.png \
 images/icons/16x16/actions/variable-from-selection.png \
 images/icons/16x16/actions/variable-new.png \
 images/icons/16x16/actions/view-refresh.png \
@@ -348,12 +377,9 @@ images/icons/16x16/status/folder-open.png \
 images/icons/16x16/status/line-found.png \
 images/icons/16x16/status/scilab-folder-open.png \
 images/icons/16x16/status/user-home-open.png \
-images/icons/256x256/apps/accessories-text-editor.png \
-images/icons/256x256/apps/puffin.png \
-images/icons/256x256/apps/rrze_table.png \
-images/icons/256x256/apps/system-search.png \
-images/icons/256x256/apps/utilities-system-monitor.png \
 images/icons/32x32/actions/edit-clear.png \
+images/icons/32x32/actions/tree-diagramm.png \
+images/icons/32x32/actions/tree-diagramm-delete.png \
 images/icons/32x32/apps/accessories-text-editor.png \
 images/icons/32x32/apps/graphic-window.png \
 images/icons/32x32/apps/rrze_table.png \
@@ -374,12 +400,18 @@ images/icons/64x40/mimetypes/application-x-scilab-plot2d.png \
 images/icons/64x40/mimetypes/application-x-scilab-plot3d.png \
 images/icons/64x40/mimetypes/application-x-scilab-Sgrayplot.png \
 images/icons/64x40/mimetypes/application-x-scilab-surf.png \
+images/icons/256x256/apps/accessories-text-editor.png \
+images/icons/256x256/apps/puffin.png \
+images/icons/256x256/apps/rrze_table.png \
+images/icons/256x256/apps/system-search.png \
+images/icons/256x256/apps/utilities-system-monitor.png \
 images/icons/aboutscilab.png \
 images/icons/check-icon.png \
 images/icons/close-tab-on.png \
 images/icons/close-tab.png \
 images/icons/dock_help_active.png \
 images/icons/dock_help_default.png \
+images/icons/data_modify.png \
 images/icons/puff.png \
 images/icons/rotate.png \
 images/icons/scilab_close_active.png \

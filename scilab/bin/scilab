@@ -647,11 +647,23 @@ fi
 GTK_MODULES=$(echo $GTK_MODULES | sed s/gnomebreakpad//g)
 export GTK_MODULES
 
+# libEGL may be partially supported by the closed-source NVIDIA driver.
+# Until they release an EGL driver, we force the egl_glx driver.
+# http://bugzilla.scilab.org/show_bug.cgi?id=12940
+if test -x /usr/bin/glxinfo; then
+    NVIDIA_GLX_VENDOR=$(/usr/bin/glxinfo |grep "NVIDIA Corporation")
+    if test ! -z "$NVIDIA_GLX_VENDOR"; then
+        EGL_DRIVER=egl_glx
+        export EGL_DRIVER
+    fi
+fi
+
 if test $SCIVERBOSE -ne 0; then
     echo "SCI : $SCI"
     echo "SCIBIN : $SCIBIN"
     echo "PATH : $PATH"
     echo "CLASSPATH : $CLASSPATH"
+    echo "EGL_DRIVER : $EGL_DRIVER"
 fi
 
 # Returns to the original path

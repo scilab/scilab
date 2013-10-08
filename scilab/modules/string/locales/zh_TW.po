@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -486,7 +486,15 @@ msgid "%s: Unknown error.\n"
 msgstr "%s: 未知錯誤.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: $ expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: a function expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: $ is the only implicit variable supported in selected indices"
 msgstr ""
 
 #

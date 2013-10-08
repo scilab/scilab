@@ -144,6 +144,7 @@ int sci_xmlXPath(char* fname, void* pvApiCtx)
 
         if (getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &namespaces) != 0)
         {
+            freeAllocatedSingleString(query);
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
@@ -198,8 +199,8 @@ int sci_xmlXPath(char* fname, void* pvApiCtx)
             break;
         }
         default:
-            delete xpath;
             Scierror(999, gettext("%s: XPath query returned a not handled type: %i\n"), fname, xpath->getResultType());
+            delete xpath;
             return 0;
     }
 

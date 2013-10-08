@@ -114,8 +114,9 @@ void H5Object::getAccessibleAttribute(const std::string & _name, const int pos, 
 
     if (lower == "name")
     {
-        const char * name = getName().c_str();
-        err = createMatrixOfString(pvApiCtx, pos, 1, 1, &name);
+	const std::string name = getName();
+        const char * _name = name.c_str();
+        err = createMatrixOfString(pvApiCtx, pos, 1, 1, &_name);
         if (err.iErr)
         {
             throw H5Exception(__LINE__, __FILE__, _("Cannot create a string on the stack."));
@@ -125,7 +126,8 @@ void H5Object::getAccessibleAttribute(const std::string & _name, const int pos, 
     }
     else if (lower == "path")
     {
-        const char * path = getCompletePath().c_str();
+	const std::string completePath = getCompletePath();
+        const char * path = completePath.c_str();
         err = createMatrixOfString(pvApiCtx, pos, 1, 1, &path);
         if (err.iErr)
         {

@@ -334,7 +334,6 @@ cd .. &gt;nul
     <ClInclude Include="includes\api_handle.h" />
     <ClInclude Include="includes\api_hypermat.h" />
     <ClInclude Include="includes\api_int.h" />
-    <ClInclude Include="includes\api_internal_handle.h" />
     <ClInclude Include="includes\api_optional.h" />
     <ClInclude Include="includes\returnProperty.h" />
     <ClInclude Include="includes\returnPropertyList.h" />

@@ -45,7 +45,7 @@ void* get_user_data_property(void* _pvCtx, char* pobjUID)
 
     getGraphicObjectProperty(pobjUID, __GO_USER_DATA__, jni_int_vector, (void **)&piUserData);
 
-    if ((piUserData == NULL) || (piUserDataSize == 0))
+    if ((piUserData == NULL) || (piUserDataSize == NULL))
     {
         int iSize = sizeof(void*) / sizeof(int);
         status = sciReturnEmptyMatrix();

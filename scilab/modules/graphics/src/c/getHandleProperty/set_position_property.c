@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2013 - Pedro SOUZA
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -91,6 +92,34 @@ int set_position_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
             return SET_PROPERTY_ERROR;
         }
 
+    }
+    else if (type == __GO_LIGHT__)
+    {
+        double* values = (double*)_pvData;
+
+        if (valueType != sci_matrix)
+        {
+            Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "position");
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (nbRow * nbCol != 3)
+        {
+            Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "position", 3);
+            return SET_PROPERTY_ERROR;
+        }
+
+        status = setGraphicObjectProperty(pobjUID, __GO_POSITION__, values, jni_double_vector, 3);
+
+        if (status == TRUE)
+        {
+            return SET_PROPERTY_SUCCEED;
+        }
+        else
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "position");
+            return SET_PROPERTY_ERROR;
+        }
     }
     else
     {

@@ -31,7 +31,7 @@ public class DrawnTextureDataProvider extends AbstractDataProvider<Texture> impl
 
     public DrawnTextureDataProvider(TextureDrawer textureDrawer) {
         this.textureDrawer = textureDrawer;
-        imageType = ImageType.RGBA;
+        imageType = ImageType.RGBA_BYTE;
         //reDraw();
     }
 

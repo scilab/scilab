@@ -346,7 +346,7 @@ cd ..
     <ClCompile Include="xerbla.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\callinter.h" />
+    <ClInclude Include="..\..\includes\callinter.h.f" />
     <ClInclude Include="..\..\includes\stack.h" />
   </ItemGroup>
   <ItemGroup>

@@ -47,9 +47,7 @@ int isHypermatType(void* _pvCtx, int* _piAddress)
 int isHypermatComplex(void* _pvCtx, int* _piAddress)
 {
     int * _piItemAddress = NULL;
-    SciErr sciErr;
-
-    sciErr = getHypermatEntries(_pvCtx, _piAddress, &_piItemAddress);
+    SciErr sciErr = getHypermatEntries(_pvCtx, _piAddress, &_piItemAddress);
     if (sciErr.iErr)
     {
         return 0;
@@ -61,9 +59,7 @@ int isHypermatComplex(void* _pvCtx, int* _piAddress)
 SciErr getHypermatType(void *_pvCtx, int *_piAddress, int *_piType)
 {
     int * _piItemAddress = NULL;
-    SciErr sciErr;
-
-    sciErr = getHypermatEntries(_pvCtx, _piAddress, &_piItemAddress);
+    SciErr sciErr = getHypermatEntries(_pvCtx, _piAddress, &_piItemAddress);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -75,9 +71,7 @@ SciErr getHypermatType(void *_pvCtx, int *_piAddress, int *_piType)
 SciErr getHypermatOfIntegerPrecision(void *_pvCtx, int *_piAddress, int *_piPrecision)
 {
     int * _piItemAddress = NULL;
-    SciErr sciErr;
-
-    sciErr = getHypermatEntries(_pvCtx, _piAddress, &_piItemAddress);
+    SciErr sciErr = getHypermatEntries(_pvCtx, _piAddress, &_piItemAddress);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -89,10 +83,9 @@ SciErr getHypermatOfIntegerPrecision(void *_pvCtx, int *_piAddress, int *_piPrec
 SciErr getHypermatDimensions(void *_pvCtx, int *_piAddress, int **_dims, int *_ndims)
 {
     int * _piItemAddress = NULL;
-    SciErr sciErr;
     int _rows = 0;
 
-    sciErr = getListItemAddress(_pvCtx, _piAddress, 2, &_piItemAddress);
+    SciErr sciErr = getListItemAddress(_pvCtx, _piAddress, 2, &_piItemAddress);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -108,12 +101,11 @@ SciErr getHypermatEntries(void* _pvCtx, int* _piAddress, int ** _piEntriesAddres
 
 SciErr getHypermatOfDouble(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, double** _pdblReal)
 {
-    SciErr sciErr;
     int * entries = NULL;
     int _rows = 0;
     int _cols = 0;
 
-    sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
+    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -130,12 +122,11 @@ SciErr getHypermatOfDouble(void* _pvCtx, int* _piAddress, int **_dims, int *_ndi
 
 SciErr getComplexHypermatOfDouble(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, double** _pdblReal, double** _pdblImg)
 {
-    SciErr sciErr;
     int * entries = NULL;
     int _rows = 0;
     int _cols = 0;
 
-    sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
+    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -152,10 +143,9 @@ SciErr getComplexHypermatOfDouble(void* _pvCtx, int* _piAddress, int **_dims, in
 
 SciErr getHypermatPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int* _piVarNameLen)
 {
-    SciErr sciErr;
     int * entries = NULL;
 
-    sciErr = getHypermatEntries(_pvCtx, _piAddress, &entries);
+    SciErr sciErr = getHypermatEntries(_pvCtx, _piAddress, &entries);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -166,12 +156,11 @@ SciErr getHypermatPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarN
 
 SciErr getHypermatOfPoly(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, int* _piNbCoef, double** _pdblReal)
 {
-    SciErr sciErr;
     int * entries = NULL;
     int _rows = 0;
     int _cols = 0;
 
-    sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
+    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -188,12 +177,11 @@ SciErr getHypermatOfPoly(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims
 
 SciErr getComplexHypermatOfPoly(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-    SciErr sciErr;
     int * entries = NULL;
     int _rows = 0;
     int _cols = 0;
 
-    sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
+    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -210,12 +198,11 @@ SciErr getComplexHypermatOfPoly(void* _pvCtx, int* _piAddress, int **_dims, int 
 
 SciErr getHypermatOfString(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, int* _piLength, char** _pstStrings)
 {
-    SciErr sciErr;
     int * entries = NULL;
     int _rows = 0;
     int _cols = 0;
 
-    sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
+    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -232,12 +219,11 @@ SciErr getHypermatOfString(void* _pvCtx, int* _piAddress, int **_dims, int *_ndi
 
 SciErr getHypermatOfWideString(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, int* _piLength, wchar_t** _pwstStrings)
 {
-    SciErr sciErr;
     int * entries = NULL;
     int _rows = 0;
     int _cols = 0;
 
-    sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
+    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -254,12 +240,11 @@ SciErr getHypermatOfWideString(void* _pvCtx, int* _piAddress, int **_dims, int *
 
 SciErr getHypermatOfInteger8(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, char** _pcData8)
 {
-    SciErr sciErr;
     int * entries = NULL;
     int _rows = 0;
     int _cols = 0;
 
-    sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
+    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -276,12 +261,11 @@ SciErr getHypermatOfInteger8(void* _pvCtx, int* _piAddress, int **_dims, int *_n
 
 SciErr getHypermatOfUnsignedInteger8(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, unsigned char** _pucData8)
 {
-    SciErr sciErr;
     int * entries = NULL;
     int _rows = 0;
     int _cols = 0;
 
-    sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
+    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -298,12 +282,11 @@ SciErr getHypermatOfUnsignedInteger8(void* _pvCtx, int* _piAddress, int **_dims,
 
 SciErr getHypermatOfInteger16(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, short** _psData16)
 {
-    SciErr sciErr;
     int * entries = NULL;
     int _rows = 0;
     int _cols = 0;
 
-    sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
+    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -320,12 +303,11 @@ SciErr getHypermatOfInteger16(void* _pvCtx, int* _piAddress, int **_dims, int *_
 
 SciErr getHypermatOfUnsignedInteger16(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, unsigned short** _pusData16)
 {
-    SciErr sciErr;
     int * entries = NULL;
     int _rows = 0;
     int _cols = 0;
 
-    sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
+    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -342,12 +324,11 @@ SciErr getHypermatOfUnsignedInteger16(void* _pvCtx, int* _piAddress, int **_dims
 
 SciErr getHypermatOfInteger32(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, int** _piData32)
 {
-    SciErr sciErr;
     int * entries = NULL;
     int _rows = 0;
     int _cols = 0;
 
-    sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
+    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -364,12 +345,11 @@ SciErr getHypermatOfInteger32(void* _pvCtx, int* _piAddress, int **_dims, int *_
 
 SciErr getHypermatOfUnsignedInteger32(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, unsigned int** _puiData32)
 {
-    SciErr sciErr;
     int * entries = NULL;
     int _rows = 0;
     int _cols = 0;
 
-    sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
+    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -386,12 +366,11 @@ SciErr getHypermatOfUnsignedInteger32(void* _pvCtx, int* _piAddress, int **_dims
 
 SciErr getHypermatOfBoolean(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, int** _piBool)
 {
-    SciErr sciErr;
     int * entries = NULL;
     int _rows = 0;
     int _cols = 0;
 
-    sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
+    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -409,11 +388,8 @@ SciErr getHypermatOfBoolean(void* _pvCtx, int* _piAddress, int **_dims, int *_nd
 SciErr createEmptyHypermat(void *_pvCtx, int _iVar, const int * _dims, int _ndims, int ** _piAddress)
 {
     static const char * fields[3] = {"hm", "dims", "entries"};
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
 
-    sciErr = createMList(_pvCtx, _iVar, 3, _piAddress);
+    SciErr sciErr = createMList(_pvCtx, _iVar, 3, _piAddress);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -438,11 +414,8 @@ SciErr createHypermatOfString(void *_pvCtx, int _iVar, int * _dims, int _ndims, 
 {
     int * _piAddress = NULL;
     int iNbElements = 1;
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
 
-    sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
+    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -466,11 +439,8 @@ SciErr createHypermatOfPoly(void *_pvCtx, int _iVar, char* _pstVarName, int * _d
 {
     int * _piAddress = NULL;
     int iNbElements = 1;
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
 
-    sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
+    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -494,11 +464,8 @@ SciErr createComplexHypermatOfPoly(void *_pvCtx, int _iVar, char* _pstVarName, i
 {
     int * _piAddress = NULL;
     int iNbElements = 1;
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
 
-    sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
+    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -522,9 +489,8 @@ SciErr allocHypermatOfDouble(void *_pvCtx, int _iVar, int * _dims, int _ndims, d
 {
     int * _piAddress = NULL;
     int iNbElements = 1;
-    SciErr sciErr;
 
-    sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
+    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -548,9 +514,8 @@ SciErr createHypermatOfDouble(void *_pvCtx, int _iVar, int * _dims, int _ndims, 
 {
     int * _piAddress = NULL;
     int iNbElements = 1;
-    SciErr sciErr;
 
-    sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
+    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -574,11 +539,8 @@ SciErr createComplexHypermatOfDouble(void *_pvCtx, int _iVar, int * _dims, int _
 {
     int * _piAddress = NULL;
     int iNbElements = 1;
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
 
-    sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
+    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -602,11 +564,7 @@ SciErr createHypermatOfBoolean(void *_pvCtx, int _iVar, int * _dims, int _ndims,
 {
     int * _piAddress = NULL;
     int iNbElements = 1;
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
-
-    sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
+    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -630,11 +588,8 @@ SciErr createHypermatOfInteger8(void *_pvCtx, int _iVar, int * _dims, int _ndims
 {
     int * _piAddress = NULL;
     int iNbElements = 1;
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
 
-    sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
+    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -658,11 +613,8 @@ SciErr createHypermatOfUnsignedInteger8(void *_pvCtx, int _iVar, int * _dims, in
 {
     int * _piAddress = NULL;
     int iNbElements = 1;
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
 
-    sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
+    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -686,11 +638,8 @@ SciErr createHypermatOfInteger16(void *_pvCtx, int _iVar, int * _dims, int _ndim
 {
     int * _piAddress = NULL;
     int iNbElements = 1;
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
 
-    sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
+    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -714,11 +663,8 @@ SciErr createHypermatOfUnsignedInteger16(void *_pvCtx, int _iVar, int * _dims, i
 {
     int * _piAddress = NULL;
     int iNbElements = 1;
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
 
-    sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
+    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -742,11 +688,8 @@ SciErr createHypermatOfInteger32(void *_pvCtx, int _iVar, int * _dims, int _ndim
 {
     int * _piAddress = NULL;
     int iNbElements = 1;
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
 
-    sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
+    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -770,11 +713,8 @@ SciErr createHypermatOfUnsignedInteger32(void *_pvCtx, int _iVar, int * _dims, i
 {
     int * _piAddress = NULL;
     int iNbElements = 1;
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
 
-    sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
+    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
     if (sciErr.iErr)
     {
         return sciErr;

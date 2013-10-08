@@ -9,85 +9,93 @@
 package org.scilab.modules.graphic_objects;
 
 public class DataLoader {
-    public static int getTextureWidth(String id) {
-        return DataLoaderJNI.getTextureWidth(id);
-    }
+  public static int getTextureWidth(String id) {
+    return DataLoaderJNI.getTextureWidth(id);
+  }
 
-    public static int getTextureHeight(String id) {
-        return DataLoaderJNI.getTextureHeight(id);
-    }
+  public static int getTextureHeight(String id) {
+    return DataLoaderJNI.getTextureHeight(id);
+  }
 
-    public static int fillTextureData(String id, java.nio.ByteBuffer buffer, int bufferLength) {
-        assert buffer.isDirect() : "Buffer must be allocated direct.";
-        {
-            return DataLoaderJNI.fillTextureData(id, buffer, bufferLength);
-        }
+  public static int fillTextureData(String id, java.nio.ByteBuffer buffer, int bufferLength) {
+    assert buffer.isDirect() : "Buffer must be allocated direct.";
+    {
+      return DataLoaderJNI.fillTextureData(id, buffer, bufferLength);
     }
+  }
 
-    public static int fillSubTextureData(String id, java.nio.ByteBuffer buffer, int bufferLength, int x, int y, int width, int height) {
-        assert buffer.isDirect() : "Buffer must be allocated direct.";
-        {
-            return DataLoaderJNI.fillSubTextureData(id, buffer, bufferLength, x, y, width, height);
-        }
+  public static int fillSubTextureData(String id, java.nio.ByteBuffer buffer, int bufferLength, int x, int y, int width, int height) {
+    assert buffer.isDirect() : "Buffer must be allocated direct.";
+    {
+      return DataLoaderJNI.fillSubTextureData(id, buffer, bufferLength, x, y, width, height);
     }
+  }
 
-    public static int getDataSize(String id) {
-        return DataLoaderJNI.getDataSize(id);
-    }
+  public static int getDataSize(String id) {
+    return DataLoaderJNI.getDataSize(id);
+  }
 
-    public static void fillVertices(String id, java.nio.FloatBuffer buffer, int bufferLength, int elementsSize, int coordinateMask, double[] scale, double[] translation, int logMask) {
-        assert buffer.isDirect() : "Buffer must be allocated direct.";
-        {
-            DataLoaderJNI.fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
-        }
+  public static void fillVertices(String id, java.nio.FloatBuffer buffer, int bufferLength, int elementsSize, int coordinateMask, double[] scale, double[] translation, int logMask) {
+    assert buffer.isDirect() : "Buffer must be allocated direct.";
+    {
+      DataLoaderJNI.fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
     }
+  }
 
-    public static void fillColors(String id, java.nio.FloatBuffer buffer, int bufferLength, int elementsSize) {
-        assert buffer.isDirect() : "Buffer must be allocated direct.";
-        {
-            DataLoaderJNI.fillColors(id, buffer, bufferLength, elementsSize);
-        }
+  public static void fillNormals(String id, java.nio.FloatBuffer position, java.nio.FloatBuffer buffer, int bufferLength, int elementsSize) {
+    assert position.isDirect() : "Buffer must be allocated direct.";
+    assert buffer.isDirect() : "Buffer must be allocated direct.";
+    {
+      DataLoaderJNI.fillNormals(id, position, buffer, bufferLength, elementsSize);
     }
+  }
 
-    public static void fillTextureCoordinates(String id, java.nio.FloatBuffer buffer, int bufferLength) {
-        assert buffer.isDirect() : "Buffer must be allocated direct.";
-        {
-            DataLoaderJNI.fillTextureCoordinates(id, buffer, bufferLength);
-        }
+  public static void fillColors(String id, java.nio.FloatBuffer buffer, int bufferLength, int elementsSize) {
+    assert buffer.isDirect() : "Buffer must be allocated direct.";
+    {
+      DataLoaderJNI.fillColors(id, buffer, bufferLength, elementsSize);
     }
+  }
 
-    public static int getIndicesSize(String id) {
-        return DataLoaderJNI.getIndicesSize(id);
+  public static void fillTextureCoordinates(String id, java.nio.FloatBuffer buffer, int bufferLength) {
+    assert buffer.isDirect() : "Buffer must be allocated direct.";
+    {
+      DataLoaderJNI.fillTextureCoordinates(id, buffer, bufferLength);
     }
+  }
 
-    public static int fillIndices(String id, java.nio.IntBuffer buffer, int bufferLength, int logMask) {
-        assert buffer.isDirect() : "Buffer must be allocated direct.";
-        {
-            return DataLoaderJNI.fillIndices(id, buffer, bufferLength, logMask);
-        }
-    }
+  public static int getIndicesSize(String id) {
+    return DataLoaderJNI.getIndicesSize(id);
+  }
 
-    public static int getWireIndicesSize(String id) {
-        return DataLoaderJNI.getWireIndicesSize(id);
+  public static int fillIndices(String id, java.nio.IntBuffer buffer, int bufferLength, int logMask) {
+    assert buffer.isDirect() : "Buffer must be allocated direct.";
+    {
+      return DataLoaderJNI.fillIndices(id, buffer, bufferLength, logMask);
     }
+  }
 
-    public static int fillWireIndices(String id, java.nio.IntBuffer buffer, int bufferLength, int logMask) {
-        assert buffer.isDirect() : "Buffer must be allocated direct.";
-        {
-            return DataLoaderJNI.fillWireIndices(id, buffer, bufferLength, logMask);
-        }
-    }
+  public static int getWireIndicesSize(String id) {
+    return DataLoaderJNI.getWireIndicesSize(id);
+  }
 
-    public static int getMarkIndicesSize(String id) {
-        return DataLoaderJNI.getMarkIndicesSize(id);
+  public static int fillWireIndices(String id, java.nio.IntBuffer buffer, int bufferLength, int logMask) {
+    assert buffer.isDirect() : "Buffer must be allocated direct.";
+    {
+      return DataLoaderJNI.fillWireIndices(id, buffer, bufferLength, logMask);
     }
+  }
 
-    public static int fillMarkIndices(String id, java.nio.IntBuffer buffer, int bufferLength) {
-        assert buffer.isDirect() : "Buffer must be allocated direct.";
-        {
-            return DataLoaderJNI.fillMarkIndices(id, buffer, bufferLength);
-        }
+  public static int getMarkIndicesSize(String id) {
+    return DataLoaderJNI.getMarkIndicesSize(id);
+  }
+
+  public static int fillMarkIndices(String id, java.nio.IntBuffer buffer, int bufferLength) {
+    assert buffer.isDirect() : "Buffer must be allocated direct.";
+    {
+      return DataLoaderJNI.fillMarkIndices(id, buffer, bufferLength);
     }
+  }
 
     public static java.nio.ByteBuffer getTextureData(String id) {
         return DataLoaderJNI.getTextureData(id);

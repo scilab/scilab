@@ -102,6 +102,7 @@ int sci_csvStringToDouble(char *fname, void* pvApiCtx)
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
         }
+        break;
 
         default:
         case STRINGTOCOMPLEX_ERROR:

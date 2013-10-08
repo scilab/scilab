@@ -129,7 +129,7 @@ c
 c     
       icall=5
 c
-      include "callinter.h"
+      include "callinter.h.f"
 c======================================================================
 c     this include file contains code relative to interfaces calling. We use
 c     include file instead of subroutine to avoid recursion pb's. This file

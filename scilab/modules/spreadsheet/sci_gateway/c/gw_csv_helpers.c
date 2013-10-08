@@ -87,6 +87,11 @@ char *csv_getArgumentAsStringWithEmptyManagement(void* pvApiCtx, int _iVar, cons
         *iErr = getAllocatedSingleString(pvApiCtx, piAddressVar, &returnedValue);
         if (*iErr)
         {
+            if (returnedValue)
+            {
+                FREE(returnedValue);
+            }
+
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return NULL;
         }
@@ -141,6 +146,11 @@ char *csv_getArgumentAsString(void* pvApiCtx, int _iVar,
     *iErr = getAllocatedSingleString(pvApiCtx, piAddressVar, &returnedValue);
     if (*iErr)
     {
+        if (returnedValue)
+        {
+            FREE(returnedValue);
+        }
+
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return NULL;
     }
@@ -278,6 +288,10 @@ char **csv_getArgumentAsMatrixOfString(void* pvApiCtx, int _iVar,
     *iErr = getAllocatedMatrixOfString(pvApiCtx, piAddressVar, &m_, &n_, &pStringValues);
     if (*iErr != 0)
     {
+        if (pStringValues)
+        {
+            FREE(pStringValues);
+        }
         return NULL;
     }
 

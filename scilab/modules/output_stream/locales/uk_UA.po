@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-26 05:24+0000\n"
+"PO-Revision-Date: 2013-09-04 13:55+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: uk\n"
 
 #, c-format
@@ -1095,6 +1095,8 @@ msgstr "Вхідні параметри повинні мати ту саму ф
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Wrong value for element %s.\n"
 msgstr ""
+"%s: помилкове значення вхідного параметра №%d: помилкове значення елемента "
+"%s.\n"
 
 msgid "Unknown data.\n"
 msgstr "Невідомі дані.\n"
@@ -1486,6 +1488,8 @@ msgid ""
 "%s: %s: %s is too small. %s is orthogonal to the columns of the Jacobian to "
 "machine precision.\n"
 msgstr ""
+"%s: %s: %s є надто малим. %s є ортогональним до стовпчиків якобіана з "
+"точністю комп’ютерної арифметики.\n"
 
 msgid "poly: variable name must be lesser than 5 characters long.\n"
 msgstr "poly: назва змінної має складатися не більше ніж з 4 символів.\n"

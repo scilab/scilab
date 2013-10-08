@@ -190,7 +190,7 @@ function [x,y,typ]=CBLOCK4(job,arg1,arg2)
         []);
 
         gr_i=["xstringb(orig(1),orig(2),''C block4'',sz(1),sz(2),''fill'');"]
-        x=standard_define([2 2],model,label,gr_i)
+        x=standard_define([4 2],model,label,gr_i)
     end
 endfunction
 

@@ -7,7 +7,7 @@
 // <-- ENGLISH IMPOSED -->
 // <-- XCOS TEST -->
 // Import diagram
-assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/tows_c.xcos"));
+assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/tows_c.zcos"));
 Info = scicos_simulate(scs_m);
 // Reference values
 t = (2.2 : 0.1 : 14.9)';

@@ -32,7 +32,6 @@ import javax.imageio.ImageIO;
 import javax.swing.Icon;
 
 import org.scilab.modules.commons.ScilabCommonsUtils;
-import org.scilab.modules.helptools.Converter;
 import org.scilab.modules.helptools.DocbookTagConverter;
 
 /**

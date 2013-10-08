@@ -21,6 +21,7 @@ function blk = xcosBlockEval(interfaceAlias, blk, context)
     %mprt = funcprot()
     funcprot(0)
     scicos_getvalue = setvalue;
+    getvalue = setvalue;
     function message(txt)
         messagebox(..
         ["In block " + o.gui + ": " ; txt ; "current parameter value kept"],..

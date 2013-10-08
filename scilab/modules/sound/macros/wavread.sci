@@ -271,7 +271,7 @@ function Data = read_dat_pcm(fid,total_bytes , nChannels, nBitsPerSample, ext, w
         if wFormatTag == 3 then
             dtype = "f";
         else
-            dtype = "l";
+            dtype = "i";
         end
     else
         error(msprintf(gettext("%s: An error occurred: %s\n"), "read_dat_pcm", gettext("Cannot read .wav file  with more than 16 bits per sample.")));

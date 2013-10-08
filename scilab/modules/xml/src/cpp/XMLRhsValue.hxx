@@ -92,6 +92,7 @@ public:
 
         if (getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &str))
         {
+            delete code;
             return false;
         }
 

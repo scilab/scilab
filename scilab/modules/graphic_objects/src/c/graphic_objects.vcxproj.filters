@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -80,6 +80,9 @@
     <ClCompile Include="..\cpp\NgonPolylineData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\NormalGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\cpp\Plot3DDecomposer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -140,7 +143,22 @@
     <ClCompile Include="..\cpp\MatPlotDecomposer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\jni\PolylineData_wrap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\SurfaceData_wrap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\createObjectData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\pickSurface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\jni\GraphicObjectBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\ObjectData_wrap.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\Texture.cpp">
@@ -194,6 +212,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\NgonPolylineData.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\NormalGenerator.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\Plot3DDecomposer.hxx">
@@ -292,6 +313,15 @@
     <None Include="..\..\sci_gateway\graphic_objects_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\jni\ScilabNativeView.i">
+      <Filter>Swig Files</Filter>
+    </None>
+    <None Include="..\jni\PolylineData.i">
+      <Filter>Swig Files</Filter>
+    </None>
+    <None Include="..\jni\SurfaceData.i">
+      <Filter>Swig Files</Filter>
+    </None>
+    <None Include="..\jni\ObjectData.i">
       <Filter>Swig Files</Filter>
     </None>
   </ItemGroup>

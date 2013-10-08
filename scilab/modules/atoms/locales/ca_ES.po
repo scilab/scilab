@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: ca\n"
 
 #, c-format
@@ -246,8 +246,8 @@ msgstr ""
 "d'escriptura en aquest directori.\n"
 
 #, c-format
-msgid "%s: The file '%s' doesn't exist or is not read accessible\n"
-msgstr "%s: El fitxer '%s' no existeix, o no hi teniu accés de lectura\n"
+msgid "%s: The file '%s' does not exist or is not read accessible.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
@@ -334,8 +334,9 @@ msgid "\t - '%s - %s' is needed by '%s'\n"
 msgstr "\t - '%s - %s' és necessari per a '%s'\n"
 
 #, c-format
-msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
-msgstr "%s: El fitxer '%s' no existeix o no hi teniu accés de lectura.\n"
+msgid ""
+"%s: The file '%s' from (%s - %s) does not exist or is not read accessible.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: An error occurred while loading '%s-%s':\n"
@@ -735,11 +736,9 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: The file %s is not well formated, the toolbox %s - %s doesn't contain "
+"%s: The file %s is not well formated, the toolbox %s - %s does not contain "
 "the %s field\n"
 msgstr ""
-"%s: El fitxer %s no té un format correcte, la caixa d'eines %s - %s no conté "
-"el camp %s\n"
 
 #, c-format
 msgid "%s: name and version are not both defined\n"
@@ -774,11 +773,9 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: String that start with "
-"'http://','ftp://' or 'file://' expected.\n"
+"%s: Wrong value for input argument #%d: String that starts with "
+"'http(s)?://','ftp://' or 'file://' expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser una cadena de "
-"text que comenci amb 'http://','ftp://' o 'file://'.\n"
 
 #, c-format
 msgid ""
@@ -845,8 +842,8 @@ msgid "\t - Local location : '%s'\n"
 msgstr "\t - Ubicació local: '%s'\n"
 
 #, c-format
-msgid "%s: The following file hasn't been copied:\n"
-msgstr "%s: No s'ha copiat aquest fitxer:\n"
+msgid "%s: The following file has not been copied:\n"
+msgstr ""
 
 #, c-format
 msgid "\t - source    : '%s'\n"
@@ -857,8 +854,8 @@ msgid "\t - destination : '%s'\n"
 msgstr "\t - destí : '%s'\n"
 
 #, c-format
-msgid "%s: The downloaded file doesn't check the MD5SUM:\n"
-msgstr "%s: El fitxer descarregat no coincideix amb el MD5SUM:\n"
+msgid "%s: The downloaded file does not match the MD5SUM:\n"
+msgstr ""
 
 #, c-format
 msgid "\t - file      : '%s'\n"
@@ -888,12 +885,12 @@ msgstr ""
 "text acabada en .tar.gz, .tgz o .zip.\n"
 
 #, c-format
-msgid "%s: The file %s doesn't exist or is not read accessible.\n"
-msgstr "%s: No existeix el ftixer %s, o no hi teniu accés de lectura.\n"
+msgid "%s: The file %s does not exist or is not read accessible.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: The directory %s doesn't exist.\n"
-msgstr "%s: No existeix el directori %s.\n"
+msgid "%s: The directory %s does not exist.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: The extraction of the archive '%s' has failed.\n"
@@ -996,12 +993,12 @@ msgstr ""
 "vàlid.\n"
 
 #, c-format
-msgid "%s: the package '%s' doesn't exist.\n"
-msgstr "%s: El paquet '%s' no existeix.\n"
+msgid "%s: the package '%s' does not exist.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: the package '%s' doesn't contain the field '%s'.\n"
-msgstr "%s: El paquet '%s' no conté el camp '%s'.\n"
+msgid "%s: the package '%s' does not contain the field '%s'.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: %s (%s) isn't installed.\n"

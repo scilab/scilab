@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-09-13 12:32+0100\n"
+"Revision-Date: 2013-09-27 17:13+0100\n"
 
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 37
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 55
@@ -1749,19 +1749,19 @@ msgid ""
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/core/ConsoleTab.java, line: 50
+# File: src/java/org/scilab/modules/core/ConsoleTab.java, line: 49
 msgid ""
 "No available console !\n"
 "Please use STD mode."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/core/ConsoleTab.java, line: 51
+# File: src/java/org/scilab/modules/core/ConsoleTab.java, line: 50
 msgid "Empty tab"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/core/ConsoleTab.java, line: 97
+# File: src/java/org/scilab/modules/core/ConsoleTab.java, line: 96
 #, c-format
 msgid "Scilab %s Console"
 msgstr ""

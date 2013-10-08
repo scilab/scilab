@@ -1,0 +1,66 @@
+<package name="org.scilab.modules.gui.datatip">
+    <object name="DatatipCreate">
+        <method name="createDatatipProgramCoord" returnType="String" modifier="static">
+            <parameter name="polylineUid" type="String"/>
+            <parameter name="coordDoubleXY" type="double[]"/>
+        </method>
+        <method name="createDatatipProgramIndex" returnType="String" modifier="static">
+            <parameter name="polylineUid" type="String"/>
+            <parameter name="indexPoint" type="int"/>
+        </method>
+        <method name="datatipSetInterp" returnType="void" modifier="static">
+            <parameter name="datatipUid" type="String"/>
+            <parameter name="interpMode" type="boolean"/>
+        </method>
+    </object>
+    <object name="DatatipDelete">
+        <method name="datatipRemoveProgramIndex" returnType="void" modifier="static">
+            <parameter name="polylineUid" type="String"/>
+            <parameter name="indexRemove" type="int"/>
+        </method>
+        <method name="datatipRemoveProgramHandler" returnType="void" modifier="static">
+            <parameter name="datatipUid" type="String"/>
+            <parameter name="figureUid" type="String"/>
+        </method>
+    </object>
+    <object name="DatatipManager">
+        <method name="setEnabled" returnType="void" modifier="static">
+            <parameter name="uid" type="String"/>
+            <parameter name="b" type="boolean"/>
+        </method>
+        <method name="isEnabled" returnType="boolean" modifier="static">
+            <parameter name="uid" type="String"/>
+        </method>
+        <method name="getSelected" returnType="String" modifier="static">
+            <parameter name="uid" type="String"/>
+        </method>
+        <method name="setSelected" returnType="void" modifier="static">
+            <parameter name="figureUid" type="String"/>
+            <parameter name="tipUid" type="String"/>
+        </method>
+    </object>
+    <object name="DatatipDrag">
+        <method name="dragDatatip" returnType="void" modifier="static">
+            <parameter name="datatipUid" type="String"/>
+            <parameter name="endX" type="int"/>
+            <parameter name="endY" type="int"/>
+        </method>
+    </object>
+    <object name="DatatipSetStyle">
+        <method name="datatipSetStyle" returnType="void" modifier="static">
+            <parameter name="polylineUID" type="String"/>
+            <parameter name="t" type="int"/>
+            <parameter name="boxed" type="boolean"/>
+            <parameter name="labeled" type="boolean"/>
+        </method>
+        <method name="datatipSetStyleWindow" returnType="int" modifier="static">
+        </method>
+    </object>
+    <object name="DatatipOrientation">
+        <method name="datatipSetOrientation" returnType="void" modifier="static">
+            <parameter name="datatipUid" type="String"/>
+            <parameter name="datatipOrientation" type="String"/>
+            <parameter name="datatipOrientationNum" type="int"/>
+        </method>
+    </object>
+</package>

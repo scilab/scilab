@@ -11,8 +11,13 @@ function [plist, err] = add_param(list_name, param_name, param_value)
 
     [nargout, nargin] = argn();
 
-    if nargin <> 3 then
-        error(sprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "add_param", 3));
+    if nargout == 2 then
+        warning(sprintf(_("Second output argument of %s is obsolete.\n"), "add_param"))
+        warning(sprintf(_("This argument will be permanently removed in Scilab %s"), "5.5.1"))
+    end
+
+    if nargin <> 2 & nargin <> 3 then
+        error(sprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "add_param", 2, 3));
     end
 
     if typeof(list_name) == "plist" then

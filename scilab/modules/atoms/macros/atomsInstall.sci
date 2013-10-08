@@ -157,7 +157,7 @@ function result = atomsInstall(packages,section)
         if ~ isempty(regexp(this_package,"/(\.tar\.gz|\.tgz|\.zip)$/","o")) then
 
             if fileinfo( this_package ) then
-                error(msprintf(gettext("%s: The file ''%s'' doesn''t exist or is not read accessible\n"),"atomsInstall",this_package));
+                error(msprintf(gettext("%s: The file ''%s'' does not exist or is not read accessible.\n"),"atomsInstall",this_package));
             end
 
             // expand filename - bug 10707

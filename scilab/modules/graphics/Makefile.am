@@ -301,6 +301,8 @@ src/c/getHandleProperty/set_figure_resizefcn_property.c \
 src/c/getHandleProperty/get_figure_resizefcn_property.c \
 src/c/getHandleProperty/set_figure_closerequestfcn_property.c \
 src/c/getHandleProperty/get_figure_closerequestfcn_property.c \
+src/c/getHandleProperty/get_datatip_property.c \
+src/c/getHandleProperty/set_datatip_property.c \
 src/c/getHandleProperty/set_image_type_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
@@ -330,7 +332,23 @@ src/c/axesScale.c \
 src/c/TerminateGraphics.c \
 src/c/periEmpty.c \
 src/c/scitokenize.c \
-src/c/get_ticks_utils.c
+src/c/get_ticks_utils.c \
+src/c/getHandleProperty/get_ambient_color_property.c \
+src/c/getHandleProperty/get_diffuse_color_property.c \
+src/c/getHandleProperty/get_specular_color_property.c \
+src/c/getHandleProperty/get_use_color_material_property.c \
+src/c/getHandleProperty/get_material_shininess_property.c \
+src/c/getHandleProperty/get_light_type_property.c \
+src/c/getHandleProperty/get_direction_property.c \
+src/c/getHandleProperty/set_ambient_color_property.c \
+src/c/getHandleProperty/set_diffuse_color_property.c \
+src/c/getHandleProperty/set_specular_color_property.c \
+src/c/getHandleProperty/set_use_color_material_property.c \
+src/c/getHandleProperty/set_material_shininess_property.c \
+src/c/getHandleProperty/set_light_type_property.c \
+src/c/getHandleProperty/set_direction_property.c \
+src/c/Light.c
+
 
 GRAPHICS_CXX_SOURCES = \
 src/cpp/configgraphicvariable.cpp
@@ -392,7 +410,9 @@ sci_gateway/c/sci_set.c \
 sci_gateway/c/sci_rubberbox.c \
 sci_gateway/c/sci_rotate_axes.c \
 sci_gateway/c/sci_is_handle_valid.c \
-sci_gateway/c/sci_Legend.c
+sci_gateway/c/sci_Legend.c \
+sci_gateway/c/sci_light.c
+
 
 GATEWAY_CXX_SOURCES = \
 sci_gateway/cpp/graphics_gw.cpp \

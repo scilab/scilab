@@ -184,5 +184,20 @@ GRAPHICS_IMPEXP void* get_tag_property(void* _pvCtx, char* pobjUID);
 GRAPHICS_IMPEXP void* get_UID(void* _pvCtx, char *pobjUID);
 GRAPHICS_IMPEXP void* get_image_type_property(void* _pvCtx, char* pobjUID);
 GRAPHICS_IMPEXP void* get_video_mode_property(void* _pvCtx, char* pobjUID);
+GRAPHICS_IMPEXP void* get_tip_data_property(void* _pvCtx, char *pobjUID);
+GRAPHICS_IMPEXP void* get_tip_orientation_property(void* _pvCtx, char *pobjUID);
+GRAPHICS_IMPEXP void* get_tip_3component_property(void* _pvCtx, char *pobjUID);
+GRAPHICS_IMPEXP void* get_tip_auto_orientation_property(void* _pvCtx, char* pobjUID);
+GRAPHICS_IMPEXP void* get_tip_interp_mode_property(void* _pvCtx, char* pobjUID);
+GRAPHICS_IMPEXP void* get_tip_box_mode_property(void* _pvCtx, char* pobjUID);
+GRAPHICS_IMPEXP void* get_tip_label_mode_property(void* _pvCtx, char* pobjUID);
+GRAPHICS_IMPEXP void* get_tip_disp_function_property(void* _pvCtx, char* pobjUID);
+GRAPHICS_IMPEXP void* get_ambient_color_property(void* _pvCtx, char* pobjUID);
+GRAPHICS_IMPEXP void* get_diffuse_color_property(void* _pvCtx, char* pobjUID);
+GRAPHICS_IMPEXP void* get_specular_color_property(void* _pvCtx, char* pobjUID);
+GRAPHICS_IMPEXP void* get_use_color_material_property(void* _pvCtx, char* pobjUID);
+GRAPHICS_IMPEXP void* get_material_shininess_property(void* _pvCtx, char* pobjUID);
+GRAPHICS_IMPEXP void* get_light_type_property(void* _pvCtx, char* pobjUID);
+GRAPHICS_IMPEXP void* get_direction_property(void* _pvCtx, char* pobjUID);
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

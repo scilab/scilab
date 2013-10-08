@@ -167,8 +167,8 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
                             else
                             {
                                 *toks = 0;
-                                FREE(substitutedstring);
                                 freeArrayOfString(retstr, strlen(substitutedstring));
+                                FREE(substitutedstring);
                                 return NULL;
                             }
                         }
@@ -201,7 +201,7 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
 
             while (*idxTmp == '"')
             {
-                *idxTmp++;
+                idxTmp++;
             }
             nbDoubleQuotes = idxTmp - idx;
 
@@ -226,8 +226,8 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
         if (!addToken(retstr, &curr_str, (char*)(idx - len), len))
         {
             *toks = 0;
-            FREE(substitutedstring);
             freeArrayOfString(retstr, strlen(substitutedstring));
+            FREE(substitutedstring);
             return NULL;
         }
     }

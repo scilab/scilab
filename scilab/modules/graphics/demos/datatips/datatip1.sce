@@ -26,13 +26,15 @@ function datatip1
     datatipCreate(p1,[0.8 0.5]);//by nearest mesh point
 
     //Create 2 datatips on the x^3 curve
-    datatipSetStyle(p2,2,%f) //directional arrow no box
-    function s=mydisp(curve,pt,index),s=msprintf("%.2g",pt(1)),endfunction
-    datatipSetDisplay(p2,mydisp) // Change the default datatip label
+    //datatipSetStyle(p2,2,%f) //directional arrow no box
+    //function s=mydisp(curve,pt,index),s=msprintf("%.2g",pt(1)),endfunction
+    //pause;
+    //datatipSetDisplay(p2,mydisp) // Change the default datatip label
     datatipCreate(p2,[0.1,0]);
     datatipCreate(p2,[0.8 0.4]);
+    datatipSetStyle(p2,2,%f) //directional arrow no box
 
-    datatipManagerMode(gcf(),"on") //activate the interactive editor
+    datatipManagerMode(fig,"on") //activate the interactive editor
 
 
     demo_viewCode("datatip1.sce");

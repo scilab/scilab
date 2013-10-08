@@ -110,6 +110,13 @@ SCICOS_BLOCKS_IMPEXP void evaluate_expr(scicos_block *block, int flag)
                     break;
                 case 5:
                     count = count + 1;
+                    /* invalid script : call a function without lhs */
+                    if (bottom <= 0)
+                    {
+                        set_block_error(-2);
+                        return;
+                    }
+
                     switch (block->ipar[count])
                     {
                         case 1:
@@ -624,7 +631,7 @@ SCICOS_BLOCKS_IMPEXP void evaluate_expr(scicos_block *block, int flag)
                             {
                                 if (stack[bottom] > 0)
                                 {
-                                    stack[bottom] = stack[bottom];
+                                    /* stack[bottom] = stack[bottom]; */
                                 }
                                 else
                                 {

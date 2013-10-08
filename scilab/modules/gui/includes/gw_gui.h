@@ -51,6 +51,19 @@ GUI_IMPEXP int sci_displaytree(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_uiputfile(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_raise_window (char* fname, void* pvApiCtx);
 
+GUI_IMPEXP int sci_useeditor(char *fname, void* pvApiCtx);
+GUI_IMPEXP int sci_openged(char *fname, void* pvApiCtx);
+GUI_IMPEXP int sci_datatipcreate(char *fname, void* pvApiCtx);
+GUI_IMPEXP int sci_datatipremove(char *fname, void* pvApiCtx);
+GUI_IMPEXP int sci_plotbrowser(char *fname, void* pvApiCtx);
+GUI_IMPEXP int sci_datatip_manager_mode(char *fname, void* pvApiCtx);
+GUI_IMPEXP int sci_datatip_toggle(char *fname, void* pvApiCtx);
+GUI_IMPEXP int sci_datatipmove(char *fname, void* pvApiCtx);
+GUI_IMPEXP int sci_datatip_set_style(char *fname, void* pvApiCtx);
+GUI_IMPEXP int sci_datatip_set_display(char *fname, void* pvApiCtx);
+GUI_IMPEXP int sci_datatip_set_interp(char *fname, void* pvApiCtx);
+GUI_IMPEXP int sci_datatip_set_orient(char *fname, void* pvApiCtx);
+
 // YaSp
 GUI_IMPEXP int sci_about(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_mpopup(char* fname, void* pvApiCtx);

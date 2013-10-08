@@ -83,8 +83,8 @@ int sci_import_from_hdf5_v1(char *fname, int* pvApiCtx)
     if (iFile < 0)
     {
         FREE(pstExpandedFilename);
-        FREE(pstFilename);
         Scierror(999, _("%s: Unable to open file: %s\n"), fname, pstFilename);
+        FREE(pstFilename);
         return 1;
     }
 

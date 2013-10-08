@@ -16,7 +16,9 @@ import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.buffers.IndicesBuffer;
 import org.scilab.modules.graphic_objects.MainDataLoader;
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
+import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.renderer.JoGLView.util.BufferAllocation;
 import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
@@ -32,8 +34,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Pierre Lando
- */
-public class DataManager {
+ */public class DataManager {
 
     /**
      * Set of properties that affect Fac3d data.
@@ -143,8 +144,8 @@ public class DataManager {
      */
     private static final int DEFAULT_LOG_MASK = 0;
 
-
-    private final Map<String, ElementsBuffer> vertexBufferMap = new HashMap<String, ElementsBuffer>();
+    private final Map<String, TransformedElementsBuffer> vertexBufferMap = new HashMap<String, TransformedElementsBuffer>();
+    private final Map<String, ElementsBuffer> normalBufferMap = new HashMap<String, ElementsBuffer>();
     private final Map<String, ElementsBuffer> colorBufferMap = new ConcurrentHashMap<String, ElementsBuffer>();
     private final Map<String, ElementsBuffer> texturesCoordinatesBufferMap = new HashMap<String, ElementsBuffer>();
     private final Map<String, IndicesBuffer> indexBufferMap = new HashMap<String, IndicesBuffer>();
@@ -167,13 +168,38 @@ public class DataManager {
      * @throws ObjectRemovedException if the object is now longer present.
      */
     public ElementsBuffer getVertexBuffer(String id) throws ObjectRemovedException, OutOfMemoryException {
+        GraphicObject currentObject = GraphicController.getController().getObjectFromId(id);
+        Axes axes = (Axes) GraphicController.getController().getObjectFromId(currentObject.getParentAxes());
+        double[][] factors = axes.getScaleTranslateFactors();
+
         if (vertexBufferMap.containsKey(id)) {
-            return vertexBufferMap.get(id);
+            TransformedElementsBuffer buf = vertexBufferMap.get(id);
+            if (buf.isSameFactors(factors)) {
+                return buf.getBuffer();
+            }
+        }
+
+        ElementsBuffer vertexBuffer = canvas.getBuffersManager().createElementsBuffer();
+        fillVertexBuffer(vertexBuffer, id, factors[0], factors[1]);
+        vertexBufferMap.put(id, new TransformedElementsBuffer(vertexBuffer, factors));
+
+        return vertexBuffer;
+    }
+
+    /**
+     * Return the normal buffer of the given object.
+     * @param id the given object Id.
+     * @return the vertex buffer of the given object.
+     * @throws ObjectRemovedException if the object is now longer present.
+     */
+    public ElementsBuffer getNormalBuffer(String id) throws ObjectRemovedException, OutOfMemoryException {
+        if (normalBufferMap.containsKey(id)) {
+            return normalBufferMap.get(id);
         } else {
-            ElementsBuffer vertexBuffer = canvas.getBuffersManager().createElementsBuffer();
-            fillVertexBuffer(vertexBuffer, id);
-            vertexBufferMap.put(id, vertexBuffer);
-            return vertexBuffer;
+            ElementsBuffer normalBuffer = canvas.getBuffersManager().createElementsBuffer();
+            fillNormalBuffer(normalBuffer, id);
+            normalBufferMap.put(id, normalBuffer);
+            return normalBuffer;
         }
     }
 
@@ -304,9 +330,18 @@ public class DataManager {
      * @throws OutOfMemoryException if there was not enough memory.
      */
     private void updateChildrenVertexIndex(String id, int coordinateMask) throws ObjectRemovedException, OutOfMemoryException {
-        ElementsBuffer vertexBuffer = vertexBufferMap.get(id);
-        if (vertexBuffer != null) {
-            updateVertexBuffer(vertexBuffer, id, coordinateMask);
+        GraphicObject currentObject = GraphicController.getController().getObjectFromId(id);
+        Axes axes = (Axes) GraphicController.getController().getObjectFromId(currentObject.getParentAxes());
+        double[][] factors = axes.getScaleTranslateFactors();
+
+        TransformedElementsBuffer buf = vertexBufferMap.get(id);
+        if (buf != null) {
+            updateVertexBuffer(buf.getBuffer(), id, coordinateMask, factors[0], factors[1]);
+        }
+
+        ElementsBuffer normalBuffer = normalBufferMap.get(id);
+        if (normalBuffer != null) {
+            fillNormalBuffer(normalBuffer, id);
         }
 
         /*
@@ -337,8 +372,13 @@ public class DataManager {
      */
     public void dispose(String id) {
         if (vertexBufferMap.containsKey(id)) {
-            canvas.getBuffersManager().dispose(vertexBufferMap.get(id));
+            canvas.getBuffersManager().dispose(vertexBufferMap.get(id).getBuffer());
             vertexBufferMap.remove(id);
+        }
+
+        if (normalBufferMap.containsKey(id)) {
+            canvas.getBuffersManager().dispose(normalBufferMap.get(id));
+            normalBufferMap.remove(id);
         }
 
         if (colorBufferMap.containsKey(id)) {
@@ -385,9 +425,9 @@ public class DataManager {
      * @throws ObjectRemovedException if the object is now longer present.
      */
     private void fillBuffers(String id) throws ObjectRemovedException, OutOfMemoryException {
-        ElementsBuffer vertexBuffer = vertexBufferMap.get(id);
-        if (vertexBuffer != null) {
-            fillVertexBuffer(vertexBuffer, id);
+        TransformedElementsBuffer buf = vertexBufferMap.get(id);
+        if (buf != null) {
+            fillVertexBuffer(buf.getBuffer(), id, buf.getScale(), buf.getTranslate());
         }
 
         ElementsBuffer colorBuffer = colorBufferMap.get(id);
@@ -411,22 +451,29 @@ public class DataManager {
         }
     }
 
-    private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id) throws ObjectRemovedException, OutOfMemoryException {
-        fillVertexBuffer(vertexBuffer, id, 0x01 | 0x02 | 0x04 | 0x08);
+    private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id, double[] scale, double[] translate) throws ObjectRemovedException, OutOfMemoryException {
+        fillVertexBuffer(vertexBuffer, id, 0x01 | 0x02 | 0x04 | 0x08, scale, translate);
     }
 
-    private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id, int coordinateMask) throws ObjectRemovedException, OutOfMemoryException {
+    private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id, int coordinateMask, double[] scale, double[] translate) throws ObjectRemovedException, OutOfMemoryException {
         int logMask = MainDataLoader.getLogMask(id);
         int length = MainDataLoader.getDataSize(id);
         FloatBuffer data = BufferAllocation.newFloatBuffer(length * 4);
-        MainDataLoader.fillVertices(id, data, 4, coordinateMask, DEFAULT_SCALE, DEFAULT_TRANSLATE, logMask);
+        MainDataLoader.fillVertices(id, data, 4, coordinateMask, scale, translate, logMask);
         vertexBuffer.setData(data, 4);
     }
 
-    private void updateVertexBuffer(ElementsBuffer vertexBuffer, String id, int coordinateMask) throws ObjectRemovedException {
+    private void fillNormalBuffer(ElementsBuffer normalBuffer, String id) throws ObjectRemovedException, OutOfMemoryException {
+        int length = MainDataLoader.getDataSize(id);
+        FloatBuffer data = BufferAllocation.newFloatBuffer(length * 4);
+        MainDataLoader.fillNormals(id, getVertexBuffer(id).getData(), data, 4);
+        normalBuffer.setData(data, 4);
+    }
+
+    private void updateVertexBuffer(ElementsBuffer vertexBuffer, String id, int coordinateMask, double[] scale, double[] translate) throws ObjectRemovedException {
         int logMask = MainDataLoader.getLogMask(id);
         FloatBuffer data = vertexBuffer.getData();
-        MainDataLoader.fillVertices(id, data, 4, coordinateMask, DEFAULT_SCALE, DEFAULT_TRANSLATE, logMask);
+        MainDataLoader.fillVertices(id, data, 4, coordinateMask, scale, translate, logMask);
         vertexBuffer.setData(data, 4);
     }
 
@@ -480,5 +527,40 @@ public class DataManager {
         data.limit(actualLength);
 
         indexBuffer.setData(data);
+    }
+
+    private static class TransformedElementsBuffer {
+
+        ElementsBuffer buffer;
+        double[][] factors;
+
+        TransformedElementsBuffer(ElementsBuffer buffer, double[][] factors) {
+            this.buffer = buffer;
+            this.factors = factors;
+        }
+
+        ElementsBuffer getBuffer() {
+            return buffer;
+        }
+
+        double[] getScale() {
+            return factors[0];
+        }
+
+        double[] getTranslate() {
+            return factors[1];
+        }
+
+        boolean isSameFactors(final double[][] factors) {
+            for (int i = 0; i < 2; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (this.factors[i][j] != factors[i][j]) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
     }
 }

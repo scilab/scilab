@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 
-import java.util.Map;
 import java.util.Set;
 
 public class HTMLWithStyleScilabCodeHandler extends AbstractScilabCodeHandler {

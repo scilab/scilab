@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-09-13 12:32+0100\n"
+"Revision-Date: 2013-09-27 17:13+0100\n"
 
 # File: macros/atomsAutoload.sci, line: 47
 # File: macros/atomsLoad.sci, line: 38
@@ -609,7 +609,7 @@ msgstr ""
 #
 # File: macros/atomsInstall.sci, line: 160
 #, c-format
-msgid "%s: The file '%s' doesn't exist or is not read accessible\n"
+msgid "%s: The file '%s' does not exist or is not read accessible.\n"
 msgstr ""
 
 #
@@ -739,7 +739,7 @@ msgstr ""
 # File: macros/atomsLoad.sci, line: 332
 #, c-format
 msgid ""
-"%s: The file '%s' from (%s - %s) doesn't exist or is not read accessible.\n"
+"%s: The file '%s' from (%s - %s) does not exist or is not read accessible.\n"
 msgstr ""
 
 #
@@ -1342,7 +1342,7 @@ msgstr ""
 # File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 182
 #, c-format
 msgid ""
-"%s: The file %s is not well formated, the toolbox %s - %s doesn't contain "
+"%s: The file %s is not well formated, the toolbox %s - %s does not contain "
 "the %s field\n"
 msgstr ""
 
@@ -1396,7 +1396,7 @@ msgstr ""
 # File: macros/atoms_internals/atomsDownload.sci, line: 60
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: String that start with 'http"
+"%s: Wrong value for input argument #%d: String that starts with 'http"
 "(s)?://','ftp://' or 'file://' expected.\n"
 msgstr ""
 
@@ -1494,7 +1494,7 @@ msgstr ""
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 229
 #, c-format
-msgid "%s: The following file hasn't been copied:\n"
+msgid "%s: The following file has not been copied:\n"
 msgstr ""
 
 #
@@ -1512,7 +1512,7 @@ msgstr ""
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 246
 #, c-format
-msgid "%s: The downloaded file doesn't check the MD5SUM:\n"
+msgid "%s: The downloaded file does not match the MD5SUM:\n"
 msgstr ""
 
 #
@@ -1550,13 +1550,13 @@ msgstr ""
 #
 # File: macros/atoms_internals/atomsExtract.sci, line: 53
 #, c-format
-msgid "%s: The file %s doesn't exist or is not read accessible.\n"
+msgid "%s: The file %s does not exist or is not read accessible.\n"
 msgstr ""
 
 #
 # File: macros/atoms_internals/atomsExtract.sci, line: 57
 #, c-format
-msgid "%s: The directory %s doesn't exist.\n"
+msgid "%s: The directory %s does not exist.\n"
 msgstr ""
 
 #
@@ -1687,13 +1687,13 @@ msgstr ""
 # File: macros/atoms_internals/atomsToolboxDetails.sci, line: 56
 # File: macros/atoms_internals/atomsToolboxDetails.sci, line: 62
 #, c-format
-msgid "%s: the package '%s' doesn't exist.\n"
+msgid "%s: the package '%s' does not exist.\n"
 msgstr ""
 
 #
 # File: macros/atoms_internals/atomsToolboxDetails.sci, line: 73
 #, c-format
-msgid "%s: the package '%s' doesn't contain the field '%s'.\n"
+msgid "%s: the package '%s' does not contain the field '%s'.\n"
 msgstr ""
 
 #

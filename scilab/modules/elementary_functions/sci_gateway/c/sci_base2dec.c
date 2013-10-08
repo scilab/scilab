@@ -82,7 +82,7 @@ int sci_base2dec(char *fname, void* pvApiCtx)
         return 1;
     }
 
-    if ((iValue < 2) && (iValue > 36))
+    if (iValue < 2 || iValue > 36)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: Must be between %d and %d."), fname, 2, 2, 36);
         return 1;

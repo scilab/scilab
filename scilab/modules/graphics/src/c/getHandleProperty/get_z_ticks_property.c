@@ -42,14 +42,18 @@ void* get_z_ticks_property(void* _pvCtx, char* pobjUID)
 
     /* retrieve number of ticks */
     getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_NUMBER_TICKS__, jni_int, (void**)&piNbTicks);
-    /* retrieve view: 0 -> 2d // 1 -> 3d */
-    getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, (void**)&piView);
-
-
     if (piNbTicks == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "z_ticks");
         return NULL;
+    }
+
+    /* retrieve view: 0 -> 2d // 1 -> 3d */
+    getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, (void**)&piView);
+    if (piView == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "view");
+        return -1;
     }
 
     if (iNbTicks == 0 || iView == 0)

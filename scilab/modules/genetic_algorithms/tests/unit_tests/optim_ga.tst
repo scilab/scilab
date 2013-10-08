@@ -10,6 +10,8 @@
 //
 // <-- CLI SHELL MODE -->
 
+// <-- ENGLISH IMPOSED -->
+
 // Minimizing a quadratic function in dimension 1.
 deff("y = test_func(x)", "y = x^2;");
 ga_params = init_param();

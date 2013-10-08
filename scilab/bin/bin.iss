@@ -40,6 +40,7 @@ Source: bin\svml_dispmd.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libintl.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libintl.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\GNU_gettext.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\MALLOC.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 
 ;YaSp files

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: ca\n"
 
 #, c-format
@@ -616,59 +616,6 @@ msgstr ""
 "fitxer sigui incorrecte.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: El nombre d'arguments d'entrada és incorrecte.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
-"de text.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A String expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
-"caràcters.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un descriptor "
-"de fitxer.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un descriptor "
-"de fitxer vàlid.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un nom de "
-"fitxer.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A filename or file descriptor "
-"expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un nom o un "
-"descriptor de fitxer.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: El nombre d'arguments de sortida és incorrecte.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
-"descriptor de fitxer.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 
@@ -689,6 +636,10 @@ msgid "%s: Wrong type for input argument: String expected.\n"
 msgstr ""
 "%s: L'argument d'entrada és d'un tipus incorrecte: Ha de ser una cadena de "
 "caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: El nombre d'arguments d'entrada és incorrecte.\n"
 
 msgid "Impossible to create directory "
 msgstr ""
@@ -712,16 +663,3 @@ msgstr ""
 
 msgid "The system cannot find the file specified."
 msgstr ""
-
-#, c-format
-msgid "%s: Incorrect format.\n"
-msgstr "%s: El format és incorrecte.\n"
-
-#, c-format
-msgid "%s: Invalid conversion.\n"
-msgstr "%s: La conversió és incorrecta.\n"
-
-#, c-format
-msgid "%s: end of input reached before final conversion.\n"
-msgstr ""
-"%s: S'ha arribat al final de l'entrada abans d'acabar la conversió.\n"

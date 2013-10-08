@@ -389,6 +389,7 @@ int  sci_dct_3args(void* pvApiCtx, char *fname, int ndimsA, int *dimsA, double *
         Scierror(sciErr.iErr, getErrorMessage(sciErr));
         FREE(gdim.dims);
         FREE(gdim.howmany_dims);
+        FREE(Sel);
         return 0;
     }
     /* size of Sel must be less than ndimsA */
@@ -397,6 +398,7 @@ int  sci_dct_3args(void* pvApiCtx, char *fname, int ndimsA, int *dimsA, double *
         Scierror(999, _("%s: Wrong size for input argument #%d: Must be between %d and %d.\n"), fname, 3, 1, ndimsA - 1);
         FREE(gdim.dims);
         FREE(gdim.howmany_dims);
+        FREE(Sel);
         return 0;
     }
     /* check values of Sel[i] */
@@ -407,6 +409,7 @@ int  sci_dct_3args(void* pvApiCtx, char *fname, int ndimsA, int *dimsA, double *
             Scierror(999, _("%s: Wrong values for input argument #%d: Positive integers expected.\n"), fname, 3);
             FREE(gdim.dims);
             FREE(gdim.howmany_dims);
+            FREE(Sel);
             return 0;
         }
         if (Sel[i] > ndimsA)
@@ -414,6 +417,7 @@ int  sci_dct_3args(void* pvApiCtx, char *fname, int ndimsA, int *dimsA, double *
             Scierror(999, _("%s: Wrong values for input argument #%d: Elements must be less than %d.\n"), fname, 3, ndimsA);
             FREE(gdim.dims);
             FREE(gdim.howmany_dims);
+            FREE(Sel);
             return 0;
         }
         if (i > 0 && Sel[i] <= Sel[i - 1])
@@ -421,6 +425,7 @@ int  sci_dct_3args(void* pvApiCtx, char *fname, int ndimsA, int *dimsA, double *
             Scierror(999, _("%s: Wrong values for input argument #%d: Elements must be in increasing order.\n"), fname, 3);
             FREE(gdim.dims);
             FREE(gdim.howmany_dims);
+            FREE(Sel);
             return 0;
         }
     }
@@ -432,6 +437,7 @@ int  sci_dct_3args(void* pvApiCtx, char *fname, int ndimsA, int *dimsA, double *
         Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
         FREE(gdim.dims);
         FREE(gdim.howmany_dims);
+        FREE(Sel);
         return 0;
     }
 
@@ -490,6 +496,7 @@ int  sci_dct_3args(void* pvApiCtx, char *fname, int ndimsA, int *dimsA, double *
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
             FREE(gdim.dims);
             FREE(gdim.howmany_dims);
+            FREE(Sel);
             return 0;
         }
         pd = 1;
@@ -562,6 +569,7 @@ int  sci_dct_3args(void* pvApiCtx, char *fname, int ndimsA, int *dimsA, double *
     {
         FREE(gdim.dims);
         FREE(gdim.howmany_dims);
+        FREE(Sel);
         return 0;
     }
 

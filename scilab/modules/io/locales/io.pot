@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-09-13 12:31+0100\n"
+"Revision-Date: 2013-09-27 17:13+0100\n"
 
 # File: sci_gateway/c/sci_file.c, line: 65
 # File: sci_gateway/c/sci_file.c, line: 73
@@ -161,9 +161,9 @@ msgstr ""
 # File: sci_gateway/c/sci_load.c, line: 40
 # File: sci_gateway/c/sci_load.c, line: 41
 # File: sci_gateway/c/sci_load.c, line: 42
-# File: sci_gateway/c/sci_save.c, line: 155
-# File: sci_gateway/c/sci_save.c, line: 156
-# File: sci_gateway/c/sci_save.c, line: 157
+# File: sci_gateway/c/sci_save.c, line: 143
+# File: sci_gateway/c/sci_save.c, line: 144
+# File: sci_gateway/c/sci_save.c, line: 145
 msgid "Warning"
 msgstr ""
 
@@ -182,13 +182,13 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_save.c, line: 155
+# File: sci_gateway/c/sci_save.c, line: 143
 #, c-format
 msgid "%s: Scilab 6 will not support the file format used.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_save.c, line: 156
+# File: sci_gateway/c/sci_save.c, line: 144
 #, c-format
 msgid ""
 "%s: Please quote the variable declaration. Example, save('myData.sod',a) "
@@ -196,15 +196,9 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_save.c, line: 157
+# File: sci_gateway/c/sci_save.c, line: 145
 #, c-format
 msgid "%s: See help('save') for the rational.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_save.c, line: 164
-#, c-format
-msgid "Wrong value for argument #%d: Valid variable name expected.\n"
 msgstr ""
 
 #
@@ -250,31 +244,31 @@ msgid "unmanaged error by v2cunit.\n"
 msgstr ""
 
 # File: macros/%_save.sci, line: 53
-# File: macros/%_save.sci, line: 922
+# File: macros/%_save.sci, line: 999
 #, c-format
 msgid "%s: handle no more valid ignored.\n"
 msgstr ""
 
 #
-# File: macros/%_save.sci, line: 829
+# File: macros/%_save.sci, line: 906
 #, c-format
 msgid "%s : Invalid entity %s\n"
 msgstr ""
 
 #
-# File: macros/%_sodload.sci, line: 295
+# File: macros/%_sodload.sci, line: 309
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"
 msgstr ""
 
 #
-# File: macros/%_sodload.sci, line: 820
+# File: macros/%_sodload.sci, line: 879
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: macros/%_sodload.sci, line: 851
+# File: macros/%_sodload.sci, line: 911
 #, c-format
 msgid "%s: variable '%s' does not exist in '%s'.\n"
 msgstr ""

@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-26 05:29+0000\n"
+"PO-Revision-Date: 2013-09-04 12:28+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: uk\n"
 
 #, c-format
@@ -536,33 +536,47 @@ msgid ""
 "\n"
 "Warning: The residual function #%d returns a NaN"
 msgstr ""
+"\n"
+"Попередження: функцією лишків №%d повернуто NaN"
 
 msgid ""
 "\n"
 "Error: Problem in the evaluation of a root function"
 msgstr ""
+"\n"
+"Помилка: проблеми з визначенням кореневої функції"
 
 #, c-format
 msgid ""
 "\n"
 "Warning: The preconditioner evaluation function returns a NaN at index #%d."
 msgstr ""
+"\n"
+"Попередження: функція обчислення передобумовлення повернула NaN для індексу "
+"№%d."
 
 msgid ""
 "\n"
 "Error: The preconditioner evaluation function failed."
 msgstr ""
+"\n"
+"Помилка: не вдалося використати функцію визначення передобумовлення."
 
 msgid ""
 "\n"
 "Error: Failed to factor the preconditioner."
 msgstr ""
+"\n"
+"Помилка: не вдалося факторизувати передобумовлення."
 
 #, c-format
 msgid ""
 "\n"
 "Warning: The preconditioner application function returns a NaN at index #%d."
 msgstr ""
+"\n"
+"Попередження: функція застосування передобумовлення повернула NaN для "
+"індексу №%d."
 
 #, c-format
 msgid ""
@@ -737,7 +751,7 @@ msgid "Simulation parameters not set:"
 msgstr "Не встановлено параметри імітації:"
 
 msgid "Initialization problem:"
-msgstr ""
+msgstr "Проблема ініціалізації:"
 
 msgid "Simulation problem: "
 msgstr "Проблема імітації: "
@@ -815,15 +829,10 @@ msgid ""
 "No continuous-time state. Thresholds are ignored; this \n"
 "may be OK if you don't generate external events with them.\n"
 "If you want to reactivate the thresholds, then you need\n"
+"\n"
 "to include a block with continuous-time state in your diagram.\n"
 "   You can for example include DUMMY CLSS block (linear palette)."
 msgstr ""
-"Режим обробки часу не є неперервним. Порогові обмеження ігноруються.\\n\n"
-"Цим можна не перейматися, якщо ви не створюєте програмно\\n\n"
-"зовнішніх подій для таких обмежень.\\n\n"
-"Якщо вам потрібно задіяти порогові обмеження,\\n\n"
-"вам слід включити до діаграми блок з неперервною обробкою за часом.\\n\n"
-"   Наприклад, ви можете включити блок DUMMY CLSS (набір лінійних блоків)."
 
 msgid "Diagram contains implicit blocks, compiling for implicit Solver."
 msgstr ""
@@ -993,6 +1002,9 @@ msgstr "Блок проігноровано через невизначені в
 msgid "Superblock should not contains any Scilab function block."
 msgstr "Надблок не повинен містити блоків функцій Scilab."
 
+msgid "Generated block cannot be linked with Scilab."
+msgstr ""
+
 msgid "Evaluation problem: value not updated from context."
 msgstr "Проблема обчислення: значення не оновлено на основі контексту."
 
@@ -1025,6 +1037,18 @@ msgstr "Блоки введення-виведення слід використ
 
 msgid "This Super block input port is not connected."
 msgstr "Цей порт вхідних даних надблоку ні з чим не з’єднано."
+
+msgid "Input ports are not numbered properly."
+msgstr ""
+
+msgid "Output ports are not numbered properly."
+msgstr ""
+
+msgid "Event input ports are not numbered properly."
+msgstr ""
+
+msgid "Event output ports are not numbered properly."
+msgstr ""
 
 #, c-format
 msgid "%s: Empty diagram"

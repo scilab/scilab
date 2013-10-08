@@ -5,3 +5,5 @@ EXPORTS
 ;
 com_
 callFunctionFromGateway 
+MyHeapAlloc
+MyHeapFree

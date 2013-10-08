@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-04-22 00:51+0000\n"
+"PO-Revision-Date: 2013-09-26 01:16+0000\n"
 "Last-Translator: Ramiro Pereira de Magalhães <ramiro.p.magalhaes@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -134,10 +134,10 @@ msgid "Boolean"
 msgstr "Boleano"
 
 msgid "Sparse"
-msgstr ""
+msgstr "Esparso"
 
 msgid "Sparse boolean"
-msgstr ""
+msgstr "Boleano esparso"
 
 msgid "Integer"
 msgstr "Número Inteiro"
@@ -161,10 +161,10 @@ msgid "List"
 msgstr "Lista"
 
 msgid "Tlist"
-msgstr ""
+msgstr "Lista T"
 
 msgid "Mlist"
-msgstr ""
+msgstr "Lista M"
 
 msgid "Pointer"
 msgstr "Ponteiro"
@@ -173,7 +173,7 @@ msgid "Intrinsic function"
 msgstr "Função intrínseca"
 
 msgid "Matlab sparse"
-msgstr ""
+msgstr "Matlab sparse"
 
 msgid "Implicit polynomial"
 msgstr "Polinômio implícito"

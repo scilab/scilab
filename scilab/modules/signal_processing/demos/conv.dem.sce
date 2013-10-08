@@ -21,8 +21,8 @@ function demo_conv()
     subplot(211)
     plot(t,y) //given signal
     //low pass 8 points wfir filter
-    smooth=[0.1197912,0.1242239,0.1272323,0.1287527,0.1287527,0.1272323,0.1242239,0.1197912];
-    ys=conv(y,smooth,"same");
+    Smooth=[0.1197912,0.1242239,0.1272323,0.1287527,0.1287527,0.1272323,0.1242239,0.1197912];
+    ys=conv(y,Smooth,"same");
     plot(t,ys,"r")// filtered signal
     legend([_("given noisy signal"),_("filtered signal")])
     title(_("Signal"))

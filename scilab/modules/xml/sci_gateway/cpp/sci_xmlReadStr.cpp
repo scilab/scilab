@@ -32,7 +32,7 @@ int sci_xmlReadStr(char *fname, void* pvApiCtx)
     SciErr err;
     int *addr = 0;
 
-    std::string * code;
+    std::string * code = 0;
     std::string error;
     bool validate = false;
     int validateParam;

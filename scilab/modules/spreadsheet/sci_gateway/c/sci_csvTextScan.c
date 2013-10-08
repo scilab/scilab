@@ -27,6 +27,7 @@
 #include "gw_csv_helpers.h"
 #include "os_strdup.h"
 
+static void freeVar(char*** text, int sizeText, int** lengthText, char** separator, char** decimal, char** conversion, int** iRange);
 // =============================================================================
 #define CONVTOSTR "string"
 #define CONVTODOUBLE "double"
@@ -66,27 +67,20 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
         iRange = csv_getArgumentAsMatrixofIntFromDouble(pvApiCtx, 5, fname, &m5, &n5, &iErr);
         if (iErr)
         {
+            freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
             return 0;
         }
 
         if ((m5 * n5 != SIZE_RANGE_SUPPORTED) )
         {
-            if (iRange)
-            {
-                FREE(iRange);
-                iRange = NULL;
-            }
+            freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
             Scierror(999, _("%s: Wrong size for input argument #%d: Four entries expected.\n"), fname, 5);
             return 0;
         }
 
         if ((m5 != 1) && (n5 != 1))
         {
-            if (iRange)
-            {
-                FREE(iRange);
-                iRange = NULL;
-            }
+            freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
             Scierror(999, _("%s: Wrong size for input argument #%d: A column or row vector expected.\n"), fname, 5);
             return 0;
         }
@@ -97,11 +91,7 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
         }
         else
         {
-            if (iRange)
-            {
-                FREE(iRange);
-                iRange = NULL;
-            }
+            freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
             Scierror(999, _("%s: Wrong value for input argument #%d: Inconsistent range.\n"), fname, 5);
             return 0;
         }
@@ -112,27 +102,13 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
         conversion = csv_getArgumentAsStringWithEmptyManagement(pvApiCtx, 4, fname, getCsvDefaultConversion(), &iErr);
         if (iErr)
         {
-            if (iRange)
-            {
-                FREE(iRange);
-                iRange = NULL;
-            }
+            freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
             return 0;
         }
 
         if (!((strcmp(conversion, CONVTOSTR) == 0) || (strcmp(conversion, CONVTODOUBLE) == 0)))
         {
-            if (iRange)
-            {
-                FREE(iRange);
-                iRange = NULL;
-            }
-            if (conversion)
-            {
-                FREE(conversion);
-                conversion = NULL;
-            }
-
+            freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"), fname, 4, "double", "string");
             return 0;
         }
@@ -147,32 +123,13 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
         decimal = csv_getArgumentAsStringWithEmptyManagement(pvApiCtx, 3, fname, getCsvDefaultDecimal(), &iErr);
         if (iErr)
         {
-            if (iRange)
-            {
-                FREE(iRange);
-                iRange = NULL;
-            }
-            if (conversion)
-            {
-                FREE(conversion);
-                conversion = NULL;
-            }
+            freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
             return 0;
         }
 
         if (decimal[0] != '.' && decimal[0] != ',')
         {
-            if (iRange)
-            {
-                FREE(iRange);
-                iRange = NULL;
-            }
-            if (conversion)
-            {
-                FREE(conversion);
-                conversion = NULL;
-            }
-
+            freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"), fname, 3, ",", ".");
             return 0;
         }
@@ -187,21 +144,7 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
         separator = csv_getArgumentAsStringWithEmptyManagement(pvApiCtx, 2, fname, getCsvDefaultSeparator(), &iErr);
         if (iErr)
         {
-            if (iRange)
-            {
-                FREE(iRange);
-                iRange = NULL;
-            }
-            if (decimal)
-            {
-                FREE(decimal);
-                decimal = NULL;
-            }
-            if (conversion)
-            {
-                FREE(conversion);
-                conversion = NULL;
-            }
+            freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
             return 0;
         }
     }
@@ -214,26 +157,7 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
             !csv_isColumnVector(pvApiCtx, 1) &&
             !csv_isScalar(pvApiCtx, 1))
     {
-        if (iRange)
-        {
-            FREE(iRange);
-            iRange = NULL;
-        }
-        if (separator)
-        {
-            FREE(separator);
-            separator = NULL;
-        }
-        if (decimal)
-        {
-            FREE(decimal);
-            decimal = NULL;
-        }
-        if (conversion)
-        {
-            FREE(conversion);
-            conversion = NULL;
-        }
+        freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
         Scierror(999, _("%s: Wrong size for input argument #%d: String vector expected.\n"), fname, 1);
         return 0;
     }
@@ -241,48 +165,12 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
     text = csv_getArgumentAsMatrixOfString(pvApiCtx, 1, fname, &m1, &n1, &iErr);
     if (iErr)
     {
-        if (iRange)
-        {
-            FREE(iRange);
-            iRange = NULL;
-        }
-        if (separator)
-        {
-            FREE(separator);
-            separator = NULL;
-        }
-        if (decimal)
-        {
-            FREE(decimal);
-            decimal = NULL;
-        }
-        if (conversion)
-        {
-            FREE(conversion);
-            conversion = NULL;
-        }
+        freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
         return 0;
     }
 
     nbLines = m1 * n1;
     result = csvTextScan((const char**)text, nbLines, separator, decimal);
-
-    if (text)
-    {
-        if (separator)
-        {
-            FREE(separator);
-            separator = NULL;
-        }
-        freeArrayOfString(text, nbLines);
-        text = NULL;
-    }
-
-    if (separator)
-    {
-        FREE(separator);
-        separator = NULL;
-    }
 
     if (result)
     {
@@ -313,7 +201,6 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
                         {
                             Scierror(999, _("%s: Memory allocation error.\n"), fname);
                         }
-
                     }
                     else
                     {
@@ -327,21 +214,8 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
                     if (ptrComplexArray == NULL)
                     {
                         freeCsvResult(result);
-                        if (decimal)
-                        {
-                            FREE(decimal);
-                            decimal = NULL;
-                        }
-                        if (conversion)
-                        {
-                            FREE(conversion);
-                            conversion = NULL;
-                        }
-                        if (iRange)
-                        {
-                            FREE(iRange);
-                            iRange = NULL;
-                        }
+                        freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
+
                         if (ierr == STRINGTOCOMPLEX_ERROR)
                         {
                             Scierror(999, _("%s: can not convert data.\n"), fname);
@@ -401,32 +275,22 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
                         {
                             Scierror(999, _("%s: Memory allocation error.\n"), fname);
                         }
+                        break;
+
                         default:
                         case STRINGTOCOMPLEX_ERROR:
                         {
                             Scierror(999, _("%s: can not convert data.\n"), fname);
                         }
+                        break;
                     }
                 }
 
+                freeCsvResult(result);
+                freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
+
                 if (sciErr.iErr)
                 {
-                    freeCsvResult(result);
-                    if (decimal)
-                    {
-                        FREE(decimal);
-                        decimal = NULL;
-                    }
-                    if (conversion)
-                    {
-                        FREE(conversion);
-                        conversion = NULL;
-                    }
-                    if (iRange)
-                    {
-                        FREE(iRange);
-                        iRange = NULL;
-                    }
                     printError(&sciErr, 0);
                     Scierror(17, _("%s: Memory allocation error.\n"), fname);
                     return 0;
@@ -463,23 +327,46 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
     {
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
     }
-    freeCsvResult(result);
-    if (decimal)
-    {
-        FREE(decimal);
-        decimal = NULL;
-    }
-    if (conversion)
-    {
-        FREE(conversion);
-        conversion = NULL;
-    }
-    if (iRange)
-    {
-        FREE(iRange);
-        iRange = NULL;
-    }
 
+    freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
     return 0;
 }
 // =============================================================================
+static void freeVar(char*** text, int sizeText, int** lengthText, char** separator, char** decimal, char** conversion, int** iRange)
+{
+    if (text && *text)
+    {
+        freeArrayOfString(*text, sizeText);
+        *text = NULL;
+    }
+
+    if (lengthText && *lengthText)
+    {
+        FREE(*lengthText);
+        *lengthText = NULL;
+    }
+
+    if (separator && *separator)
+    {
+        FREE(*separator);
+        *separator = NULL;
+    }
+
+    if (decimal && *decimal)
+    {
+        FREE(*decimal);
+        *decimal = NULL;
+    }
+
+    if (conversion && *conversion)
+    {
+        FREE(*conversion);
+        *conversion = NULL;
+    }
+
+    if (iRange && *iRange)
+    {
+        FREE(*iRange);
+        *iRange = NULL;
+    }
+}

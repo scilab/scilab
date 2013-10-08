@@ -15,7 +15,6 @@ package org.scilab.modules.ui_data.filebrowser;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.JTree;
 import javax.swing.tree.TreePath;
-import javax.swing.event.EventListenerList;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeExpansionListener;
 

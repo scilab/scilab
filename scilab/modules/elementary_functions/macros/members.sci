@@ -152,10 +152,10 @@ function [nb, loc] = members(A, S, varargin)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: expected same type as first argument.\n"), "members", 2));
     end
     if and(type_A ~= [1 2 4 8 10]) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of encoded-Integers, Reals, Complexes, Booleans, Polynomials or Strings expected.\n"), "members", 1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of integers, reals, complexes, booleans, polynomials or strings expected.\n"), "members", 1));
     end
     if and(type_S ~= [1 2 4 8 10]) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of encoded-Integers, Reals, Complexes, Booleans, Polynomials or Strings expected.\n"), "members", 2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of integers, reals, complexes, booleans, polynomials or strings expected.\n"), "members", 2));
     end
     if or(isnan(S)) then
         error(msprintf(gettext("%s: Wrong value for argument #%d: Must not contain NaN.\n"), "members", 2));

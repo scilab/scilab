@@ -16,7 +16,6 @@ ilib_verbose(0);
 test_path = get_absolute_file_path('bug_3630.tst');
 currentpath = pwd();
 cd TMPDIR;
-cd ../;
 OS_TMP_DIR = pwd();
 mkdir(OS_TMP_DIR,'bug_3630');
 TEST_DIR = OS_TMP_DIR + filesep() + 'bug_3630';
@@ -26,7 +25,7 @@ files=['bug_3630.c'];
 ilib_build('libc_fun',['c_sum','c_intsum';'c_sub','c_intsub'],files,[]);
 [primitives1,commandes] = what();
 nbprimitives1 = size(primitives1,'*');
-// load the shared library
+// load the shared library 
 exec loader.sce;
 chdir(currentpath);
 [primitives2,commandes] = what();

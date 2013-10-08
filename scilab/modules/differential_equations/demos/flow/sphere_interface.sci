@@ -477,7 +477,7 @@ function start_simu()
     x = Y(1,:)
     y = Y(3,:)
     r = 0.1; //bias to have the curve above the surface
-    z = -sqrt(1-x^2-y^2)+r;
+    z = -sqrt(1-x.^2-y.^2)+r;
     my_figure_handle = scf(100001);
     curAxe = gca();
     traj_handle=curAxe.children(1).children(5);

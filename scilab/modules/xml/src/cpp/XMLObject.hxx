@@ -69,23 +69,23 @@ public:
     }
 
     /**
-         * Sets the attribute value.
-         * @param name the attribute names
-         * @param value the attribute values
-         * @param size the number of names
-         */
+     * Sets the attribute value.
+     * @param name the attribute names
+     * @param value the attribute values
+     * @param size the number of names
+     */
     virtual void setAttributeValue(const char **name, const char **value, int size) const
     {
         return;
     }
 
     /**
-         * Sets the attribute value with a prefix namespace.
-         * @param prefix the namespace prefix or the namespace itself
-         * @param name the attribute names
-         * @param value the attribute values
-         * @param size the number of names
-         */
+     * Sets the attribute value with a prefix namespace.
+     * @param prefix the namespace prefix or the namespace itself
+     * @param name the attribute names
+     * @param value the attribute values
+     * @param size the number of names
+     */
     virtual void setAttributeValue(const char **prefix, const char **name, const char **value, int size) const
     {
         return;

@@ -642,15 +642,16 @@ static char *getAxe(char const* pFigureUID, scicos_block * block, int input)
             getPolyline(pAxe, block, i);
         }
     }
+    else
+    {
+        return NULL;
+    }
 
     /*
      * then cache with local storage
      */
-    if (pAxe != NULL && sco->scope.cachedAxeUID == NULL)
-    {
-        sco->scope.cachedAxeUID = os_strdup(pAxe);
-        releaseGraphicObjectProperty(__GO_PARENT__, pAxe, jni_string, 1);
-    }
+    sco->scope.cachedAxeUID = os_strdup(pAxe);
+    releaseGraphicObjectProperty(__GO_PARENT__, pAxe, jni_string, 1);
     return sco->scope.cachedAxeUID;
 }
 
@@ -664,13 +665,13 @@ static char *getPolyline(char *pAxeUID, scicos_block * block, int row)
     sco_data *sco = (sco_data *) * (block->work);
 
     // assert the sco is not NULL
-    if (sco == NULL)
+    if (sco == NULL || sco->scope.cachedPolylinesUIDs == NULL)
     {
         return NULL;
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedPolylinesUIDs != NULL && sco->scope.cachedPolylinesUIDs[row] != NULL)
+    if (sco->scope.cachedPolylinesUIDs[row] != NULL)
     {
         return sco->scope.cachedPolylinesUIDs[row];
     }
@@ -689,51 +690,49 @@ static char *getPolyline(char *pAxeUID, scicos_block * block, int row)
             createDataObject(pPolyline, __GO_POLYLINE__);
             setGraphicObjectRelationship(pAxeUID, pPolyline);
         }
+        else
+        {
+            return NULL;
+        }
     }
 
     /*
      * Setup on first access
      */
-    if (pPolyline != NULL)
+
+    /*
+     * Default setup of the nGons property
+     */
     {
+        int nGons = 1;
+        setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_NUM_GONS__, &nGons, jni_int, 1);
+    }
 
-        /*
-         * Default setup of the nGons property
-         */
-        {
-            int nGons = 1;
-            setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_NUM_GONS__, &nGons, jni_int, 1);
-        }
+    color = block->ipar[3 + row];
+    if (color > 0)
+    {
+        setGraphicObjectProperty(pPolyline, __GO_LINE_MODE__, &b__true, jni_bool, 1);
+        setGraphicObjectProperty(pPolyline, __GO_LINE_COLOR__, &color, jni_int, 1);
+    }
+    else
+    {
+        int iMarkSize = 4;
+        color = -color;
+        setGraphicObjectProperty(pPolyline, __GO_MARK_MODE__, &b__true, jni_bool, 1);
+        setGraphicObjectProperty(pPolyline, __GO_MARK_STYLE__, &color, jni_int, 1);
+        setGraphicObjectProperty(pPolyline, __GO_MARK_SIZE__, &iMarkSize, jni_int, 1);
+    }
 
-        color = block->ipar[3 + row];
-        if (color > 0)
-        {
-            setGraphicObjectProperty(pPolyline, __GO_LINE_MODE__, &b__true, jni_bool, 1);
-            setGraphicObjectProperty(pPolyline, __GO_LINE_COLOR__, &color, jni_int, 1);
-        }
-        else
-        {
-            int iMarkSize = 4;
-            color = -color;
-            setGraphicObjectProperty(pPolyline, __GO_MARK_MODE__, &b__true, jni_bool, 1);
-            setGraphicObjectProperty(pPolyline, __GO_MARK_STYLE__, &color, jni_int, 1);
-            setGraphicObjectProperty(pPolyline, __GO_MARK_SIZE__, &iMarkSize, jni_int, 1);
-        }
-
-        {
-            int iClipState = 1; //on
-            setGraphicObjectProperty(pPolyline, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
-        }
+    {
+        int iClipState = 1; //on
+        setGraphicObjectProperty(pPolyline, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
     }
 
     /*
      * then cache with local storage
      */
-    if (pPolyline != NULL && sco->scope.cachedPolylinesUIDs != NULL && sco->scope.cachedPolylinesUIDs[row] == NULL)
-    {
-        sco->scope.cachedPolylinesUIDs[row] = os_strdup(pPolyline);
-        releaseGraphicObjectProperty(__GO_PARENT__, pPolyline, jni_string, 1);
-    }
+    sco->scope.cachedPolylinesUIDs[row] = os_strdup(pPolyline);
+    releaseGraphicObjectProperty(__GO_PARENT__, pPolyline, jni_string, 1);
     return sco->scope.cachedPolylinesUIDs[row];
 }
 

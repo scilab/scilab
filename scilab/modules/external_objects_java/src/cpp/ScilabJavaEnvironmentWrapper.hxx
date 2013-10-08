@@ -79,6 +79,10 @@ class ScilabJavaEnvironmentWrapper : public ScilabAbstractEnvironmentWrapper
     jmethodID unwrapRowFloatID_;
     jmethodID unwrapMatFloatID_;
 
+    jmethodID unwrapCharID_;
+    jmethodID unwrapRowCharID_;
+    jmethodID unwrapMatCharID_;
+
     jmethodID wrapAsDirectByteBufferID_;
     jmethodID wrapAsDirectDoubleBufferID_;
     jmethodID wrapAsDirectIntBufferID_;
@@ -128,6 +132,10 @@ public:
         unwrapFloatID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapFloat", "(I)F");
         unwrapRowFloatID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapRowFloat", "(I)Ljava/lang/Object;");
         unwrapMatFloatID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapMatFloat", "(I)[[F");
+
+        unwrapCharID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapChar", "(I)C");
+        unwrapRowCharID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapRowChar", "(I)Ljava/lang/Object;");
+        unwrapMatCharID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapMatChar", "(I)[[C");
 
         wrapAsDirectByteBufferID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "wrapAsDirectByteBuffer", "(Ljava/nio/ByteBuffer;)I");
         wrapAsDirectDoubleBufferID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "wrapAsDirectDoubleBuffer", "(Ljava/nio/ByteBuffer;)I");
@@ -432,7 +440,7 @@ private:
     }
     inline const jmethodID getSingleMethod(const unsigned short * x) const
     {
-        return unwrapShortID_;
+        return unwrapCharID_;
     }
     inline const jmethodID getSingleMethod(const int * x) const
     {
@@ -465,7 +473,7 @@ private:
     }
     inline const jmethodID getRowMethod(const unsigned short * x) const
     {
-        return unwrapRowShortID_;
+        return unwrapRowCharID_;
     }
     inline const jmethodID getRowMethod(const int * x) const
     {
@@ -498,7 +506,7 @@ private:
     }
     inline const jmethodID getMatMethod(const unsigned short * x) const
     {
-        return unwrapMatShortID_;
+        return unwrapMatCharID_;
     }
     inline const jmethodID getMatMethod(const int * x) const
     {

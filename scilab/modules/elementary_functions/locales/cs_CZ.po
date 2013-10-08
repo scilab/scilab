@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-26 22:03+0000\n"
+"PO-Revision-Date: 2013-09-24 19:17+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -109,7 +109,7 @@ msgid "WARNING: %s\n"
 msgstr "VAROVÁNÍ: %s\n"
 
 msgid "It will no more be available in Scilab 6."
-msgstr ""
+msgstr "Nebude dostupné v Scilab 6."
 
 msgid "Please use 'd' or 'i' instead."
 msgstr "Prosím namísto používejte 'd' nebo 'i'."
@@ -269,11 +269,15 @@ msgid ""
 "%s: Wrong type for input argument #%d: Real or complex, sparse or full "
 "matrix expected.\n"
 msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána reálná, komplexní, řídká "
+"či úplná matice.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real sparse or full matrix expected.\n"
 msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána reálná řídká, nebo úplná "
+"matice.\n"
 
 #, c-format
 msgid "%s: Matrix is not diagonalisable.\n"
@@ -403,6 +407,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: Real or complex, sparse or full "
 "matrix or hypermatrix expected.\n"
 msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána reálná nebo komplexní "
+"řídká, či úplná matice nebo hypermatice.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
@@ -442,11 +448,6 @@ msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno kladné číslo.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Real matrix expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekávána reálná matice.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: %d,'%s',%d or '%s' expected\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno %d,'%s',%d nebo '%s'\n"
@@ -471,6 +472,61 @@ msgstr "%s: Záznam singulární matice.\n"
 #, c-format
 msgid "%s: Unable to diagonalize.\n"
 msgstr "%s: Nelze diagonalizovat.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno alespoň %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: expected same type as first "
+"argument.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván stejný typ jako první "
+"argument.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of integers, reals, complexes, "
+"booleans, polynomials or strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for argument #%d: Must not contain NaN.\n"
+msgstr "%s: Špatná hodnota argumentu #%d: Může obsahovat pouze čísla.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Scalar string expected => option ignored.\n"
+msgstr ""
+"%s: Špatný typ argumentu #%d: Očekáván skalární řetězec => volba "
+"ignorována.\n"
+
+#, c-format
+msgid "%s: Unknown option %s => ignored.\n"
+msgstr "%s: Neznámá volba %s => ignorována.\n"
+
+#, c-format
+msgid "%s: Option %s only relevant for %s and %s modes => ignored.\n"
+msgstr "%s: Volba %s je používána pouze v režimech %s a %s => ignorována.\n"
+
+#, c-format
+msgid "%s: not enough memory to proceed\n"
+msgstr "%s: není dostatek paměti pro pokračování\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of columns "
+"expected.\n"
+msgstr ""
+"%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekáván stejný počet "
+"sloupců.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
+msgstr ""
+"%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekáván stejný počet řádků\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: At most %d expected.\n"
@@ -504,15 +560,19 @@ msgstr "%s: Špatný typ argumentu #%d: Očekáváno reálné číslo.\n"
 msgid ""
 "%s: Wrong type for input argument #%d: Real scalar or matrix expected.\n"
 msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván reálný skalár nebo matice.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
 msgstr ""
+"%s: Špatné velikosti vstupních argumentů #%d a #%d: Očekávány stejné "
+"velikosti.\n"
 
 #, c-format
 msgid "%s: If x is negative, then n must contain odd integers only.\n"
 msgstr ""
+"%s: Pokud je x záporné, pak n musí obsahovat pouze lichá celá čísla.\n"
 
 #, c-format
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"

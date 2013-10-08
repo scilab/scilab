@@ -19,7 +19,7 @@ namespace org_modules_xml
 {
 VariableScope *XMLObject::scope = 0;
 
-XMLObject::XMLObject()
+XMLObject::XMLObject(): id(0)
 {
     if (!scope)
     {

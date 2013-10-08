@@ -25,5 +25,8 @@
         <method name="generatePaletteIcon" returnType="void" modifier="static">
             <parameter name="iconPath" type="String"/>
         </method>
+        <method name="get" returnType="void" modifier="static">
+            <parameter name="path" type="String[]"/>
+        </method>
     </object>
 </package>

@@ -53,12 +53,12 @@ function demo_param()
     printf(_("\nCheck type: \n"));
     printf("  typeof(test_list) = %s\n\n", typeof(test_list));
 
-    messagebox(_(["Now, show that parameters operators only apply to the plist type";
+    messagebox(_(["Show that parameters operators only apply to the plist type";
     "by adding a parameter to an empty matrix."]), "modal", "info");
 
     A = [];
 
-    printf(_("\nAdd a parameter to a non plist ''A''.\n"));
+    printf(_("\nAdd a parameter to ''A'' when ''A'' is not a plist.\n"));
     printf(_("\nBefore add_param: \n"));
     disp(A, " A = ");
 
@@ -71,9 +71,9 @@ function demo_param()
 
     printf(_("\nAfter add_param: \n"));
     disp(A, " A = ");
-    printf(_("\nError = %f. If error <> 0, then the error has been caught.\n"), 1*err);
+    printf(_("\nError = %f. If error<>0, an error occurred.\n"), 1*err);
 
 endfunction
 
 demo_param();
-clear demo_params;
+clear demo_param;

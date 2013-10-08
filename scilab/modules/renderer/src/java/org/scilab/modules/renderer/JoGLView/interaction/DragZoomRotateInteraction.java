@@ -11,6 +11,7 @@
 package org.scilab.modules.renderer.JoGLView.interaction;
 
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -52,6 +53,7 @@ public class DragZoomRotateInteraction extends FigureInteraction {
     private MouseEvent previousEvent;
     private Axes currentAxes;
 
+
     /**
      * Default constructor.
      * @param drawerVisitor parent drawer visitor.
@@ -78,6 +80,10 @@ public class DragZoomRotateInteraction extends FigureInteraction {
         }
     }
 
+    public void setTranslationEnable(boolean status) {
+        ((FigureMouseMotionListener)mouseMotionListener).setTranslateEnable(status);
+    }
+
     /**
      * This {@see MouseListner} activate the {@see MouseMotionListener} when at least
      * one button is pressed.
@@ -95,6 +101,15 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                     currentAxes = getUnderlyingAxes(e.getPoint());
                     if (currentAxes != null) {
                         getDrawerVisitor().getComponent().addMouseMotionListener(mouseMotionListener);
+                        switch(e.getButton()) {
+                        case MouseEvent.BUTTON1 :
+                            Cursor cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR); 
+                            e.getComponent().setCursor(cursor);
+                            break;
+                        case MouseEvent.BUTTON3 :
+                            // FIXME: add rotation cursor here
+                            break;
+                        }
                     }
                 }
             }
@@ -103,11 +118,15 @@ public class DragZoomRotateInteraction extends FigureInteraction {
 
         @Override
         public void mouseReleased(MouseEvent e) {
-            pressedButtons--;
+            if (pressedButtons > 0) {
+                pressedButtons--;
+            }
+
             if (pressedButtons == 0) {
                 getDrawerVisitor().getComponent().removeMouseMotionListener(mouseMotionListener);
                 currentAxes = null;
             }
+            e.getComponent().setCursor(Cursor.getDefaultCursor());
         }
     }
 
@@ -150,6 +169,12 @@ public class DragZoomRotateInteraction extends FigureInteraction {
      */
     private class FigureMouseMotionListener extends MouseMotionAdapter implements MouseMotionListener {
 
+        private boolean translateEnabled = true;
+
+        public void setTranslateEnable(boolean status) {
+            translateEnabled = status;
+        }
+
         @Override
         public void mouseMoved(MouseEvent e) {
             /*
@@ -170,7 +195,9 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                         break;
                     }
                 case XY_TRANSLATION_MODIFIER:
-                    doXYTranslation(e);
+                    if (translateEnabled) {
+                        doXYTranslation(e);
+                    }
                     break;
                 case Z_TRANSLATION_MODIFIER:
                     doZTranslation(e);
@@ -179,7 +206,6 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                     doRotation(e);
                     break;
             }
-
             previousEvent = e;
         }
 
@@ -202,20 +228,38 @@ public class DragZoomRotateInteraction extends FigureInteraction {
             if (currentAxes != null) {
                 if (currentAxes.getZoomEnabled()) {
                     Double[] bounds = currentAxes.getDisplayedBounds();
-                    double orientation = Math.signum(Math.cos(Math.toRadians(currentAxes.getRotationAngles()[0])));
-                    double angle = - orientation * Math.toRadians(currentAxes.getRotationAngles()[1]);
+                    
+                    Integer[] winSize = (Integer[]) GraphicController.getController().getProperty(currentAxes.getParent(), GraphicObjectProperties.__GO_AXES_SIZE__);
+                    Double[] axesBounds = (Double[]) GraphicController.getController().getProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_AXES_BOUNDS__);
+                    Double[] axesMargins = (Double[]) GraphicController.getController().getProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_MARGINS__);
+                    Integer view = (Integer) GraphicController.getController().getProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_VIEW__);
 
-                    double xDelta = (bounds[0] - bounds[1]) / 100;
-                    double yDelta = (bounds[2] - bounds[3]) / 100;
+                    // Compute ratio from pixel move to user displayed data bounds
+                    double xDelta = Math.abs(bounds[0] - bounds[1]) / (winSize[0] * axesBounds[2] * (1 - axesMargins[0] - axesMargins[1]));
+                    double yDelta = Math.abs(bounds[2] - bounds[3]) / (winSize[1] * axesBounds[3] * (1 - axesMargins[2] - axesMargins[3]));
+                  
+                    if (view == 0) {
+                        // 2D View
+                        bounds[0] -= xDelta * dx;
+                        bounds[1] -= xDelta * dx;
 
-                    double rotatedDX = dx * Math.sin(angle) + dy * Math.cos(angle);
-                    double rotatedDY = dx * Math.cos(angle) - dy * Math.sin(angle);
+                        bounds[2] += yDelta * dy;
+                        bounds[3] += yDelta * dy;
+                    } else {
+                        // 3D view
+                        double orientation = - Math.signum(Math.cos(Math.toRadians(currentAxes.getRotationAngles()[0])));
+                        double angle = - orientation * Math.toRadians(currentAxes.getRotationAngles()[1]);
 
-                    bounds[0] += xDelta * rotatedDX * orientation;
-                    bounds[1] += xDelta * rotatedDX * orientation;
+                        double rotatedDX = dx * Math.sin(angle) + dy * Math.cos(angle);
+                        double rotatedDY = dx * Math.cos(angle) - dy * Math.sin(angle);
 
-                    bounds[2] += yDelta * rotatedDY;
-                    bounds[3] += yDelta * rotatedDY;
+                        bounds[0] -= xDelta * rotatedDX * orientation;
+                        bounds[1] -= xDelta * rotatedDX * orientation;
+
+                        bounds[2] += yDelta * rotatedDY;
+                        bounds[3] += yDelta * rotatedDY;
+                    }
+
 
                     Boolean zoomed = tightZoomBoxToDataBounds(currentAxes, bounds);
                     GraphicController.getController().setProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);

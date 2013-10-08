@@ -26,7 +26,7 @@ function demo_pid()
   s=poly(0,'s');z=poly(0,'z');
   messagebox(['Example of PID Design '
               'file: '+path+'pid.dem'],"modal");
-  
+
   n=x_choose(['Continuous time';'Discrete time'],'Select time domain');
   select n
    case 0
@@ -76,9 +76,9 @@ function demo_pid()
     end
     W=[1, -P22;
         Kpid,1];Winv=inv(W);
-  
+
     disp(spec(Winv(2)),'closed loop eigenvalues');//Check internal stability
-    if max(real(spec(Winv(2)))) > 0 then 
+    if max(real(spec(Winv(2)))) > 0 then
       messagebox('You loose: closed-loop is UNSTABLE!!!',"modal");
     else
       messagebox('Congratulations: closed-loop is STABLE !!!',"modal");
@@ -89,10 +89,10 @@ function demo_pid()
   mode(1)
   [Spid,Rpid,Tpid]=sensi(P22,Kpid);  //Sensitivity functions
   Tpid(5)=clean(Tpid(5));
-  
+
   disp(clean(ss2tf(Spid)),'Sensitivity function');
   disp(clean(ss2tf(Tpid)),'Complementary sensitivity function');
-  
+
   resp=['Frequency response';'Time response'];
   while %t do
     n=x_choose(resp,'Select response(s)');
@@ -106,7 +106,7 @@ function demo_pid()
       break
     case 1
       mode(1)
-      clf(100002);scf(100002);show_window();bode(Tpid);
+      scf(100002);clf(100002);show_window();bode(Tpid);
       mode(-1)
     case 2
       if Plant(4)=='c' then
@@ -122,12 +122,12 @@ function demo_pid()
         if n1==0 then
           warning('Demo stops!');return;
         end
-        if n1==1 then 
-          clf(100002);scf(100002);show_window();
+        if n1==1 then
+          scf(100002);clf(100002);show_window();
           plot2d([t',t'],[(csim('step',t,Tpid))',ones(t')])
         end
         if n1==2 then
-          clf(100002);scf(100002);show_window();
+          scf(100002);clf(100002);show_window();
           plot2d([t',t'],[(csim('impul',t,Tpid))',0*t'])
         end
         mode(-1)
@@ -147,13 +147,13 @@ function demo_pid()
           case 1 then
             mode(1)
             u=ones(1,Tmax);u(1)=0;
-            clf(100002);scf(100002);show_window();
+            scf(100002);clf(100002);show_window();
             plot2d([(1:Tmax)',(1:Tmax)'],[(dsimul(Tpid,u))',(ones(1:Tmax)')])
             mode(-1)
           case 2 then
             mode(1)
             u=zeros(1,Tmax);u(1)=1;
-            clf(100002);scf(100002);show_window();
+            scf(100002);clf(100002);show_window();
             plot2d((1:Tmax)',(dsimul(Tpid,u))')
             mode(-1)
           end

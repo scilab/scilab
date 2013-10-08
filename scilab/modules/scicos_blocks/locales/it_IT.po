@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: it\n"
 
 msgid "overflow error"
@@ -663,8 +663,23 @@ msgstr ""
 msgid "Implicit input port"
 msgstr "POrta di ingresso implicita"
 
-msgid "Regular input port"
-msgstr "Porta di ingresso regolare"
+msgid "Set Input block parameters"
+msgstr ""
+
+msgid "Outport size ([-1 -2] for inherit)"
+msgstr ""
+
+msgid "Outport Type (-1 for inherit)"
+msgstr ""
+
+msgid "Port number must be a positive integer"
+msgstr ""
+
+msgid "Outport Size must be a 2 elements vector"
+msgstr ""
+
+msgid "Outport type must be a number between 1 and 9, or -1 for inheritance."
+msgstr ""
 
 msgid "Modulo counter (0 to N counter)"
 msgstr ""

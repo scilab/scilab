@@ -35,7 +35,7 @@ int SWAP(char type[], int *fd);
  * @param char type[]
  * @param ierr
  */
-FILEIO_IMPEXP void C2F(mgeti) (int *fd, int *res, int *n, char type[], int *ierr);
+FILEIO_IMPEXP void C2F(mgeti) (int *fd, long long *res, int *n, char type[], int *ierr);
 
 #endif /* __MGETI_H__ */
 

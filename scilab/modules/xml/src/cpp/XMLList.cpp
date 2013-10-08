@@ -15,7 +15,7 @@
 
 namespace org_modules_xml
 {
-XMLList::XMLList(): XMLObject()
+XMLList::XMLList(): XMLObject(), size(0)
 {
     scilabType = XMLLIST;
 }

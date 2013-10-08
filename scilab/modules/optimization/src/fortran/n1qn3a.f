@@ -62,7 +62,7 @@ c
       do 10 i=1,n
           d(i)=-g(i)*precos
 10    continue
-      if (impres.ge.5) then
+      if (impres.ge.4) then
         write(bufstr,899) precos
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -102,17 +102,17 @@ c
               goto 100
           endif
       endif
-      if (impres.ge.5) then
+      if (impres.ge.4) then
         write(bufstr,901)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
 901   format (1x,79("-"))
-      if (impres.ge.4) then
+      if (impres.ge.3) then
         write(bufstr,9010)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
 9010  format (1x,' ')
-      if (impres.ge.3) then
+      if (impres.ge.2) then
         write (bufstr,902) iter,isim,f,hp0
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -125,7 +125,7 @@ c
 c
 c     ---- recherche lineaire et nouveau point x(k+1)
 c
-      if (impres.ge.5) then
+      if (impres.ge.4) then
         write (bufstr,903)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -194,7 +194,7 @@ c
       call prosca(n,g,g,ps,izs,rzs,dzs)
       eps1=sqrt(ps)/gnorm
 c
-      if (impres.ge.5) then
+      if (impres.ge.4) then
         write (bufstr,905) eps1
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -240,7 +240,7 @@ c
               sbar(i,jmax)=t*d(i)
               ybar(i,jmax)=g(i)-gg(i)
 400       continue
-          if (impres.ge.5) then
+          if (impres.ge.4) then
               call prosca (n,sbar(1,jmax),sbar(1,jmax),ps,izs,rzs,dzs)
               dk1=sqrt(ps)
               if (iter.gt.1) then
@@ -255,7 +255,7 @@ c
           ys=ps
           if (ys.le.0.d0) then
               mode=7
-              if (impres.ge.1) then 
+              if (impres.ge.1) then
                 write (bufstr,908) iter,ys
                 call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
                 endif
@@ -264,7 +264,7 @@ c
      & d12.5,27x,"is not positive")
               goto 1000
           endif
-          if (impres.ge.5) then
+          if (impres.ge.4) then
             write(bufstr,909)
             call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
             endif
@@ -295,7 +295,7 @@ c
               do 398 i=1,n
                   r1=r1+diag(i)*aux(i)**2
 398           continue
-              if (impres.ge.5) then
+              if (impres.ge.4) then
                   write (bufstr,915) 1.d0/r1
                   call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
 915               format(5x,"fitting the ellipsoid: factor ",d10.3)
@@ -317,7 +317,7 @@ c
      /                          -(gg(i)/diag(i))**2/den)
 403           continue
           endif
-          if (impres.ge.5) then
+          if (impres.ge.4) then
               preco=0.d0
               do 406 i=1,n
                   preco=preco+diag(i)
@@ -326,7 +326,7 @@ c
               write (bufstr,912) precos,preco
               call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
 912           format (5x,"Oren-Spedicato factor (not used) = ",
-     /                d10.3/5x,"diagonal: average value = ",d10.3)
+     /                d10.3,5x,"diagonal: average value = ",d10.3)
           endif
       endif
 c
@@ -362,7 +362,7 @@ c
      /             "descent direction: (g,d) = ",d12.5)
           goto 1000
       endif
-      if (impres.ge.5) then
+      if (impres.ge.4) then
           call prosca (n,g,g,ps,izs,rzs,dzs)
           ps=dsqrt(ps)
           call prosca (n,d,d,ps2,izs,rzs,dzs)

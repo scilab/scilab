@@ -50,10 +50,12 @@ s3t     = int16(7616);//0x1DC0
 writedata("ulb", ["00" "00" "00" "00" "00" "00" "00" "7B" "00" "00" "00" "00" "00" "00" "B2" "6E" "00" "00" "00" "00" "00" "01" "E2" "40"]);
 //unsigned long little endian
 writedata("ull", ["7B" "00" "00" "00" "00" "00" "00" "00" "6E" "B2" "00" "00" "00" "00" "00" "00" "40" "E2" "01" "00" "00" "00" "00" "00"]);
+
 //unsigned int big endian
 writedata("uib", ["00" "00" "00" "7B" "00" "00" "B2" "6E" "00" "01" "E2" "40"]);
 //unsigned int little endian
 writedata("uil", ["7B" "00" "00" "00" "6E" "B2" "00" "00" "40" "E2" "01" "00"]);
+
 //unsigned short big endian
 writedata("usb", ["00" "7B" "B2" "6E" "E2" "40"]);
 //unsigned short little endian
@@ -63,10 +65,12 @@ writedata("usl", ["7B" "00" "6E" "B2" "40" "E2"]);
 writedata("lb", ["FF" "FF" "FF" "FF" "FF" "FF" "FF" "85" "FF" "FF" "FF" "FF" "FF" "FF" "A4" "60" "FF" "FF" "FF" "FF" "FF" "FE" "1D" "C0"]);
 //long little endian
 writedata("ll", ["85" "FF" "FF" "FF" "FF" "FF" "FF" "FF" "60" "A4" "FF" "FF" "FF" "FF" "FF" "FF" "C0" "1D" "FE" "FF" "FF" "FF" "FF" "FF"]);
+
 //int big endian
 writedata("ib", ["FF" "FF" "FF" "85" "FF" "FF" "A4" "60" "FF" "FE" "1D" "C0"]);
 //int little endian
 writedata("il", ["85" "FF" "FF" "FF" "60" "A4" "FF" "FF" "C0" "1D" "FE" "FF"]);
+
 //short big endian
 writedata("sb", ["FF" "85" "A4" "60" "1D" "C0"]);
 //short little endian

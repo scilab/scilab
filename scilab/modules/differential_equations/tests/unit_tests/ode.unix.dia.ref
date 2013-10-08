@@ -2,6 +2,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
 // Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
+// Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -107,7 +108,7 @@ res6 = ode(y, t,tout, rtol, atol, 'fex');
 // check results
 assert_checkalmostequal(resDoc, res, 2d-7, [], "matrix"); // There are a little diff between resDoc and res
 if version(1) > 5 then
-    assert_checkalmostequal(res, res2, 2d-7, [], "matrix"); // because results provides by lsoda 
+    assert_checkalmostequal(res, res2, 2d-7, [], "matrix"); // because results provides by lsoda
 end
 assert_checkalmostequal(res, res3, 2d-7, [], "matrix"); // documentation are in single precision.
 assert_checkalmostequal(res, res4, 2d-7, [], "matrix");
@@ -306,15 +307,8 @@ t0   = 0;
 [yout1,rd1,w,iw] = ode("root", y, t0, tout, 'fex1', 2, 'gex');
 assert_checkalmostequal(rd1(1), 2.64d-01, 1d-4);
 [yout2,rd2,w,iw] = ode("root", y, t0, tout, 'fex1', 2, 'gex', w, iw);
-assert_checkalmostequal(rd2(1), 2.0795776d+07, 4d-7);
+assert_checkalmostequal(rd2(1), 2.0795776d+07, 4d-5);
 err = execstr("[yout3,rd,w,iw] = ode(""root"", y, t0, tout, ""fex1"", 2, ""gex"", w, iw);","errcatch");
-intdy--  t (=r1) illegal      
-      where r1 is :   0.4000000000000D+00                                       
-      t n est pas entre tcur - hu (= r1) et tcur (=r2)
-      where r1 is :   0.2033607066275D+08   and r2 :   0.2109164231072D+08      
-lsodar-  trouble from intdy. itask = i1, tout = r1
-      where i1 is :          1                                                  
-      where r1 is :   0.4000000000000D+00                                       
 assert_checkequal( err == 0 , %f);
 // check results
 assert_checkalmostequal(resDocRoot(:,1), yout1, 2.0D-8, [], "matrix");

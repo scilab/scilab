@@ -10,12 +10,12 @@
 //
 //
 
-function winId = atomsOpenProgressBar(message, withValue)
+function winId = atomsOpenProgressBar(msg, withValue)
     if (getscilabmode() <> "NWNI")
         if (withValue == %t)
-            winId = waitbar(_("Atoms:")+" "+message);
+            winId = waitbar(_("Atoms:")+" "+msg);
         else
-            winId = progressionbar(_("Atoms:")+" "+message);
+            winId = progressionbar(_("Atoms:")+" "+msg);
         end
     else
         winId = -1

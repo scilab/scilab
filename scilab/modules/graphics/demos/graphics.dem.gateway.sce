@@ -21,6 +21,7 @@ function subdemolist = demo_gateway()
     _("bar histogram")               ,"bar/bar.dem.sce"; ..
     _("Datatips")                    ,"datatips/datatips.dem.gateway.sce"                   ; ..
     _("LaTeX/MathML")                ,"textrendering/textrendering.dem.gateway.sce"         ; ..
+	_("Lighting")                    ,"lighting/lighting.dem.gateway.sce"                   ; ..
     _("Misc")                        ,"misc/misc.dem.sce"                                   ; ..
     _("Colormap")                    ,"colormap/colormap.dem.sce"];
 

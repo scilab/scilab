@@ -50,9 +50,21 @@ void* get_grid_property(void* _pvCtx, char* pobjUID)
     grid[0] = (double) iGridColor;
 
     getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_GRID_COLOR__, jni_int, (void **)&piGridColor);
+    if (piGridColor == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid");
+        return -1;
+    }
+
     grid[1] = (double) iGridColor;
 
     getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_GRID_COLOR__, jni_int, (void **)&piGridColor);
+    if (piGridColor == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid");
+        return -1;
+    }
+
     grid[2] = (double) iGridColor;
 
     getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, (void **)&piView);

@@ -16,10 +16,12 @@ import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.textObject.Text;
+import org.scilab.modules.graphic_objects.datatip.Datatip;
 
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.text.TextManager;
+import org.scilab.modules.renderer.JoGLView.datatip.DatatipTextDrawer;
 
 /**
  * This is a static class to access the renderer module directly
@@ -73,8 +75,12 @@ public final class CallRenderer {
     public static void updateTextBounds(String id) {
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
 
-        if (object != null && object instanceof Text) {
-            TextManager.updateTextCorners((Text) object);
+        if (object != null) {
+            if (object instanceof Datatip) {
+                DatatipTextDrawer.updateTextCorners((Datatip) object);
+            } else if (object instanceof Text){
+                TextManager.updateTextCorners((Text) object);
+            }
         }
     }
 

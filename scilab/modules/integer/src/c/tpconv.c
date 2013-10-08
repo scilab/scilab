@@ -62,6 +62,9 @@ int C2F(tpconv)(int *xtyp, int *ytyp, int *n, void *dx, int *incx, void *dy, int
                 case 4:
                     TCONV(double, integer);
                     break;
+                case 8:
+                    TCONV(double, long long);
+                    break;
                 case 11:
                     TCONV(double, unsigned char);
                     break;
@@ -70,6 +73,9 @@ int C2F(tpconv)(int *xtyp, int *ytyp, int *n, void *dx, int *incx, void *dy, int
                     break;
                 case 14:
                     TCONV(double, unsigned int);
+                    break;
+                case 18:
+                    TCONV(double, unsigned long long);
                     break;
             }
             break;
@@ -88,6 +94,9 @@ int C2F(tpconv)(int *xtyp, int *ytyp, int *n, void *dx, int *incx, void *dy, int
                 case 4:
                     TCONV(integer1, integer);
                     break;
+                case 8:
+                    TCONV(integer1, long long);
+                    break;
                 case 11:
                     TCONV(integer1, unsigned char);
                     break;
@@ -96,6 +105,9 @@ int C2F(tpconv)(int *xtyp, int *ytyp, int *n, void *dx, int *incx, void *dy, int
                     break;
                 case 14:
                     TCONV(integer1, unsigned int);
+                    break;
+                case 18:
+                    TCONV(integer1, unsigned long long);
                     break;
             }
             break;
@@ -114,6 +126,9 @@ int C2F(tpconv)(int *xtyp, int *ytyp, int *n, void *dx, int *incx, void *dy, int
                 case 4:
                     TCONV(integer2, integer);
                     break;
+                case 8:
+                    TCONV(integer2, long long);
+                    break;
                 case 11:
                     TCONV(integer2, unsigned char);
                     break;
@@ -122,6 +137,9 @@ int C2F(tpconv)(int *xtyp, int *ytyp, int *n, void *dx, int *incx, void *dy, int
                     break;
                 case 14:
                     TCONV(integer2, unsigned int);
+                    break;
+                case 18:
+                    TCONV(integer2, unsigned long long);
                     break;
             }
             break;
@@ -140,6 +158,9 @@ int C2F(tpconv)(int *xtyp, int *ytyp, int *n, void *dx, int *incx, void *dy, int
                 case 4:
                     TCONV(integer, integer);
                     break;
+                case 8:
+                    TCONV(integer, long long);
+                    break;
                 case 11:
                     TCONV(integer, unsigned char);
                     break;
@@ -148,6 +169,41 @@ int C2F(tpconv)(int *xtyp, int *ytyp, int *n, void *dx, int *incx, void *dy, int
                     break;
                 case 14:
                     TCONV(integer, unsigned int);
+                    break;
+                case 18:
+                    TCONV(integer, unsigned long long);
+                    break;
+            }
+            break;
+        case 8:
+            switch (*ytyp)
+            {
+                case 0:
+                    TCONV(long long, double);
+                    break;
+                case 1:
+                    TCONV(long long, integer1);
+                    break;
+                case 2:
+                    TCONV(long long, integer2);
+                    break;
+                case 4:
+                    TCONV(long long, integer);
+                    break;
+                case 8:
+                    TCONV(long long, long long);
+                    break;
+                case 11:
+                    TCONV(long long, unsigned char);
+                    break;
+                case 12:
+                    TCONV(long long, unsigned short);
+                    break;
+                case 14:
+                    TCONV(long long, unsigned int);
+                    break;
+                case 18:
+                    TCONV(long long, unsigned long long);
                     break;
             }
             break;
@@ -166,6 +222,9 @@ int C2F(tpconv)(int *xtyp, int *ytyp, int *n, void *dx, int *incx, void *dy, int
                 case 4:
                     TCONV(unsigned char, integer);
                     break;
+                case 8:
+                    TCONV(unsigned char, long long);
+                    break;
                 case 11:
                     TCONV(unsigned char, unsigned char);
                     break;
@@ -174,6 +233,9 @@ int C2F(tpconv)(int *xtyp, int *ytyp, int *n, void *dx, int *incx, void *dy, int
                     break;
                 case 14:
                     TCONV(unsigned char, unsigned int);
+                    break;
+                case 18:
+                    TCONV(unsigned char, unsigned long long);
                     break;
             }
             break;
@@ -192,6 +254,9 @@ int C2F(tpconv)(int *xtyp, int *ytyp, int *n, void *dx, int *incx, void *dy, int
                 case 4:
                     TCONV(unsigned short, integer);
                     break;
+                case 8:
+                    TCONV(unsigned short, long long);
+                    break;
                 case 11:
                     TCONV(unsigned short, unsigned char);
                     break;
@@ -200,6 +265,9 @@ int C2F(tpconv)(int *xtyp, int *ytyp, int *n, void *dx, int *incx, void *dy, int
                     break;
                 case 14:
                     TCONV(unsigned short, unsigned int);
+                    break;
+                case 18:
+                    TCONV(unsigned short, unsigned long long);
                     break;
             }
             break;
@@ -218,6 +286,9 @@ int C2F(tpconv)(int *xtyp, int *ytyp, int *n, void *dx, int *incx, void *dy, int
                 case 4:
                     TCONV(unsigned int, integer);
                     break;
+                case 8:
+                    TCONV(unsigned int, long long);
+                    break;
                 case 11:
                     TCONV(unsigned int, unsigned char);
                     break;
@@ -226,6 +297,41 @@ int C2F(tpconv)(int *xtyp, int *ytyp, int *n, void *dx, int *incx, void *dy, int
                     break;
                 case 14:
                     TCONV(unsigned int, unsigned int);
+                    break;
+                case 18:
+                    TCONV(unsigned int, unsigned long long);
+                    break;
+            }
+            break;
+        case 18:
+            switch (*ytyp)
+            {
+                case 0:
+                    TCONV(unsigned long long, double);
+                    break;
+                case 1:
+                    TCONV(unsigned long long, integer1);
+                    break;
+                case 2:
+                    TCONV(unsigned long long, integer2);
+                    break;
+                case 4:
+                    TCONV(unsigned long long, integer);
+                    break;
+                case 8:
+                    TCONV(unsigned long long, long long);
+                    break;
+                case 11:
+                    TCONV(unsigned long long, unsigned char);
+                    break;
+                case 12:
+                    TCONV(unsigned long long, unsigned short);
+                    break;
+                case 14:
+                    TCONV(unsigned long long, unsigned int);
+                    break;
+                case 18:
+                    TCONV(unsigned long long, unsigned long long);
                     break;
             }
             break;

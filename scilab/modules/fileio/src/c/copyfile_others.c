@@ -208,6 +208,12 @@ static int CopyDirectoryFunction_others(wchar_t *DestinationDirectory, wchar_t *
                 FREE(pStrDest);
                 pStrDest = NULL;
             }
+
+            if (pStrSrc)
+            {
+                FREE(pStrSrc);
+                pStrSrc = NULL;
+            }
             return ENOTDIR;
         }
         else
@@ -219,26 +225,19 @@ static int CopyDirectoryFunction_others(wchar_t *DestinationDirectory, wchar_t *
                     FREE(pStrDest);
                     pStrDest = NULL;
                 }
+
+                if (pStrSrc)
+                {
+                    FREE(pStrSrc);
+                    pStrSrc = NULL;
+                }
+
                 return ENOTDIR;
             }
         }
     }
 
     ierr = RecursiveCopyDirectory(pStrDest, pStrSrc);
-    if (ierr)
-    {
-        if (pStrDest)
-        {
-            FREE(pStrDest);
-            pStrDest = NULL;
-        }
-        if (pStrSrc)
-        {
-            FREE(pStrSrc);
-            pStrSrc = NULL;
-        }
-        return errno;
-    }
     if (pStrDest)
     {
         FREE(pStrDest);
@@ -249,6 +248,12 @@ static int CopyDirectoryFunction_others(wchar_t *DestinationDirectory, wchar_t *
         FREE(pStrSrc);
         pStrSrc = NULL;
     }
+
+    if (ierr)
+    {
+        return errno;
+    }
+
     return 0;
 }
 /*--------------------------------------------------------------------------*/

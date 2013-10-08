@@ -114,7 +114,7 @@ y(1,j) = P(n,m;x(j))      if both n and m are scalars
  ]]></programlisting>
         <para>
             so that <literal>x</literal> is preferably a row vector but any
-            <literal>mx x nx</literal> matrix is excepted and considered as an
+            <literal>mx x nx</literal> matrix is expected and considered as an
             <literal>1 x (mx * nx)</literal> matrix, reshaped following the column
             order.
         </para>

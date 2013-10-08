@@ -34,7 +34,7 @@
 /* 11 */						#include "dynamic_gateways.h" /* optimization */
 /* 12 *///						#include "../../differential_equations/includes/gw_differential_equations1.h"
 /* 13 */						#include "gw_core.h"
-/* 14  gw_user(); RESERVED to gw_user (see callinter.h) */
+/* 14  gw_user(); RESERVED to gw_user (see callinter.h.f) */
 /* 15  gw_user(); FREE */
 /* 16 						#include "../../polynomials/includes/gw_polynomials.h"*/
 /* 17 */						#include "../../data_structures/includes/gw_data_structures1.h"
@@ -44,7 +44,7 @@
 /* 21 *///						#include "../../string/includes/gw_string.h"
 /* 22 */						#include "dynamic_gateways.h" /* symbolic */
 /* 23 */						#include "../../boolean/includes/gw_boolean.h"
-/* 24  gw_user2(); RESERVED to gw_user (see callinter.h) */
+/* 24  gw_user2(); RESERVED to gw_user (see callinter.h.f) */
 #include "gw_user2.h"
 /* 25 */						#include "../../gui/includes/gw_gui.h"
 /* 26 *///						#include "../../differential_equations/includes/gw_differential_equations2.h"

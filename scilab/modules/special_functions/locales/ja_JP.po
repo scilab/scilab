@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-18 04:29+0000\n"
+"PO-Revision-Date: 2013-09-21 06:03+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -48,12 +48,14 @@ msgid "%s: Wrong type for argument %d: A matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 行例を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for first input argument.\n"
-msgstr "%s: 最初の入力引数の型が間違っています.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Integer or vector of integers "
+"expected.\n"
+msgstr "%s:入力引数 #%d の型が間違っています:  整数または整数ベクトルを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています.\n"
+msgid "%s: Wrong type for input argument #%d: Integer >= %d expected.\n"
+msgstr "%s:入力引数 #%d の型が間違っています:  整数 <= %d を指定してください.\n"
 
 #, c-format
 msgid "%s: Only one of arg1 and arg2 may be a vector.\n"
@@ -61,9 +63,9 @@ msgstr "%s: arg1 および arg2 のどちらかのみをベクトルとするこ
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Matrix with elements in (%d,%d) "
+"%s: Wrong value for input argument #%d: Matrix with elements in [%d,%d] "
 "expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: (%d,%d) の要素を有する行列を指定してください.\n"
+msgstr "%s:入力引数 #%d の値が間違っています:  [%d, %d] の範囲の要素を有する行列を指定してください.\n"
 
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"

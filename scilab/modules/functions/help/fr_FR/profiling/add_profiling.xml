@@ -12,7 +12,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="add_profiling" xml:lang="en">
     <refnamediv>
         <refname>add_profiling</refname>
-        <refpurpose>Ajoute les instructions de "profiling" au code d'une fonction </refpurpose>
+        <refpurpose>Active le profiling d'une fonction</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -24,7 +24,7 @@
             <varlistentry>
                 <term>funname</term>
                 <listitem>
-                    <para>Une chaine de caractères: le nom de la fonction</para>
+                    <para>Une chaine de caractères: le nom de la fonction à profiler</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -32,11 +32,10 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>add_profiling(funname)</literal> Ajoute les
-            instructions de "profiling" au code de la fonction dont le nom est
-            donné par <literal>funname</literal>. Ensuite lors des appels
-            de la fonction <literal>funname</literal>, le nombre d'appel ainsi
-            que le temps d'execution de chaque ligne est stocké .
+            <literal>add_profiling</literal> ajoute les
+            instructions nécessaires au profiling d'une fonction. Ainsi, lors des appels
+            de cette fonction, le nombre d'appels et le temps d'exécution de chaque ligne sont stockés.
+            Ces données peuvent être ensuite retournées avec la fonction <link linkend="profile">profile</link>.
         </para>
     </refsection>
     <refsection>

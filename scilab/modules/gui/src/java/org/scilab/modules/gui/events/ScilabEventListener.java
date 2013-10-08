@@ -180,6 +180,4 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
         callScilab();
     }
 
-
-
 }

@@ -544,6 +544,36 @@ function %h_p(h)
             "tag = "+h.tag
             ]
 
+            // Datatip
+            // =====================================================================
+
+        case "Datatip"
+            u=h.user_data
+            t=[t;
+            "parent: "+h.parent.type
+            "children: "+fmtchildren(h.children)
+            "visible = "+sci2exp(h.visible)
+            "tip_data = "+sci2exp(h.tip_data)
+            "tip_box_mode = "+sci2exp(h.tip_box_mode)
+            "tip_label_mode = "+sci2exp(h.tip_label_mode)
+            "tip_orientation = "+sci2exp(h.tip_orientation)
+            "tip_3component = "+sci2exp(h.tip_3component)
+            "tip_auto_orientation = "+sci2exp(h.tip_auto_orientation)
+            "tip_interp_mode = "+sci2exp(h.tip_interp_mode)
+            "tip_disp_function = "+sci2exp(h.tip_disp_function)
+            "font_foreground = "+string(h.font_foreground)
+            "foreground = "+string(h.foreground)
+            "background = "+string(h.background)
+            "mark_mode = "+sci2exp(h.mark_mode)
+            "mark_style = "+sci2exp(h.mark_style)
+            "mark_size_unit = "+sci2exp(h.mark_size_unit)
+            "mark_size = "+string(h.mark_size)
+            "mark_foreground = "+string(h.mark_foreground)
+            "mark_background = "+string(h.mark_background)
+            "user_data = "+fmtuser_data(u)
+            "tag = "+h.tag
+            ]
+
             // Title
             // =====================================================================
 
@@ -644,6 +674,11 @@ function %h_p(h)
                 "hiddencolor = "+string(h.hiddencolor)
                 "clip_state = "+sci2exp(h.clip_state)
                 "clip_box = "+sci2exp(h.clip_box,0)
+                "ambient_color = "+sci2exp(h.ambient_color)
+                "diffuse_color = "+sci2exp(h.diffuse_color)
+                "specular_color = "+sci2exp(h.specular_color)
+                "use_color_material = "+sci2exp(h.use_color_material)
+                "material_shininess = "+sci2exp(h.material_shininess)
                 "user_data = "+fmtuser_data(u)
                 "tag = "+h.tag
                 ]
@@ -669,6 +704,11 @@ function %h_p(h)
                 "hiddencolor = "+string(h.hiddencolor)
                 "clip_state = "+sci2exp(h.clip_state)
                 "clip_box = "+sci2exp(h.clip_box,0)
+                "ambient_color = "+sci2exp(h.ambient_color)
+                "diffuse_color = "+sci2exp(h.diffuse_color)
+                "specular_color = "+sci2exp(h.specular_color)
+                "use_color_material = "+sci2exp(h.use_color_material)
+                "material_shininess = "+sci2exp(h.material_shininess)
                 "user_data = "+fmtuser_data(u)
                 "tag = "+h.tag
                 ]
@@ -733,6 +773,11 @@ function %h_p(h)
                 "hiddencolor = "+string(h.hiddencolor)
                 "clip_state = "+sci2exp(h.clip_state)
                 "clip_box = "+sci2exp(h.clip_box,0)
+                "ambient_color = "+sci2exp(h.ambient_color)
+                "diffuse_color = "+sci2exp(h.diffuse_color)
+                "specular_color = "+sci2exp(h.specular_color)
+                "use_color_material = "+sci2exp(h.use_color_material)
+                "material_shininess = "+sci2exp(h.material_shininess)
                 "user_data = "+fmtuser_data(u)
                 "tag = "+h.tag
                 ]
@@ -758,6 +803,11 @@ function %h_p(h)
                 "hiddencolor = "+string(h.hiddencolor)
                 "clip_state = "+sci2exp(h.clip_state)
                 "clip_box = "+sci2exp(h.clip_box,0)
+                "ambient_color = "+sci2exp(h.ambient_color)
+                "diffuse_color = "+sci2exp(h.diffuse_color)
+                "specular_color = "+sci2exp(h.specular_color)
+                "usecolor_material = "+sci2exp(h.use_color_material)
+                "material_shininess = "+sci2exp(h.material_shininess)
                 "user_data = "+fmtuser_data(u)
                 "tag = "+h.tag
                 ]
@@ -906,6 +956,20 @@ function %h_p(h)
             t=[t;
             "Children: "+fmtchildren(h.children)
             "ShowHiddenHandles: "+sci2exp(h.showhiddenhandles)
+            ]
+            // Light
+            // =====================================================================
+
+        case "Light"
+            t=[t;
+            "parent: "+h.parent.type
+            "visible = "+sci2exp(h.visible)
+            "light_type = "+sci2exp(h.light_type)
+            "position = "+sci2exp(h.position)
+            "direction = "+sci2exp(h.direction)
+            "ambient_color = "+sci2exp(h.ambient_color)
+            "diffuse_color = "+sci2exp(h.diffuse_color)
+            "specular_color= "+sci2exp(h.specular_color)
             ]
         end
     end

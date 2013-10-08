@@ -5,8 +5,6 @@
 //  This file is distributed under the same license as the Scilab package.
 // ===================================================================
 
-exec("SCI/modules/external_objects_java/tests/unit_tests/ecjclasspath.sce", -1);
-
 s = "Hello World !";
 r = jgetfield(jwrap(s), "CASE_INSENSITIVE_ORDER");
 

@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-26 05:09+0000\n"
+"PO-Revision-Date: 2013-09-04 12:53+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: uk\n"
 
 #, c-format
@@ -43,6 +43,8 @@ msgstr " результати можуть бути неточними. rcond = 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
+"рядків.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -604,6 +606,17 @@ msgid ""
 "* the following information:\n"
 "%s %s\n"
 msgstr ""
+"У Scilab сталася критична помилка.\n"
+"Ймовірно, невдовзі роботу програми буде завершено.\n"
+"Якщо використовувалася якась графічна можливість, помилку, ймовірно, "
+"спричинено графічними драйверами системи.\n"
+"Будь ласка, спробуйте оновити драйвери і потім знову скористатися графічною "
+"можливістю.\n"
+"Повідомити про ваду можна за адресою %s, вказавши:\n"
+"* зразок коду, за допомогою якого можна відтворити ваду;\n"
+"* результат виконання команди [a, b] = getdebuginfo()\n"
+"* а також такі відомості:\n"
+"%s %s\n"
 
 msgid "stack size exceeded!\n"
 msgstr "Перевищено розміри стеку!\n"
@@ -642,6 +655,8 @@ msgid ""
 "%s: Wrong type for element %d of argument #%d: Real or Complex matrix "
 "expected.\n"
 msgstr ""
+"%s: помилковий тип елемента %d параметра №%d: мало бути вказано матрицю з "
+"дійсними або комплексними елементами.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real or Complex matrix expected.\n"
@@ -651,7 +666,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Too many variables.\n"
-msgstr ""
+msgstr "%s: забагато змінних.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: List of size at least %d expected.\n"
@@ -669,6 +684,8 @@ msgstr ""
 msgid ""
 "%s: Wrong type for element %d of argument #%d: Boolean matrix expected.\n"
 msgstr ""
+"%s: помилковий тип елемента %d параметра №%d: мало бути вказано матрицю з "
+"булевими елементами.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
@@ -680,6 +697,8 @@ msgstr ""
 msgid ""
 "%s: Wrong type for element %d of argument #%d: Sparse matrix expected.\n"
 msgstr ""
+"%s: помилковий тип елемента %d параметра №%d: мало бути вказано розріджену "
+"матрицю.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Sparse matrix expected.\n"
@@ -689,6 +708,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for element %d of argument #%d: Vector expected.\n"
 msgstr ""
+"%s: помилковий тип елемента %d параметра №%d: мало бути вказано вектор.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Vector expected.\n"
@@ -707,6 +727,7 @@ msgstr "%s: помилкова розмірність параметра №%d: 
 #, c-format
 msgid "%s: Wrong type for element %d of argument #%d: Scalar expected.\n"
 msgstr ""
+"%s: помилковий тип елемента %d параметра №%d: мало бути вказано число.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Scalar expected.\n"
@@ -717,6 +738,8 @@ msgstr ""
 msgid ""
 "%s: Wrong type for element %d of argument #%d: Matrix of strings expected.\n"
 msgstr ""
+"%s: помилковий тип елемента %d параметра №%d: мало бути вказано матрицю з "
+"рядків.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
@@ -745,6 +768,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for element %d of argument #%d: Row vector expected.\n"
 msgstr ""
+"%s: помилковий тип елемента %d параметра №%d: мало бути вказано вектор-"
+"рядок.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Row vector expected.\n"
@@ -764,10 +789,12 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for element %d of argument #%d: Pointer expected.\n"
 msgstr ""
+"%s: помилковий тип елемента %d параметра №%d: мало бути використано "
+"вказівник.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Pointer expected.\n"
-msgstr ""
+msgstr "%s: помилковий тип параметра №%d: мало бути використано вказівник.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
@@ -775,7 +802,7 @@ msgstr "%s: помилковий тип параметра %d: слід вико
 
 #, c-format
 msgid "%s: Subroutine '%s' not found.\n"
-msgstr ""
+msgstr "%s: підпрограми «%s» не знайдено.\n"
 
 #, c-format
 msgid ""
@@ -802,6 +829,8 @@ msgstr "%f: простору для зберігання рядкових пар
 msgid ""
 "%s: Wrong type for element %d of argument #%d: Matrix of handle expected.\n"
 msgstr ""
+"%s: помилковий тип елемента %d параметра №%d: мало бути вказано матрицю з "
+"елементів керування.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix of handle expected.\n"
@@ -1050,6 +1079,8 @@ msgid ""
 "%s: Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
 "\n"
 msgstr ""
+"%s: будь ласка, встановіть модуль ATOMS texmacs: atomsInstall('texmacs')\n"
+"\n"
 
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "Не вдалося визначити тимчасовий каталог Windows (1)."
@@ -1108,6 +1139,7 @@ msgstr ""
 msgid "Empty tab"
 msgstr "Порожня вкладка"
 
+#, c-format
 msgid "Scilab %s Console"
 msgstr "Консоль Scilab %s"
 
@@ -1130,7 +1162,7 @@ msgstr "  завантаження початкового середовища"
 
 #, c-format
 msgid "Failed to execute %s:"
-msgstr ""
+msgstr "Не вдалося виконати %s:"
 
 msgid "&File"
 msgstr "&Файл"
@@ -1253,13 +1285,13 @@ msgid "Operating System: "
 msgstr "Операційна система: "
 
 msgid "Java version: "
-msgstr ""
+msgstr "Версія Java: "
 
 msgid "Java runtime information: "
-msgstr ""
+msgstr "Дані щодо середовища запуску Java: "
 
 msgid "Java Virtual Machine information: "
-msgstr ""
+msgstr "Дані щодо віртуальної машини Java: "
 
 msgid "Vendor specification: "
 msgstr "Специфікація постачальника: "

@@ -50,8 +50,8 @@ function demo_basic_function3()
     execstr(expr);
 
     // Demo III.3
-    expr=["xset(''dashes'',1,2,2);";
-    "xget(''dashes'',1);";
+    expr=["xset(''line style'',1);";
+    "xget(''line style'',1);";
     "xrect(140,470,120,170);"];
     messagebox(["[III.3] Setting a dash style";expr],"modal");
     execstr(expr);

@@ -16,6 +16,7 @@
 //
 // <-- Short Description -->
 // Visual Studio 2012 SDK configuration is incorrect.
+ilib_verbose(0);
 curPath = pwd();
 cd TMPDIR;
 src = ['#include <windows.h>'
@@ -26,12 +27,6 @@ src = ['#include <windows.h>'
 srcfile = 'test_windows_sdk.c';
 mputl(src, srcfile);
 libn = ilib_for_link('test_windows_sdk', srcfile, [], "c");
-   Generate a loader file
-   Generate a Makefile
-   Running the Makefile
-   Compilation of test_windows_sdk.c
-   Building shared library (be patient)
-   Generate a cleaner file
 assert_checktrue(libn <> 0);
 exec('cleaner.sce');
 cd(curPath);

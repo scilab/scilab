@@ -28,7 +28,7 @@ extern "C" {
      * create an empty matrix in the scilab stack in order to see it in the console.
      * @return 0 if the function was executed correctly, -1 if an error occurred.
      */
-    void* sciReturnEmptyMatrix();
+    void* sciReturnEmptyMatrix(void);
 
     /**
      * copy the string value in the scilab stack in order to see it the console.

@@ -18,7 +18,6 @@ import java.util.Date;
 import java.util.regex.Pattern;
 
 import javax.swing.SwingWorker;
-import javax.swing.tree.TreePath;
 
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 

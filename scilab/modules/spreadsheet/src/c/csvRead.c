@@ -85,21 +85,18 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
             result->pstrComments = NULL;
             result->nbComments = 0;
         }
-        if (expandedFilename)
-        {
-            FREE(expandedFilename);
-            expandedFilename = NULL;
-        }
+
+        FREE(expandedFilename);
         return result;
     }
 
     errMOPEN = mopen(expandedFilename, L"rt", f_swap, &fd); // rt = read only
-    printf("error mopen : %d\n", errMOPEN);
     if (expandedFilename)
     {
         FREE(expandedFilename);
         expandedFilename = NULL;
     }
+
     if (errMOPEN != MOPEN_NO_ERROR)
     {
         result = (csvResult*)(MALLOC(sizeof(csvResult)));
@@ -205,32 +202,20 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
         }
     }
 
-    {
-        int i = 0;
-        for (i = 0 ; i < nblines ; i++)
-        {
-            printf("csvtextscan %s\n", pstLines[i]);
-        }
-
-    }
     result = csvTextScan((const char**)pstLines, nblines, (const char*)separator, (const char*)decimal);
-    if (pstLines)
-    {
-        freeArrayOfString(pstLines, nblines);
-        pstLines = NULL;
-    }
-
-    if (pwstLines)
-    {
-        freeArrayOfWideString(pwstLines, nblines);
-        pwstLines = NULL;
-    }
+    freeArrayOfString(pstLines, nblines);
+    freeArrayOfWideString(pwstLines, nblines);
 
     if (result)
     {
         result->pstrComments = pComments;
         result->nbComments = nbComments;
     }
+    else
+    {
+        freeArrayOfString(pComments, nbComments);
+    }
+
 
     return result;
 }
@@ -655,7 +640,7 @@ static char **replaceStrings(const char **lines, int nbLines, const char **torep
                 replacedStrings[j] = os_strdup(lines[j]);
             }
             // Make replacements within the target replacedStrings.
-            for (i = 0; i < nr; i = i++)
+            for (i = 0; i < nr; i++)
             {
                 for (j = 0; j < nbLines; j++)
                 {
@@ -681,10 +666,17 @@ static char **extractComments(const char **lines, int nbLines,
 
         if ( (answer == CAN_NOT_COMPILE_PATTERN) || (answer == DELIMITER_NOT_ALPHANUMERIC))
         {
+            if (pComments)
+            {
+                freeArrayOfString(pComments, *nbcomments);
+            }
+
             *nbcomments = 0;
+
             *iErr = answer;
             return NULL;
         }
+
         if ( answer == PCRE_FINISHED_OK )
         {
             (*nbcomments)++;

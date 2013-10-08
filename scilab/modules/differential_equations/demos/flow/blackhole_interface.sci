@@ -77,7 +77,7 @@ function draw_blackhole()
     orig = [0 0 0];
     xx   = -1.85:0.1:1.85;
     yy   = (-1.85:0.1:1.85)';
-    zt   = sqrt((ones(yy)*(xx^2)+(yy^2)*ones(xx)));
+    zt   = sqrt((ones(yy)*(xx.^2)+(yy.^2)*ones(xx)));
     zz   = -1*ones(zt)./zt;
 
     my_handle          = scf(100001);
@@ -487,7 +487,7 @@ function start_simu()
     x = Y(1,:)
     y = Y(3,:)
     r = 0.1; //bias to have the curve above the surface
-    z = -1.0./sqrt(x^2+y^2)+r;
+    z = -1.0./sqrt(x.^2+y.^2)+r;
     curAxe = gca();
     traj_handle = curAxe.children(1).children(5);
     traj_handle.data = [x(1),y(1),z(1)];

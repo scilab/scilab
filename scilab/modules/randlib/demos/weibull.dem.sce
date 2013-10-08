@@ -11,7 +11,7 @@ function [] = WeibullT(n)
     function [y] = Weibull(m, n, Alpha, Beta)
         //-------------------------------
         y = rand(m, n, "uniform");
-        y = (Beta*( - log(1-y)))^(1/Alpha);
+        y = (Beta*( - log(1-y))).^(1/Alpha);
     endfunction
 
     [lhs, rhs] = argn(0);

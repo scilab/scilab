@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-09-13 12:32+0100\n"
+"Revision-Date: 2013-09-27 17:14+0100\n"
 
 # File: src/c/convert.c, line: 1214
 # File: src/c/convert.c, line: 1239
@@ -269,15 +269,14 @@ msgstr ""
 # File: macros/Sources/CLOCK_c.sci, line: 51
 # File: macros/Sources/CONST_m.sci, line: 40
 # File: macros/Sources/Counter.sci, line: 49
-# File: macros/Sources/GENSIN_f.sci, line: 39
+# File: macros/Sources/GENSIN_f.sci, line: 31
 # File: macros/Sources/INIMPL_f.sci, line: 40
-# File: macros/Sources/IN_f.sci, line: 95
 # File: macros/Sources/Modulo_Count.sci, line: 40
 # File: macros/Sources/RAMP.sci, line: 39
 # File: macros/Sources/READAU_f.sci, line: 48
 # File: macros/Sources/READC_f.sci, line: 57
 # File: macros/Sources/RFILE_f.sci, line: 63
-# File: macros/Sources/STEP.sci, line: 40
+# File: macros/Sources/STEP.sci, line: 32
 #, c-format
 msgid "Set %s block parameters"
 msgstr ""
@@ -604,7 +603,7 @@ msgstr ""
 # File: macros/IntegerOp/JKFLIPFLOP.sci, line: 54
 # File: macros/IntegerOp/SRFLIPFLOP.sci, line: 53
 # File: macros/Sources/RAMP.sci, line: 40
-# File: macros/Sources/STEP.sci, line: 42
+# File: macros/Sources/STEP.sci, line: 34
 msgid "Initial Value"
 msgstr ""
 
@@ -951,6 +950,7 @@ msgstr ""
 # File: macros/Sinks/CLKOUTV_f.sci, line: 88
 # File: macros/Sinks/OUTIMPL_f.sci, line: 41
 # File: macros/Sinks/OUT_f.sci, line: 108
+# File: macros/Sources/IN_f.sci, line: 35
 msgid "Port number"
 msgstr ""
 
@@ -959,7 +959,6 @@ msgstr ""
 # File: macros/Sinks/OUTIMPL_f.sci, line: 45
 # File: macros/Sinks/OUT_f.sci, line: 112
 # File: macros/Sources/INIMPL_f.sci, line: 45
-# File: macros/Sources/IN_f.sci, line: 102
 #, c-format
 msgid "Wrong value for 'Port Number' parameter: %d."
 msgstr ""
@@ -973,9 +972,8 @@ msgstr ""
 # File: macros/Sinks/WRITEC_f.sci, line: 82
 # File: macros/Sinks/WRITEC_f.sci, line: 86
 # File: macros/Sources/CLKINV_f.sci, line: 88
-# File: macros/Sources/GENSIN_f.sci, line: 46
+# File: macros/Sources/GENSIN_f.sci, line: 38
 # File: macros/Sources/INIMPL_f.sci, line: 46
-# File: macros/Sources/IN_f.sci, line: 103
 # File: macros/Sources/Modulo_Count.sci, line: 52
 # File: macros/Sources/READC_f.sci, line: 99
 # File: macros/Sources/READC_f.sci, line: 107
@@ -1312,27 +1310,27 @@ msgid "Wrong value for 'Rule' parameter: %d"
 msgstr ""
 
 #
-# File: macros/Sources/GENSIN_f.sci, line: 40
+# File: macros/Sources/GENSIN_f.sci, line: 32
 msgid "Sine wave generator"
 msgstr ""
 
 #
-# File: macros/Sources/GENSIN_f.sci, line: 41
+# File: macros/Sources/GENSIN_f.sci, line: 33
 msgid "Frequency (rad/s)"
 msgstr ""
 
 #
-# File: macros/Sources/GENSIN_f.sci, line: 41
+# File: macros/Sources/GENSIN_f.sci, line: 33
 msgid "Magnitude"
 msgstr ""
 
 #
-# File: macros/Sources/GENSIN_f.sci, line: 41
+# File: macros/Sources/GENSIN_f.sci, line: 33
 msgid "Phase (rad)"
 msgstr ""
 
 #
-# File: macros/Sources/GENSIN_f.sci, line: 45
+# File: macros/Sources/GENSIN_f.sci, line: 37
 #, c-format
 msgid "Wrong value for 'Frequency' parameter: %e."
 msgstr ""
@@ -1343,8 +1341,33 @@ msgid "Implicit input port"
 msgstr ""
 
 #
-# File: macros/Sources/IN_f.sci, line: 96
-msgid "Regular input port"
+# File: macros/Sources/IN_f.sci, line: 34
+msgid "Set Input block parameters"
+msgstr ""
+
+#
+# File: macros/Sources/IN_f.sci, line: 36
+msgid "Outport size ([-1 -2] for inherit)"
+msgstr ""
+
+#
+# File: macros/Sources/IN_f.sci, line: 37
+msgid "Outport Type (-1 for inherit)"
+msgstr ""
+
+#
+# File: macros/Sources/IN_f.sci, line: 42
+msgid "Port number must be a positive integer"
+msgstr ""
+
+#
+# File: macros/Sources/IN_f.sci, line: 44
+msgid "Outport Size must be a 2 elements vector"
+msgstr ""
+
+#
+# File: macros/Sources/IN_f.sci, line: 46
+msgid "Outport type must be a number between 1 and 9, or -1 for inheritance."
 msgstr ""
 
 #
@@ -1580,28 +1603,28 @@ msgid "Strictly positive indexes expected."
 msgstr ""
 
 #
-# File: macros/Sources/STEP.sci, line: 41
+# File: macros/Sources/STEP.sci, line: 33
 msgid "Step Function"
 msgstr ""
 
 #
-# File: macros/Sources/STEP.sci, line: 42
+# File: macros/Sources/STEP.sci, line: 34
 msgid "Final Value"
 msgstr ""
 
 #
-# File: macros/Sources/STEP.sci, line: 42
+# File: macros/Sources/STEP.sci, line: 34
 msgid "Step Time"
 msgstr ""
 
 #
-# File: macros/Sources/STEP.sci, line: 52
+# File: macros/Sources/STEP.sci, line: 44
 #, c-format
 msgid "'Initial Value' and 'Final Value': incompatible sizes: %d and %d."
 msgstr ""
 
 #
-# File: macros/Sources/STEP.sci, line: 52
+# File: macros/Sources/STEP.sci, line: 44
 msgid "Same sizes expected."
 msgstr ""
 
