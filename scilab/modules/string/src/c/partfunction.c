@@ -17,6 +17,7 @@
 #include "partfunction.h"
 #include "freeArrayOfString.h"
 #include "charEncoding.h"
+
 /*--------------------------------------------------------------------------*/
 #define BLANK_CHAR ' '
 /*--------------------------------------------------------------------------*/
@@ -35,13 +36,11 @@ char **partfunction(char** stringInput, int m, int n, int *vectInput, int row)
         int lengthstringInput = 0;
         wchar_t *wcInput = to_wide_string(stringInput[i]);
         wchar_t *wcOutput = NULL;
-        if (wcInput == NULL)
+        if (wcInput)
         {
-            freeArrayOfString(parts, mn);
-            return NULL;
+            lengthstringInput = (int)wcslen(wcInput);
         }
 
-        lengthstringInput = (int)wcslen(wcInput);
         wcOutput = (wchar_t*)MALLOC(sizeof(wchar_t) * ((row) + 1));
 
         for (j = 0; j < row; j++)
@@ -58,7 +57,11 @@ char **partfunction(char** stringInput, int m, int n, int *vectInput, int row)
         wcOutput[j] = '\0';
         parts[i] = wide_string_to_UTF8(wcOutput);
         FREE(wcOutput);
-        FREE(wcInput);
+
+        if (wcInput)
+        {
+            FREE(wcInput);
+        }
     }
     return parts;
 }
