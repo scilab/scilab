@@ -20,6 +20,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 
 import javax.swing.JComponent;
+import javax.swing.UIManager;
 
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
@@ -36,7 +37,7 @@ import org.scilab.modules.uiwidget.UIWidgetException;
 public class UILaTeXLabel extends UIComponent {
 
     private final static Font DEFAULTFONT = new Font("serif", Font.PLAIN, 12);
-
+    private final static boolean isWindows = System.getProperty("os.name").toLowerCase().indexOf("win") != -1;
     private static float FACTOR = 1f;
 
     static {
@@ -166,8 +167,22 @@ public class UILaTeXLabel extends UIComponent {
                 g.fillRect(0, 0, getWidth(), getHeight());
                 g.setColor(old);
             }
-            icon.setForeground(getForeground());
-            icon.paintIcon(this, g, 0, 0);
+            if (isEnabled()) {
+                icon.setForeground(getForeground());
+                icon.paintIcon(this, g, 0, 0);
+            } else {
+                if (isWindows && (UIManager.getColor("Label.disabledForeground") instanceof Color) && (UIManager.getColor("Label.disabledShadow") instanceof Color)) {
+                    icon.setForeground(UIManager.getColor("Label.disabledShadow"));
+                    icon.paintIcon(this, g, 1, 1);
+                    icon.setForeground(UIManager.getColor("Label.disabledForeground"));
+                    icon.paintIcon(this, g, 0, 0);
+                } else {
+                    icon.setForeground(getBackground().brighter());
+                    icon.paintIcon(this, g, 1, 1);
+                    icon.setForeground(getBackground().darker());
+                    icon.paintIcon(this, g, 0, 0);
+                }
+            }
         }
 
         /**
