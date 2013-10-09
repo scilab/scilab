@@ -12,6 +12,16 @@ function r = %ip_part(txt, s)
     // Calls with unranging $ are not supported => define %p_part()
     // txt may be a matrix of texts with different lengths
     //  => $ might not have the same value for all of them
+    function b = checkip(p)
+        b = checkvar(p(1)) & checkvar(p(2)) & checkvar(p(3));
+    endfunction
+
+    function b = checkvar(p)
+        b = %t;
+        if typeof(p) == "polynomial" & varn(p) ~= "$" then
+            b = %f;
+        end
+    endfunction
 
     //check s
     if ~checkip(s) then
@@ -26,16 +36,5 @@ function r = %ip_part(txt, s)
         j = 1:u
         k = find(L==u)
         r(k) = part(txt(k), j(s))
-    end
-endfunction
-
-function b = checkip(p)
-    b = checkvar(p(1)) & checkvar(p(2)) & checkvar(p(3));
-endfunction
-
-function b = checkvar(p)
-    b = %t;
-    if typeof(p) == "polynomial" & varn(p) ~= "$" then
-        b = %f;
     end
 endfunction
