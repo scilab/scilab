@@ -84,7 +84,9 @@ static int isasciiMatrix(char *fname, int *piAddressVarOne)
 
     if (m1 * n1 > 0)
     {
+        int i = 0;
         BOOL *bOutputMatrix = NULL;
+
         sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne, &m1, &n1, &pdVarOne);
         if (sciErr.iErr)
         {
@@ -93,47 +95,30 @@ static int isasciiMatrix(char *fname, int *piAddressVarOne)
             return 0;
         }
 
-        bOutputMatrix = (BOOL*)MALLOC(sizeof(BOOL) * (m1 * n1));
-        if (bOutputMatrix)
+        sciErr = allocMatrixOfBoolean(pvApiCtx, Rhs + 1, m1, n1, &bOutputMatrix);
+        if (sciErr.iErr)
         {
-            int nbElems = m1 * n1;
-            int i = 0;
-            for (i = 0; i < nbElems; i++)
-            {
-                int iVal = (int)pdVarOne[i];
-
-                if (isascii(iVal))
-                {
-                    bOutputMatrix[i] = (int)TRUE;
-                }
-                else
-                {
-                    bOutputMatrix[i] = (int)FALSE;
-                }
-            }
-
-            sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, m1, n1, bOutputMatrix);
-            if (sciErr.iErr)
-            {
-                printError(&sciErr, 0);
-                Scierror(999, _("%s: Memory allocation error.\n"), fname);
-                return 0;
-            }
-
-            if (bOutputMatrix)
-            {
-                FREE(bOutputMatrix);
-                bOutputMatrix = NULL;
-            }
-
-            LhsVar(1) = Rhs + 1;
-            PutLhsVar();
-        }
-        else
-        {
+            printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
+
+        for (i = 0; i < m1 * n1; i++)
+        {
+            int iVal = (int)pdVarOne[i];
+
+            if (isascii(iVal))
+            {
+                bOutputMatrix[i] = (int)TRUE;
+            }
+            else
+            {
+                bOutputMatrix[i] = (int)FALSE;
+            }
+        }
+
+        LhsVar(1) = Rhs + 1;
+        PutLhsVar();
     }
     else
     {

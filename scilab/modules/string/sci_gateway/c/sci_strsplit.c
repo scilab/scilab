@@ -156,6 +156,11 @@ int sci_strsplit(char *fname, unsigned long fname_len)
 
             if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &pStVarOne) != 0)
             {
+                if (pStVarOne)
+                {
+                    freeAllocatedSingleWideString(pStVarOne);
+                }
+
                 Scierror(999, _("%s: No more memory.\n"), fname);
                 return 0;
             }
@@ -222,6 +227,11 @@ int sci_strsplit(char *fname, unsigned long fname_len)
 
                 if (getAllocatedMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &pStrsTwo) != 0)
                 {
+                    if (pStrsTwo)
+                    {
+                        freeAllocatedMatrixOfWideString(m2, n2, pStrsTwo);
+                    }
+
                     Scierror(999, _("%s: No more memory.\n"), fname);
                     return 0;
                 }

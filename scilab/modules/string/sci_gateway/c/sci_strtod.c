@@ -42,13 +42,12 @@ int sci_strtod(char *fname, unsigned long fname_len)
     int iRhs = nbInputArgument(pvApiCtx);
     int iLhs = nbOutputArgument(pvApiCtx);
     int flag = 0;
-    int nopt = 1; //Number of optional arguments
 
     //output values
     double *OutputDoubles = NULL;
     char **OutputStrings = NULL;
 
-    CheckInputArgument(pvApiCtx, 1, 1 + nopt);
+    CheckInputArgument(pvApiCtx, 1, 2);
     CheckOutputArgument(pvApiCtx, 1, 2);
 
     if (iRhs == 2)
@@ -94,6 +93,7 @@ int sci_strtod(char *fname, unsigned long fname_len)
 
     if (isEmptyMatrix(pvApiCtx, piAddr))
     {
+        FREE(Input_SingleString_2);
         if (createEmptyMatrix(pvApiCtx, iRhs + 1) != 0)
         {
             return 0;
@@ -107,6 +107,7 @@ int sci_strtod(char *fname, unsigned long fname_len)
             {
                 return 0;
             }
+
             AssignOutputVariable(pvApiCtx, 2) = iRhs + 2;
         }
 
@@ -123,6 +124,11 @@ int sci_strtod(char *fname, unsigned long fname_len)
 
     if (getAllocatedMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &Input_StringMatrix_1))
     {
+        if (Input_StringMatrix_1)
+        {
+            freeAllocatedMatrixOfString(iRows, iCols, Input_StringMatrix_1);
+        }
+
         FREE(Input_SingleString_2);
         Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings or empty matrix expected.\n"), fname, 1);
         return 0;
@@ -142,14 +148,11 @@ int sci_strtod(char *fname, unsigned long fname_len)
         }
     }
 
-    OutputDoubles = (double*)MALLOC(sizeof(double) * iRowsiCols);
-    if (OutputDoubles == NULL)
+    sciErr = allocMatrixOfDouble(pvApiCtx, iRhs + 1, iRows, iCols, &OutputDoubles);
+    if (sciErr.iErr)
     {
-        FREE(OutputStrings);
-        OutputStrings = NULL;
-        freeAllocatedMatrixOfString(iRows, iCols, Input_StringMatrix_1);
-        freeAllocatedSingleString(Input_SingleString_2);
-        Scierror(999, _("%s: No more memory.\n"), fname);
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 
@@ -267,8 +270,6 @@ int sci_strtod(char *fname, unsigned long fname_len)
                 freeAllocatedMatrixOfString(iRows, iCols, Input_StringMatrix_1);
                 freeAllocatedSingleString(Input_SingleString_2);
                 freeAllocatedMatrixOfString(iRows, iCols, OutputStrings);
-                FREE(OutputDoubles);
-                OutputDoubles = NULL;
                 Scierror(999, _("%s: No more memory.\n"), fname);
                 return 0;
             }
@@ -291,14 +292,6 @@ int sci_strtod(char *fname, unsigned long fname_len)
         }
     }
 
-    sciErr = createMatrixOfDouble(pvApiCtx, iRhs + 1, iRows, iCols, OutputDoubles);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
-        return 0;
-    }
-
     AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
 
     if (iLhs == 2)
@@ -306,7 +299,6 @@ int sci_strtod(char *fname, unsigned long fname_len)
         sciErr = createMatrixOfString(pvApiCtx, iRhs + 2, iRows, iCols, OutputStrings);
         if (sciErr.iErr)
         {
-            freeArrayOfString(OutputStrings, iRows * iCols);
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
@@ -316,7 +308,6 @@ int sci_strtod(char *fname, unsigned long fname_len)
         freeArrayOfString(OutputStrings, iRows * iCols);
     }
 
-    FREE(OutputDoubles);
     freeAllocatedMatrixOfString(iRows, iCols, Input_StringMatrix_1);
     freeAllocatedSingleString(Input_SingleString_2);
     ReturnArguments(pvApiCtx);

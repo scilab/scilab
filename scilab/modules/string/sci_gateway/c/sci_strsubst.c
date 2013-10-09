@@ -97,8 +97,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        getAllocatedSingleString(pvApiCtx, piAddressVarFour, &pStVarFour);
-        if (sciErr.iErr)
+        if (getAllocatedSingleString(pvApiCtx, piAddressVarFour, &pStVarFour))
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
@@ -188,6 +187,11 @@ int sci_strsubst(char *fname, unsigned long fname_len)
         Output_StringMatrix = strsubst_reg(pStVarOne, mOne * nOne, pStVarTwo, pStVarThree, &ierr);
         if ((ierr != PCRE_FINISHED_OK) && (ierr != NO_MATCH) && (ierr != PCRE_EXIT))
         {
+            if (Output_StringMatrix)
+            {
+                freeArrayOfString(Output_StringMatrix, mOne * nOne);
+            }
+
             freeAllocatedMatrixOfString(mOne, nOne, pStVarOne);
             freeAllocatedSingleString(pStVarTwo);
             freeAllocatedSingleString(pStVarThree);
