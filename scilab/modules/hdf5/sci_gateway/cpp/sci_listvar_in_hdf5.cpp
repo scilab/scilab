@@ -149,7 +149,7 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
                 break;
             }
 
-            strncpy(pInfo[i].varName, pstVarNameList[i], sizeof(pInfo[i].varName));
+            strncpy(pInfo[i].varName, pstVarNameList[i], sizeof(pInfo[i].varName) - 1);
             pInfo[i].iSize = 0;
             b = read_data(iDataSetId, 0, NULL, &pInfo[i]) == false;
             if (b)

@@ -124,11 +124,13 @@ int sci_import_from_hdf5_v1(char *fname, unsigned long fname_len)
 
             if (import_variable_v1(iFile, pstVarName) == false)
             {
+                FREE(pstVarName);
                 bImport = false;
                 break;
             }
 
             FREE(pstVarName);
+            pstVarName = NULL;
         }
     }
     else

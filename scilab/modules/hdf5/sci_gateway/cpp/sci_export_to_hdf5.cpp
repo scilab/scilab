@@ -873,6 +873,7 @@ static bool isVarExist(int _iFile, char* _pstVarName)
         {
             if (strcmp(pstVarNameList[i], _pstVarName) == 0)
             {
+                freeArrayOfString(pstVarNameList, iNbItem);
                 return true;
             }
         }

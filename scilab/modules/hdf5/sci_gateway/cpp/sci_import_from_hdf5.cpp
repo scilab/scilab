@@ -138,11 +138,13 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
 
             if (import_variable(iFile, pstVarName) == false)
             {
+                FREE(pstVarName);
                 bImport = false;
                 break;
             }
 
             FREE(pstVarName);
+            pstVarName = NULL;
         }
     }
     else
@@ -342,39 +344,44 @@ static bool import_double(int _iDatasetId, int _iItemPos, int *_piAddress, char 
         return false;
     }
 
-    if (iDims != 0)
+    if (iDims)
     {
-        piDims = (int*)MALLOC(sizeof(int) * iDims);
-        iSize = getDatasetInfo(_iDatasetId, &iComplex, &iDims, piDims);
-
-        if (iDims == 2 && piDims[0] * piDims[1] != 0)
-        {
-            if (iComplex)
-            {
-                pdblReal = (double *)MALLOC(iSize * sizeof(double));
-                pdblImg = (double *)MALLOC(iSize * sizeof(double));
-                iRet = readDoubleComplexMatrix(_iDatasetId, pdblReal, pdblImg);
-            }
-            else
-            {
-                pdblReal = (double *)MALLOC(iSize * sizeof(double));
-                iRet = readDoubleMatrix(_iDatasetId, pdblReal);
-            }
-
-            if (iRet)
-            {
-                FREE(piDims);
-                return false;
-            }
-        }
-        else if (iDims > 2)
+        if (iDims > 2)
         {
             //hypermatrix
             FREE(piDims);
             return false;
         }
+
+        piDims = (int*)MALLOC(sizeof(int) * iDims);
+        iSize = getDatasetInfo(_iDatasetId, &iComplex, &iDims, piDims);
+
+        if (iSize > 0)
+        {
+            pdblReal = (double *)MALLOC(iSize * sizeof(double));
+
+            if (iComplex)
+            {
+                pdblImg = (double *)MALLOC(iSize * sizeof(double));
+                iRet = readDoubleComplexMatrix(_iDatasetId, pdblReal, pdblImg);
+            }
+            else
+            {
+                iRet = readDoubleMatrix(_iDatasetId, pdblReal);
+            }
+
+            //to be sure ti have 2 dims
+            if (iDims == 1)
+            {
+                FREE(piDims);
+                piDims = (int*)MALLOC(sizeof(int) * 2);
+                piDims[0] = 1;
+                piDims[1] = iSize;
+            }
+        }
     }
-    else
+
+    if (iDims == 0 || iSize == 0) //empty matrix
     {
         /*bug 7224 : to close dataset */
         iRet = readEmptyMatrix(_iDatasetId);
@@ -666,6 +673,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int *_piAddress, char
                 sciErr = createMatrixOfInteger64InNamedList(_pstVarname, _piAddress, _iItemPos, piDims[0], piDims[1], pllData);
             }
 #else
+            FREE(piDims);
             return false;
 #endif
         }
@@ -692,6 +700,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int *_piAddress, char
                 sciErr = createMatrixOfUnsignedInteger64InNamedList(_pstVarname, _piAddress, _iItemPos, piDims[0], piDims[1], pullData);
             }
 #else
+            FREE(piDims);
             return false;
 #endif
         }
