@@ -21,11 +21,13 @@ atomsSetConfig("useProxy", "True");
 atomsSetConfig("proxyHost", "123aa");
 
 instr = "getURL(''http://www.scilab.org'', ''scilab_homepage.html'');";
+
 if getos() == 'Windows' then
-  errMsg = msprintf(_("Transfer did not complete successfully: Could not resolve proxy: 123aa; Host not found\n"));
+  errReason = "Could not resolve proxy: 123aa; Host not found";
 else
-  errMsg = msprintf(_("Transfer did not complete successfully: Couldn''t resolve proxy ''123aa''\n"));
+  errReason = "Couldn''t resolve proxy ''123aa''";
 end
+errMsg =  msprintf(gettext("Transfer did not complete successfully: %s\n"), errReason);
 assert_checkerror(instr, errMsg);
 
 filepath = fullfile(pwd(), 'scilab_homepage.html');
