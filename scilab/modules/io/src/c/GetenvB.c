@@ -16,14 +16,16 @@
 /*--------------------------------------------------------------------------*/
 void GetenvB(char *name, char *env, int len)
 {
-    int ierr = 0, one = 1;
+    int ierr = 0;
+    int one = 1;
+
     C2F(getenvc)(&ierr, name, env, &len, &one);
     if (ierr == 0)
     {
         char *last = &env[len - 1];
         while ( *last == ' ' )
         {
-            last = '\0' ;
+            *last = '\0' ;
         }
         last--;
     }
