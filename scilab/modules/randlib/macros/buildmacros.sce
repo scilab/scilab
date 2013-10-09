@@ -11,4 +11,4 @@ if (isdef("genlib") == %f) then
     exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 
-//genlib("randliblib","SCI/modules/randlib/macros",%f,%t);
+genlib("randliblib","SCI/modules/randlib/macros",%f,%t);

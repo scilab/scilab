@@ -392,6 +392,8 @@
                     <para>
                         <literal>Y = grand(n, "prm", vect)</literal> génère <literal>n</literal> permutations aléatoire du
                         vecteur colonne (<literal>m x 1</literal>) <literal>vect</literal>.
+                        <varname>vect</varname> peut être un scalaire, vecteur, matrices ou hypermatrice de réels,
+                        complexes, entiers, booléens, polynômes ou chaînes de caractères; plein ou creux.
                         A cause de la structure de la pile, <varname>vect</varname> ne doit pas et ne peut pas être un vecteur ligne.
                         Cette fonctionnalité couvre la fonction Matlab <code>randperm()</code>,
                         car <code>randperm(n)</code> est équivalent à <code>grand(1,'prm',(1:n)')</code>
