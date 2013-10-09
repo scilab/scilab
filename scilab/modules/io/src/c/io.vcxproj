@@ -199,7 +199,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DllmainIo.c" />
-    <ClCompile Include="GetenvB.c" />
     <ClCompile Include="getenvc.c" />
     <ClCompile Include="getpidc.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_io.c" />
@@ -224,7 +223,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_io.h" />
-    <ClInclude Include="..\..\includes\GetenvB.h" />
     <ClInclude Include="..\..\includes\getenvc.h" />
     <ClInclude Include="getpidc.h" />
     <ClInclude Include="..\..\includes\gw_io.h" />
