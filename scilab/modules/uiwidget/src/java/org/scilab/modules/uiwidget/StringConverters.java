@@ -250,6 +250,11 @@ public final class StringConverters {
                 return str;
             }
         });
+        converters.put(Object.class, new StringConverter() {
+            public Object convert(String str) {
+                return str;
+            }
+        });
         converters.put(Color.class, new StringConverter() {
             public Object convert(String str) {
                 return UITools.getColor(str);
