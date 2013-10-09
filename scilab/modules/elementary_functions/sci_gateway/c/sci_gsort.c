@@ -160,6 +160,11 @@ int sci_gsort(char *fname, unsigned long fname_len)
 
         if (getAllocatedSingleString(pvApiCtx, piAddr, &pstData))
         {
+            if (pstData)
+            {
+                freeAllocatedSingleString(pstData);
+            }
+
             return 1;
         }
 
@@ -194,6 +199,11 @@ int sci_gsort(char *fname, unsigned long fname_len)
             {
                 indices = (int *)MALLOC(sizeof(int) * (ind_m1));    /* Only return in row */
             }
+            else
+            {
+                Scierror(999, _("%s: Wrong value for input argument #%d.\n"), fname, 2);
+                return 0;
+            }
         }
         else if (typex[1] == COLUMN_SORT)
         {
@@ -202,6 +212,11 @@ int sci_gsort(char *fname, unsigned long fname_len)
             if (ind_n1 != 0)
             {
                 indices = (int *)MALLOC(sizeof(int) * (ind_n1));    /*Only return in col */
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong value for input argument #%d.\n"), fname, 2);
+                return 0;
             }
         }
         else
