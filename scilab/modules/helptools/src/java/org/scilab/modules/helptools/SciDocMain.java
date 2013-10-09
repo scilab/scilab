@@ -162,9 +162,10 @@ public final class SciDocMain {
         } catch (SAXException e) {
             System.err.println("An error occurred during the conversion:");
             System.err.println(e.toString());
-        } catch (Exception e) {
+        } catch (Throwable e) {
             System.err.println("An error occurred during the conversion:\n");
             e.printStackTrace();
+            throw e;
         }
 
         return fileToExec;
