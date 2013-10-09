@@ -26,13 +26,13 @@ Scilab Bug Fixes
 
 * Bug #12971 fixed - getURL() downloaded file name was wrong.
 
+* Bug #12979 fixed - exportUI did not work with vectorial export.
 
 
 Xcos Bug Fixes
 ==============
 
 * Bug #12423 fixed - Data types of SWITCH2_m were not documented.
-
 
 
                  Changes between version 5.4.1 and 5.5.0-beta-1

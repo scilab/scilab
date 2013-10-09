@@ -102,6 +102,12 @@ int sci_exportUI(char * fname, unsigned long fname_len)
         return FALSE;
     }
 
+    if (getFigureFromIndex(iFigureId) == NULL)
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d: A valid figure identifier expected.\n"), fname, 1);
+        return FALSE;
+    }
+
     // call the export function
     exportUserInterface(iFigureId);
 
