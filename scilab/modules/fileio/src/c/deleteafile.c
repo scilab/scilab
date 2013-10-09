@@ -31,6 +31,7 @@ BOOL deleteafile(char *filename)
         {
             return FALSE;
         }
+
         fclose(f) ;
 
         if (chmod(filename, S_IWRITE))
@@ -42,6 +43,8 @@ BOOL deleteafile(char *filename)
         {
             return TRUE;
         }
+
+        return FALSE;
     }
 #else
     {

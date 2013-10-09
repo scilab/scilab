@@ -126,6 +126,7 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
     // check that the result will not be too long
     if (levels * 3 + afLen - afMarker > PATH_MAX)
     {
+        FREE(relativeFilename);
         FREE(_currentDirectory);
         FREE(_absoluteFilename);
         return NULL;

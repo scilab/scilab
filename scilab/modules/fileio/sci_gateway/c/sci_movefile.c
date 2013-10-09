@@ -79,6 +79,11 @@ int sci_movefile(char *fname, unsigned long fname_len)
 
     if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &pStVarOne))
     {
+        if (pStVarOne)
+        {
+            freeAllocatedSingleWideString(pStVarOne);
+        }
+
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }

@@ -102,78 +102,82 @@ int sci_mgetl(char *fname, unsigned long fname_len)
     if (isStringType(pvApiCtx, piAddressVarOne))
     {
         char *fileName = NULL;
-        if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &fileName) == 0)
+        char *expandedFileName = NULL;
+        if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &fileName))
         {
-            char *expandedFileName = expandPathVariable(fileName);
-            freeAllocatedSingleString(fileName);
-
-            if (IsAlreadyOpenedInScilab(expandedFileName))
+            if (fileName)
             {
-                int fd = GetIdFromFilename(expandedFileName);
-                fileDescriptor = fd;
-                FREE(expandedFileName);
-                bCloseFile = FALSE;
+                freeAllocatedSingleString(fileName);
             }
-            else
-            {
-#define READ_ONLY_TEXT_MODE "rt"
-                int fd = 0;
-                int f_swap = 0;
-                double res = 0.0;
-                int ierr = 0;
 
-                C2F(mopen)(&fd, expandedFileName, READ_ONLY_TEXT_MODE, &f_swap, &res, &ierr);
-                bCloseFile = TRUE;
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 0;
+        }
 
-                switch (ierr)
-                {
-                    case MOPEN_NO_ERROR:
-                        fileDescriptor = fd;
-                        FREE(expandedFileName);
-                        break;
-                    case MOPEN_NO_MORE_LOGICAL_UNIT:
-                    {
-                        Scierror(66, _("%s: Too many files opened!\n"), fname);
-                        FREE(expandedFileName);
-                        return 0;
-                    }
-                    break;
-                    case MOPEN_CAN_NOT_OPEN_FILE:
-                    {
-                        Scierror(999, _("%s: Cannot open file %s.\n"), fname, expandedFileName);
-                        FREE(expandedFileName);
-                        return 0;
-                    }
-                    break;
-                    case MOPEN_NO_MORE_MEMORY:
-                    {
-                        FREE(expandedFileName);
-                        Scierror(999, _("%s: No more memory.\n"), fname);
-                        return 0;
-                    }
-                    break;
-                    case MOPEN_INVALID_FILENAME:
-                    {
-                        Scierror(999, _("%s: invalid filename %s.\n"), fname, expandedFileName);
-                        FREE(expandedFileName);
-                        return 0;
-                    }
-                    break;
-                    case MOPEN_INVALID_STATUS:
-                    default:
-                    {
-                        FREE(expandedFileName);
-                        Scierror(999, _("%s: invalid status.\n"), fname);
-                        return 0;
-                    }
-                    break;
-                }
-            }
+        expandedFileName = expandPathVariable(fileName);
+        freeAllocatedSingleString(fileName);
+
+        if (IsAlreadyOpenedInScilab(expandedFileName))
+        {
+            int fd = GetIdFromFilename(expandedFileName);
+            fileDescriptor = fd;
+            FREE(expandedFileName);
+            bCloseFile = FALSE;
         }
         else
         {
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
-            return 0;
+#define READ_ONLY_TEXT_MODE "rt"
+            int fd = 0;
+            int f_swap = 0;
+            double res = 0.0;
+            int ierr = 0;
+
+            C2F(mopen)(&fd, expandedFileName, READ_ONLY_TEXT_MODE, &f_swap, &res, &ierr);
+            bCloseFile = TRUE;
+
+            switch (ierr)
+            {
+                case MOPEN_NO_ERROR:
+                    fileDescriptor = fd;
+                    FREE(expandedFileName);
+                    break;
+                case MOPEN_NO_MORE_LOGICAL_UNIT:
+                {
+                    Scierror(66, _("%s: Too many files opened!\n"), fname);
+                    FREE(expandedFileName);
+                    return 0;
+                }
+                break;
+                case MOPEN_CAN_NOT_OPEN_FILE:
+                {
+                    Scierror(999, _("%s: Cannot open file %s.\n"), fname, expandedFileName);
+                    FREE(expandedFileName);
+                    return 0;
+                }
+                break;
+                case MOPEN_NO_MORE_MEMORY:
+                {
+                    FREE(expandedFileName);
+                    Scierror(999, _("%s: No more memory.\n"), fname);
+                    return 0;
+                }
+                break;
+                case MOPEN_INVALID_FILENAME:
+                {
+                    Scierror(999, _("%s: invalid filename %s.\n"), fname, expandedFileName);
+                    FREE(expandedFileName);
+                    return 0;
+                }
+                break;
+                case MOPEN_INVALID_STATUS:
+                default:
+                {
+                    FREE(expandedFileName);
+                    Scierror(999, _("%s: invalid status.\n"), fname);
+                    return 0;
+                }
+                break;
+            }
         }
     }
     else /* double */

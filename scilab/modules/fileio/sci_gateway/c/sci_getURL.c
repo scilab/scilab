@@ -136,19 +136,19 @@ int sci_getURL(char *fname, int fname_len)
 
     if (dest != NULL && strlen(dest) == 0)
     {
-        FREE(url);
+        FREE(dest);
         dest = NULL;
     }
 
     if (username != NULL && strlen(username) == 0)
     {
-        FREE(url);
+        FREE(username);
         username = NULL;
     }
 
     if (password != NULL && strlen(password) == 0)
     {
-        FREE(url);
+        FREE(password);
         password = NULL;
     }
 

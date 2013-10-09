@@ -69,14 +69,12 @@ int sci_fscanfMat(char *fname, unsigned long fname_len)
 
         if (getAllocatedSingleString(pvApiCtx, piAddressVarThree, &separator))
         {
+            freeVar(&filename, &expandedFilename, &Format, &separator);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
+
         bIsDefaultSeparator = FALSE;
-    }
-    else
-    {
-        bIsDefaultSeparator = TRUE;
     }
 
     if (Rhs >= 2)

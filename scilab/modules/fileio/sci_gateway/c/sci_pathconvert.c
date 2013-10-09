@@ -57,6 +57,11 @@ int sci_pathconvert(char *fname, unsigned long fname_len)
 
         if (getAllocatedSingleWideString(pvApiCtx, piAddressVarFour, &pStVarFour))
         {
+            if (pStVarFour)
+            {
+                freeAllocatedSingleWideString(pStVarFour);
+            }
+
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
             return 0;
         }
@@ -160,9 +165,13 @@ int sci_pathconvert(char *fname, unsigned long fname_len)
     }
     else if (isStringType(pvApiCtx, piAddressVarOne))
     {
-
         if (getAllocatedMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &pStVarOne))
         {
+            if (pStVarOne)
+            {
+                freeAllocatedMatrixOfWideString(m1, n1, pStVarOne);
+            }
+
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;

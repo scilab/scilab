@@ -169,6 +169,7 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
 
                             if (strLines[nbLines - 1] == NULL)
                             {
+                                freeArrayOfString(strLines, nbLines);
                                 *nbLinesOut = 0;
                                 *ierr = MGETL_MEMORY_ALLOCATION_ERROR;
                                 return NULL;

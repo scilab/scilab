@@ -138,10 +138,14 @@ int sci_fileparts(char *fname, unsigned long fname_len)
             else if (wcscmp(pStVarTwo, FILEPARTS_FNAME_SELECTOR) == 0)
             {
                 output_value[i] = name;
+                //to avoid free
+                name = NULL;
             }
             else if (wcscmp(pStVarTwo, FILEPARTS_EXTENSION_SELECTOR) == 0)
             {
                 output_value[i] = ext;
+                //to avoid free
+                ext = NULL;
             }
             else
             {
@@ -154,6 +158,7 @@ int sci_fileparts(char *fname, unsigned long fname_len)
                 return 0;
             }
 
+            freeStrings(&drv, &dir, &name, &ext, NULL);
         }
 
         sciErr = createMatrixOfWideString(pvApiCtx, iRhs + 1, iRows, iCols, output_value);
@@ -190,6 +195,7 @@ int sci_fileparts(char *fname, unsigned long fname_len)
         sciErr = createMatrixOfWideString(pvApiCtx, iRhs + 1, iRows, iCols, path_out);
         if (sciErr.iErr)
         {
+            freeArrayOfWideString(path_out, i);
             freeAllocatedMatrixOfWideString(iRows, iCols, pStVarOne);
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);

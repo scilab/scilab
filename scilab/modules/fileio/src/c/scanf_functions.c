@@ -62,7 +62,7 @@ int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
         {
             if ( (type[i] == SF_C) || (type[i] == SF_S) )
             {
-                if ( (temp = (char **) MALLOC(nrow * ncol * sizeof(char **))) == NULL)
+                if ( (temp = (char**)MALLOC(nrow * ncol * sizeof(char*))) == NULL)
                 {
                     return MEM_LACK;
                 }

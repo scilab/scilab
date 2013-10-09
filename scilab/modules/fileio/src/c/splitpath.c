@@ -163,7 +163,7 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
     }
 
     /* swap name & extension if no name */
-    if (name && name[0] == 0 && wcslen(ext) > 0)
+    if (name && name[0] == 0 && ext && wcslen(ext) > 0)
     {
         wcscpy(name, ext);
         wcscpy(ext, L"");

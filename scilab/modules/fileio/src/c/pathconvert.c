@@ -256,26 +256,10 @@ static wchar_t *windowstocygwinpath(wchar_t *windowspath, BOOL *bConverted)
             }
         }
 
-        if (wcdrv)
-        {
-            FREE(wcdrv);
-            wcdrv = NULL;
-        }
-        if (wcdir)
-        {
-            FREE(wcdir);
-            wcdir = NULL;
-        }
-        if (wcname)
-        {
-            FREE(wcname);
-            wcname = NULL;
-        }
-        if (wcext)
-        {
-            FREE(wcext);
-            wcext =  NULL;
-        }
+        FREE(wcdrv);
+        FREE(wcdir);
+        FREE(wcname);
+        FREE(wcext);
     }
     return cygwinpath;
 }

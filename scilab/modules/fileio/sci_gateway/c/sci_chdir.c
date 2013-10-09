@@ -54,15 +54,7 @@ int sci_chdir(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-            return 0;
-        }
-
-        if (iType1 != sci_strings)
+        if (isStringType(pvApiCtx, piAddressVarOne) == 0)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
             return 0;
@@ -70,6 +62,11 @@ int sci_chdir(char *fname, unsigned long fname_len)
 
         if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &pStVarOne))
         {
+            if (pStVarOne)
+            {
+                freeAllocatedSingleWideString(pStVarOne);
+            }
+
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
@@ -99,14 +96,18 @@ int sci_chdir(char *fname, unsigned long fname_len)
         if (iType1 == sci_strings)
         {
             wchar_t *VARVALUE = NULL;
+            FREE(expandedPath);
             if (getAllocatedNamedSingleWideString(pvApiCtx, "PWD", &VARVALUE))
             {
-                FREE(expandedPath);
+                if (VARVALUE)
+                {
+                    freeAllocatedSingleWideString(VARVALUE);
+                }
+
                 Scierror(999, _("%s: Can not read named argument %s.\n"), fname, "PWD");
                 return 0;
             }
 
-            FREE(expandedPath);
             expandedPath = VARVALUE;
         }
     }

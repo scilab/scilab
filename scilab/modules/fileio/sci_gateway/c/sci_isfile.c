@@ -54,6 +54,7 @@ int sci_isfile(char *fname, unsigned long fname_len)
     sciErr = allocMatrixOfBoolean(pvApiCtx, Rhs + 1, m1, n1, &results);
     if (sciErr.iErr)
     {
+        freeAllocatedMatrixOfWideString(m1, n1, pStVarOne);
         printError(&sciErr, 0);
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;

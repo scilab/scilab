@@ -81,79 +81,84 @@ int sci_mputl(char *fname, unsigned long fname_len)
     }
     else if (isStringType(pvApiCtx, piAddressVarTwo))
     {
+#define WRITE_ONLY_TEXT_MODE "wt"
+        int f_swap = 0;
+        double res = 0.0;
+        int ierr = 0;
+        char *expandedFileName = NULL;
+
         if (!isScalar(pvApiCtx, piAddressVarTwo))
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), fname, 2);
             return 0;
         }
 
-        if (getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &filename) == 0)
+        if (getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &filename))
         {
-#define WRITE_ONLY_TEXT_MODE "wt"
-            int f_swap = 0;
-            double res = 0.0;
-            int ierr = 0;
-            char *expandedFileName = expandPathVariable(filename);
-
-            C2F(mopen)(&fileDescriptor, expandedFileName, WRITE_ONLY_TEXT_MODE, &f_swap, &res, &ierr);
-            FREE(expandedFileName);
-
-            switch (ierr)
+            if (filename)
             {
-                case MOPEN_NO_ERROR:
-                    break;
-                case MOPEN_NO_MORE_LOGICAL_UNIT:
-                {
-                    freeAllocatedSingleString(filename);
-                    Scierror(66, _("%s: Too many files opened!\n"), fname);
-                    return 0;
-                }
-                break;
-                case MOPEN_CAN_NOT_OPEN_FILE:
-                {
-                    Scierror(999, _("%s: Cannot open file %s.\n"), fname, filename);
-                    freeAllocatedSingleString(filename);
-                    return 0;
-                }
-                break;
-                case MOPEN_NO_MORE_MEMORY:
-                {
-                    freeAllocatedSingleString(filename);
-                    Scierror(999, _("%s: No more memory.\n"), fname);
-                    return 0;
-                }
-                break;
-                case MOPEN_INVALID_FILENAME:
-                {
-                    if (filename)
-                    {
-                        Scierror(999, _("%s: invalid filename %s.\n"), fname, filename);
-                    }
-                    else
-                    {
-                        freeAllocatedSingleString(filename);
-                        Scierror(999, _("%s: invalid filename.\n"), fname);
-                    }
-                    return 0;
-                }
-                break;
-                case MOPEN_INVALID_STATUS:
-                default:
-                {
-                    freeAllocatedSingleString(filename);
-                    Scierror(999, _("%s: invalid status.\n"), fname);
-                    return 0;
-                }
-                break;
+                freeAllocatedSingleString(filename);
             }
-            bCloseFile = TRUE;
-            freeAllocatedSingleString(filename);
-        }
-        else
-        {
+
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
+
+        expandedFileName = expandPathVariable(filename);
+
+        C2F(mopen)(&fileDescriptor, expandedFileName, WRITE_ONLY_TEXT_MODE, &f_swap, &res, &ierr);
+        FREE(expandedFileName);
+
+        switch (ierr)
+        {
+            case MOPEN_NO_ERROR:
+                break;
+            case MOPEN_NO_MORE_LOGICAL_UNIT:
+            {
+                freeAllocatedSingleString(filename);
+                Scierror(66, _("%s: Too many files opened!\n"), fname);
+                return 0;
+            }
+            break;
+            case MOPEN_CAN_NOT_OPEN_FILE:
+            {
+                Scierror(999, _("%s: Cannot open file %s.\n"), fname, filename);
+                freeAllocatedSingleString(filename);
+                return 0;
+            }
+            break;
+            case MOPEN_NO_MORE_MEMORY:
+            {
+                freeAllocatedSingleString(filename);
+                Scierror(999, _("%s: No more memory.\n"), fname);
+                return 0;
+            }
+            break;
+            case MOPEN_INVALID_FILENAME:
+            {
+                if (filename)
+                {
+                    Scierror(999, _("%s: invalid filename %s.\n"), fname, filename);
+                }
+                else
+                {
+                    freeAllocatedSingleString(filename);
+                    Scierror(999, _("%s: invalid filename.\n"), fname);
+                }
+                return 0;
+            }
+            break;
+            case MOPEN_INVALID_STATUS:
+            default:
+            {
+                freeAllocatedSingleString(filename);
+                Scierror(999, _("%s: invalid status.\n"), fname);
+                return 0;
+            }
+            break;
+        }
+        bCloseFile = TRUE;
+        freeAllocatedSingleString(filename);
     }
     else
     {
@@ -183,6 +188,11 @@ int sci_mputl(char *fname, unsigned long fname_len)
 
     if (getAllocatedMatrixOfString(pvApiCtx, piAddressVarOne, &mOne, &nOne, &pStVarOne))
     {
+        if (pStVarOne)
+        {
+            freeAllocatedMatrixOfString(mOne, nOne, pStVarOne);
+        }
+
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }

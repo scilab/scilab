@@ -79,12 +79,22 @@ int sci_copyfile(char *fname, unsigned long fname_len)
 
     if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &pStVarOne))
     {
+        if (pStVarOne)
+        {
+            freeAllocatedSingleWideString(pStVarOne);
+        }
+
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 
     if (getAllocatedSingleWideString(pvApiCtx, piAddressVarTwo, &pStVarTwo))
     {
+        if (pStVarTwo)
+        {
+            freeAllocatedSingleWideString(pStVarTwo);
+        }
+
         freeAllocatedSingleWideString(pStVarOne);
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
@@ -102,6 +112,7 @@ int sci_copyfile(char *fname, unsigned long fname_len)
         {
             FREE(pStVarTwoExpanded);
         }
+
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
@@ -112,6 +123,7 @@ int sci_copyfile(char *fname, unsigned long fname_len)
         {
             FREE(pStVarOneExpanded);
         }
+
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
@@ -175,6 +187,7 @@ int sci_copyfile(char *fname, unsigned long fname_len)
                 FREE(pStVarOneExpanded);
                 FREE(pStVarTwoExpanded);
                 Scierror(999, _("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
+                return 0;
             }
         }
         else

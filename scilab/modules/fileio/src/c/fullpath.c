@@ -157,18 +157,16 @@ wchar_t *get_full_pathW(wchar_t * _wcFullPath, const wchar_t * _wcPath, size_t _
     }
     return NULL;
 #else
-    wchar_t *wcResult = NULL;
-
     if (_wcPath)
     {
         char *_Path = wide_string_to_UTF8(_wcPath);
-
         if (_Path)
         {
             char *_FullPath = (char *)MALLOC(sizeof(char) * (_SizeInBytes));
 
             if (_FullPath)
             {
+                wchar_t *wcResult = NULL;
                 char *rp = NULL;
 
                 rp = realpath(_Path, _FullPath);
@@ -178,18 +176,17 @@ wchar_t *get_full_pathW(wchar_t * _wcFullPath, const wchar_t * _wcPath, size_t _
                     normalizePath(_FullPath);
                 }
                 wcResult = to_wide_string(_FullPath);
+                FREE(_FullPath);
                 if (wcResult)
                 {
                     wcscpy(_wcFullPath, wcResult);
+                    FREE(wcResult);
                 }
-                FREE(_FullPath);
-                _FullPath = NULL;
             }
             FREE(_Path);
-            _Path = NULL;
         }
     }
-    return wcResult;
+    return _wcFullPath;
 #endif
 }
 
