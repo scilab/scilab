@@ -113,7 +113,7 @@ public final class SciDocMain {
 
     /* Stylesheet is useless and just kept to keep the consistency with
      * builddoc V1 */
-    public String process(String sourceDoc, String styleSheet)  {
+    public String process(String sourceDoc, String styleSheet) throws Throwable  {
         String fileToExec = null;
 
         if (!new File(sourceDoc).isFile()) {
