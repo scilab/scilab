@@ -99,6 +99,11 @@ int sci_strsubst(char *fname, unsigned long fname_len)
 
         if (getAllocatedSingleString(pvApiCtx, piAddressVarFour, &pStVarFour))
         {
+            if (pStVarFour)
+            {
+                freeAllocatedSingleString(pStVarFour);
+            }
+
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
             return 0;

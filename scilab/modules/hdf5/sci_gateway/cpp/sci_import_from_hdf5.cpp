@@ -387,6 +387,11 @@ static bool import_double(int _iDatasetId, int _iItemPos, int *_piAddress, char 
         iRet = readEmptyMatrix(_iDatasetId);
         if (iRet)
         {
+            if (piDims)
+            {
+                FREE(piDims);
+            }
+
             return false;
         }
 

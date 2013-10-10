@@ -79,6 +79,7 @@ int sci_save(char *fname, unsigned long fname_len)
                     //try to get variable by name
                     sciErr = getVarAddressFromName(pvApiCtx, pstVarI, &piAddrI2);
                     freeAllocatedSingleString(pstVarI);
+                    pstVarI = NULL;
                     if (sciErr.iErr || piAddrI2 == NULL)
                     {
                         // Try old save because here the input variable can be of type "string" but not a variable name

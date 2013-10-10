@@ -82,6 +82,7 @@ int sci_setenv(char *fname, unsigned long fname_len)
             freeAllocatedSingleString(pstValue);
         }
 
+        FREE(pstVar);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }

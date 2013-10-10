@@ -34,7 +34,7 @@ int sci_tempname(char *fname, unsigned long fname_len)
         wcprefix = (wchar_t *)MALLOC(sizeof(wchar_t) * (wcslen(DEFAULT_PREFIX) + 1));
         wcscpy(wcprefix, DEFAULT_PREFIX);
     }
-    else if (Rhs == 1)
+    else
     {
         int *piAddressVarOne = NULL;
 

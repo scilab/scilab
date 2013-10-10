@@ -144,17 +144,8 @@ int sci_movefile(char *fname, unsigned long fname_len)
                 }
                 else
                 {
-                    if (pStVarOneExpanded)
-                    {
-                        FREE(pStVarOneExpanded);
-                        pStVarOneExpanded = NULL;
-                    }
-                    if (pStVarTwoExpanded)
-                    {
-                        FREE(pStVarTwoExpanded);
-                        pStVarTwoExpanded = NULL;
-                    }
-
+                    FREE(pStVarOneExpanded);
+                    FREE(pStVarTwoExpanded);
                     Scierror(999, _("%s: Memory allocation error.\n"), fname);
                     return 0;
                 }
@@ -167,17 +158,8 @@ int sci_movefile(char *fname, unsigned long fname_len)
         }
         else
         {
-            if (pStVarOneExpanded)
-            {
-                FREE(pStVarOneExpanded);
-                pStVarOneExpanded = NULL;
-            }
-
-            if (pStVarTwo)
-            {
-                FREE(pStVarTwoExpanded);
-                pStVarTwoExpanded = NULL;
-            }
+            FREE(pStVarOneExpanded);
+            FREE(pStVarTwoExpanded);
             Scierror(999, _("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
             return 0;
         }
@@ -189,16 +171,8 @@ int sci_movefile(char *fname, unsigned long fname_len)
         Scierror(999, _("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
     }
 
-    if (pStVarOneExpanded)
-    {
-        FREE(pStVarOneExpanded);
-        pStVarOneExpanded = NULL;
-    }
-    if (pStVarTwoExpanded)
-    {
-        FREE(pStVarTwoExpanded);
-        pStVarTwoExpanded = NULL;
-    }
+    FREE(pStVarOneExpanded);
+    FREE(pStVarTwoExpanded);
 
     return 0;
 }
