@@ -372,7 +372,9 @@ public class UIList extends UIComponent {
             listener = new MouseAdapter() {
                 public void mouseClicked(MouseEvent e) {
                     if (onclickEnable) {
-                        UIWidgetTools.execAction(UIList.this.action, "\"" + list.getSelectedValue().toString().replaceAll("\"", "\"\"").replaceAll("\'", "\'\'") + "\"");
+			Object selected = list.getSelectedValue();
+			String s = selected == null ? "[]" : ("\"" + selected.toString().replaceAll("\"", "\"\"").replaceAll("\'", "\'\'") + "\"");
+                        UIWidgetTools.execAction(UIList.this.action, s);
                     }
                 }
             };
