@@ -353,7 +353,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     public void visit(Axis axis) {
         if (axis.getVisible()) {
             axesDrawer.enableClipping(currentAxes, axis.getClipProperty());
-            axisDrawer.draw(axis);
+            axisDrawer.draw(currentAxes, axis);
             axesDrawer.disableClipping(axis.getClipProperty());
         }
     }
