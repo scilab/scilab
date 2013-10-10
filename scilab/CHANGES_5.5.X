@@ -26,6 +26,8 @@ Scilab Bug Fixes
 
 * Bug #12971 fixed - getURL() downloaded file name was wrong.
 
+* Bug #12978 fixed - exportUI returned an error when input argument was a figure handle.
+
 * Bug #12979 fixed - exportUI did not work with vectorial export.
 
 
