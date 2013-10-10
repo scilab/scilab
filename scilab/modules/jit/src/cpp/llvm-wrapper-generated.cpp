@@ -5,7 +5,6 @@ Module* makeLLVMModuleContents(Module *mod)
 {
 
     mod->setModuleIdentifier("<stdin>");
-
     // Type Definitions
     StructType *StructTy_class_std__ios_base__Init = mod->getTypeByName("class.std::ios_base::Init");
     if (!StructTy_class_std__ios_base__Init)
@@ -247,29 +246,12 @@ Module* makeLLVMModuleContents(Module *mod)
         StructTy_class_symbol__Context = StructType::create(mod->getContext(), "class.symbol::Context");
     }
     std::vector<Type*>StructTy_class_symbol__Context_fields;
-    StructType *StructTy_class_symbol__Stack = mod->getTypeByName("class.symbol::Stack");
-    if (!StructTy_class_symbol__Stack)
+    StructType *StructTy_class_symbol__Scopes = mod->getTypeByName("class.symbol::Scopes");
+    if (!StructTy_class_symbol__Scopes)
     {
-        StructTy_class_symbol__Stack = StructType::create(mod->getContext(), "class.symbol::Stack");
+        StructTy_class_symbol__Scopes = StructType::create(mod->getContext(), "class.symbol::Scopes");
     }
-    std::vector<Type*>StructTy_class_symbol__Stack_fields;
-    StructType *StructTy_class_symbol__Table = mod->getTypeByName("class.symbol::Table");
-    if (!StructTy_class_symbol__Table)
-    {
-        StructTy_class_symbol__Table = StructType::create(mod->getContext(), "class.symbol::Table");
-    }
-    std::vector<Type*>StructTy_class_symbol__Table_fields;
-    std::vector<Type*>FuncTy_34_args;
-    FunctionType* FuncTy_34 = FunctionType::get(
-                                  /*Result=*/IntegerType::get(mod->getContext(), 32),
-                                  /*Params=*/FuncTy_34_args,
-                                  /*isVarArg=*/true);
-
-    PointerType* PointerTy_33 = PointerType::get(FuncTy_34, 0);
-
-    PointerType* PointerTy_32 = PointerType::get(PointerTy_33, 0);
-
-    StructTy_class_symbol__Table_fields.push_back(PointerTy_32);
+    std::vector<Type*>StructTy_class_symbol__Scopes_fields;
     StructType *StructTy_class_std__list = mod->getTypeByName("class.std::list");
     if (!StructTy_class_std__list)
     {
@@ -294,10 +276,10 @@ Module* makeLLVMModuleContents(Module *mod)
         StructTy_struct_std____detail___List_node_base = StructType::create(mod->getContext(), "struct.std::__detail::_List_node_base");
     }
     std::vector<Type*>StructTy_struct_std____detail___List_node_base_fields;
-    PointerType* PointerTy_35 = PointerType::get(StructTy_struct_std____detail___List_node_base, 0);
+    PointerType* PointerTy_33 = PointerType::get(StructTy_struct_std____detail___List_node_base, 0);
 
-    StructTy_struct_std____detail___List_node_base_fields.push_back(PointerTy_35);
-    StructTy_struct_std____detail___List_node_base_fields.push_back(PointerTy_35);
+    StructTy_struct_std____detail___List_node_base_fields.push_back(PointerTy_33);
+    StructTy_struct_std____detail___List_node_base_fields.push_back(PointerTy_33);
     if (StructTy_struct_std____detail___List_node_base->isOpaque())
     {
         StructTy_struct_std____detail___List_node_base->setBody(StructTy_struct_std____detail___List_node_base_fields, /*isPacked=*/false);
@@ -321,26 +303,26 @@ Module* makeLLVMModuleContents(Module *mod)
         StructTy_class_std__list->setBody(StructTy_class_std__list_fields, /*isPacked=*/false);
     }
 
-    StructTy_class_symbol__Table_fields.push_back(StructTy_class_std__list);
-    if (StructTy_class_symbol__Table->isOpaque())
+    StructTy_class_symbol__Scopes_fields.push_back(StructTy_class_std__list);
+    StructTy_class_symbol__Scopes_fields.push_back(IntegerType::get(mod->getContext(), 32));
+    StructType *StructTy_class_symbol__Variables = mod->getTypeByName("class.symbol::Variables");
+    if (!StructTy_class_symbol__Variables)
     {
-        StructTy_class_symbol__Table->setBody(StructTy_class_symbol__Table_fields, /*isPacked=*/false);
+        StructTy_class_symbol__Variables = StructType::create(mod->getContext(), "class.symbol::Variables");
     }
+    std::vector<Type*>StructTy_class_symbol__Variables_fields;
+    std::vector<Type*>FuncTy_36_args;
+    FunctionType* FuncTy_36 = FunctionType::get(
+                                  /*Result=*/IntegerType::get(mod->getContext(), 32),
+                                  /*Params=*/FuncTy_36_args,
+                                  /*isVarArg=*/true);
 
-    StructTy_class_symbol__Stack_fields.push_back(StructTy_class_symbol__Table);
-    if (StructTy_class_symbol__Stack->isOpaque())
-    {
-        StructTy_class_symbol__Stack->setBody(StructTy_class_symbol__Stack_fields, /*isPacked=*/false);
-    }
+    PointerType* PointerTy_35 = PointerType::get(FuncTy_36, 0);
 
-    StructTy_class_symbol__Context_fields.push_back(StructTy_class_symbol__Stack);
-    StructType *StructTy_class_symbol__Heap = mod->getTypeByName("class.symbol::Heap");
-    if (!StructTy_class_symbol__Heap)
-    {
-        StructTy_class_symbol__Heap = StructType::create(mod->getContext(), "class.symbol::Heap");
-    }
-    std::vector<Type*>StructTy_class_symbol__Heap_fields;
-    StructTy_class_symbol__Heap_fields.push_back(PointerTy_20);
+    PointerType* PointerTy_34 = PointerType::get(PointerTy_35, 0);
+
+    StructTy_class_symbol__Variables_fields.push_back(PointerTy_34);
+    StructTy_class_symbol__Variables_fields.push_back(IntegerType::get(mod->getContext(), 32));
     StructType *StructTy_class_std__map = mod->getTypeByName("class.std::map");
     if (!StructTy_class_std__map)
     {
@@ -353,12 +335,12 @@ Module* makeLLVMModuleContents(Module *mod)
         StructTy_class_std___Rb_tree = StructType::create(mod->getContext(), "class.std::_Rb_tree");
     }
     std::vector<Type*>StructTy_class_std___Rb_tree_fields;
-    StructType *StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl = mod->getTypeByName("struct.std::_Rb_tree<symbol::Symbol, std::pair<const symbol::Symbol, std::list<symbol::Scope *, std::allocator<symbol::Scope *> > *>, std::_Select1st<std::pair<const symbol::Symbol, std::list<symbol::Scope *, std::allocator<symbol::Scope *> > *> >, std::less<symbol::Symbol>, std::allocator<std::pair<const symbol::Symbol, std::list<symbol::Scope *, std::allocator<symbol::Scope *> > *> > >::_Rb_tree_impl");
-    if (!StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl)
+    StructType *StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox_______________Rb_tree_impl = mod->getTypeByName("struct.std::_Rb_tree<symbol::Symbol, std::pair<const symbol::Symbol, std::list<symbol::VarBox *, std::allocator<symbol::VarBox *> > *>, std::_Select1st<std::pair<const symbol::Symbol, std::list<symbol::VarBox *, std::allocator<symbol::VarBox *> > *> >, std::less<symbol::Symbol>, std::allocator<std::pair<const symbol::Symbol, std::list<symbol::VarBox *, std::allocator<symbol::VarBox *> > *> > >::_Rb_tree_impl");
+    if (!StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox_______________Rb_tree_impl)
     {
-        StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl = StructType::create(mod->getContext(), "struct.std::_Rb_tree<symbol::Symbol, std::pair<const symbol::Symbol, std::list<symbol::Scope *, std::allocator<symbol::Scope *> > *>, std::_Select1st<std::pair<const symbol::Symbol, std::list<symbol::Scope *, std::allocator<symbol::Scope *> > *> >, std::less<symbol::Symbol>, std::allocator<std::pair<const symbol::Symbol, std::list<symbol::Scope *, std::allocator<symbol::Scope *> > *> > >::_Rb_tree_impl");
+        StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox_______________Rb_tree_impl = StructType::create(mod->getContext(), "struct.std::_Rb_tree<symbol::Symbol, std::pair<const symbol::Symbol, std::list<symbol::VarBox *, std::allocator<symbol::VarBox *> > *>, std::_Select1st<std::pair<const symbol::Symbol, std::list<symbol::VarBox *, std::allocator<symbol::VarBox *> > *> >, std::less<symbol::Symbol>, std::allocator<std::pair<const symbol::Symbol, std::list<symbol::VarBox *, std::allocator<symbol::VarBox *> > *> > >::_Rb_tree_impl");
     }
-    std::vector<Type*>StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl_fields;
+    std::vector<Type*>StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox_______________Rb_tree_impl_fields;
     StructType *StructTy_struct_std__less = mod->getTypeByName("struct.std::less");
     if (!StructTy_struct_std__less)
     {
@@ -371,15 +353,15 @@ Module* makeLLVMModuleContents(Module *mod)
         StructTy_struct_std__less->setBody(StructTy_struct_std__less_fields, /*isPacked=*/false);
     }
 
-    StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl_fields.push_back(StructTy_struct_std__less);
-    StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl_fields.push_back(StructTy_struct_std___Rb_tree_node_base);
-    StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl_fields.push_back(IntegerType::get(mod->getContext(), 64));
-    if (StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl->isOpaque())
+    StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox_______________Rb_tree_impl_fields.push_back(StructTy_struct_std__less);
+    StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox_______________Rb_tree_impl_fields.push_back(StructTy_struct_std___Rb_tree_node_base);
+    StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox_______________Rb_tree_impl_fields.push_back(IntegerType::get(mod->getContext(), 64));
+    if (StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox_______________Rb_tree_impl->isOpaque())
     {
-        StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl->setBody(StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl_fields, /*isPacked=*/false);
+        StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox_______________Rb_tree_impl->setBody(StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox_______________Rb_tree_impl_fields, /*isPacked=*/false);
     }
 
-    StructTy_class_std___Rb_tree_fields.push_back(StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl);
+    StructTy_class_std___Rb_tree_fields.push_back(StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__VarBox____std__allocator_symbol__VarBox_______________Rb_tree_impl);
     if (StructTy_class_std___Rb_tree->isOpaque())
     {
         StructTy_class_std___Rb_tree->setBody(StructTy_class_std___Rb_tree_fields, /*isPacked=*/false);
@@ -391,15 +373,60 @@ Module* makeLLVMModuleContents(Module *mod)
         StructTy_class_std__map->setBody(StructTy_class_std__map_fields, /*isPacked=*/false);
     }
 
-    StructTy_class_symbol__Heap_fields.push_back(StructTy_class_std__map);
-    StructTy_class_symbol__Heap_fields.push_back(StructTy_class_std__list);
-    if (StructTy_class_symbol__Heap->isOpaque())
+    StructTy_class_symbol__Variables_fields.push_back(StructTy_class_std__map);
+    StructType *StructTy_class_std__map_4 = mod->getTypeByName("class.std::map.4");
+    if (!StructTy_class_std__map_4)
     {
-        StructTy_class_symbol__Heap->setBody(StructTy_class_symbol__Heap_fields, /*isPacked=*/false);
+        StructTy_class_std__map_4 = StructType::create(mod->getContext(), "class.std::map.4");
+    }
+    std::vector<Type*>StructTy_class_std__map_4_fields;
+    StructType *StructTy_class_std___Rb_tree_5 = mod->getTypeByName("class.std::_Rb_tree.5");
+    if (!StructTy_class_std___Rb_tree_5)
+    {
+        StructTy_class_std___Rb_tree_5 = StructType::create(mod->getContext(), "class.std::_Rb_tree.5");
+    }
+    std::vector<Type*>StructTy_class_std___Rb_tree_5_fields;
+    StructType *StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__types__InternalType_____std___Select1st_std__pair_const_symbol__Symbol__types__InternalType_______std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__types__InternalType__________Rb_tree_impl = mod->getTypeByName("struct.std::_Rb_tree<symbol::Symbol, std::pair<const symbol::Symbol, types::InternalType *>, std::_Select1st<std::pair<const symbol::Symbol, types::InternalType *> >, std::less<symbol::Symbol>, std::allocator<std::pair<const symbol::Symbol, types::InternalType *> > >::_Rb_tree_impl");
+    if (!StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__types__InternalType_____std___Select1st_std__pair_const_symbol__Symbol__types__InternalType_______std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__types__InternalType__________Rb_tree_impl)
+    {
+        StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__types__InternalType_____std___Select1st_std__pair_const_symbol__Symbol__types__InternalType_______std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__types__InternalType__________Rb_tree_impl = StructType::create(mod->getContext(), "struct.std::_Rb_tree<symbol::Symbol, std::pair<const symbol::Symbol, types::InternalType *>, std::_Select1st<std::pair<const symbol::Symbol, types::InternalType *> >, std::less<symbol::Symbol>, std::allocator<std::pair<const symbol::Symbol, types::InternalType *> > >::_Rb_tree_impl");
+    }
+    std::vector<Type*>StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__types__InternalType_____std___Select1st_std__pair_const_symbol__Symbol__types__InternalType_______std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__types__InternalType__________Rb_tree_impl_fields;
+    StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__types__InternalType_____std___Select1st_std__pair_const_symbol__Symbol__types__InternalType_______std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__types__InternalType__________Rb_tree_impl_fields.push_back(StructTy_struct_std__less);
+    StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__types__InternalType_____std___Select1st_std__pair_const_symbol__Symbol__types__InternalType_______std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__types__InternalType__________Rb_tree_impl_fields.push_back(StructTy_struct_std___Rb_tree_node_base);
+    StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__types__InternalType_____std___Select1st_std__pair_const_symbol__Symbol__types__InternalType_______std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__types__InternalType__________Rb_tree_impl_fields.push_back(IntegerType::get(mod->getContext(), 64));
+    if (StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__types__InternalType_____std___Select1st_std__pair_const_symbol__Symbol__types__InternalType_______std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__types__InternalType__________Rb_tree_impl->isOpaque())
+    {
+        StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__types__InternalType_____std___Select1st_std__pair_const_symbol__Symbol__types__InternalType_______std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__types__InternalType__________Rb_tree_impl->setBody(StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__types__InternalType_____std___Select1st_std__pair_const_symbol__Symbol__types__InternalType_______std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__types__InternalType__________Rb_tree_impl_fields, /*isPacked=*/false);
     }
 
-    StructTy_class_symbol__Context_fields.push_back(StructTy_class_symbol__Heap);
-    StructTy_class_symbol__Context_fields.push_back(StructTy_class_symbol__Stack);
+    StructTy_class_std___Rb_tree_5_fields.push_back(StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__types__InternalType_____std___Select1st_std__pair_const_symbol__Symbol__types__InternalType_______std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__types__InternalType__________Rb_tree_impl);
+    if (StructTy_class_std___Rb_tree_5->isOpaque())
+    {
+        StructTy_class_std___Rb_tree_5->setBody(StructTy_class_std___Rb_tree_5_fields, /*isPacked=*/false);
+    }
+
+    StructTy_class_std__map_4_fields.push_back(StructTy_class_std___Rb_tree_5);
+    if (StructTy_class_std__map_4->isOpaque())
+    {
+        StructTy_class_std__map_4->setBody(StructTy_class_std__map_4_fields, /*isPacked=*/false);
+    }
+
+    StructTy_class_symbol__Variables_fields.push_back(StructTy_class_std__map_4);
+    if (StructTy_class_symbol__Variables->isOpaque())
+    {
+        StructTy_class_symbol__Variables->setBody(StructTy_class_symbol__Variables_fields, /*isPacked=*/false);
+    }
+
+    StructTy_class_symbol__Scopes_fields.push_back(StructTy_class_symbol__Variables);
+    if (StructTy_class_symbol__Scopes->isOpaque())
+    {
+        StructTy_class_symbol__Scopes->setBody(StructTy_class_symbol__Scopes_fields, /*isPacked=*/false);
+    }
+
+    PointerType* PointerTy_32 = PointerType::get(StructTy_class_symbol__Scopes, 0);
+
+    StructTy_class_symbol__Context_fields.push_back(PointerTy_32);
     if (StructTy_class_symbol__Context->isOpaque())
     {
         StructTy_class_symbol__Context->setBody(StructTy_class_symbol__Context_fields, /*isPacked=*/false);
@@ -407,13 +434,13 @@ Module* makeLLVMModuleContents(Module *mod)
 
     PointerType* PointerTy_31 = PointerType::get(StructTy_class_symbol__Context, 0);
 
-    std::vector<Type*>FuncTy_37_args;
-    FunctionType* FuncTy_37 = FunctionType::get(
+    std::vector<Type*>FuncTy_38_args;
+    FunctionType* FuncTy_38 = FunctionType::get(
                                   /*Result=*/PointerTy_31,
-                                  /*Params=*/FuncTy_37_args,
+                                  /*Params=*/FuncTy_38_args,
                                   /*isVarArg=*/false);
 
-    PointerType* PointerTy_36 = PointerType::get(FuncTy_37, 0);
+    PointerType* PointerTy_37 = PointerType::get(FuncTy_38, 0);
 
     StructType *StructTy_class_types__InternalType = mod->getTypeByName("class.types::InternalType");
     if (!StructTy_class_types__InternalType)
@@ -421,7 +448,7 @@ Module* makeLLVMModuleContents(Module *mod)
         StructTy_class_types__InternalType = StructType::create(mod->getContext(), "class.types::InternalType");
     }
     std::vector<Type*>StructTy_class_types__InternalType_fields;
-    StructTy_class_types__InternalType_fields.push_back(PointerTy_32);
+    StructTy_class_types__InternalType_fields.push_back(PointerTy_34);
     StructTy_class_types__InternalType_fields.push_back(IntegerType::get(mod->getContext(), 32));
     StructTy_class_types__InternalType_fields.push_back(IntegerType::get(mod->getContext(), 8));
     StructTy_class_types__InternalType_fields.push_back(IntegerType::get(mod->getContext(), 8));
@@ -435,44 +462,44 @@ Module* makeLLVMModuleContents(Module *mod)
         StructTy_class_types__InternalType->setBody(StructTy_class_types__InternalType_fields, /*isPacked=*/false);
     }
 
-    PointerType* PointerTy_38 = PointerType::get(StructTy_class_types__InternalType, 0);
+    PointerType* PointerTy_39 = PointerType::get(StructTy_class_types__InternalType, 0);
 
-    std::vector<Type*>FuncTy_40_args;
-    FuncTy_40_args.push_back(PointerTy_31);
-    FuncTy_40_args.push_back(PointerTy_23);
-    FuncTy_40_args.push_back(PointerTy_38);
-    FunctionType* FuncTy_40 = FunctionType::get(
+    std::vector<Type*>FuncTy_41_args;
+    FuncTy_41_args.push_back(PointerTy_31);
+    FuncTy_41_args.push_back(PointerTy_23);
+    FuncTy_41_args.push_back(PointerTy_39);
+    FunctionType* FuncTy_41 = FunctionType::get(
                                   /*Result=*/IntegerType::get(mod->getContext(), 1),
-                                  /*Params=*/FuncTy_40_args,
+                                  /*Params=*/FuncTy_41_args,
                                   /*isVarArg=*/false);
 
-    PointerType* PointerTy_39 = PointerType::get(FuncTy_40, 0);
+    PointerType* PointerTy_40 = PointerType::get(FuncTy_41, 0);
 
-    std::vector<Type*>FuncTy_42_args;
-    FuncTy_42_args.push_back(PointerTy_31);
-    FuncTy_42_args.push_back(PointerTy_23);
-    FunctionType* FuncTy_42 = FunctionType::get(
-                                  /*Result=*/PointerTy_38,
-                                  /*Params=*/FuncTy_42_args,
+    std::vector<Type*>FuncTy_43_args;
+    FuncTy_43_args.push_back(PointerTy_31);
+    FuncTy_43_args.push_back(PointerTy_23);
+    FunctionType* FuncTy_43 = FunctionType::get(
+                                  /*Result=*/PointerTy_39,
+                                  /*Params=*/FuncTy_43_args,
                                   /*isVarArg=*/false);
 
-    PointerType* PointerTy_41 = PointerType::get(FuncTy_42, 0);
+    PointerType* PointerTy_42 = PointerType::get(FuncTy_43, 0);
 
-    PointerType* PointerTy_43 = PointerType::get(StructTy_class_types__ArrayOf_0, 0);
+    PointerType* PointerTy_44 = PointerType::get(StructTy_class_types__ArrayOf_0, 0);
 
-    std::vector<Type*>FuncTy_45_args;
-    FuncTy_45_args.push_back(PointerTy_43);
-    FuncTy_45_args.push_back(IntegerType::get(mod->getContext(), 32));
-    FunctionType* FuncTy_45 = FunctionType::get(
+    std::vector<Type*>FuncTy_46_args;
+    FuncTy_46_args.push_back(PointerTy_44);
+    FuncTy_46_args.push_back(IntegerType::get(mod->getContext(), 32));
+    FunctionType* FuncTy_46 = FunctionType::get(
                                   /*Result=*/IntegerType::get(mod->getContext(), 32),
-                                  /*Params=*/FuncTy_45_args,
+                                  /*Params=*/FuncTy_46_args,
                                   /*isVarArg=*/false);
 
-    PointerType* PointerTy_44 = PointerType::get(FuncTy_45, 0);
+    PointerType* PointerTy_45 = PointerType::get(FuncTy_46, 0);
 
-    PointerType* PointerTy_46 = PointerType::get(PointerTy_43, 0);
+    PointerType* PointerTy_47 = PointerType::get(PointerTy_44, 0);
 
-    PointerType* PointerTy_47 = PointerType::get(PointerTy_21, 0);
+    PointerType* PointerTy_48 = PointerType::get(PointerTy_21, 0);
 
 
     // Function Declarations
@@ -490,14 +517,13 @@ Module* makeLLVMModuleContents(Module *mod)
     AttributeSet func___cxx_global_var_init_PAL;
     func___cxx_global_var_init->setAttributes(func___cxx_global_var_init_PAL);
 
-    Function* func__ZNSt8ios_base4InitC1Ev = mod->getFunction("_ZNSt8ios_base4InitC1Ev");
+    Function* func__ZNSt8ios_base4InitC1Ev = mod->getFunction("std::ios_base::Init::Init()");
     if (!func__ZNSt8ios_base4InitC1Ev)
     {
         func__ZNSt8ios_base4InitC1Ev = Function::Create(
                                            /*Type=*/FuncTy_8,
                                            /*Linkage=*/GlobalValue::ExternalLinkage,
-                                           /*Name=*/"_ZNSt8ios_base4InitC1Ev", mod); // (external, no body)
-        func__ZNSt8ios_base4InitC1Ev->setCallingConv(CallingConv::C);
+                                           /*Name=*/"std::ios_base::Init::Init()", mod); // (external, no body)func__ZNSt8ios_base4InitC1Ev->setCallingConv(CallingConv::C);
     }
     AttributeSet func__ZNSt8ios_base4InitC1Ev_PAL;
     {
@@ -514,14 +540,13 @@ Module* makeLLVMModuleContents(Module *mod)
     }
     func__ZNSt8ios_base4InitC1Ev->setAttributes(func__ZNSt8ios_base4InitC1Ev_PAL);
 
-    Function* func__ZNSt8ios_base4InitD1Ev = mod->getFunction("_ZNSt8ios_base4InitD1Ev");
+    Function* func__ZNSt8ios_base4InitD1Ev = mod->getFunction("std::ios_base::Init::~Init()");
     if (!func__ZNSt8ios_base4InitD1Ev)
     {
         func__ZNSt8ios_base4InitD1Ev = Function::Create(
                                            /*Type=*/FuncTy_8,
                                            /*Linkage=*/GlobalValue::ExternalLinkage,
-                                           /*Name=*/"_ZNSt8ios_base4InitD1Ev", mod); // (external, no body)
-        func__ZNSt8ios_base4InitD1Ev->setCallingConv(CallingConv::C);
+                                           /*Name=*/"std::ios_base::Init::~Init()", mod); // (external, no body)func__ZNSt8ios_base4InitD1Ev->setCallingConv(CallingConv::C);
     }
     AttributeSet func__ZNSt8ios_base4InitD1Ev_PAL;
     {
@@ -544,8 +569,7 @@ Module* makeLLVMModuleContents(Module *mod)
         func___cxa_atexit = Function::Create(
                                 /*Type=*/FuncTy_12,
                                 /*Linkage=*/GlobalValue::ExternalLinkage,
-                                /*Name=*/"__cxa_atexit", mod); // (external, no body)
-        func___cxa_atexit->setCallingConv(CallingConv::C);
+                                /*Name=*/"__cxa_atexit", mod); // (external, no body)func___cxa_atexit->setCallingConv(CallingConv::C);
     }
     AttributeSet func___cxa_atexit_PAL;
     {
@@ -563,13 +587,13 @@ Module* makeLLVMModuleContents(Module *mod)
     }
     func___cxa_atexit->setAttributes(func___cxa_atexit_PAL);
 
-    Function* func__Z3foov = mod->getFunction("_Z3foov");
+    Function* func__Z3foov = mod->getFunction("foo()");
     if (!func__Z3foov)
     {
         func__Z3foov = Function::Create(
                            /*Type=*/FuncTy_13,
                            /*Linkage=*/GlobalValue::ExternalLinkage,
-                           /*Name=*/"_Z3foov", mod);
+                           /*Name=*/"foo()", mod);
         func__Z3foov->setCallingConv(CallingConv::C);
     }
     AttributeSet func__Z3foov_PAL;
@@ -588,14 +612,13 @@ Module* makeLLVMModuleContents(Module *mod)
     }
     func__Z3foov->setAttributes(func__Z3foov_PAL);
 
-    Function* func__ZN5types6Double5EmptyEv = mod->getFunction("_ZN5types6Double5EmptyEv");
+    Function* func__ZN5types6Double5EmptyEv = mod->getFunction("types::Double::Empty()");
     if (!func__ZN5types6Double5EmptyEv)
     {
         func__ZN5types6Double5EmptyEv = Function::Create(
                                             /*Type=*/FuncTy_26,
                                             /*Linkage=*/GlobalValue::ExternalLinkage,
-                                            /*Name=*/"_ZN5types6Double5EmptyEv", mod); // (external, no body)
-        func__ZN5types6Double5EmptyEv->setCallingConv(CallingConv::C);
+                                            /*Name=*/"types::Double::Empty()", mod); // (external, no body)func__ZN5types6Double5EmptyEv->setCallingConv(CallingConv::C);
     }
     AttributeSet func__ZN5types6Double5EmptyEv_PAL;
     {
@@ -612,14 +635,13 @@ Module* makeLLVMModuleContents(Module *mod)
     }
     func__ZN5types6Double5EmptyEv->setAttributes(func__ZN5types6Double5EmptyEv_PAL);
 
-    Function* func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1_ = mod->getFunction("_Z17AddDoubleToDoublePN5types6DoubleES1_PS1_");
+    Function* func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1_ = mod->getFunction("AddDoubleToDouble(types::Double*, types::Double*, types::Double**)");
     if (!func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1_)
     {
         func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1_ = Function::Create(
                     /*Type=*/FuncTy_28,
                     /*Linkage=*/GlobalValue::ExternalLinkage,
-                    /*Name=*/"_Z17AddDoubleToDoublePN5types6DoubleES1_PS1_", mod); // (external, no body)
-        func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1_->setCallingConv(CallingConv::C);
+                    /*Name=*/"AddDoubleToDouble(types::Double*, types::Double*, types::Double**)", mod); // (external, no body)func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1_->setCallingConv(CallingConv::C);
     }
     AttributeSet func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1__PAL;
     {
@@ -636,14 +658,13 @@ Module* makeLLVMModuleContents(Module *mod)
     }
     func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1_->setAttributes(func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1__PAL);
 
-    Function* func__Z22MultiplyDoubleByDoublePN5types6DoubleES1_PS1_ = mod->getFunction("_Z22MultiplyDoubleByDoublePN5types6DoubleES1_PS1_");
+    Function* func__Z22MultiplyDoubleByDoublePN5types6DoubleES1_PS1_ = mod->getFunction("MultiplyDoubleByDouble(types::Double*, types::Double*, types::Double**)");
     if (!func__Z22MultiplyDoubleByDoublePN5types6DoubleES1_PS1_)
     {
         func__Z22MultiplyDoubleByDoublePN5types6DoubleES1_PS1_ = Function::Create(
                     /*Type=*/FuncTy_28,
                     /*Linkage=*/GlobalValue::ExternalLinkage,
-                    /*Name=*/"_Z22MultiplyDoubleByDoublePN5types6DoubleES1_PS1_", mod); // (external, no body)
-        func__Z22MultiplyDoubleByDoublePN5types6DoubleES1_PS1_->setCallingConv(CallingConv::C);
+                    /*Name=*/"MultiplyDoubleByDouble(types::Double*, types::Double*, types::Double**)", mod); // (external, no body)func__Z22MultiplyDoubleByDoublePN5types6DoubleES1_PS1_->setCallingConv(CallingConv::C);
     }
     AttributeSet func__Z22MultiplyDoubleByDoublePN5types6DoubleES1_PS1__PAL;
     {
@@ -660,14 +681,13 @@ Module* makeLLVMModuleContents(Module *mod)
     }
     func__Z22MultiplyDoubleByDoublePN5types6DoubleES1_PS1_->setAttributes(func__Z22MultiplyDoubleByDoublePN5types6DoubleES1_PS1__PAL);
 
-    Function* func__Z16DoubleLessDoublePN5types6DoubleES1_PPNS_4BoolE = mod->getFunction("_Z16DoubleLessDoublePN5types6DoubleES1_PPNS_4BoolE");
+    Function* func__Z16DoubleLessDoublePN5types6DoubleES1_PPNS_4BoolE = mod->getFunction("DoubleLessDouble(types::Double*, types::Double*, types::Bool**)");
     if (!func__Z16DoubleLessDoublePN5types6DoubleES1_PPNS_4BoolE)
     {
         func__Z16DoubleLessDoublePN5types6DoubleES1_PPNS_4BoolE = Function::Create(
                     /*Type=*/FuncTy_30,
                     /*Linkage=*/GlobalValue::ExternalLinkage,
-                    /*Name=*/"_Z16DoubleLessDoublePN5types6DoubleES1_PPNS_4BoolE", mod); // (external, no body)
-        func__Z16DoubleLessDoublePN5types6DoubleES1_PPNS_4BoolE->setCallingConv(CallingConv::C);
+                    /*Name=*/"DoubleLessDouble(types::Double*, types::Double*, types::Bool**)", mod); // (external, no body)func__Z16DoubleLessDoublePN5types6DoubleES1_PPNS_4BoolE->setCallingConv(CallingConv::C);
     }
     AttributeSet func__Z16DoubleLessDoublePN5types6DoubleES1_PPNS_4BoolE_PAL;
     {
@@ -684,14 +704,13 @@ Module* makeLLVMModuleContents(Module *mod)
     }
     func__Z16DoubleLessDoublePN5types6DoubleES1_PPNS_4BoolE->setAttributes(func__Z16DoubleLessDoublePN5types6DoubleES1_PPNS_4BoolE_PAL);
 
-    Function* func__ZN6symbol7Context11getInstanceEv = mod->getFunction("_ZN6symbol7Context11getInstanceEv");
+    Function* func__ZN6symbol7Context11getInstanceEv = mod->getFunction("symbol::Context::getInstance()");
     if (!func__ZN6symbol7Context11getInstanceEv)
     {
         func__ZN6symbol7Context11getInstanceEv = Function::Create(
-                    /*Type=*/FuncTy_37,
+                    /*Type=*/FuncTy_38,
                     /*Linkage=*/GlobalValue::ExternalLinkage,
-                    /*Name=*/"_ZN6symbol7Context11getInstanceEv", mod); // (external, no body)
-        func__ZN6symbol7Context11getInstanceEv->setCallingConv(CallingConv::C);
+                    /*Name=*/"symbol::Context::getInstance()", mod); // (external, no body)func__ZN6symbol7Context11getInstanceEv->setCallingConv(CallingConv::C);
     }
     AttributeSet func__ZN6symbol7Context11getInstanceEv_PAL;
     {
@@ -708,14 +727,13 @@ Module* makeLLVMModuleContents(Module *mod)
     }
     func__ZN6symbol7Context11getInstanceEv->setAttributes(func__ZN6symbol7Context11getInstanceEv_PAL);
 
-    Function* func__ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE = mod->getFunction("_ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE");
+    Function* func__ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE = mod->getFunction("symbol::Context::put(symbol::Symbol const&, types::InternalType&)");
     if (!func__ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE)
     {
         func__ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE = Function::Create(
-                    /*Type=*/FuncTy_40,
+                    /*Type=*/FuncTy_41,
                     /*Linkage=*/GlobalValue::ExternalLinkage,
-                    /*Name=*/"_ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE", mod); // (external, no body)
-        func__ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE->setCallingConv(CallingConv::C);
+                    /*Name=*/"symbol::Context::put(symbol::Symbol const&, types::InternalType&)", mod); // (external, no body)func__ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE->setCallingConv(CallingConv::C);
     }
     AttributeSet func__ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE_PAL;
     {
@@ -739,14 +757,13 @@ Module* makeLLVMModuleContents(Module *mod)
     }
     func__ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE->setAttributes(func__ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE_PAL);
 
-    Function* func__ZNK6symbol7Context3getERKNS_6SymbolE = mod->getFunction("_ZNK6symbol7Context3getERKNS_6SymbolE");
+    Function* func__ZNK6symbol7Context3getERKNS_6SymbolE = mod->getFunction("symbol::Context::get(symbol::Symbol const&) const");
     if (!func__ZNK6symbol7Context3getERKNS_6SymbolE)
     {
         func__ZNK6symbol7Context3getERKNS_6SymbolE = Function::Create(
-                    /*Type=*/FuncTy_42,
+                    /*Type=*/FuncTy_43,
                     /*Linkage=*/GlobalValue::ExternalLinkage,
-                    /*Name=*/"_ZNK6symbol7Context3getERKNS_6SymbolE", mod); // (external, no body)
-        func__ZNK6symbol7Context3getERKNS_6SymbolE->setCallingConv(CallingConv::C);
+                    /*Name=*/"symbol::Context::get(symbol::Symbol const&) const", mod); // (external, no body)func__ZNK6symbol7Context3getERKNS_6SymbolE->setCallingConv(CallingConv::C);
     }
     AttributeSet func__ZNK6symbol7Context3getERKNS_6SymbolE_PAL;
     {
@@ -763,13 +780,13 @@ Module* makeLLVMModuleContents(Module *mod)
     }
     func__ZNK6symbol7Context3getERKNS_6SymbolE->setAttributes(func__ZNK6symbol7Context3getERKNS_6SymbolE_PAL);
 
-    Function* func__ZN5types7ArrayOfIiE3getEi = mod->getFunction("_ZN5types7ArrayOfIiE3getEi");
+    Function* func__ZN5types7ArrayOfIiE3getEi = mod->getFunction("types::ArrayOf<int>::get(int)");
     if (!func__ZN5types7ArrayOfIiE3getEi)
     {
         func__ZN5types7ArrayOfIiE3getEi = Function::Create(
-                                              /*Type=*/FuncTy_45,
+                                              /*Type=*/FuncTy_46,
                                               /*Linkage=*/GlobalValue::LinkOnceODRLinkage ,
-                                              /*Name=*/"_ZN5types7ArrayOfIiE3getEi", mod);
+                                              /*Name=*/"types::ArrayOf<int>::get(int)", mod);
         func__ZN5types7ArrayOfIiE3getEi->setCallingConv(CallingConv::C);
         func__ZN5types7ArrayOfIiE3getEi->setAlignment(2);
     }
@@ -790,13 +807,13 @@ Module* makeLLVMModuleContents(Module *mod)
     }
     func__ZN5types7ArrayOfIiE3getEi->setAttributes(func__ZN5types7ArrayOfIiE3getEi_PAL);
 
-    Function* func__GLOBAL__I_a = mod->getFunction("_GLOBAL__I_a");
+    Function* func__GLOBAL__I_a = mod->getFunction("global constructors keyed to a");
     if (!func__GLOBAL__I_a)
     {
         func__GLOBAL__I_a = Function::Create(
                                 /*Type=*/FuncTy_5,
                                 /*Linkage=*/GlobalValue::InternalLinkage,
-                                /*Name=*/"_GLOBAL__I_a", mod);
+                                /*Name=*/"global constructors keyed to a", mod);
         func__GLOBAL__I_a->setCallingConv(CallingConv::C);
         func__GLOBAL__I_a->setSection(".text.startup");
     }
@@ -811,7 +828,7 @@ Module* makeLLVMModuleContents(Module *mod)
             /*isConstant=*/false,
             /*Linkage=*/GlobalValue::InternalLinkage,
             /*Initializer=*/0, // has initializer, specified below
-            /*Name=*/"_ZStL8__ioinit");
+            /*Name=*/"std::__ioinit");
     gvar_struct__ZStL8__ioinit->setAlignment(1);
 
     GlobalVariable* gvar_int8___dso_handle = new GlobalVariable(/*Module=*/*mod,
@@ -820,63 +837,60 @@ Module* makeLLVMModuleContents(Module *mod)
             /*Linkage=*/GlobalValue::ExternalLinkage,
             /*Initializer=*/0,
             /*Name=*/"__dso_handle");
-
     GlobalVariable* gvar_array_llvm_global_ctors = new GlobalVariable(/*Module=*/*mod,
             /*Type=*/ArrayTy_2,
             /*isConstant=*/false,
             /*Linkage=*/GlobalValue::AppendingLinkage,
             /*Initializer=*/0, // has initializer, specified below
             /*Name=*/"llvm.global_ctors");
-
     // Constant Definitions
-    ConstantAggregateZero* const_struct_48 = ConstantAggregateZero::get(StructTy_class_std__ios_base__Init);
-    std::vector<Constant*> const_array_49_elems;
-    std::vector<Constant*> const_struct_50_fields;
-    ConstantInt* const_int32_51 = ConstantInt::get(mod->getContext(), APInt(32, StringRef("65535"), 10));
-    const_struct_50_fields.push_back(const_int32_51);
-    const_struct_50_fields.push_back(func__GLOBAL__I_a);
-    Constant* const_struct_50 = ConstantStruct::get(StructTy_3, const_struct_50_fields);
-    const_array_49_elems.push_back(const_struct_50);
-    Constant* const_array_49 = ConstantArray::get(ArrayTy_2, const_array_49_elems);
-    Constant* const_ptr_52 = ConstantExpr::getCast(Instruction::BitCast, func__ZNSt8ios_base4InitD1Ev, PointerTy_9);
-    std::vector<Constant*> const_ptr_53_indices;
-    ConstantInt* const_int32_54 = ConstantInt::get(mod->getContext(), APInt(32, StringRef("0"), 10));
-    const_ptr_53_indices.push_back(const_int32_54);
-    const_ptr_53_indices.push_back(const_int32_54);
-    Constant* const_ptr_53 = ConstantExpr::getGetElementPtr(gvar_struct__ZStL8__ioinit, const_ptr_53_indices);
-    ConstantInt* const_int32_55 = ConstantInt::get(mod->getContext(), APInt(32, StringRef("1"), 10));
-    ConstantPointerNull* const_ptr_56 = ConstantPointerNull::get(PointerTy_20);
-    ConstantPointerNull* const_ptr_57 = ConstantPointerNull::get(PointerTy_19);
-    ConstantPointerNull* const_ptr_58 = ConstantPointerNull::get(PointerTy_23);
-    ConstantInt* const_int32_59 = ConstantInt::get(mod->getContext(), APInt(32, StringRef("2"), 10));
-    ConstantPointerNull* const_ptr_60 = ConstantPointerNull::get(PointerTy_21);
+    ConstantAggregateZero* const_struct_49 = ConstantAggregateZero::get(StructTy_class_std__ios_base__Init);
+    std::vector<Constant*> const_array_50_elems;
+    std::vector<Constant*> const_struct_51_fields;
+    ConstantInt* const_int32_52 = ConstantInt::get(mod->getContext(), APInt(32, StringRef("65535"), 10));
+    const_struct_51_fields.push_back(const_int32_52);
+    const_struct_51_fields.push_back(func__GLOBAL__I_a);
+    Constant* const_struct_51 = ConstantStruct::get(StructTy_3, const_struct_51_fields);
+    const_array_50_elems.push_back(const_struct_51);
+    Constant* const_array_50 = ConstantArray::get(ArrayTy_2, const_array_50_elems);
+    Constant* const_ptr_53 = ConstantExpr::getCast(Instruction::BitCast, func__ZNSt8ios_base4InitD1Ev, PointerTy_9);
+    std::vector<Constant*> const_ptr_54_indices;
+    ConstantInt* const_int32_55 = ConstantInt::get(mod->getContext(), APInt(32, StringRef("0"), 10));
+    const_ptr_54_indices.push_back(const_int32_55);
+    const_ptr_54_indices.push_back(const_int32_55);
+    Constant* const_ptr_54 = ConstantExpr::getGetElementPtr(gvar_struct__ZStL8__ioinit, const_ptr_54_indices);
+    ConstantInt* const_int32_56 = ConstantInt::get(mod->getContext(), APInt(32, StringRef("1"), 10));
+    ConstantPointerNull* const_ptr_57 = ConstantPointerNull::get(PointerTy_20);
+    ConstantPointerNull* const_ptr_58 = ConstantPointerNull::get(PointerTy_19);
+    ConstantPointerNull* const_ptr_59 = ConstantPointerNull::get(PointerTy_23);
+    ConstantInt* const_int32_60 = ConstantInt::get(mod->getContext(), APInt(32, StringRef("2"), 10));
+    ConstantPointerNull* const_ptr_61 = ConstantPointerNull::get(PointerTy_21);
 
     // Global Variable Definitions
-    gvar_struct__ZStL8__ioinit->setInitializer(const_struct_48);
-    gvar_array_llvm_global_ctors->setInitializer(const_array_49);
+    gvar_struct__ZStL8__ioinit->setInitializer(const_struct_49);
+    gvar_array_llvm_global_ctors->setInitializer(const_array_50);
 
     // Function Definitions
 
     // Function: __cxx_global_var_init (func___cxx_global_var_init)
     {
 
-        BasicBlock* label_61 = BasicBlock::Create(mod->getContext(), "", func___cxx_global_var_init, 0);
+        BasicBlock* label_62 = BasicBlock::Create(mod->getContext(), "", func___cxx_global_var_init, 0);
+        // Block  (label_62)
+        CallInst* void_63 = CallInst::Create(func__ZNSt8ios_base4InitC1Ev, gvar_struct__ZStL8__ioinit, "", label_62);
+        void_63->setCallingConv(CallingConv::C);
+        void_63->setTailCall(false);
+        AttributeSet void_63_PAL;
+        void_63->setAttributes(void_63_PAL);
 
-        // Block  (label_61)
-        CallInst* void_62 = CallInst::Create(func__ZNSt8ios_base4InitC1Ev, gvar_struct__ZStL8__ioinit, "", label_61);
-        void_62->setCallingConv(CallingConv::C);
-        void_62->setTailCall(false);
-        AttributeSet void_62_PAL;
-        void_62->setAttributes(void_62_PAL);
-
-        std::vector<Value*> int32_63_params;
-        int32_63_params.push_back(const_ptr_52);
-        int32_63_params.push_back(const_ptr_53);
-        int32_63_params.push_back(gvar_int8___dso_handle);
-        CallInst* int32_63 = CallInst::Create(func___cxa_atexit, int32_63_params, "", label_61);
-        int32_63->setCallingConv(CallingConv::C);
-        int32_63->setTailCall(false);
-        AttributeSet int32_63_PAL;
+        std::vector<Value*> int32_64_params;
+        int32_64_params.push_back(const_ptr_53);
+        int32_64_params.push_back(const_ptr_54);
+        int32_64_params.push_back(gvar_int8___dso_handle);
+        CallInst* int32_64 = CallInst::Create(func___cxa_atexit, int32_64_params, "", label_62);
+        int32_64->setCallingConv(CallingConv::C);
+        int32_64->setTailCall(false);
+        AttributeSet int32_64_PAL;
         {
             SmallVector<AttributeSet, 4> Attrs;
             AttributeSet PAS;
@@ -887,118 +901,117 @@ Module* makeLLVMModuleContents(Module *mod)
             }
 
             Attrs.push_back(PAS);
-            int32_63_PAL = AttributeSet::get(mod->getContext(), Attrs);
+            int32_64_PAL = AttributeSet::get(mod->getContext(), Attrs);
 
         }
-        int32_63->setAttributes(int32_63_PAL);
+        int32_64->setAttributes(int32_64_PAL);
 
-        ReturnInst::Create(mod->getContext(), label_61);
+        ReturnInst::Create(mod->getContext(), label_62);
 
     }
 
     // Function: _Z3foov (func__Z3foov)
     {
 
-        BasicBlock* label_65 = BasicBlock::Create(mod->getContext(), "", func__Z3foov, 0);
-
-        // Block  (label_65)
-        AllocaInst* ptr_pdbl = new AllocaInst(PointerTy_15, "pdbl", label_65);
+        BasicBlock* label_66 = BasicBlock::Create(mod->getContext(), "", func__Z3foov, 0);
+        // Block  (label_66)
+        AllocaInst* ptr_pdbl = new AllocaInst(PointerTy_15, "pdbl", label_66);
         ptr_pdbl->setAlignment(8);
-        AllocaInst* ptr_pb = new AllocaInst(PointerTy_20, "pb", label_65);
+        AllocaInst* ptr_pb = new AllocaInst(PointerTy_20, "pb", label_66);
         ptr_pb->setAlignment(8);
-        AllocaInst* ptr_res = new AllocaInst(IntegerType::get(mod->getContext(), 32), "res", label_65);
+        AllocaInst* ptr_res = new AllocaInst(IntegerType::get(mod->getContext(), 32), "res", label_66);
         ptr_res->setAlignment(4);
-        AllocaInst* ptr_pdbl1 = new AllocaInst(PointerTy_15, "pdbl1", label_65);
+        AllocaInst* ptr_pdbl1 = new AllocaInst(PointerTy_15, "pdbl1", label_66);
         ptr_pdbl1->setAlignment(8);
-        AllocaInst* ptr_sym = new AllocaInst(PointerTy_23, "sym", label_65);
+        AllocaInst* ptr_sym = new AllocaInst(PointerTy_23, "sym", label_66);
         ptr_sym->setAlignment(8);
-        CallInst* ptr_66 = CallInst::Create(func__ZN5types6Double5EmptyEv, "", label_65);
-        ptr_66->setCallingConv(CallingConv::C);
-        ptr_66->setTailCall(false);
-        AttributeSet ptr_66_PAL;
-        ptr_66->setAttributes(ptr_66_PAL);
+        CallInst* ptr_67 = CallInst::Create(func__ZN5types6Double5EmptyEv, "", label_66);
+        ptr_67->setCallingConv(CallingConv::C);
+        ptr_67->setTailCall(false);
+        AttributeSet ptr_67_PAL;
+        ptr_67->setAttributes(ptr_67_PAL);
 
-        StoreInst* void_67 = new StoreInst(ptr_66, ptr_pdbl, false, label_65);
-        void_67->setAlignment(8);
-        StoreInst* void_68 = new StoreInst(const_ptr_56, ptr_pb, false, label_65);
+        StoreInst* void_68 = new StoreInst(ptr_67, ptr_pdbl, false, label_66);
         void_68->setAlignment(8);
-        LoadInst* ptr_69 = new LoadInst(ptr_pdbl, "", false, label_65);
-        ptr_69->setAlignment(8);
-        LoadInst* ptr_70 = new LoadInst(ptr_pdbl, "", false, label_65);
+        StoreInst* void_69 = new StoreInst(const_ptr_57, ptr_pb, false, label_66);
+        void_69->setAlignment(8);
+        LoadInst* ptr_70 = new LoadInst(ptr_pdbl, "", false, label_66);
         ptr_70->setAlignment(8);
-        std::vector<Value*> int32_71_params;
-        int32_71_params.push_back(ptr_69);
-        int32_71_params.push_back(ptr_70);
-        int32_71_params.push_back(ptr_pdbl);
-        CallInst* int32_71 = CallInst::Create(func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1_, int32_71_params, "", label_65);
-        int32_71->setCallingConv(CallingConv::C);
-        int32_71->setTailCall(false);
-        AttributeSet int32_71_PAL;
-        int32_71->setAttributes(int32_71_PAL);
+        LoadInst* ptr_71 = new LoadInst(ptr_pdbl, "", false, label_66);
+        ptr_71->setAlignment(8);
+        std::vector<Value*> int32_72_params;
+        int32_72_params.push_back(ptr_70);
+        int32_72_params.push_back(ptr_71);
+        int32_72_params.push_back(ptr_pdbl);
+        CallInst* int32_72 = CallInst::Create(func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1_, int32_72_params, "", label_66);
+        int32_72->setCallingConv(CallingConv::C);
+        int32_72->setTailCall(false);
+        AttributeSet int32_72_PAL;
+        int32_72->setAttributes(int32_72_PAL);
 
-        StoreInst* void_72 = new StoreInst(int32_71, ptr_res, false, label_65);
-        void_72->setAlignment(4);
-        CallInst* ptr_73 = CallInst::Create(func__ZN5types6Double5EmptyEv, "", label_65);
-        ptr_73->setCallingConv(CallingConv::C);
-        ptr_73->setTailCall(false);
-        AttributeSet ptr_73_PAL;
-        ptr_73->setAttributes(ptr_73_PAL);
+        StoreInst* void_73 = new StoreInst(int32_72, ptr_res, false, label_66);
+        void_73->setAlignment(4);
+        CallInst* ptr_74 = CallInst::Create(func__ZN5types6Double5EmptyEv, "", label_66);
+        ptr_74->setCallingConv(CallingConv::C);
+        ptr_74->setTailCall(false);
+        AttributeSet ptr_74_PAL;
+        ptr_74->setAttributes(ptr_74_PAL);
 
-        StoreInst* void_74 = new StoreInst(ptr_73, ptr_pdbl1, false, label_65);
-        void_74->setAlignment(8);
-        LoadInst* ptr_75 = new LoadInst(ptr_pdbl1, "", false, label_65);
-        ptr_75->setAlignment(8);
-        LoadInst* ptr_76 = new LoadInst(ptr_pdbl1, "", false, label_65);
+        StoreInst* void_75 = new StoreInst(ptr_74, ptr_pdbl1, false, label_66);
+        void_75->setAlignment(8);
+        LoadInst* ptr_76 = new LoadInst(ptr_pdbl1, "", false, label_66);
         ptr_76->setAlignment(8);
-        std::vector<Value*> int32_77_params;
-        int32_77_params.push_back(ptr_75);
-        int32_77_params.push_back(ptr_76);
-        int32_77_params.push_back(ptr_pdbl1);
-        CallInst* int32_77 = CallInst::Create(func__Z22MultiplyDoubleByDoublePN5types6DoubleES1_PS1_, int32_77_params, "", label_65);
-        int32_77->setCallingConv(CallingConv::C);
-        int32_77->setTailCall(false);
-        AttributeSet int32_77_PAL;
-        int32_77->setAttributes(int32_77_PAL);
+        LoadInst* ptr_77 = new LoadInst(ptr_pdbl1, "", false, label_66);
+        ptr_77->setAlignment(8);
+        std::vector<Value*> int32_78_params;
+        int32_78_params.push_back(ptr_76);
+        int32_78_params.push_back(ptr_77);
+        int32_78_params.push_back(ptr_pdbl1);
+        CallInst* int32_78 = CallInst::Create(func__Z22MultiplyDoubleByDoublePN5types6DoubleES1_PS1_, int32_78_params, "", label_66);
+        int32_78->setCallingConv(CallingConv::C);
+        int32_78->setTailCall(false);
+        AttributeSet int32_78_PAL;
+        int32_78->setAttributes(int32_78_PAL);
 
-        StoreInst* void_78 = new StoreInst(int32_77, ptr_res, false, label_65);
-        void_78->setAlignment(4);
-        LoadInst* ptr_79 = new LoadInst(ptr_pdbl, "", false, label_65);
-        ptr_79->setAlignment(8);
-        LoadInst* ptr_80 = new LoadInst(ptr_pdbl, "", false, label_65);
+        StoreInst* void_79 = new StoreInst(int32_78, ptr_res, false, label_66);
+        void_79->setAlignment(4);
+        LoadInst* ptr_80 = new LoadInst(ptr_pdbl, "", false, label_66);
         ptr_80->setAlignment(8);
-        std::vector<Value*> int32_81_params;
-        int32_81_params.push_back(ptr_79);
-        int32_81_params.push_back(ptr_80);
-        int32_81_params.push_back(const_ptr_57);
-        CallInst* int32_81 = CallInst::Create(func__Z16DoubleLessDoublePN5types6DoubleES1_PPNS_4BoolE, int32_81_params, "", label_65);
-        int32_81->setCallingConv(CallingConv::C);
-        int32_81->setTailCall(false);
-        AttributeSet int32_81_PAL;
-        int32_81->setAttributes(int32_81_PAL);
+        LoadInst* ptr_81 = new LoadInst(ptr_pdbl, "", false, label_66);
+        ptr_81->setAlignment(8);
+        std::vector<Value*> int32_82_params;
+        int32_82_params.push_back(ptr_80);
+        int32_82_params.push_back(ptr_81);
+        int32_82_params.push_back(const_ptr_58);
+        CallInst* int32_82 = CallInst::Create(func__Z16DoubleLessDoublePN5types6DoubleES1_PPNS_4BoolE, int32_82_params, "", label_66);
+        int32_82->setCallingConv(CallingConv::C);
+        int32_82->setTailCall(false);
+        AttributeSet int32_82_PAL;
+        int32_82->setAttributes(int32_82_PAL);
 
-        StoreInst* void_82 = new StoreInst(int32_81, ptr_res, false, label_65);
-        void_82->setAlignment(4);
-        StoreInst* void_83 = new StoreInst(const_ptr_58, ptr_sym, false, label_65);
-        void_83->setAlignment(8);
-        CallInst* ptr_84 = CallInst::Create(func__ZN6symbol7Context11getInstanceEv, "", label_65);
-        ptr_84->setCallingConv(CallingConv::C);
-        ptr_84->setTailCall(false);
-        AttributeSet ptr_84_PAL;
-        ptr_84->setAttributes(ptr_84_PAL);
+        StoreInst* void_83 = new StoreInst(int32_82, ptr_res, false, label_66);
+        void_83->setAlignment(4);
+        StoreInst* void_84 = new StoreInst(const_ptr_59, ptr_sym, false, label_66);
+        void_84->setAlignment(8);
+        CallInst* ptr_85 = CallInst::Create(func__ZN6symbol7Context11getInstanceEv, "", label_66);
+        ptr_85->setCallingConv(CallingConv::C);
+        ptr_85->setTailCall(false);
+        AttributeSet ptr_85_PAL;
+        ptr_85->setAttributes(ptr_85_PAL);
 
-        LoadInst* ptr_85 = new LoadInst(ptr_sym, "", false, label_65);
-        ptr_85->setAlignment(8);
-        LoadInst* ptr_86 = new LoadInst(ptr_pdbl, "", false, label_65);
+        LoadInst* ptr_86 = new LoadInst(ptr_sym, "", false, label_66);
         ptr_86->setAlignment(8);
-        CastInst* ptr_87 = new BitCastInst(ptr_86, PointerTy_38, "", label_65);
-        std::vector<Value*> int1_88_params;
-        int1_88_params.push_back(ptr_84);
-        int1_88_params.push_back(ptr_85);
-        int1_88_params.push_back(ptr_87);
-        CallInst* int1_88 = CallInst::Create(func__ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE, int1_88_params, "", label_65);
-        int1_88->setCallingConv(CallingConv::C);
-        int1_88->setTailCall(false);
-        AttributeSet int1_88_PAL;
+        LoadInst* ptr_87 = new LoadInst(ptr_pdbl, "", false, label_66);
+        ptr_87->setAlignment(8);
+        CastInst* ptr_88 = new BitCastInst(ptr_87, PointerTy_39, "", label_66);
+        std::vector<Value*> int1_89_params;
+        int1_89_params.push_back(ptr_85);
+        int1_89_params.push_back(ptr_86);
+        int1_89_params.push_back(ptr_88);
+        CallInst* int1_89 = CallInst::Create(func__ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE, int1_89_params, "", label_66);
+        int1_89->setCallingConv(CallingConv::C);
+        int1_89->setTailCall(false);
+        AttributeSet int1_89_PAL;
         {
             SmallVector<AttributeSet, 4> Attrs;
             AttributeSet PAS;
@@ -1009,43 +1022,43 @@ Module* makeLLVMModuleContents(Module *mod)
             }
 
             Attrs.push_back(PAS);
-            int1_88_PAL = AttributeSet::get(mod->getContext(), Attrs);
+            int1_89_PAL = AttributeSet::get(mod->getContext(), Attrs);
 
         }
-        int1_88->setAttributes(int1_88_PAL);
+        int1_89->setAttributes(int1_89_PAL);
 
-        CallInst* ptr_89 = CallInst::Create(func__ZN6symbol7Context11getInstanceEv, "", label_65);
-        ptr_89->setCallingConv(CallingConv::C);
-        ptr_89->setTailCall(false);
-        AttributeSet ptr_89_PAL;
-        ptr_89->setAttributes(ptr_89_PAL);
+        CallInst* ptr_90 = CallInst::Create(func__ZN6symbol7Context11getInstanceEv, "", label_66);
+        ptr_90->setCallingConv(CallingConv::C);
+        ptr_90->setTailCall(false);
+        AttributeSet ptr_90_PAL;
+        ptr_90->setAttributes(ptr_90_PAL);
 
-        LoadInst* ptr_90 = new LoadInst(ptr_sym, "", false, label_65);
-        ptr_90->setAlignment(8);
-        std::vector<Value*> ptr_91_params;
-        ptr_91_params.push_back(ptr_89);
-        ptr_91_params.push_back(ptr_90);
-        CallInst* ptr_91 = CallInst::Create(func__ZNK6symbol7Context3getERKNS_6SymbolE, ptr_91_params, "", label_65);
-        ptr_91->setCallingConv(CallingConv::C);
-        ptr_91->setTailCall(false);
-        AttributeSet ptr_91_PAL;
-        ptr_91->setAttributes(ptr_91_PAL);
+        LoadInst* ptr_91 = new LoadInst(ptr_sym, "", false, label_66);
+        ptr_91->setAlignment(8);
+        std::vector<Value*> ptr_92_params;
+        ptr_92_params.push_back(ptr_90);
+        ptr_92_params.push_back(ptr_91);
+        CallInst* ptr_92 = CallInst::Create(func__ZNK6symbol7Context3getERKNS_6SymbolE, ptr_92_params, "", label_66);
+        ptr_92->setCallingConv(CallingConv::C);
+        ptr_92->setTailCall(false);
+        AttributeSet ptr_92_PAL;
+        ptr_92->setAttributes(ptr_92_PAL);
 
-        LoadInst* ptr_92 = new LoadInst(ptr_pb, "", false, label_65);
-        ptr_92->setAlignment(8);
-        CastInst* ptr_93 = new BitCastInst(ptr_92, PointerTy_43, "", label_65);
-        std::vector<Value*> int32_94_params;
-        int32_94_params.push_back(ptr_93);
-        int32_94_params.push_back(const_int32_54);
-        CallInst* int32_94 = CallInst::Create(func__ZN5types7ArrayOfIiE3getEi, int32_94_params, "", label_65);
-        int32_94->setCallingConv(CallingConv::C);
-        int32_94->setTailCall(false);
-        AttributeSet int32_94_PAL;
-        int32_94->setAttributes(int32_94_PAL);
+        LoadInst* ptr_93 = new LoadInst(ptr_pb, "", false, label_66);
+        ptr_93->setAlignment(8);
+        CastInst* ptr_94 = new BitCastInst(ptr_93, PointerTy_44, "", label_66);
+        std::vector<Value*> int32_95_params;
+        int32_95_params.push_back(ptr_94);
+        int32_95_params.push_back(const_int32_55);
+        CallInst* int32_95 = CallInst::Create(func__ZN5types7ArrayOfIiE3getEi, int32_95_params, "", label_66);
+        int32_95->setCallingConv(CallingConv::C);
+        int32_95->setTailCall(false);
+        AttributeSet int32_95_PAL;
+        int32_95->setAttributes(int32_95_PAL);
 
-        LoadInst* int32_95 = new LoadInst(ptr_res, "", false, label_65);
-        int32_95->setAlignment(4);
-        ReturnInst::Create(mod->getContext(), int32_95, label_65);
+        LoadInst* int32_96 = new LoadInst(ptr_res, "", false, label_66);
+        int32_96->setAlignment(4);
+        ReturnInst::Create(mod->getContext(), int32_96, label_66);
 
     }
 
@@ -1056,72 +1069,69 @@ Module* makeLLVMModuleContents(Module *mod)
         ptr_this->setName("this");
         Value* int32__iPos = args++;
         int32__iPos->setName("_iPos");
-
-        BasicBlock* label_97 = BasicBlock::Create(mod->getContext(), "", func__ZN5types7ArrayOfIiE3getEi, 0);
         BasicBlock* label_98 = BasicBlock::Create(mod->getContext(), "", func__ZN5types7ArrayOfIiE3getEi, 0);
         BasicBlock* label_99 = BasicBlock::Create(mod->getContext(), "", func__ZN5types7ArrayOfIiE3getEi, 0);
         BasicBlock* label_100 = BasicBlock::Create(mod->getContext(), "", func__ZN5types7ArrayOfIiE3getEi, 0);
-
-        // Block  (label_97)
-        AllocaInst* ptr_101 = new AllocaInst(IntegerType::get(mod->getContext(), 32), "", label_97);
-        ptr_101->setAlignment(4);
-        AllocaInst* ptr_102 = new AllocaInst(PointerTy_43, "", label_97);
-        ptr_102->setAlignment(8);
-        AllocaInst* ptr_103 = new AllocaInst(IntegerType::get(mod->getContext(), 32), "", label_97);
-        ptr_103->setAlignment(4);
-        StoreInst* void_104 = new StoreInst(ptr_this, ptr_102, false, label_97);
-        void_104->setAlignment(8);
-        StoreInst* void_105 = new StoreInst(int32__iPos, ptr_103, false, label_97);
-        void_105->setAlignment(4);
-        LoadInst* ptr_106 = new LoadInst(ptr_102, "", false, label_97);
-        std::vector<Value*> ptr_107_indices;
-        ptr_107_indices.push_back(const_int32_54);
-        ptr_107_indices.push_back(const_int32_59);
-        Instruction* ptr_107 = GetElementPtrInst::Create(ptr_106, ptr_107_indices, "", label_97);
-        LoadInst* ptr_108 = new LoadInst(ptr_107, "", false, label_97);
-        ptr_108->setAlignment(8);
-        ICmpInst* int1_109 = new ICmpInst(*label_97, ICmpInst::ICMP_NE, ptr_108, const_ptr_60, "");
-        BranchInst::Create(label_98, label_99, int1_109, label_97);
-
+        BasicBlock* label_101 = BasicBlock::Create(mod->getContext(), "", func__ZN5types7ArrayOfIiE3getEi, 0);
         // Block  (label_98)
-        LoadInst* int32_111 = new LoadInst(ptr_103, "", false, label_98);
-        int32_111->setAlignment(4);
-        CastInst* int64_112 = new SExtInst(int32_111, IntegerType::get(mod->getContext(), 64), "", label_98);
-        std::vector<Value*> ptr_113_indices;
-        ptr_113_indices.push_back(const_int32_54);
-        ptr_113_indices.push_back(const_int32_59);
-        Instruction* ptr_113 = GetElementPtrInst::Create(ptr_106, ptr_113_indices, "", label_98);
-        LoadInst* ptr_114 = new LoadInst(ptr_113, "", false, label_98);
-        ptr_114->setAlignment(8);
-        GetElementPtrInst* ptr_115 = GetElementPtrInst::Create(ptr_114, int64_112, "", label_98);
-        LoadInst* int32_116 = new LoadInst(ptr_115, "", false, label_98);
-        int32_116->setAlignment(4);
-        StoreInst* void_117 = new StoreInst(int32_116, ptr_101, false, label_98);
-        BranchInst::Create(label_100, label_98);
+        AllocaInst* ptr_102 = new AllocaInst(IntegerType::get(mod->getContext(), 32), "", label_98);
+        ptr_102->setAlignment(4);
+        AllocaInst* ptr_103 = new AllocaInst(PointerTy_44, "", label_98);
+        ptr_103->setAlignment(8);
+        AllocaInst* ptr_104 = new AllocaInst(IntegerType::get(mod->getContext(), 32), "", label_98);
+        ptr_104->setAlignment(4);
+        StoreInst* void_105 = new StoreInst(ptr_this, ptr_103, false, label_98);
+        void_105->setAlignment(8);
+        StoreInst* void_106 = new StoreInst(int32__iPos, ptr_104, false, label_98);
+        void_106->setAlignment(4);
+        LoadInst* ptr_107 = new LoadInst(ptr_103, "", false, label_98);
+        std::vector<Value*> ptr_108_indices;
+        ptr_108_indices.push_back(const_int32_55);
+        ptr_108_indices.push_back(const_int32_60);
+        Instruction* ptr_108 = GetElementPtrInst::Create(ptr_107, ptr_108_indices, "", label_98);
+        LoadInst* ptr_109 = new LoadInst(ptr_108, "", false, label_98);
+        ptr_109->setAlignment(8);
+        ICmpInst* int1_110 = new ICmpInst(*label_98, ICmpInst::ICMP_NE, ptr_109, const_ptr_61, "");
+        BranchInst::Create(label_99, label_100, int1_110, label_98);
 
         // Block  (label_99)
-        StoreInst* void_119 = new StoreInst(const_int32_54, ptr_101, false, label_99);
-        BranchInst::Create(label_100, label_99);
+        LoadInst* int32_112 = new LoadInst(ptr_104, "", false, label_99);
+        int32_112->setAlignment(4);
+        CastInst* int64_113 = new SExtInst(int32_112, IntegerType::get(mod->getContext(), 64), "", label_99);
+        std::vector<Value*> ptr_114_indices;
+        ptr_114_indices.push_back(const_int32_55);
+        ptr_114_indices.push_back(const_int32_60);
+        Instruction* ptr_114 = GetElementPtrInst::Create(ptr_107, ptr_114_indices, "", label_99);
+        LoadInst* ptr_115 = new LoadInst(ptr_114, "", false, label_99);
+        ptr_115->setAlignment(8);
+        GetElementPtrInst* ptr_116 = GetElementPtrInst::Create(ptr_115, int64_113, "", label_99);
+        LoadInst* int32_117 = new LoadInst(ptr_116, "", false, label_99);
+        int32_117->setAlignment(4);
+        StoreInst* void_118 = new StoreInst(int32_117, ptr_102, false, label_99);
+        BranchInst::Create(label_101, label_99);
 
         // Block  (label_100)
-        LoadInst* int32_121 = new LoadInst(ptr_101, "", false, label_100);
-        ReturnInst::Create(mod->getContext(), int32_121, label_100);
+        StoreInst* void_120 = new StoreInst(const_int32_55, ptr_102, false, label_100);
+        BranchInst::Create(label_101, label_100);
+
+        // Block  (label_101)
+        LoadInst* int32_122 = new LoadInst(ptr_102, "", false, label_101);
+        ReturnInst::Create(mod->getContext(), int32_122, label_101);
 
     }
 
     // Function: _GLOBAL__I_a (func__GLOBAL__I_a)
     {
 
-        BasicBlock* label_123 = BasicBlock::Create(mod->getContext(), "", func__GLOBAL__I_a, 0);
+        BasicBlock* label_124 = BasicBlock::Create(mod->getContext(), "", func__GLOBAL__I_a, 0);
+        // Block  (label_124)
+        CallInst* void_125 = CallInst::Create(func___cxx_global_var_init, "", label_124);
+        void_125->setCallingConv(CallingConv::C);
+        void_125->setTailCall(false);
+        AttributeSet void_125_PAL;
+        void_125->setAttributes(void_125_PAL);
 
-        // Block  (label_123)
-        CallInst* void_124 = CallInst::Create(func___cxx_global_var_init, "", label_123);
-        void_124->setCallingConv(CallingConv::C);
-        void_124->setTailCall(false);
-        AttributeSet void_124_PAL;
-        void_124->setAttributes(void_124_PAL);
-
-        ReturnInst::Create(mod->getContext(), label_123);
+        ReturnInst::Create(mod->getContext(), label_124);
 
     }
 
