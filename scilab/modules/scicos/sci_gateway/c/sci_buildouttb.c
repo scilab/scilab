@@ -380,7 +380,7 @@ int sci_buildouttb(char *fname, unsigned long fname_len)
                 Scierror(999, _("%s: Wrong value for input argument #%d: An integer expected.\n"), fname, 2);
                 FREE(lnksz);
                 FREE(lnktyp);
-                return;
+                return 0;
         }
     }
     else
