@@ -475,6 +475,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         // Find if window already exists, if not create a new one
         int iID = x[0];
         char *pFigureUID = (char*)getFigureFromIndex(iID);
+        char* pstrAxesUID = NULL;
 
         if (nbInputArgument(pvApiCtx) != 2)
         {
@@ -487,9 +488,10 @@ int sci_xset(char *fname, unsigned long fname_len)
         {
             pFigureUID = createNewFigureWithAxes();
             setGraphicObjectProperty(pFigureUID, __GO_ID__, &iID, jni_int, 1);
-            setCurrentFigure(pFigureUID);
         }
         setCurrentFigure(pFigureUID);
+        getGraphicObjectProperty(pFigureUID, __GO_SELECTED_CHILD__, jni_string,  &pstrAxesUID);
+        setCurrentSubWin(pstrAxesUID);
     }
     else if ((strcmp((l1), "foreground") == 0) || (strcmp((l1), "color") == 0) || (strcmp((l1), "pattern") == 0))
     {
