@@ -16,6 +16,8 @@ Scilab Bug Fixes
 * Bug #7858 fixed - variance and variancef can now return the mean of the input
                     in a new output argument.
 
+* Bug #7879 fixed - string now accepts plist type, and printing a plist displays that string.
+
 * Bug #8031 fixed - cdfgam error message fixed.
 
 * Bug #8337 fixed - mtlb_rand now uses the "uniform" rule, whatever the random rule set is.
