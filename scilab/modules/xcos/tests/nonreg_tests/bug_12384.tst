@@ -7,6 +7,8 @@
 
 // <-- XCOS TEST -->
 
+// <-- ENGLISH IMPOSED -->
+
 // <-- Non-regression test for bug 12384 -->
 //
 // <-- Bugzilla URL -->
