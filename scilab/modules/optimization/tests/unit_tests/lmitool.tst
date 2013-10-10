@@ -7,6 +7,8 @@
 //
 // <-- CLI SHELL MODE -->
 
+//<-- ENGLISH IMPOSED -->
+
 // Constants
 rand("seed", 0);
 n  = 2;

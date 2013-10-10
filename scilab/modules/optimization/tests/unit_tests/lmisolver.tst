@@ -7,6 +7,8 @@
 //
 // <-- CLI SHELL MODE -->
 
+//<-- ENGLISH IMPOSED -->
+
 rand("seed", 0);
 n  = 2;
 A1 = rand(n, n);
