@@ -130,7 +130,7 @@ char *wide_string_to_UTF8(const wchar_t *_wide)
         return NULL;
     }
 
-    int iMaxLen =  (int)wcslen(_wide) * MB_CUR_MAX ;
+    iMaxLen =  (int)wcslen(_wide) * MB_CUR_MAX ;
 
     pchar = (char*) MALLOC(( iMaxLen + 1) * sizeof(char));
     if (pchar == NULL)
