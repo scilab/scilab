@@ -17,6 +17,8 @@ Scilab Bug Fixes
 
 * Bug #12950 fixed - getURL ignored the proxy settings on Windows.
 
+* Bug #12951 fixed - Interactive zoom was broken.
+
 * Bug #12956 fixed - splitURL with no protocol in URL provokes an access
                      violation exception.
 

@@ -69,7 +69,7 @@ public class HelpersGeometry extends DefaultGeometry {
                 data = FloatBuffer.allocate(VERTEX_BUFFER_SIZE);
             }
 
-            Double[] bounds = axes.getDisplayedBounds();
+            Double[] bounds = axes.getCorrectedBounds();
             int mainAxisIndex = (pointAComputer.getFirstAxisIndex() + 1) % 3;
             for (int axisIndex = 0; axisIndex < 3; axisIndex++) {
                 if ((mainAxisIndex != axisIndex) ^ oneAxis) {

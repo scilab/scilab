@@ -105,7 +105,7 @@ public abstract class FigureInteraction {
      */
     protected boolean tightZoomBounds(Axes axes, Double[] zoomBounds) {
         boolean zoomed = false;
-        Double[] dataBounds = axes.getMaximalDisplayedBounds();
+        Double[] dataBounds = new Double[] { -1., 1., -1., 1., -1., 1.};
         for (int i : new int[] {0, 2, 4}) {
             if (zoomBounds[i] < dataBounds[i]) {
                 zoomBounds[i] = dataBounds[i];

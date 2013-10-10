@@ -35,7 +35,7 @@ public abstract class CubeFacesPointComputer extends AbstractPointComputer {
      */
     public CubeFacesPointComputer(final Axes axes, final Point point) {
         super(axes, point);
-        Double[] bounds = axes.getDisplayedBounds();
+        Double[] bounds = axes.getCorrectedBounds();
 
         double maxLambda = -Double.MAX_VALUE;
         Vector3d returnedValue = null;

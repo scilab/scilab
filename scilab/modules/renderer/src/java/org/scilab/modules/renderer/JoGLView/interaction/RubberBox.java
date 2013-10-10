@@ -299,6 +299,11 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
         if ((pointComputer != null) && (pointComputer.isValid())) {
             String message = baseMessage + " ";
             double[] data = pointComputer.getSecondPosition().getData();
+            double[][] factors = axes.getScaleTranslateFactors();
+            data[0] = (data[0] - factors[1][0]) / factors[0][0];
+            data[1] = (data[1] - factors[1][1]) / factors[0][1];
+            data[2] = (data[2] - factors[1][2]) / factors[0][2];
+
             String comma;
             if (oneAxis) {
                 comma = "";
