@@ -16,11 +16,11 @@
 // splitURL with no protocol in URL provokes an access violation exception
 
 // No protocol
-[proto, server, path, query, user, port, frag] = splitURL("www.scilab.org");
+[proto, server, path, query, username, port, frag] = splitURL("www.scilab.org");
 assert_checkequal(proto, "");
 assert_checkequal(server, "");
 assert_checkequal(path, "www.scilab.org");
 assert_checkequal(query, "");
-assert_checkequal(user, "");
+assert_checkequal(username, "");
 assert_checkequal(port, int32(0));
 assert_checkequal(frag, "");
