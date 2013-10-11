@@ -607,6 +607,7 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 @UMFPACK_FALSE@-I$(top_srcdir)/modules/umfpack/includes/ \
 @UMFPACK_FALSE@-I$(top_srcdir)/modules/output_stream/includes/ \
 @UMFPACK_FALSE@-I$(top_srcdir)/modules/localization/includes/ \
+@UMFPACK_FALSE@$(UMFPACK_CFLAGS) \
 @UMFPACK_FALSE@$(AM_CPPFLAGS)
 
 @UMFPACK_TRUE@libsciumfpack_la_CPPFLAGS = -I$(srcdir)/includes/ \
