@@ -396,7 +396,6 @@ public class EntityPicker {
         if (axes == null) {
             return null;
         }
-        Axes axesObj = AxesHandler.getAxesFromUid(axes);
         Double[] corners;
         Double radAngle = 0.;
         int rotate = 0;
@@ -412,8 +411,6 @@ public class EntityPicker {
                                 (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__)
                              };
 
-        double[][] factors = axesObj.getScaleTranslateFactors();
-
         for (Integer i = 0; i < 4; i++) {
             corners = (Double[])GraphicController.getController().getProperty(label[i], GraphicObjectProperties.__GO_CORNERS__);
             radAngle = (Double)GraphicController.getController().getProperty(label[i], GraphicObjectProperties.__GO_FONT_ANGLE__);
@@ -425,10 +422,6 @@ public class EntityPicker {
             point[1] = pos[1];
             point[2] = 1.0;
             coord = CallRenderer.get2dViewFromPixelCoordinates(axes, point);
-
-            coord[0] = (coord[0] *  factors[0][0]) + factors[1][0];
-            coord[1] = (coord[1] *  factors[0][1]) + factors[1][1];
-            coord[2] = (coord[2] *  factors[0][2]) + factors[1][1];
 
             coord[0] = CommonHandler.InverseLogScale(coord[0], logScale[0]);
             coord[1] = CommonHandler.InverseLogScale(coord[1], logScale[1]);

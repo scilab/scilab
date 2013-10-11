@@ -130,7 +130,7 @@ public class LabelHandler {
         Double[] labelPos;
         double[] pixBotton  = { 0., 0., 0.}, pixTop = { 0., 0., 0.};
         Double[] bounds = ax.getDataBounds();
-        Double  width, height, length, delta, min, max, unscaledMin, unscaledMax, temp;
+        Double  width, height, length, delta, min, max, temp;
         int flag;
 
         switch (axis) {
@@ -153,7 +153,6 @@ public class LabelHandler {
         }
 
         labelPos  = (Double[])GraphicController.getController().getProperty(label, GraphicObjectProperties.__GO_POSITION__);
-        double[][] factors = ax.getScaleTranslateFactors();
 
         switch (axis) {
             case __X__:
@@ -163,8 +162,6 @@ public class LabelHandler {
                 pixTop[0] = bounds[1];
                 pixTop[1] = labelPos[1];
                 pixTop[2] = labelPos[2];
-                unscaledMin = bounds[0] * factors[0][0] + factors[1][0];
-                unscaledMax = bounds[1] * factors[0][0] + factors[1][0];
                 min = bounds[0];
                 max = bounds[1];
                 break;
@@ -175,8 +172,6 @@ public class LabelHandler {
                 pixTop[0] = labelPos[0];
                 pixTop[1] = bounds[3];
                 pixTop[2] = labelPos[2];
-                unscaledMin = bounds[2] * factors[0][1] + factors[1][1];
-                unscaledMax = bounds[3] * factors[0][1] + factors[1][1];
                 min = bounds[2];
                 max = bounds[3];
                 break;
@@ -187,8 +182,6 @@ public class LabelHandler {
                 pixTop[0] = labelPos[0];
                 pixTop[1] = labelPos[1];
                 pixTop[2] = bounds[5];
-                unscaledMin = bounds[4] * factors[0][2] + factors[1][2];
-                unscaledMax = bounds[5] * factors[0][2] + factors[1][2];
                 min = bounds[4];
                 max = bounds[5];
                 break;
@@ -225,30 +218,30 @@ public class LabelHandler {
                 temp = CommonHandler.logScale(labelPos[0], scale) +
                        (delta * ((CommonHandler.logScale(max, scale) - CommonHandler.logScale(min, scale)) / length) * flag);
                 labelPos[0] = CommonHandler.InverseLogScale(temp, scale);
-                if (labelPos[0] < unscaledMin) {
-                    labelPos[0] = unscaledMin;
-                } else if (labelPos[0] > unscaledMax) {
-                    labelPos[0] = unscaledMax;
+                if (labelPos[0] < min) {
+                    labelPos[0] = min;
+                } else if (labelPos[0] > max) {
+                    labelPos[0] = max;
                 }
                 break;
             case __Y__:
                 temp = CommonHandler.logScale(labelPos[1], scale) +
                        (delta * ((CommonHandler.logScale(max, scale) - CommonHandler.logScale(min, scale)) / length) * flag);
                 labelPos[1] = CommonHandler.InverseLogScale(temp, scale);
-                if (labelPos[1] < unscaledMin) {
-                    labelPos[1] = unscaledMin;
-                } else if (labelPos[1] > unscaledMax) {
-                    labelPos[1] = unscaledMax;
+                if (labelPos[1] < min) {
+                    labelPos[1] = min;
+                } else if (labelPos[1] > max) {
+                    labelPos[1] = max;
                 }
                 break;
             case __Z__:
                 temp = CommonHandler.logScale(labelPos[2], scale) +
                        (delta * ((CommonHandler.logScale(max, scale) - CommonHandler.logScale(min, scale)) / length) * flag);
                 labelPos[2] = CommonHandler.InverseLogScale(temp, scale);
-                if (labelPos[2] < unscaledMin) {
-                    labelPos[2] = unscaledMin;
-                } else if (labelPos[2] > unscaledMax) {
-                    labelPos[2] = unscaledMax;
+                if (labelPos[2] < min) {
+                    labelPos[2] = min;
+                } else if (labelPos[2] > max) {
+                    labelPos[2] = max;
                 }
                 break;
             default:

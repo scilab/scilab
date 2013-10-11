@@ -241,7 +241,7 @@ public class GEDPicker {
     /**
      * Surface picker, given a plot3d/fac3d/grayplot/matplot object it checks if the click
      * was over it
-     *
+     * 
      * @param obj The given surface object uid
      * @param position Mouse click position in pixels
      * @return true if picked the surface otherwise returns false
@@ -250,13 +250,13 @@ public class GEDPicker {
 
         String figure = (String)GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_PARENT_FIGURE__);
         double[] mat = DrawerVisitor.getVisitor(figure).getAxesDrawer().getProjection(axesUID).getMatrix();
-        double[][] factors = axes.getScaleTranslateFactors();
+	double[][] factors = axes.getScaleTranslateFactors();
 
         Vector3d v0 = AxesDrawer.unProject(axes, new Vector3d(1.0f * position[0], 1.0f * position[1], 0.0));
         Vector3d v1 = AxesDrawer.unProject(axes, new Vector3d(1.0f * position[0], 1.0f * position[1], 1.0));
-        v0 = new Vector3d((v0.getX() - factors[1][0]) / factors[0][0], (v0.getY() - factors[1][1]) / factors[0][1], (v0.getZ() - factors[1][2]) / factors[0][2]);
-        v1 = new Vector3d((v1.getX() - factors[1][0]) / factors[0][0], (v1.getY() - factors[1][1]) / factors[0][1], (v1.getZ() - factors[1][2]) / factors[0][2]);
-
+	v0 = new Vector3d((v0.getX() - factors[1][0]) / factors[0][0], (v0.getY() - factors[1][1]) / factors[0][1], (v0.getZ() - factors[1][2]) / factors[0][2]);
+	v1 = new Vector3d((v1.getX() - factors[1][0]) / factors[0][0], (v1.getY() - factors[1][1]) / factors[0][1], (v1.getZ() - factors[1][2]) / factors[0][2]);
+	
         Vector3d Dir = v0.minus(v1).getNormalized();
         Z = 2.0;
         double curZ = SurfaceData.pickSurface(obj, v0.getX(), v0.getY(), v0.getZ(),
@@ -311,7 +311,6 @@ public class GEDPicker {
 
         Double[] corners = (Double[])GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_CORNERS__);
         Double radAngle = (Double)GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_FONT_ANGLE__);
-        double[][] factors = axes.getScaleTranslateFactors();
         int rotate = ((int)((radAngle * 2) / Math.PI)) % 2;
         if (rotate == 1) {
 
@@ -329,10 +328,6 @@ public class GEDPicker {
         boolean[] logScale = { 	(Boolean)GraphicController.getController().getProperty(axesUID, GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__),
                                 (Boolean)GraphicController.getController().getProperty(axesUID, GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__)
                              };
-        coord[0] = (coord[0] *  factors[0][0]) + factors[1][0];
-        coord[1] = (coord[1] *  factors[0][1]) + factors[1][1];
-        coord[2] = (coord[2] *  factors[0][2]) + factors[1][1];
-
         coord[0] = CommonHandler.InverseLogScale(coord[0], logScale[0]);
         coord[1] = CommonHandler.InverseLogScale(coord[1], logScale[1]);
 
