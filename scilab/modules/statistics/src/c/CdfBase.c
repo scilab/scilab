@@ -120,9 +120,9 @@ void CdfDefaultError(char** param, int status, double bound)
 /*--------------------------------------------------------------------------*/
 void cdfLowestSearchError(double bound)
 {
-    if (bound <= ZERO_FOR_CDF)
+    if (bound == ZERO_FOR_CDF)
     {
-        Scierror(999, _("Answer appears to be lower than lowest search bound %f\n"), 0);
+        Scierror(999, _("Answer appears to be lower than lowest search bound %g\n"), ZERO_FOR_CDF);
     }
     else
     {
