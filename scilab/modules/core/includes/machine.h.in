@@ -440,6 +440,9 @@
    */
 #undef LT_OBJDIR
 
+/* Define to 1 if your C compiler doesn't accept -c and -o together. */
+#undef NO_MINUS_C_MINUS_O
+
 /* Define to 0 if your system does not have the O_LARGEFILE flag */
 #undef O_LARGEFILE
 
