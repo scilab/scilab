@@ -617,6 +617,7 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 @UMFPACK_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes/ \
 @UMFPACK_TRUE@			-I$(top_srcdir)/modules/localization/includes/ \
 @UMFPACK_TRUE@			-I$(top_srcdir)/modules/mexlib/includes/ \
+@UMFPACK_TRUE@			$(UMFPACK_CFLAGS) \
 @UMFPACK_TRUE@			$(AM_CPPFLAGS)
 
 
