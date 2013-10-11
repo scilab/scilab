@@ -32,10 +32,10 @@ wchar_t **strings_strrev(wchar_t **Input_strings, int Dim_Input_strings)
             for (i = 0; i < Dim_Input_strings; i++)
             {
                 Output_strings[i] = scistrrev(Input_strings[i]);
-                if (!Output_strings[i])
+                if (Output_strings[i] == NULL)
                 {
                     freeArrayOfWideString(Output_strings, i);
-                    return Output_strings;
+                    return NULL;
                 }
             }
         }

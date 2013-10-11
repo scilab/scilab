@@ -48,7 +48,7 @@ int sci_datatip_set_display(char *fname, void* pvApiCtx)
     }
 
     iErr = getScalarHandle(pvApiCtx, piAddr, &llHandle);
-    if(iErr)
+    if (iErr)
     {
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 1;
@@ -64,8 +64,8 @@ int sci_datatip_set_display(char *fname, void* pvApiCtx)
             if (nbInputArgument(pvApiCtx) == 1)
             {
                 setGraphicObjectProperty(datatipUID, __GO_DATATIP_DISPLAY_FNC__, "", jni_string, 1);
-                LhsVar(1) = 0;
-                PutLhsVar();
+                AssignOutputVariable(pvApiCtx, 1) = 0;
+                ReturnArguments(pvApiCtx);
                 return 0;
             }
             else if (nbInputArgument(pvApiCtx) == 2)
@@ -92,8 +92,8 @@ int sci_datatip_set_display(char *fname, void* pvApiCtx)
                         setGraphicObjectProperty(datatipUID, __GO_DATATIP_DISPLAY_FNC__, pstData, jni_string, 1);
 
                         freeAllocatedSingleString(pstData);
-                        LhsVar(1) = 0;
-                        PutLhsVar();
+                        AssignOutputVariable(pvApiCtx, 1) = 0;
+                        ReturnArguments(pvApiCtx);
                         return 0;
                     }
                     else

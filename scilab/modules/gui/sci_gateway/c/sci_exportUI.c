@@ -20,7 +20,7 @@
 #include "exportUserInterface.hxx"
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
-
+#include "FigureList.h"
 /*--------------------------------------------------------------------------*/
 int sci_exportUI(char * fname, void* pvApiCtx)
 {
@@ -62,12 +62,13 @@ int sci_exportUI(char * fname, void* pvApiCtx)
         if (iRows * iCols != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"), fname, 1);
+            return FALSE;
         }
 
         pstFigureUID = (char*)getObjectFromHandle((unsigned long) * stackPointer);
 
         getGraphicObjectProperty(pstFigureUID, __GO_TYPE__, jni_int, (void **)&piHandleType);
-        if (iHandleType == __GO_FIGURE__)
+        if (iHandleType != __GO_FIGURE__)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"), fname, 1);
             return FALSE;
@@ -99,6 +100,12 @@ int sci_exportUI(char * fname, void* pvApiCtx)
     else
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"), fname, 1);
+        return FALSE;
+    }
+
+    if (getFigureFromIndex(iFigureId) == NULL)
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d: A valid figure identifier expected.\n"), fname, 1);
         return FALSE;
     }
 

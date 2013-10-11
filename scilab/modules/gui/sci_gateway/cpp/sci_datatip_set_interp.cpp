@@ -23,7 +23,6 @@ extern "C"
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "BOOL.h"
 }
 
 using namespace org_scilab_modules_gui_datatip;
@@ -108,8 +107,7 @@ int sci_datatip_set_interp(char *fname, void* pvApiCtx)
         return 1;
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
-
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }

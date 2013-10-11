@@ -28,6 +28,7 @@ using namespace org_scilab_modules_gui_datatip;
 int sci_datatip_toggle(char *fname, void* pvApiCtx)
 {
     const char* pstFigureUID = NULL;
+
     int iErr            = 0;
     bool enabled        = false;
     long long llHandle  = 0;
@@ -35,9 +36,9 @@ int sci_datatip_toggle(char *fname, void* pvApiCtx)
 
     SciErr sciErr;
     CheckInputArgument(pvApiCtx, 0, 1);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
-    if (Rhs == 0)
+    if (nbInputArgument(pvApiCtx) == 0)
     {
         pstFigureUID = getCurrentFigure();
         if (pstFigureUID)
@@ -46,7 +47,7 @@ int sci_datatip_toggle(char *fname, void* pvApiCtx)
             DatatipManager::setEnabled(getScilabJavaVM(), pstFigureUID, (!enabled));
         }
     }
-    else if (Rhs == 1)
+    else if (nbInputArgument(pvApiCtx) == 1)
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
         if (sciErr.iErr)
@@ -56,7 +57,7 @@ int sci_datatip_toggle(char *fname, void* pvApiCtx)
         }
 
         iErr = getScalarHandle(pvApiCtx, piAddr, &llHandle);
-        if(iErr)
+        if (iErr)
         {
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 1;
@@ -71,17 +72,16 @@ int sci_datatip_toggle(char *fname, void* pvApiCtx)
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Datatip");
-            return FALSE;
+            return 1;
         }
     }
     else
     {
         Scierror(999, _("%s: Wrong number for input argument: %d or %d expected.\n"), fname, 0, 1);
-        return FALSE;
+        return 1;
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
-
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }

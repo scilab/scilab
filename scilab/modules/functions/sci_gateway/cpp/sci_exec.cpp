@@ -172,7 +172,6 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     else
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "exec", 1);
-        mclose(iID);
         return Function::Error;
     }
 

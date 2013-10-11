@@ -90,6 +90,11 @@ int sci_base2dec(char *fname, void* pvApiCtx)
 
     if (getAllocatedMatrixOfString(pvApiCtx, piAddressVarOne, &m, &n, &pStrs) != 0)
     {
+        if (pStrs)
+        {
+            freeAllocatedMatrixOfString(m, n, pStrs);
+        }
+
         Scierror(999, _("%s: No more memory.\n"), fname);
         return 1;
     }

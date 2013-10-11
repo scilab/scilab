@@ -31,15 +31,17 @@ using namespace org_scilab_modules_gui_plotbrowser;
 /*--------------------------------------------------------------------------*/
 int sci_plotbrowser(char *fname, void* pvApiCtx)
 {
-    SciErr sciErr;
-    int m1 = 0, n1 = 0;
-    char const * figureUid;
+    char const * figureUid = NULL;
+
     int* piAddr = NULL;
     int* piData = NULL;
-    int iErr = 0;
+    int m1      = 0;
+    int n1      = 0;
+    int iErr    = 0;
 
-    CheckLhs(0, 0);
-    CheckRhs(1, 1);
+    SciErr sciErr;
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)
@@ -49,7 +51,7 @@ int sci_plotbrowser(char *fname, void* pvApiCtx)
     }
 
     sciErr = getMatrixOfDoubleAsInteger(pvApiCtx, piAddr, &m1, &n1, &piData);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 1;
@@ -80,9 +82,8 @@ int sci_plotbrowser(char *fname, void* pvApiCtx)
         return 1;
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
-
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

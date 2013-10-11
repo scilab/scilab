@@ -12,14 +12,16 @@
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" scilab:needs-examples="no" xml:id="light_properties">
     <refnamediv>
-        <refname>light_properties</refname>
+        <refname>light properties</refname>
         <refpurpose>Light overview</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
         <para>
-            The light object contains the properties to change lighting appearance.
-            Lights aren't visible in the axes but they affect the surface appearance.
+            The light entity contains the properties to change lighting appearance.
+            Lights aren't visible in the axes but they affect the surface appearance
+            (see <link linkend="lighting">lighting</link> for a detailed explanation about
+             lighting).
         </para>
         <para>
             Lights can be created using <link linkend="light">light</link> function,
@@ -53,8 +55,11 @@
                         types available:<literal>"directional"</literal> and <literal>"point"</literal>.
                         Directional lights are positioned infinitely far from the surface
                         thus emitting parallel rays.
+                    </para>
+                    <para>
                         Point lights are defined as a point in space thus emitting rays in all
                         directions.
+                        The default value is <literal>"point"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -65,6 +70,9 @@
                         The direction can be chaged using a 3 element vector <literal>"[x, y, z]"</literal>
                         representing a vector starting from the origin.
                     </para>
+                    <para>
+                        The default value is <literal>"[0 0 1]"</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -72,6 +80,9 @@
                 <listitem>
                     <para>This field defines the light position for point light.
                         The position can be changed using a 3 element vector <literal>"[x, y, z]"</literal>.
+                    </para>
+                    <para>
+                        The default value is <literal>"[0 0 1]"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -82,6 +93,9 @@
                         The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
                         with each element in the range [0, 1].
                     </para>
+                    <para>
+                        The default value is <literal>"[0.1 0.1 0.1]"</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -91,6 +105,9 @@
                         The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
                         with each element in the range [0, 1].
                     </para>
+                    <para>
+                        The default value is <literal>"[1 1 1]"</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -99,6 +116,9 @@
                     <para>This field defines the specular color of the light.
                         The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
                         with each element in the range [0, 1].
+                    </para>
+                    <para>
+                        The default value is <literal>"[1 1 1]"</literal>.
                     </para>
                 </listitem>
             </varlistentry>

@@ -22,15 +22,12 @@ extern int C2F(intsave)(); /* fortran subroutine */
 int sci_save(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
-
     int iOldSave    = FALSE;
-
     int* piAddr1    = NULL;
-    int iType1      = 0;
     BOOL bWarning   = TRUE;
-    int iErrorRhs = 0;
+    int iRhs = nbInputArgument(pvApiCtx);
 
-    CheckRhs(1, 100000);
+    CheckInputArgumentAtLeast(pvApiCtx, 1);
     CheckLhs(0, 1);
 
     //filename or file descriptor
@@ -41,26 +38,15 @@ int sci_save(char *fname, void *pvApiCtx)
         return 1;
     }
 
-    sciErr = getVarType(pvApiCtx, piAddr1, &iType1);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return 1;
-    }
-
-    if (iType1 == sci_strings)
+    if (isStringType(pvApiCtx, piAddr1))
     {
         int* piAddrI    = NULL;
-        int* piAddrI2   = NULL;
-        int iTypeI      = 0;
-        int iRowsI      = 0;
-        int iColsI      = 0;
         char* pstVarI   = NULL;
 
-        if (Rhs > 1)
+        if (iRhs > 1)
         {
             int i = 0;
-            for (i = 2 ; i <= Rhs ; i++)
+            for (i = 2 ; i <= iRhs ; i++)
             {
                 sciErr = getVarAddressFromPosition(pvApiCtx, i, &piAddrI);
                 if (sciErr.iErr)
@@ -69,27 +55,7 @@ int sci_save(char *fname, void *pvApiCtx)
                     return 1;
                 }
 
-                sciErr = getVarType(pvApiCtx, piAddrI, &iTypeI);
-                if (sciErr.iErr)
-                {
-                    printError(&sciErr, 0);
-                    return 1;
-                }
-
-                if (iTypeI != sci_strings)
-                {
-                    iOldSave = TRUE;
-                    break;
-                }
-
-                sciErr = getVarDimension(pvApiCtx, piAddrI, &iRowsI, &iColsI);
-                if (sciErr.iErr)
-                {
-                    printError(&sciErr, 0);
-                    return 1;
-                }
-
-                if (iRowsI != 1 || iColsI != 1)
+                if (isStringType(pvApiCtx, piAddrI) == 0 || isScalar(pvApiCtx, piAddrI) == 0)
                 {
                     iOldSave = TRUE;
                     break;
@@ -97,13 +63,22 @@ int sci_save(char *fname, void *pvApiCtx)
 
                 if (getAllocatedSingleString(pvApiCtx, piAddrI, &pstVarI))
                 {
+                    if (pstVarI)
+                    {
+                        freeAllocatedSingleString(pstVarI);
+                    }
+
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                     return 1;
                 }
 
                 if (strcmp(pstVarI, "-append") != 0)
                 {
+                    int* piAddrI2   = NULL;
                     //try to get variable by name
                     sciErr = getVarAddressFromName(pvApiCtx, pstVarI, &piAddrI2);
+                    freeAllocatedSingleString(pstVarI);
+                    pstVarI = NULL;
                     if (sciErr.iErr || piAddrI2 == NULL)
                     {
                         // Try old save because here the input variable can be of type "string" but not a variable name
@@ -113,8 +88,6 @@ int sci_save(char *fname, void *pvApiCtx)
                         break;
                     }
                 }
-
-                freeAllocatedSingleString(pstVarI);
             }
         }
         else
@@ -134,30 +107,6 @@ int sci_save(char *fname, void *pvApiCtx)
         //call "overload" to prepare data to export_to_hdf5 function.
         OverLoad(0);
     }
-
-    //old save ( not available in scilab 6
-
-//    if (iOldSave)
-//    {
-//        if (bWarning)
-//        {
-//            //show warning only for variable save, not for environment
-//            if (getWarningMode() && Rhs > 1)
-//            {
-//                sciprint(_("%s: Scilab 6 will not support the file format used.\n"), _("Warning"));
-//                sciprint(_("%s: Please quote the variable declaration. Example, save('myData.sod',a) becomes save('myData.sod','a').\n"), _("Warning"));
-//                sciprint(_("%s: See help('save') for the rational.\n"), _("Warning"));
-//            }
-//
-//            C2F(intsave)();
-//        }
-//        else
-//        {
-//            Scierror(248, _("Wrong value for argument #%d: Valid variable name expected.\n"), iErrorRhs);
-//            return 0;
-//        }
-//    }
-
 
     return 0;
 }

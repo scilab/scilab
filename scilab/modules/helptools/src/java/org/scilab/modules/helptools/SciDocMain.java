@@ -113,7 +113,7 @@ public final class SciDocMain {
 
     /* Stylesheet is useless and just kept to keep the consistency with
      * builddoc V1 */
-    public String process(String sourceDoc, String styleSheet)  {
+    public String process(String sourceDoc, String styleSheet) throws Throwable  {
         String fileToExec = null;
 
         if (!new File(sourceDoc).isFile()) {
@@ -162,9 +162,10 @@ public final class SciDocMain {
         } catch (SAXException e) {
             System.err.println("An error occurred during the conversion:");
             System.err.println(e.toString());
-        } catch (Exception e) {
+        } catch (Throwable e) {
             System.err.println("An error occurred during the conversion:\n");
             e.printStackTrace();
+            throw e;
         }
 
         return fileToExec;

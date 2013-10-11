@@ -22,7 +22,7 @@
 9-Comparaisons_1.png=1317221b1234f688e6595e11a3792d1b
 9-Comparaisons_2.png=af6502f90edbd9b38543af88fe5f38f3
 9-Comparaisons_3.png=f0a5c1ac73fbad1886c26a1175dded0f
-9-Comparaisons_4.png=155d2afc64b08b7caf19b0324b199262
+9-Comparaisons_4.png=88f684efd9b8fd70dac03a02a05313c7
 9-Comparaisons_5.png=74f85e2dc70a3f4c64d83a34c0f4e996
 9-Comparisons_1.png=1317221b1234f688e6595e11a3792d1b
 9-Comparisons_2.png=af6502f90edbd9b38543af88fe5f38f3

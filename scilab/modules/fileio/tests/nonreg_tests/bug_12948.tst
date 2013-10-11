@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2013 - SCilab Enterprises
+// Copyright (C) 2013 - Scilab Enterprises
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -16,6 +16,11 @@
 // When host is not found, getURL provokes a Crash To Desktop
 
 instr = "getURL(''http://www.scilab-dummy.org'', ''scilab_homepage.html'');";
-errMsg = msprintf(_("Transfer did not complete successfully: Could not resolve host: www.scilab-dummy.org; Host not found\n"));
-assert_checkerror(instr, errMsg);
+if getos() == 'Windows' then
+  errReason = "Could not resolve host: www.scilab-dummy.org; Host not found";
+else
+  errReason = "Couldn''t resolve host ''www.scilab-dummy.org''";
+end
+errMsg =  msprintf(gettext("Transfer did not complete successfully: %s\n"), errReason);
 
+assert_checkerror(instr, errMsg);

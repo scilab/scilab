@@ -31,17 +31,19 @@ using namespace org_scilab_modules_gui_editor;
 /*--------------------------------------------------------------------------*/
 int sci_useeditor(char *fname, void* pvApiCtx)
 {
-    SciErr sciErr;
-    int m1 = 0, n1 = 0;
-    int enable = 0;
-    char const * figureUid;
+    char const * figureUid = NULL;
+
     int* piAddr = NULL;
     int* piVar1 = NULL;
     int* piVar2 = NULL;
-    int iErr = 0;
+    int m1      = 0;
+    int n1      = 0;
+    int enable  = 0;
+    int iErr    = 0;
 
-    CheckLhs(0, 0);
-    CheckRhs(1, 2);
+    SciErr sciErr;
+    CheckInputArgument(pvApiCtx, 1, 2);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)
@@ -51,7 +53,7 @@ int sci_useeditor(char *fname, void* pvApiCtx)
     }
 
     sciErr = getMatrixOfDoubleAsInteger(pvApiCtx, piAddr, &m1, &n1, &piVar1);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 1;
@@ -81,7 +83,7 @@ int sci_useeditor(char *fname, void* pvApiCtx)
             }
 
             sciErr = getMatrixOfBoolean(pvApiCtx, piAddr, &m1, &n1, &piVar2);
-            if(sciErr.iErr)
+            if (sciErr.iErr)
             {
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                 return 1;
@@ -114,15 +116,14 @@ int sci_useeditor(char *fname, void* pvApiCtx)
     n1 = 1;
 
     sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, m1, n1, &enable);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         Scierror(999, _("%s: Can not create output argument #%d.\n"), fname, 1);
         return 1;
     }
 
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
-
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

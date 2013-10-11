@@ -8,17 +8,17 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
-function [M,sel]=pack(M,blocksizes)
+function [M, sel] = pack(M, blocksizes)
     //
     // Check input arguments
-    [lhs,rhs]=argn();
-    if rhs<>2 then
+    [lhs, rhs] = argn();
+    if rhs <> 2 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"pack",2));
     end
     //
     // Check type
-    if typeof(M) <> "constant" then
-        error(msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"),"pack",1));
+    if and(typeof(M) <> ["constant" "sparse"]) then
+        error(msprintf(gettext("%s: Wrong type for argument #%d: Real matrix or sparse matrix expected.\n"),"pack",1));
     end
     if typeof(blocksizes) <> "constant" then
         error(msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"),"pack",2));
@@ -39,16 +39,17 @@ function [M,sel]=pack(M,blocksizes)
     end
     //
     // Proceed...
-    sel=[]
-    kk=0
-    blocksizes=matrix(blocksizes,1,size(blocksizes,"*"))
+    sel = []
+    kk = 0
+    blocksizes = matrix(blocksizes, 1, size(blocksizes,"*"))
     for ni=blocksizes
-        k=kk
+        k = kk
         for j=1:ni
-            sel=[sel,k+(j:ni)]
-            k=k+ni
+            sel = [sel, k+(j:ni)]
+            k = k+ni
         end
-        kk=kk+ni*ni
+        kk = kk+ni*ni
     end
-    M=M(sel,:)
+    M = M(sel, :)
+
 endfunction

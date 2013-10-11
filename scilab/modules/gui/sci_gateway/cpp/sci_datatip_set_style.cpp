@@ -30,21 +30,23 @@ using namespace org_scilab_modules_gui_datatip;
 
 int sci_datatip_set_style(char *fname, void* pvApiCtx)
 {
-    int* piAddr	= NULL;
-    int nbRow = 0, nbCol = 0;
-    char* polylineUID = NULL;
-    double* markStyle = NULL;
-    int* pbBoxed = NULL;
-    int* pbLabeled = NULL;
-    int datatipSetStyleOption;
+    int* piAddr               = NULL;
+    char* polylineUID         = NULL;
+    double* markStyle         = NULL;
+    int* pbBoxed              = NULL;
+    int* pbLabeled            = NULL;
+    int datatipSetStyleOption = 0;
+    long long llHandle        = 0;
+    int nbRow                 = 0;
+    int nbCol                 = 0;
+    int iErr                  = 0;
+
     int iType = 0;
-    int iErr = 0;
     int *piType = &iType;
-    long long llHandle = 0;
 
     SciErr sciErr;
     CheckInputArgument(pvApiCtx, 1, 4);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)
@@ -54,7 +56,7 @@ int sci_datatip_set_style(char *fname, void* pvApiCtx)
     }
 
     iErr = getScalarHandle(pvApiCtx, piAddr, &llHandle);
-    if(iErr)
+    if (iErr)
     {
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
@@ -74,38 +76,38 @@ int sci_datatip_set_style(char *fname, void* pvApiCtx)
                 {
                     case (1):
                         DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, 1, true, true);
-                        LhsVar(1) = 0;
-                        PutLhsVar();
+                        AssignOutputVariable(pvApiCtx, 1) = 0;
+                        ReturnArguments(pvApiCtx);
                         return 0;
                     case (2):
                         DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, 1, false, true);
-                        LhsVar(1) = 0;
-                        PutLhsVar();
+                        AssignOutputVariable(pvApiCtx, 1) = 0;
+                        ReturnArguments(pvApiCtx);
                         return 0;
                     case (3):
                         DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, 1, false, false);
-                        LhsVar(1) = 0;
-                        PutLhsVar();
+                        AssignOutputVariable(pvApiCtx, 1) = 0;
+                        ReturnArguments(pvApiCtx);
                         return 0;
                     case (4):
                         DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, 2, true, true);
-                        LhsVar(1) = 0;
-                        PutLhsVar();
+                        AssignOutputVariable(pvApiCtx, 1) = 0;
+                        ReturnArguments(pvApiCtx);
                         return 0;
                     case (5):
                         DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, 2, false, true);
-                        LhsVar(1) = 0;
-                        PutLhsVar();
+                        AssignOutputVariable(pvApiCtx, 1) = 0;
+                        ReturnArguments(pvApiCtx);
                         return 0;
                     case (6):
                         DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, 2, false, false);
-                        LhsVar(1) = 0;
-                        PutLhsVar();
+                        AssignOutputVariable(pvApiCtx, 1) = 0;
+                        ReturnArguments(pvApiCtx);
                         return 0;
                     case (0):
                         //Do nothing.
-                        LhsVar(1) = 0;
-                        PutLhsVar();
+                        AssignOutputVariable(pvApiCtx, 1) = 0;
+                        ReturnArguments(pvApiCtx);
                         return 0;
                 }
             }
@@ -129,8 +131,8 @@ int sci_datatip_set_style(char *fname, void* pvApiCtx)
                     if ((int)markStyle[0] == 1 || (int)markStyle[0] == 2)
                     {
                         DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, (int)markStyle[0], true, true);
-                        LhsVar(1) = 0;
-                        PutLhsVar();
+                        AssignOutputVariable(pvApiCtx, 1) = 0;
+                        ReturnArguments(pvApiCtx);
                         return 0;
                     }
                     else
@@ -182,8 +184,8 @@ int sci_datatip_set_style(char *fname, void* pvApiCtx)
                             }
 
                             DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, (int)markStyle[0], (bool)pbBoxed[0], true);
-                            LhsVar(1) = 0;
-                            PutLhsVar();
+                            AssignOutputVariable(pvApiCtx, 1) = 0;
+                            ReturnArguments(pvApiCtx);
                             return 0;
                         }
                         else
@@ -223,7 +225,6 @@ int sci_datatip_set_style(char *fname, void* pvApiCtx)
 
                     if ((int)markStyle[0] == 1 || (int)markStyle[0] == 2)
                     {
-
                         if (checkInputArgumentType(pvApiCtx, 3, sci_boolean))
                         {
                             sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr);
@@ -255,8 +256,8 @@ int sci_datatip_set_style(char *fname, void* pvApiCtx)
                                 }
 
                                 DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, (int)markStyle[0], (bool)pbBoxed[0], (bool)pbLabeled[0]);
-                                LhsVar(1) = 0;
-                                PutLhsVar();
+                                AssignOutputVariable(pvApiCtx, 1) = 0;
+                                ReturnArguments(pvApiCtx);
                                 return 0;
                             }
                             else
@@ -296,8 +297,7 @@ int sci_datatip_set_style(char *fname, void* pvApiCtx)
         }
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
-
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }

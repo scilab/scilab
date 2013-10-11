@@ -107,19 +107,21 @@ int wcstat(char* filename, struct _stat *st)
 #else //Linux check for MAC OS X
 char *wide_string_to_UTF8(const wchar_t *_wide)
 {
+    char* pOutSave = NULL;
+    wchar_t* pSaveIn = NULL;
+    size_t iSize = 0;
+    size_t iLeftIn = 0;
+    size_t iLeftOut = 0;
+    char* pOut = NULL;
+    iconv_t cd_UTF16_to_UTF8 = iconv_open("UTF-8", "UTF-32LE");
+
     if (_wide == NULL)
     {
         return NULL;
     }
-    char* pOutSave = NULL;
-    wchar_t* pSaveIn = _wide;
-    size_t iSize = 0;
-    size_t iLeftIn = wcslen(_wide) * sizeof(wchar_t);
-    size_t iLeftOut = 0;
 
-    char* pOut = NULL;
-
-    iconv_t cd_UTF16_to_UTF8 = iconv_open("UTF-8", "UTF-32LE");
+    pSaveIn = _wide;
+    iLeftIn = wcslen(_wide) * sizeof(wchar_t);
 
     iLeftOut = iLeftIn + (1 * sizeof(wchar_t));
     pOut = (char*)MALLOC(iLeftOut);
@@ -138,19 +140,23 @@ char *wide_string_to_UTF8(const wchar_t *_wide)
 /*--------------------------------------------------------------------------*/
 wchar_t *to_wide_string(const char *_UTFStr)
 {
-    if (_UTFStr == NULL)
-    {
-        return NULL;
-    }
     wchar_t* pOutSave = NULL;
-    char* pInSave = _UTFStr;
+    char* pInSave = NULL;
     size_t iSize = 0;
-    size_t iLeftIn = strlen(_UTFStr);
+    size_t iLeftIn = 0;
     size_t iLeftOut = 0;
 
     wchar_t* pOut = NULL;
 
     iconv_t cd_UTF8_to_UTF16 = iconv_open("UTF-32LE", "UTF-8");
+
+    if (_UTFStr == NULL)
+    {
+        return NULL;
+    }
+
+    iLeftIn = strlen(_UTFStr);
+    pInSave = _UTFStr;
 
     iLeftOut = (iLeftIn + 1) * sizeof(wchar_t);
     pOut = (wchar_t*)MALLOC(iLeftOut);

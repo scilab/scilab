@@ -12,4 +12,4 @@ Name=Scilab
 StartupNotify=false
 Terminal=false
 Type=Application
-Categories=Education;Science;Math;Development;Physics;
+Categories=Education;Science;Development;Math;Physics;Engineering;Java

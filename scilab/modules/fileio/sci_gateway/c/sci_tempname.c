@@ -35,8 +35,7 @@ int sci_tempname(char *fname, void* pvApiCtx)
         wcprefix = (wchar_t *)MALLOC(sizeof(wchar_t) * (wcslen(DEFAULT_PREFIX) + 1));
         wcscpy(wcprefix, DEFAULT_PREFIX);
     }
-
-    if (Rhs == 1)
+    else
     {
         int *piAddressVarOne = NULL;
 
@@ -44,7 +43,6 @@ int sci_tempname(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            FREE(wcprefix);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
@@ -57,8 +55,13 @@ int sci_tempname(char *fname, void* pvApiCtx)
 
         if (isStringType(pvApiCtx, piAddressVarOne))
         {
-            if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &wcprefix) != 0)
+            if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &wcprefix))
             {
+                if (wcprefix)
+                {
+                    freeAllocatedSingleWideString(wcprefix);
+                }
+
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 0;
             }
@@ -67,8 +70,6 @@ int sci_tempname(char *fname, void* pvApiCtx)
             if (wcslen(wcprefix) > 3)
             {
                 FREE(wcprefix);
-                wcprefix = NULL;
-
                 Scierror(999, _("%s: Wrong size for input argument #%d: A string (3 characters max.) expected.\n"), fname, 1);
                 return 0;
             }
@@ -77,34 +78,29 @@ int sci_tempname(char *fname, void* pvApiCtx)
         else
         {
             FREE(wcprefix);
-            wcprefix = NULL;
-
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
             return 0;
         }
     }
 
     wcTempFilename = createtempfilenameW(wcprefix, TRUE);
-
     FREE(wcprefix);
-    wcprefix = NULL;
-
-    if (wcTempFilename)
+    if (wcTempFilename == NULL)
     {
-        if (createSingleWideString(pvApiCtx, Rhs + 1, wcTempFilename) == 0)
-        {
-            FREE(wcTempFilename);
-            wcTempFilename = NULL;
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
 
-            LhsVar(1) = Rhs + 1;
-            PutLhsVar();
-            return 0;
-        }
+    if (createSingleWideString(pvApiCtx, Rhs + 1, wcTempFilename))
+    {
+        FREE(wcTempFilename);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
     }
 
     FREE(wcTempFilename);
-    wcTempFilename = NULL;
-    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+    LhsVar(1) = Rhs + 1;
+    PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

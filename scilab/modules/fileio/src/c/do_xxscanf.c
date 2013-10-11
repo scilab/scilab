@@ -283,6 +283,7 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
 
                 case L'n':
                     n_directive_count++;
+                    //pass to next statement
 
                 case L'i':
                 case L'd':

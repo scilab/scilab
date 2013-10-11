@@ -20,8 +20,6 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "gw_gui.h"
-#include "BOOL.h"
-#include "MALLOC.h"
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -39,7 +37,7 @@ int sci_datatipremove(char *fname, void* pvApiCtx)
     char* datatipUID    = NULL;
     char* polylineUID   = NULL;
     double* pdblReal    = NULL;
-    int* piAddr	        = NULL;
+    int* piAddr         = NULL;
     long long llHandle  = 0;
     int indexPos        = 0;
     int iErr            = 0;
@@ -61,7 +59,7 @@ int sci_datatipremove(char *fname, void* pvApiCtx)
     }
 
     iErr = getScalarHandle(pvApiCtx, piAddr, &llHandle);
-    if(iErr)
+    if (iErr)
     {
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 1;
@@ -155,7 +153,7 @@ int sci_datatipremove(char *fname, void* pvApiCtx)
         return 1;
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }

@@ -274,12 +274,20 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
     }
 
     /**
-     * Export an bitmap file
+     * Export a vectorial file
      * @param userExtension extension caught by the user
      */
     public void vectorialExport(String userExtension) {
         Component c = DrawerVisitor.getVisitor(figureUID).getComponent();
-        SimpleTab parentTab = (SimpleTab) SwingUtilities.getAncestorOfClass(SimpleTab.class, c);
         ExportData exportData = new ExportData(figureUID, this.exportName, userExtension, null);
+
+        String actualFilename = exportData.getExportName();
+        if (this.getExtension(actualFilename) == null) {
+            // Could not get the extension from the user input
+            // take the one from the list
+            actualFilename += "." + userExtension;
+        }
+
+        FileExporter.fileExport(figureUID, actualFilename, exportData.getExportExtension(), -1, 0);
     }
 }

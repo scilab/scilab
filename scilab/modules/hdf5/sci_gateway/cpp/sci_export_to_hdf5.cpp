@@ -68,6 +68,7 @@ int sci_export_to_hdf5(char *fname, int* pvApiCtx)
     char *pstFileName   = NULL;
     bool bExport        = true;
     bool bAppendMode    = false;
+    int iRhs            = nbInputArgument(pvApiCtx);
 
     SciErr sciErr;
 
@@ -94,6 +95,8 @@ int sci_export_to_hdf5(char *fname, int* pvApiCtx)
             sciErr = getVarAddressFromName(pvApiCtx, pstNameList[i], &piAddrList[i]);
             if (sciErr.iErr)
             {
+                freeArrayOfString(pstNameList, iRhs);
+                FREE(piAddrList);
                 Scierror(999, _("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname, i + 1);
                 printError(&sciErr, 0);
                 return 1;
@@ -123,7 +126,6 @@ int sci_export_to_hdf5(char *fname, int* pvApiCtx)
 
     if (iH5File < 0)
     {
-        FREE(pstFileName);
         if (iH5File == -2)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: \"%s\" is a directory"), fname, 1, pstNameList[0]);
@@ -133,6 +135,9 @@ int sci_export_to_hdf5(char *fname, int* pvApiCtx)
             Scierror(999, _("%s: Cannot open file %s.\n"), fname, pstNameList[0]);
         }
 
+        FREE(piAddrList);
+        freeArrayOfString(pstNameList, iRhs);
+        FREE(pstFileName);
         return 1;
     }
 
@@ -144,6 +149,9 @@ int sci_export_to_hdf5(char *fname, int* pvApiCtx)
             //to update version must be the same
             closeHDF5File(iH5File);
             Scierror(999, _("%s: Wrong SOD file format version. Expected: %d Found: %d\n"), fname, SOD_FILE_VERSION, iVersion);
+            FREE(piAddrList);
+            freeArrayOfString(pstNameList, iRhs);
+            FREE(pstFileName);
             return 1;
         }
     }
@@ -164,6 +172,9 @@ int sci_export_to_hdf5(char *fname, int* pvApiCtx)
                 {
                     closeHDF5File(iH5File);
                     Scierror(999, _("%s: Unable to delete existing variable \"%s\"."), fname, pstNameList[i]);
+                    FREE(piAddrList);
+                    freeArrayOfString(pstNameList, iRhs);
+                    FREE(pstFileName);
                     return 1;
                 }
             }
@@ -171,6 +182,9 @@ int sci_export_to_hdf5(char *fname, int* pvApiCtx)
             {
                 closeHDF5File(iH5File);
                 Scierror(999, _("%s: Variable \'%s\' already exists in file \'%s\'\nUse -append option to replace existing variable\n."), fname, pstNameList[i], pstNameList[0]);
+                FREE(piAddrList);
+                freeArrayOfString(pstNameList, iRhs);
+                FREE(pstFileName);
                 return 1;
             }
         }
@@ -189,6 +203,9 @@ int sci_export_to_hdf5(char *fname, int* pvApiCtx)
         {
             closeHDF5File(iH5File);
             Scierror(999, _("%s: Unable to update Scilab version in \"%s\"."), fname, pstNameList[0]);
+            FREE(piAddrList);
+            freeArrayOfString(pstNameList, iRhs);
+            FREE(pstFileName);
             return 1;
         }
 
@@ -196,6 +213,9 @@ int sci_export_to_hdf5(char *fname, int* pvApiCtx)
         {
             closeHDF5File(iH5File);
             Scierror(999, _("%s: Unable to update HDF5 format version in \"%s\"."), fname, pstNameList[0]);
+            FREE(piAddrList);
+            freeArrayOfString(pstNameList, iRhs);
+            FREE(pstFileName);
             return 1;
         }
     }
@@ -207,7 +227,10 @@ int sci_export_to_hdf5(char *fname, int* pvApiCtx)
         //remove file
         deleteafile(pstFileName);
     }
+
     FREE(pstFileName);
+    freeArrayOfString(pstNameList, iRhs);
+    FREE(piAddrList);
 
     //create boolean return value
     int *piReturn = NULL;
@@ -226,16 +249,6 @@ int sci_export_to_hdf5(char *fname, int* pvApiCtx)
     {
         piReturn[0] = 0;
     }
-
-
-    //free memory
-    for (int i = 0 ; i < nbInputArgument(pvApiCtx) ; i++)
-    {
-        FREE(pstNameList[i]);
-    }
-    FREE(pstNameList);
-
-    FREE(piAddrList);
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     ReturnArguments(pvApiCtx);
@@ -350,8 +363,8 @@ static bool export_void(int* pvCtx, int _iH5File, int *_piVar, char* _pstName)
         return false;
     }
 
-    char pstMsg[] = "void";
-    print_type(pstMsg);
+    //char pstMsg[] = "void";
+    //print_type(pstMsg);
     return true;
 }
 
@@ -363,8 +376,8 @@ static bool export_undefined(int* pvCtx, int _iH5File, int *_piVar, char* _pstNa
         return false;
     }
 
-    char pstMsg[] = "void";
-    print_type(pstMsg);
+    //char pstMsg[] = "void";
+    //print_type(pstMsg);
     return true;
 }
 
@@ -384,9 +397,9 @@ static bool export_list(int* pvCtx, int _iH5File, int *_piVar, char* _pstName, i
     //create groupe name
     char* pstGroupName	= createGroupName(_pstName);
 
-    char pstMsg[256];
-    sprintf(pstMsg, "list (%d)", iItemNumber);
-    print_type(pstMsg);
+    //char pstMsg[256];
+    //sprintf(pstMsg, "list (%d)", iItemNumber);
+    //print_type(pstMsg);
 
     iLevel++;
     //open list
@@ -470,9 +483,9 @@ static bool export_double(int* pvCtx, int _iH5File, int *_piVar, char* _pstName)
         return false;
     }
 
-    char pstMsg[512];
-    sprintf(pstMsg, "double (%d x %d)", piDims[0], piDims[1]);
-    print_type(pstMsg);
+    //char pstMsg[512];
+    //sprintf(pstMsg, "double (%d x %d)", piDims[0], piDims[1]);
+    //print_type(pstMsg);
     return true;
 }
 
@@ -486,8 +499,6 @@ static bool export_poly(int* pvCtx, int _iH5File, int *_piVar, char* _pstName)
     int iVarNameLen = 0;
     int piDims[2];
 
-
-
     SciErr sciErr = getPolyVariableName(pvCtx, _piVar, pstVarName, &iVarNameLen);
     if (sciErr.iErr)
     {
@@ -497,67 +508,25 @@ static bool export_poly(int* pvCtx, int _iH5File, int *_piVar, char* _pstName)
 
     if (isVarComplex(pvCtx, _piVar))
     {
-        sciErr = getComplexMatrixOfPoly(pvCtx, _piVar, &piDims[0], &piDims[1], NULL, NULL, NULL);
-        if (sciErr.iErr)
+        if (getAllocatedMatrixOfComplexPoly(pvCtx, _piVar, &piDims[0], &piDims[1], &piNbCoef, &pdblReal, &pdblImg))
         {
-            printError(&sciErr, 0);
-            return false;
-        }
-
-        piNbCoef = (int*)MALLOC(piDims[0] * piDims[1] * sizeof(int));
-        sciErr = getComplexMatrixOfPoly(pvCtx, _piVar, &piDims[0], &piDims[1], piNbCoef, NULL, NULL);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return false;
-        }
-
-        pdblReal = (double**)MALLOC(sizeof(double*) * piDims[0] * piDims[1]);
-        pdblImg = (double**)MALLOC(sizeof(double*) * piDims[0] * piDims[1]);
-        for (int i = 0 ; i < piDims[0] * piDims[1] ; i++)
-        {
-            pdblReal[i] = (double*)MALLOC(sizeof(double) * piNbCoef[i]);// for null termination
-            pdblImg[i]	= (double*)MALLOC(sizeof(double) * piNbCoef[i]);// for null termination
-        }
-        sciErr = getComplexMatrixOfPoly(pvCtx, _piVar, &piDims[0], &piDims[1], piNbCoef, pdblReal, pdblImg);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
+            freeAllocatedMatrixOfComplexPoly(piDims[0], piDims[1], piNbCoef, pdblReal, pdblImg);
             return false;
         }
 
         iRet = writePolyComplexMatrix(_iH5File, _pstName, pstVarName, 2, piDims, piNbCoef, pdblReal, pdblImg);
+        freeAllocatedMatrixOfComplexPoly(piDims[0], piDims[1], piNbCoef, pdblReal, pdblImg);
     }
     else
     {
-        sciErr = getMatrixOfPoly(pvCtx, _piVar, &piDims[0], &piDims[1], NULL, NULL);
-        if (sciErr.iErr)
+        if (getAllocatedMatrixOfPoly(pvCtx, _piVar, &piDims[0], &piDims[1], &piNbCoef, &pdblReal))
         {
-            printError(&sciErr, 0);
-            return false;
-        }
-
-        piNbCoef = (int*)MALLOC(piDims[0] * piDims[1] * sizeof(int));
-        sciErr = getMatrixOfPoly(pvCtx, _piVar, &piDims[0], &piDims[1], piNbCoef, NULL);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return false;
-        }
-
-        pdblReal = (double**)MALLOC(sizeof(double*) * piDims[0] * piDims[1]);
-        for (int i = 0 ; i < piDims[0] * piDims[1] ; i++)
-        {
-            pdblReal[i] = (double*)MALLOC(sizeof(double) * piNbCoef[i]);// for null termination
-        }
-        sciErr = getMatrixOfPoly(pvCtx, _piVar, &piDims[0], &piDims[1], piNbCoef, pdblReal);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
+            freeAllocatedMatrixOfPoly(piDims[0], piDims[1], piNbCoef, pdblReal);
             return false;
         }
 
         iRet = writePolyMatrix(_iH5File, _pstName, pstVarName, 2, piDims, piNbCoef, pdblReal);
+        freeAllocatedMatrixOfPoly(piDims[0], piDims[1], piNbCoef, pdblReal);
     }
 
     if (iRet)
@@ -565,29 +534,9 @@ static bool export_poly(int* pvCtx, int _iH5File, int *_piVar, char* _pstName)
         return false;
     }
 
-    char pstMsg[512];
-    sprintf(pstMsg, "poly (%d x %d)", piDims[0], piDims[1]);
-    print_type(pstMsg);
-
-    if (pdblReal)
-    {
-        for (int i = 0 ; i < piDims[0] * piDims[1] ; i++)
-        {
-            FREE(pdblReal[i]);
-        }
-        FREE(pdblReal);
-    }
-
-    if (pdblImg)
-    {
-        for (int i = 0 ; i < piDims[0] * piDims[1] ; i++)
-        {
-            FREE(pdblImg[i]);
-        }
-        FREE(pdblImg);
-    }
-
-    FREE(piNbCoef);
+    //char pstMsg[512];
+    //sprintf(pstMsg, "poly (%d x %d)", piDims[0], piDims[1]);
+    //print_type(pstMsg);
     return true;
 }
 
@@ -611,9 +560,9 @@ static bool export_boolean(int* pvCtx, int _iH5File, int *_piVar, char* _pstName
         return false;
     }
 
-    char pstMsg[512];
-    sprintf(pstMsg, "bool (%d x %d)", piDims[0], piDims[1]);
-    print_type(pstMsg);
+    //char pstMsg[512];
+    //sprintf(pstMsg, "bool (%d x %d)", piDims[0], piDims[1]);
+    //print_type(pstMsg);
     return true;
 }
 
@@ -639,9 +588,9 @@ static bool export_boolean_sparse(int* pvCtx, int _iH5File, int *_piVar, char* _
         return false;
     }
 
-    char pstMsg[512];
-    sprintf(pstMsg, "boolean sparse (%d x %d)", piDims[0], piDims[1]);
-    print_type(pstMsg);
+    //char pstMsg[512];
+    //sprintf(pstMsg, "boolean sparse (%d x %d)", piDims[0], piDims[1]);
+    //print_type(pstMsg);
     return true;
 }
 
@@ -684,15 +633,15 @@ static bool export_sparse(int* pvCtx, int _iH5File, int *_piVar, char* _pstName)
         return false;
     }
 
-    char pstMsg[512];
-    sprintf(pstMsg, "sparse (%d x %d)", piDims[0], piDims[1]);
-    print_type(pstMsg);
+    //char pstMsg[512];
+    //sprintf(pstMsg, "sparse (%d x %d)", piDims[0], piDims[1]);
+    //print_type(pstMsg);
     return true;
 }
 
 static bool export_matlab_sparse(int* pvCtx, int *_piVar, char* _pstName)
 {
-    print_type(_pstName);
+    //print_type(_pstName);
     return false;
 }
 
@@ -794,22 +743,21 @@ static bool export_ints(int* pvCtx, int _iH5File, int *_piVar, char* _pstName)
         return false;
     }
 
-    char pstMsg[512];
-    sprintf(pstMsg, "int%d (%d x %d)", 8 * iPrec, piDims[0], piDims[1]);
-    print_type(pstMsg);
+    //char pstMsg[512];
+    //sprintf(pstMsg, "int%d (%d x %d)", 8 * iPrec, piDims[0], piDims[1]);
+    //print_type(pstMsg);
     return true;
 }
 
 static bool export_handles(int* pvCtx, int *_piVar, char* _pstName)
 {
-    print_type(_pstName);
+    //print_type(_pstName);
     return false;
 }
 
 static bool export_strings(int* pvCtx, int _iH5File, int *_piVar, char* _pstName)
 {
     int iRet = 0;
-    int* piLen = NULL;
     char** pstData = NULL;
     int piDims[2];
 
@@ -820,63 +768,51 @@ static bool export_strings(int* pvCtx, int _iH5File, int *_piVar, char* _pstName
         return false;
     }
 
-    piLen = (int*)MALLOC(piDims[0] * piDims[1] * sizeof(int));
-    sciErr = getMatrixOfString(pvCtx, _piVar, &piDims[0], &piDims[1], piLen, NULL);
-    if (sciErr.iErr)
+    if (getAllocatedMatrixOfString(pvCtx, _piVar, &piDims[0], &piDims[1], &pstData))
     {
-        printError(&sciErr, 0);
-        return false;
-    }
+        if (pstData)
+        {
+            freeAllocatedMatrixOfString(piDims[0], piDims[1], pstData);
+        }
 
-    pstData = (char**)MALLOC(sizeof(char*) * piDims[0] * piDims[1]);
-    for (int i = 0 ; i < piDims[0] * piDims[1] ; i++)
-    {
-        pstData[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));// for null termination
-    }
-
-    sciErr = getMatrixOfString(pvCtx, _piVar, &piDims[0], &piDims[1], piLen, pstData);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
         return false;
     }
 
     iRet = writeStringMatrix(_iH5File, _pstName, 2, piDims, pstData);
-
+    freeAllocatedMatrixOfString(piDims[0], piDims[1], pstData);
     if (iRet)
     {
         return false;
     }
 
-    char pstMsg[512];
-    sprintf(pstMsg, "string (%d x %d)", piDims[0], piDims[1]);
-    print_type(pstMsg);
+    //char pstMsg[512];
+    //sprintf(pstMsg, "string (%d x %d)", piDims[0], piDims[1]);
+    //print_type(pstMsg);
 
-    freeArrayOfString(pstData, piDims[0] * piDims[1]);
     return true;
 }
 
 static bool export_u_function(int* pvCtx, int *_piVar, char* _pstName)
 {
-    print_type(_pstName);
+    //print_type(_pstName);
     return false;
 }
 
 static bool export_c_function(int* pvCtx, int *_piVar, char* _pstName)
 {
-    print_type(_pstName);
+    //print_type(_pstName);
     return false;
 }
 
 static bool export_lib(int* pvCtx, int *_piVar, char* _pstName)
 {
-    print_type(_pstName);
+    //print_type(_pstName);
     return false;
 }
 
 static bool export_lufact_pointer(int* pvCtx, int *_piVar, char* _pstName)
 {
-    print_type(_pstName);
+    /*print_type*/(_pstName);
     return false;
 }
 
@@ -934,13 +870,12 @@ static bool isVarExist(int* pvCtx, int _iFile, char* _pstVarName)
         {
             if (strcmp(pstVarNameList[i], _pstVarName) == 0)
             {
+                freeArrayOfString(pstVarNameList, iNbItem);
                 return true;
             }
-
-            FREE(pstVarNameList[i]);
         }
 
-        FREE(pstVarNameList);
+        freeArrayOfString(pstVarNameList, iNbItem);
     }
 
     return false;

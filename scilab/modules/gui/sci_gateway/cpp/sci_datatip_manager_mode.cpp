@@ -10,7 +10,6 @@
  *
  */
 
-#include <cstring>
 #include "DatatipManager.hxx"
 
 extern "C"
@@ -29,9 +28,10 @@ using namespace org_scilab_modules_gui_datatip;
 int sci_datatip_manager_mode(char *fname, void* pvApiCtx)
 {
     const char* pstFigureUID = NULL;
-    int* piAddr	        = NULL;
-    int * pbValue       = NULL;
-    char *pstData       = NULL;
+
+    int* piAddr         = NULL;
+    int* pbValue        = NULL;
+    char* pstData       = NULL;
     int iRows           = 0;
     int iCols           = 0;
     int stkAdr          = 0;
@@ -45,7 +45,7 @@ int sci_datatip_manager_mode(char *fname, void* pvApiCtx)
     CheckInputArgument(pvApiCtx, 0, 2);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
-    if (Rhs == 0)
+    if (nbInputArgument(pvApiCtx) == 0)
     {
         pstFigureUID = getCurrentFigure();
         if (pstFigureUID)
@@ -54,7 +54,7 @@ int sci_datatip_manager_mode(char *fname, void* pvApiCtx)
             DatatipManager::setEnabled(getScilabJavaVM(), pstFigureUID, (!enabled));
         }
     }
-    else if (Rhs == 1)
+    else if (nbInputArgument(pvApiCtx) == 1)
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
         if (sciErr.iErr)
@@ -132,7 +132,7 @@ int sci_datatip_manager_mode(char *fname, void* pvApiCtx)
                 break;
             case sci_handles :
                 iErr = getScalarHandle(pvApiCtx, piAddr, &llHandle);
-                if(iErr)
+                if (iErr)
                 {
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                     return 1;
@@ -148,7 +148,7 @@ int sci_datatip_manager_mode(char *fname, void* pvApiCtx)
                 return 1;
         }
     }
-    else if (Rhs == 2)
+    else if (nbInputArgument(pvApiCtx) == 2)
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
         if (sciErr.iErr)
@@ -158,11 +158,12 @@ int sci_datatip_manager_mode(char *fname, void* pvApiCtx)
         }
 
         iErr = getScalarHandle(pvApiCtx, piAddr, &llHandle);
-        if(iErr)
+        if (iErr)
         {
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 1;
         }
+
         pstFigureUID = (char *)getObjectFromHandle((unsigned long) llHandle);
 
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
@@ -255,9 +256,8 @@ int sci_datatip_manager_mode(char *fname, void* pvApiCtx)
         DatatipManager::setEnabled(getScilabJavaVM(), pstFigureUID, enabled);
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
-
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 

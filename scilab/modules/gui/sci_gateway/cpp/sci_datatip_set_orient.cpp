@@ -22,7 +22,6 @@ extern "C"
 #include "HandleManagement.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "string.h"
 }
 
 using namespace org_scilab_modules_gui_datatip;
@@ -53,7 +52,7 @@ int sci_datatip_set_orient(char *fname, void* pvApiCtx)
         }
 
         iErr = getScalarHandle(pvApiCtx, piAddr, &llHandle);
-        if(iErr)
+        if (iErr)
         {
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 1;
@@ -91,8 +90,8 @@ int sci_datatip_set_orient(char *fname, void* pvApiCtx)
                         {
                             DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), (char*)datatipUID, (char*)pstData, 0);
                             freeAllocatedSingleString(pstData);
-                            LhsVar(1) = 0;
-                            PutLhsVar();
+                            AssignOutputVariable(pvApiCtx, 1) = 0;
+                            ReturnArguments(pvApiCtx);
                             return 0;
                         }
 
@@ -101,8 +100,8 @@ int sci_datatip_set_orient(char *fname, void* pvApiCtx)
                         {
                             DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), (char*)datatipUID, (char*)pstData, 1);
                             freeAllocatedSingleString(pstData);
-                            LhsVar(1) = 0;
-                            PutLhsVar();
+                            AssignOutputVariable(pvApiCtx, 1) = 0;
+                            ReturnArguments(pvApiCtx);
                             return 0;
                         }
 
@@ -111,8 +110,8 @@ int sci_datatip_set_orient(char *fname, void* pvApiCtx)
                         {
                             DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), (char*)datatipUID, (char*)pstData, 2);
                             freeAllocatedSingleString(pstData);
-                            LhsVar(1) = 0;
-                            PutLhsVar();
+                            AssignOutputVariable(pvApiCtx, 1) = 0;
+                            ReturnArguments(pvApiCtx);
                             return 0;
                         }
 
@@ -121,8 +120,8 @@ int sci_datatip_set_orient(char *fname, void* pvApiCtx)
                         {
                             DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), (char*)datatipUID, (char*)pstData, 3);
                             freeAllocatedSingleString(pstData);
-                            LhsVar(1) = 0;
-                            PutLhsVar();
+                            AssignOutputVariable(pvApiCtx, 1) = 0;
+                            ReturnArguments(pvApiCtx);
                             return 0;
                         }
 
@@ -131,15 +130,15 @@ int sci_datatip_set_orient(char *fname, void* pvApiCtx)
                         {
                             DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), (char*)datatipUID, (char*)pstData, 4);
                             freeAllocatedSingleString(pstData);
-                            LhsVar(1) = 0;
-                            PutLhsVar();
+                            AssignOutputVariable(pvApiCtx, 1) = 0;
+                            ReturnArguments(pvApiCtx);
                             return 0;
                         }
 
                         DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), (char*)datatipUID, (char*)pstData, -1);
                         freeAllocatedSingleString(pstData);
-                        LhsVar(1) = 0;
-                        PutLhsVar();
+                        AssignOutputVariable(pvApiCtx, 1) = 0;
+                        ReturnArguments(pvApiCtx);
                         return 0;
                     }
                     else

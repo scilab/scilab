@@ -91,6 +91,12 @@ y = list(f,p1,p2,...)
                             </para>
                         </listitem>
                         <listitem>
+                            <para>
+                                'dimension', 'minbounds' and 'maxbounds':
+                                parameters used by the initialization function to define the initial population.
+                            </para>
+                        </listitem>
+                        <listitem>
                             <para> 'crossover_func': the function which will perform the
                                 crossover between two individuals (default function:
                                 crossover_ga_default). 

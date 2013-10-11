@@ -47,7 +47,6 @@ double* filesinfoW(wchar_t** _pwstFilename, int _iSize, int* _piErr)
 #else
             FILEINFO_ARRAY = fileinfo_OthersW(pwstExp, &_piErr[i]);
 #endif
-
             if (FILEINFO_ARRAY != NULL)
             {
                 for (j = 0 ; j < FILEINFO_ARRAY_SIZE ; j++)

@@ -17,7 +17,6 @@
 #include "cvstr.h"
 #include "localization.h"
 #include "Scierror.h"
-
 /* ************************************************************************
  *   Store data scanned by a single call to do_scan in line rowcount of data
  *   table

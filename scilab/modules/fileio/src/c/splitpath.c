@@ -163,7 +163,7 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
     }
 
     /* swap name & extension if no name */
-    if ( (name[0] == 0) && (wcslen(ext) > 0) )
+    if (name && name[0] == 0 && ext && wcslen(ext) > 0)
     {
         wcscpy(name, ext);
         wcscpy(ext, L"");
@@ -172,75 +172,64 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
 /*--------------------------------------------------------------------------*/
 void splitpath(const char* path, BOOL bExpand, char* drv, char* dir, char* name, char* ext)
 {
-    wchar_t *wcpath = to_wide_string((char*)path);
-    wchar_t *wcdrv = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));
-    wchar_t *wcdir = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));
-    wchar_t *wcname = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));
-    wchar_t *wcext = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));
+    wchar_t *wcpath = NULL;
+    wchar_t *wcdrv = NULL;
+    wchar_t *wcdir = NULL;
+    wchar_t *wcname = NULL;
+    wchar_t *wcext = NULL;
 
     char *buffer = NULL;
 
-    if (drv)
+    if (drv == NULL || dir == NULL || name == NULL || ext == NULL)
     {
-        strcpy(drv, "");
-    }
-    if (dir)
-    {
-        strcpy(dir, "");
-    }
-    if (name)
-    {
-        strcpy(name, "");
-    }
-    if (ext)
-    {
-        strcpy(ext, "");
+        return;
     }
 
+    wcpath = to_wide_string((char*)path);
+    wcdrv = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));
+    wcdir = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));
+    wcname = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));
+    wcext = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));
+
+    strcpy(drv, "");
+    strcpy(dir, "");
+    strcpy(name, "");
+    strcpy(ext, "");
+
     splitpathW(wcpath, bExpand, wcdrv, wcdir, wcname, wcext);
+
+    FREE(wcpath);
 
     buffer = wide_string_to_UTF8(wcdrv);
     if (buffer)
     {
         strcpy(drv, buffer);
         FREE(buffer);
-        buffer = NULL;
     }
-    FREE(wcpath);
-    wcpath = NULL;
-
+    FREE(wcdrv);
 
     buffer = wide_string_to_UTF8(wcdir);
     if (buffer)
     {
         strcpy(dir, buffer);
         FREE(buffer);
-        buffer = NULL;
     }
     FREE(wcdir);
-    wcdir = NULL;
 
     buffer = wide_string_to_UTF8(wcname);
     if (buffer)
     {
         strcpy(name, buffer);
         FREE(buffer);
-        buffer = NULL;
     }
     FREE(wcname);
-    wcname = NULL;
 
     buffer = wide_string_to_UTF8(wcext);
     if (buffer)
     {
         strcpy(ext, buffer);
         FREE(buffer);
-        buffer = NULL;
     }
     FREE(wcext);
-    wcext = NULL;
-
-    FREE(wcdrv);
-    wcdrv = NULL;
 }
 /*--------------------------------------------------------------------------*/

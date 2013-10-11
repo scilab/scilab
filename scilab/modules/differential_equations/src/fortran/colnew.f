@@ -463,6 +463,7 @@ C      IMPLICIT REAL*8 (A-H,O-Z)
       DIMENSION M(*), ZETA(*), IPAR(*), LTOL(*), TOL(*), DUMMY(1),
      1          FIXPNT(*), ISPACE(*), FSPACE(*)
 C
+      include 'stack.h'
       COMMON /COLOUT/ PRECIS, IOUT, IPRINT
       COMMON /COLLOC/ RHO(7), COEF(49)
       COMMON /COLORD/ K, NC, MSTAR, KD, MMAX, MT(20)
@@ -477,11 +478,8 @@ C
 C
       common/iercol/iero
 c
-      CHARACTER ALFA*(63)
-      CHARACTER ALFB*(63)
       CHARACTER TMPBUF*(4096)
-      CHARACTER BUF*(4096)
-      COMMON /CHA1/ ALFA,ALFB,BUF
+
 C     this subroutine can be called either COLNEW or COLSYS
 C
       ENTRY      COLSYS (NCOMP, M, ALEFT, ARIGHT, ZETA, IPAR, LTOL,

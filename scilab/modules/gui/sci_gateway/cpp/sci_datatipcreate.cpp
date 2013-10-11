@@ -20,8 +20,6 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "gw_gui.h"
-#include "BOOL.h"
-#include "MALLOC.h"
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -65,7 +63,7 @@ int sci_datatipcreate(char *fname, void* pvApiCtx)
         }
 
         iErr = getScalarHandle(pvApiCtx, piAddressVarOne, &llHandle);
-        if(iErr)
+        if (iErr)
         {
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 1;
@@ -98,7 +96,6 @@ int sci_datatipcreate(char *fname, void* pvApiCtx)
                     {
                         indexPoint = (int) pdblReal[0];
                         datatip_handler = DatatipCreate::createDatatipProgramIndex(getScilabJavaVM(), (char*)polylineUID, indexPoint);
-
                     }
                     else if (nbRow * nbCol == 2)
                     {
@@ -139,7 +136,7 @@ int sci_datatipcreate(char *fname, void* pvApiCtx)
     }
 
     iErr = createScalarHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, llHandle);
-    if(iErr)
+    if (iErr)
     {
         Scierror(999, _("%s: Can not create output argument #%d.\n"), fname, 1);
         return 1;
@@ -147,7 +144,6 @@ int sci_datatipcreate(char *fname, void* pvApiCtx)
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     ReturnArguments(pvApiCtx);
-
     return 0;
 }
 

@@ -4,11 +4,37 @@
 Scilab Bug Fixes
 ================
 
+* Bug #7570 fixed - The switch criterion on x and y is now explicited in beta() help page.
+
+* Bug #7705 fixed - In the Genetic algorithms help pages, documented the
+                    "dimension", "minbounds" and "maxbounds" fields.
+
 * Bug #12938 fixed - No java compiler was available in Linux binary version.
 
 * Bug #12943 fixed - Datatips misworked when 2D plots were rotated.
 
-* Bug #12948 fixed - When host is not found, getURL provokes a Crash To Desktop.
+* Bug #12948 fixed - When host is not found, getURL caused a Crash To Desktop.
+
+* Bug #12950 fixed - getURL ignored the proxy settings on Windows.
+
+* Bug #12951 fixed - Interactive zoom was broken.
+
+* Bug #12956 fixed - splitURL with no protocol in URL provokes an access
+                     violation exception.
+
+* Bug #12957 fixed - splitURL and getURL were not declared as new 5.5 functions.
+
+* Bug #12971 fixed - getURL() downloaded file name was wrong.
+
+* Bug #12978 fixed - exportUI returned an error when input argument was a figure handle.
+
+* Bug #12979 fixed - exportUI did not work with vectorial export.
+
+
+Xcos Bug Fixes
+==============
+
+* Bug #12423 fixed - Data types of SWITCH2_m were not documented.
 
 
                  Changes between version 5.4.1 and 5.5.0-beta-1

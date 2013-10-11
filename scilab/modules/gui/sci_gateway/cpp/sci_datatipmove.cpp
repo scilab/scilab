@@ -29,14 +29,15 @@ using namespace org_scilab_modules_gui_datatip;
 
 int sci_datatipmove(char *fname, void* pvApiCtx)
 {
-    int mouseButtonNumber = -1;
-    int pixelCoords[2];
+    char* datatipUID        = NULL;
+    int* piAddr             = NULL;
+    int mouseButtonNumber   = -1;
+    int pixelCoords[2]      = {0, 0};
+    int iErr                = 0;
+    long long llHandle      = 0;
+
     int iType = 0;
-    int iErr = 0;
-    int* piAddr = NULL;
-    int *piType = &iType;
-    char* datatipUID = NULL;
-    long long llHandle = 0;
+    int* piType = &iType;
 
     SciErr sciErr;
     CheckInputArgument(pvApiCtx, 1, 1);
@@ -52,7 +53,7 @@ int sci_datatipmove(char *fname, void* pvApiCtx)
         }
 
         iErr = getScalarHandle(pvApiCtx, piAddr, &llHandle);
-        if(iErr)
+        if (iErr)
         {
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 1;
@@ -91,8 +92,7 @@ int sci_datatipmove(char *fname, void* pvApiCtx)
         return 1;
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
-
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }

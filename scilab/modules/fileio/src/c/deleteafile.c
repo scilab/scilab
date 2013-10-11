@@ -24,23 +24,31 @@
 /*--------------------------------------------------------------------------*/
 BOOL deleteafile(char *filename)
 {
-    BOOL bOK = FALSE;
 #ifndef _MSC_VER
     {
         FILE *f = fopen(filename, "r") ;
         if (! f)
         {
-            return bOK;
+            return FALSE;
         }
+
         fclose(f) ;
-        chmod(filename, S_IWRITE) ;
+
+        if (chmod(filename, S_IWRITE))
+        {
+            return FALSE;
+        }
+
         if (remove(filename) == 0)
         {
-            bOK = TRUE;
+            return TRUE;
         }
+
+        return FALSE;
     }
 #else
     {
+        BOOL bOK = FALSE;
         if (filename)
         {
             wchar_t *wcfilename = to_wide_string(filename);
@@ -48,12 +56,12 @@ BOOL deleteafile(char *filename)
             {
                 bOK = deleteafileW(wcfilename);
                 FREE(wcfilename);
-                wcfilename = NULL;
             }
         }
+
+        return bOK;
     }
 #endif
-    return bOK;
 }
 /*--------------------------------------------------------------------------*/
 BOOL deleteafileW(wchar_t *filenameW)

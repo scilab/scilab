@@ -88,6 +88,14 @@ public class ZoomRubberBox extends RubberBox {
 
         if (bounds[0].compareTo(bounds[1]) != 0 && bounds[2].compareTo(bounds[3]) != 0 && bounds[4].compareTo(bounds[5]) != 0) {
             Boolean zoomed = tightZoomBounds(axes, bounds);
+            double[][] factors = axes.getScaleTranslateFactors();
+            bounds[0] = (bounds[0] - factors[1][0]) / factors[0][0];
+            bounds[1] = (bounds[1] - factors[1][0]) / factors[0][0];
+            bounds[2] = (bounds[2] - factors[1][1]) / factors[0][1];
+            bounds[3] = (bounds[3] - factors[1][1]) / factors[0][1];
+            bounds[4] = (bounds[4] - factors[1][2]) / factors[0][2];
+            bounds[5] = (bounds[5] - factors[1][2]) / factors[0][2];
+
             GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
             GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
             getDrawerVisitor().getCanvas().redraw();

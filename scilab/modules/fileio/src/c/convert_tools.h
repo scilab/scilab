@@ -31,15 +31,15 @@ int swap_int(int _val);
 char swap_char(char _val);
 long long swap_long_long(long long _val);
 
-void writeInt(int _val, FILE* _pF, int _iEndian);
-void writeLongLong(long long _val, FILE* _pF, int _iEndian);
-void writeShort(short _val, FILE* _pF, int _iEndian);
-void writeChar(short _val, FILE* _pF, int _iEndian);
+int writeInt(int _val, FILE* _pF, int _iEndian);
+int writeLongLong(long long _val, FILE* _pF, int _iEndian);
+int writeShort(short _val, FILE* _pF, int _iEndian);
+int writeChar(char _val, FILE* _pF, int _iEndian);
 
-int readInt(FILE* _pF, int _iEndian);
-long long readLongLong(FILE* _pF, int _iEndian);
-short readShort(FILE* _pF, int _iEndian);
-char readChar(FILE* _pF, int _iEndian);
+int readInt(FILE* _pF, int _iEndian, unsigned int* val);
+int readLongLong(FILE* _pF, int _iEndian, unsigned long long* val);
+int readShort(FILE* _pF, int _iEndian, unsigned short* val);
+int readChar(FILE* _pF, int _iEndian, unsigned char* val);
 
 int checkEndian(char _endian);
 int checkType(char _type);

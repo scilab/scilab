@@ -90,6 +90,8 @@ sci_backtrace_t *sci_backtrace_create(void)
 
         void * tr_array[200];
         int tr_size = backtrace(tr_array, 200);
+        int i = 0;
+        Dl_info * infos = NULL;
 
         /* Create arrays; we use malloc() here instead of BFT_MALLOC, as a
           * backtrace is useful mainly in case of severe errors, so we avoid
@@ -130,8 +132,7 @@ sci_backtrace_t *sci_backtrace_create(void)
 
         }
 
-        Dl_info * infos = (Dl_info *)MALLOC(sizeof(Dl_info));
-        int i;
+        infos = (Dl_info *)MALLOC(sizeof(Dl_info));
 
         for (i = 0; i < bt->size; i++)
         {

@@ -113,7 +113,7 @@ void C2F(mputi)(int* _pF, long long* _pVal, int* _iSize, char* _iOpt, int* _iErr
             {
                 unsigned long long val;
                 val = *(_pVal + i);
-                writeLongLong(val, fa, iEndian);
+                *_iErr = writeLongLong(val, fa, iEndian);
             }
             break;
         case TYPE_INT :
@@ -121,7 +121,7 @@ void C2F(mputi)(int* _pF, long long* _pVal, int* _iSize, char* _iOpt, int* _iErr
             {
                 unsigned int val;
                 val = *(RES_ui + i);
-                writeInt(val, fa, iEndian);
+                *_iErr = writeInt(val, fa, iEndian);
             }
             break;
         case TYPE_SHORT :
@@ -129,7 +129,7 @@ void C2F(mputi)(int* _pF, long long* _pVal, int* _iSize, char* _iOpt, int* _iErr
             {
                 unsigned short val;
                 val = *(RES_us + i);
-                writeShort(val, fa, iEndian);
+                *_iErr = writeShort(val, fa, iEndian);
             }
             break;
         case TYPE_CHAR:
@@ -137,7 +137,7 @@ void C2F(mputi)(int* _pF, long long* _pVal, int* _iSize, char* _iOpt, int* _iErr
             {
                 unsigned char val;
                 val = *(RES_uc + i);
-                writeChar(val, fa, iEndian);
+                *_iErr = writeChar(val, fa, iEndian);
             }
             break;
     }
