@@ -78,6 +78,7 @@ libsciumfpack_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
 			-I$(top_srcdir)/modules/mexlib/includes/ \
+			$(UMFPACK_CFLAGS) \
 			$(AM_CPPFLAGS)
 
 else
@@ -89,6 +90,7 @@ libsciumfpack_la_CPPFLAGS= -I$(top_srcdir)/modules/api_scilab/includes/ \
 -I$(top_srcdir)/modules/umfpack/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
 -I$(top_srcdir)/modules/localization/includes/ \
+$(UMFPACK_CFLAGS) \
 $(AM_CPPFLAGS)
 endif
 
