@@ -123,7 +123,7 @@ c
 c     
       icall=5
 c
-      include "callinter.h"
+      include "callinter.h.f"
 c     
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)

@@ -7,87 +7,97 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
-function x=%hm_prod(m,d,typ)
-    if argn(2)==1 then
-        typ=list()
-        d="*"
-    elseif argn(2)==2 then
-        if argn(2)==2& or(d==["native","double"]) then
-            typ=list(d)
-            d="*"
+function a = %hm_prod(varargin)
+    a = varargin(1)
+    dims = size(a);
+    tm = type(a.entries)
+
+    nargs = size(varargin);
+    select nargs
+    case 1
+        d = 0;
+        if tm == 8 then
+            typ = "native";
         else
-            typ=list()
+            typ = "double";
         end
+    case 2
+        if or(varargin(2) == ["native", "double"]) then
+            d = 0;
+            typ = varargin(2);
+        else
+            d = varargin(2);
+            if tm == 8 then
+                typ = "native";
+            else
+                typ = "double";
+            end
+        end
+    case 3
+        d = varargin(2);
+        typ = varargin(3);
     else
-        typ=list(typ)
+        error(msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"),"prod", 1, 3));
     end
-    if size(d,"*")<>1 then
-        if type(d)==10 then
+
+    // Check second argument : d
+    select type(d)
+    case 1
+        if size(d,'*') <> 1 then
+            error(msprintf(_("%s: Wrong size for input argument #%d: A scalar expected.\n"),"prod", 2))
+        end
+        if int(d) <> d | d < 0 then
+            error(msprintf(_("%s: Wrong value for input argument #%d: Integer >= %d expected.\n"),"prod", 2, 1))
+        end
+    case 10 
+        if size(d,'*') <> 1 then
             error(msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"prod",2))
-        else
-            error(msprintf(_("%s: Wrong size for input argument #%d: A scalar expected.\n"),"prod",2))
         end
-    end
-    if type(d)==10 then
-        d=find(d==["m","*","r","c"])
-        if d==[] then
+        if and(d<>["r","c","*","m"]) then
             error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-            "prod",2,"""*"",""r"",""c"",""m"",1:"+string(ndims(a))))
+            "prod",2,"""*"",""r"",""c"",""m"""))
         end
-        d=d-2
-    end
-    dims=m.dims;
-
-    if d==-1 then
-        //sum(x,'m'), determine the product direction
-        d=find(dims>1,1)
-        if d==[] then d=0,end
-    end
-    if d<0 then
-        error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-        "prod",2,"""*"",""r"",""c"",""m"",1:"+string(ndims(a))))
-    end
-    if d==0 then
-        //prod of all elements
-        x=prod(m.entries,typ(:))
-        return
-    end
-
-    if d>size(dims,"*") then
-        //requested  product direction exceeds array dims, return the array, converted
-        //to double if necessary.
-        tm=type(m.entries)
-        if (tm==8&typ==list("double"))|(tm==4&typ<>list("native")) then
-            m.entries=double(m.entries),
-        end
-        x=m
-        return
-    end
-
-
-    if type(dims==8) then flag=1; dims=double(dims); else flag=0;end
-    N=size(dims,"*");
-    p1=prod(dims(1:d-1));//product step
-    p2=p1*dims(d);//step for next to prod
-    ind=(0:p1:p2-1)';// selection for product
-    deb=(1:p1);
-    I=ind*ones(deb)+ones(ind)*deb
-
-    ind=(0:p2:prod(dims)-1);
-    I=ones(ind).*.I+ind.*.ones(I)
-
-    x=prod(matrix(m.entries(I),dims(d),-1),1,typ(:))
-    dims(d)=1
-    while  dims($)==1 then dims($)=[],end
-    if d==N then
-        dims=dims(1:$)
+        pos=[1,2,0,find(dims>1,1)];
+        d=pos(find(d==["r","c","*","m"]))
     else
-        dims(d)=1
+        error(msprintf(_("%s: Wrong type for input argument #%d: A string or scalar expected.\n"),"prod",2))
     end
-    if size(dims,"*")==2 then
-        x=matrix(x,dims(1),dims(2))
-    elseif dims<>[] then
-        if flag==1 then dims=int32(dims);end
-        x=hypermat(dims,x)
+
+    // Check third argument
+    if type(typ)<>10 then
+        error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"prod",3))
+    end
+
+    if size(typ,"*")<>1 then
+        error(msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"prod",3))
+    end
+
+    if and(typ <> ["native" "double"]) then
+        error(msprintf(_("%s: Wrong value for input argument #%d: ""%s"" or ""%s"" expected.\n"),"prod", 3, "native", "double"));
+    end
+
+    if d == 0 then // '*'
+        a=prod(a.entries, "*", typ), dims;
+    elseif d > size(dims,"*") then
+        //requested summation direction exceeds array dims, return the array, converted
+        //to double if necessary.
+        if typ == "double" & or(tm == [4 8]) then
+            a.entries=double(a.entries),
+        end
+        a=a
+    else
+        //permute the array dimension to put the selected dimension first
+        p=1:size(dims,"*");
+        p([1,d])=p([d,1]);
+        a=matrix(permute(a,p),dims(d),-1)
+        a=prod(a,1,typ);
+        //permute back
+        if d==size(dims, "*") then
+            dims=dims(1:$-1)
+            p(1) = []
+        else
+            dims(d)=1
+        end
+        a=permute(matrix(a,dims(p)),p)
     end
 endfunction

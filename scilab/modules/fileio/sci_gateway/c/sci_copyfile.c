@@ -57,15 +57,9 @@ int sci_copyfile(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isStringType(pvApiCtx, piAddressVarOne))
+    if (isStringType(pvApiCtx, piAddressVarOne) == 0 || isScalar(pvApiCtx, piAddressVarOne) == 0)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
-        return 0;
-    }
-
-    if (!isScalar(pvApiCtx, piAddressVarOne))
-    {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
 
@@ -77,54 +71,32 @@ int sci_copyfile(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isStringType(pvApiCtx, piAddressVarTwo))
+    if (isStringType(pvApiCtx, piAddressVarTwo) == 0 || isScalar(pvApiCtx, piAddressVarTwo) == 0)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
         return 0;
     }
 
-    if (!isScalar(pvApiCtx, piAddressVarTwo))
-    {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
-        return 0;
-    }
-
     if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &pStVarOne))
     {
+        if (pStVarOne)
+        {
+            freeAllocatedSingleWideString(pStVarOne);
+        }
+
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 
     if (getAllocatedSingleWideString(pvApiCtx, piAddressVarTwo, &pStVarTwo))
     {
-        if (pStVarOne)
-        {
-            freeAllocatedSingleWideString(pStVarOne);
-            pStVarOne = NULL;
-        }
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
-        return 0;
-    }
-
-    if (pStVarOne == NULL)
-    {
         if (pStVarTwo)
         {
             freeAllocatedSingleWideString(pStVarTwo);
-            pStVarTwo = NULL;
         }
-        Scierror(999, _("%s: Wrong value for input argument #%d: A string expected.\n"), fname, 1);
-        return 0;
-    }
 
-    if (pStVarTwo == NULL)
-    {
-        if (pStVarOne)
-        {
-            freeAllocatedSingleWideString(pStVarOne);
-            pStVarOne = NULL;
-        }
-        Scierror(999, _("%s: Wrong value for input argument #%d: A string expected.\n"), fname, 2);
+        freeAllocatedSingleWideString(pStVarOne);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 
@@ -132,11 +104,29 @@ int sci_copyfile(char *fname, unsigned long fname_len)
     pStVarTwoExpanded = expandPathVariableW(pStVarTwo);
 
     freeAllocatedSingleWideString(pStVarTwo);
-    pStVarTwo = NULL;
-
     freeAllocatedSingleWideString(pStVarOne);
-    pStVarOne = NULL;
 
+    if (pStVarOneExpanded == NULL)
+    {
+        if (pStVarTwoExpanded)
+        {
+            FREE(pStVarTwoExpanded);
+        }
+
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
+
+    if (pStVarTwoExpanded == NULL)
+    {
+        if (pStVarOneExpanded)
+        {
+            FREE(pStVarOneExpanded);
+        }
+
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
 
     if (isdirW(pStVarOneExpanded) || FileExistW(pStVarOneExpanded))
     {
@@ -176,25 +166,12 @@ int sci_copyfile(char *fname, unsigned long fname_len)
                         ierrCopy = CopyFileFunction(destFullFilename, pStVarOneExpanded);
 
                         FREE(filename);
-                        filename = NULL;
-
                         FREE(destFullFilename);
-                        destFullFilename = NULL;
                     }
                     else
                     {
-                        if (pStVarOneExpanded)
-                        {
-                            FREE(pStVarOneExpanded);
-                            pStVarOneExpanded = NULL;
-                        }
-
-                        if (pStVarTwoExpanded)
-                        {
-                            FREE(pStVarTwoExpanded);
-                            pStVarTwo = NULL;
-                        }
-
+                        FREE(pStVarOneExpanded);
+                        FREE(pStVarTwoExpanded);
                         Scierror(999, _("%s: Memory allocation error.\n"), fname);
                         return 0;
                     }
@@ -207,34 +184,16 @@ int sci_copyfile(char *fname, unsigned long fname_len)
             }
             else
             {
-                if (pStVarOneExpanded)
-                {
-                    FREE(pStVarOneExpanded);
-                    pStVarOneExpanded = NULL;
-                }
-
-                if (pStVarTwoExpanded)
-                {
-                    FREE(pStVarTwoExpanded);
-                    pStVarTwoExpanded = NULL;
-                }
+                FREE(pStVarOneExpanded);
+                FREE(pStVarTwoExpanded);
                 Scierror(999, _("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
+                return 0;
             }
         }
         else
         {
-            if (pStVarOneExpanded)
-            {
-                FREE(pStVarOneExpanded);
-                pStVarOneExpanded = NULL;
-            }
-
-            if (pStVarTwoExpanded)
-            {
-                FREE(pStVarTwoExpanded);
-                pStVarTwoExpanded = NULL;
-            }
-
+            FREE(pStVarOneExpanded);
+            FREE(pStVarTwoExpanded);
             Scierror(999, _("%s: Wrong value(s) for input argument(s).\n"), fname);
             return 0;
         }
@@ -246,17 +205,8 @@ int sci_copyfile(char *fname, unsigned long fname_len)
         Scierror(999, _("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
     }
 
-    if (pStVarOneExpanded)
-    {
-        FREE(pStVarOneExpanded);
-        pStVarOneExpanded = NULL;
-    }
-
-    if (pStVarTwoExpanded)
-    {
-        FREE(pStVarTwoExpanded);
-        pStVarTwoExpanded = NULL;
-    }
+    FREE(pStVarOneExpanded);
+    FREE(pStVarTwoExpanded);
 
     return 0;
 }
@@ -268,45 +218,35 @@ static wchar_t *getFilenameWithExtension(wchar_t * wcFullFilename)
 
     if (wcFullFilename)
     {
-        wchar_t *wcdrv = MALLOC(sizeof(wchar_t *) * ((int)wcslen(wcFullFilename) + 1));
-        wchar_t *wcdir = MALLOC(sizeof(wchar_t *) * ((int)wcslen(wcFullFilename) + 1));
-        wchar_t *wcname = MALLOC(sizeof(wchar_t *) * ((int)wcslen(wcFullFilename) + 1));
-        wchar_t *wcext = MALLOC(sizeof(wchar_t *) * ((int)wcslen(wcFullFilename) + 1));
+        wchar_t *wcdrv = (wchar_t *)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
+        wchar_t *wcdir = (wchar_t *)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
+        wchar_t *wcname = (wchar_t *)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
+        wchar_t *wcext = (wchar_t *)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
 
-        wcfilename = MALLOC(sizeof(wchar_t *) * ((int)wcslen(wcFullFilename) + 1));
+        wcfilename = (wchar_t *)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
+
+        if (wcdrv == NULL || wcdir == NULL || wcname == NULL || wcext == NULL || wcfilename == NULL)
+        {
+            FREE(wcdrv);
+            FREE(wcdir);
+            FREE(wcname);
+            FREE(wcext);
+            FREE(wcfilename);
+            return NULL;
+        }
 
         splitpathW(wcFullFilename, FALSE, wcdrv, wcdir, wcname, wcext);
 
         wcscpy(wcfilename, wcname);
         wcscat(wcfilename, wcext);
 
-        if (wcdrv)
-        {
-            FREE(wcdrv);
-            wcdrv = NULL;
-        }
-
-        if (wcdir)
-        {
-            FREE(wcdir);
-            wcdir = NULL;
-        }
-
-        if (wcname)
-        {
-            FREE(wcname);
-            wcname = NULL;
-        }
-
-        if (wcext)
-        {
-            FREE(wcext);
-            wcext = NULL;
-        }
+        FREE(wcdrv);
+        FREE(wcdir);
+        FREE(wcname);
+        FREE(wcext);
     }
     return wcfilename;
 }
-
 /*--------------------------------------------------------------------------*/
 static int returnCopyFileResultOnStack(int ierr, char *fname)
 {

@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.block;
 
 import java.io.IOException;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -90,7 +91,6 @@ public final class SuperBlock extends BasicBlock {
     private static final String MASKED_INTERFUNCTION_NAME = "DSUPER";
 
     private SuperBlockDiagram child;
-    private boolean hasAValidRpar = false;
 
     /**
      * Constructor
@@ -151,7 +151,7 @@ public final class SuperBlock extends BasicBlock {
 
     @Override
     public ScilabType getRealParameters() {
-        if (hasAValidRpar || child == null) {
+        if (child == null) {
             return super.getRealParameters();
         }
 
@@ -163,14 +163,6 @@ public final class SuperBlock extends BasicBlock {
         hasAValidRpar = true;
 
         return super.getRealParameters();
-    }
-
-    /**
-     * Invalide the rpar, a new child diagram encoding will be performed on
-     * demand.
-     */
-    public void invalidateRpar() {
-        hasAValidRpar = false;
     }
 
     /**
@@ -354,7 +346,309 @@ public final class SuperBlock extends BasicBlock {
     }
 
     /**
-     * update super block ports in parent diagram
+     * Function that insert one port on the concerned superblock
+     * and gives it the right order.
+     * 
+     * @param order
+     * @param basicblock
+     */
+    private void insertOnePort(int order, BasicBlock basicblock) {
+        try {
+            for (IOBlocks b : IOBlocks.values()) {
+                if (basicblock.getClass().equals(b.getReferencedClass())) {
+                    BasicPort port;
+                    port = b.getReferencedPortClass().newInstance();
+                    port.setOrdering(order);
+                    insert(port);
+                }
+            }
+        } catch (InstantiationException e) {
+            Logger.getLogger(SuperBlock.class.getName()).severe(e.toString());
+        } catch (IllegalAccessException e) {
+            Logger.getLogger(SuperBlock.class.getName()).severe(e.toString());
+        } catch (Exception e)
+        {
+            Logger.getLogger(SuperBlock.class.getName()).severe(e.toString());
+        }
+    }
+
+    /**
+     * Function that remove one port on the concerned superblock
+     * 
+     * @param order
+     * @param basicport
+     * @param basicblock
+     * @return
+     */
+    private boolean removeOnePort(int order, BasicPort basicport, BasicBlock basicblock) {
+        boolean port_deleted = false;
+
+        for (IOBlocks b : IOBlocks.values()) {
+            if (basicport.getClass().equals(b.getReferencedPortClass())) {
+                if (!basicblock.getClass().equals(b.getReferencedClass())) {
+                    // delete the port
+                    removePort(basicport);
+                    port_deleted = true;
+                }
+            }
+        }
+
+        return port_deleted;
+    }
+
+    /**
+     * 
+     * @param basicport
+     */
+    private void removeOnePort(BasicPort basicport) {
+        // delete the port
+        removePort(basicport);
+    }
+
+    /**
+     * Function that returns a hashtable of IOBlocks contained in the superdiagram
+     * depending on their direction.
+     * 
+     * @param blockMap
+     *            a map of blocks
+     * @return the hashtable
+     */
+    private Hashtable<String, List<? extends mxICell>> extractContextBlocks() {
+        // get a map of all the IOBlocks of the superdiagram
+        final Map<IOBlocks, List<BasicBlock>> blocksMap = IOBlocks.getAllBlocks(this);
+
+        // create a map of all the blocks of the superdiagram depending on their type
+        Hashtable<String, List<? extends mxICell>> context_block = new Hashtable<String, List<? extends mxICell>> ();
+
+        if (!context_block.containsKey(XcosDiagram.IN)) {
+            List<BasicBlock> cell_list = blocksMap.get(IOBlocks.ExplicitInBlock);
+            cell_list.addAll(blocksMap.get(IOBlocks.ImplicitInBlock));
+            context_block.put(XcosDiagram.IN, cell_list);
+        }
+        if (!context_block.containsKey(XcosDiagram.OUT)) {
+            List<BasicBlock> cell_list = blocksMap.get(IOBlocks.ExplicitOutBlock);
+            cell_list.addAll(blocksMap.get(IOBlocks.ImplicitOutBlock));
+            context_block.put(XcosDiagram.OUT, cell_list);
+        }
+        if (!context_block.containsKey(XcosDiagram.EIN)) {
+            List<BasicBlock> cell_list = blocksMap.get(IOBlocks.EventInBlock);
+            context_block.put(XcosDiagram.EIN, cell_list);
+        }
+        if (!context_block.containsKey(XcosDiagram.EOUT)) {
+            List<BasicBlock> cell_list = blocksMap.get(IOBlocks.EventOutBlock);
+            context_block.put(XcosDiagram.EOUT, cell_list);
+        }
+
+        return context_block;
+    }
+
+    /**
+     * Function that returns a hashtable of the superblock ports
+     * depending on their direction.
+     * 
+     * @param portsMap
+     *            a map of ports
+     * @return the hashtable
+     */
+    private Hashtable<String, List<? extends mxICell>> extractContextPorts() {
+        // get a map of all the ports of the superblock
+        final Map<IOBlocks, List<mxICell>> portsMap = IOBlocks.getAllPorts(this);
+
+        // create a map of all the ports of the superblock depending on their type
+        Hashtable<String, List<? extends mxICell>> context_port = new Hashtable<String, List<? extends mxICell>> ();
+
+        if (!context_port.containsKey(XcosDiagram.IN)) {
+            List<mxICell> cell_list = portsMap.get(IOBlocks.ExplicitInBlock);
+            cell_list.addAll(portsMap.get(IOBlocks.ImplicitInBlock));
+            context_port.put(XcosDiagram.IN, cell_list);
+        }
+        if (!context_port.containsKey(XcosDiagram.OUT)) {
+            List<mxICell> cell_list = portsMap.get(IOBlocks.ExplicitOutBlock);
+            cell_list.addAll(portsMap.get(IOBlocks.ImplicitOutBlock));
+            context_port.put(XcosDiagram.OUT, cell_list);
+        }
+        if (!context_port.containsKey(XcosDiagram.EIN)) {
+            List<mxICell> cell_list = portsMap.get(IOBlocks.EventInBlock);
+            context_port.put(XcosDiagram.EIN, cell_list);
+        }
+        if (!context_port.containsKey(XcosDiagram.EOUT)) {
+            List<mxICell> cell_list = portsMap.get(IOBlocks.EventOutBlock);
+            context_port.put(XcosDiagram.EOUT, cell_list);
+        }
+
+        return context_port;
+    }
+
+    /**
+     * Function that add a port to a superblock. The function should be called only when
+     * the number of superdiagram blocks is higher than the superblock port number.
+     * 
+     * @param key
+     *         direction of the block ports
+     * @param context_block
+     *         the list of blocks
+     * @param context_port
+     *         the list of ports
+     */
+    private void addPorts(String key, Hashtable<String, List<? extends mxICell>> context_block, Map<String, List<? extends mxICell>> context_port)
+    {
+        // iterate on the superdiagram blocks
+        for (mxICell cell : context_block.get(key)) {
+            if (cell instanceof BasicBlock) {
+                BasicBlock basicblock = (BasicBlock) cell;
+                int order = (int) ((ScilabDouble) basicblock.getIntegerParameters()).getRealPart()[0][0];
+
+                // get the new added block if found
+                List<? extends mxICell> port_list = context_port.get(key);
+                boolean port_found = false;
+                for (mxICell port : port_list) {
+                    if (port instanceof BasicPort) {
+                        BasicPort basicport = (BasicPort) port;
+                        if (order == basicport.getOrdering()) {
+                            port_found = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (port_found == false) {
+                    // add the port on the superblock
+                    insertOnePort(order, basicblock);
+                }
+            }
+        }
+    }
+
+    /**
+     * Function that remove a port to a superblock. The function should be called only when
+     * the number of superdiagram blocks is less than the superblock port number.
+     * 
+     * @param key
+     *         direction of the block ports
+     * @param context_block
+     *         the list of blocks
+     * @param context_port
+     *         the list of ports
+     */
+    private void removePorts(String key, Hashtable<String, List<? extends mxICell>> context_block, Map<String, List<? extends mxICell>> context_port) {
+        // iterate on the superblock ports
+        for (mxICell cell : context_port.get(key)) {
+            if (cell instanceof BasicPort) {
+                BasicPort basicport = (BasicPort) cell;
+                int order = basicport.getOrdering();
+
+                // get the port to remove
+                List<? extends mxICell> block_list = context_block.get(key);
+                boolean block_found = false;
+                for (mxICell block : block_list) {
+                    if (block instanceof BasicBlock) {
+                        BasicBlock basicblock = (BasicBlock) block;
+                        int block_order = (int) ((ScilabDouble) basicblock.getIntegerParameters()).getRealPart()[0][0];
+                        if (order == block_order)
+                        {
+                            block_found = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (block_found == false) {
+                    // delete the port
+                    removeOnePort(basicport);
+                }
+            }
+        }
+    }
+
+    /**
+     * Function that remove dead ports from the superblock. A dead port is a port which has not
+     * a corresponding superdiagram IOBlock
+     * 
+     * @param key
+     *         direction of the block ports
+     * @param context_block
+     *         the list of blocks
+     * @param context_port
+     *         the list of ports
+     */
+    private void removeDeadPorts(String key, Hashtable<String, List<? extends mxICell>> context_block, Map<String, List<? extends mxICell>> context_port) {
+        // first remove dead ports
+        for (mxICell cell : context_port.get(key)) {
+            if (cell instanceof BasicPort) {
+                BasicPort basicport = (BasicPort) cell;
+                int order = basicport.getOrdering();
+
+                // get the port to remove
+                List<? extends mxICell> block_list = context_block.get(key);
+                boolean block_found = false;
+                for (mxICell block : block_list) {
+                    if (block instanceof BasicBlock) {
+                        BasicBlock basicblock = (BasicBlock) block;
+                        int block_order = (int) ((ScilabDouble) basicblock.getIntegerParameters()).getRealPart()[0][0];
+                        if (order == block_order) {
+                            block_found = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (block_found == false) {
+                    // delete the port
+                    removeOnePort(basicport);
+                }
+            }
+        }
+    }
+
+    /**
+     * Function that replace a port of a superblock
+     * if its numbering has changed
+     * 
+     * @param key
+     *          direction of the block ports
+     * @param context_block
+     *          the list of blocks
+     * @param context_port
+     *          the list of ports
+     */
+    private void replacePort(String key, Hashtable<String, List<? extends mxICell>> context_block, Map<String, List<? extends mxICell>> context_port) {
+        // iterate on the superdiagram blocks
+        for (mxICell cell : context_block.get(key)) {
+            if (cell instanceof BasicBlock) {
+                BasicBlock basicblock = (BasicBlock) cell;
+                int order = (int) ((ScilabDouble) basicblock.getIntegerParameters()).getRealPart()[0][0];
+
+                // verify superblock port coherence
+                List<? extends mxICell> port_list = context_port.get(key);
+                BasicPort basicport = null;
+                boolean port_found = false;
+                for (mxICell port : port_list) {
+                    if (port instanceof BasicPort) {
+                        basicport = (BasicPort) port;
+                        if (order == basicport.getOrdering()) {
+                            port_found = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (port_found == true) {
+                    boolean port_deleted = false;
+                    port_deleted = removeOnePort(order, basicport, basicblock);
+
+                    // add the port on the superblock if deleted
+                    if (port_deleted == true) {
+                        insertOnePort(order, basicblock);
+                    }
+                } else {
+                    insertOnePort(order, basicblock);
+                }
+            }
+        }
+    }
+
+    /**
+     * Function that updates super block ports in parent diagram
      */
     public void updateExportedPort() {
         if (child == null) {
@@ -364,32 +658,25 @@ public final class SuperBlock extends BasicBlock {
             setParentDiagram(Xcos.findParent(this));
         }
 
-        final Map<IOBlocks, List<mxICell>> blocksMap = IOBlocks.getAllBlocks(this);
-        final Map<IOBlocks, List<mxICell>> portsMap = IOBlocks.getAllPorts(this);
-        for (IOBlocks block : IOBlocks.values()) {
-            final int blockCount = blocksMap.get(block).size();
-            int portCount = portsMap.get(block).size();
+        // extracting blocks from the superdiagram
+        Hashtable<String, List<? extends mxICell>> context_block = extractContextBlocks();
+        // extracting ports from the superblock
+        Hashtable<String, List<? extends mxICell>> context_port = extractContextPorts();
 
-            // add ports if required
-            while (blockCount > portCount) {
-                try {
-                    BasicPort port;
-                    port = block.getReferencedPortClass().newInstance();
-                    addPort(port);
-                } catch (InstantiationException e) {
-                    Logger.getLogger(SuperBlock.class.getName()).severe(e.toString());
-                } catch (IllegalAccessException e) {
-                    Logger.getLogger(SuperBlock.class.getName()).severe(e.toString());
-                }
-                portCount++;
-            }
-
-            // remove ports if required
-            while (portCount > blockCount) {
-                removePort((BasicPort) portsMap.get(block).get(portCount - 1));
-                portCount--;
+        for (String key : context_block.keySet()) {
+            if (context_block.get(key).size() > context_port.get(key).size()) {
+                // adding ports of the superblock
+                addPorts(key, context_block, context_port);
+            } else if (context_block.get(key).size() < context_port.get(key).size()) {
+                // removing ports of the superblock
+                removePorts(key, context_block, context_port);
+            } else {
+                // reordering ports of the superblock
+                removeDeadPorts(key, context_block, context_port);
+                replacePort(key, context_block, context_port);
             }
         }
+
         getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, XcosConstants.EVENT_BLOCK_UPDATED, this));
     }
 

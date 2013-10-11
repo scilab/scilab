@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-07-30 07:15+0000\n"
+"PO-Revision-Date: 2013-09-27 09:27+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -481,12 +481,6 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un entier positif attendu.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Real matrix expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Une matrice réelle "
-"attendue.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: %d,'%s',%d or '%s' expected\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : %d,'%s',%d ou '%s' "
@@ -513,6 +507,67 @@ msgstr "%s : Log d'une matrice singulière.\n"
 #, c-format
 msgid "%s: Unable to diagonalize.\n"
 msgstr "%s : Impossible de diagonaliser.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) d'entrée : au moins %d attendu(s).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: expected same type as first "
+"argument.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Même type attendu comme "
+"premier argument.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of integers, reals, complexes, "
+"booleans, polynomials or strings expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice d'entiers, de "
+"réels, de complexes, de booléens, de polynômes ou de chaînes de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong value for argument #%d: Must not contain NaN.\n"
+msgstr "%s : Valeur erronée de l'argument n°%d : Ne doit pas contenir NaN.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Scalar string expected => option ignored.\n"
+msgstr ""
+"%s : Type erroné de l'argument n°%d : Une chaîne de caractère scalaire "
+"attendue => option ignorée.\n"
+
+#, c-format
+msgid "%s: Unknown option %s => ignored.\n"
+msgstr "%s : Option inconnue %s => ignorée.\n"
+
+#, c-format
+msgid "%s: Option %s only relevant for %s and %s modes => ignored.\n"
+msgstr ""
+"%s : L'option %s n'est pertinente que pour les modes %s et %s => ignorée.\n"
+
+#, c-format
+msgid "%s: not enough memory to proceed\n"
+msgstr "%s : Mémoire insuffisante pour poursuivre\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of columns "
+"expected.\n"
+msgstr ""
+"%s : Arguments d'entrée n°%d et n°%d incompatibles : Même nombre de colonnes "
+"attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
+msgstr ""
+"%s : Arguments d'entrée n°%d et n°%d incompatibles : Même nombre de rangées "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: At most %d expected.\n"

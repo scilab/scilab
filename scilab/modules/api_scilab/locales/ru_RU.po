@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: ru\n"
 
 #, c-format
@@ -22,7 +22,7 @@ msgid "%s: Invalid argument address"
 msgstr "%s: Неверный адрес параметра"
 
 #, c-format
-msgid "%s: Invalid argument type, %s excepted"
+msgid "%s: Invalid argument type, %s expected"
 msgstr "%s: Неверный тип параметра, ожидался %s"
 
 msgid "boolean matrix"
@@ -106,7 +106,7 @@ msgstr ""
 "%s: Неверное количество выходных аргументов: ожидалось не больше %d.\n"
 
 #, c-format
-msgid "%s: matrix argument excepted"
+msgid "%s: matrix argument expected"
 msgstr "%s: ожидался матричный параметр"
 
 #, c-format

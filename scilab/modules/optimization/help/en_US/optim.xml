@@ -25,6 +25,9 @@
             [fopt, xopt] = optim(...)
             [fopt, xopt, gopt] = optim(...)
             [fopt, xopt, gopt, work] = optim(...)
+            [fopt, xopt, gopt, work, iters] = optim(...)
+            [fopt, xopt, gopt, work, iters, evals] = optim(...)
+            [fopt, xopt, gopt, work, iters, evals, err] = optim(...)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -114,7 +117,7 @@
                             "ar",nap,iter
                             "ar",nap,iter,epsg
                             "ar",nap,iter,epsg,epsf
-                            "ar",nap,iter,epsg,epsf,epsx            
+                            "ar",nap,iter,epsg,epsf,epsx
                         </screen>
                     </para>
                     <para>where:</para>
@@ -345,7 +348,6 @@
                                     </para>
                                 </listitem>
                             </itemizedlist>
-                            
                         </listitem>
                         <listitem>
                             <para>
@@ -445,6 +447,42 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>iters</term>
+                <listitem>
+                    <para>
+                        scalar, the number of iterations that is displayed when <literal>imp=2</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>evals</term>
+                <listitem>
+                    <para>
+                        scalar, the number of <literal>cost</literal> function evaluations
+                        that is displayed when <literal>imp=2</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>err</term>
+                <listitem>
+                    <para>
+                        scalar, a termination indicator.
+                        The success flag is <literal>9</literal>.
+                        <literal>err=1</literal>: Norm of projected gradient lower than...
+                        <literal>err=2</literal>: At last iteration f decreases by less than...
+                        <literal>err=3</literal>: Optimization stops because of too small variations for x.
+                        <literal>err=4</literal>: Optim stops: maximum number of calls to f is reached.
+                        <literal>err=5</literal>: Optim stops: maximum number of iterations is reached.
+                        <literal>err=6</literal>: Optim stops: too small variations in gradient direction.
+                        <literal>err=7</literal>: Stop during calculation of descent direction.
+                        <literal>err=8</literal>: Stop during calculation of estimated hessian.
+                        <literal>err=9</literal>: End of optimization, successful completion.
+                        <literal>err=10</literal>: End of optimization (linear search fails).
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -459,7 +497,7 @@
             constrained nonlinear optimization problems:
         </para>
         <screen>min f(x)
-            binf &lt;= x &lt;= bsup      
+            binf &lt;= x &lt;= bsup
         </screen>
         <para>
             where <literal>binf</literal> is the lower bound and
@@ -529,7 +567,7 @@
                                 <para>with the following declarations:</para>
                                 <screen>integer ind,n ti(*)
                                     double precision x(n),f,g(n),td(*)
-                                    real tr(*)      
+                                    real tr(*)
                                 </screen>
                                 <para>
                                     The argument <literal>ind</literal> is described
@@ -613,7 +651,7 @@
                     <td>X</td>
                     <td>X</td>
                     <td/>
-                    <td/>
+                    <td>X</td>
                 </tr>
                 <tr>
                     <td>optim/"gc" BND</td>
@@ -677,7 +715,7 @@
             [fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc", "ar", 3, 100, 1e-6, 1e-6, [1e-3; 1e-3; 1e-3])
             
             // Additionnal messages are printed in the console.
-            [fopt, xopt] = optim(cost, x0, imp = 3)    
+            [fopt, xopt] = optim(cost, x0, imp = 3)
         </programlisting>
     </refsection>
     <refsection>
@@ -704,7 +742,7 @@
             endfunction
             
             x0 = [1; -1; 1];
-            [fopt, xopt] = optim(cost, x0, imp = -1)   
+            [fopt, xopt] = optim(cost, x0, imp = -1)
         </programlisting>
         <para>The previous script produces the following output.</para>
         <screen>--&gt;[fopt, xopt] = optim(cost, x0, imp = -1)
@@ -718,7 +756,7 @@
             2.
             3.
             fopt  =
-            0.    
+            0.
         </screen>
         <para>In the following example, we solve the Rosenbrock test case. For
             each iteration of the algorithm, we plot the current value of x into a 2D
@@ -758,7 +796,7 @@
             plot(xopt(1) , xopt(2) , "r*")
             
             // 5. Plot the optimization process, during optimization
-            [fopt, xopt] = optim ( rosenbrockPlot , x0 , imp = -1)    
+            [fopt, xopt] = optim ( rosenbrockPlot , x0 , imp = -1)
         </programlisting>
         <scilab:image>
             function [f, g, ind]=rosenbrock(x, ind)
@@ -812,7 +850,7 @@
             
             x0 = [-1.2 1.0];
             
-            [ fopt , xopt ] = optim ( rosenbrockCost , x0 )    
+            [ fopt , xopt ] = optim ( rosenbrockCost , x0 )
         </programlisting>
         <para>In the following example, we use the derivative function to solve
             Rosenbrock's problem. Given that the step computation strategy is not the
@@ -829,7 +867,7 @@
             endfunction
             
             x0 = [-1.2 1.0];
-            [fopt , xopt] = optim ( rosenbrockCost2 , x0 )    
+            [fopt , xopt] = optim ( rosenbrockCost2 , x0 )
         </programlisting>
     </refsection>
     <refsection>
@@ -908,7 +946,7 @@
             c = 3.0;
             d = 4.0;
             costf = list ( costfunction , a , b , c, d );
-            [fopt , xopt] = optim ( costf , x0 , imp = 2)    
+            [fopt , xopt] = optim ( costf , x0 , imp = 2)
         </programlisting>
         <para>In complex cases, the cost function may have so many parameters,
             that having a function which takes all arguments as inputs is not
@@ -949,7 +987,7 @@
             parameters.c = c;
             parameters.d = d;
             costf = list ( costfunction , parameters );
-            [fopt , xopt] = optim ( costf , x0 , imp = 2)    
+            [fopt , xopt] = optim ( costf , x0 , imp = 2)
         </programlisting>
         <para>In the following example, the parameters are defined before the
             optimizer is called. They are directly used in the cost function.
@@ -965,7 +1003,7 @@
             b = 2.0;
             c = 3.0;
             d = 4.0;
-            [ fopt , xopt ] = optim ( costfunction , x0 , imp = 2 )   
+            [ fopt , xopt ] = optim ( costfunction , x0 , imp = 2 )
         </programlisting>
         <para>While the previous example perfectly works, there is a risk that the
             same variables are used by some internal function used by
@@ -992,7 +1030,7 @@
             b = 2.0;
             c = 3.0;
             d = 4.0;
-            [ fopt , xopt ] = optim ( costfunction , x0 , imp = 2 )    
+            [ fopt , xopt ] = optim ( costfunction , x0 , imp = 2 )
         </programlisting>
         <para>While the previous example perfectly works, there is a risk that the
             same variables are used by some internal function used by
@@ -1036,14 +1074,14 @@
             [ f , g , index ] = rosenbrock ( x0 , index );
             gnd = derivative ( simplified , x0.' );
             mprintf("Exact derivative:[%s]\n" , strcat ( string(g) , " " ));
-            mprintf("Numerical derivative:[%s]\n" , strcat ( string(gnd) , " " ));    
+            mprintf("Numerical derivative:[%s]\n" , strcat ( string(gnd) , " " ));
         </programlisting>
         <para>The previous script produces the following output. Obviously, the
             difference between the two gradient is enormous, which shows that the
             wrong formula has been used in the gradient.
         </para>
         <programlisting role="example">      Exact derivative:[-638 -88]
-            Numerical derivative:[-215.6 -88]   
+            Numerical derivative:[-215.6 -88]
         </programlisting>
     </refsection>
     <refsection>
@@ -1139,7 +1177,7 @@
             //solve the problem
             x0 = [40; 10; 50];
             p = 100;
-            [f, xo, go] = optim('rosenf', x0, 'td', p)    
+            [f, xo, go] = optim('rosenf', x0, 'td', p)
         </programlisting>
     </refsection>
     <refsection>
@@ -1227,7 +1265,7 @@
             //
             // Solve the problem
             //
-            [f, x, g] = optim('rosenf', x0, 'in');    
+            [f, x, g] = optim('rosenf', x0, 'in');
         </programlisting>
     </refsection>
     <refsection>
@@ -1257,7 +1295,7 @@
             'c     if n&lt;=2 returns ind=0'
             'c     f.bonnans, oct 86'
             '      implicit double precision (a-h,o-z)'
-            [etc...]    
+            [etc...]
         </programlisting>
     </refsection>
     <refsection role="see also">

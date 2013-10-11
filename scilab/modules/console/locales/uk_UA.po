@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-24 05:30+0000\n"
+"PO-Revision-Date: 2013-09-15 06:36+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: uk\n"
 
 #, c-format
@@ -665,7 +665,7 @@ msgstr "Довідка з Xcos"
 msgid "Block Help"
 msgstr "Довідка щодо блоку"
 
-msgid "Xcos Demos"
+msgid "Xcos Demonstrations"
 msgstr "Демонстрації Xcos"
 
 msgid "About Xcos"
@@ -715,6 +715,9 @@ msgstr "Виберіть компонування"
 
 msgid "(Modify the layout requires to restart Scilab)"
 msgstr "(Зміна компонування потребуватиме перезапуску Scilab)"
+
+msgid "Save layout on exiting"
+msgstr "Зберігати компонування під час виходу з програми"
 
 msgid "Keys binding"
 msgstr "Прив’язка до клавіш"
@@ -773,6 +776,10 @@ msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr ""
 "[Продовжити показ? Натисніть клавішу «n» (ні), щоб зупинити показ, або будь-"
 "яку іншу клавішу, щоб його продовжити]"
+
+#, c-format
+msgid "MPI error: %s\n"
+msgstr "Помилка MPI: %s\n"
 
 #, c-format
 msgid ""

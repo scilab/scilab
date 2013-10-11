@@ -104,6 +104,7 @@ int sci_csvStringToDouble(char *fname, unsigned long fname_len)
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
         }
+        break;
 
         default:
         case STRINGTOCOMPLEX_ERROR:

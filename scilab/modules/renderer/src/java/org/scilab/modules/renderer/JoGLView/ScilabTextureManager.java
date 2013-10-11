@@ -12,7 +12,6 @@
 package org.scilab.modules.renderer.JoGLView;
 
 import org.scilab.forge.scirenderer.Canvas;
-import org.scilab.forge.scirenderer.data.AbstractDataProvider;
 import org.scilab.forge.scirenderer.texture.AbstractTextureDataProvider;
 import org.scilab.forge.scirenderer.texture.Texture;
 import org.scilab.modules.graphic_objects.MainDataLoader;

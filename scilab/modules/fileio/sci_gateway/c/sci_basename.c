@@ -25,9 +25,9 @@ int sci_basename(char *fname, unsigned long fname_len)
 
     int *piAddressVarOne = NULL;
     wchar_t **pStVarOne = NULL;
-    int *lenStVarOne = NULL;
-    int iType1					= 0;
-    int m1 = 0, n1 = 0;
+    int m1 = 0;
+    int n1 = 0;
+    int i = 0;
 
     wchar_t **pStResult = NULL;
 
@@ -38,10 +38,6 @@ int sci_basename(char *fname, unsigned long fname_len)
     if (Rhs > 2)
     {
         int *piAddressVarThree = NULL;
-        int *piData = NULL;
-        int iType3	= 0;
-        int m3 = 0, n3 = 0;
-
         sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
         if (sciErr.iErr)
         {
@@ -50,52 +46,24 @@ int sci_basename(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        sciErr = getVarType(pvApiCtx, piAddressVarThree, &iType3);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
-            return 0;
-        }
-
-        if (iType3 != sci_boolean)
+        if (isBooleanType(pvApiCtx, piAddressVarThree) == 0 || isScalar(pvApiCtx, piAddressVarThree) == 0)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 3);
             return 0;
         }
 
-        sciErr = getMatrixOfBoolean(pvApiCtx, piAddressVarThree, &m3, &n3,  &piData);
-        if (sciErr.iErr)
+        if (getScalarBoolean(pvApiCtx, piAddressVarThree, &flagexpand))
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
             return 0;
         }
-
-        sciErr = getVarDimension(pvApiCtx, piAddressVarThree, &m3, &n3);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
-            return 0;
-        }
-
-        if ( (m3 != n3) && (n3 != 1) )
-        {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 3);
-            return 0;
-        }
-
-        flagexpand = piData[0];
     }
 
+    //do not care of 2nd param ? Oo
     if (Rhs > 1)
     {
         int *piAddressVarTwo = NULL;
-        int *piData = NULL;
-        int iType2	= 0;
-        int m2 = 0, n2 = 0;
-
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
         if (sciErr.iErr)
         {
@@ -104,43 +72,13 @@ int sci_basename(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-            return 0;
-        }
-
-        if (iType2 != sci_boolean)
+        if (isBooleanType(pvApiCtx, piAddressVarTwo) == 0 || isScalar(pvApiCtx, piAddressVarTwo) == 0)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 2);
             return 0;
         }
-
-        sciErr = getVarDimension(pvApiCtx, piAddressVarTwo, &m2, &n2);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-            return 0;
-        }
-
-        if ( (m2 != n2) && (n2 != 1) )
-        {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 2);
-            return 0;
-        }
-
-        sciErr = getMatrixOfBoolean(pvApiCtx, piAddressVarTwo, &m2, &n2,  &piData);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-            return 0;
-        }
-
     }
+
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if (sciErr.iErr)
@@ -150,162 +88,65 @@ int sci_basename(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-    if (sciErr.iErr)
+    if (isDoubleType(pvApiCtx, piAddressVarOne))
     {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
-    }
-
-    if (iType1 == sci_matrix)
-    {
-        sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
-        if (sciErr.iErr)
+        if (isEmptyMatrix(pvApiCtx, piAddressVarOne))
         {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-            return 0;
-        }
-
-        if ( (m1 == n1) && (m1 == 0) )
-        {
-            sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m1, n1, NULL);
-            if (sciErr.iErr)
+            if (createEmptyMatrix(pvApiCtx, Rhs + 1))
             {
-                printError(&sciErr, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 0;
             }
-
-            LhsVar(1) = Rhs + 1;
-            PutLhsVar();
         }
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: String array expected.\n"), fname, 1);
-        }
-    }
-    else if (iType1 == sci_strings)
-    {
-        int i = 0;
-
-        sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-            return 0;
-        }
-
-        lenStVarOne = (int*)MALLOC(sizeof(int) * (m1 * n1));
-        if (lenStVarOne == NULL)
-        {
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
-            return 0;
-        }
-
-        // get lenStVarOne value
-        sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, NULL);
-        if (sciErr.iErr)
-        {
-            freeArrayOfWideString(pStVarOne, m1 * n1);
-            if (lenStVarOne)
-            {
-                FREE(lenStVarOne);
-                lenStVarOne = NULL;
-            }
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-            return 0;
-        }
-
-        pStVarOne = (wchar_t**)MALLOC(sizeof(wchar_t*) * (m1 * n1));
-        if (pStVarOne == NULL)
-        {
-            if (lenStVarOne)
-            {
-                FREE(lenStVarOne);
-                lenStVarOne = NULL;
-            }
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
-            return 0;
-        }
-
-        for (i = 0; i < (m1 * n1); i++)
-        {
-            pStVarOne[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStVarOne[i] + 1));
-            if (pStVarOne[i] == NULL)
-            {
-                freeArrayOfWideString(pStVarOne, m1 * n1);
-                if (lenStVarOne)
-                {
-                    FREE(lenStVarOne);
-                    lenStVarOne = NULL;
-                }
-                Scierror(999, _("%s: Memory allocation error.\n"), fname);
-                return 0;
-            }
-        }
-
-        // get pStVarOne
-        sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-        if (sciErr.iErr)
-        {
-            freeArrayOfWideString(pStVarOne, m1 * n1);
-            if (lenStVarOne)
-            {
-                FREE(lenStVarOne);
-                lenStVarOne = NULL;
-            }
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-            return 0;
-        }
-
-        pStResult = (wchar_t**)MALLOC(sizeof(wchar_t*) * (m1 * n1));
-
-        if (pStResult == NULL)
-        {
-            if (lenStVarOne)
-            {
-                FREE(lenStVarOne);
-                lenStVarOne = NULL;
-            }
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
-            return 0;
-        }
-
-        for (i = 0; i < m1 * n1; i++)
-        {
-            pStResult[i] = basenameW(pStVarOne[i], flagexpand);
-        }
-
-        sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, m1, n1, pStResult);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
 
         LhsVar(1) = Rhs + 1;
-
-        if (lenStVarOne)
-        {
-            FREE(lenStVarOne);
-            lenStVarOne = NULL;
-        }
-        freeArrayOfWideString(pStResult, m1 * n1);
-        freeArrayOfWideString(pStVarOne, m1 * n1);
-
         PutLhsVar();
-
+        return 0;
     }
-    else
+
+    if (isStringType(pvApiCtx, piAddressVarOne) == 0)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String array expected.\n"), fname, 1);
+        return 0;
     }
+
+    if (getAllocatedMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &pStVarOne))
+    {
+        freeAllocatedMatrixOfWideString(m1, n1, pStVarOne);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        return 0;
+    }
+
+    pStResult = (wchar_t**)MALLOC(sizeof(wchar_t*) * (m1 * n1));
+    if (pStResult == NULL)
+    {
+        freeAllocatedMatrixOfWideString(m1, n1, pStVarOne);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
+
+    for (i = 0; i < m1 * n1; i++)
+    {
+        pStResult[i] = basenameW(pStVarOne[i], flagexpand);
+    }
+
+    freeAllocatedMatrixOfWideString(m1, n1, pStVarOne);
+    sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, m1, n1, pStResult);
+    freeArrayOfWideString(pStResult, m1 * n1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
+
+    LhsVar(1) = Rhs + 1;
+    PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

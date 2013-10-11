@@ -210,6 +210,7 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosPalGenerateIcon.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosPalLoad.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosPalMove.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosPalGet.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosAddToolsMenu.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosUpdateBlock.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_loadXcos.cpp" />

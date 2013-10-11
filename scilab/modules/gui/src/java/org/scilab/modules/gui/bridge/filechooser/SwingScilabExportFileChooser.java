@@ -18,7 +18,6 @@ import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -27,7 +26,6 @@ import javax.swing.border.TitledBorder;
 
 import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
@@ -276,12 +274,20 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
     }
 
     /**
-     * Export an bitmap file
+     * Export a vectorial file
      * @param userExtension extension caught by the user
      */
     public void vectorialExport(String userExtension) {
         Component c = DrawerVisitor.getVisitor(figureUID).getComponent();
-        SimpleTab parentTab = (SimpleTab) SwingUtilities.getAncestorOfClass(SimpleTab.class, c);
         ExportData exportData = new ExportData(figureUID, this.exportName, userExtension, null);
+
+        String actualFilename = exportData.getExportName();
+        if (this.getExtension(actualFilename) == null) {
+            // Could not get the extension from the user input
+            // take the one from the list
+            actualFilename += "." + userExtension;
+        }
+
+        FileExporter.fileExport(figureUID, actualFilename, exportData.getExportExtension(), -1, 0);
     }
 }

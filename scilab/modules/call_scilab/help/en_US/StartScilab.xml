@@ -79,7 +79,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"> 
+        <programlisting role="c"> 
             // A simple StartScilab example
             if ( StartScilab(getenv("SCI"), NULL, 0) == FALSE )
             {

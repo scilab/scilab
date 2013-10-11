@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-26 05:27+0000\n"
+"PO-Revision-Date: 2013-09-15 06:56+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: uk\n"
 
 msgid "Polynomials"
@@ -37,6 +37,10 @@ msgid ""
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати число з "
 "рухомою комою, поліном або масив з раціональних дробів.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
@@ -72,12 +76,6 @@ msgid ""
 "%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"
 msgstr ""
 "%s: помилковий тип параметра №%d: мало бути використано масив або поліном.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real Polynomial expected.\n"
-msgstr ""
-"%s: помилковий тип параметра №%d: мало бути використано тип полінома з "
-"дійсними коефіцієнтами.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Polynomial array expected.\n"

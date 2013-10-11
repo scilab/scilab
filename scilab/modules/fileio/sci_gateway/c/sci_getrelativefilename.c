@@ -59,6 +59,7 @@ int sci_getrelativefilename(char *fname, unsigned long l)
     }
     if (getAllocatedMatrixOfString(pvApiCtx, piAddr1, &iRows1, &iCols1, &Input_StringMatrix_1))
     {
+        freeAllocatedMatrixOfString(iRows1, iCols1, Input_StringMatrix_1);
         Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), fname, 1);
         return 0;
     }
@@ -67,6 +68,7 @@ int sci_getrelativefilename(char *fname, unsigned long l)
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
     if (sciErr.iErr)
     {
+        freeAllocatedMatrixOfString(iRows1, iCols1, Input_StringMatrix_1);
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
@@ -74,11 +76,14 @@ int sci_getrelativefilename(char *fname, unsigned long l)
     // Check type
     if (isStringType(pvApiCtx, piAddr2) == 0)
     {
+        freeAllocatedMatrixOfString(iRows1, iCols1, Input_StringMatrix_1);
         Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), fname, 2);
         return 0;
     }
     if (getAllocatedMatrixOfString(pvApiCtx, piAddr2, &iRows2, &iCols2, &Input_StringMatrix_2))
     {
+        freeAllocatedMatrixOfString(iRows1, iCols1, Input_StringMatrix_1);
+        freeAllocatedMatrixOfString(iRows2, iCols2, Input_StringMatrix_2);
         Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), fname, 2);
         return 0;
     }
@@ -102,42 +107,43 @@ int sci_getrelativefilename(char *fname, unsigned long l)
 
     for ( x = 0; x < iRows1 * iCols1; x++)
     {
-        OutputStrings[x] = (char*)MALLOC(PATH_MAX * sizeof(char*));
-        if (OutputStrings[x] == NULL)
-        {
-            freeAllocatedMatrixOfString(iRows1, iCols1, Input_StringMatrix_1);
-            freeAllocatedMatrixOfString(iRows2, iCols2, Input_StringMatrix_2);
-            freeAllocatedMatrixOfString(iRows1, iCols1, OutputStrings);
-            Scierror(112, _("%s: No more memory.\n"), fname);
-            return 0;
-        }
         // make sure the names are not too long
         if ( strlen(Input_StringMatrix_1[x]) > PATH_MAX )
         {
+            freeAllocatedMatrixOfString(iRows1, iCols1, Input_StringMatrix_1);
+            freeAllocatedMatrixOfString(iRows2, iCols2, Input_StringMatrix_2);
+            freeArrayOfString(OutputStrings, iRows1 * iCols1);
             Scierror(999, _("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"), fname, 1, PATH_MAX);
+            return 0;
         }
+
         if ( strlen(Input_StringMatrix_2[x]) > PATH_MAX )
         {
+            freeAllocatedMatrixOfString(iRows1, iCols1, Input_StringMatrix_1);
+            freeAllocatedMatrixOfString(iRows2, iCols2, Input_StringMatrix_2);
+            freeArrayOfString(OutputStrings, iRows1 * iCols1);
             Scierror(999, _("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"), fname, 2, PATH_MAX);
+            return 0;
         }
+
         OutputStrings[x] = getrelativefilename(Input_StringMatrix_1[x], Input_StringMatrix_2[x]);
     }
+
+    freeAllocatedMatrixOfString(iRows1, iCols1, Input_StringMatrix_1);
+    freeAllocatedMatrixOfString(iRows2, iCols2, Input_StringMatrix_2);
 
     sciErr = createMatrixOfString(pvApiCtx, iRhs + 1, iRows1, iCols1, (char**)OutputStrings);
     if (sciErr.iErr)
     {
+        freeArrayOfString(OutputStrings, iRows1 * iCols1);
         printError(&sciErr, 0);
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 
+    freeArrayOfString(OutputStrings, iRows1 * iCols1);
+
     AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
-
-    freeAllocatedMatrixOfString(iRows1, iCols1, OutputStrings);
-    freeAllocatedMatrixOfString(iRows1, iCols1, Input_StringMatrix_1);
-    freeAllocatedMatrixOfString(iRows2, iCols2, Input_StringMatrix_2);
-
     ReturnArguments(pvApiCtx);
-
     return 0;
 }

@@ -498,17 +498,20 @@ void ScilabJavaEnvironmentWrapper::unwrapmatshort(int id, const ScilabShortStack
 
 void ScilabJavaEnvironmentWrapper::unwrapushort(int id, const ScilabUShortStackAllocator & allocator) const
 {
-    // Not called
+    JavaVM * vm = getScilabJavaVM();
+    unwrapSingle<jchar, unsigned short>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowushort(int id, const ScilabUShortStackAllocator & allocator) const
 {
-    // Not called
+    JavaVM * vm = getScilabJavaVM();
+    unwrapRow<jchar, unsigned short>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatushort(int id, const ScilabUShortStackAllocator & allocator) const
 {
-    // Not called
+    JavaVM * vm = getScilabJavaVM();
+    unwrapMat<jchar, unsigned short>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapint(int id, const ScilabIntStackAllocator & allocator) const

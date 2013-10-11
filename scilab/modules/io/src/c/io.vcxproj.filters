@@ -26,9 +26,6 @@
     <ClCompile Include="DllmainIo.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GetenvB.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="getenvc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -95,9 +92,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_io.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\GetenvB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\getenvc.h">

@@ -57,7 +57,7 @@ int do_xxscanf(char *fname, FILE * fp, char *format, int *nargs, char *strv, int
     int ignore_flag = 0;
     int str_width_flag = 0;
     int num_conversion = -1;
-    void *ptrtab[MAXSCAN];
+    void *ptrtab[MAXSCAN] = {NULL};
     char sformat[MAX_STR];
     char backupcurrrentchar;
     char directive;
@@ -293,6 +293,7 @@ int do_xxscanf(char *fname, FILE * fp, char *format, int *nargs, char *strv, int
 
                 case 'n':
                     n_directive_count++;
+                    //pass to next statement
 
                 case 'i':
                 case 'd':

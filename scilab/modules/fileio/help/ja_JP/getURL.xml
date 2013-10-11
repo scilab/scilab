@@ -279,7 +279,7 @@
             
             // 認証を使用
             
-            getURL("http://http://httpbin.org/basic-auth/user/passwd",TMPDIR+"/testfile.html","user","passwd")
+            getURL("http://httpbin.org/basic-auth/user/passwd",TMPDIR+"/testfile.html","user","passwd")
             
             
             
@@ -310,6 +310,24 @@
             </member>
             
         </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>History</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>この関数はScilab 5.5.0で追加されました</revremark>
+                
+            </revision>
+            
+        </revhistory>
         
     </refsection>
     

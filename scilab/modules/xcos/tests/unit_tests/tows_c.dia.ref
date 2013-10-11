@@ -7,11 +7,11 @@
 // <-- ENGLISH IMPOSED -->
 // <-- XCOS TEST -->
 // Import diagram
-assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/tows_c.xcos"));
+assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/tows_c.zcos"));
 Info = scicos_simulate(scs_m);
 // Reference values
 t = (2.2 : 0.1 : 14.9)';
-A_ref = struct('values', sin(t), 'time', t); // A_ref = (sin(t), t)
+A_ref = struct("values", sin(t), "time", t); // A_ref = (sin(t), t)
 imgM_ref = [1+2*%i 3+4*%i ; 1 2]; // imgM_ref is an element of hypermatrix imgM
 imgV_ref = ones(128, 2);
 imgV_ref = (1+%i)*imgV_ref;
@@ -29,7 +29,7 @@ charV_ref(:, 2) = charV_ref(:, 2) + 1;   // charV_ref = [9, 10] with 128 rows
 intM2_ref = int32([11 12 ; 13 14]);      // intM2_ref is an element of hypermatrix intM2
 shortM_ref = int16([15 16; 17 18]);      // shortM_ref is an element of hypermatrix shortM
 charM_ref = int8([19 20 ; 21 22]);       // charM_ref is an element of hypermatrix charM
-nineteen_ref = struct('values', ones(128,1), 'time', t);  // Checks that a ninteteen characters variable name is possible, with correct time values
+nineteen_ref = struct("values", ones(128,1), "time", t);  // Checks that a ninteteen characters variable name is possible, with correct time values
 // Run simulation with scicos_simulate() + check results
 try scicos_simulate(scs_m, Info); catch disp(lasterror()); end  // Run simulation
 assert_checkequal(fieldnames(A), fieldnames(A_ref)); // Check A fields

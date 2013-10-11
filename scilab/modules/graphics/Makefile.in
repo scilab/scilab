@@ -446,6 +446,8 @@ am__objects_1 = libscigraphics_algo_la-GetCommandArg.lo \
 	libscigraphics_algo_la-get_figure_resizefcn_property.lo \
 	libscigraphics_algo_la-set_figure_closerequestfcn_property.lo \
 	libscigraphics_algo_la-get_figure_closerequestfcn_property.lo \
+	libscigraphics_algo_la-get_datatip_property.lo \
+	libscigraphics_algo_la-set_datatip_property.lo \
 	libscigraphics_algo_la-set_image_type_property.lo \
 	libscigraphics_algo_la-DefaultCommandArg.lo \
 	libscigraphics_algo_la-Axes.lo \
@@ -475,7 +477,22 @@ am__objects_1 = libscigraphics_algo_la-GetCommandArg.lo \
 	libscigraphics_algo_la-TerminateGraphics.lo \
 	libscigraphics_algo_la-periEmpty.lo \
 	libscigraphics_algo_la-scitokenize.lo \
-	libscigraphics_algo_la-get_ticks_utils.lo
+	libscigraphics_algo_la-get_ticks_utils.lo \
+	libscigraphics_algo_la-get_ambient_color_property.lo \
+	libscigraphics_algo_la-get_diffuse_color_property.lo \
+	libscigraphics_algo_la-get_specular_color_property.lo \
+	libscigraphics_algo_la-get_use_color_material_property.lo \
+	libscigraphics_algo_la-get_material_shininess_property.lo \
+	libscigraphics_algo_la-get_light_type_property.lo \
+	libscigraphics_algo_la-get_direction_property.lo \
+	libscigraphics_algo_la-set_ambient_color_property.lo \
+	libscigraphics_algo_la-set_diffuse_color_property.lo \
+	libscigraphics_algo_la-set_specular_color_property.lo \
+	libscigraphics_algo_la-set_use_color_material_property.lo \
+	libscigraphics_algo_la-set_material_shininess_property.lo \
+	libscigraphics_algo_la-set_light_type_property.lo \
+	libscigraphics_algo_la-set_direction_property.lo \
+	libscigraphics_algo_la-Light.lo
 am_libscigraphics_algo_la_OBJECTS = $(am__objects_1)
 libscigraphics_algo_la_OBJECTS = $(am_libscigraphics_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -538,7 +555,7 @@ am__objects_2 = libscigraphics_la-sci_swap_handles.lo \
 	libscigraphics_la-sci_rubberbox.lo \
 	libscigraphics_la-sci_rotate_axes.lo \
 	libscigraphics_la-sci_is_handle_valid.lo \
-	libscigraphics_la-sci_Legend.lo
+	libscigraphics_la-sci_Legend.lo libscigraphics_la-sci_light.lo
 am_libscigraphics_la_OBJECTS = $(am__objects_2)
 libscigraphics_la_OBJECTS = $(am_libscigraphics_la_OBJECTS)
 @GUI_TRUE@am_libscigraphics_la_rpath = -rpath $(pkglibdir)
@@ -797,6 +814,7 @@ STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
+SWIG_SCILAB = @SWIG_SCILAB@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
 TK_INC_PATH = @TK_INC_PATH@
@@ -1165,6 +1183,8 @@ src/c/getHandleProperty/set_figure_resizefcn_property.c \
 src/c/getHandleProperty/get_figure_resizefcn_property.c \
 src/c/getHandleProperty/set_figure_closerequestfcn_property.c \
 src/c/getHandleProperty/get_figure_closerequestfcn_property.c \
+src/c/getHandleProperty/get_datatip_property.c \
+src/c/getHandleProperty/set_datatip_property.c \
 src/c/getHandleProperty/set_image_type_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
@@ -1194,7 +1214,22 @@ src/c/axesScale.c \
 src/c/TerminateGraphics.c \
 src/c/periEmpty.c \
 src/c/scitokenize.c \
-src/c/get_ticks_utils.c
+src/c/get_ticks_utils.c \
+src/c/getHandleProperty/get_ambient_color_property.c \
+src/c/getHandleProperty/get_diffuse_color_property.c \
+src/c/getHandleProperty/get_specular_color_property.c \
+src/c/getHandleProperty/get_use_color_material_property.c \
+src/c/getHandleProperty/get_material_shininess_property.c \
+src/c/getHandleProperty/get_light_type_property.c \
+src/c/getHandleProperty/get_direction_property.c \
+src/c/getHandleProperty/set_ambient_color_property.c \
+src/c/getHandleProperty/set_diffuse_color_property.c \
+src/c/getHandleProperty/set_specular_color_property.c \
+src/c/getHandleProperty/set_use_color_material_property.c \
+src/c/getHandleProperty/set_material_shininess_property.c \
+src/c/getHandleProperty/set_light_type_property.c \
+src/c/getHandleProperty/set_direction_property.c \
+src/c/Light.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
 sci_gateway/c/sci_grayplot.c \
@@ -1257,7 +1292,8 @@ sci_gateway/c/sci_fec.c \
 sci_gateway/c/sci_rubberbox.c \
 sci_gateway/c/sci_rotate_axes.c \
 sci_gateway/c/sci_is_handle_valid.c \
-sci_gateway/c/sci_Legend.c
+sci_gateway/c/sci_Legend.c \
+sci_gateway/c/sci_light.c
 
 libscigraphics_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ \
@@ -1537,6 +1573,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-Gray.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-InitObjects.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-Interaction.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-Light.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-Plo2dEch.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-Plo2dn.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-SetHashTable.Plo@am__quote@
@@ -1548,6 +1585,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-axesScale.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-getPropertyAssignedValue.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_alignment_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_ambient_color_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_anti_aliasing_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_arc_drawing_method_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_arrow_size_factor_property.Plo@am__quote@
@@ -1586,8 +1624,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_data_bounds_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_data_mapping_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_data_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_datatip_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_default_axes_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_default_figure_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_diffuse_color_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_direction_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_event_handler_enable_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_event_handler_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_figure_closerequestfcn_property.Plo@am__quote@
@@ -1623,6 +1664,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_labels_font_size_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_labels_font_style_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_legend_location_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_light_type_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_line_mode_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_line_style_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_links_property.Plo@am__quote@
@@ -1634,6 +1676,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_mark_size_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_mark_size_unit_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_mark_style_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_material_shininess_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_old_style_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_outside_colors_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_parent_property.Plo@am__quote@
@@ -1645,6 +1688,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_rotation_style_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_screen_position_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_segs_color_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_specular_color_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_sub_tics_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_surface_color_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_surface_mode_property.Plo@am__quote@
@@ -1663,6 +1707,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_title_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_triangles_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_type_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_use_color_material_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_user_data_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_view_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_viewport_property.Plo@am__quote@
@@ -1693,6 +1738,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-scitokenize.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-setGetHashTable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_alignment_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_ambient_color_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_anti_aliasing_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_arc_drawing_method_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_arrow_size_factor_property.Plo@am__quote@
@@ -1731,7 +1777,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_data_bounds_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_data_mapping_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_data_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_datatip_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_default_values_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_diffuse_color_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_direction_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_event_handler_enable_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_event_handler_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_figure_closerequestfcn_property.Plo@am__quote@
@@ -1766,6 +1815,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_labels_font_color_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_labels_font_size_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_legend_location_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_light_type_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_line_mode_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_line_style_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_links_property.Plo@am__quote@
@@ -1777,6 +1827,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_mark_size_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_mark_size_unit_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_mark_style_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_material_shininess_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_old_style_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_outside_colors_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_parent_property.Plo@am__quote@
@@ -1788,6 +1839,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_rotation_style_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_screen_position_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_segs_color_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_specular_color_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_sub_tics_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_surface_color_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_surface_mode_property.Plo@am__quote@
@@ -1804,6 +1856,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_tight_limits_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_title_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_triangles_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_use_color_material_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_user_data_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_view_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_viewport_property.Plo@am__quote@
@@ -1844,6 +1897,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_glue.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_grayplot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_is_handle_valid.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_light.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_matplot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_matplot1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_move.Plo@am__quote@
@@ -3834,6 +3888,20 @@ libscigraphics_algo_la-get_figure_closerequestfcn_property.lo: src/c/getHandlePr
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_figure_closerequestfcn_property.lo `test -f 'src/c/getHandleProperty/get_figure_closerequestfcn_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_figure_closerequestfcn_property.c
 
+libscigraphics_algo_la-get_datatip_property.lo: src/c/getHandleProperty/get_datatip_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-get_datatip_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-get_datatip_property.Tpo -c -o libscigraphics_algo_la-get_datatip_property.lo `test -f 'src/c/getHandleProperty/get_datatip_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_datatip_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-get_datatip_property.Tpo $(DEPDIR)/libscigraphics_algo_la-get_datatip_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_datatip_property.c' object='libscigraphics_algo_la-get_datatip_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_datatip_property.lo `test -f 'src/c/getHandleProperty/get_datatip_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_datatip_property.c
+
+libscigraphics_algo_la-set_datatip_property.lo: src/c/getHandleProperty/set_datatip_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-set_datatip_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-set_datatip_property.Tpo -c -o libscigraphics_algo_la-set_datatip_property.lo `test -f 'src/c/getHandleProperty/set_datatip_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_datatip_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-set_datatip_property.Tpo $(DEPDIR)/libscigraphics_algo_la-set_datatip_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_datatip_property.c' object='libscigraphics_algo_la-set_datatip_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-set_datatip_property.lo `test -f 'src/c/getHandleProperty/set_datatip_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_datatip_property.c
+
 libscigraphics_algo_la-set_image_type_property.lo: src/c/getHandleProperty/set_image_type_property.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-set_image_type_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-set_image_type_property.Tpo -c -o libscigraphics_algo_la-set_image_type_property.lo `test -f 'src/c/getHandleProperty/set_image_type_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_image_type_property.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-set_image_type_property.Tpo $(DEPDIR)/libscigraphics_algo_la-set_image_type_property.Plo
@@ -4043,6 +4111,111 @@ libscigraphics_algo_la-get_ticks_utils.lo: src/c/get_ticks_utils.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/get_ticks_utils.c' object='libscigraphics_algo_la-get_ticks_utils.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_ticks_utils.lo `test -f 'src/c/get_ticks_utils.c' || echo '$(srcdir)/'`src/c/get_ticks_utils.c
+
+libscigraphics_algo_la-get_ambient_color_property.lo: src/c/getHandleProperty/get_ambient_color_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-get_ambient_color_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-get_ambient_color_property.Tpo -c -o libscigraphics_algo_la-get_ambient_color_property.lo `test -f 'src/c/getHandleProperty/get_ambient_color_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_ambient_color_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-get_ambient_color_property.Tpo $(DEPDIR)/libscigraphics_algo_la-get_ambient_color_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_ambient_color_property.c' object='libscigraphics_algo_la-get_ambient_color_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_ambient_color_property.lo `test -f 'src/c/getHandleProperty/get_ambient_color_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_ambient_color_property.c
+
+libscigraphics_algo_la-get_diffuse_color_property.lo: src/c/getHandleProperty/get_diffuse_color_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-get_diffuse_color_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-get_diffuse_color_property.Tpo -c -o libscigraphics_algo_la-get_diffuse_color_property.lo `test -f 'src/c/getHandleProperty/get_diffuse_color_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_diffuse_color_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-get_diffuse_color_property.Tpo $(DEPDIR)/libscigraphics_algo_la-get_diffuse_color_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_diffuse_color_property.c' object='libscigraphics_algo_la-get_diffuse_color_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_diffuse_color_property.lo `test -f 'src/c/getHandleProperty/get_diffuse_color_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_diffuse_color_property.c
+
+libscigraphics_algo_la-get_specular_color_property.lo: src/c/getHandleProperty/get_specular_color_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-get_specular_color_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-get_specular_color_property.Tpo -c -o libscigraphics_algo_la-get_specular_color_property.lo `test -f 'src/c/getHandleProperty/get_specular_color_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_specular_color_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-get_specular_color_property.Tpo $(DEPDIR)/libscigraphics_algo_la-get_specular_color_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_specular_color_property.c' object='libscigraphics_algo_la-get_specular_color_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_specular_color_property.lo `test -f 'src/c/getHandleProperty/get_specular_color_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_specular_color_property.c
+
+libscigraphics_algo_la-get_use_color_material_property.lo: src/c/getHandleProperty/get_use_color_material_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-get_use_color_material_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-get_use_color_material_property.Tpo -c -o libscigraphics_algo_la-get_use_color_material_property.lo `test -f 'src/c/getHandleProperty/get_use_color_material_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_use_color_material_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-get_use_color_material_property.Tpo $(DEPDIR)/libscigraphics_algo_la-get_use_color_material_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_use_color_material_property.c' object='libscigraphics_algo_la-get_use_color_material_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_use_color_material_property.lo `test -f 'src/c/getHandleProperty/get_use_color_material_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_use_color_material_property.c
+
+libscigraphics_algo_la-get_material_shininess_property.lo: src/c/getHandleProperty/get_material_shininess_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-get_material_shininess_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-get_material_shininess_property.Tpo -c -o libscigraphics_algo_la-get_material_shininess_property.lo `test -f 'src/c/getHandleProperty/get_material_shininess_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_material_shininess_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-get_material_shininess_property.Tpo $(DEPDIR)/libscigraphics_algo_la-get_material_shininess_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_material_shininess_property.c' object='libscigraphics_algo_la-get_material_shininess_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_material_shininess_property.lo `test -f 'src/c/getHandleProperty/get_material_shininess_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_material_shininess_property.c
+
+libscigraphics_algo_la-get_light_type_property.lo: src/c/getHandleProperty/get_light_type_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-get_light_type_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-get_light_type_property.Tpo -c -o libscigraphics_algo_la-get_light_type_property.lo `test -f 'src/c/getHandleProperty/get_light_type_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_light_type_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-get_light_type_property.Tpo $(DEPDIR)/libscigraphics_algo_la-get_light_type_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_light_type_property.c' object='libscigraphics_algo_la-get_light_type_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_light_type_property.lo `test -f 'src/c/getHandleProperty/get_light_type_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_light_type_property.c
+
+libscigraphics_algo_la-get_direction_property.lo: src/c/getHandleProperty/get_direction_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-get_direction_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-get_direction_property.Tpo -c -o libscigraphics_algo_la-get_direction_property.lo `test -f 'src/c/getHandleProperty/get_direction_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_direction_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-get_direction_property.Tpo $(DEPDIR)/libscigraphics_algo_la-get_direction_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_direction_property.c' object='libscigraphics_algo_la-get_direction_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_direction_property.lo `test -f 'src/c/getHandleProperty/get_direction_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_direction_property.c
+
+libscigraphics_algo_la-set_ambient_color_property.lo: src/c/getHandleProperty/set_ambient_color_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-set_ambient_color_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-set_ambient_color_property.Tpo -c -o libscigraphics_algo_la-set_ambient_color_property.lo `test -f 'src/c/getHandleProperty/set_ambient_color_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_ambient_color_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-set_ambient_color_property.Tpo $(DEPDIR)/libscigraphics_algo_la-set_ambient_color_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_ambient_color_property.c' object='libscigraphics_algo_la-set_ambient_color_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-set_ambient_color_property.lo `test -f 'src/c/getHandleProperty/set_ambient_color_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_ambient_color_property.c
+
+libscigraphics_algo_la-set_diffuse_color_property.lo: src/c/getHandleProperty/set_diffuse_color_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-set_diffuse_color_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-set_diffuse_color_property.Tpo -c -o libscigraphics_algo_la-set_diffuse_color_property.lo `test -f 'src/c/getHandleProperty/set_diffuse_color_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_diffuse_color_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-set_diffuse_color_property.Tpo $(DEPDIR)/libscigraphics_algo_la-set_diffuse_color_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_diffuse_color_property.c' object='libscigraphics_algo_la-set_diffuse_color_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-set_diffuse_color_property.lo `test -f 'src/c/getHandleProperty/set_diffuse_color_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_diffuse_color_property.c
+
+libscigraphics_algo_la-set_specular_color_property.lo: src/c/getHandleProperty/set_specular_color_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-set_specular_color_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-set_specular_color_property.Tpo -c -o libscigraphics_algo_la-set_specular_color_property.lo `test -f 'src/c/getHandleProperty/set_specular_color_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_specular_color_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-set_specular_color_property.Tpo $(DEPDIR)/libscigraphics_algo_la-set_specular_color_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_specular_color_property.c' object='libscigraphics_algo_la-set_specular_color_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-set_specular_color_property.lo `test -f 'src/c/getHandleProperty/set_specular_color_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_specular_color_property.c
+
+libscigraphics_algo_la-set_use_color_material_property.lo: src/c/getHandleProperty/set_use_color_material_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-set_use_color_material_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-set_use_color_material_property.Tpo -c -o libscigraphics_algo_la-set_use_color_material_property.lo `test -f 'src/c/getHandleProperty/set_use_color_material_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_use_color_material_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-set_use_color_material_property.Tpo $(DEPDIR)/libscigraphics_algo_la-set_use_color_material_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_use_color_material_property.c' object='libscigraphics_algo_la-set_use_color_material_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-set_use_color_material_property.lo `test -f 'src/c/getHandleProperty/set_use_color_material_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_use_color_material_property.c
+
+libscigraphics_algo_la-set_material_shininess_property.lo: src/c/getHandleProperty/set_material_shininess_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-set_material_shininess_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-set_material_shininess_property.Tpo -c -o libscigraphics_algo_la-set_material_shininess_property.lo `test -f 'src/c/getHandleProperty/set_material_shininess_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_material_shininess_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-set_material_shininess_property.Tpo $(DEPDIR)/libscigraphics_algo_la-set_material_shininess_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_material_shininess_property.c' object='libscigraphics_algo_la-set_material_shininess_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-set_material_shininess_property.lo `test -f 'src/c/getHandleProperty/set_material_shininess_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_material_shininess_property.c
+
+libscigraphics_algo_la-set_light_type_property.lo: src/c/getHandleProperty/set_light_type_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-set_light_type_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-set_light_type_property.Tpo -c -o libscigraphics_algo_la-set_light_type_property.lo `test -f 'src/c/getHandleProperty/set_light_type_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_light_type_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-set_light_type_property.Tpo $(DEPDIR)/libscigraphics_algo_la-set_light_type_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_light_type_property.c' object='libscigraphics_algo_la-set_light_type_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-set_light_type_property.lo `test -f 'src/c/getHandleProperty/set_light_type_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_light_type_property.c
+
+libscigraphics_algo_la-set_direction_property.lo: src/c/getHandleProperty/set_direction_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-set_direction_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-set_direction_property.Tpo -c -o libscigraphics_algo_la-set_direction_property.lo `test -f 'src/c/getHandleProperty/set_direction_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_direction_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-set_direction_property.Tpo $(DEPDIR)/libscigraphics_algo_la-set_direction_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_direction_property.c' object='libscigraphics_algo_la-set_direction_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-set_direction_property.lo `test -f 'src/c/getHandleProperty/set_direction_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_direction_property.c
+
+libscigraphics_algo_la-Light.lo: src/c/Light.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-Light.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-Light.Tpo -c -o libscigraphics_algo_la-Light.lo `test -f 'src/c/Light.c' || echo '$(srcdir)/'`src/c/Light.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-Light.Tpo $(DEPDIR)/libscigraphics_algo_la-Light.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/Light.c' object='libscigraphics_algo_la-Light.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-Light.lo `test -f 'src/c/Light.c' || echo '$(srcdir)/'`src/c/Light.c
 
 libscigraphics_disable_la-nographics.lo: src/nographics/nographics.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_disable_la-nographics.lo -MD -MP -MF $(DEPDIR)/libscigraphics_disable_la-nographics.Tpo -c -o libscigraphics_disable_la-nographics.lo `test -f 'src/nographics/nographics.c' || echo '$(srcdir)/'`src/nographics/nographics.c
@@ -4485,6 +4658,13 @@ libscigraphics_la-sci_Legend.lo: sci_gateway/c/sci_Legend.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_Legend.lo `test -f 'sci_gateway/c/sci_Legend.c' || echo '$(srcdir)/'`sci_gateway/c/sci_Legend.c
 
+libscigraphics_la-sci_light.lo: sci_gateway/c/sci_light.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_light.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_light.Tpo -c -o libscigraphics_la-sci_light.lo `test -f 'sci_gateway/c/sci_light.c' || echo '$(srcdir)/'`sci_gateway/c/sci_light.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_la-sci_light.Tpo $(DEPDIR)/libscigraphics_la-sci_light.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_light.c' object='libscigraphics_la-sci_light.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_light.lo `test -f 'sci_gateway/c/sci_light.c' || echo '$(srcdir)/'`sci_gateway/c/sci_light.c
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
@@ -4839,8 +5019,17 @@ check-code:
 @SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
 @SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
-@SWIG_TRUE@			echo "Swig process of $$file ..."; \
+@SWIG_TRUE@			echo "Swig process of $$file (Java) ..."; \
 @SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
+@SWIG_TRUE@		done; \
+@SWIG_TRUE@	fi
+
+@SWIG_TRUE@swig-scilab: $(SWIG_SCILAB_WRAPPERS)
+@SWIG_TRUE@	@SWIG_OUTDIR=src/swig/; \
+@SWIG_TRUE@	if test -n "$(SWIG_SCILAB_WRAPPERS)"; then \
+@SWIG_TRUE@		for file in $(SWIG_SCILAB_WRAPPERS) ; do \
+@SWIG_TRUE@			echo "Swig process of $$file (Scilab) ..."; \
+@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB)  -outdir $$SWIG_OUTDIR $$file; \
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 

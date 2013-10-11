@@ -255,7 +255,7 @@ static int sci_strcat_three_rhs(char *fname)
                         lenInput = (int)strlen(Input_String_Two);
                         lenNew = lenOutput + lenInput + 1;
 
-                        Output_String[j] = (char *)REALLOC(Output_String[j], sizeof(char *) * lenNew);
+                        Output_String[j] = (char *)REALLOC(Output_String[j], sizeof(char) * lenNew);
                         if (Output_String[j] == NULL)
                         {
                             freeArrayOfString(Output_String, j);
@@ -272,7 +272,7 @@ static int sci_strcat_three_rhs(char *fname)
                         lenInput = (int)strlen(Input_String_One[i + Row_One * j]);
                         lenNew = lenOutput + lenInput + 1;
 
-                        Output_String[j] = (char *)REALLOC(Output_String[j], sizeof(char *) * lenNew);
+                        Output_String[j] = (char *)REALLOC(Output_String[j], sizeof(char) * lenNew);
                         if (Output_String[j] == NULL)
                         {
                             freeArrayOfString(Output_String, j);

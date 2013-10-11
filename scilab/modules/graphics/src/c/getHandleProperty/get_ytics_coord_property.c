@@ -44,6 +44,11 @@ int get_ytics_coord_property(void* _pvCtx, char* pobjUID)
     }
 
     getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, (void**)&piYNumberTicks);
+    if (piYNumberTicks == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "ytics_coord");
+        return -1;
+    }
 
     return sciReturnRowVector(_pvCtx, yTicksCoords, iYNumberTicks);
 }

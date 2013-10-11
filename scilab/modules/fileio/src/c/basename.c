@@ -24,10 +24,10 @@ wchar_t *basenameW(wchar_t *wcfullfilename, BOOL bExpand)
         wchar_t *expandedPath = expandPathVariableW(wcfullfilename);
         if (expandedPath)
         {
-            wchar_t *wcdrv = MALLOC(sizeof(wchar_t*) * ((int)wcslen(expandedPath) + 1));
-            wchar_t* wcdir = MALLOC(sizeof(wchar_t*) * ((int)wcslen(expandedPath) + 1));
-            wchar_t* wcname = MALLOC(sizeof(wchar_t*) * ((int)wcslen(expandedPath) + 1));
-            wchar_t* wcext = MALLOC(sizeof(wchar_t*) * ((int)wcslen(expandedPath) + 1));
+            wchar_t *wcdrv = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(expandedPath) + 1));
+            wchar_t* wcdir = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(expandedPath) + 1));
+            wchar_t* wcname = (wchar_t*) MALLOC(sizeof(wchar_t) * ((int)wcslen(expandedPath) + 1));
+            wchar_t* wcext = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(expandedPath) + 1));
 
             splitpathW(expandedPath, bExpand, wcdrv, wcdir, wcname, wcext);
 

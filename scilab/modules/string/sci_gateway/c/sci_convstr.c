@@ -119,7 +119,7 @@ int sci_convstr(char *fname, unsigned long fname_len)
 
     for (i = 0; i < mn; i++)
     {
-        Output_Matrix[i] = (char*)MALLOC( sizeof(char*) * (strlen(Input_Matrix[i]) + 1) );
+        Output_Matrix[i] = (char*)MALLOC(sizeof(char) * (strlen(Input_Matrix[i]) + 1));
         if (Output_Matrix[i] == NULL)
         {
             freeArrayOfString(Output_Matrix, i);

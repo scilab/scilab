@@ -30,6 +30,7 @@ import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.vectfield.Arrow;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
+import org.scilab.modules.graphic_objects.datatip.Datatip;
 
 /**
  * @author Pierre Lando
@@ -65,6 +66,8 @@ public interface Visitor {
     void visit(Plot3d plot3d) throws ObjectRemovedException;
 
     void visit(Text text);
+
+    void visit(Datatip datatip);
 
     void visit(Arrow arrow);
 

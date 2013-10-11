@@ -10,6 +10,16 @@
 
 function %_sodload(%__filename__, varargin)
 
+    function v = getScilabFileVersion(%__filename__)
+        verStr = h5readattr(%__filename__, "/", "SCILAB_scilab_version")
+        [a,b,c,d] = regexp(verStr, "/scilab-.*(\d)\.(\d)\.(\d)/");
+        if size(d, "*") == 3 then
+            v = evstr(d(1)) * 100 + evstr(d(2)) * 10 + evstr(d(3));
+        else
+            error("unable to find file version: %s", %__filename__);
+        end
+    endfunction
+
     function [varValues] = %__convertVariable__(varValues, varNames)
         for i = 1:size(varValues)
             if typeof(varValues(i)) == "ScilabMatrixHandle" then
@@ -131,6 +141,10 @@ function %_sodload(%__filename__, varargin)
             h = createuicontextmenu(item);
         case "uicontrol"
             h = createuicontrol(item);
+        case "Datatip"
+            h = createDatatip(item);
+        case "Light"
+            h = createLight(item);
         else
             error("handle of type " + item.type + " unhandled");
             h = [];
@@ -333,14 +347,22 @@ function %_sodload(%__filename__, varargin)
         mark_mode = polylineProperties.mark_mode;
         fields(fields=="mark_mode") = [];
 
+        global %POLYLINE
+        %POLYLINE = h
+
         for i = 1:size(fields, "*")
             if fields(i) == "mark_style" then
                 set(h, "mark_style", polylineProperties.mark_style);
                 set(h, "mark_mode", mark_mode);
+            elseif fields(i) == "children" then
+                createMatrixHandle(polylineProperties(fields(i)));
             else
                 h(fields(i)) = polylineProperties(fields(i));
             end
         end
+
+        clearglobal %POLYLINE
+
     endfunction
 
     //
@@ -665,6 +687,28 @@ function %_sodload(%__filename__, varargin)
     endfunction
 
     //
+    // DATATIP
+    //
+    function h = createDatatip(datatipProperties)
+
+        fields = fieldnames(datatipProperties);
+        fields(1) = [];
+
+        h = datatipCreate(%POLYLINE, 0);
+
+        if datatipProperties.clip_state=="on" then
+            set(h, "clip_box", datatipProperties.clip_box)
+        end
+        set(h, "clip_state", datatipProperties.clip_state);
+        fields(fields=="clip_box") = [];
+        fields(fields=="clip_state") = [];
+
+        for i = 1:size(fields, "*")
+            set(h, fields(i), datatipProperties(fields(i)));
+        end
+    endfunction
+
+    //
     // AXIS
     //
     function h = createAxis(axisProperties)
@@ -768,6 +812,21 @@ function %_sodload(%__filename__, varargin)
         end
     endfunction
 
+    //
+    // LIGHT
+    //
+    function h = createLight(lightProperties)
+        fields = fieldnames(lightProperties);
+        fields(1) = [];
+
+        h = light();
+        fields(fields=="children") = [];
+
+        for i = 1:size(fields, "*")
+            set(h, fields(i), lightProperties(fields(i)));
+        end
+    endfunction
+
     // Utility function for legends, copy/paste from %h_load
     function links=getlinksfrompath(ax,paths)
         //  ax is a  handle on an axes entity
@@ -828,6 +887,7 @@ function %_sodload(%__filename__, varargin)
 
     if isfile(%__filename__) & is_hdf5_file(%__filename__) then
         %__loadFunction__ = import_from_hdf5;
+        //fileVersion = getScilabFileVersion(%__filename__); // Not needed for the moment
     else
         %__loadFunction__ = %_load;
     end

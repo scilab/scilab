@@ -331,9 +331,9 @@ int sci_fftw_flags(char *fname, unsigned long fname_len)
     /* Create the string matrix as return of the function */
     sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 3, j, 1, Str3);
     freeArrayOfString(Str3, j); // Data have been copied into Scilab memory
+
     if (sciErr.iErr)
     {
-        freeArrayOfString(Str3, j); // Make sure everything is cleanup in case of error
         printError(&sciErr, 0);
         return 1;
     }

@@ -81,16 +81,18 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
     /* This list comes from OpenMPI sources */
 #ifdef HAVE_STRSIGNAL
     /* On segfault, avoid calling strsignal which may allocate some memory (through gettext) */
-    char* str;
-    if (signum == 11)
     {
-        str = "Segmentation fault";
+        char* str;
+        if (signum == 11)
+        {
+            str = "Segmentation fault";
+        }
+        else
+        {
+            str = strsignal(signum);
+        }
+        ret = snprintf(tmp, size, HOSTFORMAT "Signal: %s (%d)\n", stacktrace_hostname, getpid(), str, signum);
     }
-    else
-    {
-        str = strsignal(signum);
-    }
-    ret = snprintf(tmp, size, HOSTFORMAT "Signal: %s (%d)\n", stacktrace_hostname, getpid(), str, signum);
 #else
     ret = snprintf(tmp, size, HOSTFORMAT "Signal: %d\n", stacktrace_hostname, getpid(), signum);
 #endif
@@ -419,29 +421,6 @@ void base_error_init(void)
     struct sigaction ToSuspend;
 
     struct sigaction ToContinue;
-
-    /* Initialise Suspend Signal (CTRL-Z) */
-    ToSuspend.sa_handler = suspendProcess;
-    ToSuspend.sa_flags = 0;
-    sigemptyset(&ToSuspend.sa_mask);
-    sigaction(SIGTSTP, &ToSuspend, NULL);
-    /* Initialise Continue Signal (fg) */
-    ToContinue.sa_handler = continueProcess;
-    ToContinue.sa_flags = 0;
-    sigemptyset(&ToContinue.sa_mask);
-    sigaction(SIGCONT, &ToContinue, NULL);
-    /* Signal handlers */
-    csignal();
-    memset(&act, 0, sizeof(act));
-    act.sa_sigaction = sig_fatal;
-    act.sa_flags = SA_SIGINFO;
-#ifdef SA_ONESHOT
-    act.sa_flags |= SA_ONESHOT;
-#else
-    act.sa_flags |= SA_RESETHAND;
-#endif
-    sigemptyset(&act.sa_mask);
-
     int signals[] =
     {
 #ifdef SIGABRT
@@ -467,6 +446,29 @@ void base_error_init(void)
 #endif
         -1
     };
+
+    /* Initialise Suspend Signal (CTRL-Z) */
+    ToSuspend.sa_handler = suspendProcess;
+    ToSuspend.sa_flags = 0;
+    sigemptyset(&ToSuspend.sa_mask);
+    sigaction(SIGTSTP, &ToSuspend, NULL);
+    /* Initialise Continue Signal (fg) */
+    ToContinue.sa_handler = continueProcess;
+    ToContinue.sa_flags = 0;
+    sigemptyset(&ToContinue.sa_mask);
+    sigaction(SIGCONT, &ToContinue, NULL);
+    /* Signal handlers */
+    csignal();
+    memset(&act, 0, sizeof(act));
+    act.sa_sigaction = sig_fatal;
+    act.sa_flags = SA_SIGINFO;
+#ifdef SA_ONESHOT
+    act.sa_flags |= SA_ONESHOT;
+#else
+    act.sa_flags |= SA_RESETHAND;
+#endif
+    sigemptyset(&act.sa_mask);
+
     for (j = 0; signals[j] != -1; ++j)
     {
         if (0 != sigaction(signals[j], &act, NULL))

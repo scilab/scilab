@@ -53,13 +53,13 @@ function details = atomsToolboxDetails(package,field)
     version = package(2);
 
     if ~ isfield(allpackages,name) then
-        error(msprintf(gettext("%s: the package ''%s'' doesn''t exist.\n"),"atomsToolboxDetails",name));
+        error(msprintf(gettext("%s: the package ''%s'' does not exist.\n"),"atomsToolboxDetails",name));
     end
 
     package_versions = allpackages(name);
 
     if ~ isfield(package_versions,version) then
-        error(msprintf(gettext("%s: the package ''%s'' doesn''t exist.\n"),"atomsToolboxDetails",name+" - "+version));
+        error(msprintf(gettext("%s: the package ''%s'' does not exist.\n"),"atomsToolboxDetails",name+" - "+version));
     end
 
     details = package_versions(version);
@@ -70,7 +70,7 @@ function details = atomsToolboxDetails(package,field)
     if rhs>=2 then
 
         if ~ isfield(details,field) then
-            error(msprintf(gettext("%s: the package ''%s'' doesn''t contain the field ''%s''.\n"),"atomsToolboxDetails",name+" - "+version,field));
+            error(msprintf(gettext("%s: the package ''%s'' does not contain the field ''%s''.\n"),"atomsToolboxDetails",name+" - "+version,field));
         end
 
         details = details(field);

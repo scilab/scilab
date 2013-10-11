@@ -98,3 +98,9 @@ SEP #099: Matrices of strings as input argument for clear
 SEP #100: Extends history size
 SEP #101: File browser
 SEP #102: members function.
+SEP #103: Localization : allow multiple domains and add addlocalizationdomain function.
+SEP #104: New optional output argument for routh_t (num)
+SEP #105: Three new optional output arguments to optim().
+SEP #106: Error control in function intc.
+SEP #107: Add an xcosAddToolsMenu and xcosUpdateBlock to ease external tools integration.
+SEP #108: 3-D arrows with xarrows

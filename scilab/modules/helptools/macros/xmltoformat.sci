@@ -253,9 +253,10 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
     if all_scilab_help then
 
         // ast_tree : "Modules" Tree
-
-        _("Scilab help"); // add localized string
-        scilab_manual = dgettext(directory_language_m(1), "Scilab help");
+        curLang = getlanguage();
+        setlanguage(directory_language_m(1));
+        scilab_manual = _("Scilab Help");
+        setlanguage(curLang);
 
         modules_tree = struct();
         modules_tree("level")      = 0; // It's a book
@@ -311,7 +312,6 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
             contrib_tree(dirs_c(k)) = this_tree;
         end
-
     else
 
         //

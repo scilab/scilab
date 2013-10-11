@@ -524,11 +524,21 @@ function status = test_single(_module, _testPath, _testName)
     path_dia_ref  = _testPath + _testName + ".dia.ref";
     // Reference file management OS by OS
     if getos() == "Windows" then
-        altreffile  = [ _testPath + _testName + ".win.dia.ref" ];
+        [branch info] = getversion();
+        if info(2) == "x86" then // Look for a 32bits-specific reference file
+            altreffile  = [ _testPath + _testName + ".win.dia.ref" ; _testPath + _testName + ".win32.dia.ref" ];
+        else
+            altreffile  = [ _testPath + _testName + ".win.dia.ref" ];
+        end
     elseif getos() == "Darwin" then
         altreffile  = [ _testPath + _testName + ".unix.dia.ref" ; _testPath + _testName + ".macosx.dia.ref" ];
     elseif getos() == "Linux" then
-        altreffile  = [ _testPath + _testName + ".unix.dia.ref" ; _testPath + _testName + ".linux.dia.ref" ];
+        [branch info] = getversion();
+        if info(2) == "x86" then // Look for a 32bits-specific reference file
+            altreffile  = [ _testPath + _testName + ".unix.dia.ref" ; _testPath + _testName + ".linux.dia.ref" ; _testPath + _testName + ".linux32.dia.ref" ];
+        else
+            altreffile  = [ _testPath + _testName + ".unix.dia.ref" ; _testPath + _testName + ".linux.dia.ref" ];
+        end
     else
         altreffile  = [ _testPath + _testName + ".unix.dia.ref" ];
     end
@@ -620,18 +630,18 @@ function status = test_single(_module, _testPath, _testName)
         execMode = "NWNI";
     end
 
-  MPITestPos=grep(sciFile, "<-- MPI TEST")
-  if ~isempty(MPITestPos) then
-    mpi_node=msscanf(sciFile(MPITestPos), "// <-- MPI TEST %d -->")
-    if mpi_node == [] then
-       // No node found ? No worries, default to 2
-       mpi_node = 2
+    MPITestPos=grep(sciFile, "<-- MPI TEST")
+    if ~isempty(MPITestPos) then
+        mpi_node=msscanf(sciFile(MPITestPos), "// <-- MPI TEST %d -->")
+        if mpi_node == [] then
+            // No node found ? No worries, default to 2
+            mpi_node = 2
+        end
+        mpi = %t;
+        execMode = "NWNI";
+        reference = "skip";
     end
-     mpi = %t;
-     execMode = "NWNI";
-     reference = "skip";
-   end
-  clear MPITestPos
+    clear MPITestPos
 
     if ~isempty(grep(sciFile, "<-- XCOS TEST -->")) then
         if _module.wanted_mode == "NWNI" then
@@ -765,11 +775,11 @@ function status = test_single(_module, _testPath, _testName)
         end
     end
 
-  if mpi == %t then
-     prefix_bin="mpirun -c " + string(mpi_node) + "  -bynode"
-  else
-     prefix_bin=""
-  end
+    if mpi == %t then
+        prefix_bin="mpirun -c " + string(mpi_node) + "  -bynode"
+    else
+        prefix_bin=""
+    end
 
 
     //language
@@ -1239,4 +1249,3 @@ function exportToXUnitFormat(exportToFile, testsuites)
 
     xmlWrite(doc);
 endfunction
-

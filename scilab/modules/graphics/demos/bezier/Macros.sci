@@ -49,7 +49,7 @@ function [z] = bezier(p,t)
     n=size(p,"c")-1;// i=nonzeros(t~=1);
     t1=(1-t); t1z= find(t1==0.0); t1(t1z)= ones(t1z);
     T=dup(t./t1,n)';
-    b=[((1-t')^n),(T.*dup((n-(1:n)+1)./(1:n),size(t,"c")))];
+    b=[((1-t').^n),(T.*dup((n-(1:n)+1)./(1:n),size(t,"c")))];
     b=cumprod(b,"c");
     if (size(t1z,"c")>0); b(t1z,:)= dup([ 0*ones(1,n),1],size(t1z,"c")); end;
     z=p*b';
@@ -79,7 +79,7 @@ function [X,Y,Z]=beziersurface (x,y,z,n)
     n=size(x,"r")-1; // i=nonzeros(t~=1);
     t1=(1-t); t1z= find(t1==0.0); t1(t1z)= ones(t1z);
     T=dup(t./t1,n)';
-    b1=[((1-t')^n),(T.*dup((n-(1:n)+1)./(1:n),size(t,"c")))];
+    b1=[((1-t').^n),(T.*dup((n-(1:n)+1)./(1:n),size(t,"c")))];
     b1=cumprod(b1,"c");
     if (size(t1z,"c")>0);
         b1(t1z,:)= dup([ 0*ones(1,n),1],size(t1z,"c"));
@@ -87,7 +87,7 @@ function [X,Y,Z]=beziersurface (x,y,z,n)
     n=size(x,"c")-1; // i=nonzeros(t~=1);
     t1=(1-t); t1z= find(t1==0.0); t1(t1z)= ones(t1z);
     T=dup(t./t1,n)';
-    b2=[((1-t')^n),(T.*dup((n-(1:n)+1)./(1:n),size(t,"c")))];
+    b2=[((1-t').^n),(T.*dup((n-(1:n)+1)./(1:n),size(t,"c")))];
     b2=cumprod(b2,"c");
     if (size(t1z,"c")>0);
         b2(t1z,:)= dup([ 0*ones(1,n),1],size(t1z,"c"));

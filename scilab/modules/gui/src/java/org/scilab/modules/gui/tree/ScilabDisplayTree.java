@@ -14,7 +14,6 @@ package org.scilab.modules.gui.tree;
 
 import java.util.StringTokenizer;
 import java.util.Hashtable;
-import org.scilab.modules.gui.bridge.uidisplaytree.SwingScilabUiDisplayTree;
 
 /**
  * Display a graphical tree

@@ -33,7 +33,7 @@ int get_image_type_property(void* _pvCtx, char* pobjUID)
 {
     int imagetype = 0;
     int * piImagetype = &imagetype;
-    ImageType itype = (ImageType)imagetype;
+    ImageType itype;
 
     getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_TYPE__, jni_int, (void **)&piImagetype);
     if (piImagetype == NULL)
@@ -41,6 +41,8 @@ int get_image_type_property(void* _pvCtx, char* pobjUID)
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "image_type");
         return -1;
     }
+
+    itype = (ImageType)imagetype;
 
     switch (itype)
     {

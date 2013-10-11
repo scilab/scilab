@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-07-28 15:16+0000\n"
+"PO-Revision-Date: 2013-09-21 05:38+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -199,6 +199,50 @@ msgid "%s: Wrong type for input argument #%d: Matrix of handle expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: ハンドルの行列を指定してください.\n"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: 入力引数 #%d を読み込めません.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Cannot get the data type.\n"
+msgstr "%s: データ型を取得できません.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot get the integer type for argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot get the data for argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real or integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot get the hypermatrix data type for argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real or integer expected.\n"
+msgstr "%s: 引数 %d の型が間違っています: 実数または整数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: ベクトル %s または %sを指定してください.\n"
 
@@ -307,10 +351,6 @@ msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: 入力引数 #%d を読み込めません.\n"
-
-#, c-format
 msgid "%s: Can not get type of input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の型を取得できませんでした.\n"
 
@@ -323,20 +363,8 @@ msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさに誤りがあります: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of boolean expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 論理値行列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of handle expected\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: ハンドルの行列を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A matrix of string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列の行列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A list expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: リストを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or handle expected.\n"
@@ -391,6 +419,16 @@ msgid "%s: Wrong size for arguments #%d and #%d.\n"
 msgstr "%s: 引数 #%d および #%d　の大きさが間違っています.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %d-by-%d matrix or a scalar "
+"expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Interpolated shading only works for polygons of size %d or %d\n"
 msgstr "%s: 補間付きの陰影付けは大きさ %d または %d の多角形でのみ動作します.\n"
 
@@ -405,10 +443,6 @@ msgstr "%s: 入力引数#%dの型が間違っています: 論理値ベクトル
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid fontname expected.\n"
 msgstr "%s: 入力引数#%dの値が間違っています: 有効なフォント名を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Non-negative int expected.\n"
@@ -439,8 +473,8 @@ msgid "%s: Wrong size for input argument #%d: %d, %d or %d expected.\n"
 msgstr "%s: 入力引数#%dの大きさが間違っています: %d, %d または %d を指定してください.\n"
 
 #, c-format
-msgid "%s : '%s' must be set\n"
-msgstr "%s : '%s' を設定してください\n"
+msgid "%s: Unrecognized input argument '%s'.\n"
+msgstr "%s: 認識できない入力引数 '%s' です.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -458,26 +492,6 @@ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定
 #, c-format
 msgid "Figure n%d"
 msgstr "図 n%d"
-
-#, c-format
-msgid "WARNING: %s\n"
-msgstr "警告: %s\n"
-
-msgid "xset(\"wshow\") is obsolete."
-msgstr "xset(\"wshow\") は廃止されています."
-
-msgid "It will be removed after Scilab 5.4.0."
-msgstr "これは Scilab 5.4.0 以降で削除されます."
-
-msgid "Please use drawlater/drawnow instead."
-msgstr "代わりに drawlater/drawnow を使用してください."
-
-msgid "xset(\"wwpc\") is obsolete."
-msgstr "xset(\"wwpc\") は廃止されています."
-
-#, c-format
-msgid "%s: Unrecognized input argument '%s'.\n"
-msgstr "%s: 認識できない入力引数 '%s' です.\n"
 
 #, c-format
 msgid ""
@@ -893,6 +907,18 @@ msgid "Wrong value for '%s' property: Must be in the set {%s}.\n"
 msgstr "'%s' プロパティの値が間違っています: 集合 {%s}の値を指定してください.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: Real matrix expected.\n"
+msgstr "'%s' プロパティの型が間違っています: 実行列を指定してください.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: %d elements expected.\n"
+msgstr "'%s' プロパティの大きさが間違っています: %d個の要素を指定してください.\n"
+
+#, c-format
+msgid "Wrong values for '%s' property: values between [0, 1] expected.\n"
+msgstr ""
+
+#, c-format
 msgid "Wrong value for '%s' property: %s or %s expected.\n"
 msgstr "'%s' プロパティの値が間違っています: %s または %s を指定してください.\n"
 
@@ -907,14 +933,6 @@ msgstr "'%s' プロパティの型が間違っています: 文字列の行列�
 #, c-format
 msgid "Wrong size for '%s' property: At most %d elements expected.\n"
 msgstr "'%s' プロパティの大きさが間違っています: 最大 %d 個の要素を指定してください.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: Real matrix expected.\n"
-msgstr "'%s' プロパティの型が間違っています: 実行列を指定してください.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: %d elements expected.\n"
-msgstr "'%s' プロパティの大きさが間違っています: %d個の要素を指定してください.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Integer expected.\n"
@@ -1004,24 +1022,30 @@ msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
 msgstr "'%s' プロパティの大きさが間違っています: 集合 {%s} の中から指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Columns vectors expected.\n"
-msgstr "%s: 引数 #%d の型が間違っています: 列ベクトルを指定してください.\n"
+msgid "%s: Wrong type for input argument #%d: Columns vectors expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"
-msgstr "%s: 引数 #%d および #%d の大きさが間違っています: 長さに互換性がありません.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for arguments #%d: Incompatible length.\n"
-msgstr "%s: 引数 #%d の大きさが間違っています: 長さに互換性がありません.\n"
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for arguments #%d, #%d and #%d: Incompatible length.\n"
-msgstr "%s: 引数 #%d, #%d および #%d の大きさが間違っています: 長さに互換性がありません.\n"
+msgid "%s: Wrong size for input argument #%d: Incompatible length.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for arguments #%d and #%d: Should be >= %d.\n"
-msgstr "%s: 引数 #%d および #%d の大きさが間違っています: %d 以上としてください.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d, #%d and #%d: Incompatible lengths.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Should be >= %d.\n"
+msgstr ""
 
 #
 # File: src/c/getHandleProperty/set_data_property.c, line: 239
@@ -1031,12 +1055,9 @@ msgid ""
 "expected.\n"
 msgstr "要素 %s で不正なサイズ: %d-by-%d 行列、または、サイズ %d のベクトルを想定します。\n"
 
-#
-# File: src/c/getHandleProperty/set_data_property.c, line: 254
-# File: src/c/getHandleProperty/set_data_property.c, line: 263
 #, c-format
-msgid "Can not change the %s of graphic object: its type is %s.\n"
-msgstr "グラフィック・オブジェクトの %s を変えることができません: その型は %s です。\n"
+msgid "Cannot change the %s of graphic object: its type is %s.\n"
+msgstr ""
 
 #
 # File: src/c/getHandleProperty/set_data_property.c, line: 294
@@ -1045,17 +1066,54 @@ msgstr "グラフィック・オブジェクトの %s を変えることがで�
 msgid "%s: Wrong value: Vector is not monotonous.\n"
 msgstr "%s: 間違った値: ベクトルは単調ではありません。\n"
 
-#
-# File: src/c/getHandleProperty/set_data_property.c, line: 664
-# File: src/c/getHandleProperty/set_data_property.c, line: 687
-msgid "Wrong type for input argument: Tlist expected.\n"
-msgstr "引数の型が不正: Tlistを想定します。\n"
+msgid "Wrong type for input argument: A tlist expected.\n"
+msgstr ""
 
 #
 # File: src/c/getHandleProperty/set_data_property.c, line: 703
 #, c-format
 msgid "Wrong size for input argument: %d or %d expected.\n"
 msgstr "入力引数で不正なサイズ: %d または %d を想定します。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: The number of rows must be a multiple "
+"of 3.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: The number of rows must be a multiple "
+"of 4.\n"
+msgstr ""
+
+#, c-format
+msgid "Incompatible type for property ''%s''.\n"
+msgstr ""
+
+#
+# File: src/c/getHandleProperty/set_polyline_style_property.c, line: 49
+#, c-format
+msgid "Wrong value for '%s' property: Must be '%s'.\n"
+msgstr "プロパティ '%s' で不正な値: '%s' でなくてはなりません。\n"
+
+#
+# File: src/c/getHandleProperty/set_figure_style_property.c, line: 41
+# File: src/c/getHandleProperty/set_old_style_property.c, line: 45
+msgid ""
+"Old graphic mode is no longer available. Please refer to the set help page.\n"
+msgstr "古いグラフィックモードは、もはや利用できません。ヘルプ・ページを参照してください。\n"
+
+#
+# File: src/c/getHandleProperty/set_font_style_property.c, line: 48
+#, c-format
+msgid ""
+"Wrong value for '%s' property: An Integer between %d and %d expected.\n"
+msgstr "プロパティ '%s' で不正な値:  %d と %d の間の整数を想定します。\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: Must be -1 or a valid color index.\n"
+msgstr "プロパティ '%s' で不正な値: -1 または 適切なカラーインデックスでなくてはなりません。\n"
 
 #
 # File: src/c/getHandleProperty/set_alignment_property.c, line: 33
@@ -1178,29 +1236,8 @@ msgstr "入力引数で不正なサイズ: %d または %d を想定します。
 msgid "Incompatible type for property %s.\n"
 msgstr "プロパティ %s で互換性がない型です。\n"
 
-#
-# File: src/c/getHandleProperty/set_polyline_style_property.c, line: 49
-#, c-format
-msgid "Wrong value for '%s' property: Must be '%s'.\n"
-msgstr "プロパティ '%s' で不正な値: '%s' でなくてはなりません。\n"
-
-#
-# File: src/c/getHandleProperty/set_figure_style_property.c, line: 41
-# File: src/c/getHandleProperty/set_old_style_property.c, line: 45
-msgid ""
-"Old graphic mode is no longer available. Please refer to the set help page.\n"
-msgstr "古いグラフィックモードは、もはや利用できません。ヘルプ・ページを参照してください。\n"
-
-#
-# File: src/c/getHandleProperty/set_font_style_property.c, line: 48
-#, c-format
-msgid ""
-"Wrong value for '%s' property: An Integer between %d and %d expected.\n"
-msgstr "プロパティ '%s' で不正な値:  %d と %d の間の整数を想定します。\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: Must be -1 or a valid color index.\n"
-msgstr "プロパティ '%s' で不正な値: -1 または 適切なカラーインデックスでなくてはなりません。\n"
+msgid "Invalid image type for this handle.\n"
+msgstr "このハンドルのイメージ型が間違っています.\n"
 
 #, c-format
 msgid "You must first specify an %s for this object.\n"
@@ -1211,6 +1248,14 @@ msgid ""
 "The number of column of the color vector must match the number of points "
 "defining the line (which must be %d or %d).\n"
 msgstr "色ベクトルの列の数は線を定義する点の数(%d または %d)に一致する必要があります.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: 'directional' or 'point' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr "警告: %s\n"
 
 msgid "{0,1} values are equivalent for line_style property."
 msgstr "{0,1} の値は line_styleプロパティとして等価です."
@@ -1459,6 +1504,9 @@ msgstr "データティップ"
 
 msgid "LaTeX/MathML"
 msgstr "LaTeX/MathML"
+
+msgid "Lighting"
+msgstr ""
 
 msgid "Misc"
 msgstr "その他"
@@ -1750,10 +1798,6 @@ msgid "%s: Wrong values for input argument #%d: '%s' expected.\n"
 msgstr "%s: 入力引数  #%d の値が間違っています:  '%s'を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: [%s, %s] の範囲で指定してください.\n"
@@ -1868,10 +1912,6 @@ msgstr "複数データtipsモード"
 msgid "Unique datatip mode"
 msgstr "ユニーク データtipモード"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: '%s'ハンドルを指定してください.\n"
-
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: 空のカスケードメニューが見つかりました."
 
@@ -1892,6 +1932,10 @@ msgstr "右上"
 
 msgid "Select tip orientation"
 msgstr "tipの方向を選択"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: '%s'ハンドルを指定してください.\n"
 
 msgid "The selected file cannot be executed"
 msgstr "選択されたファイルは実行できません"

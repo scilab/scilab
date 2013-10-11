@@ -16,8 +16,17 @@
     </button>
     <separator/>
     <!-- Datatips -->
-    <button icon="datatips" tooltiptext="toggle datatip mode">
-        <callback instruction="datatipManagerMode([SCILAB_FIGURE_ID],&quot;toggle&quot;);" type="-2"/>
+    <button icon="datatips" tooltiptext="Toggle datatip mode">
+        <callback instruction="datatipManagerMode(get_figure_handle([SCILAB_FIGURE_ID]))" type="-2"/>
+    </button>
+    <!-- Scilab Graphic Editor -->
+    <!--
+    <button icon="plot" tooltiptext="Open the graphics editor">
+        <callback instruction="openged([SCILAB_FIGURE_ID])" type="-2"/>
+    </button>
+    -->
+    <button icon="data_modify" tooltiptext="Toggle curve data modification">
+        <callback instruction="useeditor([SCILAB_FIGURE_ID])" type="-2"/>
     </button>
     <separator/>
     <!-- Help -->

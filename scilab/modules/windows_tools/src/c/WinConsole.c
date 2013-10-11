@@ -30,6 +30,7 @@ void HideScilex(void)
     if (hScilex)
     {
         ShowWindow(hScilex, SW_HIDE);
+        SetConsoleState(0);
     }
 }
 /*--------------------------------------------------------------------------*/
@@ -41,6 +42,7 @@ void ShowScilex(void)
     if (hScilex)
     {
         ShowWindow(hScilex, SW_SHOWNOACTIVATE);
+        SetConsoleState(1);
     }
 }
 /*--------------------------------------------------------------------------*/
@@ -54,14 +56,12 @@ void SwitchConsole(void)
         case 0:
         {
             ShowScilex();
-            SetConsoleState(1);
         }
         break;
         /* La fenetre etait apparente , on la cache */
         case 1:
         {
             HideScilex();
-            SetConsoleState(0);
         }
         break;
     }

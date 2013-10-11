@@ -17,7 +17,6 @@ package org.scilab.modules.types;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-import java.util.Arrays;
 
 /**
  * This class provides a representation on the Scilab Double datatype<br>

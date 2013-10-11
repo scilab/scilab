@@ -48,8 +48,7 @@ function this = optimbase_configure (this,key,value)
                 m = n;
                 n = temp;
             else
-                errmsg = msprintf(gettext("%s: The x0 vector is expected to be a column matrix, but current shape is %d x %d"),"optimbase_configure",n,m);
-                error(errmsg);
+                error(msprintf(gettext("%s: Wrong size for x0 argument: A vector expected."),"optimbase_configure"));
             end
         end
         this.x0 = value;

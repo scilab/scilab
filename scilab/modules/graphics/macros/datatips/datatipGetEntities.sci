@@ -1,4 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Gustavo Barbosa Libotte <gustavolibotte@gmail.com>
 // Copyright (C) 2010 - INRIA - Serge Steer <serge.steer@inria.fr>
 //
 // This file must be used under the terms of the CeCILL.
@@ -8,29 +9,49 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function curve_handles=datatipGetEntities(ax)
-    //Collects all entities supporting datatips in a given axes
     curve_handles=[];
     if argn(2)<1 then
-        ax=gca(),
+        ax=gca()
+        fig = ax.parent;
+        for k=1:size(fig.children,"*")
+            fc=fig.children(k);
+            select fc.type
+            case "Axes" then
+                axes=fc;
+                for j=1:size(axes.children,"*")
+                    ac=axes.children(j);
+                    select ac.type
+                    case "Compound" then
+                        compound=ac;
+                        for i=1:size(compound.children,"*")
+                            cc=compound.children(i);
+                            select cc.type
+                            case "Polyline" then
+                                curve_handles=[curve_handles cc];
+                            end
+                        end
+                    end
+                end
+            end
+        end
     else
         if type(ax)<>9|size(ax,"*")<>1|and(ax.type<>["Axes" "Compound"]) then
             error(msprintf(_("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"),"datatipGetEntities",1,"Axes"))
-        end
-    end
-    for k=1:size(ax.children,"*")
-        ck=ax.children(k);
-        select ck.type
-        case "Compound" then
-            curve_handles=[curve_handles datatipGetEntities(ck)]
-        case "Polyline" then
-            if size(ck.data,1)>2 then
-                curve_handles=[curve_handles ck];
-            end
-        case "Plot3d" then
-            //TBD
-            //the surface are ignored
         else
-            //the other type of entities are ignored
+            for j=1:size(ax.children,"*")
+                ac=ax.children(j);
+                select ac.type
+                case "Compound" then
+                    compound=ac;
+                    for i=1:size(compound.children,"*")
+                        cc=compound.children(i);
+                        select cc.type
+                        case "Polyline" then
+                            curve_handles=[curve_handles cc];
+                        end
+                    end
+                end
+            end
         end
     end
 endfunction

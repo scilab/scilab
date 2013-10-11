@@ -143,7 +143,7 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
 
             *numrow = 2;
             *numcol = 2;
-            if ((tab = CALLOC((*numrow) * (*numcol), sizeof(double))) == NULL)
+            if ((tab = (double*)CALLOC((*numrow) * (*numcol), sizeof(double))) == NULL)
             {
                 *numrow = -1;
                 *numcol = -1;
@@ -215,7 +215,7 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
             if (*numcol == 2 && iView)
             {
                 *numcol = (*numcol) + 1; /* colonne de 0. a prendre en compte / afficher => numcol+1*/
-                if ((tab = CALLOC((*numrow) * (*numcol), sizeof(double))) == NULL)
+                if ((tab = (double*)CALLOC((*numrow) * (*numcol), sizeof(double))) == NULL)
                 {
                     *numrow = -1;
                     *numcol = -1;
@@ -231,7 +231,7 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
             }
             else
             {
-                if ((tab = CALLOC((*numrow) * (*numcol), sizeof(double))) == NULL)
+                if ((tab = (double*)CALLOC((*numrow) * (*numcol), sizeof(double))) == NULL)
                 {
                     *numrow = -1;
                     *numcol = -1;
@@ -274,7 +274,7 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
 
             *numcol = iView ? 5 : 4;
 
-            if ((tab = CALLOC((*numrow) * (*numcol), sizeof(double))) == NULL)
+            if ((tab = (double*)CALLOC((*numrow) * (*numcol), sizeof(double))) == NULL)
             {
                 *numrow = -1;
                 *numcol = -1;
@@ -326,7 +326,7 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
 
             *numcol = view ? 7 : 6;
 
-            if ((tab = CALLOC((*numrow) * (*numcol), sizeof(double))) == NULL)
+            if ((tab = (double*)CALLOC((*numrow) * (*numcol), sizeof(double))) == NULL)
             {
                 *numrow = -1;
                 *numcol = -1;
@@ -380,7 +380,7 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
 
             *numcol = iView ? 3 : 2;
 
-            if ((tab = CALLOC((*numrow) * (*numcol), sizeof(double))) == NULL)
+            if ((tab = (double*)CALLOC((*numrow) * (*numcol), sizeof(double))) == NULL)
             {
                 *numrow = -1;
                 *numcol = -1;
@@ -428,7 +428,7 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
                 *numcol = 3;
             }
 
-            if ((tab = CALLOC(2 * (*numrow) * (*numcol), sizeof(double))) == NULL)
+            if ((tab = (double*)CALLOC(2 * (*numrow) * (*numcol), sizeof(double))) == NULL)
             {
                 *numrow = -1;
                 *numcol = -1;
@@ -482,7 +482,7 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
             *numrow = ny;
             *numcol = nx;
 
-            if ((tab = CALLOC(nx * ny, sizeof(double))) == NULL)
+            if ((tab = (double*)CALLOC(nx * ny, sizeof(double))) == NULL)
             {
                 *numrow = -1;
                 *numcol = -1;
@@ -510,7 +510,7 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
             getGraphicObjectProperty(pthis, __GO_DATA_MODEL_NUM_VERTICES__, jni_int, (void**)&piTmp);
             *numrow = iTmp;
 
-            if ((tab = CALLOC(*numrow * 3, sizeof(double))) == NULL)
+            if ((tab = (double*)CALLOC(*numrow * 3, sizeof(double))) == NULL)
             {
                 *numrow = -1;
                 *numcol = -1;

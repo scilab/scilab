@@ -24,6 +24,7 @@ extern "C"
 #include "h5_fileManagement.h"
 #include "h5_readDataFromFile_v1.h"
 #include "expandPathVariable.h"
+#include "freeArrayOfString.h"
 }
 
 #include <vector>
@@ -75,6 +76,11 @@ int sci_listvar_in_hdf5_v1(char *fname, unsigned long fname_len)
 
     if (getAllocatedSingleString(pvApiCtx, piAddr, &pstFile))
     {
+        if (pstFile)
+        {
+            FREE(pstFile);
+        }
+
         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
         return 1;
     }
@@ -84,8 +90,8 @@ int sci_listvar_in_hdf5_v1(char *fname, unsigned long fname_len)
     if (iFile < 0)
     {
         FREE(pstFileName);
-        FREE(pstFile);
         Scierror(999, _("%s: Unable to open file: %s\n"), fname, pstFile);
+        FREE(pstFile);
         return 1;
     }
     FREE(pstFileName);
@@ -113,8 +119,7 @@ int sci_listvar_in_hdf5_v1(char *fname, unsigned long fname_len)
                 break;
             }
 
-            strcpy(pInfo[i].varName, pstVarNameList[i]);
-            FREE(pstVarNameList[i]);
+            strncpy(pInfo[i].varName, pstVarNameList[i], sizeof(pInfo[i].varName));
             b = read_data_v1(iDataSetId, 0, NULL, &pInfo[i]) == false;
             closeDataSet_v1(iDataSetId);
 
@@ -128,6 +133,8 @@ int sci_listvar_in_hdf5_v1(char *fname, unsigned long fname_len)
                 sciprint("%s\n", pInfo[i].pstInfo);
             }
         }
+
+        freeArrayOfString(pstVarNameList, iNbItem);
     }
     else
     {
@@ -155,6 +162,7 @@ int sci_listvar_in_hdf5_v1(char *fname, unsigned long fname_len)
     FREE(pstVarName);
     if (sciErr.iErr)
     {
+        FREE(pInfo);
         printError(&sciErr, 0);
         return 1;
     }
@@ -168,6 +176,7 @@ int sci_listvar_in_hdf5_v1(char *fname, unsigned long fname_len)
         sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 2, iNbItem, 1, &pdblType);
         if (sciErr.iErr)
         {
+            FREE(pInfo);
             printError(&sciErr, 0);
             return 1;
         }
@@ -319,8 +328,8 @@ static bool read_string_v1(int _iDatasetId, int _iItemPos, int *_piAddress, VarI
     _pInfo->piDims[1] = iCols;
 
     pstData = (char **)MALLOC(iRows * iCols * sizeof(char *));
+    memset(pstData, 0x00, iRows * iCols * sizeof(char *));
     iRet = readStringMatrix_v1(_iDatasetId, iRows, iCols, pstData);
-
 
     for (int i = 0 ; i < iRows * iCols ; i++)
     {

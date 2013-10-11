@@ -675,6 +675,24 @@
                     Type : scilab list.
                 </para>
             </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">uid</emphasis>
+                </para>
+                <para>Unique identifier string of the block (2^16 per host)</para>
+                <para>This identifier will be only set using the Xcos GUI. To set a specific value at bloc allocation, use the following code:</para>
+                <programlisting role="example">
+                    jimport("java.rmi.server.UID");
+                    juid =  jnewInstance("java.rmi.server.UID");
+                    uid = juid.toString()
+                </programlisting>
+                <para> 
+                    Size : 1x1.
+                </para>
+                <para>
+                    Type : String.
+                </para>
+            </listitem>
         </itemizedlist>
     </refsection>
     <refsection id="Filecontent_scicos_model">

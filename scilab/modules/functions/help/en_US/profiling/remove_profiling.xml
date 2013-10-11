@@ -12,7 +12,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="remove_profiling" xml:lang="fr">
     <refnamediv>
         <refname>remove_profiling</refname>
-        <refpurpose>Removes profiling instructions toout of a function.</refpurpose>
+        <refpurpose>Disables the profiling of a function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -24,7 +24,7 @@
             <varlistentry>
                 <term>funname</term>
                 <listitem>
-                    <para>A character string, the name of the function</para>
+                    <para>A character string, the name of the profiled function</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -32,8 +32,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>remove_profiling(funname)</literal> Removes profiling instructions (if any) out of the function
-            named <literal>funname</literal>. 
+            <literal>remove_profiling</literal> removes the instructions needed for the profiling of a function.
         </para>
     </refsection>
     <refsection>

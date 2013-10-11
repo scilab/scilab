@@ -22,8 +22,6 @@ import java.awt.geom.Path2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 import org.scilab.forge.scirenderer.texture.Texture;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
@@ -193,6 +191,10 @@ public class Triangle extends ConvexObject {
             Path2D contour = getProjectedContour();
             Area area = new Area(contour);
             // Trick to paint the triangle and its outline
+            // TODO: the newly created Area contains in fact two areas
+            // it should be better to have one area where its border
+            // is the external outline of the contour...
+            // (it would reduce eps/ps/pdf/svg file size)
             area.add(new Area(stroke.createStrokedShape(contour)));
             g2d.setStroke(EMPTYSTROKE);
             g2d.setColor(colors[0]);

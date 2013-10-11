@@ -81,7 +81,7 @@ ipar[7:6+lfil] = character codes for file name
         }
         else  /* buffer is full write it to the file */
         {
-            F2C(cvstr)(&three, &(ipar[2]), type, &job, (unsigned long)strlen(type));
+            F2C(cvstr)(&three, &(ipar[2]), type, &job, sizeof(type));
             for (i = 2; i >= 0; i--)
                 if (type[i] != ' ')
                 {
@@ -99,7 +99,7 @@ ipar[7:6+lfil] = character codes for file name
     }
     else if (*flag == 4)
     {
-        F2C(cvstr)(&(ipar[1]), &(ipar[7]), str, &job, (unsigned long)strlen(str));
+        F2C(cvstr)(&(ipar[1]), &(ipar[7]), str, &job, sizeof(str));
         str[ipar[1]] = '\0';
         wcfopen(fd, str, "wb");
         if (!fd )
@@ -120,7 +120,7 @@ ipar[7:6+lfil] = character codes for file name
         k    = (int) z[1];
         if (k >= 1) /* flush rest of buffer */
         {
-            F2C(cvstr)(&three, &(ipar[2]), type, &job, (unsigned long)strlen(type));
+            F2C(cvstr)(&three, &(ipar[2]), type, &job, sizeof(type));
             for (i = 2; i >= 0; i--)
                 if (type[i] != ' ')
                 {

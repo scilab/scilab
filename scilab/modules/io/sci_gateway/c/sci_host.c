@@ -24,12 +24,11 @@ int sci_host(char *fname, unsigned long fname_len)
     SciErr sciErr;
 
     int *piAddr1;
-    int *piLen;
-    int i;
-    int iRet;
+    char *Str = NULL;
+    int stat = 0;
 
-    int m1 = 0, n1 = 0;
-    char **Str = NULL;
+    int iRhs = nbInputArgument(pvApiCtx);
+
     CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
@@ -39,68 +38,34 @@ int sci_host(char *fname, unsigned long fname_len)
     {
         printError(&sciErr, 0);
         return 1;
-    }//
-    if (isStringType(pvApiCtx, piAddr1))
-    {
-
-        //fisrt call to retrieve dimensions
-        sciErr = getMatrixOfString(pvApiCtx, piAddr1, &m1, &n1, NULL, NULL);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return 1;
-        }
-
-        piLen = (int*)MALLOC(sizeof(int) * m1 * n1);
-
-        //second call to retrieve length of each string
-        sciErr = getMatrixOfString(pvApiCtx, piAddr1, &m1, &n1, piLen, NULL);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return 1;
-        }
-
-        Str = (char**)MALLOC(sizeof(char*) * m1 * n1);
-        for (i = 0 ; i < m1 * n1 ; i++)
-        {
-            Str[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
-        }
-
-        //third call to retrieve data
-        sciErr = getMatrixOfString(pvApiCtx, piAddr1, &m1, &n1, piLen, Str);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return 1;
-        }
-
-        if ( (m1 != 1) && (n1 != 1) )
-        {
-            freeArrayOfString(Str, m1 * n1);
-            Scierror(89, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-            return 1;
-        }
-        else
-        {
-            int stat = 0;
-            C2F(systemc)(Str[0], &stat);
-            /* Create the matrix as return of the function */
-            iRet = createScalarDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, stat);
-            if (iRet)
-            {
-                return 1;
-            }
-            freeArrayOfString(Str, m1 * n1);
-
-            AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
-            ReturnArguments(pvApiCtx);
-        }
     }
-    else
+
+    if (isStringType(pvApiCtx, piAddr1) == 0 || isScalar(pvApiCtx, piAddr1) == 0)
     {
         Scierror(55, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+        return 0;
     }
+
+
+    //fisrt call to retrieve dimensions
+    if (getAllocatedSingleString(pvApiCtx, piAddr1, &Str))
+    {
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        return 1;
+    }
+
+    C2F(systemc)(Str, &stat);
+    freeAllocatedSingleString(Str);
+
+    /* Create the matrix as return of the function */
+    if (createScalarDouble(pvApiCtx, iRhs + 1, stat))
+    {
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 1;
+    }
+
+    AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

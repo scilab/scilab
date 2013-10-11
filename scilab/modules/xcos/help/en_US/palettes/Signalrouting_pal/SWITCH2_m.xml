@@ -126,9 +126,52 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">Datatype(1= real double  2=Complex)</emphasis>
+                    <emphasis role="bold">Datatype</emphasis>
                 </para>
                 <para> a scalar. Give the datatype of the inputs/output.</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">1:</emphasis> matrix of real numbers,
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">2:</emphasis> matrix of complex numbers,
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">3:</emphasis> matrix of int32 numbers,
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">4:</emphasis> matrix of int16 numbers,
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">5:</emphasis> matrix of int8 numbers,
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">6:</emphasis> matrix of uint32 numbers,
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">7:</emphasis> matrix of uint16 numbers,
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">8:</emphasis> matrix of uint8 numbers.
+                            
+                        </para>
+                    </listitem>
+                </itemizedlist>
                 <para> Properties : Type 'vec' of size 1 </para>
             </listitem>
             <listitem>

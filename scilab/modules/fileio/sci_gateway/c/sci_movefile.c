@@ -57,18 +57,11 @@ int sci_movefile(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isStringType(pvApiCtx, piAddressVarOne))
+    if (isStringType(pvApiCtx, piAddressVarOne) == 0 || isScalar(pvApiCtx, piAddressVarOne) == 0)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
-
-    if (!isScalar(pvApiCtx, piAddressVarOne))
-    {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-        return 0;
-    }
-
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
     if (sciErr.iErr)
@@ -78,41 +71,27 @@ int sci_movefile(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isStringType(pvApiCtx, piAddressVarTwo))
+    if (isStringType(pvApiCtx, piAddressVarTwo) == 0 || isScalar(pvApiCtx, piAddressVarTwo) == 0)
     {
-        if (pStVarOne)
-        {
-            FREE(pStVarOne);
-            pStVarOne = NULL;
-        }
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
-        return 0;
-    }
-
-    if (!isScalar(pvApiCtx, piAddressVarTwo))
-    {
-        if (pStVarOne)
-        {
-            FREE(pStVarOne);
-            pStVarOne = NULL;
-        }
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
         return 0;
     }
 
     if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &pStVarOne))
     {
+        if (pStVarOne)
+        {
+            freeAllocatedSingleWideString(pStVarOne);
+        }
+
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 
     if (getAllocatedSingleWideString(pvApiCtx, piAddressVarTwo, &pStVarTwo))
     {
-        if (pStVarOne)
-        {
-            freeAllocatedSingleWideString(pStVarOne);
-            pStVarOne = NULL;
-        }
+        freeAllocatedSingleWideString(pStVarOne);
+        freeAllocatedSingleWideString(pStVarTwo);
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
@@ -120,11 +99,8 @@ int sci_movefile(char *fname, unsigned long fname_len)
     pStVarOneExpanded = expandPathVariableW(pStVarOne);
     pStVarTwoExpanded = expandPathVariableW(pStVarTwo);
 
-    freeAllocatedSingleWideString(pStVarTwo);
-    pStVarTwo = NULL;
-
     freeAllocatedSingleWideString(pStVarOne);
-    pStVarOne = NULL;
+    freeAllocatedSingleWideString(pStVarTwo);
 
     if (isdirW(pStVarOneExpanded) || FileExistW(pStVarOneExpanded))
     {
@@ -168,17 +144,8 @@ int sci_movefile(char *fname, unsigned long fname_len)
                 }
                 else
                 {
-                    if (pStVarOneExpanded)
-                    {
-                        FREE(pStVarOneExpanded);
-                        pStVarOneExpanded = NULL;
-                    }
-                    if (pStVarTwoExpanded)
-                    {
-                        FREE(pStVarTwoExpanded);
-                        pStVarTwoExpanded = NULL;
-                    }
-
+                    FREE(pStVarOneExpanded);
+                    FREE(pStVarTwoExpanded);
                     Scierror(999, _("%s: Memory allocation error.\n"), fname);
                     return 0;
                 }
@@ -191,17 +158,8 @@ int sci_movefile(char *fname, unsigned long fname_len)
         }
         else
         {
-            if (pStVarOneExpanded)
-            {
-                FREE(pStVarOneExpanded);
-                pStVarOneExpanded = NULL;
-            }
-
-            if (pStVarTwo)
-            {
-                FREE(pStVarTwoExpanded);
-                pStVarTwoExpanded = NULL;
-            }
+            FREE(pStVarOneExpanded);
+            FREE(pStVarTwoExpanded);
             Scierror(999, _("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
             return 0;
         }
@@ -213,16 +171,8 @@ int sci_movefile(char *fname, unsigned long fname_len)
         Scierror(999, _("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
     }
 
-    if (pStVarOneExpanded)
-    {
-        FREE(pStVarOneExpanded);
-        pStVarOneExpanded = NULL;
-    }
-    if (pStVarTwoExpanded)
-    {
-        FREE(pStVarTwoExpanded);
-        pStVarTwoExpanded = NULL;
-    }
+    FREE(pStVarOneExpanded);
+    FREE(pStVarTwoExpanded);
 
     return 0;
 }
@@ -241,48 +191,33 @@ static wchar_t *getFilenameWithExtensionForMove(wchar_t * wcFullFilename)
 
         wcfilename = (wchar_t *) MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
 
+        if (wcdrv == NULL || wcdir == NULL || wcname == NULL || wcext == NULL || wcfilename == NULL)
+        {
+            FREE(wcdrv);
+            FREE(wcdir);
+            FREE(wcname);
+            FREE(wcext);
+            FREE(wcfilename);
+            return NULL;
+        }
+
         splitpathW(wcFullFilename, FALSE, wcdrv, wcdir, wcname, wcext);
 
         wcscpy(wcfilename, wcname);
         wcscat(wcfilename, wcext);
 
-        if (wcdrv)
-        {
-            FREE(wcdrv);
-            wcdrv = NULL;
-        }
-        if (wcdir)
-        {
-            FREE(wcdir);
-            wcdir = NULL;
-        }
-        if (wcname)
-        {
-            FREE(wcname);
-            wcname = NULL;
-        }
-        if (wcext)
-        {
-            FREE(wcext);
-            wcext = NULL;
-        }
+        FREE(wcdrv);
+        FREE(wcdir);
+        FREE(wcname);
+        FREE(wcext);
     }
     return wcfilename;
 }
-
 /*--------------------------------------------------------------------------*/
 static int returnMoveFileResultOnStack(int ierr, char *fname)
 {
     double dError = 0.;
-    wchar_t **sciError = NULL;
-    int m_out = 1, n_out = 1;
-
-    sciError = (wchar_t **) MALLOC(sizeof(wchar_t *) * 1);
-    if (sciError == NULL)
-    {
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
-        return 0;
-    }
+    wchar_t *sciError = NULL;
 
 #ifdef _MSC_VER
     if (ierr)
@@ -301,25 +236,25 @@ static int returnMoveFileResultOnStack(int ierr, char *fname)
         //dError = (double) dw;
         dError = (double)0;
 
-        sciError[0] = (wchar_t *) MALLOC(sizeof(wchar_t) * ((int)wcslen(buffer) + 1));
-        if (sciError[0] == NULL)
+        sciError = (wchar_t *) MALLOC(sizeof(wchar_t) * ((int)wcslen(buffer) + 1));
+        if (sciError == NULL)
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
 
-        wcscpy(sciError[0], buffer);
+        wcscpy(sciError, buffer);
     }
     else
     {
         dError = 1.;
-        sciError[0] = (wchar_t *) MALLOC(sizeof(wchar_t) * 1);
-        if (sciError[0] == NULL)
+        sciError = (wchar_t *) MALLOC(sizeof(wchar_t) * 1);
+        if (sciError == NULL)
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
-        wcscpy(sciError[0], L"");
+        wcscpy(sciError, L"");
     }
 #else
     if (ierr)
@@ -328,8 +263,8 @@ static int returnMoveFileResultOnStack(int ierr, char *fname)
         //dError = (double) ierr;
         dError = (double)0.;
 
-        sciError[0] = to_wide_string(strerror(errno));
-        if (sciError[0] == NULL)
+        sciError = to_wide_string(strerror(errno));
+        if (sciError == NULL)
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
@@ -338,27 +273,26 @@ static int returnMoveFileResultOnStack(int ierr, char *fname)
     else
     {
         dError = 1.;
-        sciError[0] = (wchar_t *) MALLOC(sizeof(wchar_t) * 1);
-        if (sciError[0] == NULL)
+        sciError = (wchar_t *) MALLOC(sizeof(wchar_t) * 1);
+        if (sciError == NULL)
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
-            freeArrayOfWideString(sciError, 1);
             return 0;
         }
-        wcscpy(sciError[0], L"");
+        wcscpy(sciError, L"");
     }
 #endif
 
-    createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, &dError);
+    createScalarDouble(pvApiCtx, Rhs + 1, dError);
     LhsVar(1) = Rhs + 1;
 
     if (Lhs == 2)
     {
-        createMatrixOfWideString(pvApiCtx, Rhs + 2, m_out, n_out, sciError);
+        createSingleWideString(pvApiCtx, Rhs + 2, sciError);
         LhsVar(2) = Rhs + 2;
     }
 
-    freeArrayOfWideString(sciError, 1);
+    FREE(sciError);
 
     PutLhsVar();
     return 0;

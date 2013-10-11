@@ -58,6 +58,11 @@ int sci_isnum(char *fname, unsigned long fname_len)
 
     if (getAllocatedMatrixOfString(pvApiCtx, piAddressVarOne, &mOne, &nOne, &pStrs) != 0)
     {
+        if (pStrs)
+        {
+            freeAllocatedMatrixOfString(mOne, nOne, pStrs);
+        }
+
         Scierror(999, _("%s: No more memory.\n"), fname);
         return 0;
     }
@@ -65,7 +70,6 @@ int sci_isnum(char *fname, unsigned long fname_len)
     bRESULT = isNumMatrix((const char**)pStrs, mOne, nOne);
 
     freeAllocatedMatrixOfString(mOne, nOne, pStrs);
-    pStrs = NULL;
 
     if (bRESULT == NULL)
     {
@@ -75,7 +79,6 @@ int sci_isnum(char *fname, unsigned long fname_len)
 
     sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, mOne, nOne, (const int*)bRESULT);
     FREE(bRESULT);
-    bRESULT = NULL;
 
     if (sciErr.iErr)
     {

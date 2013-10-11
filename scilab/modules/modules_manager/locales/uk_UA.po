@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 #, c-format
@@ -136,6 +136,9 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати масив з "
 "рядків.\n"
 
+msgid "Generating localization\n"
+msgstr ""
+
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
 msgstr ""
@@ -169,3 +172,7 @@ msgstr ""
 
 msgid "Building sources...\n"
 msgstr "Збирання кодів…\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""

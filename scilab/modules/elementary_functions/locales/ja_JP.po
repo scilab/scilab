@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-07-28 15:12+0000\n"
+"PO-Revision-Date: 2013-09-21 03:55+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -398,10 +398,6 @@ msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 正の整数を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Real matrix expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 実数行列を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: %d,'%s',%d or '%s' expected\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: %d,'%s',%d または '%s' を指定してください.\n"
 
@@ -429,6 +425,56 @@ msgstr "%s: 特異行列のログ\n"
 #, c-format
 msgid "%s: Unable to diagonalize.\n"
 msgstr "%s: 対角化することができません。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: expected same type as first "
+"argument.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています:  'http(s)?://','ftp://' または 'file://' "
+"で始まる文字列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of integers, reals, complexes, "
+"booleans, polynomials or strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for argument #%d: Must not contain NaN.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています:  NaNを含めてはいけません.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Scalar string expected => option ignored.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  スカラー文字列を指定してください => オプションは無視されます.\n"
+
+#, c-format
+msgid "%s: Unknown option %s => ignored.\n"
+msgstr "%s:  オプション %s を認識できません => 無視されます.\n"
+
+#, c-format
+msgid "%s: Option %s only relevant for %s and %s modes => ignored.\n"
+msgstr "%s: オプション %s は %s および %s モードでのみ有効です => 無視されます.\n"
+
+#, c-format
+msgid "%s: not enough memory to proceed\n"
+msgstr "%s: 処理用のメモリが不足しています\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of columns "
+"expected.\n"
+msgstr "%s: 入力引数 #%d 及び #%d に互換性がありません : 列の数を同じにする必要があります.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
+msgstr "%s: 入力引数 #%d と #%d に互換性がありません: 行の数を同じにしてください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: At most %d expected.\n"

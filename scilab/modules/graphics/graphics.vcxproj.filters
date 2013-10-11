@@ -182,6 +182,9 @@
     <ClCompile Include="src\c\getHandleProperty\get_data_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_datatip_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_default_axes_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -812,6 +815,9 @@
     <ClCompile Include="src\c\getHandleProperty\set_data_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_datatip_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_default_values_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1118,10 +1124,58 @@
     <ClCompile Include="src\c\getHandleProperty\set_figure_closerequestfcn_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_ambient_color_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_diffuse_color_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_light_type_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_specular_color_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_ambient_color_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_diffuse_color_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_light_type_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_specular_color_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_material_shininess_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_material_shininess_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\Light.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_image_type_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_image_type_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_light.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_direction_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_use_color_material_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_use_color_material_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_direction_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1265,6 +1319,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\c\loadTextRenderingAPI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

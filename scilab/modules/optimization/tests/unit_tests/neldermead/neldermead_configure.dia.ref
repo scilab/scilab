@@ -120,11 +120,15 @@ cmd = "funevals = neldermead_get(nm,''-foo'')";
 assert_checkerror(cmd,"%s: Unknown key %s",[],"optimbase_get","-foo");
 nm = neldermead_destroy(nm);
 //
-// Check that x0 is forced to be a column vector
+// Check that x0 is forced to be a vector
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
 cmd = "nm = neldermead_configure(nm,''-x0'',[-1.2 1.0]);";
-assert_checkerror(cmd,"%s: The x0 vector is expected to be a column matrix, but current shape is %d x %d",[],"optimbase_configure",1,2);
+nm = neldermead_destroy(nm);
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+cmd = "nm = neldermead_configure(nm,''-x0'',[-1.2 1.0; 1.0 -1.2]);";
+assert_checkerror(cmd,"%s: Wrong size for x0 argument: A vector expected.", [], "optimbase_configure");
 nm = neldermead_destroy(nm);
 //
 // Check -restartstep

@@ -1159,7 +1159,7 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="chart">chart</link>
+                    <link linkend="chart">nicholschart</link>
                 </term>
                 <listitem>
                     <para>abaque de Nichols</para>
@@ -1167,7 +1167,7 @@
                         <emphasis role="bold">Exemple:</emphasis>
                     </para>
                     <para>
-                        <scilab:image localized="true">chart();</scilab:image>
+                        <scilab:image localized="true">nicholschart();</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>

@@ -57,16 +57,9 @@ int sci_strsplit(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isScalar(pvApiCtx, piAddressVarOne))
+    if (isStringType(pvApiCtx, piAddressVarOne) == 0 || isScalar(pvApiCtx, piAddressVarOne) == 0)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, 1);
-        return 0;
-    }
-
-
-    if (!isStringType(pvApiCtx, piAddressVarOne))
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), fname, 1);
         return 0;
     }
 
@@ -84,15 +77,9 @@ int sci_strsplit(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        if (!isScalar(pvApiCtx, piAddressVarThree))
+        if (isDoubleType(pvApiCtx, piAddressVarThree) == 0 || isScalar(pvApiCtx, piAddressVarThree) == 0)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 3);
-            return 0;
-        }
-
-        if (!isDoubleType(pvApiCtx, piAddressVarThree))
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), fname, 3);
             return 0;
         }
 
@@ -109,7 +96,7 @@ int sci_strsplit(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        if ( (iValueThree < 1) && (iValueThree != -1) )
+        if (iValueThree < 1 && iValueThree != -1)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: A value > 0 expected.\n"), fname, 3);
             return 0;
@@ -131,6 +118,14 @@ int sci_strsplit(char *fname, unsigned long fname_len)
 
         if (isDoubleType(pvApiCtx, piAddressVarTwo))
         {
+            double *pdVarTwo = NULL;
+            int m2 = 0;
+            int n2 = 0;
+
+            int m_out = 0, n_out = 0;
+            strsplit_error ierr = STRSPLIT_NO_ERROR;
+            wchar_t **results = NULL;
+
             if (Lhs == 2)
             {
                 Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), fname, 1);
@@ -143,93 +138,83 @@ int sci_strsplit(char *fname, unsigned long fname_len)
                 return 0;
             }
 
-            if ( (isVector(pvApiCtx, piAddressVarTwo)) ||
-                    (isRowVector(pvApiCtx, piAddressVarTwo)) ||
-                    (isScalar(pvApiCtx, piAddressVarTwo)) )
-            {
-                double *pdVarTwo = NULL;
-                int m2 = 0;
-                int n2 = 0;
 
-                sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarTwo, &m2, &n2, &pdVarTwo);
-                if (sciErr.iErr)
-                {
-                    printError(&sciErr, 0);
-                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-                    return 0;
-                }
-
-                if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &pStVarOne) != 0)
-                {
-                    Scierror(999, _("%s: No more memory.\n"), fname);
-                    return 0;
-                }
-                else
-                {
-                    int m_out = 0, n_out = 0;
-                    strsplit_error ierr = STRSPLIT_NO_ERROR;
-                    wchar_t **results = strsplit(pStVarOne, pdVarTwo, m2 * n2, &ierr);
-
-                    if (pStVarOne)
-                    {
-                        freeAllocatedSingleWideString(pStVarOne);
-                        pStVarOne = NULL;
-                    }
-
-                    switch (ierr)
-                    {
-                        case STRSPLIT_NO_ERROR:
-                        {
-                            m_out = (m2 * n2) + 1;
-                            n_out = 1;
-
-                            sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, m_out, n_out, results);
-
-                            freeArrayOfWideString(results, m_out);
-                            results = NULL;
-
-                            if (sciErr.iErr)
-                            {
-                                printError(&sciErr, 0);
-                                Scierror(999, _("%s: Memory allocation error.\n"), fname);
-                                return 0;
-                            }
-                            LhsVar(1) = Rhs + 1;
-                            PutLhsVar();
-                            return 0;
-                        }
-                        break;
-                        case STRSPLIT_INCORRECT_VALUE_ERROR:
-                        {
-                            Scierror(116, _("%s: Wrong value for input argument #%d.\n"), fname, 2);
-                            return 0;
-                        }
-                        break;
-                        case STRSPLIT_INCORRECT_ORDER_ERROR:
-                        {
-                            Scierror(99, _("%s: Elements of %dth argument must be in increasing order.\n"), fname, 2);
-                            return 0;
-                        }
-                        break;
-                        case STRSPLIT_MEMORY_ALLOCATION_ERROR:
-                        {
-                            Scierror(999, _("%s: Memory allocation error.\n"), fname);
-                            return 0;
-                        }
-                        break;
-                        default:
-                        {
-                            Scierror(999, _("%s: error.\n"), fname);
-                            return 0;
-                        }
-                        break;
-                    }
-                }
-            }
-            else
+            //vector or scalar only
+            if (isVector(pvApiCtx, piAddressVarTwo)  == 0 && isScalar(pvApiCtx, piAddressVarTwo) == 0)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 2);
                 return 0;
+            }
+
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarTwo, &m2, &n2, &pdVarTwo);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+                return 0;
+            }
+
+            if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &pStVarOne) != 0)
+            {
+                if (pStVarOne)
+                {
+                    freeAllocatedSingleWideString(pStVarOne);
+                }
+
+                Scierror(999, _("%s: No more memory.\n"), fname);
+                return 0;
+            }
+
+            results = strsplit(pStVarOne, pdVarTwo, m2 * n2, &ierr);
+            freeAllocatedSingleWideString(pStVarOne);
+
+            switch (ierr)
+            {
+                case STRSPLIT_NO_ERROR:
+                {
+                    m_out = (m2 * n2) + 1;
+                    n_out = 1;
+
+                    sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, m_out, n_out, results);
+
+                    freeArrayOfWideString(results, m_out);
+                    results = NULL;
+
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                        return 0;
+                    }
+                    LhsVar(1) = Rhs + 1;
+                    PutLhsVar();
+                    return 0;
+                }
+                break;
+                case STRSPLIT_INCORRECT_VALUE_ERROR:
+                {
+                    Scierror(116, _("%s: Wrong value for input argument #%d.\n"), fname, 2);
+                    return 0;
+                }
+                break;
+                case STRSPLIT_INCORRECT_ORDER_ERROR:
+                {
+                    Scierror(99, _("%s: Elements of %dth argument must be in increasing order.\n"), fname, 2);
+                    return 0;
+                }
+                break;
+                case STRSPLIT_MEMORY_ALLOCATION_ERROR:
+                {
+                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    return 0;
+                }
+                break;
+                default:
+                {
+                    Scierror(999, _("%s: error.\n"), fname);
+                    return 0;
+                }
+                break;
             }
         }
         else if (isStringType(pvApiCtx, piAddressVarTwo))
@@ -242,6 +227,11 @@ int sci_strsplit(char *fname, unsigned long fname_len)
 
                 if (getAllocatedMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &pStrsTwo) != 0)
                 {
+                    if (pStrsTwo)
+                    {
+                        freeAllocatedMatrixOfWideString(m2, n2, pStrsTwo);
+                    }
+
                     Scierror(999, _("%s: No more memory.\n"), fname);
                     return 0;
                 }

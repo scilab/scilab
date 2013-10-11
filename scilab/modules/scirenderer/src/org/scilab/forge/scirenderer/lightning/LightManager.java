@@ -11,6 +11,8 @@
 
 package org.scilab.forge.scirenderer.lightning;
 
+import org.scilab.forge.scirenderer.shapes.appearance.Material;
+
 /**
  * Light manager interface.
  *
@@ -50,4 +52,10 @@ public interface LightManager {
      * @return the lightning status.
      */
     boolean isLightningEnable();
+
+    /**
+     * Set the material properties used for lighting.
+     * @param material the material.
+     */
+    void setMaterial(Material material);
 }

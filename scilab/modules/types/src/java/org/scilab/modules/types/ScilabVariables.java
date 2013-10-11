@@ -19,12 +19,9 @@ import java.nio.IntBuffer;
 import java.nio.LongBuffer;
 import java.nio.ShortBuffer;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
-
-import javax.swing.event.EventListenerList;
 
 /**
  * Class to handle the Scilab data retrievment and conversion to a ScilabType

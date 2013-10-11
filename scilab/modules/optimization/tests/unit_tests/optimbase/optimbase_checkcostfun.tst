@@ -96,6 +96,7 @@ opt = optimbase_destroy(opt);
 
 //
 // Test with wrong  non linear constraints f(x0,2) is not a row vector
+// The cost function transposes the column vector.
 //
 function [ f , c , index ] = optimtestcase2 ( x , index )
   f = []
@@ -119,8 +120,7 @@ opt = optimbase_configure(opt,"-numberofvariables",4);
 opt = optimbase_configure(opt,"-function",optimtestcase2);
 opt = optimbase_configure(opt,"-x0",[0.0 0.0 0.0 0.0]');
 opt = optimbase_configure(opt,"-nbineqconst",3);
-cmd = "opt = optimbase_checkcostfun(opt);";
-assert_checkerror(cmd,"%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d.",[],"optimbase_checkcostfun","c",5,3,1);
+opt = optimbase_checkcostfun(opt);
 opt = optimbase_destroy(opt);
 
 //
@@ -154,6 +154,7 @@ opt = optimbase_destroy(opt);
 
 //
 // Test with wrong  non linear constraints f(x0,3) is a column vector
+// The cost function transposes the column vector.
 //
 function [ f , c , index ] = optimtestcase4 ( x , index )
   f = []
@@ -177,8 +178,7 @@ opt = optimbase_configure(opt,"-numberofvariables",4);
 opt = optimbase_configure(opt,"-function",optimtestcase4);
 opt = optimbase_configure(opt,"-x0",[0.0 0.0 0.0 0.0]');
 opt = optimbase_configure(opt,"-nbineqconst",3);
-cmd = "opt = optimbase_checkcostfun(opt);";
-assert_checkerror(cmd,"%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d.",[],"optimbase_checkcostfun","c",5,3,1);
+opt = optimbase_checkcostfun(opt);
 opt = optimbase_destroy(opt);
 
 //
@@ -229,7 +229,7 @@ opt = optimbase_checkcostfun(opt);
 opt = optimbase_destroy(opt);
 //
 // Test with not correct rosenbrock function : g is a column vector instead of row vector
-//
+// The cost function transposes the column vector.
 function [ f , g , index ] = rosenbrock4 ( x , index )
   f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
   g(1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
@@ -241,7 +241,6 @@ opt = optimbase_configure(opt,"-numberofvariables",2);
 opt = optimbase_configure(opt,"-function", rosenbrock4 );
 opt = optimbase_configure(opt,"-withderivatives",%t);
 opt = optimbase_configure(opt,"-x0",[-1.2 1.0].');
-cmd = "opt = optimbase_checkcostfun(opt);";
-assert_checkerror(cmd,"%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d.",[],"optimbase_checkcostfun","g",3,2,1);
+opt = optimbase_checkcostfun(opt);
 opt = optimbase_destroy(opt);
 

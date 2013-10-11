@@ -124,24 +124,21 @@ wchar_t *getFullFilenameW(wchar_t* FilenameInput)
 char *getFullFilename(char* Filename)
 {
     char *pStFullFilename = NULL;
-
     if (Filename)
     {
         wchar_t *wcFilename = to_wide_string(Filename);
         if (wcFilename)
         {
-            wchar_t *pStwcFullFilename = NULL;
-            pStwcFullFilename = getFullFilenameW(wcFilename);
+            wchar_t *pStwcFullFilename = getFullFilenameW(wcFilename);
             FREE(wcFilename);
-            wcFilename = NULL;
             if (pStwcFullFilename)
             {
                 pStFullFilename = wide_string_to_UTF8(pStwcFullFilename);
                 FREE(pStwcFullFilename);
-                pStwcFullFilename = NULL;
             }
         }
     }
+
     return pStFullFilename;
 }
 /*--------------------------------------------------------------------------*/

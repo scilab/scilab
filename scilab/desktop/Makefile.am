@@ -1,6 +1,6 @@
 #
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-# Copyright (C) Scilab Enterprises - 2011 - Clement David
+# Copyright (C) Scilab Enterprises - 2011-2013 - Clement David
 #
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -26,3 +26,7 @@ scinotes.desktop
 mimedir = $(datadir)/mime/packages
 mime_DATA = scilab.xml
 
+# AppData file
+# Note that here, it is datadir and NOT pkgdatadir
+appdatadir = $(datadir)/appdata
+appdata_DATA = scilab.appdata.xml

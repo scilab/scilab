@@ -18,7 +18,7 @@ c     Interface for rand function
       double precision urand
       logical checkrhs,checklhs,getsmat,getscalar,cremat
       logical cresmat2, getmat
-      integer gettype
+      integer gettype, u1, v1
       character*(20) randtype
       logical phase
       integer iadr, mattyp1, areadr1, aimadr1
@@ -139,36 +139,27 @@ C
       itres=0
       if( rhs-irt.eq.2) then
 c     . rand(n1,n2)
-         call getdimfromvar(top,rhs-irt,n)
+         call getdimfromvar(top,2,n)
          if(err.gt.0.or.err1.gt.0) return
-         top=top-1
-         call getdimfromvar(top,rhs-irt-1,m)
-         if(err.gt.0.or.err1.gt.0) return
-         if(rhs.eq.2) then
-            if (.not.getmat('rand', tops, top-rhs-irt+2, 
-     +            mattyp1, u1, v1, areadr1, aimadr1)) return !To have the dimensions of argument #1 
-            if(u1.ne.u1.and.v1.ne.v1) then !detect nan because isanan does not work here
-               call error(21) !To avoid rand(:,5)
-               return
-            endif
-            if (.not.getmat('rand', tops, top-rhs-irt+3, 
-     +            mattyp1, u1, v1, areadr1, aimadr1)) return !To have the dimensions of argument #2
-            if(u1.ne.u1.and.v1.ne.v1) then !detect nan because isanan does not work here
-               call error(21) !To avoid rand(5,:)
+         il=iadr(lstk(top))
+         if(istk(il).eq.1.or.istk(il).eq.-1) then
+            if (.not.getmat('rand', tops, top, 
+     +            mattyp1, u1, v1, areadr1, aimadr1)) return !To have the dimensions of argument #2 
+            if(u1.eq.-1.or.v1.eq.-1) then !detect ':' or eye
+               call error(21)
                return
             endif
          endif
-         if(rhs.eq.3) then
-            if (.not.getmat('rand', tops, top-rhs-irt+4, 
+         
+         top=top-1
+         call getdimfromvar(top,1,m)
+         if(err.gt.0.or.err1.gt.0) return
+         il=iadr(lstk(top))
+         if(istk(il).eq.1.or.istk(il).eq.-1) then
+            if (.not.getmat('rand', tops, top, 
      +            mattyp1, u1, v1, areadr1, aimadr1)) return !To have the dimensions of argument #1 
-            if(u1.ne.u1.and.v1.ne.v1) then !detect nan because isanan does not work here
-               call error(21) !To avoid rand(:,5)
-               return
-            endif
-            if (.not.getmat('rand', tops, top-rhs-irt+5, 
-     +            mattyp1, u1, v1, areadr1, aimadr1)) return !To have the dimensions of argument #2
-            if(u1.ne.u1.and.v1.ne.v1) then !detect nan because isanan does not work here
-               call error(21) !To avoid rand(5,:)
+            if(u1.eq.-1.or.v1.eq.-1) then !detect ':' or eye
+               call error(21)
                return
             endif
          endif

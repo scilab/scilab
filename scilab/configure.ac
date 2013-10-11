@@ -135,11 +135,15 @@ AC_ARG_ENABLE(compilation-tests,
 AC_ARG_WITH(gui,
     AC_HELP_STRING([--without-gui],[Disable the Scilab Graphical User Interface (GUI). Intended for embedded/clustering/grid Scilab ]))
 
-AC_ARG_ENABLE(build-swig,
-    AC_HELP_STRING([--enable-build-swig],[Regenerate Java => C wrappers produces by Swig (A Java Development Kit (JDK) is mandatory for this option)]))
+AC_ARG_WITH(build-swig,
+    AC_HELP_STRING([--enable-build-swig=path],[Regenerate Java => C and Scilab => C wrappers produces by Swig]),
+    [with_build_swig=$withval],
+	[with_build_swig=no]
+	)
+
 
 AC_ARG_ENABLE(build-giws,
-    AC_HELP_STRING([--enable-build-giws],[Regenerate C/C++ => Java wrappers produces by Giws (A Java Development Kit (JDK) is mandatory for this option)]))
+    AC_HELP_STRING([--enable-build-giws],[Regenerate C/C++ => Java wrappers produces by Giws]))
 
 
 ################################################
@@ -326,12 +330,6 @@ esac
 AM_PROG_CC_C_O
 AC_PROG_F77_C_O
 
-
-# If this option is provided, enable the debug on C & C++
-if test "$enable_stop_on_warning" = yes; then
-   enable_debug_C=yes
-   enable_debug_CXX=yes
-fi
 
 if test "$enable_debug" = yes; then
    enable_debug_fortran=yes
@@ -1103,11 +1101,13 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
     fi
     AC_SUBST(JAVAC_DEBUG)
 
-    if test "$enable_build_swig" != no -a "$enable_build_swig" != ""; then
+    if test "$with_build_swig" != no -a "$with_build_swig" != ""; then
         SWIG_PROG()
         SWIG_ENABLE_JAVA()
+        SWIG_ENABLE_SCILAB()
         AC_SUBST(SWIG_BIN)
         AC_SUBST(SWIG_JAVA)
+        AC_SUBST(SWIG_SCILAB)
 
     fi
 
@@ -1130,7 +1130,7 @@ AC_SUBST(JAVA_ENABLE)
 AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no)
 AM_CONDITIONAL(GUI, test "$with_gui" != no)
 AM_CONDITIONAL(JAVASCI, test "$with_javasci" != no)
-AM_CONDITIONAL(SWIG, test "$enable_build_swig" != no -a "$enable_build_swig" != "")
+AM_CONDITIONAL(SWIG, test "$with_build_swig" != no -a "$with_build_swig" != "")
 AM_CONDITIONAL(GIWS, test "$enable_build_giws" != no  -a "$enable_build_giws" != "")
 
 ##############################################################
@@ -1828,10 +1828,9 @@ AC_CHECK_STDCPP_STATIC()
 # This stuff is at the end of the configure.ac because it causes some
 # problem with AC_COMPILE (the -Werror is added to the test)
 #
-dnl @TODO : -O0 is only to bypass Stack shit... Must be removed.
 if test "$enable_stop_on_warning" = yes; then
-    WARNING_CFLAGS="-Werror=implicit-function-declaration -O0"
-    WARNING_CXXFLAGS="-Werror=implicit-function-declaration -O0"
+    WARNING_CFLAGS="-Werror=implicit-function-declaration -Werror=declaration-after-statement "
+    WARNING_CXXFLAGS="-Werror=implicit-function-declaration "
 fi
 
 # SCI_*FLAGS contains all defaults values detected on configure

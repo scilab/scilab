@@ -20,6 +20,7 @@
 */
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
+#include <assert.h>
 #include "gw_scicos.h"
 #include "stack-c.h"
 #include "Scierror.h"
@@ -271,7 +272,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     Block.nin    = mh * nh;
     Block.insz   = NULL;
     Block.inptr  = NULL;
-    if (mh * nh != 0)
+    if (Block.nin > 0)
     {
         /* check value of in */
         for (i = 0; i < Block.nin; i++)
@@ -553,7 +554,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     Block.nout   = mh * nh;
     Block.outsz  = NULL;
     Block.outptr = NULL;
-    if (mh * nh != 0)
+    if (Block.nout > 0)
     {
         /* check value of out */
         for (i = 0; i < Block.nout; i++)
@@ -911,7 +912,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     nh           = ilh[2];
     Block.nevout = mh * nh;
     Block.evout  = NULL;
-    if (mh * nh != 0)
+    if (Block.nevout > 0)
     {
         if ((Block.evout = (double *) MALLOC(Block.nevout * sizeof(double))) == NULL)
         {
@@ -961,7 +962,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     Block.xprop  = NULL;
     Block.xd     = NULL;
     Block.res    = NULL;
-    if (mh * nh != 0)
+    if (Block.nx > 0)
     {
         /* x */
         if ((Block.x = (double *) MALLOC(Block.nx * sizeof(double))) == NULL)
@@ -1078,8 +1079,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     nh           = ilh[2];
     Block.nz     = mh * nh;
     Block.z      = NULL;
-
-    if (mh * nh != 0)
+    if (Block.nz > 0)
     {
         if ((Block.z = (double *) MALLOC(Block.nz * sizeof(double))) == NULL)
         {
@@ -1120,7 +1120,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     Block.ozsz   = NULL;
     Block.oztyp  = NULL;
     Block.ozptr  = NULL;
-    if (mh * nh != 0)
+    if (Block.noz > 0)
     {
         if ((Block.ozsz = (int *) MALLOC(2 * Block.noz * sizeof(int))) == NULL)
         {
@@ -1525,7 +1525,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     nh           = ilh[2];
     Block.nrpar  = mh * nh;
     Block.rpar   = NULL;
-    if (mh * nh != 0)
+    if (Block.nrpar > 0)
     {
         if ((Block.rpar = (double *) MALLOC(Block.nrpar * sizeof(double))) == NULL)
         {
@@ -1570,7 +1570,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     nh           = ilh[2];
     Block.nipar  = mh * nh;
     Block.ipar   = NULL;
-    if (mh * nh != 0)
+    if (Block.nipar > 0)
     {
         if ((Block.ipar = (int *) MALLOC(Block.nipar * sizeof(int))) == NULL)
         {
@@ -1619,7 +1619,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     Block.oparsz  = NULL;
     Block.opartyp = NULL;
     Block.oparptr = NULL;
-    if (mh * nh != 0)
+    if (Block.nopar > 0)
     {
         if ((Block.oparsz = (int *) MALLOC(2 * Block.nopar * sizeof(int))) == NULL)
         {
@@ -2168,7 +2168,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     Block.ng     = (int) * ((double *)(&ilh[4]));
     Block.g      = NULL;
     Block.jroot  = NULL;
-    if (Block.ng != 0)
+    if (Block.ng > 0)
     {
         if ((Block.g = (double *) MALLOC(Block.ng * sizeof(double))) == NULL)
         {
@@ -2267,9 +2267,9 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     nh           = ilh[2];
     Block.nmode  = (int) * ((double *)(&ilh[4]));
     Block.mode  = NULL;
-    if (Block.nmode != 0)
+    if (Block.nmode > 0)
     {
-        if ((Block.mode = (int *) MALLOC(Block.nmode * sizeof(double))) == NULL)
+        if ((Block.mode = (int *) MALLOC(Block.nmode * sizeof(int))) == NULL)
         {
             for (j = 0; j < Block.nin; j++)
             {
@@ -2313,6 +2313,63 @@ int sci_model2blk(char *fname, unsigned long fname_len)
         for (j = 0; j < Block.nmode; j++)
         {
             Block.mode[j] = 0;
+        }
+    }
+
+    /* uids */
+    /* 23 : model.uid  */
+    n            = MlistGetFieldNumber(il1, "uid");
+    ilh          = (int *) (listentry(il1, n));
+    mh           = ilh[1];
+    nh           = ilh[2];
+    Block.uid  = "";
+    if (mh * nh != 0)
+    {
+        len_str  = ilh[5] - 1;
+        if (len_str != 0)
+        {
+            if ((Block.uid = (char *) MALLOC((len_str + 1) * sizeof(char))) == NULL)
+            {
+                for (j = 0; j < Block.nin; j++)
+                {
+                    FREE(Block.inptr[j]);
+                }
+                FREE(Block.inptr);
+                FREE(Block.insz);
+                for (j = 0; j < Block.nout; j++)
+                {
+                    FREE(Block.outptr[j]);
+                }
+                FREE(Block.outptr);
+                FREE(Block.outsz);
+                FREE(Block.evout);
+                FREE(Block.x);
+                FREE(Block.xd);
+                FREE(Block.xprop);
+                FREE(Block.res);
+                FREE(Block.z);
+                FREE(Block.ozsz);
+                FREE(Block.oztyp);
+                for (j = 0; j < Block.noz; j++)
+                {
+                    FREE(Block.ozptr[j]);
+                }
+                FREE(Block.rpar);
+                FREE(Block.ipar);
+                FREE(Block.oparsz);
+                FREE(Block.opartyp);
+                for (j = 0; j < Block.nopar; j++)
+                {
+                    FREE(Block.oparptr[j]);
+                }
+                FREE(Block.label);
+                FREE(Block.g);
+                FREE(Block.jroot);
+                Scierror(888, _("%s : Allocation error.\n"), fname);
+                return 0;
+            }
+            Block.uid[len_str] = '\0';
+            C2F(cvstr)(&len_str, &ilh[6], Block.uid, (j = 1, &j), len_str);
         }
     }
 

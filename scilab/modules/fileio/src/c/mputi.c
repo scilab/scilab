@@ -11,12 +11,6 @@
 */
 
 #include <string.h>
-#ifndef _MSC_VER
-#include <stdint.h>
-#else
-#define int32_t int
-#define uint32_t unsigned int
-#endif
 
 #include "mputi.h"
 #include "sciprint.h"
@@ -26,7 +20,7 @@
 #include "convert_tools.h"
 
 
-void C2F(mputi)(int* _pF, int* _pVal, int* _iSize, char* _iOpt, int* _iErr)
+void C2F(mputi)(int* _pF, long long* _pVal, int* _iSize, char* _iOpt, int* _iErr)
 {
     int iType = 0;
     int iUnsigned = 0;
@@ -36,9 +30,9 @@ void C2F(mputi)(int* _pF, int* _pVal, int* _iSize, char* _iOpt, int* _iErr)
     int i;
     FILE *fa = NULL;
 
-    unsigned char *RES_uc   = (unsigned char *)_pVal;
-    uint32_t *RES_ul        = (uint32_t *)_pVal;
-    unsigned short *RES_us  = (unsigned short *)_pVal;
+    unsigned char *RES_uc   = (unsigned char*)_pVal;
+    unsigned short *RES_us  = (unsigned short*)_pVal;
+    unsigned int *RES_ui    = (unsigned int*)_pVal;
 
     fa = GetFileOpenedInScilab(*_pF);
     if (fa == NULL)
@@ -114,28 +108,36 @@ void C2F(mputi)(int* _pF, int* _pVal, int* _iSize, char* _iOpt, int* _iErr)
 
     switch (iType)
     {
-        case TYPE_LONG :
+        case TYPE_LONG_LONG :
             for (i = 0; i < *_iSize ; i++)
             {
-                uint32_t val;
-                val = *(uint32_t*)RES_ul++;
-                writeInt(val, fa, iEndian);
+                unsigned long long val;
+                val = *(_pVal + i);
+                *_iErr = writeLongLong(val, fa, iEndian);
+            }
+            break;
+        case TYPE_INT :
+            for (i = 0; i < *_iSize ; i++)
+            {
+                unsigned int val;
+                val = *(RES_ui + i);
+                *_iErr = writeInt(val, fa, iEndian);
             }
             break;
         case TYPE_SHORT :
             for (i = 0; i < *_iSize ; i++)
             {
                 unsigned short val;
-                val = *(unsigned short*)RES_us++;
-                writeShort(val, fa, iEndian);
+                val = *(RES_us + i);
+                *_iErr = writeShort(val, fa, iEndian);
             }
             break;
         case TYPE_CHAR:
             for (i = 0; i < *_iSize ; i++)
             {
                 unsigned char val;
-                val = *(unsigned char*)RES_uc++;
-                writeChar(val, fa, iEndian);
+                val = *(RES_uc + i);
+                *_iErr = writeChar(val, fa, iEndian);
             }
             break;
     }

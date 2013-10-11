@@ -111,7 +111,7 @@ int sci_dec2base(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if ((iBaseUsed < 2) && (iBaseUsed > 36))
+    if (iBaseUsed < 2 || iBaseUsed > 36)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: Must be between %d and %d."), fname, 2, 2, 36);
         return 0;
@@ -157,13 +157,6 @@ int sci_dec2base(char *fname, unsigned long fname_len)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
-    }
-
-    convertedValues = (char **)MALLOC(sizeof(char*) * (m * n));
-    if (convertedValues == NULL)
-    {
-        Scierror(999, _("%s: No more memory.\n"), fname);
         return 0;
     }
 

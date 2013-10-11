@@ -11,7 +11,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="datatipCreate">
     <refnamediv>
         <refname>datatipCreate</refname>
-        <refpurpose>Create a data tip on a polyline by program</refpurpose>
+        <refpurpose>Create a datatip on a polyline by program</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -42,7 +42,7 @@
                 <term>pt</term>
                 <listitem>
                     <para>
-                        A vector with 2 elements, the coordinates of the point where to draw the data tip.
+                        A vector with 2 or 3 elements, the coordinates of the point where to draw the data tip.
                     </para>
                 </listitem>
             </varlistentry>
@@ -59,7 +59,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function can be used to create data tips on a polyline by
+            This function can be used to create datatips on a polyline by
             program. Called with an index as second argument, it sets the
             tip at the coordinates given by polyline point specified by the
             index. Called with a point as second argument it sets the tip
@@ -77,11 +77,9 @@
     plot(x,y);
     e=gce();p=e.children(1);//get the handle on the polyline
     p.mark_mode="on";p.mark_style=2;p.mark_size=12;
-    t=datatipCreate(p,3);
+    t=datatipCreate(p,5);
 
-    datatipCreate(p,[0.6,0.2]);
-    datatipSetInterp(p,%t);
-    datatipCreate(p,[0.82,0.62]);
+    datatipCreate(p,[0.65,0.3]);
     ]]></programlisting>
         <scilab:image>
             x=linspace(0,1,9)';
@@ -89,19 +87,14 @@
             plot(x,y);
             e=gce();p=e.children(1);//get the handle on the polyline
             p.mark_mode="on";p.mark_style=2;p.mark_size=12;
-            t=datatipCreate(p,3);
+            t=datatipCreate(p,5);
             
-            datatipCreate(p,[0.6,0.2]);
-            datatipSetInterp(p,%t);
-            datatipCreate(p,[0.82,0.62]);
+            datatipCreate(p,[0.65,0.3]);
         </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="datatipInitStruct">datatipInitStruct</link>
-            </member>
             <member>
                 <link linkend="datatips">datatips</link>
             </member>

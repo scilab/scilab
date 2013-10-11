@@ -58,12 +58,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import org.scilab.modules.localization.Messages;
 import org.scilab.modules.commons.OS;
-import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.scilab.modules.commons.xml.XConfiguration;
@@ -720,6 +717,13 @@ public abstract class XCommonManager {
             response = Messages.gettext(response.substring(2, response.length() - 1));
         }
 
+        if (response.startsWith("_d(") && response.endsWith(")")) {
+            int iPos = response.indexOf(",");
+            String domain = response.substring(3, iPos).trim();
+            String text = response.substring(iPos + 2, response.length() - 1).trim();
+            System.out.println("domain : !" + domain + "! text : !" + text + "!");
+            response = Messages.dgettext(domain, text);
+        }
         return response;
     }
 

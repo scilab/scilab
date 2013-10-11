@@ -76,9 +76,12 @@ int sci_jconvMatrixMethod(char * fname, unsigned long fname_len)
     }
     else
     {
+        delete type;
         Scierror(999, "%s: Invalid string: \"rc\" or \"cr\" expected.", fname);
         return 0;
     }
+
+    delete type;
 
     LhsVar(1) = 0;
     PutLhsVar();

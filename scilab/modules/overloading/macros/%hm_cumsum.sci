@@ -7,78 +7,104 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
-function x=%hm_cumsum(m,d,typ)
-    if argn(2)==1 then
-        typ=list()
-        d="*"
-    elseif argn(2)==2 then
-        if argn(2)==2& or(d==["native","double"]) then
-            typ=list(d)
-            d="*"
+function a = %hm_cumsum(varargin)
+    a = varargin(1)
+    dims = size(a);
+    tm = type(a.entries)
+
+    nargs = size(varargin);
+    select nargs
+    case 1
+        d = 0;
+        if tm == 8 then
+            typ = "native";
         else
-            typ=list()
+            typ = "double";
         end
+    case 2
+        if or(varargin(2) == ["native", "double"]) then
+            d = 0;
+            typ = varargin(2);
+        else
+            d = varargin(2);
+            if tm == 8 then
+                typ = "native";
+            else
+                typ = "double";
+            end
+        end
+    case 3
+        d = varargin(2);
+        typ = varargin(3);
     else
-        typ=list(typ)
+        error(msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"),"cumsum", 1, 3));
     end
-    if size(d,"*")<>1 then
-        if type(d)==10 then
+
+    // Check second argument : d
+    select type(d)
+    case 1
+        if size(d,'*') <> 1 then
+            error(msprintf(_("%s: Wrong size for input argument #%d: A scalar expected.\n"),"cumsum", 2))
+        end
+        if int(d) <> d | d < 0 then
+            error(msprintf(_("%s: Wrong value for input argument #%d: Integer >= %d expected.\n"),"cumsum", 2, 1))
+        end
+    case 10 
+        if size(d,'*') <> 1 then
             error(msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumsum",2))
-        else
-            error(msprintf(_("%s: Wrong size for input argument #%d: A scalar expected.\n"),"cumsum",2))
         end
-    end
-
-    if type(d)==10 then
-        d=find(d==["m","*","r","c"])
-        if d==[] then
+        if and(d<>["r","c","*","m"]) then
             error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-            "cumsum",2,"""*"",""r"",""c"",""m"",1:"+string(ndims(a))))
+            "cumsum",2,"""*"",""r"",""c"",""m"""))
         end
-        d=d-2
-    end
-    dims=m.dims;
-
-    if d==-1 then //'m'
-        d=find(dims>1,1)
-        if d==[] then d=0,end
+        pos=[1,2,0,find(dims>1,1)];
+        d=pos(find(d==["r","c","*","m"]))
+    else
+        error(msprintf(_("%s: Wrong type for input argument #%d: A string or scalar expected.\n"),"cumsum",2))
     end
 
-    if d<0 then
-        error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-        "cumsum",2,"""*"",""r"",""c"",""m"",1:"+string(ndims(a))))
+    // Check third argument
+    if type(typ)<>10 then
+        error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"cumsum",3))
     end
 
-    if d==0 then// '*'
-        x=hypermat(m.dims,cumsum(m.entries,typ(:)))
-        return
+    if size(typ,"*")<>1 then
+        error(msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumsum",3))
     end
 
-    if d>size(dims,"*") then
+    if and(typ <> ["native" "double"]) then
+        error(msprintf(_("%s: Wrong value for input argument #%d: ""%s"" or ""%s"" expected.\n"),"cumsum", 3, "native", "double"));
+    end
+
+    if d == 0 then // '*'
+        a=matrix(cumsum(a.entries, "*", typ), dims);
+    elseif d > size(dims,"*") then
         //requested summation direction exceeds array dims, return the array, converted
         //to double if necessary.
-        tm=type(m.entries)
-        if (tm==8&typ==list("double"))|(tm==4&typ<>list("native")) then
-            m.entries=double(m.entries),
+        if typ == "double" & or(tm == [4 8]) then
+            a.entries=double(a.entries),
         end
-        x=m
-        return
+        a=a
+    else
+        //permute the array dimension to put the selected dimension first
+        p=1:size(dims,"*");
+        p([1,d])=p([d,1]);
+        a=matrix(permute(a,p),dims(d),-1)
+        a=cumsum(a,1,typ);
+        //permute back
+        a=permute(matrix(a,dims(p)),p)
+//        N=size(dims,"*");
+//        p1=prod(dims(1:d-1));//summation step
+//        p2=p1*dims(d);//step for next to sum
+//        ind=(0:p1:p2-1);// selection for summation
+//        deb=(1:p1)';
+//        I=deb*ones(ind)+ones(deb)*ind
+//
+//
+//        ind=(0:p2:prod(dims)-1)';
+//        I=ones(ind).*.I+ind.*.ones(I)
+//        a=cumsum(matrix(a.entries(I),-1,dims(d)),2,typ)
+//        a(I)=matrix(a,-1,1)
+//        a=hypermat(dims,a)
     end
-
-
-    if type(dims==8) then flag=1; dims=double(dims); else flag=0;end
-    N=size(dims,"*");
-    p1=prod(dims(1:d-1));//summation step
-    p2=p1*dims(d);//step for next to sum
-    ind=(0:p1:p2-1);// selection for summation
-    deb=(1:p1)';
-    I=deb*ones(ind)+ones(deb)*ind
-
-
-    ind=(0:p2:prod(dims)-1)';
-    I=ones(ind).*.I+ind.*.ones(I)
-    x=cumsum(matrix(m.entries(I),-1,dims(d)),2,typ(:))
-    x(I)=matrix(x,-1,1)
-    if flag==1 then dims=int32(dims);end
-    x=hypermat(dims,x)
 endfunction

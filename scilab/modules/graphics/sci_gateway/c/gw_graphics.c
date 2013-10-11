@@ -97,7 +97,8 @@ static gw_generic_table Tab[] =
     {sci_rubberbox, "rubberbox"},
     {sci_rotate_axes, "rotate_axes"},
     {sci_is_handle_valid, "is_handle_valid"},
-    {sci_Legend, "captions"}
+    {sci_Legend, "captions"},
+    {sci_light, "light"}
 };
 
 /*--------------------------------------------------------------------------*/

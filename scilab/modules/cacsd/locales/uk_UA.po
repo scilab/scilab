@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-26 05:34+0000\n"
+"PO-Revision-Date: 2013-09-04 04:02+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: uk\n"
 
 #, c-format
@@ -95,11 +95,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: %s must be a scalar.\n"
-msgstr ""
+msgstr "%s: %s має бути числом.\n"
 
 #, c-format
 msgid "%s: Wrong value for %s: %d, %d or %d expected.\n"
-msgstr ""
+msgstr "%s: помилкове значення %s: мало бути %d, %d або %d.\n"
 
 #, c-format
 msgid "%s: TASK = 1 : LINMEQ requires at least 4 input arguments.\n"
@@ -108,15 +108,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for %s: %d, %d, %d or %d expected.\n"
-msgstr ""
+msgstr "%s: помилкове значення %s: мало бути %d, %d, %d або %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for %s: %d, or %d expected.\n"
-msgstr ""
+msgstr "%s: помилкове значення %s: мало бути %d або %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for %s: %d or %d expected.\n"
-msgstr ""
+msgstr "%s: помилкове значення %s: мало бути %d або %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
@@ -185,12 +185,16 @@ msgstr ""
 #, c-format
 msgid "%s: Warning: input arguments were scaled by %lf to avoid overflow.\n"
 msgstr ""
+"%s: попередження: вхідні параметри слід нормувати на %lf, щоб уникнути "
+"переповнення.\n"
 
 #, c-format
 msgid ""
 "%s: Warning: the equation is (almost) singular. Perturbed values have been "
 "used.\n"
 msgstr ""
+"%s: попередження: рівняння є (майже) виродженим. Було використано збурені "
+"значення.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: A complex expected.\n"
@@ -665,10 +669,12 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A proper system expected\n"
 msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано належну "
+"систему\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A SIMO expected.\n"
-msgstr ""
+msgstr "%s: помилковий тип вхідного параметра №%d: мало бути вказано SIMO.\n"
 
 #, c-format
 msgid "%s: Simulation failed before final time is reached.\n"
@@ -1200,6 +1206,14 @@ msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
 "поліном.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""

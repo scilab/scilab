@@ -36,7 +36,7 @@ int sci_mseek(char *fname, unsigned long fname_len)
 
     if (GetType(1) == sci_matrix)
     {
-        GetRhsVar(1, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1);
+        GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
         if (m1*n1 != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: An integer expected.\n"), fname, 1);
@@ -80,7 +80,7 @@ int sci_mseek(char *fname, unsigned long fname_len)
         flag = "set";
     }
 
-    C2F(mseek)(&fd, istk(l1), flag, &err);
+    C2F(mseek)(&fd, stk(l1), flag, &err);
 
     if (err >  0)
     {

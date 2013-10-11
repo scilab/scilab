@@ -17,25 +17,21 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Point;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.Semaphore;
 
 import javax.swing.BoundedRangeModel;
 import javax.swing.DefaultBoundedRangeModel;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JEditorPane;
 import javax.swing.JTextPane;
-import javax.swing.JViewport;
 import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
@@ -340,13 +336,15 @@ public abstract class SciConsole extends JPanel {
                 }
             }
 
-            int numberOfLines = Math.max(1, getNumberOfLines());
+            int numberOfLines = getNumberOfLines();
             int promptWidth = ((JPanel) this.getConfiguration().getPromptView()).getPreferredSize().width;
 
             int numberOfColumns = (outputViewWidth - promptWidth) / maxCharWidth - 1;
             /* -1 because of the margin between text prompt and command line text */
 
-            GuiManagement.setScilabLines(numberOfLines, numberOfColumns);
+            if (numberOfLines > 0 && numberOfColumns > 0) {
+                GuiManagement.setScilabLines(Math.max(1, numberOfLines), numberOfColumns);
+            }
         } else {
             GuiManagement.forceScilabLines(ConsoleOptions.getConsoleDisplay().nbLines, ConsoleOptions.getConsoleDisplay().nbColumns);
         }
@@ -449,7 +447,9 @@ public abstract class SciConsole extends JPanel {
                     for (int i = 0; i < totalNumberOfLines; i++) {
                         outputTxt = outputDoc.getText(0, outputDoc.getLength());
                         lastEOL = outputTxt.lastIndexOf(StringConstants.NEW_LINE);
-                        outputDoc.remove(lastEOL, outputDoc.getLength() - lastEOL);
+                        if (lastEOL != -1) {
+                            outputDoc.remove(lastEOL, outputDoc.getLength() - lastEOL);
+                        }
                     }
                 }
             } catch (BadLocationException e) {

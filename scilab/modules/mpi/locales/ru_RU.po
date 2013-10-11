@@ -1,0 +1,96 @@
+# Russian translation for scilab
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-09-17 15:48+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 16774)\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался целочисленный скаляр.\n"
+
+#, c-format
+msgid "%s: Could not get communicator rank of the node %d: %s\n"
+msgstr ""
+
+msgid "Unable to serialize data\n"
+msgstr "Невозможно преобразовать данные в последовательную форму\n"
+
+#, c-format
+msgid "%s: Could not broadcast the variable to the node %d: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to deserialize data.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to create variable.\n"
+msgstr "%s: Невозможно создать переменную.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Ошибка распределения памяти.\n"
+
+#, c-format
+msgid "%s: Could not finalize the MPI instance: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not get processor name: %s\n"
+msgstr "%s: Не удалось получить имя процессора: %s\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Positive value expected.\n"
+msgstr ""
+"%s: Неверные значения входного аргумента №%d: ожидалось положительное "
+"значение.\n"
+
+#, c-format
+msgid "%s: MPI_Probe failed. Rank %d / Tag %d: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: MPI_Get_count failed. Rank %d / Tag %d: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: MPI_Irecv failed. Rank %d / Tag %d: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not send the variable to the node %d: %s\n"
+msgstr "%s: Не удалось переслать переменную на узел %d: %s\n"
+
+#, c-format
+msgid "%s: Could not create the received variable.\n"
+msgstr "%s: Не удалось создать принятую переменную.\n"
+
+#, c-format
+msgid "%s: MPI_Recv failed. Rank %d / Tag %d: %s\n"
+msgstr "%s: MPI_Recv провален. Rank %d / Tag %d: %s\n"
+
+#, c-format
+msgid "%s: Unable to deserialize data !\n"
+msgstr "%s: Невозможно преобразовать данные в параллельную форму!\n"
+
+#, c-format
+msgid "%s: MPI_Wait failed while waiting %d: %s\n"
+msgstr ""

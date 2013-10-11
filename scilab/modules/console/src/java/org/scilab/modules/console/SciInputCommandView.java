@@ -43,7 +43,6 @@ import javax.swing.event.CaretListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultCaret;
 import javax.swing.text.Element;
 import javax.swing.text.PlainView;
 import javax.swing.text.StyledEditorKit;

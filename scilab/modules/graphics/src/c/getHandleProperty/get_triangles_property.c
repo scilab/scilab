@@ -45,6 +45,11 @@ int get_triangles_property(void* _pvCtx, char* pobjUID)
     }
 
     getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_INDICES__, jni_int, (void**)&piNumTriangles);
+    if (piNumTriangles == NULL)
+    {
+        Scierror(999, _("Wrong value for '%s' property.\n"), "triangles");
+        return -1;
+    }
 
     return sciReturnMatrix(_pvCtx, triangles, numTriangles , 5);
 }

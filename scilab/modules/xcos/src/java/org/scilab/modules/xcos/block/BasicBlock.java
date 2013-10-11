@@ -54,6 +54,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.Xcos;
@@ -80,6 +81,7 @@ import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
+import org.scilab.modules.xcos.io.scicos.DiagramElement;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.port.BasicPort;
@@ -328,6 +330,10 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
     private ScilabType exprs;
     // private List<Double> realParameters = new ArrayList<Double>();
     private ScilabType realParameters;
+    /**
+     * Update status on the rpar mlist, if true then a re-encode has to be performed on the getter.
+     */
+    protected boolean hasAValidRpar = false;
     // private List<Integer> integerParameters = new ArrayList<Integer>();
     private ScilabType integerParameters;
     // private List objectsParameters = new ArrayList();
@@ -374,14 +380,22 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
         SCILAB(5.0),
         /** Debug blocks */
         DEBUG(99),
+        /** dynamic {@link #TYPE_1} Fortran blocks (fortran_block.sci) */
+        DYNAMIC_FORTRAN_1(1001.0),
+        /** dynamic {@link #TYPE_1} C blocks (c_block.sci) */
+        DYNAMIC_C_1(2001.0),
+        /** Explicit dynamic {@link #TYPE_4} blocks (CBLOCK.sci) */
+        DYNAMIC_EXPLICIT_4(2004.0),
+        /** Implicit {@link #TYPE_1} Fortran blocks (DIFF_f.sci) */
+        OLDBLOCKS(10001.0),
+        /** Implicit {@link #C_OR_FORTRAN} blocks */
+        IMPLICIT_C_OR_FORTRAN(10004.0),
+        /** Implicit dynamic {@link #TYPE_4} blocks (CBLOCK.sci) */
+        DYNAMIC_IMPLICIT_4(12004.0),
         /** Modelica {@link #C_OR_FORTRAN} blocks */
         MODELICA(30004.0),
         /** Magic types */
-        UNKNOWN(5.0),
-        /** Implicit {@link #TYPE_1} blocks */
-        OLDBLOCKS(10001.0),
-        /** Implicit {@link #C_OR_FORTRAN} blocks */
-        IMPLICIT_C_OR_FORTRAN(10004.0);
+        UNKNOWN(5.0);
 
         private double value;
 
@@ -643,6 +657,16 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
      * @return real parameter ( rpar )
      */
     public ScilabType getRealParameters() {
+        if (!hasAValidRpar && realParameters instanceof ScilabMList) {
+            try {
+                final DiagramElement elem = new DiagramElement();
+                final XcosDiagram d = elem.decode(realParameters, new XcosDiagram(false));
+                realParameters = elem.encode(d, null);
+            } catch (ScicosFormatException e) {
+                // do nothing on error (no assignation)
+            }
+        }
+
         return realParameters;
     }
 
@@ -657,6 +681,14 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
             this.realParameters = realParameters;
             parametersPCS.firePropertyChange(REAL_PARAMETERS, oldValue, realParameters);
         }
+    }
+
+    /**
+     * Invalide the rpar, a new child diagram encoding will be performed on
+     * demand.
+     */
+    public void invalidateRpar() {
+        hasAValidRpar = false;
     }
 
     /**

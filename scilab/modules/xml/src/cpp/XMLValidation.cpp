@@ -28,7 +28,7 @@ namespace org_modules_xml
 std::string * XMLValidation::errorBuffer = 0;
 std::list<XMLValidation *>& XMLValidation::openValidationFiles = *new std::list < XMLValidation * >();
 
-XMLValidation::XMLValidation(): XMLObject()
+XMLValidation::XMLValidation(): XMLObject(), validationFile(0)
 {
     scilabType = XMLVALID;
 }

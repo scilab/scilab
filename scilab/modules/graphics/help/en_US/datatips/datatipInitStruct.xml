@@ -11,7 +11,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="datatipInitStruct">
     <refnamediv>
         <refname>datatipInitStruct</refname>
-        <refpurpose>Initialize the datatip structure associated with the given polyline. </refpurpose>
+        <refpurpose>
+            Initialize the datatip structure associated with the given polyline. <emphasis role="bold">Obsolete function. </emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -210,5 +212,16 @@
     datatipCreate(p2,750);
 
             ]]></scilab:image>-->
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription>
+                    Function tagged obsolete. Will be removed in 5.5.0.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

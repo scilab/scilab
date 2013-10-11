@@ -14,7 +14,6 @@ package org.scilab.modules.gui.messagebox;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.uielement.ScilabUIElement;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;

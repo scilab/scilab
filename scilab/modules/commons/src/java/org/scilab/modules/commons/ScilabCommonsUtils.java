@@ -153,13 +153,13 @@ public final class ScilabCommonsUtils {
             Method loadOnUseMethod = jvmLoadClassPathClass.getDeclaredMethod("loadOnUse", new Class[] { String.class });
             loadOnUseMethod.invoke(null, str);
         } catch (java.lang.ClassNotFoundException ex) {
-            System.err.println("Could not find the Scilab class to load the export dependencies: " + ex);
+            System.err.println("Could not find the Scilab class to load dependency: " + ex);
         } catch (java.lang.NoSuchMethodException ex) {
-            System.err.println("Could not find the Scilab method to load the export dependencies: " + ex);
+            System.err.println("Could not find the Scilab method to load dependency: " + ex);
         } catch (java.lang.IllegalAccessException ex) {
-            System.err.println("Could not access to the Scilab method to load the export dependencies: " + ex);
+            System.err.println("Could not access to the Scilab method to load dependency: " + ex);
         } catch (java.lang.reflect.InvocationTargetException ex) {
-            System.err.println("Could not invoke the Scilab method to load the export dependencies: " + ex);
+            System.err.println("Could not invoke the Scilab method to load dependency: " + ex);
         }
     }
 

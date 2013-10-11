@@ -80,6 +80,10 @@ static char *getTypeNameFromInt(int _iType)
             return "ShowHiddenHandles";
         case __GO_WAITBAR__ :
             return "Waitbar";
+        case __GO_DATATIP__:
+            return "Datatip";
+        case __GO_LIGHT__ :
+            return "Light";
         default :
             return "????";
     }
@@ -92,6 +96,11 @@ int get_type_property(void* _pvCtx, char* pobjUID)
     int *piType = &iType;
 
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    if (piType == NULL)
+    {
+        return sciReturnString(_pvCtx, getTypeNameFromInt(-1));
+    }
+
     return sciReturnString(_pvCtx, getTypeNameFromInt(iType));
     //return sciReturnString(sciGetCharEntityType(pobj));
 }

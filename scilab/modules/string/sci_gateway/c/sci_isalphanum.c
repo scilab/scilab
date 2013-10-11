@@ -27,6 +27,10 @@ int sci_isalphanum(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
+    wchar_t *pStVarOne = NULL;
+
+    int valuesSize = 0;
+    BOOL *values = NULL;
 
     CheckRhs(1, 1);
     CheckLhs(1, 1);
@@ -39,58 +43,49 @@ int sci_isalphanum(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isScalar(pvApiCtx, piAddressVarOne))
+    if (isStringType(pvApiCtx, piAddressVarOne) == 0 || isScalar(pvApiCtx, piAddressVarOne) == 0)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
 
-    if (!isStringType(pvApiCtx, piAddressVarOne))
+    if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &pStVarOne) != 0)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
-    }
-    else
-    {
-        wchar_t *pStVarOne = NULL;
-
-        if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &pStVarOne) != 0)
+        if (pStVarOne)
         {
+            freeAllocatedSingleWideString(pStVarOne);
+        }
+
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
+
+    values = isalphanumW(pStVarOne, &valuesSize);
+
+    freeAllocatedSingleWideString(pStVarOne);
+
+    if (values)
+    {
+        int m1 = 1;
+        int n1 = valuesSize;
+        sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, m1, n1, values);
+
+        FREE(values);
+
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
-        else
-        {
-            int valuesSize = 0;
-            BOOL *values = isalphanumW(pStVarOne, &valuesSize);
-
-            freeAllocatedSingleWideString(pStVarOne);
-            pStVarOne = NULL;
-
-            if (values)
-            {
-                int m1 = 1;
-                int n1 = valuesSize;
-                sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, m1, n1, values);
-
-                FREE(values);
-                values = NULL;
-
-                if (sciErr.iErr)
-                {
-                    printError(&sciErr, 0);
-                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
-                    return 0;
-                }
-            }
-            else
-            {
-                createEmptyMatrix(pvApiCtx, Rhs + 1);
-            }
-
-            LhsVar(1) = Rhs + 1;
-            PutLhsVar();
-        }
     }
+    else
+    {
+        createEmptyMatrix(pvApiCtx, Rhs + 1);
+    }
+
+    LhsVar(1) = Rhs + 1;
+    PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

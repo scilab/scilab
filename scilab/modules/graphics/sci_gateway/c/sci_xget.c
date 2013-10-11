@@ -18,9 +18,7 @@
 /*------------------------------------------------------------------------*/
 
 #include <stdio.h>
-
 #include "api_scilab.h"
-
 #include "gw_graphics.h"
 #include "XsetXgetParameters.h"
 #include "GetProperty.h"
@@ -90,6 +88,7 @@ int sci_xget(char *fname, unsigned long fname_len)
     if (!keyFound)
     {
         Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), fname, (l1));
+        freeAllocatedSingleString(l1);
         return -1;
     }
 
@@ -99,6 +98,7 @@ int sci_xget(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeAllocatedSingleString(l1);
             return 1;
         }
 
@@ -108,6 +108,7 @@ int sci_xget(char *fname, unsigned long fname_len)
         {
             printError(&sciErr, 0);
             Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+            freeAllocatedSingleString(l1);
             return 1;
         }
 
@@ -115,6 +116,7 @@ int sci_xget(char *fname, unsigned long fname_len)
         if (m2 != 1 || n2 != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, 2);
+            freeAllocatedSingleString(l1);
             return 1;
         }
 
@@ -129,13 +131,13 @@ int sci_xget(char *fname, unsigned long fname_len)
         if (allocSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, bufl * one, (const char **)&l3))
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            freeAllocatedSingleString(l1);
             return 1;
         }
 
         strncpy((l3), buf, bufl);
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-        return 0;
     }
     else if (strcmp(l1, "colormap") == 0)
     {
@@ -148,8 +150,6 @@ int sci_xget(char *fname, unsigned long fname_len)
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-
-        return 0;
     }
     else if (strcmp(l1, "mark") == 0)
     {
@@ -168,8 +168,6 @@ int sci_xget(char *fname, unsigned long fname_len)
         createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1, 2, pdblResult);
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-
-        return 0;
     }
     else if (strcmp(l1, "mark size") == 0)
     {
@@ -178,8 +176,6 @@ int sci_xget(char *fname, unsigned long fname_len)
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-
-        return 0;
     }
     else if (strcmp(l1, "line style") == 0)
     {
@@ -187,7 +183,6 @@ int sci_xget(char *fname, unsigned long fname_len)
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-        return 0;
     }
     else if (strcmp(l1, "clipping") == 0)
     {
@@ -199,7 +194,6 @@ int sci_xget(char *fname, unsigned long fname_len)
         createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1, 4, clipBox);
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-        return 0;
     }
     else if (strcmp(l1, "font") == 0)
     {
@@ -220,7 +214,6 @@ int sci_xget(char *fname, unsigned long fname_len)
         createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1, 2, pdblResult);
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-        return 0;
     }
     else if (strcmp(l1, "font size") == 0)
     {
@@ -231,8 +224,6 @@ int sci_xget(char *fname, unsigned long fname_len)
         createScalarDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, dblFontSize);
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-
-        return 0;
     }
     else if (strcmp(l1, "dashes") == 0)
     {
@@ -244,8 +235,6 @@ int sci_xget(char *fname, unsigned long fname_len)
         createScalarDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iLineStyle);
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-
-        return 0;
     }
     else if (strcmp(l1, "hidden3d") == 0)
     {
@@ -253,8 +242,6 @@ int sci_xget(char *fname, unsigned long fname_len)
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-
-        return 0;
     }
     else if (strcmp(l1, "window") == 0 || strcmp(l1, "figure") == 0)
     {
@@ -266,7 +253,6 @@ int sci_xget(char *fname, unsigned long fname_len)
         createScalarDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iFigureId);
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-        return 0;
     }
     else if (strcmp(l1, "thickness") == 0)
     {
@@ -274,8 +260,6 @@ int sci_xget(char *fname, unsigned long fname_len)
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-
-        return 0;
     }
     else if (strcmp(l1, "wdim") == 0 || strcmp(l1, "wpdim") == 0)
     {
@@ -290,8 +274,6 @@ int sci_xget(char *fname, unsigned long fname_len)
         createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1, 2, pdblFigureSize);
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-
-        return 0;
     }
     else if (strcmp(l1, "wpos") == 0)
     {
@@ -306,8 +288,6 @@ int sci_xget(char *fname, unsigned long fname_len)
         createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1, 2, pdblFigurePosition);
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-
-        return 0;
     }
     else if (strcmp(l1, "viewport") == 0)
     {
@@ -322,8 +302,6 @@ int sci_xget(char *fname, unsigned long fname_len)
         createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1, 2, pdblViewport);
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-
-        return 0;
     }
     else if (strcmp(l1, "background") == 0)
     {
@@ -331,8 +309,6 @@ int sci_xget(char *fname, unsigned long fname_len)
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-
-        return 0;
     }
     else if (  strcmp(l1, "color") == 0
                || strcmp(l1, "foreground") == 0
@@ -342,8 +318,6 @@ int sci_xget(char *fname, unsigned long fname_len)
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-
-        return 0;
     }
     else if (strcmp(l1, "lastpattern") == 0)
     {
@@ -357,8 +331,6 @@ int sci_xget(char *fname, unsigned long fname_len)
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-
-        return 0;
     }
     else if (strcmp(l1, "line mode") == 0)
     {
@@ -371,8 +343,6 @@ int sci_xget(char *fname, unsigned long fname_len)
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-
-        return 0;
     }
     else if (strcmp(l1, "pixmap") == 0)
     {
@@ -385,8 +355,6 @@ int sci_xget(char *fname, unsigned long fname_len)
         createScalarDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iPixmap);
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-
-        return 0;
     }
     else if (strcmp(l1, "white") == 0)
     {
@@ -401,8 +369,6 @@ int sci_xget(char *fname, unsigned long fname_len)
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-
-        return 0;
     }
     else if (strcmp(l1, "wresize") == 0)
     {
@@ -417,8 +383,6 @@ int sci_xget(char *fname, unsigned long fname_len)
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-
-        return 0;
     }
     else if (strcmp(l1, "clipgrf") == 0)
     {
@@ -431,8 +395,6 @@ int sci_xget(char *fname, unsigned long fname_len)
         createScalarDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iClipState);
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-
-        return 0;
     }
     else if (strcmp(l1, "clipoff") == 0)
     {
@@ -452,12 +414,11 @@ int sci_xget(char *fname, unsigned long fname_len)
         }
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
-
-        return 0;
     }
     else
     {
         Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), fname, (l1));
+        freeAllocatedSingleString(l1);
         return -1;
     }
 

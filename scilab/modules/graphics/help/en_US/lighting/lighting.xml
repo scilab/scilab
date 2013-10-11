@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Pedro SOUZA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" scilab:needs-examples="no" xml:id="lighting">
+    <refnamediv>
+        <refname>lighting</refname>
+        <refpurpose>Lighting overview</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Lighting in scilab aproximates real world lighting where the appearence of
+            a surface is given by interactions between light rays and the material properties of the
+            surface.
+        </para>
+        <para>Because simulate real world lighting is complex
+            and computationaly expesive, one uses a simplified model.
+        </para>
+        <para>
+            A light is represented mainly by its colors: ambient, diffuse and specular. It can
+            be created using <link linkend="light">light</link> function,
+            and deleted using <link linkend="delete">delete</link> function.
+        </para>
+        <para>
+            The surface material properties is represented also by its colors
+            (ambient, diffuse and specular) and it shininess level.
+        </para>
+        <para>
+            The surface contains the <literal>color_material</literal> property that enables
+            the use of the surface color as the diffuse color.
+        </para>
+        <para>
+            The final surface color is given by the  light model equation applied to the product
+            of the surface and light colors. Following there is the light model equation:
+        </para>
+        <scilab:image>
+xset("font",1,4);
+xstring(0.0, 0.4, '$Color = Ambient_{term} + Diffuse_{term} + Specular_{term} \\ Ambient_{term} = L_{ambient}*S_{ambient} \\ Diffuse_{term} = L_{diffuse}*S_{diffuse}*(L_{direction} \cdot S_{normal}) \\ Specular_{term} = L_{specular}*S_{specular}*(S_{normal} \cdot (L_{direction}+View_{direction}) ))^{S_{shininess}}$');
+f=gcf();
+f.figure_size = [750,280];
+        </scilab:image>
+        <listitem>
+            <para>
+                Ambient color models the light received indirect by the surface and
+                is independent of the surface normal or light direction.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Diffuse color models the light received directly, and thus it's dependent
+                of the light ray direction and the surface normal.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Specular color defines the specular highlight color.
+            </para>
+        </listitem>
+        <para>
+            Following one can compare the surface with and without lighting:
+        </para>
+        <para>
+            <scilab:image>
+                plot3d();
+                l = light();
+            </scilab:image>
+        </para>
+        <para>
+            <scilab:image>
+                plot3d();
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Lighting properties list</title>
+        <variablelist>
+            <varlistentry>
+                <term>Light properties </term>
+                <listitem>
+                    <variablelist>
+                        <varlistentry>
+                            <term>visible: </term>
+                            <listitem>
+                                <para>
+                                    This field defines if the light is enabled <literal>"on"</literal>
+                                    or disabled <literal>"off"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>light_type: </term>
+                            <listitem>
+                                <para>This field defines the type of light used. There are two
+                                    types available:<literal>"directional"</literal> and <literal>"point"</literal>.
+                                    Directional lights are positioned infinitely far from the surface
+                                    thus emitting parallel rays.
+                                </para>
+                                <para>
+                                    Point lights are defined as a point in space thus emitting rays in all
+                                    directions.
+                                    The default value is <literal>"point"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>direction: </term>
+                            <listitem>
+                                <para>This field defines the ray direction for directional light.
+                                    The direction can be chaged using a 3 element vector <literal>"[x, y, z]"</literal>
+                                    representing a vector starting from the origin.
+                                </para>
+                                <para>
+                                    The default value is <literal>"[0 0 1]"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>position: </term>
+                            <listitem>
+                                <para>This field defines the light position for point light.
+                                    The position can be changed using a 3 element vector <literal>"[x, y, z]"</literal>.
+                                </para>
+                                <para>
+                                    The default value is <literal>"[0 0 1]"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>ambient_color: </term>
+                            <listitem>
+                                <para>This field defines the ambient color of the light.
+                                    The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
+                                    with each element in the range [0, 1].
+                                </para>
+                                <para>
+                                    The default value is <literal>"[0.1 0.1 0.1]"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>diffuse_color: </term>
+                            <listitem>
+                                <para>This field defines the diffuse color of the light.
+                                    The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
+                                    with each element in the range [0, 1].
+                                </para>
+                                <para>
+                                    The default value is <literal>"[1 1 1]"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>specular_color: </term>
+                            <listitem>
+                                <para>This field defines the specular color of the light.
+                                    The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
+                                    with each element in the range [0, 1].
+                                </para>
+                                <para>
+                                    The default value is <literal>"[1 1 1]"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Surface properties </term>
+                <listitem>
+                    <variablelist>
+                        <varlistentry>
+                            <term>use_color_material: </term>
+                            <listitem>
+                                <para>This field is use to enable the use of the surface color as diffuse color.
+                                    Its default value is <literal>"on"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>material_shininess: </term>
+                            <listitem>
+                                <para>This field defines the shininess level of the surface. This parameter
+                                controls the shinines color spreading in the surface. Any positive value can
+                                be used.
+                                </para>
+                                <para>
+                                Good values to use are in the [0 10] range, where low values generates 
+                                strong highlight and high values generates barely perceptible highlights.
+                                The default value is <literal>"2"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>ambient_color: </term>
+                            <listitem>
+                                <para>This field defines the ambient color of the surface.
+                                    The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
+                                    with each element in the range [0, 1].
+                                </para>
+                                <para>
+                                    The default value is <literal>"[1 1 1]"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>diffuse_color: </term>
+                            <listitem>
+                                <para>This field defines the diffuse color of the surface.
+                                    The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
+                                    with each element in the range [0, 1]. Notice that this field is
+                                    only used when use_color_material is disabled.
+                                </para>
+                                <para>
+                                    The default value is <literal>"[1 1 1]"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>specular_color: </term>
+                            <listitem>
+                                <para>This field defines the specular color of the surface.
+                                    The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
+                                    with each element in the range [0, 1].
+                                </para>
+                                <para>
+                                    The default value is <literal>"[1 1 1]"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>
+            Point light without color_material:
+        </para>
+        <programlisting role="example"><![CDATA[
+plot3d();
+s=gce();
+s.color_flag=0;
+s.thickness=0;
+s.hiddencolor = -1;
+light();
+//change diffuse color to orange
+s.diffuse_color = [1, 0.6, 0];
+s.use_color_material="off";
+//black spots turn dark orange
+s.ambient_color = [1, 0.6, 0];
+         ]]></programlisting>
+        <para>
+            Directional light:
+        </para>
+        <programlisting role="example"><![CDATA[
+plot3d();
+s=gce();
+l = light();
+s.color_flag=0;
+s.thickness=0;
+l.light_type = "directional";
+l.direction = [0 0 1];
+l.diffuse_color = [1 0.9 0.9];
+l.ambient_color = [0.5 0.4 0.4];
+l.specular_color = [0.5 0.3 0.7];
+         ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="light">light</link>
+            </member>
+            <member>
+                <link linkend="light_properties">light properties</link>
+            </member>
+            <member>
+                <link linkend="surface_properties">surface properties</link>
+            </member>
+            <member>
+                <link linkend="delete">delete</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

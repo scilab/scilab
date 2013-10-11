@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-07-25 15:36+0100\n"
+"Revision-Date: 2013-09-27 17:13+0100\n"
 
 # File: src/java/org/scilab/modules/commons/xml/ScilabXMLUtilities.java, line: 59
 msgid "Could not save file: "
@@ -22,22 +22,22 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/commons/xml/ScilabXMLUtilities.java, line: 60
-# File: src/java/org/scilab/modules/commons/xml/XConfiguration.java, line: 78
+# File: src/java/org/scilab/modules/commons/xml/XConfiguration.java, line: 77
 msgid "Could not load file: "
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/commons/xml/XConfiguration.java, line: 79
+# File: src/java/org/scilab/modules/commons/xml/XConfiguration.java, line: 78
 msgid "Could not write the file: "
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/commons/xml/XConfiguration.java, line: 80
+# File: src/java/org/scilab/modules/commons/xml/XConfiguration.java, line: 79
 msgid "A severe error occurred: cannot load the preferences file."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/commons/xml/XConfiguration.java, line: 81
+# File: src/java/org/scilab/modules/commons/xml/XConfiguration.java, line: 80
 msgid ""
 "An error occurred when loading the preferences file, try to reload the "
 "default one."

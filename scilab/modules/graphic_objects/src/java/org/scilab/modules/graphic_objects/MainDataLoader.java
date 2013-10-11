@@ -178,6 +178,23 @@ public class MainDataLoader {
     }
 
     /**
+     * Fills the given buffer with normal data from the given object.
+     * @param id id of the given object.
+     * @param position buffer with vertex position data.
+     * @param buffer buffer to fill.
+     * @param elementsSize number of coordinates taken by one element in the buffer.
+     * @throws ObjectRemovedException if the object no longer exist.
+     */
+    public static void fillNormals(String id, FloatBuffer position, FloatBuffer buffer, int elementsSize) throws ObjectRemovedException {
+        Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+
+        if (type == null) {
+            throw (new ObjectRemovedException(id));
+        }
+        DataLoader.fillNormals(id, position, buffer, buffer.capacity(), elementsSize);
+    }
+
+    /**
      * Fills the given buffer with color data from the given object.
      * @param id id of the given object.
      * @param buffer buffer to fill.

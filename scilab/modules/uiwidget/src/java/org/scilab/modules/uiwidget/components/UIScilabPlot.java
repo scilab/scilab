@@ -138,7 +138,6 @@ public class UIScilabPlot extends UIComponent implements GraphicView {
             figure = GraphicObjectBuilder.createNewFigureWithAxes(figureId == Integer.MAX_VALUE ? null : figureId);
         }
 
-        int id = CallGraphicController.getGraphicObjectPropertyAsInteger(figure.getIdentifier(), GraphicObjectProperties.__GO_ID__);
         canvas = JoGLCanvasFactory.createCanvas((GLAutoDrawable) drawableComponent);
         DrawerVisitor drawerVisitor = new DrawerVisitor(drawableComponent, canvas, figure);
         canvas.setMainDrawer(drawerVisitor);
@@ -303,7 +302,7 @@ public class UIScilabPlot extends UIComponent implements GraphicView {
     }
 
     public int getFigureId() {
-        return CallGraphicController.getGraphicObjectPropertyAsInteger(figure.getIdentifier(), GraphicObjectProperties.__GO_ID__);
+        return (Integer)GraphicController.getController().getProperty(figure.getIdentifier(), GraphicObjectProperties.__GO_ID__);
     }
 
     public void setOnrotate(String onrotate) {

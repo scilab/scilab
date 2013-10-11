@@ -35,10 +35,10 @@ char **strings_strrev(char **Input_strings, int Dim_Input_strings)
             for (i = 0; i < Dim_Input_strings; i++)
             {
                 Output_strings[i] = scistrrev(Input_strings[i]);
-                if (!Output_strings[i])
+                if (Output_strings[i] == NULL)
                 {
                     freeArrayOfString(Output_strings, i);
-                    return Output_strings;
+                    return NULL;
                 }
             }
         }
@@ -78,11 +78,7 @@ char* scistrrev(char* str)
         }
         revstr = wide_string_to_UTF8(wcstr);
 #endif
-        if (wcstr)
-        {
-            FREE(wcstr);
-            wcstr = NULL;
-        }
+        FREE(wcstr);
     }
     return revstr;
 }

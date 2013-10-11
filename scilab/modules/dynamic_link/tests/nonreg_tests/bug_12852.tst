@@ -17,6 +17,7 @@
 // <-- Short Description -->
 // Visual Studio 2012 SDK configuration is incorrect.
 
+ilib_verbose(0);
 curPath = pwd();
 cd TMPDIR;
 src = ['#include <windows.h>'

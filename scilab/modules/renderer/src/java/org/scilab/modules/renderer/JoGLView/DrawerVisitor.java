@@ -22,6 +22,7 @@ import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
 import org.scilab.forge.scirenderer.texture.AnchorPosition;
 import org.scilab.forge.scirenderer.texture.AbstractTextureDataProvider;
 import org.scilab.forge.scirenderer.texture.Texture;
+import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
 import org.scilab.forge.scirenderer.tranformations.TransformationStack;
@@ -52,6 +53,7 @@ import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.vectfield.Arrow;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
+import org.scilab.modules.graphic_objects.datatip.Datatip;
 import org.scilab.modules.renderer.JoGLView.arrowDrawing.ArrowDrawer;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.contouredObject.ContouredObjectDrawer;
@@ -64,6 +66,8 @@ import org.scilab.modules.renderer.JoGLView.text.TextManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
 import org.scilab.modules.renderer.utils.textRendering.FontManager;
+import org.scilab.modules.renderer.JoGLView.datatip.DatatipTextDrawer;
+import org.scilab.modules.renderer.JoGLView.util.LightingUtils;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -132,6 +136,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private final AxisDrawer axisDrawer;
     private final ArrowDrawer arrowDrawer;
     private final FecDrawer fecDrawer;
+    private final DatatipTextDrawer datatipTextDrawer;
 
     private DrawingTools drawingTools;
     private Texture colorMapTexture;
@@ -168,6 +173,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         this.legendDrawer = new LegendDrawer(this);
         this.fecDrawer = new FecDrawer(this);
         this.colorMapTextureDataProvider = new ColorMapTextureDataProvider();
+        this.datatipTextDrawer = new DatatipTextDrawer(canvas.getTextureManager());
 
         /*
          * Forces font loading from the main thread. This is done because
@@ -241,6 +247,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     public ColorMap getColorMap() {
         return colorMap;
+    }
+
+    public DatatipTextDrawer getDatatipTextDrawer() {
+        return datatipTextDrawer;
     }
 
     /**
@@ -343,7 +353,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     public void visit(Axis axis) {
         if (axis.getVisible()) {
             axesDrawer.enableClipping(currentAxes, axis.getClipProperty());
-            axisDrawer.draw(axis);
+            axisDrawer.draw(currentAxes, axis);
             axesDrawer.disableClipping(axis.getClipProperty());
         }
     }
@@ -429,8 +439,16 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     drawingTools.draw(geometry, appearance);
                 } else {
                     TransformationStack modelViewStack = drawingTools.getTransformationManager().getModelViewStack();
+                    double[][] factors = currentAxes.getScaleTranslateFactors();
                     Double[] scale = matplot.getScale();
                     Double[] translate = matplot.getTranslate();
+
+                    scale[0] *= factors[0][0];
+                    scale[1] *= factors[0][1];
+
+                    translate[0] = translate[0] * factors[0][0] + factors[1][0];
+                    translate[1] = translate[1] * factors[0][1] + factors[1][1];
+
                     Transformation t = TransformationFactory.getTranslateTransformation(translate[0], translate[1], 0);
                     Transformation t2 = TransformationFactory.getScaleTransformation(scale[0], scale[1], 1);
                     modelViewStack.pushRightMultiply(t);
@@ -546,6 +564,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     invalidate(polyline, e);
                 }
                 axesDrawer.disableClipping(polyline.getClipProperty());
+                askAcceptVisitor(polyline.getChildren());
             }
         }
     }
@@ -580,12 +599,15 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 if (fac3d.getSurfaceMode()) {
                     DefaultGeometry geometry = new DefaultGeometry();
                     geometry.setVertices(dataManager.getVertexBuffer(fac3d.getIdentifier()));
+                    geometry.setNormals(dataManager.getNormalBuffer(fac3d.getIdentifier()));
                     geometry.setIndices(dataManager.getIndexBuffer(fac3d.getIdentifier()));
 
                     geometry.setPolygonOffsetMode(true);
 
                     /* Front-facing triangles */
                     Appearance appearance = new Appearance();
+                    appearance.setMaterial(LightingUtils.getMaterial(fac3d.getMaterial()));
+                    LightingUtils.setupLights(drawingTools.getLightManager(), currentAxes);
 
                     if (fac3d.getColorMode() != 0) {
                         geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
@@ -623,6 +645,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     }
 
                     drawingTools.draw(geometry, appearance);
+                    LightingUtils.setLightingEnable(drawingTools.getLightManager(), false);
                 }
 
                 if (fac3d.getMarkMode()) {
@@ -663,6 +686,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     geometry.setPolygonOffsetMode(true);
 
                     geometry.setVertices(dataManager.getVertexBuffer(plot3d.getIdentifier()));
+                    geometry.setNormals(dataManager.getNormalBuffer(plot3d.getIdentifier()));
                     geometry.setIndices(dataManager.getIndexBuffer(plot3d.getIdentifier()));
                     /* Back-facing triangles */
                     if (plot3d.getHiddenColor() > 0) {
@@ -674,6 +698,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                     /* Front-facing triangles */
                     Appearance appearance = new Appearance();
+                    appearance.setMaterial(LightingUtils.getMaterial(plot3d.getMaterial()));
+                    LightingUtils.setupLights(drawingTools.getLightManager(), currentAxes);
 
                     if (plot3d.getColorFlag() == 1) {
                         geometry.setColors(dataManager.getColorBuffer(plot3d.getIdentifier()));
@@ -699,8 +725,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         appearance.setLineColor(ColorFactory.createColor(colorMap, plot3d.getLineColor()));
                         appearance.setLineWidth(plot3d.getLineThickness().floatValue());
                     }
-
                     drawingTools.draw(geometry, appearance);
+                    LightingUtils.setLightingEnable(drawingTools.getLightManager(), false);
                 }
 
                 if (plot3d.getMarkMode()) {
@@ -736,6 +762,27 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 invalidate(text, e);
             }
             axesDrawer.disableClipping(text.getClipProperty());
+        }
+    }
+
+    @Override
+    public void visit(Datatip datatip) {
+        if (datatip.isValid() && datatip.getVisible()) {
+            axesDrawer.enableClipping(currentAxes, datatip.getClipProperty());
+            try {
+                if (datatip.getMarkMode()) {
+                    /* TODO: appearance can be not-null */
+                    Texture texture = markManager.getMarkSprite(datatip, colorMap, null);
+                    Vector3d markPos = datatipTextDrawer.calculateAnchorPoint(datatip);
+                    drawingTools.draw(texture, AnchorPosition.CENTER, markPos);
+                }
+                if (datatip.getTipLabelMode()) {
+                    datatipTextDrawer.draw(drawingTools, colorMap, datatip);
+                }
+            } catch (SciRendererException e) {
+                invalidate((Text)datatip, e);
+            }
+            axesDrawer.disableClipping(datatip.getClipProperty());
         }
     }
 
@@ -856,6 +903,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     axesDrawer.disposeAll();
                     fecDrawer.updateAll();
                     colorMapTextureDataProvider.update();
+                    datatipTextDrawer.disposeAll();
                     textureManager.disposeAll();
                 } else {
                     labelManager.update(id, property);
@@ -865,6 +913,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     axesDrawer.update(id, property);
                     legendDrawer.update(id, property);
                     fecDrawer.update(id, property);
+                    datatipTextDrawer.update(id, property);
                 }
 
                 if (GraphicObjectProperties.__GO_ANTIALIASING__ == property) {

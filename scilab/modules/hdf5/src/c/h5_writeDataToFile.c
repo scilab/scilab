@@ -1738,7 +1738,7 @@ int closeList(int _iFile, void *_pvList, char *_pstListName, int _iNbItem, int _
     {
         //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
         space = H5Screate_simple(1, dims, NULL);
-        if (status < 0)
+        if (space < 0)
         {
             return -1;
         }
@@ -1837,7 +1837,14 @@ static int deleteHDF5group(int _iFile, char* _pstName)
 
             if (status < 0)
             {
-                return 1;
+                int j = 0;
+                for (j = i + 1; j < groupInfo.nlinks ; j++)
+                {
+                    FREE(pstChildName[j]);
+                }
+
+                FREE(pstChildName);
+                return -1;
             }
         }
 

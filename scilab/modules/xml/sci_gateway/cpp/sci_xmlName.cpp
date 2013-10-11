@@ -101,7 +101,7 @@ int sci_xmlName(char *fname, unsigned long fname_len)
     if (size)
     {
         err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, size, const_cast < const char * const *>(pstStrings));
-        delete[]pstStrings;
+        delete[] pstStrings;
         if (err.iErr)
         {
             printError(&err, 0);
@@ -111,6 +111,10 @@ int sci_xmlName(char *fname, unsigned long fname_len)
     }
     else
     {
+        if (pstStrings)
+        {
+            delete[] pstStrings;
+        }
         createEmptyMatrix(pvApiCtx, Rhs + 1);
     }
 

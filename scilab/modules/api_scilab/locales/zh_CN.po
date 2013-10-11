@@ -14,14 +14,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 
 #, c-format
 msgid "%s: Invalid argument address"
 msgstr "%s：无效的的参数地址"
 
 #, c-format
-msgid "%s: Invalid argument type, %s excepted"
+msgid "%s: Invalid argument type, %s expected"
 msgstr "%s无效的参数类型，应该为%s"
 
 msgid "boolean matrix"
@@ -101,7 +101,7 @@ msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
 msgstr "%s：输出参数的数目错误：应该为至多%d个。\n"
 
 #, c-format
-msgid "%s: matrix argument excepted"
+msgid "%s: matrix argument expected"
 msgstr "%s：矩阵参数除外"
 
 #, c-format

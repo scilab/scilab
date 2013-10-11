@@ -49,6 +49,7 @@
 // =============================================================================
 #define NUMBER_FIELD 8
 // =============================================================================
+static void freeVar(char** fieldname, char** fieldvalue);
 static int sci_csvDefault_no_rhs(char *fname);
 static int sci_csvDefault_one_rhs(char *fname);
 static int sci_csvDefault_two_rhs(char *fname);
@@ -155,6 +156,7 @@ static int sci_csvDefault_one_rhs(char *fname)
     fieldname = csv_getArgumentAsString(pvApiCtx, 1, fname, &iErr);
     if (iErr)
     {
+        freeVar(&fieldname, &fieldvalue);
         return 0;
     }
 
@@ -215,16 +217,7 @@ static int sci_csvDefault_one_rhs(char *fname)
     }
     else if (strcmp(fieldname, RESET_PARAMATERS) == 0)
     {
-        if (fieldname)
-        {
-            FREE(fieldname);
-            fieldname = NULL;
-        }
-        if (fieldvalue)
-        {
-            FREE(fieldvalue);
-            fieldvalue = NULL;
-        }
+        freeVar(&fieldname, &fieldvalue);
 
         setCsvDefaultReset();
 
@@ -237,27 +230,13 @@ static int sci_csvDefault_one_rhs(char *fname)
     else
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"), fname, 1, SEPARATOR_FIELDNAME, DECIMAL_FIELDNAME, CONVERSION_FIELDNAME, COMMENTSREGEXP_FIELDNAME, EOL_FIELDNAME, BLANK_FIELDNAME);
-        if (fieldname)
-        {
-            FREE(fieldname);
-            fieldname = NULL;
-        }
+        freeVar(&fieldname, &fieldvalue);
         return 0;
-    }
-
-    if (fieldname)
-    {
-        FREE(fieldname);
-        fieldname = NULL;
     }
 
     createSingleString(pvApiCtx, Rhs + 1, fieldvalue);
 
-    if (fieldvalue)
-    {
-        FREE(fieldvalue);
-        fieldvalue = NULL;
-    }
+    freeVar(&fieldname, &fieldvalue);
 
     LhsVar(1) = Rhs + 1;
     PutLhsVar();
@@ -277,6 +256,7 @@ static int sci_csvDefault_two_rhs(char *fname)
     fieldname = csv_getArgumentAsString(pvApiCtx, 1, fname, &iErr);
     if (iErr)
     {
+        freeVar(&fieldname, &fieldvalue);
         return 0;
     }
 
@@ -284,11 +264,7 @@ static int sci_csvDefault_two_rhs(char *fname)
     {
         if (csv_isEmpty(pvApiCtx, 2))
         {
-            if (fieldname)
-            {
-                FREE(fieldname);
-                fieldname = NULL;
-            }
+            freeVar(&fieldname, &fieldvalue);
             Scierror(999, _("%s: Wrong type for input argument #%d: A double expected.\n"), fname, 2);
             return 0;
         }
@@ -299,21 +275,13 @@ static int sci_csvDefault_two_rhs(char *fname)
             ifieldvalue = (int) csv_getArgumentAsScalarDouble(pvApiCtx, 2, fname, &iErr);
             if (iErr)
             {
-                if (fieldname)
-                {
-                    FREE(fieldname);
-                    fieldname = NULL;
-                }
+                freeVar(&fieldname, &fieldvalue);
                 return 0;
             }
 
             if ((ifieldvalue < 1) || (ifieldvalue > 17))
             {
-                if (fieldname)
-                {
-                    FREE(fieldname);
-                    fieldname = NULL;
-                }
+                freeVar(&fieldname, &fieldvalue);
                 Scierror(999, _("%s: Wrong value for input argument #%d: A double (value %d to %d) expected.\n"), fname, 2, 1, 17);
                 return 0;
             }
@@ -321,11 +289,7 @@ static int sci_csvDefault_two_rhs(char *fname)
             fieldvalue = (char*)MALLOC(sizeof(char) * ((int)strlen(FORMAT_FIELDVALUESTR) + 1));
             if (fieldvalue == NULL)
             {
-                if (fieldname)
-                {
-                    FREE(fieldname);
-                    fieldname = NULL;
-                }
+                freeVar(&fieldname, &fieldvalue);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 0;
             }
@@ -336,11 +300,7 @@ static int sci_csvDefault_two_rhs(char *fname)
             fieldvalue = csv_getArgumentAsString(pvApiCtx, 2, fname, &iErr);
             if (iErr)
             {
-                if (fieldname)
-                {
-                    FREE(fieldname);
-                    fieldname = NULL;
-                }
+                freeVar(&fieldname, &fieldvalue);
                 return 0;
             }
         }
@@ -350,11 +310,7 @@ static int sci_csvDefault_two_rhs(char *fname)
         fieldvalue = csv_getArgumentAsString(pvApiCtx, 2, fname, &iErr);
         if (iErr)
         {
-            if (fieldname)
-            {
-                FREE(fieldname);
-                fieldname = NULL;
-            }
+            freeVar(&fieldname, &fieldvalue);
             return 0;
         }
     }
@@ -409,31 +365,13 @@ static int sci_csvDefault_two_rhs(char *fname)
     else
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s' , '%s', '%s', '%s', '%s' or '%s' expected.\n"), fname, 1, SEPARATOR_FIELDNAME, DECIMAL_FIELDNAME, CONVERSION_FIELDNAME, PRECISION_FIELDNAME, COMMENTSREGEXP_FIELDNAME, EOL_FIELDNAME, ENCODING_FIELDNAME, BLANK_FIELDNAME);
-        if (fieldname)
-        {
-            FREE(fieldname);
-            fieldname = NULL;
-        }
-        if (fieldvalue)
-        {
-            FREE(fieldvalue);
-            fieldvalue = NULL;
-        }
+        freeVar(&fieldname, &fieldvalue);
         return 0;
     }
 
     createScalarBoolean(pvApiCtx, Rhs + 1, (resultSet == 0));
 
-    if (fieldname)
-    {
-        FREE(fieldname);
-        fieldname = NULL;
-    }
-    if (fieldvalue)
-    {
-        FREE(fieldvalue);
-        fieldvalue = NULL;
-    }
+    freeVar(&fieldname, &fieldvalue);
 
     LhsVar(1) = Rhs + 1;
     PutLhsVar();
@@ -441,3 +379,17 @@ static int sci_csvDefault_two_rhs(char *fname)
     return 0;
 }
 // =============================================================================
+static void freeVar(char** fieldname, char** fieldvalue)
+{
+    if (fieldname && *fieldname)
+    {
+        FREE(*fieldname);
+        *fieldname = NULL;
+    }
+
+    if (fieldvalue && *fieldvalue)
+    {
+        FREE(*fieldvalue);
+        *fieldvalue = NULL;
+    }
+}

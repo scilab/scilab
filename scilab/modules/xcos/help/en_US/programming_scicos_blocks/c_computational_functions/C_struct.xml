@@ -1704,6 +1704,11 @@ scicos_free(*work);
                     <emphasis role="bold">block-&gt;label :</emphasis> Strings array that allows to retrieve the label of the block.
                 </para>
             </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">block-&gt;uid :</emphasis> Strings array that allows to retrieve the uid of the block.
+                </para>
+            </listitem>
         </itemizedlist>
     </refsection>
 </refentry>

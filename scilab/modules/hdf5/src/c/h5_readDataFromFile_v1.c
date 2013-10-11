@@ -161,6 +161,7 @@ static char* readAttribute_v1(int _iDatasetId, const char *_pstName)
         status = H5Tset_size(memtype, iDim);
         if (status < 0)
         {
+            FREE(pstValue);
             return NULL;
         }
 
@@ -367,8 +368,14 @@ void closeDataSet_v1(int _id)
 {
     if (_id > 0)
     {
-        H5Dclose(_id);
+        herr_t status = H5Dclose(_id);
+        if (status < 0)
+        {
+            return;
+        }
     }
+
+    return;
 }
 
 int getDataSetId_v1(int _iFile)

@@ -19,7 +19,7 @@ function [windows_toolslib, WSCI] = startModule()
   WSCI = getlongpathname(pathconvert(SCI, %f, %f, "w"));
 
 // =============================================================================
-  if (getscilabmode() == 'STD') then 
+  if (getscilabmode() == 'STD' & find(sciargs() == "-keepconsole") == []) then
     consolebox('off');
   end
   

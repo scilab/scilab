@@ -174,7 +174,7 @@ xcos(scs_m);]]></programlisting>
                 <imagedata fileref="../gui/xcos/en_US/xcos_palette_select_gui.png"/>
             </imageobject>
         </mediaobject>
-        <para>Xcos requires a C compiler for simulation acceleration.</para>
+        <para>Xcos may requires a C compiler for Modelica based models, for user defined blocks and code generation.</para>
         <para>An installed supported compiler is recommended.</para>
     </refsection>
     <refsection>

@@ -24,7 +24,6 @@ test_path = get_absolute_file_path('bug_2085.tst');
 currentpath = pwd();
 
 cd TMPDIR;
-cd ../;
 OS_TMP_DIR = pwd();
 
 

@@ -361,7 +361,7 @@ static sco_data *getScoData(scicos_block * block)
 error_handler_historyCoordinates_i:
     for (j = 0; j < i; j++)
     {
-        FREE(sco->internal.historyCoordinates[i]);
+        FREE(sco->internal.historyCoordinates[j]);
     }
     FREE(sco->internal.historyCoordinates);
 error_handler_historyCoordinates:
@@ -379,7 +379,7 @@ error_handler_bufferCoordinates_ij:
 error_handler_bufferCoordinates_i:
     for (j = 0; j < i; j++)
     {
-        FREE(sco->internal.bufferCoordinates[i]);
+        FREE(sco->internal.bufferCoordinates[j]);
     }
     FREE(sco->internal.bufferCoordinates);
 error_handler_bufferCoordinates:
@@ -754,6 +754,11 @@ static char const* getFigure(scicos_block * block)
             setPolylinesBounds(block, i, 0);
         }
     }
+    else
+    {
+        // set configured parameters
+        setFigureSettings(pFigureUID, block);
+    }
 
     if (sco->scope.cachedFigureUID == NULL)
     {
@@ -806,15 +811,17 @@ static char *getAxe(char const* pFigureUID, scicos_block * block, int input)
             getPolyline(pAxe, block, i, FALSE);
         }
     }
+    else
+    {
+        return NULL;
+    }
 
     /*
      * then cache with local storage
      */
-    if (pAxe != NULL && sco->scope.cachedAxeUID == NULL)
-    {
-        sco->scope.cachedAxeUID = strdup(pAxe);
-        releaseGraphicObjectProperty(__GO_PARENT__, pAxe, jni_string, 1);
-    }
+    sco->scope.cachedAxeUID = strdup(pAxe);
+
+    releaseGraphicObjectProperty(__GO_PARENT__, pAxe, jni_string, 1);
     return sco->scope.cachedAxeUID;
 }
 
@@ -827,7 +834,6 @@ static char *getPolyline(char *pAxeUID, scicos_block * block, int row, BOOL hist
 
     char** polylinesUIDs;
     int polylineIndex;
-    int polylineDefaultNumElement;
 
     sco_data *sco = (sco_data *) * (block->work);
 
@@ -841,17 +847,21 @@ static char *getPolyline(char *pAxeUID, scicos_block * block, int row, BOOL hist
     {
         polylinesUIDs = sco->scope.cachedBufferPolylinesUIDs;
         polylineIndex = block->insz[0] + row;
-        polylineDefaultNumElement = block->ipar[2];
     }
     else
     {
         polylinesUIDs = sco->scope.cachedHistoryPolylinesUIDs;
         polylineIndex = row;
-        polylineDefaultNumElement = 0;
+    }
+
+    // assert that the structure is in a good shape
+    if (polylinesUIDs == NULL)
+    {
+        return NULL;
     }
 
     // fast path for an existing object
-    if (polylinesUIDs != NULL && polylinesUIDs[row] != NULL)
+    if (polylinesUIDs[row] != NULL)
     {
         return polylinesUIDs[row];
     }
@@ -870,50 +880,50 @@ static char *getPolyline(char *pAxeUID, scicos_block * block, int row, BOOL hist
             createDataObject(pPolyline, __GO_POLYLINE__);
             setGraphicObjectRelationship(pAxeUID, pPolyline);
         }
+        else
+        {
+            return NULL;
+        }
     }
 
     /*
      * Setup on first access
      */
-    if (pPolyline != NULL)
+
+    /*
+     * Default setup of the nGons property
+     */
     {
-        /*
-         * Default setup of the nGons property
-         */
-        {
-            int nGons = 1;
-            setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_NUM_GONS__, &nGons, jni_int, 1);
-        }
+        int nGons = 1;
+        setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_NUM_GONS__, &nGons, jni_int, 1);
+    }
 
-        color = block->ipar[3 + row];
-        if (color > 0)
-        {
-            setGraphicObjectProperty(pPolyline, __GO_LINE_MODE__, &b__true, jni_bool, 1);
-            setGraphicObjectProperty(pPolyline, __GO_LINE_COLOR__, &color, jni_int, 1);
-        }
-        else
-        {
-            int iMarkSize = 4;
-            color = -color;
-            setGraphicObjectProperty(pPolyline, __GO_MARK_MODE__, &b__true, jni_bool, 1);
-            setGraphicObjectProperty(pPolyline, __GO_MARK_STYLE__, &color, jni_int, 1);
-            setGraphicObjectProperty(pPolyline, __GO_MARK_SIZE__, &iMarkSize, jni_int, 1);
-        }
+    color = block->ipar[3 + row];
+    if (color > 0)
+    {
+        setGraphicObjectProperty(pPolyline, __GO_LINE_MODE__, &b__true, jni_bool, 1);
+        setGraphicObjectProperty(pPolyline, __GO_LINE_COLOR__, &color, jni_int, 1);
+    }
+    else
+    {
+        int iMarkSize = 4;
+        color = -color;
+        setGraphicObjectProperty(pPolyline, __GO_MARK_MODE__, &b__true, jni_bool, 1);
+        setGraphicObjectProperty(pPolyline, __GO_MARK_STYLE__, &color, jni_int, 1);
+        setGraphicObjectProperty(pPolyline, __GO_MARK_SIZE__, &iMarkSize, jni_int, 1);
+    }
 
-        {
-            int iClipState = 1; //on
-            setGraphicObjectProperty(pPolyline, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
-        }
+    {
+        int iClipState = 1; //on
+        setGraphicObjectProperty(pPolyline, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
     }
 
     /*
      * then cache with local storage
      */
-    if (pPolyline != NULL && polylinesUIDs != NULL && polylinesUIDs[row] == NULL)
-    {
-        polylinesUIDs[row] = strdup(pPolyline);
-        releaseGraphicObjectProperty(__GO_PARENT__, pPolyline, jni_string, 1);
-    }
+    polylinesUIDs[row] = strdup(pPolyline);
+
+    releaseGraphicObjectProperty(__GO_PARENT__, pPolyline, jni_string, 1);
     return polylinesUIDs[row];
 }
 

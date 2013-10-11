@@ -54,10 +54,6 @@ function demo_anim1()
         curAxe.rotation_angles = Angles(:,i); //change the view angles property
     end
 
-    if is_handle_valid(curFig) then
-        delete(curFig);
-    end
-
 endfunction
 
 demo_anim1();

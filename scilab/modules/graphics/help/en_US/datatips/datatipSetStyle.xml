@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="datatipSetStyle">
     <refnamediv>
         <refname>datatipSetStyle</refname>
-        <refpurpose>Set the tip style for the given polyline datatips.</refpurpose>
+        <refpurpose>Set the datatip style.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            datatipSetStyle(curve_handle)
-            datatipSetStyle(curve_handle,t [,boxed [,labeled]])
+            datatipSetStyle(polyline_handle)
+            datatipSetStyle(polyline_handle,t [,boxed [,labeled]])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>curve_handle</term>
+                <term>polyline_handle</term>
                 <listitem>
                     <para>
-                        A handle on a polyline. 
+                        The handle of the polyline where the tip is.
                     </para>
                 </listitem>
             </varlistentry>
@@ -63,7 +63,7 @@
             There are two different styles for the datatip polyline marker:
         </para>
         <para>
-            - Square mark, centered on the tip point. 
+            - Square mark, centered on the tip point.
         </para>
         <para>
             - Directional arrows drawn along the tangeant at the tip point. The arrowhead is on the  tip point.
@@ -76,28 +76,32 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
     x=linspace(-20,20,1000);
-    clf();plot(x,sinc(x),x,sinc(x^2));
+    clf();plot(x,sinc(x),x,sinc(x.^2));
     e=gce();e=e.children;
-    function str=mydisplay(curve,pt,index),str=msprintf('%0.2g', pt(1)),endfunction
-    datatipSetDisplay(e(1),mydisplay)
-    datatipSetStyle(e(1),2,%f)
     d1=datatipCreate(e(1),540);
-
-    datatipSetStyle(e(2),1,%t)
+    function str=mydisplay(pt),str=msprintf('%0.2g', pt(1)),endfunction
+    datatipSetDisplay(d1,"mydisplay")
+    datatipSetStyle(e(1),2,%f)
+    datatipSetOrientation(d1,"upper left");
+    
     d2=datatipCreate(e(2),200);
+    datatipSetStyle(e(2),1,%t)
+    datatipSetOrientation(d2,"lower left");
 
     ]]></programlisting>
         <scilab:image>
             x=linspace(-20,20,1000);
-            clf();plot(x,sinc(x),x,sinc(x^2));
+            clf();plot(x,sinc(x),x,sinc(x.^2));
             e=gce();e=e.children;
-            function str=mydisplay(curve,pt,index),str=msprintf('%0.2g', pt(1)),endfunction
-            datatipSetDisplay(e(1),mydisplay)
-            datatipSetStyle(e(1),2,%f)
             d1=datatipCreate(e(1),540);
+            function str=mydisplay(pt),str=msprintf('%0.2g', pt(1)),endfunction
+            datatipSetDisplay(d1,"mydisplay")
+            datatipSetStyle(e(1),2,%f)
+            datatipSetOrientation(d1,"upper left");
             
-            datatipSetStyle(e(2),1,%t)
             d2=datatipCreate(e(2),200);
+            datatipSetStyle(e(2),1,%t)
+            datatipSetOrientation(d2,"lower left");
         </scilab:image>
     </refsection>
     <refsection role="see also">
@@ -108,9 +112,6 @@
             </member>
             <member>
                 <link linkend="datatipCreate">datatipCreate</link>
-            </member>
-            <member>
-                <link linkend="datatipInitStruct">datatipInitStruct</link>
             </member>
         </simplelist>
     </refsection>

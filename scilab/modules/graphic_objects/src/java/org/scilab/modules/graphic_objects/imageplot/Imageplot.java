@@ -86,7 +86,7 @@ public abstract class Imageplot extends ClippableContouredObject {
     }
 
     public Double[] getScale() {
-        return scale;
+        return new Double[] {scale[0], scale[1]};
     }
 
     public void setScale(Double[] scale) {
@@ -94,7 +94,7 @@ public abstract class Imageplot extends ClippableContouredObject {
     }
 
     public Double[] getTranslate() {
-        return translate;
+        return new Double[] {translate[0], translate[1]};
     }
 
     public void setTranslate(Double[] translate) {

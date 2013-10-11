@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -77,6 +77,103 @@ msgstr ""
 msgid "%s: wrong size for parameter %s: %d requested, got %d\n"
 msgstr ""
 
+msgid "Parameters"
+msgstr ""
+
+msgid "plist handling"
+msgstr ""
+
+msgid ""
+"This demo shows examples of plist utilizations: creation, insertion, "
+"removal, ..."
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Create a plist '%s' containing two fields 'min' = [0 0 0] and 'max' = [1 1 "
+"1].\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Check fields: \n"
+msgstr ""
+
+#, c-format
+msgid "Set 'min' = [0 0 0] and 'max' = [1 1 1]:\n"
+msgstr ""
+
+#, c-format
+msgid "Check values: \n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Remove the parameter 'min' from %s.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Before remove_param: \n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"After remove_param: \n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Check removal: \n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Check type: \n"
+msgstr ""
+
+msgid "Show that parameters operators only apply to the plist type"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Add a parameter to 'A' when 'A' is not a plist.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Before add_param: \n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"After add_param: \n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Error = %f. If error<>0, an error occurred.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: key %s already defined.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
@@ -96,6 +193,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: parameter doesn't exist"

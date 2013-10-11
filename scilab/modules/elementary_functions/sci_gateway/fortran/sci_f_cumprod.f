@@ -41,6 +41,11 @@ c
          fun=-1
          return
       endif
+
+      if(rhs.eq.3) then
+        top=tops-1
+        rhs=rhs-1
+      endif
 c     
 c     standard matrix case
       call  orientandtype(sel,type)

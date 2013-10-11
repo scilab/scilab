@@ -36,9 +36,6 @@ static int cmpfunctionnames( const void *a , const void *b);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_what)(char *fname, unsigned long fname_len)
 {
-    int sizecommandwords = 0;
-    char **commandwords = getcommandkeywords(&sizecommandwords);
-
     Rhs = Max(0, Rhs);
     CheckRhs(0, 0);
     CheckLhs(1, 2);
@@ -54,6 +51,8 @@ int C2F(sci_what)(char *fname, unsigned long fname_len)
     }
     else /* Lhs == 2 */
     {
+        int sizecommandwords = 0;
+        char **commandwords = getcommandkeywords(&sizecommandwords);
         int ncol = 1;
         int nrowFunctions = SizeLocalFunctionsTab;
         int nrowCommands = sizecommandwords;

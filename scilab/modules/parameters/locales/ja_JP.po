@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2011-09-01 09:41+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2013-09-21 05:52+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -79,6 +79,121 @@ msgstr "%s: パラメータ %s の値が間違っています: 値 %s\n"
 msgid "%s: wrong size for parameter %s: %d requested, got %d\n"
 msgstr "%s: パラメータ %s の大きさが間違っています: %d が必要ですが, %d が指定されました.\n"
 
+msgid "Parameters"
+msgstr "パラメータ"
+
+msgid "plist handling"
+msgstr "plist処理"
+
+msgid ""
+"This demo shows examples of plist utilizations: creation, insertion, "
+"removal, ..."
+msgstr "このデモはplistの使用例を示します: 作成, 挿入, 削除, ..."
+
+#, c-format
+msgid ""
+"\n"
+"Create a plist '%s' containing two fields 'min' = [0 0 0] and 'max' = [1 1 "
+"1].\n"
+msgstr ""
+"\n"
+"2つのフィールド 'min' = [0 0 0] と 'max' = [1 1 1] を有する  plist '%s' を作成します.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Check fields: \n"
+msgstr ""
+"\n"
+"フィールドを確認: \n"
+
+#, c-format
+msgid "Set 'min' = [0 0 0] and 'max' = [1 1 1]:\n"
+msgstr "'min' = [0 0 0] 及び 'max' = [1 1 1] と設定:\n"
+
+#, c-format
+msgid "Check values: \n"
+msgstr "値を確認: \n"
+
+#, c-format
+msgid ""
+"\n"
+"Remove the parameter 'min' from %s.\n"
+msgstr ""
+"\n"
+"%s からパラメータ 'min' を削除.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Before remove_param: \n"
+msgstr ""
+"\n"
+"remove_paramの前: \n"
+
+#, c-format
+msgid ""
+"\n"
+"After remove_param: \n"
+msgstr ""
+"\n"
+"remove_paramの後: \n"
+
+#, c-format
+msgid ""
+"\n"
+"Check removal: \n"
+msgstr ""
+"\n"
+"削除を確認: \n"
+
+#, c-format
+msgid ""
+"\n"
+"Check type: \n"
+msgstr ""
+"\n"
+"型を確認: \n"
+
+msgid "Show that parameters operators only apply to the plist type"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Add a parameter to 'A' when 'A' is not a plist.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Before add_param: \n"
+msgstr ""
+"\n"
+"add_param の前: \n"
+
+#, c-format
+msgid ""
+"\n"
+"After add_param: \n"
+msgstr ""
+"\n"
+"add_param の後: \n"
+
+#, c-format
+msgid ""
+"\n"
+"Error = %f. If error<>0, an error occurred.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: key %s already defined.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
@@ -96,6 +211,10 @@ msgstr "%s: 入力引数の数が間違っています: 偶数を指定してく
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています : 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
 
 #
 # File: macros/set_param.sci, line: 19

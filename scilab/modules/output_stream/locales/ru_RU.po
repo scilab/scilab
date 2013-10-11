@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: output_stream-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-07-30 13:07+0000\n"
+"PO-Revision-Date: 2013-09-17 15:38+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: ru\n"
 
 #, c-format
@@ -932,11 +932,11 @@ msgstr ""
 #, c-format
 msgid "Wrong value for argument #%d: Valid variable name expected.\n"
 msgstr ""
-"Неверное значение параметра %d: ожидалось корректное имя переменной.\n"
+"Неверное значение аргумента №%d: ожидалось корректное имя переменной.\n"
 
 #, c-format
 msgid "Wrong value for argument #%d: Empty string expected.\n"
-msgstr "Неверное значение параметра %d: ожидалась пустая строка.\n"
+msgstr "Неверное значение аргумента №%d: ожидалась пустая строка.\n"
 
 msgid "Recursive extraction is not valid in this context.\n"
 msgstr "Рекурсивное извлечение недопустимо в этом контексте.\n"

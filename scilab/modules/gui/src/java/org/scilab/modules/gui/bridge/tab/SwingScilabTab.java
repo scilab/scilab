@@ -121,6 +121,25 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTORESIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_ENABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ID__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_NAME__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFO_MESSAGE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_NAME__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHECKEDMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHILDMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIPARENTMENU__;
+
+import org.scilab.modules.gui.editor.EditorEventListener;
+
 /**
  * Swing implementation for Scilab tabs in GUIs
  * This implementation uses FlexDock package
@@ -168,6 +187,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
 
     /** The listener for event handling */
     private ScilabEventListener eventHandler;
+    private EditorEventListener editorEventHandler = null;
 
     /** A reference to the canvas used for event handling management */
     SwingScilabCanvas contentCanvas;
@@ -273,6 +293,11 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         /* OpenGL context */
         SwingScilabCanvas canvas = new SwingScilabCanvas(figureId, figure);
         contentCanvas = canvas;
+
+        editorEventHandler = new EditorEventListener(figure.getIdentifier());
+        contentCanvas.addEventHandlerKeyListener(editorEventHandler);
+        contentCanvas.addEventHandlerMouseListener(editorEventHandler);
+        contentCanvas.addEventHandlerMouseMotionListener(editorEventHandler);
 
         layerdPane = new JLayeredPane();
         layerdPane.setLayout(null);
@@ -1376,6 +1401,9 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         // without this children canvas are not released.
         Container dummyContainer = new Container();
         this.setContentPane(dummyContainer);
+        if (editorEventHandler != null) {
+            editorEventHandler.onExit();
+        }
     }
 
     public void disablePaint() {

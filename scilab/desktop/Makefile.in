@@ -16,7 +16,7 @@
 
 #
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-# Copyright (C) Scilab Enterprises - 2011 - Clement David
+# Copyright (C) Scilab Enterprises - 2011-2013 - Clement David
 #
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -170,8 +170,9 @@ am__uninstall_files_from_dir = { \
     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
-am__installdirs = "$(DESTDIR)$(desktopdir)" "$(DESTDIR)$(mimedir)"
-DATA = $(desktop_DATA) $(mime_DATA)
+am__installdirs = "$(DESTDIR)$(appdatadir)" "$(DESTDIR)$(desktopdir)" \
+	"$(DESTDIR)$(mimedir)"
+DATA = $(appdata_DATA) $(desktop_DATA) $(mime_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 am__recursive_targets = \
@@ -413,6 +414,7 @@ STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
+SWIG_SCILAB = @SWIG_SCILAB@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
 TK_INC_PATH = @TK_INC_PATH@
@@ -508,6 +510,11 @@ scinotes.desktop
 # Note that here, it is datadir and NOT pkgdatadir
 mimedir = $(datadir)/mime/packages
 mime_DATA = scilab.xml
+
+# AppData file
+# Note that here, it is datadir and NOT pkgdatadir
+appdatadir = $(datadir)/appdata
+appdata_DATA = scilab.appdata.xml
 all: all-recursive
 
 .SUFFIXES:
@@ -547,6 +554,27 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-appdataDATA: $(appdata_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(appdata_DATA)'; test -n "$(appdatadir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(appdatadir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(appdatadir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(appdatadir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(appdatadir)" || exit $$?; \
+	done
+
+uninstall-appdataDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(appdata_DATA)'; test -n "$(appdatadir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(appdatadir)'; $(am__uninstall_files_from_dir)
 install-desktopDATA: $(desktop_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(desktop_DATA)'; test -n "$(desktopdir)" || list=; \
@@ -749,7 +777,7 @@ check: check-recursive
 all-am: Makefile $(DATA)
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(desktopdir)" "$(DESTDIR)$(mimedir)"; do \
+	for dir in "$(DESTDIR)$(appdatadir)" "$(DESTDIR)$(desktopdir)" "$(DESTDIR)$(mimedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-recursive
@@ -802,7 +830,8 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-desktopDATA install-mimeDATA
+install-data-am: install-appdataDATA install-desktopDATA \
+	install-mimeDATA
 
 install-dvi: install-dvi-recursive
 
@@ -846,7 +875,8 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am: uninstall-desktopDATA uninstall-mimeDATA
+uninstall-am: uninstall-appdataDATA uninstall-desktopDATA \
+	uninstall-mimeDATA
 
 .MAKE: $(am__recursive_targets) install-am install-strip
 
@@ -854,16 +884,16 @@ uninstall-am: uninstall-desktopDATA uninstall-mimeDATA
 	check-am clean clean-generic clean-libtool cscopelist-am ctags \
 	ctags-am distclean distclean-generic distclean-libtool \
 	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-desktopDATA install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-info \
-	install-info-am install-man install-mimeDATA install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs installdirs-am \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags tags-am uninstall uninstall-am uninstall-desktopDATA \
-	uninstall-mimeDATA
+	install install-am install-appdataDATA install-data \
+	install-data-am install-desktopDATA install-dvi install-dvi-am \
+	install-exec install-exec-am install-html install-html-am \
+	install-info install-info-am install-man install-mimeDATA \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	installdirs-am maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
+	ps ps-am tags tags-am uninstall uninstall-am \
+	uninstall-appdataDATA uninstall-desktopDATA uninstall-mimeDATA
 
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

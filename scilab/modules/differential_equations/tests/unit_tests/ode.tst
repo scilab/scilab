@@ -121,7 +121,7 @@ res6 = ode(y, t,tout, rtol, atol, 'fex');
 // check results
 assert_checkalmostequal(resDoc, res, 2d-7, [], "matrix"); // There are a little diff between resDoc and res
 if version(1) > 5 then
-    assert_checkalmostequal(res, res2, 2d-7, [], "matrix"); // because results provides by lsoda 
+    assert_checkalmostequal(res, res2, 2d-7, [], "matrix"); // because results provides by lsoda
 end
 assert_checkalmostequal(res, res3, 2d-7, [], "matrix"); // documentation are in single precision.
 assert_checkalmostequal(res, res4, 2d-7, [], "matrix");
@@ -353,7 +353,7 @@ t0   = 0;
 [yout1,rd1,w,iw] = ode("root", y, t0, tout, 'fex1', 2, 'gex');
 assert_checkalmostequal(rd1(1), 2.64d-01, 1d-4);
 [yout2,rd2,w,iw] = ode("root", y, t0, tout, 'fex1', 2, 'gex', w, iw);
-assert_checkalmostequal(rd2(1), 2.0795776d+07, 4d-7);
+assert_checkalmostequal(rd2(1), 2.0795776d+07, 4d-5);
 err = execstr("[yout3,rd,w,iw] = ode(""root"", y, t0, tout, ""fex1"", 2, ""gex"", w, iw);","errcatch");
 assert_checkequal( err == 0 , %f);
 
@@ -384,4 +384,3 @@ rkfRes(18:32) = [    0.99166478935902302    0.97384760697150774    0.94630006094
 assert_checkalmostequal(rkRes, rk, %eps * 20, [], "matrix");
 assert_checkalmostequal(rkfRes, rkf, %eps, [], "matrix");
 assert_checkalmostequal(rkf, fixx, %eps, [], "matrix");
-

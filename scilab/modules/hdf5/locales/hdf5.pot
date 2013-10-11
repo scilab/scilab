@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-07-25 15:36+0100\n"
+"Revision-Date: 2013-09-27 17:13+0100\n"
 
 # File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 101
 #, c-format
@@ -634,7 +634,7 @@ msgstr ""
 
 #
 # File: src/cpp/H5ArrayData.cpp, line: 65
-# File: src/cpp/H5CompoundData.cpp, line: 98
+# File: src/cpp/H5CompoundData.cpp, line: 99
 # File: src/cpp/H5ReferenceData.cpp, line: 77
 # File: src/cpp/H5VlenData.cpp, line: 54
 msgid "Invalid index."
@@ -642,7 +642,7 @@ msgstr ""
 
 #
 # File: src/cpp/H5ArrayData.cpp, line: 77
-# File: src/cpp/H5CompoundData.cpp, line: 125
+# File: src/cpp/H5CompoundData.cpp, line: 126
 # File: src/cpp/H5Dataspace.cpp, line: 251
 # File: src/cpp/H5ReferenceData.cpp, line: 149
 # File: src/cpp/H5VlenData.cpp, line: 70
@@ -650,52 +650,52 @@ msgid "Dimensions"
 msgstr ""
 
 #
-# File: src/cpp/H5Attribute.cpp, line: 23
-# File: src/cpp/H5Attribute.cpp, line: 29
+# File: src/cpp/H5Attribute.cpp, line: 24
+# File: src/cpp/H5Attribute.cpp, line: 30
 #, c-format
 msgid "Cannot open attribute: %s"
 msgstr ""
 
 #
-# File: src/cpp/H5Attribute.cpp, line: 56
+# File: src/cpp/H5Attribute.cpp, line: 57
 msgid "Cannot get the attribute type"
 msgstr ""
 
 #
-# File: src/cpp/H5Attribute.cpp, line: 67
+# File: src/cpp/H5Attribute.cpp, line: 68
 msgid "Cannot get the attribute dataspace"
 msgstr ""
 
 #
-# File: src/cpp/H5Attribute.cpp, line: 131
-# File: src/cpp/H5Dataset.cpp, line: 237
+# File: src/cpp/H5Attribute.cpp, line: 132
+# File: src/cpp/H5Dataset.cpp, line: 238
 msgid "Error in retrieving data."
 msgstr ""
 
 #
-# File: src/cpp/H5Attribute.cpp, line: 182
+# File: src/cpp/H5Attribute.cpp, line: 183
 #, c-format
 msgid "Attribute %s already exists."
 msgstr ""
 
 #
-# File: src/cpp/H5Attribute.cpp, line: 188
+# File: src/cpp/H5Attribute.cpp, line: 189
 msgid "Cannot create a new attribute."
 msgstr ""
 
 #
-# File: src/cpp/H5Attribute.cpp, line: 195
+# File: src/cpp/H5Attribute.cpp, line: 196
 msgid "Cannot write data in the attribute."
 msgstr ""
 
 #
-# File: src/cpp/H5Attribute.cpp, line: 213
-# File: src/cpp/H5Attribute.cpp, line: 222
+# File: src/cpp/H5Attribute.cpp, line: 214
+# File: src/cpp/H5Attribute.cpp, line: 223
 msgid "Cannot copy the attribute"
 msgstr ""
 
 #
-# File: src/cpp/H5Attribute.cpp, line: 243
+# File: src/cpp/H5Attribute.cpp, line: 244
 msgid "Cannot read attribute data."
 msgstr ""
 
@@ -738,27 +738,26 @@ msgid "Cannot copy data to an empty pointer"
 msgstr ""
 
 #
-# File: src/cpp/H5BasicData.hxx, line: 199
-# File: src/cpp/H5Dataset.cpp, line: 387
+# File: src/cpp/H5BasicData.hxx, line: 207
+# File: src/cpp/H5Dataset.cpp, line: 388
 msgid "Wrong dimensions."
 msgstr ""
 
 #
-# File: src/cpp/H5CompoundData.cpp, line: 82
+# File: src/cpp/H5CompoundData.cpp, line: 83
 #, c-format
 msgid "Invalid field name: %s"
 msgstr ""
 
 #
-# File: src/cpp/H5CompoundData.cpp, line: 144
+# File: src/cpp/H5CompoundData.cpp, line: 145
 msgid "Fields Names"
 msgstr ""
 
 #
 # File: src/cpp/H5Data.hxx, line: 89
 # File: src/cpp/H5Data.hxx, line: 95
-# File: src/cpp/H5Data.hxx, line: 103
-# File: src/cpp/H5Data.hxx, line: 112
+# File: src/cpp/H5Data.hxx, line: 102
 # File: src/cpp/H5DataConverter.cpp, line: 26
 # File: src/cpp/H5DataConverter.cpp, line: 32
 # File: src/cpp/H5DataConverter.cpp, line: 40
@@ -809,78 +808,78 @@ msgid "Cannot retrieve the data from the attribute"
 msgstr ""
 
 #
-# File: src/cpp/H5Dataset.cpp, line: 26
+# File: src/cpp/H5Dataset.cpp, line: 27
 #, c-format
 msgid "Cannot open the given dataset %s."
 msgstr ""
 
 #
-# File: src/cpp/H5Dataset.cpp, line: 63
-# File: src/cpp/H5Dataset.cpp, line: 74
-# File: src/cpp/H5Dataset.cpp, line: 175
-# File: src/cpp/H5Dataset.cpp, line: 355
+# File: src/cpp/H5Dataset.cpp, line: 64
+# File: src/cpp/H5Dataset.cpp, line: 75
+# File: src/cpp/H5Dataset.cpp, line: 176
+# File: src/cpp/H5Dataset.cpp, line: 356
 #, c-format
 msgid "Cannot get the dataspace associated with dataset named %s."
 msgstr ""
 
 #
-# File: src/cpp/H5Dataset.cpp, line: 99
+# File: src/cpp/H5Dataset.cpp, line: 100
 msgid "Invalid layout"
 msgstr ""
 
 #
-# File: src/cpp/H5Dataset.cpp, line: 186
+# File: src/cpp/H5Dataset.cpp, line: 187
 #, c-format
 msgid "Only %d dimensions."
 msgstr ""
 
 #
-# File: src/cpp/H5Dataset.cpp, line: 299
+# File: src/cpp/H5Dataset.cpp, line: 300
 msgid "Cannot list dataset attributes."
 msgstr ""
 
 #
-# File: src/cpp/H5Dataset.cpp, line: 347
+# File: src/cpp/H5Dataset.cpp, line: 348
 #, c-format
 msgid "Cannot open the dataset: %s"
 msgstr ""
 
 #
-# File: src/cpp/H5Dataset.cpp, line: 369
+# File: src/cpp/H5Dataset.cpp, line: 370
 msgid "Invalid source space"
 msgstr ""
 
 #
-# File: src/cpp/H5Dataset.cpp, line: 374
-# File: src/cpp/H5Dataset.cpp, line: 433
+# File: src/cpp/H5Dataset.cpp, line: 375
+# File: src/cpp/H5Dataset.cpp, line: 434
 msgid "Invalid target space"
 msgstr ""
 
 #
-# File: src/cpp/H5Dataset.cpp, line: 395
+# File: src/cpp/H5Dataset.cpp, line: 396
 msgid "Cannot modify maximum dimensions."
 msgstr ""
 
 #
-# File: src/cpp/H5Dataset.cpp, line: 402
+# File: src/cpp/H5Dataset.cpp, line: 403
 #, c-format
 msgid "Cannot modify dimension %d."
 msgstr ""
 
 #
-# File: src/cpp/H5Dataset.cpp, line: 447
+# File: src/cpp/H5Dataset.cpp, line: 448
 #, c-format
 msgid "Cannot set the chunk dimensions: %s"
 msgstr ""
 
 #
-# File: src/cpp/H5Dataset.cpp, line: 460
+# File: src/cpp/H5Dataset.cpp, line: 461
 #, c-format
 msgid "Cannot create the dataset: %s"
 msgstr ""
 
 #
-# File: src/cpp/H5Dataset.cpp, line: 467
+# File: src/cpp/H5Dataset.cpp, line: 468
 msgid "Cannot write data in the dataset."
 msgstr ""
 
@@ -1299,6 +1298,12 @@ msgid "Cannot retrieve numeric index."
 msgstr ""
 
 #
+# File: src/cpp/H5Options.hxx, line: 59
+# File: src/cpp/H5Options.hxx, line: 72
+msgid "Invalid option: must be C or FORTRAN."
+msgstr ""
+
+#
 # File: src/cpp/H5ReferenceData.cpp, line: 87
 msgid "Cannot open object at the given position."
 msgstr ""
@@ -1331,192 +1336,191 @@ msgid "Cannot get H5Object id"
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 225
+# File: src/cpp/HDF5Scilab.cpp, line: 229
 msgid "Invalid object: not a dataset."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 300
+# File: src/cpp/HDF5Scilab.cpp, line: 304
 msgid "Cannot remove a file."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 311
+# File: src/cpp/HDF5Scilab.cpp, line: 315
 msgid "Cannot remove root element."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 318
+# File: src/cpp/HDF5Scilab.cpp, line: 322
 #, c-format
 msgid "The name doesn't exist: %s."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 324
+# File: src/cpp/HDF5Scilab.cpp, line: 328
 #, c-format
 msgid "Cannot remove the attribute: %s."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 333
+# File: src/cpp/HDF5Scilab.cpp, line: 337
 #, c-format
 msgid "Cannot remove the link: %s."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 367
-# File: src/cpp/HDF5Scilab.cpp, line: 413
+# File: src/cpp/HDF5Scilab.cpp, line: 371
+# File: src/cpp/HDF5Scilab.cpp, line: 417
 #, c-format
 msgid "The link already exists: %s."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 383
+# File: src/cpp/HDF5Scilab.cpp, line: 387
 #, c-format
 msgid "Cannot create the hard link: %s."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 387
+# File: src/cpp/HDF5Scilab.cpp, line: 391
 #, c-format
 msgid "Cannot create the soft link: %s."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 402
+# File: src/cpp/HDF5Scilab.cpp, line: 406
 #, c-format
 msgid "Cannot create a hard link to the external object: %s."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 419
+# File: src/cpp/HDF5Scilab.cpp, line: 423
 #, c-format
 msgid "Cannot create the external link: %s."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 516
+# File: src/cpp/HDF5Scilab.cpp, line: 520
 msgid "Cannot copy object."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 646
+# File: src/cpp/HDF5Scilab.cpp, line: 650
 msgid "Invalid filter"
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 776
+# File: src/cpp/HDF5Scilab.cpp, line: 780
 msgid "Can only label a dataset"
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 866
+# File: src/cpp/HDF5Scilab.cpp, line: 870
 msgid "Target object is not a file"
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 871
-# File: src/cpp/HDF5Scilab.cpp, line: 891
+# File: src/cpp/HDF5Scilab.cpp, line: 875
+# File: src/cpp/HDF5Scilab.cpp, line: 895
 msgid "Invalid location"
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 876
+# File: src/cpp/HDF5Scilab.cpp, line: 880
 #, c-format
 msgid "Invalid location: %s"
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 882
+# File: src/cpp/HDF5Scilab.cpp, line: 886
 #, c-format
 msgid "Cannot mount the file: %s"
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 897
+# File: src/cpp/HDF5Scilab.cpp, line: 901
 #, c-format
 msgid "Cannot unmount the file at location: %s"
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 915
+# File: src/cpp/HDF5Scilab.cpp, line: 913
 #, c-format
 msgid "Can not read input argument #%d."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 921
+# File: src/cpp/HDF5Scilab.cpp, line: 932
 #, c-format
 msgid "Can not get the type of input argument #%d."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 932
-msgid "Complex datatype not handled for now."
-msgstr ""
-
-#
-# File: src/cpp/HDF5Scilab.cpp, line: 939
-# File: src/cpp/HDF5Scilab.cpp, line: 958
-# File: src/cpp/HDF5Scilab.cpp, line: 967
-# File: src/cpp/HDF5Scilab.cpp, line: 975
-# File: src/cpp/HDF5Scilab.cpp, line: 983
-# File: src/cpp/HDF5Scilab.cpp, line: 991
-# File: src/cpp/HDF5Scilab.cpp, line: 999
-# File: src/cpp/HDF5Scilab.cpp, line: 1007
-# File: src/cpp/HDF5Scilab.cpp, line: 1017
-# File: src/cpp/HDF5Scilab.cpp, line: 1025
+# File: src/cpp/HDF5Scilab.cpp, line: 952
+# File: src/cpp/HDF5Scilab.cpp, line: 976
+# File: src/cpp/HDF5Scilab.cpp, line: 995
+# File: src/cpp/HDF5Scilab.cpp, line: 1004
+# File: src/cpp/HDF5Scilab.cpp, line: 1012
+# File: src/cpp/HDF5Scilab.cpp, line: 1020
+# File: src/cpp/HDF5Scilab.cpp, line: 1028
+# File: src/cpp/HDF5Scilab.cpp, line: 1036
 # File: src/cpp/HDF5Scilab.cpp, line: 1044
-# File: src/cpp/HDF5Scilab.cpp, line: 1063
+# File: src/cpp/HDF5Scilab.cpp, line: 1054
+# File: src/cpp/HDF5Scilab.cpp, line: 1062
+# File: src/cpp/HDF5Scilab.cpp, line: 1081
+# File: src/cpp/HDF5Scilab.cpp, line: 1100
+# File: src/cpp/HDF5Scilab.cpp, line: 1121
+# File: src/cpp/HDF5Scilab.cpp, line: 1133
 #, c-format
 msgid "%s: Can not read input argument #%d."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.cpp, line: 1075
+# File: src/cpp/HDF5Scilab.cpp, line: 1155
+# File: src/cpp/HDF5Scilab.cpp, line: 1161
 #, c-format
 msgid "%s: Datatype not handled for now."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.hxx, line: 154
+# File: src/cpp/HDF5Scilab.hxx, line: 155
 #, c-format
 msgid "Invalid rank, must be in the interval [0, %d]."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.hxx, line: 169
+# File: src/cpp/HDF5Scilab.hxx, line: 170
 msgid "No converter found for the specified target datatype."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.hxx, line: 176
-# File: src/cpp/HDF5Scilab.hxx, line: 223
+# File: src/cpp/HDF5Scilab.hxx, line: 177
+# File: src/cpp/HDF5Scilab.hxx, line: 224
 msgid "Cannot create a new dataspace."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.hxx, line: 201
+# File: src/cpp/HDF5Scilab.hxx, line: 202
 msgid "Invalid target dataspace."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.hxx, line: 323
+# File: src/cpp/HDF5Scilab.hxx, line: 326
 msgid "Cannot create the target type."
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.hxx, line: 354
+# File: src/cpp/HDF5Scilab.hxx, line: 357
 msgid "Incompatible dimensions"
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.hxx, line: 375
+# File: src/cpp/HDF5Scilab.hxx, line: 378
 msgid "References must be given as strings"
 msgstr ""
 
 #
-# File: src/cpp/HDF5Scilab.hxx, line: 388
+# File: src/cpp/HDF5Scilab.hxx, line: 391
 #, c-format
 msgid "Invalid path: %s."
 msgstr ""

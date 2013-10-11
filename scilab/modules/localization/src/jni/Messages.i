@@ -94,3 +94,6 @@ public";
 we are calling the C function scigettext */
 %rename(gettext) scigettext;
 char *scigettext(char *key);
+
+%rename(dgettext) scidgettext;
+char *scidgettext(char *domain, char *key);

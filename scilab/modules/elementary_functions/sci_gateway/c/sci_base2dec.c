@@ -81,7 +81,7 @@ int sci_base2dec(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if ((iValue < 2) && (iValue > 36))
+    if (iValue < 2 || iValue > 36)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: Must be between %d and %d."), fname, 2, 2, 36);
         return 0;
@@ -89,6 +89,11 @@ int sci_base2dec(char *fname, unsigned long fname_len)
 
     if (getAllocatedMatrixOfString(pvApiCtx, piAddressVarOne, &m, &n, &pStrs) != 0)
     {
+        if (pStrs)
+        {
+            freeAllocatedMatrixOfString(m, n, pStrs);
+        }
+
         Scierror(999, _("%s: No more memory.\n"), fname);
         return 0;
     }

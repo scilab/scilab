@@ -14,6 +14,7 @@
 // save function show compatibility warning for non existing variable instead of error
 
 clear a;
-errmsg = msprintf(_("Wrong value for argument #%d: Valid variable name expected.\n"), 2);
+//3 instead of 2 because of call through execstr
+errmsg = msprintf(_("Wrong value for argument #%d: Valid variable name expected.\n"), 3);
 assert_checkerror("save(TMPDIR + ""/myData.sod"", ""a"")", errmsg);
 

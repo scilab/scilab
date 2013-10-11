@@ -3,6 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  * Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: added 32/64bits separation
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -320,7 +321,17 @@
             </listitem>
             <listitem>
                 <para>
+                    <literal>.linux32.dia.ref</literal> for GNU/Linux platform with 32bits processors,
+                </para>
+            </listitem>
+            <listitem>
+                <para>
                     <literal>.win.dia.ref</literal> for Windows platform,
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>.win32.dia.ref</literal> for Windows platform with 32bits processors,
                 </para>
             </listitem>
             <listitem>
@@ -337,7 +348,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    on Windows platforms: <literal>.win.dia.ref</literal>,
+                    on Windows platforms: <literal>.win.dia.ref</literal>, <literal>.win32.dia.ref</literal>
                 </para>
             </listitem>
             <listitem>
@@ -347,7 +358,7 @@
             </listitem>
             <listitem>
                 <para>
-                    on GNU/Linux platforms: <literal>.unix.dia.ref</literal>, <literal>.linux.dia.ref</literal>.
+                    on GNU/Linux platforms: <literal>.unix.dia.ref</literal>, <literal>.linux.dia.ref</literal>, <literal>.linux32.dia.ref</literal>.
                 </para>
             </listitem>
         </itemizedlist>
@@ -469,11 +480,12 @@ test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
                     <para>
                         <literal>test_run</literal> can work on an external module.
                     </para>
-                    
                     <para>
                         Fourth argument added to export to a XML file
                     </para>
                 </revdescription>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>32/64bits separation available</revdescription>
             </revision>
         </revhistory>
     </refsection>

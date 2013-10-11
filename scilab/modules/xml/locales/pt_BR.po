@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-04-07 19:39+0000\n"
+"PO-Revision-Date: 2013-09-05 15:04+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -93,8 +93,8 @@ msgstr "%s: Índice incorreto na XMLList.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: XMLList or XMLSet expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento argumento de entrada #%d: esperava-se um "
-"XMLList ou XMLSet.\n"
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um XMLList "
+"ou XMLSet.\n"
 
 #, c-format
 msgid ""
@@ -147,8 +147,8 @@ msgstr "%s: Documento XML inexistente.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%i: XMLSet or XMLList expected.\n"
 msgstr ""
-"%s: Tipo incorreto para argumento de entrada #%i: esperava-se um XMLSet ou "
-"um XMLList.\n"
+"%s: Tipo incorreto para o argumento de entrada #%i: esperava-se um XMLSet ou "
+"uma XMLList.\n"
 
 #, c-format
 msgid "%s: XMLSet or XMLList does not exist.\n"
@@ -162,7 +162,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: XML document does not exist.\n"
-msgstr "%s: XML document inexistente.\n"
+msgstr "%s: Documento XML inexistente.\n"
 
 #, c-format
 msgid "%s: XML validation file does not exist.\n"
@@ -358,7 +358,7 @@ msgid "Cannot parse the DTD"
 msgstr "Não é possível interpretar o DTD"
 
 msgid "Cannot create a valid context"
-msgstr "Não foi possível criar um contexto válido."
+msgstr "Não foi possível criar um contexto válido"
 
 msgid ""
 "Due to a libxml2 limitation, it is not possible to validate a document "
@@ -370,7 +370,7 @@ msgstr ""
 "Veja a ajuda do xmlValidate.\n"
 
 msgid "Cannot create a validation context"
-msgstr "Não foi possível criar um contexto de validação."
+msgstr "Não foi possível criar um contexto de validação"
 
 msgid "Cannot parse the Relax NG grammar"
 msgstr "Não é possível interpretar a gramática do Relax NG"
@@ -396,7 +396,7 @@ msgstr "%s: Tipo incorreto para definir o campo %s.\n"
 
 #, c-format
 msgid "%s: Not valid xml for root.\n"
-msgstr ""
+msgstr "%s: Não é um XML válido para raiz.\n"
 
 #, c-format
 msgid "%s: Field %s is not modifiable: %s\n"
@@ -406,4 +406,4 @@ msgid "XML"
 msgstr "XML"
 
 msgid "CML read"
-msgstr ""
+msgstr "Leitura de CML"

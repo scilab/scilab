@@ -11,7 +11,6 @@
 
 package org.scilab.forge.scirenderer.implementation.g2d.texture;
 
-import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.implementation.g2d.G2DCanvas;
 import org.scilab.forge.scirenderer.implementation.g2d.G2DDrawingTools;

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -545,45 +545,6 @@ msgid ""
 msgstr "%s: '%s' で不正な変数型(%s)が見つかりました.  ファイルにエラーがあるか壊れています.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: 入力引数の数が間違っています.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A String expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: ファイル記述子を指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 有効なファイル記述子を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: ファイル名を指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A filename or file descriptor "
-"expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: ファイル名またはファイル記述子を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: 出力引数の数が間違っています.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: ファイル記述子を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
 
@@ -602,6 +563,10 @@ msgstr "%s: オプションが無視されました.\n"
 #, c-format
 msgid "%s: Wrong type for input argument: String expected.\n"
 msgstr "%s: 入力引数の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: 入力引数の数が間違っています.\n"
 
 msgid "Impossible to create directory "
 msgstr "ディレクトリを作成できません "
@@ -624,17 +589,3 @@ msgstr "未定義"
 
 msgid "The system cannot find the file specified."
 msgstr "指定したファイルが見つかりません."
-
-#
-# File: src/c/mgeti.c, line: 214
-#, c-format
-msgid "%s: Incorrect format.\n"
-msgstr "%s: 不正確なフォーマット\n"
-
-#, c-format
-msgid "%s: Invalid conversion.\n"
-msgstr "%s: 変換が無効です.\n"
-
-#, c-format
-msgid "%s: end of input reached before final conversion.\n"
-msgstr "%s: 最後の変換の前に入力の終りに達しました.\n"

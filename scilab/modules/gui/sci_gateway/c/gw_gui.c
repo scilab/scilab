@@ -61,7 +61,19 @@ static gw_generic_table Tab[] =
     {sci_displaytree, "uiDisplayTree"},
     {sci_uiputfile, "uiputfile"},
     {sci_about, "about"},
-    {sci_fire_closing_finished, "fire_closing_finished"}
+    {sci_useeditor, "useeditor"},
+    {sci_fire_closing_finished, "fire_closing_finished"},
+    {sci_openged, "openged"},
+    {sci_datatipcreate, "datatipCreate"},
+    {sci_datatipremove, "datatipRemove"},
+    {sci_plotbrowser, "plotbrowser"},
+    {sci_datatip_manager_mode, "datatipManagerMode"},
+    {sci_datatip_toggle, "datatipToggle"},
+    {sci_datatipmove, "datatipMove"},
+    {sci_datatip_set_style, "datatipSetStyle"},
+    {sci_datatip_set_display, "datatipSetDisplay"},
+    {sci_datatip_set_interp, "datatipSetInterp"},
+    {sci_datatip_set_orient, "datatipSetOrientation"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)

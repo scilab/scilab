@@ -79,14 +79,17 @@ loop:
                 swap(pl, pl - es);
             }
         }
+
         return;
     }
+
     /*Determine the pivot */
     pm = a + (n / 2) * es;/* Small arrays, middle element */
     tabm = tab + (n / 2) * es1 ;
 
     pn = a + (n - 1) * es;
     tabn = tab + (n - 1) * es1;
+
     if (n > 7)
     {
         pl = a;
@@ -101,12 +104,13 @@ loop:
         }
         med3(pm, tabm, pl, pm, pn, tabl, tabm, tabn, cmp);
     }
+
     /* Put it at the first position */
     /* Partionning */
     if (cmp(pn, a, tabn, tab, flag))
     {
-        swapind(tab, tabm);
-        swap(a, pm);
+        swapind(tab, tabn);
+        swap(a, pn);
     }
 
     /* pointers on data array */

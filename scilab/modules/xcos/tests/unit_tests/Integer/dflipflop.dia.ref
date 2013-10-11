@@ -24,6 +24,8 @@ try scicos_simulate(scs_m, 'nw'); catch disp(lasterror()); end
 !                                                                   !
 !If you want to reactivate the thresholds, then you need            !
 !                                                                   !
+!                                                                   !
+!                                                                   !
 !to include a block with continuous-time state in your diagram.     !
 !                                                                   !
 !   You can for example include DUMMY CLSS block (linear palette).  !

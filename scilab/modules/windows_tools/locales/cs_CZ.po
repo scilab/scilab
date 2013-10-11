@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr "Pouze v Režimu Windows, není dostupné v Režimu Konzole.\n"
@@ -85,6 +85,9 @@ msgstr "%s: Nelze se dotázat na hodnotu tohoto typu.\n"
 
 msgid "Scilab Console"
 msgstr "Konzole Scilabu"
+
+msgid "Scilab 5.5.X family will be the latest one working under Windows XP."
+msgstr ""
 
 msgid "Error(s) : see help powershell"
 msgstr "Chyba(y): podívejte se na nápovědu powershell"

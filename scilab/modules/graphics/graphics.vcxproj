@@ -206,6 +206,7 @@ lib /DEF:"$(ProjectDir)uiwidget_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="sci_gateway\c\sci_light.c" />
     <ClCompile Include="src\c\Axes.c" />
     <ClCompile Include="src\c\axesScale.c" />
     <ClCompile Include="src\c\BasicAlgos.c" />
@@ -221,6 +222,7 @@ lib /DEF:"$(ProjectDir)uiwidget_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="src\c\FeC.c" />
     <ClCompile Include="src\c\Format.c" />
     <ClCompile Include="src\c\getHandleProperty\get_alignment_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_ambient_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_anti_aliasing_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_arc_drawing_method_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_arrow_size_factor_property.c" />
@@ -259,8 +261,11 @@ lib /DEF:"$(ProjectDir)uiwidget_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="src\c\getHandleProperty\get_data_bounds_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_data_mapping_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_data_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_datatip_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_default_axes_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_default_figure_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_diffuse_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_direction_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_event_handler_enable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_event_handler_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_figure_closerequestfcn_property.c" />
@@ -296,6 +301,7 @@ lib /DEF:"$(ProjectDir)uiwidget_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="src\c\getHandleProperty\get_labels_font_size_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_labels_font_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_legend_location_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_light_type_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_line_mode_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_line_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_links_property.c" />
@@ -307,6 +313,7 @@ lib /DEF:"$(ProjectDir)uiwidget_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="src\c\getHandleProperty\get_mark_size_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_mark_size_unit_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_mark_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_material_shininess_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_old_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_outside_colors_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_parent_property.c" />
@@ -318,6 +325,7 @@ lib /DEF:"$(ProjectDir)uiwidget_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="src\c\getHandleProperty\get_rotation_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_screen_position_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_segs_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_specular_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_sub_tics_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_surface_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_surface_mode_property.c" />
@@ -326,10 +334,18 @@ lib /DEF:"$(ProjectDir)uiwidget_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="src\c\getHandleProperty\get_text_box_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_text_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_thickness_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_use_color_material_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_ambient_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_diffuse_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_direction_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_closerequestfcn_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_resizefcn_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_light_type_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_material_shininess_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_specular_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_image_type_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_tag_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_use_color_material_property.c" />
     <ClCompile Include="src\c\get_ticks_utils.c" />
     <ClCompile Include="src\c\getHandleProperty\get_tics_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_tics_direction_property.c" />
@@ -369,6 +385,7 @@ lib /DEF:"$(ProjectDir)uiwidget_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="sci_gateway\c\gw_graphics.c" />
     <ClCompile Include="src\c\InitObjects.c" />
     <ClCompile Include="src\c\Interaction.c" />
+    <ClCompile Include="src\c\Light.c" />
     <ClCompile Include="src\c\loadTextRenderingAPI.c" />
     <ClCompile Include="src\c\math_graphics.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MinSpace</Optimization>
@@ -479,6 +496,7 @@ lib /DEF:"$(ProjectDir)uiwidget_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="src\c\getHandleProperty\set_data_bounds_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_data_mapping_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_data_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_datatip_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_default_values_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_event_handler_enable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_event_handler_property.c" />
@@ -582,6 +600,7 @@ lib /DEF:"$(ProjectDir)uiwidget_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClInclude Include="includes\BasicAlgos.h" />
     <ClInclude Include="includes\BuildObjects.h" />
     <ClInclude Include="includes\Champ.h" />
+    <ClInclude Include="includes\Light.h" />
     <ClInclude Include="src\c\CheckScilabXgc.h" />
     <ClInclude Include="src\c\getHandleProperty\CheckTicksProperty.h" />
     <ClInclude Include="includes\CloneObjects.h" />

@@ -221,8 +221,8 @@ opt = optimbase_new ();
 //
 // Test wrong initial guess
 //
-cmd = "optimbase_configure(opt,''-x0'',[-1.2 1.0])";
-assert_checkerror(cmd,"%s: The x0 vector is expected to be a column matrix, but current shape is %d x %d",[],"optimbase_configure",1,2);
+cmd = "optimbase_configure(opt,''-x0'',[-1.2 1.0; -1.0 1.2])";
+assert_checkerror(cmd,"%s: Wrong size for x0 argument: A vector expected.", [], "optimbase_configure");
 //
 // Test wrong -tolxmethod
 //

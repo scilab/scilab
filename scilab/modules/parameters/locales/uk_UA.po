@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2011-09-01 09:28+0000\n"
+"PO-Revision-Date: 2013-09-15 06:56+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: uk\n"
 
 #, c-format
@@ -92,6 +92,124 @@ msgstr "%s: помилкове значення параметра %s: знач�
 msgid "%s: wrong size for parameter %s: %d requested, got %d\n"
 msgstr "%s: помилкова розмірність параметра %s: мало бути %d, отримано %d\n"
 
+msgid "Parameters"
+msgstr "Параметри"
+
+msgid "plist handling"
+msgstr "обробка plist"
+
+msgid ""
+"This demo shows examples of plist utilizations: creation, insertion, "
+"removal, ..."
+msgstr ""
+"У цій демонстрації ми наведемо приклад дій з користування plist: створення, "
+"вставлення, вилучення, ..."
+
+#, c-format
+msgid ""
+"\n"
+"Create a plist '%s' containing two fields 'min' = [0 0 0] and 'max' = [1 1 "
+"1].\n"
+msgstr ""
+"\n"
+"Створємо plist «%s», що містить два поля, 'min' = [0 0 0] і 'max' = [1 1 "
+"1].\n"
+
+#, c-format
+msgid ""
+"\n"
+"Check fields: \n"
+msgstr ""
+"\n"
+"Перевіряємо поля: \n"
+
+#, c-format
+msgid "Set 'min' = [0 0 0] and 'max' = [1 1 1]:\n"
+msgstr "Встановлюємо 'min' = [0 0 0] і 'max' = [1 1 1]:\n"
+
+#, c-format
+msgid "Check values: \n"
+msgstr "Перевіряємо значення: \n"
+
+#, c-format
+msgid ""
+"\n"
+"Remove the parameter 'min' from %s.\n"
+msgstr ""
+"\n"
+"Вилучаємо параметр «min» з %s.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Before remove_param: \n"
+msgstr ""
+"\n"
+"До remove_param: \n"
+
+#, c-format
+msgid ""
+"\n"
+"After remove_param: \n"
+msgstr ""
+"\n"
+"Після remove_param: \n"
+
+#, c-format
+msgid ""
+"\n"
+"Check removal: \n"
+msgstr ""
+"\n"
+"Перевіряємо вилучення: \n"
+
+#, c-format
+msgid ""
+"\n"
+"Check type: \n"
+msgstr ""
+"\n"
+"Перевіряємо тип: \n"
+
+msgid "Show that parameters operators only apply to the plist type"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Add a parameter to 'A' when 'A' is not a plist.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Before add_param: \n"
+msgstr ""
+"\n"
+"До add_param: \n"
+
+#, c-format
+msgid ""
+"\n"
+"After add_param: \n"
+msgstr ""
+"\n"
+"Після add_param: \n"
+
+#, c-format
+msgid ""
+"\n"
+"Error = %f. If error<>0, an error occurred.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: key %s already defined.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
@@ -111,6 +229,10 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: parameter doesn't exist"

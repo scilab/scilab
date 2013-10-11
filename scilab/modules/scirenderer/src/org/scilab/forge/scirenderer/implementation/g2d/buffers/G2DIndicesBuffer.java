@@ -14,7 +14,6 @@ package org.scilab.forge.scirenderer.implementation.g2d.buffers;
 import org.scilab.forge.scirenderer.buffers.DataBuffer;
 import org.scilab.forge.scirenderer.buffers.IndicesBuffer;
 
-import java.nio.Buffer;
 import java.nio.IntBuffer;
 import java.util.Collection;
 

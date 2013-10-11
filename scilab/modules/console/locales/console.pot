@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-07-25 15:36+0100\n"
+"Revision-Date: 2013-09-27 17:13+0100\n"
 
 # File: sci_gateway/c/sci_clc.c, line: 41
 # File: sci_gateway/c/sci_lines.c, line: 206
@@ -1110,7 +1110,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 506
-msgid "Xcos Demos"
+msgid "Xcos Demonstrations"
 msgstr ""
 
 #
@@ -1195,42 +1195,47 @@ msgid "(Modify the layout requires to restart Scilab)"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 691
+# File: scilab_fake_localization_file.c, line: 686
+msgid "Save layout on exiting"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 698
 msgid "Keys binding"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 694
+# File: scilab_fake_localization_file.c, line: 701
 msgid "Filter on action name: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 704
+# File: scilab_fake_localization_file.c, line: 711
 msgid "Component"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 716
+# File: scilab_fake_localization_file.c, line: 723
 msgid "Name: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 722
+# File: scilab_fake_localization_file.c, line: 729
 msgid "Description: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 728
+# File: scilab_fake_localization_file.c, line: 735
 msgid "Binding: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 760
+# File: scilab_fake_localization_file.c, line: 767
 msgid "Action name"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 761
+# File: scilab_fake_localization_file.c, line: 768
 msgid "Key binding"
 msgstr ""
 
@@ -1242,41 +1247,41 @@ msgid "File or Directory"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 486
+# File: src/c/cmdLine/autoCompletionCli.c, line: 488
 # File: src/c/windows/TermCompletion.c, line: 195
 msgid "Scilab Fields"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 520
+# File: src/c/cmdLine/autoCompletionCli.c, line: 522
 # File: src/c/windows/TermCompletion.c, line: 223
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 74
 msgid "Scilab Function"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 521
+# File: src/c/cmdLine/autoCompletionCli.c, line: 523
 # File: src/c/windows/TermCompletion.c, line: 224
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 71
 msgid "Scilab Command"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 522
+# File: src/c/cmdLine/autoCompletionCli.c, line: 524
 # File: src/c/windows/TermCompletion.c, line: 225
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 80
 msgid "Scilab Macro"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 523
+# File: src/c/cmdLine/autoCompletionCli.c, line: 525
 # File: src/c/windows/TermCompletion.c, line: 226
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 83
 msgid "Scilab Variable"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 525
+# File: src/c/cmdLine/autoCompletionCli.c, line: 527
 # File: src/c/windows/TermCompletion.c, line: 227
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 77
 msgid "Graphics handle field"
@@ -1284,7 +1289,7 @@ msgstr ""
 
 #
 # File: src/c/cmdLine/getKey.c, line: 361
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 560
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 556
 #, c-format
 msgid ""
 "Command is too long (more than %d characters long): could not send it to "
@@ -1294,6 +1299,12 @@ msgstr ""
 #
 # File: src/c/more.c, line: 25
 msgid "[Continue display? n (no) to stop, any other key to continue]"
+msgstr ""
+
+#
+# File: src/c/others/initMPI.c, line: 27
+#, c-format
+msgid "MPI error: %s\n"
 msgstr ""
 
 #
@@ -1315,16 +1326,16 @@ msgid "No help"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 445
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 441
 msgid "Out of Screen"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 648
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 644
 msgid "Could not change the Console Font."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 711
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 707
 msgid "Could not change the Console Foreground."
 msgstr ""

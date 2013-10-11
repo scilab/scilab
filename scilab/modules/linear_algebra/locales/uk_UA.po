@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-26 05:22+0000\n"
+"PO-Revision-Date: 2013-09-04 13:53+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: uk\n"
 
 #, c-format
@@ -116,6 +116,8 @@ msgstr "%s: застаріла функція. Будь ласка, заміні
 msgid ""
 "%s: Obsolete function. Former external functions cannot be used anymore."
 msgstr ""
+"%s: застаріла функція. Зовнішні функції попередніх версій більше не можна "
+"використовувати."
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -132,7 +134,7 @@ msgid "%s: This feature has not been implemented.\n"
 msgstr "%s: цю можливість ще не реалізовано.\n"
 
 msgid "Conflicting linear constraints."
-msgstr ""
+msgstr "Конфлікт лінійних обмежень."
 
 msgid "Recomputing initial guess"
 msgstr "Переобчислюємо початкове припущення"
@@ -160,6 +162,8 @@ msgstr "%s: вироджений жмуток матриць."
 msgid ""
 "%s: Function not defined for type '%s'. Check argument or define function %s."
 msgstr ""
+"%s: для типу «%s» функцію не визначено. Перевірте параметр або визначте "
+"функцію %s."
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

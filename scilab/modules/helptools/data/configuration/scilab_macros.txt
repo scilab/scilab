@@ -798,13 +798,11 @@ NDcost
 OS_Version
 PlotSparse
 ReadHBSparse
-ReadmiMatrix
 ResetFigureDDM
 Sfgrayplot
 Sgrayplot
 TCL_CreateSlave
 TitleLabel
-WritemiMatrix
 abcd
 abinv
 accept_func_default

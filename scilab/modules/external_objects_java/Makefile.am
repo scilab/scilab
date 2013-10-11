@@ -127,6 +127,11 @@ libsciexternal_objects_java_la_sci_gateway_DATA = sci_gateway/external_objects_j
 libsciexternal_objects_java_la_includedir=$(pkgincludedir)
 libsciexternal_objects_java_la_include_HEADERS =
 
+#### external_objects_java : test files ####
+libsciexternal_objects_java_la_testsdir = $(mydatadir)/tests/
+libsciexternal_objects_java_la_tests_DATA = \
+tests/libintl.jar
+
 if GUI
 USEANT=1
 endif

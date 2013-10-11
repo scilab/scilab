@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-26 04:49+0000\n"
+"PO-Revision-Date: 2013-09-15 07:02+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: uk\n"
 
 #, c-format
@@ -358,14 +358,17 @@ msgstr "Зміни"
 msgid "Block Parameters"
 msgstr "Параметри блоку"
 
-msgid "Region to superblock"
-msgstr "Ділянку у суперблок"
+msgid "Selection to superblock"
+msgstr "Позначене у суперблок"
 
 msgid "Superblock mask"
 msgstr "Маска суперблоку"
 
 msgid "Create"
 msgstr "Створити"
+
+msgid "Rename"
+msgstr "Перейменувати"
 
 msgid "Remove"
 msgstr "Вилучити"
@@ -390,6 +393,9 @@ msgstr "Додати до нової категорії"
 
 msgid "Category"
 msgstr "Категорія"
+
+msgid "Enter a name"
+msgstr "Вкажіть назву"
 
 msgid "Dump"
 msgstr "Дамп"
@@ -496,7 +502,7 @@ msgstr "Довідка з Xcos"
 msgid "Block Help"
 msgstr "Довідка щодо блоку"
 
-msgid "Xcos Demos"
+msgid "Xcos Demonstrations"
 msgstr "Демонстрації Xcos"
 
 msgid "About Xcos"
@@ -895,7 +901,7 @@ msgstr "Регулятор температури"
 msgid "Inverted pendulum"
 msgstr "Обернений маятник"
 
-msgid "Lorentz butterfly"
+msgid "Lorenz butterfly"
 msgstr "Метелик Лоренца"
 
 msgid "RLC Circuit"

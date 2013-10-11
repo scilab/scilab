@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-26 05:20+0000\n"
+"PO-Revision-Date: 2013-09-15 06:48+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: uk\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -231,6 +231,56 @@ msgstr ""
 "елементів керування.\n"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Cannot get the data type.\n"
+msgstr "%s: не вдалося визначити тип даних.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot get the integer type for argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot get the data for argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real or integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot get the hypermatrix data type for argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real or integer expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d: мало бути використано тип дійсного або "
+"цілого числа.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип дійсних "
+"значень.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип вектора "
@@ -374,10 +424,6 @@ msgstr ""
 "«boolean».\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
-
-#, c-format
 msgid "%s: Can not get type of input argument #%d.\n"
 msgstr "%s: не вдалося визначити тип вхідного параметра №%d.\n"
 
@@ -394,27 +440,10 @@ msgstr ""
 "рядок.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of boolean expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути вказано матрицю булевих "
-"значень.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of handle expected\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути вказано матрицю з "
-"елементів керування\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A matrix of string expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути вказано матрицю "
 "з рядків.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A list expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип списку.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or handle expected.\n"
@@ -478,6 +507,16 @@ msgid "%s: Wrong size for arguments #%d and #%d.\n"
 msgstr "%s: помилкові розміри параметрів №%d та №%d.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %d-by-%d matrix or a scalar "
+"expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Interpolated shading only works for polygons of size %d or %d\n"
 msgstr ""
 "%s: інтерполяція можлива лише для багатокутників розмірності %d або %d\n"
@@ -497,12 +536,6 @@ msgid "%s: Wrong value for input argument #%d: A valid fontname expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати коректну "
 "назву шрифту.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Non-negative int expected.\n"
@@ -542,8 +575,8 @@ msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути %d, %d або %d.\n"
 
 #, c-format
-msgid "%s : '%s' must be set\n"
-msgstr "%s: слід встановити «%s»\n"
+msgid "%s: Unrecognized input argument '%s'.\n"
+msgstr "%s: невідомий вхідний параметр «%s».\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -565,26 +598,6 @@ msgstr ""
 #, c-format
 msgid "Figure n%d"
 msgstr "Рисунок %d"
-
-#, c-format
-msgid "WARNING: %s\n"
-msgstr "ПОПЕРЕДЖЕННЯ: %s\n"
-
-msgid "xset(\"wshow\") is obsolete."
-msgstr "xset(\"wshow\") є застарілою."
-
-msgid "It will be removed after Scilab 5.4.0."
-msgstr "Цю функцію буде вилучено після випуску версії Scilab 5.4.0."
-
-msgid "Please use drawlater/drawnow instead."
-msgstr "Будь ласка, користуйтеся замість неї drawlater/drawnow."
-
-msgid "xset(\"wwpc\") is obsolete."
-msgstr "xset(\"wwpc\") є застарілою."
-
-#, c-format
-msgid "%s: Unrecognized input argument '%s'.\n"
-msgstr "%s: невідомий вхідний параметр «%s».\n"
 
 #, c-format
 msgid ""
@@ -835,6 +848,22 @@ msgstr ""
 "Помилкове значення властивості «%s»: значення має належати множині {%s}.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: Real matrix expected.\n"
+msgstr ""
+"Помилковий тип властивості «%s»: слід використовувати тип матрицю з дійсних "
+"значень.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: %d elements expected.\n"
+msgstr ""
+"Помилкова розмірність значення властивості «%s»: слід використовувати %d "
+"елементів.\n"
+
+#, c-format
+msgid "Wrong values for '%s' property: values between [0, 1] expected.\n"
+msgstr ""
+
+#, c-format
 msgid "Wrong value for '%s' property: %s or %s expected.\n"
 msgstr ""
 "Помилкове значення властивості «%s»: слід використовувати «%s» або «%s».\n"
@@ -855,18 +884,6 @@ msgid "Wrong size for '%s' property: At most %d elements expected.\n"
 msgstr ""
 "Помилковий розмір значення властивості «%s»: слід використовувати не більше "
 "%d елементів.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: Real matrix expected.\n"
-msgstr ""
-"Помилковий тип властивості «%s»: слід використовувати тип матрицю з дійсних "
-"значень.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: %d elements expected.\n"
-msgstr ""
-"Помилкова розмірність значення властивості «%s»: слід використовувати %d "
-"елементів.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Integer expected.\n"
@@ -986,29 +1003,30 @@ msgstr ""
 "Помилкова розмірність властивості «%s»: значення має належати множині {%s}.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Columns vectors expected.\n"
+msgid "%s: Wrong type for input argument #%d: Columns vectors expected.\n"
 msgstr ""
-"%s: помилковий тип параметра №%d: мало бути використано вектори-стовпчики.\n"
 
 #, c-format
-msgid "%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"
 msgstr ""
-"%s: помилкові розмірності параметрів №%d та №%d: розмірності несумісні.\n"
 
 #, c-format
-msgid "%s: Wrong size for arguments #%d: Incompatible length.\n"
-msgstr "%s: помилкова розмірність параметра №%d: розмірності несумісні.\n"
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for arguments #%d, #%d and #%d: Incompatible length.\n"
+msgid "%s: Wrong size for input argument #%d: Incompatible length.\n"
 msgstr ""
-"%s: помилкові розмірності параметрів №%d, №%d та №%d: розмірності "
-"несумісні.\n"
 
 #, c-format
-msgid "%s: Wrong size for arguments #%d and #%d: Should be >= %d.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d, #%d and #%d: Incompatible lengths.\n"
 msgstr ""
-"%s: помилкові розміри параметрів №%d та №%d: вони мають бути >= %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Should be >= %d.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -1019,24 +1037,36 @@ msgstr ""
 "вектор розмірності %d.\n"
 
 #, c-format
-msgid "Can not change the %s of graphic object: its type is %s.\n"
-msgstr "Не вдалося змінити %s графічного об’єкта: він належить до типу %s.\n"
+msgid "Cannot change the %s of graphic object: its type is %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value: Vector is not monotonous.\n"
 msgstr ""
 "%s: помилкове значення: координати вектора не є монотонною послідовністю.\n"
 
-msgid "Wrong type for input argument: Tlist expected.\n"
-msgstr "Помилковий тип вхідного параметра: слід використовувати Tlist.\n"
+msgid "Wrong type for input argument: A tlist expected.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong size for input argument: %d or %d expected.\n"
 msgstr "Помилкова розмірність вхідного параметра: мало бути %d або %d.\n"
 
 #, c-format
-msgid "Incompatible type for property %s.\n"
-msgstr "Несумісний тип властивості %s.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: The number of rows must be a multiple "
+"of 3.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: The number of rows must be a multiple "
+"of 4.\n"
+msgstr ""
+
+#, c-format
+msgid "Incompatible type for property ''%s''.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be '%s'.\n"
@@ -1062,6 +1092,13 @@ msgstr ""
 "номер кольору.\n"
 
 #, c-format
+msgid "Incompatible type for property %s.\n"
+msgstr "Несумісний тип властивості %s.\n"
+
+msgid "Invalid image type for this handle.\n"
+msgstr "Некоректний тип зображення для цього елемента керування.\n"
+
+#, c-format
 msgid "You must first specify an %s for this object.\n"
 msgstr "Для цього об’єкта вам слід спочатку визначити %s.\n"
 
@@ -1072,6 +1109,14 @@ msgid ""
 msgstr ""
 "Кількість стовпчиків у векторі кольорів має відповідати кількості точок, що "
 "визначають лінію (тобто має дорівнювати %d або %d).\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: 'directional' or 'point' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr "ПОПЕРЕДЖЕННЯ: %s\n"
 
 msgid "{0,1} values are equivalent for line_style property."
 msgstr "Значення {0,1} є еквівалентними для властивості line_style."
@@ -1308,6 +1353,9 @@ msgstr "Позначки даних"
 
 msgid "LaTeX/MathML"
 msgstr "LaTeX/MathML"
+
+msgid "Lighting"
+msgstr ""
 
 msgid "Misc"
 msgstr "Інше"
@@ -1616,12 +1664,6 @@ msgstr ""
 "%s: помилкові значення вхідного параметра №%d: мало бути вказано «%s».\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип дійсних "
-"значень.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr ""
@@ -1763,12 +1805,6 @@ msgstr "Режим декільокх позначок даних"
 msgid "Unique datatip mode"
 msgstr "Режим єдиної системи позначок даних"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати елемент "
-"керування «%s».\n"
-
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: знайдено порожнє ієрархічне меню."
 
@@ -1789,6 +1825,12 @@ msgstr "вгорі праворуч"
 
 msgid "Select tip orientation"
 msgstr "Вибрати орієнтацію позначки"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати елемент "
+"керування «%s».\n"
 
 msgid "The selected file cannot be executed"
 msgstr "Вказаний файл неможливо виконати"
@@ -1994,7 +2036,7 @@ msgstr ""
 
 #, c-format
 msgid "%s:  Wrong number of input arguments: %d expected.\n"
-msgstr ""
+msgstr "%s: помилкова кількість параметрів: мало бути %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument.\n"

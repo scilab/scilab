@@ -115,6 +115,9 @@ void createScilabTMPDIR(void)
     if ( alreadyCreated == 0 )
     {
         static char bufenv[PATH_MAX + 16];
+        char *tmp_dir_strdup[PATH_MAX];
+        char *res = NULL;
+
         alreadyCreated++;
         /* If the env variable TMPDIR is set, honor this preference */
         if ((tmpdir = getenv("TMPDIR")) != NULL &&
@@ -134,8 +137,7 @@ void createScilabTMPDIR(void)
 
         /* XXXXXX will be randomized by mkdtemp */
 
-        char *tmp_dir_strdup[PATH_MAX];
-        char *res = realpath(tmp_dir, tmp_dir_strdup);
+        res = realpath(tmp_dir, tmp_dir_strdup);
         if (!res)
         {
             fprintf(stderr, _("Warning: Could not resolve the realpath of %s.\n"), tmp_dir);

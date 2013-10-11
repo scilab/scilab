@@ -25,6 +25,12 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_moga(ga_f, pop
 
     if ~isdef("ga_f","local") then
         error(gettext("optim_moga: ga_f is mandatory"));
+    else
+        if typeof(ga_f)=="list" then
+            deff("y=_ga_f(x)","y=ga_f(1)(x, ga_f(2:$))");
+        else
+            deff("y=_ga_f(x)","y=ga_f(x)");
+        end
     end
 
     if ~isdef("pop_size","local") then
@@ -59,7 +65,7 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_moga(ga_f, pop
     Pop = codage_func(Pop,"code",param);
 
     for i=1:length(Pop)
-        MO_FObj_Pop(i,:) = ga_f(Pop(i));
+        MO_FObj_Pop(i,:) = _ga_f(Pop(i));
     end
 
     // Compute the domination rank
@@ -145,8 +151,8 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_moga(ga_f, pop
         // Computation of the objective functions
         //
         for j=1:length(Indiv1)
-            if ToCompute_I1(j) then MO_FObj_Indiv1(j,:) = ga_f(Indiv1(j)); end
-            if ToCompute_I2(j) then MO_FObj_Indiv2(j,:) = ga_f(Indiv2(j)); end
+            if ToCompute_I1(j) then MO_FObj_Indiv1(j,:) = _ga_f(Indiv1(j)); end
+            if ToCompute_I2(j) then MO_FObj_Indiv2(j,:) = _ga_f(Indiv2(j)); end
         end
 
         // Reinit ToCompute lists

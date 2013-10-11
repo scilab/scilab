@@ -24,6 +24,9 @@
 #include "strdup_windows.h"
 #endif
 #include "fscanfMat.h"
+
+/*--------------------------------------------------------------------------*/
+static void freeVar(char** filename, char** expandedFilename, char** Format, char** separator);
 /*--------------------------------------------------------------------------*/
 int sci_fscanfMat(char *fname, unsigned long fname_len)
 {
@@ -58,44 +61,20 @@ int sci_fscanfMat(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        sciErr = getVarType(pvApiCtx, piAddressVarThree, &iType3);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
-            return 0;
-        }
-
-        if (iType3 != sci_strings)
+        if (isStringType(pvApiCtx, piAddressVarThree) == 0 || isScalar(pvApiCtx, piAddressVarThree) == 0)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
             return 0;
         }
 
-        sciErr = getVarDimension(pvApiCtx, piAddressVarThree, &m3, &n3);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
-            return 0;
-        }
-
-        if ( (m3 != n3) && (n3 != 1) )
-        {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 3);
-            return 0;
-        }
-
         if (getAllocatedSingleString(pvApiCtx, piAddressVarThree, &separator))
         {
+            freeVar(&filename, &expandedFilename, &Format, &separator);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
+
         bIsDefaultSeparator = FALSE;
-    }
-    else
-    {
-        bIsDefaultSeparator = TRUE;
     }
 
     if (Rhs >= 2)
@@ -107,11 +86,7 @@ int sci_fscanfMat(char *fname, unsigned long fname_len)
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
         if (sciErr.iErr)
         {
-            if (separator)
-            {
-                FREE(separator);
-                separator = NULL;
-            }
+            freeVar(&filename, &expandedFilename, &Format, &separator);
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
@@ -120,58 +95,22 @@ int sci_fscanfMat(char *fname, unsigned long fname_len)
         sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
         if (sciErr.iErr)
         {
-            if (separator)
-            {
-                FREE(separator);
-                separator = NULL;
-            }
+            freeVar(&filename, &expandedFilename, &Format, &separator);
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
-        if (iType2 != sci_strings)
+        if (isStringType(pvApiCtx, piAddressVarTwo) == 0 || isScalar(pvApiCtx, piAddressVarTwo) == 0)
         {
-            if (separator)
-            {
-                FREE(separator);
-                separator = NULL;
-            }
+            freeVar(&filename, &expandedFilename, &Format, &separator);
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
-            return 0;
-        }
-
-        sciErr = getVarDimension(pvApiCtx, piAddressVarTwo, &m2, &n2);
-        if (sciErr.iErr)
-        {
-            if (separator)
-            {
-                FREE(separator);
-                separator = NULL;
-            }
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-            return 0;
-        }
-
-        if ( (m2 != n2) && (n2 != 1) )
-        {
-            if (separator)
-            {
-                FREE(separator);
-                separator = NULL;
-            }
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
             return 0;
         }
 
         if (getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &Format))
         {
-            if (separator)
-            {
-                FREE(separator);
-                separator = NULL;
-            }
+            freeVar(&filename, &expandedFilename, &Format, &separator);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
@@ -184,101 +123,22 @@ int sci_fscanfMat(char *fname, unsigned long fname_len)
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if (sciErr.iErr)
     {
-        if (separator)
-        {
-            FREE(separator);
-            separator = NULL;
-        }
-        if (Format)
-        {
-            FREE(Format);
-            Format = NULL;
-        }
+        freeVar(&filename, &expandedFilename, &Format, &separator);
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
-    sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-    if (sciErr.iErr)
+    if (isStringType(pvApiCtx, piAddressVarOne) == 0 || isScalar(pvApiCtx, piAddressVarOne) == 0)
     {
-        if (separator)
-        {
-            FREE(separator);
-            separator = NULL;
-        }
-        if (Format)
-        {
-            FREE(Format);
-            Format = NULL;
-        }
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
-    }
-
-    if (iType1 != sci_strings)
-    {
-        if (separator)
-        {
-            FREE(separator);
-            separator = NULL;
-        }
-        if (Format)
-        {
-            FREE(Format);
-            Format = NULL;
-        }
+        freeVar(&filename, &expandedFilename, &Format, &separator);
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
-        return 0;
-    }
-
-    sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
-    if (sciErr.iErr)
-    {
-        if (separator)
-        {
-            FREE(separator);
-            separator = NULL;
-        }
-        if (Format)
-        {
-            FREE(Format);
-            Format = NULL;
-        }
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
-    }
-
-    if ( (m1 != n1) && (n1 != 1) )
-    {
-        if (separator)
-        {
-            FREE(separator);
-            separator = NULL;
-        }
-        if (Format)
-        {
-            FREE(Format);
-            Format = NULL;
-        }
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
 
     if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &filename))
     {
-        if (separator)
-        {
-            FREE(separator);
-            separator = NULL;
-        }
-        if (Format)
-        {
-            FREE(Format);
-            Format = NULL;
-        }
+        freeVar(&filename, &expandedFilename, &Format, &separator);
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
@@ -307,134 +167,133 @@ int sci_fscanfMat(char *fname, unsigned long fname_len)
         results = fscanfMat(expandedFilename, Format, separator);
     }
 
-    if (expandedFilename)
+    if (results == NULL)
     {
-        FREE(expandedFilename);
-        expandedFilename = NULL;
-    }
-    if (Format)
-    {
-        FREE(Format);
-        Format = NULL;
-    }
-    if (separator)
-    {
-        FREE(separator);
-        separator = NULL;
+        freeVar(&filename, &expandedFilename, &Format, &separator);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
     }
 
-    if (results)
+    freeVar(NULL, &expandedFilename, &Format, &separator);
+    switch (results->err)
     {
-        switch (results->err)
+        case FSCANFMAT_NO_ERROR:
         {
-            case FSCANFMAT_NO_ERROR:
+            if ( (results->values) && (results->m > 0) && (results->n > 0))
             {
-                if ( (results->values) && (results->m > 0) && (results->n > 0))
+                sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, results->m, results->n, results->values);
+                if (sciErr.iErr)
                 {
-                    sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, results->m, results->n, results->values);
+                    FREE(filename);
+                    freeFscanfMatResult(results);
+                    printError(&sciErr, 0);
+                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    return 0;
+                }
+            }
+            else
+            {
+                if (createEmptyMatrix(pvApiCtx, Rhs + 1))
+                {
+                    FREE(filename);
+                    freeFscanfMatResult(results);
+                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    return 0;
+                }
+            }
+
+            LhsVar(1) = Rhs + 1;
+
+            if (Lhs == 2)
+            {
+                if (results->text)
+                {
+                    sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, results->sizeText, 1, results->text);
                     if (sciErr.iErr)
                     {
+                        FREE(filename);
                         freeFscanfMatResult(results);
-                        results = NULL;
                         printError(&sciErr, 0);
+                        Scierror(999, _("%s: Memory allocation error.\n"), fname);
                         return 0;
-                    }
-                    else
-                    {
-                        LhsVar(1) = Rhs + 1;
                     }
                 }
                 else
                 {
-                    if (createEmptyMatrix(pvApiCtx, Rhs + 1) == 0)
+                    if (createSingleString(pvApiCtx, Rhs + 2, ""))
                     {
-                        LhsVar(1) = Rhs + 1;
-                    }
-                }
-
-                if (Lhs == 2)
-                {
-                    if (results->text)
-                    {
-                        sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, results->sizeText, 1, results->text);
-
+                        FREE(filename);
                         freeFscanfMatResult(results);
-                        results = NULL;
-
-                        if (sciErr.iErr)
-                        {
-                            printError(&sciErr, 0);
-                            return 0;
-                        }
-                        else
-                        {
-                            LhsVar(2) = Rhs + 2;
-                        }
-                    }
-                    else
-                    {
-                        char *emptryStr = strdup("");
-                        if (emptryStr)
-                        {
-                            createSingleString(pvApiCtx, Rhs + 2, emptryStr);
-                            FREE(emptryStr);
-                            emptryStr = NULL;
-                        }
-                        LhsVar(2) = Rhs + 2;
+                        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                        return 0;
                     }
                 }
 
-                freeFscanfMatResult(results);
-                results = NULL;
+                LhsVar(2) = Rhs + 2;
+            }
 
-                if (filename)
-                {
-                    FREE(filename);
-                    filename = NULL;
-                }
-
-                PutLhsVar();
-            }
-            break;
-            case FSCANFMAT_MOPEN_ERROR:
-            {
-                Scierror(999, _("%s: can not open file %s.\n"), fname, filename);
-            }
-            break;
-            case FSCANFMAT_READLINES_ERROR:
-            {
-                Scierror(999, _("%s: can not read file %s.\n"), fname, filename);
-            }
-            break;
-            case FSCANFMAT_FORMAT_ERROR:
-            {
-                Scierror(999, _("%s: Invalid format.\n"), fname);
-            }
-            break;
-            case FSCANFMAT_MEMORY_ALLOCATION:
-            {
-                Scierror(999, _("%s: Memory allocation error.\n"), fname);
-            }
-            break;
-            default:
-            case FSCANFMAT_ERROR:
-            {
-                Scierror(999, _("%s: error.\n"), fname);
-            }
-            break;
+            freeFscanfMatResult(results);
+            FREE(filename);
+            PutLhsVar();
+            return 0;
         }
-    }
-    else
-    {
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        break;
+        case FSCANFMAT_MOPEN_ERROR:
+        {
+            Scierror(999, _("%s: can not open file %s.\n"), fname, filename);
+        }
+        break;
+        case FSCANFMAT_READLINES_ERROR:
+        {
+            Scierror(999, _("%s: can not read file %s.\n"), fname, filename);
+        }
+        break;
+        case FSCANFMAT_FORMAT_ERROR:
+        {
+            Scierror(999, _("%s: Invalid format.\n"), fname);
+        }
+        break;
+        case FSCANFMAT_MEMORY_ALLOCATION:
+        {
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        }
+        break;
+        default:
+        case FSCANFMAT_ERROR:
+        {
+            Scierror(999, _("%s: error.\n"), fname);
+        }
+        break;
     }
 
-    if (filename)
-    {
-        FREE(filename);
-        filename = NULL;
-    }
-
+    FREE(filename);
+    freeFscanfMatResult(results);
     return 0;
 }
 /*--------------------------------------------------------------------------*/
+static void freeVar(char** filename, char** expandedFilename, char** Format, char** separator)
+{
+    if (filename && *filename)
+    {
+        FREE(*filename);
+        *filename = NULL;
+    }
+
+    if (expandedFilename && *expandedFilename)
+    {
+        FREE(*expandedFilename);
+        *expandedFilename = NULL;
+    }
+
+    if (Format && *Format)
+    {
+        FREE(*Format);
+        *Format = NULL;
+    }
+
+    if (separator && *separator)
+    {
+        FREE(*separator);
+        *separator = NULL;
+    }
+}

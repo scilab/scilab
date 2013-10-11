@@ -17,44 +17,44 @@
 
 namespace org_modules_xml
 {
-    VariableScope *XMLObject::scope = 0;
+VariableScope *XMLObject::scope = 0;
 
-      XMLObject::XMLObject()
+XMLObject::XMLObject(): id(0)
+{
+    if (!scope)
     {
-        if (!scope)
-        {
-            scope = new VariableScope(SCOPE_SIZE);
-        }
-        scilabType = -1;
+        scope = new VariableScope(SCOPE_SIZE);
     }
+    scilabType = -1;
+}
 
-    XMLObject *XMLObject::getVariableFromId(int id)
+XMLObject *XMLObject::getVariableFromId(int id)
+{
+    if (!scope)
     {
-        if (!scope)
-        {
-            return 0;
-        }
-
-        return scope->getVariableFromId(id);
-    }
-
-    int XMLObject::createOnStack(int pos, void *pvApiCtx) const
-    {
-        if (scilabType != -1)
-        {
-            return createXMLObjectAtPos(scilabType, pos, id, pvApiCtx);
-        }
-
         return 0;
     }
 
-    void XMLObject::resetScope()
-    {
-        if (scope)
-        {
-            delete scope;
+    return scope->getVariableFromId(id);
+}
 
-            scope = 0;
-        }
+int XMLObject::createOnStack(int pos, void *pvApiCtx) const
+{
+    if (scilabType != -1)
+    {
+        return createXMLObjectAtPos(scilabType, pos, id, pvApiCtx);
     }
+
+    return 0;
+}
+
+void XMLObject::resetScope()
+{
+    if (scope)
+    {
+        delete scope;
+
+        scope = 0;
+    }
+}
 }

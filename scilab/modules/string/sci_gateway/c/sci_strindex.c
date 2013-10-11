@@ -232,7 +232,6 @@ int sci_strindex(char *fname, unsigned long fname_len)
                                 {
                                     wcOutput_Start = (int)wcslen(wcstrOutput_Start);
                                     FREE(wcstrOutput_Start);
-                                    wcstrOutput_Start = NULL;
                                 }
                                 else
                                 {
@@ -243,23 +242,14 @@ int sci_strindex(char *fname, unsigned long fname_len)
                                 {
                                     wcOutput_End = (int)wcslen(wcstrOutput_End);
                                     FREE(wcstrOutput_End);
-                                    wcstrOutput_End = NULL;
                                 }
                                 else
                                 {
                                     wcOutput_End = 0;
                                 }
 
-                                if (strOutput_Start)
-                                {
-                                    FREE(strOutput_Start);
-                                    strOutput_Start = NULL;
-                                }
-                                if (strOutput_End)
-                                {
-                                    FREE(strOutput_End);
-                                    strOutput_End = NULL;
-                                }
+                                FREE(strOutput_Start);
+                                FREE(strOutput_End);
 
                                 /*adding the answer into the outputmatrix*/
                                 values[nbValues].data = wcOutput_Start + wcstart_point + 1;

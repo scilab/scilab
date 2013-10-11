@@ -12,10 +12,8 @@
 package org.scilab.forge.scirenderer.implementation.jogl.texture;
 
 import com.jogamp.opengl.util.texture.TextureIO;
-import com.jogamp.opengl.util.awt.TextureRenderer;
 import com.jogamp.opengl.util.texture.TextureCoords;
 
-import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvas;
@@ -29,18 +27,14 @@ import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationManager;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 
-import javax.media.opengl.GLContext;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
 import javax.media.opengl.GL2ES1;
 import javax.media.opengl.GL2GL3;
 import javax.media.opengl.GLProfile;
-import java.awt.AlphaComposite;
 import java.awt.Dimension;
-import java.awt.Graphics2D;
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.util.Collection;
 import java.util.HashSet;
@@ -52,7 +46,6 @@ import java.util.Set;
 public class JoGLTextureManager implements TextureManager {
 
     private final Set<JoGLTexture> allTextures = new HashSet<JoGLTexture>();
-    private final Set<JoGLTexture> toDispose = new HashSet<JoGLTexture>();
     JoGLCanvas canvas;
 
     public JoGLTextureManager(JoGLCanvas canvas) {
@@ -142,9 +135,7 @@ public class JoGLTextureManager implements TextureManager {
     public void dispose(Texture texture) {
         if ((texture instanceof JoGLTexture) && (allTextures.contains((JoGLTexture) texture))) {
             allTextures.remove((JoGLTexture) texture);
-            synchronized (toDispose) {
-                toDispose.add((JoGLTexture) texture);
-            }
+            ((JoGLTexture) texture).dispose();
         }
     }
 
@@ -160,6 +151,7 @@ public class JoGLTextureManager implements TextureManager {
         private double tfactor = 1;
         private ByteBuffer buffer;
         private TextureDataProvider.ImageType previousType;
+        private JoGLDrawingTools drawingTools;
 
         /**
          * Default constructor.
@@ -177,6 +169,10 @@ public class JoGLTextureManager implements TextureManager {
          * @throws SciRendererException if the texture is invalid.
          */
         public synchronized void bind(JoGLDrawingTools drawingTools) throws SciRendererException {
+            if (this.drawingTools == null) {
+                this.drawingTools = this.drawingTools;
+            }
+
             GL2 gl = drawingTools.getGl().getGL2();
             if (isValid()) {
                 checkData(drawingTools);
@@ -216,16 +212,6 @@ public class JoGLTextureManager implements TextureManager {
          * @throws SciRendererException if the texture is too big.
          */
         private synchronized void checkData(JoGLDrawingTools drawingTools) throws SciRendererException {
-            synchronized (toDispose) {
-                if (!toDispose.isEmpty()) {
-                    final GL2 gl = drawingTools.getGl().getGL2();
-                    for (JoGLTexture jt : toDispose) {
-                        jt.releaseTextures(gl);
-                    }
-                    toDispose.clear();
-                }
-            }
-
             if (isValid() && !upToDate) {
                 GL2 gl = drawingTools.getGl().getGL2();
 
@@ -316,6 +302,12 @@ public class JoGLTextureManager implements TextureManager {
                     }
                 }
                 textureData = null;
+            }
+        }
+
+        public void dispose() {
+            if (drawingTools != null) {
+                releaseTextures(drawingTools.getGl().getGL2());
             }
         }
 
@@ -674,7 +666,7 @@ public class JoGLTextureManager implements TextureManager {
                     break;
                 case RGBA:
                     this.internalFormat = GL2.GL_RGBA;
-                    setPixelFormat(GL2.GL_RGBA);
+                    setPixelFormat(GL.GL_RGBA);
                     setPixelType(GL2.GL_UNSIGNED_INT_8_8_8_8);
                     this.alignment = 4;
                     break;

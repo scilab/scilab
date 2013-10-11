@@ -216,16 +216,8 @@ int sci_regexp(char *fname, unsigned long fname_len)
                                 wcOutput_End = 0;
                             }
 
-                            if (strOutput_Start)
-                            {
-                                FREE(strOutput_Start);
-                                strOutput_Start = NULL;
-                            }
-                            if (strOutput_End)
-                            {
-                                FREE(strOutput_End);
-                                strOutput_End = NULL;
-                            }
+                            FREE(strOutput_Start);
+                            FREE(strOutput_End);
 
                             /*adding the answer into the outputmatrix*/
                             values_start[nbValues_start] = Output_Start + start_point + 1;
@@ -390,9 +382,10 @@ int sci_regexp(char *fname, unsigned long fname_len)
             freeArrayOfString(pstCapturedString[i], piCapturedStringCount[i]);
         }
 
-        FREE(pstCapturedString);
-        FREE(piCapturedStringCount);
     }
+
+    FREE(pstCapturedString);
+    FREE(piCapturedStringCount);
 
     freeArrayOfString(Str, mn);
     freeArrayOfString(Str2, mn2);

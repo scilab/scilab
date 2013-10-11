@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-20 20:13+0000\n"
+"PO-Revision-Date: 2013-09-24 17:02+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -183,13 +183,13 @@ msgid "Linking %s.\n"
 msgstr "Propojení %s.\n"
 
 msgid "Calling a C function from Scilab.\n"
-msgstr ""
+msgstr "Volání funkce C pomocí Scilab.\n"
 
 msgid "Calling ilib_for_link to build C function.\n"
-msgstr ""
+msgstr "Volání ilib_for_link pro sestavení funkce C.\n"
 
 msgid "Calling C function. Z = X+Y"
-msgstr ""
+msgstr "Volání funkce C. Z = X+Y"
 
 #, c-format
 msgid "with X = %d"
@@ -201,16 +201,16 @@ msgstr "kde Y = %d"
 
 #, c-format
 msgid "Result Z = %d"
-msgstr ""
+msgstr "Výsledek Z = %d"
 
 msgid "Calling a Fortran subroutine from Scilab.\n"
-msgstr ""
+msgstr "Volání podprogramu Fortran pomocí Scilab.\n"
 
 msgid "Calling ilib_for_link to build a Fortran subroutine.\n"
-msgstr ""
+msgstr "Volání ilib_for_link pro sestavení podprogramu Fortran.\n"
 
 msgid "Calling Fortran subroutine. Z = X+Y"
-msgstr ""
+msgstr "Volání podprogramu Fotran. Z = X+Y"
 
 msgid "Dynamic link"
 msgstr "Dynamické propojení"
@@ -238,9 +238,12 @@ msgstr "Intel Fortran Compiler 9, 10, 11 nebo 12 nebyl nalezen."
 msgid ""
 "Microsoft Visual Studio C 2008 (or more recent) x64 Compiler not installed."
 msgstr ""
+"Kompilátor Microsoft Visual Studio C 2008 (nebo novější) pro platformu x64 "
+"není nainstalován."
 
 msgid "Microsoft Visual Studio C 2008 (or more recent) Compiler not found."
 msgstr ""
+"Kompilátor Microsoft Visual Studio C 2008 (nebo novější) není nainstalován."
 
 #, c-format
 msgid "%s: This feature has been implemented for Windows.\n"

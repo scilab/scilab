@@ -95,21 +95,22 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@XCOS_TRUE@am__append_1 = scicos_blocks
-@MPI_TRUE@am__append_2 = mpi
+@GUI_TRUE@am__append_1 = external_objects_java
+@XCOS_TRUE@am__append_2 = scicos_blocks
+@MPI_TRUE@am__append_3 = mpi
 
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
-@JAVASCI_TRUE@am__append_3 = javasci
-@MPI_TRUE@am__append_4 = $(top_builddir)/modules/mpi/libscimpi.la
-@GUI_TRUE@am__append_5 = $(GUI_LIBS)	$(top_builddir)/modules/types/libscitypes.la
-@GUI_FALSE@am__append_6 = $(NO_GUI_LIBS)
+@JAVASCI_TRUE@am__append_4 = javasci
+@MPI_TRUE@am__append_5 = $(top_builddir)/modules/mpi/libscimpi.la
+@GUI_TRUE@am__append_6 = $(GUI_LIBS)	$(top_builddir)/modules/types/libscitypes.la
+@GUI_FALSE@am__append_7 = $(NO_GUI_LIBS)
 
 # This should never be used in production. It forces the explicit link
 # between libscilab and some "on-the-fly" loaded libraries.
 # It has been added to make sure that the full link is correctly done
 # and all symbols resolved.
-@FORCE_LINK_TRUE@am__append_7 = $(ENGINE_LIBS_DYNAMIC_LOAD)
+@FORCE_LINK_TRUE@am__append_8 = $(ENGINE_LIBS_DYNAMIC_LOAD)
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/config/mkinstalldirs
@@ -177,8 +178,8 @@ libscilab_cli_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(AM_CFLAGS) $(CFLAGS) $(libscilab_cli_la_LDFLAGS) $(LDFLAGS) \
 	-o $@
-libscilab_la_DEPENDENCIES = $(am__append_5) $(am__append_6) \
-	$(am__append_7) $(top_builddir)/modules/libscilab-cli.la
+libscilab_la_DEPENDENCIES = $(am__append_6) $(am__append_7) \
+	$(am__append_8) $(top_builddir)/modules/libscilab-cli.la
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
 libscilab_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -485,6 +486,7 @@ STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
+SWIG_SCILAB = @SWIG_SCILAB@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
 TK_INC_PATH = @TK_INC_PATH@
@@ -578,8 +580,8 @@ SUBDIRS = prebuildjava fileio mexlib functions parameters boolean \
 	genetic_algorithms simulated_annealing matio atoms hdf5 graph \
 	xcos scinotes parallel modules_manager ui_data history_browser \
 	preferences xml types external_objects uiwidget \
-	external_objects_java $(am__append_1) scicos $(am__append_2) . \
-	$(am__append_3)
+	$(am__append_1) $(am__append_2) scicos $(am__append_3) . \
+	$(am__append_4)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -604,7 +606,8 @@ GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/preferences/libscipreferences.la \
 	$(top_builddir)/modules/uiwidget/libsciuiwidget.la \
-	$(top_builddir)/modules/external_objects_java/libsciexternal_objects_java.la
+	$(top_builddir)/modules/external_objects_java/libsciexternal_objects_java.la \
+	$(top_builddir)/modules/helptools/libscihelptools.la
 
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
@@ -653,7 +656,7 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/xml/libscixml.la \
 	$(top_builddir)/modules/external_objects/libsciexternal_objects.la \
 	$(top_builddir)/modules/preferences/libscipreferences-cli.la \
-	$(am__append_4)
+	$(am__append_5)
 
 # These libraries are loaded dynamically from Scilab.
 ENGINE_LIBS_DYNAMIC_LOAD = \
@@ -672,14 +675,15 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/matio/libscimatio.la \
 	$(top_builddir)/modules/helptools/libscihelptools.la \
 	$(top_builddir)/modules/parallel/libsciparallel.la \
-	$(top_builddir)/modules/uiwidget/libsciuiwidget.la
+	$(top_builddir)/modules/uiwidget/libsciuiwidget.la \
+	$(top_builddir)/modules/parallel/libsciparallel.la
 
 
 # Core modules
 
 # Core modules
-libscilab_la_LIBADD = $(am__append_5) $(am__append_6) $(OTHER_LIBS) \
-	$(EXTERNAL_LIBS) $(am__append_7) \
+libscilab_la_LIBADD = $(am__append_6) $(am__append_7) $(OTHER_LIBS) \
+	$(EXTERNAL_LIBS) $(am__append_8) \
 	$(top_builddir)/modules/libscilab-cli.la
 
 ################## libscilab-cli  ##################

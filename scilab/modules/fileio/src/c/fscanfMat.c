@@ -460,6 +460,7 @@ static char **splitLine(char *str, char *sep, int *toks, char meta)
 
                         if (retstr[curr_str] == NULL)
                         {
+                            freeArrayOfString(retstr, curr_str);
                             *toks = 0;
                             return NULL;
                         }

@@ -25,6 +25,7 @@ extern "C"
 #include "h5_readDataFromFile.h"
 #include "h5_attributeConstants.h"
 #include "expandPathVariable.h"
+#include "freeArrayOfString.h"
 }
 
 #include "listvar_in_hdf5_v1.hxx"
@@ -82,6 +83,11 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
 
     if (getAllocatedSingleString(pvApiCtx, piAddr, &pstFile))
     {
+        if (pstFile)
+        {
+            FREE(pstFile);
+        }
+
         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
         return 1;
     }
@@ -143,8 +149,7 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
                 break;
             }
 
-            strcpy(pInfo[i].varName, pstVarNameList[i]);
-            FREE(pstVarNameList[i]);
+            strncpy(pInfo[i].varName, pstVarNameList[i], sizeof(pInfo[i].varName) - 1);
             pInfo[i].iSize = 0;
             b = read_data(iDataSetId, 0, NULL, &pInfo[i]) == false;
             if (b)
@@ -158,7 +163,7 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
             }
         }
 
-        FREE(pstVarNameList);
+        freeArrayOfString(pstVarNameList, iNbItem);
     }
     else
     {
@@ -186,6 +191,7 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
     FREE(pstVarName);
     if (sciErr.iErr)
     {
+        FREE(pInfo);
         printError(&sciErr, 0);
         return 1;
     }
@@ -200,6 +206,7 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            FREE(pInfo);
             return 1;
         }
 
@@ -231,7 +238,7 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
         if (Lhs > 3)
         {
             //4th Lhs
-            double* pdblSize;
+            double* pdblSize = NULL;
             sciErr = allocMatrixOfDouble(pvApiCtx, nbIn + 4, iNbItem, 1, &pdblSize);
             for (int i = 0 ; i < iNbItem ; i++)
             {

@@ -74,11 +74,11 @@ int sci_code2str(char *fname, unsigned long fname_len)
 
     if (numCol != 0)
     {
-        Output_Matrix[0] = (char*)MALLOC(sizeof(char*) * (numCol));
+        Output_Matrix[0] = (char*)MALLOC(sizeof(char) * (numCol));
     }
     else
     {
-        Output_Matrix[0] = (char*)MALLOC(sizeof(char*));
+        Output_Matrix[0] = (char*)MALLOC(sizeof(char));
     }
 
     if (Output_Matrix[0] == NULL)

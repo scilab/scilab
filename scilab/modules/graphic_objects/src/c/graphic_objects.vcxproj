@@ -251,6 +251,7 @@
     <ClCompile Include="..\cpp\HandleManagement.cpp" />
     <ClCompile Include="..\cpp\MatPlotDecomposer.cpp" />
     <ClCompile Include="..\cpp\NgonGridMatplotDataDecomposer.cpp" />
+    <ClCompile Include="..\cpp\NormalGenerator.cpp" />
     <ClCompile Include="..\cpp\ScilabView.cpp" />
     <ClCompile Include="..\cpp\Texture.cpp" />
     <ClCompile Include="..\cpp\Triangulator.cpp" />
@@ -263,6 +264,8 @@
     <ClCompile Include="..\cpp\dataModel.cpp" />
     <ClCompile Include="..\cpp\DecompositionUtils.cpp" />
     <ClCompile Include="..\cpp\deleteGraphicObject.cpp" />
+    <ClCompile Include="..\jni\ObjectData_wrap.c" />
+    <ClCompile Include="..\jni\PolylineData_wrap.c" />
     <ClCompile Include="..\jni\GraphicObjectBuilder.cpp" />
     <ClCompile Include="..\jni\ScilabNativeView_wrap.c" />
     <ClCompile Include="DllmainGraphic_objects.c" />
@@ -281,6 +284,9 @@
     <ClCompile Include="..\cpp\TriangleMeshData.cpp" />
     <ClCompile Include="..\cpp\TriangleMeshFecData.cpp" />
     <ClCompile Include="..\cpp\TriangleMeshFecDataDecomposer.cpp" />
+    <ClCompile Include="..\jni\SurfaceData_wrap.c" />
+    <ClCompile Include="..\cpp\createObjectData.cpp" />
+    <ClCompile Include="..\cpp\pickSurface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\Fac3DColorComputer.hxx" />
@@ -312,6 +318,7 @@
     <ClInclude Include="..\..\includes\NgonGridGrayplotDataDecomposer.hxx" />
     <ClInclude Include="..\..\includes\NgonGridMatplotData.hxx" />
     <ClInclude Include="..\..\includes\NgonPolylineData.hxx" />
+    <ClInclude Include="..\..\includes\NormalGenerator.hxx" />
     <ClInclude Include="..\..\includes\Plot3DDecomposer.hxx" />
     <ClInclude Include="..\..\includes\PolylineDecomposer.hxx" />
     <ClInclude Include="..\..\includes\TriangleMeshData.hxx" />
@@ -319,6 +326,9 @@
     <ClInclude Include="..\jni\GraphicObjectBuilder.hxx" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\jni\ObjectData.i" />
+    <None Include="..\jni\PolylineData.i" />
+    <None Include="..\jni\SurfaceData.i" />
     <None Include="..\jni\ScilabNativeView.i" />
     <None Include="core_import.def" />
     <None Include="..\jni\DataLoader.i" />

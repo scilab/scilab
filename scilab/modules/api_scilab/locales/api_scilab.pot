@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-07-25 15:36+0100\n"
+"Revision-Date: 2013-09-27 17:14+0100\n"
 
 # File: src/cpp/api_boolean.cpp, line: 37
 # File: src/cpp/api_boolean_sparse.cpp, line: 35
@@ -57,7 +57,7 @@ msgstr ""
 # File: src/cpp/api_string.cpp, line: 63
 # File: src/cpp/api_string.cpp, line: 309
 #, c-format
-msgid "%s: Invalid argument type, %s excepted"
+msgid "%s: Invalid argument type, %s expected"
 msgstr ""
 
 #
@@ -364,7 +364,7 @@ msgstr ""
 #
 # File: src/cpp/api_common.cpp, line: 235
 #, c-format
-msgid "%s: matrix argument excepted"
+msgid "%s: matrix argument expected"
 msgstr ""
 
 #

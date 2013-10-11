@@ -102,7 +102,7 @@ void InitFigureModel(char *pfiguremdlUID)
     int defaultBackground = -2;
     int m = NUMCOLORS_SCI;
     int i = 0;
-    double *pdblColorMap = MALLOC(m * 3 * sizeof(double));
+    double *pdblColorMap = (double*)MALLOC(m * 3 * sizeof(double));
 
     int piFigurePosition[2] = { 200, 200 };
     int piFigureSize[2] = { 620, 590 };

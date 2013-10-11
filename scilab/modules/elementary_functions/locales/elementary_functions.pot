@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-07-26 14:55+0100\n"
+"Revision-Date: 2013-09-27 17:14+0100\n"
 
 # File: sci_gateway/c/sci_base2dec.c, line: 41
 # File: sci_gateway/c/sci_base2dec.c, line: 54
@@ -402,7 +402,7 @@ msgstr ""
 # File: macros/factor.sci, line: 25
 # File: macros/factorial.sci, line: 19
 # File: macros/fix.sci, line: 18
-# File: macros/flipdim.sci, line: 25
+# File: macros/flipdim.sci, line: 26
 # File: macros/hex2dec.sci, line: 29
 # File: macros/ind2sub.sci, line: 23
 # File: macros/intersect.sci, line: 16
@@ -427,7 +427,7 @@ msgstr ""
 # File: macros/nthroot.sci, line: 16
 # File: macros/oct2dec.sci, line: 29
 # File: macros/perms.sci, line: 23
-# File: macros/permute.sci, line: 21
+# File: macros/permute.sci, line: 22
 # File: macros/pertrans.sci, line: 16
 # File: macros/pmodulo.sci, line: 19
 # File: macros/primes.sci, line: 22
@@ -663,6 +663,8 @@ msgstr ""
 #
 # File: macros/complex.sci, line: 35
 # File: macros/complex.sci, line: 38
+# File: macros/members.sci, line: 358
+# File: macros/members.sci, line: 364
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr ""
@@ -762,28 +764,21 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/flipdim.sci, line: 29
+# File: macros/flipdim.sci, line: 31
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #
-# File: macros/flipdim.sci, line: 31
+# File: macros/flipdim.sci, line: 34
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #
-# File: macros/flipdim.sci, line: 35
-# File: macros/flipdim.sci, line: 37
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Real matrix expected.\n"
-msgstr ""
-
-#
 # File: macros/intersect.sci, line: 136
 # File: macros/union.sci, line: 55
-# File: macros/unique.sci, line: 55
+# File: macros/unique.sci, line: 53
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d,'%s',%d or '%s' expected\n"
 msgstr ""
@@ -818,6 +813,75 @@ msgstr ""
 # File: macros/logm.sci, line: 61
 #, c-format
 msgid "%s: Unable to diagonalize.\n"
+msgstr ""
+
+#
+# File: macros/members.sci, line: 132
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr ""
+
+#
+# File: macros/members.sci, line: 152
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: expected same type as first "
+"argument.\n"
+msgstr ""
+
+#
+# File: macros/members.sci, line: 155
+# File: macros/members.sci, line: 158
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of integers, reals, complexes, "
+"booleans, polynomials or strings expected.\n"
+msgstr ""
+
+#
+# File: macros/members.sci, line: 161
+#, c-format
+msgid "%s: Wrong value for argument #%d: Must not contain NaN.\n"
+msgstr ""
+
+#
+# File: macros/members.sci, line: 174
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Scalar string expected => option ignored.\n"
+msgstr ""
+
+#
+# File: macros/members.sci, line: 188
+#, c-format
+msgid "%s: Unknown option %s => ignored.\n"
+msgstr ""
+
+#
+# File: macros/members.sci, line: 194
+#, c-format
+msgid "%s: Option %s only relevant for %s and %s modes => ignored.\n"
+msgstr ""
+
+#
+# File: macros/members.sci, line: 297
+#, c-format
+msgid "%s: not enough memory to proceed\n"
+msgstr ""
+
+#
+# File: macros/members.sci, line: 369
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of columns "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/members.sci, line: 372
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
 msgstr ""
 
 #

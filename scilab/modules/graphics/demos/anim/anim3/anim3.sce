@@ -67,10 +67,6 @@ function demo_anim3()
         end
     end
 
-    if is_handle_valid(curAxe) then
-        delete(curFig);
-    end
-
 endfunction
 
 demo_anim3();

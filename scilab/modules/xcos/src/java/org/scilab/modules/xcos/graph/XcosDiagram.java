@@ -124,10 +124,10 @@ public class XcosDiagram extends ScilabGraph {
 
     private static final String MODIFIED = "modified";
     private static final String CELLS = "cells";
-    protected static final String IN = "in";
-    protected static final String OUT = "out";
-    protected static final String EIN = "ein";
-    protected static final String EOUT = "eout";
+    public static final String IN = "in";
+    public static final String OUT = "out";
+    public static final String EIN = "ein";
+    public static final String EOUT = "eout";
 
     /**
      * Prefix used to tag text node.
@@ -151,66 +151,77 @@ public class XcosDiagram extends ScilabGraph {
     private final transient CompilationEngineStatus engine;
 
     /**
-     * Constructor
+     * Default constructor for a visible diagram
      */
     public XcosDiagram() {
+        this(true);
+    }
+
+    /**
+     * Constructor
+     *
+     * @param withVisibleFeatures true if the visible features should be activated, false otherwise. Disable it on encode/decode leads to a huge performance gain.
+     */
+    public XcosDiagram(final boolean withVisibleFeatures) {
         super();
 
         // Scicos related setup
         engine = new CompilationEngineStatus();
         setScicosParameters(new ScicosParameters());
 
-        // Add a default listener to update the modification status when
-        // something has changed on the ScicosParameters
-        scicosParameters.addPropertyChangeListener(new PropertyChangeListener() {
-            @Override
-            public void propertyChange(final PropertyChangeEvent evt) {
-                setModified(true);
-            }
-        });
+        if (withVisibleFeatures) {
+            // Add a default listener to update the modification status when
+            // something has changed on the ScicosParameters
+            scicosParameters.addPropertyChangeListener(new PropertyChangeListener() {
+                @Override
+                public void propertyChange(final PropertyChangeEvent evt) {
+                    setModified(true);
+                }
+            });
 
-        setComponent(new GraphComponent(this));
-        initComponent();
-        installStylesheet();
+            setComponent(new GraphComponent(this));
+            initComponent();
+            installStylesheet();
 
-        // Forbid disconnecting cells once it is connected.
-        setCellsDisconnectable(false);
+            // Forbid disconnecting cells once it is connected.
+            setCellsDisconnectable(false);
 
-        // Forbid pending edges.
-        setAllowDanglingEdges(false);
+            // Forbid pending edges.
+            setAllowDanglingEdges(false);
 
-        // Cannot connect port to itself.
-        setAllowLoops(false);
+            // Cannot connect port to itself.
+            setAllowLoops(false);
 
-        // Override isCellResizable to filter what the user can resize
-        setCellsResizable(true);
+            // Override isCellResizable to filter what the user can resize
+            setCellsResizable(true);
 
-        /* Labels use HTML if not equal to interface function name */
-        setHtmlLabels(true);
-        /*
-         * by default every label is movable, see
-         * XcosDiagram##isLabelMovable(java.lang.Object) for restrictions
-         */
-        setVertexLabelsMovable(true);
-        setEdgeLabelsMovable(true);
+            /* Labels use HTML if not equal to interface function name */
+            setHtmlLabels(true);
+            /*
+             * by default every label is movable, see
+             * XcosDiagram##isLabelMovable(java.lang.Object) for restrictions
+             */
+            setVertexLabelsMovable(true);
+            setEdgeLabelsMovable(true);
 
-        //
-        setCloneInvalidEdges(true);
+            //
+            setCloneInvalidEdges(true);
 
-        // Override isCellEditable to filter what the user can edit
-        setCellsEditable(true);
+            // Override isCellEditable to filter what the user can edit
+            setCellsEditable(true);
 
-        setConnectableEdges(true);
+            setConnectableEdges(true);
 
-        // Do not clear edge points on connect
-        setResetEdgesOnConnect(false);
+            // Do not clear edge points on connect
+            setResetEdgesOnConnect(false);
 
-        setMultiplicities();
+            setMultiplicities();
 
-        setAutoOrigin(true);
+            setAutoOrigin(true);
 
-        // Add a listener to track when model is changed
-        getModel().addListener(mxEvent.CHANGE, ModelTracker.getInstance());
+            // Add a listener to track when model is changed
+            getModel().addListener(mxEvent.CHANGE, ModelTracker.getInstance());
+        }
 
         ((mxCell) getDefaultParent()).setId((new UID()).toString());
         ((mxCell) getModel().getRoot()).setId((new UID()).toString());
@@ -245,7 +256,7 @@ public class XcosDiagram extends ScilabGraph {
      *            the block list
      * @return the sorted block list (same instance)
      */
-    private List <? extends BasicBlock > iparSort(final List <? extends BasicBlock > blocks) {
+    public List <? extends BasicBlock > iparSort(final List <? extends BasicBlock > blocks) {
         Collections.sort(blocks, new Comparator<BasicBlock>() {
             @Override
             public int compare(BasicBlock o1, BasicBlock o2) {
@@ -2085,7 +2096,6 @@ public class XcosDiagram extends ScilabGraph {
             Xcos.getInstance().addDiagram(file, this);
         }
         setTitle(name.substring(0, name.lastIndexOf('.')));
-        generateUID();
         setModified(false);
 
         fireEvent(new mxEventObject(mxEvent.ROOT));
@@ -2304,6 +2314,7 @@ public class XcosDiagram extends ScilabGraph {
                 t.stop();
                 XcosDiagram.this.setReadOnly(false);
                 XcosDiagram.this.getUndoManager().clear();
+                XcosDiagram.this.refresh();
 
                 /*
                  * Load has finished
@@ -2315,40 +2326,6 @@ public class XcosDiagram extends ScilabGraph {
             }
 
         } .execute();
-    }
-
-    /**
-     * generate unique id to all blocks in diagram
-     */
-    public void generateUID() {
-        for (int i = 0; i < getModel().getChildCount(getDefaultParent()); ++i) {
-            if (getModel().getChildAt(getDefaultParent(), i) instanceof BasicBlock) {
-                final BasicBlock block = (BasicBlock) getModel().getChildAt(getDefaultParent(), i);
-                if (block.getRealParameters() instanceof ScilabMList) {
-                    if (block instanceof SuperBlock) {
-                        final SuperBlock parent = ((SuperBlock) block);
-
-                        // generate a child diagram with UID
-                        parent.createChildDiagram(true);
-                    } else {
-                        // we have a hidden SuperBlock, create a real one
-                        SuperBlock newSP = (SuperBlock) BlockFactory.createBlock(SuperBlock.INTERFUNCTION_NAME);
-                        newSP.setParentDiagram(block.getParentDiagram());
-
-                        newSP.setRealParameters(block.getRealParameters());
-                        newSP.createChildDiagram(true);
-
-                        block.setRealParameters(newSP.getRealParameters());
-                    }
-                } else if (block.getId() == null || block.getId().compareTo("") == 0) {
-                    /*
-                     * FIXME: Change of a cell id out of model modification in
-                     * which case ?
-                     */
-                    block.generateId();
-                }
-            }
-        }
     }
 
     /**

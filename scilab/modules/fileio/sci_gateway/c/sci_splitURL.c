@@ -46,14 +46,15 @@ int sci_splitURL(char *fname, int fname_len)
         return 0;
     }
 
-    ret = getAllocatedSingleString(pvApiCtx, piAddressVarOne, &url);
-    if (ret)
+    if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &url))
     {
+        freeAllocatedSingleString(url);
         Scierror(999, _("%s: Wrong type for argument %d: A string expected.\n"), fname, 1);
         return 0;
     }
 
     c = xmlParseURI(url);
+    freeAllocatedSingleString(url);
     if (c == NULL)
     {
         Scierror(999, "Could not parse the URL.\n");
@@ -61,21 +62,35 @@ int sci_splitURL(char *fname, int fname_len)
     }
 
     // protocol (http, ftp...)
-    sciErr = createMatrixOfString(pvApiCtx, iRhs + 1, 1, 1, &c->scheme);
-    if (sciErr.iErr)
+    if (c->scheme != NULL)
     {
-        printError(&sciErr, 0);
-        return 0;
+        ret = createSingleString(pvApiCtx, iRhs + 1, c->scheme);
+    }
+    else
+    {
+        ret = createSingleString(pvApiCtx, iRhs + 1, emptyString);
+    }
+
+    if (ret)
+    {
+        goto err;
     }
 
     AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
 
     // server
-    sciErr = createMatrixOfString(pvApiCtx, iRhs + 2, 1, 1, &c->server);
-    if (sciErr.iErr)
+    if (c->server != NULL)
     {
-        printError(&sciErr, 0);
-        return 0;
+        ret =  createSingleString(pvApiCtx, iRhs + 2, c->server);
+    }
+    else
+    {
+        ret = createSingleString(pvApiCtx, iRhs + 2, emptyString);
+    }
+
+    if (ret)
+    {
+        goto err;
     }
 
     AssignOutputVariable(pvApiCtx, 2) = iRhs + 2;
@@ -83,17 +98,16 @@ int sci_splitURL(char *fname, int fname_len)
     // path
     if (c->path != NULL)
     {
-        sciErr = createMatrixOfString(pvApiCtx, iRhs + 3, 1, 1, &c->path);
+        ret = createSingleString(pvApiCtx, iRhs + 3, c->path);
     }
     else
     {
-        sciErr = createMatrixOfString(pvApiCtx, iRhs + 3, 1, 1, &emptyString);
+        ret = createSingleString(pvApiCtx, iRhs + 3, emptyString);
     }
 
-    if (sciErr.iErr)
+    if (ret)
     {
-        printError(&sciErr, 0);
-        return 0;
+        goto err;
     }
 
     AssignOutputVariable(pvApiCtx, 3) = iRhs + 3;
@@ -101,17 +115,16 @@ int sci_splitURL(char *fname, int fname_len)
     // query
     if (c->query != NULL)
     {
-        sciErr = createMatrixOfString(pvApiCtx, iRhs + 4, 1, 1, &c->query);
+        ret = createSingleString(pvApiCtx, iRhs + 4, c->query);
     }
     else
     {
-        sciErr = createMatrixOfString(pvApiCtx, iRhs + 4, 1, 1, &emptyString);
+        ret = createSingleString(pvApiCtx, iRhs + 4, emptyString);
     }
 
-    if (sciErr.iErr)
+    if (ret)
     {
-        printError(&sciErr, 0);
-        return 0;
+        goto err;
     }
 
     AssignOutputVariable(pvApiCtx, 4) = iRhs + 4;
@@ -119,35 +132,24 @@ int sci_splitURL(char *fname, int fname_len)
     // user
     if (c->user != NULL)
     {
-        sciErr = createMatrixOfString(pvApiCtx, iRhs + 5, 1, 1, &c->user);
+        ret = createSingleString(pvApiCtx, iRhs + 5, c->user);
     }
     else
     {
-        sciErr = createMatrixOfString(pvApiCtx, iRhs + 5, 1, 1, &emptyString);
+        ret = createSingleString(pvApiCtx, iRhs + 5, emptyString);
     }
 
-    if (sciErr.iErr)
+    if (ret)
     {
-        printError(&sciErr, 0);
-        return 0;
+        goto err;
     }
 
     AssignOutputVariable(pvApiCtx, 5) = iRhs + 5;
 
     // port
-    if (c->port != NULL)
+    if (createScalarInteger32(pvApiCtx, iRhs + 6, c->port))
     {
-        sciErr = createMatrixOfInteger32(pvApiCtx, iRhs + 6, 1, 1, &c->port);
-    }
-    else
-    {
-        sciErr = createMatrixOfInteger32(pvApiCtx, iRhs + 6, 1, 1, &zero);
-    }
-
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return 0;
+        goto err;
     }
 
     AssignOutputVariable(pvApiCtx, 6) = iRhs + 6;
@@ -155,22 +157,28 @@ int sci_splitURL(char *fname, int fname_len)
     // Fragment
     if (c->fragment != NULL)
     {
-        sciErr = createMatrixOfString(pvApiCtx, iRhs + 7, 1, 1, &c->fragment);
+        ret = createSingleString(pvApiCtx, iRhs + 7, c->fragment);
     }
     else
     {
-        sciErr = createMatrixOfString(pvApiCtx, iRhs + 7, 1, 1, &emptyString);
+        ret = createSingleString(pvApiCtx, iRhs + 7, emptyString);
     }
 
-    if (sciErr.iErr)
+    if (ret)
     {
-        printError(&sciErr, 0);
-        return 0;
+        goto err;
     }
 
+    xmlFreeURI(c);
     AssignOutputVariable(pvApiCtx, 7) = iRhs + 7;
     ReturnArguments(pvApiCtx);
     return 0;
+
+err:
+    xmlFreeURI(c);
+    printError(&sciErr, 0);
+    return 0;
+
 }
 
 /*

@@ -246,6 +246,7 @@ lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /O
     <None Include="..\Makefile.am" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\sci_gateway\c\sci_addlocalizationdomain.c" />
     <ClCompile Include="c\charEncoding.c" />
     <ClCompile Include="c\DllmainLocalization.c" />
     <ClCompile Include="c\getLcidString.c" />
@@ -257,7 +258,6 @@ lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /O
     <ClCompile Include="c\setdefaultlanguage.c" />
     <ClCompile Include="jni\LocaleToLCID_wrap.c" />
     <ClCompile Include="jni\Messages_wrap.c" />
-    <ClCompile Include="..\sci_gateway\c\sci_dgettext.c" />
     <ClCompile Include="..\sci_gateway\c\sci_getdefaultlanguage.c" />
     <ClCompile Include="..\sci_gateway\c\sci_getlanguage.c" />
     <ClCompile Include="..\sci_gateway\c\sci_gettext.c" />

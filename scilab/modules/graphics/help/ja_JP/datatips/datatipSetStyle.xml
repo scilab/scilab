@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja_JP" xml:id="datatipSetStyle">
@@ -27,7 +27,7 @@
                 <term>curve_handle</term>
                 <listitem>
                     <para>
-                        ポリラインのハンドル. 
+                        ポリラインのハンドル.
                     </para>
                 </listitem>
             </varlistentry>
@@ -64,7 +64,7 @@
             データティップのポリライン用のマーカは以下の２種類です:
         </para>
         <para>
-            - 四角, ティップポイントを中心とする. 
+            - 四角, ティップポイントを中心とする.
         </para>
         <para>
             - ティップ点の接線に沿って描画された矢印.
@@ -79,18 +79,18 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
- 
+
     x=linspace(-20,20,1000);
-    clf();plot(x,sinc(x),x,sinc(x^2));
+    clf();plot(x,sinc(x),x,sinc(x.^2));
     e=gce();e=e.children;
     function str=mydisplay(curve,pt,index),str=msprintf('%0.2g', pt(1)),endfunction
-    datatipSetDisplay(e(1),mydisplay) 
-    datatipSetStyle(e(1),2,%f) 
+    datatipSetDisplay(e(1),mydisplay)
+    datatipSetStyle(e(1),2,%f)
     d1=datatipCreate(e(1),540);
-    
-    datatipSetStyle(e(2),1,%t) 
+
+    datatipSetStyle(e(2),1,%t)
     d2=datatipCreate(e(2),200);
-    
+
     ]]></programlisting>
     </refsection>
     <refsection role="see also">

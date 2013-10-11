@@ -31,7 +31,7 @@ int sci_sscanf(char *fname, unsigned long fname_len)
 
     entry *data = NULL;
     rec_entry buf[MAXSCAN];
-    sfdir type[MAXSCAN], type_s[MAXSCAN];
+    sfdir type[MAXSCAN] = {SF_C}, type_s[MAXSCAN] = {SF_C};
     char *str = NULL;
 
     Nbvars = 0;
@@ -84,7 +84,17 @@ int sci_sscanf(char *fname, unsigned long fname_len)
             break;
         }
         skip = *istk(ild1 + k) - 1;
-        SciStrtoStr(istk(il1 + skip), &n_count, istk(ild1 + k), &str);
+
+        if (SciStrtoStr(istk(il1 + skip), &n_count, istk(ild1 + k), &str) == MEM_LACK)
+        {
+            return 0;
+        }
+
+        if (str == NULL)
+        {
+            return 0;
+        }
+
         k += n_count;
 
         args = Rhs;             /* args set to Rhs on entry */

@@ -137,7 +137,7 @@ function savewave(filename,x,rate,nbits)
                 // Scale data according to bits/samples: [-1,+1] -> [-8 388 608,+8 388 607]
                 data = round((data+1)*(2^24-1)/2)-(2^23);
             case 4 then
-                dtype="l"
+                dtype="i"
                 // signed 32-bit
                 // Scale data according to bits/samples: [-1,+1] -> [-2 147 483 648,+2 147 483 647]
                 data = round((data+1)*(2^32-1)/2)-(2^31);

@@ -28,7 +28,6 @@ static char *normalizeFileSeparator(const char *path);
 /* ================================================================================== */
 char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
 {
-    // declarations - put here so this should work in a C compiler
     int afMarker = 0, rfMarker = 0;
     int cdLen = 0, afLen = 0;
     int i = 0;
@@ -45,16 +44,8 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
     {
         // fix bug 2181
         strcpy(relativeFilename, _absoluteFilename);
-        if (_currentDirectory)
-        {
-            FREE(_currentDirectory);
-            _currentDirectory = NULL;
-        }
-        if (_absoluteFilename)
-        {
-            FREE(_absoluteFilename);
-            _absoluteFilename = NULL;
-        }
+        FREE(_currentDirectory);
+        FREE(_absoluteFilename);
         return relativeFilename;
     }
 
@@ -63,16 +54,8 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
     {
         // not on the same drive, so only absolute filename will do
         strcpy(relativeFilename, _absoluteFilename);
-        if (_currentDirectory)
-        {
-            FREE(_currentDirectory);
-            _currentDirectory = NULL;
-        }
-        if (_absoluteFilename)
-        {
-            FREE(_absoluteFilename);
-            _absoluteFilename = NULL;
-        }
+        FREE(_currentDirectory);
+        FREE(_absoluteFilename);
         return relativeFilename;
     }
 
@@ -105,16 +88,8 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
         }
 
         strcpy(relativeFilename, &_absoluteFilename[i]);
-        if (_currentDirectory)
-        {
-            FREE(_currentDirectory);
-            _currentDirectory = NULL;
-        }
-        if (_absoluteFilename)
-        {
-            FREE(_absoluteFilename);
-            _absoluteFilename = NULL;
-        }
+        FREE(_currentDirectory);
+        FREE(_absoluteFilename);
         return relativeFilename;
     }
 
@@ -151,16 +126,9 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
     // check that the result will not be too long
     if (levels * 3 + afLen - afMarker > PATH_MAX)
     {
-        if (_currentDirectory)
-        {
-            FREE(_currentDirectory);
-            _currentDirectory = NULL;
-        }
-        if (_absoluteFilename)
-        {
-            FREE(_absoluteFilename);
-            _absoluteFilename = NULL;
-        }
+        FREE(relativeFilename);
+        FREE(_currentDirectory);
+        FREE(_absoluteFilename);
         return NULL;
     }
 
@@ -176,17 +144,8 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
     // copy the rest of the filename into the result string
     strcpy(&relativeFilename[rfMarker], &_absoluteFilename[afMarker]);
 
-    if (_currentDirectory)
-    {
-        FREE(_currentDirectory);
-        _currentDirectory = NULL;
-    }
-    if (_absoluteFilename)
-    {
-        FREE(_absoluteFilename);
-        _absoluteFilename = NULL;
-    }
-
+    FREE(_currentDirectory);
+    FREE(_absoluteFilename);
     return relativeFilename;
 }
 /* ================================================================================== */

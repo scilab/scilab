@@ -85,11 +85,11 @@ int sci_strtok(char *fname, unsigned long fname_len)
         /* strtok need to backup pointer on string */
         if (previousStrToken)
         {
-            previousStrToken = (char*)REALLOC(previousStrToken, strlen(Input_strings1[0]) + 1);
+            previousStrToken = (char*)REALLOC(previousStrToken, sizeof(char) * (strlen(Input_strings1[0]) + 1));
         }
         else
         {
-            previousStrToken = (char*)MALLOC(sizeof(char*) * (strlen(Input_strings1[0]) + 1));
+            previousStrToken = (char*)MALLOC(sizeof(char) * (strlen(Input_strings1[0]) + 1));
         }
 
         if (previousStrToken)

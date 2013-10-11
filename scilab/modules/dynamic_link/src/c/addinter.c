@@ -30,7 +30,6 @@
 #include "sciprint.h"
 #include "Funtab.h"
 #include "warningmode.h"
-#include "GetenvB.h"
 #include "localization.h"
 #include "Scierror.h"
 #ifdef _MSC_VER

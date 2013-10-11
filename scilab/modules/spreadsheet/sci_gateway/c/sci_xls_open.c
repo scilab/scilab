@@ -48,6 +48,7 @@ int sci_xls_open(char *fname, unsigned long fname_len)
     int nsheets = 0;
     char *filename_IN = NULL;
     char TMP[max_char_xls_open];
+    char* base_name = NULL;
 
     char sep[2];
     char *TMPDIR = NULL;
@@ -72,7 +73,7 @@ int sci_xls_open(char *fname, unsigned long fname_len)
     GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
 
     filename_IN = expandPathVariable(cstk(l1));
-    if (filename_IN)
+
     {
         /* bug 5615 */
         /* remove blank characters @ the end */
@@ -97,20 +98,22 @@ int sci_xls_open(char *fname, unsigned long fname_len)
         if (!FileExist(filename_IN))
         {
             Scierror(999, _("The file %s does not exist.\n"), filename_IN);
+            FREE(filename_IN);
             return 0;
         }
     }
 
     TMPDIR = getTMPDIR();
-    strcpy(TMP, TMPDIR);
-    if (TMPDIR)
-    {
-        FREE(TMPDIR);
-        TMPDIR = NULL;
-    }
+    strncpy(TMP, TMPDIR, sizeof(TMP));
+    FREE(TMPDIR);
 
-    strcat(TMP, sep);
-    strcat(TMP, xls_basename(filename_IN));
+    strncat(TMP, sep, sizeof(TMP) - strlen(TMP) - 1);
+    TMP[sizeof(TMP) - 1] = '\0';
+
+    base_name = xls_basename(filename_IN);
+    strncat(TMP, base_name, sizeof(TMP) - strlen(TMP) - 1);
+    TMP[sizeof(TMP) - 1] = '\0';
+
     result = ripole(filename_IN, TMP, 0, 0);
     if (result != OLE_OK)
     {
@@ -123,20 +126,12 @@ int sci_xls_open(char *fname, unsigned long fname_len)
                  result == OLEER_LOADFAT_BAD_BOUNDARY || result == OLEER_MINIFAT_READ_FAIL || result == OLEER_PROPERTIES_READ_FAIL)
         {
             Scierror(999, _("%s: File %s is not an ole2 file.\n"), fname, filename_IN);
-            if (filename_IN)
-            {
-                FREE(filename_IN);
-                filename_IN = NULL;
-            }
+            FREE(filename_IN);
         }
         else if (result == -1)
         {
             Scierror(999, _("%s: Cannot open file %s.\n"), fname, filename_IN);
-            if (filename_IN)
-            {
-                FREE(filename_IN);
-                filename_IN = NULL;
-            }
+            FREE(filename_IN);
         }
         return 0;
     }
@@ -146,19 +141,11 @@ int sci_xls_open(char *fname, unsigned long fname_len)
     if (ierr != 0)
     {
         Scierror(999, _("%s: There is no xls stream in the ole2 file %s.\n"), fname, filename_IN);
-        if (filename_IN)
-        {
-            FREE(filename_IN);
-            filename_IN = NULL;
-        }
+        FREE(filename_IN);
         return 0;
     }
 
-    if (filename_IN)
-    {
-        FREE(filename_IN);
-        filename_IN = NULL;
-    }
+    FREE(filename_IN);
 
     CreateVar(Rhs + 1, MATRIX_OF_INTEGER_DATATYPE, &one, &one, &l2);
     *istk(l2) = fd;             /* logical unit */

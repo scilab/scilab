@@ -64,6 +64,7 @@ c
          if(eqid(idstk(1,top),impn)) then
             if (.not.getscalar('optim',top,top,lr)) return
             imp=stk(lr)
+            if (imp.lt.0) imp=0
             top=top-1
             rhs=rhs-1
          endif
@@ -885,7 +886,7 @@ c     sauvegarde de g
       if(lhs1.eq.3) goto 320
 c     
 c     sauvegarde de tv (tableau interne a l' optimiseur - pour hot start
-      if (lhs1.eq.4) then
+      if (lhs1.ge.4) then
          istv=0
          if(ialg.eq.1) istv=1
          if (istv.eq.0) then
@@ -934,6 +935,45 @@ c     if (l+ntv+nitv+1.ge.sadr(lizs)) then
  317     continue
       endif
       lstk(top+1)=l + ntv + nitv
+      if(lhs1.eq.4) goto 320
+c     
+c     sauvegarde de niter
+      top2=top2 + 1
+      lstk(top2)=lstk(top+1)
+      il=iadr(lstk(top2))
+      istk(il)=1
+      istk(il+1)=1
+      istk(il+2)=1
+      istk(il+3)=0
+      l=sadr(il+4)
+      stk(l)=itmax
+      lstk(top+1)=l+1
+      if(lhs1.eq.5) go to 320
+c     
+c     sauvegarde de napm
+      top2=top2 + 1
+      lstk(top2)=lstk(top+1)
+      il=iadr(lstk(top2))
+      istk(il)=1
+      istk(il+1)=1
+      istk(il+2)=1
+      istk(il+3)=0
+      l=sadr(il+4)
+      stk(l)=napm
+      lstk(top+1)=l+1
+      if(lhs1.eq.6) go to 320
+c     
+c     sauvegarde de indopt
+      top2=top2 + 1
+      lstk(top2)=lstk(top+1)
+      il=iadr(lstk(top2))
+      istk(il)=1
+      istk(il+1)=1
+      istk(il+2)=1
+      istk(il+3)=0
+      l=sadr(il+4)
+      stk(l)=indopt
+      lstk(top+1)=l+1
 c     
 c     sauvegarde de izs et dzs
  320  if (lhs.eq.lhs1) go to 350
@@ -1012,4 +1052,3 @@ c     commentaires finaux
       return
       end
 c     --------------------------
-

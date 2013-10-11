@@ -647,7 +647,7 @@ void NgonGridMatplotData::setImageData(void const* data, const int numElements)
     void * dest = this->data;
     if (this->imagetype == MATPLOT_INDEX)
     {
-        this->gltype = MATPLOT_GL_RGBA;
+        this->gltype = MATPLOT_GL_RGBA_BYTE;
     }
     else if (Texture::getImage(data, numElements, this->datatype, this->imagetype, &(this->data), &(this->dataSize), &(this->gltype)))
     {

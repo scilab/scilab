@@ -1,0 +1,93 @@
+# Japanese translation for scilab
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-09-21 05:46+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <ja@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 16774)\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: 入力引数 #%d を読み込めません.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラー整数値を指定してください.\n"
+
+#, c-format
+msgid "%s: Could not get communicator rank of the node %d: %s\n"
+msgstr ""
+
+msgid "Unable to serialize data\n"
+msgstr "データをシリアル化できませんでした\n"
+
+#, c-format
+msgid "%s: Could not broadcast the variable to the node %d: %s\n"
+msgstr "%s: 変数をノード %d にブロードキャストできませんでした: %s\n"
+
+#, c-format
+msgid "%s: Unable to deserialize data.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to create variable.\n"
+msgstr "%s: 変数を作成できません.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: メモリ確保エラー.\n"
+
+#, c-format
+msgid "%s: Could not finalize the MPI instance: %s\n"
+msgstr "%s: MPIインスタンスをファイナライズできませんでした: %s\n"
+
+#, c-format
+msgid "%s: Could not get processor name: %s\n"
+msgstr "%s: プロセッサ名を取得できませんでした: %s\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Positive value expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 正の値を指定してください.\n"
+
+#, c-format
+msgid "%s: MPI_Probe failed. Rank %d / Tag %d: %s\n"
+msgstr "%s: MPI_Probe が失敗しました. ランク %d / タグ %d: %s\n"
+
+#, c-format
+msgid "%s: MPI_Get_count failed. Rank %d / Tag %d: %s\n"
+msgstr "%s: MPI_Get_count が失敗しました. ランク %d / タグ %d: %s\n"
+
+#, c-format
+msgid "%s: MPI_Irecv failed. Rank %d / Tag %d: %s\n"
+msgstr "%s: MPI_irecv が失敗しました. ランク %d / タグ %d: %s\n"
+
+#, c-format
+msgid "%s: Could not send the variable to the node %d: %s\n"
+msgstr "%s: 変数をノード %d に送信できませんでした: %s\n"
+
+#, c-format
+msgid "%s: Could not create the received variable.\n"
+msgstr "%s: 受信した変数を作成できませんでした.\n"
+
+#, c-format
+msgid "%s: MPI_Recv failed. Rank %d / Tag %d: %s\n"
+msgstr "%s: MPI_Recv が失敗しました. ランク %d / タグ %d: %s\n"
+
+#, c-format
+msgid "%s: Unable to deserialize data !\n"
+msgstr "%s: データをデシリアライズできませんでした!\n"
+
+#, c-format
+msgid "%s: MPI_Wait failed while waiting %d: %s\n"
+msgstr ""

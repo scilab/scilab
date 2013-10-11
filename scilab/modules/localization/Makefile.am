@@ -27,11 +27,12 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
 sci_gateway/c/sci_gettext.c \
-sci_gateway/c/sci_dgettext.c \
 sci_gateway/c/sci_setlanguage.c \
 sci_gateway/c/sci_getdefaultlanguage.c \
 sci_gateway/c/sci_getlanguage.c \
-sci_gateway/c/sci_setdefaultlanguage.c
+sci_gateway/c/sci_setdefaultlanguage.c \
+sci_gateway/c/sci_addlocalizationdomain.c
+
 
 libscilocalization_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/includes/ \

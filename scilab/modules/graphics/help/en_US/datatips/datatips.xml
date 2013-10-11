@@ -33,22 +33,15 @@
         </para>
         <para>Once enabled, a simple left click on a curve will add a tip
             ( a small box with information on the current point) at the
-            nearest datapoint of the curve. By default each curve can have a
-            single tip but it is possible to allow multiple datatips using
-            the right click contextual menu.
+            interpolated point of the curve.
         </para>
         <para>
             To move a tip, press left button on the small square mark on
-            the curve, wait a little and drag it to the desired location.
+            the curve and drag it to the desired location.
         </para>
         <para>
-            Right click on the tip mark opens a contextual dialog. This
-            dialog allows in particular to customize the information
-            displayed in all the datatips of the associated curve.
-        </para>
-        <para>
-            Middle click on the tip mark opens a contextual dialog that
-            allows to manage the orientation of the selected tip.
+            To remove a datatip, right click on the small square mark on
+            the curve.
         </para>
     </refsection>
     <refsection>
@@ -65,14 +58,14 @@
     t=datatipCreate(p1,50);
     datatipSetOrientation(t,"lower right")
     t=datatipCreate(p1,[0.8 0.5]);
-    t=datatipCreate(p2,[0.1,0]);
+    t=datatipCreate(p2,[0.1,0.0]);
     t=datatipCreate(p2,[0.8 0.4]);
     datatipSetOrientation(t,"upper left")
   
-    function str=myfmt(curve,pt,index)
+    function str=myfmt(pt)
       str = msprintf('sinc\n%s', sci2exp(round(pt*10)/10))
     endfunction
-    datatipSetDisplay(p1,myfmt) //then modify the function in the editor an ok
+    datatipSetDisplay(t,"myfmt")
     
      ]]></programlisting>
         <scilab:image>
@@ -87,14 +80,14 @@
             t=datatipCreate(p1,50);
             datatipSetOrientation(t,"lower right")
             t=datatipCreate(p1,[0.8 0.5]);
-            t=datatipCreate(p2,[0.1,0]);
+            t=datatipCreate(p2,[0.1,0.0]);
             t=datatipCreate(p2,[0.8 0.4]);
             datatipSetOrientation(t,"upper left")
             
-            function str=myfmt(curve,pt,index)
+            function str=myfmt(pt)
             str = msprintf('sinc\n%s', sci2exp(round(pt*10)/10))
             endfunction
-            datatipSetDisplay(p1,myfmt) //then modify the function in the editor an ok
+            datatipSetDisplay(t,"myfmt")
         </scilab:image>
         <programlisting role="example"><![CDATA[
     // With 3D curves
@@ -107,7 +100,7 @@
     p=gce();
     t=datatipCreate(p,50);
     datatipSetOrientation(t,"lower right")
-    datatipCreate(p,[0,-1.1,1.1]);
+    datatipCreate(p,[0,-1.10,1.10]);
      ]]></programlisting>
         <scilab:image>
             x1=linspace(0,1.5,100)';
@@ -118,7 +111,7 @@
             p=gce();
             t=datatipCreate(p,50);
             datatipSetOrientation(t,"lower right")
-            datatipCreate(p,[0,-1.1,1.1]);
+            datatipCreate(p,[0,-1.10,1.10]);
         </scilab:image>
     </refsection>
     <refsection role="see also">
@@ -126,9 +119,6 @@
         <simplelist type="inline">
             <member>
                 <link linkend="datatipToggle">datatipToggle</link>
-            </member>
-            <member>
-                <link linkend="datatipInitStruct">datatipInitStruct</link>
             </member>
             <member>
                 <link linkend="datatipCreate">datatipCreate</link>

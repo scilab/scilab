@@ -2345,7 +2345,7 @@ int C2F(scifunction) (int *number, int *ptr, int *mlhs, int *mrhs)
     C2F(com).fin = *ptr;
     C2F(recu).icall = 5;
     C2F(recu).krec = -1;
-    /* ************************** copied from callinter.h */
+    /* ************************** copied from callinter.h.f */
 L60:
     C2F(parse) ();
     /* parse has exited for a built-in evaluation */
@@ -2675,7 +2675,7 @@ int C2F(scibuiltin) (int *number, int *ifun, int *ifin, int *mlhs, int *mrhs)
     C2F(recu).krec = -1;
     ++C2F(recu).niv;
     goto L90;
-    /* ***************************** copied from callinter.h  */
+    /* ***************************** copied from callinter.h.f  */
 
 L60:
     C2F(parse) ();

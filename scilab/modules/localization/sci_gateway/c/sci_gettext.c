@@ -2,6 +2,7 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2008 - INRIA - Sylvestre LEDRU
 * Copyright (C) 2009-2012 - DIGITEO - Allan CORNET
+* Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -22,83 +23,115 @@
 #include "strdup_windows.h"
 #endif
 #include "freeArrayOfString.h"
+
 /*--------------------------------------------------------------------------*/
-static char *convertString_gettext(const char *pStr);
+static char *convertString_dgettext(const char *domain, const char *pStr);
 /*--------------------------------------------------------------------------*/
 int sci_gettext(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
+    char* pstDomain = NULL;
     char **TranslatedStrings = NULL;
     int m = 0;
     int n = 0;
+    char **StringsToTranslate = NULL;
+    int i = 0;
 
-    CheckRhs(1, 1);
-    CheckLhs(0, 1);
+    int iCurrentRhs = 1;
 
-    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-    if (sciErr.iErr)
+    int iRhs = nbInputArgument(pvApiCtx);
+    int iLhs = nbOutputArgument(pvApiCtx);
+
+    CheckInputArgument(pvApiCtx, 1, 2);
+    CheckOutputArgument(pvApiCtx, 0, 1);
+
+    if (iRhs == 2)
     {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-    }
-
-    if (isStringType(pvApiCtx, piAddressVarOne))
-    {
-        char **StringsToTranslate = NULL;
-        int i = 0;
-        if (getAllocatedMatrixOfString(pvApiCtx, piAddressVarOne, &m, &n, &StringsToTranslate) != 0)
-        {
-            Scierror(999, _("%s: No more memory.\n"), fname);
-            return 0;
-        }
-
-        TranslatedStrings = (char **)MALLOC(sizeof(char*) * (m * n));
-        if (TranslatedStrings == NULL)
-        {
-            freeAllocatedMatrixOfString(m, n, StringsToTranslate);
-            StringsToTranslate = NULL;
-            Scierror(999, _("%s: No more memory.\n"), fname);
-            return 0;
-        }
-
-        for (i = 0; i < m * n; i++)
-        {
-            if (strcmp(StringsToTranslate[i], "") == 0)
-            {
-                TranslatedStrings[i] = strdup("");
-            }
-            else
-            {
-                TranslatedStrings[i] = convertString_gettext(StringsToTranslate[i]);
-            }
-        }
-
-        freeAllocatedMatrixOfString(m, n, StringsToTranslate);
-        StringsToTranslate = NULL;
-
-        sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m, n, TranslatedStrings);
-        freeArrayOfString(TranslatedStrings, m * n);
-        TranslatedStrings = NULL;
-
+        //get domain name
+        sciErr = getVarAddressFromPosition(pvApiCtx, iCurrentRhs, &piAddressVarOne);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, iCurrentRhs);
+        }
+
+        if (isStringType(pvApiCtx, piAddressVarOne) == 0 || isScalar(pvApiCtx, piAddressVarOne) == 0)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), fname, iCurrentRhs);
             return 0;
         }
 
-        LhsVar(1) = Rhs + 1;
-        PutLhsVar();
+        if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &pstDomain))
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
+
+        iCurrentRhs++;
     }
-    else
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, iCurrentRhs, &piAddressVarOne);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, iCurrentRhs);
+    }
+
+    if (isStringType(pvApiCtx, piAddressVarOne) == 0)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+        return 0;
     }
+
+    if (getAllocatedMatrixOfString(pvApiCtx, piAddressVarOne, &m, &n, &StringsToTranslate) != 0)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
+
+    TranslatedStrings = (char **)MALLOC(sizeof(char*) * (m * n));
+    if (TranslatedStrings == NULL)
+    {
+        freeAllocatedMatrixOfString(m, n, StringsToTranslate);
+        StringsToTranslate = NULL;
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
+
+    for (i = 0; i < m * n; i++)
+    {
+        if (strcmp(StringsToTranslate[i], "") == 0)
+        {
+            TranslatedStrings[i] = strdup("");
+        }
+        else
+        {
+            //if pstDomain is NULL, default domain will be use
+            TranslatedStrings[i] = convertString_dgettext(pstDomain, StringsToTranslate[i]);
+        }
+    }
+
+    freeAllocatedMatrixOfString(m, n, StringsToTranslate);
+    StringsToTranslate = NULL;
+
+    sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m, n, TranslatedStrings);
+    freeArrayOfString(TranslatedStrings, m * n);
+    TranslatedStrings = NULL;
+
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
+
+    LhsVar(1) = Rhs + 1;
+    PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-static char *convertString_gettext(const char *pStr)
+static char *convertString_dgettext(const char *domain, const char *pStr)
 {
     char *pStrConverted = NULL;
 
@@ -173,7 +206,7 @@ static char *convertString_gettext(const char *pStr)
             tmpStr = strdup(pStr);
         }
 
-        TranslatedString = strdup(gettext(tmpStr));
+        TranslatedString = strdup(dgettext(domain, tmpStr));
         if (tmpStr)
         {
             FREE(tmpStr);

@@ -20,6 +20,7 @@ import org.scilab.forge.scirenderer.ruler.graduations.Graduations;
 import org.scilab.forge.scirenderer.texture.Texture;
 import org.scilab.forge.scirenderer.texture.TextureManager;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
+import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axis.Axis;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
@@ -51,7 +52,7 @@ public class AxisDrawer {
         this.drawerVisitor = drawerVisitor;
     }
 
-    public void draw(Axis axis) {
+    public void draw(Axes axes, Axis axis) {
         double min;
         double max;
 
@@ -64,6 +65,7 @@ public class AxisDrawer {
         Double[] yTicksValues;
         double[] xMinAndMax;
         double[] yMinAndMax;
+        double[][] factors = axes.getScaleTranslateFactors();
 
         if (axis.getXTicksCoords().length == 1) {
             xTicksValues = axis.getXTicksCoords();
@@ -83,12 +85,18 @@ public class AxisDrawer {
             rulerModel.setUserGraduation(new AxisGraduation(axis, xTicksValues, xMinAndMax));
         }
 
+        xMinAndMax[0] = xMinAndMax[0] * factors[0][0] + factors[1][0];
+        xMinAndMax[1] = xMinAndMax[1] * factors[0][0] + factors[1][0];
+        yMinAndMax[0] = yMinAndMax[0] * factors[0][1] + factors[1][1];
+        yMinAndMax[1] = yMinAndMax[1] * factors[0][1] + factors[1][1];
+
         // TODO : RulerModel should be an interface.
         rulerModel.setAutoTicks(false);
         rulerModel.setFirstValue(0);
         rulerModel.setSecondValue(1);
         rulerModel.setLineVisible(axis.getTicksSegment());
         rulerModel.setColor(ColorFactory.createColor(drawerVisitor.getColorMap(), axis.getTicksColor()));
+
 
         rulerModel.setPoints(new Vector3d(xMinAndMax[0], yMinAndMax[0], 0), new Vector3d(xMinAndMax[1], yMinAndMax[1], 0));
         rulerModel.setTicksDirection(computeTicksDirection(axis.getTicksDirectionAsEnum()));

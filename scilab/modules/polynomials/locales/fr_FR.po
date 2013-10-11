@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-07-26 12:51+0000\n"
+"PO-Revision-Date: 2013-09-16 09:48+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: fr\n"
 
 msgid "Polynomials"
@@ -36,6 +36,10 @@ msgid ""
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un tableau de flottants, de "
 "polynômes ou de fractions rationnelles attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
@@ -71,10 +75,6 @@ msgid ""
 msgstr ""
 "%s : Type erroné de l'argument n°%d : Un tableau d'entiers ou un polynôme "
 "attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real Polynomial expected.\n"
-msgstr "%s : Type erroné de l'argument n°%d : Un polynôme réel attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Polynomial array expected.\n"

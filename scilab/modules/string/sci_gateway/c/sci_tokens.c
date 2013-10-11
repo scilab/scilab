@@ -69,21 +69,13 @@ int sci_tokens(char *fname, unsigned long fname_len)
                             wchar_t *wcDelim = to_wide_string(Delimiters[i]);
                             if ( (int)wcslen(wcDelim) > 1)
                             {
-                                if (wcDelim)
-                                {
-                                    FREE(wcDelim);
-                                    wcDelim = NULL;
-                                }
+                                FREE(wcDelim);
                                 freeArrayOfString(Input_Strings, mn_One);
                                 Scierror(999, _("%s: Wrong type for input argument #%d: A character or a vector of single characters expected.\n"), fname, 2);
                                 return 0;
                             }
 
-                            if (wcDelim)
-                            {
-                                FREE(wcDelim);
-                                wcDelim = NULL;
-                            }
+                            FREE(wcDelim);
                         }
                     }
                     sizeDelimiters = mn_Two;

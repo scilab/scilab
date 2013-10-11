@@ -46,6 +46,10 @@ int sci_strchr(char *fname, unsigned long fname_len)
     pStrVarOne = getInputArgumentAsMatrixOfWideString(pvApiCtx, 1, fname, &m1, &n1, &iErr);
     if (iErr)
     {
+        if (pStrVarOne)
+        {
+            freeAllocatedMatrixOfWideString(m1, n1, pStrVarOne);
+        }
         return 0;
     }
 
@@ -55,7 +59,11 @@ int sci_strchr(char *fname, unsigned long fname_len)
         if (pStrVarOne)
         {
             freeAllocatedMatrixOfWideString(m1, n1, pStrVarOne);
-            pStrVarOne = NULL;
+        }
+
+        if (pStrVarTwo)
+        {
+            freeAllocatedMatrixOfWideString(m2, n2, pStrVarTwo);
         }
         return 0;
     }
@@ -64,57 +72,35 @@ int sci_strchr(char *fname, unsigned long fname_len)
     {
         if (wcslen(pStrVarTwo[i]) != 1)
         {
-            if (pStrVarOne)
-            {
-                freeAllocatedMatrixOfWideString(m1, n1, pStrVarOne);
-                pStrVarOne = NULL;
-            }
-            if (pStrVarTwo)
-            {
-                freeAllocatedMatrixOfWideString(m2, n2, pStrVarTwo);
-                pStrVarTwo = NULL;
-            }
+            freeAllocatedMatrixOfWideString(m1, n1, pStrVarOne);
+            freeAllocatedMatrixOfWideString(m2, n2, pStrVarTwo);
             Scierror(999, _("%s: Wrong size for input argument #%d: A character expected.\n"), fname, 2);
             return 0;
         }
     }
 
     wcOutput_Strings = strings_wcsrchr((const wchar_t**)pStrVarOne, m1 * n1, (const wchar_t**)pStrVarTwo, m2 * n2, do_strchr);
-    if (pStrVarOne)
-    {
-        freeAllocatedMatrixOfWideString(m1, n1, pStrVarOne);
-        pStrVarOne = NULL;
-    }
-    if (pStrVarTwo)
-    {
-        freeAllocatedMatrixOfWideString(m2, n2, pStrVarTwo);
-        pStrVarTwo = NULL;
-    }
+    freeAllocatedMatrixOfWideString(m1, n1, pStrVarOne);
+    freeAllocatedMatrixOfWideString(m2, n2, pStrVarTwo);
 
-    if (wcOutput_Strings)
-    {
-        sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 1 , m1, n1, wcOutput_Strings);
-
-        if (wcOutput_Strings)
-        {
-            freeAllocatedMatrixOfWideString(m1, n1, wcOutput_Strings);
-            wcOutput_Strings = NULL;
-        }
-
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
-            return 0;
-        }
-
-        LhsVar(1) = Rhs + 1 ;
-        PutLhsVar();
-    }
-    else
+    if (wcOutput_Strings == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
     }
+
+    sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 1 , m1, n1, wcOutput_Strings);
+    freeAllocatedMatrixOfWideString(m1, n1, wcOutput_Strings);
+
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
+
+    LhsVar(1) = Rhs + 1 ;
+    PutLhsVar();
     return 0;
 }
 /*----------------------------------------------------------------------------*/

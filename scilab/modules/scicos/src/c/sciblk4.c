@@ -658,7 +658,7 @@ err:
 static int sci2var(void *x, void *y, int typ_var)
 {
     /************************************
-     * variables and constants définition
+     * variables and constants definition
      ************************************/
     /* counter and address variable declaration */
     int err, i, j;
@@ -752,8 +752,8 @@ static int sci2var(void *x, void *y, int typ_var)
         case 8 :
         {
             /*check type of int matrix*/
-            if ((sub_typ != 1)  & (sub_typ != 2) & (sub_typ != 4) /
-                    (sub_typ != 11) & (sub_typ != 12) & (sub_typ != 14))
+            if ((sub_typ != 1)  && (sub_typ != 2) && (sub_typ != 4) &&
+                    (sub_typ != 11) && (sub_typ != 12) && (sub_typ != 14))
             {
                 err = 1003;
                 return err;

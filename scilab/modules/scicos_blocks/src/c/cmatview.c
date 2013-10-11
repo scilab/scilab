@@ -404,16 +404,17 @@ static char *getAxe(char const* pFigureUID, scicos_block * block)
     {
         getGrayplot(pAxe, block);
     }
-
+    else
+    {
+        return NULL;
+    }
 
     /*
      * then cache with local storage
      */
-    if (pAxe != NULL && sco->scope.cachedAxeUID == NULL)
-    {
-        sco->scope.cachedAxeUID = strdup(pAxe);
-        releaseGraphicObjectProperty(__GO_PARENT__, pAxe, jni_string, 1);
-    }
+    sco->scope.cachedAxeUID = strdup(pAxe);
+
+    releaseGraphicObjectProperty(__GO_PARENT__, pAxe, jni_string, 1);
     return sco->scope.cachedAxeUID;
 }
 
@@ -450,32 +451,30 @@ static char *getGrayplot(char *pAxeUID, scicos_block * block)
             createDataObject(pGrayplot, __GO_GRAYPLOT__);
             setGraphicObjectRelationship(pAxeUID, pGrayplot);
         }
+        else
+        {
+            return NULL;
+        }
     }
 
     /*
      * Setup on first access
      */
-    if (pGrayplot != NULL)
+    setGraphicObjectProperty(pGrayplot, __GO_DATA_MAPPING__, &i__0, jni_int, 1);
+    setBounds(block, pAxeUID, pGrayplot);
+    setDefaultValues(block, pGrayplot);
+
     {
-
-        setGraphicObjectProperty(pGrayplot, __GO_DATA_MAPPING__, &i__0, jni_int, 1);
-        setBounds(block, pAxeUID, pGrayplot);
-        setDefaultValues(block, pGrayplot);
-
-        {
-            int iClipState = 1; //on
-            setGraphicObjectProperty(pGrayplot, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
-        }
+        int iClipState = 1; //on
+        setGraphicObjectProperty(pGrayplot, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
     }
 
     /*
      * then cache with a local storage
      */
-    if (pGrayplot != NULL && sco->scope.cachedGrayplotUID == NULL)
-    {
-        sco->scope.cachedGrayplotUID = strdup(pGrayplot);
-        releaseGraphicObjectProperty(__GO_PARENT__, pGrayplot, jni_string, 1);
-    }
+    sco->scope.cachedGrayplotUID = strdup(pGrayplot);
+
+    releaseGraphicObjectProperty(__GO_PARENT__, pGrayplot, jni_string, 1);
     return sco->scope.cachedGrayplotUID;
 }
 

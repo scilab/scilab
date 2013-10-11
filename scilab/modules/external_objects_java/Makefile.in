@@ -168,6 +168,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciexternal_objects_java_la_etcdir)" \
 	"$(DESTDIR)$(libsciexternal_objects_java_la_rootdir)" \
 	"$(DESTDIR)$(libsciexternal_objects_java_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libsciexternal_objects_java_la_testsdir)" \
 	"$(DESTDIR)$(libsciexternal_objects_java_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libsciexternal_objects_java_algo_la_LIBADD =
@@ -294,7 +295,8 @@ am__can_run_installinfo = \
   esac
 DATA = $(libsciexternal_objects_java_la_etc_DATA) \
 	$(libsciexternal_objects_java_la_root_DATA) \
-	$(libsciexternal_objects_java_la_sci_gateway_DATA)
+	$(libsciexternal_objects_java_la_sci_gateway_DATA) \
+	$(libsciexternal_objects_java_la_tests_DATA)
 HEADERS = $(libsciexternal_objects_java_la_include_HEADERS)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
@@ -503,6 +505,7 @@ STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
+SWIG_SCILAB = @SWIG_SCILAB@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
 TK_INC_PATH = @TK_INC_PATH@
@@ -759,6 +762,12 @@ libsciexternal_objects_java_la_sci_gateway_DATA = sci_gateway/external_objects_j
 #### external_objects_java : include files ####
 libsciexternal_objects_java_la_includedir = $(pkgincludedir)
 libsciexternal_objects_java_la_include_HEADERS = 
+
+#### external_objects_java : test files ####
+libsciexternal_objects_java_la_testsdir = $(mydatadir)/tests/
+libsciexternal_objects_java_la_tests_DATA = \
+tests/libintl.jar
+
 @GUI_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
@@ -1262,6 +1271,27 @@ uninstall-libsciexternal_objects_java_la_sci_gatewayDATA:
 	@list='$(libsciexternal_objects_java_la_sci_gateway_DATA)'; test -n "$(libsciexternal_objects_java_la_sci_gatewaydir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libsciexternal_objects_java_la_sci_gatewaydir)'; $(am__uninstall_files_from_dir)
+install-libsciexternal_objects_java_la_testsDATA: $(libsciexternal_objects_java_la_tests_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciexternal_objects_java_la_tests_DATA)'; test -n "$(libsciexternal_objects_java_la_testsdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciexternal_objects_java_la_testsdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciexternal_objects_java_la_testsdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciexternal_objects_java_la_testsdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciexternal_objects_java_la_testsdir)" || exit $$?; \
+	done
+
+uninstall-libsciexternal_objects_java_la_testsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciexternal_objects_java_la_tests_DATA)'; test -n "$(libsciexternal_objects_java_la_testsdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciexternal_objects_java_la_testsdir)'; $(am__uninstall_files_from_dir)
 install-libsciexternal_objects_java_la_includeHEADERS: $(libsciexternal_objects_java_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	@list='$(libsciexternal_objects_java_la_include_HEADERS)'; test -n "$(libsciexternal_objects_java_la_includedir)" || list=; \
@@ -1372,7 +1402,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciexternal_objects_java_la_etcdir)" "$(DESTDIR)$(libsciexternal_objects_java_la_rootdir)" "$(DESTDIR)$(libsciexternal_objects_java_la_sci_gatewaydir)" "$(DESTDIR)$(libsciexternal_objects_java_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciexternal_objects_java_la_etcdir)" "$(DESTDIR)$(libsciexternal_objects_java_la_rootdir)" "$(DESTDIR)$(libsciexternal_objects_java_la_sci_gatewaydir)" "$(DESTDIR)$(libsciexternal_objects_java_la_testsdir)" "$(DESTDIR)$(libsciexternal_objects_java_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1434,7 +1464,8 @@ install-data-am: install-data-local \
 	install-libsciexternal_objects_java_la_etcDATA \
 	install-libsciexternal_objects_java_la_includeHEADERS \
 	install-libsciexternal_objects_java_la_rootDATA \
-	install-libsciexternal_objects_java_la_sci_gatewayDATA
+	install-libsciexternal_objects_java_la_sci_gatewayDATA \
+	install-libsciexternal_objects_java_la_testsDATA
 
 install-dvi: install-dvi-am
 
@@ -1484,6 +1515,7 @@ uninstall-am: uninstall-libsciexternal_objects_java_la_etcDATA \
 	uninstall-libsciexternal_objects_java_la_includeHEADERS \
 	uninstall-libsciexternal_objects_java_la_rootDATA \
 	uninstall-libsciexternal_objects_java_la_sci_gatewayDATA \
+	uninstall-libsciexternal_objects_java_la_testsDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: all check check-am install install-am install-strip
@@ -1501,16 +1533,18 @@ uninstall-am: uninstall-libsciexternal_objects_java_la_etcDATA \
 	install-libsciexternal_objects_java_la_includeHEADERS \
 	install-libsciexternal_objects_java_la_rootDATA \
 	install-libsciexternal_objects_java_la_sci_gatewayDATA \
-	install-man install-pdf install-pdf-am \
-	install-pkglibLTLIBRARIES install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
-	pdf pdf-am ps ps-am tags tags-am uninstall uninstall-am \
+	install-libsciexternal_objects_java_la_testsDATA install-man \
+	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags tags-am uninstall uninstall-am \
 	uninstall-libsciexternal_objects_java_la_etcDATA \
 	uninstall-libsciexternal_objects_java_la_includeHEADERS \
 	uninstall-libsciexternal_objects_java_la_rootDATA \
 	uninstall-libsciexternal_objects_java_la_sci_gatewayDATA \
+	uninstall-libsciexternal_objects_java_la_testsDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
@@ -1550,8 +1584,17 @@ check-code:
 @SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
 @SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
-@SWIG_TRUE@			echo "Swig process of $$file ..."; \
+@SWIG_TRUE@			echo "Swig process of $$file (Java) ..."; \
 @SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
+@SWIG_TRUE@		done; \
+@SWIG_TRUE@	fi
+
+@SWIG_TRUE@swig-scilab: $(SWIG_SCILAB_WRAPPERS)
+@SWIG_TRUE@	@SWIG_OUTDIR=src/swig/; \
+@SWIG_TRUE@	if test -n "$(SWIG_SCILAB_WRAPPERS)"; then \
+@SWIG_TRUE@		for file in $(SWIG_SCILAB_WRAPPERS) ; do \
+@SWIG_TRUE@			echo "Swig process of $$file (Scilab) ..."; \
+@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB)  -outdir $$SWIG_OUTDIR $$file; \
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 
