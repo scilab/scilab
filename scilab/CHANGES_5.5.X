@@ -11,6 +11,8 @@ Scilab Bug Fixes
 
 * Bug #8031 fixed - cdfgam error message fixed.
 
+* Bug #8337 fixed - mtlb_rand now uses the "uniform" rule, whatever the random rule set is.
+
 * Bug #11571 fixed - x_mdialog did not let the Look&Feel select the window size.
 
 * Bug #11680 fixed - GUI functions in Scilab 5.4.X were much slower than in Scilab 5.3.3.
