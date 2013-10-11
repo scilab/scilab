@@ -139,8 +139,8 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
         return NULL;
     }
 
-
-    fields = (char**)getFieldsForType(pstData[0], NULL, NULL, 0, NULL);
+    int iFieldsSize = 0;
+    fields = (char**)getFieldsForType(pstData[0], NULL, NULL, 0, &iFieldsSize);
     if (fields)
     {
         freeArrayOfString(pstData, rc);
