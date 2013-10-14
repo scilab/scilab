@@ -65,10 +65,6 @@ if test "x$with_umfpack_library" != "xyes"; then
 	LIBS="$BLAS_LIBS -L$with_umfpack_library -lm $LIBS"
 	# We need -lm because sometime (ubuntu 7.10 for example) does not link libamd against lib math
 
-	AC_CHECK_LIB([amd], [amd_info],
-			[UMFPACK_LIB="-lamd"],
-            [AC_MSG_ERROR([libamd: Library missing (Cannot find symbol amd_info). Check if libamd (sparse matrix minimum degree ordering) is installed and if the version is correct])]
-			)
 	AC_CHECK_LIB([umfpack], [umf_divcomplex],
 			[UMFPACK_LIB="-L$with_umfpack_library -lumfpack $UMFPACK_LIB"; UMFPACK_OK=yes],
             [AC_MSG_ERROR([libumfpack : Library missing. (Cannot find umf_divcomplex). Check if libumfpack is installed and if the version is correct (also called lib suitesparse)])]
@@ -98,6 +94,7 @@ if test $UMFPACK_OK = no; then
 fi
 
 AC_SUBST(UMFPACK_LIB)
+AC_SUBST(UMFPACK_CFLAGS)
 if test $SUITESPARSE = yes; then
 	AC_DEFINE_UNQUOTED([UMFPACK_SUITESPARSE],[] , [If it is UMFPACK/Suitesparse or UMFPACK standalone])
 fi

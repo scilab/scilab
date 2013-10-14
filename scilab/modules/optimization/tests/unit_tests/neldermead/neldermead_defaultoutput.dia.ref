@@ -20,7 +20,7 @@ nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-function",quadratic);
 nm = neldermead_configure(nm,"-x0",x0);
 nm = neldermead_configure(nm,"-outputcommand",neldermead_defaultoutput);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 Initialization
 Iter. #0, Feval #5, Fval = 2 -- init
 Iter. #1, Feval #5, Fval = 2 -- init

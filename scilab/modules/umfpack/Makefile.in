@@ -106,14 +106,10 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @UMFPACK_TRUE@am__append_1 = $(UMFPACK_LIB)
-
-# Crappy workaround to avoid an undefined symbol while using umfpack features
-# For some unknown reasons, -lumfpack will not load cholmod & colamd
-@IS_MACOSX_TRUE@@UMFPACK_TRUE@am__append_2 = -lcholmod -lcolamd
 DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 	$(srcdir)/Makefile.am $(top_srcdir)/config/mkinstalldirs \
 	$(top_srcdir)/config/depcomp
-@NEED_JAVA_TRUE@am__append_3 = java
+@NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/umfpack
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
@@ -478,6 +474,7 @@ SWIG_SCILAB = @SWIG_SCILAB@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
 TK_INC_PATH = @TK_INC_PATH@
+UMFPACK_CFLAGS = @UMFPACK_CFLAGS@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
 USE_NLS = @USE_NLS@
@@ -557,8 +554,7 @@ top_srcdir = @top_srcdir@
 modulename = umfpack
 pkglib_LTLIBRARIES = libsciumfpack.la
 @UMFPACK_TRUE@noinst_LTLIBRARIES = libsciumfpack-algo.la
-libsciumfpack_la_LDFLAGS = $(AM_LDFLAGS) $(am__append_1) \
-	$(am__append_2)
+libsciumfpack_la_LDFLAGS = $(AM_LDFLAGS) $(am__append_1)
 
 #### umfpack : Conf files ####
 libsciumfpack_la_rootdir = $(mydatadir)
@@ -572,6 +568,10 @@ UMFPACK_license.txt
 libsciumfpack_la_etcdir = $(mydatadir)/etc
 libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 @UMFPACK_FALSE@UMFPACK_C_SOURCES = src/noumfpack/noumfpack.c
+
+# Crappy workaround to avoid an undefined symbol while using umfpack features
+# For some unknown reasons, -lumfpack will not load cholmod & colamd
+# libsciumfpack_la_LDFLAGS += -lcholmod -lcolamd
 @UMFPACK_TRUE@UMFPACK_C_SOURCES = src/c/taucs_scilab.c \
 @UMFPACK_TRUE@src/c/common_umfpack.c \
 @UMFPACK_TRUE@src/c/with_umfpack.c
@@ -642,7 +642,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_3)
+TARGETS_ALL = $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro

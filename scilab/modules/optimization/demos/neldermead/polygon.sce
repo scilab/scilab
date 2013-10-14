@@ -217,7 +217,7 @@ function [A,r,t] = findlargestpolygon (nv)
     [ nm , result ] = neldermead_function ( nm , x0 );
     //
     // Perform optimization
-    nm = neldermead_search(nm);
+    nm = neldermead_search(nm, "off");
     fopt = neldermead_get(nm,"-fopt")
     A = -fopt
     xopt = neldermead_get(nm,"-xopt")

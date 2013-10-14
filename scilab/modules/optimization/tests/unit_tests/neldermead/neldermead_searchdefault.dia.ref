@@ -18,7 +18,7 @@ nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-x0",[1.1 1.1]');
 nm = neldermead_configure(nm,"-function",rosenbrock);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
 assert_checkalmostequal ( xopt , [1.0;1.0], 1e-4 );

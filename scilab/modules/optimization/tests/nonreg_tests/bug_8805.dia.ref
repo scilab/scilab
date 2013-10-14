@@ -60,8 +60,8 @@ nm = neldermead_configure(nm,"-x0",x0');
 nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-boundsmin",lower_bounds);
 nm = neldermead_configure(nm,"-boundsmax",upper_bounds);
-nm = neldermead_configure(nm,"-maxfunevals",200);
-nm = neldermead_configure(nm,"-maxiter",200);
+nm = neldermead_configure(nm,"-maxfunevals",400);
+nm = neldermead_configure(nm,"-maxiter",250);
 nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
 nm = neldermead_search(nm);
 =================================
@@ -80,6 +80,17 @@ Iteration #100, Feval #151, Fval = 0.2460534, x = 0.5394682 0.2725966, Size = 0.
 Iteration #110, Feval #164, Fval = 0.0712614, x = 0.7533294 0.5572998, Size = 0.1683063
 Iteration #120, Feval #178, Fval = 0.0241643, x = 0.8601955 0.7331400, Size = 0.1201279
 Iteration #130, Feval #194, Fval = 0.0006215, x = 0.9932147 0.9888743, Size = 0.0910561
+Iteration #140, Feval #213, Fval = 0.0000914, x = 0.9907809 0.9818993, Size = 0.0191679
+Iteration #150, Feval #231, Fval = 0.0000080, x = 0.9973005 0.9945266, Size = 0.0036059
+Iteration #160, Feval #247, Fval = 0.0000018, x = 1.0006153 1.0013496, Size = 0.0024367
+Iteration #170, Feval #262, Fval = 0.0000001, x = 0.9997092 0.9993959, Size = 0.0014992
+Iteration #180, Feval #285, Fval = 7.121D-08, x = 1.0000349 1.0000433, Size = 0.0001173
+Iteration #190, Feval #296, Fval = 3.730D-08, x = 1.0001101 1.0002043, Size = 0.0002640
+Iteration #200, Feval #310, Fval = 8.015D-09, x = 1.0000652 1.0001242, Size = 0.0001581
+Iteration #210, Feval #325, Fval = 1.036D-09, x = 0.9999743 0.9999467, Size = 0.0001415
+Iteration #220, Feval #342, Fval = 6.061D-11, x = 1.0000017 1.0000041, Size = 0.0000291
+Iteration #230, Feval #360, Fval = 1.459D-11, x = 0.9999963 0.9999928, Size = 0.0000039
+Iteration #240, Feval #380, Fval = 1.048D-12, x = 0.9999990 0.9999980, Size = 0.0000005
 =================================
 End of Optimization
 xopt = neldermead_get(nm,"-xopt");

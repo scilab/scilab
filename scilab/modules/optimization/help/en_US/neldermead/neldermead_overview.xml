@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - 2009 - INRIA - Michael Baudin
  * Copyright (C) 2009 - 2011 - DIGITEO - Michael Baudin
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -64,7 +64,7 @@
             <listitem>
                 <para>
                     <literal>optimplotfunccount</literal>, <literal>optimplotx</literal>
-                    and <literal>optimplotfval</literal> provide plotting features for the 
+                    and <literal>optimplotfval</literal> provide plotting features for the
                     <literal>fminsearch</literal> function.
                 </para>
             </listitem>
@@ -76,7 +76,7 @@
             </listitem>
         </itemizedlist>
         <para>The current component is based on the
-            following components 
+            following components
         </para>
         <itemizedlist>
             <listitem>
@@ -228,7 +228,7 @@
             the algorithm. After the optimization is performed, the optimum is
             retrieved with quiery features.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function [f, index]=rosenbrock(x, index)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -240,7 +240,7 @@ nm = neldermead_configure(nm,"-simplex0length",0.1);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-function",rosenbrock);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 xopt = neldermead_get(nm,"-xopt");
 fopt = neldermead_get(nm,"-fopt");
 historyfopt = neldermead_get(nm,"-historyfopt");

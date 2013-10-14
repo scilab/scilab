@@ -178,7 +178,7 @@ function demo_boxproblemA()
     // Perform optimization
     //
     mprintf(_("Searching (please wait)...\n"));
-    nm = neldermead_search(nm);
+    nm = neldermead_search(nm, "off");
     mprintf(_("...Done\n"));
     //
     // Print a summary

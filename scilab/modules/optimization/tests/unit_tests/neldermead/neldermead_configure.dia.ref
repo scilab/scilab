@@ -59,7 +59,7 @@ nm = neldermead_configure(nm,"-maxfunevals",10);
 maxfunevals = neldermead_cget(nm,"-maxfunevals");
 assert_checkequal ( maxfunevals , 10 );
 //
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 funevals = neldermead_get(nm,"-funevals");
 // Let's be not strict
 assert_checkequal ( funevals < 15 , %T );
@@ -76,7 +76,7 @@ nm = neldermead_configure(nm,"-simplex0length",0.1);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-maxiter",10);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 iterations = neldermead_get(nm,"-iterations");
 assert_checkequal ( iterations , 10 );
 // Cleanup
@@ -115,7 +115,7 @@ nm = neldermead_configure(nm,"-simplex0length",0.1);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-maxfunevals",2);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 cmd = "funevals = neldermead_get(nm,''-foo'')";
 assert_checkerror(cmd,"%s: Unknown key %s",[],"optimbase_get","-foo");
 nm = neldermead_destroy(nm);

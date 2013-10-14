@@ -36,7 +36,7 @@ libsciumfpack_la_LDFLAGS += $(UMFPACK_LIB)
 if IS_MACOSX
 # Crappy workaround to avoid an undefined symbol while using umfpack features
 # For some unknown reasons, -lumfpack will not load cholmod & colamd
-libsciumfpack_la_LDFLAGS += -lcholmod -lcolamd
+# libsciumfpack_la_LDFLAGS += -lcholmod -lcolamd
 endif
 
 UMFPACK_C_SOURCES = src/c/taucs_scilab.c \
