@@ -58,7 +58,8 @@ src/c/CreateUimenu.c \
 src/c/checkColorRange.c \
 src/c/messageboxoptions.c \
 src/c/ScilabTermination.c \
-src/jni/ScilabTermination_wrap.c
+src/jni/ScilabTermination_wrap.c \
+src/jni/UserData_wrap.c
 
 GUI_CXX_SOURCES = \
 src/cpp/InitUIMenu.cpp \
@@ -126,6 +127,8 @@ src/cpp/UnitsConversion.cpp \
 src/cpp/GetScreenProperty.cpp \
 src/cpp/CallClipboard.cpp \
 src/cpp/exportUserInterface.cpp \
+src/cpp/UIWidgetTools.cpp \
+src/cpp/UserDataHandler.cpp \
 src/jni/LookAndFeelManager.cpp \
 src/jni/Juigetfile.cpp \
 src/cpp/CallJuigetfile.cpp \
@@ -139,7 +142,9 @@ src/jni/DatatipCreate.cpp \
 src/jni/DatatipDelete.cpp \
 src/jni/DatatipDrag.cpp \
 src/jni/DatatipSetStyle.cpp \
-src/jni/DatatipOrientation.cpp
+src/jni/DatatipOrientation.cpp \
+src/jni/UIWidget.cpp
+
 
 GIWS_WRAPPERS = \
 src/jni/SwingView.giws.xml \
@@ -216,7 +221,11 @@ sci_gateway/cpp/sci_datatipmove.cpp \
 sci_gateway/cpp/sci_datatip_set_style.cpp \
 sci_gateway/cpp/sci_datatip_set_display.cpp \
 sci_gateway/cpp/sci_datatip_set_interp.cpp \
-sci_gateway/cpp/sci_datatip_set_orient.cpp
+sci_gateway/cpp/sci_datatip_set_orient.cpp \
+sci_gateway/cpp/sci_uiwidget.cpp \
+sci_gateway/cpp/sci_uiget.cpp \
+sci_gateway/cpp/sci_uiset.cpp \
+sci_gateway/cpp/sci_createUIWidgetHandle.cpp
 
 libscigui_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \
@@ -242,7 +251,7 @@ libscigui_la_CPPFLAGS = \
 			-I$(top_srcdir)/modules/renderer/includes/ \
 			-I$(top_srcdir)/modules/renderer/src/jni/ \
 			-I$(top_srcdir)/modules/renderer/src/cpp/ \
-			-I$(top_srcdir)/modules/uiwidget/includes/ \
+			-I$(top_srcdir)/modules/types/includes/ \
 			$(JAVA_JNI_INCLUDE) \
 			$(TCL_INC_PATH) \
 			$(Tk_INC_PATH) \

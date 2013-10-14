@@ -21,7 +21,6 @@
 #include <stdio.h>
 /*------------------------------------------------------------------------*/
 #include "gw_graphics.h"
-#include "gw_uiwidget.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "HandleManagement.h"
@@ -314,12 +313,12 @@ int sci_set(char *fname, unsigned long fname_len)
             /* 'figure_style' for compatibility but do nothing */
             /* others values must return a error */
             char *propertiesSupported[NB_PROPERTIES_SUPPORTED] = { "current_entity",
-                                                                   "hdl",
-                                                                   "current_figure",
-                                                                   "current_axes",
-                                                                   "figure_style",
-                                                                   "default_values",
-                                                                   "auto_clear"
+                    "hdl",
+                    "current_figure",
+                    "current_axes",
+                    "figure_style",
+                    "default_values",
+                    "auto_clear"
                                                                  };
 
             int i = 0;

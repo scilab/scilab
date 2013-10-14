@@ -66,6 +66,10 @@ GUI_IMPEXP int sci_datatip_set_style(char *fname, unsigned long fname_len);
 GUI_IMPEXP int sci_datatip_set_display(char *fname, unsigned long fname_len);
 GUI_IMPEXP int sci_datatip_set_interp(char *fname, unsigned long fname_len);
 GUI_IMPEXP int sci_datatip_set_orient(char *fname, unsigned long fname_len);
+GUI_IMPEXP int sci_uiwidget(char *fname, unsigned long fname_len);
+GUI_IMPEXP int sci_uiget(char *fname, unsigned long fname_len);
+GUI_IMPEXP int sci_uiset(char *fname, unsigned long fname_len);
+GUI_IMPEXP int sci_createUIWidgetHandle(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_GUI__ */
 /*--------------------------------------------------------------------------*/

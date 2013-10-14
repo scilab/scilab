@@ -33,7 +33,6 @@
 #include "CurrentFigure.h"
 #include "BuildObjects.h"
 #include "api_scilab.h"
-#include "gw_uiwidget.h" // UIWidget
 
 /* DO NOT CHANGE ORDER !! */
 static const char* propertiesNames[] =
@@ -302,7 +301,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                 if (hParent < 0)
                 {
                     // UIWidget
-                    return sci_uiwidget(fname, fname_len);
+                    //return sci_uiwidget(fname, fname_len);
                 }
 
                 pParentUID = (char*)getObjectFromHandle((long)hParent);

@@ -80,4 +80,8 @@
     <PRIMITIVE gatewayId="25" primitiveId="47" primitiveName="datatipSetDisplay" />
     <PRIMITIVE gatewayId="25" primitiveId="48" primitiveName="datatipSetInterp" />
     <PRIMITIVE gatewayId="25" primitiveId="49" primitiveName="datatipSetOrientation" />
+    <PRIMITIVE gatewayId="25" primitiveId="50" primitiveName="uiwidget" />
+    <PRIMITIVE gatewayId="25" primitiveId="51" primitiveName="uiget" />
+    <PRIMITIVE gatewayId="25" primitiveId="52" primitiveName="uiset" />
+    <PRIMITIVE gatewayId="25" primitiveId="53" primitiveName="createUIWidgetHandle" />
 </GATEWAY>

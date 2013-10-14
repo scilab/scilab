@@ -48,13 +48,13 @@ public final class GraphicObjectBuilder {
         controller.setProperty(newFID, GraphicObjectProperties.__GO_SELECTED_CHILD__, newAID);
 
         for (Integer type : props) {
-            final double[] position = new double[] {1, 1, 1};
+	    final Double[] position = new Double[] {1., 1., 1.};
             String modelLabelUID = (String) controller.getProperty(axesModelUID, type);
             String pobjUID = controller.createUID().toString();
             GraphicModel.getModel().cloneObject(modelLabelUID, pobjUID);
             controller.setProperty(pobjUID, GraphicObjectProperties.__GO_POSITION__, position);
 
-            Boolean autoPosition = (Boolean ) controller.getProperty(modelLabelUID, GraphicObjectProperties.__GO_AUTO_POSITION__);
+            Boolean autoPosition = (Boolean) controller.getProperty(modelLabelUID, GraphicObjectProperties.__GO_AUTO_POSITION__);
             controller.setProperty(pobjUID, GraphicObjectProperties.__GO_AUTO_POSITION__, autoPosition);
 
             controller.setProperty(newAID, type, pobjUID);

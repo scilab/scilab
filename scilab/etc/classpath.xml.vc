@@ -158,8 +158,6 @@ The option is "disableUnderMode" and can be:
     <path value="$SCILAB/modules/gui/images/icons/"/>
     <!-- Scilab Flexdock icons -->
 
-    <path value="$SCILAB/modules/uiwidget/jar/org.scilab.modules.uiwidget.jar"/>
-
     <path value="$SCILAB/modules/preferences/jar/org.scilab.modules.preferences.jar"/>
 
     <path value="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar"/>

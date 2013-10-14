@@ -73,7 +73,11 @@ static gw_generic_table Tab[] =
     {sci_datatip_set_style, "datatipSetStyle"},
     {sci_datatip_set_display, "datatipSetDisplay"},
     {sci_datatip_set_interp, "datatipSetInterp"},
-    {sci_datatip_set_orient, "datatipSetOrientation"}
+    {sci_datatip_set_orient, "datatipSetOrientation"},
+    {sci_uiwidget, "uiwidget"},
+    {sci_uiget, "uiget"},
+    {sci_uiset, "uiset"},
+    {sci_createUIWidgetHandle, "createUIWidgetHandle"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)
@@ -97,6 +101,7 @@ int gw_gui(void)
      */
     if (!loadedDep && (strcmp(Tab[Fin - 1].name, "uicontrol") == 0
                        || strcmp(Tab[Fin - 1].name, "uimenu") == 0
+                       || strcmp(Tab[Fin - 1].name, "uiwidget") == 0
                        || strcmp(Tab[Fin - 1].name, "usecanvas") == 0))
     {
         loadOnUseClassPath("graphics");

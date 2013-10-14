@@ -35,3 +35,6 @@ vartype_
 vstk_
 MyHeapAlloc
 MyHeapFree
+GetDataSize
+GetData
+sciReturnUserData

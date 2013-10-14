@@ -186,7 +186,8 @@ am__objects_1 = libscigui_algo_la-buildMainWindowTitle.lo \
 	libscigui_algo_la-checkColorRange.lo \
 	libscigui_algo_la-messageboxoptions.lo \
 	libscigui_algo_la-ScilabTermination.lo \
-	libscigui_algo_la-ScilabTermination_wrap.lo
+	libscigui_algo_la-ScilabTermination_wrap.lo \
+	libscigui_algo_la-UserData_wrap.lo
 am__objects_2 = libscigui_algo_la-InitUIMenu.lo \
 	libscigui_algo_la-CallScilabBridge.lo \
 	libscigui_algo_la-Jxclick.lo libscigui_algo_la-SwingView.lo \
@@ -250,6 +251,8 @@ am__objects_2 = libscigui_algo_la-InitUIMenu.lo \
 	libscigui_algo_la-GetScreenProperty.lo \
 	libscigui_algo_la-CallClipboard.lo \
 	libscigui_algo_la-exportUserInterface.lo \
+	libscigui_algo_la-UIWidgetTools.lo \
+	libscigui_algo_la-UserDataHandler.lo \
 	libscigui_algo_la-LookAndFeelManager.lo \
 	libscigui_algo_la-Juigetfile.lo \
 	libscigui_algo_la-CallJuigetfile.lo \
@@ -263,7 +266,8 @@ am__objects_2 = libscigui_algo_la-InitUIMenu.lo \
 	libscigui_algo_la-DatatipDelete.lo \
 	libscigui_algo_la-DatatipDrag.lo \
 	libscigui_algo_la-DatatipSetStyle.lo \
-	libscigui_algo_la-DatatipOrientation.lo
+	libscigui_algo_la-DatatipOrientation.lo \
+	libscigui_algo_la-UIWidget.lo
 am_libscigui_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscigui_algo_la_OBJECTS = $(am_libscigui_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -310,7 +314,10 @@ am__objects_5 = libscigui_la-sci_printsetupbox.lo \
 	libscigui_la-sci_datatip_set_style.lo \
 	libscigui_la-sci_datatip_set_display.lo \
 	libscigui_la-sci_datatip_set_interp.lo \
-	libscigui_la-sci_datatip_set_orient.lo
+	libscigui_la-sci_datatip_set_orient.lo \
+	libscigui_la-sci_uiwidget.lo libscigui_la-sci_uiget.lo \
+	libscigui_la-sci_uiset.lo \
+	libscigui_la-sci_createUIWidgetHandle.lo
 am_libscigui_la_OBJECTS = $(am__objects_4) $(am__objects_5)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
 @GUI_TRUE@am_libscigui_la_rpath = -rpath $(pkglibdir)
@@ -710,7 +717,8 @@ src/c/CreateUimenu.c \
 src/c/checkColorRange.c \
 src/c/messageboxoptions.c \
 src/c/ScilabTermination.c \
-src/jni/ScilabTermination_wrap.c
+src/jni/ScilabTermination_wrap.c \
+src/jni/UserData_wrap.c
 
 GUI_CXX_SOURCES = \
 src/cpp/InitUIMenu.cpp \
@@ -778,6 +786,8 @@ src/cpp/UnitsConversion.cpp \
 src/cpp/GetScreenProperty.cpp \
 src/cpp/CallClipboard.cpp \
 src/cpp/exportUserInterface.cpp \
+src/cpp/UIWidgetTools.cpp \
+src/cpp/UserDataHandler.cpp \
 src/jni/LookAndFeelManager.cpp \
 src/jni/Juigetfile.cpp \
 src/cpp/CallJuigetfile.cpp \
@@ -791,7 +801,8 @@ src/jni/DatatipCreate.cpp \
 src/jni/DatatipDelete.cpp \
 src/jni/DatatipDrag.cpp \
 src/jni/DatatipSetStyle.cpp \
-src/jni/DatatipOrientation.cpp
+src/jni/DatatipOrientation.cpp \
+src/jni/UIWidget.cpp
 
 GIWS_WRAPPERS = \
 src/jni/SwingView.giws.xml \
@@ -860,7 +871,11 @@ sci_gateway/cpp/sci_datatipmove.cpp \
 sci_gateway/cpp/sci_datatip_set_style.cpp \
 sci_gateway/cpp/sci_datatip_set_display.cpp \
 sci_gateway/cpp/sci_datatip_set_interp.cpp \
-sci_gateway/cpp/sci_datatip_set_orient.cpp
+sci_gateway/cpp/sci_datatip_set_orient.cpp \
+sci_gateway/cpp/sci_uiwidget.cpp \
+sci_gateway/cpp/sci_uiget.cpp \
+sci_gateway/cpp/sci_uiset.cpp \
+sci_gateway/cpp/sci_createUIWidgetHandle.cpp
 
 libscigui_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \
@@ -886,7 +901,7 @@ libscigui_la_CPPFLAGS = \
 			-I$(top_srcdir)/modules/renderer/includes/ \
 			-I$(top_srcdir)/modules/renderer/src/jni/ \
 			-I$(top_srcdir)/modules/renderer/src/cpp/ \
-			-I$(top_srcdir)/modules/uiwidget/includes/ \
+			-I$(top_srcdir)/modules/types/includes/ \
 			$(JAVA_JNI_INCLUDE) \
 			$(TCL_INC_PATH) \
 			$(Tk_INC_PATH) \
@@ -1302,7 +1317,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-StartPlotBrowser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-SwingView.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-Toolbar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-UIWidget.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-UIWidgetTools.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-UnitsConversion.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-UserDataHandler.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-UserData_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-Widget.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-addmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-buildMainWindowTitle.Plo@am__quote@
@@ -1316,6 +1335,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-gw_gui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_ClipBoard.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_about.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_createUIWidgetHandle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_datatip_manager_mode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_datatip_set_display.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_datatip_set_interp.Plo@am__quote@
@@ -1347,13 +1367,16 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_toprint.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uicontextmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uicontrol.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uiget.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uigetcolor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uigetdir.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uigetfile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uigetfont.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uimenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uiputfile.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uiset.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uiwait.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uiwidget.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_unsetmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_usecanvas.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_useeditor.Plo@am__quote@
@@ -1461,6 +1484,13 @@ libscigui_algo_la-ScilabTermination_wrap.lo: src/jni/ScilabTermination_wrap.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/jni/ScilabTermination_wrap.c' object='libscigui_algo_la-ScilabTermination_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigui_algo_la-ScilabTermination_wrap.lo `test -f 'src/jni/ScilabTermination_wrap.c' || echo '$(srcdir)/'`src/jni/ScilabTermination_wrap.c
+
+libscigui_algo_la-UserData_wrap.lo: src/jni/UserData_wrap.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigui_algo_la-UserData_wrap.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-UserData_wrap.Tpo -c -o libscigui_algo_la-UserData_wrap.lo `test -f 'src/jni/UserData_wrap.c' || echo '$(srcdir)/'`src/jni/UserData_wrap.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_algo_la-UserData_wrap.Tpo $(DEPDIR)/libscigui_algo_la-UserData_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/jni/UserData_wrap.c' object='libscigui_algo_la-UserData_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigui_algo_la-UserData_wrap.lo `test -f 'src/jni/UserData_wrap.c' || echo '$(srcdir)/'`src/jni/UserData_wrap.c
 
 libscigui_disable_la-nogui.lo: src/nogui/nogui.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigui_disable_la-nogui.lo -MD -MP -MF $(DEPDIR)/libscigui_disable_la-nogui.Tpo -c -o libscigui_disable_la-nogui.lo `test -f 'src/nogui/nogui.c' || echo '$(srcdir)/'`src/nogui/nogui.c
@@ -2113,6 +2143,20 @@ libscigui_algo_la-exportUserInterface.lo: src/cpp/exportUserInterface.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-exportUserInterface.lo `test -f 'src/cpp/exportUserInterface.cpp' || echo '$(srcdir)/'`src/cpp/exportUserInterface.cpp
 
+libscigui_algo_la-UIWidgetTools.lo: src/cpp/UIWidgetTools.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-UIWidgetTools.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-UIWidgetTools.Tpo -c -o libscigui_algo_la-UIWidgetTools.lo `test -f 'src/cpp/UIWidgetTools.cpp' || echo '$(srcdir)/'`src/cpp/UIWidgetTools.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_algo_la-UIWidgetTools.Tpo $(DEPDIR)/libscigui_algo_la-UIWidgetTools.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/UIWidgetTools.cpp' object='libscigui_algo_la-UIWidgetTools.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-UIWidgetTools.lo `test -f 'src/cpp/UIWidgetTools.cpp' || echo '$(srcdir)/'`src/cpp/UIWidgetTools.cpp
+
+libscigui_algo_la-UserDataHandler.lo: src/cpp/UserDataHandler.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-UserDataHandler.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-UserDataHandler.Tpo -c -o libscigui_algo_la-UserDataHandler.lo `test -f 'src/cpp/UserDataHandler.cpp' || echo '$(srcdir)/'`src/cpp/UserDataHandler.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_algo_la-UserDataHandler.Tpo $(DEPDIR)/libscigui_algo_la-UserDataHandler.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/UserDataHandler.cpp' object='libscigui_algo_la-UserDataHandler.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-UserDataHandler.lo `test -f 'src/cpp/UserDataHandler.cpp' || echo '$(srcdir)/'`src/cpp/UserDataHandler.cpp
+
 libscigui_algo_la-LookAndFeelManager.lo: src/jni/LookAndFeelManager.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-LookAndFeelManager.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-LookAndFeelManager.Tpo -c -o libscigui_algo_la-LookAndFeelManager.lo `test -f 'src/jni/LookAndFeelManager.cpp' || echo '$(srcdir)/'`src/jni/LookAndFeelManager.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_algo_la-LookAndFeelManager.Tpo $(DEPDIR)/libscigui_algo_la-LookAndFeelManager.Plo
@@ -2210,6 +2254,13 @@ libscigui_algo_la-DatatipOrientation.lo: src/jni/DatatipOrientation.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/DatatipOrientation.cpp' object='libscigui_algo_la-DatatipOrientation.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-DatatipOrientation.lo `test -f 'src/jni/DatatipOrientation.cpp' || echo '$(srcdir)/'`src/jni/DatatipOrientation.cpp
+
+libscigui_algo_la-UIWidget.lo: src/jni/UIWidget.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-UIWidget.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-UIWidget.Tpo -c -o libscigui_algo_la-UIWidget.lo `test -f 'src/jni/UIWidget.cpp' || echo '$(srcdir)/'`src/jni/UIWidget.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_algo_la-UIWidget.Tpo $(DEPDIR)/libscigui_algo_la-UIWidget.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/UIWidget.cpp' object='libscigui_algo_la-UIWidget.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-UIWidget.lo `test -f 'src/jni/UIWidget.cpp' || echo '$(srcdir)/'`src/jni/UIWidget.cpp
 
 libscigui_la-sci_printsetupbox.lo: sci_gateway/cpp/sci_printsetupbox.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_printsetupbox.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_printsetupbox.Tpo -c -o libscigui_la-sci_printsetupbox.lo `test -f 'sci_gateway/cpp/sci_printsetupbox.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_printsetupbox.cpp
@@ -2392,6 +2443,34 @@ libscigui_la-sci_datatip_set_orient.lo: sci_gateway/cpp/sci_datatip_set_orient.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_datatip_set_orient.cpp' object='libscigui_la-sci_datatip_set_orient.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_datatip_set_orient.lo `test -f 'sci_gateway/cpp/sci_datatip_set_orient.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatip_set_orient.cpp
+
+libscigui_la-sci_uiwidget.lo: sci_gateway/cpp/sci_uiwidget.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_uiwidget.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_uiwidget.Tpo -c -o libscigui_la-sci_uiwidget.lo `test -f 'sci_gateway/cpp/sci_uiwidget.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uiwidget.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_la-sci_uiwidget.Tpo $(DEPDIR)/libscigui_la-sci_uiwidget.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_uiwidget.cpp' object='libscigui_la-sci_uiwidget.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_uiwidget.lo `test -f 'sci_gateway/cpp/sci_uiwidget.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uiwidget.cpp
+
+libscigui_la-sci_uiget.lo: sci_gateway/cpp/sci_uiget.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_uiget.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_uiget.Tpo -c -o libscigui_la-sci_uiget.lo `test -f 'sci_gateway/cpp/sci_uiget.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uiget.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_la-sci_uiget.Tpo $(DEPDIR)/libscigui_la-sci_uiget.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_uiget.cpp' object='libscigui_la-sci_uiget.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_uiget.lo `test -f 'sci_gateway/cpp/sci_uiget.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uiget.cpp
+
+libscigui_la-sci_uiset.lo: sci_gateway/cpp/sci_uiset.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_uiset.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_uiset.Tpo -c -o libscigui_la-sci_uiset.lo `test -f 'sci_gateway/cpp/sci_uiset.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uiset.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_la-sci_uiset.Tpo $(DEPDIR)/libscigui_la-sci_uiset.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_uiset.cpp' object='libscigui_la-sci_uiset.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_uiset.lo `test -f 'sci_gateway/cpp/sci_uiset.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uiset.cpp
+
+libscigui_la-sci_createUIWidgetHandle.lo: sci_gateway/cpp/sci_createUIWidgetHandle.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_createUIWidgetHandle.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_createUIWidgetHandle.Tpo -c -o libscigui_la-sci_createUIWidgetHandle.lo `test -f 'sci_gateway/cpp/sci_createUIWidgetHandle.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_createUIWidgetHandle.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_la-sci_createUIWidgetHandle.Tpo $(DEPDIR)/libscigui_la-sci_createUIWidgetHandle.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_createUIWidgetHandle.cpp' object='libscigui_la-sci_createUIWidgetHandle.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_createUIWidgetHandle.lo `test -f 'sci_gateway/cpp/sci_createUIWidgetHandle.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_createUIWidgetHandle.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

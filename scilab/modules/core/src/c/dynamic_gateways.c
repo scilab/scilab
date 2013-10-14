@@ -479,28 +479,6 @@ int gw_dynamic_external_objects(void)
                               &ptr_gw_external_objects);
 }
 /*--------------------------------------------------------------------------*/
-/* uiwidget module */
-#define UIWIDGET_MODULE_NAME "uiwidget"
-static DynLibHandle hUIWidgetLib = NULL;
-static PROC_GATEWAY ptr_gw_uiwidget = NULL;
-static char* dynlibname_uiwidget = NULL;
-static char* gatewayname_uiwidget = NULL;
-/*--------------------------------------------------------------------------*/
-int gw_dynamic_uiwidget(void)
-{
-#ifdef _MSC_VER
-    if (dynlibname_uiwidget == NULL)
-    {
-        dynlibname_uiwidget = buildModuleDynLibraryName(UIWIDGET_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
-    }
-#endif
-    return gw_dynamic_generic(UIWIDGET_MODULE_NAME,
-                              &dynlibname_uiwidget,
-                              &gatewayname_uiwidget,
-                              &hUIWidgetLib,
-                              &ptr_gw_uiwidget);
-}
-/*--------------------------------------------------------------------------*/
 /* external_objects_java module */
 #define EXTERNAL_OBJECTS_JAVA_MODULE_NAME "external_objects_java"
 static DynLibHandle hExternal_Objects_JavaLib = NULL;
@@ -644,11 +622,6 @@ void freeAllDynamicGateways(void)
                        &gatewayname_external_objects,
                        &hExternal_ObjectsLib,
                        &ptr_gw_external_objects);
-
-    freeDynamicGateway(&dynlibname_uiwidget,
-                       &gatewayname_uiwidget,
-                       &hUIWidgetLib,
-                       &ptr_gw_uiwidget);
 
     freeDynamicGateway(&dynlibname_external_objects_java,
                        &gatewayname_external_objects_java,

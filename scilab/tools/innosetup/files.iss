@@ -96,6 +96,5 @@
 #include BinariesSourcePath + "\modules\xml\xml.iss"
 #include BinariesSourcePath + "\modules\preferences\preferences.iss"
 #include BinariesSourcePath + "\modules\graphic_objects\graphic_objects.iss"
-#include BinariesSourcePath + "\modules\uiwidget\uiwidget.iss"
 ;-------------------------------------------------------------------------------
 ;

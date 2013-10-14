@@ -117,10 +117,6 @@ library.preferences.dir=${modules.dir}/preferences/${build.jar.dir}/
 library.preferences.src.dir=${modules.dir}/preferences/${library.src.path}
 library.preferences.name=org.scilab.modules.preferences.jar
 
-library.uiwidget.dir=${modules.dir}/uiwidget/${build.jar.dir}/
-library.uiwidget.src.dir=${modules.dir}/uiwidget/${library.src.path}
-library.uiwidget.name=org.scilab.modules.uiwidget.jar
-
 library.external_objects_java.dir=${modules.dir}/external_objects_java/${build.jar.dir}/
 library.external_objects_java.src.dir=${modules.dir}/external_objects_java/${library.src.path}
 library.external_objects_java.name=org.scilab.modules.external_objects_java.jar

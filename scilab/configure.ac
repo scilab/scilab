@@ -1923,7 +1923,6 @@ modules/history_browser/Makefile
 modules/preferences/Makefile
 modules/xml/Makefile
 modules/external_objects/Makefile
-modules/uiwidget/Makefile
 modules/external_objects_java/Makefile
 modules/Makefile
 Makefile

@@ -89,8 +89,7 @@ history_browser \
 preferences \
 xml \
 types \
-external_objects \
-uiwidget
+external_objects
 
 if GUI
 SUBDIRS += external_objects_java
@@ -139,7 +138,6 @@ GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/commons/libscicommons.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/preferences/libscipreferences.la \
-	$(top_builddir)/modules/uiwidget/libsciuiwidget.la \
 	$(top_builddir)/modules/external_objects_java/libsciexternal_objects_java.la \
 	$(top_builddir)/modules/helptools/libscihelptools.la
 
@@ -209,7 +207,6 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/matio/libscimatio.la \
 	$(top_builddir)/modules/helptools/libscihelptools.la \
 	$(top_builddir)/modules/parallel/libsciparallel.la \
-	$(top_builddir)/modules/uiwidget/libsciuiwidget.la \
 	$(top_builddir)/modules/parallel/libsciparallel.la
 
 if MPI

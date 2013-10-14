@@ -19,7 +19,7 @@
 /* desc : interface for sci_get routine                                   */
 /*------------------------------------------------------------------------*/
 #include "gw_graphics.h"
-#include "gw_uiwidget.h"
+#include "gw_gui.h"
 /*--------------------------------------------------------------------------*/
 
 #include "HandleManagement.h"
