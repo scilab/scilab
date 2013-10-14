@@ -77,8 +77,6 @@ sci_gateway/c/sci_amell.c \
 sci_gateway/c/sci_conv2.c
 
 GATEWAY_FORTRAN_SOURCES = \
-    sci_gateway/fortran/bgetx.f \
-    sci_gateway/fortran/bgety.f \
     sci_gateway/fortran/Ex-corr.f
 
 libscisignal_processing_la_CPPFLAGS = \

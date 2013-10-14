@@ -187,7 +187,7 @@ libscisignal_processing_la_DEPENDENCIES =  \
 am__objects_3 = libscisignal_processing_la-sci_remez.lo \
 	libscisignal_processing_la-sci_amell.lo \
 	libscisignal_processing_la-sci_conv2.lo
-am__objects_4 = bgetx.lo bgety.lo Ex-corr.lo
+am__objects_4 = Ex-corr.lo
 am__objects_5 = libscisignal_processing_la-sci_rpem.lo \
 	libscisignal_processing_la-sci_corr.lo \
 	libscisignal_processing_la-sci_delip.lo \
@@ -645,8 +645,6 @@ sci_gateway/c/sci_amell.c \
 sci_gateway/c/sci_conv2.c
 
 GATEWAY_FORTRAN_SOURCES = \
-    sci_gateway/fortran/bgetx.f \
-    sci_gateway/fortran/bgety.f \
     sci_gateway/fortran/Ex-corr.f
 
 libscisignal_processing_la_CPPFLAGS = \
@@ -1158,12 +1156,6 @@ desi21.lo: src/fortran/desi21.f
 
 dfftmx.lo: src/fortran/dfftmx.f
 	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dfftmx.lo `test -f 'src/fortran/dfftmx.f' || echo '$(srcdir)/'`src/fortran/dfftmx.f
-
-bgetx.lo: sci_gateway/fortran/bgetx.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bgetx.lo `test -f 'sci_gateway/fortran/bgetx.f' || echo '$(srcdir)/'`sci_gateway/fortran/bgetx.f
-
-bgety.lo: sci_gateway/fortran/bgety.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bgety.lo `test -f 'sci_gateway/fortran/bgety.f' || echo '$(srcdir)/'`sci_gateway/fortran/bgety.f
 
 Ex-corr.lo: sci_gateway/fortran/Ex-corr.f
 	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-corr.lo `test -f 'sci_gateway/fortran/Ex-corr.f' || echo '$(srcdir)/'`sci_gateway/fortran/Ex-corr.f

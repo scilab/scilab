@@ -14,7 +14,6 @@ adre_
 cha1_
 parse_
 isrecursioncalltofunction_
-callinterf_
 
 ;
 ; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol 

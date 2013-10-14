@@ -57,8 +57,6 @@
 		<File RelativePath=".\signal_processing_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\amell.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\bgetx.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\bgety.f"/>
 		<File RelativePath=".\bldenz.f"/>
 		<File RelativePath=".\blnumz.f"/>
 		<File RelativePath=".\bounn.f"/>
