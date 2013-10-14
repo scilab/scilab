@@ -359,9 +359,6 @@
     <ClCompile Include="..\cpp\Toolbar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\jni\UIElementMapper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\UnitsConversion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -891,9 +888,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\jni\SwingView.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\jni\UIElementMapper.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\GetUicontrolTooltipString.hxx">
