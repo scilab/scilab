@@ -31,13 +31,12 @@ using namespace org_scilab_modules_gui_plotbrowser;
 /*--------------------------------------------------------------------------*/
 int sci_plotbrowser(char *fname, unsigned long fname_len)
 {
-    char const * figureUid = NULL;
-
-    int* piAddr = NULL;
-    int* piData = NULL;
-    int m1      = 0;
-    int n1      = 0;
-    int iErr    = 0;
+    int iFigureUid  = 0;
+    int* piAddr     = NULL;
+    int* piData     = NULL;
+    int m1          = 0;
+    int n1          = 0;
+    int iErr        = 0;
 
     SciErr sciErr;
     CheckInputArgument(pvApiCtx, 1, 1);
@@ -65,16 +64,15 @@ int sci_plotbrowser(char *fname, unsigned long fname_len)
 
     try
     {
-        int figureID = *piData;
-        figureUid = ScilabView::getFigureFromIndex(figureID);
+        iFigureUid = ScilabView::getFigureFromIndex(piData[0]);
 
-        if (!sciIsExistingFigure(figureID))
+        if (!sciIsExistingFigure(piData[0]))
         {
-            Scierror(999, "%s: Figure with figure_id %d does not exist.\n", fname, figureID);
+            Scierror(999, "%s: Figure with figure_id %d does not exist.\n", fname, piData[0]);
             return 1;
         }
 
-        StartPlotBrowser::plotBrowser(getScilabJavaVM(), (char*)figureUid);
+        StartPlotBrowser::plotBrowser(getScilabJavaVM(), iFigureUid);
     }
     catch (const GiwsException::JniException & e)
     {

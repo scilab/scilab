@@ -30,11 +30,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_format_n_property(void* _pvCtx, char* pobjUID)
+int get_format_n_property(void* _pvCtx, int iObjUID)
 {
     char* formatn = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_FORMATN__, jni_string, (void **)&formatn);
+    getGraphicObjectProperty(iObjUID, __GO_FORMATN__, jni_string, (void **)&formatn);
 
     if (formatn == NULL)
     {

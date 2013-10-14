@@ -29,12 +29,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_tight_limits_property(void* _pvCtx, char* pobjUID)
+int get_tight_limits_property(void* _pvCtx, int iObjUID)
 {
     int iTightLimits = 0;
     int* piTightLimits = &iTightLimits;
 
-    getGraphicObjectProperty(pobjUID, __GO_TIGHT_LIMITS__, jni_bool, (void **)&piTightLimits);
+    getGraphicObjectProperty(iObjUID, __GO_TIGHT_LIMITS__, jni_bool, (void **)&piTightLimits);
 
     if (piTightLimits == NULL)
     {

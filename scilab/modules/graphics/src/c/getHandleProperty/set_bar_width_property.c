@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_bar_width_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_bar_width_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     double barWidth = 0.;
@@ -45,7 +45,7 @@ int set_bar_width_property(void* _pvCtx, char* pobjUID, void* _pvData, int value
 
     barWidth = ((double*)_pvData)[0];
 
-    status = setGraphicObjectProperty(pobjUID, __GO_BAR_WIDTH__, &barWidth, jni_double, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_BAR_WIDTH__, &barWidth, jni_double, 1);
 
     if (status == TRUE)
     {

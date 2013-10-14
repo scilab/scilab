@@ -31,11 +31,11 @@
 #include "sci_types.h"
 
 /*------------------------------------------------------------------------*/
-int set_current_entity_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_current_entity_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    char* curEntity = NULL;
+    int iCurEntity = 0;
 
-    if (pobjUID != NULL)
+    if (iObjUID != 0)
     {
         /* This property should not be called on an handle */
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_entity");
@@ -48,15 +48,15 @@ int set_current_entity_property(void* _pvCtx, char* pobjUID, void* _pvData, int 
         return SET_PROPERTY_ERROR;
     }
 
-    curEntity = (char*)getObjectFromHandle((long)((long long*)_pvData)[0]);
+    iCurEntity = getObjectFromHandle((long)((long long*)_pvData)[0]);
 
-    if (curEntity == NULL)
+    if (iCurEntity == 0)
     {
         Scierror(999, _("Wrong value for '%s' property: Must be a valid handle.\n"), "current_entity");
         return SET_PROPERTY_ERROR;
     }
 
-    setCurrentObject(curEntity);
+    setCurrentObject(iCurEntity);
     return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/

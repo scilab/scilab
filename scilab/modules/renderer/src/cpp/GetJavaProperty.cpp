@@ -24,7 +24,7 @@ extern "C"
 using namespace org_scilab_modules_renderer;
 
 /*---------------------------------------------------------------------------------*/
-void sciGetJava2dViewPixelCoordinates(char * pSubwinUID, const double userCoords[3], int pixCoords[2])
+void sciGetJava2dViewPixelCoordinates(int iSubwinUID, const double userCoords[3], int pixCoords[2])
 {
     double *tmp = NULL;
     double coords[3];
@@ -33,14 +33,14 @@ void sciGetJava2dViewPixelCoordinates(char * pSubwinUID, const double userCoords
     coords[1] = userCoords[1];
     coords[2] = userCoords[2];
 
-    tmp = CallRenderer::getPixelFrom2dViewCoordinates(getScilabJavaVM(), pSubwinUID, coords, 3);
+    tmp = CallRenderer::getPixelFrom2dViewCoordinates(getScilabJavaVM(), iSubwinUID, coords, 3);
 
     pixCoords[0] = (int) tmp[0];
     pixCoords[1] = (int) tmp[1];
 }
 
 /*---------------------------------------------------------------------------------*/
-void sciGetJava2dViewCoordinates(char *pSubwinUID, const double userCoords3D[3], double userCoords2D[2])
+void sciGetJava2dViewCoordinates(int iSubwinUID, const double userCoords3D[3], double userCoords2D[2])
 {
     double *tmp = NULL;
     double coords[3];
@@ -49,14 +49,14 @@ void sciGetJava2dViewCoordinates(char *pSubwinUID, const double userCoords3D[3],
     coords[1] = userCoords3D[1];
     coords[2] = userCoords3D[2];
 
-    tmp = CallRenderer::get2dViewCoordinates(getScilabJavaVM(), pSubwinUID, coords, 3);
+    tmp = CallRenderer::get2dViewCoordinates(getScilabJavaVM(), iSubwinUID, coords, 3);
 
     userCoords2D[0] = tmp[0];
     userCoords2D[1] = tmp[1];
 }
 
 /*---------------------------------------------------------------------------------*/
-void sciGetJava2dViewCoordFromPixel(char * pSubwinUID, const int pixCoords[2], double userCoords2D[2])
+void sciGetJava2dViewCoordFromPixel(int iSubwinUID, const int pixCoords[2], double userCoords2D[2])
 {
     double *tmp = NULL;
     double coords[2];
@@ -64,18 +64,18 @@ void sciGetJava2dViewCoordFromPixel(char * pSubwinUID, const int pixCoords[2], d
     coords[0] = (double) pixCoords[0];
     coords[1] = (double) pixCoords[1];
 
-    tmp = CallRenderer::get2dViewFromPixelCoordinates(getScilabJavaVM(), pSubwinUID, coords, 2);
+    tmp = CallRenderer::get2dViewFromPixelCoordinates(getScilabJavaVM(), iSubwinUID, coords, 2);
 
     userCoords2D[0] = tmp[0];
     userCoords2D[1] = tmp[1];
 }
 
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaViewingArea(char * pSubwinUID, int *xPos, int *yPos, int *width, int *height)
+void sciGetJavaViewingArea(int iSubwinUID, int *xPos, int *yPos, int *width, int *height)
 {
     double *tmp = NULL;
 
-    tmp = CallRenderer::getViewingArea(getScilabJavaVM(), pSubwinUID);
+    tmp = CallRenderer::getViewingArea(getScilabJavaVM(), iSubwinUID);
 
     *xPos = (int) tmp[0];
     *yPos = (int) tmp[1];

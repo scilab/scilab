@@ -141,27 +141,27 @@ int sci_xget(char *fname, unsigned long fname_len)
     }
     else if (strcmp(l1, "colormap") == 0)
     {
-        char *pobjUID = NULL;
+        int iObjUID = 0;
         // Force figure creation if none exists.
         getOrCreateDefaultSubwin();
-        pobjUID = (char*)getCurrentFigure();
+        iObjUID = getCurrentFigure();
 
-        get_color_map_property(pvApiCtx, pobjUID);
+        get_color_map_property(pvApiCtx, iObjUID);
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
     }
     else if (strcmp(l1, "mark") == 0)
     {
-        char *pobjUID = (char*)getOrCreateDefaultSubwin();
+        int iObjUID = getOrCreateDefaultSubwin();
         int iMarkStyle = 0;
         int* piMarkStyle = &iMarkStyle;
         int iMarkSize = 0;
         int* piMarkSize = &iMarkSize;
         double pdblResult[2];
 
-        getGraphicObjectProperty(pobjUID, __GO_MARK_STYLE__, jni_int, (void**)&piMarkStyle);
-        getGraphicObjectProperty(pobjUID, __GO_MARK_SIZE__, jni_int, (void**)&piMarkSize);
+        getGraphicObjectProperty(iObjUID, __GO_MARK_STYLE__, jni_int, (void**)&piMarkStyle);
+        getGraphicObjectProperty(iObjUID, __GO_MARK_SIZE__, jni_int, (void**)&piMarkSize);
         pdblResult[0] = iMarkStyle;
         pdblResult[1] = iMarkSize;
 
@@ -171,15 +171,15 @@ int sci_xget(char *fname, unsigned long fname_len)
     }
     else if (strcmp(l1, "mark size") == 0)
     {
-        char *pobjUID = (char*)getOrCreateDefaultSubwin();
-        get_mark_size_property(pvApiCtx, pobjUID);
+        int iObjUID = getOrCreateDefaultSubwin();
+        get_mark_size_property(pvApiCtx, iObjUID);
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
     }
     else if (strcmp(l1, "line style") == 0)
     {
-        get_line_style_property(pvApiCtx, (char*)getOrCreateDefaultSubwin());
+        get_line_style_property(pvApiCtx, getOrCreateDefaultSubwin());
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
@@ -187,9 +187,9 @@ int sci_xget(char *fname, unsigned long fname_len)
     else if (strcmp(l1, "clipping") == 0)
     {
         double *clipBox = NULL;
-        char* pobjUID = (char*)getOrCreateDefaultSubwin();
+        int iObjUID = getOrCreateDefaultSubwin();
 
-        getGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipBox);
+        getGraphicObjectProperty(iObjUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipBox);
 
         createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1, 4, clipBox);
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
@@ -197,15 +197,15 @@ int sci_xget(char *fname, unsigned long fname_len)
     }
     else if (strcmp(l1, "font") == 0)
     {
-        char *pobjUID = (char*)getOrCreateDefaultSubwin();
+        int iObjUID = getOrCreateDefaultSubwin();
         double dblFontSize = 0;
         double* pdblFontSize = &dblFontSize;
         int iFontStyle = 0;
         int* piFontStyle = &iFontStyle;
         double pdblResult[2];
 
-        getGraphicObjectProperty(pobjUID, __GO_FONT_SIZE__, jni_double, (void **)&pdblFontSize);
-        getGraphicObjectProperty(pobjUID, __GO_FONT_STYLE__, jni_int, (void**)&piFontStyle);
+        getGraphicObjectProperty(iObjUID, __GO_FONT_SIZE__, jni_double, (void **)&pdblFontSize);
+        getGraphicObjectProperty(iObjUID, __GO_FONT_STYLE__, jni_int, (void**)&piFontStyle);
 
         pdblResult[0] = iFontStyle;
         pdblResult[1] = dblFontSize;
@@ -238,7 +238,7 @@ int sci_xget(char *fname, unsigned long fname_len)
     }
     else if (strcmp(l1, "hidden3d") == 0)
     {
-        get_hidden_color_property(pvApiCtx, (char*)getOrCreateDefaultSubwin());
+        get_hidden_color_property(pvApiCtx, getOrCreateDefaultSubwin());
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
@@ -256,7 +256,7 @@ int sci_xget(char *fname, unsigned long fname_len)
     }
     else if (strcmp(l1, "thickness") == 0)
     {
-        get_thickness_property(pvApiCtx, (char*)getOrCreateDefaultSubwin());
+        get_thickness_property(pvApiCtx, getOrCreateDefaultSubwin());
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
@@ -305,7 +305,7 @@ int sci_xget(char *fname, unsigned long fname_len)
     }
     else if (strcmp(l1, "background") == 0)
     {
-        get_background_property(pvApiCtx, (char*)getOrCreateDefaultSubwin());
+        get_background_property(pvApiCtx, getOrCreateDefaultSubwin());
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
@@ -314,7 +314,7 @@ int sci_xget(char *fname, unsigned long fname_len)
                || strcmp(l1, "foreground") == 0
                || strcmp(l1, "pattern") == 0)
     {
-        get_foreground_property(pvApiCtx, (char*)getOrCreateDefaultSubwin());
+        get_foreground_property(pvApiCtx, getOrCreateDefaultSubwin());
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);

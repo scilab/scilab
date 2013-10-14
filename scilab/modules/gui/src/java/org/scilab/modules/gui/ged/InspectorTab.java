@@ -25,7 +25,7 @@ import org.scilab.modules.gui.utils.ClosingOperationsManager;
 */
 public class InspectorTab {
 
-    public static SwingScilabTab getInspectorInstance(String objectID) {
+    public static SwingScilabTab getInspectorInstance(Integer objectID) {
         final SwingScilabTab inspector = Inspector.createInspectorTab(objectID);
         ScilabTabFactory.getInstance().addToCache(inspector);
 

@@ -25,7 +25,7 @@ extern "C" {
 #include "Matplot.h"
 }
 
-int MatPlotDecomposer::getTextureWidth(char* id)
+int MatPlotDecomposer::getTextureWidth(int id)
 {
     int width = 0;
     int* piWidth = &width;
@@ -35,7 +35,7 @@ int MatPlotDecomposer::getTextureWidth(char* id)
 }
 
 
-int MatPlotDecomposer::getTextureHeight(char* id)
+int MatPlotDecomposer::getTextureHeight(int id)
 {
     int height = 0;
     int* piHeight = &height;
@@ -45,11 +45,11 @@ int MatPlotDecomposer::getTextureHeight(char* id)
 }
 
 
-int MatPlotDecomposer::fillTextureData(char* id, unsigned char* buffer, int bufferLength)
+int MatPlotDecomposer::fillTextureData(int id, unsigned char* buffer, int bufferLength)
 {
     // Indexed colors
     void * data = NULL;
-    char * parentFigure = NULL;
+    int parentFigure = 0;
     double * colormap = NULL;
     int colormapSize = 0;
     int * piColormapSize = &colormapSize;
@@ -146,13 +146,13 @@ int MatPlotDecomposer::fillTextureData(char* id, unsigned char* buffer, int buff
 }
 
 
-int MatPlotDecomposer::fillTextureData(char* id, unsigned char* buffer, int bufferLength, int x, int y, int width, int height)
+int MatPlotDecomposer::fillTextureData(int id, unsigned char* buffer, int bufferLength, int x, int y, int width, int height)
 {
     double* value = NULL;
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &value);
     if (width * height * 4 == bufferLength)
     {
-        char* parentFigure = NULL;
+        int parentFigure = 0;
         double* colormap = NULL;
         int colormapSize = 0;
         int* piColormapSize = &colormapSize;
@@ -181,7 +181,7 @@ int MatPlotDecomposer::fillTextureData(char* id, unsigned char* buffer, int buff
     }
 }
 
-int MatPlotDecomposer::getTextureImageType(char * id)
+int MatPlotDecomposer::getTextureImageType(int id)
 {
     int type = -1;
     int * piType = &type;
@@ -190,7 +190,7 @@ int MatPlotDecomposer::getTextureImageType(char * id)
     return type;
 }
 
-int MatPlotDecomposer::getTextureDataType(char * id)
+int MatPlotDecomposer::getTextureDataType(int id)
 {
     int type = -1;
     int * piType = &type;
@@ -199,7 +199,7 @@ int MatPlotDecomposer::getTextureDataType(char * id)
     return type;
 }
 
-int MatPlotDecomposer::getTextureGLType(char * id)
+int MatPlotDecomposer::getTextureGLType(int id)
 {
     int type = -1;
     int * piType = &type;
@@ -208,7 +208,7 @@ int MatPlotDecomposer::getTextureGLType(char * id)
     return type;
 }
 
-int MatPlotDecomposer::getTextureData(char * id, void ** address, unsigned int * size)
+int MatPlotDecomposer::getTextureData(int id, void ** address, unsigned int * size)
 {
     int type = getTextureImageType(id);
     if (type == MATPLOT_INDEX)
@@ -232,7 +232,7 @@ int MatPlotDecomposer::getTextureData(char * id, void ** address, unsigned int *
     return 1;
 }
 
-void MatPlotDecomposer::disposeTextureData(char * id, unsigned char * buffer)
+void MatPlotDecomposer::disposeTextureData(int id, unsigned char * buffer)
 {
     if (buffer)
     {
@@ -240,7 +240,7 @@ void MatPlotDecomposer::disposeTextureData(char * id, unsigned char * buffer)
     }
 }
 
-int MatPlotDecomposer::isTextureRowOrder(char * id)
+int MatPlotDecomposer::isTextureRowOrder(int id)
 {
     int rowOrder;
     int * piRowOrder = &rowOrder;

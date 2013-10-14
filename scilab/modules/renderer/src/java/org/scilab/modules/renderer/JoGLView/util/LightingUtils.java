@@ -50,7 +50,9 @@ public class LightingUtils {
      * @param status the status.
      */
     public static void setLightingEnable(LightManager manager, Boolean status) {
-        if (manager == null) return;
+        if (manager == null) {
+            return;
+        }
         manager.setLightningEnable(status.booleanValue());
         Light light = manager.getLight(0);
         light.setEnable(status.booleanValue());
@@ -59,12 +61,14 @@ public class LightingUtils {
 
     public static void setupLights(LightManager manager, org.scilab.modules.graphic_objects.axes.Axes axes) {
 
-        if (manager == null) return;
+        if (manager == null) {
+            return;
+        }
 
         boolean hasLight = false;
         int index = 0;
 
-        for (String child : axes.getChildren()) {
+        for (Integer child : axes.getChildren()) {
             GraphicObject object = GraphicController.getController().getObjectFromId(child);
             if (object instanceof org.scilab.modules.graphic_objects.lighting.Light) {
                 //setup only visible lights
@@ -73,7 +77,9 @@ public class LightingUtils {
                     hasLight = true;
                 }
             }
-            if (index >= manager.getLightNumber()) break;
+            if (index >= manager.getLightNumber()) {
+                break;
+            }
         }
         for (int i = index; i < manager.getLightNumber(); ++i) {
             manager.getLight(i).setEnable(false);

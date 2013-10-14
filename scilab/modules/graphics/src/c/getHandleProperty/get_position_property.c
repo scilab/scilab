@@ -33,13 +33,13 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_position_property(void* _pvCtx, char* pobjUID)
+int get_position_property(void* _pvCtx, int iObjUID)
 {
     int iType = -1;
     int* piType = &iType;
     double* position = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **) &piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **) &piType);
     if (piType == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "type");
@@ -53,9 +53,9 @@ int get_position_property(void* _pvCtx, char* pobjUID)
         int* figureSize;
         double position[4];
 
-        getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_int_vector, (void **) &figurePosition);
+        getGraphicObjectProperty(iObjUID, __GO_POSITION__, jni_int_vector, (void **) &figurePosition);
 
-        getGraphicObjectProperty(pobjUID, __GO_AXES_SIZE__, jni_int_vector, (void **) &figureSize);
+        getGraphicObjectProperty(iObjUID, __GO_AXES_SIZE__, jni_int_vector, (void **) &figureSize);
 
         if (figurePosition == NULL || figureSize == NULL)
         {
@@ -76,7 +76,7 @@ int get_position_property(void* _pvCtx, char* pobjUID)
     {
         double* position;
 
-        getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, (void **) &position);
+        getGraphicObjectProperty(iObjUID, __GO_POSITION__, jni_double_vector, (void **) &position);
 
         if (position == NULL)
         {
@@ -91,7 +91,7 @@ int get_position_property(void* _pvCtx, char* pobjUID)
     {
         double* position = NULL;
 
-        getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, (void **)&position);
+        getGraphicObjectProperty(iObjUID, __GO_POSITION__, jni_double_vector, (void **)&position);
 
         if (position == NULL)
         {
@@ -104,7 +104,7 @@ int get_position_property(void* _pvCtx, char* pobjUID)
 
     /* Generic case : position is a 4 row vector */
 
-    getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, (void **) &position);
+    getGraphicObjectProperty(iObjUID, __GO_POSITION__, jni_double_vector, (void **) &position);
 
     if (position == NULL)
     {

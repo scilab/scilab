@@ -195,7 +195,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
      * @param scilabMouseAction : the integer scilab code for mouse action.
      * @param isControlDown true if the CTRL key has been pressed
      */
-    public abstract void mouseEventFilter(MouseEvent mouseEvent, String axesUID, int scilabMouseAction, boolean isControlDown);
+    public abstract void mouseEventFilter(MouseEvent mouseEvent, Integer axesUID, int scilabMouseAction, boolean isControlDown);
 
     /**
      * Event Mask getter.

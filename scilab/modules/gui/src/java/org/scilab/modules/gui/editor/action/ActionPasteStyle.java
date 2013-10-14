@@ -29,7 +29,7 @@ public class ActionPasteStyle extends BaseAction {
 
     Double[] colorMap;
     Integer background;
-    String oldAxes;
+    Integer oldAxes;
 
     /**
     * Constructor
@@ -39,9 +39,9 @@ public class ActionPasteStyle extends BaseAction {
     * @param colorMap The old colormap from the figure
     * @param background The old background color from the figure
     */
-    public ActionPasteStyle(String newAxes, String oldAxes, Double[] colorMap, Integer background) {
+    public ActionPasteStyle(Integer newAxes, Integer oldAxes, Double[] colorMap, Integer background) {
 
-        super(newAxes, (String)GraphicController.getController().getProperty(newAxes, GraphicObjectProperties.__GO_PARENT__));
+        super(newAxes, (Integer)GraphicController.getController().getProperty(newAxes, GraphicObjectProperties.__GO_PARENT__));
         this.oldAxes = oldAxes;
         this.colorMap = colorMap;
         this.background = background;

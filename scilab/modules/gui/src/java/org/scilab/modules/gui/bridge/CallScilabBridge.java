@@ -352,7 +352,7 @@ public class CallScilabBridge {
     }
 
     // TODO REMOVE ME (NO MORE USED IN JNI)
-    public static void newPushButton(String UID) {
+    public static void newPushButton(int UID) {
         PushButton pushButton = ScilabPushButton.createPushButton();
         ((ScilabPushButton) pushButton).setIdentifier(UID);
         int id = UIElementMapper.add(pushButton);
@@ -603,7 +603,7 @@ public class CallScilabBridge {
      * @param uicontextmenuUID the id of the Context Menu
      * @return the item of the menu selected
      */
-    public static String displayAndWaitContextMenu(String uicontextmenuUID) {
+    public static String displayAndWaitContextMenu(int uicontextmenuUID) {
         SwingViewObject uicontextmenu = SwingView.getFromId(uicontextmenuUID);
         return ((SwingScilabContextMenu) uicontextmenu).displayAndWait();
     }
@@ -1147,7 +1147,7 @@ public class CallScilabBridge {
      * @param menuName the name of the menu
      * @param status true to set the menu enabled
      */
-    public static void setMenuEnabled(String parentUID, String menuName, boolean status) {
+    public static void setMenuEnabled(int parentUID, String menuName, boolean status) {
         SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
         if (parentTab != null) { /** Parent must exist */
             parentTab.getMenuBar().getAsSimpleMenuBar().setMenuEnabled(menuName, status);
@@ -1161,7 +1161,7 @@ public class CallScilabBridge {
      * @param menuItemPosition the name of the parent menu
      * @param status true to set the menu enabled
      */
-    public static void setSubMenuEnabled(String parentUID, String parentMenuName, int menuItemPosition, boolean status) {
+    public static void setSubMenuEnabled(int parentUID, String parentMenuName, int menuItemPosition, boolean status) {
         SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
         if (parentTab != null) { /** Parent must exist */
             parentTab.getMenuBar().getAsSimpleMenuBar().setSubMenuEnabled(parentMenuName, menuItemPosition, status);
@@ -1179,7 +1179,7 @@ public class CallScilabBridge {
      * @param parentUID the UID of the figure or console
      * @param menuName the name of the menu
      */
-    public static void removeMenu(String parentUID, String menuName) {
+    public static void removeMenu(int parentUID, String menuName) {
         SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
         if (parentTab != null) { /** Parent must exist */
             parentTab.getMenuBar().getAsSimpleMenuBar().removeMenu(menuName);
@@ -1200,7 +1200,7 @@ public class CallScilabBridge {
      * @return the ID of the File Chooser in the UIElementMapper
      */
 
-    public static int newExportFileChooser(String figureId) {
+    public static int newExportFileChooser(int figureId) {
         FileChooser fileChooser = ScilabFileChooser.createExportFileChooser(figureId);
         return 0;
     }
@@ -2133,7 +2133,7 @@ public class CallScilabBridge {
      * @param parentUID the parent (figure or console) UID
      * @param status true to set the Toolbar visible
      */
-    public static void setToolbarVisible(String parentUID, boolean status) {
+    public static void setToolbarVisible(int parentUID, boolean status) {
         SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
         if (parentTab != null) {
             boolean oldStatus = parentTab.getToolBar().getAsSimpleToolBar().isVisible();
@@ -2150,7 +2150,7 @@ public class CallScilabBridge {
      * @param parentUID the parent (figure or console) UID
      * @return true to set the Toolbar visible
      */
-    public static boolean isToolbarVisible(String parentUID) {
+    public static boolean isToolbarVisible(int parentUID) {
         SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
         if (parentTab != null) {
             return parentTab.getToolBar().getAsSimpleToolBar().isVisible();
@@ -2601,7 +2601,7 @@ public class CallScilabBridge {
      * @param figID the ID of the figure to print
      * @return execution status
      */
-    public static boolean printFigure(String figID) {
+    public static boolean printFigure(int figID) {
         return printFigure(figID, true, true);
     }
 
@@ -2612,7 +2612,7 @@ public class CallScilabBridge {
      * @param displayDialog true to display a print setup dialog
      * @return execution status
      */
-    public static boolean printFigure(String figID, boolean postScript, boolean displayDialog) {
+    public static boolean printFigure(int figID, boolean postScript, boolean displayDialog) {
         // Get the PrinterJob object
         PrinterJob printerJob = PrinterJob.getPrinterJob();
 
@@ -3030,7 +3030,7 @@ public class CallScilabBridge {
      * Copy figure to clipboard
      * @param figID the ID of the figure
      */
-    public static void copyFigureToClipBoard(String figID) {
+    public static void copyFigureToClipBoard(int figID) {
         Image figureImage = ImageExporter.imageExport(figID);
         if (figureImage != null) {
             Transferable clipboardImage = new ClipboardImage(figureImage);
@@ -3130,7 +3130,7 @@ public class CallScilabBridge {
      * Give the focus to a uicontrol
      * @param uicontrolUID the uicontrolUID of the Widget
      */
-    public static void requestFocus(String uicontrolUID) {
+    public static void requestFocus(int uicontrolUID) {
         SwingViewObject uicontrol = SwingView.getFromId(uicontrolUID);
         if (uicontrol instanceof SwingScilabFrame) {
             ((SwingScilabFrame) uicontrol).requestFocus();
@@ -3221,7 +3221,7 @@ public class CallScilabBridge {
         ((UiDisplayTree) UIElementMapper.getCorrespondingUIElement(id)).setData(text);
     }
 
-    public static void fireClosingFinished(String figUID) {
+    public static void fireClosingFinished(int figUID) {
         SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(figUID);
         ClosingOperationsManager.removeFromDunnoList(parentTab);
     }

@@ -29,11 +29,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_color_range_property(void* _pvCtx, char* pobjUID)
+int get_color_range_property(void* _pvCtx, int iObjUID)
 {
     int* range = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_COLOR_RANGE__, jni_int_vector, (void **)&range);
+    getGraphicObjectProperty(iObjUID, __GO_COLOR_RANGE__, jni_int_vector, (void **)&range);
 
     if (range == NULL)
     {

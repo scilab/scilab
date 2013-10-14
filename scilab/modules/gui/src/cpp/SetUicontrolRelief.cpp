@@ -14,7 +14,7 @@
 
 #include "SetUicontrolRelief.hxx"
 
-int SetUicontrolRelief(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUicontrolRelief(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* Relief can be flat, groove, raised, ridge, solid or sunken */
 
@@ -49,7 +49,7 @@ int SetUicontrolRelief(void* _pvCtx, char* sciObjUID, void* _pvData, int valueTy
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_RELIEF__, relief, jni_string, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_RELIEF__, relief, jni_string, 1);
 
     if (status == TRUE)
     {

@@ -38,7 +38,7 @@ public class CommonHandler {
      * @param uid object unique identifier.
      * @return True if exists, false otherwise.
      */
-    public static Boolean objectExists(String uid) {
+    public static Boolean objectExists(Integer uid) {
         if (uid != null) {
             if (GraphicController.getController().getObjectFromId(uid) != null) {
                 return true;
@@ -53,7 +53,7 @@ public class CommonHandler {
      * @param uid object unique identifier.
      * @return True if line mode is enabled, false otherwise.
      */
-    public static Boolean isLineEnabled(String uid) {
+    public static Boolean isLineEnabled(Integer uid) {
         return (Boolean)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_LINE_MODE__);
     }
 
@@ -63,7 +63,7 @@ public class CommonHandler {
      * @param uid object unique identifier.
      * @return True if mark mode is enabled, false otherwise.
      */
-    public static Boolean isMarkEnabled(String uid) {
+    public static Boolean isMarkEnabled(Integer uid) {
         return (Boolean)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_MODE__);
     }
 
@@ -73,7 +73,7 @@ public class CommonHandler {
      * @param uid object unique identifier.
      * @return Style number.
      */
-    public static Integer getMarkStyle(String uid) {
+    public static Integer getMarkStyle(Integer uid) {
         return (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_STYLE__);
     }
 
@@ -83,7 +83,7 @@ public class CommonHandler {
      * @param uid object unique identifier.
      * @return Mark size.
      */
-    public static Integer getMarkSize(String uid) {
+    public static Integer getMarkSize(Integer uid) {
         return (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_SIZE__);
     }
 
@@ -93,7 +93,7 @@ public class CommonHandler {
      * @param uid object unique identifier.
      * @return Mark size.
      */
-    public static Integer getMarkSizeUnit(String uid) {
+    public static Integer getMarkSizeUnit(Integer uid) {
         return (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_SIZE_UNIT__);
     }
 
@@ -104,7 +104,7 @@ public class CommonHandler {
      * @param newColor Color to be used.
      * @return Returns the old color of the object.
      */
-    public static Integer setColor(String uid, Integer newColor) {
+    public static Integer setColor(Integer uid, Integer newColor) {
 
         if (uid == null) {
             return 0;
@@ -129,11 +129,11 @@ public class CommonHandler {
      * @param uid object unique identifier.
      * @return New duplicated object uid or null if it fails.
      */
-    public static String duplicate(String uid) {
-        String dup = null;
-        String ret = null;
+    public static Integer duplicate(Integer uid) {
+        Integer dup = null;
+        Integer ret = null;
         dup = GraphicController.getController().cloneObject(uid);
-        GraphicController.getController().setGraphicObjectRelationship("", dup);
+        GraphicController.getController().setGraphicObjectRelationship(0, dup);
         Integer typeName = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_TYPE__);
 
         if (typeName == GraphicObjectProperties.__GO_POLYLINE__) {
@@ -157,12 +157,12 @@ public class CommonHandler {
      * @param axes Axes unique identifier.
      * @param uid object unique identifier.
      */
-    public static void insert(String axes, String uid) {
+    public static void insert(Integer axes, Integer uid) {
 
         Integer typeName = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_TYPE__);
 
         if (typeName == GraphicObjectProperties.__GO_POLYLINE__) {
-            String newCompound = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_COMPOUND__));
+            Integer newCompound = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_COMPOUND__));
             GraphicController.getController().setGraphicObjectRelationship(axes, newCompound);
             GraphicController.getController().setGraphicObjectRelationship(newCompound, uid);
         } else if (typeName == GraphicObjectProperties.__GO_PLOT3D__ ||
@@ -178,8 +178,8 @@ public class CommonHandler {
      *
      * @param uid object unique object.
      */
-    public static void cut(String uid) {
-        GraphicController.getController().setGraphicObjectRelationship("", uid);
+    public static void cut(Integer uid) {
+        GraphicController.getController().setGraphicObjectRelationship(0, uid);
     }
 
     /**
@@ -188,7 +188,7 @@ public class CommonHandler {
      *
      * @param uid object unique identifier.
      */
-    public static void delete(String uid) {
+    public static void delete(Integer uid) {
         GraphicController.getController().removeRelationShipAndDelete(uid);
     }
 
@@ -198,7 +198,7 @@ public class CommonHandler {
      * @param uid object unique identifier.
      * @return True if is visible, false otherwise.
      */
-    public static Boolean isVisible(String uid) {
+    public static Boolean isVisible(Integer uid) {
         return (Boolean)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_VISIBLE__);
     }
 
@@ -209,7 +209,7 @@ public class CommonHandler {
      * @param uid object unique identifier.
      * @param status true set object vidible false hide it.
      */
-    public static void setVisible(String uid, boolean status) {
+    public static void setVisible(Integer uid, boolean status) {
         GraphicController.getController().setProperty(uid, GraphicObjectProperties.__GO_VISIBLE__, status);
     }
 
@@ -218,11 +218,11 @@ public class CommonHandler {
      *
      * @param figure figure unique identifier.
      */
-    public static void unhideAll(String figure) {
+    public static void unhideAll(Integer figure) {
         Integer[] types = {GraphicObjectProperties.__GO_POLYLINE__, GraphicObjectProperties.__GO_PLOT3D__,
                            GraphicObjectProperties.__GO_FAC3D__, GraphicObjectProperties.__GO_GRAYPLOT__
                           };
-        String[] objs = (new ObjectSearcher()).searchMultiple(figure, types);
+        Integer[] objs = (new ObjectSearcher()).searchMultiple(figure, types);
         if (objs != null) {
             for (int i = 0; i < objs.length; ++i) {
                 setVisible(objs[i], true);
@@ -236,9 +236,9 @@ public class CommonHandler {
      * @param object The object
      * @return the parent UID
      */
-    public static String getParent(String object) {
+    public static Integer getParent(Integer object) {
 
-        return (String)GraphicController.getController().getProperty(object, GraphicObjectProperties.__GO_PARENT__);
+        return (Integer)GraphicController.getController().getProperty(object, GraphicObjectProperties.__GO_PARENT__);
     }
 
     /**
@@ -247,9 +247,9 @@ public class CommonHandler {
      * @param object The object
      * @return the parent igure UID
      */
-    public static String getParentFigure(String object) {
+    public static Integer getParentFigure(Integer object) {
 
-        return (String)GraphicController.getController().getProperty(object, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        return (Integer)GraphicController.getController().getProperty(object, GraphicObjectProperties.__GO_PARENT_FIGURE__);
     }
 
     /**
@@ -259,7 +259,7 @@ public class CommonHandler {
      * @param figure2 Second figure uid.
      * @return True if equal false otherwise.
      */
-    public static boolean cmpColorMap(String figure1, String figure2) {
+    public static boolean cmpColorMap(Integer figure1, Integer figure2) {
 
         Double[] cm1 = getColorMap(figure1);
         Double[] cm2 = getColorMap(figure2);
@@ -281,7 +281,7 @@ public class CommonHandler {
      * @param from Source figure.
      * @param to Destination figure.
      */
-    public static void cloneColorMap(String from, String to) {
+    public static void cloneColorMap(Integer from, Integer to) {
         Double[] cm1 = getColorMap(from);
         GraphicController.getController().setProperty(to, GraphicObjectProperties.__GO_COLORMAP__, cm1);
 
@@ -293,18 +293,18 @@ public class CommonHandler {
     * @param objectFrom The object to get the backgound color
     * @param objectTo The object to set the background color
     */
-    public static void cloneBackgroundColor(String objectFrom, String objectTo) {
+    public static void cloneBackgroundColor(Integer objectFrom, Integer objectTo) {
 
         Integer color = getBackground(objectFrom);
         GraphicController.getController().setProperty(objectTo, GraphicObjectProperties.__GO_BACKGROUND__, color);
     }
 
-    public static Double[] getColorMap(String figure) {
+    public static Double[] getColorMap(Integer figure) {
 
         return (Double[])GraphicController.getController().getProperty(figure, GraphicObjectProperties.__GO_COLORMAP__);
     }
 
-    public static Integer getBackground(String object) {
+    public static Integer getBackground(Integer object) {
 
         return (Integer)GraphicController.getController().getProperty(object, GraphicObjectProperties.__GO_BACKGROUND__);
     }
@@ -361,12 +361,12 @@ public class CommonHandler {
      * @param point2d The 2d point in default view
      * @return The position in 3d coordinates (x, y ,z)
      */
-    public static double[] computeIntersection(String polyline, int i, double[] point2d) {
+    public static double[] computeIntersection(Integer polyline, int i, double[] point2d) {
 
         double[] datax = (double[])PolylineData.getDataX(polyline);
         double[] datay = (double[])PolylineData.getDataY(polyline);
         double[] dataz = (double[])PolylineData.getDataZ(polyline);
-        String axes = (String)GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_PARENT_AXES__);
+        Integer axes = (Integer)GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_PARENT_AXES__);
         Axes obj = (Axes)GraphicController.getController().getObjectFromId(axes);
         //Points of R1
         double[] c3d1 = AxesDrawer.compute3dViewCoordinates(obj, new double[] { point2d[0], point2d[1], 1.0});

@@ -23,10 +23,10 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
  */
 public class DatatipManagerMode {
     private static DatatipManagerMode instance;
-    private String selectedTip;
+    private Integer selectedTip;
     private Integer markColor;
 
-    private String figureUid;
+    private Integer figureUid;
     private boolean datatipManagerModeStatus;
 
     private static String datatipMessage = Messages.gettext("Left click on the curve creates a datatip and right click on the datatip removes it.");
@@ -81,12 +81,12 @@ public class DatatipManagerMode {
     }
 
 
-    public void setSelectedTip(String uid) {
+    public void setSelectedTip(Integer uid) {
         markColor = highlightSelected(uid, selectedTip, markColor);
         selectedTip = uid;
     }
 
-    public String getSelectedTip() {
+    public Integer getSelectedTip() {
         return selectedTip;
     }
 
@@ -97,7 +97,7 @@ public class DatatipManagerMode {
     *
     * @param uid Figure unique identifier.
     */
-    public void setFigure(String uid) {
+    public void setFigure(Integer uid) {
         figureUid = uid;
     }
 
@@ -110,13 +110,13 @@ public class DatatipManagerMode {
     * @param oldTipColor coor to restore.
     * @return the original datatip mark color.
     */
-    private Integer highlightSelected(String newTip, String oldTip, Integer oldTipColor) {
+    private Integer highlightSelected(Integer newTip, Integer oldTip, Integer oldTipColor) {
 
         Integer color = 0;
         if (oldTip != null) {
             GraphicController.getController().setProperty(oldTip, GraphicObjectProperties.__GO_MARK_BACKGROUND__, oldTipColor);
         }
-        if (newTip != null){
+        if (newTip != null) {
             color = (Integer) GraphicController.getController().getProperty(newTip, GraphicObjectProperties.__GO_MARK_BACKGROUND__);
             GraphicController.getController().setProperty(newTip, GraphicObjectProperties.__GO_MARK_BACKGROUND__, -3);
         }
@@ -126,14 +126,14 @@ public class DatatipManagerMode {
 
     public boolean pickAndHighlight(Integer x, Integer y) {
         Integer pos[] = {x, y};
-        String datatip = (new EntityPicker()).pickDatatip(figureUid, pos);
+        Integer datatip = (new EntityPicker()).pickDatatip(figureUid, pos);
         setSelectedTip(datatip);
         return (datatip != null);
     }
 
     public boolean pickAndDelete(Integer x, Integer y) {
         Integer pos[] = {x, y};
-        String datatip = (new EntityPicker()).pickDatatip(figureUid, pos);
+        Integer datatip = (new EntityPicker()).pickDatatip(figureUid, pos);
 
         if (datatip != null) {
             DatatipDelete.deleteDatatip(datatip);
@@ -142,5 +142,5 @@ public class DatatipManagerMode {
             }
         }
         return (datatip != null);
-    } 
+    }
 }

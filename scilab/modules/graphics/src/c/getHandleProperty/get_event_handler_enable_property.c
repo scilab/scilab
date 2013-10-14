@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_event_handler_enable_property(void* _pvCtx, char* pobjUID)
+int get_event_handler_enable_property(void* _pvCtx, int iObjUID)
 {
     int iEventHandlerEnable = 0;
     int *piEventHandlerEnable = &iEventHandlerEnable;
 
-    getGraphicObjectProperty(pobjUID, __GO_EVENTHANDLER_ENABLE__, jni_bool, (void **)&piEventHandlerEnable);
+    getGraphicObjectProperty(iObjUID, __GO_EVENTHANDLER_ENABLE__, jni_bool, (void **)&piEventHandlerEnable);
 
     if (piEventHandlerEnable == NULL)
     {

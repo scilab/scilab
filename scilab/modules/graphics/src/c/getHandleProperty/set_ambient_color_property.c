@@ -24,7 +24,7 @@
 /**
  * Sets the ambient color of the light/material.
  */
-int set_ambient_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_ambient_color_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     double * color;
@@ -49,7 +49,7 @@ int set_ambient_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int v
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_AMBIENTCOLOR__, _pvData, jni_double_vector, 3);
+    status = setGraphicObjectProperty(iObjUID, __GO_AMBIENTCOLOR__, _pvData, jni_double_vector, 3);
 
     if (status == TRUE)
     {

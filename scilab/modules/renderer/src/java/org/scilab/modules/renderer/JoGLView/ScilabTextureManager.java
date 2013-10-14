@@ -30,7 +30,7 @@ import java.util.Map;
  */
 public class ScilabTextureManager {
 
-    private final Map<String, Texture> hashMap = new HashMap<String, Texture>();
+    private final Map<Integer, Texture> hashMap = new HashMap<Integer, Texture>();
     private final DrawerVisitor drawerVisitor;
     private final Canvas canvas;
 
@@ -45,7 +45,7 @@ public class ScilabTextureManager {
      * @param identifier object identifier.
      * @return the {@link Texture} used to drawn the object who have the given identifier.
      */
-    public Texture getTexture(String identifier) {
+    public Texture getTexture(Integer identifier) {
         Texture texture = hashMap.get(identifier);
         if (texture == null) {
             texture = canvas.getTextureManager().createTexture();
@@ -57,7 +57,7 @@ public class ScilabTextureManager {
         return texture;
     }
 
-    public void dispose(String identifier) {
+    public void dispose(Integer identifier) {
         Texture texture = hashMap.get(identifier);
         if (texture != null) {
             hashMap.remove(identifier);
@@ -66,7 +66,7 @@ public class ScilabTextureManager {
     }
 
     public void disposeAll() {
-        for (Map.Entry<String, Texture> entry : hashMap.entrySet()) {
+        for (Map.Entry<Integer, Texture> entry : hashMap.entrySet()) {
             Texture t = entry.getValue();
             if (t != null) {
                 canvas.getTextureManager().dispose(t);
@@ -78,7 +78,7 @@ public class ScilabTextureManager {
 
     private class ScilabTextureDataProvider extends AbstractTextureDataProvider implements GraphicView {
 
-        private final String identifier;
+        private final Integer identifier;
         private Dimension dimension;
         private int datatype = -1;
         private int iType = -1;
@@ -86,7 +86,7 @@ public class ScilabTextureManager {
         private boolean isRowOrder;
         private ByteBuffer buffer;
 
-        public ScilabTextureDataProvider(String identifier) {
+        public ScilabTextureDataProvider(Integer identifier) {
             this.identifier = identifier;
             this.isValid = (identifier != null);
 
@@ -177,7 +177,7 @@ public class ScilabTextureManager {
         }
 
         @Override
-        public void updateObject(String id, int property) {
+        public void updateObject(Integer id, int property) {
             if (isValid() && identifier.equals(id)) {
                 // TODO check Property.
                 updateData();
@@ -185,7 +185,7 @@ public class ScilabTextureManager {
         }
 
         @Override
-        public void deleteObject(String id) {
+        public void deleteObject(Integer id) {
             if (isValid() && identifier.equals(id)) {
                 isValid = false;
                 GraphicController.getController().unregister(this);
@@ -195,7 +195,7 @@ public class ScilabTextureManager {
         }
 
         @Override
-        public void createObject(String id) {
+        public void createObject(Integer id) {
         }
     }
 }

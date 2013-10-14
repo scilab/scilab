@@ -20,12 +20,12 @@
 
 extern "C"
 {
-    void ScilabNativeView__createObject(char const* pstId);
-    void ScilabNativeView__deleteObject(char const* pstId);
-    void ScilabNativeView__updateObject(char const* pstId, int iProperty);
-    void ScilabNativeView__setCurrentFigure(char const* pstId);
-    void ScilabNativeView__setCurrentSubWin(char const* pstId);
-    void ScilabNativeView__setCurrentObject(char const* pstId);
+    void ScilabNativeView__createObject(int id);
+    void ScilabNativeView__deleteObject(int id);
+    void ScilabNativeView__updateObject(int id, int iProperty);
+    void ScilabNativeView__setCurrentFigure(int id);
+    void ScilabNativeView__setCurrentSubWin(int id);
+    void ScilabNativeView__setCurrentObject(int id);
     int ScilabNativeView__getValidDefaultFigureId();
 }
 
@@ -36,54 +36,54 @@ private :
     ~ScilabView() {}
 
     // Define type for easy manipulation.
-    typedef std::map<std::string, long>  __handleList;
+    typedef std::map<int, long>  __handleList;
     typedef __handleList::iterator          __handleList_iterator;
-    typedef std::map<long, std::string>  __uidList;
+    typedef std::map<long, int>  __uidList;
     typedef __uidList::iterator          __uidList_iterator;
-    typedef std::map<std::string, int>    __figureList;
+    typedef std::map<int, int>    __figureList;
     typedef __figureList::iterator          __figureList_iterator;
 
-    static __figureList                     m_figureList;
-    static __handleList                     m_handleList;
-    static __uidList                        m_uidList;
-    static long                             m_topHandleValue;
-    static std::string                      m_currentFigure;
-    static std::string                      m_currentObject;
-    static std::string                      m_currentSubWin;
-    static std::string                      m_figureModel;
-    static std::string                      m_axesModel;
+    static __figureList m_figureList;
+    static __handleList m_handleList;
+    static __uidList    m_uidList;
+    static long         m_topHandleValue;
+    static int          m_currentFigure;
+    static int          m_currentObject;
+    static int          m_currentSubWin;
+    static int          m_figureModel;
+    static int          m_axesModel;
 
 public :
-    static void   createObject(char const* pstId);
-    static void   deleteObject(char const* pstId);
-    static void   updateObject(char const* pstId, int iProperty);
+    static void createObject(int iUID);
+    static void deleteObject(int iUID);
+    static void updateObject(int iUID, int iProperty);
 
-    static int    getNbFigure(void);
-    static void   getFiguresId(int ids[]);
-    static void   registerToController(void);
-    static void   unregisterToController(void);
-    static bool   existsFigureId(int id);
-    static char const*  getFigureFromIndex(int figureNumber);
-    static bool   isEmptyFigureList(void);
-    static int getValidDefaultFigureId();
+    static int  getNbFigure(void);
+    static void getFiguresId(int ids[]);
+    static void registerToController(void);
+    static void unregisterToController(void);
+    static bool existsFigureId(int id);
+    static int  getFigureFromIndex(int figureNumber);
+    static bool isEmptyFigureList(void);
+    static int  getValidDefaultFigureId();
 
-    static char const*  getCurrentFigure(void);
-    static void   setCurrentFigure(char const* UID);
+    static int  getCurrentFigure(void);
+    static void setCurrentFigure(int iUID);
 
-    static char const*  getCurrentObject(void);
-    static void   setCurrentObject(char const* UID);
+    static int  getCurrentObject(void);
+    static void setCurrentObject(int iUID);
 
-    static char const*  getCurrentSubWin(void);
-    static void   setCurrentSubWin(char const* UID);
+    static int  getCurrentSubWin(void);
+    static void setCurrentSubWin(int iUID);
 
-    static long   getObjectHandle(char const* UID);
-    static char const*  getObjectFromHandle(long handle);
+    static long getObjectHandle(int iUID);
+    static int  getObjectFromHandle(long handle);
 
-    static char const*  getFigureModel(void);
-    static void   setFigureModel(char const* UID);
+    static int  getFigureModel(void);
+    static void setFigureModel(int iUID);
 
-    static char const* getAxesModel(void);
-    static void setAxesModel(char const* UID);
+    static int  getAxesModel(void);
+    static void setAxesModel(int iUID);
 
 };
 

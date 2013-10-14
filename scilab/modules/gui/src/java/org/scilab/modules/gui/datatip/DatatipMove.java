@@ -36,7 +36,7 @@ public class DatatipMove {
     *
     * @param markerUid datatip marker unique identifier
     */
-    public static void moveRight(String datatipUid) {
+    public static void moveRight(Integer datatipUid) {
         move(datatipUid, 1, 2);
     }
 
@@ -46,7 +46,7 @@ public class DatatipMove {
     *
     * @param datatipUid datatip unique identifier
     */
-    public static void moveLeft(String datatipUid) {
+    public static void moveLeft(Integer datatipUid) {
         move(datatipUid, -1, 0);
     }
 
@@ -57,12 +57,12 @@ public class DatatipMove {
      * the number 0 and 2 is because getSegment returns one segment more
      * the right would be -1, 1. Probably this is because float round error.
      */
-    private static void move(String datatipUid, int dir, int seg_offset) {
+    private static void move(Integer datatipUid, int dir, int seg_offset) {
 
-        String parentPolyline = DatatipCommon.getParentPolyline(datatipUid);
+        Integer parentPolyline = DatatipCommon.getParentPolyline(datatipUid);
 
         if (parentPolyline != null) {
-            String figure = (String)GraphicController.getController().getProperty(datatipUid, __GO_PARENT_FIGURE__);
+            Integer figure = (Integer)GraphicController.getController().getProperty(datatipUid, __GO_PARENT_FIGURE__);
             Boolean useInterp = (Boolean)GraphicController.getController().getProperty(datatipUid, __GO_DATATIP_INTERP_MODE__);
             Integer[] pos = getCoordInteger(datatipUid);
 
@@ -80,7 +80,7 @@ public class DatatipMove {
                 newPos = new Double[] {seg.x0, seg.y0, 0.0};
             }
 
-            String axes = (String)GraphicController.getController().getProperty(parentPolyline, __GO_PARENT_AXES__);
+            Integer axes = (Integer)GraphicController.getController().getProperty(parentPolyline, __GO_PARENT_AXES__);
             boolean[] logFlags = new boolean[] {(Boolean)GraphicController.getController().getProperty(axes, __GO_X_AXIS_LOG_FLAG__),
                                                 (Boolean)GraphicController.getController().getProperty(axes, __GO_Y_AXIS_LOG_FLAG__),
                                                 (Boolean)GraphicController.getController().getProperty(axes, __GO_Z_AXIS_LOG_FLAG__)
@@ -106,14 +106,14 @@ public class DatatipMove {
     * @param datatipUid Datatip unique identifier
     * @return Array with x, y coordinates
     */
-    public static Integer[] getCoordInteger(String datatipUid) {
+    public static Integer[] getCoordInteger(Integer datatipUid) {
 
         Double[] markerPosition = (Double[]) GraphicController.getController().getProperty(datatipUid, __GO_DATATIP_DATA__);
         for (int i = 0 ; i < graphCoordDouble.length ; i++) {
             graphCoordDouble[i] = markerPosition[i];
         }
 
-        String axes = (String)GraphicController.getController().getProperty(datatipUid, __GO_PARENT_AXES__);
+        Integer axes = (Integer)GraphicController.getController().getProperty(datatipUid, __GO_PARENT_AXES__);
         if (axes != null) {
             double[] pixelCoordinates = CallRenderer.getPixelFrom2dViewCoordinates(axes, graphCoordDouble);
             int xInt = (int) pixelCoordinates[0];

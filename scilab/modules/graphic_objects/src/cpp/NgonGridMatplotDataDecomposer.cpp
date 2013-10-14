@@ -28,7 +28,7 @@ extern "C"
 
 NgonGridMatplotDataDecomposer* NgonGridMatplotDataDecomposer::decomposer = NULL;
 
-void NgonGridMatplotDataDecomposer::fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
+void NgonGridMatplotDataDecomposer::fillVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
 {
     double* matplotScale = NULL;
     double* matplotTranslate = NULL;
@@ -218,10 +218,12 @@ void NgonGridMatplotDataDecomposer::fillGridVertices(float* buffer, int bufferLe
  * -clean-up: replace explicitely computed z indices by getPointIndex calls
  * -remove the per-vertex color fill code
  */
-void NgonGridMatplotDataDecomposer::fillColors(char* id, float* buffer, int bufferLength, int elementsSize)
+void NgonGridMatplotDataDecomposer::fillColors(int id, float* buffer, int bufferLength, int elementsSize)
 {
-    char* parent = NULL;
-    char* parentFigure = NULL;
+    int parent = 0;
+    int* pparent = &parent;
+    int parentFigure = 0;
+    int* pparentFigure = &parentFigure;
 
     void * data = NULL;
     double* colormap = NULL;
@@ -240,15 +242,15 @@ void NgonGridMatplotDataDecomposer::fillColors(char* id, float* buffer, int buff
     int gltype = 0;
     int * piGltype = &gltype;
 
-    getGraphicObjectProperty(id, __GO_PARENT__, jni_string, (void**) &parent);
+    parent = getParentObject(id);
 
     /* Temporary: to avoid getting a null parent_figure property when the object is built */
-    if (strcmp(parent, "") == 0)
+    if (parent == 0)
     {
         return;
     }
 
-    getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_string, (void**) &parentFigure);
+    getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_int, (void**) &pparentFigure);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_X__, jni_int, (void**) &piNumX);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**) &piNumY);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__, jni_double_vector, &data);
@@ -347,7 +349,7 @@ void NgonGridMatplotDataDecomposer::fillColors(char* id, float* buffer, int buff
  * To do: merge with NgonGridDataDecomposer::fillIndices as these functions perform a lot of work in
  * a redundant way.
  */
-int NgonGridMatplotDataDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)
+int NgonGridMatplotDataDecomposer::fillIndices(int id, int* buffer, int bufferLength, int logMask)
 {
     double* x = NULL;
     double* y = NULL;

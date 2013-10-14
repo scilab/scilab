@@ -159,7 +159,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     private static final String UNDOCK = "undock";
     private static final String HELP = "help";
 
-    private String id;
+    private Integer id;
 
     private boolean eventEnabled = false;
 
@@ -358,7 +358,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
                 String closeRequestFcn = (String) GraphicController.getController().getProperty(getId(), __GO_CLOSEREQUESTFCN__);
                 if (!closeRequestFcn.equals("")) {
                     String closeCommand = "if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
-                                          + "gcbo = getcallbackobject(\"" + getId() + "\");"
+                                          + "gcbo = getcallbackobject(" + getId() + ");"
                                           + closeRequestFcn + ";fire_closing_finished();"
                                           + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;";
                     InterpreterManagement.requestScilabExec(closeCommand);
@@ -1461,8 +1461,8 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
                 +      "end;";
             setCallback(null);
             setCallback(ScilabCloseCallBack.create(getId(), closingCommand));
-            /* Update menus callbacks */
-            String[] children = (String[]) GraphicController.getController().getProperty(getId(), __GO_CHILDREN__);
+            /* Update menus callback */
+            Integer[] children = (Integer[]) GraphicController.getController().getProperty(getId(), __GO_CHILDREN__);
             updateChildrenCallbacks(children, figureId);
         } else if (property == __GO_SIZE__) {
             Integer[] size = (Integer[]) value;
@@ -1502,7 +1502,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param children the children UID
      * @param parentFigureId the figure ID
      */
-    private void updateChildrenCallbacks(String[] children, int parentFigureId) {
+    private void updateChildrenCallbacks(Integer[] children, int parentFigureId) {
         for (int kChild = 0; kChild < children.length; kChild++) {
             int childType = (Integer) GraphicController.getController().getProperty(children[kChild], __GO_TYPE__);
             if (childType == __GO_UIMENU__
@@ -1511,7 +1511,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
                     || childType == __GO_UICHECKEDMENU__) {
                 String cb = (String) GraphicController.getController().getProperty(children[kChild], __GO_CALLBACK__);
                 SwingView.getFromId(children[kChild]).update(__GO_CALLBACK__, replaceFigureID(cb, parentFigureId));
-                String[] menuChildren = (String[]) GraphicController.getController().getProperty(children[kChild], __GO_CHILDREN__);
+                Integer[] menuChildren = (Integer[]) GraphicController.getController().getProperty(children[kChild], __GO_CHILDREN__);
                 updateChildrenCallbacks(menuChildren, parentFigureId);
             }
         }
@@ -1544,7 +1544,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @return the UID
      * @see org.scilab.modules.gui.SwingViewObject#getId()
      */
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -1553,7 +1553,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param id the UID
      * @see org.scilab.modules.gui.SwingViewObject#setId(java.lang.String)
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

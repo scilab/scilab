@@ -24,7 +24,7 @@ public class StartPlotBrowser {
     /**
     * Initializes the Plot Browser.
     */
-    public static void plotBrowser(String uid) {
+    public static void plotBrowser(Integer uid) {
         if (StartGED.enableNewGed) {
             PlotBrowser.getPlotBrowser(uid);
         }

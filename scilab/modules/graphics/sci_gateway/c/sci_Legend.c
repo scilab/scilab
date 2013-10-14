@@ -49,20 +49,21 @@ int sci_Legend(char * fname, unsigned long fname_len)
     int* piAddrStr = NULL;
     int* piAddrl2 = NULL;
     char* l2 = NULL;
-    long long* outindex = NULL;
 
     int numrow = 0, numcol = 0, n = 0, m2 = 0, n2 = 0;
     long handlesvalue = 0;
     int i = 0;
-    char *pobjUID = NULL;
+    int iObjUID = 0;
     long long *tabofhandles = NULL;
-    char * psubwinUID = NULL;
-    char * pFigureUID = NULL;
+    int iFigureUID = 0;
+    int* piFigureUID = &iFigureUID;
+    int iSubwinUID;
+    int* piSubWin = &iSubwinUID;
     sciLegendPlace location;
     int type = -1;
     int *piType = &type;
     char **Str = NULL;
-    char * legendUID = NULL;
+    int iLegendUID = 0;
 
     CheckInputArgument(pvApiCtx, 2, 3);
     CheckOutputArgument(pvApiCtx, 0, 1);
@@ -154,12 +155,13 @@ int sci_Legend(char * fname, unsigned long fname_len)
 
     for (i = 0; i < n; i++)
     {
-        char* subwinUID;
+        int iObj;
+        int* piObj = &iObj;
 
         handlesvalue = (unsigned long) ((long long*)(l1))[n - 1 - i];
-        pobjUID = (char*)getObjectFromHandle(handlesvalue);
+        iObjUID = getObjectFromHandle(handlesvalue);
 
-        if (pobjUID == NULL)
+        if (iObjUID == 0)
         {
             freeAllocatedMatrixOfString(m2, n2, Str);
             FREE(tabofhandles);
@@ -172,16 +174,16 @@ int sci_Legend(char * fname, unsigned long fname_len)
           */
         if (i == 0)
         {
-            getGraphicObjectProperty(pobjUID, __GO_PARENT_FIGURE__, jni_string, (void **)&pFigureUID);
-            getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, (void **)&psubwinUID);
+            getGraphicObjectProperty(iObjUID, __GO_PARENT_FIGURE__, jni_int, (void **)&piFigureUID);
+            getGraphicObjectProperty(iObjUID, __GO_PARENT_AXES__, jni_int, (void **)&piSubWin);
         }
 
         /**
          * We check that the pSubwin UID is the same for all given handles.
          */
-        getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, (void **)&subwinUID);
+        getGraphicObjectProperty(iObjUID, __GO_PARENT_AXES__, jni_int, (void **)&piObj);
 
-        if (strcmp(psubwinUID, subwinUID) != 0)
+        if (iObj != iSubwinUID)
         {
             freeAllocatedMatrixOfString(m2, n2, Str);
             Scierror(999, _("%s: Objects must have the same axes.\n"), fname);
@@ -189,7 +191,7 @@ int sci_Legend(char * fname, unsigned long fname_len)
             return 1;
         }
 
-        getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+        getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
         if (type != __GO_POLYLINE__)
         {
@@ -203,26 +205,21 @@ int sci_Legend(char * fname, unsigned long fname_len)
     }
 
     /* Create the legend */
-    legendUID = ConstructLegend (psubwinUID, Str, tabofhandles, n);
+    iLegendUID = ConstructLegend (iSubwinUID, Str, tabofhandles, n);
 
-    setGraphicObjectProperty(legendUID, __GO_LEGEND_LOCATION__, &location, jni_int, 1);
+    setGraphicObjectProperty(iLegendUID, __GO_LEGEND_LOCATION__, &location, jni_int, 1);
 
     freeAllocatedMatrixOfString(m2, n2, Str);
     FREE(tabofhandles);
 
     /* Return the handle of the newly created legend */
-    numrow = 1;
-    numcol = 1;
-
-    sciErr = allocMatrixOfHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, numrow, numcol, &outindex);
-    if (sciErr.iErr)
+    if (createScalarHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, getHandle(getCurrentObject())))
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 1;
     }
 
-    outindex[0] = getHandle((char *) getCurrentObject());
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     ReturnArguments(pvApiCtx);
     return 0;

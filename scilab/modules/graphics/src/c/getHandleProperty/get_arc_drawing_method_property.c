@@ -28,12 +28,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_arc_drawing_method_property(void* _pvCtx, char* pobjUID)
+int get_arc_drawing_method_property(void* _pvCtx, int iObjUID)
 {
     int iArcDrawingMethod = 0;
     int* piArcDrawingMethod = &iArcDrawingMethod;
 
-    getGraphicObjectProperty(pobjUID, __GO_ARC_DRAWING_METHOD__, jni_int, (void **)&piArcDrawingMethod);
+    getGraphicObjectProperty(iObjUID, __GO_ARC_DRAWING_METHOD__, jni_int, (void **)&piArcDrawingMethod);
 
     if (piArcDrawingMethod == NULL)
     {

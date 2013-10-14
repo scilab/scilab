@@ -19,26 +19,26 @@
 ** Ask Controller to create a graphic object
 ** of the given _sType.
 */
-GRAPHIC_OBJECTS_IMPEXP char *createGraphicObject(int _iType);
+GRAPHIC_OBJECTS_IMPEXP int createGraphicObject(int _iType);
 
 /*
 ** Ask Controller to clone a graphic object
 ** referenced the given _sId.
 */
-GRAPHIC_OBJECTS_IMPEXP char *cloneGraphicObject(char const* _sId);
+GRAPHIC_OBJECTS_IMPEXP int cloneGraphicObject(int iId);
 
 /*
 ** Ask Controller to create a data object
 ** referenced by the given _sId and of the given _sType
 */
-GRAPHIC_OBJECTS_IMPEXP char const* createDataObject(char const* _sId, int _iType);
+GRAPHIC_OBJECTS_IMPEXP int createDataObject(int iId, int _iType);
 
 /*
 ** Ask Controller to create a figure menubar
 ** referenced by the given _sFigureId and of the given _sType
 */
-GRAPHIC_OBJECTS_IMPEXP void buildFigureMenuBar(char const* _sFigureId);
+GRAPHIC_OBJECTS_IMPEXP void buildFigureMenuBar(int iFigureId);
 
-GRAPHIC_OBJECTS_IMPEXP char * constructRectangles(char * pparentsubwinUID, double x, double y, double height, double width, int foreground, int background, int isfilled, int isline);
+GRAPHIC_OBJECTS_IMPEXP int constructRectangles(int iParentsubwinUID, double x, double y, double height, double width, int foreground, int background, int isfilled, int isline);
 
 #endif /* !__CREATEGRAPHICOBJECT_H__ */

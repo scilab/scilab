@@ -29,11 +29,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_axes_bounds_property(void* _pvCtx, char* pobjUID)
+int get_axes_bounds_property(void* _pvCtx, int iObjUID)
 {
     double* axesBounds = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_AXES_BOUNDS__, jni_double_vector, (void **)&axesBounds);
+    getGraphicObjectProperty(iObjUID, __GO_AXES_BOUNDS__, jni_double_vector, (void **)&axesBounds);
 
     if (axesBounds == NULL)
     {

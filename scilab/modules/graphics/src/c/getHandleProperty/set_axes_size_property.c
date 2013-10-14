@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_axes_size_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_axes_size_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     double* newWindowSize = (double*)_pvData;
     BOOL status = FALSE;
@@ -48,7 +48,7 @@ int set_axes_size_property(void* _pvCtx, char* pobjUID, void* _pvData, int value
     intValues[0] = (int) newWindowSize[0];
     intValues[1] = (int) newWindowSize[1];
 
-    status = setGraphicObjectProperty(pobjUID, __GO_AXES_SIZE__, intValues, jni_int_vector, 2);
+    status = setGraphicObjectProperty(iObjUID, __GO_AXES_SIZE__, intValues, jni_int_vector, 2);
 
     if (status == TRUE)
     {

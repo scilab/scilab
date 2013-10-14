@@ -29,11 +29,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_rotation_angles_property(void* _pvCtx, char* pobjUID)
+int get_rotation_angles_property(void* _pvCtx, int iObjUID)
 {
     double* angles = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_ROTATION_ANGLES__, jni_double_vector, (void **)&angles);
+    getGraphicObjectProperty(iObjUID, __GO_ROTATION_ANGLES__, jni_double_vector, (void **)&angles);
 
     if (angles == NULL)
     {

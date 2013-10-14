@@ -27,7 +27,7 @@ using namespace org_scilab_modules_gui_datatip;
 
 int sci_datatip_toggle(char *fname, unsigned long fname_len)
 {
-    const char* pstFigureUID = NULL;
+    int iFigureUID      = 0;
 
     int iErr            = 0;
     bool enabled        = false;
@@ -40,11 +40,11 @@ int sci_datatip_toggle(char *fname, unsigned long fname_len)
 
     if (nbInputArgument(pvApiCtx) == 0)
     {
-        pstFigureUID = getCurrentFigure();
-        if (pstFigureUID)
+        iFigureUID = getCurrentFigure();
+        if (iFigureUID)
         {
-            enabled = DatatipManager::isEnabled(getScilabJavaVM(), pstFigureUID);
-            DatatipManager::setEnabled(getScilabJavaVM(), pstFigureUID, (!enabled));
+            enabled = DatatipManager::isEnabled(getScilabJavaVM(), iFigureUID);
+            DatatipManager::setEnabled(getScilabJavaVM(), iFigureUID, (!enabled));
         }
     }
     else if (nbInputArgument(pvApiCtx) == 1)
@@ -65,9 +65,9 @@ int sci_datatip_toggle(char *fname, unsigned long fname_len)
 
         if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
         {
-            pstFigureUID = (char *)getObjectFromHandle((unsigned long) llHandle);
-            enabled = DatatipManager::isEnabled(getScilabJavaVM(), pstFigureUID);
-            DatatipManager::setEnabled(getScilabJavaVM(), pstFigureUID, (!enabled));
+            iFigureUID = getObjectFromHandle((unsigned long) llHandle);
+            enabled = DatatipManager::isEnabled(getScilabJavaVM(), iFigureUID);
+            DatatipManager::setEnabled(getScilabJavaVM(), iFigureUID, (!enabled));
         }
         else
         {

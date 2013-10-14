@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_auto_resize_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_auto_resize_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL result = FALSE;
     int b =  (int)FALSE;
@@ -42,7 +42,7 @@ int set_auto_resize_property(void* _pvCtx, char* pobjUID, void* _pvData, int val
         return SET_PROPERTY_ERROR;
     }
 
-    result = setGraphicObjectProperty(pobjUID, __GO_AUTORESIZE__, &b, jni_bool, 1);
+    result = setGraphicObjectProperty(iObjUID, __GO_AUTORESIZE__, &b, jni_bool, 1);
 
     if (result == TRUE)
     {

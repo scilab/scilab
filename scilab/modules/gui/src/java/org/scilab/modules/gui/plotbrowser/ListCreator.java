@@ -32,10 +32,10 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
  */
 public class ListCreator {
     private JList list;
-    private final ArrayList<String> uids = new ArrayList<String>();
+    private final ArrayList<Integer> uids = new ArrayList<Integer>();
     private ArrayList<Object> cbArray = new ArrayList<Object>();
 
-    public ListCreator(String figureID) {
+    public ListCreator(Integer figureID) {
         structure();
         filler(figureID);
         getVisible();
@@ -76,15 +76,15 @@ public class ListCreator {
         });
     }
 
-    private void filler(String figureID) {
+    private void filler(Integer figureID) {
         ObjectSearcher instanceObject = new ObjectSearcher();
 
-        String[] axes = searchAxes(figureID);
+        Integer[] axes = searchAxes(figureID);
 
         for (int i = 0; i < axes.length; i++) {
 
-            String title = (String) GraphicController.getController()
-                           .getProperty(axes[i], GraphicObjectProperties.__GO_TITLE__);
+            Integer title = (Integer) GraphicController.getController()
+                            .getProperty(axes[i], GraphicObjectProperties.__GO_TITLE__);
 
             String[] text = (String[]) GraphicController.getController()
                             .getProperty(title, GraphicObjectProperties.__GO_TEXT_STRINGS__);
@@ -92,7 +92,7 @@ public class ListCreator {
             cbArray.add(new JCheckBox(text[0].isEmpty() ? MessagesPlotBrowser.axis : text[0]));
             uids.add(axes[i]);
 
-            String[] line = instanceObject.search(axes[i], GraphicObjectProperties.__GO_POLYLINE_STYLE__);
+            Integer[] line = instanceObject.search(axes[i], GraphicObjectProperties.__GO_POLYLINE_STYLE__);
             if (line != null) {
                 for (int j = 0; j < line.length; j++) {
                     cbArray.add(new JCheckBox(MessagesPlotBrowser.polyline));
@@ -100,7 +100,7 @@ public class ListCreator {
                 }
             }
 
-            String[] grayplot = instanceObject.search(axes[i], GraphicObjectProperties.__GO_GRAYPLOT__);
+            Integer[] grayplot = instanceObject.search(axes[i], GraphicObjectProperties.__GO_GRAYPLOT__);
             if (grayplot != null) {
                 for (int j = 0; j < grayplot.length; j++) {
                     cbArray.add(new JCheckBox(MessagesPlotBrowser.surface));
@@ -108,7 +108,7 @@ public class ListCreator {
                 }
             }
 
-            String[] fac3d = instanceObject.search(axes[i], GraphicObjectProperties.__GO_FAC3D__);
+            Integer[] fac3d = instanceObject.search(axes[i], GraphicObjectProperties.__GO_FAC3D__);
             if (fac3d != null) {
                 for (int j = 0; j < fac3d.length; j++) {
                     cbArray.add(new JCheckBox(MessagesPlotBrowser.surface));
@@ -116,7 +116,7 @@ public class ListCreator {
                 }
             }
 
-            String[] plot3d = instanceObject.search(axes[i], GraphicObjectProperties.__GO_PLOT3D__);
+            Integer[] plot3d = instanceObject.search(axes[i], GraphicObjectProperties.__GO_PLOT3D__);
             if (plot3d != null) {
                 for (int j = 0; j < plot3d.length; j++) {
                     cbArray.add(new JCheckBox(MessagesPlotBrowser.surface));
@@ -156,7 +156,7 @@ public class ListCreator {
     * @param status The status of the checkbox.
     * @param objectID Enters the identification of object.
     */
-    public void setVisible(boolean status, String objectID) {
+    public void setVisible(boolean status, Integer objectID) {
         GraphicController.getController()
         .setProperty(objectID, GraphicObjectProperties.__GO_VISIBLE__, status);
     }
@@ -166,7 +166,7 @@ public class ListCreator {
     * @param figureID Enters the identification of figure.
     * @return the existing axes.
     */
-    private static String[] searchAxes(String figureID) {
+    private static Integer[] searchAxes(Integer figureID) {
         return (new ObjectSearcher()).search(figureID, GraphicObjectProperties.__GO_AXES__);
     }
 }

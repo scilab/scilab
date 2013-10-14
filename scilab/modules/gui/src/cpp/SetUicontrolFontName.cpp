@@ -14,7 +14,7 @@
 
 #include "SetUicontrolFontName.hxx"
 
-int SetUicontrolFontName(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUicontrolFontName(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     // Font Name must be only one character string
 
@@ -31,7 +31,7 @@ int SetUicontrolFontName(void* _pvCtx, char* sciObjUID, void* _pvData, int value
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_FONTNAME__, _pvData, jni_string, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_FONTNAME__, _pvData, jni_string, 1);
 
     if (status == TRUE)
     {

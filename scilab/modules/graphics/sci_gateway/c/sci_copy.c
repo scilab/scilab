@@ -43,7 +43,8 @@ int sci_copy(char *fname, unsigned long fname_len)
     long long* outindex = NULL;
 
     unsigned long hdl = 0, hdlparent = 0;
-    char *pobjUID = NULL, *psubwinparenttargetUID = NULL, *pcopyobjUID = NULL;
+    int iObjUID = 0, iSubwinparenttargetUID = 0, iCopyobjUID = 0;
+    int* piSubWin = &iSubwinparenttargetUID;
     int iType = -1;
     int *piType = &iType;
     int m1 = 0, n1 = 0;
@@ -78,14 +79,14 @@ int sci_copy(char *fname, unsigned long fname_len)
     }
 
     hdl = (unsigned long) * l1; /* on recupere le pointeur d'objet par le handle*/
-    pobjUID = (char*)getObjectFromHandle(hdl);
-    if (pobjUID == NULL)
+    iObjUID = getObjectFromHandle(hdl);
+    if (iObjUID == 0)
     {
         Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
         return 0;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     if (iType != __GO_TEXT__ &&
             iType != __GO_ARC__ &&
@@ -124,14 +125,14 @@ int sci_copy(char *fname, unsigned long fname_len)
         }
 
         hdlparent = (unsigned long) * l2; /* on recupere le pointeur d'objet par le handle*/
-        psubwinparenttargetUID = (char*)getObjectFromHandle(hdlparent);
-        if (psubwinparenttargetUID == NULL)
+        iSubwinparenttargetUID = getObjectFromHandle(hdlparent);
+        if (iSubwinparenttargetUID == 0)
         {
             Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
             return 0;
         }
         // Check Parent is an of type Axes.
-        getGraphicObjectProperty(psubwinparenttargetUID, __GO_TYPE__, jni_int, (void **)&piType);
+        getGraphicObjectProperty(iSubwinparenttargetUID, __GO_TYPE__, jni_int, (void **)&piType);
 
         if (iType != __GO_AXES__)
         {
@@ -143,7 +144,7 @@ int sci_copy(char *fname, unsigned long fname_len)
     else
     {
         /* No destination Axes specified, use the copied object's parent Axes */
-        getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, (void **)&psubwinparenttargetUID);
+        getGraphicObjectProperty(iObjUID, __GO_PARENT_AXES__, jni_int, (void **)&piSubWin);
     }
 
     numrow   = 1;
@@ -159,17 +160,16 @@ int sci_copy(char *fname, unsigned long fname_len)
 
     if (isPolyline)
     {
-        pcopyobjUID = clonePolyline(pobjUID);
+        iCopyobjUID = clonePolyline(iObjUID);
     }
     else
     {
-        pcopyobjUID = cloneGraphicObject(pobjUID);
+        iCopyobjUID = cloneGraphicObject(iObjUID);
     }
 
-    *(outindex) = getHandle(pcopyobjUID);
+    *(outindex) = getHandle(iCopyobjUID);
 
-    setGraphicObjectRelationship(psubwinparenttargetUID, pcopyobjUID);
-    releaseGraphicObjectProperty(__GO_PARENT__, pcopyobjUID, jni_string, 1);
+    setGraphicObjectRelationship(iSubwinparenttargetUID, iCopyobjUID);
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     ReturnArguments(pvApiCtx);

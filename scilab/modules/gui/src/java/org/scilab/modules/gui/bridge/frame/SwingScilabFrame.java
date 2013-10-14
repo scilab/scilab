@@ -67,7 +67,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
 
     private static final long serialVersionUID = -7401084975837285447L;
 
-    private String uid;
+    private Integer uid;
 
     /**
      * Constructor
@@ -583,7 +583,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * Set the UID
      * @param id the UID
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         uid = id;
     }
 
@@ -591,7 +591,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * Get the UID
      * @return the UID
      */
-    public String getId() {
+    public Integer getId() {
         return uid;
     }
 
@@ -613,7 +613,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             // Enable the frame
             super.setEnabled(status);
             // Enable its children according to their __GO_UI_ENABLE__ property
-            String[] children = (String[]) GraphicController.getController().getProperty(uid, __GO_CHILDREN__);
+            Integer[] children = (Integer[]) GraphicController.getController().getProperty(uid, __GO_CHILDREN__);
             for (int kChild = 0; kChild < children.length; kChild++) {
                 Boolean childStatus = (Boolean) GraphicController.getController().getProperty(children[kChild], __GO_UI_ENABLE__);
                 SwingView.getFromId(children[kChild]).update(__GO_UI_ENABLE__, childStatus);

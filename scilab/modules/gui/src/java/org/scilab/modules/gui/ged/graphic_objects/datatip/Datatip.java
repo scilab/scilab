@@ -27,7 +27,7 @@ public class Datatip extends SimpleObject {
     * Initializes all sections (JPanel's) and Add in Main JPanel of Object.
     * @param objectID Enters the identification of datatip.
     */
-    public Datatip(String objectID) {
+    public Datatip(Integer objectID) {
         super(objectID);
         base = new BaseProperties(objectID);
         data = new DataProperties(objectID);

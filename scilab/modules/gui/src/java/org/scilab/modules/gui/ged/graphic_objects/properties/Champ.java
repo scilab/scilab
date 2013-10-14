@@ -38,23 +38,23 @@ public class Champ extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID
      */
-    public void colored(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void colored(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lColored = new JLabel();
         final JComboBox cColored = new JComboBox();
         addLabelComboBox(panel, lColored, MessagesGED.colored,
-                                cColored, new String[] {MessagesGED.off , MessagesGED.on},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cColored, new String[] {MessagesGED.off , MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW++);
         cColored.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_COLORED__,
-                        cColored.getSelectedIndex() == 0 ? false : true);
+                    UID, GraphicObjectProperties.__GO_COLORED__,
+                    cColored.getSelectedIndex() == 0 ? false : true);
             }
         });
         // Get the current status of the property: Colored
         boolean enable = (Boolean) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_COLORED__);
+                         .getProperty(UID, GraphicObjectProperties.__GO_COLORED__);
         cColored.setSelectedIndex(enable ? 1 : 0);
     }
 }

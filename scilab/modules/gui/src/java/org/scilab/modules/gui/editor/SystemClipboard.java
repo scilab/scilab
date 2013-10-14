@@ -52,7 +52,7 @@ public class SystemClipboard {
      *
      * @param uid The figure to copy
      */
-    public static void copyToSysClipboard(String uid) {
+    public static void copyToSysClipboard(Integer uid) {
         BufferedImage image = bufferFromUID(uid);
         ImageTransfer img = new ImageTransfer((Image)image);
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(img, null);
@@ -103,7 +103,7 @@ public class SystemClipboard {
         }
     }
 
-    private static BufferedImage bufferFromUID(String uid) {
+    private static BufferedImage bufferFromUID(Integer uid) {
         JoGLCanvas joglCanvas = null;
 
         DrawerVisitor visitor = DrawerVisitor.getVisitor(uid);

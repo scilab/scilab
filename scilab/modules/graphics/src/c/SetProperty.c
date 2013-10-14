@@ -67,7 +67,7 @@
 /**sciSetLineWidth
  * Sets the line width
  */
-int sciSetLineWidth (char * pobjUID, double linewidth)
+int sciSetLineWidth (int iObjUID, double linewidth)
 {
     BOOL status = FALSE;
 
@@ -78,7 +78,7 @@ int sciSetLineWidth (char * pobjUID, double linewidth)
     }
     else
     {
-        status = setGraphicObjectProperty(pobjUID, __GO_LINE_THICKNESS__, &linewidth, jni_double, 1);
+        status = setGraphicObjectProperty(iObjUID, __GO_LINE_THICKNESS__, &linewidth, jni_double, 1);
 
         if (status == TRUE)
         {
@@ -92,7 +92,7 @@ int sciSetLineWidth (char * pobjUID, double linewidth)
 /**sciSetLineStyle
  * Sets the line style
  */
-int sciSetLineStyle(char * pobjUID, int linestyle)
+int sciSetLineStyle(int iObjUID, int linestyle)
 {
     BOOL status = FALSE;
     if (linestyle < 0)
@@ -102,7 +102,7 @@ int sciSetLineStyle(char * pobjUID, int linestyle)
     }
     else
     {
-        status = setGraphicObjectProperty(pobjUID, __GO_LINE_STYLE__, &linestyle, jni_int, 1);
+        status = setGraphicObjectProperty(iObjUID, __GO_LINE_STYLE__, &linestyle, jni_int, 1);
 
         if (status == TRUE)
         {
@@ -114,7 +114,7 @@ int sciSetLineStyle(char * pobjUID, int linestyle)
     return -1;
 }
 
-int sciSetMarkSize(char * pobjUID, int marksize)
+int sciSetMarkSize(int iObjUID, int marksize)
 {
     if (marksize < 0)
     {
@@ -123,7 +123,7 @@ int sciSetMarkSize(char * pobjUID, int marksize)
     }
     else
     {
-        BOOL status = setGraphicObjectProperty(pobjUID, __GO_MARK_SIZE__, &marksize, jni_int, 1);
+        BOOL status = setGraphicObjectProperty(iObjUID, __GO_MARK_SIZE__, &marksize, jni_int, 1);
 
         if (status == TRUE)
         {
@@ -143,7 +143,7 @@ int sciSetMarkSize(char * pobjUID, int marksize)
  * @param int nbCol : the number of col of the text matrix
  * @return  0 if OK, -1 if not
  */
-int sciSetText (char * pobjUID, char ** text, int nbRow, int nbCol)
+int sciSetText (int iObjUID, char ** text, int nbRow, int nbCol)
 {
     int dimensions[2];
     BOOL status = FALSE;
@@ -154,7 +154,7 @@ int sciSetText (char * pobjUID, char ** text, int nbRow, int nbCol)
     dimensions[0] = nbRow;
     dimensions[1] = nbCol;
 
-    status = setGraphicObjectProperty(pobjUID, __GO_TEXT_ARRAY_DIMENSIONS__, dimensions, jni_int_vector, 2);
+    status = setGraphicObjectProperty(iObjUID, __GO_TEXT_ARRAY_DIMENSIONS__, dimensions, jni_int_vector, 2);
 
     if (status != TRUE)
     {
@@ -162,7 +162,7 @@ int sciSetText (char * pobjUID, char ** text, int nbRow, int nbCol)
         return -1;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_TEXT_STRINGS__, text, jni_string_vector, dimensions[0] * dimensions[1]);
+    status = setGraphicObjectProperty(iObjUID, __GO_TEXT_STRINGS__, text, jni_string_vector, dimensions[0] * dimensions[1]);
 
     if (status == TRUE)
     {
@@ -195,13 +195,14 @@ sciSetDefaultValues (void)
  * @return 0 if OK or -1 if NOT OK
  */
 int
-sciSetSelectedSubWin (char * psubwinobjUID)
+sciSetSelectedSubWin (int iObjUID)
 {
     int iType = -1;
     int *piType = &iType;
-    char* parent = NULL;
+    int iParent = 0;
+    int* piParent = &iParent;
 
-    getGraphicObjectProperty(psubwinobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     /* Check that the object is an AXES */
     if (iType != __GO_AXES__)
@@ -210,9 +211,8 @@ sciSetSelectedSubWin (char * psubwinobjUID)
         return -1;
     }
 
-    getGraphicObjectProperty(psubwinobjUID, __GO_PARENT__, jni_string, (void **)&parent);
-
-    setGraphicObjectProperty(parent, __GO_SELECTED_CHILD__, psubwinobjUID, jni_string, 1);
+    iParent = getParentObject(iObjUID);
+    setGraphicObjectProperty(iParent, __GO_SELECTED_CHILD__, &iObjUID, jni_int, 1);
 
     return 0;
 }
@@ -223,14 +223,13 @@ sciSetSelectedSubWin (char * psubwinobjUID)
  * sets points of the entity, and a pointer to the number of points
  */
 /** MAJ pour le 3D DJ.Abdemouche 2003**/
-int
-sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
+int sciSetPoint(int iObjUID, double *tab, int *numrow, int *numcol)
 {
     int iType = -1;
     int *piType = &iType;
     int i = 0, n1 = 0;
 
-    getGraphicObjectProperty(pthis, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     /*
      * switch over sciGetEntityType replaced by object type string comparisons
@@ -270,7 +269,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
             numElementsArray[1] = n1;
 
             /* Resizes the data coordinates array if required */
-            result = setGraphicObjectProperty(pthis, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 2);
+            result = setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 2);
 
             /*
              * For now, the FALSE return value corresponds to a failed memory allocation,
@@ -285,12 +284,12 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
 
             if (*numcol > 0)
             {
-                setGraphicObjectProperty(pthis, __GO_DATA_MODEL_X__, tab, jni_double_vector, n1);
-                setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Y__, &tab[n1], jni_double_vector, n1);
+                setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_X__, tab, jni_double_vector, n1);
+                setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Y__, &tab[n1], jni_double_vector, n1);
 
                 if (*numcol == 3)
                 {
-                    setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Z__, &tab[2 * n1], jni_double_vector, n1);
+                    setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z__, &tab[2 * n1], jni_double_vector, n1);
                     zCoordinatesSet = 1;
                 }
                 else
@@ -299,7 +298,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
                 }
 
                 /* Required for now to indicate that the z coordinates have been set or not */
-                setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Z_COORDINATES_SET__, &zCoordinatesSet, jni_int, 1);
+                setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z_COORDINATES_SET__, &zCoordinatesSet, jni_int, 1);
             }
 
             return 0;
@@ -331,11 +330,11 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
                  * Needed in order to set the z coordinate if size == 4
                  * Being able to set only the point's x and y coordinates values would avoid doing this.
                  */
-                getGraphicObjectProperty(pthis, __GO_UPPER_LEFT_POINT__, jni_double_vector, (void **)&currentUpperLeftPoint);
+                getGraphicObjectProperty(iObjUID, __GO_UPPER_LEFT_POINT__, jni_double_vector, (void **)&currentUpperLeftPoint);
                 upperLeftPoint[2] = currentUpperLeftPoint[2];
             }
 
-            setGraphicObjectProperty(pthis, __GO_UPPER_LEFT_POINT__, upperLeftPoint, jni_double_vector, 3);
+            setGraphicObjectProperty(iObjUID, __GO_UPPER_LEFT_POINT__, upperLeftPoint, jni_double_vector, 3);
 
             /* check that the height and width are positive */
             if (tab[widthIndex] < 0.0 || tab[widthIndex + 1] < 0.0)
@@ -344,8 +343,8 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
                 return -1;
             }
 
-            setGraphicObjectProperty(pthis, __GO_WIDTH__, &tab[widthIndex], jni_double, 1);
-            setGraphicObjectProperty(pthis, __GO_HEIGHT__, &tab[widthIndex + 1], jni_double, 1);
+            setGraphicObjectProperty(iObjUID, __GO_WIDTH__, &tab[widthIndex], jni_double, 1);
+            setGraphicObjectProperty(iObjUID, __GO_HEIGHT__, &tab[widthIndex + 1], jni_double, 1);
 
             return 0;
         }
@@ -387,7 +386,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
             else
             {
                 /* Needed in order to set the z coordinate if size == 6 */
-                getGraphicObjectProperty(pthis, __GO_UPPER_LEFT_POINT__, jni_double_vector, (void **)&currentUpperLeftPoint);
+                getGraphicObjectProperty(iObjUID, __GO_UPPER_LEFT_POINT__, jni_double_vector, (void **)&currentUpperLeftPoint);
 
                 upperLeftPoint[2] = currentUpperLeftPoint[2];
                 width = tab[2];
@@ -396,19 +395,20 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
                 endAngle = DEG2RAD(tab[5]);
             }
 
-            setGraphicObjectProperty(pthis, __GO_UPPER_LEFT_POINT__, upperLeftPoint, jni_double_vector, 3);
+            setGraphicObjectProperty(iObjUID, __GO_UPPER_LEFT_POINT__, upperLeftPoint, jni_double_vector, 3);
 
-            setGraphicObjectProperty(pthis, __GO_WIDTH__, &width, jni_double, 1);
-            setGraphicObjectProperty(pthis, __GO_HEIGHT__, &height, jni_double, 1);
+            setGraphicObjectProperty(iObjUID, __GO_WIDTH__, &width, jni_double, 1);
+            setGraphicObjectProperty(iObjUID, __GO_HEIGHT__, &height, jni_double, 1);
 
-            setGraphicObjectProperty(pthis, __GO_START_ANGLE__, &startAngle, jni_double, 1);
-            setGraphicObjectProperty(pthis, __GO_END_ANGLE__, &endAngle, jni_double, 1);
+            setGraphicObjectProperty(iObjUID, __GO_START_ANGLE__, &startAngle, jni_double, 1);
+            setGraphicObjectProperty(iObjUID, __GO_END_ANGLE__, &endAngle, jni_double, 1);
 
             return 0;
         }
         case __GO_TEXT__ :
         {
-            char* parentAxes = NULL;
+            int iArentAxes = 0;
+            int* piArentAxes = &iArentAxes;
             double position[3];
             int iView = 0;
             int* piView = &iView;
@@ -419,8 +419,8 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
                 return -1;
             }
 
-            getGraphicObjectProperty(pthis, __GO_PARENT_AXES__, jni_string, (void **)&parentAxes);
-            getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int, (void**)&piView);
+            getGraphicObjectProperty(iObjUID, __GO_PARENT_AXES__, jni_int, (void **)&piArentAxes);
+            getGraphicObjectProperty(iArentAxes, __GO_VIEW__, jni_int, (void**)&piView);
 
             position[0] = tab[0];
             position[1] = tab[1];
@@ -438,11 +438,11 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
                  * coordinates if required.
                  */
                 double* currentPosition;
-                getGraphicObjectProperty(pthis, __GO_POSITION__, jni_double_vector, (void **)&currentPosition);
+                getGraphicObjectProperty(iObjUID, __GO_POSITION__, jni_double_vector, (void **)&currentPosition);
                 position[2] = currentPosition[2];
             }
 
-            setGraphicObjectProperty(pthis, __GO_POSITION__, position, jni_double_vector, 3);
+            setGraphicObjectProperty(iObjUID, __GO_POSITION__, position, jni_double_vector, 3);
 
             return 0;
         }
@@ -493,9 +493,9 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
                 }
             }
 
-            setGraphicObjectProperty(pthis, __GO_NUMBER_ARROWS__, &numArrows, jni_int, 1);
+            setGraphicObjectProperty(iObjUID, __GO_NUMBER_ARROWS__, &numArrows, jni_int, 1);
 
-            setGraphicObjectProperty(pthis, __GO_BASE__, arrowPoints, jni_double_vector, 3 * numArrows);
+            setGraphicObjectProperty(iObjUID, __GO_BASE__, arrowPoints, jni_double_vector, 3 * numArrows);
 
             for (i = 0; i < numArrows; i++)
             {
@@ -512,7 +512,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
                 }
             }
 
-            setGraphicObjectProperty(pthis, __GO_DIRECTION__, arrowPoints, jni_double_vector, 3 * numArrows);
+            setGraphicObjectProperty(iObjUID, __GO_DIRECTION__, arrowPoints, jni_double_vector, 3 * numArrows);
 
             FREE(arrowPoints);
 
@@ -549,7 +549,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
             gridSize[2] = ny + 1;
             gridSize[3] = 1;
 
-            result = setGraphicObjectProperty(pthis, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+            result = setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
 
             if (result == FALSE)
             {
@@ -557,7 +557,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
                 return -1;
             }
 
-            setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Z__, tab, jni_double_vector, nx * ny);
+            setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z__, tab, jni_double_vector, nx * ny);
             return 0;
         }
         case __GO_FEC__ :
@@ -573,7 +573,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
             Nnode = *numrow;
 
             /* Resizes the data coordinates array if required */
-            result = setGraphicObjectProperty(pthis, __GO_DATA_MODEL_NUM_VERTICES__, &Nnode, jni_int, 1);
+            result = setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_VERTICES__, &Nnode, jni_int, 1);
 
             if (result == FALSE)
             {
@@ -581,9 +581,9 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
                 return -1;
             }
 
-            setGraphicObjectProperty(pthis, __GO_DATA_MODEL_X__, tab, jni_double_vector, Nnode);
-            setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Y__, &tab[Nnode], jni_double_vector, Nnode);
-            setGraphicObjectProperty(pthis, __GO_DATA_MODEL_VALUES__, &tab[2 * Nnode], jni_double_vector, Nnode);
+            setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_X__, tab, jni_double_vector, Nnode);
+            setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Y__, &tab[Nnode], jni_double_vector, Nnode);
+            setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_VALUES__, &tab[2 * Nnode], jni_double_vector, Nnode);
             return 0;
         }
         case __GO_FIGURE__ :
@@ -639,8 +639,8 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
  * Check that a color index is within the colormap range or not
  * @param pobjUID object conatining the color
  */
-BOOL sciCheckColorIndex(char * pobjUID, int colorIndex)
+BOOL sciCheckColorIndex(int iObjUID, int colorIndex)
 {
-    return (colorIndex >= -2) && (colorIndex <= sciGetNumColors(pobjUID) + 2);
+    return (colorIndex >= -2) && (colorIndex <= sciGetNumColors(iObjUID) + 2);
 }
 /*----------------------------------------------------------------------------------*/

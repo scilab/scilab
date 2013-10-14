@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_event_handler_enable_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_event_handler_enable_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int b =  (int)FALSE;
     BOOL status = FALSE;
@@ -41,7 +41,7 @@ int set_event_handler_enable_property(void* _pvCtx, char* pobjUID, void* _pvData
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_EVENTHANDLER_ENABLE__, &b, jni_bool, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_EVENTHANDLER_ENABLE__, &b, jni_bool, 1);
 
     if (status == TRUE)
     {

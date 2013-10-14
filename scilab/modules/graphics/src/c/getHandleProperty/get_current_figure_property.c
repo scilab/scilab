@@ -33,26 +33,26 @@
 #include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
-int get_current_figure_property(void* _pvCtx, char* pobjUID)
+int get_current_figure_property(void* _pvCtx, int iObjUID)
 {
-    char *pstCurrentFigureId = NULL;
+    int iCurrentFigureId = 0;
 
-    if (pobjUID != NULL)
+    if (iObjUID != 0)
     {
         /* This property should not be called on an handle */
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_figure");
         return -1;
     }
 
-    pstCurrentFigureId = (char*)getCurrentFigure();
+    iCurrentFigureId = getCurrentFigure();
 
-    if (pstCurrentFigureId == NULL)
+    if (iCurrentFigureId == 0)
     {
         /* return handle on the current figure if none : create it */
-        pstCurrentFigureId = createNewFigureWithAxes();
-        setCurrentFigure(pstCurrentFigureId);
+        iCurrentFigureId = createNewFigureWithAxes();
+        setCurrentFigure(iCurrentFigureId);
     }
 
-    return sciReturnHandle(_pvCtx, getHandle(pstCurrentFigureId));
+    return sciReturnHandle(_pvCtx, getHandle(iCurrentFigureId));
 
 }

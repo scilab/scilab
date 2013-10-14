@@ -266,7 +266,7 @@ SetPropertyHashTable *createScilabSetHashTable(void)
 }
 
 /*--------------------------------------------------------------------------*/
-int callSetProperty(void* _pvCtx, char *pObjUID, void* _pvData, int valueType, int nbRow, int nbCol, char *propertyName)
+int callSetProperty(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol, char *propertyName)
 {
     setPropertyFunc accessor = searchSetHashtable(setHashTable, propertyName);
 
@@ -275,7 +275,7 @@ int callSetProperty(void* _pvCtx, char *pObjUID, void* _pvData, int valueType, i
         Scierror(999, _("Unknown property: %s.\n"), propertyName);
         return -1;
     }
-    return accessor(_pvCtx, pObjUID, _pvData, valueType, nbRow, nbCol);
+    return accessor(_pvCtx, iObjUID, _pvData, valueType, nbRow, nbCol);
 }
 
 /*--------------------------------------------------------------------------*/

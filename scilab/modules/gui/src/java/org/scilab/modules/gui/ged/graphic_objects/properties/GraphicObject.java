@@ -41,31 +41,31 @@ public class GraphicObject extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void tag(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void tag(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lTag = new JLabel();
         final JTextField cTag = new JTextField();
         addLabelTextField(panel, lTag, MessagesGED.tag,
-                                 cTag, true, LEFTMARGIN, COLUMN, ROW++);
+                          cTag, true, LEFTMARGIN, COLUMN, ROW++);
         cTag.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController()
-                        .setProperty(UID, GraphicObjectProperties.__GO_TAG__, cTag.getText());
+                .setProperty(UID, GraphicObjectProperties.__GO_TAG__, cTag.getText());
             }
         });
         cTag.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent evt) {
                 GraphicController.getController()
-                        .setProperty(UID, GraphicObjectProperties.__GO_TAG__, cTag.getText());
+                .setProperty(UID, GraphicObjectProperties.__GO_TAG__, cTag.getText());
             }
         });
 
         // Get the current status of the property: Tag
         String tag = (String) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_TAG__);
+                     .getProperty(UID, GraphicObjectProperties.__GO_TAG__);
         cTag.setText(tag);
     }
 
@@ -74,7 +74,7 @@ public class GraphicObject extends ContentLayout {
      * @param panel
      * @param ROW
      * @param COLUMN
-     * @param LEFTMARGIN 
+     * @param LEFTMARGIN
      */
     public void userData(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN) {
         /*
@@ -100,14 +100,14 @@ public class GraphicObject extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void visible(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void visible(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         final JLabel lVisible = new JLabel();
         final JComboBox cVisible = new JComboBox();
         String[] messageOffOn = new String[] {MessagesGED.off , MessagesGED.on};
         addLabelComboBox(panel, lVisible, MessagesGED.visible,
-                                cVisible, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
+                         cVisible, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
         cVisible.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -119,8 +119,8 @@ public class GraphicObject extends ContentLayout {
 
         // Get the current status of the property: Visible
         boolean enable = (Boolean) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_VISIBLE__);
-        cVisible.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_VISIBLE__);
+        cVisible.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**
@@ -129,9 +129,9 @@ public class GraphicObject extends ContentLayout {
     public void startEditVar() {
         try {
             ScilabInterpreterManagement.asynchronousScilabExec(null,
-                                   "user_data_f1g2h3ncvaj01=gcf();"
-                                   + "user_data_f1g2h3ncvaj02=user_data_f1g2h3ncvaj01.user_data;"
-                                   + "editvar(\"user_data_f1g2h3ncvaj02\");");
+                    "user_data_f1g2h3ncvaj01=gcf();"
+                    + "user_data_f1g2h3ncvaj02=user_data_f1g2h3ncvaj01.user_data;"
+                    + "editvar(\"user_data_f1g2h3ncvaj02\");");
         } catch (InterpreterException e1) {
             System.err.println("An error in the interpreter has been catched: " + e1.getLocalizedMessage());
         }
@@ -140,9 +140,9 @@ public class GraphicObject extends ContentLayout {
     public final void updateUserData() {
         try {
             ScilabInterpreterManagement.asynchronousScilabExec(null,
-                                   "user_data_f1g2h3ncvaj01.user_data=user_data_f1g2h3ncvaj02;"
-                                   + "clear user_data_f1g2h3ncvaj01;"
-                                   + "clear user_data_f1g2h3ncvaj02;");
+                    "user_data_f1g2h3ncvaj01.user_data=user_data_f1g2h3ncvaj02;"
+                    + "clear user_data_f1g2h3ncvaj01;"
+                    + "clear user_data_f1g2h3ncvaj02;");
         } catch (InterpreterException e1) {
             System.err.println("An error in the interpreter has been catched: " + e1.getLocalizedMessage());
         }

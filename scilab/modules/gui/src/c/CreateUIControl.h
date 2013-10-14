@@ -19,6 +19,6 @@
  * @param char style[]: the type of the uicontrol object
  * @return  : object UID if ok , NULL if not
  */
-char *CreateUIControl(char *style);
+int CreateUIControl(char *style);
 
 #endif /* !__CREATE_UICONTROL_H__ */

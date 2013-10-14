@@ -17,20 +17,20 @@ extern "C" {
 
 #include "CallRenderer.hxx"
 
-void startInteractiveZoom(char *pstObjUID)
+void startInteractiveZoom(int iObjUID)
 {
-    org_scilab_modules_renderer::CallRenderer::startInteractiveZoom(getScilabJavaVM(), pstObjUID);
+    org_scilab_modules_renderer::CallRenderer::startInteractiveZoom(getScilabJavaVM(), iObjUID);
 }
 
 /*---------------------------------------------------------------------------------*/
-double *javaClickRubberBox(char *pstObjUID, double *initialRect, int iRectSize)
+double *javaClickRubberBox(int iObjUID, double *initialRect, int iRectSize)
 {
-    return org_scilab_modules_renderer::CallRenderer::clickRubberBox(getScilabJavaVM(), pstObjUID, initialRect, iRectSize);
+    return org_scilab_modules_renderer::CallRenderer::clickRubberBox(getScilabJavaVM(), iObjUID, initialRect, iRectSize);
 }
 
 /*---------------------------------------------------------------------------------*/
-double *javaDragRubberBox(char *pstObjUID)
+double *javaDragRubberBox(int iObjUID)
 {
-    return org_scilab_modules_renderer::CallRenderer::dragRubberBox(getScilabJavaVM(), pstObjUID);
+    return org_scilab_modules_renderer::CallRenderer::dragRubberBox(getScilabJavaVM(), iObjUID);
 }
 /*---------------------------------------------------------------------------------*/

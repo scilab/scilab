@@ -26,7 +26,7 @@ import java.awt.*;
 @SuppressWarnings(value = { "serial" })
 public class FigureFrame extends JFrame {
     private final TreeModel treeModel;
-    public FigureFrame(String id) {
+    public FigureFrame(Integer id) {
         treeModel = new SciTreeModel(id);
         initialize();
     }
@@ -37,7 +37,7 @@ public class FigureFrame extends JFrame {
         tree.setCellRenderer(new TreeCellRenderer() {
             private final TreeCellRenderer renderer = new DefaultTreeCellRenderer();
             public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
-                Object type = GraphicController.getController().getProperty((String) value, GraphicObjectProperties.__GO_TYPE__);
+                Object type = GraphicController.getController().getProperty((Integer)value, GraphicObjectProperties.__GO_TYPE__);
                 return renderer.getTreeCellRendererComponent(tree, type, selected, expanded, leaf, row, hasFocus);
             }
         });

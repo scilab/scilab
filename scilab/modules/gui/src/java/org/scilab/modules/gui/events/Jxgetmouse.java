@@ -73,7 +73,7 @@ public final class Jxgetmouse {
          */
         GlobalEventWatcher.enable(new GlobalMouseEventWatcher(eventMask) {
             public void mouseEventFilter(MouseEvent mouseEvent,
-                                         String axesUID, int scilabMouseAction, boolean isControlDown) {
+            Integer axesUID, int scilabMouseAction, boolean isControlDown) {
                 mouseActionFilter(mouseEvent, axesUID, scilabMouseAction, isControlDown);
             }
         });
@@ -115,7 +115,7 @@ public final class Jxgetmouse {
     /**
      * @return the WindowsID
      */
-    public static String getWindowsID() {
+    public static Integer getWindowsID() {
         return ClickInfos.getInstance().getWindowID();
     }
 
@@ -168,7 +168,7 @@ public final class Jxgetmouse {
      * @param axes : the axes where action occurs.
      * @param isControlDown true if the CTRL key has been pressed
      */
-    private static void mouseActionFilter(MouseEvent mouseEvent, String axesUID, int scilabMouseAction, boolean isControlDown) {
+    private static void mouseActionFilter(MouseEvent mouseEvent, Integer axesUID, int scilabMouseAction, boolean isControlDown) {
         if (scilabMouseAction != SciTranslator.MOVED
                 && scilabMouseAction != SciTranslator.RELEASED) {
             GlobalEventFilter.filterMouse(mouseEvent, axesUID, scilabMouseAction, isControlDown);

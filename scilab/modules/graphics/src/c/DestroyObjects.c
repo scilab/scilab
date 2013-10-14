@@ -36,7 +36,7 @@
  */
 void sciDeleteWindow(int winNum)
 {
-    deleteGraphicObject((char*)getFigureFromIndex(winNum));
+    deleteGraphicObject(getFigureFromIndex(winNum));
 }
 /*--------------------------------------------------------------------------------*/
 void AllGraphWinDelete(void)

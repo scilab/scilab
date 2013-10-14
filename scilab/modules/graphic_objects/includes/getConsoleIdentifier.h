@@ -18,6 +18,6 @@
 /*
 ** Retrieve Scilab Console identifier.
 */
-GRAPHIC_OBJECTS_IMPEXP char *getConsoleIdentifier(void);
+GRAPHIC_OBJECTS_IMPEXP int getConsoleIdentifier(void);
 
 #endif /* !__GETCONSOLEIDENTIFIER_H__ */

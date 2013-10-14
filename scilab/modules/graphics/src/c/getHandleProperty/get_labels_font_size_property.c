@@ -35,12 +35,12 @@
  */
 
 /*------------------------------------------------------------------------*/
-int get_labels_font_size_property(void* _pvCtx, char* pobjUID)
+int get_labels_font_size_property(void* _pvCtx, int iObjUID)
 {
     double dblFontSize = 0.0;
     double* pdblFontSize = &dblFontSize;
 
-    getGraphicObjectProperty(pobjUID, __GO_FONT_SIZE__, jni_double, (void **)&pdblFontSize);
+    getGraphicObjectProperty(iObjUID, __GO_FONT_SIZE__, jni_double, (void **)&pdblFontSize);
 
     if (pdblFontSize == NULL)
     {

@@ -40,7 +40,7 @@ public class FileExporter {
      * @return 0 if everything worked fine, a non null integer if an exception occurred
      *         depending on the kind of error
      */
-    public static String fileExport(String figureUID, String fileName, int fileType, float jpegCompressionQuality, int fileOrientation, boolean headless) {
+    public static String fileExport(Integer figureUID, String fileName, int fileType, float jpegCompressionQuality, int fileOrientation, boolean headless) {
         int ret = Export.export(figureUID, fileType, fileName, new ExportParams(jpegCompressionQuality, fileOrientation, true), headless);
 
         switch (ret) {
@@ -69,7 +69,7 @@ public class FileExporter {
      * @return 0 if everything worked fine, a non null integer if an exception occurred
      *         depending on the kind of error
      */
-    public static String fileExport(String figureUID, String fileName, int fileType, float jpegCompressionQuality, int fileOrientation) {
+    public static String fileExport(Integer figureUID, String fileName, int fileType, float jpegCompressionQuality, int fileOrientation) {
         return fileExport(figureUID, fileName, fileType, jpegCompressionQuality, fileOrientation, false);
     }
 
@@ -83,7 +83,7 @@ public class FileExporter {
      * @return 0 if everything worked fine, a non null integer if an exception occurred
      *         depending on the kind of error
      */
-    public static String fileExport(String figureUID, String fileName, String fileType, float jpegCompressionQuality, int fileOrientation) {
+    public static String fileExport(Integer figureUID, String fileName, String fileType, float jpegCompressionQuality, int fileOrientation) {
         String ext = fileType.toLowerCase();
         return fileExport(figureUID, fileName, Export.getType(ext), jpegCompressionQuality, fileOrientation, false);
     }
@@ -98,7 +98,7 @@ public class FileExporter {
      * @return 0 if everything worked fine, a non null integer if an exception occurred
      *         depending on the kind of error
      */
-    public static String headlessFileExport(String figureUID, String fileName, String fileType, float jpegCompressionQuality, int fileOrientation) {
+    public static String headlessFileExport(Integer figureUID, String fileName, String fileType, float jpegCompressionQuality, int fileOrientation) {
         String ext = fileType.toLowerCase();
         return fileExport(figureUID, fileName, Export.getType(ext), jpegCompressionQuality, fileOrientation, true);
     }

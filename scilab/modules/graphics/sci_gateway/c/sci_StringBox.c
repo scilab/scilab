@@ -81,9 +81,7 @@ static int getScalarFromStack(int paramIndex, char * funcName, double* res)
 /*--------------------------------------------------------------------------*/
 int sci_stringbox(char * fname, unsigned long fname_len)
 {
-
     SciErr sciErr;
-
     int* piAddrstackPointer = NULL;
     long long* stackPointer = NULL;
     char** strStackPointer   = NULL;
@@ -92,7 +90,8 @@ int sci_stringbox(char * fname, unsigned long fname_len)
     int type = -1;
     int *piType = &type;
 
-    char* parentAxes = NULL;
+    int iParentAxes = 0;
+    int* piParentAxes = &iParentAxes;
     double* textCorners = NULL;
     int two   = 2;
     int four  = 4;
@@ -108,7 +107,7 @@ int sci_stringbox(char * fname, unsigned long fname_len)
         int n;
         /* A text handle should be specified */
 
-        char * pTextUID = NULL;
+        int iTextUID = 0;
         if ((!checkInputArgumentType(pvApiCtx, 1, sci_handles)))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A 'Text' handle expected.\n"), fname, 1);
@@ -139,15 +138,15 @@ int sci_stringbox(char * fname, unsigned long fname_len)
         }
 
         /* Get the handle and check that this is a text handle */
-        pTextUID = (char*)getObjectFromHandle((long int) * stackPointer);
+        iTextUID = getObjectFromHandle((long int) * stackPointer);
 
-        if (pTextUID == NULL)
+        if (iTextUID == 0)
         {
             Scierror(999, _("%s: The handle is not valid.\n"), fname);
             return 0;
         }
 
-        getGraphicObjectProperty(pTextUID, __GO_TYPE__, jni_int, (void **)&piType);
+        getGraphicObjectProperty(iTextUID, __GO_TYPE__, jni_int, (void **)&piType);
 
         if (type != __GO_LABEL__ && type != __GO_TEXT__)
         {
@@ -155,16 +154,16 @@ int sci_stringbox(char * fname, unsigned long fname_len)
             return 0;
         }
 
-        getGraphicObjectProperty(pTextUID, __GO_PARENT_AXES__, jni_string, (void **)&parentAxes);
+        getGraphicObjectProperty(iTextUID, __GO_PARENT_AXES__, jni_int, (void **)&piParentAxes);
 
-        updateTextBounds(pTextUID);
+        updateTextBounds(iTextUID);
 
         /*
          * To do: performs a projection/unprojection to obtain the bounding box in object coordinates
          * but using a rotation matrix corresponding to the default rotation angles (view == 2d)
          */
 
-        getGraphicObjectProperty(pTextUID, __GO_CORNERS__, jni_double_vector, (void **)&textCorners);
+        getGraphicObjectProperty(iTextUID, __GO_CORNERS__, jni_double_vector, (void **)&textCorners);
 
         corners[1][0] = textCorners[0];
         corners[1][1] = textCorners[1];
@@ -185,7 +184,7 @@ int sci_stringbox(char * fname, unsigned long fname_len)
     }
     else
     {
-        char * parentSubwinUID = (char*)getOrCreateDefaultSubwin();
+        int iParentSubwinUID = getOrCreateDefaultSubwin();
         char ** text = NULL;
         int textNbRow;
         int textNbCol;
@@ -197,8 +196,8 @@ int sci_stringbox(char * fname, unsigned long fname_len)
         double fontSize;
         double *pfontSize = &fontSize;
 
-        getGraphicObjectProperty(parentSubwinUID, __GO_FONT_STYLE__, jni_int, (void**)&pfontId);
-        getGraphicObjectProperty(parentSubwinUID, __GO_FONT_SIZE__, jni_double, (void **)&pfontSize);
+        getGraphicObjectProperty(iParentSubwinUID, __GO_FONT_STYLE__, jni_int, (void**)&pfontId);
+        getGraphicObjectProperty(iParentSubwinUID, __GO_FONT_SIZE__, jni_double, (void **)&pfontSize);
 
         /* Check that first argument is a string */
         if ((!checkInputArgumentType(pvApiCtx, 1, sci_strings)))

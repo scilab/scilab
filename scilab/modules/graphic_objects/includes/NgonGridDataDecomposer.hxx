@@ -287,7 +287,7 @@ public :
      * @param[in] the given object id.
      * @return the number of data elements.
      */
-    static int getDataSize(char* id);
+    static int getDataSize(int id);
 
     /**
      * Fills the given buffer with vertex data from the given object.
@@ -300,14 +300,14 @@ public :
      * @param[in] the conversion translation factor to apply to data.
      * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      */
-    static void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask);
+    static void fillVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask);
 
     /**
      * Returns the number of indices for the given object.
      * @param[in] the given object id.
      * @return the object's number of indices.
      */
-    static int getIndicesSize(char* id);
+    static int getIndicesSize(int id);
 
     /**
      * Fills the given buffer with indices data of the given object.
@@ -317,7 +317,7 @@ public :
      * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
-    static int fillIndices(char* id, int* buffer, int bufferLength, int logMask);
+    static int fillIndices(int id, int* buffer, int bufferLength, int logMask);
 };
 
 /**

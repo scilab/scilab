@@ -42,9 +42,9 @@ public class ActionMove extends BaseAction {
     * @param newClick The position of mouseup action
     * @param isLegend True if is legend, false if is polyline
     */
-    public ActionMove(String objectUID, Integer[] click, Integer[] newClick, boolean isLegend) {
+    public ActionMove(Integer objectUID, Integer[] click, Integer[] newClick, boolean isLegend) {
 
-        super(objectUID, (String)GraphicController.getController().getProperty(objectUID, GraphicObjectProperties.__GO_PARENT__));
+        super(objectUID, (Integer)GraphicController.getController().getProperty(objectUID, GraphicObjectProperties.__GO_PARENT__));
         myClick = new Integer[2];
         myNewClick = new Integer[2];
         myClick[0] = click[0];

@@ -87,7 +87,7 @@ public abstract class CommonCallBack extends AbstractAction {
      * @param objectUID the object UID
      * @return the Callback
      */
-    public static CommonCallBack createCallback(String command, int callbackType, String objectUID) {
+    public static CommonCallBack createCallback(String command, int callbackType, int objectUID) {
         CommonCallBack callback = null;
         switch (callbackType) {
             case CallBack.JAVA :
@@ -104,7 +104,7 @@ public abstract class CommonCallBack extends AbstractAction {
                 break;
             default:
                 callback = ScilabCallBack.create("if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
-                                                 + "gcbo = getcallbackobject(\"" + objectUID + "\");"
+                                                 + "gcbo = getcallbackobject(" + objectUID + ");"
                                                  + command
                                                  + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;");
                 break;

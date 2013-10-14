@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_z_bounds_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_z_bounds_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     double* values = (double*)_pvData;
@@ -48,7 +48,7 @@ int set_z_bounds_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_Z_BOUNDS__, values, jni_double_vector, 2);
+    status = setGraphicObjectProperty(iObjUID, __GO_Z_BOUNDS__, values, jni_double_vector, 2);
 
     if (status == TRUE)
     {

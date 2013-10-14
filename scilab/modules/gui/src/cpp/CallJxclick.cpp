@@ -35,7 +35,7 @@ double getJxclickYCoordinate()
     return Jxclick::getYCoordinate(getScilabJavaVM());
 }
 
-char * getJxclickWindowID()
+int getJxclickWindowID()
 {
     return Jxclick::getWindowID(getScilabJavaVM());
 }

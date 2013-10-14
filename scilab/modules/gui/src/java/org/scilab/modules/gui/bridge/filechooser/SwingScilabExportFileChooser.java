@@ -67,13 +67,13 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 
     private String exportName;
     private String extensionSelected;
-    private String figureUID;
+    private Integer figureUID;
 
     /**
      * Default constructor
      * @param figureId id of the exported figure
      */
-    public SwingScilabExportFileChooser(String figureUID) {
+    public SwingScilabExportFileChooser(Integer figureUID) {
         super();
         this.figureUID = figureUID;
         exportCustomFileChooser(figureUID);
@@ -84,7 +84,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
      * by adding format selection
      * @param figureId exported figure number
      */
-    public void exportCustomFileChooser(String figureUID) {
+    public void exportCustomFileChooser(Integer figureUID) {
         ArrayList<FileMask> v = new ArrayList<FileMask>(NB_FILE_MASKS);  /* The order does matter */
         v.add(new FileMask(png, pngDesc));
         v.add(new FileMask(jpg, jpgDesc));

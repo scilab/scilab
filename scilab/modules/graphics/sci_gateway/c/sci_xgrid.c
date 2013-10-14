@@ -38,7 +38,7 @@ int sci_xgrid(char *fname, unsigned long fname_len)
 
     int style = 0;              /* Default style */
     int m1 = 0, n1 = 0;
-    char *pstObjUID = NULL;
+    int iObjUID = 0;
 
     CheckInputArgument(pvApiCtx, 0, 1);
 
@@ -70,11 +70,11 @@ int sci_xgrid(char *fname, unsigned long fname_len)
         style = (int)l1[0];
     }
 
-    pstObjUID = (char*)getOrCreateDefaultSubwin();
+    iObjUID = getOrCreateDefaultSubwin();
 
-    setGraphicObjectProperty(pstObjUID, __GO_X_AXIS_GRID_COLOR__, &style, jni_int, 1);
-    setGraphicObjectProperty(pstObjUID, __GO_Y_AXIS_GRID_COLOR__, &style, jni_int, 1);
-    setGraphicObjectProperty(pstObjUID, __GO_Z_AXIS_GRID_COLOR__, &style, jni_int, 1);
+    setGraphicObjectProperty(iObjUID, __GO_X_AXIS_GRID_COLOR__, &style, jni_int, 1);
+    setGraphicObjectProperty(iObjUID, __GO_Y_AXIS_GRID_COLOR__, &style, jni_int, 1);
+    setGraphicObjectProperty(iObjUID, __GO_Z_AXIS_GRID_COLOR__, &style, jni_int, 1);
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

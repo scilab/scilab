@@ -30,13 +30,13 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_triangles_property(void* _pvCtx, char* pobjUID)
+int get_triangles_property(void* _pvCtx, int iObjUID)
 {
     double* triangles = NULL;
     int numTriangles = 0;
     int *piNumTriangles = &numTriangles;
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_FEC_TRIANGLES__, jni_double_vector, (void **)&triangles);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_FEC_TRIANGLES__, jni_double_vector, (void **)&triangles);
 
     if (triangles == NULL)
     {
@@ -44,7 +44,7 @@ int get_triangles_property(void* _pvCtx, char* pobjUID)
         return -1;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_INDICES__, jni_int, (void**)&piNumTriangles);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_INDICES__, jni_int, (void**)&piNumTriangles);
     if (piNumTriangles == NULL)
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "triangles");

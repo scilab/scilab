@@ -121,7 +121,7 @@ public :
      * @param[in] the conversion translation factor to apply to data.
      * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      */
-    static void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask);
+    static void fillVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask);
 
     /**
      * Fills the given buffer with color data from the given object.
@@ -130,7 +130,7 @@ public :
      * @param[in] the buffer length in number of elements.
      * @param[in] the number of components taken by one element in the buffer (3 or 4).
      */
-    static void fillColors(char* id, float* buffer, int bufferLength, int elementsSize);
+    static void fillColors(int id, float* buffer, int bufferLength, int elementsSize);
 
     /**
      * Fills the given buffer with indices data of the given object.
@@ -140,7 +140,7 @@ public :
      * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
-    static int fillIndices(char* id, int* buffer, int bufferLength, int logMask);
+    static int fillIndices(int id, int* buffer, int bufferLength, int logMask);
 
     template <typename T>
     inline static void fillColorsByIndex(T * indices, float * buffer, int elementsSize, const int nbRow, const int nbCol, double * colormap, const int colormapSize)

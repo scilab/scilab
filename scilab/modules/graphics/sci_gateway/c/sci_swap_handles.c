@@ -39,13 +39,15 @@ int sci_swap_handles(char * fname, unsigned long fname_len)
     int firstHdlRow = 0;
     int secondHdlCol = 0;
     int secondHdlRow = 0;
-    char *pstHandle_1 = NULL;
-    char *pstHandle_2 = NULL;
-    char *pstParent_1 = NULL;
-    char *pstParent_2 = NULL;
+    int iHandle_1 = 0;
+    int iHandle_2 = 0;
+    int iParent_1 = 0;
+    int* piParent_1 = &iParent_1;
+    int iParent_2 = 0;
+    int* piParent_2 = &iParent_2;
     int iChildrenCount = 0;
     int *piChildrenCount = &iChildrenCount;
-    char **pstChildrenUID = NULL;
+    int* piChildrenUID = NULL;
     int i = 0;
     long h = 0;
 
@@ -93,39 +95,39 @@ int sci_swap_handles(char * fname, unsigned long fname_len)
 
     /* get the two handles and swap them */
     h = (long) * (firstHdlStkIndex);
-    pstHandle_1 = (char*)getObjectFromHandle(h);
+    iHandle_1 = getObjectFromHandle(h);
 
     h = (long) * (secondHdlStkIndex);
-    pstHandle_2 = (char*)getObjectFromHandle(h);
+    iHandle_2 = getObjectFromHandle(h);
 
-    getGraphicObjectProperty(pstHandle_1, __GO_PARENT__, jni_string, (void **)&pstParent_1);
-    getGraphicObjectProperty(pstHandle_2, __GO_PARENT__, jni_string, (void **)&pstParent_2);
+    iParent_1 = getParentObject(iHandle_1);
+    iParent_2 = getParentObject(iHandle_2);
 
     // Check if objects do not have the same parent
-    if (strcmp(pstParent_1, pstParent_2) == 0)
+    if (iParent_1 == iParent_2)
     {
-        getGraphicObjectProperty(pstParent_1, __GO_CHILDREN_COUNT__, jni_int, (void **)&piChildrenCount);
-        getGraphicObjectProperty(pstParent_1, __GO_CHILDREN__, jni_string_vector, (void **)&pstChildrenUID);
+        getGraphicObjectProperty(iParent_1, __GO_CHILDREN_COUNT__, jni_int, (void **)&piChildrenCount);
+        getGraphicObjectProperty(iParent_1, __GO_CHILDREN__, jni_int_vector, (void **)&piChildrenUID);
 
         for (i = 0 ; i < iChildrenCount ; ++i)
         {
-            if (strcmp(pstChildrenUID[i], pstHandle_1) == 0)
+            if (piChildrenUID[i] == iHandle_1)
             {
-                pstChildrenUID[i] = pstHandle_2;
+                piChildrenUID[i] = iHandle_2;
             }
-            else if (strcmp(pstChildrenUID[i], pstHandle_2) == 0)
+            else if (piChildrenUID[i] == iHandle_2)
             {
-                pstChildrenUID[i] = pstHandle_1;
+                piChildrenUID[i] = iHandle_1;
             }
         }
 
-        setGraphicObjectProperty(pstParent_1, __GO_CHILDREN__, pstChildrenUID, jni_string_vector, iChildrenCount);
+        setGraphicObjectProperty(iParent_1, __GO_CHILDREN__, piChildrenUID, jni_int_vector, iChildrenCount);
 
     }
     else
     {
-        setGraphicObjectRelationship(pstParent_1, pstHandle_2);
-        setGraphicObjectRelationship(pstParent_2, pstHandle_1);
+        setGraphicObjectRelationship(iParent_1, iHandle_2);
+        setGraphicObjectRelationship(iParent_2, iHandle_1);
     }
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

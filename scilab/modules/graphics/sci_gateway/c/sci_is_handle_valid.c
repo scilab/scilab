@@ -73,7 +73,7 @@ int sci_is_handle_valid(char *fname, unsigned long fname_len)
     /* Check each handle */
     for (i = 0; i < nbHandle; i++)
     {
-        resultStackPointer[i] =  (getObjectFromHandle((long int)handleStackPointer[i]) != NULL ? TRUE : FALSE);
+        resultStackPointer[i] =  (getObjectFromHandle((long int)handleStackPointer[i]) != 0 ? TRUE : FALSE);
     }
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;

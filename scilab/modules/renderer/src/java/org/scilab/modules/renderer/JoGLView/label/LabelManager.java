@@ -50,7 +50,7 @@ public class LabelManager {
     /**
      * The {@see Map} of existing {@see Sprite}.
      */
-    private final Map<String, Texture> textureMap = new ConcurrentHashMap<String, Texture>();
+    private final Map<Integer, Texture> textureMap = new ConcurrentHashMap<Integer, Texture>();
 
     /**
      * The used sprite manager.
@@ -76,8 +76,8 @@ public class LabelManager {
     public void draw(final DrawingTools drawingTools, final ColorMap colorMap, final Label label, AxesDrawer axesDrawer) throws SciRendererException {
         /* Only the z-axis Label may not be drawn depending on the view mode */
         boolean drawnFlag = true;
-        String parentId;
-        String labelId = label.getIdentifier();
+        Integer parentId;
+        Integer labelId = label.getIdentifier();
         LabelPositioner labelPositioner;
 
         parentId = label.getParentAxes();
@@ -325,7 +325,7 @@ public class LabelManager {
      * @param id the modified object.
      * @param property the changed property.
      */
-    public void update(String id, int property) {
+    public void update(Integer id, int property) {
         if (!(__GO_POSITION__ == property) && !(__GO_AUTO_POSITION__ == property)
                 && !(__GO_FONT_ANGLE__ == property) && !(__GO_AUTO_ROTATION__ == property)) {
             dispose(id);
@@ -366,7 +366,7 @@ public class LabelManager {
      * Disposes the texture corresponding to the given id.
      * @param id the given id.
      */
-    public void dispose(String id) {
+    public void dispose(Integer id) {
         Texture texture = textureMap.get(id);
         if (texture != null) {
             textureManager.dispose(texture);

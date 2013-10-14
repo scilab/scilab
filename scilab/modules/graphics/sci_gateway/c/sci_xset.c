@@ -30,6 +30,7 @@
 #include "Scierror.h"
 #include "HandleManagement.h"
 
+#include "CurrentObject.h"
 #include "BuildObjects.h"
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
@@ -56,7 +57,7 @@ int sci_xset(char *fname, unsigned long fname_len)
 
     int m1 = 0, m2 = 0, xm[5], xn[5], x[5] = {0, 0, 0, 0, 0}, i = 0, v = 0;
     double  xx[5] = {0.0, 0.0, 0.0, 0.0, 0.0};
-    char * subwinUID = NULL;
+    int iSubwinUID = 0;
     BOOL keyFound = FALSE;
 
     if (nbInputArgument(pvApiCtx) <= 0)
@@ -219,13 +220,13 @@ int sci_xset(char *fname, unsigned long fname_len)
                 xx[i] = lr[i];
             }
         }
-        subwinUID = (char*)getOrCreateDefaultSubwin();
-        setGraphicObjectProperty(subwinUID, __GO_CLIP_BOX__, xx, jni_double_vector, 4);
-        setGraphicObjectProperty(subwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+        iSubwinUID = getOrCreateDefaultSubwin();
+        setGraphicObjectProperty(iSubwinUID, __GO_CLIP_BOX__, xx, jni_double_vector, 4);
+        setGraphicObjectProperty(iSubwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
     }
     else if (strcmp((l1), "colormap") == 0)
     {
-        char *pFigureUID = NULL;
+        int iFigureUID = 0;
         if (nbInputArgument(pvApiCtx) != 2)
         {
             freeAllocatedSingleString(l1);
@@ -234,14 +235,14 @@ int sci_xset(char *fname, unsigned long fname_len)
         }
 
         getOrCreateDefaultSubwin();
-        pFigureUID = (char*)getCurrentFigure();
-        setGraphicObjectProperty(pFigureUID , __GO_COLORMAP__, (lr), jni_double_vector, *xm * (*xn));
+        iFigureUID = getCurrentFigure();
+        setGraphicObjectProperty(iFigureUID , __GO_COLORMAP__, (lr), jni_double_vector, *xm * (*xn));
     }
     else if (strcmp((l1), "mark size") == 0)
     {
         int markSize = (int) xx[0];
         int markSizeUnit = 1; /* force switch to tabulated mode : old syntax / 0 : point, 1 : tabulated */
-        char *subwinUID = (char*)getOrCreateDefaultSubwin();
+        iSubwinUID = getOrCreateDefaultSubwin();
 
         if (nbInputArgument(pvApiCtx) != 2)
         {
@@ -250,8 +251,8 @@ int sci_xset(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
-        setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
+        setGraphicObjectProperty(iSubwinUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
+        setGraphicObjectProperty(iSubwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
     }
     else if (strcmp((l1), "mark") == 0)
     {
@@ -259,7 +260,6 @@ int sci_xset(char *fname, unsigned long fname_len)
         int markSize = (int) xx[1];
         int markSizeUnit = 1; /* force switch to tabulated mode : old syntax / 0 : point, 1 : tabulated */
         int markMode = 1;
-        char *subwinUID = NULL;
         if (nbInputArgument(pvApiCtx) != 3)
         {
             freeAllocatedSingleString(l1);
@@ -267,11 +267,11 @@ int sci_xset(char *fname, unsigned long fname_len)
             return -1;
         }
 
-        subwinUID = (char*)getOrCreateDefaultSubwin();
-        setGraphicObjectProperty(subwinUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
-        setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1); /* force switch to tabulated mode : old syntax */
-        setGraphicObjectProperty(subwinUID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
-        setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
+        iSubwinUID = getOrCreateDefaultSubwin();
+        setGraphicObjectProperty(iSubwinUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
+        setGraphicObjectProperty(iSubwinUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1); /* force switch to tabulated mode : old syntax */
+        setGraphicObjectProperty(iSubwinUID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
+        setGraphicObjectProperty(iSubwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
     }
     else if (strcmp((l1), "font size") == 0)
     {
@@ -343,7 +343,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         int defaultBackground = -2;
 
         double* pdblColorMap = NULL;
-        char* pFigureUID = NULL;
+        int iFigureUID = 0;
 
         if (nbInputArgument(pvApiCtx) != 1)
         {
@@ -364,11 +364,11 @@ int sci_xset(char *fname, unsigned long fname_len)
         }
 
         // Create figure if it not exist.
-        pFigureUID = (char*)getCurrentFigure();
-        if (pFigureUID == NULL)
+        iFigureUID = getCurrentFigure();
+        if (iFigureUID == 0)
         {
-            pFigureUID = createNewFigureWithAxes();
-            setCurrentFigure(pFigureUID);
+            iFigureUID = createNewFigureWithAxes();
+            setCurrentFigure(iFigureUID);
             AssignOutputVariable(pvApiCtx, 1) = 0;
             ReturnArguments(pvApiCtx);
             free(pdblColorMap);
@@ -376,50 +376,50 @@ int sci_xset(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        pSubWinUID = (char*)getCurrentSubWin();
-        if (pSubWinUID != NULL)
+        iSubwinUID = getCurrentSubWin();
+        if (iSubwinUID != 0)
         {
             int iChildrenCount  = 0;
             int* childrencount  = &iChildrenCount;
-            char** childrenUID  = NULL;
+            int* piChildrenUID  = NULL;
             int iHidden         = 0;
             int *piHidden       = &iHidden;
 
-            getGraphicObjectProperty(pFigureUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&childrencount);
-            getGraphicObjectProperty(pFigureUID, __GO_CHILDREN__, jni_string_vector, (void **)&childrenUID);
+            getGraphicObjectProperty(iFigureUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&childrencount);
+            getGraphicObjectProperty(iFigureUID, __GO_CHILDREN__, jni_int_vector, (void **)&piChildrenUID);
 
             for (i = 0; i < childrencount[0]; ++i)
             {
-                getGraphicObjectProperty(childrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
+                getGraphicObjectProperty(piChildrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
                 if (iHidden == 0)
                 {
-                    deleteGraphicObject(childrenUID[i]);
+                    deleteGraphicObject(piChildrenUID[i]);
                 }
             }
         }
 
-        cloneAxesModel(pFigureUID);
+        cloneAxesModel(iFigureUID);
 
         // Set default figure properties
-        setGraphicObjectProperty(pFigureUID, __GO_POSITION__, piFigurePosition, jni_int_vector, 2);
-        setGraphicObjectProperty(pFigureUID, __GO_SIZE__, piFigureSize, jni_int_vector, 2);
-        setGraphicObjectProperty(pFigureUID, __GO_AXES_SIZE__, piAxesSize, jni_int_vector, 2);
-        setGraphicObjectProperty(pFigureUID, __GO_AUTORESIZE__, &bTrue, jni_bool, 1);
-        setGraphicObjectProperty(pFigureUID, __GO_VIEWPORT__, piViewPort, jni_int_vector, 2);
-        setGraphicObjectProperty(pFigureUID, __GO_NAME__, _("Figure n°%d"), jni_string, 1);
-        setGraphicObjectProperty(pFigureUID, __GO_INFO_MESSAGE__, "", jni_string, 1);
-        setGraphicObjectProperty(pFigureUID, __GO_PIXMAP__, &bFalse, jni_bool, 1);
-        setGraphicObjectProperty(pFigureUID, __GO_PIXEL_DRAWING_MODE__, &iCopy, jni_int, 1);
-        setGraphicObjectProperty(pFigureUID, __GO_ANTIALIASING__, &iZero, jni_int, 1);
-        setGraphicObjectProperty(pFigureUID, __GO_IMMEDIATE_DRAWING__, &bTrue, jni_bool, 1);
-        setGraphicObjectProperty(pFigureUID, __GO_BACKGROUND__, &defaultBackground, jni_int, 1);
-        setGraphicObjectProperty(pFigureUID, __GO_VISIBLE__, &bTrue, jni_bool, 1);
-        setGraphicObjectProperty(pFigureUID, __GO_ROTATION_TYPE__, &iZero, jni_int, 1);
-        setGraphicObjectProperty(pFigureUID, __GO_EVENTHANDLER__, "", jni_string, 1);
-        setGraphicObjectProperty(pFigureUID, __GO_EVENTHANDLER_ENABLE__, &bFalse, jni_bool, 1);
-        setGraphicObjectProperty(pFigureUID, __GO_USER_DATA__, piEmptyMatrix, jni_int_vector, 4);
-        setGraphicObjectProperty(pFigureUID, __GO_RESIZEFCN__, "", jni_string, 1);
-        setGraphicObjectProperty(pFigureUID, __GO_TAG__, "", jni_string, 1);
+        setGraphicObjectProperty(iFigureUID, __GO_POSITION__, piFigurePosition, jni_int_vector, 2);
+        setGraphicObjectProperty(iFigureUID, __GO_SIZE__, piFigureSize, jni_int_vector, 2);
+        setGraphicObjectProperty(iFigureUID, __GO_AXES_SIZE__, piAxesSize, jni_int_vector, 2);
+        setGraphicObjectProperty(iFigureUID, __GO_AUTORESIZE__, &bTrue, jni_bool, 1);
+        setGraphicObjectProperty(iFigureUID, __GO_VIEWPORT__, piViewPort, jni_int_vector, 2);
+        setGraphicObjectProperty(iFigureUID, __GO_NAME__, _("Figure n°%d"), jni_string, 1);
+        setGraphicObjectProperty(iFigureUID, __GO_INFO_MESSAGE__, "", jni_string, 1);
+        setGraphicObjectProperty(iFigureUID, __GO_PIXMAP__, &bFalse, jni_bool, 1);
+        setGraphicObjectProperty(iFigureUID, __GO_PIXEL_DRAWING_MODE__, &iCopy, jni_int, 1);
+        setGraphicObjectProperty(iFigureUID, __GO_ANTIALIASING__, &iZero, jni_int, 1);
+        setGraphicObjectProperty(iFigureUID, __GO_IMMEDIATE_DRAWING__, &bTrue, jni_bool, 1);
+        setGraphicObjectProperty(iFigureUID, __GO_BACKGROUND__, &defaultBackground, jni_int, 1);
+        setGraphicObjectProperty(iFigureUID, __GO_VISIBLE__, &bTrue, jni_bool, 1);
+        setGraphicObjectProperty(iFigureUID, __GO_ROTATION_TYPE__, &iZero, jni_int, 1);
+        setGraphicObjectProperty(iFigureUID, __GO_EVENTHANDLER__, "", jni_string, 1);
+        setGraphicObjectProperty(iFigureUID, __GO_EVENTHANDLER_ENABLE__, &bFalse, jni_bool, 1);
+        setGraphicObjectProperty(iFigureUID, __GO_USER_DATA__, piEmptyMatrix, jni_int_vector, 4);
+        setGraphicObjectProperty(iFigureUID, __GO_RESIZEFCN__, "", jni_string, 1);
+        setGraphicObjectProperty(iFigureUID, __GO_TAG__, "", jni_string, 1);
 
         for (i = 0; i < m; i++)
         {
@@ -428,8 +428,8 @@ int sci_xset(char *fname, unsigned long fname_len)
             pdblColorMap[i + 2 * m] = (double)(defcolors[3 * i + 2] / 255.0);
         }
 
-        setGraphicObjectProperty(pFigureUID, __GO_COLORMAP__, pdblColorMap, jni_double_vector, 3 * m);
-        setGraphicObjectProperty(pFigureUID, __GO_PARENT__, "", jni_string, 1);
+        setGraphicObjectProperty(iFigureUID, __GO_COLORMAP__, pdblColorMap, jni_double_vector, 3 * m);
+        setParentObject(iFigureUID, 0);
 
     }
     else if (strcmp((l1), "clipgrf") == 0)
@@ -474,8 +474,9 @@ int sci_xset(char *fname, unsigned long fname_len)
     {
         // Find if window already exists, if not create a new one
         int iID = x[0];
-        char *pFigureUID = (char*)getFigureFromIndex(iID);
-        char* pstrAxesUID = NULL;
+        int iFigureUID = getFigureFromIndex(iID);
+        int iAxesUID = 0;
+        int* piAxesUID = &iAxesUID;
 
         if (nbInputArgument(pvApiCtx) != 2)
         {
@@ -484,14 +485,16 @@ int sci_xset(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        if (pFigureUID == NULL)
+        if (iFigureUID == 0)
         {
-            pFigureUID = createNewFigureWithAxes();
-            setGraphicObjectProperty(pFigureUID, __GO_ID__, &iID, jni_int, 1);
+            iFigureUID = createNewFigureWithAxes();
+            setGraphicObjectProperty(iFigureUID, __GO_ID__, &iID, jni_int, 1);
         }
-        setCurrentFigure(pFigureUID);
-        getGraphicObjectProperty(pFigureUID, __GO_SELECTED_CHILD__, jni_string,  &pstrAxesUID);
-        setCurrentSubWin(pstrAxesUID);
+
+        setCurrentFigure(iFigureUID);
+        getGraphicObjectProperty(iFigureUID, __GO_SELECTED_CHILD__, jni_int,  (void**)(&piAxesUID));
+        setCurrentSubWin(iAxesUID);
+
     }
     else if ((strcmp((l1), "foreground") == 0) || (strcmp((l1), "color") == 0) || (strcmp((l1), "pattern") == 0))
     {
@@ -523,7 +526,7 @@ int sci_xset(char *fname, unsigned long fname_len)
             Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
-        sciSetLineWidth((char*)getOrCreateDefaultSubwin(), x[0]);
+        sciSetLineWidth(getOrCreateDefaultSubwin(), x[0]);
     }
     else if (strcmp((l1), "line style") == 0)
     {
@@ -625,9 +628,9 @@ int sci_xset(char *fname, unsigned long fname_len)
     }
     else if (strcmp((l1), "line mode") == 0)
     {
-        char *pstSubwinUID = (char*)getOrCreateDefaultSubwin();
         int iZero = 0;
         int iOne = 1;
+        iSubwinUID = getOrCreateDefaultSubwin();
         if (nbInputArgument(pvApiCtx) != 2)
         {
             freeAllocatedSingleString(l1);
@@ -637,11 +640,11 @@ int sci_xset(char *fname, unsigned long fname_len)
 
         if (x[0] == 0)
         {
-            setGraphicObjectProperty(pstSubwinUID, __GO_LINE_MODE__, &iZero, jni_bool, 1);
+            setGraphicObjectProperty(iSubwinUID, __GO_LINE_MODE__, &iZero, jni_bool, 1);
         }
         else
         {
-            setGraphicObjectProperty(pstSubwinUID, __GO_LINE_MODE__, &iOne, jni_bool, 1);
+            setGraphicObjectProperty(iSubwinUID, __GO_LINE_MODE__, &iOne, jni_bool, 1);
         }
     }
     else

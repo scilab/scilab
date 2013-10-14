@@ -51,11 +51,11 @@ public class Polyline extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID
      */
-    public void arrowSizeFactor(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void arrowSizeFactor(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lArrowSize = new JLabel();
         final JTextField cArrowSize = new JTextField();
         addLabelTextField(panel, lArrowSize, MessagesGED.arrow_size_factor,
-                                 cArrowSize, true, LEFTMARGIN, COLUMN, ROW++);
+                          cArrowSize, true, LEFTMARGIN, COLUMN, ROW++);
         cArrowSize.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -70,7 +70,7 @@ public class Polyline extends ContentLayout {
         });
         // Get the current status of the property: Arrow Size Factor
         cArrowSize.setText(Double.toString((Double) GraphicController.getController()
-                .getProperty(UID, GraphicObjectProperties.__GO_ARROW_SIZE_FACTOR__)));
+                                           .getProperty(UID, GraphicObjectProperties.__GO_ARROW_SIZE_FACTOR__)));
     }
 
     /**
@@ -78,15 +78,15 @@ public class Polyline extends ContentLayout {
     * @param cArrowSize JTextField
     * @param UID objectid
     */
-    private void setArrowSize(JTextField cArrowSize, String UID) {
+    private void setArrowSize(JTextField cArrowSize, Integer UID) {
         try {
             GraphicController.getController().setProperty(
-                    UID,
-                    GraphicObjectProperties.__GO_ARROW_SIZE_FACTOR__,
-                    Double.parseDouble(cArrowSize.getText()));
+                UID,
+                GraphicObjectProperties.__GO_ARROW_SIZE_FACTOR__,
+                Double.parseDouble(cArrowSize.getText()));
         } catch (NumberFormatException e) {
             cArrowSize.setText(Double.toString((Double) GraphicController.getController()
-                .getProperty(UID, GraphicObjectProperties.__GO_ARROW_SIZE_FACTOR__)));
+                                               .getProperty(UID, GraphicObjectProperties.__GO_ARROW_SIZE_FACTOR__)));
         }
     }
 
@@ -98,11 +98,11 @@ public class Polyline extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID
      */
-    public void barWidth(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void barWidth(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lBarWidth = new JLabel();
         final JTextField cBarWidth = new JTextField();
         addLabelTextField(panel, lBarWidth, MessagesGED.bar_width,
-                                 cBarWidth, true, LEFTMARGIN, COLUMN, ROW++);
+                          cBarWidth, true, LEFTMARGIN, COLUMN, ROW++);
         cBarWidth.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -117,22 +117,22 @@ public class Polyline extends ContentLayout {
         });
         // Get the current status of the property: Bar Width
         cBarWidth.setText(Double.toString((Double) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_BAR_WIDTH__)));
+                                          .getProperty(UID, GraphicObjectProperties.__GO_BAR_WIDTH__)));
     }
 
     /**
     * Set Bar Width.
     * @param width Bar Width.
     */
-    private void setBarWidth(JTextField cBarWidth, String UID) {
+    private void setBarWidth(JTextField cBarWidth, Integer UID) {
         try {
             GraphicController.getController().setProperty(
-                    UID,
-                    GraphicObjectProperties.__GO_BAR_WIDTH__,
-                    Double.parseDouble(cBarWidth.getText()));
+                UID,
+                GraphicObjectProperties.__GO_BAR_WIDTH__,
+                Double.parseDouble(cBarWidth.getText()));
         } catch (NumberFormatException e) {
             cBarWidth.setText(Double.toString((Double) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_BAR_WIDTH__)));
+                                              .getProperty(UID, GraphicObjectProperties.__GO_BAR_WIDTH__)));
         }
     }
 
@@ -144,25 +144,25 @@ public class Polyline extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID
      */
-    public void closed(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void closed(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lClosed = new JLabel();
         final JComboBox cClosed = new JComboBox();
         addLabelComboBox(panel, lClosed, MessagesGED.closed,
-                                cClosed, new String[] {MessagesGED.off , MessagesGED.on},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cClosed, new String[] {MessagesGED.off , MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW++);
         cClosed.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_CLOSED__,
-                        cClosed.getSelectedIndex() == 0 ? false : true);
+                    UID, GraphicObjectProperties.__GO_CLOSED__,
+                    cClosed.getSelectedIndex() == 0 ? false : true);
             }
         });
 
         // Get the current status of the property: Closed
         boolean enable = (Boolean) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_CLOSED__);
-        cClosed.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_CLOSED__);
+        cClosed.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**
@@ -173,14 +173,15 @@ public class Polyline extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID
      */
-    public void polylineStyle(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void polylineStyle(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lPolyline = new JLabel();
         final JComboBox cPolyline = new JComboBox();
         String[] options = new String[] {MessagesGED.interpolated, MessagesGED.staircase, MessagesGED.barplot,
-                                         MessagesGED.bar, MessagesGED.arrowed, MessagesGED.filled};
+                                         MessagesGED.bar, MessagesGED.arrowed, MessagesGED.filled
+                                        };
         addLabelComboBox(panel, lPolyline, MessagesGED.polyline_style,
-                                cPolyline, options,
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cPolyline, options,
+                         LEFTMARGIN, COLUMN, ROW++);
         cPolyline.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {

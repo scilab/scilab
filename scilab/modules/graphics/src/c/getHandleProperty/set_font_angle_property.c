@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_font_angle_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_font_angle_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     double fontAngle = 0.;
@@ -46,7 +46,7 @@ int set_font_angle_property(void* _pvCtx, char* pobjUID, void* _pvData, int valu
 
     fontAngle = DEG2RAD(((double*)_pvData)[0]);
 
-    status = setGraphicObjectProperty(pobjUID, __GO_FONT_ANGLE__, &fontAngle, jni_double, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_FONT_ANGLE__, &fontAngle, jni_double, 1);
 
     if (status == TRUE)
     {

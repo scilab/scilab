@@ -315,8 +315,7 @@ int get_labels_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** 
         {
             /* jb silvy 03/2006 */
             /* do not change the legend if one already exists */
-            char * pSubWinUID = (char*)getOrCreateDefaultSubwin();
-            if (sciGetLegendDefined(pSubWinUID))
+            if (sciGetLegendDefined(getOrCreateDefaultSubwin()))
             {
                 *labels = NULL;
             }
@@ -338,9 +337,7 @@ int get_labels_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** 
     {
         /* jb silvy 03/2006 */
         /* do not change the legend if one already exists */
-        char* pSubWinUID = (char*)getOrCreateDefaultSubwin();
-
-        if (sciGetLegendDefined(pSubWinUID))
+        if (sciGetLegendDefined(getOrCreateDefaultSubwin()))
         {
             *labels = NULL;
         }

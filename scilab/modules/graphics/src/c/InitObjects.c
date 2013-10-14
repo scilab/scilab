@@ -93,7 +93,7 @@ unsigned short defcolors[] =
     255, 215, 0                 /* Gold */
 };
 
-void InitFigureModel(char *pfiguremdlUID)
+void InitFigureModel(int iFiguremdlUID)
 {
     int iZero = 0;
     BOOL bTrue = TRUE;
@@ -102,7 +102,7 @@ void InitFigureModel(char *pfiguremdlUID)
     int defaultBackground = -2;
     int m = NUMCOLORS_SCI;
     int i = 0;
-    double *pdblColorMap = MALLOC(m * 3 * sizeof(double));
+    double *pdblColorMap = (double*)MALLOC(m * 3 * sizeof(double));
 
     int piFigurePosition[2] = { 200, 200 };
     int piFigureSize[2] = { 620, 590 };
@@ -110,51 +110,51 @@ void InitFigureModel(char *pfiguremdlUID)
 
     // FIXME : inline this function here ...
 
-    sciInitGraphicMode(pfiguremdlUID);
+    sciInitGraphicMode(iFiguremdlUID);
     // Name
-    setGraphicObjectProperty(pfiguremdlUID, __GO_NAME__, _("Graphic window number %d"), jni_string, 1);
+    setGraphicObjectProperty(iFiguremdlUID, __GO_NAME__, _("Graphic window number %d"), jni_string, 1);
 
     // Id
-    setGraphicObjectProperty(pfiguremdlUID, __GO_ID__, &iZero, jni_int, 1);
+    setGraphicObjectProperty(iFiguremdlUID, __GO_ID__, &iZero, jni_int, 1);
     // pModelData
     // isselected ?? (No more used)
     // rotstyle = unary (0)
-    setGraphicObjectProperty(pfiguremdlUID, __GO_ROTATION_TYPE__, &iZero, jni_int, 1);
+    setGraphicObjectProperty(iFiguremdlUID, __GO_ROTATION_TYPE__, &iZero, jni_int, 1);
 
     // visible
-    setGraphicObjectProperty(pfiguremdlUID, __GO_VISIBLE__, &bTrue, jni_bool, 1);
+    setGraphicObjectProperty(iFiguremdlUID, __GO_VISIBLE__, &bTrue, jni_bool, 1);
     // immediateDrawingMode
-    setGraphicObjectProperty(pfiguremdlUID, __GO_IMMEDIATE_DRAWING__, &bTrue, jni_bool, 1);
+    setGraphicObjectProperty(iFiguremdlUID, __GO_IMMEDIATE_DRAWING__, &bTrue, jni_bool, 1);
     // background
-    setGraphicObjectProperty(pfiguremdlUID, __GO_BACKGROUND__, &defaultBackground, jni_int, 1);
+    setGraphicObjectProperty(iFiguremdlUID, __GO_BACKGROUND__, &defaultBackground, jni_int, 1);
     // position
-    setGraphicObjectProperty(pfiguremdlUID, __GO_POSITION__, piFigurePosition, jni_int_vector, 2);
+    setGraphicObjectProperty(iFiguremdlUID, __GO_POSITION__, piFigurePosition, jni_int_vector, 2);
     // size
-    setGraphicObjectProperty(pfiguremdlUID, __GO_SIZE__, piFigureSize, jni_int_vector, 2);
+    setGraphicObjectProperty(iFiguremdlUID, __GO_SIZE__, piFigureSize, jni_int_vector, 2);
 
     // auto_resize
-    setGraphicObjectProperty(pfiguremdlUID, __GO_AUTORESIZE__, &bTrue, jni_bool, 1);
+    setGraphicObjectProperty(iFiguremdlUID, __GO_AUTORESIZE__, &bTrue, jni_bool, 1);
     // axes_size
-    setGraphicObjectProperty(pfiguremdlUID, __GO_AXES_SIZE__, piAxesSize, jni_int_vector, 2);
+    setGraphicObjectProperty(iFiguremdlUID, __GO_AXES_SIZE__, piAxesSize, jni_int_vector, 2);
 
     /*
      * user data
      * NULL has been replaced by the empty string as the third argument in order to
      * avoid a crash due to giws 1.2.4
      */
-    //setGraphicObjectProperty(pfiguremdlUID, __GO_USER_DATA__, "", jni_string, 0);
+    //setGraphicObjectProperty(iFiguremdlUID, __GO_USER_DATA__, "", jni_string, 0);
     // Size of user data
-    //setGraphicObjectProperty(pfiguremdlUID, __GO_USER_DATA_SIZE__, &iZero, jni_int, 1);
+    //setGraphicObjectProperty(iFiguremdlUID, __GO_USER_DATA_SIZE__, &iZero, jni_int, 1);
     // Pixmap Mode
-    setGraphicObjectProperty(pfiguremdlUID, __GO_PIXMAP__, &bFalse, jni_bool, 1);
+    setGraphicObjectProperty(iFiguremdlUID, __GO_PIXMAP__, &bFalse, jni_bool, 1);
     // Info Message
-    setGraphicObjectProperty(pfiguremdlUID, __GO_INFO_MESSAGE__, "", jni_string, 1);
+    setGraphicObjectProperty(iFiguremdlUID, __GO_INFO_MESSAGE__, "", jni_string, 1);
     // Event Handler
-    setGraphicObjectProperty(pfiguremdlUID, __GO_EVENTHANDLER__, "", jni_string, 1);
+    setGraphicObjectProperty(iFiguremdlUID, __GO_EVENTHANDLER__, "", jni_string, 1);
     // Event Handler Enable
-    setGraphicObjectProperty(pfiguremdlUID, __GO_EVENTHANDLER_ENABLE__, &bFalse, jni_bool, 1);
+    setGraphicObjectProperty(iFiguremdlUID, __GO_EVENTHANDLER_ENABLE__, &bFalse, jni_bool, 1);
     // Tag
-    setGraphicObjectProperty(pfiguremdlUID, __GO_TAG__, "", jni_string, 1);
+    setGraphicObjectProperty(iFiguremdlUID, __GO_TAG__, "", jni_string, 1);
 
     if (pdblColorMap == NULL)
     {
@@ -169,13 +169,16 @@ void InitFigureModel(char *pfiguremdlUID)
         pdblColorMap[i + 2 * m] = (double)(defcolors[3 * i + 2] / 255.0);
     }
     // ColorMap
-    setGraphicObjectProperty(pfiguremdlUID, __GO_COLORMAP__, pdblColorMap, jni_double_vector, 3 * m);
+    setGraphicObjectProperty(iFiguremdlUID, __GO_COLORMAP__, pdblColorMap, jni_double_vector, 3 * m);
 
     // Parent
-    setGraphicObjectProperty(pfiguremdlUID, __GO_PARENT__, "", jni_string, 1);
+    {
+        int parent = 0;
+        setGraphicObjectProperty(iFiguremdlUID, __GO_PARENT__, &parent, jni_int, 1);
+    }
 
     // Default menus
-    buildFigureMenuBar(pfiguremdlUID);
+    buildFigureMenuBar(iFiguremdlUID);
 }
 
 /* DJ.A 08/01/04 */
@@ -187,31 +190,30 @@ int C2F(graphicsmodels) (void)
     int firstPlot = 0;
     int result = 0;
 
-    char *pfiguremdlUID = NULL;
-    char *paxesmdlUID = NULL;
+    int iFiguremdlUID = 0;
+    int iAxesmdlUID = 0;
 
     /*
      ** Init Figure Model
      */
 
     // Create default figure by Asking MVC a new one.
-    pfiguremdlUID = createGraphicObject(__GO_FIGUREMODEL__);
-    setFigureModel(pfiguremdlUID);
-    InitFigureModel(pfiguremdlUID);
+    iFiguremdlUID = createGraphicObject(__GO_FIGUREMODEL__);
+    setFigureModel(iFiguremdlUID);
+    InitFigureModel(iFiguremdlUID);
 
-    sciInitGraphicMode(pfiguremdlUID);
+    sciInitGraphicMode(iFiguremdlUID);
 
     /*
      ** Init Axes Model
      */
 
     // Create default Axes by Asking MVC a new one.
-    paxesmdlUID = createGraphicObject(__GO_AXESMODEL__);
-    setAxesModel(paxesmdlUID);
+    iAxesmdlUID = createGraphicObject(__GO_AXESMODEL__);
+    setAxesModel(iAxesmdlUID);
 
     /* Sets the parent-child relationship between the default Figure and Axes */
-    setGraphicObjectRelationship(pfiguremdlUID, paxesmdlUID);
-    releaseGraphicObjectProperty(-1, pfiguremdlUID, jni_string, 0);
+    setGraphicObjectRelationship(iFiguremdlUID, iAxesmdlUID);
 
     /* Axes Model properties */
 
@@ -230,25 +232,23 @@ int C2F(graphicsmodels) (void)
     margins[2] = 0.125;
     margins[3] = 0.125;
 
-    setGraphicObjectProperty(paxesmdlUID, __GO_MARGINS__, margins, jni_double_vector, 4);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_MARGINS__, margins, jni_double_vector, 4);
 
     clipRegion[0] = 0.0;
     clipRegion[1] = 0.0;
     clipRegion[2] = 0.0;
     clipRegion[3] = 0.0;
 
-    setGraphicObjectProperty(paxesmdlUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
     clipRegionSet = 0;
-    setGraphicObjectProperty(paxesmdlUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
     /*
      * Specifies that no high-level drawing function has been called yet.
      */
     firstPlot = 1;
-    setGraphicObjectProperty(paxesmdlUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
-
-    releaseGraphicObjectProperty(-1, paxesmdlUID, jni_string, 0);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
 #if 0
     ppaxesmdl->FirstPlot = TRUE;
@@ -317,104 +317,104 @@ int InitAxesModel()
     /* 0: point, 1: tabulated */
     int markSizeUnit = 1;
 
-    char *labelUID = NULL;
+    int iLabelUID = 0;
 
-    char *pfiguremdlUID = (char*)getFigureModel();
-    char *paxesmdlUID = (char*)getAxesModel();
+    int iFiguremdlUID = getFigureModel();
+    int iAxesmdlUID = getAxesModel();
 
-    sciInitGraphicMode(paxesmdlUID);
+    sciInitGraphicMode(iAxesmdlUID);
 
-    setGraphicObjectProperty(paxesmdlUID, __GO_BACKGROUND__, &background, jni_int, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_BACKGROUND__, &background, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
 
-    setGraphicObjectProperty(paxesmdlUID, __GO_FONT_SIZE__, &labelsFontSize, jni_double, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_FONT_COLOR__, &labelsFontColor, jni_int, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_FONT_STYLE__, &labelsFontStyle, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_FONT_SIZE__, &labelsFontSize, jni_double, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_FONT_COLOR__, &labelsFontColor, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_FONT_STYLE__, &labelsFontStyle, jni_int, 1);
 
-    setGraphicObjectProperty(paxesmdlUID, __GO_LINE_THICKNESS__, &lineWidth, jni_double, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_LINE_THICKNESS__, &lineWidth, jni_double, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
 
-    setGraphicObjectProperty(paxesmdlUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_FILL_MODE__, &fillMode, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_FILL_MODE__, &fillMode, jni_bool, 1);
 
-    setGraphicObjectProperty(paxesmdlUID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
 
-    setGraphicObjectProperty(paxesmdlUID, __GO_MARK_BACKGROUND__, &background, jni_int, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_MARK_FOREGROUND__, &foreground, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_MARK_BACKGROUND__, &background, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_MARK_FOREGROUND__, &foreground, jni_int, 1);
 
     cubeScaling = 0;
-    setGraphicObjectProperty(paxesmdlUID, __GO_CUBE_SCALING__, &cubeScaling, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_CUBE_SCALING__, &cubeScaling, jni_bool, 1);
 
     /* Log flags set to linear for the 3 axes */
     logFlag = 0;
 
-    setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_LOG_FLAG__, &logFlag, jni_bool, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_LOG_FLAG__, &logFlag, jni_bool, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_LOG_FLAG__, &logFlag, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_X_AXIS_LOG_FLAG__, &logFlag, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Y_AXIS_LOG_FLAG__, &logFlag, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Z_AXIS_LOG_FLAG__, &logFlag, jni_bool, 1);
 
     ticksColor = -1;
-    setGraphicObjectProperty(paxesmdlUID, __GO_TICKS_COLOR__, &ticksColor, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_TICKS_COLOR__, &ticksColor, jni_int, 1);
 
     nbSubticks = 1;
-    setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_X_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Y_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Z_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
 
     /* 0 corresponds to bottom position */
     axisLocation = 0;
-    setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_LOCATION__, &axisLocation, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_X_AXIS_LOCATION__, &axisLocation, jni_int, 1);
 
     /* 4 corresponds to left position */
     axisLocation = 4;
-    setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_LOCATION__, &axisLocation, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Y_AXIS_LOCATION__, &axisLocation, jni_int, 1);
 
     /* 0 corresponds to OFF */
     boxType = 0;
-    setGraphicObjectProperty(paxesmdlUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
 
     filled = 1;
-    setGraphicObjectProperty(paxesmdlUID, __GO_FILLED__, &filled, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_FILLED__, &filled, jni_bool, 1);
 
     gridColor = -1;
-    setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_GRID_COLOR__, &gridColor, jni_int, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_GRID_COLOR__, &gridColor, jni_int, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_GRID_COLOR__, &gridColor, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_X_AXIS_GRID_COLOR__, &gridColor, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Y_AXIS_GRID_COLOR__, &gridColor, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Z_AXIS_GRID_COLOR__, &gridColor, jni_int, 1);
 
     /* 0: background */
-    setGraphicObjectProperty(paxesmdlUID, __GO_LINE_COLOR__, &lineColor, jni_int, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_BACKGROUND__, &background, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_LINE_COLOR__, &lineColor, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_BACKGROUND__, &background, jni_int, 1);
 
     gridPosition = 0;
 
-    setGraphicObjectProperty(paxesmdlUID, __GO_GRID_POSITION__, &gridPosition, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_GRID_POSITION__, &gridPosition, jni_int, 1);
 
     rotationAngles[0] = 0.0;
     rotationAngles[1] = 270.0;
 
-    setGraphicObjectProperty(paxesmdlUID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
 
     /* 0: 2D view */
     view = 0;
-    setGraphicObjectProperty(paxesmdlUID, __GO_VIEW__, &view, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_VIEW__, &view, jni_int, 1);
 
     /* Must be set after VIEW, since setting VIEW to 2D overwrites the 3D rotation angles */
     rotationAngles[0] = 45.0;
     rotationAngles[1] = 215.0;
 
-    setGraphicObjectProperty(paxesmdlUID, __GO_ROTATION_ANGLES_3D__, rotationAngles, jni_double_vector, 2);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_ROTATION_ANGLES_3D__, rotationAngles, jni_double_vector, 2);
 
     axisVisible = 0;
-    setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
 
     axisReverse = 0;
-    setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_REVERSE__, &axisReverse, jni_bool, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_REVERSE__, &axisReverse, jni_bool, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_REVERSE__, &axisReverse, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_X_AXIS_REVERSE__, &axisReverse, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Y_AXIS_REVERSE__, &axisReverse, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Z_AXIS_REVERSE__, &axisReverse, jni_bool, 1);
 
     /* Corresponds to the MVC AUTO_SUBTICKS property (!flagNax is equivalent to AUTO_SUBTICKS) */
 #if 0
@@ -422,13 +422,13 @@ int InitAxesModel()
 #endif
 
     autoSubticks = 1;
-    setGraphicObjectProperty(paxesmdlUID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
 
     /* To be corrected when the equivalent of flagnax is implemented within the MVC */
     nbSubticks = 1;
-    setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_X_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Y_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Z_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
 
     /*
      * The code creating default ticks labels and positions should be put
@@ -443,14 +443,14 @@ int InitAxesModel()
      * ensure that the ticks values set are the automatic ticks' ones.
      */
     autoTicks = 1;
-    setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
-    setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Z_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
 
     defaultNumberTicks = 11;
 
-    setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_TICKS_LOCATIONS__, tab, jni_double_vector, defaultNumberTicks);
-    setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_TICKS_LOCATIONS__, tab, jni_double_vector, defaultNumberTicks);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_X_AXIS_TICKS_LOCATIONS__, tab, jni_double_vector, defaultNumberTicks);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Y_AXIS_TICKS_LOCATIONS__, tab, jni_double_vector, defaultNumberTicks);
 
     stringVector = createStringArray(defaultNumberTicks);
 
@@ -473,8 +473,8 @@ int InitAxesModel()
         }
     }
 
-    setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, defaultNumberTicks);
-    setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, defaultNumberTicks);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_X_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, defaultNumberTicks);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Y_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, defaultNumberTicks);
 
     /*
      * The same number of ticks is used now for the x,y and z axes.
@@ -482,7 +482,7 @@ int InitAxesModel()
      * overriding this default number (3) by creating an 11-tick z-axis when required (3D view).
      * Ticks locations and labels are however different for the z-axis (from -1 to +1 instead of 0 to 1).
      */
-    setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_TICKS_LOCATIONS__, tabZTicksLocations, jni_double_vector, defaultNumberTicks);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Z_AXIS_TICKS_LOCATIONS__, tabZTicksLocations, jni_double_vector, defaultNumberTicks);
 
     /* ChoixFormatE should be used */
     for (i = 0; i < defaultNumberTicks; i++)
@@ -498,7 +498,7 @@ int InitAxesModel()
         }
     }
 
-    setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, defaultNumberTicks);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Z_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, defaultNumberTicks);
 
     destroyStringArray(stringVector, defaultNumberTicks);
 
@@ -514,20 +514,20 @@ int InitAxesModel()
 #endif
 
     hiddenAxisColor = 4;
-    setGraphicObjectProperty(paxesmdlUID, __GO_HIDDEN_AXIS_COLOR__, &hiddenAxisColor, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_HIDDEN_AXIS_COLOR__, &hiddenAxisColor, jni_int, 1);
 
     hiddenColor = 4;
-    setGraphicObjectProperty(paxesmdlUID, __GO_HIDDEN_COLOR__, &hiddenColor, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_HIDDEN_COLOR__, &hiddenColor, jni_int, 1);
 
     isoview = 0;
-    setGraphicObjectProperty(paxesmdlUID, __GO_ISOVIEW__, &isoview, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_ISOVIEW__, &isoview, jni_bool, 1);
 
     /* Axes bounds set to fill the whole drawing area */
     axesBounds[0] = 0.0;
     axesBounds[1] = 0.0;
     axesBounds[2] = 1.0;
     axesBounds[3] = 1.0;
-    setGraphicObjectProperty(paxesmdlUID, __GO_AXES_BOUNDS__, axesBounds, jni_double_vector, 4);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_AXES_BOUNDS__, axesBounds, jni_double_vector, 4);
 
     /* xmin, xmax */
     dataBounds[0] = 0.0;
@@ -539,42 +539,38 @@ int InitAxesModel()
     dataBounds[4] = -1.0;
     dataBounds[5] = 1.0;
 
-    setGraphicObjectProperty(paxesmdlUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 
     /* visible */
-    getGraphicObjectProperty(pfiguremdlUID, __GO_VISIBLE__, jni_bool, (void**)&piVisible);
-    setGraphicObjectProperty(paxesmdlUID, __GO_VISIBLE__, &visible, jni_bool, 1);
+    getGraphicObjectProperty(iFiguremdlUID, __GO_VISIBLE__, jni_bool, (void**)&piVisible);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
     /* 0: clipping off */
     clipState = 0;
-    setGraphicObjectProperty(paxesmdlUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     /* "real data bounds" and "data bounds" are initially the same */
-    setGraphicObjectProperty(paxesmdlUID, __GO_REAL_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_REAL_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 
     tightLimits = 0;
-    setGraphicObjectProperty(paxesmdlUID, __GO_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
 
     /* Sets the default arc drawing method to lines (1), which is faster */
     arcDrawingMethod = 1;
-    setGraphicObjectProperty(paxesmdlUID, __GO_ARC_DRAWING_METHOD__, &arcDrawingMethod, jni_int, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_ARC_DRAWING_METHOD__, &arcDrawingMethod, jni_int, 1);
 
     /* Creates the Axes model's labels and sets the model as their parent */
-    labelUID = initLabel(paxesmdlUID);
-    setGraphicObjectProperty(paxesmdlUID, __GO_TITLE__, labelUID, jni_string, 1);
-    releaseGraphicObjectProperty(__GO_TITLE__, labelUID, jni_string, 0);
+    iLabelUID = initLabel(iAxesmdlUID);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_TITLE__, &iLabelUID, jni_int, 1);
 
-    labelUID = initLabel(paxesmdlUID);
-    setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_LABEL__, labelUID, jni_string, 1);
-    releaseGraphicObjectProperty(__GO_X_AXIS_LABEL__, labelUID, jni_string, 0);
+    iLabelUID = initLabel(iAxesmdlUID);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_X_AXIS_LABEL__, &iLabelUID, jni_int, 1);
 
-    labelUID = initLabel(paxesmdlUID);
-    setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_LABEL__, labelUID, jni_string, 1);
-    releaseGraphicObjectProperty(__GO_Y_AXIS_LABEL__, labelUID, jni_string, 0);
+    iLabelUID = initLabel(iAxesmdlUID);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Y_AXIS_LABEL__, &iLabelUID, jni_int, 1);
 
-    labelUID = initLabel(paxesmdlUID);
-    setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_LABEL__, labelUID, jni_string, 1);
-    releaseGraphicObjectProperty(__GO_Z_AXIS_LABEL__, labelUID, jni_string, 0);
+    iLabelUID = initLabel(iAxesmdlUID);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Z_AXIS_LABEL__, &iLabelUID, jni_int, 1);
 
     return 0;
 }
@@ -588,12 +584,12 @@ int InitAxesModel()
 /**sciInitGraphicMode
  * Inits the graphic mode of this object with the default value
  */
-int sciInitGraphicMode(char *pobjUID)
+int sciInitGraphicMode(int iObjUID)
 {
     int iType = -1;
     int *piType = &iType;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     /*
      * The GO_FIGURE block is never reached as InitFigureModel
@@ -605,13 +601,13 @@ int sciInitGraphicMode(char *pobjUID)
         /* 3: copy pixel drawing mode */
         int xormode = 3;
 
-        if (isFigureModel(pobjUID))
+        if (isFigureModel(iObjUID))
         {
             /*
              * These 3 properties are not used by the Figure object proper, but
              * rather serve to initialize its children Axes' ones.
              */
-            setGraphicObjectProperty(pobjUID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
+            setGraphicObjectProperty(iObjUID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
         }
     }
     else if (iType == __GO_AXES__)
@@ -629,18 +625,18 @@ int sciInitGraphicMode(char *pobjUID)
         /* 3: copy */
         int xormode = 3;
 
-        if (isAxesModel(pobjUID))
+        if (isAxesModel(iObjUID))
         {
-            setGraphicObjectProperty(pobjUID, __GO_AUTO_CLEAR__, &autoClear, jni_bool, 1);
-            setGraphicObjectProperty(pobjUID, __GO_AUTO_SCALE__, &autoScale, jni_bool, 1);
-            setGraphicObjectProperty(pobjUID, __GO_ZOOM_ENABLED__, &zoom, jni_bool, 1);
+            setGraphicObjectProperty(iObjUID, __GO_AUTO_CLEAR__, &autoClear, jni_bool, 1);
+            setGraphicObjectProperty(iObjUID, __GO_AUTO_SCALE__, &autoScale, jni_bool, 1);
+            setGraphicObjectProperty(iObjUID, __GO_ZOOM_ENABLED__, &zoom, jni_bool, 1);
 
             /*
              * Internal state: was possibly used to avoid accessing the parent Figure's pixel drawing mode
              * or may be entirely useless, as pixel drawing mode is associated to the whole Figure.
              * As it has no corresponding MVC property, this call will not set anything.
              */
-            setGraphicObjectProperty(pobjUID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
+            setGraphicObjectProperty(iObjUID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
         }
         /*
          * This block is never reached at all since since the Axes model
@@ -650,28 +646,28 @@ int sciInitGraphicMode(char *pobjUID)
         {
             int iTmp = 0;
             int *piTmp = &iTmp;
-            char *paxesmdlUID = (char*)getAxesModel();
+            int iAxesmdlUID = getAxesModel();
 
-            getGraphicObjectProperty(paxesmdlUID, __GO_AUTO_CLEAR__, jni_bool, (void **)&piTmp);
+            getGraphicObjectProperty(iAxesmdlUID, __GO_AUTO_CLEAR__, jni_bool, (void **)&piTmp);
             autoClear = iTmp;
-            getGraphicObjectProperty(paxesmdlUID, __GO_AUTO_SCALE__, jni_bool, (void **)&piTmp);
+            getGraphicObjectProperty(iAxesmdlUID, __GO_AUTO_SCALE__, jni_bool, (void **)&piTmp);
             autoScale = iTmp;
-            getGraphicObjectProperty(paxesmdlUID, __GO_ZOOM_ENABLED__, jni_bool, (void **)&piTmp);
+            getGraphicObjectProperty(iAxesmdlUID, __GO_ZOOM_ENABLED__, jni_bool, (void **)&piTmp);
             zoom = iTmp;
 
-            setGraphicObjectProperty(pobjUID, __GO_AUTO_CLEAR__, &autoClear, jni_bool, 1);
-            setGraphicObjectProperty(pobjUID, __GO_AUTO_SCALE__, &autoScale, jni_bool, 1);
-            setGraphicObjectProperty(pobjUID, __GO_ZOOM_ENABLED__, &zoom, jni_bool, 1);
+            setGraphicObjectProperty(iObjUID, __GO_AUTO_CLEAR__, &autoClear, jni_bool, 1);
+            setGraphicObjectProperty(iObjUID, __GO_AUTO_SCALE__, &autoScale, jni_bool, 1);
+            setGraphicObjectProperty(iObjUID, __GO_ZOOM_ENABLED__, &zoom, jni_bool, 1);
 
             /*
              * Internal state: used to avoid accessing the parent's pixel drawing mode
              * obsolete ? Not implemented yet within the MVC
              */
 
-            getGraphicObjectProperty(paxesmdlUID, __GO_PIXEL_DRAWING_MODE__, jni_bool, (void **)&piTmp);
+            getGraphicObjectProperty(iAxesmdlUID, __GO_PIXEL_DRAWING_MODE__, jni_bool, (void **)&piTmp);
             xormode = iTmp;
 
-            setGraphicObjectProperty(pobjUID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
+            setGraphicObjectProperty(iObjUID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
         }
     }
 
@@ -701,25 +697,25 @@ default:
 
 /*---------------------------------------------------------------------------------*/
 /* allocate and set a new label to default values */
-char *initLabel(char *parentObjUID)
+int initLabel(int iParentObjUID)
 {
-    char *newLabel = NULL;
+    int iNewLabel = NULL;
     int iHidden = 1;
     int autoPosition = 1;
 
-    newLabel = createGraphicObject(__GO_LABEL__);
+    iNewLabel = createGraphicObject(__GO_LABEL__);
 
     /* Hide Label as they are non explicit children */
-    setGraphicObjectProperty(newLabel, __GO_HIDDEN__, &iHidden, jni_bool, 1);
-    setGraphicObjectProperty(newLabel, __GO_AUTO_POSITION__, &autoPosition, jni_bool, 1);
-    setGraphicObjectProperty(newLabel, __GO_AUTO_ROTATION__, &autoPosition, jni_bool, 1);
+    setGraphicObjectProperty(iNewLabel, __GO_HIDDEN__, &iHidden, jni_bool, 1);
+    setGraphicObjectProperty(iNewLabel, __GO_AUTO_POSITION__, &autoPosition, jni_bool, 1);
+    setGraphicObjectProperty(iNewLabel, __GO_AUTO_ROTATION__, &autoPosition, jni_bool, 1);
 
     /* Sets the label's parent */
-    setGraphicObjectRelationship(parentObjUID, newLabel);
+    setGraphicObjectRelationship(iParentObjUID, iNewLabel);
 
-    cloneGraphicContext(parentObjUID, newLabel);
-    cloneFontContext(parentObjUID, newLabel);
+    cloneGraphicContext(iParentObjUID, iNewLabel);
+    cloneFontContext(iParentObjUID, iNewLabel);
 
-    return newLabel;
+    return iNewLabel;
 }
 /*---------------------------------------------------------------------------------*/

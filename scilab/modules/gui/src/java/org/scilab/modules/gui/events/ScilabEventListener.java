@@ -30,14 +30,14 @@ import org.scilab.modules.gui.utils.SciTranslator;
 public class ScilabEventListener implements KeyListener, MouseListener, MouseMotionListener {
 
     private String callback;
-    private String windowsUID;
+    private Integer windowsUID;
     private int mouseX = 0;
     private int mouseY = 0;
     private SciTranslator eventTranslator = new SciTranslator();
     private boolean freedom = true;
     private boolean inCanvas = false;
 
-    public ScilabEventListener(String callback, String windowsUID) {
+    public ScilabEventListener(String callback, Integer windowsUID) {
         eventTranslator.setClickAction(SciTranslator.UNMANAGED);
         this.callback = callback;
         this.windowsUID	= windowsUID;

@@ -25,7 +25,7 @@ public class Fec extends SimpleObject {
     * Initializes all sections (JPanel's) and Add in Main JPanel of Object.
     * @param objectID Enters the identification of object.
     */
-    public Fec(String objectID) {
+    public Fec(Integer objectID) {
         super(objectID);
         data = new DataProperties(objectID);
         style = new Style(objectID);

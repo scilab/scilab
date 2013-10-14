@@ -18,7 +18,7 @@ package org.scilab.modules.gui.plotbrowser;
 */
 public class SwapFigure {
 
-    public SwapFigure(String objectID) {
+    public SwapFigure(Integer objectID) {
         SwingPlotBrowser.pReceive.removeAll();
         new ListCreator(objectID);
         SwingPlotBrowser.pReceive.revalidate();

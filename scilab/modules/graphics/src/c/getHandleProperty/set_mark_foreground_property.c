@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_mark_foreground_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_mark_foreground_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int markForeground = 0;
@@ -43,7 +43,7 @@ int set_mark_foreground_property(void* _pvCtx, char* pobjUID, void* _pvData, int
 
     markForeground = (int)((double*)_pvData)[0];
 
-    status = setGraphicObjectProperty(pobjUID, __GO_MARK_FOREGROUND__, &markForeground, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_MARK_FOREGROUND__, &markForeground, jni_int, 1);
 
     if (status == TRUE)
     {

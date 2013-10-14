@@ -29,13 +29,13 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_direction_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_direction_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int type = -1;
     int *piType = &type;
     BOOL status = FALSE;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     if (type == __GO_LIGHT__)
     {
@@ -51,7 +51,7 @@ int set_direction_property(void* _pvCtx, char* pobjUID, void* _pvData, int value
             return SET_PROPERTY_ERROR;
         }
 
-        status = setGraphicObjectProperty(pobjUID, __GO_DIRECTION__, _pvData, jni_double_vector, 3);
+        status = setGraphicObjectProperty(iObjUID, __GO_DIRECTION__, _pvData, jni_double_vector, 3);
 
         if (status == TRUE)
         {

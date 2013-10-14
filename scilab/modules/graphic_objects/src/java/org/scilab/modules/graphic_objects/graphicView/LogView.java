@@ -29,17 +29,17 @@ public class LogView implements GraphicView {
         return me;
     }
 
-    public void createObject(String id) {
+    public void createObject(Integer id) {
         int objectType = (Integer) GraphicController.getController().getProperty(id, __GO_TYPE__);
         System.out.println("+++" + id + " Object Created type is " + objectType + ".");
     }
 
-    public void deleteObject(String id) {
+    public void deleteObject(Integer id) {
         System.out.println("---" + id + " Object Deleted.");
 
     }
 
-    public void updateObject(String id, int property) {
+    public void updateObject(Integer id, int property) {
         System.out.println("===" + id + " Object Property " + property + " Updated.");
     }
 

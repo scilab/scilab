@@ -46,13 +46,13 @@ public class Surface extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void colorFlag(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void colorFlag(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lColorFlag = new JLabel();
         final JTextField cColorFlag = new JTextField();
         addLabelTextField(panel, lColorFlag, MessagesGED.color_flag,
-                                 cColorFlag, true, LEFTMARGIN, COLUMN, ROW++);
+                          cColorFlag, true, LEFTMARGIN, COLUMN, ROW++);
         cColorFlag.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -67,20 +67,20 @@ public class Surface extends ContentLayout {
         });
         // Get the current status of the property: Color Flag
         cColorFlag.setText(GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_COLOR_FLAG__).toString());
+                           .getProperty(UID, GraphicObjectProperties.__GO_COLOR_FLAG__).toString());
     }
 
     /**
     * Set Color Flag.
     * @param flag Color flag.
     */
-    private void setColorFlag(JTextField cColorFlag, String UID) {
+    private void setColorFlag(JTextField cColorFlag, Integer UID) {
         try {
             GraphicController.getController()
-                    .setProperty(UID, GraphicObjectProperties.__GO_COLOR_FLAG__, Integer.parseInt(cColorFlag.getText()));
+            .setProperty(UID, GraphicObjectProperties.__GO_COLOR_FLAG__, Integer.parseInt(cColorFlag.getText()));
         } catch (NumberFormatException e) {
             cColorFlag.setText(GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_COLOR_FLAG__).toString());
+                               .getProperty(UID, GraphicObjectProperties.__GO_COLOR_FLAG__).toString());
         }
     }
 
@@ -90,13 +90,13 @@ public class Surface extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void colorMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void colorMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lColorMode = new JLabel();
         final JTextField cColorMode = new JTextField();
         addLabelTextField(panel, lColorMode, MessagesGED.color_mode,
-                                 cColorMode, true, LEFTMARGIN, COLUMN, ROW++);
+                          cColorMode, true, LEFTMARGIN, COLUMN, ROW++);
         cColorMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -111,7 +111,7 @@ public class Surface extends ContentLayout {
         });
         // Get the current status of the property: Color Mode
         cColorMode.setText(GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_COLOR_MODE__).toString());
+                           .getProperty(UID, GraphicObjectProperties.__GO_COLOR_MODE__).toString());
     }
 
     /**
@@ -119,13 +119,13 @@ public class Surface extends ContentLayout {
     * @param mode Color Mode.
     * @param UID ObjectID.
     */
-    private void setColorMode(JTextField cColorMode, String UID) {
+    private void setColorMode(JTextField cColorMode, Integer UID) {
         try {
             GraphicController.getController()
-                    .setProperty(UID, GraphicObjectProperties.__GO_COLOR_MODE__, Integer.parseInt(cColorMode.getText()));
+            .setProperty(UID, GraphicObjectProperties.__GO_COLOR_MODE__, Integer.parseInt(cColorMode.getText()));
         } catch (NumberFormatException e) {
             cColorMode.setText(GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_COLOR_MODE__).toString());
+                               .getProperty(UID, GraphicObjectProperties.__GO_COLOR_MODE__).toString());
         }
     }
 
@@ -135,10 +135,10 @@ public class Surface extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
-    public void hiddenColor(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID, final String parentFigure) {
+    public void hiddenColor(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID, final Integer parentFigure) {
         JLabel label = new JLabel();
         JPanel ipanel = new JPanel();
         JButton bucketButton = new JButton();
@@ -156,11 +156,11 @@ public class Surface extends ContentLayout {
 
         // Get the current status of the property: Background Color
         Integer scilabBackgroundColor = (Integer) GraphicController.getController()
-                  .getProperty(UID, GraphicObjectProperties.__GO_BACKGROUND__);
+                                        .getProperty(UID, GraphicObjectProperties.__GO_BACKGROUND__);
         Double[] rgbBackgroundColor = ColorMapHandler.getRGBcolor(parentFigure, scilabBackgroundColor);
         cHiddenColor.setBackground(new Color(rgbBackgroundColor[0].intValue(),
-                                            rgbBackgroundColor[1].intValue(),
-                                            rgbBackgroundColor[2].intValue()));
+                                             rgbBackgroundColor[1].intValue(),
+                                             rgbBackgroundColor[2].intValue()));
     }
 
     /**
@@ -168,9 +168,9 @@ public class Surface extends ContentLayout {
     * @param scilabColor index of the color map.
     * @param UID objectID.
     */
-    public void setHiddenColor(int scilabColor, java.lang.String UID) {
+    public void setHiddenColor(int scilabColor, Integer UID) {
         GraphicController.getController()
-                .setProperty(UID, GraphicObjectProperties.__GO_HIDDEN_COLOR__, scilabColor);
+        .setProperty(UID, GraphicObjectProperties.__GO_HIDDEN_COLOR__, scilabColor);
     }
 
     /**
@@ -179,14 +179,14 @@ public class Surface extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void surfaceMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void surfaceMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         String[] messageOffOn = new String[] {MessagesGED.off , MessagesGED.on};
         JLabel lSurfaceMode = new JLabel();
         final JComboBox cSurfaceMode = new JComboBox();
         addLabelComboBox(panel, lSurfaceMode, MessagesGED.surface_mode,
-                                cSurfaceMode, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
+                         cSurfaceMode, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
         cSurfaceMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -197,7 +197,7 @@ public class Surface extends ContentLayout {
         });
         // Get the current status of the property: Surface Mode
         boolean enable = (Boolean) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_SURFACE_MODE__);
-        cSurfaceMode.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_SURFACE_MODE__);
+        cSurfaceMode.setSelectedIndex(enable ? 1 : 0);
     }
 }

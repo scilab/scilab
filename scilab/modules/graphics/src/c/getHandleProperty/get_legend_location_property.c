@@ -32,12 +32,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_legend_location_property(void* _pvCtx, char* pobjUID)
+int get_legend_location_property(void* _pvCtx, int iObjUID)
 {
     int iLegendLocation = 0;
     int* piLegendLocation = &iLegendLocation;
 
-    getGraphicObjectProperty(pobjUID, __GO_LEGEND_LOCATION__, jni_int, (void**)&piLegendLocation);
+    getGraphicObjectProperty(iObjUID, __GO_LEGEND_LOCATION__, jni_int, (void**)&piLegendLocation);
 
     if (piLegendLocation == NULL)
     {

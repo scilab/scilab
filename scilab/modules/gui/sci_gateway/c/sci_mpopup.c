@@ -37,8 +37,8 @@ int sci_mpopup(char *fname, unsigned long fname_len)
     int iMenuitemIndex = 0;
 
     char *pstRes = NULL;
-    char *pstUicontextmenuUID = NULL;
-    char *pstMenuitemUID = NULL;
+    int iUicontextmenuUID = 0;
+    int iMenuitemUID = 0;
     char **pstAllMenuLabels = NULL;
 
     CheckInputArgument(pvApiCtx, 1, 1);
@@ -80,19 +80,19 @@ int sci_mpopup(char *fname, unsigned long fname_len)
     }
 
     /* Create an uicontextmenu */
-    pstUicontextmenuUID = createGraphicObject(__GO_UICONTEXTMENU__);
-    if (pstUicontextmenuUID != NULL)
+    iUicontextmenuUID = createGraphicObject(__GO_UICONTEXTMENU__);
+    if (iUicontextmenuUID != 0)
     {
         for (iMenuitemIndex = 0; iMenuitemIndex < iRows * iCols; iMenuitemIndex++)
         {
             // Create sub-menus
-            pstMenuitemUID = createGraphicObject(__GO_UIMENU__);
-            setGraphicObjectProperty(pstMenuitemUID, __GO_UI_LABEL__, pstAllMenuLabels[iMenuitemIndex], jni_string, 1);
-            setGraphicObjectRelationship(pstUicontextmenuUID, pstMenuitemUID);
+            iMenuitemUID = createGraphicObject(__GO_UIMENU__);
+            setGraphicObjectProperty(iMenuitemUID, __GO_UI_LABEL__, pstAllMenuLabels[iMenuitemIndex], jni_string, 1);
+            setGraphicObjectRelationship(iUicontextmenuUID, iMenuitemUID);
         }
     }
 
-    pstRes = uiWaitContextMenu(pstUicontextmenuUID);
+    pstRes = uiWaitContextMenu(iUicontextmenuUID);
 
     iRet = createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, pstRes);
     if (iRet)

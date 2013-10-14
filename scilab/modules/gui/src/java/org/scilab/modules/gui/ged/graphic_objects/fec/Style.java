@@ -34,7 +34,7 @@ public class Style extends SimpleSection {
     * Receives and passes the objectID to the parent class.
     * @param objectID Enters the identification of object.
     */
-    public Style(String objectID) {
+    public Style(Integer objectID) {
         super(MessagesGED.style_appearance, "fec");
         instance = this;
         sectionPanel = getSectionPanel();
@@ -54,13 +54,13 @@ public class Style extends SimpleSection {
     * @param objectID uid
     */
     @Override
-    public final void initComponents(String objectID) {
+    public final void initComponents(Integer objectID) {
         int row = 0;
         final int leftmargin = 0; //to inner components
         int column = 1; //first column
 
-        String parentFigure = (String) GraphicController.getController()
-                .getProperty(objectID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        Integer parentFigure = (Integer) GraphicController.getController()
+                               .getProperty(objectID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
 
         //Components of the property: Color Range
         fec.colorRange(sectionPanel, row++, column, leftmargin, objectID);
@@ -76,15 +76,15 @@ public class Style extends SimpleSection {
         //Components of the property: Outside Colors
         fec.outsideColor(sectionPanel, row++, column, leftmargin, objectID);
         row++;
-   }
+    }
 
     /**
     * Change the color of the object.
     * @param scilabColor index of the color map.
     * @param UID objectID.
     */
-    public void setForegroundColor(int scilabColor, String UID) {
+    public void setForegroundColor(int scilabColor, Integer UID) {
         GraphicController.getController().setProperty(
-                UID, GraphicObjectProperties.__GO_LINE_COLOR__, scilabColor);
+            UID, GraphicObjectProperties.__GO_LINE_COLOR__, scilabColor);
     }
 }

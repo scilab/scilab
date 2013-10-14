@@ -28,12 +28,12 @@ extern "C" {
     /**
      * Update subwin size and scale
      */
-    RENDERER_IMPEXP void sciJavaUpdateSubwinScale(char * pSubwinUID);
+    RENDERER_IMPEXP void sciJavaUpdateSubwinScale(int iubwinUID);
 
     /**
      * Update bounding box of a text object if needed
      */
-    RENDERER_IMPEXP void sciJavaUpdateTextBoundingBox(char * pTextUID);
+    RENDERER_IMPEXP void sciJavaUpdateTextBoundingBox(int iTextUID);
 
 #ifdef __cplusplus
 }

@@ -28,11 +28,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_anti_aliasing_property(void* _pvCtx, char* pobjUID)
+int get_anti_aliasing_property(void* _pvCtx, int iObjUID)
 {
     int iAntialiasing = 0;
     int* piAntialiasing = &iAntialiasing;
-    getGraphicObjectProperty(pobjUID, __GO_ANTIALIASING__, jni_int, (void **)&piAntialiasing);
+    getGraphicObjectProperty(iObjUID, __GO_ANTIALIASING__, jni_int, (void **)&piAntialiasing);
 
     if (piAntialiasing == NULL)
     {

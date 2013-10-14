@@ -47,17 +47,17 @@ int sci_unzoom(char *fname, unsigned long fname_len)
     int *piType = &iType;
 
     /* ids of object to unzoom */
-    char** objectsId = NULL;
-    char* objectUID = NULL;
+    int* iObjectsId = NULL;
+    int iObjectUID = 0;
 
     CheckInputArgument(pvApiCtx, 0, 1);
     CheckOutputArgument(pvApiCtx, 0, 1);
     if (nbInputArgument(pvApiCtx) == 0)
     {
-        objectUID = (char*)getCurrentFigure();
-        if (objectUID != NULL)
+        iObjectUID = getCurrentFigure();
+        if (iObjectUID != 0)
         {
-            sciUnzoomFigure(objectUID);
+            sciUnzoomFigure(iObjectUID);
         }
     }
     else
@@ -80,8 +80,8 @@ int sci_unzoom(char *fname, unsigned long fname_len)
         }
 
         nbObjects = m * n;
-        objectsId = MALLOC(nbObjects * sizeof(char*));
-        if (objectsId == NULL)
+        iObjectsId = (int*)MALLOC(nbObjects * sizeof(int));
+        if (iObjectsId == NULL)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
             return -1;
@@ -91,20 +91,21 @@ int sci_unzoom(char *fname, unsigned long fname_len)
         /* and copy them into an array of objects */
         for (i = 0; i < nbObjects; i++)
         {
-            objectUID = (char*)getObjectFromHandle((long int)stackPointer[i]);
-            getGraphicObjectProperty(objectUID, __GO_TYPE__, jni_int, (void **) &piType);
+            iObjectUID = getObjectFromHandle((long int)stackPointer[i]);
+            getGraphicObjectProperty(iObjectUID, __GO_TYPE__, jni_int, (void **) &piType);
             if (iType != __GO_FIGURE__ && iType != __GO_AXES__)
             {
-                FREE(objectsId);
+                FREE(iObjectsId);
                 Scierror(999, _("%s: Wrong type for input argument: Vector of Axes and Figure handles expected.\n"), fname);
                 return -1;
             }
-            objectsId[i] = objectUID;
+
+            iObjectsId[i] = iObjectUID;
         }
 
         /* second pass un zoom the objects */
-        sciUnzoomArray(objectsId, nbObjects);
-        FREE(objectsId);
+        sciUnzoomArray(iObjectsId, nbObjects);
+        FREE(iObjectsId);
     }
 
 

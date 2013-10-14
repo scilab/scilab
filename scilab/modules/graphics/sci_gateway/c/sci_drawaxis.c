@@ -58,7 +58,7 @@ int sci_drawaxis(char *fname, unsigned long fname_len)
         { -1, NULL, -1, 0, 0, NULL}
     };
 
-    char *psubwinUID = NULL;
+    int iSubwinUID = 0;
     int minrhs = -1, maxrhs = 0, minlhs = 0, maxlhs = 1, nopt = 0;
     char dir = 'l', *format = NULL, tics = 'v', **val = NULL;
     int fontsize = 0, sub_int = 2, seg_flag = 1, textcolor = -1, ticscolor = -1;
@@ -77,7 +77,7 @@ int sci_drawaxis(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    psubwinUID = (char*)getOrCreateDefaultSubwin();
+    iSubwinUID = getOrCreateDefaultSubwin();
 
     if (opts[0].iPos != -1)
     {
@@ -198,9 +198,9 @@ int sci_drawaxis(char *fname, unsigned long fname_len)
     {
         static double x_def[1];
         double *bounds;
-        char *currentSubwinUID = (char*)getCurrentSubWin();
+        int iCurrentSubwinUID = getCurrentSubWin();
 
-        getGraphicObjectProperty(currentSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&bounds);
+        getGraphicObjectProperty(iCurrentSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&bounds);
         nx = 1;
         x = x_def;
         if (dir == 'l')
@@ -222,9 +222,9 @@ int sci_drawaxis(char *fname, unsigned long fname_len)
     {
         static double y_def[1];
         double *bounds;
-        char *currentSubwinUID = (char*)getCurrentSubWin();
+        int iCurrentSubwinUID = getCurrentSubWin();
 
-        getGraphicObjectProperty(currentSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&bounds);
+        getGraphicObjectProperty(iCurrentSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&bounds);
         ny = 1;
         y = y_def;
         if (dir == 'd')

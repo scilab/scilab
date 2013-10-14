@@ -31,7 +31,7 @@ public class ActionDelete extends BaseAction {
     * @param object the Deleted Object
     * @param parentUID The parent from object
     */
-    public ActionDelete(String object, String parentUID) {
+    public ActionDelete(Integer object, Integer parentUID) {
 
         super(object, parentUID);
     }

@@ -38,7 +38,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_format_n_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_format_n_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     char* format = NULL;
@@ -53,21 +53,21 @@ int set_format_n_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
 
     format = (char*)_pvData;
 
-    getGraphicObjectProperty(pobjUID, __GO_FORMATN__, jni_string, (void **)&oldFormat);
+    getGraphicObjectProperty(iObjUID, __GO_FORMATN__, jni_string, (void **)&oldFormat);
 
     if (strcmp(format, oldFormat) == 0)
     {
         return SET_PROPERTY_SUCCEED;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_FORMATN__, format, jni_string, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_FORMATN__, format, jni_string, 1);
     if (status == TRUE)
     {
-        labels = computeDefaultTicsLabels(pobjUID);
+        labels = computeDefaultTicsLabels(iObjUID);
         if (labels != NULL)
         {
             char ** data = getStrMatData(labels);
-            setGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, data, jni_string_vector, labels->nbCol * labels->nbRow);
+            setGraphicObjectProperty(iObjUID, __GO_TICKS_LABELS__, data, jni_string_vector, labels->nbCol * labels->nbRow);
             deleteMatrix(labels);
         }
 

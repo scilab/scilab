@@ -29,7 +29,7 @@ using namespace org_scilab_modules_gui_datatip;
 
 int sci_datatipmove(char *fname, unsigned long fname_len)
 {
-    char* datatipUID        = NULL;
+    int iDatatipUID         = 0;
     int* piAddr             = NULL;
     int mouseButtonNumber   = -1;
     int pixelCoords[2]      = {0, 0};
@@ -59,10 +59,10 @@ int sci_datatipmove(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        datatipUID = (char *)getObjectFromHandle((unsigned long) llHandle);
+        iDatatipUID = getObjectFromHandle((unsigned long) llHandle);
         if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
         {
-            getGraphicObjectProperty(datatipUID, __GO_TYPE__, jni_int, (void**) &piType);
+            getGraphicObjectProperty(iDatatipUID, __GO_TYPE__, jni_int, (void**) &piType);
             if (iType == __GO_DATATIP__)
             {
                 while (mouseButtonNumber == -1)
@@ -71,7 +71,7 @@ int sci_datatipmove(char *fname, unsigned long fname_len)
                     mouseButtonNumber = getJxgetmouseMouseButtonNumber();
                     pixelCoords[0] = (int) getJxgetmouseXCoordinate();
                     pixelCoords[1] = (int) getJxgetmouseYCoordinate();
-                    DatatipDrag::dragDatatip(getScilabJavaVM(), (char*)datatipUID, pixelCoords[0], pixelCoords[1]);
+                    DatatipDrag::dragDatatip(getScilabJavaVM(), iDatatipUID, pixelCoords[0], pixelCoords[1]);
                 }
             }
             else

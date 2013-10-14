@@ -59,16 +59,16 @@ public class Figure extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
-    public void antiAliasing(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void antiAliasing(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lAliasing = new JLabel();
         final JComboBox cAliasing = new JComboBox();
 
         addLabelComboBox(panel, lAliasing, MessagesGED.anti_alising,
-                                cAliasing, new String[] {MessagesGED.off , MessagesGED.on},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cAliasing, new String[] {MessagesGED.off , MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW++);
         cAliasing.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -80,7 +80,7 @@ public class Figure extends ContentLayout {
 
         // Get the current status of the property: Anti-aliasing
         cAliasing.setSelectedIndex((Integer) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_ANTIALIASING__));
+                                   .getProperty(UID, GraphicObjectProperties.__GO_ANTIALIASING__));
     }
 
     /**
@@ -89,16 +89,16 @@ public class Figure extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
-    public void autoResize(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void autoResize(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lResize = new JLabel();
         final JComboBox cResize = new JComboBox();
 
         addLabelComboBox(panel, lResize, MessagesGED.auto_resize,
-                                cResize, new String[] {MessagesGED.off , MessagesGED.on},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cResize, new String[] {MessagesGED.off , MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW++);
         cResize.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -110,8 +110,8 @@ public class Figure extends ContentLayout {
 
         // Get the current status of the property: Auto Resize
         boolean enable = (Boolean) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_AUTORESIZE__);
-        cResize.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_AUTORESIZE__);
+        cResize.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**
@@ -120,10 +120,10 @@ public class Figure extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
-    public void axesSize(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void axesSize(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         int LEFTMARGINIP = 0; //left margin - inner panel
         int COLUMNIP = 0; //left column - inner panel
         final JToggleButton bAxesSize = new JToggleButton();
@@ -134,7 +134,7 @@ public class Figure extends ContentLayout {
         cAxesSizeX = new JTextField();
         JLabel lAxesSizeY = new JLabel();
         cAxesSizeY = new JTextField();
-        
+
         addInnerPanel(panel, pAxesSize, bAxesSize, lAxesSize, cAxesSize, MessagesGED.axes_size, ROW);
         bAxesSize.addActionListener(new ActionListener() {
             @Override
@@ -174,7 +174,7 @@ public class Figure extends ContentLayout {
 
         //Get the current status of the property: Axes Size
         Integer[] currentAxesSize = (Integer []) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_AXES_SIZE__);
+                                    .getProperty(UID, GraphicObjectProperties.__GO_AXES_SIZE__);
         cAxesSizeX.setText(currentAxesSize[0].toString());
         cAxesSizeY.setText(currentAxesSize[1].toString());
         titleAxesSize();
@@ -183,13 +183,13 @@ public class Figure extends ContentLayout {
     /**
     * Updates the property: Axes Size.
     */
-    private void updateAxesSize(String UID) {
+    private void updateAxesSize(Integer UID) {
         Integer[] setPosition = new Integer[] {
             Integer.parseInt(cAxesSizeX.getText()),
             Integer.parseInt(cAxesSizeY.getText())
         };
         GraphicController.getController()
-                .setProperty(UID, GraphicObjectProperties.__GO_AXES_SIZE__, setPosition);
+        .setProperty(UID, GraphicObjectProperties.__GO_AXES_SIZE__, setPosition);
         titleAxesSize();
     }
 
@@ -206,15 +206,15 @@ public class Figure extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
-    public void closeRequestFcn(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void closeRequestFcn(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lCloseRequestFcn = new JLabel();
         cCloseRequestFcn = new JTextField();
 
         addLabelTextField(panel, lCloseRequestFcn, MessagesGED.close_request_fcn,
-                                 cCloseRequestFcn, true, LEFTMARGIN, COLUMN, ROW++);
+                          cCloseRequestFcn, true, LEFTMARGIN, COLUMN, ROW++);
         cCloseRequestFcn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -230,16 +230,16 @@ public class Figure extends ContentLayout {
 
         //Get the current status of the property: CloseRequestFcn
         cCloseRequestFcn.setText((String) GraphicController.getController()
-                       .getProperty(UID, GraphicObjectProperties.__GO_CLOSEREQUESTFCN__));
+                                 .getProperty(UID, GraphicObjectProperties.__GO_CLOSEREQUESTFCN__));
     }
 
     /**
     * Updates the property: CloseRequestFcn.
     */
-    private void updateCloseRequestFcn(String UID) {
+    private void updateCloseRequestFcn(Integer UID) {
         GraphicController.getController().setProperty(
-                UID, GraphicObjectProperties.__GO_CLOSEREQUESTFCN__,
-                cCloseRequestFcn.getText());
+            UID, GraphicObjectProperties.__GO_CLOSEREQUESTFCN__,
+            cCloseRequestFcn.getText());
     }
 
 
@@ -249,15 +249,15 @@ public class Figure extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
-    public void eventHandler(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void eventHandler(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lEventHandler = new JLabel();
         JComboBox cEventHandler = new JComboBox();
         addLabelComboBox(panel, lEventHandler, MessagesGED.event_handler,
-                                 cEventHandler, new String[] {MessagesGED.off, MessagesGED.function},
-                                 LEFTMARGIN, COLUMN, ROW++);
+                         cEventHandler, new String[] {MessagesGED.off, MessagesGED.function},
+                         LEFTMARGIN, COLUMN, ROW++);
         cEventHandler.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -274,35 +274,35 @@ public class Figure extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
-    public void figureID(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void figureID(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lFigureID = new JLabel();
         final JTextField cFigureID = new JTextField();
         addLabelTextField(panel, lFigureID, MessagesGED.figure_id,
-                                 cFigureID, true, LEFTMARGIN, COLUMN, ROW++);
+                          cFigureID, true, LEFTMARGIN, COLUMN, ROW++);
         cFigureID.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID,
-                        GraphicObjectProperties.__GO_ID__,
-                        Integer.parseInt(cFigureID.getText()));
+                    UID,
+                    GraphicObjectProperties.__GO_ID__,
+                    Integer.parseInt(cFigureID.getText()));
             }
         });
         cFigureID.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID,
-                        GraphicObjectProperties.__GO_ID__,
-                        Integer.parseInt(cFigureID.getText()));
+                    UID,
+                    GraphicObjectProperties.__GO_ID__,
+                    Integer.parseInt(cFigureID.getText()));
             }
         });
         // Get the current status of the property: Figure ID
         cFigureID.setText(((Integer) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_ID__)).toString());
+                           .getProperty(UID, GraphicObjectProperties.__GO_ID__)).toString());
     }
 
     /**
@@ -311,35 +311,35 @@ public class Figure extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
-    public void figureName(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void figureName(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lFigureName = new JLabel();
         final JTextField cFigureName = new JTextField();
         addLabelTextField(panel, lFigureName, MessagesGED.figure_name,
-                                 cFigureName, true, LEFTMARGIN, COLUMN, ROW++);
+                          cFigureName, true, LEFTMARGIN, COLUMN, ROW++);
         cFigureName.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID,
-                        GraphicObjectProperties.__GO_NAME__,
-                        cFigureName.getText());
+                    UID,
+                    GraphicObjectProperties.__GO_NAME__,
+                    cFigureName.getText());
             }
         });
         cFigureName.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID,
-                        GraphicObjectProperties.__GO_NAME__,
-                        cFigureName.getText());
+                    UID,
+                    GraphicObjectProperties.__GO_NAME__,
+                    cFigureName.getText());
             }
         });
         // Get the current status of the property: Figure Name
         cFigureName.setText((String) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_NAME__));
+                            .getProperty(UID, GraphicObjectProperties.__GO_NAME__));
     }
 
     /**
@@ -348,10 +348,10 @@ public class Figure extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
-    public void figurePosition(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void figurePosition(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         int LEFTMARGINIP = 0; //left margin - inner panel
         int COLUMNIP = 0; //left column - inner panel
         final JPanel pFigurePosition = new JPanel();
@@ -375,7 +375,7 @@ public class Figure extends ContentLayout {
         int rowFigurePosition = 0;
         //Figure Position - X
         addLabelTextField(pFigurePosition, lFigurePositionX, "X",
-                                 cFigurePositionX, true, LEFTMARGINIP, COLUMNIP, rowFigurePosition++);
+                          cFigurePositionX, true, LEFTMARGINIP, COLUMNIP, rowFigurePosition++);
         cFigurePositionX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -390,7 +390,7 @@ public class Figure extends ContentLayout {
         });
         //Figure Position - Y
         addLabelTextField(pFigurePosition, lFigurePositionY, "Y",
-                                 cFigurePositionY, true, LEFTMARGINIP, COLUMNIP, rowFigurePosition++);
+                          cFigurePositionY, true, LEFTMARGINIP, COLUMNIP, rowFigurePosition++);
         cFigurePositionY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -406,7 +406,7 @@ public class Figure extends ContentLayout {
 
         //Get the current status of the property: Figure Position
         Integer[] currentFigurePosition = (Integer []) GraphicController.getController()
-                  .getProperty(UID, GraphicObjectProperties.__GO_POSITION__);
+                                          .getProperty(UID, GraphicObjectProperties.__GO_POSITION__);
         cFigurePositionX.setText(currentFigurePosition[0].toString());
         cFigurePositionY.setText(currentFigurePosition[1].toString());
         titleFigurePosition();
@@ -415,13 +415,13 @@ public class Figure extends ContentLayout {
     /**
     * Updates the property: Figure Position.
     */
-    private void updateFigurePosition(String UID) {
+    private void updateFigurePosition(Integer UID) {
         Integer[] setPosition = new Integer[] {
             Integer.parseInt(cFigurePositionX.getText()),
             Integer.parseInt(cFigurePositionY.getText())
         };
         GraphicController.getController()
-                .setProperty(UID, GraphicObjectProperties.__GO_POSITION__, setPosition);
+        .setProperty(UID, GraphicObjectProperties.__GO_POSITION__, setPosition);
         titleFigurePosition();
     }
 
@@ -438,10 +438,10 @@ public class Figure extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
-    public void figureSize(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void figureSize(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         int LEFTMARGINIP = 0; //left margin - inner panel
         int COLUMNIP = 0; //left column - inner panel
         final JPanel pFigureSize = new JPanel();
@@ -454,7 +454,7 @@ public class Figure extends ContentLayout {
         cFigureSizeY = new JTextField();
 
         addInnerPanel(panel, pFigureSize, bFigureSize,
-                                   lFigureSize, cFigureSize, MessagesGED.figure_size, ROW);
+                      lFigureSize, cFigureSize, MessagesGED.figure_size, ROW);
         bFigureSize.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -464,7 +464,7 @@ public class Figure extends ContentLayout {
         int rowFigureSize = 0;
         //Figure Size - X
         addLabelTextField(pFigureSize, lFigureSizeX, "X",
-                                 cFigureSizeX, true, LEFTMARGINIP, COLUMNIP, rowFigureSize++);
+                          cFigureSizeX, true, LEFTMARGINIP, COLUMNIP, rowFigureSize++);
         cFigureSizeX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -479,7 +479,7 @@ public class Figure extends ContentLayout {
         });
         //Figure Size - Y
         addLabelTextField(pFigureSize, lFigureSizeY, "Y",
-                                 cFigureSizeY, true, LEFTMARGINIP, COLUMNIP, rowFigureSize++);
+                          cFigureSizeY, true, LEFTMARGINIP, COLUMNIP, rowFigureSize++);
         cFigureSizeY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -495,7 +495,7 @@ public class Figure extends ContentLayout {
 
         //Get the current status of the property: Figure Size
         Integer[] currentFigureSize = (Integer []) GraphicController.getController()
-                  .getProperty(UID, GraphicObjectProperties.__GO_SIZE__);
+                                      .getProperty(UID, GraphicObjectProperties.__GO_SIZE__);
         cFigureSizeX.setText(currentFigureSize[0].toString());
         cFigureSizeY.setText(currentFigureSize[1].toString());
         titleFigureSize();
@@ -504,13 +504,13 @@ public class Figure extends ContentLayout {
     /**
     * Updates the property: Figure Size.
     */
-    private void updateFigureSize(String UID) {
+    private void updateFigureSize(Integer UID) {
         Integer[] setPosition = new Integer[] {
             Integer.parseInt(cFigureSizeX.getText()),
             Integer.parseInt(cFigureSizeY.getText())
         };
         GraphicController.getController()
-                .setProperty(UID, GraphicObjectProperties.__GO_SIZE__, setPosition);
+        .setProperty(UID, GraphicObjectProperties.__GO_SIZE__, setPosition);
         titleFigureSize();
     }
 
@@ -527,14 +527,14 @@ public class Figure extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
-    public void infoMessage(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void infoMessage(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lInfoMessage = new JLabel();
         final JTextField cInfoMessage = new JTextField();
         addLabelTextField(panel, lInfoMessage, MessagesGED.info_message,
-                                 cInfoMessage, true, LEFTMARGIN, COLUMN, ROW++);
+                          cInfoMessage, true, LEFTMARGIN, COLUMN, ROW++);
         cInfoMessage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -555,7 +555,7 @@ public class Figure extends ContentLayout {
         });
         // Get the current status of the property: Info Message
         cInfoMessage.setText((String) GraphicController.getController()
-                          .getProperty(UID, GraphicObjectProperties.__GO_INFO_MESSAGE__));
+                             .getProperty(UID, GraphicObjectProperties.__GO_INFO_MESSAGE__));
     }
 
     /**
@@ -564,29 +564,29 @@ public class Figure extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
-    public void immediateDrawing(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void immediateDrawing(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lImmediateDrawing = new JLabel();
         final JComboBox cImmediateDrawing = new JComboBox();
 
         addLabelComboBox(panel, lImmediateDrawing, MessagesGED.immediate_drawing,
-                                cImmediateDrawing, new String[] {MessagesGED.off , MessagesGED.on},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cImmediateDrawing, new String[] {MessagesGED.off , MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW++);
         cImmediateDrawing.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent evt) { 
+            public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__,
-                        cImmediateDrawing.getSelectedIndex() == 0 ? false : true);
+                    UID, GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__,
+                    cImmediateDrawing.getSelectedIndex() == 0 ? false : true);
             }
         });
 
         // Get the current status of the property: Immediate Drawing
         boolean enable = (Boolean) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__);
-        cImmediateDrawing.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__);
+        cImmediateDrawing.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**
@@ -595,18 +595,19 @@ public class Figure extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
-    public void pixelDrawingMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void pixelDrawingMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lPixelDrawingMode = new JLabel();
         final JComboBox cPixelDrawingMode = new JComboBox();
 
         String[] options = new String[] {"clear", "and", "andReverse", "copy", "andInverted", "noop",
-            "xor", "or", "nor", "equiv", "invert", "orReverse", "copyInverted", "orInverted", "nand", "set"};
+                                         "xor", "or", "nor", "equiv", "invert", "orReverse", "copyInverted", "orInverted", "nand", "set"
+                                        };
         addLabelComboBox(panel, lPixelDrawingMode, MessagesGED.pixel_drawing_mode,
-                                 cPixelDrawingMode, options,
-                                 LEFTMARGIN, COLUMN, ROW++);
+                         cPixelDrawingMode, options,
+                         LEFTMARGIN, COLUMN, ROW++);
         cPixelDrawingMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -618,7 +619,7 @@ public class Figure extends ContentLayout {
 
         //Get the current status of the property: Pixel Drawing Mode.
         cPixelDrawingMode.setSelectedIndex((Integer) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_PIXEL_DRAWING_MODE__));
+                                           .getProperty(UID, GraphicObjectProperties.__GO_PIXEL_DRAWING_MODE__));
     }
 
     /**
@@ -627,16 +628,16 @@ public class Figure extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
-    public void pixmap(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void pixmap(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lPixmap = new JLabel();
         final JComboBox cPixmap = new JComboBox();
 
         addLabelComboBox(panel, lPixmap, MessagesGED.pixmap,
-                                cPixmap, new String[] {MessagesGED.off , MessagesGED.on},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cPixmap, new String[] {MessagesGED.off , MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW++);
         cPixmap.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -648,8 +649,8 @@ public class Figure extends ContentLayout {
 
         // Get the current status of the property: Pixmap
         boolean enable = (Boolean) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_PIXMAP__);
-        cPixmap.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_PIXMAP__);
+        cPixmap.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**
@@ -658,15 +659,15 @@ public class Figure extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
-    public void resizeFcn(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void resizeFcn(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lResizeFcn = new JLabel();
         final JTextField cResizeFcn = new JTextField();
 
         addLabelTextField(panel, lResizeFcn, MessagesGED.resize_fcn,
-                                 cResizeFcn, true, LEFTMARGIN, COLUMN, ROW++);
+                          cResizeFcn, true, LEFTMARGIN, COLUMN, ROW++);
         cResizeFcn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -686,7 +687,7 @@ public class Figure extends ContentLayout {
 
         //Get the current status of the property: ResizeFcn
         cResizeFcn.setText((String) GraphicController.getController()
-                              .getProperty(UID, GraphicObjectProperties.__GO_RESIZEFCN__));
+                           .getProperty(UID, GraphicObjectProperties.__GO_RESIZEFCN__));
     }
 
     /**
@@ -695,16 +696,16 @@ public class Figure extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
-    public void rotationStyle(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void rotationStyle(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lRotationStyle = new JLabel();
         final JComboBox cRotationStyle = new JComboBox();
 
         addLabelComboBox(panel, lRotationStyle, MessagesGED.rotation_style,
-                                 cRotationStyle, new String[] {MessagesGED.unary, MessagesGED.multiple},
-                                 LEFTMARGIN, COLUMN, ROW++);
+                         cRotationStyle, new String[] {MessagesGED.unary, MessagesGED.multiple},
+                         LEFTMARGIN, COLUMN, ROW++);
         cRotationStyle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -716,7 +717,7 @@ public class Figure extends ContentLayout {
 
         //Get the current status of the property: Rotation Style
         cRotationStyle.setSelectedIndex((Integer) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_ROTATION_TYPE__));
+                                        .getProperty(UID, GraphicObjectProperties.__GO_ROTATION_TYPE__));
     }
 
     /**
@@ -725,10 +726,10 @@ public class Figure extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
-    public void viewport(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void viewport(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         int LEFTMARGINIP = 0; //left margin - inner panel
         int COLUMNIP = 0; //left column - inner panel
         final JPanel pViewport = new JPanel();
@@ -750,7 +751,7 @@ public class Figure extends ContentLayout {
         int rowViewport = 0;
         //Viewport - X
         addLabelTextField(pViewport, lViewportX, "X",
-                                 cViewportX, true, LEFTMARGINIP, COLUMNIP, rowViewport++);
+                          cViewportX, true, LEFTMARGINIP, COLUMNIP, rowViewport++);
         cViewportX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -765,7 +766,7 @@ public class Figure extends ContentLayout {
         });
         //Viewport - Y
         addLabelTextField(pViewport, lViewportY, "Y",
-                                 cViewportY, true, LEFTMARGINIP, COLUMNIP, rowViewport++);
+                          cViewportY, true, LEFTMARGINIP, COLUMNIP, rowViewport++);
         cViewportY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -780,7 +781,7 @@ public class Figure extends ContentLayout {
         });
         //Get the current status of the property: Viewport
         Integer[] currentViewport = (Integer []) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_VIEWPORT__);
+                                    .getProperty(UID, GraphicObjectProperties.__GO_VIEWPORT__);
         cViewportX.setText(currentViewport[0].toString());
         cViewportY.setText(currentViewport[1].toString());
         titleViewport();
@@ -789,13 +790,13 @@ public class Figure extends ContentLayout {
     /**
     * Updates the property: Viewport.
     */
-    private void updateViewport(String UID) {
+    private void updateViewport(Integer UID) {
         Integer[] setPosition = new Integer[] {
             Integer.parseInt(cViewportX.getText()),
             Integer.parseInt(cViewportY.getText())
         };
         GraphicController.getController()
-                .setProperty(UID, GraphicObjectProperties.__GO_VIEWPORT__, setPosition);
+        .setProperty(UID, GraphicObjectProperties.__GO_VIEWPORT__, setPosition);
         titleViewport();
     }
 

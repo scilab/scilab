@@ -4,7 +4,7 @@
         <method name="getMouseButtonNumber" returnType="int" modifier="static"/>
         <method name="getXCoordinate" returnType="double" modifier="static"/>
         <method name="getYCoordinate" returnType="double" modifier="static"/>
-        <method name="getWindowID" returnType="String" modifier="static"/>
+        <method name="getWindowID" returnType="int" modifier="static"/>
         <method name="getMenuCallback" returnType="String" modifier="static"/>
     </object>
 </package>

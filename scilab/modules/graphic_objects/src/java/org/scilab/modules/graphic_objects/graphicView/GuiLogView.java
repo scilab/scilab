@@ -48,7 +48,7 @@ public class GuiLogView implements GraphicView {
         frame.setVisible(true);
     }
 
-    public void createObject(String id) {
+    public void createObject(Integer id) {
         try {
             int objectType = (Integer) GraphicController.getController().getProperty(id, __GO_TYPE__);
             Document doc = htmlLogPane.getDocument();
@@ -58,7 +58,7 @@ public class GuiLogView implements GraphicView {
             e.printStackTrace();
         }
     }
-    public void deleteObject(String id) {
+    public void deleteObject(Integer id) {
         try {
             Document doc = htmlLogPane.getDocument();
             doc.insertString(doc.getLength(), "---" + id + " Object Deleted.\n", null);
@@ -67,7 +67,7 @@ public class GuiLogView implements GraphicView {
             e.printStackTrace();
         }
     }
-    public void updateObject(String id, int property) {
+    public void updateObject(Integer id, int property) {
         try {
             Document doc = htmlLogPane.getDocument();
             doc.insertString(doc.getLength(), "===" + id + " Object Property " + property + " Updated.\n", null);

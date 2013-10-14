@@ -34,7 +34,7 @@ public class VectFieldDecomposer {
      * @param id the id of the given object.
      * @return the number of data elements.
      */
-    public static int getDataSize(String id) {
+    public static int getDataSize(Integer id) {
         int numberArrows = (Integer) GraphicController.getController().getProperty(id, __GO_NUMBER_ARROWS__);
 
         /* 2 vertices per arrow */
@@ -51,7 +51,7 @@ public class VectFieldDecomposer {
      * @param translation the conversion translation value to apply to data.
      * @param logMask the bit mask specifying whether logarithmic coordinates are used.
      */
-    public static void fillVertices(FloatBuffer buffer, String id, int elementsSize,
+    public static void fillVertices(FloatBuffer buffer, Integer id, int elementsSize,
                                     int coordinateMask, double[] scale, double[] translation, int logMask) {
         int bufferOffset = 0;
 
@@ -218,7 +218,7 @@ public class VectFieldDecomposer {
      * @param id the id of the given object.
      * @return the number of line segment indices.
      */
-    public static int getWireIndicesSize(String id) {
+    public static int getWireIndicesSize(Integer id) {
         int numberArrows = (Integer) GraphicController.getController().getProperty(id, __GO_NUMBER_ARROWS__);
 
         /* 2 segment indices per arrow */
@@ -232,7 +232,7 @@ public class VectFieldDecomposer {
      * @param logMask the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
-    public static int fillWireIndices(IntBuffer buffer, String id, int logMask) {
+    public static int fillWireIndices(IntBuffer buffer, Integer id, int logMask) {
         boolean valid;
         int bufferOffset = 0;
 

@@ -35,9 +35,9 @@ public class Imageplot extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void dataMapping(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void dataMapping(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lDataMapping = new JLabel();
         final JComboBox cDataMapping = new JComboBox();
         this.addLabelComboBox(panel, lDataMapping, MessagesGED.data_mapping,
@@ -47,12 +47,12 @@ public class Imageplot extends ContentLayout {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController()
-                        .setProperty(UID, GraphicObjectProperties.__GO_DATA_MAPPING__,
-                                     cDataMapping.getSelectedIndex());
+                .setProperty(UID, GraphicObjectProperties.__GO_DATA_MAPPING__,
+                             cDataMapping.getSelectedIndex());
             }
         });
         // Get the current status of the property: Data Mapping
         cDataMapping.setSelectedIndex((Integer) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_DATA_MAPPING__));
+                                      .getProperty(UID, GraphicObjectProperties.__GO_DATA_MAPPING__));
     }
 }

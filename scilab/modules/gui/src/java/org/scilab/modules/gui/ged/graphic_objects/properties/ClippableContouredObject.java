@@ -45,25 +45,25 @@ public class ClippableContouredObject extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void clipState(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void clipState(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lClipState = new JLabel();
         cClipState = new JComboBox();
         addLabelComboBox(panel, lClipState, MessagesGED.clip_state,
-                                cClipState, new String[] {MessagesGED.off, MessagesGED.clipgrf, MessagesGED.on},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cClipState, new String[] {MessagesGED.off, MessagesGED.clipgrf, MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW++);
         cClipState.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_CLIP_STATE__,
-                        cClipState.getSelectedIndex());
+                    UID, GraphicObjectProperties.__GO_CLIP_STATE__,
+                    cClipState.getSelectedIndex());
             }
         });
         // Get the current status of the property: Clip State
         cClipState.setSelectedIndex((Integer) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_CLIP_STATE__));
+                                    .getProperty(UID, GraphicObjectProperties.__GO_CLIP_STATE__));
     }
 
     /**
@@ -72,9 +72,9 @@ public class ClippableContouredObject extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void clipBox(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void clipBox(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         int LEFTMARGINIP = 0; //left margin - inner panel
         int COLUMNIP = 0; //left column - inner panel
         final JPanel pClipBox = new JPanel();
@@ -100,7 +100,7 @@ public class ClippableContouredObject extends ContentLayout {
         int rowClipBox = 0;
         //Clip Box Upper
         addLabelTextField(pClipBox, lClipBoxUpper, MessagesGED.upper_left,
-                                 cClipBoxUpper, true, LEFTMARGINIP, COLUMNIP, rowClipBox++);
+                          cClipBoxUpper, true, LEFTMARGINIP, COLUMNIP, rowClipBox++);
         cClipBoxUpper.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -115,7 +115,7 @@ public class ClippableContouredObject extends ContentLayout {
         });
         //Clip Box Point
         addLabelTextField(pClipBox, lClipBoxPoint, MessagesGED.point,
-                                 cClipBoxPoint, true, LEFTMARGINIP, COLUMNIP, rowClipBox++);
+                          cClipBoxPoint, true, LEFTMARGINIP, COLUMNIP, rowClipBox++);
         cClipBoxPoint.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -130,7 +130,7 @@ public class ClippableContouredObject extends ContentLayout {
         });
         //Clip Box Width
         addLabelTextField(pClipBox, lClipBoxWidth, MessagesGED.width,
-                                 cClipBoxWidth, true, LEFTMARGINIP, COLUMNIP, rowClipBox++);
+                          cClipBoxWidth, true, LEFTMARGINIP, COLUMNIP, rowClipBox++);
         cClipBoxWidth.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -145,7 +145,7 @@ public class ClippableContouredObject extends ContentLayout {
         });
         //Clip Box Height
         addLabelTextField(pClipBox, lClipBoxHeight, MessagesGED.height,
-                                 cClipBoxHeight, true, LEFTMARGINIP, COLUMNIP, rowClipBox++);
+                          cClipBoxHeight, true, LEFTMARGINIP, COLUMNIP, rowClipBox++);
         cClipBoxHeight.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -177,9 +177,9 @@ public class ClippableContouredObject extends ContentLayout {
     /**
     * Get status of the property: Clip Box.
     */
-    private void getClipBox(String UID) {
+    private void getClipBox(Integer UID) {
         Double[] currentClipBox = (Double []) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_CLIP_BOX__);
+                                  .getProperty(UID, GraphicObjectProperties.__GO_CLIP_BOX__);
         cClipBoxUpper.setText(currentClipBox[0].toString());
         cClipBoxPoint.setText(currentClipBox[1].toString());
         cClipBoxWidth.setText(currentClipBox[2].toString());
@@ -190,17 +190,18 @@ public class ClippableContouredObject extends ContentLayout {
     /**
     * Updates the property: Clip Box.
     */
-    private void updateClipBox(String UID) {
+    private void updateClipBox(Integer UID) {
         try {
-            if(cClipState.getSelectedIndex()==0)
+            if (cClipState.getSelectedIndex() == 0) {
                 cClipState.setSelectedIndex(2);
+            }
             Double[] value = new Double[4];
             value[0] = Double.parseDouble(cClipBoxUpper.getText());
             value[1] = Double.parseDouble(cClipBoxPoint.getText());
             value[2] = Double.parseDouble(cClipBoxWidth.getText());
             value[3] = Double.parseDouble(cClipBoxHeight.getText());
             GraphicController.getController()
-                       .setProperty(UID, GraphicObjectProperties.__GO_CLIP_BOX__, value);
+            .setProperty(UID, GraphicObjectProperties.__GO_CLIP_BOX__, value);
             titleClipBox();
         } catch (NumberFormatException e) {
             getClipBox(UID);

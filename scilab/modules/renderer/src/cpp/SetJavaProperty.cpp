@@ -28,15 +28,15 @@ extern "C"
 using namespace org_scilab_modules_renderer;
 
 /*---------------------------------------------------------------------------------*/
-void sciJavaUpdateSubwinScale(char * pSubwinUID)
+void sciJavaUpdateSubwinScale(int iObjUID)
 {
-    CallRenderer::updateSubwinScale(getScilabJavaVM(), pSubwinUID);
+    CallRenderer::updateSubwinScale(getScilabJavaVM(), iObjUID);
 }
 
 /*---------------------------------------------------------------------------------*/
-void sciJavaUpdateTextBoundingBox(char * pTextUID)
+void sciJavaUpdateTextBoundingBox(int iTextUID)
 {
-    CallRenderer::updateTextBounds(getScilabJavaVM(), pTextUID);
+    CallRenderer::updateTextBounds(getScilabJavaVM(), iTextUID);
 }
 
 /*---------------------------------------------------------------------------------*/

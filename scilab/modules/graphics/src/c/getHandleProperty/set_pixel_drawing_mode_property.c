@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_pixel_drawing_mode_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_pixel_drawing_mode_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int v = -1;
     BOOL status = FALSE;
@@ -51,7 +51,7 @@ int set_pixel_drawing_mode_property(void* _pvCtx, char* pobjUID, void* _pvData, 
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_PIXEL_DRAWING_MODE__, &v, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_PIXEL_DRAWING_MODE__, &v, jni_int, 1);
 
     if (status == TRUE)
     {

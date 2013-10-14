@@ -50,9 +50,9 @@ typedef struct
 {
     struct
     {
-        char const* cachedFigureUID;
-        char *cachedAxeUID;
-        char *cachedPlot3dUID;
+        int cachedFigureUID;
+        int cachedAxeUID;
+        int cachedPlot3dUID;
     } scope;
 } sco_data;
 
@@ -87,41 +87,41 @@ static BOOL pushData(scicos_block * block, double *data);
  * \param block the block
  * \return a valid figure UID or NULL on error
  */
-static char const* getFigure(scicos_block * block);
+static int getFigure(scicos_block * block);
 
 /**
  * Get (and allocate on demand) the axe associated with the input
  *
- * \param pFigureUID the parent figure UID
+ * \param iFigureUID the parent figure UID
  * \param block the block
  * \return a valid axe UID or NULL on error
  */
-static char *getAxe(char const* pFigureUID, scicos_block * block);
+static int getAxe(int iFigureUID, scicos_block * block);
 
 /**
  * Get (and allocate on demand) the plot3d
  *
- * \param pAxeUID the parent axe UID
+ * \param iAxeUID the parent axe UID
  * \param block the block
  * \return a valid plot3d UID or NULL on error
  */
-static char *getPlot3d(char *pAxeUID, scicos_block * block);
+static int getPlot3d(int iAxeUID, scicos_block * block);
 
 /**
  * Set the plot3d and axes bounds
  *
  * \param block the block
- * \param pAxeUID the axe
+ * \param iAxeUID the axe
  * \param pPlot3dUID the plot3d
  */
-static BOOL setBounds(scicos_block * block, char *pAxeUID, char *pPlot3dUID);
+static BOOL setBounds(scicos_block * block, int iAxeUID, int iPlot3dUID);
 
 /**
  * Set the plot3d settings
  *
  * \param pPlot3dUID the plot3d
  */
-static BOOL setPlot3dSettings(char *pPlot3dUID);
+static BOOL setPlot3dSettings(int iPlot3dUID);
 
 /**
  * Set the plot3d default values
@@ -129,7 +129,7 @@ static BOOL setPlot3dSettings(char *pPlot3dUID);
  * \param block the block
  * \param pPlot3dUID the plot3d
  */
-static BOOL setDefaultValues(scicos_block * block, char *pPlot3dUID);
+static BOOL setDefaultValues(scicos_block * block, int iPlot3dUID);
 
 /*****************************************************************************
  * Simulation function
@@ -142,7 +142,7 @@ static BOOL setDefaultValues(scicos_block * block, char *pPlot3dUID);
 */
 SCICOS_BLOCKS_IMPEXP void cmat3d(scicos_block * block, scicos_flag flag)
 {
-    char const* pFigureUID;
+    int iFigureUID;
 
     double *u;
     sco_data *sco;
@@ -159,8 +159,8 @@ SCICOS_BLOCKS_IMPEXP void cmat3d(scicos_block * block, scicos_flag flag)
                 set_block_error(-5);
                 break;
             }
-            pFigureUID = getFigure(block);
-            if (pFigureUID == NULL)
+            iFigureUID = getFigure(block);
+            if (iFigureUID == NULL)
             {
                 // allocation error
                 set_block_error(-5);
@@ -169,8 +169,8 @@ SCICOS_BLOCKS_IMPEXP void cmat3d(scicos_block * block, scicos_flag flag)
             break;
 
         case StateUpdate:
-            pFigureUID = getFigure(block);
-            if (pFigureUID == NULL)
+            iFigureUID = getFigure(block);
+            if (iFigureUID == NULL)
             {
                 // allocation error
                 set_block_error(-5);
@@ -256,22 +256,22 @@ static void freeScoData(scicos_block * block)
 
 static BOOL pushData(scicos_block * block, double *data)
 {
-    char const* pFigureUID;
-    char *pAxeUID;
-    char *pPlot3dUID;
+    int iFigureUID;
+    int iAxeUID;
+    int iPlot3dUID;
 
     BOOL result;
 
     int m, n;
 
-    pFigureUID = getFigure(block);
-    pAxeUID = getAxe(pFigureUID, block);
-    pPlot3dUID = getPlot3d(pAxeUID, block);
+    iFigureUID = getFigure(block);
+    iAxeUID = getAxe(iFigureUID, block);
+    iPlot3dUID = getPlot3d(iAxeUID, block);
 
     m = GetInPortSize(block, 1, 1);
     n = GetInPortSize(block, 1, 2);
 
-    result = setGraphicObjectProperty(pPlot3dUID, __GO_DATA_MODEL_Z__, data, jni_double_vector, m * n);
+    result = setGraphicObjectProperty(iPlot3dUID, __GO_DATA_MODEL_Z__, data, jni_double_vector, m * n);
 
     return result;
 }
@@ -287,11 +287,11 @@ static BOOL pushData(scicos_block * block, double *data)
  * Graphic
  *
  ****************************************************************************/
-static char const* getFigure(scicos_block * block)
+static int getFigure(scicos_block * block)
 {
     signed int figNum;
-    char const* pFigureUID = NULL;
-    char *pAxe = NULL;
+    int iFigureUID;
+    int iAxe;
     int i__1 = 1;
     sco_data *sco = (sco_data *) * (block->work);
 
@@ -316,44 +316,44 @@ static char const* getFigure(scicos_block * block)
         figNum = 20000 + get_block_number();
     }
 
-    pFigureUID = getFigureFromIndex(figNum);
+    iFigureUID = getFigureFromIndex(figNum);
     // create on demand
-    if (pFigureUID == NULL)
+    if (iFigureUID == NULL)
     {
-        pFigureUID = createNewFigureWithAxes();
-        setGraphicObjectProperty(pFigureUID, __GO_ID__, &figNum, jni_int, 1);
+        iFigureUID = createNewFigureWithAxes();
+        setGraphicObjectProperty(iFigureUID, __GO_ID__, &figNum, jni_int, 1);
 
         // the stored uid is a reference to the figure map, not to the current figure
-        pFigureUID = getFigureFromIndex(figNum);
-        sco->scope.cachedFigureUID = pFigureUID;
+        iFigureUID = getFigureFromIndex(figNum);
+        sco->scope.cachedFigureUID = iFigureUID;
 
-        setGraphicObjectProperty(pFigureUID, __GO_COLORMAP__, block->rpar, jni_double_vector, block->ipar[2]);
+        setGraphicObjectProperty(iFigureUID, __GO_COLORMAP__, block->rpar, jni_double_vector, block->ipar[2]);
 
         // allocate the axes through the getter
-        pAxe = getAxe(pFigureUID, block);
+        iAxe = getAxe(iFigureUID, block);
 
         /*
          * Setup according to block settings
          */
-        setLabel(pAxe, __GO_X_AXIS_LABEL__, "x");
-        setLabel(pAxe, __GO_Y_AXIS_LABEL__, "y");
-        setLabel(pAxe, __GO_Z_AXIS_LABEL__, "z");
+        setLabel(iAxe, __GO_X_AXIS_LABEL__, "x");
+        setLabel(iAxe, __GO_Y_AXIS_LABEL__, "y");
+        setLabel(iAxe, __GO_Z_AXIS_LABEL__, "z");
 
-        setGraphicObjectProperty(pAxe, __GO_X_AXIS_VISIBLE__, &i__1, jni_bool, 1);
-        setGraphicObjectProperty(pAxe, __GO_Y_AXIS_VISIBLE__, &i__1, jni_bool, 1);
-        setGraphicObjectProperty(pAxe, __GO_Z_AXIS_VISIBLE__, &i__1, jni_bool, 1);
+        setGraphicObjectProperty(iAxe, __GO_X_AXIS_VISIBLE__, &i__1, jni_bool, 1);
+        setGraphicObjectProperty(iAxe, __GO_Y_AXIS_VISIBLE__, &i__1, jni_bool, 1);
+        setGraphicObjectProperty(iAxe, __GO_Z_AXIS_VISIBLE__, &i__1, jni_bool, 1);
     }
 
-    if (sco->scope.cachedFigureUID == NULL)
+    if (sco->scope.cachedFigureUID == 0)
     {
-        sco->scope.cachedFigureUID = pFigureUID;
+        sco->scope.cachedFigureUID = iFigureUID;
     }
-    return pFigureUID;
+    return iFigureUID;
 }
 
-static char *getAxe(char const* pFigureUID, scicos_block * block)
+static int getAxe(int iFigureUID, scicos_block * block)
 {
-    char *pAxe;
+    int iAxe;
     int i__1 = 1;
     sco_data *sco = (sco_data *) * (block->work);
 
@@ -369,22 +369,22 @@ static char *getAxe(char const* pFigureUID, scicos_block * block)
         return sco->scope.cachedAxeUID;
     }
 
-    pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, 0);
+    iAxe = findChildWithKindAt(iFigureUID, __GO_AXES__, 0);
 
     /*
      * Allocate if necessary
      */
-    if (pAxe == NULL)
+    if (iAxe == NULL)
     {
-        cloneAxesModel(pFigureUID);
-        pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, 0);
+        cloneAxesModel(iFigureUID);
+        iAxe = findChildWithKindAt(iFigureUID, __GO_AXES__, 0);
     }
 
-    if (pAxe != NULL)
+    if (iAxe != NULL)
     {
-        setGraphicObjectProperty(pAxe, __GO_BOX_TYPE__, &i__1, jni_int, 1);
+        setGraphicObjectProperty(iAxe, __GO_BOX_TYPE__, &i__1, jni_int, 1);
 
-        getPlot3d(pAxe, block);
+        getPlot3d(iAxe, block);
     }
     else
     {
@@ -394,22 +394,20 @@ static char *getAxe(char const* pFigureUID, scicos_block * block)
     /*
      * then cache with local storage
      */
-    sco->scope.cachedAxeUID = strdup(pAxe);
-
-    releaseGraphicObjectProperty(__GO_PARENT__, pAxe, jni_string, 1);
+    sco->scope.cachedAxeUID = iAxe;
     return sco->scope.cachedAxeUID;
 }
 
-static char *getPlot3d(char *pAxeUID, scicos_block * block)
+static int getPlot3d(int iAxeUID, scicos_block * block)
 {
-    char *pPlot3d;
+    int iPlot3d;
 
     sco_data *sco = (sco_data *) * (block->work);
 
     // assert the sco is not NULL
     if (sco == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     // fast path for an existing object
@@ -418,19 +416,19 @@ static char *getPlot3d(char *pAxeUID, scicos_block * block)
         return sco->scope.cachedPlot3dUID;
     }
 
-    pPlot3d = findChildWithKindAt(pAxeUID, __GO_PLOT3D__, 0);
+    iPlot3d = findChildWithKindAt(iAxeUID, __GO_PLOT3D__, 0);
 
     /*
      * Allocate if necessary
      */
-    if (pPlot3d == NULL)
+    if (iPlot3d == 0)
     {
-        pPlot3d = createGraphicObject(__GO_PLOT3D__);
+        iPlot3d = createGraphicObject(__GO_PLOT3D__);
 
-        if (pPlot3d != NULL)
+        if (iPlot3d != 0)
         {
-            createDataObject(pPlot3d, __GO_PLOT3D__);
-            setGraphicObjectRelationship(pAxeUID, pPlot3d);
+            createDataObject(iPlot3d, __GO_PLOT3D__);
+            setGraphicObjectRelationship(iAxeUID, iPlot3d);
         }
         else
         {
@@ -441,25 +439,23 @@ static char *getPlot3d(char *pAxeUID, scicos_block * block)
     /*
      * Setup on first access
      */
-    setBounds(block, pAxeUID, pPlot3d);
-    setPlot3dSettings(pPlot3d);
-    setDefaultValues(block, pPlot3d);
+    setBounds(block, iAxeUID, iPlot3d);
+    setPlot3dSettings(iPlot3d);
+    setDefaultValues(block, iPlot3d);
 
     {
         int iClipState = 1; //on
-        setGraphicObjectProperty(pPlot3d, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
+        setGraphicObjectProperty(iPlot3d, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
     }
 
     /*
      * then cache with a local storage
      */
-    sco->scope.cachedPlot3dUID = strdup(pPlot3d);
-
-    releaseGraphicObjectProperty(__GO_PARENT__, pPlot3d, jni_string, 1);
+    sco->scope.cachedPlot3dUID = iPlot3d;
     return sco->scope.cachedPlot3dUID;
 }
 
-static BOOL setBounds(scicos_block * block, char *pAxeUID, char *pPlot3dUID)
+static BOOL setBounds(scicos_block * block, int iAxeUID, int iPlot3dUID)
 {
     BOOL result;
 
@@ -500,14 +496,14 @@ static BOOL setBounds(scicos_block * block, char *pAxeUID, char *pPlot3dUID)
     rotationAngle[0] = 50;      // alpha
     rotationAngle[1] = 280;     // theta
 
-    result = setGraphicObjectProperty(pPlot3dUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
-    result &= setGraphicObjectProperty(pAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
-    result &= setGraphicObjectProperty(pAxeUID, __GO_ROTATION_ANGLES__, rotationAngle, jni_double_vector, 2);
+    result = setGraphicObjectProperty(iPlot3dUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+    result &= setGraphicObjectProperty(iAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+    result &= setGraphicObjectProperty(iAxeUID, __GO_ROTATION_ANGLES__, rotationAngle, jni_double_vector, 2);
 
     return result;
 }
 
-static BOOL setPlot3dSettings(char *pPlot3dUID)
+static BOOL setPlot3dSettings(int iPlot3dUID)
 {
     int i__1 = 1;
     double d__1 = 1.0;
@@ -516,19 +512,19 @@ static BOOL setPlot3dSettings(char *pPlot3dUID)
 
     BOOL result = TRUE;
 
-    result &= setGraphicObjectProperty(pPlot3dUID, __GO_SURFACE_MODE__, &i__1, jni_bool, 1);
-    result &= setGraphicObjectProperty(pPlot3dUID, __GO_LINE_THICKNESS__, &d__1, jni_double, 1);
+    result &= setGraphicObjectProperty(iPlot3dUID, __GO_SURFACE_MODE__, &i__1, jni_bool, 1);
+    result &= setGraphicObjectProperty(iPlot3dUID, __GO_LINE_THICKNESS__, &d__1, jni_double, 1);
 
-    result &= setGraphicObjectProperty(pPlot3dUID, __GO_COLOR_MODE__, &i__2, jni_int, 1);
-    result &= setGraphicObjectProperty(pPlot3dUID, __GO_COLOR_FLAG__, &i__1, jni_int, 1);
-    result &= setGraphicObjectProperty(pPlot3dUID, __GO_HIDDEN_COLOR__, &i__4, jni_int, 1);
+    result &= setGraphicObjectProperty(iPlot3dUID, __GO_COLOR_MODE__, &i__2, jni_int, 1);
+    result &= setGraphicObjectProperty(iPlot3dUID, __GO_COLOR_FLAG__, &i__1, jni_int, 1);
+    result &= setGraphicObjectProperty(iPlot3dUID, __GO_HIDDEN_COLOR__, &i__4, jni_int, 1);
 
-    setGraphicObjectProperty(pPlot3dUID, __GO_CLIP_STATE__, &i__1, jni_int, 1);
+    setGraphicObjectProperty(iPlot3dUID, __GO_CLIP_STATE__, &i__1, jni_int, 1);
 
     return result;
 }
 
-static BOOL setDefaultValues(scicos_block * block, char *pPlot3dUID)
+static BOOL setDefaultValues(scicos_block * block, int iPlot3dUID)
 {
     int m, n, len;
     int i;
@@ -547,7 +543,7 @@ static BOOL setDefaultValues(scicos_block * block, char *pPlot3dUID)
     {
         return FALSE;
     }
-    result = setGraphicObjectProperty(pPlot3dUID, __GO_DATA_MODEL_Z__, values, jni_double_vector, m * n);
+    result = setGraphicObjectProperty(iPlot3dUID, __GO_DATA_MODEL_Z__, values, jni_double_vector, m * n);
 
     len = Max(m, n);
     for (i = 1; i <= len; i++)
@@ -555,8 +551,8 @@ static BOOL setDefaultValues(scicos_block * block, char *pPlot3dUID)
         values[i] = (double) i;
     }
 
-    result &= setGraphicObjectProperty(pPlot3dUID, __GO_DATA_MODEL_X__, values, jni_double_vector, m);
-    result &= setGraphicObjectProperty(pPlot3dUID, __GO_DATA_MODEL_Y__, values, jni_double_vector, n);
+    result &= setGraphicObjectProperty(iPlot3dUID, __GO_DATA_MODEL_X__, values, jni_double_vector, m);
+    result &= setGraphicObjectProperty(iPlot3dUID, __GO_DATA_MODEL_Y__, values, jni_double_vector, n);
 
     FREE(values);
     return result;

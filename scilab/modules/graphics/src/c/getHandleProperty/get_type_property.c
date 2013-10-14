@@ -90,12 +90,12 @@ static char *getTypeNameFromInt(int _iType)
 }
 
 /*------------------------------------------------------------------------*/
-int get_type_property(void* _pvCtx, char* pobjUID)
+int get_type_property(void* _pvCtx, int iObjUID)
 {
     int iType = -1;
     int *piType = &iType;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
     if (piType == NULL)
     {
         return sciReturnString(_pvCtx, getTypeNameFromInt(-1));

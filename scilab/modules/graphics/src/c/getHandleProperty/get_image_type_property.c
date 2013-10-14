@@ -29,13 +29,13 @@
 #include "Matplot.h"
 
 /*------------------------------------------------------------------------*/
-int get_image_type_property(void* _pvCtx, char* pobjUID)
+int get_image_type_property(void* _pvCtx, int iObjUID)
 {
     int imagetype = 0;
     int * piImagetype = &imagetype;
     ImageType itype;
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_TYPE__, jni_int, (void **)&piImagetype);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_TYPE__, jni_int, (void **)&piImagetype);
     if (piImagetype == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "image_type");

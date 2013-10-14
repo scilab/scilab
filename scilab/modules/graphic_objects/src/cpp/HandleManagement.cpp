@@ -17,12 +17,12 @@ extern "C"
 #include "HandleManagement.h"
 }
 
-long getHandle(char const* UID)
+long getHandle(int UID)
 {
     return ScilabView::getObjectHandle(UID);
 }
 
-char const* getObjectFromHandle(long handle)
+int getObjectFromHandle(long handle)
 {
     return ScilabView::getObjectFromHandle(handle);
 }

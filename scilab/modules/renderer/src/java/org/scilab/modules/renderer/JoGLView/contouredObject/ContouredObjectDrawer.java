@@ -68,7 +68,7 @@ public class ContouredObjectDrawer {
         ColorMap colorMap = visitor.getColorMap();
 
         /* Sets the drawn object's identifier as the current one */
-        String drawnObjectID = contouredObject.getIdentifier();
+        Integer drawnObjectID = contouredObject.getIdentifier();
 
         DefaultGeometry geometry = new DefaultGeometry();
         geometry.setVertices(dataManager.getVertexBuffer(drawnObjectID));

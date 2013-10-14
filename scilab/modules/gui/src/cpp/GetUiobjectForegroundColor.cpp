@@ -14,12 +14,12 @@
 
 #include "GetUiobjectForegroundColor.hxx"
 
-int GetUiobjectForegroundColor(void* _pvCtx, char* sciObjUID)
+int GetUiobjectForegroundColor(void* _pvCtx, int iObjUID)
 {
     double *tmp = NULL;
     int status = 0;
 
-    getGraphicObjectProperty(sciObjUID, __GO_UI_FOREGROUNDCOLOR__, jni_double_vector, (void **) &tmp);
+    getGraphicObjectProperty(iObjUID, __GO_UI_FOREGROUNDCOLOR__, jni_double_vector, (void **) &tmp);
 
     if (tmp == NULL)
     {

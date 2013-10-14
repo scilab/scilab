@@ -44,11 +44,12 @@ int sci_unglue(char *fname, unsigned long fname_len)
     int i = 0;
     long long* outindex = NULL;
 
-    char *pobjUID = NULL;
+    int iObjUID = 0;
     int iObjectType = -1;
     int *piObjectType = &iObjectType;
-    char *pstParentUID = NULL;
-    char **pstChildrenUID = NULL;
+    int iParentUID = 0;
+    int* piParentUID = &iParentUID;
+    int* piChildrenUID = 0;
     int iChildrenCount = 0;
     int *piChildrenCount = &iChildrenCount;
 
@@ -73,26 +74,26 @@ int sci_unglue(char *fname, unsigned long fname_len)
 
     hdl = (unsigned long) * (l1);
 
-    pobjUID = (char*)getObjectFromHandle(hdl);
+    iObjUID = getObjectFromHandle(hdl);
 
-    if (pobjUID == NULL)
+    if (iObjUID == 0)
     {
         Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
         return 0;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piObjectType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piObjectType);
 
     if (iObjectType != -1 && iObjectType == __GO_COMPOUND__)
     {
         // Retrieve number of children.
-        getGraphicObjectProperty(pobjUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &piChildrenCount);
+        getGraphicObjectProperty(iObjUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &piChildrenCount);
 
         // Retrieve all children UID.
-        getGraphicObjectProperty(pobjUID, __GO_CHILDREN__, jni_string_vector, (void **) &pstChildrenUID);
+        getGraphicObjectProperty(iObjUID, __GO_CHILDREN__, jni_int_vector, (void **) &piChildrenUID);
 
         // Retrieve Compound Parent.
-        getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, (void **)&pstParentUID);
+        iParentUID = getParentObject(iObjUID);
 
         sciErr = allocMatrixOfHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, *piChildrenCount, 1, &outindex); /* We get the scalar value if it is ones */
         if (sciErr.iErr)
@@ -104,16 +105,16 @@ int sci_unglue(char *fname, unsigned long fname_len)
 
         for (i = 0 ; i < iChildrenCount ; ++i)
         {
-            outindex[i] = getHandle(pstChildrenUID[i]);
+            outindex[i] = getHandle(piChildrenUID[i]);
             /*
              * Register Child to its new parent.
              * Children are added from the last to the first to obtain the same ordering
              * as the previous one (insertion is done at the head of the list).
              */
-            setGraphicObjectRelationship(pstParentUID, pstChildrenUID[iChildrenCount - i - 1]);
+            setGraphicObjectRelationship(iParentUID, piChildrenUID[iChildrenCount - i - 1]);
         }
 
-        deleteGraphicObject(pobjUID);
+        deleteGraphicObject(iObjUID);
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
     }

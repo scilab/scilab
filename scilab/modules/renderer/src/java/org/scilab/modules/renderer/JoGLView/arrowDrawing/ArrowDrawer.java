@@ -143,7 +143,7 @@ public class ArrowDrawer {
      * @throws org.scilab.forge.scirenderer.SciRendererException if drawing fails.
      * @throws ObjectRemovedException
      */
-    public void drawArrows(String parentAxesId, String identifier, double arrowSize, double lineThickness, boolean isSegs,
+    public void drawArrows(Integer parentAxesId, Integer identifier, double arrowSize, double lineThickness, boolean isSegs,
                            boolean isColored, int lineColor, boolean isStripped) throws SciRendererException, ObjectRemovedException, OutOfMemoryException {
 
         DataManager dataManager = visitor.getDataManager();
@@ -168,7 +168,7 @@ public class ArrowDrawer {
      * @param lineColor the line color used for all the arrows.
      * @throws org.scilab.forge.scirenderer.SciRendererException if drawing fails.
      */
-    public void drawArrows(String parentAxesId, ElementsBuffer vertices, IndicesBuffer segmentIndices,
+    public void drawArrows(Integer parentAxesId, ElementsBuffer vertices, IndicesBuffer segmentIndices,
                            double arrowSize, double lineThickness, int lineColor, boolean isStripped) throws SciRendererException {
 
         /*
@@ -196,7 +196,7 @@ public class ArrowDrawer {
      * @param lineColor the line color used for all the arrows (used if isColored is equal to false).
      * @throws org.scilab.forge.scirenderer.SciRendererException if drawing fails.
      */
-    private void drawArrows(String parentAxesId, ElementsBuffer vertices, ElementsBuffer colors, IndicesBuffer segmentIndices, IndicesBuffer triangleIndices,
+    private void drawArrows(Integer parentAxesId, ElementsBuffer vertices, ElementsBuffer colors, IndicesBuffer segmentIndices, IndicesBuffer triangleIndices,
                             double arrowSize, double lineThickness, boolean isSegs, boolean isColored, int lineColor, boolean isStripped) throws SciRendererException {
 
         int offset = vertices.getElementsSize();

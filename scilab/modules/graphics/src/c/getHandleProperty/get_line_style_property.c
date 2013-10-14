@@ -32,12 +32,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_line_style_property(void* _pvCtx, char* pobjUID)
+int get_line_style_property(void* _pvCtx, int iObjUID)
 {
     int iLineStyle = 0;
     int* piLineStyle = &iLineStyle;
 
-    getGraphicObjectProperty(pobjUID, __GO_LINE_STYLE__, jni_int, (void**)&piLineStyle);
+    getGraphicObjectProperty(iObjUID, __GO_LINE_STYLE__, jni_int, (void**)&piLineStyle);
 
     if (piLineStyle == NULL)
     {

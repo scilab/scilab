@@ -14,7 +14,7 @@
 
 #include "SetUicontrolFontSize.hxx"
 
-int SetUicontrolFontSize(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUicontrolFontSize(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     double fontSize = 0.0;
     BOOL status = FALSE;
@@ -35,7 +35,7 @@ int SetUicontrolFontSize(void* _pvCtx, char* sciObjUID, void* _pvData, int value
 
     fontSize = ((double*)_pvData)[0];
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_FONTSIZE__, &fontSize, jni_double, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_FONTSIZE__, &fontSize, jni_double, 1);
 
     if (status == TRUE)
     {

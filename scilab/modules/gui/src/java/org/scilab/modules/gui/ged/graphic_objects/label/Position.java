@@ -29,7 +29,7 @@ public class Position extends SimpleSection {
     * Initializes the properties and the icons of the buttons.
     * @param objectID Enters the identification of object.
     */
-    public Position(String objectID) {
+    public Position(Integer objectID) {
         super(MessagesGED.position, "label");
         instance = this;
         sectionPanel = getSectionPanel();
@@ -49,7 +49,7 @@ public class Position extends SimpleSection {
     * @param objectID uid
     */
     @Override
-    public final void initComponents(String objectID) {
+    public final void initComponents(Integer objectID) {
         int row = 0;
         final int leftmargin = 0; //to inner components
         int column = 1; //first column

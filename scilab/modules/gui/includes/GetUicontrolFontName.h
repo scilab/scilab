@@ -23,6 +23,6 @@
  * @param pobjUID Scilab object corresponding to the uicontrol
  * @return true if the font name property has been correcty got
  */
-GUI_IMPEXP int GetUicontrolFontName(void* _pvCtx, char *pobjUID);
+GUI_IMPEXP int GetUicontrolFontName(void* _pvCtx, int iObjUID);
 
 #endif /* __GET_UICONTROL_FONTNAME_H__ */

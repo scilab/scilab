@@ -20,7 +20,7 @@
             <parameter name="path" type="String"/>
         </method>
         <method name="end" returnType="String" modifier="static" >
-            <parameter name="uid" type="String"/>
+            <parameter name="uid" type="int"/>
         </method>
     </object>
 </package>

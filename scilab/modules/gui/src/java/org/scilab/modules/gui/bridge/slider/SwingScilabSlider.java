@@ -50,7 +50,7 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
     private static final int MINIMUM_VALUE = 0;
     private static final int MAXIMUM_VALUE = 10000;
 
-    private String uid;
+    private Integer uid;
 
     private CommonCallBack callback;
 
@@ -321,7 +321,7 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
      * Set the UID
      * @param id the UID
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         uid = id;
     }
 
@@ -329,7 +329,7 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
      * Get the UID
      * @return the UID
      */
-    public String getId() {
+    public Integer getId() {
         return uid;
     }
 

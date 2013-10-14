@@ -32,12 +32,12 @@
 #include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
-int get_children_property(void* _pvCtx, char* pobjUID)
+int get_children_property(void* _pvCtx, int iObjUID)
 {
     int i = 0;
     int status = 0;
     long *plChildren = NULL;
-    char **pstChildrenUID;
+    int* piChildrenUID = NULL;
     int iHidden = 0;
     int *piHidden = &iHidden;
     int iNotHiddenChildrenNumber = 0;
@@ -49,14 +49,14 @@ int get_children_property(void* _pvCtx, char* pobjUID)
     int iChildrenCount = 0;
     int *piChildrenCount = &iChildrenCount;
 
-    getGraphicObjectProperty(pobjUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&piChildrenCount);
+    getGraphicObjectProperty(iObjUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&piChildrenCount);
     if (piChildrenCount == NULL || piChildrenCount[0] == 0)
     {
         // No Child
         return sciReturnEmptyMatrix(_pvCtx);
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_CHILDREN__, jni_string_vector, (void **)&pstChildrenUID);
+    getGraphicObjectProperty(iObjUID, __GO_CHILDREN__, jni_int_vector, (void **)&piChildrenUID);
 
     getGraphicObjectProperty(getConsoleIdentifier(), __GO_SHOWHIDDENHANDLES__, jni_bool, (void **)&piShowHiddenHandles);
 
@@ -65,7 +65,7 @@ int get_children_property(void* _pvCtx, char* pobjUID)
         // Find number of not hidden children
         for (i = 0; i < piChildrenCount[0]; ++i)
         {
-            getGraphicObjectProperty(pstChildrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
+            getGraphicObjectProperty(piChildrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
             if (iHidden == 0)
             {
                 iNotHiddenChildrenNumber++;
@@ -87,10 +87,10 @@ int get_children_property(void* _pvCtx, char* pobjUID)
 
     for (i = 0; i < piChildrenCount[0]; ++i)
     {
-        getGraphicObjectProperty(pstChildrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
+        getGraphicObjectProperty(piChildrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
         if (iHidden == 0 || iShowHiddenHandles == 1)
         {
-            plChildren[iChildIndex++] = getHandle(pstChildrenUID[i]);
+            plChildren[iChildIndex++] = getHandle(piChildrenUID[i]);
         }
     }
 

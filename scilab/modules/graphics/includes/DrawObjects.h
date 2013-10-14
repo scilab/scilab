@@ -26,7 +26,7 @@
 
 #include "dynlib_graphics.h"
 
-GRAPHICS_IMPEXP void sciGetDisplayedBounds(char * pSubWinUID,
+GRAPHICS_IMPEXP void sciGetDisplayedBounds(int iSubWinUID,
         double      * xmin   ,
         double      * xmax   ,
         double      * ymin   ,

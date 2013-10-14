@@ -75,16 +75,16 @@ public class AxesDrawer {
     private final LabelManager labelManager;
 
     /** The x-axis label positioner. */
-    private final Map<String, AxisLabelPositioner> xAxisLabelPositioner = new HashMap<String, AxisLabelPositioner>();
+    private final Map<Integer, AxisLabelPositioner> xAxisLabelPositioner = new HashMap<Integer, AxisLabelPositioner>();
 
     /** The y-axis label positioner. */
-    private final Map<String, AxisLabelPositioner> yAxisLabelPositioner = new HashMap<String, AxisLabelPositioner>();
+    private final Map<Integer, AxisLabelPositioner> yAxisLabelPositioner = new HashMap<Integer, AxisLabelPositioner>();
 
     /** The z-axis label positioner. */
-    private final Map<String, AxisLabelPositioner> zAxisLabelPositioner = new HashMap<String, AxisLabelPositioner>();
+    private final Map<Integer, AxisLabelPositioner> zAxisLabelPositioner = new HashMap<Integer, AxisLabelPositioner>();
 
     /** The title positioner. */
-    private final Map<String, TitlePositioner> titlePositioner = new HashMap<String, TitlePositioner>();
+    private final Map<Integer, TitlePositioner> titlePositioner = new HashMap<Integer, TitlePositioner>();
 
     /**
      * The current reversed bounds. Used by the functions converting
@@ -102,13 +102,13 @@ public class AxesDrawer {
     private Transformation currentDataTransformation;
 
     /** The set of object to window coordinate projections associated to all the Axes drawn by this drawer. */
-    private final Map<String, Transformation> projectionMap = new HashMap<String, Transformation>();
+    private final Map<Integer, Transformation> projectionMap = new HashMap<Integer, Transformation>();
 
     /** The set of object (in 2d view mode) to window coordinate projections associated to all the Axes drawn by this drawer. */
-    private final Map<String, Transformation> projection2dViewMap = new HashMap<String, Transformation>();
+    private final Map<Integer, Transformation> projection2dViewMap = new HashMap<Integer, Transformation>();
 
     /** This is a __MAP__ */
-    private final Map<String, Transformation> sceneProjectionMap = new HashMap<String, Transformation>();
+    private final Map<Integer, Transformation> sceneProjectionMap = new HashMap<Integer, Transformation>();
 
     /**
      * Default constructor.
@@ -647,7 +647,7 @@ public class AxesDrawer {
      * @param axesId the identifier of the given Axes.
      * @param projection the corresponding projection.
      */
-    public synchronized void addProjection(String axesId, Transformation projection) {
+    public synchronized void addProjection(Integer axesId, Transformation projection) {
         projectionMap.put(axesId, projection);
     }
 
@@ -657,7 +657,7 @@ public class AxesDrawer {
      * @param id the identifier of the given Axes.
      * @return the projection.
      */
-    public Transformation getProjection(String id) {
+    public Transformation getProjection(Integer id) {
         return projectionMap.get(id);
     }
 
@@ -666,7 +666,7 @@ public class AxesDrawer {
      * the projection map.
      * @param axesId the identifier of the given Axes.
      */
-    public void removeProjection(String axesId) {
+    public void removeProjection(Integer axesId) {
         projectionMap.remove(axesId);
     }
 
@@ -676,7 +676,7 @@ public class AxesDrawer {
      * @param axesId the identifier of the given Axes.
      * @param projection the corresponding projection.
      */
-    public synchronized void addProjection2dView(String axesId, Transformation projection) {
+    public synchronized void addProjection2dView(Integer axesId, Transformation projection) {
         projection2dViewMap.put(axesId, projection);
     }
 
@@ -686,11 +686,11 @@ public class AxesDrawer {
      * @param id the identifier of the given Axes.
      * @return the projection.
      */
-    public Transformation getProjection2dView(String id) {
+    public Transformation getProjection2dView(Integer id) {
         return projection2dViewMap.get(id);
     }
 
-    public Transformation getSceneProjection(String id) {
+    public Transformation getSceneProjection(Integer id) {
         return sceneProjectionMap.get(id);
     }
 
@@ -699,7 +699,7 @@ public class AxesDrawer {
      * the projection map.
      * @param axesId the identifier of the given Axes.
      */
-    public void removeProjection2dView(String axesId) {
+    public void removeProjection2dView(Integer axesId) {
         projection2dViewMap.remove(axesId);
     }
 
@@ -1238,7 +1238,7 @@ public class AxesDrawer {
         this.titlePositioner.clear();
     }
 
-    public void update(String id, int property) {
+    public void update(Integer id, int property) {
         if (this.rulerDrawer.update(id, property)) {
             GraphicObject object = GraphicController.getController().getObjectFromId(id);
             if (object instanceof Axes) {
@@ -1247,7 +1247,7 @@ public class AxesDrawer {
         }
     }
 
-    public void dispose(String id) {
+    public void dispose(Integer id) {
         this.rulerDrawer.dispose(id);
         projectionMap.remove(id);
         projection2dViewMap.remove(id);

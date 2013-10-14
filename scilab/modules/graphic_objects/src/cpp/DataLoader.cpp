@@ -31,7 +31,7 @@ extern "C"
 #include "graphicObjectProperties.h"
 }
 
-int getTextureWidth(char* id)
+int getTextureWidth(int id)
 {
     int iType = 0;
     int *piType = &iType;
@@ -46,7 +46,7 @@ int getTextureWidth(char* id)
     }
 }
 
-int getTextureHeight(char* id)
+int getTextureHeight(int id)
 {
     int iType = 0;
     int *piType = &iType;
@@ -61,7 +61,7 @@ int getTextureHeight(char* id)
     }
 }
 
-int fillTextureData(char* id, unsigned char* buffer, int bufferLength)
+int fillTextureData(int id, unsigned char* buffer, int bufferLength)
 {
     int iType = 0;
     int *piType = &iType;
@@ -76,7 +76,7 @@ int fillTextureData(char* id, unsigned char* buffer, int bufferLength)
     }
 }
 
-int fillSubTextureData(char* id, unsigned char* buffer, int bufferLength, int x, int y, int width, int height)
+int fillSubTextureData(int id, unsigned char* buffer, int bufferLength, int x, int y, int width, int height)
 {
     int iType = 0;
     int *piType = &iType;
@@ -91,7 +91,7 @@ int fillSubTextureData(char* id, unsigned char* buffer, int bufferLength, int x,
     }
 }
 
-int getDataSize(char* id)
+int getDataSize(int id)
 {
     int iType = 0;
     int *piType = &iType;
@@ -118,7 +118,7 @@ int getDataSize(char* id)
 
 }
 
-void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
+void fillVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
 {
     int iType = 0;
     int *piType = &iType;
@@ -149,7 +149,7 @@ void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, i
 }
 
 
-void fillNormals(char* id, float* position, float* buffer, int bufferLength, int elementsSize)
+void fillNormals(int id, float* position, float* buffer, int bufferLength, int elementsSize)
 {
 
     int iType = 0;
@@ -160,13 +160,13 @@ void fillNormals(char* id, float* position, float* buffer, int bufferLength, int
     switch (iType)
     {
         case __GO_FAC3D__ :
-            {
-                int numVerticesPerGon = 0;
-                int* piNumVerticesPerGon = &numVerticesPerGon;
-                getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void**) &piNumVerticesPerGon);
-                CalculatePolygonNormalFlat(position, buffer, bufferLength, elementsSize, numVerticesPerGon);
-            }
-            break;
+        {
+            int numVerticesPerGon = 0;
+            int* piNumVerticesPerGon = &numVerticesPerGon;
+            getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void**) &piNumVerticesPerGon);
+            CalculatePolygonNormalFlat(position, buffer, bufferLength, elementsSize, numVerticesPerGon);
+        }
+        break;
         case __GO_FEC__ :
             break;
         case __GO_GRAYPLOT__ :
@@ -185,13 +185,13 @@ void fillNormals(char* id, float* position, float* buffer, int bufferLength, int
             getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**) &piNumY);
             CalculateGridNormalSmooth(position, buffer, bufferLength, elementsSize, numX, numY);
         }
-            break;
+        break;
         case __GO_POLYLINE__ :
             break;
     }
 }
 
-void fillTextureCoordinates(char* id, float* BUFF, int bufferLength)
+void fillTextureCoordinates(int id, float* BUFF, int bufferLength)
 {
     int iType = 0;
     int *piType = &iType;
@@ -212,7 +212,7 @@ void fillTextureCoordinates(char* id, float* BUFF, int bufferLength)
     }
 }
 
-void fillColors(char* id, float* BUFF, int bufferLength, int elementsSize)
+void fillColors(int id, float* BUFF, int bufferLength, int elementsSize)
 {
     int iType = 0;
     int *piType = &iType;
@@ -240,7 +240,7 @@ void fillColors(char* id, float* BUFF, int bufferLength, int elementsSize)
 }
 
 
-int getIndicesSize(char* id)
+int getIndicesSize(int id)
 {
     int iType = 0;
     int *piType = &iType;
@@ -267,7 +267,7 @@ int getIndicesSize(char* id)
 }
 
 
-int fillIndices(char* id, int* buffer, int bufferLength, int logMask)
+int fillIndices(int id, int* buffer, int bufferLength, int logMask)
 {
     int iType = 0;
     int *piType = &iType;
@@ -293,7 +293,7 @@ int fillIndices(char* id, int* buffer, int bufferLength, int logMask)
     }
 }
 
-int getWireIndicesSize(char* id)
+int getWireIndicesSize(int id)
 {
     int iType = 0;
     int *piType = &iType;
@@ -315,7 +315,7 @@ int getWireIndicesSize(char* id)
     }
 }
 
-int fillWireIndices(char* id, int* buffer, int bufferLength, int logMask)
+int fillWireIndices(int id, int* buffer, int bufferLength, int logMask)
 {
     int iType = 0;
     int *piType = &iType;
@@ -337,18 +337,18 @@ int fillWireIndices(char* id, int* buffer, int bufferLength, int logMask)
     }
 }
 
-int getMarkIndicesSize(char* id)
+int getMarkIndicesSize(int id)
 {
     return 0;
 }
 
-int fillMarkIndices(char* id, int* BUFF, int bufferLength)
+int fillMarkIndices(int id, int* BUFF, int bufferLength)
 {
     // TODO.
     return 0;
 }
 
-JavaDirectBuffer getTextureData(char * id)
+JavaDirectBuffer getTextureData(int id)
 {
     JavaDirectBuffer info;
     int iType = 0;
@@ -375,7 +375,7 @@ JavaDirectBuffer getTextureData(char * id)
     return info;
 }
 
-int getTextureImageType(char * id)
+int getTextureImageType(int id)
 {
     int iType = 0;
     int *piType = &iType;
@@ -390,7 +390,7 @@ int getTextureImageType(char * id)
     return -1;
 }
 
-int getTextureDataType(char * id)
+int getTextureDataType(int id)
 {
     int iType = 0;
     int *piType = &iType;
@@ -405,7 +405,7 @@ int getTextureDataType(char * id)
     return -1;
 }
 
-int getTextureGLType(char * id)
+int getTextureGLType(int id)
 {
     int iType = 0;
     int *piType = &iType;
@@ -420,7 +420,7 @@ int getTextureGLType(char * id)
     return -1;
 }
 
-void disposeTextureData(char * id, unsigned char * buffer)
+void disposeTextureData(int id, unsigned char * buffer)
 {
     int iType = 0;
     int *piType = &iType;
@@ -433,7 +433,7 @@ void disposeTextureData(char * id, unsigned char * buffer)
     }
 }
 
-int isTextureRowOrder(char * id)
+int isTextureRowOrder(int id)
 {
     int iType = 0;
     int *piType = &iType;

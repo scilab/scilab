@@ -23,12 +23,12 @@
 /**
  * Returns if the diffuse color is used (on/off).
  */
-int get_use_color_material_property(void* _pvCtx, char* pobjUID)
+int get_use_color_material_property(void* _pvCtx, int iObjUID)
 {
     int iColorMaterial = 0;
     int *piColorMaterial = &iColorMaterial;
 
-    getGraphicObjectProperty(pobjUID, __GO_COLOR_MATERIAL__, jni_bool, (void **)&piColorMaterial);
+    getGraphicObjectProperty(iObjUID, __GO_COLOR_MATERIAL__, jni_bool, (void **)&piColorMaterial);
 
     if (piColorMaterial == NULL)
     {

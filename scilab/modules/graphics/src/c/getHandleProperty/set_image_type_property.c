@@ -31,7 +31,7 @@
 #include "Matplot.h"
 
 /*------------------------------------------------------------------------*/
-int set_image_type_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_image_type_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int imagetype = (int)MATPLOT_INDEX;
@@ -44,7 +44,7 @@ int set_image_type_property(void* _pvCtx, char* pobjUID, void* _pvData, int valu
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
     if (type != __GO_MATPLOT__)
     {
         Scierror(999, _("Incompatible type for property %s.\n"), "image_type");
@@ -105,7 +105,7 @@ int set_image_type_property(void* _pvCtx, char* pobjUID, void* _pvData, int valu
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_TYPE__, &imagetype, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_TYPE__, &imagetype, jni_int, 1);
     if (status == TRUE)
     {
         return SET_PROPERTY_SUCCEED;

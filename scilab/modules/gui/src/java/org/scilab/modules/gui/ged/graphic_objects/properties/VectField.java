@@ -40,11 +40,11 @@ public class VectField extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID
      */
-    public void arrowSize(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void arrowSize(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lArrowSize = new JLabel();
         final JTextField cArrowSize = new JTextField();
         addLabelTextField(panel, lArrowSize, MessagesGED.arrow_size,
-                                 cArrowSize, true, LEFTMARGIN, COLUMN, ROW);
+                          cArrowSize, true, LEFTMARGIN, COLUMN, ROW);
         cArrowSize.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -59,14 +59,14 @@ public class VectField extends ContentLayout {
         });
         // Get the current status of the property: Arrow Size
         cArrowSize.setText(Double.toString((Double) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_ARROW_SIZE__)));
+                                           .getProperty(UID, GraphicObjectProperties.__GO_ARROW_SIZE__)));
     }
 
     /**
     * Set Arrow Size
     * @param size arrow size.
     */
-    private void setArrowSize(JTextField cArrowSize, String UID) {
+    private void setArrowSize(JTextField cArrowSize, Integer UID) {
         try {
             GraphicController.getController().setProperty(
                 UID,
@@ -74,7 +74,7 @@ public class VectField extends ContentLayout {
                 Double.parseDouble(cArrowSize.getText()));
         } catch (NumberFormatException e) {
             cArrowSize.setText(Double.toString((Double) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_ARROW_SIZE__)));
+                                               .getProperty(UID, GraphicObjectProperties.__GO_ARROW_SIZE__)));
         }
     }
 }

@@ -53,10 +53,10 @@ public class GEDView implements GraphicView {
     }
 
     @Override
-    public void updateObject(String id, int property) {
+    public void updateObject(Integer id, int property) {
         if (SwapObject.getLastType() == (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__)) {
             boolean isValid = false;
-            switch(property) {
+            switch (property) {
                 case GraphicObjectProperties.__GO_VISIBLE__:
                     boolean c_visible = (Boolean) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_VISIBLE__);
                     if (visible != c_visible) {
@@ -242,11 +242,11 @@ public class GEDView implements GraphicView {
     }
 
     @Override
-    public void createObject(String id) {
+    public void createObject(Integer id) {
     }
 
     @Override
-    public void deleteObject(String id) {
+    public void deleteObject(Integer id) {
     }
 
     public void close() {

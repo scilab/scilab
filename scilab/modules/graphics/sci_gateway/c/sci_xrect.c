@@ -48,14 +48,14 @@ int sci_xrect(char *fname, unsigned long fname_len)
 
     long hdl = 0;
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0, m3 = 0, n3 = 0, m4 = 0, n4 = 0;
-    char* psubwinUID = NULL;
+    int iSubwinUID = 0;
 
     int foreground = 0;
     int *piForeground = &foreground;
 
     CheckInputArgument(pvApiCtx, 1, 4);
 
-    psubwinUID = (char*)getOrCreateDefaultSubwin();
+    iSubwinUID = getOrCreateDefaultSubwin();
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
     if (sciErr.iErr)
@@ -84,7 +84,7 @@ int sci_xrect(char *fname, unsigned long fname_len)
             }
 
 
-            getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
+            getGraphicObjectProperty(iSubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
 
             if (strcmp(fname, "xrect") == 0)
             {
@@ -105,7 +105,7 @@ int sci_xrect(char *fname, unsigned long fname_len)
 
             break;
         case 4 :
-            getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
+            getGraphicObjectProperty(iSubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
 
             //CheckScalar
             if (m1 != 1 || n1 != 1)
@@ -209,7 +209,7 @@ int sci_xrect(char *fname, unsigned long fname_len)
 
     if (hdl > 0)
     {
-        setGraphicObjectRelationship(psubwinUID, getObjectFromHandle(hdl));
+        setGraphicObjectRelationship(iSubwinUID, getObjectFromHandle(hdl));
         AssignOutputVariable(pvApiCtx, 1) = 0;
         ReturnArguments(pvApiCtx);
     }

@@ -37,14 +37,15 @@
 #include "CurrentSubwin.h"
 
 /*------------------------------------------------------------------------*/
-int set_current_axes_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_current_axes_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    char * curAxesUID   = NULL;
-    char * parentFigureUID = NULL;
+    int iCurAxesUID = 0;
+    int iParentFigureUID = 0;
+    int* piParentFigureUID = &iParentFigureUID;
     int type = -1;
     int *piType = &type;
 
-    if (pobjUID != NULL)
+    if (iObjUID != 0)
     {
         /* This property should not be called on a handle */
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_axes");
@@ -57,15 +58,15 @@ int set_current_axes_property(void* _pvCtx, char* pobjUID, void* _pvData, int va
         return SET_PROPERTY_ERROR;
     }
 
-    curAxesUID = (char*)getObjectFromHandle((long)((long long*)_pvData)[0]);
+    iCurAxesUID = getObjectFromHandle((long)((long long*)_pvData)[0]);
 
-    if (curAxesUID == NULL)
+    if (iCurAxesUID == 0)
     {
         Scierror(999, _("Wrong value for '%s' property: Must be a valid handle.\n"), "current_entity");
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(curAxesUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iCurAxesUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     if (type != __GO_AXES__)
     {
@@ -74,16 +75,16 @@ int set_current_axes_property(void* _pvCtx, char* pobjUID, void* _pvData, int va
     }
 
     /* The current Axes' parent Figure's selected child property must be updated */
-    getGraphicObjectProperty(curAxesUID, __GO_PARENT__, jni_string, (void **)&parentFigureUID);
-    setGraphicObjectProperty(parentFigureUID, __GO_SELECTED_CHILD__, curAxesUID, jni_string, 1);
+    iParentFigureUID = getParentObject(iCurAxesUID);
+    setGraphicObjectProperty(iParentFigureUID, __GO_SELECTED_CHILD__, &iCurAxesUID, jni_int, 1);
 
-    setCurrentSubWin(curAxesUID);
+    setCurrentSubWin(iCurAxesUID);
 
     /* F.Leray 11.02.05 : if the new selected subwin is not inside the current figure, */
     /* we must also set the current figure to the subwin's parent */
-    if (!isCurrentFigure(parentFigureUID))
+    if (!isCurrentFigure(iParentFigureUID))
     {
-        setCurrentFigure(parentFigureUID);
+        setCurrentFigure(iParentFigureUID);
     }
 
     return SET_PROPERTY_SUCCEED;

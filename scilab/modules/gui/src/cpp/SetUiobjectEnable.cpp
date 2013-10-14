@@ -14,7 +14,7 @@
 #include "SetUiobjectEnable.hxx"
 
 /* Set the enable property of an uicontrol or uimenu */
-int SetUiobjectEnable(void* _pvCtx, char *sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUiobjectEnable(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int b = (int)FALSE;
     BOOL status = FALSE;
@@ -26,7 +26,7 @@ int SetUiobjectEnable(void* _pvCtx, char *sciObjUID, void* _pvData, int valueTyp
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_ENABLE__, &b, jni_bool, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_ENABLE__, &b, jni_bool, 1);
 
     if (status == TRUE)
     {

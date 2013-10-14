@@ -28,7 +28,7 @@ public class Figure extends SimpleObject {
     * Initializes all sections (JPanel's) and Add in Main JPanel of Object.
     * @param objectID Enters the identification of figure.
     */
-    public Figure(String objectID) {
+    public Figure(Integer objectID) {
         super(objectID);
         base = new BaseProperties(objectID);
         data = new DataProperties(objectID);
@@ -48,9 +48,10 @@ public class Figure extends SimpleObject {
     @Override
     public final String[] getSectionsName() {
         return new String[] {
-                        base.getName(),
-                        data.getName(),
-                        control.getName(),
-                        style.getName()};
+                   base.getName(),
+                   data.getName(),
+                   control.getName(),
+                   style.getName()
+               };
     }
 }

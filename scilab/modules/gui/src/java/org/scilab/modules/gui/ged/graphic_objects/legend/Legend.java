@@ -28,7 +28,7 @@ public class Legend extends SimpleObject {
     * Initializes all sections (JPanel's) and Add in Main JPanel of Object.
     * @param objectID Enters the identification of object.
     */
-    public Legend(String objectID) {
+    public Legend(Integer objectID) {
         super(objectID);
         base = new BaseProperties(objectID);
         data = new DataProperties(objectID);
@@ -50,10 +50,11 @@ public class Legend extends SimpleObject {
     @Override
     public final String[] getSectionsName() {
         return new String[] {
-                    base.getName(),
-                    data.getName(),
-                    font.getName(),
-                    position.getName(),
-                    style.getName()};
+                   base.getName(),
+                   data.getName(),
+                   font.getName(),
+                   position.getName(),
+                   style.getName()
+               };
     }
 }

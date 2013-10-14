@@ -34,7 +34,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_axes_visible_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_axes_visible_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status[3];
     BOOL visible = FALSE;
@@ -64,9 +64,9 @@ int set_axes_visible_property(void* _pvCtx, char* pobjUID, void* _pvData, int va
             return SET_PROPERTY_ERROR;
         }
 
-        status[0] = setGraphicObjectProperty(pobjUID, axesVisiblePropertiesNames[0], &visible, jni_bool, 1);
-        status[1] = setGraphicObjectProperty(pobjUID, axesVisiblePropertiesNames[1], &visible, jni_bool, 1);
-        status[2] = setGraphicObjectProperty(pobjUID, axesVisiblePropertiesNames[2], &visible, jni_bool, 1);
+        status[0] = setGraphicObjectProperty(iObjUID, axesVisiblePropertiesNames[0], &visible, jni_bool, 1);
+        status[1] = setGraphicObjectProperty(iObjUID, axesVisiblePropertiesNames[1], &visible, jni_bool, 1);
+        status[2] = setGraphicObjectProperty(iObjUID, axesVisiblePropertiesNames[2], &visible, jni_bool, 1);
 
         if (status[0] == TRUE && status[1] == TRUE && status[2] == TRUE)
         {
@@ -99,14 +99,13 @@ int set_axes_visible_property(void* _pvCtx, char* pobjUID, void* _pvData, int va
                 return SET_PROPERTY_ERROR;
             }
 
-            status[i] = setGraphicObjectProperty(pobjUID, axesVisiblePropertiesNames[i], &visible, jni_bool, 1);
+            status[i] = setGraphicObjectProperty(iObjUID, axesVisiblePropertiesNames[i], &visible, jni_bool, 1);
 
             if (status[i] != TRUE)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "axes_visible");
                 result = SET_PROPERTY_ERROR;
             }
-
         }
 
         return result;
@@ -114,7 +113,6 @@ int set_axes_visible_property(void* _pvCtx, char* pobjUID, void* _pvData, int va
     else
     {
         Scierror(999, _("Wrong size for '%s' property: At most %d elements expected.\n"), "axes_visible", 3);
-
     }
 
     return SET_PROPERTY_ERROR;

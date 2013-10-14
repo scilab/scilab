@@ -32,12 +32,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_y_location_property(void* _pvCtx, char* pobjUID)
+int get_y_location_property(void* _pvCtx, int iObjUID)
 {
     int iLocation = 0;
     int* piLocation = &iLocation;
 
-    getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOCATION__, jni_int, (void**)&piLocation);
+    getGraphicObjectProperty(iObjUID, __GO_Y_AXIS_LOCATION__, jni_int, (void**)&piLocation);
 
     if (piLocation == NULL)
     {

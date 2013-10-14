@@ -62,9 +62,9 @@ typedef struct
     {
         int periodCounter;
 
-        char const* cachedFigureUID;
-        char *cachedAxeUID;
-        char **cachedSegsUIDs;
+        int cachedFigureUID;
+        int cachedAxeUID;
+        int* cachedSegsUIDs;
     } scope;
 } sco_data;
 
@@ -109,26 +109,26 @@ static BOOL pushData(scicos_block * block, int input);
  * \param block the block
  * \return a valid figure UID or NULL on error
  */
-static char const* getFigure(scicos_block * block);
+static int getFigure(scicos_block * block);
 
 /**
  * Get (and allocate on demand) the axe associated with the input
  *
- * \param pFigureUID the parent figure UID
+ * \param iFigureUID the parent figure UID
  * \param block the block
  * \return a valid axe UID or NULL on error
  */
-static char *getAxe(char const* pFigureUID, scicos_block * block);
+static int getAxe(int iFigureUID, scicos_block * block);
 
 /**
  * Get (and allocate on demand) the segs associated with the input
  *
- * \param pAxeUID the parent axe UID
+ * \param iAxeUID the parent axe UID
  * \param block the block
  * \param input the current row index (0-indexed)
  * \return a valid polyline UID or NULL on error
  */
-static char *getSegs(char *pAxeUID, scicos_block * block, int input);
+static int getSegs(int iAxeUID, scicos_block * block, int input);
 
 /**
  * Set the segs buffer size
@@ -157,7 +157,7 @@ static BOOL setBounds(scicos_block * block, int periodCounter);
 */
 SCICOS_BLOCKS_IMPEXP void cevscpe(scicos_block * block, scicos_flag flag)
 {
-    char const* pFigureUID;
+    int iFigureUID;
 
     double t;
     int i;
@@ -176,8 +176,8 @@ SCICOS_BLOCKS_IMPEXP void cevscpe(scicos_block * block, scicos_flag flag)
             {
                 set_block_error(-5);
             }
-            pFigureUID = getFigure(block);
-            if (pFigureUID == NULL)
+            iFigureUID = getFigure(block);
+            if (iFigureUID == NULL)
             {
                 // allocation error
                 set_block_error(-5);
@@ -188,8 +188,8 @@ SCICOS_BLOCKS_IMPEXP void cevscpe(scicos_block * block, scicos_flag flag)
             break;
 
         case StateUpdate:
-            pFigureUID = getFigure(block);
-            if (pFigureUID == NULL)
+            iFigureUID = getFigure(block);
+            if (iFigureUID == NULL)
             {
                 // allocation error
                 set_block_error(-5);
@@ -296,9 +296,9 @@ static sco_data *getScoData(scicos_block * block)
         }
 
         sco->scope.periodCounter = 0;
-        sco->scope.cachedFigureUID = NULL;
-        sco->scope.cachedAxeUID = NULL;
-        sco->scope.cachedSegsUIDs = (char **)CALLOC(nclk, sizeof(char *));
+        sco->scope.cachedFigureUID = 0;
+        sco->scope.cachedAxeUID = 0;
+        sco->scope.cachedSegsUIDs = (int*)CALLOC(nclk, sizeof(int));
         if (sco->scope.cachedSegsUIDs == NULL)
         {
             goto error_handler_data_i;
@@ -493,9 +493,9 @@ static void appendData(scicos_block * block, int input, double t)
 
 static BOOL pushData(scicos_block * block, int input)
 {
-    char const* pFigureUID;
-    char *pAxeUID;
-    char *pSegsUID;
+    int iFigureUID;
+    int iAxeUID;
+    int iSegsUID;
 
     int dataLen;
     double *base;
@@ -504,9 +504,9 @@ static BOOL pushData(scicos_block * block, int input)
 
     BOOL result = TRUE;
 
-    pFigureUID = getFigure(block);
-    pAxeUID = getAxe(pFigureUID, block);
-    pSegsUID = getSegs(pAxeUID, block, input);
+    iFigureUID = getFigure(block);
+    iAxeUID = getAxe(iFigureUID, block);
+    iSegsUID = getSegs(iAxeUID, block, input);
 
     sco = getScoData(block);
     if (sco == NULL)
@@ -520,8 +520,8 @@ static BOOL pushData(scicos_block * block, int input)
 
     dataLen = 3 * sco->internal.maxNumberOfPoints[input];
 
-    result &= setGraphicObjectProperty(pSegsUID, __GO_BASE__, base, jni_double_vector, dataLen);
-    result &= setGraphicObjectProperty(pSegsUID, __GO_DIRECTION__, direction, jni_double_vector, dataLen);
+    result &= setGraphicObjectProperty(iSegsUID, __GO_BASE__, base, jni_double_vector, dataLen);
+    result &= setGraphicObjectProperty(iSegsUID, __GO_DIRECTION__, direction, jni_double_vector, dataLen);
 
     return result;
 }
@@ -535,10 +535,10 @@ static BOOL pushData(scicos_block * block, int input)
 /**
  * Set properties on the figure.
  *
- * \param pFigureUID the figure uid
+ * \param iFigureUID the figure uid
  * \param block the current block
  */
-static void setFigureSettings(char const* pFigureUID, scicos_block * block)
+static void setFigureSettings(int iFigureUID, scicos_block * block)
 {
     int nipar = GetNipar(block);
     int *ipar = GetIparPtrs(block);
@@ -553,12 +553,12 @@ static void setFigureSettings(char const* pFigureUID, scicos_block * block)
 
     if (win_pos[0] > 0 && win_pos[1] > 0)
     {
-        setGraphicObjectProperty(pFigureUID, __GO_POSITION__, &win_pos, jni_int_vector, 2);
+        setGraphicObjectProperty(iFigureUID, __GO_POSITION__, &win_pos, jni_int_vector, 2);
     }
 
     if (win_dim[0] > 0 && win_dim[1] > 0)
     {
-        setGraphicObjectProperty(pFigureUID, __GO_SIZE__, &win_dim, jni_int_vector, 2);
+        setGraphicObjectProperty(iFigureUID, __GO_SIZE__, &win_dim, jni_int_vector, 2);
     }
 };
 
@@ -568,11 +568,11 @@ static void setFigureSettings(char const* pFigureUID, scicos_block * block)
  *
  ****************************************************************************/
 
-static char const* getFigure(scicos_block * block)
+static int getFigure(scicos_block * block)
 {
     signed int figNum;
-    char const* pFigureUID = NULL;
-    char *pAxe = NULL;
+    int iFigureUID = 0;
+    int iAxe = 0;
     int i__1 = 1;
     sco_data *sco = getScoData(block);
 
@@ -596,45 +596,45 @@ static char const* getFigure(scicos_block * block)
         figNum = 20000 + get_block_number();
     }
 
-    pFigureUID = getFigureFromIndex(figNum);
+    iFigureUID = getFigureFromIndex(figNum);
     // create on demand
-    if (pFigureUID == NULL)
+    if (iFigureUID == NULL)
     {
-        pFigureUID = createNewFigureWithAxes();
-        setGraphicObjectProperty(pFigureUID, __GO_ID__, &figNum, jni_int, 1);
+        iFigureUID = createNewFigureWithAxes();
+        setGraphicObjectProperty(iFigureUID, __GO_ID__, &figNum, jni_int, 1);
 
         // the stored uid is a reference to the figure map, not to the current figure
-        pFigureUID = getFigureFromIndex(figNum);
-        sco->scope.cachedFigureUID = pFigureUID;
+        iFigureUID = getFigureFromIndex(figNum);
+        sco->scope.cachedFigureUID = iFigureUID;
 
         // set configured parameters
-        setFigureSettings(pFigureUID, block);
+        setFigureSettings(iFigureUID, block);
 
         // allocate the axes through the getter
-        pAxe = getAxe(pFigureUID, block);
+        iAxe = getAxe(iFigureUID, block);
 
         /*
          * Setup according to block settings
          */
-        setLabel(pAxe, __GO_X_AXIS_LABEL__, "t");
-        setLabel(pAxe, __GO_Y_AXIS_LABEL__, "y");
+        setLabel(iAxe, __GO_X_AXIS_LABEL__, "t");
+        setLabel(iAxe, __GO_Y_AXIS_LABEL__, "y");
 
-        setGraphicObjectProperty(pAxe, __GO_X_AXIS_VISIBLE__, &i__1, jni_bool, 1);
-        setGraphicObjectProperty(pAxe, __GO_Y_AXIS_VISIBLE__, &i__1, jni_bool, 1);
+        setGraphicObjectProperty(iAxe, __GO_X_AXIS_VISIBLE__, &i__1, jni_bool, 1);
+        setGraphicObjectProperty(iAxe, __GO_Y_AXIS_VISIBLE__, &i__1, jni_bool, 1);
 
         setBounds(block, 0);
     }
 
-    if (sco->scope.cachedFigureUID == NULL)
+    if (sco->scope.cachedFigureUID == 0)
     {
-        sco->scope.cachedFigureUID = pFigureUID;
+        sco->scope.cachedFigureUID = iFigureUID;
     }
-    return pFigureUID;
+    return iFigureUID;
 }
 
-static char *getAxe(char const* pFigureUID, scicos_block * block)
+static int getAxe(int iFigureUID, scicos_block * block)
 {
-    char *pAxe;
+    int iAxe;
     int i;
 
     int nclk = block->nipar - 6;
@@ -643,7 +643,7 @@ static char *getAxe(char const* pFigureUID, scicos_block * block)
     // assert the sco is not NULL
     if (sco == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     // fast path for an existing object
@@ -652,45 +652,43 @@ static char *getAxe(char const* pFigureUID, scicos_block * block)
         return sco->scope.cachedAxeUID;
     }
 
-    pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, 0);
+    iAxe = findChildWithKindAt(iFigureUID, __GO_AXES__, 0);
 
     /*
      * Allocate if necessary
      */
-    if (pAxe == NULL)
+    if (iAxe == 0)
     {
-        cloneAxesModel(pFigureUID);
-        pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, 0);
+        cloneAxesModel(iFigureUID);
+        iAxe = findChildWithKindAt(iFigureUID, __GO_AXES__, 0);
     }
 
     /*
      * Setup on first access
      */
-    if (pAxe != NULL)
+    if (iAxe != 0)
     {
         // allocate the segs through the getter
         for (i = 0; i < nclk; i++)
         {
-            getSegs(pAxe, block, i);
+            getSegs(iAxe, block, i);
         }
     }
     else
     {
-        return NULL;
+        return 0;
     }
 
     /*
      * then cache with a local storage
      */
-    sco->scope.cachedAxeUID = strdup(pAxe);
-
-    releaseGraphicObjectProperty(__GO_PARENT__, pAxe, jni_string, 1);
+    sco->scope.cachedAxeUID = iAxe;
     return sco->scope.cachedAxeUID;
 }
 
-static char *getSegs(char *pAxeUID, scicos_block * block, int input)
+static int getSegs(int iAxeUID, scicos_block * block, int input)
 {
-    char *pSegs;
+    int iSegs;
     BOOL b__true = TRUE;
     double d__1 = 1.0;
     double d__0 = 0.0;
@@ -702,28 +700,28 @@ static char *getSegs(char *pAxeUID, scicos_block * block, int input)
     // assert the sco is not NULL
     if (sco == NULL || sco->scope.cachedSegsUIDs == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedSegsUIDs[input] != NULL)
+    if (sco->scope.cachedSegsUIDs[input] != 0)
     {
         return sco->scope.cachedSegsUIDs[input];
     }
 
-    pSegs = findChildWithKindAt(pAxeUID, __GO_SEGS__, input);
+    iSegs = findChildWithKindAt(iAxeUID, __GO_SEGS__, input);
 
     /*
      * Allocate if necessary
      */
-    if (pSegs == NULL)
+    if (iSegs == 0)
     {
-        pSegs = createGraphicObject(__GO_SEGS__);
+        iSegs = createGraphicObject(__GO_SEGS__);
 
-        if (pSegs != NULL)
+        if (iSegs != 0)
         {
-            createDataObject(pSegs, __GO_SEGS__);
-            setGraphicObjectRelationship(pAxeUID, pSegs);
+            createDataObject(iSegs, __GO_SEGS__);
+            setGraphicObjectRelationship(iAxeUID, iSegs);
         }
         else
         {
@@ -734,46 +732,44 @@ static char *getSegs(char *pAxeUID, scicos_block * block, int input)
     /*
      * Setup on first access
      */
-    setGraphicObjectProperty(pSegs, __GO_NUMBER_ARROWS__, &sco->internal.maxNumberOfPoints[input], jni_int, 1);
+    setGraphicObjectProperty(iSegs, __GO_NUMBER_ARROWS__, &sco->internal.maxNumberOfPoints[input], jni_int, 1);
 
     // Setup properties
-    setGraphicObjectProperty(pSegs, __GO_LINE_THICKNESS__, &d__1, jni_double, 1);
-    setGraphicObjectProperty(pSegs, __GO_ARROW_SIZE__, &d__0, jni_double, 1);
+    setGraphicObjectProperty(iSegs, __GO_LINE_THICKNESS__, &d__1, jni_double, 1);
+    setGraphicObjectProperty(iSegs, __GO_ARROW_SIZE__, &d__0, jni_double, 1);
 
     color = block->ipar[2 + input];
     if (color > 0)
     {
-        setGraphicObjectProperty(pSegs, __GO_LINE_MODE__, &b__true, jni_bool, 1);
-        setGraphicObjectProperty(pSegs, __GO_SEGS_COLORS__, &color, jni_int_vector, 1);
+        setGraphicObjectProperty(iSegs, __GO_LINE_MODE__, &b__true, jni_bool, 1);
+        setGraphicObjectProperty(iSegs, __GO_SEGS_COLORS__, &color, jni_int_vector, 1);
     }
     else
     {
         int iMarkSize = 4;
         color = -color;
-        setGraphicObjectProperty(pSegs, __GO_MARK_MODE__, &b__true, jni_bool, 1);
-        setGraphicObjectProperty(pSegs, __GO_MARK_STYLE__, &color, jni_int, 1);
-        setGraphicObjectProperty(pSegs, __GO_MARK_SIZE__, &iMarkSize, jni_int, 1);
+        setGraphicObjectProperty(iSegs, __GO_MARK_MODE__, &b__true, jni_bool, 1);
+        setGraphicObjectProperty(iSegs, __GO_MARK_STYLE__, &color, jni_int, 1);
+        setGraphicObjectProperty(iSegs, __GO_MARK_SIZE__, &iMarkSize, jni_int, 1);
     }
 
     {
         int iClipState = 1; //on
-        setGraphicObjectProperty(pSegs, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
+        setGraphicObjectProperty(iSegs, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
     }
 
     /*
      * then cache with a local storage
      */
-    sco->scope.cachedSegsUIDs[input] = strdup(pSegs);
-
-    releaseGraphicObjectProperty(__GO_PARENT__, pSegs, jni_string, 1);
+    sco->scope.cachedSegsUIDs[input] = iSegs;
     return sco->scope.cachedSegsUIDs[input];
 }
 
 static BOOL setSegsBuffers(scicos_block * block, int maxNumberOfPoints)
 {
-    char const* pFigureUID;
-    char *pAxeUID;
-    char *pSegsUID;
+    int iFigureUID;
+    int iAxeUID;
+    int iSegsUID;
 
     int i;
     int nclk = block->nipar - 6;
@@ -781,12 +777,12 @@ static BOOL setSegsBuffers(scicos_block * block, int maxNumberOfPoints)
 
     int color;
 
-    pFigureUID = getFigure(block);
-    pAxeUID = getAxe(pFigureUID, block);
+    iFigureUID = getFigure(block);
+    iAxeUID = getAxe(iFigureUID, block);
     for (i = 0; i < nclk; i++)
     {
-        pSegsUID = getSegs(pAxeUID, block, i);
-        result &= setGraphicObjectProperty(pSegsUID, __GO_NUMBER_ARROWS__, &maxNumberOfPoints, jni_int, 1);
+        iSegsUID = getSegs(iAxeUID, block, i);
+        result &= setGraphicObjectProperty(iSegsUID, __GO_NUMBER_ARROWS__, &maxNumberOfPoints, jni_int, 1);
 
         /*
          * Update color due to bug #9902
@@ -795,7 +791,7 @@ static BOOL setSegsBuffers(scicos_block * block, int maxNumberOfPoints)
         color = block->ipar[2 + i];
         if (color > 0)
         {
-            setGraphicObjectProperty(pSegsUID, __GO_SEGS_COLORS__, &color, jni_int_vector, 1);
+            setGraphicObjectProperty(iSegsUID, __GO_SEGS_COLORS__, &color, jni_int_vector, 1);
         }
     }
 
@@ -804,8 +800,8 @@ static BOOL setSegsBuffers(scicos_block * block, int maxNumberOfPoints)
 
 static BOOL setBounds(scicos_block * block, int periodCounter)
 {
-    char const* pFigureUID;
-    char *pAxeUID;
+    int iFigureUID;
+    int iAxeUID;
 
     double dataBounds[6];
     double period = block->rpar[0];
@@ -817,7 +813,7 @@ static BOOL setBounds(scicos_block * block, int periodCounter)
     dataBounds[4] = -1.0;       // zMin
     dataBounds[5] = 1.0;        // zMax
 
-    pFigureUID = getFigure(block);
-    pAxeUID = getAxe(pFigureUID, block);
-    return setGraphicObjectProperty(pAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+    iFigureUID = getFigure(block);
+    iAxeUID = getAxe(iFigureUID, block);
+    return setGraphicObjectProperty(iAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 }

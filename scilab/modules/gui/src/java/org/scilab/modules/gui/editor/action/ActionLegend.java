@@ -28,7 +28,7 @@ import org.scilab.modules.gui.editor.LegendHandler;
 public class ActionLegend extends BaseAction {
 
     /* Store the old links and text of the legend */
-    String[] oldLinks, newLinks;
+    Integer[] oldLinks, newLinks;
 
     /* Store the current links and text of the legend */
     String[] oldText, newText;
@@ -44,11 +44,11 @@ public class ActionLegend extends BaseAction {
     * @param text the old text of the legend
     * @param pos The legend position
     */
-    public ActionLegend(String parent, String[] links, String[] text, Double[] pos) {
+    public ActionLegend(Integer parent, Integer[] links, String[] text, Double[] pos) {
 
         super(null, parent);
         if ( links != null ) {
-            oldLinks = new String[links.length];
+            oldLinks = new Integer[links.length];
             oldText = new String[links.length];
             for (Integer i = 0; i < links.length; i++ ) {
                 oldLinks[i] = links[i];
@@ -57,7 +57,7 @@ public class ActionLegend extends BaseAction {
         }
         objectUID = LegendHandler.searchLegend(parent);
         if (objectUID != null) {
-            newLinks = (String[])GraphicController.getController().getProperty(objectUID, GraphicObjectProperties.__GO_LINKS__);
+            newLinks = (Integer[])GraphicController.getController().getProperty(objectUID, GraphicObjectProperties.__GO_LINKS__);
             newText = (String[])GraphicController.getController().getProperty(objectUID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
         }
         if (pos != null) {

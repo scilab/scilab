@@ -92,7 +92,7 @@ public final class SwingViewWidget {
      * @param value the property value
      */
     public static void update(Widget uiControl, int property, Object value) {
-        String uid = ((SwingViewObject) uiControl).getId();
+        Integer uid = ((SwingViewObject) uiControl).getId();
         Font font = null;
         Double[] allColors = null;
         double maxValue = 0;

@@ -29,11 +29,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_outside_colors_property(void* _pvCtx, char* pobjUID)
+int get_outside_colors_property(void* _pvCtx, int iObjUID)
 {
     int* colors = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_OUTSIDE_COLOR__, jni_int_vector, (void **)&colors);
+    getGraphicObjectProperty(iObjUID, __GO_OUTSIDE_COLOR__, jni_int_vector, (void **)&colors);
 
     if (colors == NULL)
     {

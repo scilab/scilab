@@ -71,7 +71,7 @@ public class Legend extends ClippableTextObject {
                                };
 
     /** List of the polylines referred to */
-    private ArrayList <String> links;
+    private ArrayList <Integer> links;
 
     /** Legend location */
     private LegendLocation legendLocation;
@@ -85,7 +85,7 @@ public class Legend extends ClippableTextObject {
     /** Constructor */
     public Legend() {
         super();
-        this.links = new ArrayList<String>(0);
+        this.links = new ArrayList<Integer>(0);
         this.legendLocation = LegendLocation.LOWER_CAPTION;
         position = new double[2];
         size = new double[2];
@@ -151,7 +151,7 @@ public class Legend extends ClippableTextObject {
      */
     public UpdateStatus setProperty(Object property, Object value) {
         if (property == LegendProperty.LINKS) {
-            setLinks((String[]) value);
+            setLinks((Integer[]) value);
         } else if (property == LegendProperty.LEGENDLOCATION) {
             setLegendLocation((Integer) value);
         } else if (property == LegendProperty.POSITION) {
@@ -195,7 +195,7 @@ public class Legend extends ClippableTextObject {
      * @return the valid links
      */
     public String[] getValidLinks() {
-        ArrayList <String> validLinks = new ArrayList<String>(0);
+        ArrayList <Integer> validLinks = new ArrayList<Integer>(0);
 
         for (int i = 0; i < links.size(); i++) {
             GraphicObject object = (GraphicObject) GraphicController.getController().getObjectFromId(links.get(i));
@@ -228,8 +228,8 @@ public class Legend extends ClippableTextObject {
     /**
      * @return the links
      */
-    public String[] getLinks() {
-        String[] retLinks = new String[links.size()];
+    public Integer[] getLinks() {
+        Integer[] retLinks = new Integer[links.size()];
 
         for (int i = 0; i < links.size(); i++) {
             retLinks[i] = links.get(i);
@@ -248,7 +248,7 @@ public class Legend extends ClippableTextObject {
     /**
      * @param links the links to set
      */
-    public void setLinks(String[] links) {
+    public void setLinks(Integer[] links) {
         if (!this.links.isEmpty()) {
             this.links.clear();
         }
@@ -291,7 +291,7 @@ public class Legend extends ClippableTextObject {
     /**
      * @param links the links to set
      */
-    public void setLinks(ArrayList<String> links) {
+    public void setLinks(ArrayList<Integer> links) {
         this.links = links;
     }
 

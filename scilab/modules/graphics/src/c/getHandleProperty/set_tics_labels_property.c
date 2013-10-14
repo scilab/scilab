@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_tics_labels_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_tics_labels_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int iNbTicksLabels = 0;
@@ -46,7 +46,7 @@ int set_tics_labels_property(void* _pvCtx, char* pobjUID, void* _pvData, int val
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_NUMBER_TICKS_LABELS__, jni_int, (void**)&piNbTicksLabels);
+    getGraphicObjectProperty(iObjUID, __GO_NUMBER_TICKS_LABELS__, jni_int, (void**)&piNbTicksLabels);
 
     if (piNbTicksLabels == NULL)
     {
@@ -65,7 +65,7 @@ int set_tics_labels_property(void* _pvCtx, char* pobjUID, void* _pvData, int val
     /* Check if we should load LaTex / MathML Java libraries */
     loadTextRenderingAPI(stringVector, nbRow * nbCol, 1);
 
-    status = setGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, stringVector, jni_string_vector, nbRow * nbCol);
+    status = setGraphicObjectProperty(iObjUID, __GO_TICKS_LABELS__, stringVector, jni_string_vector, nbRow * nbCol);
 
     destroyStringArray(stringVector, nbRow * nbCol);
 

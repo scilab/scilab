@@ -30,11 +30,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_rotation_style_property(void* _pvCtx, char * pobjUID)
+int get_rotation_style_property(void* _pvCtx, int iObjUID)
 {
     int iRotationStyle = 0;
     int *piRotationStyle = &iRotationStyle;
-    getGraphicObjectProperty(pobjUID, __GO_ROTATION_TYPE__, jni_int, (void**)&piRotationStyle);
+    getGraphicObjectProperty(iObjUID, __GO_ROTATION_TYPE__, jni_int, (void**)&piRotationStyle);
 
     if (piRotationStyle == NULL)
     {

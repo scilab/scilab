@@ -660,11 +660,11 @@ public class AxesRulerDrawer {
         this.rulerDrawerManager.disposeAll();
     }
 
-    public boolean update(String id, int property) {
+    public boolean update(Integer id, int property) {
         return this.rulerDrawerManager.update(id, property);
     }
 
-    public void dispose(String id) {
+    public void dispose(Integer id) {
         this.rulerDrawerManager.dispose(id);
     }
 }

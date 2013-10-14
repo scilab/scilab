@@ -52,9 +52,9 @@ typedef struct
 {
     struct
     {
-        char const* cachedFigureUID;
-        char *cachedAxeUID;
-        char *cachedGrayplotUID;
+        int cachedFigureUID;
+        int cachedAxeUID;
+        int cachedGrayplotUID;
     } scope;
 } sco_data;
 
@@ -89,34 +89,34 @@ static BOOL pushData(scicos_block * block, double *data);
  * \param block the block
  * \return a valid figure UID or NULL on error
  */
-static char const* getFigure(scicos_block * block);
+static int getFigure(scicos_block * block);
 
 /**
  * Get (and allocate on demand) the axe associated with the input
  *
- * \param pFigureUID the parent figure UID
+ * \param iFigureUID the parent figure UID
  * \param block the block
  * \return a valid axe UID or NULL on error
  */
-static char *getAxe(char const* pFigureUID, scicos_block * block);
+static int getAxe(int iFigureUID, scicos_block * block);
 
 /**
  * Get (and allocate on demand) the grayplot
  *
- * \param pAxeUID the parent axe UID
+ * \param iAxeUID the parent axe UID
  * \param block the block
  * \return a valid grayplot UID or NULL on error
  */
-static char *getGrayplot(char *pAxeUID, scicos_block * block);
+static int getGrayplot(int iAxeUID, scicos_block * block);
 
 /**
  * Set the grayplot and axes bounds
  *
  * \param block the block
- * \param pAxeUID the axe
+ * \param iAxeUID the axe
  * \param pGrayplotUID the grayplot
  */
-static BOOL setBounds(scicos_block * block, char *pAxeUID, char *pGrayplotUID);
+static BOOL setBounds(scicos_block * block, int iAxeUID, int iGrayplotUID);
 
 /**
  * Set the grayplot default values
@@ -124,7 +124,7 @@ static BOOL setBounds(scicos_block * block, char *pAxeUID, char *pGrayplotUID);
  * \param block the block
  * \param pGrayplotUID the grayplot
  */
-static BOOL setDefaultValues(scicos_block * block, char *pGrayplotUID);
+static BOOL setDefaultValues(scicos_block * block, int iGrayplotUID);
 
 /*****************************************************************************
  * Simulation function
@@ -137,7 +137,7 @@ static BOOL setDefaultValues(scicos_block * block, char *pGrayplotUID);
 */
 SCICOS_BLOCKS_IMPEXP void cmatview(scicos_block * block, scicos_flag flag)
 {
-    char const* pFigureUID;
+    int iFigureUID;
 
     double *u;
     sco_data *sco;
@@ -154,8 +154,8 @@ SCICOS_BLOCKS_IMPEXP void cmatview(scicos_block * block, scicos_flag flag)
                 set_block_error(-5);
                 break;
             }
-            pFigureUID = getFigure(block);
-            if (pFigureUID == NULL)
+            iFigureUID = getFigure(block);
+            if (iFigureUID == NULL)
             {
                 // allocation error
                 set_block_error(-5);
@@ -164,8 +164,8 @@ SCICOS_BLOCKS_IMPEXP void cmatview(scicos_block * block, scicos_flag flag)
             break;
 
         case StateUpdate:
-            pFigureUID = getFigure(block);
-            if (pFigureUID == NULL)
+            iFigureUID = getFigure(block);
+            if (iFigureUID == NULL)
             {
                 // allocation error
                 set_block_error(-5);
@@ -215,9 +215,9 @@ static sco_data *getScoData(scicos_block * block)
             goto error_handler_sco;
         }
 
-        sco->scope.cachedFigureUID = NULL;
-        sco->scope.cachedAxeUID = NULL;
-        sco->scope.cachedGrayplotUID = NULL;
+        sco->scope.cachedFigureUID = 0;
+        sco->scope.cachedAxeUID = 0;
+        sco->scope.cachedGrayplotUID = 0;
 
         *(block->work) = sco;
     }
@@ -240,9 +240,6 @@ static void freeScoData(scicos_block * block)
 
     if (sco != NULL)
     {
-        FREE(sco->scope.cachedAxeUID);
-        FREE(sco->scope.cachedGrayplotUID);
-
         FREE(sco);
         *(block->work) = NULL;
     }
@@ -250,9 +247,9 @@ static void freeScoData(scicos_block * block)
 
 static BOOL pushData(scicos_block * block, double *data)
 {
-    char const* pFigureUID;
-    char *pAxeUID;
-    char *pGrayplotUID;
+    int iFigureUID;
+    int iAxeUID;
+    int iGrayplotUID;
 
     BOOL result;
     int i;
@@ -261,9 +258,9 @@ static BOOL pushData(scicos_block * block, double *data)
     double alpha, beta;
     double *scaledData;
 
-    pFigureUID = getFigure(block);
-    pAxeUID = getAxe(pFigureUID, block);
-    pGrayplotUID = getGrayplot(pAxeUID, block);
+    iFigureUID = getFigure(block);
+    iAxeUID = getAxe(iFigureUID, block);
+    iGrayplotUID = getGrayplot(iAxeUID, block);
 
     m = GetInPortSize(block, 1, 1);
     n = GetInPortSize(block, 1, 2);
@@ -290,7 +287,7 @@ static BOOL pushData(scicos_block * block, double *data)
         scaledData[i] = floor(alpha * data[i] + beta);
     }
 
-    result = setGraphicObjectProperty(pGrayplotUID, __GO_DATA_MODEL_Z__, scaledData, jni_double_vector, m * n);
+    result = setGraphicObjectProperty(iGrayplotUID, __GO_DATA_MODEL_Z__, scaledData, jni_double_vector, m * n);
     FREE(scaledData);
 
     return result;
@@ -308,22 +305,22 @@ static BOOL pushData(scicos_block * block, double *data)
  *
  ****************************************************************************/
 
-static char const* getFigure(scicos_block * block)
+static int getFigure(scicos_block * block)
 {
     signed int figNum;
-    char const* pFigureUID = NULL;
-    char *pAxe = NULL;
+    int iFigureUID;
+    int iAxe;
     int i__1 = 1;
     sco_data *sco = (sco_data *) * (block->work);
 
     // assert the sco is not NULL
     if (sco == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedFigureUID != NULL)
+    if (sco->scope.cachedFigureUID != 0)
     {
         return sco->scope.cachedFigureUID;
     }
@@ -336,91 +333,89 @@ static char const* getFigure(scicos_block * block)
         figNum = 20000 + get_block_number();
     }
 
-    pFigureUID = getFigureFromIndex(figNum);
+    iFigureUID = getFigureFromIndex(figNum);
     // create on demand
-    if (pFigureUID == NULL)
+    if (iFigureUID == NULL)
     {
-        pFigureUID = createNewFigureWithAxes();
-        setGraphicObjectProperty(pFigureUID, __GO_ID__, &figNum, jni_int, 1);
+        iFigureUID = createNewFigureWithAxes();
+        setGraphicObjectProperty(iFigureUID, __GO_ID__, &figNum, jni_int, 1);
 
         // the stored uid is a reference to the figure map, not to the current figure
-        pFigureUID = getFigureFromIndex(figNum);
-        sco->scope.cachedFigureUID = pFigureUID;
+        iFigureUID = getFigureFromIndex(figNum);
+        sco->scope.cachedFigureUID = iFigureUID;
 
-        setGraphicObjectProperty(pFigureUID, __GO_COLORMAP__, &block->rpar[2], jni_double_vector, block->ipar[2]);
+        setGraphicObjectProperty(iFigureUID, __GO_COLORMAP__, &block->rpar[2], jni_double_vector, block->ipar[2]);
 
         // allocate the axes through the getter
-        pAxe = getAxe(pFigureUID, block);
+        iAxe = getAxe(iFigureUID, block);
 
         /*
          * Setup according to block settings
          */
-        setLabel(pAxe, __GO_X_AXIS_LABEL__, "x");
-        setLabel(pAxe, __GO_Y_AXIS_LABEL__, "y");
+        setLabel(iAxe, __GO_X_AXIS_LABEL__, "x");
+        setLabel(iAxe, __GO_Y_AXIS_LABEL__, "y");
 
-        setGraphicObjectProperty(pAxe, __GO_X_AXIS_VISIBLE__, &i__1, jni_bool, 1);
-        setGraphicObjectProperty(pAxe, __GO_Y_AXIS_VISIBLE__, &i__1, jni_bool, 1);
+        setGraphicObjectProperty(iAxe, __GO_X_AXIS_VISIBLE__, &i__1, jni_bool, 1);
+        setGraphicObjectProperty(iAxe, __GO_Y_AXIS_VISIBLE__, &i__1, jni_bool, 1);
     }
 
-    if (pFigureUID != NULL && sco->scope.cachedFigureUID == NULL)
+    if (iFigureUID != 0 && sco->scope.cachedFigureUID == 0)
     {
-        sco->scope.cachedFigureUID = pFigureUID;
+        sco->scope.cachedFigureUID = iFigureUID;
     }
-    return pFigureUID;
+    return iFigureUID;
 }
 
-static char *getAxe(char const* pFigureUID, scicos_block * block)
+static int getAxe(int iFigureUID, scicos_block * block)
 {
-    char *pAxe;
+    int iAxe;
     sco_data *sco = (sco_data *) * (block->work);
 
     // assert the sco is not NULL
     if (sco == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedAxeUID != NULL)
+    if (sco->scope.cachedAxeUID != 0)
     {
         return sco->scope.cachedAxeUID;
     }
 
-    pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, 0);
+    iAxe = findChildWithKindAt(iFigureUID, __GO_AXES__, 0);
 
     /*
      * Allocate if necessary
      */
-    if (pAxe == NULL)
+    if (iAxe == 0)
     {
-        cloneAxesModel(pFigureUID);
-        pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, 0);
+        cloneAxesModel(iFigureUID);
+        iAxe = findChildWithKindAt(iFigureUID, __GO_AXES__, 0);
     }
 
     /*
      * Setup on first access
      */
-    if (pAxe != NULL)
+    if (iAxe != 0)
     {
-        getGrayplot(pAxe, block);
+        getGrayplot(iAxe, block);
     }
     else
     {
-        return NULL;
+        return 0;
     }
 
     /*
      * then cache with local storage
      */
-    sco->scope.cachedAxeUID = strdup(pAxe);
-
-    releaseGraphicObjectProperty(__GO_PARENT__, pAxe, jni_string, 1);
+    sco->scope.cachedAxeUID = iAxe;
     return sco->scope.cachedAxeUID;
 }
 
-static char *getGrayplot(char *pAxeUID, scicos_block * block)
+static int getGrayplot(int iAxeUID, scicos_block * block)
 {
-    char *pGrayplot;
+    int iGrayplot;
     int i__0 = 0;
 
     sco_data *sco = (sco_data *) * (block->work);
@@ -428,57 +423,55 @@ static char *getGrayplot(char *pAxeUID, scicos_block * block)
     // assert the sco is not NULL
     if (sco == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedGrayplotUID != NULL)
+    if (sco->scope.cachedGrayplotUID != 0)
     {
         return sco->scope.cachedGrayplotUID;
     }
 
-    pGrayplot = findChildWithKindAt(pAxeUID, __GO_GRAYPLOT__, 0);
+    iGrayplot = findChildWithKindAt(iAxeUID, __GO_GRAYPLOT__, 0);
 
     /*
      * Allocate if necessary
      */
-    if (pGrayplot == NULL)
+    if (iGrayplot == 0)
     {
-        pGrayplot = createGraphicObject(__GO_GRAYPLOT__);
+        iGrayplot = createGraphicObject(__GO_GRAYPLOT__);
 
-        if (pGrayplot != NULL)
+        if (iGrayplot != 0)
         {
-            createDataObject(pGrayplot, __GO_GRAYPLOT__);
-            setGraphicObjectRelationship(pAxeUID, pGrayplot);
+            createDataObject(iGrayplot, __GO_GRAYPLOT__);
+            setGraphicObjectRelationship(iAxeUID, iGrayplot);
         }
         else
         {
-            return NULL;
+            return 0;
         }
     }
 
     /*
      * Setup on first access
      */
-    setGraphicObjectProperty(pGrayplot, __GO_DATA_MAPPING__, &i__0, jni_int, 1);
-    setBounds(block, pAxeUID, pGrayplot);
-    setDefaultValues(block, pGrayplot);
+    setGraphicObjectProperty(iGrayplot, __GO_DATA_MAPPING__, &i__0, jni_int, 1);
+    setBounds(block, iAxeUID, iGrayplot);
+    setDefaultValues(block, iGrayplot);
 
     {
         int iClipState = 1; //on
-        setGraphicObjectProperty(pGrayplot, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
+        setGraphicObjectProperty(iGrayplot, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
     }
 
     /*
      * then cache with a local storage
      */
-    sco->scope.cachedGrayplotUID = strdup(pGrayplot);
-
-    releaseGraphicObjectProperty(__GO_PARENT__, pGrayplot, jni_string, 1);
+    sco->scope.cachedGrayplotUID = iGrayplot;
     return sco->scope.cachedGrayplotUID;
 }
 
-static BOOL setBounds(scicos_block * block, char *pAxeUID, char *pGrayplotUID)
+static BOOL setBounds(scicos_block * block, int iAxeUID, int iGrayplotUID)
 {
     BOOL result;
 
@@ -502,13 +495,13 @@ static BOOL setBounds(scicos_block * block, char *pAxeUID, char *pGrayplotUID)
     dataBounds[4] = -1.0;       // zMin
     dataBounds[5] = 1.0;        // zMax
 
-    result = setGraphicObjectProperty(pGrayplotUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
-    result &= setGraphicObjectProperty(pAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+    result = setGraphicObjectProperty(iGrayplotUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+    result &= setGraphicObjectProperty(iAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 
     return result;
 }
 
-static BOOL setDefaultValues(scicos_block * block, char *pGrayplotUID)
+static BOOL setDefaultValues(scicos_block * block, int iGrayplotUID)
 {
     int m, n, len;
     int i;
@@ -527,14 +520,14 @@ static BOOL setDefaultValues(scicos_block * block, char *pGrayplotUID)
         return FALSE;
     }
 
-    result = setGraphicObjectProperty(pGrayplotUID, __GO_DATA_MODEL_Z__, values, jni_double_vector, m * n);
+    result = setGraphicObjectProperty(iGrayplotUID, __GO_DATA_MODEL_Z__, values, jni_double_vector, m * n);
 
     for (i = 1; i <= len; i++)
     {
         values[i] = (double)i;
     }
-    result &= setGraphicObjectProperty(pGrayplotUID, __GO_DATA_MODEL_X__, values, jni_double_vector, m);
-    result &= setGraphicObjectProperty(pGrayplotUID, __GO_DATA_MODEL_Y__, values, jni_double_vector, n);
+    result &= setGraphicObjectProperty(iGrayplotUID, __GO_DATA_MODEL_X__, values, jni_double_vector, m);
+    result &= setGraphicObjectProperty(iGrayplotUID, __GO_DATA_MODEL_Y__, values, jni_double_vector, n);
 
     FREE(values);
     return result;

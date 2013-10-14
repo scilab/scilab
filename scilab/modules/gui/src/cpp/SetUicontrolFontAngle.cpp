@@ -14,7 +14,7 @@
 
 #include "SetUicontrolFontAngle.hxx"
 
-int SetUicontrolFontAngle(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUicontrolFontAngle(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* Font angle can be normal, italic or oblique */
 
@@ -44,7 +44,7 @@ int SetUicontrolFontAngle(void* _pvCtx, char* sciObjUID, void* _pvData, int valu
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_FONTANGLE__, fontAngle, jni_string, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_FONTANGLE__, fontAngle, jni_string, 1);
 
     if (status == TRUE)
     {

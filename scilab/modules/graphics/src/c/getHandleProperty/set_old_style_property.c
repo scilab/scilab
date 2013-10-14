@@ -25,7 +25,7 @@
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_old_style_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_old_style_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int b = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "old_style");
     if (b == NOT_A_BOOLEAN_VALUE)

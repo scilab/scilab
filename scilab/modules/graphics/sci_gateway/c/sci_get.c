@@ -39,14 +39,11 @@
 #include "freeArrayOfString.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int sciGet(void* _pvCtx, char *pobjUID, char *marker);
-
-/*--------------------------------------------------------------------------*/
-int sciGet(void* _pvCtx, char *pobjUID, char *marker)
+int sciGet(void* _pvCtx, int iObjUID, char *marker)
 {
     /* find the function in the hashtable relative to the property name */
     /* and call it */
-    return callGetProperty(_pvCtx, pobjUID, marker);
+    return callGetProperty(_pvCtx, iObjUID, marker);
 }
 
 /*--------------------------------------------------------------------------*/
@@ -65,7 +62,7 @@ int sci_get(char *fname, unsigned long fname_len)
     long hdl = 0;
 
     int lw = 0;
-    char *pobjUID = NULL;
+    int iObjUID = 0;
 
     /* Root properties */
     char **stkAdr = NULL;
@@ -263,7 +260,7 @@ int sci_get(char *fname, unsigned long fname_len)
     if (hdl == 0)
     {
         /* No handle specified */
-        if (sciGet(pvApiCtx, NULL, (l2)) != 0)
+        if (sciGet(pvApiCtx, 0, (l2)) != 0)
         {
             /* An error has occurred */
             freeAllocatedSingleString(l2);
@@ -273,11 +270,11 @@ int sci_get(char *fname, unsigned long fname_len)
     }
     else
     {
-        pobjUID = (char*)getObjectFromHandle(hdl);
-        if (pobjUID != NULL)
+        iObjUID = getObjectFromHandle(hdl);
+        if (iObjUID != 0)
         {
 
-            if (sciGet(pvApiCtx, pobjUID, (l2)) != 0)
+            if (sciGet(pvApiCtx, iObjUID, (l2)) != 0)
             {
                 /* An error has occurred */
                 freeAllocatedSingleString(l2);

@@ -27,7 +27,7 @@ extern "C"
 #include "graphicObjectProperties.h"
 }
 
-int PolylineDecomposer::getDataSize(char* id)
+int PolylineDecomposer::getDataSize(int id)
 {
     int nPoints = 0;
     int *piNPoints = &nPoints;
@@ -100,7 +100,7 @@ int PolylineDecomposer::getDataSize(char* id)
 
 }
 
-void PolylineDecomposer::fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
+void PolylineDecomposer::fillVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
 {
     double* t = NULL;
     double* xshift = NULL;
@@ -153,7 +153,7 @@ void PolylineDecomposer::fillVertices(char* id, float* buffer, int bufferLength,
 
 }
 
-void PolylineDecomposer::fillSegmentsDecompositionVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
+void PolylineDecomposer::fillSegmentsDecompositionVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift)
 {
 
@@ -238,7 +238,7 @@ void PolylineDecomposer::getAndWriteVertexToBuffer(float* buffer, int offset, do
 
 }
 
-void PolylineDecomposer::fillStairDecompositionVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
+void PolylineDecomposer::fillStairDecompositionVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift)
 {
     int closed = 0;
@@ -303,7 +303,7 @@ void PolylineDecomposer::fillStairDecompositionVertices(char* id, float* buffer,
 
 }
 
-void PolylineDecomposer::fillVerticalLinesDecompositionVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
+void PolylineDecomposer::fillVerticalLinesDecompositionVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift)
 {
     for (int i = 0; i < nPoints; i++)
@@ -429,7 +429,7 @@ void PolylineDecomposer::writeBarVerticesToBuffer(float* buffer, int* offsets, i
     buffer[offsets[4] + componentOffset] = (float)(coordinates[4] * scale + translation);
 }
 
-void PolylineDecomposer::fillVerticalBarsDecompositionVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
+void PolylineDecomposer::fillVerticalBarsDecompositionVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift)
 {
     double barWidth = 0.0;
@@ -551,7 +551,7 @@ void PolylineDecomposer::fillVerticalBarsDecompositionVertices(char* id, float* 
  * To do: -refactor with fillVerticalBarsDecompositionVertices as these two functions are very similar, possibly by implementing
  a PolylineBarDecomposer class.
 */
-void PolylineDecomposer::fillHorizontalBarsDecompositionVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
+void PolylineDecomposer::fillHorizontalBarsDecompositionVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift)
 {
     double barWidth = 0.0;
@@ -675,10 +675,12 @@ void PolylineDecomposer::fillHorizontalBarsDecompositionVertices(char* id, float
  *  -implement for the other relevant polyline style values.
  *  -fix the no colors written problem (related to polyline C build functions, see below).
  */
-void PolylineDecomposer::fillColors(char* id, float* buffer, int bufferLength, int elementsSize)
+void PolylineDecomposer::fillColors(int id, float* buffer, int bufferLength, int elementsSize)
 {
-    char* parent = NULL;
-    char* parentFigure = NULL;
+    int parent = 0;
+    int* pparent = &parent;
+    int parentFigure = 0;
+    int* pparentFigure = &parentFigure;
 
     int interpColorMode = 0;
     int* piInterpColorMode = &interpColorMode;
@@ -708,15 +710,15 @@ void PolylineDecomposer::fillColors(char* id, float* buffer, int bufferLength, i
     }
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**) &piNPoints);
-    getGraphicObjectProperty(id, __GO_PARENT__, jni_string, (void**) &parent);
+    parent = getParentObject(id);
 
     /* Temporary: to avoid getting a null parent_figure property when the object is built */
-    if (strcmp(parent, "") == 0)
+    if (parent == 0)
     {
         return;
     }
 
-    getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_string, (void**) &parentFigure);
+    getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_int, (void**) &pparentFigure);
 
     /*
      * In some cases, the polyline's parent figure may be unitialized, when this point is reached from the
@@ -728,7 +730,7 @@ void PolylineDecomposer::fillColors(char* id, float* buffer, int bufferLength, i
      * hence possibly caused by a race condition.
      * To be fixed.
      */
-    if (strcmp(parentFigure, "") == 0)
+    if (parentFigure == 0)
     {
         return;
     }
@@ -768,10 +770,12 @@ void PolylineDecomposer::fillColors(char* id, float* buffer, int bufferLength, i
     releaseGraphicObjectProperty(__GO_INTERP_COLOR_VECTOR__, interpColorVector, jni_int_vector, 0);
 }
 
-void PolylineDecomposer::fillTextureCoordinates(char* id, float* buffer, int bufferLength)
+void PolylineDecomposer::fillTextureCoordinates(int id, float* buffer, int bufferLength)
 {
-    char* parent = NULL;
-    char* parentFigure = NULL;
+    int parent = 0;
+    int* pparent = &parent;
+    int parentFigure = 0;
+    int* pparentFigure = &parentFigure;
 
     int interpColorMode = 0;
     int* piInterpColorMode = &interpColorMode;
@@ -801,15 +805,15 @@ void PolylineDecomposer::fillTextureCoordinates(char* id, float* buffer, int buf
     }
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**) &piNPoints);
-    getGraphicObjectProperty(id, __GO_PARENT__, jni_string, (void**) &parent);
+    parent = getParentObject(id);
 
     /* Temporary: to avoid getting a null parent_figure property when the object is built */
-    if (strcmp(parent, "") == 0)
+    if (parent == 0)
     {
         return;
     }
 
-    getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_string, (void**) &parentFigure);
+    getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_int, (void**) &pparentFigure);
 
     /*
      * In some cases, the polyline's parent figure may be unitialized, when this point is reached from the
@@ -821,7 +825,7 @@ void PolylineDecomposer::fillTextureCoordinates(char* id, float* buffer, int buf
      * hence possibly caused by a race condition.
      * To be fixed.
      */
-    if (strcmp(parentFigure, "") == 0)
+    if (parentFigure == 0)
     {
         return;
     }
@@ -865,7 +869,7 @@ void PolylineDecomposer::fillTextureCoordinates(char* id, float* buffer, int buf
  * To do: see fillIndices
  * -take into account polyline_style.
  */
-int PolylineDecomposer::getIndicesSize(char* id)
+int PolylineDecomposer::getIndicesSize(int id)
 {
     int nPoints = 0;
     int *piNPoints = &nPoints;
@@ -959,7 +963,7 @@ int PolylineDecomposer::getBarsDecompositionTriangleIndicesSize(int nPoints)
  *  whatever fill_mode's value), by implementing the relevant functions (see fillTriangleIndices),
  *  as the curve must be filled if fill_mode set to on, whatever its polyline style value.
  */
-int PolylineDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)
+int PolylineDecomposer::fillIndices(int id, int* buffer, int bufferLength, int logMask)
 {
     double* coordinates = NULL;
     double* xshift = NULL;
@@ -1013,7 +1017,7 @@ int PolylineDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int
     return 0;
 }
 
-int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLength,
+int PolylineDecomposer::fillTriangleIndices(int id, int* buffer, int bufferLength,
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int fillMode, int polylineStyle)
 {
     double coords[4][3];
@@ -1200,7 +1204,7 @@ int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLen
     return nIndices;
 }
 
-int PolylineDecomposer::fillArrowTriangleIndices(char* id, int* buffer, int bufferLength,
+int PolylineDecomposer::fillArrowTriangleIndices(int id, int* buffer, int bufferLength,
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift)
 {
     int closed = 0;
@@ -1255,7 +1259,7 @@ int PolylineDecomposer::fillArrowTriangleIndices(char* id, int* buffer, int buff
  * Only bars are filled at the present moment, the curve is not.
  * See fillTriangleIndices for more information.
  */
-int PolylineDecomposer::fillBarsDecompositionTriangleIndices(char* id, int* buffer, int bufferLength,
+int PolylineDecomposer::fillBarsDecompositionTriangleIndices(int id, int* buffer, int bufferLength,
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift)
 {
     double barWidth = 0.0;
@@ -1313,7 +1317,7 @@ int PolylineDecomposer::fillBarsDecompositionTriangleIndices(char* id, int* buff
     return numberValidIndices;
 }
 
-int PolylineDecomposer::getWireIndicesSize(char* id)
+int PolylineDecomposer::getWireIndicesSize(int id)
 {
     int nPoints = 0;
     int *piNPoints = &nPoints;
@@ -1461,7 +1465,7 @@ int PolylineDecomposer::getBarsDecompositionSegmentIndicesSize(int nPoints, int 
     }
 }
 
-int PolylineDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, int logMask)
+int PolylineDecomposer::fillWireIndices(int id, int* buffer, int bufferLength, int logMask)
 {
     double* coordinates = NULL;
     double* xshift = NULL;
@@ -1520,7 +1524,7 @@ int PolylineDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength,
     return 0;
 }
 
-int PolylineDecomposer::fillSegmentsDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
+int PolylineDecomposer::fillSegmentsDecompositionSegmentIndices(int id, int* buffer, int bufferLength,
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode, int closed)
 {
     /* If less than 2 points, no segments */
@@ -1547,7 +1551,7 @@ int PolylineDecomposer::fillSegmentsDecompositionSegmentIndices(char* id, int* b
     return closed ? (nPoints + 1) : nPoints;
 }
 
-int PolylineDecomposer::fillStairDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
+int PolylineDecomposer::fillStairDecompositionSegmentIndices(int id, int* buffer, int bufferLength,
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode, int closed)
 {
     int currentValid = 0;
@@ -1582,7 +1586,7 @@ int PolylineDecomposer::fillStairDecompositionSegmentIndices(char* id, int* buff
     return closed ? (2 * nPoints + 1) : (2 * nPoints - 1);
 }
 
-int PolylineDecomposer::fillVerticalLinesDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
+int PolylineDecomposer::fillVerticalLinesDecompositionSegmentIndices(int id, int* buffer, int bufferLength,
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode)
 {
     double coordsi[3];
@@ -1658,7 +1662,7 @@ int PolylineDecomposer::fillVerticalLinesDecompositionSegmentIndices(char* id, i
 }
 
 
-int PolylineDecomposer::fillBarsDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
+int PolylineDecomposer::fillBarsDecompositionSegmentIndices(int id, int* buffer, int bufferLength,
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode)
 {
     double barWidth = 0.0;

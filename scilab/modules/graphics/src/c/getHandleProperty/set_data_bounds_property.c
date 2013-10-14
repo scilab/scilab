@@ -83,7 +83,7 @@ int getdDataBoundsFromStack(double* pdblBounds, int nbRow, int nbCol,
 }
 
 /*------------------------------------------------------------------------*/
-int set_data_bounds_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_data_bounds_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
 
@@ -109,7 +109,7 @@ int set_data_bounds_property(void* _pvCtx, char* pobjUID, void* _pvData, int val
     }
 
     /* To be implemented within the MVC */
-    if (!checkDataBounds(pobjUID, xMin, xMax, yMin, yMax, zMin, zMax))
+    if (!checkDataBounds(iObjUID, xMin, xMax, yMin, yMax, zMin, zMax))
     {
         return SET_PROPERTY_ERROR;
     }
@@ -122,7 +122,7 @@ int set_data_bounds_property(void* _pvCtx, char* pobjUID, void* _pvData, int val
         double* tmpBounds;
 
         /* To get the Z coordinates */
-        getGraphicObjectProperty(pobjUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&tmpBounds);
+        getGraphicObjectProperty(iObjUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&tmpBounds);
 
         if (tmpBounds == NULL)
         {
@@ -137,17 +137,17 @@ int set_data_bounds_property(void* _pvCtx, char* pobjUID, void* _pvData, int val
         bounds[4] = tmpBounds[4];
         bounds[5] = tmpBounds[5];
 
-        status = setGraphicObjectProperty(pobjUID, __GO_DATA_BOUNDS__, bounds, jni_double_vector, 6);
+        status = setGraphicObjectProperty(iObjUID, __GO_DATA_BOUNDS__, bounds, jni_double_vector, 6);
     }
     else
     {
         /* 3D */
         double bounds[6] = {xMin, xMax, yMin, yMax, zMin, zMax};
 
-        status = setGraphicObjectProperty(pobjUID, __GO_DATA_BOUNDS__, bounds, jni_double_vector, 6);
+        status = setGraphicObjectProperty(iObjUID, __GO_DATA_BOUNDS__, bounds, jni_double_vector, 6);
     }
 
-    setGraphicObjectProperty(pobjUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
+    setGraphicObjectProperty(iObjUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
     if (status == TRUE)
     {

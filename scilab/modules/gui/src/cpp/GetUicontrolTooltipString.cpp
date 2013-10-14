@@ -21,14 +21,14 @@ extern "C"
 
 using namespace org_scilab_modules_gui_bridge;
 
-int GetUicontrolTooltipString(void* _pvCtx, char *sciObjUID)
+int GetUicontrolTooltipString(void* _pvCtx, int iObjUID)
 {
     int iNbStrings = 0;
     int *piNbStrings = &iNbStrings;
     char **pstString = NULL;
 
-    getGraphicObjectProperty(sciObjUID, __GO_UI_TOOLTIPSTRING_SIZE__, jni_int, (void **) &piNbStrings);
-    getGraphicObjectProperty(sciObjUID, __GO_UI_TOOLTIPSTRING__, jni_string_vector, (void **) &pstString);
+    getGraphicObjectProperty(iObjUID, __GO_UI_TOOLTIPSTRING_SIZE__, jni_int, (void **) &piNbStrings);
+    getGraphicObjectProperty(iObjUID, __GO_UI_TOOLTIPSTRING__, jni_string_vector, (void **) &pstString);
 
     if (pstString != NULL)
     {

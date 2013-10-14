@@ -28,21 +28,22 @@
 int sci_drawnow(char *fname, unsigned long fname_len)
 {
     int iTrue = (int)TRUE;
-    char* pFigureUID = NULL;
-    char* pSubwinUID = NULL;
+    int iFigureUID = 0;
+    int* piFigureUID = &iFigureUID;
+    int iSubwinUID = 0;
 
     CheckInputArgument(pvApiCtx, 0, 0);
     CheckOutputArgument(pvApiCtx, 0, 1);
 
     if (nbInputArgument(pvApiCtx) <= 0)
     {
-        pSubwinUID = (char*)getOrCreateDefaultSubwin();
-        if (pSubwinUID != NULL)
+        iSubwinUID = getOrCreateDefaultSubwin();
+        if (iSubwinUID != 0)
         {
-            getGraphicObjectProperty(pSubwinUID, __GO_PARENT__, jni_string, (void **)&pFigureUID);
-            if (pFigureUID != NULL)
+            iFigureUID = getParentObject(iSubwinUID);
+            if (iFigureUID != 0)
             {
-                setGraphicObjectProperty(pFigureUID, __GO_IMMEDIATE_DRAWING__, &iTrue, jni_bool, 1);
+                setGraphicObjectProperty(iFigureUID, __GO_IMMEDIATE_DRAWING__, &iTrue, jni_bool, 1);
             }
         }
     }

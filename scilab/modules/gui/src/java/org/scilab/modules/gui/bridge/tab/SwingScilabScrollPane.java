@@ -120,9 +120,9 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
     }
 
     @Override
-    public void updateObject(String id, int property) {
+    public void updateObject(Integer id, int property) {
         // Watch figure.auto_resize = "on" | "off"
-        if (figure.getIdentifier().equals(id)) {
+        if (figure.getIdentifier() == id) {
             if (property == __GO_AUTORESIZE__) {
                 Boolean autoResize = (Boolean) GraphicController.getController().getProperty(id, property);
                 if (autoResize) {
@@ -151,11 +151,11 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
     }
 
     @Override
-    public void createObject(String id) {
+    public void createObject(Integer id) {
     }
 
     @Override
-    public void deleteObject(String id) {
+    public void deleteObject(Integer id) {
         if (figure.getIdentifier().equals(id)) {
             GraphicController.getController().unregister(this);
         }

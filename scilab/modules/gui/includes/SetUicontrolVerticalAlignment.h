@@ -25,6 +25,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true if the verticalalignment property set has been correcty done
  */
-GUI_IMPEXP int SetUicontrolVerticalAlignment(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol);
+GUI_IMPEXP int SetUicontrolVerticalAlignment(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
 
 #endif /* __SET_UICONTROL_VERTICALALIGNMENT_H__ */

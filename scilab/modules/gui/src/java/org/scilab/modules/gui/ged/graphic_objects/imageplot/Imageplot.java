@@ -25,7 +25,7 @@ public class Imageplot extends SimpleObject {
     * Initializes all sections (JPanel's) and Add in Main JPanel of Object.
     * @param objectID Enters the identification of object.
     */
-    public Imageplot(String objectID) {
+    public Imageplot(Integer objectID) {
         super(objectID);
         base = new BaseProperties(objectID);
         data = new DataProperties(objectID);

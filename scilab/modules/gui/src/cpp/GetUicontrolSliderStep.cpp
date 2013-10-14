@@ -13,12 +13,12 @@
 
 #include "GetUicontrolSliderStep.hxx"
 
-int GetUicontrolSliderStep(void* _pvCtx, char *sciObjUID)
+int GetUicontrolSliderStep(void* _pvCtx, int iObjUID)
 {
     double *sliderStep = NULL;
     int status = FALSE;
 
-    getGraphicObjectProperty(sciObjUID, __GO_UI_SLIDERSTEP__, jni_double_vector, (void**) &sliderStep);
+    getGraphicObjectProperty(iObjUID, __GO_UI_SLIDERSTEP__, jni_double_vector, (void**) &sliderStep);
 
     if (sliderStep != NULL)
     {

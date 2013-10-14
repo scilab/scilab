@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_background_property(void* _pvCtx, char* pobjUID)
+int get_background_property(void* _pvCtx, int iObjUID)
 {
     int iBackground = 0;
     int *piBackground = &iBackground;
 
-    getGraphicObjectProperty(pobjUID, __GO_BACKGROUND__, jni_int, (void **)&piBackground);
+    getGraphicObjectProperty(iObjUID, __GO_BACKGROUND__, jni_int, (void **)&piBackground);
 
     if (piBackground == NULL)
     {

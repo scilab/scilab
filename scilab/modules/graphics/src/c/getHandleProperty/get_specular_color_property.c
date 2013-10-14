@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
- 
+
 
 #include "getHandleProperty.h"
 #include "returnProperty.h"
@@ -22,11 +22,11 @@
 /**
  * Gets the specular color of the light/material.
  */
-int get_specular_color_property(void* _pvCtx, char* pobjUID)
+int get_specular_color_property(void* _pvCtx, int iObjUID)
 {
     double* color = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_SPECULARCOLOR__, jni_double_vector, (void **)&color);
+    getGraphicObjectProperty(iObjUID, __GO_SPECULARCOLOR__, jni_double_vector, (void **)&color);
 
     if (color == NULL)
     {

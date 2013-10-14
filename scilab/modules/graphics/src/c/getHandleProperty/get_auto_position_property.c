@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_auto_position_property(void* _pvCtx, char* pobjUID)
+int get_auto_position_property(void* _pvCtx, int iObjUID)
 {
     int iAutoPosition = 0;
     int* piAutoPosition = &iAutoPosition;
 
-    getGraphicObjectProperty(pobjUID, __GO_AUTO_POSITION__, jni_bool, (void **)&piAutoPosition);
+    getGraphicObjectProperty(iObjUID, __GO_AUTO_POSITION__, jni_bool, (void **)&piAutoPosition);
 
     if (piAutoPosition == NULL)
     {

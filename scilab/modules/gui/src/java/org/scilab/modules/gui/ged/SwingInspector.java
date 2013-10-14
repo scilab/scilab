@@ -54,7 +54,7 @@ public class SwingInspector extends SwingScilabTab {
     *
     * @param objectID Enters the identification of object.
     */
-    public SwingInspector(String objectID) {
+    public SwingInspector(Integer objectID) {
         super(MessagesGED.property_list, INSPECTORUUID);
         instance = this;
 

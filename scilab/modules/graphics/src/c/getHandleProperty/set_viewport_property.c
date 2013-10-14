@@ -28,7 +28,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_viewport_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_viewport_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int values[4];
     BOOL status = FALSE;
@@ -52,7 +52,7 @@ int set_viewport_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
     values[2] = 0;
     values[3] = 0;
 
-    status = setGraphicObjectProperty(pobjUID, __GO_VIEWPORT__, values, jni_int_vector, 2);
+    status = setGraphicObjectProperty(iObjUID, __GO_VIEWPORT__, values, jni_int_vector, 2);
 
     if (status == TRUE)
     {

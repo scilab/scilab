@@ -20,19 +20,19 @@ extern "C"
 #include "CurrentFigure.h"
 }
 
-char const* getCurrentFigure(void)
+int getCurrentFigure(void)
 {
     return ScilabView::getCurrentFigure();
 }
 
-void setCurrentFigure(char const* UID)
+void setCurrentFigure(int UID)
 {
     ScilabView::setCurrentFigure(UID);
 }
 
-BOOL isCurrentFigure(char const* UID)
+BOOL isCurrentFigure(int UID)
 {
-    if (strcmp(UID, ScilabView::getCurrentFigure()) == 0)
+    if (UID == ScilabView::getCurrentFigure())
     {
         return TRUE;
     }

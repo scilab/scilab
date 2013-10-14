@@ -59,10 +59,10 @@ public class EntityPicker {
     * @param posY         Position on y axis in pixels.
     * @return            Picked polyline uid or null if there isn't any polyline at the given position.
     */
-    public String pick(String figureUid, Integer posX, Integer posY) {
+    public Integer pick(Integer figureUid, Integer posX, Integer posY) {
 
         Integer[] position = {posX, posY};
-        String axes = AxesHandler.clickedAxes(figureUid, position);
+        Integer axes = AxesHandler.clickedAxes(figureUid, position);
         if (axes == null) {
             return null;
         }
@@ -88,7 +88,7 @@ public class EntityPicker {
             }
         }
 
-        String polylines[] = (new ObjectSearcher()).search(axes, GraphicObjectProperties.__GO_POLYLINE__);
+        Integer polylines[] = (new ObjectSearcher()).search(axes, GraphicObjectProperties.__GO_POLYLINE__);
 
         if (polylines != null) {
             for (int i = 0; i < polylines.length; ++i) {
@@ -118,7 +118,7 @@ public class EntityPicker {
     * @param y        position on y axis in view coordinates.
     * @return        true if x,y belongs or is closest to the polyline.
     */
-    private int isOverLine(String uid, Double x, Double y) {
+    private int isOverLine(Integer uid, Double x, Double y) {
 
         double[] datax = (double[])PolylineData.getDataX(uid);
         double[] datay = (double[])PolylineData.getDataY(uid);
@@ -201,7 +201,7 @@ public class EntityPicker {
      * @param y        position on y axis in view coordinates.
      * @return        True if x,y belongs to the polyline mark.
      */
-    private int isOverMark(String uid, Double x, Double y) {
+    private int isOverMark(Integer uid, Double x, Double y) {
 
         double[] datax = (double[])PolylineData.getDataX(uid);
         double[] datay = (double[])PolylineData.getDataY(uid);
@@ -272,12 +272,12 @@ public class EntityPicker {
      *
      * @return The picked point or PickedPoint.point = -1 otherwise.
      */
-    public PickedPoint pickPoint(String uid, int px, int py) {
+    public PickedPoint pickPoint(Integer uid, int px, int py) {
 
         PickedPoint point = new PickedPoint(-1, false);
         Integer[] position = {px, py};
-        String figUid = (new ObjectSearcher()).searchParent(uid, GraphicObjectProperties.__GO_FIGURE__);
-        String axes = AxesHandler.clickedAxes(figUid, position);
+        Integer figUid = (new ObjectSearcher()).searchParent(uid, GraphicObjectProperties.__GO_FIGURE__);
+        Integer axes = AxesHandler.clickedAxes(figUid, position);
         if (axes == null) {
             return point;
         }
@@ -330,9 +330,9 @@ public class EntityPicker {
 
 
     public class LegendInfo {
-        public String legend = null;
-        public String polyline = null;
-        LegendInfo(String legend, String polyline) {
+        public Integer legend = null;
+        public Integer polyline = null;
+        LegendInfo(Integer legend, Integer polyline) {
             this.legend = legend;
             this.polyline = polyline;
         }
@@ -345,18 +345,18 @@ public class EntityPicker {
     * @param position The mouse position (x, y).
     * @return The LegendInfo if picked a legend null otherwise.
     */
-    public LegendInfo pickLegend(String figure, Integer[] position) {
+    public LegendInfo pickLegend(Integer figure, Integer[] position) {
 
-        String axes = AxesHandler.clickedAxes(figure, position);
+        Integer axes = AxesHandler.clickedAxes(figure, position);
         if (axes == null) {
             return null;
         }
-        String legend = LegendHandler.searchLegend(axes);
+        Integer legend = LegendHandler.searchLegend(axes);
         if (legend == null) {
             return null;
         }
 
-        String[] links;
+        Integer[] links;
         Integer[] axesSize = {0, 0};
         Double delta;
         Double[] axesBounds = { 0., 0. }, dPosition = { 0., 0. }, legendPos = { 0., 0. }, legendBounds = { 0., 0., 0., 0. }, dimension = { 0., 0. };
@@ -364,7 +364,7 @@ public class EntityPicker {
         axesSize = (Integer[])GraphicController.getController().getProperty(figure, GraphicObjectProperties.__GO_AXES_SIZE__);
         axesBounds = (Double[])GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_AXES_BOUNDS__);
         legendPos = (Double[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_POSITION__);
-        links = (String[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_LINKS__);
+        links = (Integer[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_LINKS__);
         dPosition[0] = (position[0] - (axesBounds[0] * axesSize[0])) / (axesBounds[2] * axesSize[0]);
         dPosition[1] = (position[1] - (axesBounds[1] * axesSize[1])) / (axesBounds[3] * axesSize[1]);
         dimension = (Double[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_SIZE__);
@@ -390,9 +390,9 @@ public class EntityPicker {
      * @param pos The position (x, y).
      * @return The picked axis label or null.
      */
-    public static AxesHandler.axisTo pickLabel(String figure, Integer[] pos) {
+    public static AxesHandler.axisTo pickLabel(Integer figure, Integer[] pos) {
 
-        String axes = AxesHandler.clickedAxes(figure, pos);
+        Integer axes = AxesHandler.clickedAxes(figure, pos);
         if (axes == null) {
             return null;
         }
@@ -401,11 +401,11 @@ public class EntityPicker {
         int rotate = 0;
         double[] point = new double[3];
         double[] coord;
-        String[] label = {  (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LABEL__),
-                            (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LABEL__),
-                            (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__),
-                            (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_TITLE__)
-                         };
+        Integer[] label = {  (Integer)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LABEL__),
+                             (Integer)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LABEL__),
+                             (Integer)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__),
+                             (Integer)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_TITLE__)
+                          };
 
         boolean[] logScale = {  (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__),
                                 (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__)
@@ -469,8 +469,8 @@ public class EntityPicker {
      * @param pos Mouse position (x, y).
      * @return The nearest surface intersected or null otherwise.
      */
-    String pickSurface(String figure, Integer[] pos) {
-        String uid = AxesHandler.clickedAxes(figure, pos);
+    Integer pickSurface(Integer figure, Integer[] pos) {
+        Integer uid = AxesHandler.clickedAxes(figure, pos);
         curAxes = (Axes)GraphicController.getController().getObjectFromId(uid);
         double[][] factors = curAxes.getScaleTranslateFactors();
         double[] mat = DrawerVisitor.getVisitor(figure).getAxesDrawer().getProjection(uid).getMatrix();
@@ -484,9 +484,9 @@ public class EntityPicker {
 
 
         Integer[] types = {GraphicObjectProperties.__GO_PLOT3D__, GraphicObjectProperties.__GO_FAC3D__, GraphicObjectProperties.__GO_GRAYPLOT__};
-        String[] objs = (new ObjectSearcher()).searchMultiple(figure, types);
+        Integer[] objs = (new ObjectSearcher()).searchMultiple(figure, types);
         double Z = 2.0;
-        String picked = null;
+        Integer picked = null;
         if (objs != null) {
             for (int i = 0; i < objs.length; ++i) {
                 double curZ = SurfaceData.pickSurface(objs[i], v0.getX(), v0.getY(), v0.getZ(),
@@ -502,15 +502,15 @@ public class EntityPicker {
     }
 
 
-    public String pickDatatip(String figure, Integer[] pos) {
+    public Integer pickDatatip(Integer figure, Integer[] pos) {
 
-        String axes = AxesHandler.clickedAxes(figure, pos);
+        Integer axes = AxesHandler.clickedAxes(figure, pos);
         if (axes == null) {
             return null;
         }
 
         curAxes = AxesHandler.getAxesFromUid(axes);
-        String[] datatips = (new ObjectSearcher()).search(axes, GraphicObjectProperties.__GO_DATATIP__);
+        Integer[] datatips = (new ObjectSearcher()).search(axes, GraphicObjectProperties.__GO_DATATIP__);
         boolean[] logFlags = {  curAxes.getXAxisLogFlag(), curAxes.getYAxisLogFlag(), curAxes.getZAxisLogFlag()};
 
         if (datatips != null) {

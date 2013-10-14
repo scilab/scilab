@@ -46,11 +46,11 @@ int sci_xrects(char *fname, unsigned long fname_len)
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0;
     long  hdl = 0;
     int i = 0;
-    char* psubwinUID = NULL;
+    int iSubwinUID = 0;
 
     int foreground = 0;
     int *piForeground = &foreground;
-    char *pstCompoundUID = NULL;
+    int iCompoundUID = 0;
 
     CheckInputArgument(pvApiCtx, 1, 2);
 
@@ -127,15 +127,15 @@ int sci_xrects(char *fname, unsigned long fname_len)
         }
     }
 
-    psubwinUID = (char*)getOrCreateDefaultSubwin();
+    iSubwinUID = getOrCreateDefaultSubwin();
 
     // Create compound.
-    pstCompoundUID = createGraphicObject(__GO_COMPOUND__);
+    iCompoundUID = createGraphicObject(__GO_COMPOUND__);
     /* Sets the parent-child relationship for the Compound */
-    setGraphicObjectRelationship(psubwinUID, pstCompoundUID);
+    setGraphicObjectRelationship(iSubwinUID, iCompoundUID);
 
     /** Get Subwin line color */
-    getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
+    getGraphicObjectProperty(iSubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
 
     for (i = 0; i < n1; ++i)
     {
@@ -165,14 +165,11 @@ int sci_xrects(char *fname, unsigned long fname_len)
             }
         }
         // Add newly created object to Compound
-        setGraphicObjectRelationship(pstCompoundUID, getObjectFromHandle(hdl));
+        setGraphicObjectRelationship(iCompoundUID, getObjectFromHandle(hdl));
     }
 
     /** make Compound current object **/
-    setCurrentObject(pstCompoundUID);
-
-    releaseGraphicObjectProperty(-1, pstCompoundUID, jni_string, 0);
-
+    setCurrentObject(iCompoundUID);
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
 

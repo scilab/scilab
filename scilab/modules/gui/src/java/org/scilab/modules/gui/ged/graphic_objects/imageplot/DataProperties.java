@@ -37,7 +37,7 @@ public class DataProperties extends SimpleSection {
     * Initializes the properties and the icons of the buttons.
     * @param objectID Enters the identification of imageplot.
     */
-    public DataProperties(String objectID) {
+    public DataProperties(Integer objectID) {
         super(MessagesGED.data_properties, "imageplot");
         instance = this;
         sectionPanel = getSectionPanel();
@@ -57,7 +57,7 @@ public class DataProperties extends SimpleSection {
     * @param objectID uid
     */
     @Override
-    public final void initComponents(String objectID) {
+    public final void initComponents(Integer objectID) {
         int row = 0;
         final int leftmargin = 0; //to inner components
         int column = 1; //first column
@@ -65,7 +65,7 @@ public class DataProperties extends SimpleSection {
         clippableContouredObject.clipState(sectionPanel, row++, column, leftmargin, objectID);
 
         clippableContouredObject.clipBox(sectionPanel, row, column, leftmargin, objectID);
-        row+=2;
+        row += 2;
 
         //Components of the property: Data Mapping (only to grayplot).
         if (isGrayplot(objectID)) {
@@ -82,12 +82,13 @@ public class DataProperties extends SimpleSection {
     * @param objectID uid
     * @return if true, is grayplot
     */
-    private boolean isGrayplot(String objectID) {
+    private boolean isGrayplot(Integer objectID) {
         Integer type = (Integer) GraphicController.getController()
-                .getProperty(objectID, GraphicObjectProperties.__GO_TYPE__);
-        if (type == GraphicObjectProperties.__GO_GRAYPLOT__)
+                       .getProperty(objectID, GraphicObjectProperties.__GO_TYPE__);
+        if (type == GraphicObjectProperties.__GO_GRAYPLOT__) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 }

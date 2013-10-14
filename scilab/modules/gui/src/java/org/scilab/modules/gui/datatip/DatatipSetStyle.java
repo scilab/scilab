@@ -33,9 +33,9 @@ public class DatatipSetStyle {
     * @param boxed Boolean to show/hide datatip box.
     * @param labeled Boolean to show/hide datatip label.
     */
-    public static void datatipSetStyle(String polylineUID, int t, boolean boxed, boolean labeled) {
+    public static void datatipSetStyle(int polylineUID, int t, boolean boxed, boolean labeled) {
 
-        String[] childrenUID = (String[])GraphicController.getController().getProperty(polylineUID, GraphicObjectProperties.__GO_CHILDREN__);
+        Integer[] childrenUID = (Integer[])GraphicController.getController().getProperty(polylineUID, GraphicObjectProperties.__GO_CHILDREN__);
 
         for (int i = 0 ; i < childrenUID.length ; i++) {
 

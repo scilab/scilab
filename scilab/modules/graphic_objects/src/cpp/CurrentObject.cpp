@@ -15,27 +15,49 @@
 extern "C"
 {
 #include <string.h>
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 #include "BOOL.h"
 #include "CurrentObject.h"
 }
 
 
-char const* getCurrentObject(void)
+int getCurrentObject(void)
 {
     return ScilabView::getCurrentObject();
 }
 
-void setCurrentObject(char const* UID)
+void setCurrentObject(int UID)
 {
     ScilabView::setCurrentObject(UID);
 }
 
-BOOL isCurrentObject(char const* UID)
+BOOL isCurrentObject(int UID)
 {
-    if (strcmp(UID, ScilabView::getCurrentObject()) == 0)
+    if (UID == ScilabView::getCurrentObject())
     {
         return TRUE;
     }
     return FALSE;
+}
+
+int getParentObject(int iUID)
+{
+    int iParent = 0;
+    int* piParent = &iParent;
+    if (iUID == 0)
+    {
+        return 0;
+    }
+
+    getGraphicObjectProperty(iUID, __GO_PARENT__, jni_int, (void**)&piParent);
+    return iParent;
+}
+
+void setParentObject(int iUID, int iParent)
+{
+    setGraphicObjectProperty(iUID, __GO_PARENT__, &iParent, jni_int, 1);
+    return;
 }

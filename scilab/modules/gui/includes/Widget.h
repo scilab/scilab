@@ -19,6 +19,6 @@
  *
  * @param pObjUID the object UID
  */
-GUI_IMPEXP void requestFocus(char *pObjUID);
+GUI_IMPEXP void requestFocus(int iObjUID);
 
 #endif /* __WIDGET_H__ */

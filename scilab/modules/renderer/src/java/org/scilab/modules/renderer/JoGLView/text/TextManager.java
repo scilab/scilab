@@ -50,7 +50,7 @@ public class TextManager {
     /**
      * The {@see Map} off existing {@see TextEntity}.
      */
-    protected final Map<String, Texture> spriteMap = new ConcurrentHashMap<String, Texture>();
+    protected final Map<Integer, Texture> spriteMap = new ConcurrentHashMap<Integer, Texture>();
 
     /**
      * The used texture manager.
@@ -86,7 +86,7 @@ public class TextManager {
 
         Transformation projection = drawingTools.getTransformationManager().getCanvasProjection();
 
-        String parentAxesId = text.getParentAxes();
+        Integer parentAxesId = text.getParentAxes();
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentAxesId);
         double[][] factors = parentAxes.getScaleTranslateFactors();
         Double[] pos = text.getPosition();
@@ -281,7 +281,7 @@ public class TextManager {
     protected Vector3d[] computeTextPosition(Transformation projection, Text text, Vector3d[] textBoxVectors, Dimension spriteDim) throws DegenerateMatrixException {
         Vector3d[] cornerPositions = new Vector3d[2];
 
-        String parentAxesId = text.getParentAxes();
+        Integer parentAxesId = text.getParentAxes();
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentAxesId);
         double[][] factors = parentAxes.getScaleTranslateFactors();
         Double[] pos = text.getPosition();
@@ -484,7 +484,7 @@ public class TextManager {
      * @param id the modified object.
      * @param property the changed property.
      */
-    public void update(String id, int property) {
+    public void update(Integer id, int property) {
         if (!(__GO_POSITION__ == property) && !(__GO_FONT_ANGLE__ == property)) {
             dispose(id);
         }
@@ -586,7 +586,7 @@ public class TextManager {
      * Dispose the texture corresponding to the given id.
      * @param id the given id.
      */
-    public void dispose(String id) {
+    public void dispose(Integer id) {
         Texture texture = spriteMap.get(id);
         if (texture != null) {
             textureManager.dispose(texture);

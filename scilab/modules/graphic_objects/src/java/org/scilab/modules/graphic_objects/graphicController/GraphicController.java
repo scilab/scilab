@@ -39,6 +39,7 @@ public class GraphicController {
     private static boolean MVCViewEnable = false;
     private static boolean debugEnable = true;
     private static boolean infoEnable = false;
+    private static Integer lastId = 0;
 
     private static void INFO(String message) {
         if (infoEnable == true) {
@@ -111,8 +112,8 @@ public class GraphicController {
      * Creates a UID
      * @return the created UID
      */
-    public UID createUID() {
-        return new UID();
+    public Integer createUID() {
+        return ++lastId;
     }
 
     /**
@@ -120,7 +121,7 @@ public class GraphicController {
      * @param id the object id
      * @return the object
      */
-    public GraphicObject getObjectFromId(String id) {
+    public GraphicObject getObjectFromId(Integer id) {
         return GraphicModel.getModel().getObjectFromId(id);
     }
 
@@ -131,7 +132,7 @@ public class GraphicController {
      * @param value the property value
      * @return true if the property has been set, false otherwise
      */
-    public boolean setProperty(String id, int prop, Object value) {
+    public boolean setProperty(Integer id, int prop, Object value) {
         try {
             switch (GraphicModel.getModel().setProperty(id, prop, value)) {
                 case Success : // BroadCast Message + return true
@@ -158,7 +159,7 @@ public class GraphicController {
      * @param prop the property name
      * @return the property value
      */
-    public Object getProperty(String id, int prop) {
+    public Object getProperty(Integer id, int prop) {
         try {
             return GraphicModel.getModel().getProperty(id, prop);
         } catch (Exception e) {
@@ -176,7 +177,7 @@ public class GraphicController {
      * @param prop the property name
      * @return the null property
      */
-    public Object getNullProperty(String id, String prop) {
+    public Object getNullProperty(Integer id, String prop) {
         return GraphicModel.getModel().getNullProperty(id, prop);
     }
 
@@ -185,20 +186,20 @@ public class GraphicController {
      * @param type the object type
      * @return the created object's id
      */
-    public String askObject(Type type) {
+    public Integer askObject(Type type) {
 
         try {
-            UID id = createUID();
-            GraphicModel.getModel().createObject(id.toString(), type);
-            objectCreated(id.toString());
+            Integer id = createUID();
+            GraphicModel.getModel().createObject(id, type);
+            objectCreated(id);
 
-            return id.toString();
+            return id;
         } catch (Exception e) {
             DEBUG("====== Exception caught ======");
             DEBUG(" askObject type = " + type.name());
             e.printStackTrace();
             DEBUG("====== Exception caught ======");
-            return "";
+            return 0;
         }
 
     }
@@ -208,19 +209,19 @@ public class GraphicController {
      * @param id : the ID of the object to clone.
      * @return the id of the clone.
      */
-    public String cloneObject(String id) {
+    public Integer cloneObject(Integer id) {
         try {
-            UID newId = createUID();
-            GraphicModel.getModel().cloneObject(id, newId.toString());
-            objectCreated(newId.toString());
+            Integer newId = createUID();
+            GraphicModel.getModel().cloneObject(id, newId);
+            objectCreated(newId);
 
-            return newId.toString();
+            return newId;
         } catch (Exception e) {
             DEBUG("====== Exception caught ======");
             DEBUG("cloneObject id = " + id);
             e.printStackTrace();
             DEBUG("====== Exception caught ======");
-            return "";
+            return 0;
         }
     }
 
@@ -228,7 +229,7 @@ public class GraphicController {
      * Deletes an object
      * @param id the deleted object's id
      */
-    public void deleteObject(String id) {
+    public void deleteObject(Integer id) {
         try {
             objectDeleted(id);
             GraphicModel.getModel().deleteObject(id);
@@ -244,7 +245,7 @@ public class GraphicController {
      * Notifies the existing views that an object has been created
      * @param id the created object's id
      */
-    public void objectCreated(final String id) {
+    public void objectCreated(final Integer id) {
         //INFO("### Create object : "+id);
         //INFO("### type is : " + getProperty(id, GraphicObjectProperties.__GO_TYPE__));
         Vector<Runnable> broadCastVector = new Vector<Runnable>();
@@ -270,7 +271,7 @@ public class GraphicController {
      * @param id the updated object's id
      * @param prop the property that has been updated
      */
-    public void objectUpdate(final String id, final int prop) {
+    public void objectUpdate(final Integer id, final int prop) {
         //INFO("### Update object : "+id);
         //INFO("### type is : " + getProperty(id, GraphicObjectProperties.__GO_TYPE__));
         //INFO("### prop is : " + prop);
@@ -296,7 +297,7 @@ public class GraphicController {
      * Notified the existing views that an object has been deleted
      * @param id the deleted object's id
      */
-    public void objectDeleted(final String id) {
+    public void objectDeleted(final Integer id) {
         //INFO("### Delete object : "+id);
         //INFO("### type is : " + getProperty(id, GraphicObjectProperties.__GO_TYPE__));
         Vector<Runnable> broadCastVector = new Vector<Runnable>();
@@ -322,38 +323,38 @@ public class GraphicController {
      * @param parentId id of the parent object.
      * @param childId id of the child object.
      */
-    public void setGraphicObjectRelationship(String parentId, String childId) {
+    public void setGraphicObjectRelationship(Integer parentId, Integer childId) {
         /*
          * All the parent and children get/set calls must be performed first,
          * and only then the corresponding object updates.
          */
         Object oldParent = getProperty(childId, GraphicObjectProperties.__GO_PARENT__);
 
-        if (oldParent != null && oldParent instanceof String) {
-            String oldParentId = (String) oldParent;
+        if (oldParent != null && oldParent instanceof Integer) {
+            Integer oldParentId = (Integer) oldParent;
 
-            if (oldParentId.equals(parentId)) {
+            if (oldParentId == parentId) {
                 return;
             }
 
-            if (!oldParentId.equals("")) {
+            if (oldParentId != 0) {
                 getObjectFromId(oldParentId).removeChild(childId);
             }
         }
 
         /* Insertion occurs at the head of the children list. */
-        if (parentId != null && !parentId.equals("")) {
+        if (parentId != null && parentId != 0) {
             getObjectFromId(parentId).addChild(childId);
         }
 
         setProperty(childId, GraphicObjectProperties.__GO_PARENT__, parentId);
 
         /* Object updates can now be performed. */
-        if (oldParent != null && oldParent instanceof String && !((String)oldParent).equals("")) {
-            objectUpdate((String)oldParent, GraphicObjectProperties.__GO_CHILDREN__);
+        if (oldParent != null && oldParent instanceof Integer && ((Integer)oldParent) != 0) {
+            objectUpdate((Integer)oldParent, GraphicObjectProperties.__GO_CHILDREN__);
         }
 
-        if (parentId != null && !parentId.equals("")) {
+        if (parentId != null && parentId != 0) {
             objectUpdate(parentId, GraphicObjectProperties.__GO_CHILDREN__);
         }
 
@@ -367,18 +368,18 @@ public class GraphicController {
      * TODO : Manage children of deleted object.
      * @param id deleted object identifier.
      */
-    public void removeRelationShipAndDelete(String id) {
+    public void removeRelationShipAndDelete(Integer id) {
         final GraphicObject killMe = getObjectFromId(id);
         // assert that the object has not been deleted yet
         if (killMe == null) {
             return;
         }
 
-        String parentUID = killMe.getParent();
+        Integer parentUID = killMe.getParent();
 
 
         /* Remove object from Parent's Children list */
-        if (parentUID != null && !parentUID.equals("")) {
+        if (parentUID != null && parentUID != 0) {
             getObjectFromId(parentUID).removeChild(id);
             //setProperty(id, GraphicObjectProperties.__GO_PARENT__, "");
 
@@ -393,7 +394,7 @@ public class GraphicController {
     }
 
     private void recursiveDeleteChildren(GraphicObject killMe) {
-        String children[] = killMe.getChildren();
+        Integer children[] = killMe.getChildren();
 
         for (int i = 0 ; i < children.length ; ++i) {
             GraphicObject killMeThisChild = getObjectFromId(children[i]);

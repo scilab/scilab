@@ -25,7 +25,7 @@ import org.scilab.modules.gui.utils.ClosingOperationsManager;
 */
 public class PlotBrowserTab {
 
-    public static SwingScilabTab getPlotBrowserInstance(String objectID) {
+    public static SwingScilabTab getPlotBrowserInstance(Integer objectID) {
         final SwingScilabTab plotbrowser = PlotBrowser
                                            .createPlotBrowserTab(objectID);
         ScilabTabFactory.getInstance().addToCache(plotbrowser);

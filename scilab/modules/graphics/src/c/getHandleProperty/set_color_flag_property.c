@@ -37,7 +37,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_color_flag_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_color_flag_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int type = -1;
     int *piType = &type;
@@ -55,7 +55,7 @@ int set_color_flag_property(void* _pvCtx, char* pobjUID, void* _pvData, int valu
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     if (type == __GO_PLOT3D__)
     {
@@ -65,7 +65,7 @@ int set_color_flag_property(void* _pvCtx, char* pobjUID, void* _pvData, int valu
             return SET_PROPERTY_ERROR;
         }
 
-        setGraphicObjectProperty(pobjUID, __GO_COLOR_FLAG__, &flagcolor, jni_int, 1);
+        setGraphicObjectProperty(iObjUID, __GO_COLOR_FLAG__, &flagcolor, jni_int, 1);
 
         return SET_PROPERTY_SUCCEED;
     }
@@ -77,7 +77,7 @@ int set_color_flag_property(void* _pvCtx, char* pobjUID, void* _pvData, int valu
             return SET_PROPERTY_ERROR;
         }
 
-        setGraphicObjectProperty(pobjUID, __GO_COLOR_FLAG__, &flagcolor, jni_int, 1);
+        setGraphicObjectProperty(iObjUID, __GO_COLOR_FLAG__, &flagcolor, jni_int, 1);
 
         return SET_PROPERTY_SUCCEED;
     }

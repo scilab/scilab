@@ -54,13 +54,13 @@ public abstract class GraphicObject implements Cloneable {
                                           };
 
     /** Identifier */
-    private String identifier;
+    private Integer identifier;
 
     /** Parent object is known by its UID */
-    private String parent;
+    private Integer parent;
 
     /** Child objects list. Known by their UID */
-    private List <String> children;
+    private List <Integer> children;
 
     /** Specifies whether the object is visible or not */
     private boolean visible;
@@ -89,18 +89,18 @@ public abstract class GraphicObject implements Cloneable {
      * to store only the identifier of the currently selected child.
      * To do: use a list if required
      */
-    private String selectedChild;
+    private Integer selectedChild;
 
     /** Constructor */
     public GraphicObject() {
-        identifier = null;
-        parent = "";
-        children = new LinkedList<String>();
+        identifier = 0;
+        parent = 0;
+        children = new LinkedList<Integer>();
         visible = true;
         userData = null;
         valid = true;
         referenced = false;
-        selectedChild = "";
+        selectedChild = 0;
         tag = "";
         callback = new CallBack("");
     }
@@ -125,18 +125,18 @@ public abstract class GraphicObject implements Cloneable {
          * still referencing the original object's own list,
          * which occurs when the Figure model is cloned.
          */
-        copy.setChildren(new LinkedList<String>());
+        copy.setChildren(new LinkedList<Integer>());
 
         /*
          * Avoids keeping the Figure model as a parent
          * when the Axes model is cloned.
          */
-        copy.setParent("");
+        copy.setParent(0);
 
         /*
          * Sets no object as the selected child.
          */
-        copy.setSelectedChild("");
+        copy.setSelectedChild(0);
 
         return copy;
     }
@@ -347,10 +347,10 @@ public abstract class GraphicObject implements Cloneable {
         GraphicObjectPropertyType p = (GraphicObjectPropertyType) property;
         switch (p) {
             case PARENT:
-                setParent((String) value);
+                setParent((Integer) value);
                 break;
             case CHILDREN:
-                setChildren((String[]) value);
+                setChildren((Integer[]) value);
                 break;
             case VALID:
                 setValid((Boolean) value);
@@ -367,7 +367,7 @@ public abstract class GraphicObject implements Cloneable {
             case USERDATASIZE:
                 return UpdateStatus.Fail;
             case SELECTEDCHILD:
-                setSelectedChild((String) value);
+                setSelectedChild((Integer) value);
                 break;
             case DATA:
                 return UpdateStatus.Success;
@@ -420,15 +420,15 @@ public abstract class GraphicObject implements Cloneable {
     /**
      * @return the children
      */
-    public String[] getChildren() {
-        return children.toArray(new String[children.size()]);
+    public Integer[] getChildren() {
+        return children.toArray(new Integer[children.size()]);
     }
 
     /**
      * Adds a child.
      * @param child the identifier of the added child.
      */
-    public void addChild(String child) {
+    public void addChild(Integer child) {
         children.add(0, child);
     }
 
@@ -436,49 +436,49 @@ public abstract class GraphicObject implements Cloneable {
      * Removes a child.
      * @param child the identifier of the removed child.
      */
-    public void removeChild(String child) {
+    public void removeChild(Integer child) {
         children.remove(child);
     }
 
     /**
      * @param children the children to set
      */
-    private void setChildren(List<String> children) {
+    private void setChildren(List<Integer> children) {
         this.children = children;
     }
 
     /**
      * @param children the children to set
      */
-    public void setChildren(String[] children) {
-        this.children = new LinkedList<String>(Arrays.asList(children));
+    public void setChildren(Integer[] children) {
+        this.children = new LinkedList<Integer>(Arrays.asList(children));
     }
 
     /**
      * @return the identifier
      */
-    public String getIdentifier() {
+    public Integer getIdentifier() {
         return identifier;
     }
 
     /**
      * @param identifier the identifier to set
      */
-    public void setIdentifier(String identifier) {
+    public void setIdentifier(Integer identifier) {
         this.identifier = identifier;
     }
 
     /**
      * @return the parent
      */
-    public String getParent() {
+    public Integer getParent() {
         return parent;
     }
 
     /**
      * @param parent the parent to set
      */
-    public void setParent(String parent) {
+    public void setParent(Integer parent) {
         this.parent = parent;
     }
 
@@ -556,15 +556,15 @@ public abstract class GraphicObject implements Cloneable {
      * returned instead of recursively ascending the hierarchy at each call.
      * @return the parent Figure identifier
      */
-    public String getParentFigure() {
+    public Integer getParentFigure() {
         if (this instanceof Figure) {
             return getIdentifier();
         } else {
-            if (getParent() != null && GraphicController.getController().getObjectFromId(getParent()) != null) {
+            if (getParent() != 0 && GraphicController.getController().getObjectFromId(getParent()) != null) {
                 return GraphicController.getController().getObjectFromId(getParent()).getParentFigure();
             } else {
                 /* No parent Figure found */
-                return "";
+                return 0;
             }
         }
     }
@@ -577,15 +577,15 @@ public abstract class GraphicObject implements Cloneable {
      * returned instead of recursively ascending the hierarchy at each call.
      * @return the parent Axes identifier
      */
-    public String getParentAxes() {
+    public Integer getParentAxes() {
         if (this instanceof Axes) {
             return getIdentifier();
         } else {
-            if (getParent() != null && GraphicController.getController().getObjectFromId(getParent()) != null) {
+            if (getParent() != 0 && GraphicController.getController().getObjectFromId(getParent()) != null) {
                 return GraphicController.getController().getObjectFromId(getParent()).getParentAxes();
             } else {
                 /* No parent Axes found */
-                return "";
+                return 0;
             }
         }
     }
@@ -617,7 +617,7 @@ public abstract class GraphicObject implements Cloneable {
      * (one Legend is supposed to be present at most).
      * @return the object's child Legend object identifier, or an empty string if no child Legend found.
      */
-    public String getLegendChild() {
+    public Integer getLegendChild() {
         for (int i = 0; i < children.size(); i++) {
             GraphicObject currentObject = GraphicController.getController().getObjectFromId(children.get(i));
 
@@ -627,14 +627,14 @@ public abstract class GraphicObject implements Cloneable {
         }
 
         /* No child legend found */
-        return "";
+        return 0;
     }
 
     /**
      * Get selected child method
      * @return the selected child
      */
-    public String getSelectedChild() {
+    public Integer getSelectedChild() {
         return selectedChild;
     }
 
@@ -642,7 +642,7 @@ public abstract class GraphicObject implements Cloneable {
      * Set selected child method
      * @param selectedChild the selected child to set
      */
-    public void setSelectedChild(String selectedChild) {
+    public void setSelectedChild(Integer selectedChild) {
         this.selectedChild = selectedChild;
     }
 

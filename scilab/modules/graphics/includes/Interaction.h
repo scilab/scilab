@@ -38,7 +38,7 @@ typedef enum
 } EResizeStatus;
 
 
-GRAPHICS_IMPEXP int Objmove(char* pobjUID, double d[], int m, BOOL opt); /* INTERACTION */
+GRAPHICS_IMPEXP int Objmove(int iObjUID, double d[], int m, BOOL opt); /* INTERACTION */
 
 /**
  * Call rubber box on a figure in pixels
@@ -50,7 +50,7 @@ GRAPHICS_IMPEXP int Objmove(char* pobjUID, double d[], int m, BOOL opt); /* INTE
  *                     the rubber box
  * @param[out] usedButton Scilab code of the button used to terminate the rubber box
  */
-GRAPHICS_IMPEXP void pixelRubberBox(char * pFigure, BOOL isClick,
+GRAPHICS_IMPEXP void pixelRubberBox(int iFigure, BOOL isClick,
                                     const int initialRect[4], int endRect[4], int * usedButton);
 
 /**
@@ -62,13 +62,13 @@ GRAPHICS_IMPEXP void pixelRubberBox(char * pFigure, BOOL isClick,
  * @param[out] endRect array containing the [x,y,w,h] of the selected rectangle
  * @param[out] usedButton Scilab code of the button used to terminate the rubber box
  */
-GRAPHICS_IMPEXP void rubberBox(char * pSubwin, BOOL isClick,
+GRAPHICS_IMPEXP void rubberBox(int iSubwin, BOOL isClick,
                                const double initialRect[4], double endRect[4], int * usedButton);
 
 /**
  * Put the figure in top of other windows.
  * @pram pFigure figure corresponding to the window
  */
-GRAPHICS_IMPEXP void showWindow(char* pFigureUID);
+GRAPHICS_IMPEXP void showWindow(int iFigureUID);
 
 #endif /* __SCI_INTERACTION__ */
