@@ -133,7 +133,12 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
         else if (err == DO_XXPRINTF_MISMATCH)
         {
             // go back to the last position
-            mseek(iFile, iCurrentPos, SEEK_SET);
+            // only if this line is not empty
+            if (args)
+            {
+                mseek(iFile, iCurrentPos, SEEK_SET);
+            }
+
             break;
         }
 
