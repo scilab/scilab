@@ -16,6 +16,8 @@ import java.awt.Component;
 import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.SwingUtilities;
 
@@ -28,6 +30,13 @@ import org.scilab.modules.types.ScilabTypeEnum;
  * Main interface between Scilab gateway and Java objects
  */
 public class UIWidget {
+
+    private static final Map<String, String> externalWidgets = new HashMap<String, String>();
+
+    static {
+	// This is used for widgets which cannot be in gui (dependency problems)
+	externalWidgets.put("uiscilabcode", "org.scilab.modules.scinotes.uiwidget");
+    }
 
     private static UIWidgetHandler handler;
 
@@ -331,7 +340,11 @@ public class UIWidget {
 
         final UIComponent ui;
         if (style.length == 1) {
-            ui = UIComponent.getUIComponent("org.scilab.modules.gui.uiwidget.components", style[0], attributes, parent, null);
+	    String pack = "org.scilab.modules.gui.uiwidget.components";
+	    if (externalWidgets.containsKey(style[0].toLowerCase())) {
+		pack = externalWidgets.get(style[0].toLowerCase());
+	    }
+            ui = UIComponent.getUIComponent(pack, style[0], attributes, parent, null);
         } else {
             ui = null;
             // TODO: gerer les modeles correctement en ajoutant le ScilabTypeMap au StringMap deja defini
