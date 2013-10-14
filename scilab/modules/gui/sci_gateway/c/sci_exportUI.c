@@ -20,7 +20,7 @@
 #include "exportUserInterface.hxx"
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
-
+#include "FigureList.h"
 /*--------------------------------------------------------------------------*/
 int sci_exportUI(char * fname, unsigned long fname_len)
 {
