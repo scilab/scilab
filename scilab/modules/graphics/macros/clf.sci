@@ -67,11 +67,8 @@ function clf(varargin)
         // drawnow
         curFig.immediate_drawing = immediateMode;
     end
-
-    if curFig.event_handler == "datatipEventhandler" then
-        curFig.event_handler_enable="off";
-        curFig.info_message="";
-    end
+    
+    curFig.info_message = "";
 
     // reset figures to default values if needed
     if (job == "reset") then

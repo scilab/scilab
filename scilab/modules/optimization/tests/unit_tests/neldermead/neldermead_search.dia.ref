@@ -96,7 +96,7 @@ nm = neldermead_configure(nm,"-logfile" , fullfile(TMPDIR,"search.txt" ));
 nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_configure(nm,"-nbineqconst",3);
 nm = neldermead_configure(nm,"-method","box");
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 nm = neldermead_destroy(nm);
 computed = deletefile(fullfile(TMPDIR,"search.txt"));
 assert_checkequal ( computed , %t );

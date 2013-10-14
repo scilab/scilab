@@ -22,6 +22,6 @@ function plist = init_param(varargin)
     plist = mlist(["plist"],[]);
 
     for i=1:2:length(varargin)
-        [plist, _err] = add_param(plist,varargin(i),varargin(i+1));
+        plist = add_param(plist,varargin(i),varargin(i+1));
     end
 endfunction

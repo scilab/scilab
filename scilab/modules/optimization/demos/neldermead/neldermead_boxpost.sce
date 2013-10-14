@@ -97,7 +97,7 @@ function demo_boxpost()
     nm = neldermead_configure(nm,"-function",fpostoffice);
     nm = neldermead_configure(nm,"-x0",x0);
     nm = neldermead_configure(nm,"-maxiter",300);
-    nm = neldermead_configure(nm,"-maxfunevals",300);
+    nm = neldermead_configure(nm,"-maxfunevals",500);
     nm = neldermead_configure(nm,"-method","box");
     nm = neldermead_configure(nm,"-verbose",1);
     logfile = TMPDIR + "/postoffice.txt";

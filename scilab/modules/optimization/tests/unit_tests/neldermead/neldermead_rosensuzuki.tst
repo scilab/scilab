@@ -353,6 +353,6 @@ nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_configure(nm,"-boundsmin",[-10.0 -10.0 -10.0 -10.0]);
 nm = neldermead_configure(nm,"-boundsmax",[10.0 10.0 10.0 10.0]);
 nm = neldermead_configure(nm,"-simplex0method","randbounds");
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 nm = neldermead_destroy(nm);
 

@@ -20,7 +20,11 @@ nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-x0",[-1.2 1.0].');
 nm = neldermead_search(nm);
+optimbase_terminate: Exiting: Maximum number of function evaluations has been exceeded
+          - increase MaxFunEvals option.
 nm = neldermead_restart(nm);
+optimbase_terminate: Exiting: Maximum number of function evaluations has been exceeded
+          - increase MaxFunEvals option.
 nm = neldermead_destroy(nm);
 //
 // Test with and maximum number of iterations reached
@@ -31,8 +35,12 @@ nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-x0",[-1.2 1.0].');
 nm = neldermead_configure(nm,"-maxiter",10);
 nm = neldermead_search(nm);
+optimbase_terminate: Exiting: Maximum number of iterations has been exceeded
+         - increase MaxIter option.
 nm = neldermead_configure(nm,"-maxiter",100);
 nm = neldermead_restart(nm);
+optimbase_terminate: Exiting: Maximum number of function evaluations has been exceeded
+          - increase MaxFunEvals option.
 assert_checktrue(neldermead_get(nm,"-iterations")>10);
 nm = neldermead_destroy(nm);
 function [ f , index ] = objfun ( x , index ) 
@@ -48,6 +56,8 @@ nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-function",objfun);
 nm = neldermead_configure(nm,"-x0",[-1 1].');
 nm = neldermead_search(nm);
+optimbase_terminate: Exiting: Maximum number of function evaluations has been exceeded
+          - increase MaxFunEvals option.
 nm = neldermead_configure(nm,"-maxfunevals",200);
 nm = neldermead_restart(nm);
 xc = neldermead_get(nm,"-xopt");

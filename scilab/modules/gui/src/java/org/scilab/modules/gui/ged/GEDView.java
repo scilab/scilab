@@ -45,6 +45,8 @@ public class GEDView implements GraphicView {
     private static Integer fontStyle = 0;
     private static boolean fontFractional = false;
     private static Integer legendLocation = 0;
+    private static boolean autoPosition = true;
+    private static boolean autoRotation = true;
 
     public GEDView() {
         GraphicController.getController().register(this);
@@ -214,6 +216,20 @@ public class GEDView implements GraphicView {
                     if (legendLocation != c_legendLocation) {
                         isValid = true;
                         legendLocation = c_legendLocation;
+                    }
+                    break;
+                case GraphicObjectProperties.__GO_AUTO_POSITION__:
+                    boolean c_autoPosition = (Boolean) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_AUTO_POSITION__);
+                    if (autoPosition != c_autoPosition) {
+                        isValid = true;
+                        autoPosition = c_autoPosition;
+                    }
+                    break;
+                case GraphicObjectProperties.__GO_AUTO_ROTATION__:
+                    boolean c_autoRotation = (Boolean) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_AUTO_ROTATION__);
+                    if (autoRotation != c_autoRotation) {
+                        isValid = true;
+                        autoRotation = c_autoRotation;
                     }
                     break;
                 default:

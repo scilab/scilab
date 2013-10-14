@@ -109,7 +109,6 @@ void ColSortdouble(double *a, int *ind, int flag, int n, int p, char dir)
     {
         sciqsort((char *) (a + n * j), (char *) (ind + n * j), flag, n,
                  sizeof(double), sizeof(int),
-                 (dir == 'i') ? 1 : 0,
                  (dir == 'i' ) ? compareCdouble : compareDdouble,
                  swapcodedouble, swapcodeind);
     }
@@ -135,7 +134,6 @@ void RowSortdouble(double *a, int *ind, int flag, int n, int p, char dir)
     {
         sciqsort((char *) (a + i), (char *) (ind + i), flag, p,
                  n * sizeof(double), n * sizeof(int),
-                 (dir == 'i') ? 1 : 0,
                  (dir == 'i' ) ? compareCdouble : compareDdouble,
                  swapcodedouble, swapcodeind);
     }
@@ -153,7 +151,6 @@ void GlobalSortdouble(double *a, int *ind, int flag, int n, int p, char dir)
         }
     sciqsort((char *) (a), (char *) (ind), flag, n * p,
              sizeof(double), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? compareCdouble : compareDdouble,
              swapcodedouble, swapcodeind);
 }
@@ -246,7 +243,6 @@ void LexiRowdouble(double *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, n,
              sizeof(double), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? LexiRowcompareCdouble : LexiRowcompareDdouble,
              LexiRowswapcodedouble, swapcodeind);
 }
@@ -327,7 +323,6 @@ void LexiColdouble(double *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, p,
              n * sizeof(double), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? LexiColcompareCdouble : LexiColcompareDdouble,
              LexiColswapcodedouble,
              swapcodeind);

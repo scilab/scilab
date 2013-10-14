@@ -154,7 +154,6 @@ void ColSortshort(short *a, int *ind, int flag, int n, int p, char dir)
     {
         sciqsort((char *) (a + n * j), (char *) (ind + n * j), flag, n,
                  sizeof(short), sizeof(int),
-                 (dir == 'i') ? 1 : 0,
                  (dir == 'i' ) ? compareCshort : compareDshort,
                  swapcodeshort, swapcodeind);
     }
@@ -180,7 +179,6 @@ void RowSortshort(short *a, int *ind, int flag, int n, int p, char dir)
     {
         sciqsort((char *) (a + i), (char *) (ind + i), flag, p,
                  n * sizeof(short), n * sizeof(int),
-                 (dir == 'i') ? 1 : 0,
                  (dir == 'i' ) ? compareCshort : compareDshort,
                  swapcodeshort, swapcodeind);
     }
@@ -201,7 +199,6 @@ void GlobalSortshort(short *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, n * p,
              sizeof(short), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? compareCshort : compareDshort,
              swapcodeshort, swapcodeind);
 }
@@ -227,7 +224,6 @@ void ColSortushort(unsigned short *a, int *ind, int flag, int n, int p, char dir
     {
         sciqsort((char *) (a + n * j), (char *) (ind + n * j), flag, n,
                  sizeof(short), sizeof(int),
-                 (dir == 'i') ? 1 : 0,
                  (dir == 'i' ) ? compareCushort : compareDushort,
                  swapcodeshort, swapcodeind);
     }
@@ -253,7 +249,6 @@ void RowSortushort(unsigned short *a, int *ind, int flag, int n, int p, char dir
     {
         sciqsort((char *) (a + i), (char *) (ind + i), flag, p,
                  n * sizeof(short), n * sizeof(int),
-                 (dir == 'i') ? 1 : 0,
                  (dir == 'i' ) ? compareCushort : compareDushort,
                  swapcodeshort, swapcodeind);
     }
@@ -274,7 +269,6 @@ void GlobalSortushort(unsigned short *a, int *ind, int flag, int n, int p, char 
     }
     sciqsort((char *) (a), (char *) (ind), flag, n * p,
              sizeof(short), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? compareCushort : compareDushort,
              swapcodeshort, swapcodeind);
 }
@@ -400,7 +394,6 @@ void LexiRowshort(short *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, n,
              sizeof(short), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? LexiRowcompareCshort : LexiRowcompareDshort,
              LexiRowswapcodeshort, swapcodeind);
 }
@@ -419,7 +412,6 @@ void LexiRowushort(unsigned short *a, int *ind, int flag, int n, int p, char dir
     }
     sciqsort((char *) (a), (char *) (ind), flag, n,
              sizeof(short), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? LexiRowcompareCushort : LexiRowcompareDushort,
              LexiRowswapcodeshort, swapcodeind);
 }
@@ -540,7 +532,6 @@ void LexiColshort(short *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, p,
              n * sizeof(short), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? LexiColcompareCshort : LexiColcompareDshort,
              LexiColswapcodeshort,
              swapcodeind);
@@ -559,7 +550,6 @@ void LexiColushort(unsigned short *a, int *ind, int flag, int n, int p, char dir
     }
     sciqsort((char *) (a), (char *) (ind), flag, p,
              n * sizeof(short), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? LexiColcompareCushort : LexiColcompareDushort,
              LexiColswapcodeshort,
              swapcodeind);

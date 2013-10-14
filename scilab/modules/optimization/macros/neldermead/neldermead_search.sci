@@ -37,7 +37,22 @@
 // neldermead_search --
 //   Search the minimum with Nelder-Mead algorithm.
 //
-function this = neldermead_search ( this )
+function this = neldermead_search ( this , warn)
+
+    rhs = argn(2);
+
+    warn_mode = warning("query"); // Saving current warning mode to revert to it at the end
+    if rhs == 2 then
+        if warn == 0 | warn == "off" then
+            warning("off"); // Turn off warnings
+        elseif warn == 1 | warn == "on" then
+            warning("on"); // Turn on warnings
+        else
+            msg = _("%s: Wrong value for input argument #%d: ""%s"", ""%s"", %d or %d expected.\n");
+            error(msprintf(msg, "neldermead_search", 2, "off", "on", 0, 1))
+        end
+    end
+
     withderivatives = optimbase_cget ( this.optbase , "-withderivatives" );
     if ( withderivatives ) then
         errmsg = msprintf(gettext("%s: The -withderivatives option is true but all algorithms in neldermead are derivative-free."), "neldermead_search")
@@ -70,6 +85,9 @@ function this = neldermead_search ( this )
             this = neldermead_log (this,sprintf("Terminate by user''s request"));
         end
     end
+
+    warning(warn_mode); // Revert to the warning mode that was active before the call
+
 endfunction
 //
 // neldermead_algo --

@@ -9,6 +9,8 @@ Scilab Bug Fixes
 * Bug #7705 fixed - In the Genetic algorithms help pages, documented the
                     "dimension", "minbounds" and "maxbounds" fields.
 
+* Bug #12769 fixed - xset("window", 1) did not set the current axes.
+
 * Bug #12938 fixed - No java compiler was available in Linux binary version.
 
 * Bug #12943 fixed - Datatips misworked when 2D plots were rotated.
@@ -24,7 +26,11 @@ Scilab Bug Fixes
 
 * Bug #12957 fixed - splitURL and getURL were not declared as new 5.5 functions.
 
-* Bug #12971 fixed - getURL() downloaded file name was wrong.
+* Bug #12962 fixed - xinfo documentation was not clear.
+
+* Bug #12963 fixed - drawaxis did not place the axis correctly.
+
+* Bug #12971 fixed - getURL downloaded file name was wrong.
 
 * Bug #12978 fixed - exportUI returned an error when input argument was a figure handle.
 
@@ -458,6 +464,9 @@ Scilab Bug Fixes
                     the "epsx" parameter.
 
 * Bug #9780 fixed - gmres solver did not run with complex systems.
+
+* Bug #9788 fixed - neldermead can now produce a warning when it fails to converge,
+                    thanks to a new input argument "warn".
 
 * Bug #9821 fixed - getrelativefilename did not manage matrix of strings.
 

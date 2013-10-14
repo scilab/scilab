@@ -401,14 +401,17 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             // Find if window already exists, if not create a new one
             int iID = (int)in[1]->getAs<types::Double>()->get(0);
             char *pFigureUID = (char*)getFigureFromIndex(iID);
+            char* pstrAxesUID = NULL;
 
             if (pFigureUID == NULL)
             {
                 pFigureUID = createNewFigureWithAxes();
                 setGraphicObjectProperty(pFigureUID, __GO_ID__, &iID, jni_int, 1);
-                setCurrentFigure(pFigureUID);
             }
+
             setCurrentFigure(pFigureUID);
+            getGraphicObjectProperty(pFigureUID, __GO_SELECTED_CHILD__, jni_string,  (void**)&pstrAxesUID);
+            setCurrentSubWin(pstrAxesUID);
         }
         break;
         case 14 : // foreground

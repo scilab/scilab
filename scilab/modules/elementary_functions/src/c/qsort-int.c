@@ -136,7 +136,6 @@ void ColSortint(int *a, int *ind, int flag, int n, int p, char dir)
     {
         sciqsort((char *) (a + n * j), (char *) (ind + n * j), flag, n,
                  sizeof(int), sizeof(int),
-                 (dir == 'i') ? 1 : 0,
                  (dir == 'i' ) ? compareCint : compareDint,
                  swapcodeint, swapcodeind);
     }
@@ -159,7 +158,6 @@ void ColSortuint(unsigned int *a, int *ind, int flag, int n, int p, char dir)
     {
         sciqsort((char *) (a + n * j), (char *) (ind + n * j), flag, n,
                  sizeof(int), sizeof(int),
-                 (dir == 'i') ? 1 : 0,
                  (dir == 'i' ) ? compareCuint : compareDuint,
                  swapcodeint, swapcodeind);
     }
@@ -186,7 +184,6 @@ void RowSortint(int *a, int *ind, int flag, int n, int p, char dir)
     {
         sciqsort((char *) (a + i), (char *) (ind + i), flag, p,
                  n * sizeof(int), n * sizeof(int),
-                 (dir == 'i') ? 1 : 0,
                  (dir == 'i' ) ? compareCint : compareDint,
                  swapcodeint, swapcodeind);
     }
@@ -209,7 +206,6 @@ void RowSortuint(unsigned int *a, int *ind, int flag, int n, int p, char dir)
     {
         sciqsort((char *) (a + i), (char *) (ind + i), flag, p,
                  n * sizeof(int), n * sizeof(int),
-                 (dir == 'i') ? 1 : 0,
                  (dir == 'i' ) ? compareCuint : compareDuint,
                  swapcodeint, swapcodeind);
     }
@@ -231,7 +227,6 @@ void GlobalSortint(int *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, n * p,
              sizeof(int), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? compareCint : compareDint,
              swapcodeint, swapcodeind);
 }
@@ -249,7 +244,6 @@ void GlobalSortuint(unsigned int *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, n * p,
              sizeof(int), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? compareCuint : compareDuint,
              swapcodeint, swapcodeind);
 }
@@ -381,7 +375,6 @@ void LexiRowint(int *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, n,
              sizeof(int), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? LexiRowcompareCint : LexiRowcompareDint,
              LexiRowswapcodeint, swapcodeind);
 }
@@ -399,7 +392,6 @@ void LexiRowuint(unsigned int *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, n,
              sizeof(int), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? LexiRowcompareCuint : LexiRowcompareDuint,
              LexiRowswapcodeint, swapcodeind);
 }
@@ -521,7 +513,6 @@ void LexiColint(int *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, p,
              n * sizeof(int), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? LexiColcompareCint : LexiColcompareDint,
              LexiColswapcodeint,
              swapcodeind);
@@ -540,7 +531,6 @@ void LexiColuint(unsigned int *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, p,
              n * sizeof(int), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? LexiColcompareCuint : LexiColcompareDuint,
              LexiColswapcodeint,
              swapcodeind);

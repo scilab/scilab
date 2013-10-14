@@ -41,6 +41,8 @@ nm = nmplot_configure(nm,"-sigmafn",sigmafn);
 // Perform optimization
 //
 nm = nmplot_search(nm);
+optimbase_terminate: Exiting: Maximum number of iterations has been exceeded
+         - increase MaxIter option.
 // Plot the contours of the cost function and the simplex history
 xmin = -2.0; 
 xmax = 2.0 ; 

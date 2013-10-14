@@ -32,7 +32,7 @@ nm = neldermead_configure(nm,"-function",optimtestcase);
 nm = neldermead_configure(nm,"-x0",[1 2 3 4]');
 nm = neldermead_configure(nm,"-maxiter",10);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 nm = neldermead_destroy(nm);
 
 //
@@ -44,7 +44,7 @@ nm = neldermead_configure(nm,"-function",optimtestcase);
 nm = neldermead_configure(nm,"-x0",[1 2 3 4]');
 nm = neldermead_configure(nm,"-maxiter",10);
 nm = neldermead_configure(nm,"-method","fixed");
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 nm = neldermead_destroy(nm);
 
 //
@@ -77,6 +77,6 @@ nm = neldermead_configure(nm,"-x0",[0 0 0 0]');
 nm = neldermead_configure(nm,"-maxiter",10);
 nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-nbineqconst",3);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 nm = neldermead_destroy(nm);
 
