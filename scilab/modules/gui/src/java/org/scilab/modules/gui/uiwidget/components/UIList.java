@@ -324,6 +324,7 @@ public class UIList extends UIComponent {
     public void setSelectedIndex(int index) {
         try {
             list.setSelectedIndex(index);
+	    list.ensureIndexIsVisible(index);
         } catch (IllegalArgumentException e) { }
     }
 
