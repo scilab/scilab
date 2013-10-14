@@ -197,7 +197,7 @@
     <ClCompile Include="..\jni\BuildDocObject.cpp" />
     <ClCompile Include="DllmainHelptools.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_helptools.c" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_buildDocv2.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_buildDoc.cpp" />
     <ClCompile Include="..\jni\SciDocMain.cpp" />
   </ItemGroup>
   <ItemGroup>

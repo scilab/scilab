@@ -19,7 +19,7 @@
 HELPTOOLS_IMPEXP int gw_helptools(void);
 
 /*--------------------------------------------------------------------------*/
-HELPTOOLS_IMPEXP int sci_buildDocv2(char *fname, unsigned long fname_len);
+HELPTOOLS_IMPEXP int sci_buildDoc(char *fname, unsigned long fname_len);
 
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_HELPTOOLS__ */

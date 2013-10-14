@@ -523,12 +523,12 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         end
 
         // process the build
-        fileToExec = buildDocv2(output_format,modules_tree("master_document"), my_wanted_language);
+        fileToExec = buildDoc(output_format,modules_tree("master_document"), my_wanted_language);
         if fileToExec ~= [] then
             exec(fileToExec, -1);
         end
         if ~isempty(second_pass_format) then
-            buildDocv2(second_pass_format,modules_tree("master_document"), my_wanted_language);
+            buildDoc(second_pass_format,modules_tree("master_document"), my_wanted_language);
         end
 
         check_move(buildDoc_file);
@@ -600,12 +600,12 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             end
 
             // process the build
-            fileToExec = buildDocv2(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
+            fileToExec = buildDoc(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
             if fileToExec ~= [] then
                 exec(fileToExec, -1);
             end
             if ~isempty(second_pass_format) then
-                buildDocv2(second_pass_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
+                buildDoc(second_pass_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
             end
 
             check_move(buildDoc_file);
@@ -701,12 +701,12 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             end
 
             // process the build
-            fileToExec = buildDocv2(output_format,this_tree("master_document"),directory_language(k),dirs(k));
+            fileToExec = buildDoc(output_format,this_tree("master_document"),directory_language(k),dirs(k));
             if fileToExec ~= [] then
                 exec(fileToExec, -1);
             end
             if ~isempty(second_pass_format) then
-                buildDocv2(second_pass_format,this_tree("master_document"),directory_language(k),dirs(k));
+                buildDoc(second_pass_format,this_tree("master_document"),directory_language(k),dirs(k));
             end
 
             check_move(buildDoc_file);

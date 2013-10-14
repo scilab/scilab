@@ -22,43 +22,43 @@ msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_buildDocv2.cpp, line: 83
-# File: sci_gateway/cpp/sci_buildDocv2.cpp, line: 117
-# File: sci_gateway/cpp/sci_buildDocv2.cpp, line: 160
-# File: sci_gateway/cpp/sci_buildDocv2.cpp, line: 188
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 83
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 117
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 160
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 188
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_buildDocv2.cpp, line: 89
-# File: sci_gateway/cpp/sci_buildDocv2.cpp, line: 123
-# File: sci_gateway/cpp/sci_buildDocv2.cpp, line: 165
-# File: sci_gateway/cpp/sci_buildDocv2.cpp, line: 193
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 89
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 123
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 165
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 193
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_buildDocv2.cpp, line: 244
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 244
 #, c-format
 msgid "%s: Could find or create the working directory %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_buildDocv2.cpp, line: 254
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 254
 #, c-format
 msgid "%s: Error while building documentation: %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_buildDocv2.cpp, line: 255
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 255
 #, c-format
 msgid "%s: Execution Java stack: %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_buildDocv2.cpp, line: 258
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 258
 msgid ""
 "If Scilab is started in a chroot, you might want to try to set the two "
 "environment variables: SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1\n"
