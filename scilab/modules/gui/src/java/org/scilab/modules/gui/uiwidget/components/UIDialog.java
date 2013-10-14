@@ -127,7 +127,7 @@ public class UIDialog extends UIComponent {
         if (c instanceof JMenuBar) {
             win.setJMenuBar((JMenuBar) c);
         } else {
-            win.add(c);
+            win.setContentPane(c);
         }
     }
 
