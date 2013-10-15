@@ -136,6 +136,10 @@ The option is "disableUnderMode" and can be:
 	<load on="copyAsHTMLinScinotes"/>
 </path>
 
+<path value="@ECJ@" load="onUse">
+    <load on="external_objects_java"/>
+</path>
+
 <!-- Mandatory on startup -->
 <path value="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
 <path value="$SCILAB/modules/commons/jar/org.scilab.modules.commons.jar"/>
@@ -191,7 +195,4 @@ The option is "disableUnderMode" and can be:
 
 <path value="$SCILAB/modules/external_objects_java/jar/org.scilab.modules.external_objects_java.jar" />
 
-<path value="$SCILAB/thirdparty/ecj.jar" load="onUse">
-    <load on="external_objects_java"/>
-</path>
 </classpaths>
