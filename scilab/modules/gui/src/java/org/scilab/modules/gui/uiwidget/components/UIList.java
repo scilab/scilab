@@ -14,6 +14,7 @@ package org.scilab.modules.gui.uiwidget.components;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Point;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -27,6 +28,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 
@@ -275,6 +277,37 @@ public class UIList extends UIComponent {
         }
 
         return null;
+    }
+
+    /**
+     * Scroll the list to show the element top
+     * @param top the shown element
+     */
+    public void setTop(int top) {
+	if (getComponent() instanceof JScrollPane) {
+	    JScrollPane scroll = (JScrollPane) getComponent();
+	    if (top >= 0 & top != getTop()) {
+		Point p = list.indexToLocation(top);
+		if (p != null) {
+		    p.y = Math.min(p.y, list.getHeight() - scroll.getViewport().getExtentSize().height - 1);
+		    scroll.getViewport().setViewPosition(p);
+		    scroll.doLayout();
+		}
+	    }
+	}
+    }
+
+    /**
+     * Get the shown element on the top of the list
+     * @return the shown element
+     */
+    public int getTop() {
+	if (getComponent() instanceof JScrollPane) {
+	    JScrollPane scroll = (JScrollPane) getComponent();
+	    return list.locationToIndex(scroll.getViewport().getViewPosition());
+	}
+
+	return 0;
     }
 
     /**
