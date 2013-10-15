@@ -32,6 +32,11 @@
 #include "import.h"
 #include "localization.h"
 #include "MALLOC.h"
+
+#ifdef _MSC_VER
+#define snprintf _snprintf
+#endif
+
 /*--------------------------------------------------------------------------*/
 /* intsicosimc scicosim interface routine.
 *
