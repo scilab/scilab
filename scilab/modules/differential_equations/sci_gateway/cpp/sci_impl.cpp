@@ -647,7 +647,10 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
             else
             {
                 err = checkOdeError(meth, istate);
-                Scierror(999, _("%s: %s exit with state %d.\n"), "impl", "lsodi", istate);
+                if (err == 1)
+                {
+                    Scierror(999, _("%s: %s exit with state %d.\n"), "impl", "lsodi", istate);
+                }
             }
         }
         catch (ScilabError &e)
