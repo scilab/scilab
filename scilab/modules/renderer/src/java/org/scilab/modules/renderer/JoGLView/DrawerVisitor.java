@@ -72,6 +72,7 @@ import org.scilab.modules.renderer.JoGLView.util.LightingUtils;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -152,6 +153,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      */
     private final static Map<Integer, DrawerVisitor> visitorMap = new HashMap<Integer, DrawerVisitor>();
     private final List<PostRendered> postRenderedList = new LinkedList<PostRendered>();
+    private final static Map<Integer, List<Integer>> openGLChildren = new HashMap<Integer, List<Integer>>();
 
     public DrawerVisitor(Component component, Canvas canvas, Figure figure) {
         GraphicController.getController().register(this);
@@ -891,7 +893,37 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     }
 
     @Override
-    public void updateObject(Integer id, int property) {
+    public void updateObject(Integer id, int property) {       
+        /*
+         * Check if property is CHILDREN and if there is a new child I should care about
+         */
+        if (property == GraphicObjectProperties.__GO_CHILDREN__)
+        {
+            if (id != figure.getIdentifier()) {
+                /* Ignore children that are not mine */
+                return;
+            }
+            Integer[] children = GraphicController.getController().getObjectFromId(id).getChildren();
+            List<Integer> currentOpenGLChildren = openGLChildren.get(id);
+            if (currentOpenGLChildren == null) {
+                /* No openGLChildren in cache, create empty one */
+                openGLChildren.put(id, new ArrayList<Integer>());
+                currentOpenGLChildren = openGLChildren.get(id);
+            }
+            List<Integer> updatedOpenGLChildren = new ArrayList<Integer>();
+            for (int i = 0 ; i < children.length ; ++i) {
+                Integer currentType = (Integer) GraphicController.getController().getProperty(children[i], GraphicObjectProperties.__GO_TYPE__);
+                if (currentType != GraphicObjectProperties.__GO_UICONTROL__ && currentType != GraphicObjectProperties.__GO_UIMENU__) {
+                    updatedOpenGLChildren.add(children[i]);
+                }
+            }
+            if (currentOpenGLChildren.size() == updatedOpenGLChildren.size()){
+                /* No change made on openGL children => nothing to do */
+                return;
+            } else {
+                openGLChildren.put(id, updatedOpenGLChildren);
+            }
+        }
         try {
             if (needUpdate(id, property)) {
                 if (GraphicObjectProperties.__GO_COLORMAP__ == property && figure.getIdentifier() == id) {
@@ -1020,6 +1052,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void deleteObject(Integer id) {
+        openGLChildren.remove(id);
+        
         if (isImmediateDrawing(id)) {
             canvas.redraw();
         }
