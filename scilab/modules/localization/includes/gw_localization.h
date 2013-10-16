@@ -13,18 +13,12 @@
 
 #ifndef __GW_LOCALIZATION__
 #define __GW_LOCALIZATION__
+/*--------------------------------------------------------------------------*/
 #include "dynlib_localization_gw.h"
+#include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
-int gw_localization(void);
-/*--------------------------------------------------------------------------*/
-/* interface for the previous function Table */
-/*--------------------------------------------------------------------------*/
-//LOCALIZATION_IMPEXP int sci_setlanguage(char *fname,unsigned long fname_len); -> C++
-//LOCALIZATION_IMPEXP int sci_getlanguage(char *fname,unsigned long fname_len); -> C++
-//LOCALIZATION_IMPEXP int sci_getdefaultlanguage(char *fname,unsigned long fname_len); -> C++
-//LOCALIZATION_IMPEXP int sci_setdefaultlanguage(char *fname,unsigned long fname_len); -> C++
-//LOCALIZATION_GW_IMPEXP int sci_gettext(char *fname, unsigned long fname_len);
-LOCALIZATION_GW_IMPEXP int sci_addlocalizationdomain(char *fname, unsigned long fname_len);
+C_GATEWAY_PROTOTYPE(sci_addlocalizationdomain);
+C_GATEWAY_PROTOTYPE(sci_gettext);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_LOCALIZATION__ */
 /*--------------------------------------------------------------------------*/

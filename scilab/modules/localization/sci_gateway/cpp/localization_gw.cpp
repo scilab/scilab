@@ -31,5 +31,6 @@ int LocalizationModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getdefaultlanguage", &sci_getdefaultlanguage, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"setlanguage", &sci_setlanguage, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getlanguage", &sci_getlanguage, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"addlocalizationdomain", &sci_addlocalizationdomain, MODULE_NAME));
     return 1;
 }

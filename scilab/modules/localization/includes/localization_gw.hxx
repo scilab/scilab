@@ -30,7 +30,6 @@ private :
 public :
     LOCALIZATION_GW_IMPEXP static int Load();
 };
-CPP_GATEWAY_PROTOTYPE(sci_gettext);
 CPP_GATEWAY_PROTOTYPE(sci_setdefaultlanguage);
 CPP_GATEWAY_PROTOTYPE(sci_getdefaultlanguage);
 CPP_GATEWAY_PROTOTYPE(sci_setlanguage);

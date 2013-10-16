@@ -21,7 +21,7 @@
 #include "freeArrayOfString.h"
 #include "expandPathVariable.h"
 
-int sci_addlocalizationdomain(void* pvApiCtx, unsigned long fname_len)
+int sci_addlocalizationdomain(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int* piAddr1 = NULL;
