@@ -42,6 +42,7 @@ private :
     typedef __uidList::iterator          __uidList_iterator;
     typedef std::map<int, int>    __figureList;
     typedef __figureList::iterator          __figureList_iterator;
+    typedef __figureList::reverse_iterator          __figureList_reverse_iterator;
 
     static __figureList m_figureList;
     static __handleList m_handleList;

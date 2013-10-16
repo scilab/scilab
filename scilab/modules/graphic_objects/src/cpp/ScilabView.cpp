@@ -128,10 +128,19 @@ bool ScilabView::existsFigureId(int id)
 
 void ScilabView::getFiguresId(int ids[])
 {
-    __figureList_iterator it;
+    //__figureList_iterator it;
+    //int i = (int)(m_figureList.size() - 1);
+
+    //for (it = m_figureList.begin(); it != m_figureList.end(); ++it, --i)
+    //{
+    //    //std::cerr << "[ScilabView] DEBUG " << it->first << " <-> " << it->second << std::endl;
+    //    ids[i] = it->second;
+    //}
+
+    __figureList_reverse_iterator it;
     int i = (int)(m_figureList.size() - 1);
 
-    for (it = m_figureList.begin(); it != m_figureList.end(); ++it, --i)
+    for (it = m_figureList.rbegin(); it != m_figureList.rend(); ++it, --i)
     {
         //std::cerr << "[ScilabView] DEBUG " << it->first << " <-> " << it->second << std::endl;
         ids[i] = it->second;
@@ -183,7 +192,7 @@ void ScilabView::deleteObject(int iUID)
 
         if (getNbFigure() != 0)
         {
-            m_currentFigure = m_figureList.rbegin()->first;
+            m_currentFigure = m_figureList.begin()->first;
             getGraphicObjectProperty(m_currentFigure, __GO_SELECTED_CHILD__, jni_int,  (void**)&piAxesUID);
             setCurrentSubWin(iAxesUID);
         }

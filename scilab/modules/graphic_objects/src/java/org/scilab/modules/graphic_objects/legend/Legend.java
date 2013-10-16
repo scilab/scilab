@@ -194,7 +194,7 @@ public class Legend extends ClippableTextObject {
     /**
      * @return the valid links
      */
-    public String[] getValidLinks() {
+    public Integer[] getValidLinks() {
         ArrayList <Integer> validLinks = new ArrayList<Integer>(0);
 
         for (int i = 0; i < links.size(); i++) {
@@ -205,7 +205,7 @@ public class Legend extends ClippableTextObject {
             }
         }
 
-        return validLinks.toArray(new String[validLinks.size()]);
+        return validLinks.toArray(new Integer[validLinks.size()]);
     }
 
     /**
