@@ -77,7 +77,8 @@ GRAPHICS_IMPEXP int createNewFigureWithAxes()
 {
     int iID = 0;
     int iFigureUID = NULL;
-    int* axesSize = NULL;
+    int* piSize = NULL;
+    int bTrue = (int)TRUE;
 
     iFigureUID = cloneGraphicObject(getFigureModel());
 
@@ -96,9 +97,13 @@ GRAPHICS_IMPEXP int createNewFigureWithAxes()
     /*
      * Force axes size after window creation (Java)
      */
-    getGraphicObjectProperty(getFigureModel(), __GO_AXES_SIZE__, jni_int_vector, (void **)&axesSize);
-    setGraphicObjectProperty(iFigureUID, __GO_AXES_SIZE__, axesSize, jni_int_vector, 2);
+    getGraphicObjectProperty(getFigureModel(), __GO_SIZE__, jni_int_vector, (void **)&piSize);
+    setGraphicObjectProperty(iFigureUID, __GO_SIZE__, piSize, jni_int_vector, 2);
+    getGraphicObjectProperty(getFigureModel(), __GO_AXES_SIZE__, jni_int_vector, (void **)&piSize);
+    setGraphicObjectProperty(iFigureUID, __GO_AXES_SIZE__, piSize, jni_int_vector, 2);
 
+
+    setGraphicObjectProperty(iFigureUID, __GO_VALID__, &bTrue, jni_bool, 1);
     // return the reference to the current figure
     return getCurrentFigure();
 }

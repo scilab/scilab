@@ -344,6 +344,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     @Override
     public Size getDims() {
         return new Size(getSize().width, getSize().height);
+        
     }
 
     /**
@@ -353,6 +354,8 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      */
     @Override
     public void setDims(Size newWindowSize) {
+        //System.out.println("{SwingScilabWindow.setDims} "+newWindowSize.getWidth()+"x"+newWindowSize.getHeight());
+        //System.out.println("{called by} "+Thread.currentThread().getStackTrace()[2]);
         //if (!SwingUtilities.isEventDispatchThread()) {
         if (getDims().getWidth() != newWindowSize.getWidth() || getDims().getHeight() != newWindowSize.getHeight()) {
             Dimension finalDim = new Dimension(newWindowSize.getWidth(), newWindowSize.getHeight());
