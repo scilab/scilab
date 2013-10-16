@@ -139,6 +139,8 @@ BOOL setlanguage(wchar_t *lang)
 #else
                 /* Load the user locale from the system */
                 wchar_t *ret = getLocaleUserInfo();
+
+
 #endif
 
                 // This stuff causes pb when locales have been compiled
@@ -161,7 +163,7 @@ BOOL setlanguage(wchar_t *lang)
                 }
                 else
                 {
-                    if (wcscmp(lang, L"") == 0 && ret != NULL && wcscmp(ret,  L"") != 0 )
+                    if (wcscmp(lang, L"") == 0)
                     {
                         /* The requested language is the one of the system ...
                          * which we don't really know which one is it
@@ -177,7 +179,7 @@ BOOL setlanguage(wchar_t *lang)
                         {
                             wchar_t* pwstLang = to_wide_string(newlang);
                             setenvc("LANG", newlang);
-                            strncpy(CURRENTLANGUAGESTRING, newlang, 5);
+                            wcsncpy(CURRENTLANGUAGESTRING, pwstLang, 5);
                             CURRENTLANGUAGESTRING[5] = '\0';
                             exportLocaleToSystem(pwstLang);
                             FREE(pwstLang);
@@ -364,7 +366,7 @@ BOOL exportLocaleToSystem(wchar_t *locale)
     if (locale == NULL)
     {
 #ifdef _MSC_VER
-        fprintf(stderr, "Localization: Haven't been able to find a suitable locale. Remains to default %s.\n", "LC_CTYPE");
+        fprintf(stderr, "Localization: Have not been able to find a suitable locale. Remains to default %s.\n", "LC_CTYPE");
 #else
         fprintf(stderr, "Localization: Have not been able to find a suitable locale. Remains to default %ls.\n", EXPORTENVLOCALESTR);
 #endif
@@ -387,10 +389,12 @@ BOOL exportLocaleToSystem(wchar_t *locale)
     {
         /* gettext is buggy on Windows */
         /* We need to set a external environment variable to scilab env. */
-
+        char* pstr = NULL;
         wchar_t env[MAX_PATH];
         swprintf(env, MAX_PATH, L"%ls=%ls", EXPORTENVLOCALESTR, locale);
-        gettext_putenv(wide_string_to_UTF8(env));
+        pstr = wide_string_to_UTF8(env);
+        gettext_putenv(pstr);
+        FREE(pstr);
     }
 #endif
 #else
