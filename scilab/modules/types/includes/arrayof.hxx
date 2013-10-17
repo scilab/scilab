@@ -77,24 +77,45 @@ protected :
 
         //m_piDims    = new int[m_iDims];
 
-        for (int i = 0 ; i < m_iDims ; i++)
+        //eye detection ^^
+        if (m_iDims == 2 && _piDims[0] == -1 && _piDims[1] == -1)
         {
-            m_piDims[i] = _piDims[i];
-
-            /*
-            ** Manage overflow on size
-            ** a = b * c is in overflow if a / b != c
-            ** check b is not 0 (empty matrix case)
-            */
-            int iTmpSize = m_iSize * m_piDims[i];
-            if (m_iSize != 0 && iTmpSize / m_iSize != m_piDims[i])
+            m_iDims = 2;
+            m_piDims[0] = -1;
+            m_piDims[1] = -1;
+            m_iSize = 1;
+        }
+        else
+        {
+            for (int i = 0 ; i < m_iDims ; i++)
             {
-                char message[bsiz];
-                sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) ((double) m_iSize * (double) m_piDims[i] * sizeof(T)) / 1.e6);
-                throw(ast::ScilabError(message));
-            }
+                // if one of dim is null, create an empty matrix
+                if (_piDims[i] <= 0)
+                {
+                    m_iDims = 2;
+                    m_piDims[0] = 0;
+                    m_piDims[1] = 0;
+                    m_iSize = 0;
+                    break;
+                }
 
-            m_iSize = iTmpSize;
+                m_piDims[i] = _piDims[i];
+
+                /*
+                ** Manage overflow on size
+                ** a = b * c is in overflow if a / b != c
+                ** check b is not 0 (empty matrix case)
+                */
+                int iTmpSize = m_iSize * m_piDims[i];
+                if (m_iSize != 0 && iTmpSize / m_iSize != m_piDims[i])
+                {
+                    char message[bsiz];
+                    sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) ((double) m_iSize * (double) m_piDims[i] * sizeof(T)) / 1.e6);
+                    throw(ast::ScilabError(message));
+                }
+
+                m_iSize = iTmpSize;
+            }
         }
 
         if (_pRealData)
