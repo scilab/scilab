@@ -293,14 +293,7 @@ static void freeScoData(scicos_block * block)
 
         FREE(sco->internal.data);
         FREE(sco->internal.ballsSize);
-
-        for (i = 0; i < block->insz[0]; i++)
-        {
-            FREE(sco->scope.cachedArcsUIDs[i]);
-            sco->scope.cachedArcsUIDs[i] = NULL;
-        }
-        FREE(sco->scope.cachedAxeUID);
-        sco->scope.cachedAxeUID = NULL;
+        FREE(sco->scope.cachedArcsUIDs);
 
         FREE(sco);
         *(block->work) = NULL;
@@ -383,7 +376,7 @@ static int getFigure(scicos_block * block)
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedFigureUID != NULL)
+    if (sco->scope.cachedFigureUID)
     {
         return sco->scope.cachedFigureUID;
     }
@@ -440,7 +433,7 @@ static int getAxe(int iFigureUID, scicos_block * block)
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedAxeUID != NULL)
+    if (sco->scope.cachedAxeUID)
     {
         return sco->scope.cachedAxeUID;
     }
@@ -497,7 +490,7 @@ static int getArc(int iAxeUID, scicos_block * block, int row)
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedArcsUIDs[row] != NULL)
+    if (sco->scope.cachedArcsUIDs[row])
     {
         return sco->scope.cachedArcsUIDs[row];
     }

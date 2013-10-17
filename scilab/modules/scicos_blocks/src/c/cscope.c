@@ -415,7 +415,6 @@ static void freeScoData(scicos_block * block)
 
         FREE(sco->scope.cachedHistoryPolylinesUIDs);
         FREE(sco->scope.cachedBufferPolylinesUIDs);
-        FREE(sco->scope.cachedAxeUID);
 
         FREE(sco);
         *(block->work) = NULL;
@@ -777,7 +776,7 @@ static int getAxe(int iFigureUID, scicos_block * block, int input)
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedAxeUID != NULL)
+    if (sco->scope.cachedAxeUID != 0)
     {
         return sco->scope.cachedAxeUID;
     }

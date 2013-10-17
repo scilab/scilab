@@ -345,16 +345,11 @@ static void freeScoData(scicos_block * block)
         {
             FREE(sco->internal.data[i]);
         }
+
         FREE(sco->internal.data);
         FREE(sco->internal.maxNumberOfPoints);
         FREE(sco->internal.numberOfPoints);
-
-        for (i = 0; i < nclk; i++)
-        {
-            FREE(sco->scope.cachedSegsUIDs[i]);
-        }
-        FREE(sco->scope.cachedAxeUID);
-
+        FREE(sco->scope.cachedSegsUIDs);
         FREE(sco);
         *(block->work) = NULL;
     }
@@ -583,7 +578,7 @@ static int getFigure(scicos_block * block)
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedFigureUID != NULL)
+    if (sco->scope.cachedFigureUID)
     {
         return sco->scope.cachedFigureUID;
     }
@@ -647,7 +642,7 @@ static int getAxe(int iFigureUID, scicos_block * block)
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedAxeUID != NULL)
+    if (sco->scope.cachedAxeUID)
     {
         return sco->scope.cachedAxeUID;
     }
@@ -704,7 +699,7 @@ static int getSegs(int iAxeUID, scicos_block * block, int input)
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedSegsUIDs[input] != 0)
+    if (sco->scope.cachedSegsUIDs[input])
     {
         return sco->scope.cachedSegsUIDs[input];
     }

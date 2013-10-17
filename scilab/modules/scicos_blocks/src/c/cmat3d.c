@@ -220,9 +220,9 @@ static sco_data *getScoData(scicos_block * block)
             goto error_handler_sco;
         }
 
-        sco->scope.cachedFigureUID = NULL;
-        sco->scope.cachedAxeUID = NULL;
-        sco->scope.cachedPlot3dUID = NULL;
+        sco->scope.cachedFigureUID = 0;
+        sco->scope.cachedAxeUID = 0;
+        sco->scope.cachedPlot3dUID = 0;
 
         *(block->work) = sco;
     }
@@ -245,10 +245,6 @@ static void freeScoData(scicos_block * block)
 
     if (sco != NULL)
     {
-        FREE(sco->scope.cachedAxeUID);
-        FREE(sco->scope.cachedPlot3dUID);
-
-
         FREE(sco);
         *(block->work) = NULL;
     }
@@ -303,7 +299,7 @@ static int getFigure(scicos_block * block)
 
 
     // fast path for an existing object
-    if (sco->scope.cachedFigureUID != NULL)
+    if (sco->scope.cachedFigureUID)
     {
         return sco->scope.cachedFigureUID;
     }
@@ -364,7 +360,7 @@ static int getAxe(int iFigureUID, scicos_block * block)
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedAxeUID != NULL)
+    if (sco->scope.cachedAxeUID)
     {
         return sco->scope.cachedAxeUID;
     }
@@ -411,7 +407,7 @@ static int getPlot3d(int iAxeUID, scicos_block * block)
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedPlot3dUID != NULL)
+    if (sco->scope.cachedPlot3dUID)
     {
         return sco->scope.cachedPlot3dUID;
     }

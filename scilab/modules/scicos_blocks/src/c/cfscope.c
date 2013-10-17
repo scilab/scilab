@@ -340,14 +340,9 @@ static void freeScoData(scicos_block * block)
             }
             FREE(sco->internal.coordinates[i]);
         }
+
         FREE(sco->internal.coordinates);
-
-        for (i = 0; i < links_count; i++)
-        {
-            FREE(sco->scope.cachedPolylinesUIDs[i]);
-        }
-        FREE(sco->scope.cachedAxeUID);
-
+        FREE(sco->scope.cachedPolylinesUIDs);
         FREE(sco);
         *(block->work) = NULL;
     }
@@ -551,7 +546,7 @@ static int getFigure(scicos_block * block)
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedFigureUID != NULL)
+    if (sco->scope.cachedFigureUID)
     {
         return sco->scope.cachedFigureUID;
     }
@@ -617,7 +612,7 @@ static int getAxe(int iFigureUID, scicos_block * block, int input)
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedAxeUID != NULL)
+    if (sco->scope.cachedAxeUID)
     {
         return sco->scope.cachedAxeUID;
     }
@@ -672,7 +667,7 @@ static int getPolyline(int iAxeUID, scicos_block * block, int row)
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedPolylinesUIDs[row] != NULL)
+    if (sco->scope.cachedPolylinesUIDs[row])
     {
         return sco->scope.cachedPolylinesUIDs[row];
     }

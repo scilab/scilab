@@ -237,8 +237,8 @@ static sco_data *getScoData(scicos_block * block)
             }
         }
 
-        sco->scope.cachedFigureUID = NULL;
-        sco->scope.cachedAxeUID = NULL;
+        sco->scope.cachedFigureUID = 0;
+        sco->scope.cachedAxeUID = 0;
 
         sco->scope.cachedPolylinesUIDs = (int*)CALLOC(block->insz[0], sizeof(int));
 
@@ -276,14 +276,9 @@ static void freeScoData(scicos_block * block)
         {
             FREE(sco->internal.coordinates[i]);
         }
+
         FREE(sco->internal.coordinates);
-
-        for (i = 0; i < block->insz[0]; i++)
-        {
-            FREE(sco->scope.cachedPolylinesUIDs[i]);
-        }
-        FREE(sco->scope.cachedAxeUID);
-
+        FREE(sco->scope.cachedPolylinesUIDs);
         FREE(sco);
         *(block->work) = NULL;
     }
@@ -459,7 +454,7 @@ static int getFigure(scicos_block * block)
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedFigureUID != 0)
+    if (sco->scope.cachedFigureUID)
     {
         return sco->scope.cachedFigureUID;
     }
@@ -521,7 +516,7 @@ static int getAxe(int iFigureUID, scicos_block * block)
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedAxeUID != 0)
+    if (sco->scope.cachedAxeUID)
     {
         return sco->scope.cachedAxeUID;
     }
@@ -579,7 +574,7 @@ static int getPolyline(int iAxeUID, scicos_block * block, int row)
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedPolylinesUIDs[row] != 0)
+    if (sco->scope.cachedPolylinesUIDs[row])
     {
         return sco->scope.cachedPolylinesUIDs[row];
     }

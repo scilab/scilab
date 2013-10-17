@@ -320,7 +320,7 @@ static int getFigure(scicos_block * block)
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedFigureUID != 0)
+    if (sco->scope.cachedFigureUID)
     {
         return sco->scope.cachedFigureUID;
     }
@@ -378,7 +378,7 @@ static int getAxe(int iFigureUID, scicos_block * block)
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedAxeUID != 0)
+    if (sco->scope.cachedAxeUID)
     {
         return sco->scope.cachedAxeUID;
     }
@@ -427,7 +427,7 @@ static int getGrayplot(int iAxeUID, scicos_block * block)
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedGrayplotUID != 0)
+    if (sco->scope.cachedGrayplotUID)
     {
         return sco->scope.cachedGrayplotUID;
     }
