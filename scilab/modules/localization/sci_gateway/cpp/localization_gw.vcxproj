@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -104,7 +104,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\includes;..\..\src\c;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../output_stream/includes;../../../../libs/GetWindowsVersion;../../../api_scilab/includes;../../../operations/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\includes;..\..\src\c;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../output_stream/includes;../../../../libs/GetWindowsVersion;../../../api_scilab/includes;../../../operations/includes;../../../dynamic_link/includes;../../../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LOCALIZATION_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -174,10 +174,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\c\sci_addlocalizationdomain.c" />
+    <ClCompile Include="..\c\sci_gettext.c" />
     <ClCompile Include="localization_gw.cpp" />
     <ClCompile Include="sci_getdefaultlanguage.cpp" />
     <ClCompile Include="sci_getlanguage.cpp" />
-    <ClCompile Include="sci_gettext.c" />
     <ClCompile Include="sci_setdefaultlanguage.cpp" />
     <ClCompile Include="sci_setlanguage.cpp" />
   </ItemGroup>
@@ -199,6 +200,9 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\core\src\c\core.vcxproj">
       <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\fileio\fileio.vcxproj">
+      <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>

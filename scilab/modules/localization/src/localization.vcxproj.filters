@@ -58,9 +58,6 @@
     <ClCompile Include="c\getLocaleInfo_Windows.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_gateway\c\gw_localization.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="c\InitializeLocalization.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -83,9 +80,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="jni\setdefaultlanguage_wrap.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sci_gateway\c\sci_addlocalizationdomain.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

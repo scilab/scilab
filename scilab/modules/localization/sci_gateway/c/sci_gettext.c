@@ -19,9 +19,7 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "strsubst.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "freeArrayOfString.h"
 
 /*--------------------------------------------------------------------------*/

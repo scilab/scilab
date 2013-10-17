@@ -231,12 +231,10 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <None Include="..\Makefile.am" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\sci_gateway\c\sci_addlocalizationdomain.c" />
     <ClCompile Include="c\charEncoding.c" />
     <ClCompile Include="c\DllmainLocalization.c" />
     <ClCompile Include="c\getLcidString.c" />
     <ClCompile Include="c\getLocaleInfo_Windows.c" />
-    <ClCompile Include="..\sci_gateway\c\gw_localization.c" />
     <ClCompile Include="c\InitializeLocalization.c" />
     <ClCompile Include="c\LanguagePreferences_Windows.c" />
     <ClCompile Include="c\LocaleNameToLCID_Windows.c" />

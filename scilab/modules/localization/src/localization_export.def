@@ -5,7 +5,6 @@ EXPORTS
 ; --------------------------------------- 
 ; localization explicit export (SEP 35)
 ; --------------------------------------- 
-gw_localization
 InitializeLocalization
 to_wide_string
 wide_string_to_UTF8
