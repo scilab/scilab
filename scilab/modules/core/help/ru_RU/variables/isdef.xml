@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -17,23 +17,33 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>isdef(name [,where])</synopsis>
+        <synopsis>ve = isdef(name [,where])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
+                <term>ve</term>
+                <listitem>
+                    <para>
+                        матрица того же размера, что и <varname>name</varname> с логическими значениями
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>name</term>
                 <listitem>
-                    <para>символьная строка</para>
+                    <para>матрица символьных строк</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>where</term>
                 <listitem>
                     <para>
-                        необязательная символьная строка со значением по умолчанию 
-                        <literal>'all'</literal>
+                         символьная строка, может быть <literal>'l'</literal> (для <literal>"local"</literal>),
+                        <literal>'n'</literal> (для <literal>"nolocal"</literal>) or
+                        <literal>'a'</literal> (для <literal>"all"</literal>). Значение по умолчанию
+                        <literal>'a'</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -42,45 +52,52 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>isdef(name)</literal> возвращает <literal>%T</literal>, если
-            переменная с именем <literal>name</literal> существует и <literal>%F</literal>
+            <code>isdef(name)</code> возвращает <constant>%T</constant>, если
+            переменная с именем <varname>name</varname> существует и <constant>%F</constant>
             в противном случае.
         </para>
         <para>
-            Предостережение: функция, которая использует <literal>isdef</literal>, может
-            вернуть результат, который зависит от области видимости!
+            <caution>
+                Предостережение: функция, которая использует <function>isdef</function>, может
+                вернуть результат, который зависит от области видимости!
+            </caution>
         </para>
         <para>
-            <literal>isdef(name,'local')</literal> возвращает <literal>%T</literal>,
-            если переменная с именем <literal>name</literal> существует в локальной 
-            области видимости текущей функции и <literal>%F</literal> в противном 
+            <code>isdef(name,'l')</code> возвращает <constant>%T</constant>,
+            если переменная с именем <varname>name</varname> существует в локальной
+            области видимости текущей функции и <constant>%F</constant> в противном
             случае.
         </para>
         <para>
-            <literal>isdef(name,'nolocal')</literal> возвращает
-            <literal>%T</literal>, если переменная с именем <literal>name</literal>
+            <code>isdef(name,'n')</code> возвращает
+            <constant>%T</constant>, если переменная с именем <varname>name</varname>
             существует в полной области видимости (включая глобальный уровень) текущей
-            функции и <literal>%F</literal> в противном случае.
+            функции и <constant>%F</constant> в противном случае.
+        </para>
+        <para>
+            <note>
+                Примечание: учитывается только первая буква параметра <varname>where</varname>.
+            </note>
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
-A=1;
-isdef('A')
-clear A
-isdef('A')
- 
+        <programlisting role="example"><![CDATA[
+A = 1; B = 2; C = 3; D = 4;
+isdef(['A', 'B'; 'C', 'D'])
+clear A, B, C, D;
+isdef(['A', 'B'; 'C', 'D'])
+
 function level1()
   function level2()
-    disp(isdef("a","all"));
-    disp(isdef("a","local"));
-    disp(isdef("a","nolocal"));
+    disp(isdef(["a", "b"], "a"));
+    disp(isdef(["a", "b"], "l"));
+    disp(isdef(["a", "b"], "n"));
   endfunction
   level2()
 endfunction
 function go()
-  a=1;
+  a = 1;
   level1()
 endfunction
 go()
