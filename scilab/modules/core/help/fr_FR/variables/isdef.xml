@@ -41,27 +41,31 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>isdef(name)</literal> renvoie <literal>%T</literal> (vrai)
-            si la variable nommée <literal>name</literal> existe et
-            <literal>%F</literal> (faux) sinon.
+            <code>isdef(name)</code> renvoie <constant>%T</constant> (vrai)
+            si la variable nommée <varname>name</varname> existe et
+            <constant>%F</constant> (faux) sinon.
         </para>
         <para>
-            Mise en garde : une fonction utilisant <literal>isdef</literal> peut
-            renvoyer un résultat dépendant de l'environnement courant !
+            <caution>
+                Mise en garde : une fonction utilisant <function>isdef</function> peut
+                renvoyer un résultat dépendant de l'environnement courant !
+            </caution>
         </para>
         <para>
-            <literal>isdef(name, 'l')</literal> renvoie <literal>%T</literal>
-            si la variable nommée <literal>name</literal> existe dans l'environnement
-            local de la fonction courante et <literal>%F</literal> sinon.
+            <code>isdef(name, 'l')</code> renvoie <constant>%T</constant>
+            si la variable nommée <varname>name</varname> existe dans l'environnement
+            local de la fonction courante et <constant>%F</constant> sinon.
         </para>
         <para>
-            <literal>isdef(name, 'n')</literal> renvoie
-            <literal>%T</literal> si la variable nommée <literal>name</literal> existe
+            <code>isdef(name, 'n')</code> renvoie
+            <constant>%T</constant> si la variable nommée <varname>name</varname> existe
             dans l'environnement appelant (y compris le niveau global) de la fonction
-            courante et <literal>%F</literal> sinon.
+            courante et <constant>%F</constant> sinon.
         </para>
         <para>
-            Remarque : seule la première lettre de l'option <literal>where</literal> est prise en compte.
+            <note>
+                Remarque : seule la première lettre de l'option <varname>where</varname> est prise en compte.
+            </note>
         </para>
     </refsection>
     <refsection>
@@ -92,6 +96,8 @@ go()
         <simplelist type="inline">
             <member>
                 <link linkend="exists">exists</link>
+            </member>
+            <member>
                 <link linkend="isglobal">isglobal</link>
             </member>
             <member>
