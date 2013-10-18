@@ -100,8 +100,15 @@ int sci_xset(char *fname, unsigned long fname_len)
     }
 
     // in case of "fpf" and "auto clear", the second argument must be a string
-    if (nbInputArgument(pvApiCtx) == 2 && (!checkInputArgumentType(pvApiCtx, 2, sci_matrix)))
+    if (strcmp(l1, "fpf") == 0 || strcmp(l1, "auto clear") == 0)
     {
+        if (nbInputArgument(pvApiCtx) != 2)
+        {
+            freeAllocatedSingleString(l1);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+            return 1;
+        }
+
         /* second argument is not a scalar it must be a string */
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl2);
         if (sciErr.iErr)
@@ -123,7 +130,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         {
             strcpy(getFPF(), l2);
         }
-        else if (strcmp(l1, "auto clear") == 0)
+        else// if (strcmp(l1, "auto clear") == 0)
         {
             int bAutoClear = (int) FALSE;
 
@@ -134,13 +141,6 @@ int sci_xset(char *fname, unsigned long fname_len)
 
             setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_AUTO_CLEAR__, &bAutoClear, jni_bool, 1);
         }
-        else
-        {
-            freeAllocatedSingleString(l1);
-            freeAllocatedSingleString(l2);
-            Scierror(999, _("%s: Unrecognized input argument '%s'.\n"), "xset(arg,<string>)", l1);
-            return -1;
-        }
 
         AssignOutputVariable(pvApiCtx, 1) = 0;
         ReturnArguments(pvApiCtx);
@@ -149,7 +149,18 @@ int sci_xset(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    // in other case than "fpf" and "auto clear", the secod to fifth argument must be a matrix of double
+    // in default case, only one input argument expected.
+    if (strcmp(l1, "default") == 0)
+    {
+        if (nbInputArgument(pvApiCtx) != 1)
+        {
+            freeAllocatedSingleString(l1);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
+            return 1;
+        }
+    }
+
+    // in other case than "fpf" and "auto clear", the second to fifth argument must be a matrix of double
     for (i = 2 ; i <= nbInputArgument(pvApiCtx) ; i++)
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, i, &piAddrlr);
@@ -180,7 +191,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) != 5 && nbInputArgument(pvApiCtx) != 2)
         {
             freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname, 2, 5);
+            Scierror(77, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname, 2, 5);
             return 1;
         }
 
@@ -230,7 +241,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) != 2)
         {
             freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
 
@@ -247,7 +258,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) != 2)
         {
             freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
 
@@ -263,7 +274,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) != 3)
         {
             freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 3);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 3);
             return -1;
         }
 
@@ -279,7 +290,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) != 2)
         {
             freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_SIZE__, &fontSize, jni_double, 1);
@@ -344,14 +355,6 @@ int sci_xset(char *fname, unsigned long fname_len)
 
         double* pdblColorMap = NULL;
         int iFigureUID = 0;
-
-        if (nbInputArgument(pvApiCtx) != 1)
-        {
-            freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
-            return 1;
-        }
-
 
         getFPF()[0] = '\0';
 
@@ -451,7 +454,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) != 2)
         {
             freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_HIDDEN_COLOR__, &hiddenColor, jni_int, 1);
@@ -463,7 +466,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) != 3)
         {
             freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 3);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 3);
             return -1;
         }
 
@@ -481,7 +484,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) != 2)
         {
             freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
 
@@ -502,7 +505,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) != 2)
         {
             freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_COLOR__, &iColor, jni_int, 1);
@@ -513,7 +516,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) != 2)
         {
             freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_BACKGROUND__, &iColor, jni_int, 1);
@@ -523,7 +526,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) != 2)
         {
             freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
         sciSetLineWidth(getOrCreateDefaultSubwin(), x[0]);
@@ -534,7 +537,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) != 2)
         {
             freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
@@ -545,7 +548,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) != 2)
         {
             freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
@@ -556,7 +559,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) != 2)
         {
             freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_AUTORESIZE__, &iAutoResizeMode, jni_bool, 1);
@@ -567,7 +570,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) != 2)
         {
             freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return -1;
         }
         getOrCreateDefaultSubwin();
@@ -582,7 +585,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) != 2 && nbInputArgument(pvApiCtx) != 3)
         {
             freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname, 2, 3);
+            Scierror(77, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname, 2, 3);
             return -1;
         }
 
@@ -608,7 +611,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) != 2)
         {
             freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
         getOrCreateDefaultSubwin();
@@ -620,7 +623,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) != 3)
         {
             freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 3);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 3);
             return 1;
         }
         getOrCreateDefaultSubwin();
@@ -634,7 +637,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) != 2)
         {
             freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
 

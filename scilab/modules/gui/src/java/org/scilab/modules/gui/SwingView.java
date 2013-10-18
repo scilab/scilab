@@ -115,6 +115,7 @@ import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
+import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.widget.Widget;
@@ -377,6 +378,8 @@ public final class SwingView implements GraphicView {
                 SwingScilabWindow window = new SwingScilabWindow();
 
                 window.setTitle(figureTitle);
+                Integer[] figureSize = figure.getSize();
+                window.setDims(new Size(figureSize[0], figureSize[1]));
                 /* TOOLBAR */
                 ToolBar toolBar = ToolBarBuilder.buildToolBar(SwingScilabTab.GRAPHICS_TOOLBAR_DESCRIPTOR, figureId);
                 /* INFOBAR */
@@ -402,7 +405,7 @@ public final class SwingView implements GraphicView {
                 DockingManager.dock(tab, window.getDockingPort());
                 ActiveDockableTracker.requestDockableActivation(tab);
 
-                window.setVisible(true);
+                //window.setVisible(true);
                 tab.setVisible(true);
                 tab.setName(figureTitle);
 
@@ -621,11 +624,21 @@ public final class SwingView implements GraphicView {
 
     @Override
     public void updateObject(final Integer id, final int property) {
+        final TypedObject registeredObject = allObjects.get(id);
+
+        if (property == __GO_VALID__ && ((Boolean) GraphicController.getController().getProperty(id, __GO_VALID__))) {
+            if (registeredObject.getValue() instanceof SwingScilabTab){
+                ((SwingScilabTab) registeredObject.getValue()).getParentWindow().setVisible(true);
+                ((SwingScilabTab) registeredObject.getValue()).setVisible(true);
+                Integer[] figureSize = (Integer[]) GraphicController.getController().getProperty(id, __GO_SIZE__);
+                ((SwingScilabTab) registeredObject.getValue()).getParentWindow().setDims(new Size(figureSize[0], figureSize[1]));                
+            }
+        }
+
         if (property == __GO_IMMEDIATE_DRAWING__) {
             return;
         }
 
-        final TypedObject registeredObject = allObjects.get(id);
         if (registeredObject == null && property != __GO_STYLE__) {
             return;
         }
