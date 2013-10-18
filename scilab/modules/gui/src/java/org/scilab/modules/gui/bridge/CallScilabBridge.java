@@ -209,6 +209,15 @@ public class CallScilabBridge {
     }
 
     /**
+     * Create a new MessageBox in Scilab GUIs
+     * @return the ID of the MessageBox in the UIElementMapper
+     */
+    public static int newMessageBox() {
+        MessageBox messageBox = ScilabMessageBox.createMessageBox();
+        return UIElementMapper.add(messageBox);
+    }
+
+    /**
      * Create a new ContextMenu in Scilab GUIs
      * and wait for a user answer
      * @param uicontextmenuUID the id of the Context Menu
