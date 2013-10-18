@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
  * Copyright (C) 2010 - DIGITEO - Michael Baudin
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -67,7 +67,7 @@
             distribution given values for the others.
         </para>
         <para>
-            The gamma density is 
+            The gamma density is
         </para>
         <para>
             <latex>
@@ -95,35 +95,35 @@
         <title>Examples</title>
         <para>
             In the following example, we compute the probability of the event <literal>x=0.1</literal>
-            for the Gamma distribution function with <literal>Shape=1.0</literal> and 
+            for the Gamma distribution function with <literal>Shape=1.0</literal> and
             <literal>Rate=1.0</literal>.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
     Shape = 0.1
     Rate = 1.0
     x = 0.1
     // Expected : P = 0.8275518
-    [P,Q]=cdfgam("PQ",x,Shape,Rate) 
+    [P,Q]=cdfgam("PQ",x,Shape,Rate)
  ]]></programlisting>
         <para>
             In the following example, we compute the probability of the event <literal>x=0.1</literal>
-            and check that the search algorithms allows to consistently invert the 
+            and check that the search algorithms allows to consistently invert the
             function.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
     Shape = 0.1
     Rate = 2.0
     x = 0.3
     [P,Q]    = cdfgam("PQ",x,Shape,Rate)
     [X1]     = cdfgam("X",Shape,Rate,P,Q)
     [Shape1] = cdfgam("Shape",Rate,P,Q,x)
-    [Rate1] = cdfgam("Rate",P,Q,x,Shape)
+    [Rate1]  = cdfgam("Rate",P,Q,x,Shape)
  ]]></programlisting>
         <para>
-            In the following example, we draw the Gamma distribution function 
-            for various values of the shape and rate.
+            In the following example, we draw the Gamma distribution function
+            for various values of the Shape and Rate.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
     N = 1000;
     x = linspace(0,20,N)';
     Shape = [1 2 3 5 9];
@@ -160,5 +160,40 @@
             Barry W. Brown, James Lovato and Kathy Russell. The University of
             Texas.
         </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cdfbet">cdfbet</link>
+            </member>
+            <member>
+                <link linkend="cdfbin">cdfbin</link>
+            </member>
+            <member>
+                <link linkend="cdfchi">cdfchi</link>
+            </member>
+            <member>
+                <link linkend="cdfchn">cdfchn</link>
+            </member>
+            <member>
+                <link linkend="cdff">cdff</link>
+            </member>
+            <member>
+                <link linkend="cdffnc">cdffnc</link>
+            </member>
+            <member>
+                <link linkend="cdfnbn">cdfnbn</link>
+            </member>
+            <member>
+                <link linkend="cdfnor">cdfnor</link>
+            </member>
+            <member>
+                <link linkend="cdfpoi">cdfpoi</link>
+            </member>
+            <member>
+                <link linkend="cdft">cdft</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

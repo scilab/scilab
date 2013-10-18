@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -45,17 +45,27 @@
             all the entries of <literal> x</literal>.
         </para>
         <para>
-            <literal> q=iqr(x,'r') </literal>   (or, equivalently, 
+            <literal> q=iqr(x,'r') </literal>   (or, equivalently,
             <literal>q=iqr(x,1)</literal>) is  the  rowwise interquartile range.  It  returns in
             each entry  of the row vector  <literal> q</literal> the interquartile
             range of each column of <literal> x</literal>.
         </para>
         <para>
-            <literal> q=iqr(x,'c')  </literal> (or,  equivalently, 
+            <literal> q=iqr(x,'c')  </literal> (or,  equivalently,
             <literal>q=iqr(x,2)</literal>) is the columnwise  interquartile range. It returns in
             each     entry of  the    column  vector  <literal>   q</literal> the
             interquartile range of each row of <literal> x</literal>.
         </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+x  = 1:10;
+
+// Interquartile range of vector 1 to 10
+// Q1 = 3 and Q3 = 8, so iqr = 5
+iqr(x)
+   ]]></programlisting>
     </refsection>
     <refsection>
         <title>Bibliography</title>

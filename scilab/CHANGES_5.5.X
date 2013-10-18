@@ -13,6 +13,8 @@ Scilab Bug Fixes
 
 * Bug #8337 fixed - mtlb_rand now uses the "uniform" rule, whatever the random rule set is.
 
+* Bug #9110 fixed - Examples and references to other functions added in the Statistics help pages.
+
 * Bug #10175 fixed - Clearer example added for sp2adj to adj2sp conversion (and backwards conversion).
 
 * Bug #10234 fixed - reglin function moved from CACSD to Statistics module.

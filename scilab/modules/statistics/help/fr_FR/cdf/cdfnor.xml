@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -80,11 +80,11 @@
             est utilisée.
         </para>
         <para>
-            Les fonctions rationnelles des pages 90-95 de 
+            Les fonctions rationnelles des pages 90-95 de
         </para>
         <para>
             Kennedy and Gentle,
-            Statistical  Computing,  Marcel  Dekker, NY,  1980 
+            Statistical  Computing,  Marcel  Dekker, NY,  1980
         </para>
         <para>
             sont utilisées comme valeurs de départ pour les itérations de Newton calculant l'inverse de la distribution.  Aucune recherche n'est donc nécessaire pour aucun des paramètres.
@@ -102,5 +102,186 @@
             Barry W. Brown, James Lovato and Kathy Russell. The University of
             Texas.
         </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+// Calculer p à partir de x
+x = -1;
+Mean = 0;
+Std = 1;
+// P = 0.1586553, Q = 0.8413447
+[P,Q]=cdfnor("PQ",x,Mean,Std)
+   ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Calculer p à partir d'un x très rare
+// Noter que Q doit être utilisé lorsque P est proche de 1,
+// alors que P doit être utilisé lorsque Q est proche de 1.
+x = 10;
+Mean = 0;
+Std = 1;
+// P = 1, Q = 7.620D-24
+[P,Q]=cdfnor("PQ",x,Mean,Std)
+   ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Créer une table de P,Q
+Mean = 0;
+Std = 1;
+x = -6:6;
+[P,Q]=cdfnor("PQ",x,Mean*ones(x),Std*ones(x));
+[x' P' Q']
+   ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Trouver x à partir de p,q
+Mean = 0;
+Std = 1;
+p = 0.1;
+q = 0.9;
+// x = - 1.2815516
+x = cdfnor("X",Mean,Std,p,q)
+   ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Trouver Mean à partir de p,q
+x = 2;
+Std = 1;
+p = 0.1;
+q = 0.9;
+// Mean = 3.2815516
+Mean = cdfnor("Mean",Std,p,q,x)
+   ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Trouver l'écart-type Std à partir p,q
+Mean = 0;
+p = 0.1;
+q = 0.9;
+x = 2;
+// Std = - 1.5606083
+Std = cdfnor("Std",p,q,x,Mean)
+   ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Afficher la fonction
+h = scf();
+Mean = [0 0 0 -2];
+Std2 = [0.2 1.0 5.0 0.5];
+cols = [1 2 3 4];
+nf = size(cols,"*");
+lgd = [];
+for k = 1 : nf
+  x = linspace(-5,5,1000);
+  P=cdfnor("PQ",x,Mean(k)*ones(x),sqrt(Std2(k))*ones(x));
+  plot(x,P)
+  str = msprintf("Mean=%s, Std^2=%s",string(Mean(k)),string(Std2(k)));
+  lgd($+1) = str;
+end
+for k = 1 : nf
+h.children.children.children(nf - k + 1).foreground = cols(k);
+end
+legend(lgd);
+   ]]></programlisting>
+        <scilab:image>
+            h = scf();
+            Mean = [0 0 0 -2];
+            Std2 = [0.2 1.0 5.0 0.5];
+            cols = [1 2 3 4];
+            nf = size(cols,"*");
+            lgd = [];
+            for k = 1 : nf
+            x = linspace(-5,5,1000);
+            P=cdfnor("PQ",x,Mean(k)*ones(x),sqrt(Std2(k))*ones(x));
+            plot(x,P)
+            str = msprintf("Mean=%s, Std^2=%s",string(Mean(k)),string(Std2(k)));
+            lgd($+1) = str;
+            end
+            for k = 1 : nf
+            h.children.children.children(nf - k + 1).foreground = cols(k);
+            end
+            legend(lgd);
+        </scilab:image>
+        
+        <programlisting role="example"><![CDATA[
+// Afficher la fonction fonction standard cumulative inverse
+Mean = 0;
+Std = 1;
+p = linspace(1e-10,1-1e-10,1000);
+q = 1-p;
+x = cdfnor("X",Mean*ones(p),Std*ones(p),p,q);
+plot(p,x)
+xtitle("Fonction standard cumulative inverse","p","x");
+   ]]></programlisting>
+        <scilab:image>
+            Mean = 0;
+            Std = 1;
+            p = linspace(1e-10,1-1e-10,1000);
+            q = 1-p;
+            x = cdfnor("X",Mean*ones(p),Std*ones(p),p,q);
+            plot(p,x)
+            xtitle("Fonction standard cumulative inverse","p","x");
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+// La fonction Inverse Normale CDF est mal conditionnée lorsque
+// p est proche de p=0.5.
+// Ceci parce-que, à p=0.5, la première dérivée est non nulle,
+// mais la fonction est nulle.
+// Ceci peut produire une erreur relative très large dans la fonction,
+// c'est-à-dire que des décimales sont susceptibles d'êtres de plus en plus fausses
+// lorsque p s'approche de p=0.5.
+Mean = 0;
+Std = 1;
+p = 0.500000001;
+q = 1-p;
+x = cdfnor("X",Mean,Std,p,q)
+// La probabilité attendue a été calculée dans un software symbolique,
+// avec l'expression sqrt(2)*erfinv(2*p-1)
+// où p = 1/2+10^-9.
+expected = 2.50662827463100050e-9;
+// L'erreur relative est d'environ 1.e-8, ce qui veut dire que
+// seulement 8 décimales sont correctes.
+abs(x-expected)/abs(expected)
+   ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// L'agorithme de traversée de zéro peut être incapable de déterminer l'écart-type
+// dans certaines situations, quand l'inversion ne peut pas avoir lieu.
+Mean = 1;
+p = 0.5;
+q = 0.5;
+x = 1;
+// Std = Nan
+Std = cdfnor("Std",p,q,x,Mean)
+   ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cdfbet">cdfbet</link>
+            </member>
+            <member>
+                <link linkend="cdfbin">cdfbin</link>
+            </member>
+            <member>
+                <link linkend="cdfchi">cdfchi</link>
+            </member>
+            <member>
+                <link linkend="cdfchn">cdfchn</link>
+            </member>
+            <member>
+                <link linkend="cdff">cdff</link>
+            </member>
+            <member>
+                <link linkend="cdffnc">cdffnc</link>
+            </member>
+            <member>
+                <link linkend="cdfgam">cdfgam</link>
+            </member>
+            <member>
+                <link linkend="cdfnbn">cdfnbn</link>
+            </member>
+            <member>
+                <link linkend="cdfpoi">cdfpoi</link>
+            </member>
+            <member>
+                <link linkend="cdft">cdft</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>
