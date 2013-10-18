@@ -531,14 +531,9 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
         }
     }
 
-    if ((nbInputArgument(pvApiCtx) < 2) || (propertiesValuesIndices[24] == NOT_FOUND))    /* Visible property not set */
-    {
-        /* Force the uicontrol to be visible because is invisible by default in the model (See bug #10346) */
-        int b = (int)TRUE;
-        setGraphicObjectProperty(iUicontrol, __GO_VISIBLE__, &b, jni_bool, 1);
-    }
-
-    if ((nbInputArgument(pvApiCtx) < 2) || (propertiesValuesIndices[14] == NOT_FOUND))    /* SliderStep property not set */
+    if (propertiesValuesIndices != NULL
+        && (propertiesValuesIndices[14] == NOT_FOUND &&
+            (propertiesValuesIndices[7] != NOT_FOUND || propertiesValuesIndices[8] != NOT_FOUND)))    /* SliderStep property not set */
     {
         /* Set SliderStep property to [1/100*(Max-Min) 1/10*(Max-Min)] */
         double maxValue = 0;
@@ -556,12 +551,19 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
         setGraphicObjectProperty(iUicontrol, __GO_UI_SLIDERSTEP__, pdblStep, jni_double_vector, 2);
     }
 
-    if ((Rhs < 2) || (propertiesValuesIndices[10] == NOT_FOUND))    /* Position property not set */
+    if ((nbInputArgument(pvApiCtx) < 2) || (propertiesValuesIndices[10] == NOT_FOUND))    /* Position property not set */
     {
         double* pdblPosition = NULL;
 
         getGraphicObjectProperty(iUicontrol, __GO_POSITION__, jni_double_vector, (void**) &pdblPosition);
         setGraphicObjectProperty(iUicontrol, __GO_POSITION__, pdblPosition, jni_double_vector, 4);
+    }
+
+    if ((nbInputArgument(pvApiCtx) < 2) || (propertiesValuesIndices[24] == NOT_FOUND))    /* Visible property not set */
+    {
+        /* Force the uicontrol to be visible because is invisible by default in the model (See bug #10346) */
+        int b = (int)TRUE;
+        setGraphicObjectProperty(iUicontrol, __GO_VISIBLE__, &b, jni_bool, 1);
     }
 
     FREE(propertiesValuesIndices);
