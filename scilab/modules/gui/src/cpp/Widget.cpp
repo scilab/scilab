@@ -14,8 +14,8 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-void requestFocus(char *pObjUID)
+void requestFocus(int iObjUID)
 {
     // Scilab default values
-    CallScilabBridge::requestFocus(getScilabJavaVM(), pObjUID);
+    CallScilabBridge::requestFocus(getScilabJavaVM(), iObjUID);
 }

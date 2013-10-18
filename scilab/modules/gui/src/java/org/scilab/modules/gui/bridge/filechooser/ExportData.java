@@ -21,7 +21,7 @@ import java.util.Vector;
  */
 public class ExportData {
 
-    private String figureUID;
+    private Integer figureUID;
     private String exportName;
     private String exportExtension;
     private Vector<String> exportProperties;
@@ -34,7 +34,7 @@ public class ExportData {
      * @param exportProperties options of the export
      *
      */
-    public ExportData(String figureUID, String exportName, String exportExtension, Vector<String> exportProperties) {
+    public ExportData(Integer figureUID, String exportName, String exportExtension, Vector<String> exportProperties) {
         this.exportName = exportName;
         this.exportExtension = exportExtension;
         this.exportProperties = exportProperties;
@@ -52,7 +52,7 @@ public class ExportData {
      * figureUID getter
      * @return the figureUID
      */
-    public String getFigureId() {
+    public Integer getFigureId() {
         return figureUID;
     }
 
@@ -60,7 +60,7 @@ public class ExportData {
      * figureUID setter
      * @param figureUID the figureUID to set
      */
-    public void setFigureId(String figureUID) {
+    public void setFigureId(Integer figureUID) {
         this.figureUID = figureUID;
     }
 

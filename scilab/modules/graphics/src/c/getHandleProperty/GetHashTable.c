@@ -266,7 +266,7 @@ GetPropertyHashTable *createScilabGetHashTable(void)
 }
 
 /*--------------------------------------------------------------------------*/
-int callGetProperty(void* _pvCtx, char *pObjUID, char *propertyName)
+int callGetProperty(void* _pvCtx, int iObjUID, char *propertyName)
 {
     getPropertyFunc accessor = searchGetHashtable(getHashTable, propertyName);
 
@@ -275,7 +275,7 @@ int callGetProperty(void* _pvCtx, char *pObjUID, char *propertyName)
         Scierror(999, _("Unknown property: %s.\n"), propertyName);
         return -1;
     }
-    return accessor(_pvCtx, pObjUID);
+    return accessor(_pvCtx, iObjUID);
 }
 
 /*--------------------------------------------------------------------------*/

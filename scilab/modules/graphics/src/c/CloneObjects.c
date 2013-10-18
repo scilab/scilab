@@ -44,7 +44,7 @@
  * This code ought to be moved into the Java Model, either in the relevant
  * constructor (ContouredObject) or into an initialization function.
  */
-int cloneGraphicContext(char* sourceIdentifier, char* destIdentifier)
+int cloneGraphicContext(int iSource, int iDest)
 {
     double dblTmp = 0.0;
     double *pdblTmp = &dblTmp;
@@ -67,13 +67,13 @@ int cloneGraphicContext(char* sourceIdentifier, char* destIdentifier)
      * and do not call releaseGraphicObjectProperty on purpose.
      */
 
-    getGraphicObjectProperty(sourceIdentifier, __GO_LINE_MODE__, jni_bool, (void **)&piTmp);
+    getGraphicObjectProperty(iSource, __GO_LINE_MODE__, jni_bool, (void **)&piTmp);
     lineMode = iTmp;
-    getGraphicObjectProperty(sourceIdentifier, __GO_LINE_COLOR__, jni_int, (void **)&piTmp);
+    getGraphicObjectProperty(iSource, __GO_LINE_COLOR__, jni_int, (void **)&piTmp);
     foreground = iTmp;
-    getGraphicObjectProperty(sourceIdentifier, __GO_LINE_THICKNESS__, jni_double, (void **)&pdblTmp);
+    getGraphicObjectProperty(iSource, __GO_LINE_THICKNESS__, jni_double, (void **)&pdblTmp);
     lineThickness = dblTmp;
-    getGraphicObjectProperty(sourceIdentifier, __GO_LINE_STYLE__, jni_int, (void **)&piTmp);
+    getGraphicObjectProperty(iSource, __GO_LINE_STYLE__, jni_int, (void **)&piTmp);
     lineStyle = iTmp;
 
     /*
@@ -86,42 +86,42 @@ int cloneGraphicContext(char* sourceIdentifier, char* destIdentifier)
     fillMode = *tmp;
 #endif
 
-    getGraphicObjectProperty(sourceIdentifier, __GO_BACKGROUND__, jni_int, (void **)&piTmp);
+    getGraphicObjectProperty(iSource, __GO_BACKGROUND__, jni_int, (void **)&piTmp);
     background = iTmp;
 
-    getGraphicObjectProperty(sourceIdentifier, __GO_MARK_FOREGROUND__, jni_int, (void **)&piTmp);
+    getGraphicObjectProperty(iSource, __GO_MARK_FOREGROUND__, jni_int, (void **)&piTmp);
     markForeground = iTmp;
-    getGraphicObjectProperty(sourceIdentifier, __GO_MARK_BACKGROUND__, jni_int, (void **)&piTmp);
+    getGraphicObjectProperty(iSource, __GO_MARK_BACKGROUND__, jni_int, (void **)&piTmp);
     markBackground = iTmp;
-    getGraphicObjectProperty(sourceIdentifier, __GO_MARK_STYLE__, jni_int, (void **)&piTmp);
+    getGraphicObjectProperty(iSource, __GO_MARK_STYLE__, jni_int, (void **)&piTmp);
     markStyle = iTmp;
-    getGraphicObjectProperty(sourceIdentifier, __GO_MARK_SIZE__, jni_int, (void **)&piTmp);
+    getGraphicObjectProperty(iSource, __GO_MARK_SIZE__, jni_int, (void **)&piTmp);
     markSize = iTmp;
-    getGraphicObjectProperty(sourceIdentifier, __GO_MARK_SIZE_UNIT__, jni_int, (void **)&piTmp);
+    getGraphicObjectProperty(iSource, __GO_MARK_SIZE_UNIT__, jni_int, (void **)&piTmp);
     markSizeUnit = iTmp;
 
-    setGraphicObjectProperty(destIdentifier, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
-    setGraphicObjectProperty(destIdentifier, __GO_LINE_COLOR__, &foreground, jni_int, 1);
-    setGraphicObjectProperty(destIdentifier, __GO_LINE_THICKNESS__, &lineThickness, jni_double, 1);
-    setGraphicObjectProperty(destIdentifier, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
+    setGraphicObjectProperty(iDest, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
+    setGraphicObjectProperty(iDest, __GO_LINE_COLOR__, &foreground, jni_int, 1);
+    setGraphicObjectProperty(iDest, __GO_LINE_THICKNESS__, &lineThickness, jni_double, 1);
+    setGraphicObjectProperty(iDest, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
 
     /* Commented out due to the confusion between Axes' FILLED and the FILL_MODE Contoured property */
 #if 0
-    setGraphicObjectProperty(destIdentifier, __GO_FILL_MODE__, &fillMode, jni_bool, 1);
+    setGraphicObjectProperty(iDest, __GO_FILL_MODE__, &fillMode, jni_bool, 1);
 #endif
 
-    setGraphicObjectProperty(destIdentifier, __GO_BACKGROUND__, &background, jni_int, 1);
+    setGraphicObjectProperty(iDest, __GO_BACKGROUND__, &background, jni_int, 1);
 
-    setGraphicObjectProperty(destIdentifier, __GO_MARK_FOREGROUND__, &markForeground, jni_int, 1);
-    setGraphicObjectProperty(destIdentifier, __GO_MARK_BACKGROUND__, &markBackground, jni_int, 1);
-    setGraphicObjectProperty(destIdentifier, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
-    setGraphicObjectProperty(destIdentifier, __GO_MARK_SIZE__, &markSize, jni_int, 1);
-    setGraphicObjectProperty(destIdentifier, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
+    setGraphicObjectProperty(iDest, __GO_MARK_FOREGROUND__, &markForeground, jni_int, 1);
+    setGraphicObjectProperty(iDest, __GO_MARK_BACKGROUND__, &markBackground, jni_int, 1);
+    setGraphicObjectProperty(iDest, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
+    setGraphicObjectProperty(iDest, __GO_MARK_SIZE__, &markSize, jni_int, 1);
+    setGraphicObjectProperty(iDest, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
 
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-int cloneFontContext(char* sourceIdentifier, char* destIdentifier)
+int cloneFontContext(int iSource, int iDest)
 {
     double dblTmp = 0.0;
     double *pdblTmp = &dblTmp;
@@ -137,27 +137,28 @@ int cloneFontContext(char* sourceIdentifier, char* destIdentifier)
      * and do not call releaseGraphicObjectProperty on purpose.
      */
 
-    getGraphicObjectProperty(sourceIdentifier, __GO_FONT_COLOR__, jni_int, (void **)&piTmp);
+    getGraphicObjectProperty(iSource, __GO_FONT_COLOR__, jni_int, (void **)&piTmp);
     fontColor = iTmp;
-    getGraphicObjectProperty(sourceIdentifier, __GO_FONT_STYLE__, jni_int, (void **)&piTmp);
+    getGraphicObjectProperty(iSource, __GO_FONT_STYLE__, jni_int, (void **)&piTmp);
     fontStyle = iTmp;
-    getGraphicObjectProperty(sourceIdentifier, __GO_FONT_SIZE__, jni_double, (void **)&pdblTmp);
+    getGraphicObjectProperty(iSource, __GO_FONT_SIZE__, jni_double, (void **)&pdblTmp);
     fontSize = dblTmp;
-    getGraphicObjectProperty(sourceIdentifier, __GO_FONT_FRACTIONAL__, jni_bool, (void **)&piTmp);
+    getGraphicObjectProperty(iSource, __GO_FONT_FRACTIONAL__, jni_bool, (void **)&piTmp);
     fontFractional = iTmp;
 
-    setGraphicObjectProperty(destIdentifier, __GO_FONT_COLOR__, &fontColor, jni_int, 1);
-    setGraphicObjectProperty(destIdentifier, __GO_FONT_STYLE__, &fontStyle, jni_int, 1);
-    setGraphicObjectProperty(destIdentifier, __GO_FONT_SIZE__, &fontSize, jni_double, 1);
-    setGraphicObjectProperty(destIdentifier, __GO_FONT_FRACTIONAL__, &fontFractional, jni_bool, 1);
+    setGraphicObjectProperty(iDest, __GO_FONT_COLOR__, &fontColor, jni_int, 1);
+    setGraphicObjectProperty(iDest, __GO_FONT_STYLE__, &fontStyle, jni_int, 1);
+    setGraphicObjectProperty(iDest, __GO_FONT_SIZE__, &fontSize, jni_double, 1);
+    setGraphicObjectProperty(iDest, __GO_FONT_FRACTIONAL__, &fontFractional, jni_bool, 1);
 
     return 0;
 }
 
-char* clonePolyline(char* sourcePolyline)
+int clonePolyline(int iSource)
 {
-    char *clonedPolylineUID = NULL;
-    char* parentAxes = NULL;
+    int iClonedPolylineUID = 0;
+    int iParentAxes = 0;
+    int* piParentAxes = &iParentAxes;
 
     double* dataX = NULL;
     double* dataY = NULL;
@@ -190,48 +191,48 @@ char* clonePolyline(char* sourcePolyline)
     int markMode = 0;
     int interpShaded = 0;
 
-    getGraphicObjectProperty(sourcePolyline, __GO_PARENT_AXES__, jni_string, (void **)&parentAxes);
+    getGraphicObjectProperty(iSource, __GO_PARENT_AXES__, jni_int, (void **)&piParentAxes);
 
-    getGraphicObjectProperty(sourcePolyline, __GO_DATA_MODEL_X__, jni_double_vector, (void **)&dataX);
-    getGraphicObjectProperty(sourcePolyline, __GO_DATA_MODEL_Y__, jni_double_vector, (void **)&dataY);
-    getGraphicObjectProperty(sourcePolyline, __GO_DATA_MODEL_Z__, jni_double_vector, (void **)&dataZ);
+    getGraphicObjectProperty(iSource, __GO_DATA_MODEL_X__, jni_double_vector, (void **)&dataX);
+    getGraphicObjectProperty(iSource, __GO_DATA_MODEL_Y__, jni_double_vector, (void **)&dataY);
+    getGraphicObjectProperty(iSource, __GO_DATA_MODEL_Z__, jni_double_vector, (void **)&dataZ);
 
-    getGraphicObjectProperty(sourcePolyline, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void **)&pNPoints);
+    getGraphicObjectProperty(iSource, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void **)&pNPoints);
 
-    getGraphicObjectProperty(sourcePolyline, __GO_CLOSED__, jni_bool, (void **)&pClosed);
-    getGraphicObjectProperty(sourcePolyline, __GO_POLYLINE_STYLE__, jni_int, (void **)&pPolylineStyle);
+    getGraphicObjectProperty(iSource, __GO_CLOSED__, jni_bool, (void **)&pClosed);
+    getGraphicObjectProperty(iSource, __GO_POLYLINE_STYLE__, jni_int, (void **)&pPolylineStyle);
 
     /* ContouredObject properties */
-    getGraphicObjectProperty(sourcePolyline, __GO_LINE_THICKNESS__, jni_double, (void **)&pLineThickness);
-    getGraphicObjectProperty(sourcePolyline, __GO_LINE_STYLE__, jni_int, (void **)&pTmp);
+    getGraphicObjectProperty(iSource, __GO_LINE_THICKNESS__, jni_double, (void **)&pLineThickness);
+    getGraphicObjectProperty(iSource, __GO_LINE_STYLE__, jni_int, (void **)&pTmp);
     lineStyle = tmp;
-    getGraphicObjectProperty(sourcePolyline, __GO_LINE_COLOR__, jni_int, (void **)&pTmp);
+    getGraphicObjectProperty(iSource, __GO_LINE_COLOR__, jni_int, (void **)&pTmp);
     foreground = tmp;
-    getGraphicObjectProperty(sourcePolyline, __GO_BACKGROUND__, jni_int, (void **)&pTmp);
+    getGraphicObjectProperty(iSource, __GO_BACKGROUND__, jni_int, (void **)&pTmp);
     background = tmp;
-    getGraphicObjectProperty(sourcePolyline, __GO_MARK_STYLE__, jni_int, (void **)&pTmp);
+    getGraphicObjectProperty(iSource, __GO_MARK_STYLE__, jni_int, (void **)&pTmp);
     markStyle = tmp;
-    getGraphicObjectProperty(sourcePolyline, __GO_MARK_FOREGROUND__, jni_int, (void **)&pTmp);
+    getGraphicObjectProperty(iSource, __GO_MARK_FOREGROUND__, jni_int, (void **)&pTmp);
     markForeground = tmp;
-    getGraphicObjectProperty(sourcePolyline, __GO_MARK_BACKGROUND__, jni_int, (void **)&pTmp);
+    getGraphicObjectProperty(iSource, __GO_MARK_BACKGROUND__, jni_int, (void **)&pTmp);
     markBackground = tmp;
 
-    getGraphicObjectProperty(sourcePolyline, __GO_LINE_MODE__, jni_bool, (void **)&pTmp);
+    getGraphicObjectProperty(iSource, __GO_LINE_MODE__, jni_bool, (void **)&pTmp);
     lineMode = tmp;
-    getGraphicObjectProperty(sourcePolyline, __GO_FILL_MODE__, jni_bool, (void **)&pTmp);
+    getGraphicObjectProperty(iSource, __GO_FILL_MODE__, jni_bool, (void **)&pTmp);
     fillMode = tmp;
-    getGraphicObjectProperty(sourcePolyline, __GO_MARK_MODE__, jni_bool, (void **)&pTmp);
+    getGraphicObjectProperty(iSource, __GO_MARK_MODE__, jni_bool, (void **)&pTmp);
     markMode = tmp;
-    getGraphicObjectProperty(sourcePolyline, __GO_INTERP_COLOR_MODE__, jni_bool, (void **)&pTmp);
+    getGraphicObjectProperty(iSource, __GO_INTERP_COLOR_MODE__, jni_bool, (void **)&pTmp);
     interpShaded = tmp;
 
-    clonedPolylineUID = allocatePolyline(parentAxes, dataX, dataY, dataZ, closed, nPoints, polylineStyle,
-                                         &foreground, &background, &markStyle, &markForeground, &markBackground,
-                                         lineMode, fillMode, markMode, interpShaded);
+    iClonedPolylineUID = allocatePolyline(iParentAxes, dataX, dataY, dataZ, closed, nPoints, polylineStyle,
+                                          &foreground, &background, &markStyle, &markForeground, &markBackground,
+                                          lineMode, fillMode, markMode, interpShaded);
 
     /* These properties must be additionally set as this is not done by allocatePolyline */
-    setGraphicObjectProperty(clonedPolylineUID, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
-    setGraphicObjectProperty(clonedPolylineUID, __GO_LINE_THICKNESS__, &lineThickness, jni_double, 1);
+    setGraphicObjectProperty(iClonedPolylineUID, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
+    setGraphicObjectProperty(iClonedPolylineUID, __GO_LINE_THICKNESS__, &lineThickness, jni_double, 1);
 
     /*
      * Some these properties are passed by value thus do not care to release them
@@ -241,9 +242,7 @@ char* clonePolyline(char* sourcePolyline)
      *  - jni_string
      *  - jni_double_vector out of the DATA_MODEL
      */
-    releaseGraphicObjectProperty(__GO_PARENT_AXES__, parentAxes, jni_string, 1);
 
-
-    return clonedPolylineUID;
+    return iClonedPolylineUID;
 }
 

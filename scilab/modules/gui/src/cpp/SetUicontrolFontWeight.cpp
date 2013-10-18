@@ -14,7 +14,7 @@
 
 #include "SetUicontrolFontWeight.hxx"
 
-int SetUicontrolFontWeight(void* _pvCtx, char *sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUicontrolFontWeight(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* Font weight can be light, normal, demi or bold */
 
@@ -45,7 +45,7 @@ int SetUicontrolFontWeight(void* _pvCtx, char *sciObjUID, void* _pvData, int val
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_FONTWEIGHT__, fontWeight, jni_string, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_FONTWEIGHT__, fontWeight, jni_string, 1);
 
     if (status == TRUE)
     {

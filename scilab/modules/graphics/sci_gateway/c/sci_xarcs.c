@@ -45,7 +45,7 @@ int sci_xarcs(char *fname, unsigned long fname_len)
     double angle1 = 0.0;
     double angle2 = 0.0;
 
-    char *pstCurrentSubWinUID = NULL;
+    int iCurrentSubWinUID = 0;
     int iCurrentSubWinForeground = 0;
     int *piCurrentSubWinForeground = &iCurrentSubWinForeground;
 
@@ -84,7 +84,7 @@ int sci_xarcs(char *fname, unsigned long fname_len)
         }
     }
 
-    pstCurrentSubWinUID = (char*)getOrCreateDefaultSubwin();
+    iCurrentSubWinUID = getOrCreateDefaultSubwin();
 
     if (nbInputArgument(pvApiCtx) == 2)
     {
@@ -130,7 +130,7 @@ int sci_xarcs(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        getGraphicObjectProperty(pstCurrentSubWinUID, __GO_LINE_COLOR__, jni_int, (void **)&piCurrentSubWinForeground);
+        getGraphicObjectProperty(iCurrentSubWinUID, __GO_LINE_COLOR__, jni_int, (void **)&piCurrentSubWinForeground);
         for (i2 = 0; i2 < n2; ++i2)
         {
             *(int*)(l2 + i2) = iCurrentSubWinForeground;
@@ -147,9 +147,8 @@ int sci_xarcs(char *fname, unsigned long fname_len)
 
     /* construct Compound and make it current object */
     {
-        char * o = ConstructCompoundSeq(n1);
+        int o = ConstructCompoundSeq(n1);
         setCurrentObject(o);
-        releaseGraphicObjectProperty(__GO_PARENT__, o, jni_string, 1);
     }
 
     AssignOutputVariable(pvApiCtx, 1) = 0;

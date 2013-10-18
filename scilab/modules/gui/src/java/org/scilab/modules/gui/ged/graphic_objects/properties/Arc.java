@@ -53,23 +53,23 @@ public class Arc extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID
      */
-    public void arcDrawingMethod(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void arcDrawingMethod(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lArcDrawingMethod = new JLabel();
         final JComboBox cArcDrawingMethod = new JComboBox();
         addLabelComboBox(panel, lArcDrawingMethod, MessagesGED.arc_drawing_method,
-                                cArcDrawingMethod, new String[] {MessagesGED.nurbs , MessagesGED.lines},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cArcDrawingMethod, new String[] {MessagesGED.nurbs , MessagesGED.lines},
+                         LEFTMARGIN, COLUMN, ROW++);
         cArcDrawingMethod.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_ARC_DRAWING_METHOD__,
-                        cArcDrawingMethod.getSelectedIndex());
+                    UID, GraphicObjectProperties.__GO_ARC_DRAWING_METHOD__,
+                    cArcDrawingMethod.getSelectedIndex());
             }
         });
         // Get the current status of the property: Arc Drawing Method
         cArcDrawingMethod.setSelectedIndex((Integer) GraphicController.getController()
-                .getProperty(UID, GraphicObjectProperties.__GO_ARC_DRAWING_METHOD__));
+                                           .getProperty(UID, GraphicObjectProperties.__GO_ARC_DRAWING_METHOD__));
     }
 
     /**
@@ -78,9 +78,9 @@ public class Arc extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void upperLeftPoint(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void upperLeftPoint(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         int LEFTMARGINIP = 0; //left margin - inner panel
         int COLUMNIP = 0; //left column - inner panel
         final JPanel pULP = new JPanel();
@@ -160,9 +160,9 @@ public class Arc extends ContentLayout {
     /**
     * Get status of the property: upper left point.
     */
-    private void getULP(String UID) {
+    private void getULP(Integer UID) {
         Double[] currentULP = (Double []) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_UPPER_LEFT_POINT__);
+                              .getProperty(UID, GraphicObjectProperties.__GO_UPPER_LEFT_POINT__);
         cULPx.setText(currentULP[0].toString());
         cULPy.setText(currentULP[1].toString());
         cULPz.setText(currentULP[2].toString());
@@ -172,14 +172,14 @@ public class Arc extends ContentLayout {
     /**
     * Updates the property: upper left point.
     */
-    private void updateULP(String UID) {
+    private void updateULP(Integer UID) {
         try {
             Double[] value = new Double[3];
             value[0] = Double.parseDouble(cULPx.getText());
             value[1] = Double.parseDouble(cULPy.getText());
             value[2] = Double.parseDouble(cULPz.getText());
             GraphicController.getController()
-                       .setProperty(UID, GraphicObjectProperties.__GO_UPPER_LEFT_POINT__, value);
+            .setProperty(UID, GraphicObjectProperties.__GO_UPPER_LEFT_POINT__, value);
             titleULP();
         } catch (NumberFormatException e) {
             getULP(UID);
@@ -194,12 +194,12 @@ public class Arc extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void width(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void width(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lWidth = new JLabel();
         final JTextField cWidth = new JTextField();
 
         addLabelTextField(panel, lWidth, MessagesGED.width,
-                                 cWidth, true, LEFTMARGIN, COLUMN, ROW++);
+                          cWidth, true, LEFTMARGIN, COLUMN, ROW++);
         cWidth.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -214,7 +214,7 @@ public class Arc extends ContentLayout {
         });
         // Get the current status of the property: Width
         cWidth.setText(Double.toString((Double) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_WIDTH__)));
+                                       .getProperty(UID, GraphicObjectProperties.__GO_WIDTH__)));
 
     }
 
@@ -223,15 +223,15 @@ public class Arc extends ContentLayout {
     * @param cWidth JTextField
     * @param UID id
     */
-    private void setWidth(JTextField cWidth, String UID) {
+    private void setWidth(JTextField cWidth, Integer UID) {
         try {
             GraphicController.getController().setProperty(
-                    UID,
-                    GraphicObjectProperties.__GO_WIDTH__,
-                    Double.parseDouble(cWidth.getText()));
+                UID,
+                GraphicObjectProperties.__GO_WIDTH__,
+                Double.parseDouble(cWidth.getText()));
         } catch (NumberFormatException e) {
             cWidth.setText(Double.toString((Double) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_WIDTH__)));
+                                           .getProperty(UID, GraphicObjectProperties.__GO_WIDTH__)));
         }
     }
 
@@ -243,12 +243,12 @@ public class Arc extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void height(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void height(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lHeight = new JLabel();
         final JTextField cHeight = new JTextField();
 
         addLabelTextField(panel, lHeight, MessagesGED.height,
-                                 cHeight, true, LEFTMARGIN, COLUMN, ROW++);
+                          cHeight, true, LEFTMARGIN, COLUMN, ROW++);
         cHeight.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -263,7 +263,7 @@ public class Arc extends ContentLayout {
         });
         // Get the current status of the property: Height
         cHeight.setText(Double.toString((Double) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_HEIGHT__)));
+                                        .getProperty(UID, GraphicObjectProperties.__GO_HEIGHT__)));
 
     }
 
@@ -272,15 +272,15 @@ public class Arc extends ContentLayout {
     * @param cHeight JTextField
     * @param UID id
     */
-    private void setHeight(JTextField cHeight, String UID) {
+    private void setHeight(JTextField cHeight, Integer UID) {
         try {
             GraphicController.getController().setProperty(
-                    UID,
-                    GraphicObjectProperties.__GO_HEIGHT__,
-                    Double.parseDouble(cHeight.getText()));
+                UID,
+                GraphicObjectProperties.__GO_HEIGHT__,
+                Double.parseDouble(cHeight.getText()));
         } catch (NumberFormatException e) {
             cHeight.setText(Double.toString((Double) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_HEIGHT__)));
+                                            .getProperty(UID, GraphicObjectProperties.__GO_HEIGHT__)));
         }
     }
 
@@ -292,12 +292,12 @@ public class Arc extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void startAngle(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void startAngle(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lStartAngle = new JLabel();
         final JTextField cStartAngle = new JTextField();
 
         addLabelTextField(panel, lStartAngle, MessagesGED.start_angle,
-                                 cStartAngle, true, LEFTMARGIN, COLUMN, ROW++);
+                          cStartAngle, true, LEFTMARGIN, COLUMN, ROW++);
         cStartAngle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -312,7 +312,7 @@ public class Arc extends ContentLayout {
         });
         // Get the current status of the property: Start Angle
         cStartAngle.setText(Double.toString((Double) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_START_ANGLE__)));
+                                            .getProperty(UID, GraphicObjectProperties.__GO_START_ANGLE__)));
 
     }
 
@@ -321,15 +321,15 @@ public class Arc extends ContentLayout {
     * @param cStartAngle JTextField
     * @param UID id
     */
-    private void setStartAngle(JTextField cStartAngle, String UID) {
+    private void setStartAngle(JTextField cStartAngle, Integer UID) {
         try {
             GraphicController.getController().setProperty(
-                    UID,
-                    GraphicObjectProperties.__GO_START_ANGLE__,
-                    Double.parseDouble(cStartAngle.getText()));
+                UID,
+                GraphicObjectProperties.__GO_START_ANGLE__,
+                Double.parseDouble(cStartAngle.getText()));
         } catch (NumberFormatException e) {
             cStartAngle.setText(Double.toString((Double) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_START_ANGLE__)));
+                                                .getProperty(UID, GraphicObjectProperties.__GO_START_ANGLE__)));
         }
     }
 
@@ -341,12 +341,12 @@ public class Arc extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void endAngle(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void endAngle(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lEndAngle = new JLabel();
         final JTextField cEndAngle = new JTextField();
 
         addLabelTextField(panel, lEndAngle, MessagesGED.end_angle,
-                                 cEndAngle, true, LEFTMARGIN, COLUMN, ROW++);
+                          cEndAngle, true, LEFTMARGIN, COLUMN, ROW++);
         cEndAngle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -361,7 +361,7 @@ public class Arc extends ContentLayout {
         });
         // Get the current status of the property: End Angle
         cEndAngle.setText(Double.toString((Double) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_END_ANGLE__)));
+                                          .getProperty(UID, GraphicObjectProperties.__GO_END_ANGLE__)));
 
     }
 
@@ -370,15 +370,15 @@ public class Arc extends ContentLayout {
     * @param cEndAngle JTextField
     * @param UID id
     */
-    private void setEndAngle(JTextField cEndAngle, String UID) {
+    private void setEndAngle(JTextField cEndAngle, Integer UID) {
         try {
             GraphicController.getController().setProperty(
-                    UID,
-                    GraphicObjectProperties.__GO_END_ANGLE__,
-                    Double.parseDouble(cEndAngle.getText()));
+                UID,
+                GraphicObjectProperties.__GO_END_ANGLE__,
+                Double.parseDouble(cEndAngle.getText()));
         } catch (NumberFormatException e) {
             cEndAngle.setText(Double.toString((Double) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_END_ANGLE__)));
+                                              .getProperty(UID, GraphicObjectProperties.__GO_END_ANGLE__)));
         }
     }
 }

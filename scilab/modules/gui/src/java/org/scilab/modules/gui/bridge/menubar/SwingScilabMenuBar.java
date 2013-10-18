@@ -88,7 +88,7 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
         for (int menuIndex = 0; menuIndex < this.getMenuCount(); menuIndex++) {
             // Check the name of each menu until one matches the name
             if (this.getMenu(menuIndex).getText().equals(removeMnemonicFromName(menuName))) {
-                String id = ((SwingScilabMenu) this.getMenu(menuIndex)).getId();
+                Integer id = ((SwingScilabMenu) this.getMenu(menuIndex)).getId();
                 GraphicController.getController().setProperty(id, __GO_UI_ENABLE__, status);
                 break;
             }
@@ -118,7 +118,7 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
         if ((menuItemPosition <= parentMenu.getItemCount()) & (menuItemPosition >= 1)) {
             /* Java index begins at 0 and Scilab index begins at 1 */
             if (parentMenu.getItem(menuItemPosition - 1) != null) {
-                String id = ((SwingScilabMenuItem) parentMenu.getItem(menuItemPosition - 1)).getId();
+                Integer id = ((SwingScilabMenuItem) parentMenu.getItem(menuItemPosition - 1)).getId();
                 GraphicController.getController().setProperty(id, __GO_UI_ENABLE__, status);
             }
         }
@@ -134,7 +134,7 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
             // Check the name of each menu until one matches the name
             if (this.getMenu(menuIndex).getText().equals(removeMnemonicFromName(menuName))) {
                 this.getMenu(menuIndex).setVisible(false);
-                String id = ((SwingScilabMenu) this.getMenu(menuIndex)).getId();
+                Integer id = ((SwingScilabMenu) this.getMenu(menuIndex)).getId();
                 GraphicController.getController().removeRelationShipAndDelete(id);
                 break;
             }

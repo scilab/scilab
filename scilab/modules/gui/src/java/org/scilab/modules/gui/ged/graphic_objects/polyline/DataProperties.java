@@ -40,7 +40,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 public class DataProperties extends SimpleSection {
     private JPanel sectionPanel;
     private static DataProperties instance;
-    private String currentpolyline;
+    private Integer currentpolyline;
     private ClippableContouredObject clippableContouredObject = new ClippableContouredObject();
     private GraphicObject graphicObject = new GraphicObject();
 
@@ -60,7 +60,7 @@ public class DataProperties extends SimpleSection {
     * Initializes the properties and the icons of the buttons.
     * @param objectID Enters the identification of object.
     */
-    public DataProperties(String objectID) {
+    public DataProperties(Integer objectID) {
         super(MessagesGED.data_properties, "polyline");
         instance = this;
         currentpolyline = objectID;
@@ -81,7 +81,7 @@ public class DataProperties extends SimpleSection {
     * @param objectID uid
     */
     @Override
-    public final void initComponents(String objectID) {
+    public final void initComponents(Integer objectID) {
         int row = 0;
         final int leftmargin = 0; //to inner components
         int column = 1; //first column
@@ -91,7 +91,7 @@ public class DataProperties extends SimpleSection {
 
         //Components of the property: Clip Box.
         clippableContouredObject.clipBox(sectionPanel, row, column, leftmargin, objectID);
-        row+=2;
+        row += 2;
 
         //Components of the property: Data.
         dataDialog();
@@ -205,12 +205,12 @@ public class DataProperties extends SimpleSection {
             Object xValue = dataTable.getValueAt(dataTable.getSelectedRow(), 0);
             Object yValue = dataTable.getValueAt(dataTable.getSelectedRow(), 1);
             if (xValue == null) {
-                   xValue = 0.0;
-               } else if (yValue == null) {
-                   yValue = 0.0;
-               }
-               PolylineData.setPointValue(currentpolyline, dataTable.getSelectedRow(),
-                       (Double) xValue, (Double) yValue, 0.0);
+                xValue = 0.0;
+            } else if (yValue == null) {
+                yValue = 0.0;
+            }
+            PolylineData.setPointValue(currentpolyline, dataTable.getSelectedRow(),
+                                       (Double) xValue, (Double) yValue, 0.0);
         }
     }
 }

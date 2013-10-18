@@ -31,7 +31,7 @@ int sci_uiwait(char *fname, unsigned long fname_len)
     int nbRow = 0, nbCol = 0;
     char *result = NULL;
 
-    char *pObjUID = NULL;
+    int iObjUID = 0;
     int iObjType = -1;
     int *piObjType = &iObjType;
 
@@ -62,12 +62,12 @@ int sci_uiwait(char *fname, unsigned long fname_len)
             return FALSE;
         }
 
-        pObjUID = (char*)getObjectFromHandle((unsigned long) * stkAdr);
+        iObjUID = getObjectFromHandle((unsigned long) * stkAdr);
 
-        getGraphicObjectProperty(pObjUID, __GO_TYPE__, jni_int, (void **)&piObjType);
+        getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piObjType);
         if (iObjType == __GO_UICONTEXTMENU__)
         {
-            result = uiWaitContextMenu(pObjUID);
+            result = uiWaitContextMenu(iObjUID);
         }
         else
         {
@@ -94,7 +94,7 @@ int sci_uiwait(char *fname, unsigned long fname_len)
     strcpy(strAdr, result);
 
     // TO DO : delete of "result"
-    // uiWaitContextMenu(pObjUID) can return NULL.
+    // uiWaitContextMenu(iObjUID) can return NULL.
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     ReturnArguments(pvApiCtx);

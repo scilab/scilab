@@ -22,35 +22,35 @@ extern "C"
 
 using namespace org_scilab_modules_graphic_objects;
 
-char *createGraphicObject(int _iType)
+int createGraphicObject(int _iType)
 {
     return CallGraphicController::askGraphicObject(getScilabJavaVM(), _iType);
 }
 
-char *cloneGraphicObject(char const* _sId)
+int cloneGraphicObject(int _sId)
 {
     return CallGraphicController::cloneGraphicObject(getScilabJavaVM(), _sId);
 }
 
-char const* createDataObject(char const* _sId, int _iType)
+int createDataObject(int _sId, int _iType)
 {
     return DataController::createDataObject(_sId, _iType);
 }
 
-void buildFigureMenuBar(char const* _sFigureId)
+void buildFigureMenuBar(int _sFigureId)
 {
     CallGraphicController::buildFigureMenuBar(getScilabJavaVM(), _sFigureId);
 }
 
-char * constructRectangles(char * pparentsubwinUID, double x, double y, double height, double width, int foreground, int background, int isfilled, int isline)
+int constructRectangles(int iParentsubwinUID, double x, double y, double height, double width, int foreground, int background, int isfilled, int isline)
 {
     try
     {
-        return GraphicObjectBuilder::constructRectangles(getScilabJavaVM(), pparentsubwinUID, x, y, height, width, foreground, background, isfilled, isline);
+        return GraphicObjectBuilder::constructRectangles(getScilabJavaVM(), iParentsubwinUID, x, y, height, width, foreground, background, isfilled, isline);
     }
     catch (std::exception & e)
     {
         printf("exception: %s\n", e.what());
-        return NULL;
+        return 0;
     }
 }

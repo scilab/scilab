@@ -28,15 +28,15 @@ public class ScilabView extends ScilabNativeView implements GraphicView {
         return me;
     }
 
-    public void createObject(String id) {
+    public void createObject(Integer id) {
         ScilabNativeView__createObject(id);
     }
 
-    public void deleteObject(String id) {
+    public void deleteObject(Integer id) {
         ScilabNativeView__deleteObject(id);
     }
 
-    public void updateObject(String id, int property) {
+    public void updateObject(Integer id, int property) {
         if (property == GraphicObjectProperties.__GO_ID__) {
             ScilabNativeView__updateObject(id, property);
         }

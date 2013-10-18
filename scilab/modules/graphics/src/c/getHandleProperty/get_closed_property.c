@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_closed_property(void* _pvCtx, char* pobjUID)
+int get_closed_property(void* _pvCtx, int iObjUID)
 {
     int iClosed = 0;
     int* piClosed = &iClosed;
 
-    getGraphicObjectProperty(pobjUID, __GO_CLOSED__, jni_bool, (void **)&piClosed);
+    getGraphicObjectProperty(iObjUID, __GO_CLOSED__, jni_bool, (void **)&piClosed);
 
     if (piClosed == NULL)
     {

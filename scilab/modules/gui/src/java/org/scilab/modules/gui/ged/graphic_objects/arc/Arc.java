@@ -26,7 +26,7 @@ public class Arc extends SimpleObject {
     * Initializes all sections (JPanel's) and Add in Main JPanel of Object.
     * @param objectID Enters the identification of object.
     */
-    public Arc(String objectID) {
+    public Arc(Integer objectID) {
         super(objectID);
         base = new BaseProperties(objectID);
         data = new DataProperties(objectID);
@@ -44,8 +44,9 @@ public class Arc extends SimpleObject {
     @Override
     public final String[] getSectionsName() {
         return new String[] {
-                    base.getName(),
-                    data.getName(),
-                    style.getName()};
+                   base.getName(),
+                   data.getName(),
+                   style.getName()
+               };
     }
 }

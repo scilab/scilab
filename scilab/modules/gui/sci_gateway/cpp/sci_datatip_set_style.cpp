@@ -30,16 +30,16 @@ using namespace org_scilab_modules_gui_datatip;
 
 int sci_datatip_set_style(char *fname, unsigned long fname_len)
 {
-    int* piAddr               = NULL;
-    char* polylineUID         = NULL;
-    double* markStyle         = NULL;
-    int* pbBoxed              = NULL;
-    int* pbLabeled            = NULL;
-    int datatipSetStyleOption = 0;
-    long long llHandle        = 0;
-    int nbRow                 = 0;
-    int nbCol                 = 0;
-    int iErr                  = 0;
+    int* piAddr                 = NULL;
+    int iPolylineUID            = 0;
+    double* markStyle           = NULL;
+    int* pbBoxed                = NULL;
+    int* pbLabeled              = NULL;
+    int datatipSetStyleOption   = 0;
+    long long llHandle          = 0;
+    int nbRow                   = 0;
+    int nbCol                   = 0;
+    int iErr                    = 0;
 
     int iType = 0;
     int *piType = &iType;
@@ -62,11 +62,11 @@ int sci_datatip_set_style(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    polylineUID = (char *)getObjectFromHandle((unsigned long) llHandle);
+    iPolylineUID = getObjectFromHandle((unsigned long) llHandle);
 
     if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
     {
-        getGraphicObjectProperty(polylineUID, __GO_TYPE__, jni_int, (void**) &piType);
+        getGraphicObjectProperty(iPolylineUID, __GO_TYPE__, jni_int, (void**) &piType);
         if (iType == __GO_POLYLINE__)
         {
             if (nbInputArgument(pvApiCtx) == 1)
@@ -75,32 +75,32 @@ int sci_datatip_set_style(char *fname, unsigned long fname_len)
                 switch (datatipSetStyleOption)
                 {
                     case (1):
-                        DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, 1, true, true);
+                        DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), iPolylineUID, 1, true, true);
                         AssignOutputVariable(pvApiCtx, 1) = 0;
                         ReturnArguments(pvApiCtx);
                         return 0;
                     case (2):
-                        DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, 1, false, true);
+                        DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), iPolylineUID, 1, false, true);
                         AssignOutputVariable(pvApiCtx, 1) = 0;
                         ReturnArguments(pvApiCtx);
                         return 0;
                     case (3):
-                        DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, 1, false, false);
+                        DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), iPolylineUID, 1, false, false);
                         AssignOutputVariable(pvApiCtx, 1) = 0;
                         ReturnArguments(pvApiCtx);
                         return 0;
                     case (4):
-                        DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, 2, true, true);
+                        DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), iPolylineUID, 2, true, true);
                         AssignOutputVariable(pvApiCtx, 1) = 0;
                         ReturnArguments(pvApiCtx);
                         return 0;
                     case (5):
-                        DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, 2, false, true);
+                        DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), iPolylineUID, 2, false, true);
                         AssignOutputVariable(pvApiCtx, 1) = 0;
                         ReturnArguments(pvApiCtx);
                         return 0;
                     case (6):
-                        DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, 2, false, false);
+                        DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), iPolylineUID, 2, false, false);
                         AssignOutputVariable(pvApiCtx, 1) = 0;
                         ReturnArguments(pvApiCtx);
                         return 0;
@@ -130,7 +130,7 @@ int sci_datatip_set_style(char *fname, unsigned long fname_len)
 
                     if ((int)markStyle[0] == 1 || (int)markStyle[0] == 2)
                     {
-                        DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, (int)markStyle[0], true, true);
+                        DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), iPolylineUID, (int)markStyle[0], true, true);
                         AssignOutputVariable(pvApiCtx, 1) = 0;
                         ReturnArguments(pvApiCtx);
                         return 0;
@@ -183,7 +183,7 @@ int sci_datatip_set_style(char *fname, unsigned long fname_len)
                                 return 1;
                             }
 
-                            DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, (int)markStyle[0], (bool)pbBoxed[0], true);
+                            DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), iPolylineUID, (int)markStyle[0], pbBoxed[0] != 0, true);
                             AssignOutputVariable(pvApiCtx, 1) = 0;
                             ReturnArguments(pvApiCtx);
                             return 0;
@@ -255,7 +255,7 @@ int sci_datatip_set_style(char *fname, unsigned long fname_len)
                                     return 1;
                                 }
 
-                                DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, (int)markStyle[0], (bool)pbBoxed[0], (bool)pbLabeled[0]);
+                                DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), iPolylineUID, (int)markStyle[0], pbBoxed[0] != 0, pbLabeled[0] != 0);
                                 AssignOutputVariable(pvApiCtx, 1) = 0;
                                 ReturnArguments(pvApiCtx);
                                 return 0;

@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_cube_scaling_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_cube_scaling_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int b =  (int)FALSE;
@@ -43,7 +43,7 @@ int set_cube_scaling_property(void* _pvCtx, char* pobjUID, void* _pvData, int va
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_CUBE_SCALING__, &b, jni_bool, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_CUBE_SCALING__, &b, jni_bool, 1);
 
     if (status == TRUE)
     {

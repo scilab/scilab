@@ -53,7 +53,7 @@ extern "C" {
      *
      * @param figID the source figure
      */
-    void copyFigureToClipBoard(char * figID);
+    void copyFigureToClipBoard(int iFigID);
 
 #ifdef __cplusplus
 }

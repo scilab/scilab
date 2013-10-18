@@ -36,7 +36,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_box_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int type = -1;
@@ -48,7 +48,7 @@ int set_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, 
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     /*
      * Required since the Box property is implemented differently for the Axes and Text
@@ -86,7 +86,7 @@ int set_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, 
             return SET_PROPERTY_ERROR;
         }
 
-        status = setGraphicObjectProperty(pobjUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
+        status = setGraphicObjectProperty(iObjUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
 
         if (status == TRUE)
         {
@@ -117,7 +117,7 @@ int set_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, 
             return SET_PROPERTY_ERROR;
         }
 
-        status = setGraphicObjectProperty(pobjUID, __GO_BOX__, &box, jni_bool, 1);
+        status = setGraphicObjectProperty(iObjUID, __GO_BOX__, &box, jni_bool, 1);
 
         if (status == TRUE)
         {
@@ -135,6 +135,5 @@ int set_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, 
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "box");
         return SET_PROPERTY_ERROR;
     }
-
 }
 /*------------------------------------------------------------------------*/

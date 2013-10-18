@@ -37,6 +37,6 @@ void destroyScilabGetHashTable(void);
  *         -1 if an error occurred in the get function
  *          1 if the property was not found
  */
-int callGetProperty(void* _pvCtx, char *pObjUID, char * propertyName);
+int callGetProperty(void* _pvCtx, int iObjUID, char * propertyName);
 
 #endif /* _GET_HASH_TABLE_H_ */

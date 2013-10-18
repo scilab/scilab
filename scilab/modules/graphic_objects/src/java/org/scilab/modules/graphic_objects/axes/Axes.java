@@ -102,7 +102,7 @@ public class Axes extends GraphicObject {
     private GridPosition gridPosition;
 
     /** Title label known by its UID. */
-    private String title;
+    private Integer title;
 
     /** Specifies whether the Axes subwindow is cleared when a new plot command is performed */
     private boolean autoClear;
@@ -152,7 +152,7 @@ public class Axes extends GraphicObject {
         axes[1] = new AxisProperty();
         axes[2] = new AxisProperty();
         gridPosition = GridPosition.FOREGROUND;
-        title = "";
+        title = 0;
         autoClear = false;
         filled = false;
         camera = new Camera();
@@ -176,7 +176,7 @@ public class Axes extends GraphicObject {
         }
 
         copy.axes = newAxes;
-        copy.title = "";
+        copy.title = 0;
         copy.camera = new Camera(this.camera);
         copy.box = new Box(this.box);
 
@@ -578,7 +578,7 @@ public class Axes extends GraphicObject {
                 case XAXISGRIDCOLOR:
                     return setXAxisGridColor((Integer) value);
                 case XAXISLABEL:
-                    return setXAxisLabel((String) value);
+                    return setXAxisLabel((Integer) value);
                 case XAXISLOCATION:
                     return setXAxisLocation((Integer) value);
                 case XAXISLOGFLAG:
@@ -600,7 +600,7 @@ public class Axes extends GraphicObject {
                 case YAXISGRIDCOLOR:
                     return setYAxisGridColor((Integer) value);
                 case YAXISLABEL:
-                    return setYAxisLabel((String) value);
+                    return setYAxisLabel((Integer) value);
                 case YAXISLOCATION:
                     return setYAxisLocation((Integer) value);
                 case YAXISLOGFLAG:
@@ -622,7 +622,7 @@ public class Axes extends GraphicObject {
                 case ZAXISGRIDCOLOR:
                     return setZAxisGridColor((Integer) value);
                 case ZAXISLABEL:
-                    return setZAxisLabel((String) value);
+                    return setZAxisLabel((Integer) value);
                 case ZAXISLOCATION:
                     return setZAxisLocation((Integer) value);
                 case ZAXISLOGFLAG:
@@ -650,7 +650,7 @@ public class Axes extends GraphicObject {
                 case GRIDPOSITION:
                     return setGridPosition((Integer) value);
                 case TITLE:
-                    return setTitle((String) value);
+                    return setTitle((Integer) value);
                 case AUTOCLEAR:
                     return setAutoClear((Boolean) value);
                 case FILLED:
@@ -841,14 +841,14 @@ public class Axes extends GraphicObject {
     /**
      * @return the x axis label UID
      */
-    public String getXAxisLabel() {
+    public Integer getXAxisLabel() {
         return axes[0].getLabel();
     }
 
     /**
      * @param label the x axis label to set
      */
-    public UpdateStatus setXAxisLabel(String label) {
+    public UpdateStatus setXAxisLabel(Integer label) {
         return axes[0].setLabel(label);
     }
 
@@ -1046,14 +1046,14 @@ public class Axes extends GraphicObject {
     /**
      * @return the y axis label UID
      */
-    public String getYAxisLabel() {
+    public Integer getYAxisLabel() {
         return axes[1].getLabel();
     }
 
     /**
      * @param label the y axis label to set
      */
-    public UpdateStatus setYAxisLabel(String label) {
+    public UpdateStatus setYAxisLabel(Integer label) {
         return axes[1].setLabel(label);
     }
 
@@ -1251,14 +1251,14 @@ public class Axes extends GraphicObject {
     /**
      * @return the z axis label UID
      */
-    public String getZAxisLabel() {
+    public Integer getZAxisLabel() {
         return axes[2].getLabel();
     }
 
     /**
      * @param label the z axis label to set
      */
-    public UpdateStatus setZAxisLabel(String label) {
+    public UpdateStatus setZAxisLabel(Integer label) {
         return axes[2].setLabel(label);
     }
 
@@ -2193,7 +2193,7 @@ public class Axes extends GraphicObject {
                 GraphicController controller = GraphicController.getController();
                 Figure figure = (Figure) controller.getObjectFromId(getParentFigure());
                 if (figure.getRotationAsEnum().equals(Figure.RotationType.MULTIPLE)) {
-                    for (String child : figure.getChildren()) {
+                    for (Integer child : figure.getChildren()) {
                         if (child != null) {
                             if (GraphicObjectProperties.__GO_AXES__ == ((Integer) controller.getProperty(child, GraphicObjectProperties.__GO_TYPE__))) {
                                 controller.setProperty(
@@ -2330,15 +2330,15 @@ public class Axes extends GraphicObject {
     /**
      * @return the title UID
      */
-    public String getTitle() {
+    public Integer getTitle() {
         return title;
     }
 
     /**
      * @param title the title to set
      */
-    public UpdateStatus setTitle(String title) {
-        if (!this.title.equals(title)) {
+    public UpdateStatus setTitle(Integer title) {
+        if (this.title != title) {
             this.title = title;
             return UpdateStatus.Success;
         }

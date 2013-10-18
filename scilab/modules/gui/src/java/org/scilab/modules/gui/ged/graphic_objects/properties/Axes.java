@@ -70,7 +70,7 @@ public class Axes extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void autoClear(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void autoClear(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lAutoClear = new JLabel();
         final JComboBox cAutoClear = new JComboBox();
         addLabelComboBox(panel, lAutoClear, MessagesGED.auto_clear,
@@ -98,7 +98,7 @@ public class Axes extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void autoScale(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void autoScale(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lAutoScale = new JLabel();
         final JComboBox cAutoScale = new JComboBox();
 
@@ -127,7 +127,7 @@ public class Axes extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void autoTicks(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void autoTicks(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lAutoTicks = new JLabel();
         JPanel cAutoTicks = new JPanel();
         final JCheckBox cAutoTicksX = new JCheckBox();
@@ -176,7 +176,7 @@ public class Axes extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void axesBounds(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void axesBounds(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         int LEFTMARGINIP = 0; //left margin - inner panel
         int COLUMNIP = 0; //left column - inner panel
         JLabel lAxesBounds = new JLabel();
@@ -283,7 +283,7 @@ public class Axes extends ContentLayout {
     /**
     * Updates the property: Axes Bounds.
     */
-    private void updateAxesBounds(String UID) {
+    private void updateAxesBounds(Integer UID) {
         Double[] value = new Double[4];
         value[0] = Double.parseDouble(cAxesBoundsX.getText());
         value[1] = Double.parseDouble(cAxesBoundsY.getText());
@@ -302,7 +302,7 @@ public class Axes extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void axesVisible(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void axesVisible(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lAxesVisible = new JLabel();
         JPanel cAxesVisible = new JPanel();
         final JCheckBox cAxesVisibleX = new JCheckBox();
@@ -351,7 +351,7 @@ public class Axes extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void axesReverse(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void axesReverse(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lAxesReverse = new JLabel();
         final JPanel cAxesReverse = new JPanel();
         final JCheckBox cAxesReverseX = new JCheckBox();
@@ -402,7 +402,7 @@ public class Axes extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void axisLocation(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void axisLocation(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         //x_location
         JLabel lLocationX = new JLabel();
         final JComboBox cLocationX = new JComboBox();
@@ -448,7 +448,7 @@ public class Axes extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void box(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void box(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lBox = new JLabel();
         final JComboBox cBox = new JComboBox();
 
@@ -478,7 +478,7 @@ public class Axes extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void filled(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void filled(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lFilled = new JLabel();
         final JComboBox cFilled = new JComboBox();
         addLabelComboBox(panel, lFilled, MessagesGED.filled,
@@ -506,7 +506,7 @@ public class Axes extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void gridPosition(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void gridPosition(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lGridPosition = new JLabel();
         final JComboBox cGridPosition = new JComboBox();
 
@@ -535,7 +535,7 @@ public class Axes extends ContentLayout {
      * @param UID objectID.
      * @param parentFigure
      */
-    public void gridColorX(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void gridColorX(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lgridColor = new JLabel();
         JPanel pgridColor = new JPanel();
         JButton bgridColor = new JButton();
@@ -544,8 +544,8 @@ public class Axes extends ContentLayout {
         JColorChooser chooser = new JColorChooser();
         JButton okButton = new JButton();
 
-        String parentFigure = (String) GraphicController.getController()
-                              .getProperty(UID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        Integer parentFigure = (Integer) GraphicController.getController()
+                               .getProperty(UID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
 
         addColorDialog(dialog, chooser, okButton, cgridColor, UID,
                        parentFigure, "properties.Axes", "setGridColorX", this);
@@ -568,7 +568,7 @@ public class Axes extends ContentLayout {
     * @param scilabColor index of the color map.
     * @param UID objectID.
     */
-    public void setGridColorX(int scilabColor, java.lang.String UID) {
+    public void setGridColorX(int scilabColor, Integer UID) {
         GraphicController.getController().setProperty(
             UID, GraphicObjectProperties.__GO_X_AXIS_GRID_COLOR__, scilabColor);
     }
@@ -582,7 +582,7 @@ public class Axes extends ContentLayout {
      * @param UID
      * @param parentFigure
      */
-    public void gridColorY(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void gridColorY(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lgridColor = new JLabel();
         JPanel pgridColor = new JPanel();
         JButton bgridColor = new JButton();
@@ -591,8 +591,8 @@ public class Axes extends ContentLayout {
         JColorChooser chooser = new JColorChooser();
         JButton okButton = new JButton();
 
-        String parentFigure = (String) GraphicController.getController()
-                              .getProperty(UID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        Integer parentFigure = (Integer) GraphicController.getController()
+                               .getProperty(UID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
 
         addColorDialog(dialog, chooser, okButton, cgridColor, UID,
                        parentFigure, "properties.Axes", "setGridColorY", this);
@@ -615,7 +615,7 @@ public class Axes extends ContentLayout {
     * @param scilabColor index of the color map.
     * @param UID objectID.
     */
-    public void setGridColorY(int scilabColor, java.lang.String UID) {
+    public void setGridColorY(int scilabColor, Integer UID) {
         GraphicController.getController().setProperty(
             UID, GraphicObjectProperties.__GO_Y_AXIS_GRID_COLOR__, scilabColor);
     }
@@ -629,7 +629,7 @@ public class Axes extends ContentLayout {
      * @param UID objectID.
      * @param parentFigure
      */
-    public void hiddenAxisColor(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void hiddenAxisColor(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lHiddenAxisColor = new JLabel();
         JPanel pHiddenAxisColor = new JPanel();
         JButton bHiddenAxisColor = new JButton();
@@ -638,8 +638,8 @@ public class Axes extends ContentLayout {
         JColorChooser colorChooser = new JColorChooser();
         JButton okButton = new JButton();
 
-        String parentFigure = (String) GraphicController.getController()
-                              .getProperty(UID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        Integer parentFigure = (Integer) GraphicController.getController()
+                               .getProperty(UID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
 
         addColorDialog(colorDialog, colorChooser, okButton, cHiddenAxisColor, UID,
                        parentFigure, "properties.ContouredObject", "setHiddenAxisColor", this);
@@ -662,7 +662,7 @@ public class Axes extends ContentLayout {
     * @param scilabColor index of the color map.
     * @param UID objectID.
     */
-    public void setHiddenAxisColor(int scilabColor, java.lang.String UID) {
+    public void setHiddenAxisColor(int scilabColor, Integer UID) {
         GraphicController.getController().setProperty(
             UID, GraphicObjectProperties.__GO_HIDDEN_AXIS_COLOR__, scilabColor);
     }
@@ -674,7 +674,7 @@ public class Axes extends ContentLayout {
      * @param UID the axes UID
      * @return boolean[3] (x, y, z), true if the bounds are positive false otherwise
      */
-    private boolean[] checkBounds(String UID) {
+    private boolean[] checkBounds(Integer UID) {
         Double[] bounds = (Double[])GraphicController.getController().getProperty(
                               UID, GraphicObjectProperties.__GO_DATA_BOUNDS__);
         boolean[] flag = new boolean[3];
@@ -692,7 +692,7 @@ public class Axes extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void logFlags(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void logFlags(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lLogFlags = new JLabel();
         JPanel cLogFlags = new JPanel();
         final JCheckBox cLogFlagsX = new JCheckBox();
@@ -759,7 +759,7 @@ public class Axes extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void label(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void label(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lXLabel = new JLabel();
         JLabel lYLabel = new JLabel();
         JLabel lZLabel = new JLabel();
@@ -816,21 +816,21 @@ public class Axes extends ContentLayout {
         });
 
         // Get the current status of the property: X Label
-        String labelID = (String) GraphicController.getController()
-                         .getProperty(UID, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
+        Integer labelID = (Integer) GraphicController.getController()
+                          .getProperty(UID, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
         String[] label = (String[]) GraphicController.getController()
                          .getProperty(labelID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
         cXLabel.setText(label[0]);
 
         // Get the current status of the property: Y Label
-        labelID = (String) GraphicController.getController()
+        labelID = (Integer) GraphicController.getController()
                   .getProperty(UID, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
         label = (String[]) GraphicController.getController()
                 .getProperty(labelID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
         cYLabel.setText(label[0]);
 
         // Get the current status of the property: Z Label
-        labelID = (String) GraphicController.getController()
+        labelID = (Integer) GraphicController.getController()
                   .getProperty(UID, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
         label = (String[]) GraphicController.getController()
                 .getProperty(labelID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
@@ -841,22 +841,22 @@ public class Axes extends ContentLayout {
     * Updates the property: Label.
     * @param axis x=0  y=1  z=2
     */
-    private void updateLabel(int axis, String UID) {
+    private void updateLabel(int axis, Integer UID) {
         String[] text = new String[1];
-        String axisLabel = null;
+        Integer axisLabel = null;
         switch (axis) {
             case 0:
-                axisLabel = (String) GraphicController.getController()
+                axisLabel = (Integer) GraphicController.getController()
                             .getProperty(UID, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
                 text[0] = cXLabel.getText();
                 break;
             case 1:
-                axisLabel = (String) GraphicController.getController()
+                axisLabel = (Integer) GraphicController.getController()
                             .getProperty(UID, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
                 text[0] = cYLabel.getText();
                 break;
             case 2:
-                axisLabel = (String) GraphicController.getController()
+                axisLabel = (Integer) GraphicController.getController()
                             .getProperty(UID, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
                 text[0] = cZLabel.getText();
                 break;
@@ -873,7 +873,7 @@ public class Axes extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void margins(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void margins(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         int LEFTMARGINIP = 0; //left margin - inner panel
         int COLUMNIP = 0; //left column - inner panel
         JLabel lMargins = new JLabel();
@@ -979,7 +979,7 @@ public class Axes extends ContentLayout {
     /**
     * Updates the property: Margins.
     */
-    private void updateMargins(String UID) {
+    private void updateMargins(Integer UID) {
         Double[] value = new Double[4];
         value[0] = Double.parseDouble(cMarginsLeft.getText());
         value[1] = Double.parseDouble(cMarginsRight.getText());
@@ -998,7 +998,7 @@ public class Axes extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void subTicks(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void subTicks(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         int LEFTMARGINIP = 0; //left margin - inner panel
         int COLUMNIP = 0; //left column - inner panel
         JLabel lSubTicks = new JLabel();
@@ -1057,7 +1057,7 @@ public class Axes extends ContentLayout {
     * Get the current status of the property: Sub Ticks.
     * @param UID objectID
     */
-    public void getSubTicks(String UID) {
+    public void getSubTicks(Integer UID) {
         Integer x = (Integer) GraphicController.getController().getProperty(UID, GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__);
         Integer y = (Integer) GraphicController.getController().getProperty(UID, GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__);
         cSubTicksX.setText(x.toString());
@@ -1076,7 +1076,7 @@ public class Axes extends ContentLayout {
     /**
     * Updates the property: SubTicks.
     */
-    private void updateSubTicks(String UID) {
+    private void updateSubTicks(Integer UID) {
         try {
             GraphicController.getController().setProperty(
                 UID,
@@ -1101,7 +1101,7 @@ public class Axes extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void tightLimits(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void tightLimits(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lTightLimits = new JLabel();
         final JComboBox cTightLimits = new JComboBox();
 
@@ -1130,7 +1130,7 @@ public class Axes extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void title(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void title(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lTitle = new JLabel();
         final JTextField cTitle = new JTextField();
 
@@ -1149,8 +1149,8 @@ public class Axes extends ContentLayout {
             }
         });
         // Get the current status of the property: Title
-        String titleID = (String) GraphicController.getController()
-                         .getProperty(UID, GraphicObjectProperties.__GO_TITLE__);
+        Integer titleID = (Integer) GraphicController.getController()
+                          .getProperty(UID, GraphicObjectProperties.__GO_TITLE__);
         String[] title = (String[]) GraphicController.getController()
                          .getProperty(titleID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
         cTitle.setText(title[0]);
@@ -1159,9 +1159,9 @@ public class Axes extends ContentLayout {
     /**
     * Updates the property: Title.
     */
-    private void updateTitle(String UID, JTextField cTitle) {
-        String titleID = (String) GraphicController.getController()
-                         .getProperty(UID, GraphicObjectProperties.__GO_TITLE__);
+    private void updateTitle(Integer UID, JTextField cTitle) {
+        Integer titleID = (Integer) GraphicController.getController()
+                          .getProperty(UID, GraphicObjectProperties.__GO_TITLE__);
         String[] text = new String[] {cTitle.getText()};
         GraphicController.getController()
         .setProperty(titleID, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);

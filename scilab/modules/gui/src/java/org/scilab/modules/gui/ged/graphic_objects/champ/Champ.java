@@ -25,7 +25,7 @@ public class Champ extends SimpleObject {
     * Initializes all sections (JPanel's) and Add in Main JPanel of Object.
     * @param objectID Enters the identification of object.
     */
-    public Champ(String objectID) {
+    public Champ(Integer objectID) {
         super(objectID);
         data = new DataProperties(objectID);
         style = new Style(objectID);

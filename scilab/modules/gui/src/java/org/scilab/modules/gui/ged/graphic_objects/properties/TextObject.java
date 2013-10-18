@@ -47,9 +47,9 @@ public class TextObject extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void fontColor(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void fontColor(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lFontColor = new JLabel();
         JLabel cFontColor = new JLabel();
         JPanel pFontColor = new JPanel();
@@ -57,18 +57,18 @@ public class TextObject extends ContentLayout {
         JDialog dialog = new JDialog();
         JColorChooser chooser = new JColorChooser();
         JButton okButton = new JButton();
-        String parentFigure = (String) GraphicController.getController()
-                .getProperty(UID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        Integer parentFigure = (Integer) GraphicController.getController()
+                               .getProperty(UID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
         addColorDialog(dialog, chooser, okButton, cFontColor, UID,
-                parentFigure, "properties.TextObject", "setFontColor", this);
-        
+                       parentFigure, "properties.TextObject", "setFontColor", this);
+
         addLabelColorField(panel, lFontColor, MessagesGED.font_color,
-                dialog, cFontColor, pFontColor, bFontColor,
-                LEFTMARGIN, COLUMN, ROW++);
+                           dialog, cFontColor, pFontColor, bFontColor,
+                           LEFTMARGIN, COLUMN, ROW++);
 
         //Get the current status of the property: Font Color.
         Integer scilabColor = (Integer) GraphicController.getController()
-                  .getProperty(UID, GraphicObjectProperties.__GO_FONT_COLOR__);
+                              .getProperty(UID, GraphicObjectProperties.__GO_FONT_COLOR__);
         Double[] rgbColor = ColorMapHandler.getRGBcolor(parentFigure, scilabColor);
         cFontColor.setBackground(new Color(rgbColor[0].intValue(),
                                            rgbColor[1].intValue(),
@@ -79,9 +79,9 @@ public class TextObject extends ContentLayout {
     * Change the color of the object.
     * @param scilabColor index of the color map.
     */
-    public final void setFontColor(int scilabColor, String UID) {
+    public final void setFontColor(int scilabColor, Integer UID) {
         GraphicController.getController().setProperty(
-                UID, GraphicObjectProperties.__GO_FONT_COLOR__, scilabColor);
+            UID, GraphicObjectProperties.__GO_FONT_COLOR__, scilabColor);
     }
 
     /**
@@ -90,9 +90,9 @@ public class TextObject extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void fontSize(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void fontSize(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lFontSize = new JLabel();
         final JTextField cFontSize = new JTextField();
         addLabelTextField(panel, lFontSize, MessagesGED.font_size,
@@ -112,22 +112,22 @@ public class TextObject extends ContentLayout {
 
         //Get the current status of the property: Font Size.
         cFontSize.setText(Double.toString((Double) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_FONT_SIZE__)));
+                                          .getProperty(UID, GraphicObjectProperties.__GO_FONT_SIZE__)));
     }
 
     /**
     * Set Font Size.
     * @param size Font Size.
     */
-    private void setFontSize(JTextField cFontSize, String UID) {
+    private void setFontSize(JTextField cFontSize, Integer UID) {
         try {
             GraphicController.getController().setProperty(
-                    UID,
-                    GraphicObjectProperties.__GO_FONT_SIZE__,
-                    Double.parseDouble(cFontSize.getText()));
+                UID,
+                GraphicObjectProperties.__GO_FONT_SIZE__,
+                Double.parseDouble(cFontSize.getText()));
         } catch (NumberFormatException e) {
             cFontSize.setText(Double.toString((Double) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_FONT_SIZE__)));
+                                              .getProperty(UID, GraphicObjectProperties.__GO_FONT_SIZE__)));
         }
     }
 
@@ -137,17 +137,18 @@ public class TextObject extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void fontStyle(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void fontStyle(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lFontStyle = new JLabel();
         final JComboBox cFontStyle = new JComboBox();
         String[] options = new String[] { "Monospaced", "Symbol", "Serif", "Serif Italic", "Serif Bold",
                                           "Serif Bold Italic", "SansSerif", "SansSerif Italic",
-                                          "SansSerif Bold", "SansSerif Bold Italic"};
+                                          "SansSerif Bold", "SansSerif Bold Italic"
+                                        };
         addLabelComboBox(panel, lFontStyle, MessagesGED.font_style,
-                                cFontStyle, options,
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cFontStyle, options,
+                         LEFTMARGIN, COLUMN, ROW++);
         cFontStyle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -158,7 +159,7 @@ public class TextObject extends ContentLayout {
         });
         //Get the current status of the property: Font Style.
         cFontStyle.setSelectedIndex((Integer) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_FONT_STYLE__));
+                                    .getProperty(UID, GraphicObjectProperties.__GO_FONT_STYLE__));
     }
 
     /**
@@ -167,27 +168,27 @@ public class TextObject extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void fractionalFont(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void fractionalFont(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lFractionalFont = new JLabel();
         final JComboBox cFractionalFont = new JComboBox();
         addLabelComboBox(panel, lFractionalFont, MessagesGED.fractional_font,
-                                cFractionalFont, new String[] {MessagesGED.off , MessagesGED.on},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cFractionalFont, new String[] {MessagesGED.off , MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW++);
         cFractionalFont.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_FONT_FRACTIONAL__,
-                        cFractionalFont.getSelectedIndex() == 0 ? false : true);
+                    UID, GraphicObjectProperties.__GO_FONT_FRACTIONAL__,
+                    cFractionalFont.getSelectedIndex() == 0 ? false : true);
             }
         });
 
         // Get the current status of the property: Fractional Font
         boolean enable = (Boolean) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_FONT_FRACTIONAL__);
-        cFractionalFont.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_FONT_FRACTIONAL__);
+        cFractionalFont.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**
@@ -196,9 +197,9 @@ public class TextObject extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void text(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void text(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lText = new JLabel();
         final JComboBox cText = new JComboBox();
         addLabelComboBox(panel, lText, MessagesGED.text,
@@ -207,20 +208,21 @@ public class TextObject extends ContentLayout {
         cText.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                if (cText.getSelectedIndex() != -1)
+                if (cText.getSelectedIndex() != -1) {
                     index = cText.getSelectedIndex();
+                }
                 if ("comboBoxEdited".equals(evt.getActionCommand())) {
                     text[index] = (String) cText.getSelectedItem();
                     cText.setModel(new DefaultComboBoxModel(text));
                     cText.setSelectedIndex(index);
                     GraphicController.getController()
-                        .setProperty(UID, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
+                    .setProperty(UID, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
                 }
             }
         });
         // Get the current status of the property: Text
         text = (String[]) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
+               .getProperty(UID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
         cText.setModel(new DefaultComboBoxModel(text));
     }
 }

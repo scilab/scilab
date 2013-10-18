@@ -81,11 +81,9 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
     int n1 = 1;
 
     /* Fec code */
-
-    char * pptabofpointobjUID = NULL;
-    char * psubwinUID = NULL;
-    char * pFecUID = NULL;
-    char * parentCompoundUID = NULL;
+    int iSubwinUID = 0;
+    int iFecUID = 0;
+    int iParentCompoundUID = 0;
 
     long hdltab[2];
     int cmpt = 0;
@@ -106,22 +104,22 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
     int *piTmp = &iTmp;
     double rotationAngles[2];
 
-    psubwinUID = (char*)getCurrentSubWin();
+    iSubwinUID = getCurrentSubWin();
 
     checkRedrawing();
 
     rotationAngles[0] = 0.0;
     rotationAngles[1] = 270.0;
 
-    setGraphicObjectProperty(psubwinUID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
+    setGraphicObjectProperty(iSubwinUID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
 
     /* Force "cligrf" clipping (1) */
     clipState = 1;
-    setGraphicObjectProperty(psubwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+    setGraphicObjectProperty(iSubwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-    getGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, jni_bool, (void **)&piFirstPlot);
+    getGraphicObjectProperty(iSubwinUID, __GO_FIRST_PLOT__, jni_bool, (void **)&piFirstPlot);
 
-    getGraphicObjectProperty(psubwinUID, __GO_AUTO_SCALE__, jni_bool, (void **)&piAutoScale);
+    getGraphicObjectProperty(iSubwinUID, __GO_AUTO_SCALE__, jni_bool, (void **)&piAutoScale);
 
     if (autoScale)
     {
@@ -144,11 +142,11 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
             case '8':
             case '9':
 
-                getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
+                getGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
                 logFlags[0] = iTmp;
-                getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
+                getGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
                 logFlags[1] = iTmp;
-                getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
+                getGraphicObjectProperty(iSubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
                 logFlags[2] = iTmp;
 
                 /* Conversion required by compute_data_bounds2 */
@@ -165,7 +163,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
                 (strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9'))
         {
             double* dataBounds;
-            getGraphicObjectProperty(psubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
+            getGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
 
             drect[0] = Min(dataBounds[0], drect[0]); /*xmin*/
             drect[2] = Min(dataBounds[2], drect[2]); /*ymin*/
@@ -175,7 +173,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
 
         if (strflag[1] != '0')
         {
-            bounds_changed = update_specification_bounds(psubwinUID, drect, 2);
+            bounds_changed = update_specification_bounds(iSubwinUID, drect, 2);
         }
     }
 
@@ -184,11 +182,11 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
         bounds_changed = TRUE;
     }
 
-    axes_properties_changed = strflag2axes_properties(psubwinUID, strflag);
+    axes_properties_changed = strflag2axes_properties(iSubwinUID, strflag);
 
     /* just after strflag2axes_properties */
     firstPlot = 0;
-    setGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
+    setGraphicObjectProperty(iSubwinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
     /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and
     u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
@@ -196,13 +194,13 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
     /* The MVC AUTO_SUBTICKS property corresponds to !flagNax */
     /* store new value for flagNax */
     autoSubticks = !flagNax;
-    setGraphicObjectProperty(psubwinUID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
+    setGraphicObjectProperty(iSubwinUID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
 
     if (flagNax == TRUE)
     {
-        getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
+        getGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
         logFlags[0] = iTmp;
-        getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
+        getGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
         logFlags[1] = iTmp;
 
         if (logFlags[0] == 0 && logFlags[1] == 0)
@@ -210,8 +208,8 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
             int autoTicks;
 
             autoTicks = 0;
-            setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
-            setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+            setGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+            setGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
         }
         else
         {
@@ -224,10 +222,10 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
     /* For coherence with other properties, default colout is [0, 0] for fec handles instead of  */
     /* [-1,-1] */
     coloutPatch(colout);
-    pFecUID = ConstructFec(psubwinUID, x, y, triangles, func,
+    iFecUID = ConstructFec(iSubwinUID, x, y, triangles, func,
                            *Nnode, *Ntr, zminmax, colminmax, colout, with_mesh);
 
-    if (pFecUID == NULL)
+    if (iFecUID == 0)
     {
         // error in allocation
         Scierror(999, _("%s: No more memory.\n"), "fec");
@@ -235,19 +233,15 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
     }
 
     /* Set fec as current */
-    setCurrentObject(pFecUID);
+    setCurrentObject(iFecUID);
 
     /* retrieve the created object : fec */
-    hdltab[cmpt] = getHandle(pFecUID);
+    hdltab[cmpt] = getHandle(iFecUID);
     cmpt++;
 
-    releaseGraphicObjectProperty(__GO_PARENT__, pFecUID, jni_string, 1);
-
-    parentCompoundUID = ConstructCompound (hdltab, cmpt);
-    setCurrentObject(parentCompoundUID);  /** construct Compound **/
-    releaseGraphicObjectProperty(__GO_PARENT__, parentCompoundUID, jni_string, 1);
-
-    return(0);
+    iParentCompoundUID = ConstructCompound (hdltab, cmpt);
+    setCurrentObject(iParentCompoundUID);  /** construct Compound **/
+    return 0;
 
 }
 /*--------------------------------------------------------------------------*/

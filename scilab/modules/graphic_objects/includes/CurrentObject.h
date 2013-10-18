@@ -14,19 +14,26 @@
 #define __CURRENT_OBJECT_H__
 
 #include "dynlib_graphic_objects.h"
+#include "BOOL.h"
 /**
  * Returns UID of the current selected object.
  */
-GRAPHIC_OBJECTS_IMPEXP char const* getCurrentObject(void);
+GRAPHIC_OBJECTS_IMPEXP int getCurrentObject(void);
 
 /**
  * Modify the current object if needed.
  */
-GRAPHIC_OBJECTS_IMPEXP void setCurrentObject(char const* UID);
+GRAPHIC_OBJECTS_IMPEXP void setCurrentObject(int iUID);
 
 /**
  * To know if an object is the selected one.
  */
-GRAPHIC_OBJECTS_IMPEXP BOOL isCurrentObject(char const* UID);
+GRAPHIC_OBJECTS_IMPEXP BOOL isCurrentObject(int iUID);
+
+/**
+ * get parent object
+ */
+GRAPHIC_OBJECTS_IMPEXP int getParentObject(int iUID);
+GRAPHIC_OBJECTS_IMPEXP void setParentObject(int iUID, int iParent);
 
 #endif /* !__CURRENT_OBJECT_H__ */

@@ -37,12 +37,12 @@ public class AxesHandler {
 
     public enum axisTo { __X__, __Y__, __Z__, __TITLE__ };
 
-    private static String[] searchAxes(String uid) {
+    private static Integer[] searchAxes(Integer uid) {
         return (new ObjectSearcher()).search(uid, GraphicObjectProperties.__GO_AXES__);
     }
 
 
-    public static Axes getAxesFromUid(String uid) {
+    public static Axes getAxesFromUid(Integer uid) {
         return (Axes)GraphicController.getController().getObjectFromId(uid);
     }
 
@@ -55,9 +55,9 @@ public class AxesHandler {
     * @param position Vector with mouse position x and y.
     * @return Retrieved axes or null if there isn't an axes.
     */
-    public static String clickedAxes(String figure, Integer[] position) {
+    public static Integer clickedAxes(Integer figure, Integer[] position) {
 
-        String[] axes = searchAxes(figure);
+        Integer[] axes = searchAxes(figure);
         if (axes == null) {
             return null;
         }
@@ -86,7 +86,7 @@ public class AxesHandler {
      *
      * @param axes Axes to set visible
      */
-    public static void setAxesVisible(String axes) {
+    public static void setAxesVisible(Integer axes) {
 
         GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_X_AXIS_VISIBLE__, true);
         GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_VISIBLE__, true);
@@ -104,9 +104,9 @@ public class AxesHandler {
      * @param axes The axes to duplicate
      * @return Return a duplicated axes without childrens
      */
-    public static String duplicateAxes(String axes) {
+    public static Integer duplicateAxes(Integer axes) {
 
-        String newAxes = GraphicController.getController().cloneObject(axes);
+        Integer newAxes = GraphicController.getController().cloneObject(axes);
         setAxesVisible(newAxes);
         PolylineHandler.getInstance().deleteAll(newAxes);
         return newAxes;
@@ -119,7 +119,7 @@ public class AxesHandler {
      * @param axesFrom Axes from you want to merge the bounds
      * @param axesTo Axes that will be set the max bounds between the two axes
      */
-    public static void axesBound(String axesFrom, String axesTo) {
+    public static void axesBound(Integer axesFrom, Integer axesTo) {
 
         if (axesFrom == axesTo) {
             return;
@@ -148,7 +148,7 @@ public class AxesHandler {
      * @param uid axes unique identifier.
      * @return True if enabled, false otherwise.
      */
-    public static Boolean isZoomBoxEnabled(String uid) {
+    public static Boolean isZoomBoxEnabled(Integer uid) {
         return (Boolean)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_ZOOM_ENABLED__);
     }
 
@@ -160,7 +160,7 @@ public class AxesHandler {
      * @param y position on y axis.
      * @return True if the point is within the bounds, false otherwise.
      */
-    public static Boolean isInZoomBoxBounds(String uid, double x, double y) {
+    public static Boolean isInZoomBoxBounds(Integer uid, double x, double y) {
         Double[] bounds = (Double[])GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_ZOOM_BOX__);
         if (x >= bounds[0] && x <= bounds[1]) {
             if (y >= bounds[2] && y <= bounds[3]) {
@@ -176,9 +176,9 @@ public class AxesHandler {
      * @param figure Figure unique identifier.
      * @return True if there is any object visible, false otherwise.
      */
-    public static boolean isAxesNotBlank(String figure) {
+    public static boolean isAxesNotBlank(Integer figure) {
 
-        String[] axes = searchAxes(figure);
+        Integer[] axes = searchAxes(figure);
         if (axes == null) {
             return false;
         }
@@ -186,7 +186,7 @@ public class AxesHandler {
         for ( Integer j = 0; j < axes.length; j++) {
 
             Integer childCount = (Integer)GraphicController.getController().getProperty(axes[j], GraphicObjectProperties.__GO_CHILDREN_COUNT__);
-            String[] child = (String[])GraphicController.getController().getProperty(axes[j], GraphicObjectProperties.__GO_CHILDREN__);
+            Integer[] child = (Integer[])GraphicController.getController().getProperty(axes[j], GraphicObjectProperties.__GO_CHILDREN__);
             for (Integer i = 0; i < childCount; i++) {
                 flag = isBlank(child[i]);
                 if (flag) {
@@ -197,10 +197,10 @@ public class AxesHandler {
         return false;
     }
 
-    public static boolean isAxesEmpty(String axes) {
+    public static boolean isAxesEmpty(Integer axes) {
 
         Integer childCount = (Integer)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_CHILDREN_COUNT__);
-        String[] child = (String[])GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_CHILDREN__);
+        Integer[] child = (Integer[])GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_CHILDREN__);
         for (Integer i = 0; i < childCount; i++) {
             Integer type = (Integer)GraphicController.getController().getProperty(child[i], GraphicObjectProperties.__GO_TYPE__);
             if (type != GraphicObjectProperties.__GO_LABEL__) {
@@ -216,7 +216,7 @@ public class AxesHandler {
      * @param objectID Object unique identifier.
      * @return True if there is any object visible, false otherwise.
      */
-    private static boolean isBlank(String objectID) {
+    private static boolean isBlank(Integer objectID) {
 
         Integer type = (Integer)GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_TYPE__);
         boolean flag = (Boolean) GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_VISIBLE__);
@@ -225,7 +225,7 @@ public class AxesHandler {
                 return flag;
             } else if (type == GraphicObjectProperties.__GO_COMPOUND__) {
                 Integer childCount = (Integer)GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_CHILDREN_COUNT__);
-                String[] child = (String[])GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_CHILDREN__);
+                Integer[] child = (Integer[])GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_CHILDREN__);
                 for (Integer i = 0; i < childCount; i++) {
                     flag = (Boolean) GraphicController.getController().getProperty(child[i], GraphicObjectProperties.__GO_VISIBLE__);
                     if (flag) {
@@ -237,10 +237,10 @@ public class AxesHandler {
         return false;
     }
 
-    public static void pasteRotationAngles(String obj, String figure, Integer[] pos) {
+    public static void pasteRotationAngles(Integer obj, Integer figure, Integer[] pos) {
 
-        String axesFrom = (new ObjectSearcher()).searchParent(obj, GraphicObjectProperties.__GO_AXES__);
-        String axesTo = AxesHandler.clickedAxes(figure, pos);
+        Integer axesFrom = (new ObjectSearcher()).searchParent(obj, GraphicObjectProperties.__GO_AXES__);
+        Integer axesTo = AxesHandler.clickedAxes(figure, pos);
 
         Double[] angles = (Double[])GraphicController.getController().getProperty(axesFrom, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
         GraphicController.getController().setProperty(axesTo, GraphicObjectProperties.__GO_ROTATION_ANGLES__, angles);
@@ -252,18 +252,18 @@ public class AxesHandler {
     * @param axesFromUID The uid from the axes to clone
     * @return The cloned axes UID
     */
-    public static String cloneAxesWithStyle(String axesFromUID) {
+    public static Integer cloneAxesWithStyle(Integer axesFromUID) {
 
-        String cloneUID = GraphicController.getController().cloneObject(axesFromUID);
+        Integer cloneUID = GraphicController.getController().cloneObject(axesFromUID);
         Axes clone = (Axes)GraphicController.getController().getObjectFromId(cloneUID);
         Axes axesFrom = (Axes)GraphicController.getController().getObjectFromId(axesFromUID);
 
         //Cloning the Axes does not clone the labels/title, so we need do it manualy
 
-        String xLabelUID = GraphicController.getController().cloneObject(axesFrom.getXAxisLabel());
-        String yLabelUID = GraphicController.getController().cloneObject(axesFrom.getYAxisLabel());
-        String zLabelUID = GraphicController.getController().cloneObject(axesFrom.getZAxisLabel());
-        String titleUID = GraphicController.getController().cloneObject(axesFrom.getTitle());
+        Integer xLabelUID = GraphicController.getController().cloneObject(axesFrom.getXAxisLabel());
+        Integer yLabelUID = GraphicController.getController().cloneObject(axesFrom.getYAxisLabel());
+        Integer zLabelUID = GraphicController.getController().cloneObject(axesFrom.getZAxisLabel());
+        Integer titleUID = GraphicController.getController().cloneObject(axesFrom.getTitle());
 
         GraphicController.getController().setGraphicObjectRelationship(cloneUID, xLabelUID);
         GraphicController.getController().setGraphicObjectRelationship(cloneUID, yLabelUID);
@@ -352,7 +352,7 @@ public class AxesHandler {
     * @param newAxesUID The uid from the new axes to paste
     * @param axesToUID The uid from the axes to be cut
     */
-    public static void pasteAxesStyle(String newAxesUID, String axesToUID, boolean bounds) {
+    public static void pasteAxesStyle(Integer newAxesUID, Integer axesToUID, boolean bounds) {
 
         if (newAxesUID == null || axesToUID == null) {
             return;
@@ -360,8 +360,8 @@ public class AxesHandler {
         Axes newAxes = (Axes)GraphicController.getController().getObjectFromId(newAxesUID);
         Axes axesTo = (Axes)GraphicController.getController().getObjectFromId(axesToUID);
 
-        String[] children = axesTo.getChildren();
-        String parentUID = axesTo.getParent();
+        Integer[] children = axesTo.getChildren();
+        Integer parentUID = axesTo.getParent();
         String[] titleText = (String[])GraphicController.getController().getProperty(axesTo.getTitle(), GraphicObjectProperties.__GO_TEXT_STRINGS__);
         String[] xLabelText = (String[])GraphicController.getController().getProperty(axesTo.getXAxisLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__);
         String[] yLabelText = (String[])GraphicController.getController().getProperty(axesTo.getYAxisLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__);
@@ -383,7 +383,7 @@ public class AxesHandler {
             GraphicController.getController().setGraphicObjectRelationship(newAxesUID, children[i]);
         }
         GraphicController.getController().setGraphicObjectRelationship(parentUID, newAxesUID);
-        GraphicController.getController().setGraphicObjectRelationship("", axesToUID);
+        GraphicController.getController().setGraphicObjectRelationship(0, axesToUID);
         ScilabNativeView.ScilabNativeView__setCurrentSubWin(newAxesUID);
     }
 }

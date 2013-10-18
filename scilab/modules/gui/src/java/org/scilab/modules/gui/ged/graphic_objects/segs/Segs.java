@@ -26,7 +26,7 @@ public class Segs extends SimpleObject {
     * Initializes all sections (JPanel's) and Add in Main JPanel of Object.
     * @param objectID Enters the identification of object.
     */
-    public Segs(String objectID) {
+    public Segs(Integer objectID) {
         super(objectID);
         data = new DataProperties(objectID);
         mark = new Mark(objectID);
@@ -44,8 +44,9 @@ public class Segs extends SimpleObject {
     @Override
     public final String[] getSectionsName() {
         return new String[] {
-                data.getName(),
-                mark.getName(),
-                style.getName()};
+                   data.getName(),
+                   mark.getName(),
+                   style.getName()
+               };
     }
 }

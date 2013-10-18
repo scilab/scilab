@@ -32,12 +32,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_box_property(void* _pvCtx, char* pobjUID)
+int get_box_property(void* _pvCtx, int iObjUID)
 {
     int type = -1;
     int *piType = &type;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **) &piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **) &piType);
 
     if (piType == NULL)
     {
@@ -58,7 +58,7 @@ int get_box_property(void* _pvCtx, char* pobjUID)
             int iBoxType = 0;
             int* piBoxType = &iBoxType;
 
-            getGraphicObjectProperty(pobjUID, __GO_BOX_TYPE__, jni_int, (void **) &piBoxType);
+            getGraphicObjectProperty(iObjUID, __GO_BOX_TYPE__, jni_int, (void **) &piBoxType);
 
             if (piBoxType == NULL)
             {
@@ -90,7 +90,7 @@ int get_box_property(void* _pvCtx, char* pobjUID)
             int iBox = 0;
             int* piBox = &iBox;
 
-            getGraphicObjectProperty(pobjUID, __GO_BOX__, jni_bool, (void **) &piBox);
+            getGraphicObjectProperty(iObjUID, __GO_BOX__, jni_bool, (void **) &piBox);
 
             if (piBox == NULL)
             {

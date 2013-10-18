@@ -23,7 +23,7 @@ extern "C"
 #include "graphicObjectProperties.h"
 }
 
-int TriangleMeshFecDataDecomposer::getDataSize(char* id)
+int TriangleMeshFecDataDecomposer::getDataSize(int id)
 {
     int numVertices = 0;
     int* piNumVertices = &numVertices;
@@ -33,7 +33,7 @@ int TriangleMeshFecDataDecomposer::getDataSize(char* id)
     return numVertices;
 }
 
-void TriangleMeshFecDataDecomposer::fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
+void TriangleMeshFecDataDecomposer::fillVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
 {
     double* coordinates = NULL;
 
@@ -83,9 +83,9 @@ void TriangleMeshFecDataDecomposer::fillVertices(char* id, float* buffer, int bu
 
 }
 
-void TriangleMeshFecDataDecomposer::fillTextureCoordinates(char* id, float* buffer, int bufferLength)
+void TriangleMeshFecDataDecomposer::fillTextureCoordinates(int id, float* buffer, int bufferLength)
 {
-    char* parentFigure = NULL;
+    int parentFigure = 0;
     int colormapSize = 0;
     int* piColormapSize = &colormapSize;
     int* colorRange = NULL;
@@ -107,10 +107,11 @@ void TriangleMeshFecDataDecomposer::fillTextureCoordinates(char* id, float* buff
 
     getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_string, (void**) &parentFigure);
     /* Temporary: to avoid getting a null parent_figure property when the object is built */
-    if (strcmp(parentFigure, "") == 0)
+    if (parentFigure == 0)
     {
         return;
     }
+
     getGraphicObjectProperty(id, __GO_COLOR_RANGE__, jni_int_vector, (void**) &colorRange);
     getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, (void**) &piColormapSize);
 
@@ -171,10 +172,10 @@ void TriangleMeshFecDataDecomposer::fillTextureCoordinates(char* id, float* buff
     }
 }
 
-void TriangleMeshFecDataDecomposer::fillColors(char* id, float* buffer, int bufferLength, int elementsSize)
+void TriangleMeshFecDataDecomposer::fillColors(int id, float* buffer, int bufferLength, int elementsSize)
 {
-    char* parent = NULL;
-    char* parentFigure = NULL;
+    int parent = 0;
+    int parentFigure = 0;
 
     double* values = NULL;
     double* zBounds = NULL;
@@ -200,10 +201,10 @@ void TriangleMeshFecDataDecomposer::fillColors(char* id, float* buffer, int buff
     int useOutsideColors = 0;
     int bufferOffset = 0;
 
-    getGraphicObjectProperty(id, __GO_PARENT__, jni_string, (void**) &parent);
+    parent = getParentObject(id);
 
     /* Temporary: to avoid getting a null parent_figure property when the object is built */
-    if (strcmp(parent, "") == 0)
+    if (parent == 0)
     {
         return;
     }
@@ -351,7 +352,7 @@ void TriangleMeshFecDataDecomposer::computeMinMaxValues(double* values, int numV
     *valueMax = tmpValueMax;
 }
 
-int TriangleMeshFecDataDecomposer::getIndicesSize(char* id)
+int TriangleMeshFecDataDecomposer::getIndicesSize(int id)
 {
     int numIndices = 0;
     int* piNumIndices = &numIndices;
@@ -361,7 +362,7 @@ int TriangleMeshFecDataDecomposer::getIndicesSize(char* id)
     return 3 * numIndices;
 }
 
-int TriangleMeshFecDataDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)
+int TriangleMeshFecDataDecomposer::fillIndices(int id, int* buffer, int bufferLength, int logMask)
 {
     double* coordinates = NULL;
     double* values = NULL;
@@ -464,7 +465,7 @@ void TriangleMeshFecDataDecomposer::getVertexCoordinates(double* coordinates, in
     vertexCoordinates[2] = coordinates[3 * index + 2];
 }
 
-int TriangleMeshFecDataDecomposer::getWireIndicesSize(char* id)
+int TriangleMeshFecDataDecomposer::getWireIndicesSize(int id)
 {
     int numTriangles = 0;
     int* piNumTriangles = &numTriangles;
@@ -477,7 +478,7 @@ int TriangleMeshFecDataDecomposer::getWireIndicesSize(char* id)
 /*
  * To do: output shared edges once instead of twice (once per adjacent face).
  */
-int TriangleMeshFecDataDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, int logMask)
+int TriangleMeshFecDataDecomposer::fillWireIndices(int id, int* buffer, int bufferLength, int logMask)
 {
     double* coordinates = NULL;
     double* values = NULL;

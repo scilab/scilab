@@ -15,10 +15,10 @@
 #ifndef __SET_DATA_PROPERTY_H__
 #define __SET_DATA_PROPERTY_H__
 
-int setchampdata(void* _pvCtx, char* pobjUID, AssignedList * tlist);
+int setchampdata(void* _pvCtx, int iObjUID, AssignedList * tlist);
 
-int setgrayplotdata(void* _pvCtx, char* pobjUID, AssignedList * tlist);
+int setgrayplotdata(void* _pvCtx, int iObjUID, AssignedList * tlist);
 
-int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist);
+int set3ddata(void* _pvCtx, int iObjUID, AssignedList * tlist);
 
 #endif /* ! __SET_DATA_PROPERTY_H__ */

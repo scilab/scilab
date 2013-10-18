@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_font_size_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_font_size_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     double fontSize = 0.;
@@ -43,7 +43,7 @@ int set_font_size_property(void* _pvCtx, char* pobjUID, void* _pvData, int value
 
     fontSize = ((double*)_pvData)[0];
 
-    status = setGraphicObjectProperty(pobjUID, __GO_FONT_SIZE__, &fontSize, jni_double, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_FONT_SIZE__, &fontSize, jni_double, 1);
 
     if (status == TRUE)
     {

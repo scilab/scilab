@@ -26,12 +26,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_tag_property(void* _pvCtx, char* pobjUID)
+int get_tag_property(void* _pvCtx, int iObjUID)
 {
     char* tag = NULL;
     int status = 0;
 
-    getGraphicObjectProperty(pobjUID,  __GO_TAG__, jni_string, (void**) &tag);
+    getGraphicObjectProperty(iObjUID,  __GO_TAG__, jni_string, (void**) &tag);
 
     if (tag == NULL)
     {

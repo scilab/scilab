@@ -14,12 +14,12 @@
 
 #include "GetUicontrolMax.hxx"
 
-int GetUicontrolMax(void* _pvCtx, char *sciObjUID)
+int GetUicontrolMax(void* _pvCtx, int iObjUID)
 {
     double maxValue = 0;
     double* pdblMaxValue = &maxValue;
 
-    getGraphicObjectProperty(sciObjUID, __GO_UI_MAX__, jni_double, (void**) &pdblMaxValue);
+    getGraphicObjectProperty(iObjUID, __GO_UI_MAX__, jni_double, (void**) &pdblMaxValue);
 
     if (pdblMaxValue == NULL)
     {

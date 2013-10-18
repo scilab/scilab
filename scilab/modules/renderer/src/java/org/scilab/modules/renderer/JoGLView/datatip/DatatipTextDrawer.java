@@ -60,7 +60,7 @@ public class DatatipTextDrawer extends TextManager {
 
         Vector3d textPosition = new Vector3d(datatip.getPosition());
 
-        String parentAxesId = datatip.getParentAxes();
+        Integer parentAxesId = datatip.getParentAxes();
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentAxesId);
 
         /* Compute the text box vectors and the text box to texture dimension ratios */

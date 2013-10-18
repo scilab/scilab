@@ -114,7 +114,7 @@ int sci_delmenu(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        DeleteMenuWithName((char*)getFigureFromIndex((int)(*pdblAdr)), strAdr);
+        DeleteMenuWithName(getFigureFromIndex((int)(*pdblAdr)), strAdr);
         freeAllocatedSingleString(strAdr);
     }
 

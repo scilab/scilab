@@ -39,7 +39,7 @@ public class SwapObject {
     * Manager which property window will open.
     * @param objectID Enters the identification of object.
     */
-    public SwapObject(String objectID) {
+    public SwapObject(Integer objectID) {
         Integer type = (Integer) GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_TYPE__);
         lastType = type;
         switch (type) {

@@ -15,7 +15,7 @@
 #include "SetUicontrolPosition.hxx"
 #include "stack-c.h"
 
-int SetUicontrolPosition(char *sciObjUID, void* pvData, int valueType, int nbRow, int nbCol)
+int SetUicontrolPosition(int iObjUID, void* pvData, int valueType, int nbRow, int nbCol)
 {
     // Position can be [x, y, width, height] or "x|y|width|height"
 
@@ -59,7 +59,7 @@ int SetUicontrolPosition(char *sciObjUID, void* pvData, int valueType, int nbRow
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(sciObjUID, __GO_TYPE__, jni_int, (void**)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void**)&piType);
 
     /* Figure position set as an uicontrol one */
     if (type == __GO_FIGURE__)
@@ -72,17 +72,17 @@ int SetUicontrolPosition(char *sciObjUID, void* pvData, int valueType, int nbRow
         figureSize[0] = (int) position[2];
         figureSize[1] = (int) position[3];
 
-        status = setGraphicObjectProperty(sciObjUID, __GO_POSITION__, figurePosition, jni_int_vector, 2);
+        status = setGraphicObjectProperty(iObjUID, __GO_POSITION__, figurePosition, jni_int_vector, 2);
         if (status == FALSE)
         {
             Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Position");
             return SET_PROPERTY_ERROR;
         }
-        status = setGraphicObjectProperty(sciObjUID, __GO_AXES_SIZE__, figureSize, jni_int_vector, 2);
+        status = setGraphicObjectProperty(iObjUID, __GO_AXES_SIZE__, figureSize, jni_int_vector, 2);
     }
     else
     {
-        status = setGraphicObjectProperty(sciObjUID, __GO_POSITION__, position, jni_double_vector, 4);
+        status = setGraphicObjectProperty(iObjUID, __GO_POSITION__, position, jni_double_vector, 4);
     }
 
     if (valueType == sci_strings)

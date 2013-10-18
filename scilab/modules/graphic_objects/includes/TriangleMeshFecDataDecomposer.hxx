@@ -81,7 +81,7 @@ public :
      * @param[in] the given object id.
      * @return the number of data elements.
      */
-    static int getDataSize(char* id);
+    static int getDataSize(int id);
 
     /**
      * Fills the given buffer with vertex data from the given object.
@@ -94,7 +94,7 @@ public :
      * @param[in] the conversion translation factor to apply to data.
      * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      */
-    static void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask);
+    static void fillVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask);
 
     /**
      * Fills the given buffer with color data from the given object.
@@ -103,7 +103,7 @@ public :
      * @param[in] the buffer length in number of elements.
      * @param[in] the number of components taken by one element in the buffer (3 or 4).
      */
-    static void fillColors(char* id, float* buffer, int bufferLength, int elementsSize);
+    static void fillColors(int id, float* buffer, int bufferLength, int elementsSize);
 
     /**
      * Fills the given buffer with texture coordinates data from the given object.
@@ -111,14 +111,14 @@ public :
      * @param[in] the buffer to fill.
      * @param[in] the buffer length in number of elements.
      */
-    static void fillTextureCoordinates(char* id, float* buffer, int bufferLength);
+    static void fillTextureCoordinates(int id, float* buffer, int bufferLength);
 
     /**
      * Returns the number of indices for the given object.
      * @param[in] the given object id.
      * @return the object's number of indices.
      */
-    static int getIndicesSize(char* id);
+    static int getIndicesSize(int id);
 
     /**
      * Fills the given buffer with indices data of the given object.
@@ -128,7 +128,7 @@ public :
      * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
-    static int fillIndices(char* id, int* buffer, int bufferLength, int logMask);
+    static int fillIndices(int id, int* buffer, int bufferLength, int logMask);
 
     /**
      * Returns the number of wireframe indices for the given object.
@@ -138,7 +138,7 @@ public :
      * @param[in] the given object id.
      * @return the object's number of indices.
      */
-    static int getWireIndicesSize(char* id);
+    static int getWireIndicesSize(int id);
 
     /**
      * Fills the given buffer with wireframe indices data of the given object.
@@ -150,7 +150,7 @@ public :
      * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
-    static int fillWireIndices(char* id, int* buffer, int bufferLength, int logMask);
+    static int fillWireIndices(int id, int* buffer, int bufferLength, int logMask);
 };
 
 #endif

@@ -35,7 +35,7 @@
  * @param any uid
  * @return a handle mapped to the uid
  */
-GRAPHIC_OBJECTS_IMPEXP long getHandle(char const* UID);
+GRAPHIC_OBJECTS_IMPEXP long getHandle(int iUID);
 
 /**
  * @brief Get the uid of an handle.
@@ -43,6 +43,6 @@ GRAPHIC_OBJECTS_IMPEXP long getHandle(char const* UID);
  * @param a valid handle
  * @return a reference to an existing uid or null if invalid.
  */
-GRAPHIC_OBJECTS_IMPEXP char const* getObjectFromHandle(long handle);
+GRAPHIC_OBJECTS_IMPEXP int getObjectFromHandle(long handle);
 
 #endif /* !__HANDLE_MANAGEMENT_H__ */

@@ -23,12 +23,12 @@
 /**
  * Gets the shininess level of the surface.
  */
-int get_material_shininess_property(void* _pvCtx, char* pobjUID)
+int get_material_shininess_property(void* _pvCtx, int iObjUID)
 {
     double shininess = 0;
     double* pShininess = &shininess;
 
-    getGraphicObjectProperty(pobjUID, __GO_MATERIAL_SHININESS__, jni_double, (void **)&pShininess);
+    getGraphicObjectProperty(iObjUID, __GO_MATERIAL_SHININESS__, jni_double, (void **)&pShininess);
 
     if (pShininess == NULL)
     {

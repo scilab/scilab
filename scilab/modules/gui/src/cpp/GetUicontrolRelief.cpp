@@ -14,12 +14,12 @@
 
 #include "GetUicontrolRelief.hxx"
 
-int GetUicontrolRelief(void* _pvCtx, char *sciObjUID)
+int GetUicontrolRelief(void* _pvCtx, int iObjUID)
 {
     char* relief = NULL;
     int status = 0;
 
-    getGraphicObjectProperty(sciObjUID, __GO_UI_RELIEF__, jni_string, (void**) &relief);
+    getGraphicObjectProperty(iObjUID, __GO_UI_RELIEF__, jni_string, (void**) &relief);
 
     if (relief == NULL)
     {

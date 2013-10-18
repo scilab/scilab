@@ -22,11 +22,11 @@
 /**
  * Gets the ambient color of the light/material.
  */
-int get_ambient_color_property(void* _pvCtx, char* pobjUID)
+int get_ambient_color_property(void* _pvCtx, int iObjUID)
 {
     double* color = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_AMBIENTCOLOR__, jni_double_vector, (void **)&color);
+    getGraphicObjectProperty(iObjUID, __GO_AMBIENTCOLOR__, jni_double_vector, (void **)&color);
 
     if (color == NULL)
     {

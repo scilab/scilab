@@ -30,7 +30,7 @@
 #include "api_scilab.h"
 #include "MALLOC.h"
 /*------------------------------------------------------------------------*/
-int set_callback_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_callback_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     // Callback must be only one character string
 
@@ -95,7 +95,7 @@ int set_callback_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
         cbType = -1; /* Disabled */
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_CALLBACK__, cbString, jni_string, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_CALLBACK__, cbString, jni_string, 1);
 
     if (status != TRUE)
     {
@@ -103,7 +103,7 @@ int set_callback_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
         return SET_PROPERTY_ERROR;
     }
 
-    if (setGraphicObjectProperty(pobjUID, __GO_CALLBACKTYPE__, &cbType, jni_int, 1) == FALSE)
+    if (setGraphicObjectProperty(iObjUID, __GO_CALLBACKTYPE__, &cbType, jni_int, 1) == FALSE)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "callback_type");
         return SET_PROPERTY_ERROR;

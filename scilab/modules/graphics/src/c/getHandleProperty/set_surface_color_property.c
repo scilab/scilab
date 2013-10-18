@@ -27,7 +27,7 @@
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
-int set_surface_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_surface_color_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     // FIXME
     return SET_PROPERTY_ERROR;

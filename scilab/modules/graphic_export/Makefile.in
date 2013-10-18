@@ -173,8 +173,7 @@ LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscigraphic_export_algo_la_LIBADD =
 am__objects_1 = libscigraphic_export_algo_la-exportToFile.lo \
 	libscigraphic_export_algo_la-FileExporter.lo \
-	libscigraphic_export_algo_la-Driver.lo \
-	libscigraphic_export_algo_la-JOGLConstant.lo
+	libscigraphic_export_algo_la-Driver.lo
 am_libscigraphic_export_algo_la_OBJECTS = $(am__objects_1)
 libscigraphic_export_algo_la_OBJECTS =  \
 	$(am_libscigraphic_export_algo_la_OBJECTS)
@@ -340,6 +339,7 @@ DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
+ECJ = @ECJ@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 F77 = @F77@
@@ -576,8 +576,7 @@ libscigraphic_export_la_etc_DATA = etc/graphic_export.quit etc/graphic_export.st
 # List of the c files
 GRAPHIC_EXPORT_CXX_SOURCES = src/cpp/exportToFile.cpp \
 src/jni/FileExporter.cpp \
-src/jni/Driver.cpp \
-src/jni/JOGLConstant.cpp
+src/jni/Driver.cpp
 
 
 # List of the gateway c files
@@ -628,7 +627,6 @@ CHECK_SRC = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 INCLUDE_FLAGS = $(libscigraphic_export_la_CPPFLAGS)
 libscigraphic_export_la_LIBADD = libscigraphic_export-algo.la
 GIWS_WRAPPERS = src/jni/FileExporter.giws.xml \
-src/jni/JOGLConstant.giws.xml \
 src/jni/Driver.giws.xml
 
 BUILT_SOURCES = $(am__append_1)
@@ -824,7 +822,6 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-Driver.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-FileExporter.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-JOGLConstant.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-exportToFile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_disable_la-nographic_export.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-gw_graphic_export.Plo@am__quote@
@@ -988,13 +985,6 @@ libscigraphic_export_algo_la-Driver.lo: src/jni/Driver.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/Driver.cpp' object='libscigraphic_export_algo_la-Driver.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_export_algo_la-Driver.lo `test -f 'src/jni/Driver.cpp' || echo '$(srcdir)/'`src/jni/Driver.cpp
-
-libscigraphic_export_algo_la-JOGLConstant.lo: src/jni/JOGLConstant.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_export_algo_la-JOGLConstant.lo -MD -MP -MF $(DEPDIR)/libscigraphic_export_algo_la-JOGLConstant.Tpo -c -o libscigraphic_export_algo_la-JOGLConstant.lo `test -f 'src/jni/JOGLConstant.cpp' || echo '$(srcdir)/'`src/jni/JOGLConstant.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphic_export_algo_la-JOGLConstant.Tpo $(DEPDIR)/libscigraphic_export_algo_la-JOGLConstant.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/JOGLConstant.cpp' object='libscigraphic_export_algo_la-JOGLConstant.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_export_algo_la-JOGLConstant.lo `test -f 'src/jni/JOGLConstant.cpp' || echo '$(srcdir)/'`src/jni/JOGLConstant.cpp
 
 libscigraphic_export_la-sci_driver.lo: sci_gateway/cpp/sci_driver.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_export_la-sci_driver.lo -MD -MP -MF $(DEPDIR)/libscigraphic_export_la-sci_driver.Tpo -c -o libscigraphic_export_la-sci_driver.lo `test -f 'sci_gateway/cpp/sci_driver.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_driver.cpp

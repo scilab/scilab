@@ -43,7 +43,7 @@ public class GlobalEventFilter {
      * @param figureUID Scilab ID of the figure where the even occurred
      * @param isControlDown : is CTRL key modifier activated.
      */
-    public static void filterKey(int keyPressed, String figureUID, boolean isControlDown) {
+    public static void filterKey(int keyPressed, Integer figureUID, boolean isControlDown) {
         synchronized (ClickInfos.getInstance()) {
             ClickInfos.getInstance().setMouseButtonNumber(SciTranslator.javaKey2Scilab(keyPressed, isControlDown));
             ClickInfos.getInstance().setWindowID(figureUID);
@@ -62,7 +62,7 @@ public class GlobalEventFilter {
         synchronized (ClickInfos.getInstance()) {
             ClickInfos.getInstance().setMouseButtonNumber(SCILAB_CALLBACK);
             ClickInfos.getInstance().setMenuCallback(command);
-            ClickInfos.getInstance().setWindowID("");
+            ClickInfos.getInstance().setWindowID(0);
             ClickInfos.getInstance().setXCoordinate(-1);
             ClickInfos.getInstance().setYCoordinate(-1);
             ClickInfos.getInstance().notify();
@@ -76,7 +76,7 @@ public class GlobalEventFilter {
      * @param returnCode : used for closing windows.
      * @param figureUID : the figure ID where callback occurred.
      */
-    public static void filterCallback(String command, int returnCode, String figureUID) {
+    public static void filterCallback(String command, int returnCode, Integer figureUID) {
         synchronized (ClickInfos.getInstance()) {
             ClickInfos.getInstance().setMouseButtonNumber(returnCode);
             ClickInfos.getInstance().setMenuCallback(command);
@@ -94,7 +94,7 @@ public class GlobalEventFilter {
      * @param buttonAction the Scilab button code mean PRESSED / RELEASED / CLICKED / DCLICKED.
      * @param isControlDown true if the CTRL key has been pressed
      */
-    public static void filterMouse(MouseEvent mouseEvent, String axesUID, int buttonAction, boolean isControlDown) {
+    public static void filterMouse(MouseEvent mouseEvent, Integer axesUID, int buttonAction, boolean isControlDown) {
         if (axesUID != null) {
             synchronized (ClickInfos.getInstance()) {
                 ClickInfos.getInstance().setMouseButtonNumber(

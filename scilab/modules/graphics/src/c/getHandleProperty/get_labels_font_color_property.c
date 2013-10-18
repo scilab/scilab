@@ -35,12 +35,12 @@
  */
 
 /*------------------------------------------------------------------------*/
-int get_labels_font_color_property(void* _pvCtx, char* pobjUID)
+int get_labels_font_color_property(void* _pvCtx, int iObjUID)
 {
     int iFontColor = 0;
     int* piFontColor = &iFontColor;
 
-    getGraphicObjectProperty(pobjUID, __GO_FONT_COLOR__, jni_int, (void **)&piFontColor);
+    getGraphicObjectProperty(iObjUID, __GO_FONT_COLOR__, jni_int, (void **)&piFontColor);
 
     if (piFontColor == NULL)
     {

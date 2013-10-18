@@ -455,11 +455,11 @@ public class UIScilabPlot extends UIComponent implements GraphicView {
     }
 
     @Override
-    public void updateObject(String id, int property) {
+    public void updateObject(Integer id, int property) {
         if ((hasAction && (onrotateEnable || onzoomEnable)) && GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__) == ((Integer) GraphicObjectProperties.__GO_AXES__)) {
             GraphicObject obj = GraphicController.getController().getObjectFromId(id);
-            String parentFigure = obj.getParentFigure();
-            if (figure.getIdentifier().equals(parentFigure)) {
+            Integer parentFigure = obj.getParentFigure();
+            if (figure.getIdentifier() == parentFigure) {
                 if (property == GraphicObjectProperties.__GO_ROTATION_ANGLES__ && onrotateEnable && onrotate != null) {
                     Double[] angles = (Double[]) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
                     UIWidgetTools.execAction(onrotate, "[" + angles[0].toString() + "," + angles[1].toString() + "]");
@@ -526,12 +526,12 @@ public class UIScilabPlot extends UIComponent implements GraphicView {
     }
 
     @Override
-    public void createObject(String id) {
+    public void createObject(Integer id) {
     }
 
     @Override
-    public void deleteObject(String id) {
-        if (figure.getIdentifier().equals(id)) {
+    public void deleteObject(Integer id) {
+        if (figure.getIdentifier() == id) {
             //GraphicController.getController().unregister(this);
         }
     }

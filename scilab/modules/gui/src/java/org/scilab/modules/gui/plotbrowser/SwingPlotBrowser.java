@@ -45,7 +45,7 @@ public class SwingPlotBrowser extends SwingScilabTab {
     *
     * @param objectID Enters the identification of object.
     */
-    public SwingPlotBrowser(String objectID) {
+    public SwingPlotBrowser(Integer objectID) {
         super(MessagesPlotBrowser.plot_browser, PLOTBROWSERUUID);
 
         setAssociatedXMLIDForHelp("plotbrowser");

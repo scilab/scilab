@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_mark_size_unit_property(void* _pvCtx, char* pobjUID)
+int get_mark_size_unit_property(void* _pvCtx, int iObjUID)
 {
     int iMarkSizeUnit = 0;
     int* piMarkSizeUnit = &iMarkSizeUnit;
 
-    getGraphicObjectProperty(pobjUID, __GO_MARK_SIZE_UNIT__, jni_int, (void**)&piMarkSizeUnit);
+    getGraphicObjectProperty(iObjUID, __GO_MARK_SIZE_UNIT__, jni_int, (void**)&piMarkSizeUnit);
 
     if (piMarkSizeUnit == NULL)
     {

@@ -38,25 +38,20 @@ int sci_newaxes(char * fname, unsigned long fname_len)
 
     long long* outindex = NULL;
 
-    char *psubwinUID = NULL;
-    int numrow   = 1, numcol   = 1;
+    int iSubwinUID = 0;
     CheckInputArgument(pvApiCtx, 0, 0);
     CheckOutputArgument(pvApiCtx, 0, 1);
 
     getOrCreateDefaultSubwin();
 
-    if ((psubwinUID = (char*)ConstructSubWin (getCurrentFigure())) != NULL)
+    if ((iSubwinUID = ConstructSubWin (getCurrentFigure())) != 0)
     {
-        sciErr = allocMatrixOfHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, numrow, numcol, &outindex);
-        if (sciErr.iErr)
+        if (createScalarHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, getHandle(iSubwinUID)))
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 1;
         }
-
-
-        *(outindex) = getHandle(psubwinUID);
 
         AssignOutputVariable(pvApiCtx, 1) = 1;
         ReturnArguments(pvApiCtx);

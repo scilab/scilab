@@ -29,7 +29,7 @@ public class Box extends SimpleSection {
     * Initializes the properties and the icons of the buttons.
     * @param objectID Enters the identification of datatip.
     */
-    public Box(String objectID) {
+    public Box(Integer objectID) {
         super(MessagesGED.box, "axes");
         instance = this;
         sectionPanel = getSectionPanel();
@@ -49,7 +49,7 @@ public class Box extends SimpleSection {
     * @param objectID uid
     */
     @Override
-    public final void initComponents(String objectID) {
+    public final void initComponents(Integer objectID) {
         int row = 0;
         final int leftmargin = 16; //to inner components
         int column = 0; //first column

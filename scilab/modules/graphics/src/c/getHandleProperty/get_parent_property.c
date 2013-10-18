@@ -26,26 +26,27 @@
 #include "HandleManagement.h"
 #include "returnProperty.h"
 #include "MALLOC.h"
+#include "CurrentObject.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_parent_property(void* _pvCtx, char* pobjUID)
+int get_parent_property(void* _pvCtx, int iObjUID)
 {
-    char* parentID = NULL;
+    int iParentID = 0;
+    int* piParentID = &iParentID;
 
     /* All Graphic Objects have the __GO_PARENT__ property */
-    getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, (void **)&parentID);
-
-    if (strcmp(parentID, "") == 0)
+    iParentID = getParentObject(iObjUID);
+    if (iParentID == 0)
     {
         /* No parent for this object */
         return sciReturnEmptyMatrix(_pvCtx);
     }
     else
     {
-        return sciReturnHandle(_pvCtx, getHandle(parentID));
+        return sciReturnHandle(_pvCtx, getHandle(iParentID));
     }
 }
 /*------------------------------------------------------------------------*/

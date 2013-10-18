@@ -14,12 +14,12 @@
 
 #include "GetUicontrolHorizontalAlignment.hxx"
 
-int GetUicontrolHorizontalAlignment(void* _pvCtx, char *sciObjUID)
+int GetUicontrolHorizontalAlignment(void* _pvCtx, int iObjUID)
 {
     char* alignment = NULL;
     int status = 0;
 
-    getGraphicObjectProperty(sciObjUID, __GO_UI_HORIZONTALALIGNMENT__, jni_string, (void**) &alignment);
+    getGraphicObjectProperty(iObjUID, __GO_UI_HORIZONTALALIGNMENT__, jni_string, (void**) &alignment);
 
     if (alignment == NULL)
     {

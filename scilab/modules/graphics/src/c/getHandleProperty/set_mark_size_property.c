@@ -26,7 +26,7 @@
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_mark_size_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_mark_size_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     if (valueType != sci_matrix)
     {
@@ -34,6 +34,6 @@ int set_mark_size_property(void* _pvCtx, char* pobjUID, void* _pvData, int value
         return SET_PROPERTY_ERROR;
     }
 
-    return sciSetMarkSize(pobjUID, (int) ((double*)_pvData)[0]);
+    return sciSetMarkSize(iObjUID, (int) ((double*)_pvData)[0]);
 }
 /*------------------------------------------------------------------------*/

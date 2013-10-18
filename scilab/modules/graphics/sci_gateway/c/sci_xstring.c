@@ -245,8 +245,7 @@ int sci_xstring(char *fname, unsigned long fname_len)
          * To be modified
          */
         {
-            char * o = ConstructCompoundSeq(nbElement);
-            releaseGraphicObjectProperty(__GO_PARENT__, o, jni_string, 1);
+            int o = ConstructCompoundSeq(nbElement);
         }
     }
 

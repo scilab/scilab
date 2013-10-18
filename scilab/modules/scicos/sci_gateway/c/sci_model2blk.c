@@ -225,19 +225,19 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                 Scierror(888, _("%s : type 2 function not allowed for scilab blocks\n"), fname);
                 return 0;
             case 3:
-                Block.funpt = sciblk2;
+                Block.funpt = (voidg) sciblk2;
                 Block.type = 2;
                 break;
             case 5:
-                Block.funpt = sciblk4;
+                Block.funpt = (voidg) sciblk4;
                 Block.type = 4;
                 break;
             case 99: /* debugging block */
-                Block.funpt = sciblk4;
+                Block.funpt = (voidg) sciblk4;
                 Block.type = 4;
                 break;
             case 10005:
-                Block.funpt = sciblk4;
+                Block.funpt = (voidg) sciblk4;
                 Block.type = 10004;
                 break;
             default :
@@ -248,7 +248,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     }
     else if (lfunpt <= ntabsim)
     {
-        Block.funpt = *(tabsim[lfunpt - 1].fonc);
+        Block.funpt = (voidg) * (tabsim[lfunpt - 1].fonc);
         Block.scsptr = 0;
     }
     else
@@ -2111,52 +2111,60 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     ilh          = (int *) (listentry(il1, n));
     mh           = ilh[1];
     nh           = ilh[2];
-    Block.label  = "";
     if (mh * nh != 0)
     {
         len_str  = ilh[5] - 1;
-        if (len_str != 0)
+        if (len_str < 0)
         {
-            if ((Block.label = (char *) MALLOC((len_str + 1) * sizeof(char))) == NULL)
-            {
-                for (j = 0; j < Block.nin; j++)
-                {
-                    FREE(Block.inptr[j]);
-                }
-                FREE(Block.inptr);
-                FREE(Block.insz);
-                for (j = 0; j < Block.nout; j++)
-                {
-                    FREE(Block.outptr[j]);
-                }
-                FREE(Block.outptr);
-                FREE(Block.outsz);
-                FREE(Block.evout);
-                FREE(Block.x);
-                FREE(Block.xd);
-                FREE(Block.xprop);
-                FREE(Block.res);
-                FREE(Block.z);
-                FREE(Block.ozsz);
-                FREE(Block.oztyp);
-                for (j = 0; j < Block.noz; j++)
-                {
-                    FREE(Block.ozptr[j]);
-                }
-                FREE(Block.rpar);
-                FREE(Block.ipar);
-                FREE(Block.oparsz);
-                FREE(Block.opartyp);
-                for (j = 0; j < Block.nopar; j++)
-                {
-                    FREE(Block.oparptr[j]);
-                }
-                Scierror(888, _("%s : Allocation error.\n"), fname);
-                return 0;
-            }
-            Block.label[len_str] = '\0';
-            C2F(cvstr)(&len_str, &ilh[6], Block.label, (j = 1, &j), len_str);
+            len_str = 0;
         }
+    }
+    else
+    {
+        len_str = 0;
+    }
+    if ((Block.label = (char *) MALLOC((len_str + 1) * sizeof(char))) == NULL)
+    {
+        for (j = 0; j < Block.nin; j++)
+        {
+            FREE(Block.inptr[j]);
+        }
+        FREE(Block.inptr);
+        FREE(Block.insz);
+        for (j = 0; j < Block.nout; j++)
+        {
+            FREE(Block.outptr[j]);
+        }
+        FREE(Block.outptr);
+        FREE(Block.outsz);
+        FREE(Block.evout);
+        FREE(Block.x);
+        FREE(Block.xd);
+        FREE(Block.xprop);
+        FREE(Block.res);
+        FREE(Block.z);
+        FREE(Block.ozsz);
+        FREE(Block.oztyp);
+        for (j = 0; j < Block.noz; j++)
+        {
+            FREE(Block.ozptr[j]);
+        }
+        FREE(Block.rpar);
+        FREE(Block.ipar);
+        FREE(Block.oparsz);
+        FREE(Block.opartyp);
+        for (j = 0; j < Block.nopar; j++)
+        {
+            FREE(Block.oparptr[j]);
+        }
+        Scierror(888, _("%s : Allocation error.\n"), fname);
+        return 0;
+    }
+
+    Block.label[len_str] = '\0';
+    if (len_str > 0)
+    {
+        C2F(cvstr)(&len_str, &ilh[6], Block.label, (j = 1, &j), len_str);
     }
 
     /* zero crossing */
@@ -2452,10 +2460,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     {
         FREE(Block.oparptr[j]);
     }
-    if (len_str != 0)
-    {
-        FREE(Block.label);
-    }
+    FREE(Block.label);
     FREE(Block.g);
     FREE(Block.jroot);
     FREE(Block.mode);

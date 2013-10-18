@@ -23,9 +23,9 @@ GUI_IMPEXP double getJxclickXCoordinate(void);
 
 GUI_IMPEXP double getJxclickYCoordinate(void);
 
-GUI_IMPEXP char * getJxclickWindowID(void);
+GUI_IMPEXP int getJxclickWindowID(void);
 
-GUI_IMPEXP char * getJxclickMenuCallback(void);
+GUI_IMPEXP char* getJxclickMenuCallback(void);
 
 /**
  * Delete the menu call back which is allocated by a C++ new.

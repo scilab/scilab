@@ -32,9 +32,9 @@ public class ActionHide extends BaseAction {
     *
     * @param object the hidden Object
     */
-    public ActionHide(String object) {
+    public ActionHide(Integer object) {
 
-        super(object, (String)GraphicController.getController().getProperty(object, GraphicObjectProperties.__GO_PARENT__));
+        super(object, (Integer)GraphicController.getController().getProperty(object, GraphicObjectProperties.__GO_PARENT__));
     }
 
     /**

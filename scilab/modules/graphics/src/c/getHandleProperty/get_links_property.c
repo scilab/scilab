@@ -30,16 +30,16 @@
 #include "HandleManagement.h"
 
 /*------------------------------------------------------------------------*/
-int get_links_property(void* _pvCtx, char* pobjUID)
+int get_links_property(void* _pvCtx, int iObjUID)
 {
     int i = 0;
     long *handles = NULL;
-    char** links = NULL;
+    int* links = NULL;
     int status = 0;
     int iLinksCount = 0;
     int* piLinksCount = &iLinksCount;
 
-    getGraphicObjectProperty(pobjUID, __GO_LINKS_COUNT__, jni_int, (void **) &piLinksCount);
+    getGraphicObjectProperty(iObjUID, __GO_LINKS_COUNT__, jni_int, (void **) &piLinksCount);
 
     if (piLinksCount == NULL)
     {
@@ -59,7 +59,7 @@ int get_links_property(void* _pvCtx, char* pobjUID)
         return -1;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_LINKS__, jni_string_vector, (void **) &links);
+    getGraphicObjectProperty(iObjUID, __GO_LINKS__, jni_int_vector, (void **) &links);
 
     if (links == NULL)
     {

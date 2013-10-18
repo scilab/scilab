@@ -23,7 +23,7 @@ extern "C"
 
 using namespace org_scilab_modules_gui_bridge;
 
-int SetUicontrolUnits(void* _pvCtx, char *sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUicontrolUnits(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* Units can be points, normalized, inches, centimeters or pixels */
     BOOL status = FALSE;
@@ -32,7 +32,7 @@ int SetUicontrolUnits(void* _pvCtx, char *sciObjUID, void* _pvData, int valueTyp
     int *piType = &type;
 
     /* Handle must be a uicontrol */
-    getGraphicObjectProperty(sciObjUID, __GO_TYPE__, jni_int, (void**) &piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void**) &piType);
     if (type != __GO_UICONTROL__)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Units");
@@ -61,7 +61,7 @@ int SetUicontrolUnits(void* _pvCtx, char *sciObjUID, void* _pvData, int valueTyp
             return SET_PROPERTY_ERROR;
         }
 
-        status = setGraphicObjectProperty(sciObjUID, __GO_UI_UNITS__, units, jni_string, 1);
+        status = setGraphicObjectProperty(iObjUID, __GO_UI_UNITS__, units, jni_string, 1);
         if (status == TRUE)
         {
             return SET_PROPERTY_SUCCEED;

@@ -37,7 +37,7 @@ public class MarkSpriteManager {
     /**
      * The sprite map.
      */
-    private final Map<String, Texture> spriteMap = new ConcurrentHashMap<String, Texture>();
+    private final Map<Integer, Texture> spriteMap = new ConcurrentHashMap<Integer, Texture>();
 
 
     /**
@@ -57,7 +57,7 @@ public class MarkSpriteManager {
      * @return the mark sprite for the given contoured object.
      */
     public Texture getMarkSprite(ContouredObject contouredObject, ColorMap colorMap, Appearance appearance) {
-        String id = contouredObject.getIdentifier();
+        Integer id = contouredObject.getIdentifier();
         Texture sprite = spriteMap.get(id);
         if (sprite == null) {
             sprite = MarkSpriteFactory.getMarkSprite(textureManager, contouredObject.getMark(), colorMap, appearance);
@@ -73,7 +73,7 @@ public class MarkSpriteManager {
      * @param colorMap the current color map.
      * @return the mark sprite for the given contoured object.
      */
-    public Texture getMarkSprite(String id, Mark mark, ColorMap colorMap, Appearance appearance) {
+    public Texture getMarkSprite(Integer id, Mark mark, ColorMap colorMap, Appearance appearance) {
         Texture sprite = spriteMap.get(id);
         if (sprite == null) {
             sprite = MarkSpriteFactory.getMarkSprite(textureManager, mark, colorMap, appearance);
@@ -87,7 +87,7 @@ public class MarkSpriteManager {
      * @param id the modified object.
      * @param property the changed property.
      */
-    public void update(String id, int property) {
+    public void update(Integer id, int property) {
 
         /**
          * If the Mark properties have changed.
@@ -108,7 +108,7 @@ public class MarkSpriteManager {
      * Dispose the sprite corresponding to the given id.
      * @param id the given id.
      */
-    public void dispose(String id) {
+    public void dispose(Integer id) {
         Texture sprite = spriteMap.get(id);
         textureManager.dispose(sprite);
         spriteMap.remove(id);

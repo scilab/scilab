@@ -58,7 +58,7 @@ public class Driver {
         return !driver.equalsIgnoreCase("X11") && !driver.equalsIgnoreCase("Rec");
     }
 
-    public static void setDefaultVisitor(String uid) {
+    public static void setDefaultVisitor(int uid) {
         if (isImageRendering()) {
             Export.setVisitor(uid, Export.getType(driver), new ExportParams(-1.0f, 0, true));
         }
@@ -68,7 +68,7 @@ public class Driver {
      * Export the current figure
      * @param uid the uid of the current figure
      */
-    public static String end(String uid) {
+    public static String end(int uid) {
         if (filename == null) {
             return Messages.gettext("xinit must be called before xend.");
         }

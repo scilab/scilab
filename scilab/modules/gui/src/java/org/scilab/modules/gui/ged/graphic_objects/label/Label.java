@@ -27,7 +27,7 @@ public class Label extends SimpleObject {
     * Initializes all sections (JPanel's) and Add in Main JPanel of Object.
     * @param objectID Enters the identification of object.
     */
-    public Label(String objectID) {
+    public Label(Integer objectID) {
         super(objectID);
         base = new BaseProperties(objectID);
         font = new Font(objectID);
@@ -47,9 +47,10 @@ public class Label extends SimpleObject {
     @Override
     public final String[] getSectionsName() {
         return new String[] {
-                    base.getName(),
-                    font.getName(),
-                    position.getName(),
-                    style.getName()};
+                   base.getName(),
+                   font.getName(),
+                   position.getName(),
+                   style.getName()
+               };
     }
 }

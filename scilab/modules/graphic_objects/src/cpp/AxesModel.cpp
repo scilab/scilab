@@ -18,18 +18,18 @@ extern "C"
 #include "AxesModel.h"
 }
 
-char const* getAxesModel(void)
+int getAxesModel(void)
 {
     return ScilabView::getAxesModel();
 }
-void setAxesModel(char const* UID)
+void setAxesModel(int UID)
 {
     ScilabView::setAxesModel(UID);
 }
 
-BOOL isAxesModel(char const* UID)
+BOOL isAxesModel(int UID)
 {
-    if (strcmp(UID, getAxesModel()) == 0)
+    if (UID == getAxesModel())
     {
         return TRUE;
     }

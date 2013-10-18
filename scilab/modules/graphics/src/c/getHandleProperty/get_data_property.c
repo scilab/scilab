@@ -37,7 +37,7 @@
 #include "returnProperty.h"
 /*--------------------------------------------------------------------------*/
 /* the matplot data can have several type */
-int getmatplotdata(void * _pvCtx, char *pobjUID)
+int getmatplotdata(void * _pvCtx, int iObjUID)
 {
     int datatype = 0;
     int * piDataType = &datatype;
@@ -51,12 +51,12 @@ int getmatplotdata(void * _pvCtx, char *pobjUID)
     int gltype = 0;
     int * piGltype = &gltype;
     int status = SET_PROPERTY_ERROR;
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, (void **)&piNumX);
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, (void **)&piNumY);
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_DATA_TYPE__, jni_int, (void **)&piDataType);
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, jni_double_vector, &data);
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_TYPE__, jni_int, (void **)&piImagetype);
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_GL_TYPE__, jni_int, (void **)&piGltype);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_X__, jni_int, (void **)&piNumX);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, (void **)&piNumY);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_MATPLOT_DATA_TYPE__, jni_int, (void **)&piDataType);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z__, jni_double_vector, &data);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_TYPE__, jni_int, (void **)&piImagetype);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_MATPLOT_GL_TYPE__, jni_int, (void **)&piGltype);
 
     if (!data)
     {
@@ -173,7 +173,7 @@ int getmatplotdata(void * _pvCtx, char *pobjUID)
 /*--------------------------------------------------------------------------*/
 /* F.Leray 29.04.05 */
 /* the grayplot data is now given as a tlist (like for surface and champ objects) */
-int getgrayplotdata(char *pobjUID)
+int getgrayplotdata(int iObjUID)
 {
     char * variable_tlist[] = {"grayplotdata", "x", "y", "z"};
     int numX = 0;
@@ -192,12 +192,12 @@ int getgrayplotdata(char *pobjUID)
         return -1;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, (void **)&piNumX);
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, (void **)&piNumY);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_X__, jni_int, (void **)&piNumX);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, (void **)&piNumY);
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, (void **)&dataX);
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, (void **)&dataY);
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, jni_double_vector, (void **)&dataZ);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_X__, jni_double_vector, (void **)&dataX);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Y__, jni_double_vector, (void **)&dataY);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z__, jni_double_vector, (void **)&dataZ);
 
     addColVectorToReturnedList(tList, dataX, numX);
     addColVectorToReturnedList(tList, dataY, numY);
@@ -210,7 +210,7 @@ int getgrayplotdata(char *pobjUID)
 /*--------------------------------------------------------------------------*/
 /* F.Leray 29.04.05 */
 /* the champ data is now given as a tlist (like for surface objects) */
-int getchampdata(char *pobjUID)
+int getchampdata(int iObjUID)
 {
     char * variable_tlist[] = {"champdata", "x", "y", "fx", "fy"};
     int* dimensions = NULL;
@@ -228,12 +228,12 @@ int getchampdata(char *pobjUID)
         return -1;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_CHAMP_DIMENSIONS__, jni_int_vector, (void **)&dimensions);
+    getGraphicObjectProperty(iObjUID, __GO_CHAMP_DIMENSIONS__, jni_int_vector, (void **)&dimensions);
 
-    getGraphicObjectProperty(pobjUID, __GO_BASE_X__, jni_double_vector, (void **)&arrowBasesX);
-    getGraphicObjectProperty(pobjUID, __GO_BASE_Y__, jni_double_vector, (void **)&arrowBasesY);
-    getGraphicObjectProperty(pobjUID, __GO_DIRECTION_X__, jni_double_vector, (void **)&arrowDirectionsX);
-    getGraphicObjectProperty(pobjUID, __GO_DIRECTION_Y__, jni_double_vector, (void **)&arrowDirectionsY);
+    getGraphicObjectProperty(iObjUID, __GO_BASE_X__, jni_double_vector, (void **)&arrowBasesX);
+    getGraphicObjectProperty(iObjUID, __GO_BASE_Y__, jni_double_vector, (void **)&arrowBasesY);
+    getGraphicObjectProperty(iObjUID, __GO_DIRECTION_X__, jni_double_vector, (void **)&arrowDirectionsX);
+    getGraphicObjectProperty(iObjUID, __GO_DIRECTION_Y__, jni_double_vector, (void **)&arrowDirectionsY);
 
     addColVectorToReturnedList(tList, arrowBasesX, dimensions[0]);
     addColVectorToReturnedList(tList, arrowBasesY, dimensions[1]);
@@ -245,7 +245,7 @@ int getchampdata(char *pobjUID)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-int get3ddata(char *pobjUID)
+int get3ddata(int iObjUID)
 {
     char *variable_tlist_color[] = {"3d", "x", "y", "z", "color"};
     char *variable_tlist[] = {"3d", "x", "y", "z"};
@@ -262,13 +262,13 @@ int get3ddata(char *pobjUID)
 
     returnedList * tList = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, (void **)&dataX);
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, (void **)&dataY);
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, jni_double_vector, (void **)&dataZ);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_X__, jni_double_vector, (void **)&dataX);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Y__, jni_double_vector, (void **)&dataY);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z__, jni_double_vector, (void **)&dataZ);
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_COLORS__, jni_double_vector, (void **)&colors);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_COLORS__, jni_double_vector, (void **)&colors);
 
     if (colors != NULL)
     {
@@ -280,10 +280,10 @@ int get3ddata(char *pobjUID)
             int numColors = 0;
             int *piNumColors = &numColors;
 
-            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void **)&piNbRow);
-            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_GONS__, jni_int, (void **)&piNbCol);
+            getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void **)&piNbRow);
+            getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_GONS__, jni_int, (void **)&piNbCol);
 
-            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_COLORS__, jni_int, (void **)&piNumColors);
+            getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_COLORS__, jni_int, (void **)&piNumColors);
 
             addMatrixToReturnedList(tList, dataX, nbRow, nbCol);
             addMatrixToReturnedList(tList, dataY, nbRow, nbCol);
@@ -312,8 +312,8 @@ int get3ddata(char *pobjUID)
 
         if (type == __GO_FAC3D__)
         {
-            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void **)&piNbRow);
-            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_GONS__, jni_int, (void **)&piNbCol);
+            getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void **)&piNbRow);
+            getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_GONS__, jni_int, (void **)&piNbCol);
 
             addMatrixToReturnedList(tList, dataX, nbRow, nbCol);
             addMatrixToReturnedList(tList, dataY, nbRow, nbCol);
@@ -324,11 +324,11 @@ int get3ddata(char *pobjUID)
             int* xDimensions;
             int* yDimensions;
 
-            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, (void **)&piNbRow);
-            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, (void **)&piNbCol);
+            getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_X__, jni_int, (void **)&piNbRow);
+            getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, (void **)&piNbCol);
 
-            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X_DIMENSIONS__, jni_int_vector, (void **)&xDimensions);
-            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y_DIMENSIONS__, jni_int_vector, (void **)&yDimensions);
+            getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_X_DIMENSIONS__, jni_int_vector, (void **)&xDimensions);
+            getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Y_DIMENSIONS__, jni_int_vector, (void **)&yDimensions);
 
             addMatrixToReturnedList(tList, dataX, xDimensions[0], xDimensions[1]);
             addMatrixToReturnedList(tList, dataY, yDimensions[0], yDimensions[1]);
@@ -341,12 +341,12 @@ int get3ddata(char *pobjUID)
     return 0;
 }
 /*------------------------------------------------------------------------*/
-int get_data_property(void* _pvCtx, char* pobjUID)
+int get_data_property(void* _pvCtx, int iObjUID)
 {
     int type = -1;
     int *piType = &type;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
     if (piType == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "type");
@@ -357,13 +357,13 @@ int get_data_property(void* _pvCtx, char* pobjUID)
     {
         case __GO_FAC3D__ :
         case __GO_PLOT3D__ :
-            return get3ddata(pobjUID);
+            return get3ddata(iObjUID);
         case __GO_CHAMP__ :
-            return getchampdata(pobjUID);
+            return getchampdata(iObjUID);
         case __GO_GRAYPLOT__ :
-            return getgrayplotdata(pobjUID);
+            return getgrayplotdata(iObjUID);
         case __GO_MATPLOT__ :
-            return getmatplotdata(_pvCtx, pobjUID);
+            return getmatplotdata(_pvCtx, iObjUID);
         default :
             /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
         {
@@ -371,7 +371,7 @@ int get_data_property(void* _pvCtx, char* pobjUID)
             int nbCol  =  0;
             int status = SET_PROPERTY_ERROR;
             /* Warning the following function allocates data */
-            double* data = sciGetPoint(pobjUID, &nbRow, &nbCol);
+            double* data = sciGetPoint(iObjUID, &nbRow, &nbCol);
 
             if (data == NULL && nbRow == 0 && nbCol == 0)
             {

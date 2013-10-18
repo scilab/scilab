@@ -26,7 +26,7 @@
 #include "localization.h"
 #include "MALLOC.h"
 /*------------------------------------------------------------------------*/
-int get_surface_color_property(void* _pvCtx, char* pobjUID)
+int get_surface_color_property(void* _pvCtx, int iObjUID)
 {
     //
     // FIXME

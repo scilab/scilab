@@ -46,7 +46,7 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
 
     private static final long serialVersionUID = 1L;
 
-    private String uid;
+    private Integer uid;
 
     private boolean checkedState;
 
@@ -345,7 +345,7 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
      * Set the UID
      * @param id the UID
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         uid = id;
     }
 
@@ -353,7 +353,7 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
      * Get the UID
      * @return the UID
      */
-    public String getId() {
+    public Integer getId() {
         return uid;
     }
 

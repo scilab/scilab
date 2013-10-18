@@ -50,13 +50,13 @@ import org.scilab.modules.gui.plotbrowser.PlotBrowser;
 
 public class EditorEventListener implements KeyListener, MouseListener, MouseMotionListener {
 
-    String windowUid;
+    Integer windowUid;
 
-    String picked;
+    Integer picked;
     EntityPicker ep;
 
     DatatipManagerMode datatipManagerMode;
-    String lastDatatip = null;
+    Integer lastDatatip = null;
     Integer[] lastClick = new Integer[2];
     boolean changeOrientation = false;
 
@@ -65,7 +65,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
     boolean isInRotation = false;
     boolean isLeftButtonPressed = false;
 
-    public EditorEventListener(String uid) {
+    public EditorEventListener(Integer uid) {
         windowUid = uid;
         editor = EditorManager.newEditor(uid);
         ep = new EntityPicker();

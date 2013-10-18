@@ -287,7 +287,7 @@ public class Datatip extends Text {
 
         if (displayFnc.length() != 0) {
             String updateCommand = "try;" +
-                                   "d = getcallbackobject(\"" + getIdentifier() + "\");" +
+                                   "d = getcallbackobject(" + getIdentifier() + ");" +
                                    "d.text = " + displayFnc + "(d.tip_data);" +
                                    "clear(\"d\");" +
                                    "catch;" +

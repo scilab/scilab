@@ -142,7 +142,7 @@ public class ExportOptionWindow extends JDialog implements ActionListener {
             exportData.setExportProperties(properties);
             optionDialog.dispose();
 
-            String figId = exportData.getFigureId();
+            Integer figId = exportData.getFigureId();
             String fileName = exportData.getExportName();
             int orientation = exportData.getExportProperties().elementAt(0).equalsIgnoreCase("landscape") ? ExportParams.LANDSCAPE : ExportParams.PORTRAIT;
 

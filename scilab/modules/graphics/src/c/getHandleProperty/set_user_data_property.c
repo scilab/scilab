@@ -28,7 +28,7 @@
 #include "graphicObjectProperties.h"
 #include "api_scilab.h"
 /*------------------------------------------------------------------------*/
-int set_user_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_user_data_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /*NOT COMPATIBLE WITH SCILAB 6*/
     int iRhs = getRhsFromAddress(pvApiCtx, (int*)_pvData);
@@ -37,7 +37,7 @@ int set_user_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int value
 
     BOOL status = FALSE;
 
-    if (setGraphicObjectProperty(pobjUID, __GO_USER_DATA__, piUserData, jni_int_vector, iUserDataSize) == FALSE)
+    if (setGraphicObjectProperty(iObjUID, __GO_USER_DATA__, piUserData, jni_int_vector, iUserDataSize) == FALSE)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "user_data");
         return SET_PROPERTY_ERROR;

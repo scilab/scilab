@@ -193,14 +193,14 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "graphicObjectProperties.h"
 
 
-double * getSurfDataX(char * uid)
+double * getSurfDataX(int uid)
 {
 	double * X;
 	getGraphicObjectProperty(uid, __GO_DATA_MODEL_X__, jni_double_vector, (void**) &X);
 	return X;
 }
 
-int getDataSizeX(char * uid)
+int getDataSizeX(int uid)
 {
 	int type, size = 0, nGon = 0, nVert = 0;
 	int * pType = &type;
@@ -225,14 +225,14 @@ int getDataSizeX(char * uid)
 }
 
 
-double * getSurfDataY(char * uid)
+double * getSurfDataY(int uid)
 {
 	double * Y;
 	getGraphicObjectProperty(uid, __GO_DATA_MODEL_Y__, jni_double_vector, (void**) &Y);
 	return Y;
 }
 
-int getDataSizeY(char * uid)
+int getDataSizeY(int uid)
 {
 	int type, size = 0, nGon = 0, nVert = 0;
 	int * pType = &type;
@@ -257,14 +257,14 @@ int getDataSizeY(char * uid)
 }
 
 
-double * getSurfDataZ(char * uid)
+double * getSurfDataZ(int uid)
 {
 	double * Z;
 	getGraphicObjectProperty(uid, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &Z);
 	return Z;
 }
 
-int getDataSizeZ(char * uid)
+int getDataSizeZ(int uid)
 {
 	int type, size = 0, nGon = 0, nVert = 0;
 	int * pType = &type;
@@ -289,111 +289,86 @@ int getDataSizeZ(char * uid)
 }
 
 
-extern char * createObject3dData(char *obj, char *newObj, int type);
-extern double pickSurface(char * uid, double x, double y,  double z, double dx, double dy, double dz, double mx, double my, double mz, double mw);
+extern int createObject3dData(int obj, int newObj, int type);
+extern double pickSurface(int uid, double x, double y,  double z, double dx, double dy, double dz, double mx, double my, double mz, double mw);
 
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_SurfaceDataJNI_getSurfDataX(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_SurfaceDataJNI_getSurfDataX(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jobject jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   double *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (double *)getSurfDataX(arg1);
   {
     jresult = (*jenv)->NewDoubleArray(jenv, getDataSizeX(arg1));
     (*jenv)->SetDoubleArrayRegion(jenv, jresult, 0, getDataSizeX(arg1), result);
   }
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_SurfaceDataJNI_getSurfDataY(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_SurfaceDataJNI_getSurfDataY(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jobject jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   double *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (double *)getSurfDataY(arg1);
   {
     jresult = (*jenv)->NewDoubleArray(jenv, getDataSizeY(arg1));
     (*jenv)->SetDoubleArrayRegion(jenv, jresult, 0, getDataSizeY(arg1), result);
   }
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_SurfaceDataJNI_getSurfDataZ(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_SurfaceDataJNI_getSurfDataZ(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jobject jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   double *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (double *)getSurfDataZ(arg1);
   {
     jresult = (*jenv)->NewDoubleArray(jenv, getDataSizeZ(arg1));
     (*jenv)->SetDoubleArrayRegion(jenv, jresult, 0, getDataSizeZ(arg1), result);
   }
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_scilab_modules_graphic_1objects_SurfaceDataJNI_createObject3dData(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3) {
-  jstring jresult = 0 ;
-  char *arg1 = (char *) 0 ;
-  char *arg2 = (char *) 0 ;
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_SurfaceDataJNI_createObject3dData(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2, jint jarg3) {
+  jint jresult = 0 ;
+  int arg1 ;
+  int arg2 ;
   int arg3 ;
-  char *result = 0 ;
+  int result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
-  arg2 = 0;
-  if (jarg2) {
-    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
-    if (!arg2) return 0;
-  }
+  arg1 = (int)jarg1; 
+  arg2 = (int)jarg2; 
   arg3 = (int)jarg3; 
-  result = (char *)createObject3dData(arg1,arg2,arg3);
-  if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+  result = (int)createObject3dData(arg1,arg2,arg3);
+  jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jdouble JNICALL Java_org_scilab_modules_graphic_1objects_SurfaceDataJNI_pickSurface(JNIEnv *jenv, jclass jcls, jstring jarg1, jdouble jarg2, jdouble jarg3, jdouble jarg4, jdouble jarg5, jdouble jarg6, jdouble jarg7, jdouble jarg8, jdouble jarg9, jdouble jarg10, jdouble jarg11) {
+SWIGEXPORT jdouble JNICALL Java_org_scilab_modules_graphic_1objects_SurfaceDataJNI_pickSurface(JNIEnv *jenv, jclass jcls, jint jarg1, jdouble jarg2, jdouble jarg3, jdouble jarg4, jdouble jarg5, jdouble jarg6, jdouble jarg7, jdouble jarg8, jdouble jarg9, jdouble jarg10, jdouble jarg11) {
   jdouble jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   double arg2 ;
   double arg3 ;
   double arg4 ;
@@ -408,11 +383,7 @@ SWIGEXPORT jdouble JNICALL Java_org_scilab_modules_graphic_1objects_SurfaceDataJ
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   arg2 = (double)jarg2; 
   arg3 = (double)jarg3; 
   arg4 = (double)jarg4; 
@@ -425,7 +396,6 @@ SWIGEXPORT jdouble JNICALL Java_org_scilab_modules_graphic_1objects_SurfaceDataJ
   arg11 = (double)jarg11; 
   result = (double)pickSurface(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11);
   jresult = (jdouble)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 

@@ -29,7 +29,7 @@
  * @param nbCol number of columns of the parent
  * @return execution status
  */
-GUI_IMPEXP int setMenuParent(char *sciObj, void* pvData, int valueType, int nbRow, int nbCol);
+GUI_IMPEXP int setMenuParent(int iObj, void* pvData, int valueType, int nbRow, int nbCol);
 
 /**
  * Disable/Enable a menu attached to a graphics window or Scilab console
@@ -38,7 +38,7 @@ GUI_IMPEXP int setMenuParent(char *sciObj, void* pvData, int valueType, int nbRo
  * @param name name of the menu
  * @param status is TRUE to enable the menu, false else
  */
-GUI_IMPEXP void EnableMenu(char *pParentId, char *name, BOOL status);
+GUI_IMPEXP void EnableMenu(int iParentId, char *name, BOOL status);
 
 /**
  * Disable/Enable a submenu attached to a graphics window or Scilab console
@@ -48,7 +48,7 @@ GUI_IMPEXP void EnableMenu(char *pParentId, char *name, BOOL status);
  * @param position the position of the menu in its parent
  * @param status is TRUE to enable the menu, false else
  */
-GUI_IMPEXP void EnableSubMenu(char *pParentId, char *name, int position, BOOL status);
+GUI_IMPEXP void EnableSubMenu(int iParentId, char *name, int position, BOOL status);
 
 /**
  * Delete a menu attached to a graphics window or Scilab console
@@ -56,6 +56,6 @@ GUI_IMPEXP void EnableSubMenu(char *pParentId, char *name, int position, BOOL st
  * @param pParentId the figure UID
  * @param name name of the menu
  */
-GUI_IMPEXP void DeleteMenuWithName(char *pParentId, char *name);
+GUI_IMPEXP void DeleteMenuWithName(int iParentId, char *name);
 
 #endif /* !__INIT_UIMENU_H__ */

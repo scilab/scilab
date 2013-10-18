@@ -18,6 +18,6 @@
  * This function creates Uimenu structure.
  * @return created uimenu UID
  */
-char *CreateUimenu(void);
+int CreateUimenu(void);
 
 #endif /* !__CREATE_UIMENU_H__ */

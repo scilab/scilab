@@ -37,12 +37,12 @@ extern "C"
 
 using namespace org_scilab_modules_gui_bridge;
 
-int setMenuParent(char *pobjUID, void* pvData, int valueType, int nbRow, int nbCol)
+int setMenuParent(int iObjUID, void* pvData, int valueType, int nbRow, int nbCol)
 {
-    char const* pstCurrentFigure = NULL;
+    int iCurrentFigure = 0;
     int parentType = -1;
     int *piParentType = &parentType;
-    char const* pParentUID = NULL;
+    int iParentUID = NULL;
 
     double *value = NULL;
 
@@ -50,12 +50,12 @@ int setMenuParent(char *pobjUID, void* pvData, int valueType, int nbRow, int nbC
     if (pvData == NULL)
     {
         // Set the parent property
-        pstCurrentFigure = getCurrentFigure();
-        if (pstCurrentFigure == NULL)
+        iCurrentFigure = getCurrentFigure();
+        if (iCurrentFigure == 0)
         {
-            pstCurrentFigure = createNewFigureWithAxes();
+            iCurrentFigure = createNewFigureWithAxes();
         }
-        setGraphicObjectRelationship(pstCurrentFigure, pobjUID);
+        setGraphicObjectRelationship(iCurrentFigure, iObjUID);
         return SET_PROPERTY_SUCCEED;
     }
 
@@ -93,14 +93,14 @@ int setMenuParent(char *pobjUID, void* pvData, int valueType, int nbRow, int nbC
 
     if (valueType == sci_handles)
     {
-        pParentUID = getObjectFromHandle((long)((long long*)pvData)[0]);
-        if (pParentUID != NULL)
+        iParentUID = getObjectFromHandle((long)((long long*)pvData)[0]);
+        if (iParentUID)
         {
-            getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
+            getGraphicObjectProperty(iParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
             if (parentType == __GO_FIGURE__ || parentType == __GO_UIMENU__
                     || parentType == __GO_UICONTEXTMENU__)
             {
-                setGraphicObjectRelationship(pParentUID, pobjUID);
+                setGraphicObjectRelationship(iParentUID, iObjUID);
             }
             else
             {
@@ -126,23 +126,23 @@ int setMenuParent(char *pobjUID, void* pvData, int valueType, int nbRow, int nbC
 
             return SET_PROPERTY_ERROR;
         }
-        setGraphicObjectRelationship(getConsoleIdentifier(), pobjUID);
+        setGraphicObjectRelationship(getConsoleIdentifier(), iObjUID);
     }
 
     return SET_PROPERTY_SUCCEED;
 }
 
-void EnableMenu(char *pParentId, char *name, BOOL status)
+void EnableMenu(int iParentId, char *name, BOOL status)
 {
-    CallScilabBridge::setMenuEnabled(getScilabJavaVM(), pParentId, name, BOOLtobool(status));
+    CallScilabBridge::setMenuEnabled(getScilabJavaVM(), iParentId, name, BOOLtobool(status));
 }
 
-void EnableSubMenu(char *pParentId, char *name, int position, BOOL status)
+void EnableSubMenu(int iParentId, char *name, int position, BOOL status)
 {
-    CallScilabBridge::setSubMenuEnabled(getScilabJavaVM(), pParentId, name, position, BOOLtobool(status));
+    CallScilabBridge::setSubMenuEnabled(getScilabJavaVM(), iParentId, name, position, BOOLtobool(status));
 }
 
-void DeleteMenuWithName(char *pParentId, char *name)
+void DeleteMenuWithName(int iParentId, char *name)
 {
-    CallScilabBridge::removeMenu(getScilabJavaVM(), pParentId, name);
+    CallScilabBridge::removeMenu(getScilabJavaVM(), iParentId, name);
 }

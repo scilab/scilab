@@ -1383,6 +1383,7 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block, int flag)
                             scicos_free(ptr->workt);
                             scicos_free(ptr);
                             scicos_free(varName);
+                            scicos_free(MatInt8);
                             *(block->work) = NULL;
                             printError(&sciErr, 0);
                             return;
@@ -1411,6 +1412,7 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block, int flag)
                             scicos_free(ptr->workt);
                             scicos_free(ptr);
                             scicos_free(varName);
+                            scicos_free(MatInt16);
                             *(block->work) = NULL;
                             printError(&sciErr, 0);
                             return;
@@ -1439,6 +1441,7 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block, int flag)
                             scicos_free(ptr->workt);
                             scicos_free(ptr);
                             scicos_free(varName);
+                            scicos_free(MatInt32);
                             *(block->work) = NULL;
                             printError(&sciErr, 0);
                             return;
@@ -1467,6 +1470,7 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block, int flag)
                             scicos_free(ptr->workt);
                             scicos_free(ptr);
                             scicos_free(varName);
+                            scicos_free(MatUInt8);
                             *(block->work) = NULL;
                             printError(&sciErr, 0);
                             return;
@@ -1495,6 +1499,7 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block, int flag)
                             scicos_free(ptr->workt);
                             scicos_free(ptr);
                             scicos_free(varName);
+                            scicos_free(MatUInt16);
                             *(block->work) = NULL;
                             printError(&sciErr, 0);
                             return;
@@ -1523,6 +1528,7 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block, int flag)
                             scicos_free(ptr->workt);
                             scicos_free(ptr);
                             scicos_free(varName);
+                            scicos_free(MatUInt32);
                             *(block->work) = NULL;
                             printError(&sciErr, 0);
                             return;

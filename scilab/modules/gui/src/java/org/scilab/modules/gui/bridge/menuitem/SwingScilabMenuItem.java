@@ -57,7 +57,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, S
     private boolean autoCheckedMode = true;
     private String text = "";
 
-    private String uid;
+    private Integer uid;
 
     /**
      * Constructor
@@ -433,7 +433,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, S
      * Set the UID
      * @param id the UID
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         uid = id;
     }
 
@@ -441,7 +441,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, S
      * Get the UID
      * @return the UID
      */
-    public String getId() {
+    public Integer getId() {
         return uid;
     }
 

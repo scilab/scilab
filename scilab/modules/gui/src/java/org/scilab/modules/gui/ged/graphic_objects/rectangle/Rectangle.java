@@ -26,7 +26,7 @@ public class Rectangle extends SimpleObject {
     * Initializes all sections (JPanel's) and Add in Main JPanel of Object.
     * @param objectID Enters the identification of object.
     */
-    public Rectangle(String objectID) {
+    public Rectangle(Integer objectID) {
         super(objectID);
         data = new DataProperties(objectID);
         mark = new Mark(objectID);

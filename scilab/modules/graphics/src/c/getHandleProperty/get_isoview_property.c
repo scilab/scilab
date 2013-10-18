@@ -29,12 +29,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_isoview_property(void* _pvCtx, char* pobjUID)
+int get_isoview_property(void* _pvCtx, int iObjUID)
 {
     int iIsoview = 0;
     int* piIsoview = &iIsoview;
 
-    getGraphicObjectProperty(pobjUID, __GO_ISOVIEW__, jni_bool, (void **)&piIsoview);
+    getGraphicObjectProperty(iObjUID, __GO_ISOVIEW__, jni_bool, (void **)&piIsoview);
 
     if (piIsoview == NULL)
     {

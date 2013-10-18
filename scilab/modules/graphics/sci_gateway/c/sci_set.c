@@ -21,7 +21,7 @@
 #include <stdio.h>
 /*------------------------------------------------------------------------*/
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "gw_gui.h"
 #include "Scierror.h"
 #include "HandleManagement.h"
 #include "GetProperty.h"
@@ -78,8 +78,8 @@ int sci_set(char *fname, unsigned long fname_len)
         int iRows2 = 0, iCols2 = 0;
         int iRows3 = 0, iCols3 = 0;
         void* _pvData = NULL;
-        long hdl;
-        char *pobjUID = NULL;
+        long long hdl;
+        int iObjUID = 0;
 
         int iType1 = 0;
 
@@ -126,7 +126,7 @@ int sci_set(char *fname, unsigned long fname_len)
                     return 1;
                 }
 
-                pobjUID = (char*)getObjectFromHandle(hdl);
+                iObjUID = getObjectFromHandle((long)hdl);
 
                 sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
                 if (sciErr.iErr)
@@ -213,7 +213,7 @@ int sci_set(char *fname, unsigned long fname_len)
                 }
 
                 hdl = 0;
-                pobjUID = NULL;
+                iObjUID = 0;
                 valueType = getInputArgumentType(pvApiCtx, 2);
                 sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
                 if (sciErr.iErr)
@@ -276,17 +276,17 @@ int sci_set(char *fname, unsigned long fname_len)
 
         if (hdl != 0)
         {
-            pobjUID = (char*)getObjectFromHandle(hdl);
+            iObjUID = getObjectFromHandle((long)hdl);
 
-            if (pobjUID == NULL)
+            if (iObjUID == 0)
             {
                 Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
                 return 0;
             }
 
             // Only set the property whitout doing anythig else.
-            //static int sciSet(void* _pvCtx, char *pobjUID, char *marker, void* value, int valueType, int *numrow, int *numcol)
-            setStatus = callSetProperty(pvApiCtx, pobjUID, _pvData, valueType, iRows3, iCols3, pstProperty);
+            //static int sciSet(void* _pvCtx, int iObjUID, char *marker, void* value, int valueType, int *numrow, int *numcol)
+            setStatus = callSetProperty(pvApiCtx, iObjUID, _pvData, valueType, iRows3, iCols3, pstProperty);
             if (valueType == sci_strings)
             {
                 //free allacted data

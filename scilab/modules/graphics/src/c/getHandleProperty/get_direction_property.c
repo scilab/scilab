@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
- 
+
 
 #include "getHandleProperty.h"
 #include "returnProperty.h"
@@ -22,11 +22,11 @@
 /**
  * Get the direction property of the handle.
  */
-int get_direction_property(void* _pvCtx, char* pobjUID)
+int get_direction_property(void* _pvCtx, int iObjUID)
 {
     double* direction = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_DIRECTION__, jni_double_vector, (void **)&direction);
+    getGraphicObjectProperty(iObjUID, __GO_DIRECTION__, jni_double_vector, (void **)&direction);
 
     if (direction == NULL)
     {

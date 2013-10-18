@@ -18,7 +18,7 @@
 #include "SetUicontrolValue.hxx"
 #include "stack-c.h"
 
-int SetUicontrolValue(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUicontrolValue(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     double *value = NULL;
     double* truncatedValue = NULL;
@@ -37,7 +37,7 @@ int SetUicontrolValue(void* _pvCtx, char* sciObjUID, void* _pvData, int valueTyp
     int *piType = &type;
 
     // Check type
-    getGraphicObjectProperty(sciObjUID, __GO_TYPE__, jni_int, (void**) &piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void**) &piType);
     if (type != __GO_UICONTROL__)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Value");
@@ -93,7 +93,7 @@ int SetUicontrolValue(void* _pvCtx, char* sciObjUID, void* _pvData, int valueTyp
         }
     }
 
-    getGraphicObjectProperty(sciObjUID, __GO_STYLE__, jni_int, (void**) &piObjectStyle);
+    getGraphicObjectProperty(iObjUID, __GO_STYLE__, jni_int, (void**) &piObjectStyle);
 
     /*
      * For popumenus/listboxes: display a warning if the value is not an integer
@@ -108,8 +108,8 @@ int SetUicontrolValue(void* _pvCtx, char* sciObjUID, void* _pvData, int valueTyp
      */
     if (objectStyle == __GO_UI_CHECKBOX__ || objectStyle == __GO_UI_RADIOBUTTON__)
     {
-        getGraphicObjectProperty(sciObjUID, __GO_UI_MIN__, jni_double, (void**) &pdblMinValue);
-        getGraphicObjectProperty(sciObjUID, __GO_UI_MAX__, jni_double, (void**) &pdblMaxValue);
+        getGraphicObjectProperty(iObjUID, __GO_UI_MIN__, jni_double, (void**) &pdblMinValue);
+        getGraphicObjectProperty(iObjUID, __GO_UI_MAX__, jni_double, (void**) &pdblMaxValue);
 
         if ((value[0] != minValue) && (value[0] != maxValue))
         {
@@ -120,11 +120,11 @@ int SetUicontrolValue(void* _pvCtx, char* sciObjUID, void* _pvData, int valueTyp
 
     if (objectStyle == __GO_UI_POPUPMENU__ || objectStyle == __GO_UI_LISTBOX__)
     {
-        status = setGraphicObjectProperty(sciObjUID, __GO_UI_VALUE__, truncatedValue, jni_double_vector, valueSize);
+        status = setGraphicObjectProperty(iObjUID, __GO_UI_VALUE__, truncatedValue, jni_double_vector, valueSize);
     }
     else
     {
-        status = setGraphicObjectProperty(sciObjUID, __GO_UI_VALUE__, value, jni_double_vector, valueSize);
+        status = setGraphicObjectProperty(iObjUID, __GO_UI_VALUE__, value, jni_double_vector, valueSize);
     }
 
     delete[] truncatedValue;

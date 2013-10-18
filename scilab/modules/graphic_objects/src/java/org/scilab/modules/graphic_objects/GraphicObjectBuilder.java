@@ -32,12 +32,13 @@ public final class GraphicObjectBuilder {
     }
 
     public final static Figure createNewFigureWithAxes(Integer id, boolean updateMVC) {
-        final int[] props = new int[] {GraphicObjectProperties.__GO_X_AXIS_LABEL__, GraphicObjectProperties.__GO_Y_AXIS_LABEL__, GraphicObjectProperties.__GO_Z_AXIS_LABEL__, GraphicObjectProperties.__GO_TITLE__};
         GraphicController controller = GraphicController.getController();
-        String figureModelUID = GraphicModel.getModel().getFigureModel().getIdentifier();
-        String axesModelUID = GraphicModel.getModel().getAxesModel().getIdentifier();
-        String newFID = controller.createUID().toString();
-        String newAID = controller.createUID().toString();
+
+        final int[] props = new int[] {GraphicObjectProperties.__GO_X_AXIS_LABEL__, GraphicObjectProperties.__GO_Y_AXIS_LABEL__, GraphicObjectProperties.__GO_Z_AXIS_LABEL__, GraphicObjectProperties.__GO_TITLE__};
+        Integer figureModelUID = GraphicModel.getModel().getFigureModel().getIdentifier();
+        Integer axesModelUID = GraphicModel.getModel().getAxesModel().getIdentifier();
+        Integer newFID = controller.createUID();
+        Integer newAID = controller.createUID();
         GraphicModel.getModel().cloneObject(figureModelUID, newFID);
         GraphicModel.getModel().cloneObject(axesModelUID, newAID);
 
@@ -48,9 +49,9 @@ public final class GraphicObjectBuilder {
         controller.setProperty(newFID, GraphicObjectProperties.__GO_SELECTED_CHILD__, newAID);
 
         for (Integer type : props) {
-	    final Double[] position = new Double[] {1., 1., 1.};
-            String modelLabelUID = (String) controller.getProperty(axesModelUID, type);
-            String pobjUID = controller.createUID().toString();
+            final double[] position = new double[] {1, 1, 1};
+            Integer modelLabelUID = (Integer) controller.getProperty(axesModelUID, type);
+            Integer pobjUID = controller.createUID();
             GraphicModel.getModel().cloneObject(modelLabelUID, pobjUID);
             controller.setProperty(pobjUID, GraphicObjectProperties.__GO_POSITION__, position);
 
@@ -81,7 +82,7 @@ public final class GraphicObjectBuilder {
         return (Figure) controller.getObjectFromId(newFID);
     }
 
-    public static String constructRectangles(String pparentsubwinUID, double x, double y, double height, double width, int foreground, int background, int isfilled, int isline) {
+    public static int constructRectangles(int pparentsubwinUID, double x, double y, double height, double width, int foreground, int background, int isfilled, int isline) {
         GraphicController controller = GraphicController.getController();
 
         Double[] clipRegion;
@@ -91,10 +92,10 @@ public final class GraphicObjectBuilder {
         Boolean iMarkMode = false;
 
         if (height < 0 || width < 0) {
-            return null;
+            return 0;
         }
 
-        String pobjUID = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_RECTANGLE__));
+        Integer pobjUID = CallGraphicController.askGraphicObject(GraphicObjectProperties.__GO_RECTANGLE__);
 
         /*
          * Sets the rectangle's parent in order to initialize the former's Contoured properties
@@ -154,7 +155,7 @@ public final class GraphicObjectBuilder {
         return pobjUID;
     }
 
-    public static int cloneGraphicContext(String sourceIdentifier, String destIdentifier) {
+    public static int cloneGraphicContext(Integer sourceIdentifier, Integer destIdentifier) {
         GraphicController controller = GraphicController.getController();
         Boolean lineMode = false;
         Integer foreground = 0;

@@ -29,9 +29,9 @@
 #include "HandleManagement.h"
 #include "FigureModel.h"
 /*--------------------------------------------------------------------------*/
-int get_default_figure_property(void* _pvCtx, char* pobjUID)
+int get_default_figure_property(void* _pvCtx, int iObjUID)
 {
-    if (pobjUID != NULL)
+    if (iObjUID != 0)
     {
         /* This property should not be called on an handle */
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "default_figure");

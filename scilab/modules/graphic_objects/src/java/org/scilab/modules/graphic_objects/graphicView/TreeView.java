@@ -33,7 +33,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 
 public abstract class TreeView implements GraphicView, TreeSelectionListener {
 
-    protected Map<String, DefaultMutableTreeNode> allObjects = new ConcurrentHashMap<String, DefaultMutableTreeNode>();
+    protected Map<Integer, DefaultMutableTreeNode> allObjects = new ConcurrentHashMap<Integer, DefaultMutableTreeNode>();
     protected DefaultTreeModel topModel = null;
     protected DefaultMutableTreeNode top = new DefaultMutableTreeNode("Graphic Objects");
     private JTree tree;
@@ -88,9 +88,9 @@ public abstract class TreeView implements GraphicView, TreeSelectionListener {
         frame.setSize(1200, 600);
     }
 
-    public abstract void createObject(String id);
-    public abstract void deleteObject(String id) ;
-    public abstract void updateObject(String id, int property);
+    public abstract void createObject(Integer id);
+    public abstract void deleteObject(Integer id) ;
+    public abstract void updateObject(Integer id, int property);
 
     /*
      * Inner class to wrap GraphicObject in a Node.
@@ -103,7 +103,7 @@ public abstract class TreeView implements GraphicView, TreeSelectionListener {
         }
 
         public String toString() {
-            return graphicObject.getType() + " : @" + graphicObject.getIdentifier();
+            return graphicObject.getType() + " : @" + graphicObject.getIdentifier().toString();
         }
 
         public String toHTML() {

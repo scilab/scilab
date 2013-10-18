@@ -24,11 +24,11 @@
 /**
  * Gets the datatip data 3 component vector.
  */
-int get_tip_data_property(void* _pvCtx, char* pobjUID)
+int get_tip_data_property(void* _pvCtx, int iObjUID)
 {
     double *tip_data = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_DATATIP_DATA__, jni_double_vector, (void **)&tip_data);
+    getGraphicObjectProperty(iObjUID, __GO_DATATIP_DATA__, jni_double_vector, (void **)&tip_data);
 
     if (tip_data == NULL)
     {
@@ -43,12 +43,12 @@ int get_tip_data_property(void* _pvCtx, char* pobjUID)
 /**
  * Get the datatip orientation.
  */
-int get_tip_orientation_property(void* _pvCtx, char* pobjUID)
+int get_tip_orientation_property(void* _pvCtx, int iObjUID)
 {
     int tip_orientation;
     int *piTipOrientation = &tip_orientation;
 
-    getGraphicObjectProperty(pobjUID, __GO_DATATIP_ORIENTATION__, jni_int, (void **)&piTipOrientation);
+    getGraphicObjectProperty(iObjUID, __GO_DATATIP_ORIENTATION__, jni_int, (void **)&piTipOrientation);
 
     if (piTipOrientation == NULL)
     {
@@ -62,12 +62,12 @@ int get_tip_orientation_property(void* _pvCtx, char* pobjUID)
 /**
  * Get the status if the Z component is displayed.
  */
-int get_tip_3component_property(void* _pvCtx, char* pobjUID)
+int get_tip_3component_property(void* _pvCtx, int iObjUID)
 {
     int tip_3component;
     int *piTip_3component = &tip_3component;
 
-    getGraphicObjectProperty(pobjUID, __GO_DATATIP_3COMPONENT__, jni_bool, (void **)&piTip_3component);
+    getGraphicObjectProperty(iObjUID, __GO_DATATIP_3COMPONENT__, jni_bool, (void **)&piTip_3component);
 
     if (piTip_3component == NULL)
     {
@@ -88,12 +88,12 @@ int get_tip_3component_property(void* _pvCtx, char* pobjUID)
 /**
  * Get the status if the auto-orientation is enabled.
  */
-int get_tip_auto_orientation_property(void* _pvCtx, char* pobjUID)
+int get_tip_auto_orientation_property(void* _pvCtx, int iObjUID)
 {
     int tip_auto_orientation;
     int *piTip_auto_orientation = &tip_auto_orientation;
 
-    getGraphicObjectProperty(pobjUID, __GO_DATATIP_AUTOORIENTATION__, jni_bool, (void **)&piTip_auto_orientation);
+    getGraphicObjectProperty(iObjUID, __GO_DATATIP_AUTOORIENTATION__, jni_bool, (void **)&piTip_auto_orientation);
 
     if (piTip_auto_orientation == NULL)
     {
@@ -114,12 +114,12 @@ int get_tip_auto_orientation_property(void* _pvCtx, char* pobjUID)
 /**
  * Get the datatip interpolation mode (on/off).
  */
-int get_tip_interp_mode_property(void* _pvCtx, char* pobjUID)
+int get_tip_interp_mode_property(void* _pvCtx, int iObjUID)
 {
     int tip_interp_mode;
     int *piTip_interp_mode = &tip_interp_mode;
 
-    getGraphicObjectProperty(pobjUID, __GO_DATATIP_INTERP_MODE__, jni_bool, (void **)&piTip_interp_mode);
+    getGraphicObjectProperty(iObjUID, __GO_DATATIP_INTERP_MODE__, jni_bool, (void **)&piTip_interp_mode);
 
     if (piTip_interp_mode == NULL)
     {
@@ -140,12 +140,12 @@ int get_tip_interp_mode_property(void* _pvCtx, char* pobjUID)
 /**
  * Get the datatip box mode (true or false).
  */
-int get_tip_box_mode_property(void* _pvCtx, char* pobjUID)
+int get_tip_box_mode_property(void* _pvCtx, int iObjUID)
 {
     int tip_box_mode;
     int *piTip_box_mode = &tip_box_mode;
 
-    getGraphicObjectProperty(pobjUID, __GO_DATATIP_BOX_MODE__, jni_bool, (void **)&piTip_box_mode);
+    getGraphicObjectProperty(iObjUID, __GO_DATATIP_BOX_MODE__, jni_bool, (void **)&piTip_box_mode);
 
     if (piTip_box_mode == NULL)
     {
@@ -166,12 +166,12 @@ int get_tip_box_mode_property(void* _pvCtx, char* pobjUID)
 /**
  * Get the datatip label mode (true or false).
  */
-int get_tip_label_mode_property(void* _pvCtx, char* pobjUID)
+int get_tip_label_mode_property(void* _pvCtx, int iObjUID)
 {
     int tip_label_mode;
     int *piTip_label_mode = &tip_label_mode;
 
-    getGraphicObjectProperty(pobjUID, __GO_DATATIP_LABEL_MODE__, jni_bool, (void **)&piTip_label_mode);
+    getGraphicObjectProperty(iObjUID, __GO_DATATIP_LABEL_MODE__, jni_bool, (void **)&piTip_label_mode);
 
     if (piTip_label_mode == NULL)
     {
@@ -193,10 +193,10 @@ int get_tip_label_mode_property(void* _pvCtx, char* pobjUID)
 /**
  * Get the datatip display function.
  */
-int get_tip_disp_function_property(void* _pvCtx, char* pobjUID)
+int get_tip_disp_function_property(void* _pvCtx, int iObjUID)
 {
     char *tip_disp_function = NULL;
-    getGraphicObjectProperty(pobjUID, __GO_DATATIP_DISPLAY_FNC__, jni_string, (void **)&tip_disp_function);
+    getGraphicObjectProperty(iObjUID, __GO_DATATIP_DISPLAY_FNC__, jni_string, (void **)&tip_disp_function);
 
     if (tip_disp_function == NULL)
     {

@@ -28,7 +28,7 @@ import org.scilab.modules.gui.ged.graphic_objects.SimpleSection;
 public class Style extends SimpleSection {
     private JPanel sectionPanel;
     private static Style instance;
-    private String parentFigure;
+    private Integer parentFigure;
     private Surface surface = new Surface();
     private ContouredObject contouredObject = new ContouredObject();
 
@@ -36,7 +36,7 @@ public class Style extends SimpleSection {
     * Receives and passes the objectID to the parent class.
     * @param objectID Enters the identification of surface.
     */
-    public Style(String objectID) {
+    public Style(Integer objectID) {
         super(MessagesGED.style_appearance, "surface");
         instance = this;
         sectionPanel = getSectionPanel();
@@ -56,12 +56,12 @@ public class Style extends SimpleSection {
     * @param objectID uid
     */
     @Override
-    public final void initComponents(String objectID) {
+    public final void initComponents(Integer objectID) {
         int row = 0;
         final int leftmargin = 16; //to inner components
         int column = 0; //first column
-        parentFigure = (String) GraphicController.getController()
-                .getProperty(objectID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        parentFigure = (Integer) GraphicController.getController()
+                       .getProperty(objectID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
 
         //Components of the property: Color Flag.
         surface.colorFlag(sectionPanel, row++, column, leftmargin, objectID);
@@ -78,5 +78,5 @@ public class Style extends SimpleSection {
 
         //Components of the property: Thickness.
         contouredObject.thickness(sectionPanel, row++, column, leftmargin, objectID);
-   }
+    }
 }

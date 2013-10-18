@@ -198,7 +198,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "math.h"
 
 /*help funtion*/
-int getDataSize_(char * uid)
+int getDataSize_(int uid)
 {
 	int size = 0;
 	int *j = &size;
@@ -206,7 +206,7 @@ int getDataSize_(char * uid)
 	return size;
 }
 
-BOOL isZCoordSet(char *uid)
+BOOL isZCoordSet(int uid)
 {
 	int result = 0;
 	int *pResult = &result;
@@ -215,48 +215,48 @@ BOOL isZCoordSet(char *uid)
 	return (BOOL)result;
 }
 
-double * getDataX(char * uid)
+double * getDataX(int uid)
 {
 	double *vec;
 	getGraphicObjectProperty(uid, __GO_DATA_MODEL_X__, jni_double_vector, (void**)&vec);
 	return vec;
 }
-double * getDataY(char * uid)
+double * getDataY(int uid)
 {
 	double *vec;
 	getGraphicObjectProperty(uid, __GO_DATA_MODEL_Y__, jni_double_vector, (void**)&vec);
 	return vec;
 }
 
-double * getDataZ(char * uid)
+double * getDataZ(int uid)
 {
 	double *vec;
 	getGraphicObjectProperty(uid, __GO_DATA_MODEL_Z__, jni_double_vector, (void**)&vec);
 	return vec;
 }
 
-double * getShiftX(char * uid)
+double * getShiftX(int uid)
 {
 	double *vec;
 	getGraphicObjectProperty(uid, __GO_DATA_MODEL_X_COORDINATES_SHIFT__, jni_double_vector, (void**)&vec);
 	return vec;
 }
 
-double * getShiftY(char * uid)
+double * getShiftY(int uid)
 {
 	double *vec;
 	getGraphicObjectProperty(uid, __GO_DATA_MODEL_Y_COORDINATES_SHIFT__, jni_double_vector, (void**)&vec);
 	return vec;
 }
 
-double * getShiftZ(char * uid)
+double * getShiftZ(int uid)
 {
 	double *vec;
 	getGraphicObjectProperty(uid, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, jni_double_vector, (void**)&vec);
 	return vec;
 }
 
-BOOL isXShiftSet(char * uid)
+BOOL isXShiftSet(int uid)
 {
 	int b = 0;
 	int * pb = &b;
@@ -264,7 +264,7 @@ BOOL isXShiftSet(char * uid)
 	return b;
 }
 
-BOOL isYShiftSet(char * uid)
+BOOL isYShiftSet(int uid)
 {
 	int b = 0;
 	int * pb = &b;
@@ -272,7 +272,7 @@ BOOL isYShiftSet(char * uid)
 	return b;
 }
 
-BOOL isZShiftSet(char * uid)
+BOOL isZShiftSet(int uid)
 {
 	int b = 0;
 	int * pb = &b;
@@ -281,7 +281,7 @@ BOOL isZShiftSet(char * uid)
 }
 
 
-char * createPolylineData(char * uidFrom, char *uidTo)
+int createPolylineData(int uidFrom, int uidTo)
 {
 	double *dataFrom, *dataTo;
 	int n[2];
@@ -289,7 +289,7 @@ char * createPolylineData(char * uidFrom, char *uidTo)
 	int *tmp = &size;
 	BOOL result;
 
-    char * polylineID = (char *)createDataObject(uidTo, __GO_POLYLINE__);
+    int polylineID = createDataObject(uidTo, __GO_POLYLINE__);
 	if (polylineID == NULL)
     {
         return NULL;
@@ -313,7 +313,7 @@ char * createPolylineData(char * uidFrom, char *uidTo)
 	
 }
 
-BOOL translatePolyline(char *uid, double x, double y, double z, int flagX, int flagY, int flagZ)
+BOOL translatePolyline(int uid, double x, double y, double z, int flagX, int flagY, int flagZ)
 {
     double *datax = NULL;
     double *datay = NULL;
@@ -370,7 +370,7 @@ BOOL translatePolyline(char *uid, double x, double y, double z, int flagX, int f
 	return TRUE;
 }
 
-BOOL translatePoint(char * uid, int index, double x, double y, double z, int flagX, int flagY, int flagZ)
+BOOL translatePoint(int uid, int index, double x, double y, double z, int flagX, int flagY, int flagZ)
 {
     double *datax = NULL;
     double *datay = NULL;
@@ -408,11 +408,11 @@ BOOL translatePoint(char * uid, int index, double x, double y, double z, int fla
 		}
 	}
 	/*update*/
-	setGraphicObjectProperty(uid, __GO_DATA_MODEL__, uid, jni_string, 1);
+	setGraphicObjectProperty(uid, __GO_DATA_MODEL__, &uid, jni_int, 1);
 	return TRUE;
 }
 
-BOOL setPointValue(char * uid, int index, double x, double y, double z)
+BOOL setPointValue(int uid, int index, double x, double y, double z)
 {
     double *datax = NULL;
     double *datay = NULL;
@@ -438,11 +438,11 @@ BOOL setPointValue(char * uid, int index, double x, double y, double z)
 		}	
 	}
 	/*update*/
-	setGraphicObjectProperty(uid, __GO_DATA_MODEL__, uid, jni_string, 1);
+	setGraphicObjectProperty(uid, __GO_DATA_MODEL__, &uid, jni_int, 1);
 	return TRUE;
 }
 
-BOOL insertPoint(char * uid, int index, double x, double y, double z)
+BOOL insertPoint(int uid, int index, double x, double y, double z)
 {
     double *curData, *newData;
 	int size = getDataSize_(uid);
@@ -488,7 +488,7 @@ BOOL insertPoint(char * uid, int index, double x, double y, double z)
 	return TRUE;
 }
 
-BOOL removePoint(char * uid, int index)
+BOOL removePoint(int uid, int index)
 {
 	double *curData, *newData;
 	int size = getDataSize_(uid);
@@ -530,243 +530,183 @@ BOOL removePoint(char * uid, int index)
 extern "C" {
 #endif
 
-SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_getDataX(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_getDataX(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jobject jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   double *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (double *)getDataX(arg1);
   {
     jresult = (*jenv)->NewDoubleArray(jenv, getDataSize_(arg1));
     (*jenv)->SetDoubleArrayRegion(jenv, jresult, 0, getDataSize_(arg1), result);
   }
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_getDataY(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_getDataY(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jobject jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   double *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (double *)getDataY(arg1);
   {
     jresult = (*jenv)->NewDoubleArray(jenv, getDataSize_(arg1));
     (*jenv)->SetDoubleArrayRegion(jenv, jresult, 0, getDataSize_(arg1), result);
   }
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_getDataZ(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_getDataZ(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jobject jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   double *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (double *)getDataZ(arg1);
   {
     jresult = (*jenv)->NewDoubleArray(jenv, getDataSize_(arg1));
     (*jenv)->SetDoubleArrayRegion(jenv, jresult, 0, getDataSize_(arg1), result);
   }
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_getShiftX(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_getShiftX(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jobject jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   double *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (double *)getShiftX(arg1);
   {
     jresult = (*jenv)->NewDoubleArray(jenv, getDataSize_(arg1));
     (*jenv)->SetDoubleArrayRegion(jenv, jresult, 0, getDataSize_(arg1), result);
   }
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_getShiftY(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_getShiftY(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jobject jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   double *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (double *)getShiftY(arg1);
   {
     jresult = (*jenv)->NewDoubleArray(jenv, getDataSize_(arg1));
     (*jenv)->SetDoubleArrayRegion(jenv, jresult, 0, getDataSize_(arg1), result);
   }
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_getShiftZ(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_getShiftZ(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jobject jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   double *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (double *)getShiftZ(arg1);
   {
     jresult = (*jenv)->NewDoubleArray(jenv, getDataSize_(arg1));
     (*jenv)->SetDoubleArrayRegion(jenv, jresult, 0, getDataSize_(arg1), result);
   }
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_isZCoordSet(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_isZCoordSet(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (int)isZCoordSet(arg1);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_isXShiftSet(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_isXShiftSet(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (int)isXShiftSet(arg1);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_isYShiftSet(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_isYShiftSet(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (int)isYShiftSet(arg1);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_isZShiftSet(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_isZShiftSet(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (int)isZShiftSet(arg1);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_createPolylineData(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
-  jstring jresult = 0 ;
-  char *arg1 = (char *) 0 ;
-  char *arg2 = (char *) 0 ;
-  char *result = 0 ;
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_createPolylineData(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2) {
+  jint jresult = 0 ;
+  int arg1 ;
+  int arg2 ;
+  int result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
-  arg2 = 0;
-  if (jarg2) {
-    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
-    if (!arg2) return 0;
-  }
-  result = (char *)createPolylineData(arg1,arg2);
-  if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+  arg1 = (int)jarg1; 
+  arg2 = (int)jarg2; 
+  result = (int)createPolylineData(arg1,arg2);
+  jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_translatePolyline(JNIEnv *jenv, jclass jcls, jstring jarg1, jdouble jarg2, jdouble jarg3, jdouble jarg4, jint jarg5, jint jarg6, jint jarg7) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_translatePolyline(JNIEnv *jenv, jclass jcls, jint jarg1, jdouble jarg2, jdouble jarg3, jdouble jarg4, jint jarg5, jint jarg6, jint jarg7) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   double arg2 ;
   double arg3 ;
   double arg4 ;
@@ -777,11 +717,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   arg2 = (double)jarg2; 
   arg3 = (double)jarg3; 
   arg4 = (double)jarg4; 
@@ -790,14 +726,13 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI
   arg7 = (int)jarg7; 
   result = (int)translatePolyline(arg1,arg2,arg3,arg4,arg5,arg6,arg7);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_translatePoint(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2, jdouble jarg3, jdouble jarg4, jdouble jarg5, jint jarg6, jint jarg7, jint jarg8) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_translatePoint(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2, jdouble jarg3, jdouble jarg4, jdouble jarg5, jint jarg6, jint jarg7, jint jarg8) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int arg2 ;
   double arg3 ;
   double arg4 ;
@@ -809,11 +744,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   arg2 = (int)jarg2; 
   arg3 = (double)jarg3; 
   arg4 = (double)jarg4; 
@@ -823,14 +754,13 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI
   arg8 = (int)jarg8; 
   result = (int)translatePoint(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_setPointValue(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2, jdouble jarg3, jdouble jarg4, jdouble jarg5) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_setPointValue(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2, jdouble jarg3, jdouble jarg4, jdouble jarg5) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int arg2 ;
   double arg3 ;
   double arg4 ;
@@ -839,25 +769,20 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   arg2 = (int)jarg2; 
   arg3 = (double)jarg3; 
   arg4 = (double)jarg4; 
   arg5 = (double)jarg5; 
   result = (int)setPointValue(arg1,arg2,arg3,arg4,arg5);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_insertPoint(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2, jdouble jarg3, jdouble jarg4, jdouble jarg5) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_insertPoint(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2, jdouble jarg3, jdouble jarg4, jdouble jarg5) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int arg2 ;
   double arg3 ;
   double arg4 ;
@@ -866,39 +791,29 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   arg2 = (int)jarg2; 
   arg3 = (double)jarg3; 
   arg4 = (double)jarg4; 
   arg5 = (double)jarg5; 
   result = (int)insertPoint(arg1,arg2,arg3,arg4,arg5);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_removePoint(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_PolylineDataJNI_removePoint(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int arg2 ;
   int result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   arg2 = (int)jarg2; 
   result = (int)removePoint(arg1,arg2);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 

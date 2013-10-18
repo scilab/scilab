@@ -34,7 +34,7 @@ public class Style extends SimpleSection {
     * Receives and passes the objectID to the parent class.
     * @param objectID Enters the identification of object.
     */
-    public Style(String objectID) {
+    public Style(Integer objectID) {
         super(MessagesGED.style_appearance, "champ");
         instance = this;
         sectionPanel = getSectionPanel();
@@ -54,7 +54,7 @@ public class Style extends SimpleSection {
     * @param objectID uid
     */
     @Override
-    public final void initComponents(String objectID) {
+    public final void initComponents(Integer objectID) {
         int row = 0;
         final int leftmargin = 16; //to inner components
         int column = 0; //first column
@@ -70,5 +70,5 @@ public class Style extends SimpleSection {
 
         //Components of the property: Thickness.
         contouredObject.thickness(sectionPanel, row++, column, leftmargin, objectID);
-   }
+    }
 }

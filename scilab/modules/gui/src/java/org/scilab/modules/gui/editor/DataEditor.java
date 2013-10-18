@@ -44,10 +44,10 @@ public class DataEditor {
     JMenuItem remove, insert, exit;
 
     polylineStyle savedStyle;
-    String curPolyline = null;
+    Integer curPolyline = null;
     EntityPicker picker;
     EntityPicker.PickedPoint picked = null;
-    String axes;
+    Integer axes;
     Integer rClickPos[] = {0, 0};
 
 
@@ -71,7 +71,7 @@ public class DataEditor {
 
         boolean canRestore = false;
 
-        void Save(String polyline) {
+        void Save(Integer polyline) {
             lineFgColor = (Integer)GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_LINE_COLOR__);
             lineBgColor = (Integer)GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_BACKGROUND__);
             lineSize = (Double)GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_LINE_THICKNESS__);
@@ -90,7 +90,7 @@ public class DataEditor {
             canRestore = true;
         }
 
-        void Restore(String polyline) {
+        void Restore(Integer polyline) {
             if (canRestore) {
                 GraphicController.getController().setProperty(polyline, GraphicObjectProperties.__GO_LINE_COLOR__, lineFgColor);
                 GraphicController.getController().setProperty(polyline, GraphicObjectProperties.__GO_BACKGROUND__, lineBgColor);
@@ -132,7 +132,7 @@ public class DataEditor {
         }
 
         /**Switch to data editor polyline style*/
-        public void changeToEditStyle(String polyline) {
+        public void changeToEditStyle(Integer polyline) {
             polylineStyle ps = new polylineStyle();
             ps.setDefaulStyle();
             ps.Restore(polyline);
@@ -187,7 +187,7 @@ public class DataEditor {
      * Begin data edition in the given polyline.
      * @param polyline The polyline to be edited.
      */
-    public void beginEdit(String polyline) {
+    public void beginEdit(Integer polyline) {
         savedStyle.Save(polyline);
         savedStyle.changeToEditStyle(polyline);
         curPolyline = polyline;
@@ -208,14 +208,14 @@ public class DataEditor {
     public void onLeftMouseDown(MouseEvent event) {
         picked = picker.pickPoint(curPolyline, event.getX(), event.getY());
         if (picked != null && picked.point != -1) {
-            String figureUid = (String) GraphicController.getController().getProperty(curPolyline, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+            Integer figureUid = (Integer) GraphicController.getController().getProperty(curPolyline, GraphicObjectProperties.__GO_PARENT_FIGURE__);
             DrawerVisitor.getVisitor(figureUid).getInteractionManager().setTranslationEnable(false);
         }
     }
 
     public void onLeftMouseRelease(MouseEvent event) {
         if (picked != null && picked.point != -1) {
-            String figureUid = (String) GraphicController.getController().getProperty(curPolyline, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+            Integer figureUid = (Integer) GraphicController.getController().getProperty(curPolyline, GraphicObjectProperties.__GO_PARENT_FIGURE__);
             DrawerVisitor.getVisitor(figureUid).getInteractionManager().setTranslationEnable(true);
         }
     }

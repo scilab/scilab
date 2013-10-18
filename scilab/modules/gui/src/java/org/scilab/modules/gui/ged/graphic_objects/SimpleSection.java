@@ -47,7 +47,7 @@ public abstract class SimpleSection extends ContentLayout {
     * Initilialize the components of the section.
     * @param objectID uid.
     */
-    public abstract void initComponents(String objectID);
+    public abstract void initComponents(Integer objectID);
 
     /**
     * Set Jpanel of Section.

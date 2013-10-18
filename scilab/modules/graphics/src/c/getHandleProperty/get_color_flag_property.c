@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_color_flag_property(void* _pvCtx, char* pobjUID)
+int get_color_flag_property(void* _pvCtx, int iObjUID)
 {
     int iColorFlag = 0;
     int* piColorFlag = &iColorFlag;
 
-    getGraphicObjectProperty(pobjUID, __GO_COLOR_FLAG__, jni_int, (void **)&piColorFlag);
+    getGraphicObjectProperty(iObjUID, __GO_COLOR_FLAG__, jni_int, (void **)&piColorFlag);
 
     if (piColorFlag == NULL)
     {

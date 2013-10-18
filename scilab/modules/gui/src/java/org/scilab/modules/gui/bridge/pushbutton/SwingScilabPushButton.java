@@ -47,7 +47,7 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
 
     private static final long serialVersionUID = 2277539556048935959L;
 
-    private String uid;
+    private Integer uid;
 
     private CommonCallBack callback;
     private String text = "";
@@ -281,7 +281,7 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
      * Set the UID
      * @param id the UID
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         uid = id;
     }
 
@@ -289,7 +289,7 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
      * Get the UID
      * @return the UID
      */
-    public String getId() {
+    public Integer getId() {
         return uid;
     }
 

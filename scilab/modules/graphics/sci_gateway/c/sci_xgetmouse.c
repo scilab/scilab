@@ -49,7 +49,6 @@ int sci_xgetmouse(char *fname, unsigned long fname_len)
 
     int pixelCoords[2];
     double userCoords2D[2] = {0.0, 0.0};
-    char * clickedSubwinUID = NULL;
 
     int selPosition = 0;
 
@@ -139,9 +138,9 @@ int sci_xgetmouse(char *fname, unsigned long fname_len)
     else
     {
         // Convert pixel coordinates to user coordinates
-        clickedSubwinUID = (char*)getCurrentSubWin();
-        updateSubwinScale(clickedSubwinUID);
-        sciGet2dViewCoordFromPixel(clickedSubwinUID, pixelCoords, userCoords2D);
+        int iClickedSubwinUID = getCurrentSubWin();
+        updateSubwinScale(iClickedSubwinUID);
+        sciGet2dViewCoordFromPixel(iClickedSubwinUID, pixelCoords, userCoords2D);
 
         l1[0] = userCoords2D[0];
         l1[1] = userCoords2D[1];

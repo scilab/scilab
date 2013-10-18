@@ -138,8 +138,8 @@ AC_ARG_WITH(gui,
 AC_ARG_WITH(build-swig,
     AC_HELP_STRING([--enable-build-swig=path],[Regenerate Java => C and Scilab => C wrappers produces by Swig]),
     [with_build_swig=$withval],
-	[with_build_swig=no]
-	)
+    [with_build_swig=no]
+    )
 
 
 AC_ARG_ENABLE(build-giws,
@@ -162,7 +162,7 @@ AC_HELP_STRING([--with-fink-prefix],[Provide a fink prefix. Default: /sw/ ]))
 # Need MacosX Version to specify some path.
 case "$host_os" in
      *Darwin* | *darwin*)
-     	      AC_GET_MACOSX_VERSION
+               AC_GET_MACOSX_VERSION
      ;;
 esac
 
@@ -243,7 +243,7 @@ if test -z "$F77"; then
    AC_PROG_F77([gfortran ifc ifort])
    if test -z "$F77"; then
         # Best effort to find a compiler (might be g77)
-	AC_PROG_F77
+    AC_PROG_F77
    fi
 fi
 
@@ -961,10 +961,10 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                 # Console API
                 AC_JAVA_CHECK_PACKAGE([jrosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab],"yes")
                 JROSETTA_API=$PACKAGE_JAR_FILE
-		if test -z "$JROSETTA_API"; then
-	                AC_JAVA_CHECK_PACKAGE([jrosetta-api],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
-        	        JROSETTA_API=$PACKAGE_JAR_FILE
-		fi
+        if test -z "$JROSETTA_API"; then
+                    AC_JAVA_CHECK_PACKAGE([jrosetta-api],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
+                    JROSETTA_API=$PACKAGE_JAR_FILE
+        fi
                 AC_SUBST(JROSETTA_API)
 
                 # Console Core
@@ -1082,6 +1082,13 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                 AC_JAVA_CHECK_PACKAGE([asm],[org.objectweb.asm.Type],[Java bytecode manipulation (dep of cobertura)],"yes")
                 ASM3=$PACKAGE_JAR_FILE
         fi
+
+        AC_JAVA_CHECK_PACKAGE([ecj],[org.eclipse.jdt.core.compiler.batch.BatchCompiler],[Eclipse Java compiler],"yes")
+        ECJ=$PACKAGE_JAR_FILE
+        if test -z "$ECJ"; then
+           ECJ='$SCILAB/thirdparty/ecj.jar'
+        fi
+        AC_SUBST(ECJ)
 
     else
         AC_MSG_WARN([Sun javac not found: I will not build the java interface])
@@ -2177,6 +2184,7 @@ echo "  Commons Logging ..... = $COMMONS_LOGGING"
 echo "  JGraph X ............ = $JGRAPHX"
 echo "  SciRenderer ......... = $SCIRENDERER"
 echo "  JLaTeXMath .......... = $JLATEXMATH"
+echo "  ECJ ................. = $ECJ"
 fi
 
 echo ""

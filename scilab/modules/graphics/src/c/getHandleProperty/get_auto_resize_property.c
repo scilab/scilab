@@ -32,11 +32,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_auto_resize_property(void* _pvCtx, char* pobjUID)
+int get_auto_resize_property(void* _pvCtx, int iObjUID)
 {
     int iAutoResize = 0;
     int* piAutoResize =  &iAutoResize;
-    getGraphicObjectProperty(pobjUID, __GO_AUTORESIZE__, jni_bool, (void **)&piAutoResize);
+    getGraphicObjectProperty(iObjUID, __GO_AUTORESIZE__, jni_bool, (void **)&piAutoResize);
 
     if (piAutoResize == NULL)
     {

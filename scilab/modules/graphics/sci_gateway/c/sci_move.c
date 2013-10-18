@@ -42,7 +42,7 @@ int sci_move(char * fname, unsigned long fname_len)
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0;
     int nbDim = 2;
     BOOL alone = FALSE;
-    char* pobjUID = NULL;
+    int iObjUID = 0;
     double* moveVector = NULL;
 
     CheckInputArgument(pvApiCtx, 2, 3);
@@ -100,9 +100,9 @@ int sci_move(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    pobjUID = (char*)getObjectFromHandle((long int) * l1);
+    iObjUID = getObjectFromHandle((long int) * l1);
 
-    if (pobjUID == NULL)
+    if (iObjUID == 0)
     {
         Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
         return 1;
@@ -134,7 +134,7 @@ int sci_move(char * fname, unsigned long fname_len)
     }
     moveVector = (l2);
 
-    Objmove(pobjUID, moveVector, nbDim, alone);
+    Objmove(iObjUID, moveVector, nbDim, alone);
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

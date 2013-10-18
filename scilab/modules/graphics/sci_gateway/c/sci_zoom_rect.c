@@ -37,7 +37,7 @@
 #include "getGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
-static char * getZoomedObject(const char * fname);
+static int getZoomedObject(const char * fname);
 static BOOL getZoomRect(const char * fname, int attribPos, double rect[4]);
 /*--------------------------------------------------------------------------*/
 /**
@@ -102,14 +102,14 @@ static BOOL getZoomRect(const char * fname, int attribPos, double rect[4])
  * @return NULL if the input argument is not correct,
  *              the object to zoom otherwise
  */
-static char * getZoomedObject(const char * fname)
+static int getZoomedObject(const char * fname)
 {
     SciErr sciErr;
     int nbRow  = 0;
     int nbCol = 0;
     int* piAddrstackPointer = NULL;
     long long* stackPointer = NULL;
-    char *res = NULL;
+    int iObjUID = 0;
     int iType = -1;
     int *piType = &iType;
     /* if a handle is specified it must be the first input argument */
@@ -117,7 +117,7 @@ static char * getZoomedObject(const char * fname)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        return NULL;
+        return 0;
     }
 
     // Retrieve a matrix of handle at position 1.
@@ -126,7 +126,7 @@ static char * getZoomedObject(const char * fname)
     {
         printError(&sciErr, 0);
         Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname, 1);
-        return NULL;
+        return 0;
     }
 
 
@@ -134,34 +134,34 @@ static char * getZoomedObject(const char * fname)
     if (nbRow * nbCol != 1)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: Single handle expected.\n"), fname, 1);
-        return NULL;
+        return 0;
     }
 
-    res = (char*)getObjectFromHandle((long int) * stackPointer);
+    iObjUID = getObjectFromHandle((long int) * stackPointer);
 
-    if (res == NULL)
+    if (iObjUID == 0)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Figure or Axes handle expected.\n"), fname, 1);
-        return NULL;
+        return 0;
     }
 
-    getGraphicObjectProperty(res, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     if (iType != __GO_FIGURE__ && iType != __GO_AXES__)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Figure or Axes handle expected.\n"), fname, 1);
-        return NULL;
+        return 0;
     }
 
-    return res;
+    return iObjUID;
 
 
 }
 /*--------------------------------------------------------------------------*/
 int sci_zoom_rect(char *fname, unsigned long fname_len)
 {
-    char* pFigureUID = NULL;
-    char** childrenUID = NULL;
+    int iFigureUID = 0;
+    int* piChildrenUID = NULL;
     int iChildrenCount = 0;
     int* childrencount = &iChildrenCount;
     int iHidden = 0;
@@ -173,12 +173,12 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
     if (nbInputArgument(pvApiCtx) == 0)
     {
         /* zoom_rect() */
-        pFigureUID = (char*)getCurrentFigure();
-        if (pFigureUID == NULL)
+        iFigureUID = getCurrentFigure();
+        if (iFigureUID == 0)
         {
-            pFigureUID = createNewFigureWithAxes();
+            iFigureUID = createNewFigureWithAxes();
         }
-        startInteractiveZoom(pFigureUID);
+        startInteractiveZoom(iFigureUID);
     }
     else if (nbInputArgument(pvApiCtx) == 1)
     {
@@ -186,12 +186,12 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
         /* with handle a figure or subwindow */
         if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
         {
-            char * pstZoomedObject = getZoomedObject(fname);
-            if (pstZoomedObject == NULL)
+            int iZoomedObject = getZoomedObject(fname);
+            if (iZoomedObject == 0)
             {
                 return -1;
             }
-            startInteractiveZoom(pstZoomedObject);
+            startInteractiveZoom(iZoomedObject);
         }
         else if (checkInputArgumentType(pvApiCtx, 1, sci_matrix))
         {
@@ -201,18 +201,18 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
                 /* rectangle found */
                 //int status = sciZoom2D(getCurrentSubWin(), rect);
                 int status = 0;
-                pFigureUID = (char*)getCurrentFigure();
+                iFigureUID = getCurrentFigure();
 
-                getGraphicObjectProperty(pFigureUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&childrencount);
+                getGraphicObjectProperty(iFigureUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&childrencount);
 
-                getGraphicObjectProperty(pFigureUID, __GO_CHILDREN__, jni_string_vector, (void **)&childrenUID);
+                getGraphicObjectProperty(iFigureUID, __GO_CHILDREN__, jni_int_vector, (void **)&piChildrenUID);
 
                 for (i = 0; i < childrencount[0]; ++i)
                 {
-                    getGraphicObjectProperty(childrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
+                    getGraphicObjectProperty(piChildrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
                     if (iHidden == 0)
                     {
-                        status = sciZoom2D(childrenUID[i], rect);
+                        status = sciZoom2D(piChildrenUID[i], rect);
                     }
                 }
                 if (status == SET_PROPERTY_ERROR)
@@ -239,7 +239,7 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
         /* zoom_rect(handle, [xmin,ymin,xmax,ymax]) */
 
         double rect[4];
-        char *zoomedObject = NULL;
+        int iZoomedObject = 0;
 
         if ((!checkInputArgumentType(pvApiCtx, 1, sci_handles)) || (!checkInputArgumentType(pvApiCtx, 2, sci_matrix)))
         {
@@ -247,13 +247,13 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
             return -1;
         }
 
-        zoomedObject = getZoomedObject(fname);
-        if (zoomedObject == NULL || !getZoomRect(fname, 2, rect))
+        iZoomedObject = getZoomedObject(fname);
+        if (iZoomedObject == 0 || !getZoomRect(fname, 2, rect))
         {
             return -1;
         }
 
-        if (sciZoomRect(zoomedObject, rect) == SET_PROPERTY_ERROR)
+        if (sciZoomRect(iZoomedObject, rect) == SET_PROPERTY_ERROR)
         {
             /* error on rectangle bounds */
             Scierror(999, _("%s: Error on input argument #%d: Specified bounds are not correct.\n"), fname, 1);

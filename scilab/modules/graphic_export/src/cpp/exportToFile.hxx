@@ -47,7 +47,7 @@ extern "C" {
         EXPORT_LANDSCAPE = 1
     } ExportOrientation;
 
-    char * exportToFile(char * figureUID,
+    char * exportToFile(int iFigureUID,
                         const char * fileName,
                         ExportFileType fileType,
                         const float jpegCompressionQuality,

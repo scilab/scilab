@@ -121,7 +121,7 @@ int sci_setmenu(char *fname, unsigned long fname_len)
             }
 
 
-            EnableMenu((char*)getFigureFromIndex((int)(*figureNumberAdr)), (menuNameAdr), TRUE);
+            EnableMenu(getFigureFromIndex((int)(*figureNumberAdr)), (menuNameAdr), TRUE);
             freeAllocatedSingleString(menuNameAdr);
         }
         else if ((checkInputArgumentType(pvApiCtx, 1, sci_strings)) && (checkInputArgumentType(pvApiCtx, 2, sci_matrix))) // Unset a submenu in main window
@@ -260,7 +260,7 @@ int sci_setmenu(char *fname, unsigned long fname_len)
             return FALSE;
         }
 
-        EnableSubMenu((char*)getFigureFromIndex((int)(*figureNumberAdr)), (menuNameAdr), (int)(*subMenuIndexAdr), TRUE);
+        EnableSubMenu(getFigureFromIndex((int)(*figureNumberAdr)), (menuNameAdr), (int)(*subMenuIndexAdr), TRUE);
         freeAllocatedSingleString(menuNameAdr);
     }
 

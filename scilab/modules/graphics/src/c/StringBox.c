@@ -40,17 +40,17 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
                         double corners[4][2])
 {
     /* first step, create a text object */
-    char * parentSubwinUID = (char*)getCurrentSubWin();
-    char * pTextUID = NULL;
+    int iParentSubwinUID = getCurrentSubWin();
+    int iTextUID = 0;
     double* textCorners = NULL;
     int defaultColor = 0; /* color does not matter */
     int visible = 0;
     double fontAngle = 0.;
 
     /* Update subwin scale if needed */
-    updateSubwinScale(parentSubwinUID);
+    updateSubwinScale(iParentSubwinUID);
 
-    pTextUID = allocateText(parentSubwinUID,
+    iTextUID = allocateText(iParentSubwinUID,
                             text, nbRow, nbCol,
                             xPos, yPos,
                             TRUE,
@@ -62,21 +62,21 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
 
     /* Make it invisible to be sure */
     visible = 0;
-    setGraphicObjectProperty(pTextUID, __GO_VISIBLE__, &visible, jni_bool, 1);
+    setGraphicObjectProperty(iTextUID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
     fontAngle = DEG2RAD(angle);
-    setGraphicObjectProperty(pTextUID, __GO_FONT_ANGLE__, &fontAngle, jni_double, 1);
+    setGraphicObjectProperty(iTextUID, __GO_FONT_ANGLE__, &fontAngle, jni_double, 1);
 
-    setGraphicObjectProperty(pTextUID, __GO_FONT_SIZE__, &fontSize, jni_double, 1);
-    setGraphicObjectProperty(pTextUID, __GO_FONT_STYLE__, &fontId, jni_int, 1);
+    setGraphicObjectProperty(iTextUID, __GO_FONT_SIZE__, &fontSize, jni_double, 1);
+    setGraphicObjectProperty(iTextUID, __GO_FONT_STYLE__, &fontId, jni_int, 1);
 
-    setGraphicObjectRelationship(parentSubwinUID, pTextUID);
+    setGraphicObjectRelationship(iParentSubwinUID, iTextUID);
 
     /* Update its bounds */
-    updateTextBounds(pTextUID);
+    updateTextBounds(iTextUID);
 
     /* Then get its bounding box */
-    getGraphicObjectProperty(pTextUID, __GO_CORNERS__, jni_double_vector, (void**)&textCorners);
+    getGraphicObjectProperty(iTextUID, __GO_CORNERS__, jni_double_vector, (void**)&textCorners);
 
     /*
      * To do: performs a projection/unprojection to obtain the bounding box in object coordinates
@@ -95,9 +95,7 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
     corners[2][0] = textCorners[9];
     corners[2][1] = textCorners[10];
 
-    deleteGraphicObject(pTextUID);
-
-    releaseGraphicObjectProperty(__GO_PARENT__, pTextUID, jni_string, 1);
+    deleteGraphicObject(iTextUID);
 }
 /*-------------------------------------------------------------------------------*/
 

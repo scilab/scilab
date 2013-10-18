@@ -31,10 +31,10 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_viewport_property(void* _pvCtx, char* pobjUID)
+int get_viewport_property(void* _pvCtx, int iObjUID)
 {
     int* viewport = NULL;
-    getGraphicObjectProperty(pobjUID, __GO_VIEWPORT__, jni_int_vector, (void **)&viewport);
+    getGraphicObjectProperty(iObjUID, __GO_VIEWPORT__, jni_int_vector, (void **)&viewport);
 
     if (viewport == NULL)
     {

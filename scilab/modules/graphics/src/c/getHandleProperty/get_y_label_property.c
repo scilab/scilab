@@ -32,20 +32,21 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_y_label_property(void* _pvCtx, char* pobjUID)
+int get_y_label_property(void* _pvCtx, int iObjUID)
 {
-    char* labelUID = NULL;
+    int iLabelUID = 0;
+    int* piLabelUID = &iLabelUID;
     long labelHandle = 0;
 
-    getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LABEL__, jni_string, (void **)&labelUID);
+    getGraphicObjectProperty(iObjUID, __GO_Y_AXIS_LABEL__, jni_int, (void **)&piLabelUID);
 
-    if (labelUID == NULL)
+    if (iLabelUID == 0)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "y_label");
         return -1;
     }
 
-    labelHandle = getHandle(labelUID);
+    labelHandle = getHandle(iLabelUID);
 
     return sciReturnHandle(_pvCtx, labelHandle);
 }

@@ -23,12 +23,12 @@
 /**
  * Gets the type of the light.
  */
-int get_light_type_property(void* _pvCtx, char* pobjUID)
+int get_light_type_property(void* _pvCtx, int iObjUID)
 {
     int type = 0;
     int* piType = &type;
 
-    getGraphicObjectProperty(pobjUID, __GO_LIGHT_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_LIGHT_TYPE__, jni_int, (void **)&piType);
 
     if (piType == NULL)
     {

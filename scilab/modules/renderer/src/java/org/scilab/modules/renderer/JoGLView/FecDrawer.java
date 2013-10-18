@@ -39,7 +39,7 @@ class FecDrawer {
     private final DrawerVisitor drawerVisitor;
 
     /** Map of texture sorted by fec identifier */
-    private final Map<String, Texture> textureMap;
+    private final Map<Integer, Texture> textureMap;
 
     /**
      * Default constructor.
@@ -47,7 +47,7 @@ class FecDrawer {
      */
     FecDrawer(DrawerVisitor drawerVisitor) {
         this.drawerVisitor = drawerVisitor;
-        textureMap = new HashMap<String, Texture>();
+        textureMap = new HashMap<Integer, Texture>();
     }
 
     /**
@@ -123,7 +123,7 @@ class FecDrawer {
      * @param id the given object id.
      * @param property the changed property.
      */
-    public void update(String id, int property) {
+    public void update(Integer id, int property) {
         if (TEXTURE_PROPERTIES.contains(property)) {
             Texture texture = textureMap.get(id);
             if (texture != null) {
@@ -138,7 +138,7 @@ class FecDrawer {
      * @throws ObjectRemovedException
      */
     void updateAll() throws ObjectRemovedException, OutOfMemoryException {
-        for (Map.Entry<String, Texture> entry : textureMap.entrySet()) {
+        for (Map.Entry<Integer, Texture> entry : textureMap.entrySet()) {
             drawerVisitor.getDataManager().updateTextureCoordinatesBuffer(entry.getKey());
             entry.getValue().setDataProvider(null);
         }
@@ -148,7 +148,7 @@ class FecDrawer {
      * Dispose the given object.
      * @param id given object identifier.
      */
-    public void dispose(String id) {
+    public void dispose(Integer id) {
         /** TODO
         Texture texture = textureMap.get(id);
         if (texture != null) {

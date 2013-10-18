@@ -29,12 +29,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_view_property(void* _pvCtx, char* pobjUID)
+int get_view_property(void* _pvCtx, int iObjUID)
 {
     int iView = 0;
     int* piView = &iView;
 
-    getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, (void**)&piView);
+    getGraphicObjectProperty(iObjUID, __GO_VIEW__, jni_int, (void**)&piView);
 
     if (piView == NULL)
     {

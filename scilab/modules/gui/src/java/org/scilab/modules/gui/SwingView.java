@@ -128,14 +128,14 @@ public final class SwingView implements GraphicView {
     public static final String NULLUUID = new UUID(0L, 0L).toString();
     private static SwingView me;
     private static boolean headless;
-    private Map<String, TypedObject> allObjects;
+    private Map<Integer, TypedObject> allObjects;
 
     /**
      * Constructor
      */
     private SwingView() {
         GraphicController.getController().register(this);
-        allObjects = Collections.synchronizedMap(new HashMap<String, TypedObject>());
+        allObjects = Collections.synchronizedMap(new HashMap<Integer, TypedObject>());
     }
 
     public static void registerSwingView() {
@@ -153,7 +153,7 @@ public final class SwingView implements GraphicView {
         return SwingView.headless;
     }
 
-    public static SwingViewObject getFromId(String id) {
+    public static SwingViewObject getFromId(Integer id) {
         TypedObject typedObject = me.allObjects.get(id);
 
         if (typedObject == null) {
@@ -189,12 +189,12 @@ public final class SwingView implements GraphicView {
     private class TypedObject {
         private UielementType   _type;
         private SwingViewObject _value;
-        private Set<String> _children;
+        private Set<Integer> _children;
 
         public TypedObject(UielementType _type, SwingViewObject _value) {
             this._type = _type;
             this._value = _value;
-            this._children = Collections.synchronizedSet(new HashSet<String>());
+            this._children = Collections.synchronizedSet(new HashSet<Integer>());
         }
 
         public UielementType getType() {
@@ -205,19 +205,19 @@ public final class SwingView implements GraphicView {
             return _value;
         }
 
-        public Set<String> getChildren() {
+        public Set<Integer> getChildren() {
             return _children;
         }
 
-        public void addChild(String childUID) {
+        public void addChild(Integer childUID) {
             _children.add(childUID);
         }
 
-        public void removeChild(String childUID) {
+        public void removeChild(Integer childUID) {
             _children.remove(childUID);
         }
 
-        public boolean hasChild(String childUID) {
+        public boolean hasChild(Integer childUID) {
             return _children.contains(childUID);
         }
     };
@@ -233,7 +233,7 @@ public final class SwingView implements GraphicView {
             ));
 
     @Override
-    public void createObject(String id) {
+    public void createObject(Integer id) {
 
         int objectType = (Integer) GraphicController.getController().getProperty(id, __GO_TYPE__);
 
@@ -317,7 +317,7 @@ public final class SwingView implements GraphicView {
         return null;
     }
 
-    private TypedObject CreateObjectFromType(final int type, final String id) {
+    private TypedObject CreateObjectFromType(final int type, final Integer id) {
         final UielementType enumType = StyleToEnum(type);
         final SwingViewObject newSVObject[] = new SwingViewObject[1];
         if (SwingUtilities.isEventDispatchThread()) {
@@ -343,7 +343,7 @@ public final class SwingView implements GraphicView {
         return new TypedObject(enumType, newSVObject[0]);
     }
 
-    private SwingViewObject CreateObjectFromType(UielementType type, String id) {
+    private SwingViewObject CreateObjectFromType(UielementType type, Integer id) {
         switch (type) {
             case CheckBox:
                 SwingScilabCheckBox checkBox = new SwingScilabCheckBox();
@@ -502,9 +502,9 @@ public final class SwingView implements GraphicView {
      * @param uiMenuObject the uimenu
      * @param id the uimenu id
      */
-    private void setMenuDefaultProperties(Widget uiMenuObject, String id) {
+    private void setMenuDefaultProperties(Widget uiMenuObject, Integer id) {
         SwingViewMenu.update(uiMenuObject, __GO_CHILDREN__,
-                             (String[]) GraphicController.getController().getProperty(id, __GO_CHILDREN__));
+                             (Integer[]) GraphicController.getController().getProperty(id, __GO_CHILDREN__));
         SwingViewMenu.update(uiMenuObject, __GO_CALLBACK__,
                              (String) GraphicController.getController().getProperty(id, __GO_CALLBACK__));
         SwingViewMenu.update(uiMenuObject, __GO_CALLBACKTYPE__,
@@ -526,7 +526,7 @@ public final class SwingView implements GraphicView {
      * @param uiControlObject the uicontrol
      * @param id the uicontrol id
      */
-    private void setDefaultProperties(Widget uiControlObject, String id) {
+    private void setDefaultProperties(Widget uiControlObject, Integer id) {
         /* Visible property is set first to avoid to see the object rendered before all its properties to be set (See bug #10346) */
         SwingViewWidget.update(uiControlObject, __GO_VISIBLE__,
                                (Boolean) GraphicController.getController().getProperty(id, __GO_VISIBLE__));
@@ -560,7 +560,7 @@ public final class SwingView implements GraphicView {
                                (Double[]) GraphicController.getController().getProperty(id, __GO_POSITION__));
     }
 
-    public void deleteObject(String id) {
+    public void deleteObject(Integer id) {
         final TypedObject requestedObject = allObjects.get(id);
         if (requestedObject != null) {
             switch (requestedObject.getType()) {
@@ -620,7 +620,7 @@ public final class SwingView implements GraphicView {
     }
 
     @Override
-    public void updateObject(final String id, final int property) {
+    public void updateObject(final Integer id, final int property) {
         if (property == __GO_IMMEDIATE_DRAWING__) {
             return;
         }
@@ -657,10 +657,10 @@ public final class SwingView implements GraphicView {
         }
     }
 
-    public void updateObjectOnEDT(TypedObject registeredObject, final String id, final int property) {
+    public void updateObjectOnEDT(TypedObject registeredObject, final Integer id, final int property) {
         /* Removes the swing object if its parent is not display */
         if (registeredObject != null && property == __GO_PARENT__) {
-            String parentId = (String) GraphicController.getController().getProperty(id, __GO_PARENT__);
+            Integer parentId = (Integer)GraphicController.getController().getProperty(id, __GO_PARENT__);
             TypedObject registeredParent = allObjects.get(parentId);
             if (registeredParent == null) {
                 allObjects.remove(id);
@@ -670,7 +670,7 @@ public final class SwingView implements GraphicView {
         int type = (Integer) GraphicController.getController().getProperty(id, __GO_TYPE__);
         /* Children list update */
         if (registeredObject != null && property == __GO_CHILDREN__) {
-            final String[] newChildren = (String[]) GraphicController.getController().getProperty(id, __GO_CHILDREN__);
+            final Integer[] newChildren = (Integer[]) GraphicController.getController().getProperty(id, __GO_CHILDREN__);
 
             switch (type) {
                     /*
@@ -726,7 +726,7 @@ public final class SwingView implements GraphicView {
                         parent.add(meAsAMenuItem);
                         break;
                     case UiChildMenu:
-                        String parentId = (String) GraphicController.getController().getProperty(id, __GO_PARENT__);
+                        Integer parentId = (Integer) GraphicController.getController().getProperty(id, __GO_PARENT__);
                         SwingScilabMenuItem childMenu = (SwingScilabMenuItem) allObjects.get(id).getValue();
                         SwingScilabMenu parentMenu = (SwingScilabMenu) allObjects.get(parentId).getValue();
 
@@ -750,7 +750,7 @@ public final class SwingView implements GraphicView {
          */
         if (registeredObject != null && property == __GO_UI_SEPARATOR__) {
             if (type == __GO_UIMENU__) {
-                String parentId = (String) GraphicController.getController().getProperty(id, __GO_PARENT__);
+                Integer parentId = (Integer) GraphicController.getController().getProperty(id, __GO_PARENT__);
                 int menuPosition = -1;
                 Component currentComponent = (Component) registeredObject.getValue();
                 Component[] allChildren =  ((SwingScilabMenu) allObjects.get(parentId).getValue()).getMenuComponents();
@@ -790,12 +790,12 @@ public final class SwingView implements GraphicView {
      * @param id the id of the figure
      * @param newChildren the new children IDs list
      */
-    private void updateFigureChildren(TypedObject updatedObject, String[] newChildren) {
+    private void updateFigureChildren(TypedObject updatedObject, Integer[] newChildren) {
         Container updatedComponent = (SwingScilabTab) updatedObject.getValue();
         boolean needRevalidate = false;
 
         // Add new children
-        for (String childId : newChildren) {
+        for (Integer childId : newChildren) {
             if (!updatedObject.hasChild(childId)) {
 
                 // Add the child
@@ -829,10 +829,10 @@ public final class SwingView implements GraphicView {
         }
 
         // Remove children which have been deleted
-        Set<String> newChildrenSet = new HashSet<String>(Arrays.asList(newChildren));
+        Set<Integer> newChildrenSet = new HashSet<Integer>(Arrays.asList(newChildren));
         // Clone the children set to avoid concurrent accesses
-        String[] oldChildrenSet = updatedObject.getChildren().toArray(new String[updatedObject.getChildren().size()]);
-        for (String childId : oldChildrenSet) {
+        Integer[] oldChildrenSet = updatedObject.getChildren().toArray(new Integer[updatedObject.getChildren().size()]);
+        for (Integer childId : oldChildrenSet) {
             if (!newChildrenSet.contains(childId)) {
 
                 // Remove the child
@@ -876,12 +876,12 @@ public final class SwingView implements GraphicView {
      * @param id the id of the figure
      * @param newChildren the new children IDs list
      */
-    private void updateFrameChildren(TypedObject updatedObject, String[] newChildren) {
+    private void updateFrameChildren(TypedObject updatedObject, Integer[] newChildren) {
         Container updatedComponent = (SwingScilabFrame) updatedObject.getValue();
         boolean needRevalidate = false;
 
         // Add new children
-        for (String childId : newChildren) {
+        for (Integer childId : newChildren) {
             if (!updatedObject.hasChild(childId)) {
 
                 // Add the child
@@ -898,10 +898,10 @@ public final class SwingView implements GraphicView {
         }
 
         // Remove children which have been deleted
-        Set<String> newChildrenSet = new HashSet<String>(Arrays.asList(newChildren));
+        Set<Integer> newChildrenSet = new HashSet<Integer>(Arrays.asList(newChildren));
         // Clone the children set to avoid concurrent accesses
-        String[] oldChildrenSet = updatedObject.getChildren().toArray(new String[updatedObject.getChildren().size()]);
-        for (String childId : oldChildrenSet) {
+        Integer[] oldChildrenSet = updatedObject.getChildren().toArray(new Integer[updatedObject.getChildren().size()]);
+        for (Integer childId : oldChildrenSet) {
             if (!newChildrenSet.contains(childId)) {
 
                 // Remove the child
@@ -926,12 +926,12 @@ public final class SwingView implements GraphicView {
      * @param id the id of the console object
      * @param newChildren the new children IDs list
      */
-    private void updateConsoleChildren(TypedObject updatedObject, String[] newChildren) {
+    private void updateConsoleChildren(TypedObject updatedObject, Integer[] newChildren) {
         Container updatedComponent = (SwingScilabTab) updatedObject.getValue();
         boolean needRevalidate = false;
 
         // Add new children
-        for (String childId : newChildren) {
+        for (Integer childId : newChildren) {
             if (!updatedObject.hasChild(childId)) {
 
                 // Add the child
@@ -958,10 +958,10 @@ public final class SwingView implements GraphicView {
         }
 
         // Remove children which have been deleted
-        Set<String> newChildrenSet = new HashSet<String>(Arrays.asList(newChildren));
+        Set<Integer> newChildrenSet = new HashSet<Integer>(Arrays.asList(newChildren));
         Object[] updatedObjectChildren = updatedObject.getChildren().toArray();
         for (int i = 0 ; i < updatedObjectChildren.length ; ++i) {
-            String childId = (String) updatedObjectChildren[i];
+            Integer childId = (Integer) updatedObjectChildren[i];
             if (!newChildrenSet.contains(childId)) {
 
                 // Remove the child
@@ -986,14 +986,14 @@ public final class SwingView implements GraphicView {
      * @param id the id of the menu object
      * @param newChildren the new children IDs list
      */
-    private void updateMenuChildren(TypedObject updatedObject, String id, String[] newChildren) {
+    private void updateMenuChildren(TypedObject updatedObject, Integer id, Integer[] newChildren) {
         Container updatedComponent = null;
         boolean needRevalidate = false;
         int updatedObjectPosition = 0;
         TypedObject newParent = null;
 
         // Add new children
-        for (String childId : newChildren) {
+        for (Integer childId : newChildren) {
             int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
             if (childType == __GO_UIMENU__) {
                 if (!updatedObject.hasChild(childId)) {
@@ -1092,10 +1092,10 @@ public final class SwingView implements GraphicView {
             }
         }
         // Remove children which have been deleted
-        Set<String> newChildrenSet = new HashSet<String>(Arrays.asList(newChildren));
-        String[] oldChildren = updatedObject.getChildren().toArray(new String[updatedObject.getChildren().size()]);
+        Set<Integer> newChildrenSet = new HashSet<Integer>(Arrays.asList(newChildren));
+        Integer[] oldChildren = updatedObject.getChildren().toArray(new Integer[updatedObject.getChildren().size()]);
         for (int childIndex = 0; childIndex < oldChildren.length; childIndex++) {
-            String childId = oldChildren[childIndex];
+            Integer childId = oldChildren[childIndex];
             if (!newChildrenSet.contains(childId)) {
                 // Remove the child
                 updatedObject.removeChild(childId);
@@ -1127,12 +1127,12 @@ public final class SwingView implements GraphicView {
      * @param id the id of the contextmenu object
      * @param newChildren the new children IDs list
      */
-    private void updateContextMenuChildren(TypedObject updatedObject, String[] newChildren) {
+    private void updateContextMenuChildren(TypedObject updatedObject, Integer[] newChildren) {
         Container updatedComponent = null;
         boolean needRevalidate = false;
 
         // Add new children
-        for (String childId : newChildren) {
+        for (Integer childId : newChildren) {
             int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
             if (childType == __GO_UIMENU__) {
                 if (!updatedObject.hasChild(childId)) {
@@ -1159,8 +1159,8 @@ public final class SwingView implements GraphicView {
             }
         }
         // Remove children which have been deleted
-        Set<String> newChildrenSet = new HashSet<String>(Arrays.asList(newChildren));
-        for (String childId : updatedObject.getChildren()) {
+        Set<Integer> newChildrenSet = new HashSet<Integer>(Arrays.asList(newChildren));
+        for (Integer childId : updatedObject.getChildren()) {
             if (!newChildrenSet.contains(childId)) {
                 // Remove the child
                 updatedObject.removeChild(childId);

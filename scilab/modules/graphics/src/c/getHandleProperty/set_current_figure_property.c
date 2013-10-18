@@ -42,15 +42,16 @@
 
 
 /*------------------------------------------------------------------------*/
-int set_current_figure_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_current_figure_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int figNum = -1;
     int res = -1;
-    char* pFigureUID = NULL;
-    char* curFigUID = NULL;
-    char* pstrAxesUID = NULL;
+    int iFigureUID = 0;
+    int iCurFigUID = 0;
+    int iAxesUID = 0;
+    int* piAxesUID = &iAxesUID;
 
-    if (pobjUID != NULL)
+    if (iObjUID != 0)
     {
         /* This property should not be called on an handle */
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_figure");
@@ -66,16 +67,16 @@ int set_current_figure_property(void* _pvCtx, char* pobjUID, void* _pvData, int 
     if ((valueType == sci_handles))
     {
 
-        curFigUID = (char*)getObjectFromHandle((long)((long long*)_pvData)[0]);
+        iCurFigUID = getObjectFromHandle((long)((long long*)_pvData)[0]);
 
-        if (curFigUID == NULL)
+        if (iCurFigUID == 0)
         {
             Scierror(999, _("'%s' handle does not or no longer exists.\n"), "Figure");
             return SET_PROPERTY_ERROR;
         }
-        setCurrentFigure(curFigUID);
-        getGraphicObjectProperty(curFigUID, __GO_SELECTED_CHILD__, jni_string,  &pstrAxesUID);
-        setCurrentSubWin(pstrAxesUID);
+        setCurrentFigure(iCurFigUID);
+        getGraphicObjectProperty(iCurFigUID, __GO_SELECTED_CHILD__, jni_int,  (void**)&piAxesUID);
+        setCurrentSubWin(iAxesUID);
 
         return 0;
     }
@@ -90,19 +91,18 @@ int set_current_figure_property(void* _pvCtx, char* pobjUID, void* _pvData, int 
     }
 
     /* Retrieve figure with figNum */
-    pFigureUID = (char*)getFigureFromIndex(figNum);
+    iFigureUID = getFigureFromIndex(figNum);
 
-    if (pFigureUID == NULL)
+    if (iFigureUID == 0)
     {
         // No Figure available with this index, should create it  !!
-        pFigureUID = createNewFigureWithAxes();
-        setGraphicObjectProperty(pFigureUID, __GO_ID__, &figNum, jni_int, 1);
+        iFigureUID = createNewFigureWithAxes();
+        setGraphicObjectProperty(iFigureUID, __GO_ID__, &figNum, jni_int, 1);
     }
-    setCurrentFigure(pFigureUID);
+    setCurrentFigure(iFigureUID);
 
-    getGraphicObjectProperty(pFigureUID, __GO_SELECTED_CHILD__, jni_string,  &pstrAxesUID);
-    setCurrentSubWin(pstrAxesUID);
-
+    getGraphicObjectProperty(iFigureUID, __GO_SELECTED_CHILD__, jni_int,  (void**)&piAxesUID);
+    setCurrentSubWin(iAxesUID);
     return 0;
 }
 /*------------------------------------------------------------------------*/

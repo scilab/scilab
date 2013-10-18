@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_anti_aliasing_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_anti_aliasing_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
 
     int quality = 0;
@@ -70,7 +70,7 @@ int set_anti_aliasing_property(void* _pvCtx, char* pobjUID, void* _pvData, int v
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_ANTIALIASING__, &quality, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_ANTIALIASING__, &quality, jni_int, 1);
     if (status == TRUE)
     {
         return SET_PROPERTY_SUCCEED;

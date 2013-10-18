@@ -29,7 +29,7 @@ public class Font extends SimpleSection {
     * Receives and passes the objectID to the parent class.
     * @param objectID Enters the identification of object.
     */
-    public Font(String objectID) {
+    public Font(Integer objectID) {
         super(MessagesGED.font, "legend");
         instance = this;
         sectionPanel = getSectionPanel();
@@ -49,7 +49,7 @@ public class Font extends SimpleSection {
     * @param objectID uid
     */
     @Override
-    public final void initComponents(String objectID) {
+    public final void initComponents(Integer objectID) {
         int row = 0;
         final int leftmargin = 16; //to inner components
         int column = 0; //first column

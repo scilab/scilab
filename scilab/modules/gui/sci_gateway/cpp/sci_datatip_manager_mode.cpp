@@ -27,7 +27,7 @@ using namespace org_scilab_modules_gui_datatip;
 
 int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
 {
-    const char* pstFigureUID = NULL;
+    int iFigureUID      = NULL;
 
     int* piAddr         = NULL;
     int* pbValue        = NULL;
@@ -47,11 +47,11 @@ int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
 
     if (nbInputArgument(pvApiCtx) == 0)
     {
-        pstFigureUID = getCurrentFigure();
-        if (pstFigureUID)
+        iFigureUID = getCurrentFigure();
+        if (iFigureUID)
         {
-            enabled = DatatipManager::isEnabled(getScilabJavaVM(), pstFigureUID);
-            DatatipManager::setEnabled(getScilabJavaVM(), pstFigureUID, (!enabled));
+            enabled = DatatipManager::isEnabled(getScilabJavaVM(), iFigureUID);
+            DatatipManager::setEnabled(getScilabJavaVM(), iFigureUID, (!enabled));
         }
     }
     else if (nbInputArgument(pvApiCtx) == 1)
@@ -84,7 +84,7 @@ int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
                     Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 1);
                     return 1;
                 }
-                pstFigureUID = getCurrentFigure();
+                iFigureUID = getCurrentFigure();
                 enabled = pbValue[0] == 0 ? false : true;
                 break;
             case sci_strings :
@@ -114,12 +114,12 @@ int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
                 }
                 if (strcmp("on", pstData) == 0 || strcmp("T", pstData) == 0 || strcmp("1", pstData) == 0)
                 {
-                    pstFigureUID = getCurrentFigure();
+                    iFigureUID = getCurrentFigure();
                     enabled = true;
                 }
                 else if (strcmp("off", pstData) == 0 || strcmp("F", pstData) == 0 || strcmp("0", pstData) == 0)
                 {
-                    pstFigureUID = getCurrentFigure();
+                    iFigureUID = getCurrentFigure();
                     enabled = false;
                 }
                 else
@@ -137,10 +137,10 @@ int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                     return 1;
                 }
-                pstFigureUID = (char *)getObjectFromHandle((unsigned long) llHandle);
-                if (pstFigureUID)
+                iFigureUID = getObjectFromHandle((unsigned long) llHandle);
+                if (iFigureUID)
                 {
-                    enabled = !(DatatipManager::isEnabled(getScilabJavaVM(), pstFigureUID));
+                    enabled = !(DatatipManager::isEnabled(getScilabJavaVM(), iFigureUID));
                 }
                 break;
             default :
@@ -163,7 +163,8 @@ int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 1;
         }
-        pstFigureUID = (char *)getObjectFromHandle((unsigned long) llHandle);
+
+        iFigureUID = getObjectFromHandle((unsigned long) llHandle);
 
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
         if (sciErr.iErr)
@@ -193,7 +194,7 @@ int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
                     Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 1);
                     return 1;
                 }
-                pstFigureUID = getCurrentFigure();
+                iFigureUID = getCurrentFigure();
                 enabled = pbValue[0] == 0 ? false : true;
                 break;
             case sci_strings :
@@ -223,12 +224,12 @@ int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
                 }
                 if (strcmp("on", pstData) == 0 || strcmp("T", pstData) == 0 || strcmp("1", pstData) == 0)
                 {
-                    pstFigureUID = getCurrentFigure();
+                    iFigureUID = getCurrentFigure();
                     enabled = true;
                 }
                 else if (strcmp("off", pstData) == 0 || strcmp("F", pstData) == 0 || strcmp("0", pstData) == 0)
                 {
-                    pstFigureUID = getCurrentFigure();
+                    iFigureUID = getCurrentFigure();
                     enabled = false;
                 }
                 else
@@ -250,9 +251,9 @@ int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    if (pstFigureUID)
+    if (iFigureUID)
     {
-        DatatipManager::setEnabled(getScilabJavaVM(), pstFigureUID, enabled);
+        DatatipManager::setEnabled(getScilabJavaVM(), iFigureUID, enabled);
     }
 
     AssignOutputVariable(pvApiCtx, 1) = 0;

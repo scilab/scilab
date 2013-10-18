@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_log_flags_property(void* _pvCtx, char* pobjUID)
+int get_log_flags_property(void* _pvCtx, int iObjUID)
 {
     int i = 0;
     int iLogFlag = 0;
@@ -37,7 +37,7 @@ int get_log_flags_property(void* _pvCtx, char* pobjUID)
     int logFlags[3];
     char logFlagsString[4];
 
-    getGraphicObjectProperty(pobjUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
+    getGraphicObjectProperty(iObjUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
 
     if (piLogFlag == NULL)
     {
@@ -47,7 +47,7 @@ int get_log_flags_property(void* _pvCtx, char* pobjUID)
 
     logFlags[0] = iLogFlag;
 
-    getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
+    getGraphicObjectProperty(iObjUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
     if (piLogFlag == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "log_flag");
@@ -56,7 +56,7 @@ int get_log_flags_property(void* _pvCtx, char* pobjUID)
 
     logFlags[1] = iLogFlag;
 
-    getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
+    getGraphicObjectProperty(iObjUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
     if (piLogFlag == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "log_flag");

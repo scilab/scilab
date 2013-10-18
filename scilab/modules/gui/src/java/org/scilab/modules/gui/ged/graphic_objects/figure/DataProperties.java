@@ -31,7 +31,7 @@ public class DataProperties extends SimpleSection {
     * Initializes the properties and the icons of the buttons.
     * @param objectID Enters the identification of object.
     */
-    public DataProperties(String objectID) {
+    public DataProperties(Integer objectID) {
         super(MessagesGED.data_properties, "figure");
         instance = this;
         sectionPanel = getSectionPanel();
@@ -51,7 +51,7 @@ public class DataProperties extends SimpleSection {
     * @param objectID uid
     */
     @Override
-    public final void initComponents(String objectID) {
+    public final void initComponents(Integer objectID) {
         int row = 0;
         final int leftmargin = 16; //to inner components
         int column = 0; //first column

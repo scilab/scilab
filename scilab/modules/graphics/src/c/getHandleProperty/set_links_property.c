@@ -36,13 +36,14 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_links_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_links_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int type = -1;
     int *piType = &type;
-    char* parentAxes = NULL;
-    char** links = NULL;
+    int iParentAxes = 0;
+    int* piParentAxes = &iParentAxes;
+    int* links = NULL;
     int i = 0;
     int iLinksCount = 0;
     int* piLinksCount = &iLinksCount;
@@ -53,7 +54,7 @@ int set_links_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_LINKS_COUNT__, jni_int, (void**)&piLinksCount);
+    getGraphicObjectProperty(iObjUID, __GO_LINKS_COUNT__, jni_int, (void**)&piLinksCount);
 
     if (piLinksCount == NULL)
     {
@@ -67,7 +68,7 @@ int set_links_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType
         return SET_PROPERTY_ERROR;
     }
 
-    links = (char**) MALLOC(iLinksCount * sizeof(char*));
+    links = (int*) MALLOC(iLinksCount * sizeof(int));
 
     if (links == NULL)
     {
@@ -75,16 +76,17 @@ int set_links_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, (void **)&parentAxes);
+    getGraphicObjectProperty(iObjUID, __GO_PARENT_AXES__, jni_int, (void **)&piParentAxes);
 
     status = TRUE;
 
     for (i = 0 ; i < iLinksCount ; i++)
     {
-        char* polylineParentAxes;
-        char* polylineObjectUID = (char*)getObjectFromHandle((long)((long long*)_pvData)[i]);
+        int iPolylineParentAxes;
+        int* piPoly = &iPolylineParentAxes;
+        int iPolylineObjectUID = getObjectFromHandle((long)((long long*)_pvData)[i]);
 
-        getGraphicObjectProperty(polylineObjectUID, __GO_TYPE__, jni_int, (void **)&piType);
+        getGraphicObjectProperty(iPolylineObjectUID, __GO_TYPE__, jni_int, (void **)&piType);
 
         if (type != __GO_POLYLINE__)
         {
@@ -93,11 +95,11 @@ int set_links_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType
             break;
         }
 
-        links[i] = polylineObjectUID;
+        links[i] = iPolylineObjectUID;
 
-        getGraphicObjectProperty(polylineObjectUID, __GO_PARENT_AXES__, jni_string, (void **)&polylineParentAxes);
+        getGraphicObjectProperty(iPolylineObjectUID, __GO_PARENT_AXES__, jni_int, (void **)&piPoly);
 
-        if (strcmp(polylineParentAxes, parentAxes) != 0)
+        if (iPolylineParentAxes != iParentAxes)
         {
             Scierror(999, _("%s: Input argument and the legend must have the same parent axes.\n"), "links");
             status = FALSE;
@@ -111,7 +113,7 @@ int set_links_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_LINKS__, links, jni_string_vector, iLinksCount);
+    status = setGraphicObjectProperty(iObjUID, __GO_LINKS__, links, jni_string_vector, iLinksCount);
 
     FREE(links);
 

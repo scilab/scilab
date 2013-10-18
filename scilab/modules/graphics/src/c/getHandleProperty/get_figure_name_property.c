@@ -32,10 +32,10 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_figure_name_property(void* _pvCtx, char* pobjUID)
+int get_figure_name_property(void* _pvCtx, int iObjUID)
 {
     char* figureName = NULL;
-    getGraphicObjectProperty(pobjUID, __GO_NAME__, jni_string, (void **)&figureName);
+    getGraphicObjectProperty(iObjUID, __GO_NAME__, jni_string, (void **)&figureName);
 
     if (figureName == NULL)
     {

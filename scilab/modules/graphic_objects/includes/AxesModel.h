@@ -15,10 +15,10 @@
 #include "dynlib_graphic_objects.h"
 #include "BOOL.h"
 
-GRAPHIC_OBJECTS_IMPEXP char const* getAxesModel(void);
+GRAPHIC_OBJECTS_IMPEXP int getAxesModel(void);
 
-GRAPHIC_OBJECTS_IMPEXP void setAxesModel(char const* UID);
+GRAPHIC_OBJECTS_IMPEXP void setAxesModel(int iUID);
 
-GRAPHIC_OBJECTS_IMPEXP BOOL isAxesModel(char const* UID);
+GRAPHIC_OBJECTS_IMPEXP BOOL isAxesModel(int iUID);
 
 #endif /* !__AXES_MODEL_H__ */

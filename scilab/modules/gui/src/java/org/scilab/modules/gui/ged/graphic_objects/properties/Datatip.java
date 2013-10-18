@@ -45,14 +45,14 @@ public class Datatip extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void tip3Component(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void tip3Component(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         String[] messageOffOn = new String[] {MessagesGED.off , MessagesGED.on};
         JLabel lTip3Comp = new JLabel();
         final JComboBox cTip3Comp = new JComboBox();
         addLabelComboBox(panel, lTip3Comp, MessagesGED._3_Components,
-                                cTip3Comp, messageOffOn, LEFTMARGIN, COLUMN, ROW);
+                         cTip3Comp, messageOffOn, LEFTMARGIN, COLUMN, ROW);
         cTip3Comp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -64,8 +64,8 @@ public class Datatip extends ContentLayout {
         });
         // Get the current status of the property: Tip 3Components
         boolean enable = (Boolean) GraphicController.getController()
-                .getProperty(UID, GraphicObjectProperties.__GO_DATATIP_3COMPONENT__);
-        cTip3Comp.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_DATATIP_3COMPONENT__);
+        cTip3Comp.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**
@@ -74,14 +74,14 @@ public class Datatip extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void tipAutoOrientation(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void tipAutoOrientation(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         String[] messageOffOn = new String[] {MessagesGED.off , MessagesGED.on};
         JLabel lTipAutoOrientation = new JLabel();
         final JComboBox cTipAutoOrientation = new JComboBox();
         addLabelComboBox(panel, lTipAutoOrientation, MessagesGED.auto_orientation,
-                                cTipAutoOrientation, messageOffOn, LEFTMARGIN, COLUMN, ROW);
+                         cTipAutoOrientation, messageOffOn, LEFTMARGIN, COLUMN, ROW);
         cTipAutoOrientation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -92,8 +92,8 @@ public class Datatip extends ContentLayout {
         });
         // Get the current status of the property: Tip Auto Orientation
         boolean enable = (Boolean) GraphicController.getController()
-                .getProperty(UID, GraphicObjectProperties.__GO_DATATIP_AUTOORIENTATION__);
-        cTipAutoOrientation.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_DATATIP_AUTOORIENTATION__);
+        cTipAutoOrientation.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**
@@ -102,14 +102,14 @@ public class Datatip extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void tipBoxMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void tipBoxMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         String[] messageOffOn = new String[] {MessagesGED.off , MessagesGED.on};
         JLabel lBoxMode = new JLabel();
         final JComboBox cBoxMode = new JComboBox();
         addLabelComboBox(panel, lBoxMode, MessagesGED.box_mode,
-                                cBoxMode, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
+                         cBoxMode, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
         cBoxMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -120,8 +120,8 @@ public class Datatip extends ContentLayout {
         });
         // Get the current status of the property: Tip Box Mode
         boolean enable = (Boolean) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_DATATIP_BOX_MODE__);
-        cBoxMode.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_DATATIP_BOX_MODE__);
+        cBoxMode.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**
@@ -130,9 +130,9 @@ public class Datatip extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void tipData(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void tipData(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         final JToggleButton bTipData = new JToggleButton();
         JLabel lTipData = new JLabel();
         final JPanel pTipData = new JPanel();
@@ -154,7 +154,7 @@ public class Datatip extends ContentLayout {
         });
         //Tip Data X
         addLabelTextField(pTipData, lTipDataX, "X",
-                                 cTipDataX, true, LEFTMARGINIP, COLUMNIP, 0);
+                          cTipDataX, true, LEFTMARGINIP, COLUMNIP, 0);
         cTipDataX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -169,7 +169,7 @@ public class Datatip extends ContentLayout {
         });
         //Tip Data Y
         addLabelTextField(pTipData, lTipDataY, "Y",
-                                 cTipDataY, true, LEFTMARGINIP, COLUMNIP, 1);
+                          cTipDataY, true, LEFTMARGINIP, COLUMNIP, 1);
         cTipDataY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -184,7 +184,7 @@ public class Datatip extends ContentLayout {
         });
         //Tip Data Z
         addLabelTextField(pTipData, lTipDataZ, "Z",
-                                 cTipDataZ, true, LEFTMARGINIP, COLUMNIP, 2);
+                          cTipDataZ, true, LEFTMARGINIP, COLUMNIP, 2);
         cTipDataZ.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -206,16 +206,16 @@ public class Datatip extends ContentLayout {
     */
     public final void titleTipData() {
         cTipData.setText(" [" + cTipDataX.getText() + " , "
-                              + cTipDataY.getText() + " , "
-                              + cTipDataY.getText()+ "]");
+                         + cTipDataY.getText() + " , "
+                         + cTipDataY.getText() + "]");
     }
 
     /**
     * Get status of the property: tip_data.
     */
-    private void getTipData(String UID) {
+    private void getTipData(Integer UID) {
         Double[] currentTipData = (Double []) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_DATATIP_DATA__);
+                                  .getProperty(UID, GraphicObjectProperties.__GO_DATATIP_DATA__);
         cTipDataX.setText(currentTipData[0].toString());
         cTipDataY.setText(currentTipData[1].toString());
         cTipDataZ.setText(currentTipData[2].toString());
@@ -225,34 +225,34 @@ public class Datatip extends ContentLayout {
     /**
     * Updates the property: tip_data.
     */
-    private void updateTipData(String UID) {
+    private void updateTipData(Integer UID) {
         try {
             Double[] value = new Double[3];
             value[0] = Double.parseDouble(cTipDataX.getText());
             value[1] = Double.parseDouble(cTipDataY.getText());
             value[2] = Double.parseDouble(cTipDataZ.getText());
             GraphicController.getController()
-                       .setProperty(UID, GraphicObjectProperties.__GO_DATATIP_DATA__, value);
+            .setProperty(UID, GraphicObjectProperties.__GO_DATATIP_DATA__, value);
             titleTipData();
         } catch (NumberFormatException e) {
             getTipData(UID);
         }
     }
-    
+
     /**
      * Components of the property: Tip Label Mode.
      * @param panel
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void tipLabelMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void tipLabelMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         String[] messageOffOn = new String[] {MessagesGED.off , MessagesGED.on};
         JLabel lTipLabelMode = new JLabel();
         final JComboBox cTipLabelMode = new JComboBox();
         addLabelComboBox(panel, lTipLabelMode, MessagesGED.label_mode,
-                                cTipLabelMode, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
+                         cTipLabelMode, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
         cTipLabelMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -263,8 +263,8 @@ public class Datatip extends ContentLayout {
         });
         // Get the current status of the property
         boolean enable = (Boolean) GraphicController.getController()
-                .getProperty(UID, GraphicObjectProperties.__GO_DATATIP_LABEL_MODE__);
-        cTipLabelMode.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_DATATIP_LABEL_MODE__);
+        cTipLabelMode.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**
@@ -273,15 +273,16 @@ public class Datatip extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void tipOrientation(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void tipOrientation(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lTipOrientation = new JLabel();
         final JComboBox cTipOrientation = new JComboBox();
         String[] options = new String[] {"top_left", "top_right",
-                                         "bottom_left", "bottom_right"};
+                                         "bottom_left", "bottom_right"
+                                        };
         addLabelComboBox(panel, lTipOrientation, MessagesGED.orientation,
-                                cTipOrientation, options, LEFTMARGIN, COLUMN, ROW++);
+                         cTipOrientation, options, LEFTMARGIN, COLUMN, ROW++);
         cTipOrientation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -292,6 +293,6 @@ public class Datatip extends ContentLayout {
         });
         // Get the current status of the property:Tip Orientation
         cTipOrientation.setSelectedIndex((Integer) GraphicController.getController()
-                .getProperty(UID, GraphicObjectProperties.__GO_DATATIP_ORIENTATION__));
+                                         .getProperty(UID, GraphicObjectProperties.__GO_DATATIP_ORIENTATION__));
     }
 }

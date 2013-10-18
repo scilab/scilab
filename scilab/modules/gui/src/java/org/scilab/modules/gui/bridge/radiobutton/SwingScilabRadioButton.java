@@ -46,7 +46,7 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
 
     private static final long serialVersionUID = -4094092157137686082L;
 
-    private String uid;
+    private Integer uid;
 
     private CommonCallBack callback;
 
@@ -246,7 +246,7 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
      * Set the UID
      * @param id the UID
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         uid = id;
     }
 
@@ -254,7 +254,7 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
      * Get the UID
      * @return the UID
      */
-    public String getId() {
+    public Integer getId() {
         return uid;
     }
 

@@ -31,14 +31,14 @@ public class Mark extends SimpleSection {
     private final MarkStyleRenderer markStyleRenderer = new MarkStyleRenderer();
     private static JColorChooser chooserMarkBackground;
     private static JColorChooser chooserMarkForeground;
-    private String parentFigure;
+    private Integer parentFigure;
     private ContouredObject contouredObject = new ContouredObject();
 
     /**
     * Receives and passes the objectID to the parent class.
     * @param objectID Enters the identification of object.
     */
-    public Mark(String objectID) {
+    public Mark(Integer objectID) {
         super(MessagesGED.mark, "polyline");
         instance = this;
         sectionPanel = getSectionPanel();
@@ -60,12 +60,12 @@ public class Mark extends SimpleSection {
     * @param objectID uid
     */
     @Override
-    public final void initComponents(String objectID) {
+    public final void initComponents(Integer objectID) {
         int row = 0;
         final int leftmargin = 16; //to inner components
         int column = 0; //first column
-        parentFigure = (String) GraphicController.getController()
-                .getProperty(objectID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        parentFigure = (Integer) GraphicController.getController()
+                       .getProperty(objectID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
 
         //Components of the property: Mark Mode.
         contouredObject.markMode(sectionPanel, row++, column, leftmargin, objectID);
@@ -88,15 +88,15 @@ public class Mark extends SimpleSection {
 
         //Components of the property: Mark Style.
         contouredObject.markStyle(sectionPanel, markStyleRenderer, row++, column, leftmargin, objectID);
-   }
+    }
 
     /**
      * Change the color of the object.
      * @param scilabColor index of the color map.
      */
-    public void setMarkBackground(int scilabColor, String UID) {
+    public void setMarkBackground(int scilabColor, Integer UID) {
         GraphicController.getController().setProperty(
-                UID, GraphicObjectProperties.__GO_MARK_BACKGROUND__, scilabColor);
+            UID, GraphicObjectProperties.__GO_MARK_BACKGROUND__, scilabColor);
         //update color of graphics in MarkStyle ComboBox
         markStyleRenderer.setMarkBackground(chooserMarkBackground.getColor());
     }
@@ -105,13 +105,13 @@ public class Mark extends SimpleSection {
     * Change the color of the object.
     * @param scilabColor index of the color map.
     */
-    public void setMarkForeground(int scilabColor, String UID) {
+    public void setMarkForeground(int scilabColor, Integer UID) {
         if (contouredObject.getMarkMode().getSelectedIndex() == 1) {
             EditorManager.getFromUid(parentFigure).setOriColor(scilabColor);
-    	} else {
+        } else {
             GraphicController.getController().setProperty(
-                    UID, GraphicObjectProperties.__GO_MARK_FOREGROUND__, scilabColor);
-    	}
+                UID, GraphicObjectProperties.__GO_MARK_FOREGROUND__, scilabColor);
+        }
         //update color of graphics in MarkStyle ComboBox
         markStyleRenderer.setMarkForeground(chooserMarkForeground.getColor());
     }

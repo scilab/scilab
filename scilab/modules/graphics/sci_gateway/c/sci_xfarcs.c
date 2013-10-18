@@ -133,9 +133,8 @@ int sci_xfarcs(char *fname, unsigned long fname_len)
 
     /** Construct Compound and make it current object **/
     {
-        char * o = ConstructCompoundSeq(n1);
+        int o = ConstructCompoundSeq(n1);
         setCurrentObject(o);
-        releaseGraphicObjectProperty(__GO_PARENT__, o, jni_string, 1);
     }
 
     AssignOutputVariable(pvApiCtx, 1) = 0;

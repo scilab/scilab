@@ -30,11 +30,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_pixmap_property(void* _pvCtx, char* pobjUID)
+int get_pixmap_property(void* _pvCtx, int iObjUID)
 {
     int iPixmap = 0;
     int *piPixmap = &iPixmap;
-    getGraphicObjectProperty(pobjUID, __GO_PIXMAP__, jni_bool, (void **)&piPixmap);
+    getGraphicObjectProperty(iObjUID, __GO_PIXMAP__, jni_bool, (void **)&piPixmap);
 
     if (piPixmap == NULL)
     {

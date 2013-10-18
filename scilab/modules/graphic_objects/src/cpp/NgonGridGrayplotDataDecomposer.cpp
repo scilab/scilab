@@ -28,10 +28,12 @@ NgonGridGrayplotDataDecomposer* NgonGridGrayplotDataDecomposer::decomposer = NUL
 /*
  * To do: allowing either per-vertex or per-facet colors
  */
-void NgonGridGrayplotDataDecomposer::fillColors(char* id, float* buffer, int bufferLength, int elementsSize)
+void NgonGridGrayplotDataDecomposer::fillColors(int id, float* buffer, int bufferLength, int elementsSize)
 {
-    char* parentFigure = NULL;
-    char* parent = NULL;
+    int parentFigure = 0;
+    int* pparentFigure = &parentFigure;
+    int parent = 0;
+    int* pparent = &parent;
 
     double* z = NULL;
     double* colormap = NULL;
@@ -52,17 +54,17 @@ void NgonGridGrayplotDataDecomposer::fillColors(char* id, float* buffer, int buf
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &z);
 
-    getGraphicObjectProperty(id, __GO_PARENT__, jni_string, (void**) &parent);
+    parent = getParentObject(id);
 
     /* Temporary: to avoid getting a null parent_figure property when the object is built */
-    if (strcmp(parent, "") == 0)
+    if (parent == 0)
     {
         return;
     }
 
-    getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_string, (void**) &parentFigure);
+    getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_int, (void**) &pparentFigure);
 
-    if (parentFigure == NULL)
+    if (parentFigure == 0)
     {
         return;
     }
@@ -84,7 +86,7 @@ void NgonGridGrayplotDataDecomposer::fillColors(char* id, float* buffer, int buf
     releaseGraphicObjectProperty(__GO_COLORMAP__, colormap, jni_double_vector, colormapSize);
 }
 
-int NgonGridGrayplotDataDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)
+int NgonGridGrayplotDataDecomposer::fillIndices(int id, int* buffer, int bufferLength, int logMask)
 {
     double* x = NULL;
     double* y = NULL;

@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_color_map_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_color_map_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
 
@@ -47,7 +47,7 @@ int set_color_map_property(void* _pvCtx, char* pobjUID, void* _pvData, int value
         return SET_PROPERTY_ERROR ;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_COLORMAP__, _pvData, jni_double_vector, nbRow * nbCol);
+    status = setGraphicObjectProperty(iObjUID, __GO_COLORMAP__, _pvData, jni_double_vector, nbRow * nbCol);
 
     if (status == TRUE)
     {

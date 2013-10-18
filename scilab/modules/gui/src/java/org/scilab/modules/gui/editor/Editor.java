@@ -66,8 +66,8 @@ public class Editor {
     JMenu labels, legends;
 
     EntityPicker.LegendInfo selectedLegend = null;
-    String selected = null;
-    String figureUid = null;
+    Integer selected = null;
+    Integer figureUid = null;
     Integer oriColor = 0;
     Integer[] lastClick = { 0, 0 };
     Integer[] dragClick = { 0, 0 };
@@ -197,7 +197,7 @@ public class Editor {
 
     public void onLeftMouseRelease(MouseEvent event) {
 
-        String object = getSelected();
+        Integer object = getSelected();
         if (dataModifyEnabled && !dataEditEnabled && object != null) {
             editorHistory.addAction(new ActionMove(object, lastClick, dragClick, (selectedType == SelectionType.LEGEND)));
         } else {
@@ -214,7 +214,7 @@ public class Editor {
         Integer[] newClick = { event.getX(), event.getY() };
         if (dataModifyEnabled) {
             if (!dataEditEnabled) {
-                String objUID = getSelected();
+                Integer objUID = getSelected();
                 if (objUID != null) {
                     if (selectedType == SelectionType.LEGEND) {
                         LegendHandler.dragLegend(objUID, dragClick, newClick);
@@ -488,7 +488,7 @@ public class Editor {
      *
      * @param uid object unique identifier. Null uid unselect previous selection.
      */
-    public void setSelected(String uid) {
+    public void setSelected(Integer uid) {
 
         if (CommonHandler.objectExists(selected)) {
             CommonHandler.setColor(selected, oriColor);
@@ -546,7 +546,7 @@ public class Editor {
      * Returns selected object unique identifier.
      * @return selected object uid or null if there isn't any selected.
      */
-    public String getSelected() {
+    public Integer getSelected() {
         if (CommonHandler.objectExists(selected)) {
             return selected;
         } else {
@@ -559,7 +559,7 @@ public class Editor {
      * Set the figure uid wich the editor belongs.
      * @param uid Figure unique identifier.
      */
-    public void setFigure(String uid) {
+    public void setFigure(Integer uid) {
         figureUid = uid;
     }
 
@@ -567,7 +567,7 @@ public class Editor {
      * Get the figure uid wich the editor belongs.
      * @return figure uid.
      */
-    public String getFigureUid() {
+    public Integer getFigureUid() {
         return figureUid;
     }
 
@@ -586,12 +586,12 @@ public class Editor {
      */
     public void onClickPaste() {
 
-        String currentObject, newObject, currentParent, newParent;
+        Integer currentObject, newObject, currentParent, newParent;
         boolean isDuplicated = false;
 
         currentObject = ScilabClipboard.getInstance().getCurrentObject();
         currentParent = CommonHandler.getParent(currentObject);
-        String oldFigure = CommonHandler.getParentFigure(currentObject);
+        Integer oldFigure = CommonHandler.getParentFigure(currentObject);
         if (!CommonHandler.cmpColorMap(figureUid, oldFigure)) {
             String msg =  "The colormap from source figure seems to be different from the destination figure." +
                           "\nThis may influence the final appearance from the object." +
@@ -617,7 +617,7 @@ public class Editor {
      * Implements cut menu item action
      */
     public void onClickCut() {
-        String s = getSelected();
+        Integer s = getSelected();
         if (s != null && selectedType != SelectionType.LEGEND) {
             setSelected(null);
             ScilabClipboard.getInstance().cut(s);
@@ -629,7 +629,7 @@ public class Editor {
      * Implements delete menu item action(Callback).
      */
     public void onClickDelete() {
-        String toDelete = getSelected();
+        Integer toDelete = getSelected();
         if (toDelete != null) {
             setSelected(null);
             editorHistory.addAction(new ActionDelete(toDelete, CommonHandler.getParent(toDelete)));
@@ -642,7 +642,7 @@ public class Editor {
     */
     public void onClickClear() {
         setSelected(null);
-        String axesTo = AxesHandler.clickedAxes(figureUid, lastClick);
+        Integer axesTo = AxesHandler.clickedAxes(figureUid, lastClick);
         if (axesTo != null) {
             PolylineHandler.getInstance().deleteAll(axesTo);
         }
@@ -679,7 +679,7 @@ public class Editor {
      */
     public void onClickLabel(AxesHandler.axisTo axis) {
 
-        String axes = AxesHandler.clickedAxes(figureUid, lastClick);
+        Integer axes = AxesHandler.clickedAxes(figureUid, lastClick);
         if (axes != null && axis != null) {
             String text = LabelHandler.getLabelText(axes, axis);
             String s = (String)JOptionPane.showInputDialog(
@@ -693,7 +693,7 @@ public class Editor {
             if (s != null) {
                 String tmp[] = {s};
                 String[] oldText = {text};
-                String label = LabelHandler.setLabel(axes, tmp, axis);
+                Integer label = LabelHandler.setLabel(axes, tmp, axis);
                 editorHistory.addAction(new ActionTextEdit(label, oldText, tmp));
             }
         }
@@ -703,9 +703,9 @@ public class Editor {
      * Implements legend insert action(Callback).
      * @param polyline Polyline to be inserted in the legend.
      */
-    public void onClickInsert(String polyline) {
+    public void onClickInsert(Integer polyline) {
 
-        String axes = AxesHandler.clickedAxes(figureUid, lastClick);
+        Integer axes = AxesHandler.clickedAxes(figureUid, lastClick);
         if (axes != null) {
             String text = LegendHandler.getLegendText(axes, polyline);
             String s = (String)JOptionPane.showInputDialog(
@@ -717,8 +717,8 @@ public class Editor {
                            null,
                            text);
             if (s != null) {
-                String legend = LegendHandler.searchLegend(axes);
-                String[] links = LegendHandler.getLinks(legend);
+                Integer legend = LegendHandler.searchLegend(axes);
+                Integer[] links = LegendHandler.getLinks(legend);
                 String[] texts = LegendHandler.getText(legend);
                 Double[] position = LegendHandler.getPosition(legend);
                 LegendHandler.setLegend(axes, polyline, s);
@@ -732,9 +732,9 @@ public class Editor {
      */
     public void onClickRemove() {
 
-        String axesTo = AxesHandler.clickedAxes(figureUid, lastClick);
-        String legend = LegendHandler.searchLegend(axesTo);
-        String[] links = LegendHandler.getLinks(legend);
+        Integer axesTo = AxesHandler.clickedAxes(figureUid, lastClick);
+        Integer legend = LegendHandler.searchLegend(axesTo);
+        Integer[] links = LegendHandler.getLinks(legend);
         String[] text = LegendHandler.getText(legend);
         Double[] position = LegendHandler.getPosition(legend);
         LegendHandler.removeLegend(axesTo, selected);
@@ -768,7 +768,7 @@ public class Editor {
         if (DatatipManager.getFromUid(figureUid).pickAndHighlight(lastClick[0], lastClick[1])) {
             Inspector.getInspector(DatatipManager.getFromUid(figureUid).getSelectedTip());
         } else {
-            String[] objects = (new GEDPicker()).pick(figureUid, lastClick);
+            Integer[] objects = (new GEDPicker()).pick(figureUid, lastClick);
             Inspector.getInspector(objects[objects.length - 1]);
         }
     }
@@ -792,7 +792,7 @@ public class Editor {
     */
     public void onClickCopyStyle() {
 
-        String axes = AxesHandler.clickedAxes(figureUid, lastClick);
+        Integer axes = AxesHandler.clickedAxes(figureUid, lastClick);
         ScilabClipboard.getInstance().copyStyle(axes);
     }
 
@@ -801,7 +801,7 @@ public class Editor {
     */
     public void onClickPasteStyle() {
         boolean flag = true;
-        String axes = AxesHandler.clickedAxes(figureUid, lastClick);
+        Integer axes = AxesHandler.clickedAxes(figureUid, lastClick);
         if (!AxesHandler.isAxesEmpty(axes)) {
             String msg =  "The axes which the style was copied is not in CubeView" +
                           "\nIf you don't copy the data bounds the view angles can appear different" +
@@ -815,8 +815,8 @@ public class Editor {
 
         Double[] oldColorMap = CommonHandler.getColorMap(figureUid);
         Integer backgroundColor = CommonHandler.getBackground(figureUid);
-        String oldAxes = AxesHandler.clickedAxes(figureUid, lastClick);
-        String newAxes = ScilabClipboard.getInstance().pasteStyle(oldAxes, flag);
+        Integer oldAxes = AxesHandler.clickedAxes(figureUid, lastClick);
+        Integer newAxes = ScilabClipboard.getInstance().pasteStyle(oldAxes, flag);
         editorHistory.addAction(new ActionPasteStyle(newAxes, oldAxes, oldColorMap, backgroundColor));
     }
 
@@ -827,7 +827,7 @@ public class Editor {
      * @param pos Vector with position (x, y).
      * @return The picked object uid or null otherwise.
      */
-    private String tryPickAnyObject(Integer[] pos) {
+    private Integer tryPickAnyObject(Integer[] pos) {
         /*try pick a legend*/
         selectedLegend = entityPicker.pickLegend(figureUid, pos);
         if (selectedLegend != null) {
@@ -835,7 +835,7 @@ public class Editor {
             return selectedLegend.legend;
         } else {
             /*try pick a polyline*/
-            String picked = entityPicker.pick(figureUid, pos[0], pos[1]);
+            Integer picked = entityPicker.pick(figureUid, pos[0], pos[1]);
             if (picked != null) {
                 selectedType = SelectionType.POLYLINE;
                 return picked;

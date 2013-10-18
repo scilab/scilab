@@ -21,7 +21,7 @@ GUI_IMPEXP void CallJxgetmouseWithOptions(int withMotion, int withRelease);
 
 GUI_IMPEXP int getJxgetmouseMouseButtonNumber(void);
 
-GUI_IMPEXP char * getJxgetmouseWindowsID(void);
+GUI_IMPEXP int getJxgetmouseWindowsID(void);
 
 GUI_IMPEXP double getJxgetmouseXCoordinate(void);
 

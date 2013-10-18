@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_tics_segment_property(void* _pvCtx, char* pobjUID)
+int get_tics_segment_property(void* _pvCtx, int iObjUID)
 {
     int iTicksSegment = 0;
     int* piTicksSegment = &iTicksSegment;
 
-    getGraphicObjectProperty(pobjUID, __GO_TICKS_SEGMENT__, jni_bool, (void **)&piTicksSegment);
+    getGraphicObjectProperty(iObjUID, __GO_TICKS_SEGMENT__, jni_bool, (void **)&piTicksSegment);
 
     if (piTicksSegment == NULL)
     {

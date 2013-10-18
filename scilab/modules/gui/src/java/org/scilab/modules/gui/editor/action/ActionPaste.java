@@ -27,7 +27,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 public class ActionPaste extends BaseAction {
 
     /* Store the Parent where the object was pasted */
-    String pastedParent;
+    Integer pastedParent;
 
     /* True if the object is a dup, false otherwise */
     boolean isDuplicated;
@@ -40,7 +40,7 @@ public class ActionPaste extends BaseAction {
     * @param pastedParent The parent that the object was pasted
     * @param isDuplicated If the object was cutted it is false, if was duplicated it is true
     */
-    public ActionPaste(String object, String previousParent, String pastedParent, boolean isDuplicated) {
+    public ActionPaste(Integer object, Integer previousParent, Integer pastedParent, boolean isDuplicated) {
 
         super(object, previousParent);
         this.pastedParent = pastedParent;

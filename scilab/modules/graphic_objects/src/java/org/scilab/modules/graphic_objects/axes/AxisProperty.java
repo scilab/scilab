@@ -74,7 +74,7 @@ public class AxisProperty {
     private int gridColor;
 
     /** Axis label UID */
-    private String label;
+    private Integer label;
 
     /** Axis location */
     private AxisLocation axisLocation;
@@ -92,7 +92,7 @@ public class AxisProperty {
         gridColor = 0;
 
         /* Sets the label to the null object */
-        label = "";
+        label = 0;
 
         axisLocation = AxisLocation.ORIGIN;
         ticks = new TicksProperty();
@@ -108,7 +108,7 @@ public class AxisProperty {
         reverse = axisProperty.reverse;
         gridColor = axisProperty.gridColor;
 
-        label = "";
+        label = 0;
 
         axisLocation = axisProperty.axisLocation;
         ticks = new TicksProperty(axisProperty.ticks);
@@ -175,7 +175,7 @@ public class AxisProperty {
         } else if (property == AxisPropertyProperty.GRIDCOLOR) {
             setGridColor((Integer) value);
         } else if (property == AxisPropertyProperty.LABEL) {
-            setLabel((String) value);
+            setLabel((Integer) value);
         } else if (property == AxisPropertyProperty.AXISLOCATION) {
             setAxisLocation((AxisLocation) value);
         } else if (property == AxisPropertyProperty.LOGFLAG) {
@@ -233,16 +233,16 @@ public class AxisProperty {
     /**
      * @return the label
      */
-    public String getLabel() {
+    public Integer getLabel() {
         return label;
     }
 
     /**
      * @param label the label to set
      */
-    public UpdateStatus setLabel(String label) {
-        if (!this.label.equals(label)) {
-            this.label = label == null ? "" : label;
+    public UpdateStatus setLabel(Integer label) {
+        if (this.label != label) {
+            this.label = label == null ? 0 : label;
             return UpdateStatus.Success;
         }
 

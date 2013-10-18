@@ -29,7 +29,7 @@ public class Camera extends SimpleSection {
     * Initializes the properties and the icons of the buttons.
     * @param objectID Enters the identification of object.
     */
-    public Camera(String objectID) {
+    public Camera(Integer objectID) {
         super(MessagesGED.camera, "axes");
         instance = this;
         sectionPanel = getSectionPanel();
@@ -49,7 +49,7 @@ public class Camera extends SimpleSection {
     * @param objectID uid
     */
     @Override
-    public final void initComponents(String objectID) {
+    public final void initComponents(Integer objectID) {
         int row = 0;
         final int leftmargin = 0; //to inner components
         int column = 1; //first column
@@ -65,5 +65,5 @@ public class Camera extends SimpleSection {
 
         //Components of the property: View.
         camera.view(sectionPanel, row++, column, leftmargin, objectID);
-   }
+    }
 }

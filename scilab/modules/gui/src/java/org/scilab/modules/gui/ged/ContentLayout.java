@@ -105,7 +105,7 @@ public class ContentLayout extends JPanel {
     }
 
     public void addColorField(JPanel parentPanel, JPanel fieldPanel, final JDialog colorDialog,
-                                JButton colorButton, JLabel fieldColor, int column, int row) {
+                              JButton colorButton, JLabel fieldColor, int column, int row) {
         fieldPanel.setBackground(new Color(255, 255, 255));
         fieldPanel.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         fieldPanel.setPreferredSize(new Dimension(5, 20));
@@ -156,8 +156,8 @@ public class ContentLayout extends JPanel {
                                final JColorChooser colorChooser,
                                JButton ok,
                                final JLabel colorField,
-                               final String objectID,
-                               final String parentFigure,
+                               final Integer objectID,
+                               final Integer parentFigure,
                                final String packClass,
                                final String method,
                                final Object methobj) {
@@ -202,7 +202,7 @@ public class ContentLayout extends JPanel {
 
                     Object arglist[] = new Object[2];
                     arglist[0] = new Integer(scilabColor);
-                    arglist[1] = new String(objectID);
+                    arglist[1] = new Integer(objectID);
 
                     meth.invoke(methobj, arglist);
                 } catch (Throwable e) {
@@ -276,11 +276,11 @@ public class ContentLayout extends JPanel {
     public void addDataDialog(final JDialog dataDialog,
                               final JScrollPane scroll,
                               final JTable table,
-                                    JButton append,
-                                    JButton delete,
-                                    JButton refresh,
-                                    JButton ok,
-                              final String objectID) {
+                              JButton append,
+                              JButton delete,
+                              JButton refresh,
+                              JButton ok,
+                              final Integer objectID) {
         dataDialog.setTitle(MessagesGED.data_editor);
         dataDialog.setMinimumSize(new Dimension(150, 340));
         dataDialog.setModal(true);
@@ -332,8 +332,9 @@ public class ContentLayout extends JPanel {
         delete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 if (table.getSelectedRow() != -1)
-                    if (PolylineData.removePoint(objectID, table.getSelectedRow()) != 0)
+                    if (PolylineData.removePoint(objectID, table.getSelectedRow()) != 0) {
                         tableModel.removeRow(table.getSelectedRow());
+                    }
             }
         });
         gbc = new GridBagConstraints();
@@ -365,8 +366,8 @@ public class ContentLayout extends JPanel {
     public void addShiftDialog (final JDialog shiftDialog,
                                 final JScrollPane scroll,
                                 final JTable table,
-                                      JButton refresh,
-                                      JButton ok) {
+                                JButton refresh,
+                                JButton ok) {
 
         shiftDialog.setTitle(MessagesGED.data_editor);
         shiftDialog.setMinimumSize(new Dimension(140, 340));
@@ -429,8 +430,9 @@ public class ContentLayout extends JPanel {
 
     public void addJComboBox(JPanel panel, JComboBox combobox, String[] options, int column, int row) {
         combobox.setPreferredSize(new Dimension(5, 20));
-        if(options != null)
+        if (options != null) {
             combobox.setModel(new DefaultComboBoxModel(options));
+        }
 
         gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.LINE_START;
@@ -541,7 +543,7 @@ public class ContentLayout extends JPanel {
     * @return Next free row
     */
     public void addInnerPanel(JPanel gpanel, JPanel ipanel, JToggleButton tbutton, JLabel label,
-                        JTextField field, String message, int row) {
+                              JTextField field, String message, int row) {
         tbutton.setSelected(true);
         ipanel.setVisible(false);
         addSHbutton(gpanel, tbutton, 0, row);
@@ -586,10 +588,10 @@ public class ContentLayout extends JPanel {
     * @param row Row number
     */
     public void addLabelComboBox(JPanel panel, JLabel label, String message,
-                                  JComboBox comboBox, String[] options,
-                                  int leftMargin, int firstColumn, int row) {
+                                 JComboBox comboBox, String[] options,
+                                 int leftMargin, int firstColumn, int row) {
         addJLabel(panel, label, message, firstColumn, row, leftMargin);
-        addJComboBox(panel, comboBox, options, firstColumn+1, row);
+        addJComboBox(panel, comboBox, options, firstColumn + 1, row);
     }
 
     /**
@@ -607,7 +609,7 @@ public class ContentLayout extends JPanel {
                                   JTextField textField, boolean editable,
                                   int leftMargin, int firstColumn, int row) {
         addJLabel(panel, label, message, firstColumn, row, leftMargin);
-        addJTextField(panel, textField, editable, firstColumn+1, row);
+        addJTextField(panel, textField, editable, firstColumn + 1, row);
     }
 
     /**
@@ -624,10 +626,10 @@ public class ContentLayout extends JPanel {
     * @param row Row number
     */
     public void addLabelColorField(JPanel panel, JLabel label, String message,
-                                  JDialog colorDialog, JLabel colorField, JPanel colorPanel, JButton button,
-                                  int leftMargin, int firstColumn, int row) {
+                                   JDialog colorDialog, JLabel colorField, JPanel colorPanel, JButton button,
+                                   int leftMargin, int firstColumn, int row) {
         addJLabel(panel, label, message, firstColumn, row, leftMargin);
-        addColorField(panel, colorPanel, colorDialog, button, colorField, firstColumn+1, row);
+        addColorField(panel, colorPanel, colorDialog, button, colorField, firstColumn + 1, row);
     }
 
     /**
@@ -641,8 +643,8 @@ public class ContentLayout extends JPanel {
     * @param row Row number
     */
     public void add3CheckBoxField(JPanel panel, JPanel fieldPanel,
-                                     JCheckBox check1, JCheckBox check2, JCheckBox check3,
-                                     int column, int row) {
+                                  JCheckBox check1, JCheckBox check2, JCheckBox check3,
+                                  int column, int row) {
 
         fieldPanel.setBackground(new Color(255, 255, 255));
         fieldPanel.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
@@ -693,6 +695,6 @@ public class ContentLayout extends JPanel {
                                   JPanel fieldPanel, JCheckBox CB1, JCheckBox CB2, JCheckBox CB3,
                                   int leftMargin, int firstColumn, int row) {
         addJLabel(panel, label, message, firstColumn, row, leftMargin);
-        add3CheckBoxField(panel, fieldPanel, CB1, CB2, CB3, firstColumn+1, row);
+        add3CheckBoxField(panel, fieldPanel, CB1, CB2, CB3, firstColumn + 1, row);
     }
 }

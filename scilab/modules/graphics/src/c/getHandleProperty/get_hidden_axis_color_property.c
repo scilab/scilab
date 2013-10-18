@@ -29,12 +29,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_hidden_axis_color_property(void* _pvCtx, char* pobjUID)
+int get_hidden_axis_color_property(void* _pvCtx, int iObjUID)
 {
     int iHiddenAxisColor = 0;
     int* piHiddenAxisColor = &iHiddenAxisColor;
 
-    getGraphicObjectProperty(pobjUID, __GO_HIDDEN_AXIS_COLOR__, jni_int, (void **)&piHiddenAxisColor);
+    getGraphicObjectProperty(iObjUID, __GO_HIDDEN_AXIS_COLOR__, jni_int, (void **)&piHiddenAxisColor);
 
     if (piHiddenAxisColor == NULL)
     {

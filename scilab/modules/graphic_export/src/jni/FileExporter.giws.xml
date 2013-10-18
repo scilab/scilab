@@ -13,7 +13,7 @@
 <package name="org.scilab.modules.graphic_export">
     <object name="FileExporter">
         <method name="fileExport" returnType="String" modifier="static">
-            <parameter name="figureUID" type="String"/>
+            <parameter name="figureUID" type="int"/>
             <parameter name="fileName" type="String"/>
             <parameter name="fileType" type="int"/>
             <parameter name="jpegCompressionQuality" type="float"/>

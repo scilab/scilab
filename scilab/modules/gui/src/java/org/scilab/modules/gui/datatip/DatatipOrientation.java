@@ -31,8 +31,8 @@ public class DatatipOrientation {
      *
      * @param datatip the datatip uid
      */
-    public static void setOrientation(String datatip) {
-        String polyline = DatatipCommon.getParentPolyline(datatip);
+    public static void setOrientation(Integer datatip) {
+        Integer polyline = DatatipCommon.getParentPolyline(datatip);
         if (polyline != null) {
             Double[] tip_pos = (Double[])GraphicController.getController().getProperty(datatip, __GO_DATATIP_DATA__);
             DatatipCommon.Segment seg = DatatipCommon.getSegment(tip_pos[0], polyline);
@@ -47,7 +47,7 @@ public class DatatipOrientation {
      *
      * @param datatip the datatip uid
      */
-    public static void setOrientation(String datatip, Integer lastClick[], Integer[] curClick) {
+    public static void setOrientation(Integer datatip, Integer lastClick[], Integer[] curClick) {
         int dx = curClick[0] - lastClick[0];
         int dy = curClick[1] - lastClick[1];
 
@@ -75,7 +75,7 @@ public class DatatipOrientation {
      * @param datatip the datatip uid
      * @param seg the line segment
      */
-    public static void setOrientation(String datatip, DatatipCommon.Segment seg) {
+    public static void setOrientation(Integer datatip, DatatipCommon.Segment seg) {
 
         Double[] bounds;
         Integer finalOrientation;
@@ -88,7 +88,7 @@ public class DatatipOrientation {
             dy = -dy;
         }
 
-        String axesUid = (String)GraphicController.getController().getProperty(datatip, __GO_PARENT_AXES__);
+        Integer axesUid = (Integer)GraphicController.getController().getProperty(datatip, __GO_PARENT_AXES__);
         if (AxesHandler.isZoomBoxEnabled(axesUid)) {
             bounds = (Double[])GraphicController.getController().getProperty(axesUid, __GO_ZOOM_BOX__);
         } else {
@@ -165,7 +165,7 @@ public class DatatipOrientation {
      * @param datatipOrientation String with datatip orientation.
      * @param datatipOrientationNum Integer with datatip orientation to set property.
      */
-    public static void datatipSetOrientation (String datatipUid, String datatipOrientation, int datatipOrientationNum) {
+    public static void datatipSetOrientation (Integer datatipUid, String datatipOrientation, int datatipOrientationNum) {
 
         if (datatipOrientationNum == 0) {
             GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);

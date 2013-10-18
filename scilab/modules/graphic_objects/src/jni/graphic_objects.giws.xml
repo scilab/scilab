@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package name="org.scilab.modules.graphic_objects">
     <object name="GraphicObjectBuilder">
-        <method name="constructRectangles" returnType="String" modifier="static">
-            <parameter name="pparentsubwinUID" type="String"/>
+        <method name="constructRectangles" returnType="int" modifier="static">
+            <parameter name="pparentsubwinUID" type="int"/>
             <parameter name="x" type="double"/>
             <parameter name="y" type="double"/>
             <parameter name="height" type="double"/>
@@ -15,78 +15,78 @@
     </object>
     <object name="CallGraphicController">
         <method name="deleteGraphicObject" returnType="void" modifier="static">
-            <parameter name="id" type="String"/>
+            <parameter name="id" type="int"/>
         </method>
-        <method name="cloneGraphicObject" returnType="String" modifier="static">
-            <parameter name="id" type="String"/>
+        <method name="cloneGraphicObject" returnType="int" modifier="static">
+            <parameter name="id" type="int"/>
         </method>
-        <method name="askGraphicObject" returnType="String" modifier="static">
+        <method name="askGraphicObject" returnType="int" modifier="static">
             <parameter name="typeName" type="int"/>
         </method>
         <method name="setGraphicObjectRelationship" returnType="void" modifier="static">
-            <parameter name="parentId" type="String"/>
-            <parameter name="childId" type="String"/>
+            <parameter name="parentId" type="int"/>
+            <parameter name="childId" type="int"/>
         </method>
         <method name="removeRelationShipAndDelete" returnType="void" modifier="static">
-            <parameter name="id" type="String"/>
+            <parameter name="id" type="int"/>
         </method>
         <method name="getGraphicObjectPropertyAsString" returnType="String" modifier="static">
-            <parameter name="id" type="String"/>
+            <parameter name="id" type="int"/>
             <parameter name="propertyName" type="int"/>
         </method>
         <method name="setGraphicObjectProperty" returnType="boolean" modifier="static">
-            <parameter name="id" type="String"/>
+            <parameter name="id" type="int"/>
             <parameter name="propertyName" type="int"/>
             <parameter name="value" type="String"/>
         </method>
         <method name="getGraphicObjectPropertyAsStringVector" returnType="String[]" modifier="static">
-            <parameter name="id" type="String"/>
+            <parameter name="id" type="int"/>
             <parameter name="propertyName" type="int"/>
         </method>
         <method name="setGraphicObjectProperty" returnType="boolean" modifier="static">
-            <parameter name="id" type="String"/>
+            <parameter name="id" type="int"/>
             <parameter name="propertyName" type="int"/>
             <parameter name="value" type="String[]"/>
         </method>
         <method name="setGraphicObjectProperty" returnType="boolean" modifier="static">
-            <parameter name="id" type="String"/>
+            <parameter name="id" type="int"/>
             <parameter name="propertyName" type="int"/>
             <parameter name="value" type="double"/>
         </method>
         <method name="getGraphicObjectPropertyAsDoubleVector" returnType="double[]" modifier="static">
-            <parameter name="id" type="String"/>
+            <parameter name="id" type="int"/>
             <parameter name="propertyName" type="int"/>
         </method>
         <method name="setGraphicObjectProperty" returnType="boolean" modifier="static">
-            <parameter name="id" type="String"/>
+            <parameter name="id" type="int"/>
             <parameter name="propertyName" type="int"/>
             <parameter name="value" type="double[]"/>
         </method>
         <method name="setGraphicObjectProperty" returnType="boolean" modifier="static">
-            <parameter name="id" type="String"/>
+            <parameter name="id" type="int"/>
             <parameter name="propertyName" type="int"/>
             <parameter name="value" type="int"/>
         </method>
         <method name="getGraphicObjectPropertyAsIntegerVector" returnType="int[]" modifier="static">
-            <parameter name="id" type="String"/>
+            <parameter name="id" type="int"/>
             <parameter name="propertyName" type="int"/>
         </method>
         <method name="setGraphicObjectProperty" returnType="boolean" modifier="static">
-            <parameter name="id" type="String"/>
+            <parameter name="id" type="int"/>
             <parameter name="propertyName" type="int"/>
             <parameter name="value" type="int[]"/>
         </method>
         <method name="setGraphicObjectProperty" returnType="boolean" modifier="static">
-            <parameter name="id" type="String"/>
+            <parameter name="id" type="int"/>
             <parameter name="propertyName" type="int"/>
             <parameter name="value" type="boolean"/>
         </method>
         <method name="getGraphicObjectPropertyAsBooleanVector" returnType="int[]" modifier="static">
-            <parameter name="id" type="String"/>
+            <parameter name="id" type="int"/>
             <parameter name="propertyName" type="int"/>
         </method>
         <method name="setGraphicObjectProperty" returnType="boolean" modifier="static">
-            <parameter name="id" type="String"/>
+            <parameter name="id" type="int"/>
             <parameter name="propertyName" type="int"/>
             <parameter name="value" type="boolean[]"/>
         </method>
@@ -94,10 +94,10 @@
         </method>
         <method name="unregisterScilabView" returnType="void" modifier="static">
         </method>
-        <method name="getConsoleIdentifier" returnType="String" modifier="static">
+        <method name="getConsoleIdentifier" returnType="int" modifier="static">
         </method>
         <method name="buildFigureMenuBar" returnType="void" modifier="static">
-            <parameter name="figureId" type="String"/>
+            <parameter name="figureId" type="int"/>
         </method>
     </object>
 </package>

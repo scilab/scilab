@@ -35,9 +35,9 @@
 #include "FigureList.h"
 
 /*------------------------------------------------------------------------*/
-int set_parent_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_parent_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    char *pstParentUID = NULL;
+    int iParentUID = 0;
     int iParentType = -1;
     int *piParentType = &iParentType;
     int iParentStyle = -1;
@@ -45,17 +45,17 @@ int set_parent_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueTyp
     int iObjType = -1;
     int *piObjType = &iObjType;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piObjType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piObjType);
 
     if (iObjType == __GO_UICONTROL__)
     {
         if (valueType == sci_handles)
         {
-            pstParentUID = (char*)getObjectFromHandle((long)((long long*)_pvData)[0]);
+            iParentUID = getObjectFromHandle((long)((long long*)_pvData)[0]);
         }
         else if (valueType == sci_matrix)
         {
-            pstParentUID = (char*)getFigureFromIndex((int)((double*)_pvData)[0]);
+            iParentUID = getFigureFromIndex((int)((double*)_pvData)[0]);
         }
         else
         {
@@ -63,18 +63,18 @@ int set_parent_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueTyp
             return SET_PROPERTY_ERROR;
         }
 
-        if (pstParentUID == NULL)
+        if (iParentUID == 0)
         {
             // Can not set the parent
             Scierror(999, _("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
             return SET_PROPERTY_ERROR;
         }
 
-        getGraphicObjectProperty(pstParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
+        getGraphicObjectProperty(iParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
 
         if (iParentType != __GO_FIGURE__)
         {
-            getGraphicObjectProperty(pstParentUID, __GO_STYLE__, jni_int, (void **)&piParentStyle);
+            getGraphicObjectProperty(iParentUID, __GO_STYLE__, jni_int, (void **)&piParentStyle);
             if (iParentType != __GO_UICONTROL__ || iParentStyle != __GO_UI_FRAME__)
             {
                 Scierror(999, _("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
@@ -82,7 +82,7 @@ int set_parent_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueTyp
             }
         }
 
-        setGraphicObjectRelationship(pstParentUID, pobjUID);
+        setGraphicObjectRelationship(iParentUID, iObjUID);
         return SET_PROPERTY_SUCCEED;
     }
 
@@ -95,7 +95,7 @@ int set_parent_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueTyp
         }
         else
         {
-            return setMenuParent(pobjUID, _pvData, valueType, nbRow, nbCol);
+            return setMenuParent(iObjUID, _pvData, valueType, nbRow, nbCol);
         }
     }
     else

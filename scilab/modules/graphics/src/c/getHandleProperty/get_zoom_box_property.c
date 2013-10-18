@@ -30,16 +30,16 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_zoom_box_property(void* _pvCtx, char* pobjUID)
+int get_zoom_box_property(void* _pvCtx, int iObjUID)
 {
     double dblTmp = 0;
     double* zoomBox = NULL;
     int iZoomEnabled = 0;
     int* zoomEnabled = &iZoomEnabled;
 
-    getGraphicObjectProperty(pobjUID, __GO_ZOOM_ENABLED__, jni_bool, (void **)&zoomEnabled);
+    getGraphicObjectProperty(iObjUID, __GO_ZOOM_ENABLED__, jni_bool, (void **)&zoomEnabled);
 
-    getGraphicObjectProperty(pobjUID, __GO_ZOOM_BOX__, jni_double_vector, (void **)&zoomBox);
+    getGraphicObjectProperty(iObjUID, __GO_ZOOM_BOX__, jni_double_vector, (void **)&zoomBox);
 
     if (zoomEnabled == NULL || zoomBox == NULL)
     {
