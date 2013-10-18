@@ -110,8 +110,9 @@ public abstract class ClippableContouredObject extends ContouredObject {
     /**
      * @param clipProperty the clipProperty to set
      */
-    public void setClipProperty(ClippableProperty clipProperty) {
+    public UpdateStatus setClipProperty(ClippableProperty clipProperty) {
         this.clipProperty = clipProperty;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -124,8 +125,9 @@ public abstract class ClippableContouredObject extends ContouredObject {
     /**
      * @param clipBox the clipBox to set
      */
-    public void setClipBox(Double[] clipBox) {
+    public UpdateStatus setClipBox(Double[] clipBox) {
         clipProperty.setClipBox(clipBox);
+        return UpdateStatus.Success;
     }
 
     /**
@@ -145,15 +147,17 @@ public abstract class ClippableContouredObject extends ContouredObject {
     /**
      * @param clipState the clipState to set
      */
-    public void setClipState(Integer clipState) {
+    public UpdateStatus setClipState(Integer clipState) {
         setClipStateAsEnum(ClipStateType.intToEnum(clipState));
+        return UpdateStatus.Success;
     }
 
     /**
      * @param clipState the clipState to set
      */
-    public void setClipStateAsEnum(ClipStateType clipState) {
+    public UpdateStatus setClipStateAsEnum(ClipStateType clipState) {
         clipProperty.setClipState(clipState);
+        return UpdateStatus.Success;
     }
 
     /**
@@ -166,8 +170,9 @@ public abstract class ClippableContouredObject extends ContouredObject {
     /**
      * @param clipBoxSet the clipBoxSet to set
      */
-    public void setClipBoxSet(Boolean clipBoxSet) {
+    public UpdateStatus setClipBoxSet(Boolean clipBoxSet) {
         clipProperty.setClipBoxSet(clipBoxSet);
+        return UpdateStatus.Success;
     }
 
 }

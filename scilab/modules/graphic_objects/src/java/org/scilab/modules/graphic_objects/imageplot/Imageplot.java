@@ -16,6 +16,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MATPLOT_TRANSLATE__;
 
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 /**
  * ImagePlot class
@@ -89,15 +90,17 @@ public abstract class Imageplot extends ClippableContouredObject {
         return new Double[] {scale[0], scale[1]};
     }
 
-    public void setScale(Double[] scale) {
+    public UpdateStatus setScale(Double[] scale) {
         this.scale = scale;
+        return UpdateStatus.Success;
     }
 
     public Double[] getTranslate() {
         return new Double[] {translate[0], translate[1]};
     }
 
-    public void setTranslate(Double[] translate) {
+    public UpdateStatus setTranslate(Double[] translate) {
         this.translate = translate;
+        return UpdateStatus.Success;
     }
 }

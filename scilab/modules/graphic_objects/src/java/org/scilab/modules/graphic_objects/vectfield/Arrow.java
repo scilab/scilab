@@ -12,10 +12,13 @@
 
 package org.scilab.modules.graphic_objects.vectfield;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ARROW_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BASE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DIRECTION__;
+
 import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
-
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 
 /**
@@ -124,8 +127,9 @@ public class Arrow extends ContouredObject {
     /**
      * @param arrowSize the arrowSize to set
      */
-    public void setArrowSize(Double arrowSize) {
+    public UpdateStatus setArrowSize(Double arrowSize) {
         this.arrowSize = arrowSize;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -144,10 +148,11 @@ public class Arrow extends ContouredObject {
     /**
      * @param base the base to set
      */
-    public void setBase(Double[] base) {
+    public UpdateStatus setBase(Double[] base) {
         this.base[0] = base[0];
         this.base[1] = base[1];
         this.base[2] = base[2];
+        return UpdateStatus.Success;
     }
 
     /**
@@ -166,10 +171,11 @@ public class Arrow extends ContouredObject {
     /**
      * @param direction the direction to set
      */
-    public void setDirection(Double[] direction) {
+    public UpdateStatus setDirection(Double[] direction) {
         this.direction[0] = direction[0];
         this.direction[1] = direction[1];
         this.direction[2] = direction[2];
+        return UpdateStatus.Success;
     }
 
     public Integer getType() {

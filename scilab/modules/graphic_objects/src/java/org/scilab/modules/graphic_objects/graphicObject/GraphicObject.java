@@ -443,15 +443,17 @@ public abstract class GraphicObject implements Cloneable {
     /**
      * @param children the children to set
      */
-    private void setChildren(List<Integer> children) {
+    private UpdateStatus setChildren(List<Integer> children) {
         this.children = children;
+        return UpdateStatus.Success;
     }
 
     /**
      * @param children the children to set
      */
-    public void setChildren(Integer[] children) {
+    public UpdateStatus setChildren(Integer[] children) {
         this.children = new LinkedList<Integer>(Arrays.asList(children));
+        return UpdateStatus.Success;
     }
 
     /**
@@ -464,8 +466,9 @@ public abstract class GraphicObject implements Cloneable {
     /**
      * @param identifier the identifier to set
      */
-    public void setIdentifier(Integer identifier) {
+    public UpdateStatus setIdentifier(Integer identifier) {
         this.identifier = identifier;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -477,9 +480,11 @@ public abstract class GraphicObject implements Cloneable {
 
     /**
      * @param parent the parent to set
+     * @return TODO
      */
-    public void setParent(Integer parent) {
+    public UpdateStatus setParent(Integer parent) {
         this.parent = parent;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -491,9 +496,11 @@ public abstract class GraphicObject implements Cloneable {
 
     /**
      * @param userData the userData to set
+     * @return TODO
      */
-    public void setUserData(Integer[] userData) {
+    public UpdateStatus setUserData(Integer[] userData) {
         this.userData = userData;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -515,9 +522,11 @@ public abstract class GraphicObject implements Cloneable {
 
     /**
      * @param tag the tag to set
+     * @return TODO
      */
-    public void setTag(String tag) {
+    public UpdateStatus setTag(String tag) {
         this.tag = tag;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -529,9 +538,10 @@ public abstract class GraphicObject implements Cloneable {
 
     /**
      * @param callback the callback to set
+     * @return TODO
      */
-    public void setCallbackString(String callback) {
-        this.callback.setCommand(callback);
+    public UpdateStatus setCallbackString(String callback) {
+        return this.callback.setCommand(callback);
     }
 
     /**
@@ -543,9 +553,11 @@ public abstract class GraphicObject implements Cloneable {
 
     /**
      * @param callbackType the callbackType to set
+     * @return TODO
      */
-    public void setCallbackType(Integer callbackType) {
+    public UpdateStatus setCallbackType(Integer callbackType) {
         this.callback.setCommandType(callbackType);
+        return UpdateStatus.Success;
     }
 
     /**
@@ -642,8 +654,9 @@ public abstract class GraphicObject implements Cloneable {
      * Set selected child method
      * @param selectedChild the selected child to set
      */
-    public void setSelectedChild(Integer selectedChild) {
+    public UpdateStatus setSelectedChild(Integer selectedChild) {
         this.selectedChild = selectedChild;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -657,9 +670,11 @@ public abstract class GraphicObject implements Cloneable {
     /**
      * Set visible method
      * @param visible the visible to set
+     * @return TODO
      */
-    public void setVisible(Boolean visible) {
+    public UpdateStatus setVisible(Boolean visible) {
         this.visible = visible;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -679,9 +694,11 @@ public abstract class GraphicObject implements Cloneable {
     /**
      * Set hidden method
      * @param hidden the value to set
+     * @return TODO
      */
-    public void setHidden(Boolean hidden) {
+    public UpdateStatus setHidden(Boolean hidden) {
         this.hidden = hidden;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -695,9 +712,11 @@ public abstract class GraphicObject implements Cloneable {
     /**
      * Set valid method
      * @param valid the validity to set
+     * @return TODO
      */
-    public void setValid(Boolean valid) {
+    public UpdateStatus setValid(Boolean valid) {
         this.valid = valid;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -711,8 +730,10 @@ public abstract class GraphicObject implements Cloneable {
     /**
      * Set referenced method
      * @param referenced the reference status to set
+     * @return TODO
      */
-    public void setReferenced(Boolean referenced) {
+    public UpdateStatus setReferenced(Boolean referenced) {
         this.referenced = referenced;
+        return UpdateStatus.Success;
     }
 }

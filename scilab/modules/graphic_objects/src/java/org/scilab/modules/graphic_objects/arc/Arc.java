@@ -15,6 +15,7 @@ package org.scilab.modules.graphic_objects.arc;
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
@@ -188,15 +189,18 @@ public class Arc extends ClippableContouredObject {
     /**
      * @param arcDrawingMethod the arcDrawingMethod to set
      */
-    public void setArcDrawingMethod(Integer arcDrawingMethod) {
+    public UpdateStatus setArcDrawingMethod(Integer arcDrawingMethod) {
         setArcDrawingMethodAsEnum(ArcDrawingMethod.intToEnum(arcDrawingMethod));
+        return UpdateStatus.Success;
+
     }
 
     /**
      * @param arcDrawingMethod the arcDrawingMethod to set
      */
-    public void setArcDrawingMethodAsEnum(ArcDrawingMethod arcDrawingMethod) {
+    public UpdateStatus setArcDrawingMethodAsEnum(ArcDrawingMethod arcDrawingMethod) {
         this.arcDrawingMethod = arcDrawingMethod;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -209,8 +213,9 @@ public class Arc extends ClippableContouredObject {
     /**
      * @param endAngle the endAngle to set
      */
-    public void setEndAngle(Double endAngle) {
+    public UpdateStatus setEndAngle(Double endAngle) {
         this.endAngle = endAngle;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -223,8 +228,9 @@ public class Arc extends ClippableContouredObject {
     /**
      * @param height the height to set
      */
-    public void setHeight(Double height) {
+    public UpdateStatus setHeight(Double height) {
         this.height = height;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -237,8 +243,9 @@ public class Arc extends ClippableContouredObject {
     /**
      * @param startAngle the startAngle to set
      */
-    public void setStartAngle(Double startAngle) {
+    public UpdateStatus setStartAngle(Double startAngle) {
         this.startAngle = startAngle;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -257,10 +264,11 @@ public class Arc extends ClippableContouredObject {
     /**
      * @param upperLeftPoint the upperLeftPoint to set
      */
-    public void setUpperLeftPoint(Double[] upperLeftPoint) {
+    public UpdateStatus setUpperLeftPoint(Double[] upperLeftPoint) {
         this.upperLeftPoint[0] = upperLeftPoint[0];
         this.upperLeftPoint[1] = upperLeftPoint[1];
         this.upperLeftPoint[2] = upperLeftPoint[2];
+        return UpdateStatus.Success;
     }
 
     /**
@@ -273,8 +281,9 @@ public class Arc extends ClippableContouredObject {
     /**
      * @param width the width to set
      */
-    public void setWidth(Double width) {
+    public UpdateStatus setWidth(Double width) {
         this.width = width;
+        return UpdateStatus.Success;
     }
 
     public Integer getType() {

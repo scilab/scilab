@@ -16,6 +16,7 @@ import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
@@ -209,8 +210,9 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param barWidth the barWidth to set
      */
-    public void setBarWidth(Double barWidth) {
+    public UpdateStatus setBarWidth(Double barWidth) {
         this.barWidth = barWidth;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -223,8 +225,9 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param closed the closed to set
      */
-    public void setClosed(Boolean closed) {
+    public UpdateStatus setClosed(Boolean closed) {
         this.closed = closed;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -260,7 +263,7 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param interpColorVector the interpColorVector to set
      */
-    public void setInterpColorVector(Integer[] interpColorVector) {
+    public UpdateStatus setInterpColorVector(Integer[] interpColorVector) {
         if (interpColorVectorSet == false) {
             interpColorVectorSet = true;
         }
@@ -268,6 +271,7 @@ public class Polyline extends ClippableContouredObject {
         for (int i = 0; i < interpColorVector.length; i++) {
             this.interpColorVector[i] = interpColorVector[i];
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -280,8 +284,9 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param interpColorVectorSet the interpColorVectorSet to set
      */
-    public void setInterpColorVectorSet(Boolean interpColorVectorSet) {
+    public UpdateStatus setInterpColorVectorSet(Boolean interpColorVectorSet) {
         this.interpColorVectorSet = interpColorVectorSet;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -312,8 +317,9 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param shift the xShift to set
      */
-    public void setXShift(double[] shift) {
+    public UpdateStatus setXShift(double[] shift) {
         xShift = shift;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -326,8 +332,9 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param shift the yShift to set
      */
-    public void setYShift(double[] shift) {
+    public UpdateStatus setYShift(double[] shift) {
         yShift = shift;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -340,8 +347,9 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param shift the zShift to set
      */
-    public void setZShift(double[] shift) {
+    public UpdateStatus setZShift(double[] shift) {
         zShift = shift;
+        return UpdateStatus.Success;
     }
 
     /**

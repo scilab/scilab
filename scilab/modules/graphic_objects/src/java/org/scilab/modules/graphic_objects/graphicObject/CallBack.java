@@ -12,6 +12,8 @@
  */
 package org.scilab.modules.graphic_objects.graphicObject;
 
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
+
 /**
  * Abstract class to manage all callbacks.
  *
@@ -84,8 +86,9 @@ public class CallBack {
     /**
      * @param command sets the command
      */
-    public void setCommand(String command) {
+    public UpdateStatus setCommand(String command) {
         this.command = command;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -98,8 +101,9 @@ public class CallBack {
     /**
      * @param commandType sets the command
      */
-    public void setCommandType(int commandType) {
+    public UpdateStatus setCommandType(int commandType) {
         this.commandType = commandType;
+        return UpdateStatus.Success;
     }
 
     /**

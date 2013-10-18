@@ -17,6 +17,8 @@ import org.scilab.modules.graphic_objects.contouredObject.Line.LineType;
 import org.scilab.modules.graphic_objects.contouredObject.Mark.MarkPropertyType;
 import org.scilab.modules.graphic_objects.contouredObject.Mark.MarkSizeUnitType;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
+
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
@@ -187,8 +189,9 @@ public abstract class ContouredObject extends GraphicObject {
     /**
      * @param background the background to set
      */
-    public void setBackground(Integer background) {
+    public UpdateStatus setBackground(Integer background) {
         this.background = background;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -219,8 +222,9 @@ public abstract class ContouredObject extends GraphicObject {
     /**
      * @param line the line to set
      */
-    public void setLine(Line line) {
+    public UpdateStatus setLine(Line line) {
         this.line = line;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -259,16 +263,18 @@ public abstract class ContouredObject extends GraphicObject {
      * Set the line style
      * @param lineStyle the lineStyle to set
      */
-    public void setLineStyle(Integer lineStyle) {
+    public UpdateStatus setLineStyle(Integer lineStyle) {
         setLineStyleAsEnum(LineType.fromScilabIndex(lineStyle));
+        return UpdateStatus.Success;
     }
 
     /**
      * Set the line style
      * @param lineStyle the lineStyle to set
      */
-    public void setLineStyleAsEnum(LineType lineStyle) {
+    public UpdateStatus setLineStyleAsEnum(LineType lineStyle) {
         line.setLineStyle(lineStyle);
+        return UpdateStatus.Success;
     }
 
     /**
@@ -299,8 +305,9 @@ public abstract class ContouredObject extends GraphicObject {
      * Set the line thickness
      * @param thickness the thickness to set
      */
-    public void setLineThickness(Double thickness) {
+    public UpdateStatus setLineThickness(Double thickness) {
         line.setThickness(thickness);
+        return UpdateStatus.Success;
     }
 
     /**
@@ -313,8 +320,9 @@ public abstract class ContouredObject extends GraphicObject {
     /**
      * @param mark the mark to set
      */
-    public void setMark(Mark mark) {
+    public UpdateStatus setMark(Mark mark) {
         this.mark = mark;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -329,8 +337,9 @@ public abstract class ContouredObject extends GraphicObject {
      * Set the mark background
      * @param background the background to set
      */
-    public void setMarkBackground(Integer background) {
+    public UpdateStatus setMarkBackground(Integer background) {
         mark.setBackground(background);
+        return UpdateStatus.Success;
     }
 
     /**
@@ -345,8 +354,9 @@ public abstract class ContouredObject extends GraphicObject {
      * Set the mark foreground
      * @param foreground the foreground to set
      */
-    public void setMarkForeground(Integer foreground) {
+    public UpdateStatus setMarkForeground(Integer foreground) {
         mark.setForeground(foreground);
+        return UpdateStatus.Success;
     }
 
     /**
@@ -369,16 +379,18 @@ public abstract class ContouredObject extends GraphicObject {
      * Set the mark size unit
      * @param markSizeUnit the markSizeUnit to set
      */
-    public void setMarkSizeUnit(Integer markSizeUnit) {
+    public UpdateStatus setMarkSizeUnit(Integer markSizeUnit) {
         setMarkSizeUnitAsEnum(MarkSizeUnitType.intToEnum(markSizeUnit));
+        return UpdateStatus.Success;
     }
 
     /**
      * Set the mark size unit
      * @param markSizeUnit the markSizeUnit to set
      */
-    public void setMarkSizeUnitAsEnum(MarkSizeUnitType markSizeUnit) {
+    public UpdateStatus setMarkSizeUnitAsEnum(MarkSizeUnitType markSizeUnit) {
         mark.setMarkSizeUnit(markSizeUnit);
+        return UpdateStatus.Success;
     }
 
     /**

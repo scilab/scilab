@@ -12,6 +12,8 @@
 
 package org.scilab.modules.graphic_objects.textObject;
 
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
+
 /**
  * FormattedText class
  * @author Manuel JULIACHS
@@ -67,8 +69,9 @@ public class FormattedText {
     /**
      * @param font the font to set
      */
-    public void setFont(Font font) {
+    public UpdateStatus setFont(Font font) {
         this.font = font;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -81,8 +84,9 @@ public class FormattedText {
     /**
      * @param text the text to set
      */
-    public void setText(String text) {
+    public UpdateStatus setText(String text) {
         this.text = text == null ? "" : text;
+        return UpdateStatus.Success;
     }
 
 }

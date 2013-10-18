@@ -15,6 +15,8 @@ package org.scilab.modules.graphic_objects.textObject;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClippablePropertyType;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClipStateType;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
+
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
@@ -104,8 +106,9 @@ public abstract class ClippableTextObject extends TextObject {
     /**
      * @param clipProperty the clipProperty to set
      */
-    public void setClipProperty(ClippableProperty clipProperty) {
+    public UpdateStatus setClipProperty(ClippableProperty clipProperty) {
         this.clipProperty = clipProperty;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -118,8 +121,8 @@ public abstract class ClippableTextObject extends TextObject {
     /**
      * @param clipBox the clipBox to set
      */
-    public void setClipBox(Double[] clipBox) {
-        clipProperty.setClipBox(clipBox);
+    public UpdateStatus setClipBox(Double[] clipBox) {
+        return clipProperty.setClipBox(clipBox);
     }
 
     /**
@@ -139,15 +142,15 @@ public abstract class ClippableTextObject extends TextObject {
     /**
      * @param clipState the clipState to set
      */
-    public void setClipState(Integer clipState) {
-        setClipStateAsEnum(ClipStateType.intToEnum(clipState));
+    public UpdateStatus setClipState(Integer clipState) {
+        return setClipStateAsEnum(ClipStateType.intToEnum(clipState));
     }
 
     /**
      * @param clipState the clipState to set
      */
-    public void setClipStateAsEnum(ClipStateType clipState) {
-        clipProperty.setClipState(clipState);
+    public UpdateStatus setClipStateAsEnum(ClipStateType clipState) {
+        return clipProperty.setClipState(clipState);
     }
 
     /**
@@ -160,8 +163,8 @@ public abstract class ClippableTextObject extends TextObject {
     /**
      * @param clipBoxSet the clipBoxSet to set
      */
-    public void setClipBoxSet(Boolean clipBoxSet) {
-        clipProperty.setClipBoxSet(clipBoxSet);
+    public UpdateStatus setClipBoxSet(Boolean clipBoxSet) {
+        return clipProperty.setClipBoxSet(clipBoxSet);
     }
 
 }

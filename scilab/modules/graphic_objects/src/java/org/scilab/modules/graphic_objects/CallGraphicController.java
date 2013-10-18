@@ -147,7 +147,7 @@ public final class CallGraphicController {
             result = new int[tmp.length];
 
             for (int i = 0; i < result.length; i++) {
-                result[i] = tmp[i];
+                result[i] = tmp[i] == null ? 0 : tmp[i];
             }
         } else if (ret instanceof Integer) {
             result = new int[] { (Integer) ret};

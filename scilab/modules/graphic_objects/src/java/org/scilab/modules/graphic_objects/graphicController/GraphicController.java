@@ -37,7 +37,7 @@ import org.scilab.modules.graphic_objects.graphicView.LogView;
 public class GraphicController {
 
     private static boolean MVCViewEnable = false;
-    private static boolean debugEnable = true;
+    private static boolean debugEnable = false;
     private static boolean infoEnable = false;
     private static Integer lastId = 0;
 

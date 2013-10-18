@@ -27,7 +27,7 @@ import org.scilab.modules.gui.toolbar.ToolBar;
  * @author Bruno JOFRET
  * @author Marouane BEN JELLOUL
  */
-public abstract class ScilabUIElement extends Uicontrol implements UIElement {
+public abstract class ScilabUIElement implements UIElement {
 
     /**
      * The toolBar associated to the UIElement

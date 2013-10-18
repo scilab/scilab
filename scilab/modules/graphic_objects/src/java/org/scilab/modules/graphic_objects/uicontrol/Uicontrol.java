@@ -52,10 +52,13 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
 
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.GraphicObjectPropertyType;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 /**
  * @author Bruno JOFRET
@@ -378,55 +381,59 @@ public class Uicontrol extends GraphicObject {
      * @return true if the property has been set, false otherwise
      */
     public UpdateStatus setProperty(Object property, Object value) {
-        if (property == UicontrolProperty.STYLE) {
-            setStyle((Integer) value);
-        } else if (property == UicontrolProperty.BACKGROUNDCOLOR) {
-            setBackgroundColor((Double[]) value);
-        } else if (property == UicontrolProperty.ENABLE) {
-            setEnable((Boolean) value);
-        } else if (property == UicontrolProperty.FONTANGLE) {
-            setFontAngle((String) value);
-        } else if (property == UicontrolProperty.FONTNAME) {
-            setFontName((String) value);
-        } else if (property == UicontrolProperty.FONTSIZE) {
-            setFontSize((Double) value);
-        } else if (property == UicontrolProperty.FONTUNITS) {
-            setFontUnits((String) value);
-        } else if (property == UicontrolProperty.FONTWEIGHT) {
-            setFontWeight((String) value);
-        } else if (property == UicontrolProperty.FOREGROUNDCOLOR) {
-            setForegroundColor((Double[]) value);
-        } else if (property == UicontrolProperty.HORIZONTALALIGNMENT) {
-            setHorizontalAlignment((String) value);
-        } else if (property == UicontrolProperty.LISTBOXTOP) {
-            setListboxTop((Integer[]) value);
-        } else if (property == UicontrolProperty.MAX) {
-            setMax((Double) value);
-        } else if (property == UicontrolProperty.MIN) {
-            setMin((Double) value);
-        } else if (property == UicontrolProperty.POSITION) {
-            setUiPosition((Double[]) value);
-        } else if (property == UicontrolProperty.RELIEF) {
-            setRelief((String) value);
-        } else if (property == UicontrolProperty.SLIDERSTEP) {
-            setSliderStep((Double[]) value);
-        } else if (property == UicontrolProperty.STRING) {
-            setString((String[]) value);
-        } else if (property == UicontrolProperty.STRING_COLNB) {
-            setStringColNb((Integer) value);
-        } else if (property == UicontrolProperty.TOOLTIPSTRING) {
-            setTooltipString((String[]) value);
-        } else if (property == UicontrolProperty.UNITS) {
-            setUnits((String) value);
-        } else if (property == UicontrolProperty.VALUE) {
-            setUiValue((Double[]) value);
-        } else if (property == UicontrolProperty.VERTICALALIGNMENT) {
-            setVerticalAlignment((String) value);
-        } else {
+        if (!(property instanceof UicontrolProperty)) {
             return super.setProperty(property, value);
         }
 
-        return UpdateStatus.Success;
+        UicontrolProperty p = (UicontrolProperty) property;
+        switch (p) {
+            case STYLE:
+                return setStyle((Integer) value);
+            case BACKGROUNDCOLOR:
+                return setBackgroundColor((Double[]) value);
+            case ENABLE:
+                return setEnable((Boolean) value);
+            case FONTANGLE:
+                return setFontAngle((String) value);
+            case FONTNAME:
+                return setFontName((String) value);
+            case FONTSIZE:
+                return setFontSize((Double) value);
+            case FONTUNITS:
+                return setFontUnits((String) value);
+            case FONTWEIGHT:
+                return setFontWeight((String) value);
+            case FOREGROUNDCOLOR:
+                return setForegroundColor((Double[]) value);
+            case HORIZONTALALIGNMENT:
+                return setHorizontalAlignment((String) value);
+            case LISTBOXTOP:
+                return setListboxTop((Integer[]) value);
+            case MAX:
+                return setMax((Double) value);
+            case MIN:
+                return setMin((Double) value);
+            case POSITION:
+                return setUiPosition((Double[]) value);
+            case RELIEF:
+                return setRelief((String) value);
+            case SLIDERSTEP:
+                return setSliderStep((Double[]) value);
+            case STRING:
+                return setString((String[]) value);
+            case STRING_COLNB:
+                return setStringColNb((Integer) value);
+            case TOOLTIPSTRING:
+                return setTooltipString((String[]) value);
+            case UNITS:
+                return setUnits((String) value);
+            case VALUE:
+                return setUiValue((Double[]) value);
+            case VERTICALALIGNMENT:
+                return setVerticalAlignment((String) value);
+            default:
+                return super.setProperty(property, value);
+        }
     }
 
     /**
@@ -440,9 +447,16 @@ public class Uicontrol extends GraphicObject {
     /**
      * Set the style
      * @param style the style
+     * @return TODO
      */
-    public void setStyle(int style) {
-        this.style = intToStyleEnum(style);
+    public UpdateStatus setStyle(int style) {
+        UicontrolStyle val =  intToStyleEnum(style);
+        if (val == this.style) {
+            return UpdateStatus.NoChange;
+        }
+
+        this.style = val;
+        return UpdateStatus.Success;
     }
 
     /* Background Color */
@@ -450,8 +464,13 @@ public class Uicontrol extends GraphicObject {
         return this.backgroundColor;
     }
 
-    public void setBackgroundColor(Double[] colors) {
+    public UpdateStatus setBackgroundColor(Double[] colors) {
+        if (Arrays.equals(colors, this.backgroundColor)) {
+            return UpdateStatus.NoChange;
+        }
+
         this.backgroundColor = colors;
+        return UpdateStatus.Success;
     }
 
     /* Enable */
@@ -459,8 +478,12 @@ public class Uicontrol extends GraphicObject {
         return this.enable;
     }
 
-    public void setEnable(boolean status) {
+    public UpdateStatus setEnable(boolean status) {
+        if (this.enable == status) {
+            return UpdateStatus.NoChange;
+        }
         this.enable = status;
+        return UpdateStatus.Success;
     }
 
     /* FontAngle */
@@ -468,8 +491,12 @@ public class Uicontrol extends GraphicObject {
         return this.fontAngle;
     }
 
-    public void setFontAngle(String fontAngle) {
+    public UpdateStatus setFontAngle(String fontAngle) {
+        if (this.fontAngle.equals(fontAngle)) {
+            return UpdateStatus.NoChange;
+        }
         this.fontAngle = fontAngle;
+        return UpdateStatus.Success;
     }
 
     /* FontName */
@@ -477,8 +504,12 @@ public class Uicontrol extends GraphicObject {
         return this.fontName;
     }
 
-    public void setFontName(String fontName) {
+    public UpdateStatus setFontName(String fontName) {
+        if (this.fontName.equals(fontName)) {
+            return UpdateStatus.NoChange;
+        }
         this.fontName = fontName;
+        return UpdateStatus.Success;
     }
 
     /* FontSize */
@@ -486,8 +517,12 @@ public class Uicontrol extends GraphicObject {
         return this.fontSize;
     }
 
-    public void setFontSize(double fontSize) {
+    public UpdateStatus setFontSize(double fontSize) {
+        if (this.fontSize == fontSize) {
+            return UpdateStatus.NoChange;
+        }
         this.fontSize = fontSize;
+        return UpdateStatus.Success;
     }
 
     /* FontUnits */
@@ -495,8 +530,12 @@ public class Uicontrol extends GraphicObject {
         return this.fontUnits;
     }
 
-    public void setFontUnits(String fontUnits) {
+    public UpdateStatus setFontUnits(String fontUnits) {
+        if (this.fontUnits.equals(fontUnits)) {
+            return UpdateStatus.NoChange;
+        }
         this.fontUnits = fontUnits;
+        return UpdateStatus.Success;
     }
 
     /* FontWeight */
@@ -504,8 +543,12 @@ public class Uicontrol extends GraphicObject {
         return this.fontWeight;
     }
 
-    public void setFontWeight(String fontWeight) {
+    public UpdateStatus setFontWeight(String fontWeight) {
+        if (this.fontWeight.equals(fontWeight)) {
+            return UpdateStatus.NoChange;
+        }
         this.fontWeight = fontWeight;
+        return UpdateStatus.Success;
     }
 
     /* Foreground Color */
@@ -513,8 +556,12 @@ public class Uicontrol extends GraphicObject {
         return this.foregroundColor;
     }
 
-    public void setForegroundColor(Double[] colors) {
+    public UpdateStatus setForegroundColor(Double[] colors) {
+        if (Arrays.equals(this.foregroundColor, colors)) {
+            return UpdateStatus.NoChange;
+        }
         this.foregroundColor = colors;
+        return UpdateStatus.Success;
     }
 
     /* Horizontal Alignment */
@@ -522,8 +569,12 @@ public class Uicontrol extends GraphicObject {
         return this.horizontalAlignment;
     }
 
-    public void setHorizontalAlignment(String alignment) {
+    public UpdateStatus setHorizontalAlignment(String alignment) {
+        if (this.horizontalAlignment.equals(alignment)) {
+            return UpdateStatus.NoChange;
+        }
         this.horizontalAlignment = alignment;
+        return UpdateStatus.Success;
     }
 
     /* Listbox Top */
@@ -535,8 +586,12 @@ public class Uicontrol extends GraphicObject {
         return this.listboxTop;
     }
 
-    public void setListboxTop(Integer[] listboxTop) {
+    public UpdateStatus setListboxTop(Integer[] listboxTop) {
+        if (Arrays.equals(this.listboxTop, listboxTop)) {
+            return UpdateStatus.NoChange;
+        }
         this.listboxTop = listboxTop;
+        return UpdateStatus.Success;
     }
 
     /* Max */
@@ -544,8 +599,12 @@ public class Uicontrol extends GraphicObject {
         return this.max;
     }
 
-    public void setMax(double max) {
+    public UpdateStatus setMax(double max) {
+        if (this.max == max) {
+            return UpdateStatus.NoChange;
+        }
         this.max = max;
+        return UpdateStatus.Success;
     }
 
     /* Min */
@@ -553,8 +612,12 @@ public class Uicontrol extends GraphicObject {
         return this.min;
     }
 
-    public void setMin(double min) {
+    public UpdateStatus setMin(double min) {
+        if (this.min == min) {
+            return UpdateStatus.NoChange;
+        }
         this.min = min;
+        return UpdateStatus.Success;
     }
 
     /* Position */
@@ -562,8 +625,12 @@ public class Uicontrol extends GraphicObject {
         return this.position;
     }
 
-    public void setUiPosition(Double[] position) {
+    public UpdateStatus setUiPosition(Double[] position) {
+        if (Arrays.equals(this.position, position)) {
+            return UpdateStatus.NoChange;
+        }
         this.position = position;
+        return UpdateStatus.Success;
     }
 
     /* Relief */
@@ -571,8 +638,12 @@ public class Uicontrol extends GraphicObject {
         return this.relief;
     }
 
-    public void setRelief(String relief) {
+    public UpdateStatus setRelief(String relief) {
+        if (this.relief.equals(relief)) {
+            return UpdateStatus.NoChange;
+        }
         this.relief = relief;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -587,7 +658,7 @@ public class Uicontrol extends GraphicObject {
      * Set the string
      * @param string the string
      */
-    public void setString(String[] string) {
+    public UpdateStatus setString(String[] string) {
         if (this.style == UicontrolStyle.LISTBOX || this.style == UicontrolStyle.POPUPMENU) {
             /* String can be set using a|b|c|d */
             if (string.length == 1 & string[0].contains(STRING_SEPARATOR)) {
@@ -597,10 +668,11 @@ public class Uicontrol extends GraphicObject {
                     stringTab[stringTab.length - strTok.countTokens()] = strTok.nextToken();
                 }
                 this.string = stringTab;
-                return;
+                return UpdateStatus.Success;
             }
         }
         this.string = string;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -615,8 +687,12 @@ public class Uicontrol extends GraphicObject {
      * Set the string column number
      * @param stringColNb the number of columns
      */
-    public void setStringColNb(Integer stringColNb) {
+    public UpdateStatus setStringColNb(Integer stringColNb) {
+        if (this.stringColNb == stringColNb) {
+            return UpdateStatus.NoChange;
+        }
         this.stringColNb = stringColNb;
+        return UpdateStatus.Success;
     }
 
 
@@ -632,8 +708,12 @@ public class Uicontrol extends GraphicObject {
      * Set the tooltip string
      * @param tooltipString the tooltip string
      */
-    public void setTooltipString(String[] tooltipString) {
+    public UpdateStatus setTooltipString(String[] tooltipString) {
+        if (Arrays.equals(this.tooltipString, tooltipString)) {
+            return UpdateStatus.NoChange;
+        }
         this.tooltipString = tooltipString;
+        return UpdateStatus.Success;
     }
 
     /* Slider Step */
@@ -641,8 +721,12 @@ public class Uicontrol extends GraphicObject {
         return this.sliderStep;
     }
 
-    public void setSliderStep(Double[] sliderStep) {
+    public UpdateStatus setSliderStep(Double[] sliderStep) {
+        if (Arrays.equals(this.sliderStep, sliderStep)) {
+            return UpdateStatus.NoChange;
+        }
         this.sliderStep = sliderStep;
+        return UpdateStatus.Success;
     }
 
     /* Units */
@@ -650,8 +734,12 @@ public class Uicontrol extends GraphicObject {
         return this.units;
     }
 
-    public void setUnits(String units) {
+    public UpdateStatus setUnits(String units) {
+        if (this.units.equals(units)) {
+            return UpdateStatus.NoChange;
+        }
         this.units = units;
+        return UpdateStatus.Success;
     }
 
     /* Value */
@@ -663,8 +751,12 @@ public class Uicontrol extends GraphicObject {
         return this.value;
     }
 
-    public void setUiValue(Double[] value) {
+    public UpdateStatus setUiValue(Double[] value) {
+        if (Arrays.equals(this.value, value)) {
+            return UpdateStatus.NoChange;
+        }
         this.value = value;
+        return UpdateStatus.Success;
     }
 
     /* Vertical Alignment */
@@ -672,8 +764,12 @@ public class Uicontrol extends GraphicObject {
         return this.verticalAlignment;
     }
 
-    public void setVerticalAlignment(String alignment) {
+    public UpdateStatus setVerticalAlignment(String alignment) {
+        if (this.verticalAlignment.equals(alignment)) {
+            return UpdateStatus.NoChange;
+        }
         this.verticalAlignment = alignment;
+        return UpdateStatus.Success;
     }
 
     public void accept(Visitor visitor) {

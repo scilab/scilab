@@ -72,8 +72,9 @@ public final class Console extends GraphicObject {
      * Set the scilabMode property
      * @param scilabMode the new value to set
      */
-    public void setScilabMode(ScilabMode scilabMode) {
+    public UpdateStatus setScilabMode(ScilabMode scilabMode) {
         this.scilabMode = scilabMode;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -88,8 +89,9 @@ public final class Console extends GraphicObject {
      * Set the showHiddenHandles proeprty
      * @param showHiddenHandles the new value to set
      */
-    public void setShowHiddenHandles(boolean showHiddenHandles) {
+    public UpdateStatus setShowHiddenHandles(boolean showHiddenHandles) {
         this.showHiddenHandles = showHiddenHandles;
+        return UpdateStatus.Success;
     }
 
     /**
