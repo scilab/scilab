@@ -95,65 +95,77 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
-    if (in.size() == 2)
+    // Only in case of "fpf" and "auto clear", the second argument is a string
+    // Only "default" case have one input argument
+    if (ConfigGraphicVariable::getPropertyValue(pwcsWhat) != 15 && // fpf
+            ConfigGraphicVariable::getPropertyValue(pwcsWhat) != 2  && // auto clear
+            ConfigGraphicVariable::getPropertyValue(pwcsWhat) != 10)   // default
     {
-        if (in[1]->isString())
+        for (unsigned int i = 1 ; i < in.size() ; i++)
         {
-            types::String* pStrValue = in[1]->getAs<types::String>();
+            if (in[i]->isDouble() == false)
+            {
+                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), "xset", i + 1);
+            }
+        }
+    }
 
+    switch (ConfigGraphicVariable::getPropertyValue(pwcsWhat))
+    {
+        case 15 : // fpf
+        {
+            if (in.size() != 2)
+            {
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+                return types::Function::Error;
+            }
+
+            if (in[1]->isString() == false)
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), "xset", 2);
+                return types::Function::Error;
+            }
+
+            types::String* pStrValue = in[1]->getAs<types::String>();
             if (pStrValue->isScalar() == false)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), "xset", 2);
                 return types::Function::Error;
             }
 
-            wchar_t* wcsValue = pStrValue->get(0);
-            switch (ConfigGraphicVariable::getPropertyValue(pwcsWhat))
+            ConfigGraphicVariable::setFPF(pStrValue->get(0));
+        }
+        break;
+        case 2 : // auto clear
+        {
+            if (in.size() != 2)
             {
-                case 15 : // fpf
-                {
-                    ConfigGraphicVariable::setFPF(wcsValue);
-                }
-                break;
-                case 2 : // auto clear
-                {
-                    int bAutoClear = 0;
-                    if (wcscmp(wcsValue, L"on") == 0)
-                    {
-                        bAutoClear = 1;
-                    }
-
-                    setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_AUTO_CLEAR__, &bAutoClear, jni_bool, 1);
-                }
-                break;
-                default :
-                {
-                    char* pstWhat = wide_string_to_UTF8(pwcsWhat);
-                    Scierror(999, _("%s: Unrecognized input argument '%s'.\n"), "xset(arg,<string>)", pstWhat);
-                    FREE(pstWhat);
-                    return types::Function::Error;
-                }
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+                return types::Function::Error;
             }
 
-            return types::Function::OK;
-        }
-        else if (in[1]->isDouble() == false)
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string or matrix expected.\n"), "xset", 2);
-            return types::Function::Error;
-        }
-    }
+            if (in[1]->isString() == false)
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), "xset", 2);
+                return types::Function::Error;
+            }
 
-    for (unsigned int i = 1 ; i < in.size() ; i++)
-    {
-        if (in[i]->isDouble() == false)
-        {
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), "xset", i + 1);
-        }
-    }
+            types::String* pStrValue = in[1]->getAs<types::String>();
+            if (pStrValue->isScalar() == false)
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), "xset", 2);
+                return types::Function::Error;
+            }
 
-    switch (ConfigGraphicVariable::getPropertyValue(pwcsWhat))
-    {
+            int bAutoClear = 0;
+            if (wcscmp(pStrValue->get(0), L"on") == 0)
+            {
+                bAutoClear = 1;
+            }
+
+            setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_AUTO_CLEAR__, &bAutoClear, jni_bool, 1);
+        }
+        break;
         case 5 : // clipping
         {
             int clipState = 2;
@@ -171,7 +183,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             }
             else if (in.size() != 5)
             {
-                Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "xset", 2, 5);
+                Scierror(77, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "xset", 2, 5);
                 return types::Function::Error;
             }
             else
@@ -220,7 +232,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         {
             if (in.size() != 3)
             {
-                Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 3);
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 3);
                 return types::Function::Error;
             }
 
@@ -240,7 +252,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         {
             if (in.size() != 2)
             {
-                Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
                 return types::Function::Error;
             }
             double fontSize = in[1]->getAs<types::Double>()->get(0);
@@ -251,7 +263,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         {
             if (in.size() != 1)
             {
-                Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 1);
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 1);
                 return types::Function::Error;
             }
 
@@ -366,7 +378,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         {
             if (in.size() != 2)
             {
-                Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
                 return types::Function::Error;
             }
 
@@ -378,7 +390,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         {
             if (in.size() != 3)
             {
-                Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 3);
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 3);
                 return types::Function::Error;
             }
 
@@ -394,7 +406,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         {
             if (in.size() != 2)
             {
-                Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
                 return types::Function::Error;
             }
 
@@ -420,7 +432,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         {
             if (in.size() != 2)
             {
-                Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
                 return types::Function::Error;
             }
 
@@ -432,7 +444,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         {
             if (in.size() != 2)
             {
-                Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
                 return types::Function::Error;
             }
 
@@ -444,7 +456,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         {
             if (in.size() != 2)
             {
-                Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
                 return types::Function::Error;
             }
 
@@ -455,7 +467,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         {
             if (in.size() != 2)
             {
-                Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
                 return types::Function::Error;
             }
 
@@ -467,7 +479,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         {
             if (in.size() != 2)
             {
-                Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
                 return types::Function::Error;
             }
 
@@ -479,7 +491,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         {
             if (in.size() != 2)
             {
-                Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
                 return types::Function::Error;
             }
 
@@ -492,7 +504,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             int figurePosition[2];
             if (in.size() != 2)
             {
-                Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
                 return types::Function::Error;
             }
 
@@ -509,7 +521,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             int figureSize[2] = {0, 0};
             if (in.size() != 2 && in.size() != 3)
             {
-                Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "xset", 2, 3);
+                Scierror(77, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "xset", 2, 3);
                 return types::Function::Error;
             }
 
@@ -538,7 +550,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         {
             if (in.size() != 2)
             {
-                Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
                 return types::Function::Error;
             }
 
@@ -551,7 +563,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         {
             if (in.size() != 3)
             {
-                Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 3);
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 3);
                 return types::Function::Error;
             }
 
@@ -567,7 +579,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         {
             if (in.size() != 2)
             {
-                Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
                 return types::Function::Error;
             }
 
