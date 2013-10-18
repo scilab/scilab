@@ -178,7 +178,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     int iRet ;
     GatewayStruct gStr;
     _iRetCount = Max(1, _iRetCount);
-    gStr.m_iIn = (int)in.size();
+    gStr.m_iIn = (int)in.size() + (int)opt.size();
     gStr.m_iOut = _iRetCount;
 
     //copy input parameter to prevent calling gateway modifies input data
