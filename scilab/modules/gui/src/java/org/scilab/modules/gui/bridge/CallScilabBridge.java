@@ -263,7 +263,7 @@ public class CallScilabBridge {
      * @param parentUID the UID of the figure or console
      * @param menuName the name of the menu
      */
-    public static void removeMenu(String parentUID, String menuName) {
+    public static void removeMenu(int parentUID, String menuName) {
         SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
         if (parentTab != null) { /** Parent must exist */
             parentTab.getMenuBar().getAsSimpleMenuBar().removeMenu(menuName);
@@ -284,7 +284,7 @@ public class CallScilabBridge {
      * @return the ID of the File Chooser in the UIElementMapper
      */
 
-    public static int newExportFileChooser(String figureId) {
+    public static int newExportFileChooser(int figureId) {
         FileChooser fileChooser = ScilabFileChooser.createExportFileChooser(figureId);
         return 0;
     }
