@@ -121,23 +121,6 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTORESIZE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_ENABLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ID__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_NAME__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFO_MESSAGE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_NAME__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHECKEDMENU__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHILDMENU__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIPARENTMENU__;
-
 import org.scilab.modules.gui.editor.EditorEventListener;
 
 /**
@@ -1472,7 +1455,19 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
             break;
         case __GO_SIZE__ :
             Integer[] size = (Integer[]) value;
-            SwingScilabWindow.allScilabWindows.get(parentWindowId).setDims(new Size(size[0], size[1]));
+            SwingScilabWindow figure = SwingScilabWindow.allScilabWindows.get(parentWindowId);
+            Size oldFigureSize = figure.getDims();
+            figure.setDims(new Size(size[0], size[1]));
+            int deltaFigureX = size[0] - (int) oldFigureSize.getWidth();
+            int deltaFigureY = size[1] - (int) oldFigureSize.getHeight();
+            if ( oldFigureSize.getWidth() != 0 && oldFigureSize.getHeight() != 0
+                    && ((oldFigureSize.getWidth() != size[0]) || (oldFigureSize.getHeight() != size[1]))
+                    && ((Boolean) GraphicController.getController().getProperty(getId(), __GO_AUTORESIZE__))
+                    ) {
+                Integer[] axesSize = (Integer[]) GraphicController.getController().getProperty(getId(), __GO_AXES_SIZE__);
+                Integer[] newAxesSize = {axesSize[0] + deltaFigureX, axesSize[1] + deltaFigureY};
+                GraphicController.getController().setProperty(getId(), __GO_AXES_SIZE__, newAxesSize);  
+            }
             break;
         case __GO_POSITION__ :
             Integer[] position = (Integer[]) value;
@@ -1491,6 +1486,8 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
                 Size parentWindowSize = SwingScilabWindow.allScilabWindows.get(parentWindowId).getDims();
                 SwingScilabWindow.allScilabWindows.get(parentWindowId).setDims(
                         new Size(parentWindowSize.getWidth() + deltaX, parentWindowSize.getHeight() + deltaY));
+                Integer figureSize[] = {parentWindowSize.getWidth() + deltaX, parentWindowSize.getHeight() + deltaY};
+                GraphicController.getController().setProperty(getId(), __GO_SIZE__, figureSize);
             }
             break;
         case __GO_INFO_MESSAGE__ :
