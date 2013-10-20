@@ -200,7 +200,7 @@
                             <term>event_handler</term>
                             <listitem>
                                 <para>A character string. The name of the Scilab function which is intended
-                                    to handle the events. Not that setting an empty string will disable
+                                    to handle the events. Note that setting an empty string will disable
                                     the event handler. For more information about event handler functions see the
                                     <link linkend="eventhandlerfunctions">event handler functions</link> help.
                                 </para>

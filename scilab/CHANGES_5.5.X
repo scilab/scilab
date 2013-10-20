@@ -15,6 +15,8 @@ Scilab Bug Fixes
 
 * Bug #12769 fixed - xset("window", 1) did not set the current axes.
 
+* Bug #12910 fixed - Some typos fixed.
+
 * Bug #12938 fixed - No java compiler was available in Linux binary version.
 
 * Bug #12943 fixed - Datatips misworked when 2D plots were rotated.
