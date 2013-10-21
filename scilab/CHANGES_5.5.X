@@ -9,6 +9,8 @@ Scilab Bug Fixes
 * Bug #7705 fixed - In the Genetic algorithms help pages, documented the
                     "dimension", "minbounds" and "maxbounds" fields.
 
+* Bug #11680 fixed - GUI functions in Scilab 5.4.X were much slower than in Scilab 5.3.3.
+
 * Bug #12769 fixed - xset("window", 1) did not set the current axes.
 
 * Bug #12938 fixed - No java compiler was available in Linux binary version.
