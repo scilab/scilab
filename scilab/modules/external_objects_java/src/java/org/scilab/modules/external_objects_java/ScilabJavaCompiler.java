@@ -34,6 +34,7 @@ import javax.tools.DiagnosticCollector;
 import javax.tools.FileObject;
 import javax.tools.ForwardingJavaFileManager;
 import javax.tools.JavaCompiler;
+import javax.tools.StandardLocation;
 import javax.tools.JavaFileObject;
 import javax.tools.SimpleJavaFileObject;
 import javax.tools.StandardJavaFileManager;
@@ -111,6 +112,18 @@ public class ScilabJavaCompiler {
 
         DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<JavaFileObject>();
         StandardJavaFileManager stdFileManager = compiler.getStandardFileManager(null, Locale.getDefault(), null);
+        String cp = null;
+
+        if (compiler.getClass().getSimpleName().indexOf("Eclipse") != -1) {
+            // it seems that with the embedded ecj, the only way to set the cp is to use java.class.path...
+            cp = getClasspath();
+            System.setProperty("java.class.path", cp + File.pathSeparatorChar + System.getProperty("java.class.path"));
+        } else {
+            try {
+                stdFileManager.setLocation(StandardLocation.CLASS_PATH, getClasspathFiles());
+            } catch (Exception e) { }
+        }
+
         ClassFileManager manager = new ClassFileManager(stdFileManager);
         List<SimpleJavaFileObject> compilationUnits = new ArrayList<SimpleJavaFileObject>();
         boolean isFile = true;
@@ -133,11 +146,16 @@ public class ScilabJavaCompiler {
             compilationUnits.add(sourceString);
         }
 
-        String[] compileOptions = new String[] {"-d", BINPATH} ;
+        String[] compileOptions = new String[] {"-d", BINPATH};
         Iterable<String> options = Arrays.asList(compileOptions);
 
         CompilationTask task = compiler.getTask(null, manager, diagnostics, options, null, compilationUnits);
         boolean success = task.call();
+
+        if (cp != null) {
+            final String s = System.getProperty("java.class.path").replace(cp + File.pathSeparatorChar, "");
+            System.setProperty("java.class.path", s);
+        }
 
         if (success) {
             if (isFile) {
@@ -154,6 +172,41 @@ public class ScilabJavaCompiler {
 
             throw new ScilabJavaException(buf.toString());
         }
+    }
+
+    /**
+     * Get the current classpath with the correct separator (':' under Unix and ';' under Windows)
+     * @return the classpath
+     */
+    public static String getClasspath() {
+        URLClassLoader loader = (URLClassLoader) ClassLoader.getSystemClassLoader();
+        URL[] urls = loader.getURLs();
+        StringBuffer buffer = new StringBuffer();
+
+        for (URL url : urls) {
+            buffer.append(url.getPath()).append(File.pathSeparatorChar);
+        }
+        buffer.append(".");
+
+        return buffer.toString();
+    }
+
+    /**
+     * Get the files in the classpath
+     * @return the files
+     */
+    public static List<File> getClasspathFiles() {
+        URLClassLoader loader = (URLClassLoader) ClassLoader.getSystemClassLoader();
+        URL[] urls = loader.getURLs();
+        List<File> files = new ArrayList<File>(urls.length);
+
+        for (URL url : urls) {
+            try {
+                files.add(new File(url.toURI()));
+            } catch (Exception e) { }
+        }
+
+        return files;
     }
 
     /**

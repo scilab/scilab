@@ -42,6 +42,8 @@ Scilab Bug Fixes
 
 * Bug #13004 fixed - Debug infos were printed on an error with eoj.
 
+* Bug #13005 fixed - jcompile did not use the classpath to compile.
+
 
 Xcos Bug Fixes
 ==============
