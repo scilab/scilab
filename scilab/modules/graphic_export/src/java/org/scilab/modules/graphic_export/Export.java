@@ -128,7 +128,7 @@ public class Export {
      * @param params the export paramaters
      * @return the export status
      */
-    public static int export(Integer uid, int type, String fileName, ExportParams params, boolean headless) {
+    public static int export(int uid, int type, String fileName, ExportParams params, boolean headless) {
         // Check that the fileName contains an extension
         int dotPosition = fileName.lastIndexOf('.'); // position of the dot
         boolean extensionFound = false;
@@ -168,7 +168,7 @@ public class Export {
      * @param params the export paramaters
      * @return the export status
      */
-    public static int exportVectorial(Integer uid, int type, String fileName, ExportParams params, boolean headless) {
+    public static int exportVectorial(int uid, int type, String fileName, ExportParams params, boolean headless) {
         if (fileName == null) {
             return INVALID_FILE;
         }
@@ -193,7 +193,7 @@ public class Export {
      * @param file the file where to export
      * @param params the export paramaters
      */
-    public static int exportVectorial(Integer uid, TYPE type, File file, ExportParams params, boolean headless) throws IOException {
+    public static int exportVectorial(int uid, TYPE type, File file, ExportParams params, boolean headless) throws IOException {
         Figure figure = (Figure) GraphicController.getController().getObjectFromId(uid);
 
         if (!headless) {
@@ -268,7 +268,7 @@ public class Export {
      * @param params the export paramaters
      * @return the export status
      */
-    public static int exportBitmap(Integer uid, int type, String fileName, boolean fromScreen, ExportParams params) {
+    public static int exportBitmap(int uid, int type, String fileName, boolean fromScreen, ExportParams params) {
         if (fileName == null) {
             return INVALID_FILE;
         }
@@ -296,7 +296,7 @@ public class Export {
      * @param fromScreen if true, then use the screen view
      * @param params the export paramaters
      */
-    public static void exportBitmap(Integer uid, TYPE type, File file, boolean fromScreen, ExportParams params) throws IOException {
+    public static void exportBitmap(int uid, TYPE type, File file, boolean fromScreen, ExportParams params) throws IOException {
         if (isBitmapFormat(type)) {
             JoGLCanvas joglCanvas = null;
             if (fromScreen) {
@@ -345,7 +345,7 @@ public class Export {
      * @param file the file where to export
      * @param params the export paramaters
      */
-    public static void setVisitor(Integer uid, int type, final ExportParams params) {
+    public static void setVisitor(int uid, int type, final ExportParams params) {
         final Exporter exporter = getExporter(types[type]);
         Figure figure = (Figure) GraphicController.getController().getObjectFromId(uid);
         final Integer[] dims = figure.getAxesSize();
