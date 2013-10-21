@@ -61,12 +61,6 @@ types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, t
             if (pCtx->isGlobalExists(pstVar) == false)
             {
                 InternalType* pIT = pCtx->get(pstVar);
-                //create global variable with default value []
-                if (pIT)
-                {
-                    //protect var againt setGlobalVisible
-                    pIT->IncreaseRef();
-                }
 
                 //create a empty global variable => []
                 pCtx->createEmptyGlobalValue(pstVar);
@@ -78,8 +72,6 @@ types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, t
                 {
                     //assign old local value
                     pCtx->put(pstVar, *pIT);
-                    //unprotect var againt setGlobalVisible
-                    pIT->DecreaseRef();
                 }
             }
             else

@@ -121,6 +121,11 @@ types::InternalType* Variables::get(const Symbol& _key) const
         VarMap::const_iterator itVar = m_vars.find(_key);
         if (itVar != m_vars.end())
         {
+            if (m_iLevel != itVar->second->back()->m_iLevel && itVar->second->back()->m_bGlobal == true)
+            {
+                return getGlobalValue(_key);
+            }
+
             return itVar->second->back()->m_pIT;
         }
         else
@@ -368,13 +373,6 @@ void Variables::setGlobalVisible(const symbol::Symbol& _key, bool bVisible)
 
             pBox->m_bGlobalVisible = true;
             pBox->m_bGlobal = true;
-            //clear existing local var
-            pBox->m_pIT->DecreaseRef();
-            if (pBox->m_pIT->isDeletable())
-            {
-                delete pBox->m_pIT;
-                pBox->m_pIT = NULL;
-            }
         }
         else
         {
@@ -416,19 +414,23 @@ void Variables::removeGlobal(GlobalMap::iterator& _it)
     {
         VarBoxList* pLBox = itVar->second;
         VarBoxList::iterator itBox = pLBox->begin();
-        for (; itBox != pLBox->end() ; itBox++)
+        while (itBox != pLBox->end())
         {
             VarBox* pBox = (*itBox);
-            if (pBox->m_bGlobal == true && pBox->m_bGlobalVisible == true)
+            if (pBox->m_pIT != NULL)
             {
-                pLBox->erase(itBox);
-                //itBox iterator becomes invalid, reinit it
-                itBox = pLBox->begin();
-                if (itBox == pLBox->end())
-                {
-                    break;
-                }
+                pBox->m_bGlobal = false;
+                pBox->m_bGlobalVisible = false;
+                itBox++;
             }
+            else
+            {
+                VarBoxList::iterator itSave = itBox;
+                itSave++;
+                pLBox->erase(itBox);
+                itBox = itSave;
+            }
+
         }
 
         if (pLBox->empty())
