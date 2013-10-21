@@ -38,6 +38,8 @@ Scilab Bug Fixes
 
 * Bug #12979 fixed - exportUI did not work with vectorial export.
 
+* Bug #13004 fixed - Debug infos were printed on an error with eoj.
+
 
 Xcos Bug Fixes
 ==============
