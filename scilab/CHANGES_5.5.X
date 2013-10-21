@@ -38,6 +38,8 @@ Scilab Bug Fixes
 
 * Bug #12979 fixed - exportUI did not work with vectorial export.
 
+* Bug #13003 fixed - EOJ: add a converter to handle string to enum.
+
 * Bug #13004 fixed - Debug infos were printed on an error with eoj.
 
 
