@@ -21,6 +21,9 @@ Scilab Bug Fixes
 
 * Bug #10234 fixed - reglin function moved from CACSD to Statistics module.
 
+* Bug #10271 fixed - ordmmd now checks the consistency of the third input argument with the
+                     input matrix defined by the two first input arguments.
+
 * Bug #10273 fixed - spchol help page now displays an example showing how to use its output arguments.
 
 * Bug #11571 fixed - x_mdialog did not let the Look&Feel select the window size.
