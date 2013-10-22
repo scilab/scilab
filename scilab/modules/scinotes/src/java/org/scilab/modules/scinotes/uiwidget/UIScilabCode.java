@@ -10,35 +10,21 @@
  *
  */
 
-package org.scilab.modules.gui.uiwidget;
+package org.scilab.modules.scinotes.uiwidget;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dialog;
-import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.Image;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
-
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.JMenuBar;
 
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
 import org.scilab.modules.commons.ScilabCommonsUtils;
+import org.scilab.modules.gui.uiwidget.UIComponent;
+import org.scilab.modules.gui.uiwidget.UIWidgetException;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabEditorKit;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.ScilabLexer;
-import org.scilab.modules.gui.uiwidget.UIComponent;
-import org.scilab.modules.gui.uiwidget.UIComponentAnnotation;
-import org.scilab.modules.gui.uiwidget.UIWidgetException;
 
 /**
  * ScilabEditorPane wrapper
