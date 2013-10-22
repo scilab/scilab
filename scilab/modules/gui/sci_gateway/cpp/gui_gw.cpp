@@ -72,5 +72,17 @@ int GuiModule::Load()
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"uiputfile", &sci_uiputfile, &GuiModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"about", &sci_about, &GuiModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"fire_closing_finished", &sci_fire_closing_finished, &GuiModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"useeditor", &sci_useeditor, &GuiModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"openged", &sci_openged, &GuiModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"datatipCreate", &sci_datatipcreate, &GuiModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"datatipRemove", &sci_datatipremove, &GuiModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"plotbrowser", &sci_plotbrowser, &GuiModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"datatip_manager_mode", &sci_datatip_manager_mode, &GuiModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"datatip_toggle", &sci_datatip_toggle, &GuiModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"datatipMove", &sci_datatipmove, &GuiModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"datatip_set_style", &sci_datatip_set_style, &GuiModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"datatip_set_display", &sci_datatip_set_display, &GuiModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"datatip_set_interp", &sci_datatip_set_interp, &GuiModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"datatip_set_orient", &sci_datatip_set_orient, &GuiModule::LoadDeps, MODULE_NAME));
     return 1;
 }
