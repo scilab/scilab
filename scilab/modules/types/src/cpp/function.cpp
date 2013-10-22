@@ -234,7 +234,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
             }
             else
             {
-                std::size_t const iPos(outOrder[i] - inCopy.size() - 1);
+                std::size_t const iPos(outOrder[i] - gStr.m_iIn - 1);
                 if (tmpOut[iPos]->isDouble() && ((types::Double*)tmpOut[iPos])->isViewAsInteger())
                 {
                     types::Double* pD = tmpOut[iPos]->getAs<types::Double>();

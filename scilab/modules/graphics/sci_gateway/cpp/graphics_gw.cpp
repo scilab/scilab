@@ -104,5 +104,6 @@ int GraphicsModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"rotate_axes", &sci_rotate_axes, &GraphicsModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"is_handle_valid", &sci_is_handle_valid, &GraphicsModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"captions", &sci_Legend, &GraphicsModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"light", &sci_light, &GraphicsModule::LoadDeps, MODULE_NAME));
     return 1;
 }
