@@ -416,14 +416,21 @@ VariableType ScilabJavaEnvironment::isunwrappable(int id)
 int ScilabJavaEnvironment::compilecode(char * className, char ** code, int size)
 {
     JavaVM *vm = getScilabJavaVM();
-    const int ret = ScilabJavaCompiler::compileCode(vm, className, code, size);
-
-    if (ret != 0 && ret != -1)
+    try
     {
-        ScilabAutoCleaner::registerVariable(envId, ret);
-    }
+        const int ret = ScilabJavaCompiler::compileCode(vm, className, code, size);
 
-    return ret;
+        if (ret != 0 && ret != -1)
+        {
+            ScilabAutoCleaner::registerVariable(envId, ret);
+        }
+
+        return ret;
+    }
+    catch (const GiwsException::JniException & e)
+    {
+        throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot compile the code:\n%s"), e.getJavaDescription().c_str());
+    }
 }
 
 void ScilabJavaEnvironment::enabletrace(const char * filename)

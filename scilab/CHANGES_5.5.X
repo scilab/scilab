@@ -48,11 +48,13 @@ Scilab Bug Fixes
 
 * Bug #13000 fixed - []./int8(3) and on int8(3)./[] led to an endless recursive.
 
-* Bug #13003 fixed - EOJ: add a converter to handle string to enum.
+* Bug #13003 fixed - String to enum converter added to Java external objects.
 
 * Bug #13004 fixed - Debug infos were printed on an error with eoj.
 
 * Bug #13005 fixed - jcompile did not use the classpath to compile.
+
+* Bug #13007 fixed - Compilation errors were not returned by jcompile.
 
 
 Xcos Bug Fixes
