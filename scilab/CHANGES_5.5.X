@@ -15,6 +15,8 @@ Scilab Bug Fixes
 
 * Bug #10175 fixed - Clearer example added for sp2adj to adj2sp conversion (and backwards conversion).
 
+* Bug #10234 fixed - reglin function moved from CACSD to Statistics module.
+
 * Bug #11571 fixed - x_mdialog did not let the Look&Feel select the window size.
 
 * Bug #11680 fixed - GUI functions in Scilab 5.4.X were much slower than in Scilab 5.3.3.
