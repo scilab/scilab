@@ -54,6 +54,8 @@ Xcos Bug Fixes
 
 * Bug #12423 fixed - Data types of SWITCH2_m were not documented.
 
+* Bug #13006 fixed - Selection to Super block (in_f and out_f) was failing.
+
 
                  Changes between version 5.4.1 and 5.5.0-beta-1
                  ==============================================
