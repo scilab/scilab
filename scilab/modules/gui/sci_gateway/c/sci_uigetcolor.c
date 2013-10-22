@@ -89,12 +89,6 @@ int sci_uigetcolor(char *fname, unsigned long fname_len)
                 Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
                 return 1;
             }
-
-            if (nbCol != 1)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-                return FALSE;
-            }
         }
         else
         {
@@ -121,12 +115,6 @@ int sci_uigetcolor(char *fname, unsigned long fname_len)
             {
                 Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
                 return 1;
-            }
-
-            if (nbCol != 1)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-                return FALSE;
             }
         }
         else
@@ -194,12 +182,6 @@ int sci_uigetcolor(char *fname, unsigned long fname_len)
                 Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
                 return 1;
             }
-
-            if (nbCol != 1)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-                return FALSE;
-            }
         }
         else
         {
@@ -243,7 +225,7 @@ int sci_uigetcolor(char *fname, unsigned long fname_len)
         }
 
         /* Default green value */
-        if (VarType(firstColorIndex + 1) == sci_matrix)
+        if (checkInputArgumentType(pvApiCtx, firstColorIndex + 1, sci_matrix))
         {
             sciErr = getVarAddressFromPosition(pvApiCtx, firstColorIndex + 1, &piAddrgreenAdr);
             if (sciErr.iErr)
@@ -274,7 +256,7 @@ int sci_uigetcolor(char *fname, unsigned long fname_len)
         }
 
         /* Default blue value */
-        if (VarType(firstColorIndex + 2) == sci_matrix)
+        if (checkInputArgumentType(pvApiCtx, firstColorIndex + 2, sci_matrix))
         {
             sciErr = getVarAddressFromPosition(pvApiCtx, firstColorIndex + 2, &piAddrblueAdr);
             if (sciErr.iErr)
