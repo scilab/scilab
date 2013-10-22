@@ -8,7 +8,8 @@
 c = jcompile("Test", ["public class Test {";
 "public enum foo { ONE, TWO, THREE; }";
 "public static double bar(foo x) { return (double) x.ordinal(); }}"]);
+jimport Test;
 
-assert_checkequal(c.bar("ONE"), 0);
-assert_checkequal(c.bar("TWO"), 1);
-assert_checkequal(c.bar("THREE"), 2);
+assert_checkequal(Test.bar("ONE"), 0);
+assert_checkequal(Test.bar("TWO"), 1);
+assert_checkequal(Test.bar("THREE"), 2);
