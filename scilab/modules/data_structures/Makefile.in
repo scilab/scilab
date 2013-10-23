@@ -177,16 +177,13 @@ libscidata_structures_la_DEPENDENCIES = libscidata_structures-algo.la
 am__objects_2 = libscidata_structures_la-sci_lsslist.lo \
 	libscidata_structures_la-sci_glist.lo \
 	libscidata_structures_la-sci_definedfields.lo \
-	libscidata_structures_la-sci_lstcat.lo \
 	libscidata_structures_la-gw_data_structures1.lo \
 	libscidata_structures_la-gw_data_structures2.lo \
-	libscidata_structures_la-sci_lstsize.lo \
 	libscidata_structures_la-sci_rlist.lo
 am__objects_3 = libscidata_structures_la-data_structures_gw.lo \
 	libscidata_structures_la-sci_getfield.lo \
 	libscidata_structures_la-sci_setfield.lo
-am__objects_4 = sci_f_definedfields.lo sci_f_lstsize.lo \
-	sci_f_lstcat.lo sci_f_list.lo
+am__objects_4 = sci_f_definedfields.lo
 am_libscidata_structures_la_OBJECTS = $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
 libscidata_structures_la_OBJECTS =  \
@@ -582,10 +579,8 @@ GATEWAY_C_SOURCES = \
 sci_gateway/c/sci_lsslist.c \
 sci_gateway/c/sci_glist.c \
 sci_gateway/c/sci_definedfields.c \
-sci_gateway/c/sci_lstcat.c \
 sci_gateway/c/gw_data_structures1.c \
 sci_gateway/c/gw_data_structures2.c \
-sci_gateway/c/sci_lstsize.c \
 sci_gateway/c/sci_rlist.c
 
 GATEWAY_CPP_SOURCES = \
@@ -594,10 +589,7 @@ sci_gateway/cpp/sci_getfield.cpp \
 sci_gateway/cpp/sci_setfield.cpp
 
 GATEWAY_FORTRAN_SOURCES = \
-sci_gateway/fortran/sci_f_definedfields.f \
-sci_gateway/fortran/sci_f_lstsize.f \
-sci_gateway/fortran/sci_f_lstcat.f \
-sci_gateway/fortran/sci_f_list.f
+sci_gateway/fortran/sci_f_definedfields.f
 
 libscidata_structures_la_CPPFLAGS = \
 -I$(srcdir)/includes/ \
@@ -812,8 +804,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-sci_getfield.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-sci_glist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-sci_lsslist.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-sci_lstcat.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-sci_lstsize.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-sci_rlist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-sci_setfield.Plo@am__quote@
 
@@ -859,13 +849,6 @@ libscidata_structures_la-sci_definedfields.lo: sci_gateway/c/sci_definedfields.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidata_structures_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscidata_structures_la-sci_definedfields.lo `test -f 'sci_gateway/c/sci_definedfields.c' || echo '$(srcdir)/'`sci_gateway/c/sci_definedfields.c
 
-libscidata_structures_la-sci_lstcat.lo: sci_gateway/c/sci_lstcat.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidata_structures_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscidata_structures_la-sci_lstcat.lo -MD -MP -MF $(DEPDIR)/libscidata_structures_la-sci_lstcat.Tpo -c -o libscidata_structures_la-sci_lstcat.lo `test -f 'sci_gateway/c/sci_lstcat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lstcat.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscidata_structures_la-sci_lstcat.Tpo $(DEPDIR)/libscidata_structures_la-sci_lstcat.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_lstcat.c' object='libscidata_structures_la-sci_lstcat.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidata_structures_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscidata_structures_la-sci_lstcat.lo `test -f 'sci_gateway/c/sci_lstcat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lstcat.c
-
 libscidata_structures_la-gw_data_structures1.lo: sci_gateway/c/gw_data_structures1.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidata_structures_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscidata_structures_la-gw_data_structures1.lo -MD -MP -MF $(DEPDIR)/libscidata_structures_la-gw_data_structures1.Tpo -c -o libscidata_structures_la-gw_data_structures1.lo `test -f 'sci_gateway/c/gw_data_structures1.c' || echo '$(srcdir)/'`sci_gateway/c/gw_data_structures1.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscidata_structures_la-gw_data_structures1.Tpo $(DEPDIR)/libscidata_structures_la-gw_data_structures1.Plo
@@ -879,13 +862,6 @@ libscidata_structures_la-gw_data_structures2.lo: sci_gateway/c/gw_data_structure
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_data_structures2.c' object='libscidata_structures_la-gw_data_structures2.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidata_structures_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscidata_structures_la-gw_data_structures2.lo `test -f 'sci_gateway/c/gw_data_structures2.c' || echo '$(srcdir)/'`sci_gateway/c/gw_data_structures2.c
-
-libscidata_structures_la-sci_lstsize.lo: sci_gateway/c/sci_lstsize.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidata_structures_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscidata_structures_la-sci_lstsize.lo -MD -MP -MF $(DEPDIR)/libscidata_structures_la-sci_lstsize.Tpo -c -o libscidata_structures_la-sci_lstsize.lo `test -f 'sci_gateway/c/sci_lstsize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lstsize.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscidata_structures_la-sci_lstsize.Tpo $(DEPDIR)/libscidata_structures_la-sci_lstsize.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_lstsize.c' object='libscidata_structures_la-sci_lstsize.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidata_structures_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscidata_structures_la-sci_lstsize.lo `test -f 'sci_gateway/c/sci_lstsize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lstsize.c
 
 libscidata_structures_la-sci_rlist.lo: sci_gateway/c/sci_rlist.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidata_structures_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscidata_structures_la-sci_rlist.lo -MD -MP -MF $(DEPDIR)/libscidata_structures_la-sci_rlist.Tpo -c -o libscidata_structures_la-sci_rlist.lo `test -f 'sci_gateway/c/sci_rlist.c' || echo '$(srcdir)/'`sci_gateway/c/sci_rlist.c
@@ -971,15 +947,6 @@ insertfield.lo: src/fortran/insertfield.f
 
 sci_f_definedfields.lo: sci_gateway/fortran/sci_f_definedfields.f
 	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_definedfields.lo `test -f 'sci_gateway/fortran/sci_f_definedfields.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_definedfields.f
-
-sci_f_lstsize.lo: sci_gateway/fortran/sci_f_lstsize.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_lstsize.lo `test -f 'sci_gateway/fortran/sci_f_lstsize.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_lstsize.f
-
-sci_f_lstcat.lo: sci_gateway/fortran/sci_f_lstcat.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_lstcat.lo `test -f 'sci_gateway/fortran/sci_f_lstcat.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_lstcat.f
-
-sci_f_list.lo: sci_gateway/fortran/sci_f_list.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_list.lo `test -f 'sci_gateway/fortran/sci_f_list.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_list.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

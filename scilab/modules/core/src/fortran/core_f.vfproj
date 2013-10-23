@@ -114,7 +114,6 @@
 		<File RelativePath=".\stacki2d.f"/>
 		<File RelativePath=".\stackr2d.f"/>
 		<File RelativePath="whatln.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\where.f"/>
 		<File RelativePath=".\withf2c.f"/>
 		<File RelativePath="xerbla.f"/></Filter>
 		<File RelativePath="..\..\sci_gateway\core_gateway.xml"/>

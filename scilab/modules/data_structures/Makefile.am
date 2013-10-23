@@ -18,10 +18,8 @@ GATEWAY_C_SOURCES = \
 sci_gateway/c/sci_lsslist.c \
 sci_gateway/c/sci_glist.c \
 sci_gateway/c/sci_definedfields.c \
-sci_gateway/c/sci_lstcat.c \
 sci_gateway/c/gw_data_structures1.c \
 sci_gateway/c/gw_data_structures2.c \
-sci_gateway/c/sci_lstsize.c \
 sci_gateway/c/sci_rlist.c
 
 GATEWAY_CPP_SOURCES = \
@@ -30,10 +28,7 @@ sci_gateway/cpp/sci_getfield.cpp \
 sci_gateway/cpp/sci_setfield.cpp
 
 GATEWAY_FORTRAN_SOURCES = \
-sci_gateway/fortran/sci_f_definedfields.f \
-sci_gateway/fortran/sci_f_lstsize.f \
-sci_gateway/fortran/sci_f_lstcat.f \
-sci_gateway/fortran/sci_f_list.f
+sci_gateway/fortran/sci_f_definedfields.f
 
 libscidata_structures_la_CPPFLAGS = \
 -I$(srcdir)/includes/ \

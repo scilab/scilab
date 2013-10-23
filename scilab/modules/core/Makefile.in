@@ -301,8 +301,7 @@ am__objects_6 = libscicore_la-gw_core.lo libscicore_la-gw_user.lo \
 	libscicore_la-gw_user2.lo libscicore_la-sci_type.lo \
 	libscicore_la-sci_getdebuginfo.lo \
 	libscicore_la-sci_readgateway.lo
-am__objects_7 = where.lo
-am__objects_8 = libscicore_la-core_gw.lo \
+am__objects_7 = libscicore_la-core_gw.lo \
 	libscicore_la-sci_getmodules.lo libscicore_la-sci_clear.lo \
 	libscicore_la-sci_banner.lo libscicore_la-sci_quit.lo \
 	libscicore_la-sci_exit.lo libscicore_la-sci_argn.lo \
@@ -319,8 +318,7 @@ am__objects_8 = libscicore_la-core_gw.lo \
 	libscicore_la-sci_funcprot.lo libscicore_la-sci_mode.lo \
 	libscicore_la-sci_typename.lo libscicore_la-sci_where.lo \
 	libscicore_la-sci_getmemory.lo
-am_libscicore_la_OBJECTS = $(am__objects_6) $(am__objects_7) \
-	$(am__objects_8)
+am_libscicore_la_OBJECTS = $(am__objects_6) $(am__objects_7)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
 libscicore_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
@@ -764,9 +762,6 @@ GATEWAY_C_SOURCES = \
 	sci_gateway/c/sci_getdebuginfo.c \
 	sci_gateway/c/sci_readgateway.c
 
-GATEWAY_FORTRAN_SOURCES = \
-sci_gateway/fortran/where.f
-
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/core_gw.cpp \
 	sci_gateway/cpp/sci_getmodules.cpp \
@@ -842,7 +837,7 @@ libscicore_la_LDFLAGS = $(XML_LIBS) $(AM_LDFLAGS)
 CHECK_SRC = $(CORE_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscicore_la_CPPFLAGS)
 libscicore_algo_la_SOURCES = $(CORE_C_SOURCES) $(CORE_CPP_SOURCES) $(CORE_FORTRAN_SOURCES)
-libscicore_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscicore_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscicore_algo_la_CPPFLAGS = $(libscicore_la_CPPFLAGS)
 
 # Commented because it is easier to comment first the core module
@@ -2063,9 +2058,6 @@ backspace_inter.lo: src/fortran/backspace_inter.f
 
 relocstack.lo: src/fortran/relocstack.f
 	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o relocstack.lo `test -f 'src/fortran/relocstack.f' || echo '$(srcdir)/'`src/fortran/relocstack.f
-
-where.lo: sci_gateway/fortran/where.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o where.lo `test -f 'sci_gateway/fortran/where.f' || echo '$(srcdir)/'`sci_gateway/fortran/where.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

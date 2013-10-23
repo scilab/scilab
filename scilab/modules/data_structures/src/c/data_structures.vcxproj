@@ -207,8 +207,6 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile Include="..\..\sci_gateway\c\sci_definedfields.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_glist.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_lsslist.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_lstcat.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_lstsize.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_rlist.c" />
   </ItemGroup>
   <ItemGroup>

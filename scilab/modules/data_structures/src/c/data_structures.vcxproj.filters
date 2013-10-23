@@ -41,12 +41,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_lsslist.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_lstcat.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_lstsize.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_rlist.c">
       <Filter>Source Files</Filter>
     </ClCompile>
