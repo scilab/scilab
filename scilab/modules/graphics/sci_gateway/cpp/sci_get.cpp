@@ -29,6 +29,9 @@ extern "C"
 #include "CurrentSubwin.h"
 #include "HandleManagement.h"
 #include "GetHashTable.h"
+#include "returnProperty.h"
+#include "getConsoleIdentifier.h"
+#include "GetScreenProperty.h"
 }
 /*--------------------------------------------------------------------------*/
 
@@ -38,10 +41,17 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
     types::String* pS = NULL;
     const char* pobjUID = NULL;
     types::InternalType* pOut = NULL;
+    double pdbll1 = 0;
 
-    if (in.size() < 1)
+    if (in.size() > 2)
     {
-        //Error
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "get", 1, 2);
+        return types::Function::Error;
+    }
+
+    if (_iRetCount > 1)
+    {
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "get", 1);
         return types::Function::Error;
     }
 
@@ -54,7 +64,59 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
         return types::Function::OK;
     }
 
-    if (p1->isHandle())
+    if (p1->isDouble())
+    {
+        double pdbll1 = p1->getAs<types::Double>()->get(0);
+        if (pdbll1 == 0) /* Root property */
+        {
+            if (in.size() == 1)
+            {
+                types::InternalType* pIT = static_cast<types::InternalType*>(sciReturnHandle(getHandle(getConsoleIdentifier())));
+                if (pIT == NULL)
+                {
+                    /* An error has occurred */
+                    return types::Function::OK;
+                }
+
+                out.push_back(pIT);
+            }
+            else // in.size == 2
+            {
+                if (in[1]->isString() == false)
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "get", 2);
+                    return types::Function::Error;
+                }
+
+                types::String* pStr = in[1]->getAs<types::String>();
+                if (pStr->isScalar() == false)
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "get", 2);
+                    return types::Function::Error;
+                }
+
+                char* pstr = wide_string_to_UTF8(pStr->get(0));
+                void* pvPropScreen = GetScreenProperty(NULL, pstr);
+
+                if (pvPropScreen == NULL) /* Return property */
+                {
+                    Scierror(999, _("%s: Could not read property '%s' for root object.\n"), "get", pstr);
+                    FREE(pstr);
+                    return types::Function::Error;
+                }
+
+                FREE(pstr);
+                out.push_back(static_cast<types::InternalType*>(pvPropScreen));
+            }
+        }
+        else
+        {
+            ExecVisitor exec;
+            Overload::generateNameAndCall(L"get", in, _iRetCount, out, &exec);
+        }
+        return types::Function::OK;
+    }
+    else if (p1->isHandle())
     {
         if (in.size() != 2)
         {
