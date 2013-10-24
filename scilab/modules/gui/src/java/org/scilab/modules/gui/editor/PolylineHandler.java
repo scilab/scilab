@@ -14,17 +14,13 @@
 package org.scilab.modules.gui.editor;
 
 
+import org.scilab.forge.scirenderer.tranformations.Vector3d;
+import org.scilab.modules.graphic_objects.PolylineData;
+import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.renderer.CallRenderer;
-
-import org.scilab.modules.gui.editor.ObjectSearcher;
-import org.scilab.modules.graphic_objects.PolylineData;
-import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
-import org.scilab.modules.renderer.CallRenderer;
-import org.scilab.modules.graphic_objects.axes.Axes;
 
 
 
@@ -104,7 +100,7 @@ public class PolylineHandler {
 
             //Current point
             Vector3d planePoint = new Vector3d(datax[0], datay[0], dataz[0]);
-            Vector3d planeNorm = new Vector3d(0.0, 0.0, 1.0);
+            //Vector3d planeNorm = new Vector3d(0.0, 0.0, 1.0);
             //2d coords for current click
             double[] pos = {1.0 * nextPosition[0], 1.0 * nextPosition[1], 1.0};
             double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
@@ -120,7 +116,7 @@ public class PolylineHandler {
             //3d ray for last click
             double[] c3d3 = AxesDrawer.compute3dViewCoordinates(axesObj, c2d2);
             c2d2[2] += 1.0;
-            double[] c3d4 = AxesDrawer.compute3dViewCoordinates(axesObj, c2d2);
+            //double[] c3d4 = AxesDrawer.compute3dViewCoordinates(axesObj, c2d2);
 
             //3d current click point and dir
             Vector3d v0 = new Vector3d(c3d1);
@@ -128,7 +124,7 @@ public class PolylineHandler {
             Vector3d vdir = v1.minus(v0);
             //3d old click point and dir
             Vector3d w0 = new Vector3d(c3d3);
-            Vector3d w1 = new Vector3d(c3d4);
+            //Vector3d w1 = new Vector3d(c3d4);
             Vector3d wdir = v1.minus(v0);
 
             //if the dir is parallel to the plane there isn't intersection

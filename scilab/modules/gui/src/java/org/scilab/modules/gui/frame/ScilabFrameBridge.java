@@ -215,7 +215,7 @@ public class ScilabFrameBridge {
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public static void setRelief(Frame frame, String reliefType) {
-        frame.getAsSimpleFrame().setRelief(reliefType);
+        frame.getAsSimpleFrame().setWidgetRelief(reliefType);
     }
 
     /**

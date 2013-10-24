@@ -25,6 +25,7 @@ import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.utils.MarkSizeUnitType;
 import org.scilab.modules.graphic_objects.datatip.Datatip;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
@@ -78,7 +79,7 @@ public class DatatipTextDrawer extends TextManager {
         drawingTools.getTransformationManager().useWindowCoordinate();
 
         Integer size = datatip.getMarkSize();
-        Integer unit = datatip.getMarkSizeUnit();
+        Integer unit = MarkSizeUnitType.enumToInt(datatip.getMarkSizeUnit());
 
         /* calculate the size of the mark to dont draw the text over the mark*/
         double finalSize = (unit == 1) ? (8.0 + 2.0 * size) : size;
@@ -163,7 +164,7 @@ public class DatatipTextDrawer extends TextManager {
             Vector3d[] cornerPositions = currentVisitor.getDatatipTextDrawer().computeTextPosition(currentProj, datatip, textBoxVectors, spriteDim);
 
             Integer size = datatip.getMarkSize();
-            Integer unit = datatip.getMarkSizeUnit();
+            Integer unit = MarkSizeUnitType.enumToInt(datatip.getMarkSizeUnit());
 
             /* calculate the size of the mark to dont position the text over the mark*/
             double finalSize = (unit == 1) ? (8.0 + 2.0 * size) : size;

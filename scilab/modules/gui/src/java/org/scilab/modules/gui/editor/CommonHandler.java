@@ -14,13 +14,13 @@
 package org.scilab.modules.gui.editor;
 
 
+import org.scilab.modules.graphic_objects.PolylineData;
+import org.scilab.modules.graphic_objects.SurfaceData;
+import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
-import org.scilab.modules.graphic_objects.PolylineData;
-import org.scilab.modules.graphic_objects.SurfaceData;
 
 
 /**

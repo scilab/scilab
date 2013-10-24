@@ -19,7 +19,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKBOX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_EDIT__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTNAME__;
@@ -27,38 +26,37 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTUNITS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTWEIGHT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOX__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP_SIZE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_POPUPMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RADIOBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_SIZE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TOOLTIPSTRING__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TOOLTIPSTRING_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TOOLTIPSTRING_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TOOLTIPSTRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_UNITS__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
 
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.GraphicObjectPropertyType;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 /**
  * @author Bruno JOFRET
@@ -88,6 +86,9 @@ public class Uicontrol extends GraphicObject {
     private static final String DEFAULTFONTANGLE = DEFAULTFONTWEIGHT;
     private static final String STRING_SEPARATOR = "|";
 
+    private static final double DEFAULT_SLIDER_STEP_0 = 0.01;
+    private static final double DEFAULT_SLIDER_STEP_1 = 0.1;
+
     private UicontrolStyle style;
     private Double[] backgroundColor = {DEFAULT_RED_BACKGROUND, DEFAULT_GREEN_BACKGROUND, DEFAULT_BLUE_BACKGROUND};
     private boolean enable = true;
@@ -100,16 +101,16 @@ public class Uicontrol extends GraphicObject {
     private String horizontalAlignment = "center";
     private Integer[] listboxTop;
     private double max = 1.0;
-    private double min;
+    private double min = 0.0;
     private Double[] position = {DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT};
     private String relief = RAISED_RELIEF;
-    private Double[] sliderStep = {0.01, 0.1};
+    private Double[] sliderStep = {DEFAULT_SLIDER_STEP_0, DEFAULT_SLIDER_STEP_1};
     private String[] string = {""};
-    private int stringColNb = 1; // Used for tables
     private String[] tooltipString = {""};
     private String units = "pixels";
     private Double[] value;
     private String verticalAlignment = "middle";
+    private boolean opaque = true;
 
     /**
      * All uicontrol properties
@@ -135,14 +136,13 @@ public class Uicontrol extends GraphicObject {
         SLIDERSTEP,
         STRING,
         STRING_SIZE,
-        STRING_COLNB,
         RELIEF,
         TOOLTIPSTRING,
         TOOLTIPSTRING_SIZE,
         UNITS,
         VALUE,
         VALUE_SIZE,
-        VERTICALALIGNMENT
+        VERTICALALIGNMENT,
     };
 
     /**
@@ -292,8 +292,6 @@ public class Uicontrol extends GraphicObject {
                 return UicontrolProperty.STRING;
             case __GO_UI_STRING_SIZE__ :
                 return UicontrolProperty.STRING_SIZE;
-            case __GO_UI_STRING_COLNB__ :
-                return UicontrolProperty.STRING_COLNB;
             case __GO_UI_TOOLTIPSTRING__ :
                 return UicontrolProperty.TOOLTIPSTRING;
             case __GO_UI_TOOLTIPSTRING_SIZE__ :
@@ -320,25 +318,25 @@ public class Uicontrol extends GraphicObject {
         if (property == UicontrolProperty.STYLE) {
             return getStyle();
         } else if (property == UicontrolProperty.BACKGROUNDCOLOR) {
-            return getBackgroundColor();
+            return getBackgroundcolor();
         } else if (property == UicontrolProperty.ENABLE) {
             return getEnable();
         } else if (property == UicontrolProperty.FONTANGLE) {
-            return getFontAngle();
+            return getFontangle();
         } else if (property == UicontrolProperty.FONTNAME) {
-            return getFontName();
+            return getFontname();
         } else if (property == UicontrolProperty.FONTSIZE) {
-            return getFontSize();
+            return getFontsize();
         } else if (property == UicontrolProperty.FONTUNITS) {
-            return getFontUnits();
+            return getFontunits();
         } else if (property == UicontrolProperty.FONTWEIGHT) {
-            return getFontWeight();
+            return getFontweight();
         } else if (property == UicontrolProperty.FOREGROUNDCOLOR) {
-            return getForegroundColor();
+            return getForegroundcolor();
         } else if (property == UicontrolProperty.HORIZONTALALIGNMENT) {
-            return getHorizontalAlignment();
+            return getHorizontalalignment();
         } else if (property == UicontrolProperty.LISTBOXTOP) {
-            return getListboxTop();
+            return getListboxtop();
         } else if (property == UicontrolProperty.LISTBOXTOP_SIZE) {
             return getListboxTopSize();
         } else if (property == UicontrolProperty.MAX) {
@@ -346,29 +344,27 @@ public class Uicontrol extends GraphicObject {
         } else if (property == UicontrolProperty.MIN) {
             return getMin();
         } else if (property == UicontrolProperty.POSITION) {
-            return getUiPosition();
+            return getPosition();
         } else if (property == UicontrolProperty.RELIEF) {
             return getRelief();
         } else if (property == UicontrolProperty.SLIDERSTEP) {
-            return getSliderStep();
+            return getSliderstep();
         } else if (property == UicontrolProperty.STRING) {
             return getString();
         } else if (property == UicontrolProperty.STRING_SIZE) {
             return getString().length;
-        } else if (property == UicontrolProperty.STRING_COLNB) {
-            return getStringColNb();
         } else if (property == UicontrolProperty.TOOLTIPSTRING) {
-            return getTooltipString();
+            return getTooltipstring();
         } else if (property == UicontrolProperty.TOOLTIPSTRING_SIZE) {
-            return getTooltipString().length;
+            return getTooltipstring().length;
         } else if (property == UicontrolProperty.UNITS) {
             return getUnits();
         } else if (property == UicontrolProperty.VALUE) {
-            return getUiValue();
+            return getValue();
         } else if (property == UicontrolProperty.VALUE_SIZE) {
             return getUiValueSize();
         } else if (property == UicontrolProperty.VERTICALALIGNMENT) {
-            return getVerticalAlignment();
+            return getVerticalalignment();
         } else {
             return super.getProperty(property);
         }
@@ -390,47 +386,45 @@ public class Uicontrol extends GraphicObject {
             case STYLE:
                 return setStyle((Integer) value);
             case BACKGROUNDCOLOR:
-                return setBackgroundColor((Double[]) value);
+                return setBackgroundcolor((Double[]) value);
             case ENABLE:
                 return setEnable((Boolean) value);
             case FONTANGLE:
-                return setFontAngle((String) value);
+                return setFontangle((String) value);
             case FONTNAME:
-                return setFontName((String) value);
+                return setFontname((String) value);
             case FONTSIZE:
-                return setFontSize((Double) value);
+                return setFontsize((Double) value);
             case FONTUNITS:
-                return setFontUnits((String) value);
+                return setFontunits((String) value);
             case FONTWEIGHT:
-                return setFontWeight((String) value);
+                return setFontweight((String) value);
             case FOREGROUNDCOLOR:
-                return setForegroundColor((Double[]) value);
+                return setForegroundcolor((Double[]) value);
             case HORIZONTALALIGNMENT:
-                return setHorizontalAlignment((String) value);
+                return setHorizontalalignment((String) value);
             case LISTBOXTOP:
-                return setListboxTop((Integer[]) value);
+                return setListboxtop((Integer[]) value);
             case MAX:
                 return setMax((Double) value);
             case MIN:
                 return setMin((Double) value);
             case POSITION:
-                return setUiPosition((Double[]) value);
+                return setPosition((Double[]) value);
             case RELIEF:
                 return setRelief((String) value);
             case SLIDERSTEP:
-                return setSliderStep((Double[]) value);
+                return setSliderstep((Double[]) value);
             case STRING:
                 return setString((String[]) value);
-            case STRING_COLNB:
-                return setStringColNb((Integer) value);
             case TOOLTIPSTRING:
-                return setTooltipString((String[]) value);
+                return setTooltipstring((String[]) value);
             case UNITS:
                 return setUnits((String) value);
             case VALUE:
-                return setUiValue((Double[]) value);
+                return setValue((Double[]) value);
             case VERTICALALIGNMENT:
-                return setVerticalAlignment((String) value);
+                return setVerticalalignment((String) value);
             default:
                 return super.setProperty(property, value);
         }
@@ -460,11 +454,30 @@ public class Uicontrol extends GraphicObject {
     }
 
     /* Background Color */
-    public Double[] getBackgroundColor() {
+    public Double[] getBackground() {
+        return getBackgroundcolor();
+    }
+
+    public Double[] getBack() {
+        return getBackgroundcolor();
+    }
+
+    public Double[] getBackgroundcolor() {
         return this.backgroundColor;
     }
 
-    public UpdateStatus setBackgroundColor(Double[] colors) {
+    public UpdateStatus setBack(Double[] colors) {
+        GraphicController.getController().setRealPropName("backgroundcolor");
+        return setBackgroundcolor(colors);
+    }
+
+    public UpdateStatus setBackground(Double[] colors) {
+        GraphicController.getController().setRealPropName("backgroundcolor");
+        return setBackgroundcolor(colors);
+    }
+
+    public UpdateStatus setBackgroundcolor(Double[] colors) {
+        GraphicController.getController().setRealPropName("backgroundcolor");
         if (Arrays.equals(colors, this.backgroundColor)) {
             return UpdateStatus.NoChange;
         }
@@ -487,11 +500,12 @@ public class Uicontrol extends GraphicObject {
     }
 
     /* FontAngle */
-    public String getFontAngle() {
+    public String getFontangle() {
         return this.fontAngle;
     }
 
-    public UpdateStatus setFontAngle(String fontAngle) {
+    public UpdateStatus setFontangle(String fontAngle) {
+        GraphicController.getController().setRealPropName("fontangle");
         if (this.fontAngle.equals(fontAngle)) {
             return UpdateStatus.NoChange;
         }
@@ -500,11 +514,11 @@ public class Uicontrol extends GraphicObject {
     }
 
     /* FontName */
-    public String getFontName() {
+    public String getFontname() {
         return this.fontName;
     }
 
-    public UpdateStatus setFontName(String fontName) {
+    public UpdateStatus setFontname(String fontName) {
         if (this.fontName.equals(fontName)) {
             return UpdateStatus.NoChange;
         }
@@ -513,11 +527,11 @@ public class Uicontrol extends GraphicObject {
     }
 
     /* FontSize */
-    public double getFontSize() {
+    public double getFontsize() {
         return this.fontSize;
     }
 
-    public UpdateStatus setFontSize(double fontSize) {
+    public UpdateStatus setFontsize(double fontSize) {
         if (this.fontSize == fontSize) {
             return UpdateStatus.NoChange;
         }
@@ -526,11 +540,11 @@ public class Uicontrol extends GraphicObject {
     }
 
     /* FontUnits */
-    public String getFontUnits() {
+    public String getFontunits() {
         return this.fontUnits;
     }
 
-    public UpdateStatus setFontUnits(String fontUnits) {
+    public UpdateStatus setFontunits(String fontUnits) {
         if (this.fontUnits.equals(fontUnits)) {
             return UpdateStatus.NoChange;
         }
@@ -539,11 +553,11 @@ public class Uicontrol extends GraphicObject {
     }
 
     /* FontWeight */
-    public String getFontWeight() {
+    public String getFontweight() {
         return this.fontWeight;
     }
 
-    public UpdateStatus setFontWeight(String fontWeight) {
+    public UpdateStatus setFontweight(String fontWeight) {
         if (this.fontWeight.equals(fontWeight)) {
             return UpdateStatus.NoChange;
         }
@@ -552,11 +566,29 @@ public class Uicontrol extends GraphicObject {
     }
 
     /* Foreground Color */
-    public Double[] getForegroundColor() {
+    public Double[] getForegroundcolor() {
         return this.foregroundColor;
     }
 
-    public UpdateStatus setForegroundColor(Double[] colors) {
+    public Double[] getForeground() {
+        return this.foregroundColor;
+    }
+
+    public Double[] getFore() {
+        return this.foregroundColor;
+    }
+
+    public UpdateStatus setForeground(Double[] colors) {
+        GraphicController.getController().setRealPropName("foregroundcolor");
+        return setForegroundcolor(colors);
+    }
+
+    public UpdateStatus setFore(Double[] colors) {
+        GraphicController.getController().setRealPropName("foregroundcolor");
+        return setForegroundcolor(colors);
+    }
+
+    public UpdateStatus setForegroundcolor(Double[] colors) {
         if (Arrays.equals(this.foregroundColor, colors)) {
             return UpdateStatus.NoChange;
         }
@@ -565,11 +597,20 @@ public class Uicontrol extends GraphicObject {
     }
 
     /* Horizontal Alignment */
-    public String getHorizontalAlignment() {
+    public String getHorizontalalignment() {
         return this.horizontalAlignment;
     }
 
-    public UpdateStatus setHorizontalAlignment(String alignment) {
+    public String getHorizontal() {
+        return this.horizontalAlignment;
+    }
+
+    public UpdateStatus setHorizontal(String alignment) {
+        GraphicController.getController().setRealPropName("horizontalalignment");
+        return setHorizontalalignment(alignment);
+    }
+
+    public UpdateStatus setHorizontalalignment(String alignment) {
         if (this.horizontalAlignment.equals(alignment)) {
             return UpdateStatus.NoChange;
         }
@@ -582,11 +623,11 @@ public class Uicontrol extends GraphicObject {
         return (listboxTop != null ? listboxTop.length : 0);
     }
 
-    public Integer[] getListboxTop() {
+    public Integer[] getListboxtop() {
         return this.listboxTop;
     }
 
-    public UpdateStatus setListboxTop(Integer[] listboxTop) {
+    public UpdateStatus setListboxtop(Integer[] listboxTop) {
         if (Arrays.equals(this.listboxTop, listboxTop)) {
             return UpdateStatus.NoChange;
         }
@@ -603,6 +644,13 @@ public class Uicontrol extends GraphicObject {
         if (this.max == max) {
             return UpdateStatus.NoChange;
         }
+
+        //update sliderStep
+        if (sliderStep[0] == DEFAULT_SLIDER_STEP_0 && sliderStep[1] == DEFAULT_SLIDER_STEP_1) {
+            sliderStep[0] = DEFAULT_SLIDER_STEP_0 * (max - min);
+            sliderStep[1] = DEFAULT_SLIDER_STEP_1 * (max - min);
+        }
+
         this.max = max;
         return UpdateStatus.Success;
     }
@@ -616,16 +664,32 @@ public class Uicontrol extends GraphicObject {
         if (this.min == min) {
             return UpdateStatus.NoChange;
         }
+
+        //update sliderStep
+        if (sliderStep[0] == DEFAULT_SLIDER_STEP_0 && sliderStep[1] == DEFAULT_SLIDER_STEP_1) {
+            sliderStep[0] = DEFAULT_SLIDER_STEP_0 * (max - min);
+            sliderStep[1] = DEFAULT_SLIDER_STEP_1 * (max - min);
+        }
+
         this.min = min;
         return UpdateStatus.Success;
     }
 
     /* Position */
-    public Double[] getUiPosition() {
+    public Double[] getPosition() {
         return this.position;
     }
 
-    public UpdateStatus setUiPosition(Double[] position) {
+    public Double[] getPos() {
+        return this.position;
+    }
+
+    public UpdateStatus setPos(Double[] position) {
+        GraphicController.getController().setRealPropName("position");
+        return setPosition(position);
+    }
+
+    public UpdateStatus setPosition(Double[] position) {
         if (Arrays.equals(this.position, position)) {
             return UpdateStatus.NoChange;
         }
@@ -654,6 +718,14 @@ public class Uicontrol extends GraphicObject {
         return this.string;
     }
 
+    public String[] getStr() {
+        return getString();
+    }
+
+    public UpdateStatus setStr(String[] string) {
+        GraphicController.getController().setRealPropName("string");
+        return setString(string);
+    }
     /**
      * Set the string
      * @param string the string
@@ -675,32 +747,19 @@ public class Uicontrol extends GraphicObject {
         return UpdateStatus.Success;
     }
 
-    /**
-     * Get the string column number
-     * @return the number of columns
-     */
-    public int getStringColNb() {
-        return stringColNb;
+    public String[] getText() {
+        return getString();
     }
 
-    /**
-     * Set the string column number
-     * @param stringColNb the number of columns
-     */
-    public UpdateStatus setStringColNb(Integer stringColNb) {
-        if (this.stringColNb == stringColNb) {
-            return UpdateStatus.NoChange;
-        }
-        this.stringColNb = stringColNb;
-        return UpdateStatus.Success;
+    public UpdateStatus setText(String[] string) {
+        return this.setString(string);
     }
-
 
     /**
      * Get the tooltip string
      * @return the tooltip string
      */
-    public String[] getTooltipString() {
+    public String[] getTooltipstring() {
         return this.tooltipString;
     }
 
@@ -708,7 +767,7 @@ public class Uicontrol extends GraphicObject {
      * Set the tooltip string
      * @param tooltipString the tooltip string
      */
-    public UpdateStatus setTooltipString(String[] tooltipString) {
+    public UpdateStatus setTooltipstring(String[] tooltipString) {
         if (Arrays.equals(this.tooltipString, tooltipString)) {
             return UpdateStatus.NoChange;
         }
@@ -717,11 +776,11 @@ public class Uicontrol extends GraphicObject {
     }
 
     /* Slider Step */
-    public Double[] getSliderStep() {
+    public Double[] getSliderstep() {
         return this.sliderStep;
     }
 
-    public UpdateStatus setSliderStep(Double[] sliderStep) {
+    public UpdateStatus setSliderstep(Double[] sliderStep) {
         if (Arrays.equals(this.sliderStep, sliderStep)) {
             return UpdateStatus.NoChange;
         }
@@ -747,11 +806,11 @@ public class Uicontrol extends GraphicObject {
         return (value != null ? value.length : 0);
     }
 
-    public Double[] getUiValue() {
+    public Double[] getValue() {
         return this.value;
     }
 
-    public UpdateStatus setUiValue(Double[] value) {
+    public UpdateStatus setValue(Double[] value) {
         if (Arrays.equals(this.value, value)) {
             return UpdateStatus.NoChange;
         }
@@ -760,15 +819,38 @@ public class Uicontrol extends GraphicObject {
     }
 
     /* Vertical Alignment */
-    public String getVerticalAlignment() {
+    public String getVerticalalignment() {
         return this.verticalAlignment;
     }
 
-    public UpdateStatus setVerticalAlignment(String alignment) {
+    public String getVertical() {
+        return this.verticalAlignment;
+    }
+
+    public UpdateStatus setVertical(String alignment) {
+        GraphicController.getController().setRealPropName("verticalalignment");
+        return setVerticalalignment(alignment);
+    }
+
+    public UpdateStatus setVerticalalignment(String alignment) {
         if (this.verticalAlignment.equals(alignment)) {
             return UpdateStatus.NoChange;
         }
         this.verticalAlignment = alignment;
+        return UpdateStatus.Success;
+    }
+
+    /* Opaque */
+    public boolean getOpaque() {
+        return opaque;
+    }
+
+    public UpdateStatus setOpaque(boolean opaque) {
+        if (this.opaque == opaque) {
+            return UpdateStatus.NoChange;
+        }
+
+        this.opaque = opaque;
         return UpdateStatus.Success;
     }
 

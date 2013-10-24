@@ -280,7 +280,7 @@ public class ScilabPopupMenuBridge {
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public static void setRelief(PopupMenu popupMenu, String reliefType) {
-        popupMenu.getAsSimplePopupMenu().setRelief(reliefType);
+        popupMenu.getAsSimplePopupMenu().setWidgetRelief(reliefType);
     }
 
     /**

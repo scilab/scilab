@@ -26,4 +26,5 @@ public class ScilabNativeViewJNI {
     public final static native void ScilabNativeView__setCurrentSubWin(int jarg1);
     public final static native void ScilabNativeView__setCurrentObject(int jarg1);
     public final static native int ScilabNativeView__getValidDefaultFigureId();
+    public final static native int ScilabNativeView__getObjectFromHandle(long jarg1);
 }

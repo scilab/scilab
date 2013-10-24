@@ -41,6 +41,7 @@
 #include "HandleManagement.h"
 #include "freeArrayOfString.h"
 
+#include "createGraphicObject.h"
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -102,7 +103,7 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
     int jj = 0;
     long long *tabofhandles = NULL;
     long hdl = 0;
-    long *hdltab = NULL;
+    int *pObj = NULL;
     int cmpt = 0;
     int with_leg = 0;
     double drect[6];
@@ -395,7 +396,7 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
     /*---- Drawing the curves and the legends ----*/
     if (*n1 != 0)
     {
-        if ((hdltab = MALLOC((*n1 + 1) * sizeof(long))) == NULL)
+        if ((pObj = (int*)MALLOC((*n1 + 1) * sizeof(int))) == NULL)
         {
             Scierror(999, _("%s: No more memory.\n"), "plot2d");
             return -1;
@@ -403,10 +404,10 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
         if (with_leg)
         {
             /* tabofhandles allocated for legends */
-            if ((tabofhandles = MALLOC((*n1) * sizeof(long long))) == NULL)
+            if ((tabofhandles = (long long*)MALLOC((*n1) * sizeof(long long))) == NULL)
             {
                 Scierror(999, _("%s: No more memory.\n"), "plot2d");
-                FREE(hdltab);
+                FREE(pObj);
                 return -1;
             }
         }
@@ -445,13 +446,13 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
             {
                 setCurrentObject(iObjUID);
 
+                pObj[cmpt] = iObjUID;
                 hdl = getHandle(iObjUID);
                 if (with_leg)
                 {
                     tabofhandles[cmpt] = hdl;
                 }
 
-                hdltab[cmpt] = hdl;
                 cmpt++;
             }
 
@@ -467,7 +468,7 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
             if (scitokenize(legend, &Str, &nleg))
             {
                 FREE(tabofhandles);
-                FREE(hdltab);
+                FREE(pObj);
                 Scierror(999, _("%s: No more memory.\n"), "plot2d");
                 return 0;
             }
@@ -499,13 +500,10 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
         {
             int parentVisible = 0;
             int *piParentVisible = &parentVisible;
-            int iCompoundUID = ConstructCompound (hdltab, cmpt);
+            int iCompoundUID = createCompound(iSubwinUID, pObj, cmpt);
             setCurrentObject(iCompoundUID);
-            setGraphicObjectRelationship(iSubwinUID, iCompoundUID);
-            getGraphicObjectProperty(iSubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piParentVisible);
-            setGraphicObjectProperty(iCompoundUID, __GO_VISIBLE__, &parentVisible, jni_bool, 1);
         }
-        FREE(hdltab);
+        FREE(pObj);
 
     }
     /* End of the curves and legend block */

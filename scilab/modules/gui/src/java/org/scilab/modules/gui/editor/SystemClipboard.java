@@ -13,17 +13,16 @@
 
 package org.scilab.modules.gui.editor;
 
-import java.awt.datatransfer.*;
-import java.awt.Toolkit;
 import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
+import java.awt.Toolkit;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-import java.util.*;
+import java.io.IOException;
+
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvas;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 
 /**

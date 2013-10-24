@@ -235,7 +235,7 @@ public class ScilabContextMenu extends ScilabWidget implements ContextMenu {
      * Set the Relief of the ContextMenu
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setRelief(String reliefType) {
+    public void setWidgetRelief(String reliefType) {
         ScilabBridge.setRelief(this, reliefType);
     }
 

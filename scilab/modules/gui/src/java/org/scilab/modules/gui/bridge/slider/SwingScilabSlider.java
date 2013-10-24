@@ -35,13 +35,14 @@ import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.widget.ViewMethods;
 
 /**
  * Swing implementation for Scilab Slider in GUIs
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabSlider extends JScrollBar implements SwingViewObject, SimpleSlider {
+public class SwingScilabSlider extends JScrollBar implements SwingViewObject, SimpleSlider, ViewMethods {
 
     private static final long serialVersionUID = -4262320156090829309L;
 
@@ -223,7 +224,7 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
      * Set the Relief of the Slider
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setRelief(String reliefType) {
+    public void setWidgetRelief(String reliefType) {
         setBorder(ScilabRelief.getBorderFromRelief(reliefType));
     }
 
@@ -351,5 +352,91 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
         double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
         value[0] = userMin + ((getValue() - MINIMUM_VALUE) * (userMax - userMin) / (MAXIMUM_VALUE - MINIMUM_VALUE));
         GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, value);
+    }
+
+
+    public void setBackgroundcolor(Double[] color) {
+        SwingViewWidget.setBackgroundcolor(this, color);
+    }
+
+    public void setForegroundcolor(Double[] color) {
+        SwingViewWidget.setForegroundcolor(this, color);
+    }
+
+    public void setString(String[] text) {
+        SwingViewWidget.setText(uid, this, text);
+    }
+
+    public void setCallback(String callback) {
+        SwingViewWidget.setCallback(uid, this, callback);
+    }
+
+    public void setPosition(Double[] position) {
+        SwingViewWidget.setPostion(uid, this, position);
+    }
+
+    public void setParent(int id) {
+        SwingViewWidget.setParent(this, id);
+    }
+
+    /* font*/
+    public void setFontweight(String value) {
+        SwingViewWidget.setFontWeight(this, value);
+    }
+
+    public void setFontname(String value) {
+        SwingViewWidget.setFontName(this, value);
+    }
+
+    public void setFontangle(String value) {
+        SwingViewWidget.setFontAngle(this, value);
+    }
+
+    public void setFontunits(double value) {
+        SwingViewWidget.setFontUnits(uid, this, value);
+    }
+
+    public void setFontsize(double value) {
+        SwingViewWidget.setFontSize(uid, this, value);
+    }
+
+    public void setMax(double value) {
+        SwingViewWidget.setMax(uid, this, value);
+    }
+
+    public void setMin(double value) {
+        SwingViewWidget.setMin(uid, this, value);
+    }
+
+    public void setValue(Double[] value) {
+        SwingViewWidget.setValue(uid, this, value);
+    }
+
+    public void setRelief(String value) {
+        SwingViewWidget.setRelief(this, value);
+    }
+
+    public void setSliderstep(Double[] value) {
+        SwingViewWidget.setSliderStep(this, value);
+    }
+
+    public void setListboxtop(Integer[] value) {
+        SwingViewWidget.setListBoxTop(this, value);
+    }
+
+    public void setEnable(boolean value) {
+        SwingViewWidget.setEnable(this, value);
+    }
+
+    public void setCallbacktype(int value) {
+        SwingViewWidget.setCallbackType(uid, this, value);
+    }
+
+    public void setTooltipstring(String[] value) {
+        SwingViewWidget.setToolTipString(this, value);
+    }
+
+    public void setHorizontalalignment(String alignment) {
+        SwingViewWidget.setHorizontalAlignment(this, alignment);
     }
 }

@@ -38,6 +38,7 @@
 #include "AxesModel.h"
 #include "FigureModel.h"
 
+#include "createGraphicObject.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "getConsoleIdentifier.h"

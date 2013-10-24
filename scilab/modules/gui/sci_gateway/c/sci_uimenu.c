@@ -33,6 +33,8 @@
 #include "CurrentFigure.h"
 #include "api_scilab.h"
 #include "HandleManagement.h"
+#include "createGraphicObject.h"
+
 /*--------------------------------------------------------------------------*/
 // callSetProperty get a stack pointer in input argument.
 /*--------------------------------------------------------------------------*/

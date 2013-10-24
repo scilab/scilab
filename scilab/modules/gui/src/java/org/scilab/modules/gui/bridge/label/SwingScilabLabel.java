@@ -47,13 +47,14 @@ import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.WebBrowser;
+import org.scilab.modules.gui.widget.ViewMethods;
 
 /**
  * Swing implementation for Scilab Labels in GUIs
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabLabel extends JScrollPane implements SwingViewObject, SimpleLabel {
+public class SwingScilabLabel extends JScrollPane implements SwingViewObject, SimpleLabel, ViewMethods {
 
     private static final long serialVersionUID = 7177323379068859441L;
 
@@ -248,6 +249,12 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         setAlignment();
     }
 
+    public void setVerticalalignment(String alignment) {
+        SwingViewWidget.setVerticalAlignment(this, alignment);
+    }
+    public void setHorizontalalignment(String alignment) {
+        SwingViewWidget.setHorizontalAlignment(this, alignment);
+    }
     /**
      * Set the vertical alignment for the Label text
      * @param alignment the value for the alignment (See ScilabAlignment.java)
@@ -262,7 +269,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
      * Set the Relief of the Label
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setRelief(String reliefType) {
+    public void setWidgetRelief(String reliefType) {
         setBorder(ScilabRelief.getBorderFromRelief(reliefType));
     }
 
@@ -368,7 +375,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
             JTextPane newLabel = new JTextPane();
             newLabel.addHyperlinkListener(urlOpener);
             newLabel.setContentType("text/html");
-            newLabel.setEditable(false);         
+            newLabel.setEditable(false);
             StyleSheet styleSheet = ((HTMLDocument) newLabel.getDocument()).getStyleSheet();
             styleSheet.addRule("body {font-family:" + font.getName() + ";}");
             styleSheet.addRule("body {font-size:" + font.getSize() + "pt;}");
@@ -410,45 +417,45 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         gbc.gridheight = 1;
 
         switch (ScilabAlignment.toSwingAlignment(horizontalAlignment)) {
-        case SwingConstants.LEFT:
-            switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
-            case SwingConstants.TOP:
-                gbc.anchor = GridBagConstraints.NORTHWEST;
+            case SwingConstants.LEFT:
+                switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
+                    case SwingConstants.TOP:
+                        gbc.anchor = GridBagConstraints.NORTHWEST;
+                        break;
+                    case SwingConstants.CENTER:
+                        gbc.anchor = GridBagConstraints.WEST;
+                        break;
+                    default: // SwingConstants.BOTTOM
+                        gbc.anchor = GridBagConstraints.SOUTHWEST;
+                        break;
+                }
                 break;
             case SwingConstants.CENTER:
-                gbc.anchor = GridBagConstraints.WEST;
+                switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
+                    case SwingConstants.TOP:
+                        gbc.anchor = GridBagConstraints.NORTH;
+                        break;
+                    case SwingConstants.CENTER:
+                        gbc.anchor = GridBagConstraints.CENTER;
+                        break;
+                    default: // SwingConstants.BOTTOM
+                        gbc.anchor = GridBagConstraints.SOUTH;
+                        break;
+                }
                 break;
-            default: // SwingConstants.BOTTOM
-            gbc.anchor = GridBagConstraints.SOUTHWEST;
-            break;
-            }
-            break;
-        case SwingConstants.CENTER:
-            switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
-            case SwingConstants.TOP:
-                gbc.anchor = GridBagConstraints.NORTH;
+            default: // SwingConstants.RIGHT
+                switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
+                    case SwingConstants.TOP:
+                        gbc.anchor = GridBagConstraints.NORTHEAST;
+                        break;
+                    case SwingConstants.CENTER:
+                        gbc.anchor = GridBagConstraints.EAST;
+                        break;
+                    default: // SwingConstants.BOTTOM
+                        gbc.anchor = GridBagConstraints.SOUTHEAST;
+                        break;
+                }
                 break;
-            case SwingConstants.CENTER:
-                gbc.anchor = GridBagConstraints.CENTER;
-                break;
-            default: // SwingConstants.BOTTOM
-            gbc.anchor = GridBagConstraints.SOUTH;
-            break;
-            }
-            break;
-        default: // SwingConstants.RIGHT
-            switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
-            case SwingConstants.TOP:
-                gbc.anchor = GridBagConstraints.NORTHEAST;
-                break;
-            case SwingConstants.CENTER:
-                gbc.anchor = GridBagConstraints.EAST;
-                break;
-            default: // SwingConstants.BOTTOM
-            gbc.anchor = GridBagConstraints.SOUTHEAST;
-            break;
-            }
-            break;
         }
 
         alignmentLayout.setConstraints(label, gbc);
@@ -480,4 +487,85 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         SwingViewWidget.update(this, property, value);
     }
 
+
+    public void setBackgroundcolor(Double[] color) {
+        SwingViewWidget.setBackgroundcolor(this, color);
+    }
+
+    public void setForegroundcolor(Double[] color) {
+        SwingViewWidget.setForegroundcolor(this, color);
+    }
+
+    public void setString(String[] text) {
+        SwingViewWidget.setText(uid, this, text);
+    }
+
+    public void setCallback(String callback) {
+        SwingViewWidget.setCallback(uid, this, callback);
+    }
+
+    public void setPosition(Double[] position) {
+        SwingViewWidget.setPostion(uid, this, position);
+    }
+
+    public void setParent(int id) {
+        SwingViewWidget.setParent(this, id);
+    }
+
+    /* font*/
+    public void setFontweight(String value) {
+        SwingViewWidget.setFontWeight(this, value);
+    }
+
+    public void setFontname(String value) {
+        SwingViewWidget.setFontName(this, value);
+    }
+
+    public void setFontangle(String value) {
+        SwingViewWidget.setFontAngle(this, value);
+    }
+
+    public void setFontunits(double value) {
+        SwingViewWidget.setFontUnits(uid, this, value);
+    }
+
+    public void setFontsize(double value) {
+        SwingViewWidget.setFontSize(uid, this, value);
+    }
+
+    public void setMax(double value) {
+        SwingViewWidget.setMax(uid, this, value);
+    }
+
+    public void setMin(double value) {
+        SwingViewWidget.setMin(uid, this, value);
+    }
+
+    public void setValue(Double[] value) {
+        SwingViewWidget.setValue(uid, this, value);
+    }
+
+    public void setRelief(String value) {
+        SwingViewWidget.setRelief(this, value);
+    }
+
+    public void setSliderstep(Double[] value) {
+        SwingViewWidget.setSliderStep(this, value);
+    }
+
+    public void setListboxtop(Integer[] value) {
+        SwingViewWidget.setListBoxTop(this, value);
+    }
+
+    public void setEnable(boolean value) {
+        SwingViewWidget.setEnable(this, value);
+    }
+
+    public void setCallbacktype(int value) {
+        SwingViewWidget.setCallbackType(uid, this, value);
+    }
+
+    public void setTooltipstring(String[] value) {
+        SwingViewWidget.setToolTipString(this, value);
+    }
 }

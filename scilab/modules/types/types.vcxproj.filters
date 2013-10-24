@@ -29,6 +29,9 @@
     <None Include="locales\types.pot">
       <Filter>localization</Filter>
     </None>
+    <None Include="core_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\GetScilabVariable.h">
@@ -44,6 +47,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\jni\ScilabVariablesRefresh.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\dynlib_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -63,5 +69,11 @@
     <ClCompile Include="src\jni\ScilabVariablesRefresh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\jni\putVars.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\bin\libintl.lib" />
   </ItemGroup>
 </Project>

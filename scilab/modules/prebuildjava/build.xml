@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
 <project default="all" name="build-all-jar">
@@ -19,7 +19,7 @@ The main idea is to build at once all the var files
     <property file="../../scilab-lib.properties"/>
     
     <!-- Order matter : fixed order to avoid dependency handling-->
-    <target name="all" depends="scirenderer, localization, commons, history_manager, jvm, action_binding, graphic_objects, completion, console, renderer, graphic_export, gui, core, helptools, types, scinotes, ui_data, history_browser, javasci, graph, xcos, preferences" />
+    <target name="all" depends="scirenderer, localization, commons, history_manager, jvm, action_binding, types, graphic_objects, completion, console, renderer, graphic_export, gui, core, helptools, scinotes, ui_data, history_browser, javasci, graph, xcos, preferences" />
     <target name="clean">
         <antcall target="all">
             <param name="target-jar" value="clean"/>
@@ -31,7 +31,7 @@ The main idea is to build at once all the var files
         <condition property="thirdparty.dir" value="../../thirdparty">
             <os family="windows"/>
         </condition>
-        <ant antfile="../scirenderer/build.xml" target="noversion" inheritRefs="false" inheritAll="false">
+        <ant antfile="../scirenderer/build.xml" target="noversion" useNativeBasedir="true" inheritAll="false">
             <property name="thirdparty.dir" value="${thirdparty.dir}"/>
             <property name="fromScilab" value="yes"/>
         </ant>

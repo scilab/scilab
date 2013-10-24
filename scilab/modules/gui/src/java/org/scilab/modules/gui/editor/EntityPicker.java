@@ -14,22 +14,15 @@
 package org.scilab.modules.gui.editor;
 
 
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.CallGraphicController;
-import org.scilab.modules.renderer.CallRenderer;
-
-import org.scilab.modules.graphic_objects.axes.Axes;
-import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
-import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
-
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.graphic_objects.SurfaceData;
-import org.scilab.modules.gui.editor.CommonHandler;
-import org.scilab.modules.gui.editor.ObjectSearcher;
-
-import java.lang.Math;
+import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.renderer.CallRenderer;
+import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
+import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 
 
 /**

@@ -157,8 +157,19 @@
             <param type="int" name="handlerId"/>
         </method>
         
+        
         <!-- int64, uint64 matrix-->
         <method name="sendData" returnType="void" modifier="static">
+            <param type="String" name="varName" />
+            <param type="int[]" name="indexes" />
+            <param type="long[][]" name="data"/>
+            <param type="boolean" name="swaped"/>
+            <param type="int" name="handlerId"/>
+        </method>
+        
+        
+        <!-- handle matrix-->
+        <method name="sendHandleData" returnType="void" modifier="static">
             <param type="String" name="varName" />
             <param type="int[]" name="indexes" />
             <param type="long[][]" name="data"/>

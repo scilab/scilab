@@ -15,6 +15,7 @@ extern "C"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "getScilabJavaVM.h"
+#include "HandleManagement.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -22,8 +23,10 @@ extern "C"
 
 #include "CallGraphicController.hxx"
 #include "DataController.hxx"
+#include "ScilabToJava.hxx"
 
 using namespace org_scilab_modules_graphic_objects;
+using namespace org_modules_types;
 
 void setGraphicObjectRelationship(int _parentId, int _childId)
 {
@@ -147,3 +150,39 @@ BOOL setGraphicObjectPropertyAndWarn(int _iID, int _iName, void const* _pvValue,
     return booltoBOOL(result);
 }
 
+BOOL runSetProperty(int _iID)
+{
+    return booltoBOOL(CallGraphicController::runSetProperty(getScilabJavaVM(), _iID));
+}
+
+void cleanSetProperty()
+{
+    CallGraphicController::cleanSetProperty(getScilabJavaVM());
+}
+
+BOOL setGraphicObjectVariable(void* _pvCtx, const char* _pstPropName, int* _piAddr)
+{
+    BOOL ret = TRUE;
+    static int handlerId = CallGraphicController::getPropertyHandler(getScilabJavaVM());
+    int uid = 0;
+
+
+    std::vector<int> indexes;
+    //send property name as scilabtype
+    ScilabToJava::sendStringVariable("", indexes, 1, 1, (char**)&_pstPropName, false, false, handlerId);
+    //send property value as scilabtype
+    ScilabToJava::sendVariable("", _piAddr, false, handlerId, pvApiCtx);
+    return ret;
+}
+
+char** getPropertyLastError()
+{
+    return CallGraphicController::getPropertyLastError(getScilabJavaVM());
+}
+
+void freePropertyLastError(char** _pstLastError)
+{
+    delete _pstLastError[0];
+    delete _pstLastError[1];
+    delete[] _pstLastError;
+}

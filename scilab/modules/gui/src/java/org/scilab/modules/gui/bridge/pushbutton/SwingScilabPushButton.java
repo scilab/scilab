@@ -24,8 +24,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
-import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.SimplePushButton;
@@ -37,13 +37,15 @@ import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.widget.ViewMethods;
+import org.scilab.modules.gui.widget.Widget;
 
 /**
  * Swing implementation for Scilab PushButtons in GUIs
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabPushButton extends JButton implements SwingViewObject, SimplePushButton {
+public class SwingScilabPushButton extends JButton implements SwingViewObject, SimplePushButton, ViewMethods {
 
     private static final long serialVersionUID = 2277539556048935959L;
 
@@ -87,6 +89,10 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
      * @param text to use for the menu, if it's enclosed between '$' then it's interpreted as
      * a LaTeX string, in this case the setIcon method of this object is used.
      */
+    public void setString(String[] text) {
+        SwingViewWidget.setText(uid, this, text);
+    }
+
     public void setText(String text) {
         this.text = text;
         isLaTeX = ScilabSpecialTextUtilities.setText(this, text);
@@ -150,6 +156,11 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
      * @param newPosition the position to set to the PushButton
      * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
      */
+
+    public void setPosition(Double[] newPosition) {
+        SwingViewWidget.setPostion(uid, this, newPosition);
+    }
+
     public void setPosition(Position newPosition) {
         Position javaPosition = PositionConverter.scilabToJava(newPosition, getDims(), getParent());
         setLocation(javaPosition.getX(), javaPosition.getY());
@@ -163,6 +174,9 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
         super.setIcon(new ImageIcon(filename));
     }
 
+    public void setCallback(String callback) {
+        SwingViewWidget.setCallback(uid, this, callback);
+    }
     /**
      * Add a callback to the pushbutton
      * @param callback the callback to set.
@@ -236,6 +250,9 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
         setHorizontalAlignment(ScilabAlignment.toSwingAlignment(alignment));
     }
 
+    public void setHorizontalalignment(String alignment) {
+        SwingViewWidget.setHorizontalAlignment(this, alignment);
+    }
     /**
      * Set the vertical alignment for the PushButton text
      * @param alignment the value for the alignment (See ScilabAlignment.java)
@@ -244,11 +261,14 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
         setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
     }
 
+    public void setVerticalalignment(String alignment) {
+        SwingViewWidget.setVerticalAlignment(this, alignment);
+    }
     /**
      * Set the Relief of the PushButton
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setRelief(String reliefType) {
+    public void setWidgetRelief(String reliefType) {
         setBorder(ScilabRelief.getBorderFromRelief(reliefType));
     }
 
@@ -293,6 +313,18 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
         return uid;
     }
 
+    public void setBackgroundcolor(Double[] color) {
+        SwingViewWidget.setBackgroundcolor(this, color);
+    }
+
+    public void setForegroundcolor(Double[] color) {
+        SwingViewWidget.setForegroundcolor(this, color);
+    }
+
+    public void setParent(int id) {
+        SwingViewWidget.setParent(this, uid);
+    }
+
     /**
      * Generic update method
      * @param property property name
@@ -300,5 +332,62 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
      */
     public void update(int property, Object value) {
         SwingViewWidget.update(this, property, value);
+    }
+
+    /* font*/
+    public void setFontweight(String value) {
+        SwingViewWidget.setFontWeight(this, value);
+    }
+
+    public void setFontname(String value) {
+        SwingViewWidget.setFontName(this, value);
+    }
+
+    public void setFontangle(String value) {
+        SwingViewWidget.setFontAngle(this, value);
+    }
+
+    public void setFontunits(double value) {
+        SwingViewWidget.setFontUnits(uid, this, value);
+    }
+
+    public void setFontsize(double value) {
+        SwingViewWidget.setFontSize(uid, this, value);
+    }
+
+    public void setMax(double value) {
+        SwingViewWidget.setMax(uid, this, value);
+    }
+
+    public void setMin(double value) {
+        SwingViewWidget.setMin(uid, this, value);
+    }
+
+    public void setValue(Double[] value) {
+        SwingViewWidget.setValue(uid, this, value);
+    }
+
+    public void setRelief(String value) {
+        SwingViewWidget.setRelief(this, value);
+    }
+
+    public void setSliderstep(Double[] value) {
+        SwingViewWidget.setSliderStep(this, value);
+    }
+
+    public void setListboxtop(Integer[] value) {
+        SwingViewWidget.setListBoxTop(this, value);
+    }
+
+    public void setEnable(boolean value) {
+        SwingViewWidget.setEnable(this, value);
+    }
+
+    public void setCallbacktype(int value) {
+        SwingViewWidget.setCallbackType(uid, this, value);
+    }
+
+    public void setTooltipstring(String[] value) {
+        SwingViewWidget.setToolTipString(this, value);
     }
 }

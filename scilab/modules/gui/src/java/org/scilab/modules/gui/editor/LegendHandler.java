@@ -13,15 +13,11 @@
 
 package org.scilab.modules.gui.editor;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.ArrayList;
+
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-
-import org.scilab.modules.gui.editor.ObjectSearcher;
-import org.scilab.modules.gui.editor.PolylineHandler;
 
 
 /**

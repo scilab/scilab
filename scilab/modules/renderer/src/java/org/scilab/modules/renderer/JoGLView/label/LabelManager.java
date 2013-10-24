@@ -13,6 +13,14 @@
 
 package org.scilab.modules.renderer.JoGLView.label;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTO_POSITION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTO_ROTATION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_ANGLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.texture.AnchorPosition;
@@ -21,21 +29,13 @@ import org.scilab.forge.scirenderer.texture.TextureManager;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axes.Axes;
-import org.scilab.modules.graphic_objects.axes.Camera;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.utils.Utils;
+import org.scilab.modules.graphic_objects.utils.ViewType;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTO_POSITION__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTO_ROTATION__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_ANGLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 
 /**
  *
@@ -89,13 +89,13 @@ public class LabelManager {
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentId);
 
         /* Get the positioner associated to the label */
-        if (parentAxes.getXAxisLabel().equals(label.getIdentifier())) {
+        if (parentAxes.getXLabel().equals(label.getIdentifier())) {
             labelPositioner = axesDrawer.getXAxisLabelPositioner(parentAxes);
-        } else if (parentAxes.getYAxisLabel().equals(label.getIdentifier())) {
+        } else if (parentAxes.getYLabel().equals(label.getIdentifier())) {
             labelPositioner = axesDrawer.getYAxisLabelPositioner(parentAxes);
-        } else if (parentAxes.getZAxisLabel().equals(label.getIdentifier())) {
+        } else if (parentAxes.getZLabel().equals(label.getIdentifier())) {
             labelPositioner = axesDrawer.getZAxisLabelPositioner(parentAxes);
-            drawnFlag = (parentAxes.getViewAsEnum() == Camera.ViewType.VIEW_3D);
+            drawnFlag = (parentAxes.getView() == ViewType.VIEW_3D);
         } else if (parentAxes.getTitle().equals(label.getIdentifier())) {
             labelPositioner = axesDrawer.getTitlePositioner(parentAxes);
         } else {

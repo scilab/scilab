@@ -38,6 +38,9 @@ import java.util.Arrays;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.utils.Antialiasing;
+import org.scilab.modules.graphic_objects.utils.PixelDrawingMode;
+import org.scilab.modules.graphic_objects.utils.RotationType;
 /**
  * Figure class
  * @author Manuel JULIACHS
@@ -48,75 +51,6 @@ public class Figure extends GraphicObject {
         INFOMESSAGE, COLORMAP, COLORMAPSIZE,
         BACKGROUND, ROTATIONTYPE, RESIZEFCN, CLOSEREQUESTFCN
     };
-
-    /** Specifies whether rotation applies to a single subwindow or to all the figure's subwindows */
-    public enum RotationType { UNARY, MULTIPLE;
-
-                               /**
-                                * Converts an integer to the corresponding enum
-                                * @param intValue the integer value
-                                * @return the rotation type enum
-                                */
-    public static RotationType intToEnum(Integer intValue) {
-        switch (intValue) {
-            case 0:
-                return RotationType.UNARY;
-            case 1:
-                return RotationType.MULTIPLE;
-            default:
-                return null;
-        }
-    }
-                             }
-
-    /** Pixel drawing logical operations */
-    private enum PixelDrawingMode { CLEAR, AND, ANDREVERSE, COPY, ANDINVERTED, NOOP, XOR, OR, NOR,
-                                    EQUIV, INVERT, ORREVERSE, COPYINVERTED, ORINVERTED, NAND, SET;
-
-                                    /**
-                                     * Converts an integer to the corresponding enum
-                                     * @param intValue the integer value
-                                     * @return the pixel drawing mode enum
-                                     */
-    public static PixelDrawingMode intToEnum(Integer intValue) {
-        switch (intValue) {
-            case 0:
-                return PixelDrawingMode.CLEAR;
-            case 1:
-                return PixelDrawingMode.AND;
-            case 2:
-                return PixelDrawingMode.ANDREVERSE;
-            case 3:
-                return PixelDrawingMode.COPY;
-            case 4:
-                return PixelDrawingMode.ANDINVERTED;
-            case 5:
-                return PixelDrawingMode.NOOP;
-            case 6:
-                return PixelDrawingMode.XOR;
-            case 7:
-                return PixelDrawingMode.OR;
-            case 8:
-                return PixelDrawingMode.NOR;
-            case 9:
-                return PixelDrawingMode.EQUIV;
-            case 10:
-                return PixelDrawingMode.INVERT;
-            case 11:
-                return PixelDrawingMode.ORREVERSE;
-            case 12:
-                return PixelDrawingMode.COPYINVERTED;
-            case 13:
-                return PixelDrawingMode.ORINVERTED;
-            case 14:
-                return PixelDrawingMode.NAND;
-            case 15:
-                return PixelDrawingMode.SET;
-            default:
-                return null;
-        }
-    }
-                                  };
 
     /** FigureDimensions properties names */
     public enum FigureDimensionsProperty { POSITION, SIZE };
@@ -175,8 +109,8 @@ public class Figure extends GraphicObject {
          */
         public Canvas() {
             autoResize = false;
-            viewport = new Integer[2];
-            axesSize = new Integer[2];
+            viewport = new Integer[] {0, 0};
+            axesSize = new Integer[] {0, 0};
         }
 
         /**
@@ -257,7 +191,7 @@ public class Figure extends GraphicObject {
         private PixelDrawingMode pixelDrawingMode;
 
         /** Antialising level (0 == off) */
-        private int antialiasing;
+        private Antialiasing antialiasing;
 
         /** Specifies whether immediate drawing is used or not */
         private boolean immediateDrawing;
@@ -268,7 +202,7 @@ public class Figure extends GraphicObject {
         public RenderingMode() {
             pixmap = false;
             pixelDrawingMode = PixelDrawingMode.COPY;
-            antialiasing = 0;
+            antialiasing = Antialiasing.OFF;
             immediateDrawing = true;
         }
 
@@ -472,7 +406,7 @@ public class Figure extends GraphicObject {
         } else if (property == RenderingModeProperty.PIXMAP) {
             return getPixmap();
         } else if (property == RenderingModeProperty.PIXELDRAWINGMODE) {
-            return getPixelDrawingMode();
+            return getPixelDrawingModeAsInteger();
         } else if (property == RenderingModeProperty.ANTIALIASING) {
             return getAntialiasing();
         } else if (property == RenderingModeProperty.IMMEDIATEDRAWING) {
@@ -480,11 +414,11 @@ public class Figure extends GraphicObject {
         } else if (property == FigureProperty.BACKGROUND) {
             return getBackground();
         } else if (property == EventHandlerProperty.EVENTHANDLER) {
-            return getEventHandlerString();
+            return getEventHandler();
         } else if (property == EventHandlerProperty.EVENTHANDLERENABLE) {
             return getEventHandlerEnable();
         } else if (property == FigureProperty.ROTATIONTYPE) {
-            return getRotation();
+            return getRotationStyleAsInteger();
         } else if (property == FigureProperty.RESIZEFCN) {
             return getResizeFcn();
         } else if (property == FigureProperty.CLOSEREQUESTFCN) {
@@ -516,7 +450,7 @@ public class Figure extends GraphicObject {
                 case RESIZEFCN:
                     return setResizeFcn((String) value);
                 case ROTATIONTYPE:
-                    return setRotation((Integer) value);
+                    return setRotationStyle((Integer) value);
             }
         } else if (property instanceof CanvasProperty) {
             switch ((CanvasProperty)property) {
@@ -544,7 +478,7 @@ public class Figure extends GraphicObject {
         } else if (property instanceof RenderingModeProperty) {
             switch ((RenderingModeProperty)property) {
                 case ANTIALIASING:
-                    return setAntialiasing((Integer) value);
+                    return setAntialiasing((Antialiasing) value);
                 case IMMEDIATEDRAWING:
                     return setImmediateDrawing((Boolean) value);
                 case PIXELDRAWINGMODE:
@@ -555,7 +489,7 @@ public class Figure extends GraphicObject {
         } else if (property instanceof EventHandlerProperty) {
             switch ((EventHandlerProperty)property) {
                 case EVENTHANDLER:
-                    return setEventHandlerString((String) value);
+                    return setEventHandler((String) value);
                 case EVENTHANDLERENABLE:
                     return setEventHandlerEnable((Boolean) value);
             }
@@ -576,7 +510,7 @@ public class Figure extends GraphicObject {
     /**
      * @param background the background to set
      */
-    public UpdateStatus setBackground(Integer background) {
+    public UpdateStatus setBackground(int background) {
         if (this.background == background) {
             return UpdateStatus.NoChange;
         }
@@ -609,7 +543,7 @@ public class Figure extends GraphicObject {
     /**
      * @param autoResize the autoresize to set
      */
-    public UpdateStatus setAutoResize(Boolean autoResize) {
+    public UpdateStatus setAutoResize(boolean autoResize) {
         if (canvas.autoResize == autoResize) {
             return UpdateStatus.NoChange;
         }
@@ -673,6 +607,10 @@ public class Figure extends GraphicObject {
         return colorMap;
     }
 
+    public UpdateStatus setColorMap(Double[] colorMap) {
+        return getColorMap().setData(colorMap);
+    }
+
     /**
      * @return the dimensions
      */
@@ -694,6 +632,10 @@ public class Figure extends GraphicObject {
     /**
      * @return the figure position
      */
+    public Integer[] getFigurePosition() {
+        return getPosition();
+    }
+
     public Integer[] getPosition() {
         Integer[] retPosition = new Integer[2];
 
@@ -706,6 +648,16 @@ public class Figure extends GraphicObject {
     /**
      * @param position the position to set
      */
+    public UpdateStatus setFigurePosition(Integer[] position) {
+        if (Arrays.equals(dimensions.position, position)) {
+            return UpdateStatus.NoChange;
+        }
+
+        dimensions.position[0] = position[0];
+        dimensions.position[1] = position[1];
+        return UpdateStatus.Success;
+    }
+
     public UpdateStatus setPosition(Integer[] position) {
         if (Arrays.equals(dimensions.position, position)) {
             return UpdateStatus.NoChange;
@@ -719,6 +671,10 @@ public class Figure extends GraphicObject {
     /**
      * @return the figure size
      */
+    public Integer[] getFigureSize() {
+        return getSize();
+    }
+
     public Integer[] getSize() {
         Integer[] retSize = new Integer[2];
 
@@ -731,6 +687,10 @@ public class Figure extends GraphicObject {
     /**
      * @param size the size to set
      */
+    public UpdateStatus setFigureSize(Integer[] size) {
+        return setSize(size);
+    }
+
     public UpdateStatus setSize(Integer[] size) {
         if (Arrays.equals(dimensions.size, size)) {
             return UpdateStatus.NoChange;
@@ -744,14 +704,14 @@ public class Figure extends GraphicObject {
     /**
      * @return the eventHandler
      */
-    public EventHandler getEventHandler() {
+    public EventHandler getEventHandlerObject() {
         return eventHandler;
     }
 
     /**
      * @param eventHandler the eventHandler to set
      */
-    public UpdateStatus setEventHandler(EventHandler eventHandler) {
+    public UpdateStatus setEventHandlerObject(EventHandler eventHandler) {
         if (this.eventHandler.equals(eventHandler)) {
             return UpdateStatus.NoChange;
         }
@@ -762,14 +722,14 @@ public class Figure extends GraphicObject {
     /**
      * @return the eventHandler string
      */
-    public String getEventHandlerString() {
+    public String getEventHandler() {
         return eventHandler.eventHandler;
     }
 
     /**
      * @param eventHandlerString the eventHandler string to set
      */
-    public UpdateStatus setEventHandlerString(String eventHandlerString) {
+    public UpdateStatus setEventHandler(String eventHandlerString) {
         if (eventHandler.eventHandler.equals(eventHandlerString)) {
             return UpdateStatus.NoChange;
         }
@@ -787,7 +747,7 @@ public class Figure extends GraphicObject {
     /**
      * @param eventHandlerEnabled the eventHandlerEnabled to set
      */
-    public UpdateStatus setEventHandlerEnable(Boolean eventHandlerEnabled) {
+    public UpdateStatus setEventHandlerEnable(boolean eventHandlerEnabled) {
         if (eventHandler.eventHandlerEnabled == eventHandlerEnabled) {
             return UpdateStatus.NoChange;
         }
@@ -816,24 +776,25 @@ public class Figure extends GraphicObject {
     /**
      * @return the name
      */
-    public FigureName getFigureName() {
-        return figureName;
+    public String getFigureName() {
+        return figureName.name;
     }
 
     /**
      * @param figureName the figure name to set
      */
-    public UpdateStatus setFigureName(FigureName figureName) {
-        if (this.figureName.equals(figureName)) {
+    public UpdateStatus setFigureName(String figureName) {
+        if (this.figureName.name.equals(figureName)) {
             return UpdateStatus.NoChange;
         }
-        this.figureName = figureName;
+        this.figureName.name = figureName;
         return UpdateStatus.Success;
     }
 
     /**
      * @return the figure name
      */
+
     public String getName() {
         return figureName.name;
     }
@@ -852,6 +813,10 @@ public class Figure extends GraphicObject {
     /**
      * @return the id
      */
+    public Integer getFigureId() {
+        return getId();
+    }
+
     public Integer getId() {
         return figureName.id;
     }
@@ -859,7 +824,11 @@ public class Figure extends GraphicObject {
     /**
      * @param id the id to set
      */
-    public UpdateStatus setId(Integer id) {
+    public UpdateStatus setFigureId(int id) {
+        return setId(id);
+    }
+
+    public UpdateStatus setId(int id) {
         //must return Success to update Views
         figureName.id = id;
         return UpdateStatus.Success;
@@ -893,7 +862,7 @@ public class Figure extends GraphicObject {
     /**
      * @param pixmap the pixmap to set
      */
-    public UpdateStatus setPixmap(Boolean pixmap) {
+    public UpdateStatus setPixmap(boolean pixmap) {
         if (renderingMode.pixmap == pixmap) {
             return UpdateStatus.NoChange;
         }
@@ -904,15 +873,15 @@ public class Figure extends GraphicObject {
     /**
      * @return the pixel drawing mode enum
      */
-    public PixelDrawingMode getPixelDrawingModeAsEnum() {
+    public PixelDrawingMode getPixelDrawingMode() {
         return renderingMode.pixelDrawingMode;
     }
 
     /**
      * @return the pixel drawing mode
      */
-    public Integer getPixelDrawingMode() {
-        return getPixelDrawingModeAsEnum().ordinal();
+    public Integer getPixelDrawingModeAsInteger() {
+        return getPixelDrawingMode().ordinal();
     }
 
     /**
@@ -942,14 +911,14 @@ public class Figure extends GraphicObject {
     /**
      * @return the pixmap
      */
-    public Integer getAntialiasing() {
+    public Antialiasing getAntialiasing() {
         return renderingMode.antialiasing;
     }
 
     /**
      * @param antialiasing the antialiasing to set
      */
-    public UpdateStatus setAntialiasing(Integer antialiasing) {
+    public UpdateStatus setAntialiasing(Antialiasing antialiasing) {
         if (renderingMode.antialiasing == antialiasing) {
             return UpdateStatus.NoChange;
         }
@@ -967,7 +936,7 @@ public class Figure extends GraphicObject {
     /**
      * @param immediateDrawing the immediateDrawing to set
      */
-    public UpdateStatus setImmediateDrawing(Boolean immediateDrawing) {
+    public UpdateStatus setImmediateDrawing(boolean immediateDrawing) {
         if (renderingMode.immediateDrawing == immediateDrawing) {
             return UpdateStatus.NoChange;
         }
@@ -979,21 +948,21 @@ public class Figure extends GraphicObject {
     /**
      * @return the rotation
      */
-    public RotationType getRotationAsEnum() {
+    public RotationType getRotationStyle() {
         return rotation;
     }
 
     /**
      * @return the rotation
      */
-    public Integer getRotation() {
-        return getRotationAsEnum().ordinal();
+    public Integer getRotationStyleAsInteger() {
+        return getRotationStyle().ordinal();
     }
 
     /**
      * @param rotation the rotation to set
      */
-    public UpdateStatus setRotation(RotationType rotation) {
+    public UpdateStatus setRotationStyle(RotationType rotation) {
         if (this.rotation.equals(rotation)) {
             return UpdateStatus.NoChange;
         }
@@ -1004,7 +973,7 @@ public class Figure extends GraphicObject {
     /**
      * @param rotation the rotation to set
      */
-    public UpdateStatus setRotation(Integer rotation) {
+    public UpdateStatus setRotationStyle(Integer rotation) {
         RotationType rotationType = RotationType.intToEnum(rotation);
         if (rotationType == null || this.rotation == rotationType) {
             return UpdateStatus.NoChange;

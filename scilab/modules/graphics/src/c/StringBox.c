@@ -33,6 +33,8 @@
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "deleteGraphicObject.h"
+#include "createGraphicObject.h"
+
 /*-------------------------------------------------------------------------------*/
 void getTextBoundingBox(char ** text, int nbRow, int nbCol,
                         double xPos, double yPos,

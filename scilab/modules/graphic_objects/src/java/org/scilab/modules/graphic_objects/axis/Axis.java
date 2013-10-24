@@ -12,13 +12,6 @@
 
 package org.scilab.modules.graphic_objects.axis;
 
-import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.graphicObject.Visitor;
-import org.scilab.modules.graphic_objects.textObject.Font;
-
-import java.util.ArrayList;
-
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_COLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_FRACTIONAL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_SIZE__;
@@ -37,6 +30,15 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_NUMBER_TICKS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_TICKS_COORDS__;
 
+import java.util.ArrayList;
+
+import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.textObject.Font;
+import org.scilab.modules.graphic_objects.utils.TicksDirection;
+import org.scilab.modules.graphic_objects.utils.TicksStyle;
+
 /**
  * Axis class
  * @author Manuel JULIACHS
@@ -49,9 +51,6 @@ public class Axis extends ClippableContouredObject {
 
     /** Default number of ticks */
     private static final int DEFAULT_NUMBER_OF_TICKS = 10;
-
-    /** Ticks direction */
-    public enum TicksDirection {TOP, BOTTOM, LEFT, RIGHT}
 
     /** Ticks direction */
     private TicksDirection ticksDirection;
@@ -69,7 +68,7 @@ public class Axis extends ClippableContouredObject {
     private boolean ticksSegment;
 
     /** Specifies the ticks style (either 0, 1, or 2) */
-    private int ticksStyle;
+    private TicksStyle ticksStyle;
 
     /** Number of subticks */
     private int subticks;
@@ -154,27 +153,27 @@ public class Axis extends ClippableContouredObject {
      */
     public Object getProperty(Object property) {
         if (property == AxisProperty.TICKSDIRECTION) {
-            return getTicksDirection();
+            return TicksDirection.enumToInt(getTicsDirection());
         } else if (property == AxisProperty.XNUMBERTICKS) {
-            return getXNumberTicks();
+            return getXNumberTics();
         } else if (property == AxisProperty.YNUMBERTICKS) {
-            return getYNumberTicks();
+            return getYNumberTics();
         } else if (property == AxisProperty.XTICKSCOORDS) {
-            return getXTicksCoords();
+            return getXTicsCoord();
         } else if (property == AxisProperty.YTICKSCOORDS) {
-            return getYTicksCoords();
+            return getYTicsCoord();
         } else if (property == AxisProperty.TICKSCOLOR) {
-            return getTicksColor();
+            return getTicsColor();
         } else if (property == AxisProperty.TICKSSEGMENT) {
-            return getTicksSegment();
+            return getTicsSegment();
         } else if (property == AxisProperty.TICKSSTYLE) {
-            return getTicksStyle();
+            return TicksStyle.enumToInt(getTicsStyle());
         } else if (property == AxisProperty.SUBTICKS) {
-            return getSubticks();
+            return getSubtics();
         } else if (property == AxisProperty.NUMBERTICKSLABELS) {
-            return getNumberTicksLabels();
+            return getNumberTickLabels();
         } else if (property == AxisProperty.TICKSLABELS) {
-            return getTicksLabels();
+            return getTicsLabels();
         } else if (property == AxisProperty.FORMATN) {
             return getFormatn();
         } else if (property == AxisProperty.FONT) {
@@ -182,11 +181,11 @@ public class Axis extends ClippableContouredObject {
         } else if (property == Font.FontProperty.STYLE) {
             return getStyle();
         } else if (property == Font.FontProperty.SIZE) {
-            return getSize();
+            return getLabelsFontSize();
         } else if (property == Font.FontProperty.COLOR) {
-            return getColor();
+            return getLabelsFontColor();
         } else if (property == Font.FontProperty.FRACTIONAL) {
-            return getFractional();
+            return getFractionalFont();
         } else {
             return super.getProperty(property);
         }
@@ -200,21 +199,21 @@ public class Axis extends ClippableContouredObject {
      */
     public UpdateStatus setProperty(Object property, Object value) {
         if (property == AxisProperty.TICKSDIRECTION) {
-            setTicksDirection((Integer) value);
+            setTicsDirection(TicksDirection.intToEnum((Integer) value));
         } else if (property == AxisProperty.XTICKSCOORDS) {
-            setXTicksCoords((Double[]) value);
+            setXTicsCoord((double[]) value);
         } else if (property == AxisProperty.YTICKSCOORDS) {
-            setYTicksCoords((Double[]) value);
+            setYTicsCoord((double[]) value);
         } else if (property == AxisProperty.TICKSCOLOR) {
-            setTicksColor((Integer) value);
+            setTicsColor((Integer) value);
         } else if (property == AxisProperty.TICKSSEGMENT) {
-            setTicksSegment((Boolean) value);
+            setTicsSegment((Boolean) value);
         } else if (property == AxisProperty.TICKSSTYLE) {
-            setTicksStyle((Integer) value);
+            setTicsStyle(TicksStyle.intToEnum((Integer) value));
         } else if (property == AxisProperty.SUBTICKS) {
-            setSubticks((Integer) value);
+            setSubtics((Integer) value);
         } else if (property == AxisProperty.TICKSLABELS) {
-            setTicksLabels((String[]) value);
+            setTicsLabels((String[]) value);
         } else if (property == AxisProperty.FORMATN) {
             setFormatn((String) value);
         } else if (property == AxisProperty.FONT) {
@@ -222,11 +221,11 @@ public class Axis extends ClippableContouredObject {
         } else if (property == Font.FontProperty.STYLE) {
             setStyle((Integer) value);
         } else if (property == Font.FontProperty.SIZE) {
-            setSize((Double) value);
+            setLabelsFontSize((Double) value);
         } else if (property == Font.FontProperty.COLOR) {
-            setColor((Integer) value);
+            setLabelsFontColor((Integer) value);
         } else if (property == Font.FontProperty.FRACTIONAL) {
-            setFractional((Boolean) value);
+            setFractionalFont((Boolean) value);
         } else {
             return super.setProperty(property, value);
         }
@@ -259,7 +258,7 @@ public class Axis extends ClippableContouredObject {
     /**
      * @param style the font style to set
      */
-    public UpdateStatus setStyle(Integer style) {
+    public UpdateStatus setStyle(int style) {
         font.setStyle(style);
         return UpdateStatus.Success;
     }
@@ -267,14 +266,14 @@ public class Axis extends ClippableContouredObject {
     /**
      * @return the font size
      */
-    public Double getSize() {
+    public Double getLabelsFontSize() {
         return font.getSize();
     }
 
     /**
      * @param size the font size to set
      */
-    public UpdateStatus setSize(Double size) {
+    public UpdateStatus setLabelsFontSize(double size) {
         font.setSize(size);
         return UpdateStatus.Success;
     }
@@ -282,14 +281,14 @@ public class Axis extends ClippableContouredObject {
     /**
      * @return the font color
      */
-    public Integer getColor() {
+    public Integer getLabelsFontColor() {
         return font.getColor();
     }
 
     /**
      * @param color the font color to set
      */
-    public UpdateStatus setColor(Integer color) {
+    public UpdateStatus setLabelsFontColor(int color) {
         font.setColor(color);
         return UpdateStatus.Success;
     }
@@ -297,14 +296,14 @@ public class Axis extends ClippableContouredObject {
     /**
      * @return the font fractional
      */
-    public Boolean getFractional() {
+    public Boolean getFractionalFont() {
         return font.getFractional();
     }
 
     /**
      * @param fractional the font fractional to set
      */
-    public UpdateStatus setFractional(Boolean fractional) {
+    public UpdateStatus setFractionalFont(boolean fractional) {
         font.setFractional(fractional);
         return UpdateStatus.Success;
     }
@@ -327,14 +326,14 @@ public class Axis extends ClippableContouredObject {
     /**
      * @return the ticksColor
      */
-    public Integer getTicksColor() {
+    public Integer getTicsColor() {
         return ticksColor;
     }
 
     /**
      * @param ticksColor the ticksColor to set
      */
-    public UpdateStatus setTicksColor(Integer ticksColor) {
+    public UpdateStatus setTicsColor(int ticksColor) {
         this.ticksColor = ticksColor;
         return UpdateStatus.Success;
     }
@@ -342,29 +341,14 @@ public class Axis extends ClippableContouredObject {
     /**
      * @return the ticksDirection
      */
-    public Integer getTicksDirection() {
-        return getTicksDirectionAsEnum().ordinal();
-    }
-
-    /**
-     * @return the ticksDirection
-     */
-    public TicksDirection getTicksDirectionAsEnum() {
+    public TicksDirection getTicsDirection() {
         return ticksDirection;
     }
 
     /**
      * @param ticksDirection the ticksDirection to set
      */
-    public UpdateStatus setTicksDirection(Integer ticksDirection) {
-        setTicksDirectionAsEnum(TicksDirection.values()[ticksDirection]);
-        return UpdateStatus.Success;
-    }
-
-    /**
-     * @param ticksDirection the ticksDirection to set
-     */
-    public UpdateStatus setTicksDirectionAsEnum(TicksDirection ticksDirection) {
+    public UpdateStatus setTicsDirection(TicksDirection ticksDirection) {
         this.ticksDirection = ticksDirection;
         return UpdateStatus.Success;
     }
@@ -372,14 +356,14 @@ public class Axis extends ClippableContouredObject {
     /**
      * @return the number of ticks labels
      */
-    public Integer getNumberTicksLabels() {
+    public Integer getNumberTickLabels() {
         return ticksLabels.size();
     }
 
     /**
      * @return the ticksLabels
      */
-    public String[] getTicksLabels() {
+    public String[] getTicsLabels() {
         String[] labels = new String[ticksLabels.size()];
 
         for (int i = 0; i < ticksLabels.size(); i++) {
@@ -399,7 +383,7 @@ public class Axis extends ClippableContouredObject {
     /**
      * @param ticksLabels the ticksLabels to set
      */
-    public UpdateStatus setTicksLabels(String[] ticksLabels) {
+    public UpdateStatus setTicsLabels(String[] ticksLabels) {
         if (!this.ticksLabels.isEmpty()) {
             this.ticksLabels.clear();
         }
@@ -427,14 +411,14 @@ public class Axis extends ClippableContouredObject {
     /**
      * @return the ticksSegment
      */
-    public Boolean getTicksSegment() {
+    public Boolean getTicsSegment() {
         return ticksSegment;
     }
 
     /**
      * @param ticksSegment the ticksSegment to set
      */
-    public UpdateStatus setTicksSegment(Boolean ticksSegment) {
+    public UpdateStatus setTicsSegment(boolean ticksSegment) {
         this.ticksSegment = ticksSegment;
         return UpdateStatus.Success;
     }
@@ -442,14 +426,14 @@ public class Axis extends ClippableContouredObject {
     /**
      * @return the ticksStyle
      */
-    public Integer getTicksStyle() {
+    public TicksStyle getTicsStyle() {
         return ticksStyle;
     }
 
     /**
      * @param ticksStyle the ticksStyle to set
      */
-    public UpdateStatus setTicksStyle(Integer ticksStyle) {
+    public UpdateStatus setTicsStyle(TicksStyle ticksStyle) {
         this.ticksStyle = ticksStyle;
         return UpdateStatus.Success;
     }
@@ -457,14 +441,14 @@ public class Axis extends ClippableContouredObject {
     /**
      * @return the subticks
      */
-    public Integer getSubticks() {
+    public Integer getSubtics() {
         return subticks;
     }
 
     /**
      * @param subticks the subticks to set
      */
-    public UpdateStatus setSubticks(Integer subticks) {
+    public UpdateStatus setSubtics(int subticks) {
         this.subticks = subticks;
         return UpdateStatus.Success;
     }
@@ -472,21 +456,21 @@ public class Axis extends ClippableContouredObject {
     /**
      * @return the number of X ticks
      */
-    public Integer getXNumberTicks() {
+    public Integer getXNumberTics() {
         return xTicksCoords.length;
     }
 
     /**
      * @return the number of X ticks
      */
-    public Integer getYNumberTicks() {
+    public Integer getYNumberTics() {
         return yTicksCoords.length;
     }
 
     /**
      * @return the xTicksCoords
      */
-    public Double[] getXTicksCoords() {
+    public Double[] getXTicsCoord() {
         Double[] retXTicksCoords = new Double[xTicksCoords.length];
 
         for (int i = 0; i < xTicksCoords.length; i++) {
@@ -502,7 +486,7 @@ public class Axis extends ClippableContouredObject {
      * TODO : we should use format_n to fill ticks label.
      * @param ticksCoords the xTicksCoords to set
      */
-    public UpdateStatus setXTicksCoords(Double[] ticksCoords) {
+    public UpdateStatus setXTicsCoord(double[] ticksCoords) {
         if (ticksCoords.length != xTicksCoords.length) {
             xTicksCoords = new double[ticksCoords.length];
         }
@@ -516,7 +500,7 @@ public class Axis extends ClippableContouredObject {
     /**
      * @return the yTicksCoords
      */
-    public Double[] getYTicksCoords() {
+    public Double[] getYTicsCoord() {
         Double[] retYTicksCoords = new Double[yTicksCoords.length];
 
         for (int i = 0; i < yTicksCoords.length; i++) {
@@ -532,7 +516,7 @@ public class Axis extends ClippableContouredObject {
      * TODO : we should use format_n to fill ticks label.
      * @param ticksCoords the yTicksCoords to set
      */
-    public UpdateStatus setYTicksCoords(Double[] ticksCoords) {
+    public UpdateStatus setYTicsCoord(double[] ticksCoords) {
         if (ticksCoords.length != yTicksCoords.length) {
             yTicksCoords = new double[ticksCoords.length];
         }

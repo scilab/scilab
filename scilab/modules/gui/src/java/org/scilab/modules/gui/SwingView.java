@@ -18,6 +18,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CONSOLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PROGRESSIONBAR__;
@@ -60,13 +61,13 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VALID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_WAITBAR__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__;
 import static org.scilab.modules.gui.utils.Debug.DEBUG;
 
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.GraphicsEnvironment;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -88,6 +89,10 @@ import org.scilab.modules.graphic_export.Driver;
 import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectAccessTools;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectException;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectMethodFinder;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
@@ -120,6 +125,7 @@ import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.widget.Widget;
+import org.scilab.modules.types.ScilabType;
 
 /**
  * @author Bruno JOFRET
@@ -400,7 +406,7 @@ public final class SwingView implements GraphicView {
 
                 tab.setParentWindowId(window.getId());
 
-                tab.setEventHandler(figure.getEventHandlerString());
+                tab.setEventHandler(figure.getEventHandler());
                 tab.setEventHandlerEnabled(figure.getEventHandlerEnable());
 
                 DockingManager.dock(tab, window.getDockingPort());
@@ -1089,7 +1095,6 @@ public final class SwingView implements GraphicView {
                                     ((SwingScilabMenu) newParent.getValue()).add((SwingScilabCheckBoxMenuItem) allObjects.get(childId).getValue());
                                     break;
                                 default: /* UiParentMenu */
-                                    System.out.println("childAsTypedObject.getType() = UiParentMenu");
                                     ((SwingScilabMenu) updatedObject.getValue()).add((SwingScilabMenu) allObjects.get(childId).getValue());
                                     break;
                             }
@@ -1213,6 +1218,47 @@ public final class SwingView implements GraphicView {
         }
         if (needRevalidate && updatedComponent != null) {
             updatedComponent.validate();
+        }
+    }
+
+    public void updateObject(Integer id, String propName) {
+        final TypedObject registeredObject = allObjects.get(id);
+
+        //check if we have to manage this Object
+        if (registeredObject == null) {
+            return;
+        }
+
+        try {
+            //get value in model
+            GraphicObject modelObj = GraphicController.getController().getObjectFromId(id);
+            Class <? extends GraphicObject > clazzModel = modelObj.getClass();
+            String methodNameModel = GraphicObjectAccessTools.getGetterName(propName);
+            Method methodModel = GraphicObjectMethodFinder.findGetter(methodNameModel, clazzModel);
+            if (methodModel == null) {
+                return;
+            }
+            Object valueModel = GraphicObjectAccessTools.invokeGetter(methodModel, modelObj);
+
+            //set new value in view
+            final SwingViewObject objView = registeredObject.getValue();
+            final Class <? extends SwingViewObject > clazzView = objView.getClass();
+            String methodNameView = GraphicObjectAccessTools.getSetterName(propName);
+            final Method methodView = GraphicObjectMethodFinder.findSetter(methodNameView, clazzView, valueModel);
+            if (methodView == null) {
+                return;
+            }
+
+            methodView.invoke(objView, valueModel);
+
+        } catch (GraphicObjectException e) {
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
 }

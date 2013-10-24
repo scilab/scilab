@@ -24,7 +24,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 /**
  * @author Vincent COUVERT
@@ -59,8 +58,8 @@ public class Uimenu extends GraphicObject {
      */
     public Uimenu() {
         super();
-        setCallbackString("");
-        setCallbackType(0);
+        setCallbackstring("");
+        setCallbacktype(0);
     }
 
     /**

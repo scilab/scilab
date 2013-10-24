@@ -28,7 +28,9 @@ include $(top_srcdir)/Makefile.incl.am
 
 TYPES_JNI_SOURCES = 
 
-TYPES_C_SOURCES = src/jni/getScilabVariable_wrap.c
+TYPES_C_SOURCES = \
+    src/jni/getScilabVariable_wrap.c \
+    src/jni/putVars.c
 
 TYPES_CXX_SOURCES = src/cpp/ScilabToJava.cpp \
 	            src/jni/ScilabVariables.cpp \
@@ -55,6 +57,7 @@ libscitypes_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			   -I$(top_srcdir)/modules/jvm/includes/ \
 			   -I$(top_srcdir)/modules/output_stream/includes/ \
 			   -I$(top_srcdir)/modules/api_scilab/includes/ \
+			   -I$(top_srcdir)/modules/localization/includes/ \
 			   $(AM_CPPFLAGS)
 
 TYPES_DISABLE_C_SOURCES =

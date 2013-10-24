@@ -12,12 +12,17 @@
 
 package org.scilab.modules.graphic_objects.arc;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_END_ANGLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_HEIGHT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_START_ANGLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UPPER_LEFT_POINT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_WIDTH__;
+
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.utils.Utils;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * Class ArcDecomposer

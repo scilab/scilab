@@ -40,7 +40,7 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
         super();
         setEditable(false);
         /* Default settings for InfoBar (do not modify) */
-        setRelief(ScilabRelief.RIDGE);
+        setWidgetRelief(ScilabRelief.RIDGE);
         setOpaque(false);
         setFocusable(false);
     }
@@ -175,7 +175,7 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
      * Set the Relief of the TextBox
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setRelief(String reliefType) {
+    public void setWidgetRelief(String reliefType) {
         setBorder(ScilabRelief.getBorderFromRelief(reliefType));
     }
 

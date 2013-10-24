@@ -216,7 +216,7 @@ public class SwingScilabUiDisplayTree extends JScrollPane implements SimpleUiDis
      * Set the Relief of the UiTable
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setRelief(String reliefType) {
+    public void setWidgetRelief(String reliefType) {
         setBorder(ScilabRelief.getBorderFromRelief(reliefType));
     }
 

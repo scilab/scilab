@@ -220,7 +220,7 @@ public class ScilabUiTable extends ScilabWidget implements UiTable {
      * Set the Relief of the UiTable
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setRelief(String reliefType) {
+    public void setWidgetRelief(String reliefType) {
         ScilabBridge.setRelief(this, reliefType);
     }
 

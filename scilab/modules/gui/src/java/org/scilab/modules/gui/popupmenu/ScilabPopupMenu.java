@@ -260,7 +260,7 @@ public class ScilabPopupMenu extends ScilabWidget implements PopupMenu {
      * Set the Relief of the PopupMenu
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setRelief(String reliefType) {
+    public void setWidgetRelief(String reliefType) {
         ScilabBridge.setRelief(this, reliefType);
     }
 

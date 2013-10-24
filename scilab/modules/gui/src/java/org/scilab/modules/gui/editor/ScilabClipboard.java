@@ -14,7 +14,6 @@
 package org.scilab.modules.gui.editor;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.gui.editor.PolylineHandler;
 
 /**
 * Implements clipboard between figures for polylines.

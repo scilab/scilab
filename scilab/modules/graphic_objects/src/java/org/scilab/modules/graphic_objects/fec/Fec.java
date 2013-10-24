@@ -12,13 +12,14 @@
 
 package org.scilab.modules.graphic_objects.fec;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COLOR_RANGE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_OUTSIDE_COLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_BOUNDS__;
+
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
-
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * Fec class
@@ -80,7 +81,7 @@ public class Fec extends ClippableContouredObject {
         if (property == FecProperty.ZBOUNDS) {
             return getZBounds();
         } else if (property == FecProperty.OUTSIDECOLOR) {
-            return getOutsideColor();
+            return getOutsideColors();
         } else if (property == FecProperty.COLORRANGE) {
             return getColorRange();
         } else {
@@ -96,11 +97,11 @@ public class Fec extends ClippableContouredObject {
      */
     public UpdateStatus setProperty(Object property, Object value) {
         if (property == FecProperty.ZBOUNDS) {
-            setZBounds((Double[]) value);
+            setZBounds((double[]) value);
         } else if (property == FecProperty.OUTSIDECOLOR) {
-            setOutsideColor((Integer[]) value);
+            setOutsideColors((int[]) value);
         } else if (property == FecProperty.COLORRANGE) {
-            setColorRange((Integer[]) value);
+            setColorRange((int[]) value);
         } else {
             return super.setProperty(property, value);
         }
@@ -122,7 +123,7 @@ public class Fec extends ClippableContouredObject {
     /**
      * @param colorRange the colorRange to set
      */
-    public UpdateStatus setColorRange(Integer[] colorRange) {
+    public UpdateStatus setColorRange(int[] colorRange) {
         this.colorRange[0] = colorRange[0];
         this.colorRange[1] = colorRange[1];
         return UpdateStatus.Success;
@@ -131,7 +132,7 @@ public class Fec extends ClippableContouredObject {
     /**
      * @return the outsideColor
      */
-    public Integer[] getOutsideColor() {
+    public Integer[] getOutsideColors() {
         Integer[] retOutsideColor = new Integer[2];
         retOutsideColor[0] = outsideColor[0];
         retOutsideColor[1] = outsideColor[1];
@@ -142,7 +143,7 @@ public class Fec extends ClippableContouredObject {
     /**
      * @param outsideColor the outsideColor to set
      */
-    public UpdateStatus setOutsideColor(Integer[] outsideColor) {
+    public UpdateStatus setOutsideColors(int[] outsideColor) {
         this.outsideColor[0] = outsideColor[0];
         this.outsideColor[1] = outsideColor[1];
         return UpdateStatus.Success;
@@ -162,7 +163,7 @@ public class Fec extends ClippableContouredObject {
     /**
      * @param bounds the zBounds to set
      */
-    public UpdateStatus setZBounds(Double[] zBounds) {
+    public UpdateStatus setZBounds(double[] zBounds) {
         this.zBounds[0] = zBounds[0];
         this.zBounds[1] = zBounds[1];
         return UpdateStatus.Success;

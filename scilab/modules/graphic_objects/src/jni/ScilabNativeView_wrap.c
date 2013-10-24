@@ -194,6 +194,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
     extern void ScilabNativeView__setCurrentSubWin(int id);
     extern void ScilabNativeView__setCurrentObject(int id);
     extern int ScilabNativeView__getValidDefaultFigureId();
+    extern int ScilabNativeView__getObjectFromHandle(long long handle);
     
 
 #ifdef __cplusplus
@@ -269,6 +270,20 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_ScilabNativeVie
   (void)jenv;
   (void)jcls;
   result = (int)ScilabNativeView__getValidDefaultFigureId();
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_ScilabNativeViewJNI_ScilabNativeView_1_1getObjectFromHandle(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  jint jresult = 0 ;
+  long long arg1 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = (long long)jarg1; 
+  result = (int)ScilabNativeView__getObjectFromHandle(arg1);
   jresult = (jint)result; 
   return jresult;
 }

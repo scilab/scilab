@@ -302,7 +302,7 @@ public class ScilabListBoxBridge {
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public static void setRelief(ListBox listBox, String reliefType) {
-        listBox.getAsSimpleListBox().setRelief(reliefType);
+        listBox.getAsSimpleListBox().setWidgetRelief(reliefType);
     }
 
     /**

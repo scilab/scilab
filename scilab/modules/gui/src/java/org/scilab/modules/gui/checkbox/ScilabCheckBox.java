@@ -236,7 +236,7 @@ public class ScilabCheckBox extends ScilabWidget implements CheckBox {
      * Set the Relief of the CheckBox
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setRelief(String reliefType) {
+    public void setWidgetRelief(String reliefType) {
         ScilabBridge.setRelief(this, reliefType);
     }
 

@@ -13,11 +13,11 @@
 
 package org.scilab.modules.gui.editor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-
-
-import java.util.*;
 
 /**
 * Serach for objects in the given object child tree.

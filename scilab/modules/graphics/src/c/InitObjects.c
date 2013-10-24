@@ -560,18 +560,17 @@ int InitAxesModel()
     setGraphicObjectProperty(iAxesmdlUID, __GO_ARC_DRAWING_METHOD__, &arcDrawingMethod, jni_int, 1);
 
     /* Creates the Axes model's labels and sets the model as their parent */
-    iLabelUID = initLabel(iAxesmdlUID);
+    iLabelUID = createHiddenLabel(iAxesmdlUID);
     setGraphicObjectProperty(iAxesmdlUID, __GO_TITLE__, &iLabelUID, jni_int, 1);
 
-    iLabelUID = initLabel(iAxesmdlUID);
+    iLabelUID = createHiddenLabel(iAxesmdlUID);
     setGraphicObjectProperty(iAxesmdlUID, __GO_X_AXIS_LABEL__, &iLabelUID, jni_int, 1);
 
-    iLabelUID = initLabel(iAxesmdlUID);
+    iLabelUID = createHiddenLabel(iAxesmdlUID);
     setGraphicObjectProperty(iAxesmdlUID, __GO_Y_AXIS_LABEL__, &iLabelUID, jni_int, 1);
 
-    iLabelUID = initLabel(iAxesmdlUID);
+    iLabelUID = createHiddenLabel(iAxesmdlUID);
     setGraphicObjectProperty(iAxesmdlUID, __GO_Z_AXIS_LABEL__, &iLabelUID, jni_int, 1);
-
     return 0;
 }
 
@@ -670,52 +669,5 @@ int sciInitGraphicMode(int iObjUID)
             setGraphicObjectProperty(iObjUID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
         }
     }
-
-    /* Deactivated */
-#if 0
-case SCI_TEXT:
-case SCI_LEGEND:
-case SCI_ARC:
-case SCI_SEGS:
-case SCI_FEC:
-case SCI_GRAYPLOT:
-case SCI_POLYLINE:
-case SCI_RECTANGLE:
-case SCI_SURFACE:
-case SCI_AXES:
-case SCI_AGREG:
-case SCI_LABEL:                /* F.Leray 28.05.04 */
-case SCI_UIMENU:
-default:
-    sciprint(_("This object has not any graphic mode\n"));
-    return -1;
-    break;
-#endif
-
     return 0;
 }
-
-/*---------------------------------------------------------------------------------*/
-/* allocate and set a new label to default values */
-int initLabel(int iParentObjUID)
-{
-    int iNewLabel = NULL;
-    int iHidden = 1;
-    int autoPosition = 1;
-
-    iNewLabel = createGraphicObject(__GO_LABEL__);
-
-    /* Hide Label as they are non explicit children */
-    setGraphicObjectProperty(iNewLabel, __GO_HIDDEN__, &iHidden, jni_bool, 1);
-    setGraphicObjectProperty(iNewLabel, __GO_AUTO_POSITION__, &autoPosition, jni_bool, 1);
-    setGraphicObjectProperty(iNewLabel, __GO_AUTO_ROTATION__, &autoPosition, jni_bool, 1);
-
-    /* Sets the label's parent */
-    setGraphicObjectRelationship(iParentObjUID, iNewLabel);
-
-    cloneGraphicContext(iParentObjUID, iNewLabel);
-    cloneFontContext(iParentObjUID, iNewLabel);
-
-    return iNewLabel;
-}
-/*---------------------------------------------------------------------------------*/

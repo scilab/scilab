@@ -12,8 +12,9 @@
 
 package org.scilab.modules.graphic_objects.graphicView;
 
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
+
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 
 public class LogView implements GraphicView {
 
@@ -40,6 +41,11 @@ public class LogView implements GraphicView {
     }
 
     public void updateObject(Integer id, int property) {
+        System.out.println("===" + id + " Object Property " + property + " Updated.");
+    }
+
+    @Override
+    public void updateObject(Integer id, String property) {
         System.out.println("===" + id + " Object Property " + property + " Updated.");
     }
 

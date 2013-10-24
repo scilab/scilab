@@ -205,7 +205,7 @@ public class ScilabContextMenuBridge {
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public static void setRelief(ContextMenu contextMenu, String reliefType) {
-        contextMenu.getAsSimpleContextMenu().setRelief(reliefType);
+        contextMenu.getAsSimpleContextMenu().setWidgetRelief(reliefType);
     }
 
     /**

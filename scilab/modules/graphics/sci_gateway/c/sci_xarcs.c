@@ -26,6 +26,7 @@
 #include "CurrentObject.h"
 
 #include "graphicObjectProperties.h"
+#include "createGraphicObject.h"
 #include "getGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
@@ -147,7 +148,7 @@ int sci_xarcs(char *fname, unsigned long fname_len)
 
     /* construct Compound and make it current object */
     {
-        int o = ConstructCompoundSeq(n1);
+        int o = createCompoundSeq(iCurrentSubWinUID, n1);
         setCurrentObject(o);
     }
 

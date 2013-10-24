@@ -262,7 +262,7 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 
     }
 
-    public void setRelief(String reliefType) {
+    public void setWidgetRelief(String reliefType) {
         // TODO Auto-generated method stub
 
     }

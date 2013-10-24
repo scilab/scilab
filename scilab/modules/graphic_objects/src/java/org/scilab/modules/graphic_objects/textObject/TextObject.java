@@ -12,9 +12,6 @@
 
 package org.scilab.modules.graphic_objects.textObject;
 
-import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
-
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_COLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_FRACTIONAL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_SIZE__;
@@ -22,6 +19,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FORMATTED_TEXT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TEXT_STRINGS__;
+
+import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
 
 
 /**

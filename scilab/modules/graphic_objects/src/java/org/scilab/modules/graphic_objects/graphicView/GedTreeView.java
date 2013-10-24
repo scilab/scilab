@@ -88,4 +88,33 @@ public class GedTreeView extends TreeView {
         }
     }
 
+    @Override
+    public void updateObject(Integer id, String property) {
+
+        DefaultMutableTreeNode objectNode = allObjects.get(id);
+        /*
+         * Update parent property
+         */
+        if (objectNode != null && property.equalsIgnoreCase("parent")) {
+            DefaultMutableTreeNode parentNode = (DefaultMutableTreeNode) objectNode.getParent();
+
+            if (parentNode != null) {
+                // Remove from old parent
+                objectNode.removeFromParent();
+                topModel.nodeStructureChanged(parentNode);
+
+                Integer parentUID = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT__);
+                // Retrieve new Parent
+                DefaultMutableTreeNode newParentNode = allObjects.get(parentUID);
+
+                // If there is no more parent, leave object at top level
+                if (newParentNode == null) {
+                    newParentNode = top;
+                }
+
+                newParentNode.add(objectNode);
+                topModel.nodeStructureChanged(newParentNode);
+            }
+        }
+    }
 }

@@ -369,7 +369,7 @@ public class SwingScilabMenu extends JMenu implements SwingViewObject, SimpleMen
      * Set the Relief of the Menu
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setRelief(String reliefType) {
+    public void setWidgetRelief(String reliefType) {
         setBorder(ScilabRelief.getBorderFromRelief(reliefType));
     }
 

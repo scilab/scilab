@@ -30,6 +30,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
@@ -42,13 +44,17 @@ import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.widget.ViewMethods;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabInteger;
+import org.scilab.modules.types.ScilabType;
 
 /**
  * Swing implementation for Scilab ListBox in GUIs
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabListBox extends JScrollPane implements SwingViewObject, SimpleListBox {
+public class SwingScilabListBox extends JScrollPane implements SwingViewObject, SimpleListBox, ViewMethods {
 
     private static final long serialVersionUID = 3507396207331058895L;
 
@@ -94,9 +100,10 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
         adjustmentListener = new AdjustmentListener() {
             public void adjustmentValueChanged(AdjustmentEvent arg0) {
                 int listboxtopValue = getList().getUI().locationToIndex(getList(), getViewport().getViewPosition()) + 1;
-                Integer[] modelValue = new Integer[1];
-                modelValue[0] = listboxtopValue;
-                GraphicController.getController().setProperty(uid, __GO_UI_LISTBOXTOP__, modelValue);
+
+                GraphicObject obj = GraphicModel.getModel().getObjectFromId(uid);
+                ScilabDouble value = new ScilabDouble(listboxtopValue);
+                GraphicController.getController().setProperty(obj, "listboxtop", value);
             }
         };
         getVerticalScrollBar().addAdjustmentListener(adjustmentListener);
@@ -355,6 +362,13 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
         // Nothing to do here
     }
 
+    public void setVerticalalignment(String alignment) {
+        SwingViewWidget.setVerticalAlignment(this, alignment);
+    }
+    public void setHorizontalalignment(String alignment) {
+        SwingViewWidget.setHorizontalAlignment(this, alignment);
+    }
+
     /**
      * Set the vertical alignment for the ListBox text
      * @param alignment the value for the alignment (See ScilabAlignment.java)
@@ -438,7 +452,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      * Set the Relief of the ListBox
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setRelief(String reliefType) {
+    public void setWidgetRelief(String reliefType) {
         setBorder(ScilabRelief.getBorderFromRelief(reliefType));
     }
 
@@ -511,5 +525,86 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      */
     public void update(int property, Object value) {
         SwingViewWidget.update(this, property, value);
+    }
+
+    public void setBackgroundcolor(Double[] color) {
+        SwingViewWidget.setBackgroundcolor(this, color);
+    }
+
+    public void setForegroundcolor(Double[] color) {
+        SwingViewWidget.setForegroundcolor(this, color);
+    }
+
+    public void setString(String[] text) {
+        SwingViewWidget.setText(uid, this, text);
+    }
+
+    public void setCallback(String callback) {
+        SwingViewWidget.setCallback(uid, this, callback);
+    }
+
+    public void setPosition(Double[] position) {
+        SwingViewWidget.setPostion(uid, this, position);
+    }
+
+    public void setParent(int id) {
+        SwingViewWidget.setParent(this, id);
+    }
+
+    /* font*/
+    public void setFontweight(String value) {
+        SwingViewWidget.setFontWeight(this, value);
+    }
+
+    public void setFontname(String value) {
+        SwingViewWidget.setFontName(this, value);
+    }
+
+    public void setFontangle(String value) {
+        SwingViewWidget.setFontAngle(this, value);
+    }
+
+    public void setFontunits(double value) {
+        SwingViewWidget.setFontUnits(uid, this, value);
+    }
+
+    public void setFontsize(double value) {
+        SwingViewWidget.setFontSize(uid, this, value);
+    }
+
+    public void setMax(double value) {
+        SwingViewWidget.setMax(uid, this, value);
+    }
+
+    public void setMin(double value) {
+        SwingViewWidget.setMin(uid, this, value);
+    }
+
+    public void setValue(Double[] value) {
+        SwingViewWidget.setValue(uid, this, value);
+    }
+
+    public void setRelief(String value) {
+        SwingViewWidget.setRelief(this, value);
+    }
+
+    public void setSliderstep(Double[] value) {
+        SwingViewWidget.setSliderStep(this, value);
+    }
+
+    public void setListboxtop(Integer[] value) {
+        SwingViewWidget.setListBoxTop(this, value);
+    }
+
+    public void setEnable(boolean value) {
+        SwingViewWidget.setEnable(this, value);
+    }
+
+    public void setCallbacktype(int value) {
+        SwingViewWidget.setCallbackType(uid, this, value);
+    }
+
+    public void setTooltipstring(String[] value) {
+        SwingViewWidget.setToolTipString(this, value);
     }
 }

@@ -41,4 +41,7 @@ public class ScilabView extends ScilabNativeView implements GraphicView {
             ScilabNativeView__updateObject(id, property);
         }
     }
+
+    public void updateObject(Integer id, String property) {
+    }
 }

@@ -30,9 +30,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import java.util.ArrayList;
 
 import org.scilab.modules.graphic_objects.contouredObject.Line;
-import org.scilab.modules.graphic_objects.contouredObject.Line.LineType;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicClippableObject;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
+import org.scilab.modules.graphic_objects.utils.LineType;
 
 /**
  * VectField class
@@ -162,7 +161,7 @@ public abstract class VectField extends GraphicClippableObject {
         } else if (property == Line.LinePropertyType.MODE) {
             setLineMode((Boolean) value);
         } else if (property == Line.LinePropertyType.LINESTYLE) {
-            setLineStyle((Integer) value);
+            setLineStyle((LineType) value);
         } else if (property == Line.LinePropertyType.THICKNESS) {
             setLineThickness((Double) value);
         } else {
@@ -528,11 +527,8 @@ public abstract class VectField extends GraphicClippableObject {
      * To be done: return an array of Integer
      * @return the arrow line style
      */
-    public Integer getLineStyle() {
-        Integer retLineStyle;
-
-        retLineStyle = arrows.get(0).getLineStyle();
-        return retLineStyle;
+    public LineType getLineStyle() {
+        return arrows.get(0).getLineStyle();
     }
 
     /**
@@ -540,7 +536,7 @@ public abstract class VectField extends GraphicClippableObject {
      * To be done: change the argument to an array of Integer
      * @param lineStyle the arrow line style to set
      */
-    public UpdateStatus setLineStyle(Integer lineStyle) {
+    public UpdateStatus setLineStyle(LineType lineStyle) {
         for (int i = 0; i < arrows.size(); i++) {
             arrows.get(i).setLineStyle(lineStyle);
         }
@@ -555,7 +551,7 @@ public abstract class VectField extends GraphicClippableObject {
     public LineType getLineStyleAsEnum() {
         LineType retLineStyle;
 
-        retLineStyle = arrows.get(0).getLineStyleAsEnum();
+        retLineStyle = arrows.get(0).getLineStyle();
         return retLineStyle;
     }
 
@@ -567,7 +563,7 @@ public abstract class VectField extends GraphicClippableObject {
     public Double getLineThickness() {
         Double retLineThickness;
 
-        retLineThickness = arrows.get(0).getLineThickness();
+        retLineThickness = arrows.get(0).getThickness();
         return retLineThickness;
     }
 
@@ -578,7 +574,7 @@ public abstract class VectField extends GraphicClippableObject {
      */
     public UpdateStatus setLineThickness(Double lineThickness) {
         for (int i = 0; i < arrows.size(); i++) {
-            arrows.get(i).setLineThickness(lineThickness);
+            arrows.get(i).setThickness(lineThickness);
         }
         return UpdateStatus.Success;
     }

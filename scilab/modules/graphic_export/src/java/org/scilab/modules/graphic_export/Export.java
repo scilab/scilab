@@ -58,6 +58,7 @@ import org.scilab.modules.graphic_export.convertToPPM.PPMEncoder;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.graphic_objects.utils.Antialiasing;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
@@ -397,7 +398,7 @@ public class Export {
                             g2d.dispose();
                         }
                     } else if (property == GraphicObjectProperties.__GO_ANTIALIASING__) {
-                        canvas.setAntiAliasingLevel(getFigure().getAntialiasing());
+                        canvas.setAntiAliasingLevel(Antialiasing.enumToInt(getFigure().getAntialiasing()));
                     }
                 }
             }
@@ -597,14 +598,11 @@ public class Export {
     private static class SVGExporter extends Exporter {
 
         private SVGGraphics2D g2d;
-        private ExportParams params;
-
         public SVGExporter() { }
 
         @Override
         public Graphics2D getGraphics2D(int width, int height, File file, ExportParams params) {
             this.file = file;
-            this.params = params;
             DOMImplementation domImpl = GenericDOMImplementation.getDOMImplementation();
             Document document = domImpl.createDocument("http://www.w3.org/2000/svg", "svg", null);
             final SVGGeneratorContext ctx = SVGGeneratorContext.createDefault(document);
@@ -662,7 +660,6 @@ public class Export {
 
         private OutputStream out;
         private PDFDocumentGraphics2D g2d;
-        private ExportParams params;
         private ByteArrayOutputStream buffer;
 
         public PDFExporter() { }
@@ -670,7 +667,6 @@ public class Export {
         @Override
         public Graphics2D getGraphics2D(int width, int height, File file, ExportParams params) {
             this.file = file;
-            this.params = params;
             try {
                 if (file == null) {
                     buffer = new ByteArrayOutputStream();
@@ -728,7 +724,6 @@ public class Export {
 
         protected OutputStream out;
         protected AbstractPSDocumentGraphics2D g2d;
-        protected ExportParams params;
         protected ByteArrayOutputStream buffer;
 
         public PSExporter() { }
@@ -736,7 +731,6 @@ public class Export {
         @Override
         public Graphics2D getGraphics2D(int width, int height, File file, final ExportParams params) {
             this.file = file;
-            this.params = params;
             try {
                 if (file == null) {
                     buffer = new ByteArrayOutputStream();
@@ -905,7 +899,6 @@ public class Export {
         @Override
         public Graphics2D getGraphics2D(int width, int height, File file, final ExportParams params) {
             this.file = file;
-            this.params = params;
             try {
                 if (file == null) {
                     buffer = new ByteArrayOutputStream();

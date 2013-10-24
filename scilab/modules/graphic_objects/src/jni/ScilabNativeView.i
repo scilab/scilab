@@ -31,4 +31,5 @@
     extern void ScilabNativeView__setCurrentSubWin(int id);
     extern void ScilabNativeView__setCurrentObject(int id);
     extern int ScilabNativeView__getValidDefaultFigureId();
+    extern int ScilabNativeView__getObjectFromHandle(long long handle);
     %}

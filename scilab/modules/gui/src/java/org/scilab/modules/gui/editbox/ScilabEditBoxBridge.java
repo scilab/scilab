@@ -235,7 +235,7 @@ public class ScilabEditBoxBridge {
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public static void setRelief(EditBox editBox, String reliefType) {
-        editBox.getAsSimpleEditBox().setRelief(reliefType);
+        editBox.getAsSimpleEditBox().setWidgetRelief(reliefType);
     }
 
     /**

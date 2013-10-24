@@ -258,7 +258,7 @@ public class ScilabMenuBridge {
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public static void setRelief(Menu menu, String reliefType) {
-        menu.getAsSimpleMenu().setRelief(reliefType);
+        menu.getAsSimpleMenu().setWidgetRelief(reliefType);
     }
 
     /**

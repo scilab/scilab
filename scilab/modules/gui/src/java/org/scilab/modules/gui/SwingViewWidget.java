@@ -13,14 +13,13 @@
 
 package org.scilab.modules.gui;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_STYLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_USER_DATA__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
@@ -36,11 +35,11 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TOOLTIPSTRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_UNITS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_USER_DATA__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VALID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
@@ -111,7 +110,7 @@ public final class SwingViewWidget {
             case __GO_CALLBACKTYPE__ :
                 String cbString = (String) GraphicController.getController().getProperty(uid, __GO_CALLBACK__);
                 if ((Integer) value == CallBack.UNTYPED) { /* Deactivate callback */
-                    uiControl.setCallback(null);
+                    uiControl.setCallback((CommonCallBack)null);
                 } else {
                     uiControl.setCallback(CommonCallBack.createCallback(cbString, (Integer) value, uid));
                 }
@@ -274,7 +273,7 @@ public final class SwingViewWidget {
                 }
                 break;
             case __GO_UI_RELIEF__ :
-                uiControl.setRelief((String) value);
+                uiControl.setWidgetRelief((String) value);
                 break;
             case __GO_UI_SLIDERSTEP__ :
                 Double[] sliderStep = ((Double[]) value);
@@ -293,7 +292,7 @@ public final class SwingViewWidget {
                 if (uiControl instanceof SwingScilabUiTable) {
                     // Update column names
                     String[] stringValue = (String[]) value;
-                    int colNb = ((Integer) GraphicController.getController().getProperty(uid, __GO_UI_STRING_COLNB__));
+                    int colNb = stringValue.length;
                     String[] colNames = new String[colNb - 1];
                     for (int k = 1; k < colNb; k++) {
                         colNames[k - 1] = stringValue[k * (stringValue.length / colNb)];
@@ -342,8 +341,6 @@ public final class SwingViewWidget {
                     uiControl.setToolTipText(tooltipText);
                 }
                 break;
-            case __GO_UI_STRING_COLNB__ :
-                /* Nothing to do */
             case __GO_TAG__ :
                 /* Nothing to do */
             case __GO_USER_DATA__ :
@@ -354,7 +351,6 @@ public final class SwingViewWidget {
                 /* Nothing to do */
                 break;
             case __GO_UI_VALUE__ :
-
                 Double[] doubleValue = ((Double[]) value);
                 if (doubleValue.length == 0) {
                     return;
@@ -436,5 +432,328 @@ public final class SwingViewWidget {
                 System.err.println("[SwingScilabWidget.update] Property not mapped: " + property);
         }
     }
-}
 
+    public static void setCallback(Integer id, Widget control, String callback) {
+        int cbType = (Integer) GraphicController.getController().getProperty(id, __GO_CALLBACKTYPE__);
+        control.setCallback(CommonCallBack.createCallback(callback, cbType, id));
+    }
+
+    public static void setPostion(Integer id, Widget control, Double[] position) {
+        UicontrolUnits unitsProperty = UnitsConverter.stringToUnitsEnum((String) GraphicController
+                                       .getController().getProperty(id, __GO_UI_UNITS__));
+        Double[] dblValues = UnitsConverter.convertPositionToPixels(position, unitsProperty, control);
+        /* Set dimensions before position because position is adjusted according to size */
+        control.setDims(new Size(dblValues[WIDTH_INDEX].intValue(), dblValues[HEIGHT_INDEX].intValue()));
+        control.setPosition(new Position(dblValues[X_INDEX].intValue(), dblValues[Y_INDEX].intValue()));
+        /* Manage sliders orientation */
+        if (control instanceof SwingScilabSlider) {
+            if (dblValues[WIDTH_INDEX].intValue() > dblValues[HEIGHT_INDEX].intValue()) {
+                ((SwingScilabSlider) control).setHorizontal();
+            } else {
+                ((SwingScilabSlider) control).setVertical();
+            }
+        }
+    }
+
+    public static void setBackgroundcolor(Widget control, Double[] color) {
+        control.setBackground(new Color((int)(color[0] * COLORS_COEFF),
+                                        (int)(color[1] * COLORS_COEFF),
+                                        (int)(color[2] * COLORS_COEFF)));
+    }
+
+    public static void setForegroundcolor(Widget control, Double[] color) {
+        control.setForeground(new Color((int)(color[0] * COLORS_COEFF),
+                                        (int)(color[1] * COLORS_COEFF),
+                                        (int)(color[2] * COLORS_COEFF)));
+    }
+
+    public static void setText(Integer id, Widget control, String[] value) {
+        if (control instanceof SwingScilabUiTable) {
+            // Update column names
+            String[] stringValue = (String[]) value;
+            int colNb = stringValue.length;
+            String[] colNames = new String[colNb - 1];
+            for (int k = 1; k < colNb; k++) {
+                colNames[k - 1] = stringValue[k * (stringValue.length / colNb)];
+            }
+            ((SwingScilabUiTable) control).setColumnNames(colNames);
+            // Update row names
+            String[] rowNames = new String[stringValue.length / colNb - 1];
+            for (int k = 1; k < stringValue.length / colNb; k++) {
+                rowNames[k - 1] = stringValue[k];
+            }
+            ((SwingScilabUiTable) control).setRowNames(rowNames);
+            // Update data
+            String[] tableData = new String[rowNames.length * colNames.length];
+            int kData = 0;
+            for (int kCol = 1; kCol <= colNames.length; kCol++) {
+                for (int kRow = 1; kRow <= rowNames.length; kRow++) {
+                    tableData[kData++] = stringValue[kCol * (stringValue.length / colNb) + kRow];
+                }
+            }
+            if (tableData.length != 0) {
+                ((SwingScilabUiTable) control).setData(tableData);
+            }
+        } else if (control instanceof SwingScilabListBox) {
+            // Listboxes manage string vectors
+            ((SwingScilabListBox) control).setText((String[]) value);
+        } else if (control instanceof SwingScilabPopupMenu) {
+            // Popupmenus manage string vectors
+            ((SwingScilabPopupMenu) control).setText((String[]) value);
+        } else {
+            control.setText(((String[]) value)[0]);
+        }
+    }
+
+    public static void setHorizontalAlignment(Widget control, String alignment) {
+        control.setHorizontalAlignment(alignment);
+    }
+
+    public static void setVerticalAlignment(Widget control, String alignment) {
+        control.setVerticalAlignment(alignment);
+    }
+
+    public static void setParent(Widget control, Integer id) {
+        Double[] pos = (Double[]) GraphicController.getController().getProperty(id, __GO_POSITION__);
+        SwingViewWidget.setPostion(id, control, pos);
+    }
+
+    public static void setFontWeight(Widget control, String value) {
+        Font font = control.getFont();
+        if (font != null) {
+            String weight = value;
+
+            if (weight.equalsIgnoreCase(BOLDFONT)) {
+                if (font.isItalic()) {
+                    font = new Font(font.getName(), Font.ITALIC + Font.BOLD, font.getSize());
+                } else {
+                    font = new Font(font.getName(), Font.BOLD, font.getSize());
+                }
+            } else {
+                if (font.isItalic()) {
+                    font = new Font(font.getName(), Font.ITALIC, font.getSize());
+                } else {
+                    font = new Font(font.getName(), Font.PLAIN, font.getSize());
+                }
+            }
+
+            control.setFont(font);
+        }
+    }
+
+    public static void setFontName(Widget control, String value) {
+        Font font = control.getFont();
+        if (font != null) {
+            String name = value;
+            font = new Font(name, font.getStyle(), font.getSize());
+            control.setFont(font);
+        }
+    }
+
+    public static void setFontAngle(Widget control, String value) {
+        Font font = control.getFont();
+        if (font != null) {
+            String angle = value;
+
+            if (angle.equalsIgnoreCase(ITALICFONT) || angle.equalsIgnoreCase(OBLIQUEFONT)) {
+                if (font.isBold()) {
+                    font = new Font(font.getName(), Font.ITALIC + Font.BOLD, font.getSize());
+                } else {
+                    font = new Font(font.getName(), Font.ITALIC, font.getSize());
+                }
+            } else {
+                if (font.isBold()) {
+                    font = new Font(font.getName(), Font.BOLD, font.getSize());
+                } else {
+                    font = new Font(font.getName(), Font.PLAIN, font.getSize());
+                }
+            }
+
+            control.setFont(font);
+        }
+    }
+
+    public static void setFontUnits(Integer id, Widget control, Double value) {
+    }
+
+    public static void setFontSize(Integer id, Widget control, Double value) {
+        UicontrolUnits fontUnitsProperty = UnitsConverter.stringToUnitsEnum((String) GraphicController.getController()
+                                           .getProperty(id, __GO_UI_FONTUNITS__));
+        Double dblFontSize = UnitsConverter.convertToPoint(value, fontUnitsProperty, control, false);
+        Font font = control.getFont();
+        if (font != null) {
+            int size = dblFontSize.intValue();
+            font = new Font(font.getName(), font.getStyle(), size);
+            control.setFont(font);
+        }
+    }
+
+    public static void setMax(Integer id, Widget control, Double value) {
+        Double[] allValues = (Double[]) GraphicController.getController().getProperty(id, __GO_UI_VALUE__);
+        if ((allValues == null) || (allValues.length == 0)) {
+            return;
+        }
+        double uicontrolValue = allValues[0];
+        if (control instanceof SwingScilabSlider) {
+            // Update the slider properties
+            double minValue = (Double) GraphicController.getController().getProperty(id, __GO_UI_MIN__);
+            ((SwingScilabSlider) control).setMaximumValue(value);
+            Double[] sliderStep = ((Double[]) GraphicController.getController().getProperty(id, __GO_UI_SLIDERSTEP__));
+            double minorSliderStep = sliderStep[0].doubleValue();
+            double majorSliderStep = sliderStep[1].doubleValue();
+            if (minValue <= value) {
+                ((SwingScilabSlider) control).setMinorTickSpacing(minorSliderStep);
+                ((SwingScilabSlider) control).setMajorTickSpacing(majorSliderStep);
+            }
+        } else if (control instanceof SwingScilabListBox) {
+            // Enable/Disable multiple selection
+            double minValue = (Double) GraphicController.getController().getProperty(id, __GO_UI_MIN__);
+            ((SwingScilabListBox) control).setMultipleSelectionEnabled(value - minValue > 1);
+        } else if (control instanceof SwingScilabCheckBox) {
+            // Check/Uncheck the CheckBox
+            ((SwingScilabCheckBox) control).setChecked(value == uicontrolValue);
+        } else if (control instanceof SwingScilabRadioButton) {
+            // Check/Uncheck the RadioButton
+            ((SwingScilabRadioButton) control).setChecked(value == uicontrolValue);
+        }
+
+    }
+
+    public static void setMin(Integer id, Widget control, Double value) {
+        double maxValue = 0;
+        if (control instanceof SwingScilabSlider) {
+            // Update the slider properties
+            maxValue = (Double) GraphicController.getController().getProperty(id, __GO_UI_MAX__);
+            ((SwingScilabSlider) control).setMinimumValue(value);
+            Double[] sliderStep = ((Double[]) GraphicController.getController().getProperty(id, __GO_UI_SLIDERSTEP__));
+            double minorSliderStep = sliderStep[0].doubleValue();
+            double majorSliderStep = sliderStep[1].doubleValue();
+            if (value <= maxValue) {
+                ((SwingScilabSlider) control).setMinorTickSpacing(minorSliderStep);
+                ((SwingScilabSlider) control).setMajorTickSpacing(majorSliderStep);
+            }
+        } else if (control instanceof SwingScilabListBox) {
+            // Enable/Disable multiple selection
+            maxValue = (Double) GraphicController.getController().getProperty(id, __GO_UI_MAX__);
+            ((SwingScilabListBox) control).setMultipleSelectionEnabled(maxValue - value > 1);
+        }
+    }
+
+    public static void setValue(Integer id, Widget control, Double[] value) {
+        if (value.length == 0) {
+            return;
+        }
+
+        double maxValue = 0;
+        int[] intValue = new int[value.length];
+        for (int k = 0; k < value.length; k++) {
+            intValue[k] = value[k].intValue();
+        }
+        if (control instanceof SwingScilabListBox) {
+            // Update selected items in the listbox
+            ((SwingScilabListBox) control).setSelectedIndices(intValue);
+        } else if (control instanceof SwingScilabPopupMenu) {
+            // Update selected items in the popupmenu
+            ((SwingScilabPopupMenu) control).setUserSelectedIndex(intValue[0]);
+        } else if (control instanceof SwingScilabCheckBox) {
+            // Check the checkbox if the value is equal to MAX property
+            maxValue = ((Double) GraphicController.getController().getProperty(id, __GO_UI_MAX__)).intValue();
+            ((SwingScilabCheckBox) control).setChecked(maxValue == intValue[0]);
+        } else if (control instanceof SwingScilabRadioButton) {
+            // Check the radiobutton if the value is equal to MAX property
+            maxValue = ((Double) GraphicController.getController().getProperty(id, __GO_UI_MAX__)).intValue();
+            ((SwingScilabRadioButton) control).setChecked(maxValue == intValue[0]);
+        } else if (control instanceof SwingScilabSlider) {
+            // Update the slider value
+            ((SwingScilabSlider) control).setUserValue(value[0]);
+        } else if (control instanceof SwingScilabUiImage) {
+            // Update the image parameters
+            double[] imageParams = new double[5];
+            if (value.length < 1) {
+                imageParams[0] = 1.0;
+            } else {
+                imageParams[0] = value[0];
+            }
+            if (value.length < 2) {
+                imageParams[1] = 1.0;
+            } else {
+                imageParams[1] = value[1];
+            }
+            if (value.length < 3) {
+                imageParams[2] = 0.0;
+            } else {
+                imageParams[2] = value[2];
+            }
+            if (value.length < 4) {
+                imageParams[3] = 0.0;
+            } else {
+                imageParams[3] = value[3];
+            }
+            if (value.length < 5) {
+                imageParams[4] = 0.0;
+            } else {
+                imageParams[4] = value[4];
+            }
+            double[] scale = new double[2];
+            scale[0] = imageParams[0];
+            scale[1] = imageParams[1];
+            ((SwingScilabUiImage) control).setScale(scale);
+            double[] shear = new double[2];
+            shear[0] = imageParams[2];
+            shear[1] = imageParams[3];
+            ((SwingScilabUiImage) control).setShear(shear);
+            ((SwingScilabUiImage) control).setRotate(imageParams[4]);
+        }
+    }
+
+    public static void setRelief(Widget control, String value) {
+        control.setWidgetRelief(value);
+    }
+
+    public static void setSliderStep(Widget control, Double[] value) {
+        if (control instanceof SwingScilabSlider) {
+            // Update the slider properties
+            ((SwingScilabSlider) control).setMinorTickSpacing(value[0].doubleValue());
+            ((SwingScilabSlider) control).setMajorTickSpacing(value[1].doubleValue());
+        }
+    }
+
+    public static void setListBoxTop(Widget control, Integer[] value) {
+        if (control instanceof SwingScilabListBox) {
+            Integer[] listboxtopValue = value;
+            if (listboxtopValue.length > 0) {
+                ((SwingScilabListBox) control).setListBoxTop(listboxtopValue[0]);
+            }
+        }
+    }
+
+    public static void setEnable(Widget control, Boolean value) {
+        control.setEnabled(value.booleanValue());
+    }
+
+    public static void setCallbackType(Integer id, Widget control, Integer value) {
+        String cbString = (String) GraphicController.getController().getProperty(id, __GO_CALLBACK__);
+        if ((Integer) value == CallBack.UNTYPED) { /* Deactivate callback */
+            control.setCallback((CommonCallBack)null);
+        } else {
+            control.setCallback(CommonCallBack.createCallback(cbString, (Integer) value, id));
+        }
+    }
+
+    public static void setToolTipString(Widget control, String[] value) {
+        String tooltipText = value[0];
+        if (value.length > 1) {
+            tooltipText = "<html>" + tooltipText;
+            for (int kString = 1; kString < value.length; kString++) {
+                tooltipText = tooltipText + "<br>" + value[kString];
+            }
+            tooltipText = tooltipText + "</html>";
+        }
+
+        if (tooltipText.equals("")) {
+            control.setToolTipText(null);
+        } else {
+            control.setToolTipText(tooltipText);
+        }
+    }
+}

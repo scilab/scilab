@@ -12,12 +12,17 @@
 
 package org.scilab.modules.graphic_objects.arc;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ARC_DRAWING_METHOD__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_END_ANGLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_HEIGHT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_START_ANGLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UPPER_LEFT_POINT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_WIDTH__;
+
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
-
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+import org.scilab.modules.graphic_objects.utils.ArcDrawingMethod;
 
 /**
  * Arc class
@@ -26,26 +31,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 public class Arc extends ClippableContouredObject {
     /** Arc properties names */
     public enum ArcProperty { UPPERLEFTPOINT, WIDTH, HEIGHT, STARTANGLE, ENDANGLE, ARCDRAWINGMETHOD  };
-
-    /** Arc drawing method */
-    public enum ArcDrawingMethod { NURBS, LINES;
-
-                                   /**
-                                    * Converts an integer to the corresponding enum
-                                    * @param intValue the integer value
-                                    * @return the arc drawing method enum
-                                    */
-    public static ArcDrawingMethod intToEnum(Integer intValue) {
-        switch (intValue) {
-            case 0:
-                return ArcDrawingMethod.NURBS;
-            case 1:
-                return ArcDrawingMethod.LINES;
-            default:
-                return null;
-        }
-    }
-                                 }
 
     /** Bounding box upper-left point (x,y,z) coordinates */
     private double[] upperLeftPoint;
@@ -154,7 +139,7 @@ public class Arc extends ClippableContouredObject {
         } else if (property == ArcProperty.ENDANGLE) {
             setEndAngle((Double) value);
         } else if (property == ArcProperty.ARCDRAWINGMETHOD) {
-            setArcDrawingMethod((Integer) value);
+            setArcDrawingMethod((ArcDrawingMethod) value);
         } else {
             return super.setProperty(property, value);
         }
@@ -175,30 +160,14 @@ public class Arc extends ClippableContouredObject {
     /**
      * @return the arcDrawingMethod
      */
-    public Integer getArcDrawingMethod() {
-        return getArcDrawingMethodAsEnum().ordinal();
-    }
-
-    /**
-     * @return the arcDrawingMethod
-     */
-    public ArcDrawingMethod getArcDrawingMethodAsEnum() {
+    public ArcDrawingMethod getArcDrawingMethod() {
         return arcDrawingMethod;
     }
 
     /**
      * @param arcDrawingMethod the arcDrawingMethod to set
      */
-    public UpdateStatus setArcDrawingMethod(Integer arcDrawingMethod) {
-        setArcDrawingMethodAsEnum(ArcDrawingMethod.intToEnum(arcDrawingMethod));
-        return UpdateStatus.Success;
-
-    }
-
-    /**
-     * @param arcDrawingMethod the arcDrawingMethod to set
-     */
-    public UpdateStatus setArcDrawingMethodAsEnum(ArcDrawingMethod arcDrawingMethod) {
+    public UpdateStatus setArcDrawingMethod(ArcDrawingMethod arcDrawingMethod) {
         this.arcDrawingMethod = arcDrawingMethod;
         return UpdateStatus.Success;
     }
@@ -213,7 +182,7 @@ public class Arc extends ClippableContouredObject {
     /**
      * @param endAngle the endAngle to set
      */
-    public UpdateStatus setEndAngle(Double endAngle) {
+    public UpdateStatus setEndAngle(double endAngle) {
         this.endAngle = endAngle;
         return UpdateStatus.Success;
     }
@@ -228,7 +197,7 @@ public class Arc extends ClippableContouredObject {
     /**
      * @param height the height to set
      */
-    public UpdateStatus setHeight(Double height) {
+    public UpdateStatus setHeight(double height) {
         this.height = height;
         return UpdateStatus.Success;
     }
@@ -243,7 +212,7 @@ public class Arc extends ClippableContouredObject {
     /**
      * @param startAngle the startAngle to set
      */
-    public UpdateStatus setStartAngle(Double startAngle) {
+    public UpdateStatus setStartAngle(double startAngle) {
         this.startAngle = startAngle;
         return UpdateStatus.Success;
     }
@@ -281,8 +250,38 @@ public class Arc extends ClippableContouredObject {
     /**
      * @param width the width to set
      */
-    public UpdateStatus setWidth(Double width) {
+    public UpdateStatus setWidth(double width) {
         this.width = width;
+        return UpdateStatus.Success;
+    }
+
+    public Double[] getData() {
+        Double[] data = new Double[7];
+
+        data[0] = upperLeftPoint[0];
+        data[1] = upperLeftPoint[1];
+        data[2] = upperLeftPoint[2];
+        data[3] = getWidth();
+        data[4] = getHeight();
+        data[5] = getStartAngle() * (180.0 / Math.PI);
+        data[6] = getEndAngle() * (180.0 / Math.PI);
+
+        return data;
+    }
+
+    public UpdateStatus setData(Double[] data) {
+        int index = 0;
+        upperLeftPoint[0] = data[index++];
+        upperLeftPoint[1] = data[index++];
+
+        if (data.length == 7) {
+            upperLeftPoint[2] = data[index++];
+        }
+
+        setWidth(data[index++]);
+        setHeight(data[index++]);
+        setStartAngle(data[index++] * (Math.PI / 180)); //DEG2RAD
+        setEndAngle(data[index++] * (Math.PI / 180)); //DEG2RAD
         return UpdateStatus.Success;
     }
 

@@ -13,15 +13,10 @@
 
 package org.scilab.modules.gui.editor;
 
+import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.gui.editor.AxesHandler;
-import org.scilab.modules.gui.editor.CommonHandler;
-
-import org.scilab.modules.renderer.CallRenderer;
-import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
-import java.lang.Math;
 
 /**
 * Implements all Label manipulation functions for the editor.
@@ -136,15 +131,15 @@ public class LabelHandler {
 
         switch (axis) {
             case __X__:
-                label = ax.getXAxisLabel();
+                label = ax.getXLabel();
                 scale = ax.getXAxisLogFlag();
                 break;
             case __Y__:
-                label = ax.getYAxisLabel();
+                label = ax.getYLabel();
                 scale = ax.getYAxisLogFlag();
                 break;
             case __Z__:
-                label = ax.getZAxisLabel();
+                label = ax.getZLabel();
                 scale = ax.getZAxisLogFlag();
                 break;
             case __TITLE__:

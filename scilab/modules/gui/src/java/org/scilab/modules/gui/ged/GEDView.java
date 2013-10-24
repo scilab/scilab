@@ -14,6 +14,7 @@ package org.scilab.modules.gui.ged;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
+import org.scilab.modules.types.ScilabType;
 
 /**
  *
@@ -251,5 +252,11 @@ public class GEDView implements GraphicView {
 
     public void close() {
         GraphicController.getController().unregister(this);
+    }
+
+    @Override
+    public void updateObject(Integer id, String propName) {
+        // TODO Auto-generated method stub
+
     }
 }

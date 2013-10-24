@@ -28,7 +28,7 @@ public class UiImage extends Uicontrol {
         super();
         setStyle(__GO_UI_IMAGE__);
         Double[] imageInfos = {1.0, 1.0, 0.0, 0.0, 0.0}; // {XScale, YScale, XShear, YShear, RotationAngle}
-        setUiValue(imageInfos);
+        setValue(imageInfos);
     }
 
 }

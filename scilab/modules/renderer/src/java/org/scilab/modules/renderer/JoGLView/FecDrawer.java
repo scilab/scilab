@@ -194,7 +194,7 @@ class FecDrawer {
         @Override
         public ByteBuffer getData() {
             ColorMap colorMap = drawerVisitor.getColorMap();
-            Integer[] outsideColor = fec.getOutsideColor();
+            Integer[] outsideColor = fec.getOutsideColors();
 
             ByteBuffer buffer = ByteBuffer.allocate(4 * getTextureLength());
 

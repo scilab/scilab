@@ -14,6 +14,7 @@
 package org.scilab.modules.graphic_objects.contouredObject;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
+import org.scilab.modules.graphic_objects.utils.MarkSizeUnitType;
 
 /**
  * Mark class
@@ -22,27 +23,6 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStat
 public class Mark {
     /** Mark properties */
     public enum MarkPropertyType { MODE, STYLE, SIZEUNIT, SIZE, FOREGROUND, BACKGROUND };
-
-    /** Mark size unit type */
-    public enum MarkSizeUnitType { POINT, TABULATED;
-
-                                   /**
-                                    * Converts an integer to the corresponding enum
-                                    * @param intValue the integer value
-                                    * @return the mark size unit type enum
-                                    */
-    public static MarkSizeUnitType intToEnum(Integer intValue) {
-        switch (intValue) {
-            case 0:
-                return MarkSizeUnitType.POINT;
-            case 1:
-                return MarkSizeUnitType.TABULATED;
-            default:
-                return null;
-        }
-    }
-                                 }
-
 
     /** Specifies whether marks must be drawn or not */
     private boolean mode;
@@ -67,7 +47,7 @@ public class Mark {
         super();
         mode = false;
         style = 0;
-        markSizeUnit = MarkSizeUnitType.POINT;
+        markSizeUnit = MarkSizeUnitType.TABULATED;
         foreground = 0;
         background = 0;
     }
@@ -95,7 +75,7 @@ public class Mark {
     /**
      * @param background the background to set
      */
-    public UpdateStatus setBackground(Integer background) {
+    public UpdateStatus setBackground(int background) {
         if (this.background != background) {
             this.background = background;
             return UpdateStatus.Success;
@@ -114,7 +94,7 @@ public class Mark {
     /**
      * @param foreground the foreground to set
      */
-    public UpdateStatus setForeground(Integer foreground) {
+    public UpdateStatus setForeground(int foreground) {
         if (this.foreground != foreground) {
             this.foreground = foreground;
             return UpdateStatus.Success;
@@ -152,7 +132,7 @@ public class Mark {
     /**
      * @param size the size to set
      */
-    public UpdateStatus setSize(Integer size) {
+    public UpdateStatus setSize(int size) {
         if (this.size == size) {
             return UpdateStatus.NoChange;
         }
@@ -170,7 +150,7 @@ public class Mark {
     /**
      * @param mode the mode to set
      */
-    public UpdateStatus setMode(Boolean mode) {
+    public UpdateStatus setMode(boolean mode) {
         if (this.mode == mode) {
             return UpdateStatus.NoChange;
         }
@@ -188,7 +168,7 @@ public class Mark {
     /**
      * @param style the style to set
      */
-    public UpdateStatus setStyle(Integer style) {
+    public UpdateStatus setStyle(int style) {
         if (this.style == style) {
             return UpdateStatus.NoChange;
         }

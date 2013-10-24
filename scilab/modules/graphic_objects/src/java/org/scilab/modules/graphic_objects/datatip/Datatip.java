@@ -13,14 +13,22 @@
 
 package org.scilab.modules.graphic_objects.datatip;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.textObject.Text;
-import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_3COMPONENT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_AUTOORIENTATION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_BOX_MODE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_DATA__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_DISPLAY_FNC__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_INTERP_MODE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_LABEL_MODE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_ORIENTATION__;
 
 import java.text.DecimalFormat;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.textObject.Text;
+import org.scilab.modules.graphic_objects.utils.ClipStateType;
 
 public class Datatip extends Text {
 
@@ -86,7 +94,7 @@ public class Datatip extends Text {
         setLineMode(true);
         setFillMode(true);
         setBackground(-2);
-        setClipState(1);
+        setClipState(ClipStateType.intToEnum(1));
 
         setMarkMode(true);
         setMarkSize(8);

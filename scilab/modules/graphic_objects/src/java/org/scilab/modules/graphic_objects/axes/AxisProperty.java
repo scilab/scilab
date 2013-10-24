@@ -13,10 +13,11 @@
 
 package org.scilab.modules.graphic_objects.axes;
 
+import java.util.ArrayList;
+
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
-
-import java.util.ArrayList;
+import org.scilab.modules.graphic_objects.utils.AxisLocation;
 
 
 /**
@@ -30,39 +31,6 @@ public class AxisProperty {
     public enum AxisPropertyProperty { VISIBLE, REVERSE, GRIDCOLOR, LABEL, AXISLOCATION,
                                        LOGFLAG, UNKNOWNPROPERTY
                                      }
-
-    /**
-     * Axis location type
-     * BOTTOM, TOP, MIDDLE, ORIGIN are allowed for an x-axis,
-     * LEFT, RIGHT, MIDDLE or ORIGIN are allowed for a y-axis
-     */
-    public static enum AxisLocation { BOTTOM, TOP, MIDDLE, ORIGIN, LEFT, RIGHT;
-
-
-                                      /**
-                                       * Converts an integer to the corresponding enum
-                                       * @param intValue the integer value
-                                       * @return the axis location enum
-                                       */
-    public static AxisLocation intToEnum(Integer intValue) {
-        switch (intValue) {
-            case 0:
-                return AxisLocation.BOTTOM;
-            case 1:
-                return AxisLocation.TOP;
-            case 2:
-                return AxisLocation.MIDDLE;
-            case 3:
-                return AxisLocation.ORIGIN;
-            case 4:
-                return AxisLocation.LEFT;
-            case 5:
-                return AxisLocation.RIGHT;
-            default:
-                return null;
-        }
-    }
-                                    }
 
     /** Specifies whether the axis is visible or not */
     private boolean visible;

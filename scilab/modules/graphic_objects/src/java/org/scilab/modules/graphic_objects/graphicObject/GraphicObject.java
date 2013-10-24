@@ -13,17 +13,72 @@
 
 package org.scilab.modules.graphic_objects.graphicObject;
 
-import org.scilab.modules.graphic_objects.ObjectRemovedException;
-import org.scilab.modules.graphic_objects.axes.Axes;
-import org.scilab.modules.graphic_objects.figure.Figure;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.legend.Legend;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ARC__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXESMODEL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXIS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHAMP__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN_COUNT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COMPOUND__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATA_MODEL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FAC3D__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FEC__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGUREMODEL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRAYPLOT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_HAS_LEGEND_CHILD__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_HIDDEN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LABEL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LEGEND_CHILD__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LEGEND__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LIGHT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MATPLOT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT_AXES__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT_FIGURE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PLOT3D__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POLYLINE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PROGRESSIONBAR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_RECTANGLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_REFERENCED__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SEGS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SELECTED_CHILD__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TEXT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTEXTMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKBOX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_EDIT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_POPUPMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RADIOBUTTON__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_USER_DATA_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_USER_DATA__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VALID__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_WAITBAR__;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+import org.scilab.modules.graphic_objects.ObjectRemovedException;
+import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.figure.Figure;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.legend.Legend;
+import org.scilab.modules.types.ScilabType;
 
 /**
  * GraphicObject class
@@ -75,7 +130,7 @@ public abstract class GraphicObject implements Cloneable {
     private boolean hidden;
 
     /** User data */
-    private Integer[] userData;
+    private ScilabType userData;
 
     /** Tag */
     private String tag;
@@ -116,7 +171,6 @@ public abstract class GraphicObject implements Cloneable {
         try {
             copy = (GraphicObject) super.clone();
         } catch (CloneNotSupportedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -136,7 +190,7 @@ public abstract class GraphicObject implements Cloneable {
         /*
          * Sets no object as the selected child.
          */
-        copy.setSelectedChild(0);
+        copy.setSelectedchild(0);
 
         return copy;
     }
@@ -303,19 +357,17 @@ public abstract class GraphicObject implements Cloneable {
             case VISIBLE:
                 return getVisible();
             case USERDATA:
-                return getUserData();
-            case USERDATASIZE:
-                return getUserDataSize();
+                return getUserdata();
             case PARENT_FIGURE:
                 return getParentFigure();
             case PARENT_AXES:
                 return getParentAxes();
             case HASLEGENDCHILD:
-                return getHasLegendChild();
+                return getHaslegendchild();
             case LEGENDCHILD:
-                return getLegendChild();
+                return getLegendchild();
             case SELECTEDCHILD:
-                return getSelectedChild();
+                return getSelectedchild();
             case TYPE:
                 return getType();
             case DATA:
@@ -323,9 +375,9 @@ public abstract class GraphicObject implements Cloneable {
             case TAG:
                 return getTag();
             case CALLBACK:
-                return getCallbackString();
+                return getCallbackstring();
             case CALLBACKTYPE:
-                return getCallbackType();
+                return getCallbacktype();
             case UNKNOWNPROPERTY:
                 return null;
             default:
@@ -362,12 +414,12 @@ public abstract class GraphicObject implements Cloneable {
                 setVisible((Boolean) value);
                 break;
             case USERDATA:
-                setUserData((Integer[]) value);
+                setUserdata((ScilabType) value);
                 break;
             case USERDATASIZE:
                 return UpdateStatus.Fail;
             case SELECTEDCHILD:
-                setSelectedChild((Integer) value);
+                setSelectedchild((Integer) value);
                 break;
             case DATA:
                 return UpdateStatus.Success;
@@ -375,10 +427,10 @@ public abstract class GraphicObject implements Cloneable {
                 setTag((String) value);
                 break;
             case CALLBACK:
-                setCallbackString((String) value);
+                setCallbackstring((String) value);
                 break;
             case CALLBACKTYPE:
-                setCallbackType((Integer) value);
+                setCallbacktype((Integer) value);
                 break;
             case UNKNOWNPROPERTY:
                 return UpdateStatus.Fail;
@@ -403,18 +455,15 @@ public abstract class GraphicObject implements Cloneable {
      * @param property the property name
      */
     public Object getPropertyVoid(String property) {
-        // TODO
         return null;
     }
 
-    /* TODO */
     /**
      * Void property set method
      * @param property the property name
      * @param value the property value
      */
     public void setPropertyVoid(String property, Object value) {
-        // TODO
     }
 
     /**
@@ -429,7 +478,10 @@ public abstract class GraphicObject implements Cloneable {
      * @param child the identifier of the added child.
      */
     public void addChild(Integer child) {
-        children.add(0, child);
+        //do not add existing child
+        if (children.contains(child) == false) {
+            children.add(0, child);
+        }
     }
 
     /**
@@ -480,9 +532,13 @@ public abstract class GraphicObject implements Cloneable {
 
     /**
      * @param parent the parent to set
-     * @return TODO
      */
-    public UpdateStatus setParent(Integer parent) {
+    public UpdateStatus setParent(int parent) {
+        if (this.parent == parent) {
+            return UpdateStatus.NoChange;
+        }
+
+        GraphicController.getController().setGraphicObjectRelationship(parent, identifier, false);
         this.parent = parent;
         return UpdateStatus.Success;
     }
@@ -490,28 +546,30 @@ public abstract class GraphicObject implements Cloneable {
     /**
      * @return the userData
      */
-    public Object getUserData() {
+    public ScilabType getUserdata() {
         return userData;
+    }
+
+    public ScilabType getUserData() {
+        return userData;
+    }
+
+    public UpdateStatus setUserData(ScilabType userData) {
+        GraphicController.getController().setRealPropName("userdata");
+        return setUserdata(userData);
     }
 
     /**
      * @param userData the userData to set
-     * @return TODO
      */
-    public UpdateStatus setUserData(Integer[] userData) {
+    public UpdateStatus setUserdata(ScilabType userData) {
+        if (this.userData != null && this.equals(userData)) {
+            return UpdateStatus.NoChange;
+        }
         this.userData = userData;
         return UpdateStatus.Success;
     }
 
-    /**
-     * @return the userDataSize
-     */
-    public Integer getUserDataSize() {
-        if (userData != null) {
-            return userData.length;
-        }
-        return 0;
-    }
 
     /**
      * @return the tag
@@ -522,40 +580,45 @@ public abstract class GraphicObject implements Cloneable {
 
     /**
      * @param tag the tag to set
-     * @return TODO
      */
     public UpdateStatus setTag(String tag) {
         this.tag = tag;
-        return UpdateStatus.Success;
+        return UpdateStatus.NoChange;
     }
 
     /**
      * @return the callback
      */
-    public String getCallbackString() {
+    public String getCallbackstring() {
         return callback.getCommand();
+    }
+
+    public String getCallback() {
+        return getCallbackstring();
     }
 
     /**
      * @param callback the callback to set
-     * @return TODO
      */
-    public UpdateStatus setCallbackString(String callback) {
+    public UpdateStatus setCallbackstring(String callback) {
         return this.callback.setCommand(callback);
+    }
+
+    public UpdateStatus setCallback(String callback) {
+        return setCallbackstring(callback);
     }
 
     /**
      * @return the callbackType
      */
-    public Integer getCallbackType() {
+    public Integer getCallbacktype() {
         return callback.getCommandType();
     }
 
     /**
      * @param callbackType the callbackType to set
-     * @return TODO
      */
-    public UpdateStatus setCallbackType(Integer callbackType) {
+    public UpdateStatus setCallbacktype(int callbackType) {
         this.callback.setCommandType(callbackType);
         return UpdateStatus.Success;
     }
@@ -611,7 +674,7 @@ public abstract class GraphicObject implements Cloneable {
      * property is queried.
      * @return a Boolean indicating whether the object has a child Legend object or not
      */
-    public Boolean getHasLegendChild() {
+    public Boolean getHaslegendchild() {
         for (int i = 0; i < children.size(); i++) {
             GraphicObject currentObject = GraphicController.getController().getObjectFromId(children.get(i));
 
@@ -629,7 +692,7 @@ public abstract class GraphicObject implements Cloneable {
      * (one Legend is supposed to be present at most).
      * @return the object's child Legend object identifier, or an empty string if no child Legend found.
      */
-    public Integer getLegendChild() {
+    public Integer getLegendchild() {
         for (int i = 0; i < children.size(); i++) {
             GraphicObject currentObject = GraphicController.getController().getObjectFromId(children.get(i));
 
@@ -646,7 +709,7 @@ public abstract class GraphicObject implements Cloneable {
      * Get selected child method
      * @return the selected child
      */
-    public Integer getSelectedChild() {
+    public Integer getSelectedchild() {
         return selectedChild;
     }
 
@@ -654,7 +717,7 @@ public abstract class GraphicObject implements Cloneable {
      * Set selected child method
      * @param selectedChild the selected child to set
      */
-    public UpdateStatus setSelectedChild(Integer selectedChild) {
+    public UpdateStatus setSelectedchild(Integer selectedChild) {
         this.selectedChild = selectedChild;
         return UpdateStatus.Success;
     }
@@ -663,16 +726,15 @@ public abstract class GraphicObject implements Cloneable {
      * Get visible method
      * @return the visible
      */
-    public Boolean getVisible() {
+    public boolean getVisible() {
         return visible;
     }
 
     /**
      * Set visible method
      * @param visible the visible to set
-     * @return TODO
      */
-    public UpdateStatus setVisible(Boolean visible) {
+    public UpdateStatus setVisible(boolean visible) {
         this.visible = visible;
         return UpdateStatus.Success;
     }
@@ -694,7 +756,6 @@ public abstract class GraphicObject implements Cloneable {
     /**
      * Set hidden method
      * @param hidden the value to set
-     * @return TODO
      */
     public UpdateStatus setHidden(Boolean hidden) {
         this.hidden = hidden;
@@ -712,7 +773,6 @@ public abstract class GraphicObject implements Cloneable {
     /**
      * Set valid method
      * @param valid the validity to set
-     * @return TODO
      */
     public UpdateStatus setValid(Boolean valid) {
         this.valid = valid;
@@ -730,7 +790,6 @@ public abstract class GraphicObject implements Cloneable {
     /**
      * Set referenced method
      * @param referenced the reference status to set
-     * @return TODO
      */
     public UpdateStatus setReferenced(Boolean referenced) {
         this.referenced = referenced;

@@ -12,6 +12,11 @@
 
 package org.scilab.modules.renderer.JoGLView.axes;
 
+import java.awt.Dimension;
+import java.awt.geom.Rectangle2D;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.clipping.ClippingPlane;
@@ -24,14 +29,14 @@ import org.scilab.forge.scirenderer.tranformations.TransformationStack;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.forge.scirenderer.tranformations.Vector4d;
 import org.scilab.modules.graphic_objects.axes.Axes;
-import org.scilab.modules.graphic_objects.axes.Box;
-import org.scilab.modules.graphic_objects.axes.Camera.ViewType;
-import org.scilab.modules.graphic_objects.contouredObject.Line;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty;
-import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClipStateType;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.utils.BoxType;
+import org.scilab.modules.graphic_objects.utils.ClipStateType;
+import org.scilab.modules.graphic_objects.utils.LineType;
+import org.scilab.modules.graphic_objects.utils.ViewType;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.axes.ruler.AxesRulerDrawer;
 import org.scilab.modules.renderer.JoGLView.label.AxisLabelPositioner;
@@ -42,11 +47,6 @@ import org.scilab.modules.renderer.JoGLView.label.YAxisLabelPositioner;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
 
-import java.awt.Dimension;
-import java.awt.geom.Rectangle2D;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  *
  * AxesDrawer are used by {@see DrawerVisitor} to draw {@see Axes}.
@@ -55,7 +55,7 @@ import java.util.Map;
  */
 public class AxesDrawer {
     private static final double DEFAULT_THETA = 270.0;
-    private static final Line.LineType HIDDEN_BORDER_PATTERN = Line.LineType.DASH;
+    private static final LineType HIDDEN_BORDER_PATTERN = LineType.DASH;
 
     /** An epsilon value used to move the clipping planes in order to prevent strict clipping. */
     private static final double CLIPPING_EPSILON = 1e-5;
@@ -272,32 +272,32 @@ public class AxesDrawer {
      * @throws org.scilab.forge.scirenderer.SciRendererException if the draw fail.
      */
     private void drawBox(Axes axes, DrawingTools drawingTools, ColorMap colorMap) throws SciRendererException {
-        Box.BoxType boxed = axes.getBox().getBox();
-        if (boxed != Box.BoxType.OFF) {
+        BoxType boxed = axes.getBoxObject().getBox();
+        if (boxed != BoxType.OFF) {
             Appearance appearance = new Appearance();
 
             /**
              * Draw hidden part of box.
              */
-            if (axes.getViewAsEnum() != ViewType.VIEW_2D) {
+            if (axes.getView() != ViewType.VIEW_2D) {
                 appearance.setLineColor(ColorFactory.createColor(colorMap, axes.getHiddenAxisColor()));
-                appearance.setLineWidth(axes.getLineThickness().floatValue());
+                appearance.setLineWidth(axes.getThickness().floatValue());
                 appearance.setLinePattern(HIDDEN_BORDER_PATTERN.asPattern());
                 drawingTools.draw(geometries.getHiddenBoxBorderGeometry(), appearance);
             }
 
-            if (boxed != Box.BoxType.HIDDEN_AXES) {
+            if (boxed != BoxType.HIDDEN_AXES) {
 
                 /**
                  * Draw box border.
                  */
                 appearance.setLineColor(ColorFactory.createColor(colorMap, axes.getLineColor()));
-                appearance.setLineWidth(axes.getLineThickness().floatValue());
+                appearance.setLineWidth(axes.getThickness().floatValue());
                 appearance.setLinePattern(axes.getLine().getLineStyle().asPattern());
                 drawingTools.draw(geometries.getBoxBorderGeometry(), appearance);
 
 
-                if (boxed != Box.BoxType.BACK_HALF) {
+                if (boxed != BoxType.BACK_HALF) {
                     /**
                      * Draw front part of box.
                      */
@@ -385,7 +385,7 @@ public class AxesDrawer {
                                             axes.getAxes()[2].getReverse() ? 1 : -1
                                         );
 
-        if (axes.getZoomEnabled()) {
+        if (axes.getZoomEnable()) {
             Double[] bounds = axes.getCorrectedBounds();
 
             // Scale data.
@@ -889,7 +889,7 @@ public class AxesDrawer {
         double[] coords = coordinates;
 
         if (currentVisitor != null) {
-            if (axes.getViewAsEnum() == ViewType.VIEW_2D) {
+            if (axes.getView() == ViewType.VIEW_2D) {
                 // No need to projet/unproject since the product is identity
                 return new double[] {coords[0], coords[1], coords[2]};
             }

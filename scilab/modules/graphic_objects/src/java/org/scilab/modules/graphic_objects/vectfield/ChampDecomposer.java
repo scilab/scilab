@@ -12,14 +12,26 @@
 
 package org.scilab.modules.graphic_objects.vectfield;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ARROW_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BASE_X__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BASE_Y__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BASE_Z__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COLORED__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DIRECTION_X__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DIRECTION_Y__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DIRECTION_Z__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MAX_LENGTH__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MAX_USABLE_LENGTH__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_NUMBER_ARROWS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT_FIGURE__;
+
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
+
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.utils.Utils;
-
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * Class ChampDecomposer

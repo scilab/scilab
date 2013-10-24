@@ -36,13 +36,14 @@ import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.widget.ViewMethods;
 
 /**
  * Swing implementation for Scilab RadioButton in GUIs
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabRadioButton extends JRadioButton implements SwingViewObject, SimpleRadioButton {
+public class SwingScilabRadioButton extends JRadioButton implements SwingViewObject, SimpleRadioButton, ViewMethods {
 
     private static final long serialVersionUID = -4094092157137686082L;
 
@@ -175,6 +176,13 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
         setHorizontalAlignment(ScilabAlignment.toSwingAlignment(alignment));
     }
 
+    public void setVerticalalignment(String alignment) {
+        SwingViewWidget.setVerticalAlignment(this, alignment);
+    }
+    public void setHorizontalalignment(String alignment) {
+        SwingViewWidget.setHorizontalAlignment(this, alignment);
+    }
+
     /**
      * Set the vertical alignment for the RadioButton text
      * @param alignment the value for the alignment (See ScilabAlignment.java)
@@ -213,7 +221,7 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
      * Set the Relief of the RadioButton
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setRelief(String reliefType) {
+    public void setWidgetRelief(String reliefType) {
         setBorder(ScilabRelief.getBorderFromRelief(reliefType));
     }
 
@@ -265,5 +273,86 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
      */
     public void update(int property, Object value) {
         SwingViewWidget.update(this, property, value);
+    }
+
+    public void setBackgroundcolor(Double[] color) {
+        SwingViewWidget.setBackgroundcolor(this, color);
+    }
+
+    public void setForegroundcolor(Double[] color) {
+        SwingViewWidget.setForegroundcolor(this, color);
+    }
+
+    public void setString(String[] text) {
+        SwingViewWidget.setText(uid, this, text);
+    }
+
+    public void setCallback(String callback) {
+        SwingViewWidget.setCallback(uid, this, callback);
+    }
+
+    public void setPosition(Double[] position) {
+        SwingViewWidget.setPostion(uid, this, position);
+    }
+
+    public void setParent(int id) {
+        SwingViewWidget.setParent(this, id);
+    }
+
+    /* font*/
+    public void setFontweight(String value) {
+        SwingViewWidget.setFontWeight(this, value);
+    }
+
+    public void setFontname(String value) {
+        SwingViewWidget.setFontName(this, value);
+    }
+
+    public void setFontangle(String value) {
+        SwingViewWidget.setFontAngle(this, value);
+    }
+
+    public void setFontunits(double value) {
+        SwingViewWidget.setFontUnits(uid, this, value);
+    }
+
+    public void setFontsize(double value) {
+        SwingViewWidget.setFontSize(uid, this, value);
+    }
+
+    public void setMax(double value) {
+        SwingViewWidget.setMax(uid, this, value);
+    }
+
+    public void setMin(double value) {
+        SwingViewWidget.setMin(uid, this, value);
+    }
+
+    public void setValue(Double[] value) {
+        SwingViewWidget.setValue(uid, this, value);
+    }
+
+    public void setRelief(String value) {
+        SwingViewWidget.setRelief(this, value);
+    }
+
+    public void setSliderstep(Double[] value) {
+        SwingViewWidget.setSliderStep(this, value);
+    }
+
+    public void setListboxtop(Integer[] value) {
+        SwingViewWidget.setListBoxTop(this, value);
+    }
+
+    public void setEnable(boolean value) {
+        SwingViewWidget.setEnable(this, value);
+    }
+
+    public void setCallbacktype(int value) {
+        SwingViewWidget.setCallbackType(uid, this, value);
+    }
+
+    public void setTooltipstring(String[] value) {
+        SwingViewWidget.setToolTipString(this, value);
     }
 }

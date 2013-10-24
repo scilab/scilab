@@ -15,13 +15,13 @@ package org.scilab.modules.graphic_objects.utils;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_HIDDEN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ACCELERATOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LABEL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MNEMONIC__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SEPARATOR__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
 
 import java.io.File;
 import java.io.IOException;
@@ -81,7 +81,7 @@ public final class MenuBarBuilder {
      * @throws IOException can be thrown when an error occurs while accessing the file
      * @throws ParserConfigurationException can be thrown when an error occurs while parsing the file
      */
-    public static Object buildMenuBar(Class[] resultClass, String fileToLoad) throws SAXException, IOException, ParserConfigurationException {
+    public static Object buildMenuBar(Class<?>[] resultClass, String fileToLoad) throws SAXException, IOException, ParserConfigurationException {
 
         InvocationHandler invocationHandler = new MenuBarConfigurationHandler(fileToLoad);
 
@@ -104,7 +104,7 @@ public final class MenuBarBuilder {
         boolean isheadless = false;
 
         try {
-            Class clazz = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.gui.SwingView");
+            Class<?> clazz = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.gui.SwingView");
             Method meth = clazz.getMethod("isHeadless");
             isheadless = (Boolean) meth.invoke(null);
         } catch (Exception e) {

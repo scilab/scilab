@@ -222,7 +222,7 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
      * Set the Relief of the EditBox
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setRelief(String reliefType) {
+    public void setWidgetRelief(String reliefType) {
         ScilabBridge.setRelief(this, reliefType);
     }
 

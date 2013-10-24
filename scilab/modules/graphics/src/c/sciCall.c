@@ -46,6 +46,8 @@
 #include "CurrentFigure.h"
 #include "CurrentSubwin.h"
 #include "CurrentObject.h"
+#include "Format.h"
+#include "deleteGraphicObject.h"
 
 /**
  * Put min and max of vector in dMin and dMax.
@@ -82,10 +84,10 @@ void Objrect (double* x         ,
     /*newObjUID = ConstructRectangle(iSubwinUID , *x, *y, *height, *width,
       foreground, background, isfilled, isline);*/
 
-    iNewObjUID = constructRectangles(iSubwinUID, *x, *y, *height, *width,
-                                     foreground == NULL ? -1 : *foreground,
-                                     background == NULL ? -1 : *background,
-                                     (int)isfilled, (int)isline);
+    iNewObjUID = buildRect(iSubwinUID, *x, *y, *height, *width,
+                           foreground == NULL ? -1 : *foreground,
+                           background == NULL ? -1 : *background,
+                           (int)isfilled, (int)isline);
 
     if (iNewObjUID == 0)
     {
@@ -120,8 +122,8 @@ void Objarc(double* angle1    ,
 
     iSubwinUID = getCurrentSubWin();
     checkRedrawing();
-    iObjUID = ConstructArc(iSubwinUID, *x, *y,
-                           *height, *width, *angle1, *angle2, foreground, background, isfilled, isline);
+    iObjUID = createArc(iSubwinUID, *x, *y,
+                        *height, *width, *angle1, *angle2, foreground, background, isfilled, isline);
     setCurrentObject(iObjUID);
 
     *hdl = getHandle(iObjUID);
@@ -443,7 +445,7 @@ void Objplot3d (char    * fname ,
 {
     sciTypeOf3D typeof3d;
     int flagcolor = 0;
-    long *hdltab = NULL;
+    int* pObj = NULL;
     int i = 0;
 
     int iSubwinUID = 0;
@@ -842,7 +844,7 @@ void Objplot3d (char    * fname ,
         int iNewPolylineUID = 0;
         int iCurrentSubwinUID = 0;
 
-        if ((hdltab = (long*)MALLOC (*n * sizeof (long))) == NULL)
+        if ((pObj = (int*)MALLOC (*n * sizeof (int))) == NULL)
         {
             Scierror(999, "%s: No more memory.\n", fname);
             return;
@@ -893,7 +895,7 @@ void Objplot3d (char    * fname ,
             if (iNewPolylineUID == 0)
             {
                 Scierror(999, _("%s: No more memory.\n"), fname);
-                FREE(hdltab);
+                FREE(pObj);
                 return;
             }
 
@@ -906,16 +908,16 @@ void Objplot3d (char    * fname ,
             clipState = 1;
             setGraphicObjectProperty(iObjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-            hdltab[i] = getHandle(iObjUID);
+            pObj[i] = iObjUID;
         }
 
         /** construct Compound and make it current object**/
         if (*n > 1)
         {
-            int o = ConstructCompound (hdltab, *n);
+            int o = createCompound (iCurrentSubwinUID, pObj, *n);
             setCurrentObject(o);
         }
-        FREE(hdltab);
+        FREE(pObj);
     }
 
     /* =================================================
@@ -958,12 +960,63 @@ void Objdrawaxis (char     dir    ,
 
     checkRedrawing();
 
-    iObjUID = ConstructAxis(iSubwinUID, dir, tics, x, *nx, y, *ny, val, subint, format, font, textcol, ticscol, flag, seg, nb_tics_labels);
+    iObjUID = createAxis(iSubwinUID, (int)dir, (int)tics, x, *nx, y, *ny, subint, format, font, textcol, ticscol, seg);
 
     if (iObjUID == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), "Objdrawaxis");
         return;
+    }
+
+    if (val == NULL)
+    {
+        char **matData;
+        StringMatrix *tics_labels;
+
+        tics_labels = computeDefaultTicsLabels(iObjUID);
+
+        if (tics_labels == NULL)
+        {
+            deleteGraphicObject(iObjUID);
+            return;
+        }
+
+        matData = getStrMatData(tics_labels);
+
+        /*
+        * The labels vector size must be computed using the matrix's dimensions.
+        * To be modified when the labels computation is moved to the Model.
+        */
+        setGraphicObjectProperty(iObjUID, __GO_TICKS_LABELS__, matData, jni_string_vector, tics_labels->nbCol * tics_labels->nbRow);
+
+        deleteMatrix(tics_labels);
+    }
+    else
+    {
+        int i = 0;
+        /*
+        * Labels are set using the str argument; the previous code tested whether each element of the
+        * str array was null and set the corresponding Axis' element to NULL, though there was no
+        * apparent reason to do so. This is still checked, but now aborts building the Axis.
+        */
+
+        if (nb_tics_labels == -1)
+        {
+            Scierror(999, _("Impossible case when building axis\n"));
+            deleteGraphicObject(iObjUID);
+            return;
+        }
+
+        for (i = 0; i < nb_tics_labels; i++)
+        {
+            if (val[i] == NULL)
+            {
+                deleteGraphicObject(iObjUID);
+                return;
+            }
+        }
+
+        setGraphicObjectProperty(iObjUID, __GO_TICKS_LABELS__, val, jni_string_vector, nb_tics_labels);
     }
 
     setCurrentObject(iObjUID);

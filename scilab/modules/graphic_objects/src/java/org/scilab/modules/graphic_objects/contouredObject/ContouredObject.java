@@ -12,14 +12,26 @@
 
 package org.scilab.modules.graphic_objects.contouredObject;
 
-import org.scilab.modules.graphic_objects.contouredObject.Line.LinePropertyType;
-import org.scilab.modules.graphic_objects.contouredObject.Line.LineType;
-import org.scilab.modules.graphic_objects.contouredObject.Mark.MarkPropertyType;
-import org.scilab.modules.graphic_objects.contouredObject.Mark.MarkSizeUnitType;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BACKGROUND__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FILL_MODE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LINE_COLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LINE_MODE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LINE_STYLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LINE_THICKNESS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LINE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_BACKGROUND__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_FOREGROUND__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_MODE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_SIZE_UNIT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_STYLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK__;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+import org.scilab.modules.graphic_objects.contouredObject.Line.LinePropertyType;
+import org.scilab.modules.graphic_objects.contouredObject.Mark.MarkPropertyType;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.utils.LineType;
+import org.scilab.modules.graphic_objects.utils.MarkSizeUnitType;
 
 /**
  * Contoured object class
@@ -109,9 +121,9 @@ public abstract class ContouredObject extends GraphicObject {
         } else if (property == LinePropertyType.MODE) {
             return getLineMode();
         } else if (property == LinePropertyType.LINESTYLE) {
-            return getLineStyle();
+            return LineType.enumToInt(getLineStyle());
         } else if (property == LinePropertyType.THICKNESS) {
-            return getLineThickness();
+            return getThickness();
         } else if (property == LinePropertyType.COLOR) {
             return getLineColor();
         } else if (property == ContouredObjectPropertyType.FILLMODE) {
@@ -149,9 +161,9 @@ public abstract class ContouredObject extends GraphicObject {
         } else if (property == LinePropertyType.MODE) {
             return setLineMode((Boolean) value);
         } else if (property == LinePropertyType.LINESTYLE) {
-            setLineStyle((Integer) value);
+            setLineStyle(LineType.intToEnum((Integer) value));
         } else if (property == LinePropertyType.THICKNESS) {
-            setLineThickness((Double) value);
+            setThickness((Double) value);
         } else if (property == LinePropertyType.COLOR) {
             return setLineColor((Integer) value);
         } else if (property == ContouredObjectPropertyType.FILLMODE) {
@@ -165,7 +177,7 @@ public abstract class ContouredObject extends GraphicObject {
         } else if (property == MarkPropertyType.STYLE) {
             return setMarkStyle((Integer) value);
         } else if (property == MarkPropertyType.SIZEUNIT) {
-            setMarkSizeUnit((Integer) value);
+            setMarkSizeUnit(MarkSizeUnitType.intToEnum((Integer) value));
         } else if (property == MarkPropertyType.SIZE) {
             return setMarkSize((Integer) value);
         } else if (property == MarkPropertyType.FOREGROUND) {
@@ -189,7 +201,7 @@ public abstract class ContouredObject extends GraphicObject {
     /**
      * @param background the background to set
      */
-    public UpdateStatus setBackground(Integer background) {
+    public UpdateStatus setBackground(int background) {
         this.background = background;
         return UpdateStatus.Success;
     }
@@ -204,7 +216,7 @@ public abstract class ContouredObject extends GraphicObject {
     /**
      * @param fillMode the fillMode to set
      */
-    public UpdateStatus setFillMode(Boolean fillMode) {
+    public UpdateStatus setFillMode(boolean fillMode) {
         if (this.fillMode == fillMode) {
             return UpdateStatus.NoChange;
         }
@@ -231,6 +243,10 @@ public abstract class ContouredObject extends GraphicObject {
      * Get the line color
      * @return the color
      */
+    public Integer getForeground() {
+        return line.getColor();
+    }
+
     public Integer getLineColor() {
         return line.getColor();
     }
@@ -239,7 +255,7 @@ public abstract class ContouredObject extends GraphicObject {
      * Set the line color
      * @param color the color to set
      */
-    public UpdateStatus setLineColor(Integer color) {
+    public UpdateStatus setLineColor(int color) {
         return line.setColor(color);
     }
 
@@ -247,15 +263,7 @@ public abstract class ContouredObject extends GraphicObject {
      * Get the line style
      * @return the lineStyle
      */
-    public Integer getLineStyle() {
-        return getLineStyleAsEnum().asScilabIndex();
-    }
-
-    /**
-     * Get the line style
-     * @return the lineStyle
-     */
-    public LineType getLineStyleAsEnum() {
+    public LineType getLineStyle() {
         return line.getLineStyle();
     }
 
@@ -263,16 +271,7 @@ public abstract class ContouredObject extends GraphicObject {
      * Set the line style
      * @param lineStyle the lineStyle to set
      */
-    public UpdateStatus setLineStyle(Integer lineStyle) {
-        setLineStyleAsEnum(LineType.fromScilabIndex(lineStyle));
-        return UpdateStatus.Success;
-    }
-
-    /**
-     * Set the line style
-     * @param lineStyle the lineStyle to set
-     */
-    public UpdateStatus setLineStyleAsEnum(LineType lineStyle) {
+    public UpdateStatus setLineStyle(LineType lineStyle) {
         line.setLineStyle(lineStyle);
         return UpdateStatus.Success;
     }
@@ -289,7 +288,7 @@ public abstract class ContouredObject extends GraphicObject {
      * Set the line mode
      * @param mode the mode to set
      */
-    public UpdateStatus setLineMode(Boolean mode) {
+    public UpdateStatus setLineMode(boolean mode) {
         return line.setMode(mode);
     }
 
@@ -297,7 +296,7 @@ public abstract class ContouredObject extends GraphicObject {
      * Get the line thickness
      * @return the thickness
      */
-    public Double getLineThickness() {
+    public Double getThickness() {
         return line.getThickness();
     }
 
@@ -305,7 +304,7 @@ public abstract class ContouredObject extends GraphicObject {
      * Set the line thickness
      * @param thickness the thickness to set
      */
-    public UpdateStatus setLineThickness(Double thickness) {
+    public UpdateStatus setThickness(double thickness) {
         line.setThickness(thickness);
         return UpdateStatus.Success;
     }
@@ -337,7 +336,7 @@ public abstract class ContouredObject extends GraphicObject {
      * Set the mark background
      * @param background the background to set
      */
-    public UpdateStatus setMarkBackground(Integer background) {
+    public UpdateStatus setMarkBackground(int background) {
         mark.setBackground(background);
         return UpdateStatus.Success;
     }
@@ -354,7 +353,7 @@ public abstract class ContouredObject extends GraphicObject {
      * Set the mark foreground
      * @param foreground the foreground to set
      */
-    public UpdateStatus setMarkForeground(Integer foreground) {
+    public UpdateStatus setMarkForeground(int foreground) {
         mark.setForeground(foreground);
         return UpdateStatus.Success;
     }
@@ -363,15 +362,7 @@ public abstract class ContouredObject extends GraphicObject {
      * Get the mark size unit
      * @return the markSizeUnit
      */
-    public Integer getMarkSizeUnit() {
-        return getMarkSizeUnitAsEnum().ordinal();
-    }
-
-    /**
-     * Get the mark size unit
-     * @return the markSizeUnit
-     */
-    public MarkSizeUnitType getMarkSizeUnitAsEnum() {
+    public MarkSizeUnitType getMarkSizeUnit() {
         return mark.getMarkSizeUnit();
     }
 
@@ -379,16 +370,7 @@ public abstract class ContouredObject extends GraphicObject {
      * Set the mark size unit
      * @param markSizeUnit the markSizeUnit to set
      */
-    public UpdateStatus setMarkSizeUnit(Integer markSizeUnit) {
-        setMarkSizeUnitAsEnum(MarkSizeUnitType.intToEnum(markSizeUnit));
-        return UpdateStatus.Success;
-    }
-
-    /**
-     * Set the mark size unit
-     * @param markSizeUnit the markSizeUnit to set
-     */
-    public UpdateStatus setMarkSizeUnitAsEnum(MarkSizeUnitType markSizeUnit) {
+    public UpdateStatus setMarkSizeUnit(MarkSizeUnitType markSizeUnit) {
         mark.setMarkSizeUnit(markSizeUnit);
         return UpdateStatus.Success;
     }
@@ -405,7 +387,7 @@ public abstract class ContouredObject extends GraphicObject {
      * Set the mark size
      * @param size the size to set
      */
-    public UpdateStatus setMarkSize(Integer size) {
+    public UpdateStatus setMarkSize(int size) {
         return mark.setSize(size);
     }
 
@@ -421,7 +403,7 @@ public abstract class ContouredObject extends GraphicObject {
      * Set the mark mode
      * @param mode the mode to set
      */
-    public UpdateStatus setMarkMode(Boolean mode) {
+    public UpdateStatus setMarkMode(boolean mode) {
         return mark.setMode(mode);
     }
 
@@ -437,7 +419,7 @@ public abstract class ContouredObject extends GraphicObject {
      * Set the mark style
      * @param style the style to set
      */
-    public UpdateStatus setMarkStyle(Integer style) {
+    public UpdateStatus setMarkStyle(int style) {
         return mark.setStyle(style);
     }
 

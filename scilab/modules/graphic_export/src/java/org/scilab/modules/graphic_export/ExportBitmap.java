@@ -72,7 +72,7 @@ public class ExportBitmap {
      * @param file the output file
      */
     public static boolean writeJPEG(BufferedImage image, float compressionQuality, File file) throws IOException {
-        Iterator iter = ImageIO.getImageWritersByFormatName("jpeg");
+        Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("jpeg");
         ImageWriter writer;
         if (iter.hasNext()) {
             writer = (ImageWriter) iter.next();

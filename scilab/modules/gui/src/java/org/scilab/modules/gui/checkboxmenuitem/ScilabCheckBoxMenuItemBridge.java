@@ -238,7 +238,7 @@ public class ScilabCheckBoxMenuItemBridge {
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public static void setRelief(CheckBoxMenuItem checkBoxMenuItem, String reliefType) {
-        checkBoxMenuItem.getAsSimpleCheckBoxMenuItem().setRelief(reliefType);
+        checkBoxMenuItem.getAsSimpleCheckBoxMenuItem().setWidgetRelief(reliefType);
     }
 
     /**

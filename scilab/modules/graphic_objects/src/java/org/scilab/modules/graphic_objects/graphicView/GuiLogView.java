@@ -77,4 +77,15 @@ public class GuiLogView implements GraphicView {
         }
     }
 
+    @Override
+    public void updateObject(Integer id, String property) {
+        try {
+            Document doc = htmlLogPane.getDocument();
+            doc.insertString(doc.getLength(), "===" + id + " Object Property " + property + " Updated.\n", null);
+            htmlLogPane.setCaretPosition(doc.getLength());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

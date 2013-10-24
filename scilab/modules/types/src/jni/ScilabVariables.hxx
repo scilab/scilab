@@ -46,11 +46,11 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 #include "GiwsException.hxx"
 
-        #if defined(_MSC_VER) /* Defined anyway with Visual */
-            #include <Windows.h>
-        #else
-            typedef signed char byte;
-        #endif
+#if defined(_MSC_VER) /* Defined anyway with Visual */
+#include <Windows.h>
+#else
+typedef signed char byte;
+#endif
 
 
 #ifndef GIWSEXPORT
@@ -69,213 +69,218 @@ knowledge of the CeCILL-B license and that you accept its terms.
 # endif
 #endif
 
-namespace org_scilab_modules_types {
-class GIWSEXPORT ScilabVariables {
+namespace org_scilab_modules_types
+{
+class GIWSEXPORT ScilabVariables
+{
 
 private:
-JavaVM * jvm;
+    JavaVM * jvm;
 
 protected:
-jmethodID jobjectArray_getAllListenedVariablesID; // cache method id
-jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejbooleanbooleanjintintID; // cache method id
-jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID; // cache method id
-jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejobjectArray__doubledoublejbooleanbooleanjintintID; // cache method id
-jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID; // cache method id
-jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID; // cache method id
-jmethodID voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID; // cache method id
-jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID; // cache method id
-jmethodID voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID; // cache method id
-jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID; // cache method id
-jmethodID voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID; // cache method id
-jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID; // cache method id
-jmethodID voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID; // cache method id
-jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID; // cache method id
-jmethodID voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID; // cache method id
-jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID; // cache method id
-jmethodID voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID; // cache method id
-jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID; // cache method id
-jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID; // cache method id
-jmethodID voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID; // cache method id
-jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__booleanbooleanjbooleanbooleanjintintID; // cache method id
-jmethodID voidsendBooleanDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID; // cache method id
-jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__java_lang_Stringjava_lang_StringjbooleanbooleanjintintID; // cache method id
-jclass stringArrayClass;
-jmethodID voidsendDatajstringjava_lang_StringjintintjintArray_intintjcharcharjintintID; // cache method id
-jmethodID voidcloseListjintArray_intintjintintID; // cache method id
-jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejintintID; // cache method id
-jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID; // cache method id
-jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejdoubleArray_doubledoublejintintID; // cache method id
-jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID; // cache method id
-jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjintintID; // cache method id
-jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjintintID; // cache method id
+    jmethodID jobjectArray_getAllListenedVariablesID; // cache method id
+    jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejbooleanbooleanjintintID; // cache method id
+    jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID; // cache method id
+    jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejobjectArray__doubledoublejbooleanbooleanjintintID; // cache method id
+    jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID; // cache method id
+    jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID; // cache method id
+    jmethodID voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID; // cache method id
+    jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID; // cache method id
+    jmethodID voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID; // cache method id
+    jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID; // cache method id
+    jmethodID voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID; // cache method id
+    jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID; // cache method id
+    jmethodID voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID; // cache method id
+    jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID; // cache method id
+    jmethodID voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID; // cache method id
+    jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID; // cache method id
+    jmethodID voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID; // cache method id
+    jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID; // cache method id
+    jmethodID voidsendHandleDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID; // cache method id
+    jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID; // cache method id
+    jmethodID voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID; // cache method id
+    jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__booleanbooleanjbooleanbooleanjintintID; // cache method id
+    jmethodID voidsendBooleanDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID; // cache method id
+    jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__java_lang_Stringjava_lang_StringjbooleanbooleanjintintID; // cache method id
+    jclass stringArrayClass;
+    jmethodID voidsendDatajstringjava_lang_StringjintintjintArray_intintjcharcharjintintID; // cache method id
+    jmethodID voidcloseListjintArray_intintjintintID; // cache method id
+    jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejintintID; // cache method id
+    jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID; // cache method id
+    jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejdoubleArray_doubledoublejintintID; // cache method id
+    jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID; // cache method id
+    jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjintintID; // cache method id
+    jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjintintID; // cache method id
 
 
 
-jobject instance;
-jclass instanceClass; // cache class
+    jobject instance;
+    jclass instanceClass; // cache class
 
-                       
-// Caching (if any)
 
-                // Cache of the bytebuffer stuff
-                static jclass ByteOrderClass;
-                static jmethodID nativeOrderID;
-                static jobject nativeOrder;
-                static jmethodID orderID;
-                static jclass bbCls;
-                static jmethodID asdbIDByteBuffer;
-                static jmethodID asdbIDCharBuffer;
-                static jmethodID asdbIDDoubleBuffer;
-                static jmethodID asdbIDFloatBuffer;
-                static jmethodID asdbIDIntBuffer;
-                static jmethodID asdbIDLongBuffer;
-                static jmethodID asdbIDShortBuffer;
-                
+    // Caching (if any)
 
-/**
-* Get the environment matching to the current thread.
-*/
-virtual JNIEnv * getCurrentEnv();
+    // Cache of the bytebuffer stuff
+    static jclass ByteOrderClass;
+    static jmethodID nativeOrderID;
+    static jobject nativeOrder;
+    static jmethodID orderID;
+    static jclass bbCls;
+    static jmethodID asdbIDByteBuffer;
+    static jmethodID asdbIDCharBuffer;
+    static jmethodID asdbIDDoubleBuffer;
+    static jmethodID asdbIDFloatBuffer;
+    static jmethodID asdbIDIntBuffer;
+    static jmethodID asdbIDLongBuffer;
+    static jmethodID asdbIDShortBuffer;
+
+
+    /**
+    * Get the environment matching to the current thread.
+    */
+    virtual JNIEnv * getCurrentEnv();
 
 public:
-// Constructor
-/**
-* Create a wrapping of the object from a JNIEnv.
-* It will call the default constructor
-* @param JEnv_ the Java Env
-*/
-ScilabVariables(JavaVM * jvm_);
+    // Constructor
+    /**
+    * Create a wrapping of the object from a JNIEnv.
+    * It will call the default constructor
+    * @param JEnv_ the Java Env
+    */
+    ScilabVariables(JavaVM * jvm_);
 
-/**
-* Create a wrapping of an already existing object from a JNIEnv.
-* The object must have already been instantiated
-* @param JEnv_ the Java Env
-* @param JObj the object
-*/
-ScilabVariables(JavaVM * jvm_, jobject JObj);
+    /**
+    * Create a wrapping of an already existing object from a JNIEnv.
+    * The object must have already been instantiated
+    * @param JEnv_ the Java Env
+    * @param JObj the object
+    */
+    ScilabVariables(JavaVM * jvm_, jobject JObj);
 
 
-/** 
-* This is a fake constructor to avoid the constructor
-* chaining when dealing with extended giws classes 
-*/
+    /**
+    * This is a fake constructor to avoid the constructor
+    * chaining when dealing with extended giws classes
+    */
 #ifdef FAKEGIWSDATATYPE
-ScilabVariables(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
+    ScilabVariables(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
 #endif
 
-// Destructor
-~ScilabVariables();
+    // Destructor
+    ~ScilabVariables();
 
-// Generic method
-// Synchronization methods
-/**
-* Enter monitor associated with the object.
-* Equivalent of creating a "synchronized(obj)" scope in Java.
-*/
-void synchronize();
+    // Generic method
+    // Synchronization methods
+    /**
+    * Enter monitor associated with the object.
+    * Equivalent of creating a "synchronized(obj)" scope in Java.
+    */
+    void synchronize();
 
-/**
-* Exit monitor associated with the object.
-* Equivalent of ending a "synchronized(obj)" scope.
-*/
-void endSynchronize();
+    /**
+    * Exit monitor associated with the object.
+    * Equivalent of ending a "synchronized(obj)" scope.
+    */
+    void endSynchronize();
 
-// Methods
-static char** getAllListenedVariables(JavaVM * jvm_);
+    // Methods
+    static char** getAllListenedVariables(JavaVM * jvm_);
 
-static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, double const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
+    static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, double const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
 
-static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, double const* data, int dataSize, int rows, int cols, int handlerId);
+    static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, double const* data, int dataSize, int rows, int cols, int handlerId);
 
-static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, double const* const* real, int realSize, int realSizeCol, double const* const* img, int imgSize, int imgSizeCol, bool swaped, int handlerId);
+    static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, double const* const* real, int realSize, int realSizeCol, double const* const* img, int imgSize, int imgSizeCol, bool swaped, int handlerId);
 
-static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, double const* real, int realSize, double const* img, int imgSize, int rows, int cols, int handlerId);
+    static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, double const* real, int realSize, double const* img, int imgSize, int rows, int cols, int handlerId);
 
-static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, byte const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
+    static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, byte const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
 
-static void sendUnsignedData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, byte const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
+    static void sendUnsignedData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, byte const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
 
-static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, byte const* data, int dataSize, int rows, int cols, int handlerId);
+    static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, byte const* data, int dataSize, int rows, int cols, int handlerId);
 
-static void sendUnsignedDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, byte const* data, int dataSize, int rows, int cols, int handlerId);
+    static void sendUnsignedDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, byte const* data, int dataSize, int rows, int cols, int handlerId);
 
-static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, short const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
+    static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, short const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
 
-static void sendUnsignedData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, short const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
+    static void sendUnsignedData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, short const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
 
-static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, short const* data, int dataSize, int rows, int cols, int handlerId);
+    static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, short const* data, int dataSize, int rows, int cols, int handlerId);
 
-static void sendUnsignedDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, short const* data, int dataSize, int rows, int cols, int handlerId);
+    static void sendUnsignedDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, short const* data, int dataSize, int rows, int cols, int handlerId);
 
-static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
+    static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
 
-static void sendUnsignedData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
+    static void sendUnsignedData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
 
-static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int const* data, int dataSize, int rows, int cols, int handlerId);
+    static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int const* data, int dataSize, int rows, int cols, int handlerId);
 
-static void sendUnsignedDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int const* data, int dataSize, int rows, int cols, int handlerId);
+    static void sendUnsignedDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int const* data, int dataSize, int rows, int cols, int handlerId);
 
-static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, long long const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
+    static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, long long const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
 
-static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, long long const* data, int dataSize, int rows, int cols, int handlerId);
+    static void sendHandleData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, long long const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
 
-static void sendUnsignedDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, long long const* data, int dataSize, int rows, int cols, int handlerId);
+    static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, long long const* data, int dataSize, int rows, int cols, int handlerId);
 
-static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, bool const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
+    static void sendUnsignedDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, long long const* data, int dataSize, int rows, int cols, int handlerId);
 
-static void sendBooleanDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int const* data, int dataSize, int rows, int cols, int handlerId);
+    static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, bool const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
 
-static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, char const* const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
+    static void sendBooleanDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int const* data, int dataSize, int rows, int cols, int handlerId);
 
-static void sendData(JavaVM * jvm_, char const* varName, int nbItems, int const* indexes, int indexesSize, unsigned short type, int handlerId);
+    static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, char const* const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
 
-static void closeList(JavaVM * jvm_, int const* indexes, int indexesSize, int handlerId);
+    static void sendData(JavaVM * jvm_, char const* varName, int nbItems, int const* indexes, int indexesSize, unsigned short type, int handlerId);
 
-static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, double const* data, int dataSize, int handlerId);
+    static void closeList(JavaVM * jvm_, int const* indexes, int indexesSize, int handlerId);
 
-static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, double const* data, int dataSize, int handlerId);
+    static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, double const* data, int dataSize, int handlerId);
 
-static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, double const* real, int realSize, double const* imag, int imagSize, int handlerId);
+    static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, double const* data, int dataSize, int handlerId);
 
-static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, double const* real, int realSize, double const* imag, int imagSize, int handlerId);
+    static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, double const* real, int realSize, double const* imag, int imagSize, int handlerId);
 
-static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, int handlerId);
+    static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, double const* real, int realSize, double const* imag, int imagSize, int handlerId);
 
-static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, int handlerId);
+    static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, int handlerId);
+
+    static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, int handlerId);
 
 
-                        /**
-                        * Get class name to use for static methods
-                        * @return class name to use for static methods
-                        */
-                        
-                static const std::string className()
-                {
-                return "org/scilab/modules/types/ScilabVariables";
-                }
-                
+    /**
+    * Get class name to use for static methods
+    * @return class name to use for static methods
+    */
 
-                        /**
-                        * Get class to use for static methods
-                        * @return class to use for static methods
-                        */
-                        
-                static jclass initClass(JNIEnv * curEnv)
-                {
-                    static jclass cls = 0;
+    static const std::string className()
+    {
+        return "org/scilab/modules/types/ScilabVariables";
+    }
 
-                    if (cls == 0)
-                    {
-                        jclass _cls = curEnv->FindClass(className().c_str());
-                        if (_cls)
-                        {
-                            cls = static_cast<jclass>(curEnv->NewGlobalRef(_cls));
-                        }
-                    }
 
-                    return cls;
-                 }
-                
+    /**
+    * Get class to use for static methods
+    * @return class to use for static methods
+    */
+
+    static jclass initClass(JNIEnv * curEnv)
+    {
+        static jclass cls = 0;
+
+        if (cls == 0)
+        {
+            jclass _cls = curEnv->FindClass(className().c_str());
+            if (_cls)
+            {
+                cls = static_cast<jclass>(curEnv->NewGlobalRef(_cls));
+            }
+        }
+
+        return cls;
+    }
+
 };
 
 

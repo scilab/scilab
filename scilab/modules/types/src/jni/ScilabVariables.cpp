@@ -36,3092 +36,3554 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
 
-namespace org_scilab_modules_types {
+namespace org_scilab_modules_types
+{
 
-                // Static declarations (if any)
-                
-                // Cache of the bytebuffer stuff
-                jclass ScilabVariables::ByteOrderClass = NULL;
-                jmethodID ScilabVariables::nativeOrderID = NULL;
-                jobject ScilabVariables::nativeOrder = NULL;
-                jmethodID ScilabVariables::orderID = NULL;
-                jclass ScilabVariables::bbCls = NULL;
-                jmethodID ScilabVariables::asdbIDByteBuffer = NULL;
-                jmethodID ScilabVariables::asdbIDCharBuffer = NULL;
-                jmethodID ScilabVariables::asdbIDDoubleBuffer = NULL;
-                jmethodID ScilabVariables::asdbIDFloatBuffer = NULL;
-                jmethodID ScilabVariables::asdbIDIntBuffer = NULL;
-                jmethodID ScilabVariables::asdbIDLongBuffer = NULL;
-                jmethodID ScilabVariables::asdbIDShortBuffer = NULL;
+// Static declarations (if any)
+
+// Cache of the bytebuffer stuff
+jclass ScilabVariables::ByteOrderClass = NULL;
+jmethodID ScilabVariables::nativeOrderID = NULL;
+jobject ScilabVariables::nativeOrder = NULL;
+jmethodID ScilabVariables::orderID = NULL;
+jclass ScilabVariables::bbCls = NULL;
+jmethodID ScilabVariables::asdbIDByteBuffer = NULL;
+jmethodID ScilabVariables::asdbIDCharBuffer = NULL;
+jmethodID ScilabVariables::asdbIDDoubleBuffer = NULL;
+jmethodID ScilabVariables::asdbIDFloatBuffer = NULL;
+jmethodID ScilabVariables::asdbIDIntBuffer = NULL;
+jmethodID ScilabVariables::asdbIDLongBuffer = NULL;
+jmethodID ScilabVariables::asdbIDShortBuffer = NULL;
 // Returns the current env
 
-JNIEnv * ScilabVariables::getCurrentEnv() {
-JNIEnv * curEnv = NULL;
-jint res=this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-if (res != JNI_OK) {
-throw GiwsException::JniException(getCurrentEnv());
-}
-return curEnv;
+JNIEnv * ScilabVariables::getCurrentEnv()
+{
+    JNIEnv * curEnv = NULL;
+    jint res = this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    if (res != JNI_OK)
+    {
+        throw GiwsException::JniException(getCurrentEnv());
+    }
+    return curEnv;
 }
 // Destructor
 
-ScilabVariables::~ScilabVariables() {
-JNIEnv * curEnv = NULL;
-this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-curEnv->DeleteGlobalRef(this->instance);
-curEnv->DeleteGlobalRef(this->instanceClass);
-curEnv->DeleteGlobalRef(this->stringArrayClass);}
+ScilabVariables::~ScilabVariables()
+{
+    JNIEnv * curEnv = NULL;
+    this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    curEnv->DeleteGlobalRef(this->instance);
+    curEnv->DeleteGlobalRef(this->instanceClass);
+    curEnv->DeleteGlobalRef(this->stringArrayClass);
+}
 // Constructors
-ScilabVariables::ScilabVariables(JavaVM * jvm_) {
-jmethodID constructObject = NULL ;
-jobject localInstance ;
-jclass localClass ;
+ScilabVariables::ScilabVariables(JavaVM * jvm_)
+{
+    jmethodID constructObject = NULL ;
+    jobject localInstance ;
+    jclass localClass ;
 
-const std::string construct="<init>";
-const std::string param="()V";
-jvm=jvm_;
+    const std::string construct = "<init>";
+    const std::string param = "()V";
+    jvm = jvm_;
 
-JNIEnv * curEnv = getCurrentEnv();
+    JNIEnv * curEnv = getCurrentEnv();
 
-localClass = curEnv->FindClass( this->className().c_str() ) ;
-if (localClass == NULL) {
-  throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+    localClass = curEnv->FindClass( this->className().c_str() ) ;
+    if (localClass == NULL)
+    {
+        throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+    }
+
+    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+
+    /* localClass is not needed anymore */
+    curEnv->DeleteLocalRef(localClass);
+
+    if (this->instanceClass == NULL)
+    {
+        throw GiwsException::JniObjectCreationException(curEnv, this->className());
+    }
+
+
+    constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
+    if (constructObject == NULL)
+    {
+        throw GiwsException::JniObjectCreationException(curEnv, this->className());
+    }
+
+    localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
+    if (localInstance == NULL)
+    {
+        throw GiwsException::JniObjectCreationException(curEnv, this->className());
+    }
+
+    this->instance = curEnv->NewGlobalRef(localInstance) ;
+    if (this->instance == NULL)
+    {
+        throw GiwsException::JniObjectCreationException(curEnv, this->className());
+    }
+    /* localInstance not needed anymore */
+    curEnv->DeleteLocalRef(localInstance);
+
+    /* Methods ID set to NULL */
+    jobjectArray_getAllListenedVariablesID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejbooleanbooleanjintintID = NULL;
+    voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejobjectArray__doubledoublejbooleanbooleanjintintID = NULL;
+    voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID = NULL;
+    voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID = NULL;
+    voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID = NULL;
+    voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID = NULL;
+    voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID = NULL;
+    voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID = NULL;
+    voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID = NULL;
+    voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID = NULL;
+    voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID = NULL;
+    voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID = NULL;
+    voidsendHandleDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID = NULL;
+    voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID = NULL;
+    voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__booleanbooleanjbooleanbooleanjintintID = NULL;
+    voidsendBooleanDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__java_lang_Stringjava_lang_StringjbooleanbooleanjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintintjintArray_intintjcharcharjintintID = NULL;
+    voidcloseListjintArray_intintjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejintintID = NULL;
+    voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejdoubleArray_doubledoublejintintID = NULL;
+    voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjintintID = NULL;
+    voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjintintID = NULL;
+
+
 }
 
-this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+ScilabVariables::ScilabVariables(JavaVM * jvm_, jobject JObj)
+{
+    jvm = jvm_;
 
-/* localClass is not needed anymore */
-curEnv->DeleteLocalRef(localClass);
+    JNIEnv * curEnv = getCurrentEnv();
 
-if (this->instanceClass == NULL) {
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
-}
+    jclass localClass = curEnv->GetObjectClass(JObj);
+    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+    curEnv->DeleteLocalRef(localClass);
 
+    if (this->instanceClass == NULL)
+    {
+        throw GiwsException::JniObjectCreationException(curEnv, this->className());
+    }
 
-constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
-if(constructObject == NULL){
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
-}
-
-localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
-if(localInstance == NULL){
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
-}
- 
-this->instance = curEnv->NewGlobalRef(localInstance) ;
-if(this->instance == NULL){
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
-}
-/* localInstance not needed anymore */
-curEnv->DeleteLocalRef(localInstance);
-
-                /* Methods ID set to NULL */
-jobjectArray_getAllListenedVariablesID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejbooleanbooleanjintintID=NULL;
-voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejobjectArray__doubledoublejbooleanbooleanjintintID=NULL;
-voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID=NULL;
-voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID=NULL;
-voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID=NULL;
-voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID=NULL;
-voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID=NULL;
-voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID=NULL;
-voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID=NULL;
-voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID=NULL;
-voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID=NULL;
-voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID=NULL;
-voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID=NULL;
-voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__booleanbooleanjbooleanbooleanjintintID=NULL;
-voidsendBooleanDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__java_lang_Stringjava_lang_StringjbooleanbooleanjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintintjintArray_intintjcharcharjintintID=NULL;
-voidcloseListjintArray_intintjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejintintID=NULL;
-voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejdoubleArray_doubledoublejintintID=NULL;
-voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjintintID=NULL;
-voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjintintID=NULL;
-
-
-}
-
-ScilabVariables::ScilabVariables(JavaVM * jvm_, jobject JObj) {
-        jvm=jvm_;
-
-        JNIEnv * curEnv = getCurrentEnv();
-
-jclass localClass = curEnv->GetObjectClass(JObj);
-        this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
-        curEnv->DeleteLocalRef(localClass);
-
-        if (this->instanceClass == NULL) {
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
-        }
-
-        this->instance = curEnv->NewGlobalRef(JObj) ;
-        if(this->instance == NULL){
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
-        }
-        /* Methods ID set to NULL */
-        jobjectArray_getAllListenedVariablesID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejbooleanbooleanjintintID=NULL;
-voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejobjectArray__doubledoublejbooleanbooleanjintintID=NULL;
-voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID=NULL;
-voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID=NULL;
-voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID=NULL;
-voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID=NULL;
-voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID=NULL;
-voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID=NULL;
-voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID=NULL;
-voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID=NULL;
-voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID=NULL;
-voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID=NULL;
-voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID=NULL;
-voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__booleanbooleanjbooleanbooleanjintintID=NULL;
-voidsendBooleanDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__java_lang_Stringjava_lang_StringjbooleanbooleanjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintintjintArray_intintjcharcharjintintID=NULL;
-voidcloseListjintArray_intintjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejintintID=NULL;
-voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejdoubleArray_doubledoublejintintID=NULL;
-voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID=NULL;
-voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjintintID=NULL;
-voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjintintID=NULL;
+    this->instance = curEnv->NewGlobalRef(JObj) ;
+    if (this->instance == NULL)
+    {
+        throw GiwsException::JniObjectCreationException(curEnv, this->className());
+    }
+    /* Methods ID set to NULL */
+    jobjectArray_getAllListenedVariablesID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejbooleanbooleanjintintID = NULL;
+    voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejobjectArray__doubledoublejbooleanbooleanjintintID = NULL;
+    voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID = NULL;
+    voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID = NULL;
+    voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID = NULL;
+    voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID = NULL;
+    voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID = NULL;
+    voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID = NULL;
+    voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID = NULL;
+    voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID = NULL;
+    voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID = NULL;
+    voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID = NULL;
+    voidsendHandleDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID = NULL;
+    voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID = NULL;
+    voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__booleanbooleanjbooleanbooleanjintintID = NULL;
+    voidsendBooleanDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__java_lang_Stringjava_lang_StringjbooleanbooleanjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintintjintArray_intintjcharcharjintintID = NULL;
+    voidcloseListjintArray_intintjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejintintID = NULL;
+    voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejdoubleArray_doubledoublejintintID = NULL;
+    voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID = NULL;
+    voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjintintID = NULL;
+    voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjintintID = NULL;
 
 
 }
 
 // Generic methods
 
-void ScilabVariables::synchronize() {
-if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
-throw GiwsException::JniMonitorException(getCurrentEnv(), "ScilabVariables");
-}
+void ScilabVariables::synchronize()
+{
+    if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK)
+    {
+        throw GiwsException::JniMonitorException(getCurrentEnv(), "ScilabVariables");
+    }
 }
 
-void ScilabVariables::endSynchronize() {
-if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
-throw GiwsException::JniMonitorException(getCurrentEnv(), "ScilabVariables");
-}
+void ScilabVariables::endSynchronize()
+{
+    if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK)
+    {
+        throw GiwsException::JniMonitorException(getCurrentEnv(), "ScilabVariables");
+    }
 }
 // Method(s)
 
-char** ScilabVariables::getAllListenedVariables (JavaVM * jvm_){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID jobjectArray_getAllListenedVariablesID = curEnv->GetStaticMethodID(cls, "getAllListenedVariables", "()[Ljava/lang/String;" ) ;
-if (jobjectArray_getAllListenedVariablesID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "getAllListenedVariables");
-}
-
-                        jobjectArray res =  static_cast<jobjectArray>( curEnv->CallStaticObjectMethod(cls, jobjectArray_getAllListenedVariablesID ));
-                        if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}if (res != NULL) { int lenRow;
- lenRow = curEnv->GetArrayLength(res);
-
-char **arrayOfString;
-arrayOfString = new char *[lenRow];
-for (jsize i = 0; i < lenRow; i++){
-jstring resString = reinterpret_cast<jstring>(curEnv->GetObjectArrayElement(res, i));
-const char *tempString = curEnv->GetStringUTFChars(resString, 0);
-arrayOfString[i] = new char[strlen(tempString) + 1];
-
-strcpy(arrayOfString[i], tempString);
-curEnv->ReleaseStringUTFChars(resString, tempString);
-curEnv->DeleteLocalRef(resString);
-}
-if (curEnv->ExceptionCheck()) {
-delete[] arrayOfString;
-                                throw GiwsException::JniCallMethodException(curEnv);
-}
-curEnv->DeleteLocalRef(res);
-return arrayOfString;
- } else { 
-curEnv->DeleteLocalRef(res);
-return NULL;
-}
-}
-
-void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, double const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[I[[DZI)V" ) ;
-if (voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejbooleanbooleanjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
- jobjectArray data_ = curEnv->NewObjectArray(dataSize, curEnv->FindClass("[D"),NULL);
-
-if (data_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
- for (int i=0; i<dataSize; i++){
-
-jdoubleArray dataLocal = curEnv->NewDoubleArray( dataSizeCol ) ;
-
-if (dataLocal == NULL)
-{
-// check that allocation succeed
-curEnv->DeleteLocalRef(data_);
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetDoubleArrayRegion( dataLocal, 0, dataSizeCol, (jdouble*)(data[i]) ) ;
-curEnv->SetObjectArrayElement(data_, i, dataLocal);
-curEnv->DeleteLocalRef(dataLocal);
-}
-
-jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejbooleanbooleanjintintID ,varName_, indexes_, data_, swaped_, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, double const* data, int dataSize, int rows, int cols, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/DoubleBuffer;III)V" ) ;
-if (voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendDataAsBuffer");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
-
-            jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(double));
-if (!bufferdata)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
-
-
-if (asdbIDDoubleBuffer == NULL) {
- asdbIDDoubleBuffer = curEnv->GetMethodID(bbCls, "asDoubleBuffer", "()Ljava/nio/DoubleBuffer;");
-if (asdbIDDoubleBuffer == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-jobject data_ = curEnv->CallObjectMethod(bufferdata, asdbIDDoubleBuffer);
-
-if (data_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID ,varName_, indexes_, data_, rows, cols, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, double const* const* real, int realSize, int realSizeCol, double const* const* img, int imgSize, int imgSizeCol, bool swaped, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejobjectArray__doubledoublejbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[I[[D[[DZI)V" ) ;
-if (voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejobjectArray__doubledoublejbooleanbooleanjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
- jobjectArray real_ = curEnv->NewObjectArray(realSize, curEnv->FindClass("[D"),NULL);
-
-if (real_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
- for (int i=0; i<realSize; i++){
-
-jdoubleArray realLocal = curEnv->NewDoubleArray( realSizeCol ) ;
-
-if (realLocal == NULL)
-{
-// check that allocation succeed
-curEnv->DeleteLocalRef(real_);
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetDoubleArrayRegion( realLocal, 0, realSizeCol, (jdouble*)(real[i]) ) ;
-curEnv->SetObjectArrayElement(real_, i, realLocal);
-curEnv->DeleteLocalRef(realLocal);
-}
-
- jobjectArray img_ = curEnv->NewObjectArray(imgSize, curEnv->FindClass("[D"),NULL);
-
-if (img_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
- for (int i=0; i<imgSize; i++){
-
-jdoubleArray imgLocal = curEnv->NewDoubleArray( imgSizeCol ) ;
-
-if (imgLocal == NULL)
-{
-// check that allocation succeed
-curEnv->DeleteLocalRef(img_);
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetDoubleArrayRegion( imgLocal, 0, imgSizeCol, (jdouble*)(img[i]) ) ;
-curEnv->SetObjectArrayElement(img_, i, imgLocal);
-curEnv->DeleteLocalRef(imgLocal);
-}
-
-jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejobjectArray__doubledoublejbooleanbooleanjintintID ,varName_, indexes_, real_, img_, swaped_, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(real_);
-curEnv->DeleteLocalRef(img_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, double const* real, int realSize, double const* img, int imgSize, int rows, int cols, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/DoubleBuffer;Ljava/nio/DoubleBuffer;III)V" ) ;
-if (voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendDataAsBuffer");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
-
-            jobject bufferreal = curEnv->NewDirectByteBuffer((void*)real, (jlong)realSize * sizeof(double));
-if (!bufferreal)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferreal);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-bufferreal = curEnv->CallObjectMethod(bufferreal, orderID, nativeOrder);
-
-
-if (asdbIDDoubleBuffer == NULL) {
- asdbIDDoubleBuffer = curEnv->GetMethodID(bbCls, "asDoubleBuffer", "()Ljava/nio/DoubleBuffer;");
-if (asdbIDDoubleBuffer == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-jobject real_ = curEnv->CallObjectMethod(bufferreal, asdbIDDoubleBuffer);
-
-if (real_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-            jobject bufferimg = curEnv->NewDirectByteBuffer((void*)img, (jlong)imgSize * sizeof(double));
-if (!bufferimg)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferimg);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-bufferimg = curEnv->CallObjectMethod(bufferimg, orderID, nativeOrder);
-
-
-if (asdbIDDoubleBuffer == NULL) {
- asdbIDDoubleBuffer = curEnv->GetMethodID(bbCls, "asDoubleBuffer", "()Ljava/nio/DoubleBuffer;");
-if (asdbIDDoubleBuffer == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-jobject img_ = curEnv->CallObjectMethod(bufferimg, asdbIDDoubleBuffer);
-
-if (img_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID ,varName_, indexes_, real_, img_, rows, cols, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(real_);
-curEnv->DeleteLocalRef(img_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, byte const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[I[[BZI)V" ) ;
-if (voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
- jobjectArray data_ = curEnv->NewObjectArray(dataSize, curEnv->FindClass("[B"),NULL);
-
-if (data_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
- for (int i=0; i<dataSize; i++){
-
-jbyteArray dataLocal = curEnv->NewByteArray( dataSizeCol ) ;
-
-if (dataLocal == NULL)
-{
-// check that allocation succeed
-curEnv->DeleteLocalRef(data_);
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetByteArrayRegion( dataLocal, 0, dataSizeCol, (jbyte*)(data[i]) ) ;
-curEnv->SetObjectArrayElement(data_, i, dataLocal);
-curEnv->DeleteLocalRef(dataLocal);
-}
-
-jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID ,varName_, indexes_, data_, swaped_, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendUnsignedData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, byte const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendUnsignedData", "(Ljava/lang/String;[I[[BZI)V" ) ;
-if (voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendUnsignedData");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
- jobjectArray data_ = curEnv->NewObjectArray(dataSize, curEnv->FindClass("[B"),NULL);
-
-if (data_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
- for (int i=0; i<dataSize; i++){
-
-jbyteArray dataLocal = curEnv->NewByteArray( dataSizeCol ) ;
-
-if (dataLocal == NULL)
-{
-// check that allocation succeed
-curEnv->DeleteLocalRef(data_);
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetByteArrayRegion( dataLocal, 0, dataSizeCol, (jbyte*)(data[i]) ) ;
-curEnv->SetObjectArrayElement(data_, i, dataLocal);
-curEnv->DeleteLocalRef(dataLocal);
-}
-
-jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID ,varName_, indexes_, data_, swaped_, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, byte const* data, int dataSize, int rows, int cols, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/ByteBuffer;III)V" ) ;
-if (voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendDataAsBuffer");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
-
-            jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(byte));
-if (!bufferdata)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
-
- jobject data_ = bufferdata; 
-                         curEnv->CallStaticVoidMethod(cls, voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID ,varName_, indexes_, data_, rows, cols, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendUnsignedDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, byte const* data, int dataSize, int rows, int cols, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendUnsignedDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/ByteBuffer;III)V" ) ;
-if (voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendUnsignedDataAsBuffer");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
-
-            jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(byte));
-if (!bufferdata)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
-
- jobject data_ = bufferdata; 
-                         curEnv->CallStaticVoidMethod(cls, voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID ,varName_, indexes_, data_, rows, cols, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, short const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[I[[SZI)V" ) ;
-if (voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
- jobjectArray data_ = curEnv->NewObjectArray(dataSize, curEnv->FindClass("[S"),NULL);
-
-if (data_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
- for (int i=0; i<dataSize; i++){
-
-jshortArray dataLocal = curEnv->NewShortArray( dataSizeCol ) ;
-
-if (dataLocal == NULL)
-{
-// check that allocation succeed
-curEnv->DeleteLocalRef(data_);
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetShortArrayRegion( dataLocal, 0, dataSizeCol, (jshort*)(data[i]) ) ;
-curEnv->SetObjectArrayElement(data_, i, dataLocal);
-curEnv->DeleteLocalRef(dataLocal);
-}
-
-jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID ,varName_, indexes_, data_, swaped_, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendUnsignedData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, short const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendUnsignedData", "(Ljava/lang/String;[I[[SZI)V" ) ;
-if (voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendUnsignedData");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
- jobjectArray data_ = curEnv->NewObjectArray(dataSize, curEnv->FindClass("[S"),NULL);
-
-if (data_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
- for (int i=0; i<dataSize; i++){
-
-jshortArray dataLocal = curEnv->NewShortArray( dataSizeCol ) ;
-
-if (dataLocal == NULL)
-{
-// check that allocation succeed
-curEnv->DeleteLocalRef(data_);
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetShortArrayRegion( dataLocal, 0, dataSizeCol, (jshort*)(data[i]) ) ;
-curEnv->SetObjectArrayElement(data_, i, dataLocal);
-curEnv->DeleteLocalRef(dataLocal);
-}
-
-jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID ,varName_, indexes_, data_, swaped_, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, short const* data, int dataSize, int rows, int cols, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/ShortBuffer;III)V" ) ;
-if (voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendDataAsBuffer");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
-
-            jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(short));
-if (!bufferdata)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
-
-
-if (asdbIDShortBuffer == NULL) {
- asdbIDShortBuffer = curEnv->GetMethodID(bbCls, "asShortBuffer", "()Ljava/nio/ShortBuffer;");
-if (asdbIDShortBuffer == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-jobject data_ = curEnv->CallObjectMethod(bufferdata, asdbIDShortBuffer);
-
-if (data_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID ,varName_, indexes_, data_, rows, cols, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendUnsignedDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, short const* data, int dataSize, int rows, int cols, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendUnsignedDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/ShortBuffer;III)V" ) ;
-if (voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendUnsignedDataAsBuffer");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
-
-            jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(short));
-if (!bufferdata)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
-
-
-if (asdbIDShortBuffer == NULL) {
- asdbIDShortBuffer = curEnv->GetMethodID(bbCls, "asShortBuffer", "()Ljava/nio/ShortBuffer;");
-if (asdbIDShortBuffer == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-jobject data_ = curEnv->CallObjectMethod(bufferdata, asdbIDShortBuffer);
-
-if (data_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID ,varName_, indexes_, data_, rows, cols, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[I[[IZI)V" ) ;
-if (voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
- jobjectArray data_ = curEnv->NewObjectArray(dataSize, curEnv->FindClass("[I"),NULL);
-
-if (data_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
- for (int i=0; i<dataSize; i++){
-
-jintArray dataLocal = curEnv->NewIntArray( dataSizeCol ) ;
-
-if (dataLocal == NULL)
-{
-// check that allocation succeed
-curEnv->DeleteLocalRef(data_);
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( dataLocal, 0, dataSizeCol, (jint*)(data[i]) ) ;
-curEnv->SetObjectArrayElement(data_, i, dataLocal);
-curEnv->DeleteLocalRef(dataLocal);
-}
-
-jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID ,varName_, indexes_, data_, swaped_, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendUnsignedData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendUnsignedData", "(Ljava/lang/String;[I[[IZI)V" ) ;
-if (voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendUnsignedData");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
- jobjectArray data_ = curEnv->NewObjectArray(dataSize, curEnv->FindClass("[I"),NULL);
-
-if (data_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
- for (int i=0; i<dataSize; i++){
-
-jintArray dataLocal = curEnv->NewIntArray( dataSizeCol ) ;
-
-if (dataLocal == NULL)
-{
-// check that allocation succeed
-curEnv->DeleteLocalRef(data_);
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( dataLocal, 0, dataSizeCol, (jint*)(data[i]) ) ;
-curEnv->SetObjectArrayElement(data_, i, dataLocal);
-curEnv->DeleteLocalRef(dataLocal);
-}
-
-jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID ,varName_, indexes_, data_, swaped_, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int const* data, int dataSize, int rows, int cols, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/IntBuffer;III)V" ) ;
-if (voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendDataAsBuffer");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
-
-            jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(int));
-if (!bufferdata)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
-
-
-if (asdbIDIntBuffer == NULL) {
- asdbIDIntBuffer = curEnv->GetMethodID(bbCls, "asIntBuffer", "()Ljava/nio/IntBuffer;");
-if (asdbIDIntBuffer == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-jobject data_ = curEnv->CallObjectMethod(bufferdata, asdbIDIntBuffer);
-
-if (data_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID ,varName_, indexes_, data_, rows, cols, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendUnsignedDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int const* data, int dataSize, int rows, int cols, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendUnsignedDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/IntBuffer;III)V" ) ;
-if (voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendUnsignedDataAsBuffer");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
-
-            jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(int));
-if (!bufferdata)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
-
-
-if (asdbIDIntBuffer == NULL) {
- asdbIDIntBuffer = curEnv->GetMethodID(bbCls, "asIntBuffer", "()Ljava/nio/IntBuffer;");
-if (asdbIDIntBuffer == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-jobject data_ = curEnv->CallObjectMethod(bufferdata, asdbIDIntBuffer);
-
-if (data_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID ,varName_, indexes_, data_, rows, cols, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, long long const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[I[[JZI)V" ) ;
-if (voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
- jobjectArray data_ = curEnv->NewObjectArray(dataSize, curEnv->FindClass("[J"),NULL);
-
-if (data_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
- for (int i=0; i<dataSize; i++){
-
-jlongArray dataLocal = curEnv->NewLongArray( dataSizeCol ) ;
-
-if (dataLocal == NULL)
-{
-// check that allocation succeed
-curEnv->DeleteLocalRef(data_);
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetLongArrayRegion( dataLocal, 0, dataSizeCol, (jlong*)(data[i]) ) ;
-curEnv->SetObjectArrayElement(data_, i, dataLocal);
-curEnv->DeleteLocalRef(dataLocal);
-}
-
-jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID ,varName_, indexes_, data_, swaped_, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, long long const* data, int dataSize, int rows, int cols, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/LongBuffer;III)V" ) ;
-if (voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendDataAsBuffer");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
-
-            jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(long long));
-if (!bufferdata)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
-
-
-if (asdbIDLongBuffer == NULL) {
- asdbIDLongBuffer = curEnv->GetMethodID(bbCls, "asLongBuffer", "()Ljava/nio/LongBuffer;");
-if (asdbIDLongBuffer == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-jobject data_ = curEnv->CallObjectMethod(bufferdata, asdbIDLongBuffer);
-
-if (data_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID ,varName_, indexes_, data_, rows, cols, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendUnsignedDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, long long const* data, int dataSize, int rows, int cols, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendUnsignedDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/LongBuffer;III)V" ) ;
-if (voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendUnsignedDataAsBuffer");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
-
-            jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(long long));
-if (!bufferdata)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
-
-
-if (asdbIDLongBuffer == NULL) {
- asdbIDLongBuffer = curEnv->GetMethodID(bbCls, "asLongBuffer", "()Ljava/nio/LongBuffer;");
-if (asdbIDLongBuffer == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-jobject data_ = curEnv->CallObjectMethod(bufferdata, asdbIDLongBuffer);
-
-if (data_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID ,varName_, indexes_, data_, rows, cols, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, bool const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__booleanbooleanjbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[I[[ZZI)V" ) ;
-if (voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__booleanbooleanjbooleanbooleanjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
-jobjectArray data_ = curEnv->NewObjectArray(dataSize, curEnv->FindClass("[Z"),NULL);
-for (int i=0; i<dataSize; i++){
-                        jbooleanArray dataLocal = curEnv->NewBooleanArray( dataSizeCol ) ;
-                        curEnv->SetBooleanArrayRegion( dataLocal, 0, dataSizeCol, (jboolean*)(data[i]) ) ;
-                        curEnv->SetObjectArrayElement(data_, i, dataLocal);
-                        curEnv->DeleteLocalRef(dataLocal);
-                        }
-
-jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__booleanbooleanjbooleanbooleanjintintID ,varName_, indexes_, data_, swaped_, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendBooleanDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int const* data, int dataSize, int rows, int cols, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendBooleanDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendBooleanDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/IntBuffer;III)V" ) ;
-if (voidsendBooleanDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendBooleanDataAsBuffer");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
-
-            jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(int));
-if (!bufferdata)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
-
-
-if (asdbIDIntBuffer == NULL) {
- asdbIDIntBuffer = curEnv->GetMethodID(bbCls, "asIntBuffer", "()Ljava/nio/IntBuffer;");
-if (asdbIDIntBuffer == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-jobject data_ = curEnv->CallObjectMethod(bufferdata, asdbIDIntBuffer);
-
-if (data_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendBooleanDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID ,varName_, indexes_, data_, rows, cols, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, char const* const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__java_lang_Stringjava_lang_StringjbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[I[[Ljava/lang/String;ZI)V" ) ;
-if (voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__java_lang_Stringjava_lang_StringjbooleanbooleanjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-jclass stringArrayClass = curEnv->FindClass("java/lang/String");
-// create java array of array of strings.
-jobjectArray data_ = curEnv->NewObjectArray( dataSize, curEnv->FindClass("[Ljava/lang/String;"), NULL);
-if (data_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-for ( int i = 0; i < dataSize; i++)
-{
-jobjectArray dataLocal = curEnv->NewObjectArray( dataSizeCol, stringArrayClass, NULL);
-// convert each char * to java strings and fill the java array.
-for ( int j = 0; j < dataSizeCol; j++) {
-jstring TempString = curEnv->NewStringUTF( data[i][j] );
-
-if (TempString == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetObjectArrayElement( dataLocal, j, TempString);
-
-// avoid keeping reference on too many strings
-curEnv->DeleteLocalRef(TempString);
-}
-curEnv->SetObjectArrayElement(data_, i, dataLocal);
-curEnv->DeleteLocalRef(dataLocal);
-
-}
-jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__java_lang_Stringjava_lang_StringjbooleanbooleanjintintID ,varName_, indexes_, data_, swaped_, handlerId);
-                        curEnv->DeleteLocalRef(stringArrayClass);
-curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int nbItems, int const* indexes, int indexesSize, unsigned short type, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDatajstringjava_lang_StringjintintjintArray_intintjcharcharjintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;I[ICI)V" ) ;
-if (voidsendDatajstringjava_lang_StringjintintjintArray_intintjcharcharjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintintjintArray_intintjcharcharjintintID ,varName_, nbItems, indexes_, type, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::closeList (JavaVM * jvm_, int const* indexes, int indexesSize, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidcloseListjintArray_intintjintintID = curEnv->GetStaticMethodID(cls, "closeList", "([II)V" ) ;
-if (voidcloseListjintArray_intintjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "closeList");
-}
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
-                         curEnv->CallStaticVoidMethod(cls, voidcloseListjintArray_intintjintintID ,indexes_, handlerId);
-                        curEnv->DeleteLocalRef(indexes_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, double const* data, int dataSize, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[IIII[I[I[DI)V" ) ;
-if (voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
-jintArray nbItemRow_ = curEnv->NewIntArray( nbItemRowSize ) ;
-
-if (nbItemRow_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( nbItemRow_, 0, nbItemRowSize, (jint*)(nbItemRow) ) ;
-
-
-jintArray colPos_ = curEnv->NewIntArray( colPosSize ) ;
-
-if (colPos_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( colPos_, 0, colPosSize, (jint*)(colPos) ) ;
-
-
-jdoubleArray data_ = curEnv->NewDoubleArray( dataSize ) ;
-
-if (data_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetDoubleArrayRegion( data_, 0, dataSize, (jdouble*)(data) ) ;
-
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejintintID ,varName_, indexes_, row, col, nbItem, nbItemRow_, colPos_, data_, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(nbItemRow_);
-curEnv->DeleteLocalRef(colPos_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, double const* data, int dataSize, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID = curEnv->GetStaticMethodID(cls, "sendDataAsBuffer", "(Ljava/lang/String;[IIIILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/DoubleBuffer;I)V" ) ;
-if (voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendDataAsBuffer");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
-
-            jobject buffernbItemRow = curEnv->NewDirectByteBuffer((void*)nbItemRow, (jlong)nbItemRowSize * sizeof(int));
-if (!buffernbItemRow)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, buffernbItemRow);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-buffernbItemRow = curEnv->CallObjectMethod(buffernbItemRow, orderID, nativeOrder);
-
-
-if (asdbIDIntBuffer == NULL) {
- asdbIDIntBuffer = curEnv->GetMethodID(bbCls, "asIntBuffer", "()Ljava/nio/IntBuffer;");
-if (asdbIDIntBuffer == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-jobject nbItemRow_ = curEnv->CallObjectMethod(buffernbItemRow, asdbIDIntBuffer);
-
-if (nbItemRow_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-            jobject buffercolPos = curEnv->NewDirectByteBuffer((void*)colPos, (jlong)colPosSize * sizeof(int));
-if (!buffercolPos)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, buffercolPos);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-buffercolPos = curEnv->CallObjectMethod(buffercolPos, orderID, nativeOrder);
-
-
-if (asdbIDIntBuffer == NULL) {
- asdbIDIntBuffer = curEnv->GetMethodID(bbCls, "asIntBuffer", "()Ljava/nio/IntBuffer;");
-if (asdbIDIntBuffer == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-jobject colPos_ = curEnv->CallObjectMethod(buffercolPos, asdbIDIntBuffer);
-
-if (colPos_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-            jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(double));
-if (!bufferdata)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
-
-
-if (asdbIDDoubleBuffer == NULL) {
- asdbIDDoubleBuffer = curEnv->GetMethodID(bbCls, "asDoubleBuffer", "()Ljava/nio/DoubleBuffer;");
-if (asdbIDDoubleBuffer == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-jobject data_ = curEnv->CallObjectMethod(bufferdata, asdbIDDoubleBuffer);
-
-if (data_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID ,varName_, indexes_, row, col, nbItem, nbItemRow_, colPos_, data_, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(nbItemRow_);
-curEnv->DeleteLocalRef(colPos_);
-curEnv->DeleteLocalRef(data_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, double const* real, int realSize, double const* imag, int imagSize, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejdoubleArray_doubledoublejintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[IIII[I[I[D[DI)V" ) ;
-if (voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejdoubleArray_doubledoublejintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
-jintArray nbItemRow_ = curEnv->NewIntArray( nbItemRowSize ) ;
-
-if (nbItemRow_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( nbItemRow_, 0, nbItemRowSize, (jint*)(nbItemRow) ) ;
-
-
-jintArray colPos_ = curEnv->NewIntArray( colPosSize ) ;
-
-if (colPos_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( colPos_, 0, colPosSize, (jint*)(colPos) ) ;
-
-
-jdoubleArray real_ = curEnv->NewDoubleArray( realSize ) ;
-
-if (real_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetDoubleArrayRegion( real_, 0, realSize, (jdouble*)(real) ) ;
-
-
-jdoubleArray imag_ = curEnv->NewDoubleArray( imagSize ) ;
-
-if (imag_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetDoubleArrayRegion( imag_, 0, imagSize, (jdouble*)(imag) ) ;
-
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejdoubleArray_doubledoublejintintID ,varName_, indexes_, row, col, nbItem, nbItemRow_, colPos_, real_, imag_, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(nbItemRow_);
-curEnv->DeleteLocalRef(colPos_);
-curEnv->DeleteLocalRef(real_);
-curEnv->DeleteLocalRef(imag_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, double const* real, int realSize, double const* imag, int imagSize, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID = curEnv->GetStaticMethodID(cls, "sendDataAsBuffer", "(Ljava/lang/String;[IIIILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/DoubleBuffer;I)V" ) ;
-if (voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendDataAsBuffer");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
-
-            jobject buffernbItemRow = curEnv->NewDirectByteBuffer((void*)nbItemRow, (jlong)nbItemRowSize * sizeof(int));
-if (!buffernbItemRow)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, buffernbItemRow);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-buffernbItemRow = curEnv->CallObjectMethod(buffernbItemRow, orderID, nativeOrder);
-
-
-if (asdbIDIntBuffer == NULL) {
- asdbIDIntBuffer = curEnv->GetMethodID(bbCls, "asIntBuffer", "()Ljava/nio/IntBuffer;");
-if (asdbIDIntBuffer == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-jobject nbItemRow_ = curEnv->CallObjectMethod(buffernbItemRow, asdbIDIntBuffer);
-
-if (nbItemRow_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-            jobject buffercolPos = curEnv->NewDirectByteBuffer((void*)colPos, (jlong)colPosSize * sizeof(int));
-if (!buffercolPos)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, buffercolPos);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-buffercolPos = curEnv->CallObjectMethod(buffercolPos, orderID, nativeOrder);
-
-
-if (asdbIDIntBuffer == NULL) {
- asdbIDIntBuffer = curEnv->GetMethodID(bbCls, "asIntBuffer", "()Ljava/nio/IntBuffer;");
-if (asdbIDIntBuffer == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-jobject colPos_ = curEnv->CallObjectMethod(buffercolPos, asdbIDIntBuffer);
-
-if (colPos_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-            jobject bufferreal = curEnv->NewDirectByteBuffer((void*)real, (jlong)realSize * sizeof(double));
-if (!bufferreal)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferreal);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-bufferreal = curEnv->CallObjectMethod(bufferreal, orderID, nativeOrder);
-
-
-if (asdbIDDoubleBuffer == NULL) {
- asdbIDDoubleBuffer = curEnv->GetMethodID(bbCls, "asDoubleBuffer", "()Ljava/nio/DoubleBuffer;");
-if (asdbIDDoubleBuffer == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-jobject real_ = curEnv->CallObjectMethod(bufferreal, asdbIDDoubleBuffer);
-
-if (real_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-            jobject bufferimag = curEnv->NewDirectByteBuffer((void*)imag, (jlong)imagSize * sizeof(double));
-if (!bufferimag)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferimag);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-bufferimag = curEnv->CallObjectMethod(bufferimag, orderID, nativeOrder);
-
-
-if (asdbIDDoubleBuffer == NULL) {
- asdbIDDoubleBuffer = curEnv->GetMethodID(bbCls, "asDoubleBuffer", "()Ljava/nio/DoubleBuffer;");
-if (asdbIDDoubleBuffer == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-jobject imag_ = curEnv->CallObjectMethod(bufferimag, asdbIDDoubleBuffer);
-
-if (imag_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID ,varName_, indexes_, row, col, nbItem, nbItemRow_, colPos_, real_, imag_, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(nbItemRow_);
-curEnv->DeleteLocalRef(colPos_);
-curEnv->DeleteLocalRef(real_);
-curEnv->DeleteLocalRef(imag_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[IIII[I[II)V" ) ;
-if (voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
-jintArray nbItemRow_ = curEnv->NewIntArray( nbItemRowSize ) ;
-
-if (nbItemRow_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( nbItemRow_, 0, nbItemRowSize, (jint*)(nbItemRow) ) ;
-
-
-jintArray colPos_ = curEnv->NewIntArray( colPosSize ) ;
-
-if (colPos_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( colPos_, 0, colPosSize, (jint*)(colPos) ) ;
-
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjintintID ,varName_, indexes_, row, col, nbItem, nbItemRow_, colPos_, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(nbItemRow_);
-curEnv->DeleteLocalRef(colPos_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void ScilabVariables::sendDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, int handlerId){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjintintID = curEnv->GetStaticMethodID(cls, "sendDataAsBuffer", "(Ljava/lang/String;[IIIILjava/nio/IntBuffer;Ljava/nio/IntBuffer;I)V" ) ;
-if (voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "sendDataAsBuffer");
-}
-
-jstring varName_ = curEnv->NewStringUTF( varName );
-if (varName != NULL && varName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
-
-if (indexes_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
-
-
-
-            jobject buffernbItemRow = curEnv->NewDirectByteBuffer((void*)nbItemRow, (jlong)nbItemRowSize * sizeof(int));
-if (!buffernbItemRow)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, buffernbItemRow);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-buffernbItemRow = curEnv->CallObjectMethod(buffernbItemRow, orderID, nativeOrder);
-
-
-if (asdbIDIntBuffer == NULL) {
- asdbIDIntBuffer = curEnv->GetMethodID(bbCls, "asIntBuffer", "()Ljava/nio/IntBuffer;");
-if (asdbIDIntBuffer == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-jobject nbItemRow_ = curEnv->CallObjectMethod(buffernbItemRow, asdbIDIntBuffer);
-
-if (nbItemRow_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-            jobject buffercolPos = curEnv->NewDirectByteBuffer((void*)colPos, (jlong)colPosSize * sizeof(int));
-if (!buffercolPos)
-{
-    throw GiwsException::JniBadAllocException(curEnv);
-}
-
-if (ByteOrderClass == NULL) {
-ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
-if (ByteOrderClass == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (nativeOrderID == NULL) {
-// public static ByteOrder nativeOrder()
-nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
-if (nativeOrderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, buffercolPos);
-//                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-
-if (bbCls == NULL) {
-bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
-if (bbCls == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-if (orderID == NULL) {
-orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
-if (orderID == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-buffercolPos = curEnv->CallObjectMethod(buffercolPos, orderID, nativeOrder);
-
-
-if (asdbIDIntBuffer == NULL) {
- asdbIDIntBuffer = curEnv->GetMethodID(bbCls, "asIntBuffer", "()Ljava/nio/IntBuffer;");
-if (asdbIDIntBuffer == NULL) {
-curEnv->ExceptionDescribe();
-}
-}
-
-jobject colPos_ = curEnv->CallObjectMethod(buffercolPos, asdbIDIntBuffer);
-
-if (colPos_ == NULL)
-{
-// check that allocation succeed
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-                         curEnv->CallStaticVoidMethod(cls, voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjintintID ,varName_, indexes_, row, col, nbItem, nbItemRow_, colPos_, handlerId);
-                        curEnv->DeleteLocalRef(varName_);
-curEnv->DeleteLocalRef(indexes_);
-curEnv->DeleteLocalRef(nbItemRow_);
-curEnv->DeleteLocalRef(colPos_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
+char** ScilabVariables::getAllListenedVariables (JavaVM * jvm_)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID jobjectArray_getAllListenedVariablesID = curEnv->GetStaticMethodID(cls, "getAllListenedVariables", "()[Ljava/lang/String;" ) ;
+    if (jobjectArray_getAllListenedVariablesID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "getAllListenedVariables");
+    }
+
+    jobjectArray res =  static_cast<jobjectArray>( curEnv->CallStaticObjectMethod(cls, jobjectArray_getAllListenedVariablesID ));
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+    if (res != NULL)
+    {
+        int lenRow;
+        lenRow = curEnv->GetArrayLength(res);
+
+        char **arrayOfString;
+        arrayOfString = new char *[lenRow];
+        for (jsize i = 0; i < lenRow; i++)
+        {
+            jstring resString = reinterpret_cast<jstring>(curEnv->GetObjectArrayElement(res, i));
+            const char *tempString = curEnv->GetStringUTFChars(resString, 0);
+            arrayOfString[i] = new char[strlen(tempString) + 1];
+
+            strcpy(arrayOfString[i], tempString);
+            curEnv->ReleaseStringUTFChars(resString, tempString);
+            curEnv->DeleteLocalRef(resString);
+        }
+        if (curEnv->ExceptionCheck())
+        {
+            delete[] arrayOfString;
+            throw GiwsException::JniCallMethodException(curEnv);
+        }
+        curEnv->DeleteLocalRef(res);
+        return arrayOfString;
+    }
+    else
+    {
+        curEnv->DeleteLocalRef(res);
+        return NULL;
+    }
+}
+
+void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, double const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[I[[DZI)V" ) ;
+    if (voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejbooleanbooleanjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+    jobjectArray data_ = curEnv->NewObjectArray(dataSize, curEnv->FindClass("[D"), NULL);
+
+    if (data_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    for (int i = 0; i < dataSize; i++)
+    {
+
+        jdoubleArray dataLocal = curEnv->NewDoubleArray( dataSizeCol ) ;
+
+        if (dataLocal == NULL)
+        {
+            // check that allocation succeed
+            curEnv->DeleteLocalRef(data_);
+            throw GiwsException::JniBadAllocException(curEnv);
+        }
+
+        curEnv->SetDoubleArrayRegion( dataLocal, 0, dataSizeCol, (jdouble*)(data[i]) ) ;
+        curEnv->SetObjectArrayElement(data_, i, dataLocal);
+        curEnv->DeleteLocalRef(dataLocal);
+    }
+
+    jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
+
+    curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejbooleanbooleanjintintID , varName_, indexes_, data_, swaped_, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, double const* data, int dataSize, int rows, int cols, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/DoubleBuffer;III)V" ) ;
+    if (voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendDataAsBuffer");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+
+    jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(double));
+    if (!bufferdata)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
+
+
+    if (asdbIDDoubleBuffer == NULL)
+    {
+        asdbIDDoubleBuffer = curEnv->GetMethodID(bbCls, "asDoubleBuffer", "()Ljava/nio/DoubleBuffer;");
+        if (asdbIDDoubleBuffer == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    jobject data_ = curEnv->CallObjectMethod(bufferdata, asdbIDDoubleBuffer);
+
+    if (data_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->CallStaticVoidMethod(cls, voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID , varName_, indexes_, data_, rows, cols, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, double const* const* real, int realSize, int realSizeCol, double const* const* img, int imgSize, int imgSizeCol, bool swaped, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejobjectArray__doubledoublejbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[I[[D[[DZI)V" ) ;
+    if (voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejobjectArray__doubledoublejbooleanbooleanjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+    jobjectArray real_ = curEnv->NewObjectArray(realSize, curEnv->FindClass("[D"), NULL);
+
+    if (real_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    for (int i = 0; i < realSize; i++)
+    {
+
+        jdoubleArray realLocal = curEnv->NewDoubleArray( realSizeCol ) ;
+
+        if (realLocal == NULL)
+        {
+            // check that allocation succeed
+            curEnv->DeleteLocalRef(real_);
+            throw GiwsException::JniBadAllocException(curEnv);
+        }
+
+        curEnv->SetDoubleArrayRegion( realLocal, 0, realSizeCol, (jdouble*)(real[i]) ) ;
+        curEnv->SetObjectArrayElement(real_, i, realLocal);
+        curEnv->DeleteLocalRef(realLocal);
+    }
+
+    jobjectArray img_ = curEnv->NewObjectArray(imgSize, curEnv->FindClass("[D"), NULL);
+
+    if (img_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    for (int i = 0; i < imgSize; i++)
+    {
+
+        jdoubleArray imgLocal = curEnv->NewDoubleArray( imgSizeCol ) ;
+
+        if (imgLocal == NULL)
+        {
+            // check that allocation succeed
+            curEnv->DeleteLocalRef(img_);
+            throw GiwsException::JniBadAllocException(curEnv);
+        }
+
+        curEnv->SetDoubleArrayRegion( imgLocal, 0, imgSizeCol, (jdouble*)(img[i]) ) ;
+        curEnv->SetObjectArrayElement(img_, i, imgLocal);
+        curEnv->DeleteLocalRef(imgLocal);
+    }
+
+    jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
+
+    curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__doubledoublejobjectArray__doubledoublejbooleanbooleanjintintID , varName_, indexes_, real_, img_, swaped_, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(real_);
+    curEnv->DeleteLocalRef(img_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, double const* real, int realSize, double const* img, int imgSize, int rows, int cols, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/DoubleBuffer;Ljava/nio/DoubleBuffer;III)V" ) ;
+    if (voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendDataAsBuffer");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+
+    jobject bufferreal = curEnv->NewDirectByteBuffer((void*)real, (jlong)realSize * sizeof(double));
+    if (!bufferreal)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferreal);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    bufferreal = curEnv->CallObjectMethod(bufferreal, orderID, nativeOrder);
+
+
+    if (asdbIDDoubleBuffer == NULL)
+    {
+        asdbIDDoubleBuffer = curEnv->GetMethodID(bbCls, "asDoubleBuffer", "()Ljava/nio/DoubleBuffer;");
+        if (asdbIDDoubleBuffer == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    jobject real_ = curEnv->CallObjectMethod(bufferreal, asdbIDDoubleBuffer);
+
+    if (real_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jobject bufferimg = curEnv->NewDirectByteBuffer((void*)img, (jlong)imgSize * sizeof(double));
+    if (!bufferimg)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferimg);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    bufferimg = curEnv->CallObjectMethod(bufferimg, orderID, nativeOrder);
+
+
+    if (asdbIDDoubleBuffer == NULL)
+    {
+        asdbIDDoubleBuffer = curEnv->GetMethodID(bbCls, "asDoubleBuffer", "()Ljava/nio/DoubleBuffer;");
+        if (asdbIDDoubleBuffer == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    jobject img_ = curEnv->CallObjectMethod(bufferimg, asdbIDDoubleBuffer);
+
+    if (img_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->CallStaticVoidMethod(cls, voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintjintintjintintID , varName_, indexes_, real_, img_, rows, cols, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(real_);
+    curEnv->DeleteLocalRef(img_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, byte const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[I[[BZI)V" ) ;
+    if (voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+    jobjectArray data_ = curEnv->NewObjectArray(dataSize, curEnv->FindClass("[B"), NULL);
+
+    if (data_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    for (int i = 0; i < dataSize; i++)
+    {
+
+        jbyteArray dataLocal = curEnv->NewByteArray( dataSizeCol ) ;
+
+        if (dataLocal == NULL)
+        {
+            // check that allocation succeed
+            curEnv->DeleteLocalRef(data_);
+            throw GiwsException::JniBadAllocException(curEnv);
+        }
+
+        curEnv->SetByteArrayRegion( dataLocal, 0, dataSizeCol, (jbyte*)(data[i]) ) ;
+        curEnv->SetObjectArrayElement(data_, i, dataLocal);
+        curEnv->DeleteLocalRef(dataLocal);
+    }
+
+    jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
+
+    curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID , varName_, indexes_, data_, swaped_, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendUnsignedData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, byte const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendUnsignedData", "(Ljava/lang/String;[I[[BZI)V" ) ;
+    if (voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendUnsignedData");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+    jobjectArray data_ = curEnv->NewObjectArray(dataSize, curEnv->FindClass("[B"), NULL);
+
+    if (data_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    for (int i = 0; i < dataSize; i++)
+    {
+
+        jbyteArray dataLocal = curEnv->NewByteArray( dataSizeCol ) ;
+
+        if (dataLocal == NULL)
+        {
+            // check that allocation succeed
+            curEnv->DeleteLocalRef(data_);
+            throw GiwsException::JniBadAllocException(curEnv);
+        }
+
+        curEnv->SetByteArrayRegion( dataLocal, 0, dataSizeCol, (jbyte*)(data[i]) ) ;
+        curEnv->SetObjectArrayElement(data_, i, dataLocal);
+        curEnv->DeleteLocalRef(dataLocal);
+    }
+
+    jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
+
+    curEnv->CallStaticVoidMethod(cls, voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__bytebytejbooleanbooleanjintintID , varName_, indexes_, data_, swaped_, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, byte const* data, int dataSize, int rows, int cols, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/ByteBuffer;III)V" ) ;
+    if (voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendDataAsBuffer");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+
+    jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(byte));
+    if (!bufferdata)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
+
+    jobject data_ = bufferdata;
+    curEnv->CallStaticVoidMethod(cls, voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID , varName_, indexes_, data_, rows, cols, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendUnsignedDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, byte const* data, int dataSize, int rows, int cols, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendUnsignedDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/ByteBuffer;III)V" ) ;
+    if (voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendUnsignedDataAsBuffer");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+
+    jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(byte));
+    if (!bufferdata)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
+
+    jobject data_ = bufferdata;
+    curEnv->CallStaticVoidMethod(cls, voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID , varName_, indexes_, data_, rows, cols, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, short const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[I[[SZI)V" ) ;
+    if (voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+    jobjectArray data_ = curEnv->NewObjectArray(dataSize, curEnv->FindClass("[S"), NULL);
+
+    if (data_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    for (int i = 0; i < dataSize; i++)
+    {
+
+        jshortArray dataLocal = curEnv->NewShortArray( dataSizeCol ) ;
+
+        if (dataLocal == NULL)
+        {
+            // check that allocation succeed
+            curEnv->DeleteLocalRef(data_);
+            throw GiwsException::JniBadAllocException(curEnv);
+        }
+
+        curEnv->SetShortArrayRegion( dataLocal, 0, dataSizeCol, (jshort*)(data[i]) ) ;
+        curEnv->SetObjectArrayElement(data_, i, dataLocal);
+        curEnv->DeleteLocalRef(dataLocal);
+    }
+
+    jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
+
+    curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID , varName_, indexes_, data_, swaped_, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendUnsignedData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, short const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendUnsignedData", "(Ljava/lang/String;[I[[SZI)V" ) ;
+    if (voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendUnsignedData");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+    jobjectArray data_ = curEnv->NewObjectArray(dataSize, curEnv->FindClass("[S"), NULL);
+
+    if (data_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    for (int i = 0; i < dataSize; i++)
+    {
+
+        jshortArray dataLocal = curEnv->NewShortArray( dataSizeCol ) ;
+
+        if (dataLocal == NULL)
+        {
+            // check that allocation succeed
+            curEnv->DeleteLocalRef(data_);
+            throw GiwsException::JniBadAllocException(curEnv);
+        }
+
+        curEnv->SetShortArrayRegion( dataLocal, 0, dataSizeCol, (jshort*)(data[i]) ) ;
+        curEnv->SetObjectArrayElement(data_, i, dataLocal);
+        curEnv->DeleteLocalRef(dataLocal);
+    }
+
+    jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
+
+    curEnv->CallStaticVoidMethod(cls, voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__shortshortjbooleanbooleanjintintID , varName_, indexes_, data_, swaped_, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, short const* data, int dataSize, int rows, int cols, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/ShortBuffer;III)V" ) ;
+    if (voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendDataAsBuffer");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+
+    jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(short));
+    if (!bufferdata)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
+
+
+    if (asdbIDShortBuffer == NULL)
+    {
+        asdbIDShortBuffer = curEnv->GetMethodID(bbCls, "asShortBuffer", "()Ljava/nio/ShortBuffer;");
+        if (asdbIDShortBuffer == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    jobject data_ = curEnv->CallObjectMethod(bufferdata, asdbIDShortBuffer);
+
+    if (data_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->CallStaticVoidMethod(cls, voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID , varName_, indexes_, data_, rows, cols, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendUnsignedDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, short const* data, int dataSize, int rows, int cols, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendUnsignedDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/ShortBuffer;III)V" ) ;
+    if (voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendUnsignedDataAsBuffer");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+
+    jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(short));
+    if (!bufferdata)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
+
+
+    if (asdbIDShortBuffer == NULL)
+    {
+        asdbIDShortBuffer = curEnv->GetMethodID(bbCls, "asShortBuffer", "()Ljava/nio/ShortBuffer;");
+        if (asdbIDShortBuffer == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    jobject data_ = curEnv->CallObjectMethod(bufferdata, asdbIDShortBuffer);
+
+    if (data_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->CallStaticVoidMethod(cls, voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ShortBufferjava_lang_ShortBufferjintintjintintjintintID , varName_, indexes_, data_, rows, cols, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[I[[IZI)V" ) ;
+    if (voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+    jobjectArray data_ = curEnv->NewObjectArray(dataSize, curEnv->FindClass("[I"), NULL);
+
+    if (data_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    for (int i = 0; i < dataSize; i++)
+    {
+
+        jintArray dataLocal = curEnv->NewIntArray( dataSizeCol ) ;
+
+        if (dataLocal == NULL)
+        {
+            // check that allocation succeed
+            curEnv->DeleteLocalRef(data_);
+            throw GiwsException::JniBadAllocException(curEnv);
+        }
+
+        curEnv->SetIntArrayRegion( dataLocal, 0, dataSizeCol, (jint*)(data[i]) ) ;
+        curEnv->SetObjectArrayElement(data_, i, dataLocal);
+        curEnv->DeleteLocalRef(dataLocal);
+    }
+
+    jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
+
+    curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID , varName_, indexes_, data_, swaped_, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendUnsignedData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendUnsignedData", "(Ljava/lang/String;[I[[IZI)V" ) ;
+    if (voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendUnsignedData");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+    jobjectArray data_ = curEnv->NewObjectArray(dataSize, curEnv->FindClass("[I"), NULL);
+
+    if (data_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    for (int i = 0; i < dataSize; i++)
+    {
+
+        jintArray dataLocal = curEnv->NewIntArray( dataSizeCol ) ;
+
+        if (dataLocal == NULL)
+        {
+            // check that allocation succeed
+            curEnv->DeleteLocalRef(data_);
+            throw GiwsException::JniBadAllocException(curEnv);
+        }
+
+        curEnv->SetIntArrayRegion( dataLocal, 0, dataSizeCol, (jint*)(data[i]) ) ;
+        curEnv->SetObjectArrayElement(data_, i, dataLocal);
+        curEnv->DeleteLocalRef(dataLocal);
+    }
+
+    jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
+
+    curEnv->CallStaticVoidMethod(cls, voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__intintjbooleanbooleanjintintID , varName_, indexes_, data_, swaped_, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int const* data, int dataSize, int rows, int cols, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/IntBuffer;III)V" ) ;
+    if (voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendDataAsBuffer");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+
+    jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(int));
+    if (!bufferdata)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
+
+
+    if (asdbIDIntBuffer == NULL)
+    {
+        asdbIDIntBuffer = curEnv->GetMethodID(bbCls, "asIntBuffer", "()Ljava/nio/IntBuffer;");
+        if (asdbIDIntBuffer == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    jobject data_ = curEnv->CallObjectMethod(bufferdata, asdbIDIntBuffer);
+
+    if (data_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->CallStaticVoidMethod(cls, voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID , varName_, indexes_, data_, rows, cols, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendUnsignedDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int const* data, int dataSize, int rows, int cols, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendUnsignedDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/IntBuffer;III)V" ) ;
+    if (voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendUnsignedDataAsBuffer");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+
+    jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(int));
+    if (!bufferdata)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
+
+
+    if (asdbIDIntBuffer == NULL)
+    {
+        asdbIDIntBuffer = curEnv->GetMethodID(bbCls, "asIntBuffer", "()Ljava/nio/IntBuffer;");
+        if (asdbIDIntBuffer == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    jobject data_ = curEnv->CallObjectMethod(bufferdata, asdbIDIntBuffer);
+
+    if (data_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->CallStaticVoidMethod(cls, voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID , varName_, indexes_, data_, rows, cols, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, long long const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[I[[JZI)V" ) ;
+    if (voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+    jobjectArray data_ = curEnv->NewObjectArray(dataSize, curEnv->FindClass("[J"), NULL);
+
+    if (data_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    for (int i = 0; i < dataSize; i++)
+    {
+
+        jlongArray dataLocal = curEnv->NewLongArray( dataSizeCol ) ;
+
+        if (dataLocal == NULL)
+        {
+            // check that allocation succeed
+            curEnv->DeleteLocalRef(data_);
+            throw GiwsException::JniBadAllocException(curEnv);
+        }
+
+        curEnv->SetLongArrayRegion( dataLocal, 0, dataSizeCol, (jlong*)(data[i]) ) ;
+        curEnv->SetObjectArrayElement(data_, i, dataLocal);
+        curEnv->DeleteLocalRef(dataLocal);
+    }
+
+    jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
+
+    curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID , varName_, indexes_, data_, swaped_, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendHandleData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, long long const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendHandleDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendHandleData", "(Ljava/lang/String;[I[[JZI)V" ) ;
+    if (voidsendHandleDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendHandleData");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+    jobjectArray data_ = curEnv->NewObjectArray(dataSize, curEnv->FindClass("[J"), NULL);
+
+    if (data_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    for (int i = 0; i < dataSize; i++)
+    {
+
+        jlongArray dataLocal = curEnv->NewLongArray( dataSizeCol ) ;
+
+        if (dataLocal == NULL)
+        {
+            // check that allocation succeed
+            curEnv->DeleteLocalRef(data_);
+            throw GiwsException::JniBadAllocException(curEnv);
+        }
+
+        curEnv->SetLongArrayRegion( dataLocal, 0, dataSizeCol, (jlong*)(data[i]) ) ;
+        curEnv->SetObjectArrayElement(data_, i, dataLocal);
+        curEnv->DeleteLocalRef(dataLocal);
+    }
+
+    jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
+
+    curEnv->CallStaticVoidMethod(cls, voidsendHandleDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID , varName_, indexes_, data_, swaped_, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, long long const* data, int dataSize, int rows, int cols, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/LongBuffer;III)V" ) ;
+    if (voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendDataAsBuffer");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+
+    jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(long long));
+    if (!bufferdata)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
+
+
+    if (asdbIDLongBuffer == NULL)
+    {
+        asdbIDLongBuffer = curEnv->GetMethodID(bbCls, "asLongBuffer", "()Ljava/nio/LongBuffer;");
+        if (asdbIDLongBuffer == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    jobject data_ = curEnv->CallObjectMethod(bufferdata, asdbIDLongBuffer);
+
+    if (data_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->CallStaticVoidMethod(cls, voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID , varName_, indexes_, data_, rows, cols, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendUnsignedDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, long long const* data, int dataSize, int rows, int cols, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendUnsignedDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/LongBuffer;III)V" ) ;
+    if (voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendUnsignedDataAsBuffer");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+
+    jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(long long));
+    if (!bufferdata)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
+
+
+    if (asdbIDLongBuffer == NULL)
+    {
+        asdbIDLongBuffer = curEnv->GetMethodID(bbCls, "asLongBuffer", "()Ljava/nio/LongBuffer;");
+        if (asdbIDLongBuffer == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    jobject data_ = curEnv->CallObjectMethod(bufferdata, asdbIDLongBuffer);
+
+    if (data_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->CallStaticVoidMethod(cls, voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID , varName_, indexes_, data_, rows, cols, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, bool const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__booleanbooleanjbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[I[[ZZI)V" ) ;
+    if (voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__booleanbooleanjbooleanbooleanjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+    jobjectArray data_ = curEnv->NewObjectArray(dataSize, curEnv->FindClass("[Z"), NULL);
+    for (int i = 0; i < dataSize; i++)
+    {
+        jbooleanArray dataLocal = curEnv->NewBooleanArray( dataSizeCol ) ;
+        curEnv->SetBooleanArrayRegion( dataLocal, 0, dataSizeCol, (jboolean*)(data[i]) ) ;
+        curEnv->SetObjectArrayElement(data_, i, dataLocal);
+        curEnv->DeleteLocalRef(dataLocal);
+    }
+
+    jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
+
+    curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__booleanbooleanjbooleanbooleanjintintID , varName_, indexes_, data_, swaped_, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendBooleanDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int const* data, int dataSize, int rows, int cols, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendBooleanDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "sendBooleanDataAsBuffer", "(Ljava/lang/String;[ILjava/nio/IntBuffer;III)V" ) ;
+    if (voidsendBooleanDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendBooleanDataAsBuffer");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+
+    jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(int));
+    if (!bufferdata)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
+
+
+    if (asdbIDIntBuffer == NULL)
+    {
+        asdbIDIntBuffer = curEnv->GetMethodID(bbCls, "asIntBuffer", "()Ljava/nio/IntBuffer;");
+        if (asdbIDIntBuffer == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    jobject data_ = curEnv->CallObjectMethod(bufferdata, asdbIDIntBuffer);
+
+    if (data_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->CallStaticVoidMethod(cls, voidsendBooleanDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID , varName_, indexes_, data_, rows, cols, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, char const* const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__java_lang_Stringjava_lang_StringjbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[I[[Ljava/lang/String;ZI)V" ) ;
+    if (voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__java_lang_Stringjava_lang_StringjbooleanbooleanjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+    jclass stringArrayClass = curEnv->FindClass("java/lang/String");
+    // create java array of array of strings.
+    jobjectArray data_ = curEnv->NewObjectArray( dataSize, curEnv->FindClass("[Ljava/lang/String;"), NULL);
+    if (data_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    for ( int i = 0; i < dataSize; i++)
+    {
+        jobjectArray dataLocal = curEnv->NewObjectArray( dataSizeCol, stringArrayClass, NULL);
+        // convert each char * to java strings and fill the java array.
+        for ( int j = 0; j < dataSizeCol; j++)
+        {
+            jstring TempString = curEnv->NewStringUTF( data[i][j] );
+
+            if (TempString == NULL)
+            {
+                throw GiwsException::JniBadAllocException(curEnv);
+            }
+
+            curEnv->SetObjectArrayElement( dataLocal, j, TempString);
+
+            // avoid keeping reference on too many strings
+            curEnv->DeleteLocalRef(TempString);
+        }
+        curEnv->SetObjectArrayElement(data_, i, dataLocal);
+        curEnv->DeleteLocalRef(dataLocal);
+
+    }
+    jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
+
+    curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__java_lang_Stringjava_lang_StringjbooleanbooleanjintintID , varName_, indexes_, data_, swaped_, handlerId);
+    curEnv->DeleteLocalRef(stringArrayClass);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int nbItems, int const* indexes, int indexesSize, unsigned short type, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDatajstringjava_lang_StringjintintjintArray_intintjcharcharjintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;I[ICI)V" ) ;
+    if (voidsendDatajstringjava_lang_StringjintintjintArray_intintjcharcharjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+    curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintintjintArray_intintjcharcharjintintID , varName_, nbItems, indexes_, type, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::closeList (JavaVM * jvm_, int const* indexes, int indexesSize, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidcloseListjintArray_intintjintintID = curEnv->GetStaticMethodID(cls, "closeList", "([II)V" ) ;
+    if (voidcloseListjintArray_intintjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "closeList");
+    }
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+    curEnv->CallStaticVoidMethod(cls, voidcloseListjintArray_intintjintintID , indexes_, handlerId);
+    curEnv->DeleteLocalRef(indexes_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, double const* data, int dataSize, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[IIII[I[I[DI)V" ) ;
+    if (voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+    jintArray nbItemRow_ = curEnv->NewIntArray( nbItemRowSize ) ;
+
+    if (nbItemRow_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( nbItemRow_, 0, nbItemRowSize, (jint*)(nbItemRow) ) ;
+
+
+    jintArray colPos_ = curEnv->NewIntArray( colPosSize ) ;
+
+    if (colPos_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( colPos_, 0, colPosSize, (jint*)(colPos) ) ;
+
+
+    jdoubleArray data_ = curEnv->NewDoubleArray( dataSize ) ;
+
+    if (data_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetDoubleArrayRegion( data_, 0, dataSize, (jdouble*)(data) ) ;
+
+
+    curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejintintID , varName_, indexes_, row, col, nbItem, nbItemRow_, colPos_, data_, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(nbItemRow_);
+    curEnv->DeleteLocalRef(colPos_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, double const* data, int dataSize, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID = curEnv->GetStaticMethodID(cls, "sendDataAsBuffer", "(Ljava/lang/String;[IIIILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/DoubleBuffer;I)V" ) ;
+    if (voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendDataAsBuffer");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+
+    jobject buffernbItemRow = curEnv->NewDirectByteBuffer((void*)nbItemRow, (jlong)nbItemRowSize * sizeof(int));
+    if (!buffernbItemRow)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, buffernbItemRow);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    buffernbItemRow = curEnv->CallObjectMethod(buffernbItemRow, orderID, nativeOrder);
+
+
+    if (asdbIDIntBuffer == NULL)
+    {
+        asdbIDIntBuffer = curEnv->GetMethodID(bbCls, "asIntBuffer", "()Ljava/nio/IntBuffer;");
+        if (asdbIDIntBuffer == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    jobject nbItemRow_ = curEnv->CallObjectMethod(buffernbItemRow, asdbIDIntBuffer);
+
+    if (nbItemRow_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jobject buffercolPos = curEnv->NewDirectByteBuffer((void*)colPos, (jlong)colPosSize * sizeof(int));
+    if (!buffercolPos)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, buffercolPos);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    buffercolPos = curEnv->CallObjectMethod(buffercolPos, orderID, nativeOrder);
+
+
+    if (asdbIDIntBuffer == NULL)
+    {
+        asdbIDIntBuffer = curEnv->GetMethodID(bbCls, "asIntBuffer", "()Ljava/nio/IntBuffer;");
+        if (asdbIDIntBuffer == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    jobject colPos_ = curEnv->CallObjectMethod(buffercolPos, asdbIDIntBuffer);
+
+    if (colPos_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jobject bufferdata = curEnv->NewDirectByteBuffer((void*)data, (jlong)dataSize * sizeof(double));
+    if (!bufferdata)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferdata);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
+
+
+    if (asdbIDDoubleBuffer == NULL)
+    {
+        asdbIDDoubleBuffer = curEnv->GetMethodID(bbCls, "asDoubleBuffer", "()Ljava/nio/DoubleBuffer;");
+        if (asdbIDDoubleBuffer == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    jobject data_ = curEnv->CallObjectMethod(bufferdata, asdbIDDoubleBuffer);
+
+    if (data_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->CallStaticVoidMethod(cls, voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID , varName_, indexes_, row, col, nbItem, nbItemRow_, colPos_, data_, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(nbItemRow_);
+    curEnv->DeleteLocalRef(colPos_);
+    curEnv->DeleteLocalRef(data_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, double const* real, int realSize, double const* imag, int imagSize, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejdoubleArray_doubledoublejintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[IIII[I[I[D[DI)V" ) ;
+    if (voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejdoubleArray_doubledoublejintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+    jintArray nbItemRow_ = curEnv->NewIntArray( nbItemRowSize ) ;
+
+    if (nbItemRow_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( nbItemRow_, 0, nbItemRowSize, (jint*)(nbItemRow) ) ;
+
+
+    jintArray colPos_ = curEnv->NewIntArray( colPosSize ) ;
+
+    if (colPos_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( colPos_, 0, colPosSize, (jint*)(colPos) ) ;
+
+
+    jdoubleArray real_ = curEnv->NewDoubleArray( realSize ) ;
+
+    if (real_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetDoubleArrayRegion( real_, 0, realSize, (jdouble*)(real) ) ;
+
+
+    jdoubleArray imag_ = curEnv->NewDoubleArray( imagSize ) ;
+
+    if (imag_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetDoubleArrayRegion( imag_, 0, imagSize, (jdouble*)(imag) ) ;
+
+
+    curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjdoubleArray_doubledoublejdoubleArray_doubledoublejintintID , varName_, indexes_, row, col, nbItem, nbItemRow_, colPos_, real_, imag_, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(nbItemRow_);
+    curEnv->DeleteLocalRef(colPos_);
+    curEnv->DeleteLocalRef(real_);
+    curEnv->DeleteLocalRef(imag_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, double const* real, int realSize, double const* imag, int imagSize, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID = curEnv->GetStaticMethodID(cls, "sendDataAsBuffer", "(Ljava/lang/String;[IIIILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/DoubleBuffer;I)V" ) ;
+    if (voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendDataAsBuffer");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+
+    jobject buffernbItemRow = curEnv->NewDirectByteBuffer((void*)nbItemRow, (jlong)nbItemRowSize * sizeof(int));
+    if (!buffernbItemRow)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, buffernbItemRow);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    buffernbItemRow = curEnv->CallObjectMethod(buffernbItemRow, orderID, nativeOrder);
+
+
+    if (asdbIDIntBuffer == NULL)
+    {
+        asdbIDIntBuffer = curEnv->GetMethodID(bbCls, "asIntBuffer", "()Ljava/nio/IntBuffer;");
+        if (asdbIDIntBuffer == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    jobject nbItemRow_ = curEnv->CallObjectMethod(buffernbItemRow, asdbIDIntBuffer);
+
+    if (nbItemRow_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jobject buffercolPos = curEnv->NewDirectByteBuffer((void*)colPos, (jlong)colPosSize * sizeof(int));
+    if (!buffercolPos)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, buffercolPos);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    buffercolPos = curEnv->CallObjectMethod(buffercolPos, orderID, nativeOrder);
+
+
+    if (asdbIDIntBuffer == NULL)
+    {
+        asdbIDIntBuffer = curEnv->GetMethodID(bbCls, "asIntBuffer", "()Ljava/nio/IntBuffer;");
+        if (asdbIDIntBuffer == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    jobject colPos_ = curEnv->CallObjectMethod(buffercolPos, asdbIDIntBuffer);
+
+    if (colPos_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jobject bufferreal = curEnv->NewDirectByteBuffer((void*)real, (jlong)realSize * sizeof(double));
+    if (!bufferreal)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferreal);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    bufferreal = curEnv->CallObjectMethod(bufferreal, orderID, nativeOrder);
+
+
+    if (asdbIDDoubleBuffer == NULL)
+    {
+        asdbIDDoubleBuffer = curEnv->GetMethodID(bbCls, "asDoubleBuffer", "()Ljava/nio/DoubleBuffer;");
+        if (asdbIDDoubleBuffer == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    jobject real_ = curEnv->CallObjectMethod(bufferreal, asdbIDDoubleBuffer);
+
+    if (real_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jobject bufferimag = curEnv->NewDirectByteBuffer((void*)imag, (jlong)imagSize * sizeof(double));
+    if (!bufferimag)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, bufferimag);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    bufferimag = curEnv->CallObjectMethod(bufferimag, orderID, nativeOrder);
+
+
+    if (asdbIDDoubleBuffer == NULL)
+    {
+        asdbIDDoubleBuffer = curEnv->GetMethodID(bbCls, "asDoubleBuffer", "()Ljava/nio/DoubleBuffer;");
+        if (asdbIDDoubleBuffer == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    jobject imag_ = curEnv->CallObjectMethod(bufferimag, asdbIDDoubleBuffer);
+
+    if (imag_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->CallStaticVoidMethod(cls, voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjobject_java_lang_DoubleBufferjava_lang_DoubleBufferjintintID , varName_, indexes_, row, col, nbItem, nbItemRow_, colPos_, real_, imag_, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(nbItemRow_);
+    curEnv->DeleteLocalRef(colPos_);
+    curEnv->DeleteLocalRef(real_);
+    curEnv->DeleteLocalRef(imag_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjintintID = curEnv->GetStaticMethodID(cls, "sendData", "(Ljava/lang/String;[IIII[I[II)V" ) ;
+    if (voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendData");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+    jintArray nbItemRow_ = curEnv->NewIntArray( nbItemRowSize ) ;
+
+    if (nbItemRow_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( nbItemRow_, 0, nbItemRowSize, (jint*)(nbItemRow) ) ;
+
+
+    jintArray colPos_ = curEnv->NewIntArray( colPosSize ) ;
+
+    if (colPos_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( colPos_, 0, colPosSize, (jint*)(colPos) ) ;
+
+
+    curEnv->CallStaticVoidMethod(cls, voidsendDatajstringjava_lang_StringjintArray_intintjintintjintintjintintjintArray_intintjintArray_intintjintintID , varName_, indexes_, row, col, nbItem, nbItemRow_, colPos_, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(nbItemRow_);
+    curEnv->DeleteLocalRef(colPos_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabVariables::sendDataAsBuffer (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, int row, int col, int nbItem, int const* nbItemRow, int nbItemRowSize, int const* colPos, int colPosSize, int handlerId)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = initClass(curEnv);
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    static jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjintintID = curEnv->GetStaticMethodID(cls, "sendDataAsBuffer", "(Ljava/lang/String;[IIIILjava/nio/IntBuffer;Ljava/nio/IntBuffer;I)V" ) ;
+    if (voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "sendDataAsBuffer");
+    }
+
+    jstring varName_ = curEnv->NewStringUTF( varName );
+    if (varName != NULL && varName_ == NULL)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+    if (indexes_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+
+    jobject buffernbItemRow = curEnv->NewDirectByteBuffer((void*)nbItemRow, (jlong)nbItemRowSize * sizeof(int));
+    if (!buffernbItemRow)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, buffernbItemRow);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    buffernbItemRow = curEnv->CallObjectMethod(buffernbItemRow, orderID, nativeOrder);
+
+
+    if (asdbIDIntBuffer == NULL)
+    {
+        asdbIDIntBuffer = curEnv->GetMethodID(bbCls, "asIntBuffer", "()Ljava/nio/IntBuffer;");
+        if (asdbIDIntBuffer == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    jobject nbItemRow_ = curEnv->CallObjectMethod(buffernbItemRow, asdbIDIntBuffer);
+
+    if (nbItemRow_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+
+    jobject buffercolPos = curEnv->NewDirectByteBuffer((void*)colPos, (jlong)colPosSize * sizeof(int));
+    if (!buffercolPos)
+    {
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    if (ByteOrderClass == NULL)
+    {
+        ByteOrderClass = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteOrder")));
+        if (ByteOrderClass == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (nativeOrderID == NULL)
+    {
+        // public static ByteOrder nativeOrder()
+        nativeOrderID = curEnv->GetStaticMethodID(ByteOrderClass, "nativeOrder", "()Ljava/nio/ByteOrder;");
+        if (nativeOrderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    nativeOrder = curEnv->CallStaticObjectMethod(ByteOrderClass, nativeOrderID, buffercolPos);
+    //                        curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+
+    if (bbCls == NULL)
+    {
+        bbCls = static_cast<jclass>(curEnv->NewGlobalRef(curEnv->FindClass("java/nio/ByteBuffer")));
+        if (bbCls == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    if (orderID == NULL)
+    {
+        orderID = curEnv->GetMethodID(bbCls, "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;");
+        if (orderID == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+    buffercolPos = curEnv->CallObjectMethod(buffercolPos, orderID, nativeOrder);
+
+
+    if (asdbIDIntBuffer == NULL)
+    {
+        asdbIDIntBuffer = curEnv->GetMethodID(bbCls, "asIntBuffer", "()Ljava/nio/IntBuffer;");
+        if (asdbIDIntBuffer == NULL)
+        {
+            curEnv->ExceptionDescribe();
+        }
+    }
+
+    jobject colPos_ = curEnv->CallObjectMethod(buffercolPos, asdbIDIntBuffer);
+
+    if (colPos_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->CallStaticVoidMethod(cls, voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjintintjintintjobject_java_lang_IntBufferjava_lang_IntBufferjobject_java_lang_IntBufferjava_lang_IntBufferjintintID , varName_, indexes_, row, col, nbItem, nbItemRow_, colPos_, handlerId);
+    curEnv->DeleteLocalRef(varName_);
+    curEnv->DeleteLocalRef(indexes_);
+    curEnv->DeleteLocalRef(nbItemRow_);
+    curEnv->DeleteLocalRef(colPos_);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
 }
 
 }

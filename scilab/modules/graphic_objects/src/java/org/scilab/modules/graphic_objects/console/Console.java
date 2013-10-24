@@ -89,7 +89,7 @@ public final class Console extends GraphicObject {
      * Set the showHiddenHandles proeprty
      * @param showHiddenHandles the new value to set
      */
-    public UpdateStatus setShowHiddenHandles(boolean showHiddenHandles) {
+    public UpdateStatus setShowhiddenhandles(boolean showHiddenHandles) {
         this.showHiddenHandles = showHiddenHandles;
         return UpdateStatus.Success;
     }
@@ -98,7 +98,7 @@ public final class Console extends GraphicObject {
      * Get the showHiddenHandles proeprty
      * @return showHiddenHandles
      */
-    public boolean getShowHiddenHandles() {
+    public boolean getShowhiddenhandles() {
         return this.showHiddenHandles;
     }
 
@@ -130,7 +130,7 @@ public final class Console extends GraphicObject {
      */
     public Object getProperty(Object property) {
         if (property == ConsoleProperty.SHOWHIDDENHANDLES) {
-            return getShowHiddenHandles();
+            return getShowhiddenhandles();
         } else {
             return super.getProperty(property);
         }
@@ -144,7 +144,7 @@ public final class Console extends GraphicObject {
      */
     public UpdateStatus setProperty(Object property, Object value) {
         if (property == ConsoleProperty.SHOWHIDDENHANDLES) {
-            setShowHiddenHandles((Boolean) value);
+            setShowhiddenhandles((Boolean) value);
         } else {
             return super.setProperty(property, value);
         }

@@ -230,7 +230,7 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
      * Set the Relief of the Menu
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setRelief(String reliefType) {
+    public void setWidgetRelief(String reliefType) {
         setBorder(ScilabRelief.getBorderFromRelief(reliefType));
     }
 

@@ -12,7 +12,6 @@
 
 package org.scilab.modules.graphic_objects.lighting;
 
-import org.scilab.modules.graphic_objects.lighting.ColorTriplet;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 /**

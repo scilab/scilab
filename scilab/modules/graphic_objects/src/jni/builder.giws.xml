@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<package name="org.scilab.modules.graphic_objects.builder">
+    <object name="Builder">
+        <method name="buildRect" returnType="int" modifier="static">
+            <parameter name="pparentsubwinUID" type="int"/>
+            <parameter name="x" type="double"/>
+            <parameter name="y" type="double"/>
+            <parameter name="height" type="double"/>
+            <parameter name="width" type="double"/>
+            <parameter name="foreground" type="int"/>
+            <parameter name="background" type="int"/>
+            <parameter name="isfilled" type="int"/>
+            <parameter name="isline" type="int"/>
+        </method>
+        <method name="cloneGraphicContext" returnType="int" modifier="static">
+            <parameter name="sourceIdentifier" type="int"/>
+            <parameter name="destIdentifier" type="int"/>
+        </method>
+        <method name="cloneFontContext" returnType="int" modifier="static">
+            <parameter name="sourceIdentifier" type="int"/>
+            <parameter name="destIdentifier" type="int"/>
+        </method>
+        <method name="createHiddenLabel" returnType="int" modifier="static">
+            <parameter name="parent" type="int"/>
+        </method>
+        <method name="isAxesRedrawing" returnType="boolean" modifier="static">
+            <parameter name="subWin" type="int"/>
+        </method>
+        <method name="createLabel" returnType="int" modifier="static">
+            <parameter name="parent" type="int"/>
+            <parameter name="type" type="int"/>
+        </method>
+        <method name="createNewFigureWithAxes" returnType="int" modifier="static" />
+        <method name="cloneMenus" returnType="void" modifier="static">
+            <parameter name="model" type="int"/>
+            <parameter name="newParent" type="int"/>
+        </method>
+        <method name="cloneAxesModel" returnType="int" modifier="static">
+            <parameter name="parent" type="int"/>
+        </method>
+        <method name="createSubWin" returnType="int" modifier="static">
+            <parameter name="parent" type="int"/>
+        </method>
+        <method name="allocateText" returnType="int" modifier="static">
+            <parameter name="parent" type="int"/>
+            <parameter name="text" type="String[]"/>
+            <parameter name="rows" type="int"/>
+            <parameter name="cols" type="int"/>
+            <parameter name="x" type="double"/>
+            <parameter name="y" type="double"/>
+            <parameter name="autoSize" type="boolean"/>
+            <parameter name="userSize" type="double[]"/>
+            <parameter name="centerPos" type="int"/>
+            <parameter name="foreground" type="int"/>
+            <parameter name="isForeground" type="boolean"/>
+            <parameter name="background" type="int"/>
+            <parameter name="isBackground" type="boolean"/>
+            <parameter name="boxed" type="boolean"/>
+            <parameter name="line" type="boolean"/>
+            <parameter name="filled" type="boolean"/>
+            <parameter name="align" type="int"/>
+        </method>
+        <method name="createArc" returnType="int" modifier="static">
+            <parameter name="parent" type="int"/>
+            <parameter name="x" type="double"/>
+            <parameter name="y" type="double"/>
+            <parameter name="h" type="double"/>
+            <parameter name="w" type="double"/>
+            <parameter name="start" type="double"/>
+            <parameter name="end" type="double"/>
+            <parameter name="foreground" type="int"/>
+            <parameter name="isForeground" type="boolean"/>
+            <parameter name="background" type="int"/>
+            <parameter name="isBackground" type="boolean"/>
+            <parameter name="filled" type="boolean"/>
+            <parameter name="line" type="boolean"/>
+        </method>
+        <method name="createAxis" returnType="int" modifier="static">
+            <parameter name="parent" type="int"/>
+            <parameter name="dir" type="int"/>
+            <parameter name="tics" type="int"/>
+            <parameter name="vx" type="double[]"/>
+            <parameter name="vy" type="double[]"/>
+            <parameter name="subint" type="int"/>
+            <parameter name="format" type="String"/>
+            <parameter name="fontSize" type="int"/>
+            <parameter name="textColor" type="int"/>
+            <parameter name="ticsColor" type="int"/>
+            <parameter name="seg" type="boolean"/>
+        </method>
+        <method name="createCompound" returnType="int" modifier="static">
+            <parameter name="parent" type="int"/>
+            <parameter name="children" type="int[]"/>
+        </method>
+        <method name="createCompoundSeq" returnType="int" modifier="static">
+            <parameter name="parent" type="int"/>
+            <parameter name="childrenCount" type="int"/>
+        </method>
+        <method name="createFec" returnType="int" modifier="static">
+            <parameter name="parent" type="int"/>
+            <parameter name="zminmax" type="double[]"/>
+            <parameter name="colminmax" type="int[]"/>
+            <parameter name="colout" type="int[]"/>
+            <parameter name="with_mesh" type="boolean"/>
+        </method>
+        <method name="createGrayplot" returnType="int" modifier="static">
+            <parameter name="parent" type="int"/>
+            <parameter name="type" type="int"/>
+            <parameter name="pvecx" type="double[]"/>
+            <parameter name="n1" type="int"/>
+            <parameter name="n2" type="int"/>
+        </method>
+    </object>
+</package>

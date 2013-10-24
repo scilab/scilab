@@ -34,6 +34,7 @@
 #include "BuildObjects.h"
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
+#include "createGraphicObject.h"
 #include "FigureList.h"
 #include "CurrentFigure.h"
 #include "CurrentSubwin.h"

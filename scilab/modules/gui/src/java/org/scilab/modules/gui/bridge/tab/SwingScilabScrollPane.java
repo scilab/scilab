@@ -32,6 +32,7 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
+import org.scilab.modules.types.ScilabType;
 
 /**
  * Scroll pane based on Swing technology
@@ -161,4 +162,9 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
         }
     }
 
+    @Override
+    public void updateObject(Integer id, String propName) {
+        // TODO Auto-generated method stub
+
+    }
 }

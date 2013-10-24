@@ -220,7 +220,7 @@ public class ScilabUiDisplayTree extends ScilabWidget implements UiDisplayTree {
      * Set the Relief of the UiDisplayTree
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setRelief(String reliefType) {
+    public void setWidgetRelief(String reliefType) {
         ScilabBridge.setRelief(this, reliefType);
     }
 

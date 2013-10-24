@@ -33,6 +33,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.legend.Legend;
 import org.scilab.modules.graphic_objects.legend.Legend.LegendLocation;
 import org.scilab.modules.graphic_objects.polyline.Polyline;
+import org.scilab.modules.graphic_objects.utils.AxisLocation;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.mark.MarkSpriteManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
@@ -196,8 +197,8 @@ public class LegendDrawer {
         Double [] axesBounds = parentAxes.getAxesBounds();
         Double [] margins = parentAxes.getMargins();
 
-        int xAxisLocation = parentAxes.getXAxisLocation();
-        int yAxisLocation = parentAxes.getYAxisLocation();
+        int xAxisLocation = AxisLocation.enumToInt(parentAxes.getXLocation());
+        int yAxisLocation = AxisLocation.enumToInt(parentAxes.getYLocation());
 
 
         int canvasWidth = canvas.getWidth();
@@ -363,8 +364,8 @@ public class LegendDrawer {
             legendRectangle.setWireIndices(rectangleOutlineIndices);
 
             appearance.setLineColor(ColorFactory.createColor(colorMap, legend.getLineColor()));
-            appearance.setLineWidth(legend.getLineThickness().floatValue());
-            appearance.setLinePattern(legend.getLineStyleAsEnum().asPattern());
+            appearance.setLineWidth(legend.getThickness().floatValue());
+            appearance.setLinePattern(legend.getLineStyle().asPattern());
         } else {
             legendRectangle.setLineDrawingMode(Geometry.LineDrawingMode.NONE);
         }
@@ -484,8 +485,8 @@ public class LegendDrawer {
         int polylineStyle = polyline.getPolylineStyle();
 
         int lineColor = polyline.getLineColor();
-        double lineThickness = polyline.getLineThickness();
-        short linePattern = polyline.getLineStyleAsEnum().asPattern();
+        double lineThickness = polyline.getThickness();
+        short linePattern = polyline.getLineStyle().asPattern();
 
         boolean isBar = (polylineStyle == 6) || (polylineStyle == 7);
         boolean barDrawn = isBar || polyline.getFillMode();

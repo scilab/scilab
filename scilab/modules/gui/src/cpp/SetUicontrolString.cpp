@@ -60,7 +60,7 @@ int SetUicontrolString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, 
         }
     }
 
-    status = setGraphicObjectProperty(iObjUID, __GO_UI_STRING_COLNB__, &nbCol, jni_int, 1);
+    //status = setGraphicObjectProperty(iObjUID, __GO_UI_STRING_COLNB__, &nbCol, jni_int, 1);
     if (status == FALSE)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "String");

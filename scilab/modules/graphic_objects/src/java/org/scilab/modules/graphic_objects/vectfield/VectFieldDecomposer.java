@@ -12,12 +12,19 @@
 
 package org.scilab.modules.graphic_objects.vectfield;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BASE_X__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BASE_Y__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BASE_Z__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DIRECTION_X__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DIRECTION_Y__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DIRECTION_Z__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_NUMBER_ARROWS__;
+
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
+
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.utils.Utils;
-
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * Class VectFieldDecomposer

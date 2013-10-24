@@ -7,20 +7,15 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function hdl=%h_set(varargin)
-    if (lstsize(varargin) == 3)
-        hdl = varargin(1)
-        str = varargin(2)
-        val = varargin(3)
-        for i=1:size(hdl,"*")
-            set(hdl(i),str,val)
-        end,
-
-    elseif (lstsize(varargin) == 2)
-        str = varargin(1)
-        val = varargin(2)
+    if (lstsize(varargin) == 2)
         hdl=[]
-        set(str,val)
-    end,
+        set(varargin(:))
+    else
+        hdl = varargin(1)
+        for i=1:size(hdl,"*")
+            set(hdl(i),varargin(2:$))
+        end
+    end
 endfunction
 
 

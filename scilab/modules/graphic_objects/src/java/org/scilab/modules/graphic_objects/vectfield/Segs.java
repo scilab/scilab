@@ -24,7 +24,7 @@ import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.contouredObject.Mark;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
+import org.scilab.modules.graphic_objects.utils.MarkSizeUnitType;
 
 /**
  * Segs class
@@ -228,7 +228,7 @@ public class Segs extends VectField {
      * @return the mark size unit
      */
     public Integer getMarkSizeUnit() {
-        return arrows.get(0).getMarkSizeUnit();
+        return MarkSizeUnitType.enumToInt(arrows.get(0).getMarkSizeUnit());
     }
 
     /**
@@ -238,7 +238,7 @@ public class Segs extends VectField {
      */
     public UpdateStatus setMarkSizeUnit(Integer sizeUnit) {
         for (int i = 0; i < arrows.size(); i++) {
-            arrows.get(i).setMarkSizeUnit(sizeUnit);
+            arrows.get(i).setMarkSizeUnit(MarkSizeUnitType.intToEnum(sizeUnit));
         }
         return UpdateStatus.Success;
     }

@@ -88,8 +88,8 @@ public class ContouredObjectDrawer {
         if (contouredObject.getLineMode()) {
             geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
             appearance.setLineColor(ColorFactory.createColor(colorMap, contouredObject.getLineColor()));
-            appearance.setLinePattern(contouredObject.getLineStyleAsEnum().asPattern());
-            appearance.setLineWidth(contouredObject.getLineThickness().floatValue());
+            appearance.setLinePattern(contouredObject.getLineStyle().asPattern());
+            appearance.setLineWidth(contouredObject.getThickness().floatValue());
         } else {
             geometry.setLineDrawingMode(Geometry.LineDrawingMode.NONE);
         }

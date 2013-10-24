@@ -14,25 +14,19 @@
 package org.scilab.modules.gui.editor;
 
 
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.CallGraphicController;
-import org.scilab.modules.renderer.CallRenderer;
+import java.util.LinkedList;
+import java.util.List;
 
-import org.scilab.modules.graphic_objects.axes.Axes;
-import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
-import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
-
+import org.scilab.modules.graphic_objects.ObjectData;
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.graphic_objects.SurfaceData;
-import org.scilab.modules.graphic_objects.ObjectData;
-import org.scilab.modules.gui.editor.CommonHandler;
-import org.scilab.modules.gui.editor.AxesHandler;
-
-import java.lang.Math;
-import java.util.List;
-import java.util.LinkedList;
+import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.renderer.CallRenderer;
+import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
+import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 /**
  *
  * GED Object picker for all Graphics Objects
@@ -278,7 +272,6 @@ public class GEDPicker {
     boolean getLegend(Integer obj, Integer[] position) {
 
         Integer[] axesSize = {0, 0};
-        Double delta;
         Double[] axesBounds = { 0., 0. }, dPosition = { 0., 0. }, legendPos = { 0., 0. }, legendBounds = { 0., 0., 0., 0. }, dimension = { 0., 0. };
 
         Integer figure = (Integer)GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_PARENT_FIGURE__);
@@ -681,8 +674,8 @@ public class GEDPicker {
     }
 
     boolean isInsideAxes(Integer figureUID, Integer[] position) {
-        Double[] rotAngles = (Double[])GraphicController.getController().getProperty(axesUID, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
-        boolean default2dView = (rotAngles[0] == 0.0 && rotAngles[1] == 270.0);
+        //Double[] rotAngles = (Double[])GraphicController.getController().getProperty(axesUID, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
+        //boolean default2dView = (rotAngles[0] == 0.0 && rotAngles[1] == 270.0);
         //        if (default2dView) {
         Double[] dataBounds = (Double[])GraphicController.getController().getProperty(axesUID, GraphicObjectProperties.__GO_DATA_BOUNDS__);
         double[] c2d = AxesDrawer.compute2dViewFromPixelCoordinates(axes, new double[] { 1.0 * position[0], 1.0 * position[1], 0.0 });

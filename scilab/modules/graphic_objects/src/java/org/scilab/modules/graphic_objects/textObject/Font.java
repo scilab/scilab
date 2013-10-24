@@ -126,7 +126,7 @@ public class Font {
     /**
      * @param color the color to set
      */
-    public UpdateStatus setColor(Integer color) {
+    public UpdateStatus setColor(int color) {
         this.color = color;
         return UpdateStatus.Success;
     }
@@ -141,7 +141,7 @@ public class Font {
     /**
      * @param fractional the fractional to set
      */
-    public UpdateStatus setFractional(Boolean fractional) {
+    public UpdateStatus setFractional(boolean fractional) {
         this.fractional = fractional;
         return UpdateStatus.Success;
     }
@@ -156,7 +156,7 @@ public class Font {
     /**
      * @param size the size to set
      */
-    public UpdateStatus setSize(Double size) {
+    public UpdateStatus setSize(double size) {
         this.size = size;
         return UpdateStatus.Success;
     }
@@ -171,7 +171,7 @@ public class Font {
     /**
      * @param style the style to set
      */
-    public UpdateStatus setStyle(Integer style) {
+    public UpdateStatus setStyle(int style) {
         this.style = style;
         return UpdateStatus.Success;
     }

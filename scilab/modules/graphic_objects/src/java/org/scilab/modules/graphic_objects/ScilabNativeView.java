@@ -37,4 +37,8 @@ public class ScilabNativeView {
         return ScilabNativeViewJNI.ScilabNativeView__getValidDefaultFigureId();
     }
 
+    public static int ScilabNativeView__getObjectFromHandle(long handle) {
+        return ScilabNativeViewJNI.ScilabNativeView__getObjectFromHandle(handle);
+    }
+
 }

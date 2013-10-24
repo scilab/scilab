@@ -214,6 +214,7 @@ void ChoixFormatE1(char *fmt, double *xx, int nx)
         c = 'e';
         strcpy(fmt, "%.*e");
     }
+
     FormatPrec1(fmt, &des, xx, nx);
     sprintf(fmt, "%%.%d%c", des, c);
 }

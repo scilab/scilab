@@ -264,7 +264,7 @@ public class ScilabMenu extends ScilabWidget implements Menu {
      * Set the Relief of the Menu
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setRelief(String reliefType) {
+    public void setWidgetRelief(String reliefType) {
         ScilabBridge.setRelief(this, reliefType);
     }
 

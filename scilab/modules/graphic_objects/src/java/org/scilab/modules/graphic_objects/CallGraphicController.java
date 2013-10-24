@@ -12,9 +12,15 @@
 
 package org.scilab.modules.graphic_objects;
 
+import java.lang.reflect.Method;
+
 import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.graphic_objects.converters.ObjectToScilabConverters;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectAccessTools;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectException;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectMethodFinder;
 import org.scilab.modules.graphic_objects.graphicView.ScilabView;
 import org.scilab.modules.graphic_objects.utils.MenuBarBuilder;
 
@@ -191,5 +197,48 @@ public final class CallGraphicController {
 
     public static void buildFigureMenuBar(int figureId) {
         MenuBarBuilder.buildFigureMenuBar(figureId);
+    }
+
+    public static int getPropertyHandler() {
+        return GraphicController.getPropertyHandler();
+    }
+
+    public static boolean runSetProperty(int id) {
+        return GraphicController.getController().runSetProperty(id);
+    }
+
+    public static void cleanSetProperty() {
+        GraphicController.getController().cleanSetProperty();
+    }
+
+    public static String[] getPropertyLastError() {
+        String[] errors = new String[2];
+        errors[0] = GraphicController.getLastProp();
+        errors[1] = GraphicController.getLastError();
+        return errors;
+    }
+
+    public static int getProperty(int id, String propName, int stackPos) {
+        try {
+            GraphicObject modelObj = GraphicController.getController().getObjectFromId(id);
+            if (modelObj == null) {
+                return 3;
+            }
+
+            Class <? extends GraphicObject > clazzModel = modelObj.getClass();
+            String methodNameModel = GraphicObjectAccessTools.getGetterName(propName);
+            Method methodModel = GraphicObjectMethodFinder.findGetter(methodNameModel, clazzModel);
+            if (methodModel == null) {
+                return 2;
+            }
+
+            Object value = GraphicObjectAccessTools.invokeGetter(methodModel, modelObj);
+            ObjectToScilabConverters.putOnScilabStack(value, stackPos);
+        } catch (GraphicObjectException e) {
+            e.printStackTrace();
+            return 1;
+        }
+
+        return 0;
     }
 }

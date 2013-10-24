@@ -32,7 +32,7 @@ public class RadioButton extends Uicontrol {
         // Default value is the min value (not checked)
         Double[] value = new Double[1];
         value[0] = getMin();
-        setUiValue(value);
+        setValue(value);
     }
 
 }

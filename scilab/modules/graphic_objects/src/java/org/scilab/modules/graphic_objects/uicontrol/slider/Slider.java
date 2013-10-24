@@ -32,7 +32,7 @@ public class Slider extends Uicontrol {
         // Default value is the min value
         Double[] value = new Double[1];
         value[0] = getMin();
-        setUiValue(value);
+        setValue(value);
     }
 
 }

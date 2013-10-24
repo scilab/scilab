@@ -42,6 +42,7 @@ class GetScilabVariableJNI {
         }
     }
 
+    public final static native int putVarOnStack(int stackPos, Object var, int type, boolean swap);
     public final static native void getScilabVariable(String jarg1, int jarg2, int jarg3);
     public final static native void getScilabVariableAsReference(String jarg1, int jarg2);
 }

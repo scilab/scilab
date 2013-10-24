@@ -12,10 +12,17 @@
 
 package org.scilab.modules.graphic_objects.surface;
 
-import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AMBIENTCOLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COLOR_FLAG__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COLOR_MATERIAL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COLOR_MODE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DIFFUSECOLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_HIDDEN_COLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MATERIAL_SHININESS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SPECULARCOLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SURFACE_MODE__;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
 import org.scilab.modules.graphic_objects.lighting.ColorTriplet;
 import org.scilab.modules.graphic_objects.lighting.Material;
 

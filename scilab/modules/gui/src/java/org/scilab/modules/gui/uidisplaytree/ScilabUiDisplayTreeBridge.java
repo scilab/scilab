@@ -233,7 +233,7 @@ public class ScilabUiDisplayTreeBridge {
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public static void setRelief(UiDisplayTree uiTree, String reliefType) {
-        uiTree.getAsSimpleUiDisplayTree().setRelief(reliefType);
+        uiTree.getAsSimpleUiDisplayTree().setWidgetRelief(reliefType);
     }
 
     /**

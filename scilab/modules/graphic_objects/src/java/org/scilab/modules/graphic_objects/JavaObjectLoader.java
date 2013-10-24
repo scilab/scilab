@@ -15,11 +15,11 @@ package org.scilab.modules.graphic_objects;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
+import org.scilab.modules.graphic_objects.arc.ArcDecomposer;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.arc.ArcDecomposer;
-import org.scilab.modules.graphic_objects.vectfield.ChampDecomposer;
 import org.scilab.modules.graphic_objects.rectangle.RectangleDecomposer;
+import org.scilab.modules.graphic_objects.vectfield.ChampDecomposer;
 import org.scilab.modules.graphic_objects.vectfield.SegsDecomposer;
 
 /**

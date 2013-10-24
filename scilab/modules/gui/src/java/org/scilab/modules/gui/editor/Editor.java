@@ -14,36 +14,30 @@
 package org.scilab.modules.gui.editor;
 
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.KeyEvent;
 import java.awt.Component;
-import javax.swing.JOptionPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.gui.datatip.DatatipManager;
-import org.scilab.modules.gui.editor.ScilabClipboard;
-import org.scilab.modules.gui.editor.SystemClipboard;
-import org.scilab.modules.gui.editor.PolylineHandler;
-import org.scilab.modules.gui.editor.GEDPicker;
-import org.scilab.modules.gui.editor.LabelHandler;
-import org.scilab.modules.gui.editor.LegendHandler;
-import org.scilab.modules.gui.editor.action.EditorHistory;
 import org.scilab.modules.gui.editor.action.ActionDelete;
+import org.scilab.modules.gui.editor.action.ActionHide;
 import org.scilab.modules.gui.editor.action.ActionLegend;
 import org.scilab.modules.gui.editor.action.ActionMove;
 import org.scilab.modules.gui.editor.action.ActionPaste;
-import org.scilab.modules.gui.editor.action.ActionTextEdit;
 import org.scilab.modules.gui.editor.action.ActionPasteStyle;
-import org.scilab.modules.gui.editor.action.ActionHide;
+import org.scilab.modules.gui.editor.action.ActionTextEdit;
+import org.scilab.modules.gui.editor.action.EditorHistory;
 import org.scilab.modules.gui.ged.Inspector;
 import org.scilab.modules.gui.ged.StartGED;
-import org.scilab.modules.gui.ged.SwapObject;
 import org.scilab.modules.localization.Messages;
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 
 
 /**

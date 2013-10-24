@@ -11,6 +11,20 @@
 
 package org.scilab.modules.renderer.JoGLView;
 
+import java.awt.Component;
+import java.awt.Dimension;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.swing.SwingUtilities;
+
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.Drawer;
 import org.scilab.forge.scirenderer.DrawingTools;
@@ -19,20 +33,20 @@ import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
-import org.scilab.forge.scirenderer.texture.AnchorPosition;
 import org.scilab.forge.scirenderer.texture.AbstractTextureDataProvider;
+import org.scilab.forge.scirenderer.texture.AnchorPosition;
 import org.scilab.forge.scirenderer.texture.Texture;
-import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
 import org.scilab.forge.scirenderer.tranformations.TransformationStack;
+import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.forge.scirenderer.utils.shapes.geometry.CubeFactory;
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.arc.Arc;
 import org.scilab.modules.graphic_objects.axes.Axes;
-import org.scilab.modules.graphic_objects.axes.Camera.ViewType;
 import org.scilab.modules.graphic_objects.axis.Axis;
 import org.scilab.modules.graphic_objects.compound.Compound;
+import org.scilab.modules.graphic_objects.datatip.Datatip;
 import org.scilab.modules.graphic_objects.fec.Fec;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.figure.Figure;
@@ -50,13 +64,15 @@ import org.scilab.modules.graphic_objects.rectangle.Rectangle;
 import org.scilab.modules.graphic_objects.surface.Fac3d;
 import org.scilab.modules.graphic_objects.surface.Plot3d;
 import org.scilab.modules.graphic_objects.textObject.Text;
+import org.scilab.modules.graphic_objects.utils.Antialiasing;
+import org.scilab.modules.graphic_objects.utils.ViewType;
 import org.scilab.modules.graphic_objects.vectfield.Arrow;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
-import org.scilab.modules.graphic_objects.datatip.Datatip;
 import org.scilab.modules.renderer.JoGLView.arrowDrawing.ArrowDrawer;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.contouredObject.ContouredObjectDrawer;
+import org.scilab.modules.renderer.JoGLView.datatip.DatatipTextDrawer;
 import org.scilab.modules.renderer.JoGLView.interaction.InteractionManager;
 import org.scilab.modules.renderer.JoGLView.label.LabelManager;
 import org.scilab.modules.renderer.JoGLView.legend.LegendDrawer;
@@ -64,24 +80,9 @@ import org.scilab.modules.renderer.JoGLView.mark.MarkSpriteManager;
 import org.scilab.modules.renderer.JoGLView.postRendering.PostRendered;
 import org.scilab.modules.renderer.JoGLView.text.TextManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
+import org.scilab.modules.renderer.JoGLView.util.LightingUtils;
 import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
 import org.scilab.modules.renderer.utils.textRendering.FontManager;
-import org.scilab.modules.renderer.JoGLView.datatip.DatatipTextDrawer;
-import org.scilab.modules.renderer.JoGLView.util.LightingUtils;
-
-import java.awt.Component;
-import java.awt.Dimension;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.swing.SwingUtilities;
 
 /**
  * @author Pierre Lando
@@ -317,7 +318,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      * @return true if it is a 2D view
      */
     public boolean is2DView() {
-        return currentAxes.getViewAsEnum() == ViewType.VIEW_2D;
+        return currentAxes.getView() == ViewType.VIEW_2D;
     }
 
     @Override
@@ -339,7 +340,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (arc.isValid() && arc.getVisible()) {
             axesDrawer.enableClipping(currentAxes, arc.getClipProperty());
             try {
-                contouredObjectDrawer.draw(arc, currentAxes.getViewAsEnum() == ViewType.VIEW_2D);
+                contouredObjectDrawer.draw(arc, currentAxes.getView() == ViewType.VIEW_2D);
             } catch (OutOfMemoryException e) {
                 invalidate(arc, e);
             } catch (SciRendererException e) {
@@ -527,8 +528,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     }
 
                     appearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
-                    appearance.setLineWidth(polyline.getLineThickness().floatValue());
-                    appearance.setLinePattern(polyline.getLineStyleAsEnum().asPattern());
+                    appearance.setLineWidth(polyline.getThickness().floatValue());
+                    appearance.setLinePattern(polyline.getLineStyle().asPattern());
 
                     if (!polyline.getInterpColorMode() || style != 1) {
                         int fillColor;
@@ -550,7 +551,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                     if (style == 4) {
                         arrowDrawer.drawArrows(polyline.getParentAxes(), polyline.getIdentifier(), polyline.getArrowSizeFactor(),
-                                               polyline.getLineThickness(), false, false, polyline.getLineColor(), true);
+                                               polyline.getThickness(), false, false, polyline.getLineColor(), true);
                     }
 
                     if (polyline.getMarkMode()) {
@@ -638,12 +639,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         geometry.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
                     }
 
-                    if ((fac3d.getColorMode() >= 0) && (fac3d.getLineThickness() > 0.0)) {
+                    if ((fac3d.getColorMode() >= 0) && (fac3d.getThickness() > 0.0)) {
                         geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
                         geometry.setWireIndices(dataManager.getWireIndexBuffer(fac3d.getIdentifier()));
 
                         appearance.setLineColor(ColorFactory.createColor(colorMap, fac3d.getLineColor()));
-                        appearance.setLineWidth(fac3d.getLineThickness().floatValue());
+                        appearance.setLineWidth(fac3d.getThickness().floatValue());
                     }
 
                     drawingTools.draw(geometry, appearance);
@@ -652,9 +653,9 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                 if (fac3d.getMarkMode()) {
                     Appearance appearance = null;
-                    if (fac3d.getLineThickness() > 0.0) {
+                    if (fac3d.getThickness() > 0.0) {
                         appearance = new Appearance();
-                        appearance.setLineWidth(fac3d.getLineThickness().floatValue());
+                        appearance.setLineWidth(fac3d.getThickness().floatValue());
                     }
 
                     Texture texture = markManager.getMarkSprite(fac3d, colorMap, appearance);
@@ -719,13 +720,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         appearance.setFillColor(ColorFactory.createColor(colorMap, Math.abs(plot3d.getColorMode())));
                     }
 
-                    if ((plot3d.getColorMode() >= 0) && (plot3d.getLineThickness() > 0.0)) {
+                    if ((plot3d.getColorMode() >= 0) && (plot3d.getThickness() > 0.0)) {
                         geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
                         geometry.setWireIndices(dataManager.getWireIndexBuffer(plot3d.getIdentifier()));
 
-                        appearance.setLinePattern(plot3d.getLineStyleAsEnum().asPattern());
+                        appearance.setLinePattern(plot3d.getLineStyle().asPattern());
                         appearance.setLineColor(ColorFactory.createColor(colorMap, plot3d.getLineColor()));
-                        appearance.setLineWidth(plot3d.getLineThickness().floatValue());
+                        appearance.setLineWidth(plot3d.getThickness().floatValue());
                     }
                     drawingTools.draw(geometry, appearance);
                     LightingUtils.setLightingEnable(drawingTools.getLightManager(), false);
@@ -733,9 +734,9 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                 if (plot3d.getMarkMode()) {
                     Appearance appearance = null;
-                    if (plot3d.getLineThickness() > 0.0) {
+                    if (plot3d.getThickness() > 0.0) {
                         appearance = new Appearance();
-                        appearance.setLineWidth(plot3d.getLineThickness().floatValue());
+                        appearance.setLineWidth(plot3d.getThickness().floatValue());
                     }
 
                     Texture texture = markManager.getMarkSprite(plot3d, colorMap, appearance);
@@ -948,7 +949,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 }
 
                 if (GraphicObjectProperties.__GO_ANTIALIASING__ == property) {
-                    canvas.setAntiAliasingLevel(figure.getAntialiasing());
+                    canvas.setAntiAliasingLevel(Antialiasing.enumToInt(figure.getAntialiasing()));
                 }
 
                 if (isImmediateDrawing(id)) {
@@ -1211,5 +1212,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         public void update() {
             fireUpdate();
         }
+    }
+
+    @Override
+    public void updateObject(Integer id, String propName) {
+        // TODO Auto-generated method stub
+
     }
 }

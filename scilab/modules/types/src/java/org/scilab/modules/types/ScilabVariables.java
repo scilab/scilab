@@ -160,6 +160,29 @@ public final class ScilabVariables {
     }
 
     /**
+     * Send double matrix
+     *
+     * @param varName
+     *            the variable name
+     * @param indexes
+     *            an integer array with the indexes of the (sub)*-list which
+     *            will contain the data
+     * @param data
+     *            the data
+     * @param swaped
+     *            true if the matrix is stored row by row
+     * @param handlerId
+     *            the handler id
+     */
+    public static final void sendHandleData(String varName, int[] indexes, long[][] data, boolean swaped, int handlerId) {
+        if (indexes.length != 0) {
+            addElement(indexes, new ScilabHandle(null, data, swaped));
+        } else {
+            handlers.get(handlerId).handle(new ScilabHandle(varName, data, swaped));
+        }
+    }
+
+    /**
      * Send complex matrix as DoubleBuffer
      *
      * @param varName

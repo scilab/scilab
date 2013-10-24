@@ -164,6 +164,9 @@
     <ClCompile Include="..\cpp\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\jni\Builder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jni\CallGraphicController.hxx">
@@ -271,7 +274,7 @@
     <ClInclude Include="..\..\includes\Texture.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\DataLoader.hxx">
+    <ClInclude Include="..\jni\Builder.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

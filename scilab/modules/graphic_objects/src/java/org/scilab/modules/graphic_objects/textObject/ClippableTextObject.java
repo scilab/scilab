@@ -12,12 +12,14 @@
 
 package org.scilab.modules.graphic_objects.textObject;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CLIP_BOX_SET__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CLIP_BOX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CLIP_PROPERTY__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CLIP_STATE__;
+
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClippablePropertyType;
-import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClipStateType;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
-
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+import org.scilab.modules.graphic_objects.utils.ClipStateType;
 
 /**
  * ClippableTextObject
@@ -84,7 +86,7 @@ public abstract class ClippableTextObject extends TextObject {
         if (property == ClippableTextObjectProperty.CLIPPROPERTY) {
             setClipProperty((ClippableProperty) value);
         } else if (property == ClippablePropertyType.CLIPSTATE) {
-            setClipState((Integer) value);
+            setClipState((ClipStateType) value);
         } else if (property == ClippablePropertyType.CLIPBOX) {
             setClipBox((Double[]) value);
         } else if (property == ClippablePropertyType.CLIPBOXSET) {
@@ -128,28 +130,14 @@ public abstract class ClippableTextObject extends TextObject {
     /**
      * @return the clipState
      */
-    public Integer getClipState() {
-        return getClipStateAsEnum().ordinal();
-    }
-
-    /**
-     * @return the clipState
-     */
-    public ClipStateType getClipStateAsEnum() {
+    public ClipStateType getClipState() {
         return clipProperty.getClipState();
     }
 
     /**
      * @param clipState the clipState to set
      */
-    public UpdateStatus setClipState(Integer clipState) {
-        return setClipStateAsEnum(ClipStateType.intToEnum(clipState));
-    }
-
-    /**
-     * @param clipState the clipState to set
-     */
-    public UpdateStatus setClipStateAsEnum(ClipStateType clipState) {
+    public UpdateStatus setClipState(ClipStateType clipState) {
         return clipProperty.setClipState(clipState);
     }
 

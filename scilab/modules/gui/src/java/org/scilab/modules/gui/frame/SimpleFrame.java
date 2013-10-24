@@ -99,7 +99,7 @@ public interface SimpleFrame extends Container, Widget {
      * Set the Relief of the Frame
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    void setRelief(String reliefType);
+    void setWidgetRelief(String reliefType);
 
     /**
      * Delete the Frame

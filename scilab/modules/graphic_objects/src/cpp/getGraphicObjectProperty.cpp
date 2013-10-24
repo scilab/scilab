@@ -269,3 +269,8 @@ void releaseGraphicObjectProperty(int _iName, void * _pvData, enum _ReturnType_ 
 
 }
 
+int getProperty(int _iId, char* _pstPropName, int _iStackPos)
+{
+    return CallGraphicController::getProperty(getScilabJavaVM(), _iId, _pstPropName, _iStackPos);
+}
+

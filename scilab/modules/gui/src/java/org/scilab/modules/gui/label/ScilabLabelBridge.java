@@ -235,7 +235,7 @@ public class ScilabLabelBridge {
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public static void setRelief(Label label, String reliefType) {
-        label.getAsSimpleLabel().setRelief(reliefType);
+        label.getAsSimpleLabel().setWidgetRelief(reliefType);
     }
 
     /**

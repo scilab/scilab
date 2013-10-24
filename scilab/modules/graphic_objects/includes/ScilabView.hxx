@@ -27,6 +27,8 @@ extern "C"
     void ScilabNativeView__setCurrentSubWin(int id);
     void ScilabNativeView__setCurrentObject(int id);
     int ScilabNativeView__getValidDefaultFigureId();
+    int ScilabNativeView__getObjectFromHandle(long long handle);
+
 }
 
 class GRAPHIC_OBJECTS_IMPEXP ScilabView

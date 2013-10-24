@@ -235,7 +235,7 @@ public class ScilabPushButtonBridge {
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public static void setRelief(PushButton pushButton, String reliefType) {
-        pushButton.getAsSimplePushButton().setRelief(reliefType);
+        pushButton.getAsSimplePushButton().setWidgetRelief(reliefType);
     }
 
     /**
