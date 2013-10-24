@@ -71,6 +71,8 @@ Scilab Bug Fixes
 
 * Bug #13008 fixed - 'help $' now opens the 'Symbols' help page.
 
+* Bug #13012 fixed - Vectorial export of rotated strings was wrong.
+
 
 Xcos Bug Fixes
 ==============
