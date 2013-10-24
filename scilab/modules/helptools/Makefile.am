@@ -13,7 +13,7 @@ HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_helptools.c
 
-GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_buildDocv2.cpp
+GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp
 
 GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml \
 	src/jni/BuildDocObjectv2.giws.xml

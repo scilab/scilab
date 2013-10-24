@@ -244,8 +244,9 @@ public class Axis extends ClippableContouredObject {
     /**
      * @param font the font to set
      */
-    public void setFont(Font font) {
+    public UpdateStatus setFont(Font font) {
         this.font = font;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -258,8 +259,9 @@ public class Axis extends ClippableContouredObject {
     /**
      * @param style the font style to set
      */
-    public void setStyle(Integer style) {
+    public UpdateStatus setStyle(Integer style) {
         font.setStyle(style);
+        return UpdateStatus.Success;
     }
 
     /**
@@ -272,8 +274,9 @@ public class Axis extends ClippableContouredObject {
     /**
      * @param size the font size to set
      */
-    public void setSize(Double size) {
+    public UpdateStatus setSize(Double size) {
         font.setSize(size);
+        return UpdateStatus.Success;
     }
 
     /**
@@ -286,8 +289,9 @@ public class Axis extends ClippableContouredObject {
     /**
      * @param color the font color to set
      */
-    public void setColor(Integer color) {
+    public UpdateStatus setColor(Integer color) {
         font.setColor(color);
+        return UpdateStatus.Success;
     }
 
     /**
@@ -300,8 +304,9 @@ public class Axis extends ClippableContouredObject {
     /**
      * @param fractional the font fractional to set
      */
-    public void setFractional(Boolean fractional) {
+    public UpdateStatus setFractional(Boolean fractional) {
         font.setFractional(fractional);
+        return UpdateStatus.Success;
     }
 
     /**
@@ -314,8 +319,9 @@ public class Axis extends ClippableContouredObject {
     /**
      * @param formatn the formatn to set
      */
-    public void setFormatn(String formatn) {
+    public UpdateStatus setFormatn(String formatn) {
         this.formatn = formatn;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -328,8 +334,9 @@ public class Axis extends ClippableContouredObject {
     /**
      * @param ticksColor the ticksColor to set
      */
-    public void setTicksColor(Integer ticksColor) {
+    public UpdateStatus setTicksColor(Integer ticksColor) {
         this.ticksColor = ticksColor;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -349,15 +356,17 @@ public class Axis extends ClippableContouredObject {
     /**
      * @param ticksDirection the ticksDirection to set
      */
-    public void setTicksDirection(Integer ticksDirection) {
+    public UpdateStatus setTicksDirection(Integer ticksDirection) {
         setTicksDirectionAsEnum(TicksDirection.values()[ticksDirection]);
+        return UpdateStatus.Success;
     }
 
     /**
      * @param ticksDirection the ticksDirection to set
      */
-    public void setTicksDirectionAsEnum(TicksDirection ticksDirection) {
+    public UpdateStatus setTicksDirectionAsEnum(TicksDirection ticksDirection) {
         this.ticksDirection = ticksDirection;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -390,7 +399,7 @@ public class Axis extends ClippableContouredObject {
     /**
      * @param ticksLabels the ticksLabels to set
      */
-    public void setTicksLabels(String[] ticksLabels) {
+    public UpdateStatus setTicksLabels(String[] ticksLabels) {
         if (!this.ticksLabels.isEmpty()) {
             this.ticksLabels.clear();
         }
@@ -398,13 +407,13 @@ public class Axis extends ClippableContouredObject {
         for (int i = 0; i < ticksLabels.length; i++) {
             this.ticksLabels.add(new String(ticksLabels[i]));
         }
-
+        return UpdateStatus.Success;
     }
 
     /**
      * @param ticksLabels the ticksLabels to set
      */
-    public void setTicksLabelsAsArrayList(ArrayList<String> ticksLabels) {
+    public UpdateStatus setTicksLabelsAsArrayList(ArrayList<String> ticksLabels) {
         if (!this.ticksLabels.isEmpty()) {
             this.ticksLabels.clear();
         }
@@ -412,7 +421,7 @@ public class Axis extends ClippableContouredObject {
         for (int i = 0; i < ticksLabels.size(); i++) {
             this.ticksLabels.add(new String(ticksLabels.get(i)));
         }
-
+        return UpdateStatus.Success;
     }
 
     /**
@@ -425,8 +434,9 @@ public class Axis extends ClippableContouredObject {
     /**
      * @param ticksSegment the ticksSegment to set
      */
-    public void setTicksSegment(Boolean ticksSegment) {
+    public UpdateStatus setTicksSegment(Boolean ticksSegment) {
         this.ticksSegment = ticksSegment;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -439,8 +449,9 @@ public class Axis extends ClippableContouredObject {
     /**
      * @param ticksStyle the ticksStyle to set
      */
-    public void setTicksStyle(Integer ticksStyle) {
+    public UpdateStatus setTicksStyle(Integer ticksStyle) {
         this.ticksStyle = ticksStyle;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -453,8 +464,9 @@ public class Axis extends ClippableContouredObject {
     /**
      * @param subticks the subticks to set
      */
-    public void setSubticks(Integer subticks) {
+    public UpdateStatus setSubticks(Integer subticks) {
         this.subticks = subticks;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -490,7 +502,7 @@ public class Axis extends ClippableContouredObject {
      * TODO : we should use format_n to fill ticks label.
      * @param ticksCoords the xTicksCoords to set
      */
-    public void setXTicksCoords(Double[] ticksCoords) {
+    public UpdateStatus setXTicksCoords(Double[] ticksCoords) {
         if (ticksCoords.length != xTicksCoords.length) {
             xTicksCoords = new double[ticksCoords.length];
         }
@@ -498,6 +510,7 @@ public class Axis extends ClippableContouredObject {
         for (int i = 0; i < xTicksCoords.length; i++) {
             xTicksCoords[i] = ticksCoords[i];
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -519,7 +532,7 @@ public class Axis extends ClippableContouredObject {
      * TODO : we should use format_n to fill ticks label.
      * @param ticksCoords the yTicksCoords to set
      */
-    public void setYTicksCoords(Double[] ticksCoords) {
+    public UpdateStatus setYTicksCoords(Double[] ticksCoords) {
         if (ticksCoords.length != yTicksCoords.length) {
             yTicksCoords = new double[ticksCoords.length];
         }
@@ -527,6 +540,7 @@ public class Axis extends ClippableContouredObject {
         for (int i = 0; i < yTicksCoords.length; i++) {
             yTicksCoords[i] = ticksCoords[i];
         }
+        return UpdateStatus.Success;
     }
 
     /**

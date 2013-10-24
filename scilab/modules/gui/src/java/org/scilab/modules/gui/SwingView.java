@@ -626,12 +626,14 @@ public final class SwingView implements GraphicView {
     public void updateObject(final Integer id, final int property) {
         final TypedObject registeredObject = allObjects.get(id);
 
-        if (property == __GO_VALID__ && ((Boolean) GraphicController.getController().getProperty(id, __GO_VALID__))) {
-            if (registeredObject.getValue() instanceof SwingScilabTab){
+        if (registeredObject != null &&
+                property == __GO_VALID__ &&
+                ((Boolean) GraphicController.getController().getProperty(id, __GO_VALID__))) {
+            if (registeredObject.getValue() instanceof SwingScilabTab) {
                 ((SwingScilabTab) registeredObject.getValue()).getParentWindow().setVisible(true);
                 ((SwingScilabTab) registeredObject.getValue()).setVisible(true);
                 Integer[] figureSize = (Integer[]) GraphicController.getController().getProperty(id, __GO_SIZE__);
-                ((SwingScilabTab) registeredObject.getValue()).getParentWindow().setDims(new Size(figureSize[0], figureSize[1]));                
+                ((SwingScilabTab) registeredObject.getValue()).getParentWindow().setDims(new Size(figureSize[0], figureSize[1]));
             }
         }
 

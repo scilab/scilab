@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -37,20 +37,26 @@
         <title>Description</title>
         <para>
             This  function computes the  geometric mean of a vector or
-            matrix <literal> x</literal>.  For a  vector or matrix  <literal> x</literal>, 
+            matrix <literal> x</literal>.  For a  vector or matrix  <literal> x</literal>,
             <literal>gm=geomean(x) </literal>   returns  in  scalar  <literal>   gm</literal> the
             geometric mean of all the entries of <literal> x</literal>.
         </para>
         <para>
-            <literal> gm=geomean(x,'r')    </literal>   (or,   equivalently, 
+            <literal> gm=geomean(x,'r')    </literal>   (or,   equivalently,
             <literal>gm=gmean(x,1)  </literal>  )  returns in  each   entry of the row
             vector <literal> gm</literal> the geometric mean of each column of <literal> x</literal>.
         </para>
         <para>
-            <literal> gm=geomean(x,'c')    </literal>  (or,    equivalently,  
+            <literal> gm=geomean(x,'c')    </literal>  (or,    equivalently,
             <literal>gm=gmean(x,2) </literal>  ) returns in each  entry  of the column
             vector <literal> gm</literal> the geometric mean of  each row of <literal> x </literal>.
         </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+geomean(1:10) // Returns factorial(10)^(1/10) = 4.5287286881167648
+ ]]></programlisting>
     </refsection>
     <refsection>
         <title>Bibliography</title>

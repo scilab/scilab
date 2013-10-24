@@ -16,6 +16,7 @@ import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
@@ -121,9 +122,10 @@ public class Fec extends ClippableContouredObject {
     /**
      * @param colorRange the colorRange to set
      */
-    public void setColorRange(Integer[] colorRange) {
+    public UpdateStatus setColorRange(Integer[] colorRange) {
         this.colorRange[0] = colorRange[0];
         this.colorRange[1] = colorRange[1];
+        return UpdateStatus.Success;
     }
 
     /**
@@ -140,9 +142,10 @@ public class Fec extends ClippableContouredObject {
     /**
      * @param outsideColor the outsideColor to set
      */
-    public void setOutsideColor(Integer[] outsideColor) {
+    public UpdateStatus setOutsideColor(Integer[] outsideColor) {
         this.outsideColor[0] = outsideColor[0];
         this.outsideColor[1] = outsideColor[1];
+        return UpdateStatus.Success;
     }
 
     /**
@@ -159,9 +162,10 @@ public class Fec extends ClippableContouredObject {
     /**
      * @param bounds the zBounds to set
      */
-    public void setZBounds(Double[] zBounds) {
+    public UpdateStatus setZBounds(Double[] zBounds) {
         this.zBounds[0] = zBounds[0];
         this.zBounds[1] = zBounds[1];
+        return UpdateStatus.Success;
     }
 
     /**

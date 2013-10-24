@@ -15,6 +15,7 @@ package org.scilab.modules.graphic_objects.vectfield;
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 import org.scilab.modules.graphic_objects.utils.Utils;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
@@ -136,9 +137,10 @@ public class Champ extends VectField {
     /**
      * @param dimensions the field dimensions to set
      */
-    public void setDimensions(Integer[] dimensions) {
+    public UpdateStatus setDimensions(Integer[] dimensions) {
         this.dimensions[0] = dimensions[0];
         this.dimensions[1] = dimensions[1];
+        return UpdateStatus.Success;
     }
 
     /**
@@ -163,7 +165,7 @@ public class Champ extends VectField {
      * The arrows part of column i have the same base x-coordinate
      * @param baseX the array of x coordinates (Ni elements)
      */
-    public void setBaseX(Double[] baseX) {
+    public UpdateStatus setBaseX(Double[] baseX) {
         for (int j = 0; j < dimensions[1]; j++) {
             for (int i = 0; i < dimensions[0]; i++) {
                 Double[] base = getArrow(i, j).getBase();
@@ -172,6 +174,7 @@ public class Champ extends VectField {
                 getArrow(i, j).setBase(base);
             }
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -196,7 +199,7 @@ public class Champ extends VectField {
      * The arrows part of row j have the same base y-coordinate
      * @param baseY the array of y coordinates (Nj elements)
      */
-    public void setBaseY(Double[] baseY) {
+    public UpdateStatus setBaseY(Double[] baseY) {
         for (int j = 0; j < dimensions[1]; j++) {
             for (int i = 0; i < dimensions[0]; i++) {
                 Double[] base = getArrow(i, j).getBase();
@@ -205,6 +208,7 @@ public class Champ extends VectField {
                 getArrow(i, j).setBase(base);
             }
         }
+        return UpdateStatus.Success;
     }
 
 
@@ -219,8 +223,9 @@ public class Champ extends VectField {
     /**
      * @param colored the colored to set
      */
-    public void setColored(Boolean colored) {
+    public UpdateStatus setColored(Boolean colored) {
         this.colored = colored;
+        return UpdateStatus.Success;
     }
 
     /**

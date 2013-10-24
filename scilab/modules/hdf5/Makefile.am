@@ -82,7 +82,7 @@ endif
 
 
 #### hdf5 : include files ####
-FORCE_HDF_1.8_API =   -DH5Topen_vers=2 -DH5Dcreate_vers=2 -DH5Aiterate_vers=2 \
+FORCE_HDF_1.8_API =  -DH5Dopen_vers=2 -DH5Topen_vers=2 -DH5Dcreate_vers=2 -DH5Aiterate_vers=2 \
  -DH5Gcreate_vers=2 -DH5Gopen_vers=2 -DH5Tget_array_dims_vers=2 \
  -DH5Acreate_vers=2 -DNO_DEPRECATED_SYMBOLS
 

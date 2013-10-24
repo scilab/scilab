@@ -9,7 +9,25 @@ Scilab Bug Fixes
 * Bug #7705 fixed - In the Genetic algorithms help pages, documented the
                     "dimension", "minbounds" and "maxbounds" fields.
 
+* Bug #8031 fixed - cdfgam error message fixed.
+
+* Bug #8337 fixed - mtlb_rand now uses the "uniform" rule, whatever the random rule set is.
+
+* Bug #9110 fixed - Examples and references to other functions added in the Statistics help pages.
+
+* Bug #10175 fixed - Clearer example added for sp2adj to adj2sp conversion (and backwards conversion).
+
+* Bug #10234 fixed - reglin function moved from CACSD to Statistics module.
+
+* Bug #10273 fixed - spchol help page now displays an example showing how to use its output arguments.
+
+* Bug #11571 fixed - x_mdialog did not let the Look&Feel select the window size.
+
+* Bug #11680 fixed - GUI functions in Scilab 5.4.X were much slower than in Scilab 5.3.3.
+
 * Bug #12769 fixed - xset("window", 1) did not set the current axes.
+
+* Bug #12910 fixed - Some typos fixed.
 
 * Bug #12938 fixed - No java compiler was available in Linux binary version.
 
@@ -36,11 +54,27 @@ Scilab Bug Fixes
 
 * Bug #12979 fixed - exportUI did not work with vectorial export.
 
+* Bug #13000 fixed - []./int8(3) and on int8(3)./[] led to an endless recursive.
+
+* Bug #13003 fixed - String to enum converter added to Java external objects.
+
+* Bug #13004 fixed - Debug infos were printed on an error with eoj.
+
+* Bug #13005 fixed - jcompile did not use the classpath to compile.
+
+* Bug #13007 fixed - Compilation errors were not returned by jcompile.
+
+* Bug #13008 fixed - 'help $' now opens the 'Symbols' help page.
+
 
 Xcos Bug Fixes
 ==============
 
 * Bug #12423 fixed - Data types of SWITCH2_m were not documented.
+
+* Bug #12998 fixed - 'ans' was not ignored in the context results.
+
+* Bug #13006 fixed - Selection to Super block (in_f and out_f) was failing.
 
 
                  Changes between version 5.4.1 and 5.5.0-beta-1

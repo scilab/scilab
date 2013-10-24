@@ -14,7 +14,7 @@ extern "C" {
 #include <sstream>
 #include <string>
 
-#define BUFFER_SIZE 1024
+#define EOJ_EXCEPTION_BUFFER_SIZE 4096
 
 using namespace org_modules_external_objects;
 
@@ -31,11 +31,11 @@ public:
 
     ScilabJavaException(const int _line, const char * _file, const char * _message, ...) : message(""), file(_file), line(_line)
     {
-        char str[BUFFER_SIZE];
+        char str[EOJ_EXCEPTION_BUFFER_SIZE];
         va_list args;
 
         va_start(args, _message);
-        vsnprintf(str, BUFFER_SIZE, _message, args);
+        vsnprintf(str, EOJ_EXCEPTION_BUFFER_SIZE, _message, args);
         va_end(args);
 
         message = getDescription(std::string(str));
@@ -43,11 +43,11 @@ public:
 
     ScilabJavaException(const int _line, const char * _file, std::string _message, ...) : message(""), file(_file), line(_line)
     {
-        char str[BUFFER_SIZE];
+        char str[EOJ_EXCEPTION_BUFFER_SIZE];
         va_list args;
 
         va_start(args, _message);
-        vsnprintf(str, BUFFER_SIZE, _message.c_str(), args);
+        vsnprintf(str, EOJ_EXCEPTION_BUFFER_SIZE, _message.c_str(), args);
         va_end(args);
 
         message = getDescription(std::string(str));

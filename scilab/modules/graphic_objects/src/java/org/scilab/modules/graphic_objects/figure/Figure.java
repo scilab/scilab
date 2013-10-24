@@ -12,10 +12,6 @@
 
 package org.scilab.modules.graphic_objects.figure;
 
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.graphicObject.Visitor;
-
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ANTIALIASING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTORESIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
@@ -35,8 +31,13 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_RESIZEFCN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ROTATION_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VIEWPORT__;
+
+import java.util.Arrays;
+
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 /**
  * Figure class
  * @author Manuel JULIACHS
@@ -45,7 +46,7 @@ public class Figure extends GraphicObject {
     /** Figure properties names */
     private enum FigureProperty {
         INFOMESSAGE, COLORMAP, COLORMAPSIZE,
-        BACKGROUND, TAG, ROTATIONTYPE, RESIZEFCN, CLOSEREQUESTFCN
+        BACKGROUND, ROTATIONTYPE, RESIZEFCN, CLOSEREQUESTFCN
     };
 
     /** Specifies whether rotation applies to a single subwindow or to all the figure's subwindows */
@@ -125,17 +126,17 @@ public class Figure extends GraphicObject {
      */
     private class FigureDimensions {
         /** Position (x,y) of the upper-left corner in the top-level window */
-        private int[] position;
+        private Integer[] position;
 
         /** Dimensions (w, h) of the figure window */
-        private int[] size;
+        private Integer[] size;
 
         /**
          * Default constructor
          */
         public FigureDimensions() {
-            position = new int[2];
-            size = new int[2];
+            position = new Integer[2];
+            size = new Integer[2];
         }
 
         /**
@@ -143,11 +144,11 @@ public class Figure extends GraphicObject {
          * @param figureDimensions the FigureDimensions to copy
          */
         public FigureDimensions(FigureDimensions figureDimensions) {
-            this.position = new int[2];
+            this.position = new Integer[2];
             this.position[0] = figureDimensions.position[0];
             this.position[1] = figureDimensions.position[1];
 
-            this.size = new int[2];
+            this.size = new Integer[2];
             this.size[0] = figureDimensions.size[0];
             this.size[1] = figureDimensions.size[1];
         }
@@ -164,18 +165,18 @@ public class Figure extends GraphicObject {
         private boolean autoResize;
 
         /** Viewport position (x,y) */
-        private int[] viewport;
+        private Integer[] viewport;
 
         /** Rendering canvas (w,h) dimensions */
-        private int[] axesSize;
+        private Integer[] axesSize;
 
         /**
          * Default constructor
          */
         public Canvas() {
             autoResize = false;
-            viewport = new int[2];
-            axesSize = new int[2];
+            viewport = new Integer[2];
+            axesSize = new Integer[2];
         }
 
         /**
@@ -185,12 +186,12 @@ public class Figure extends GraphicObject {
         public Canvas(Canvas canvas) {
             this.autoResize = canvas.autoResize;
 
-            this.viewport = new int[2];
+            this.viewport = new Integer[2];
 
             this.viewport[0] = canvas.viewport[0];
             this.viewport[1] = canvas.viewport[1];
 
-            this.axesSize = new int[2];
+            this.axesSize = new Integer[2];
 
             this.axesSize[0] = canvas.axesSize[0];
             this.axesSize[1] = canvas.axesSize[1];
@@ -348,9 +349,6 @@ public class Figure extends GraphicObject {
     /** CloseRequestFcn */
     private String closeRequestFcn;
 
-    /** Tag */
-    private String tag;
-
     /** Rotation type */
     private RotationType rotation;
 
@@ -368,7 +366,6 @@ public class Figure extends GraphicObject {
         eventHandler = new EventHandler();
         resizeFcn = "";
         closeRequestFcn = "";
-        tag = "";
         rotation = RotationType.UNARY;
     }
 
@@ -435,8 +432,6 @@ public class Figure extends GraphicObject {
                 return EventHandlerProperty.EVENTHANDLER;
             case __GO_EVENTHANDLER_ENABLE__ :
                 return EventHandlerProperty.EVENTHANDLERENABLE;
-            case __GO_TAG__ :
-                return FigureProperty.TAG;
             case __GO_ROTATION_TYPE__ :
                 return FigureProperty.ROTATIONTYPE;
             case __GO_RESIZEFCN__ :
@@ -488,8 +483,6 @@ public class Figure extends GraphicObject {
             return getEventHandlerString();
         } else if (property == EventHandlerProperty.EVENTHANDLERENABLE) {
             return getEventHandlerEnable();
-        } else if (property == FigureProperty.TAG) {
-            return getTag();
         } else if (property == FigureProperty.ROTATIONTYPE) {
             return getRotation();
         } else if (property == FigureProperty.RESIZEFCN) {
@@ -508,46 +501,64 @@ public class Figure extends GraphicObject {
      * @return true if the property has been set, false otherwise
      */
     public UpdateStatus setProperty(Object property, Object value) {
-        if (property == FigureDimensionsProperty.POSITION) {
-            setPosition((Integer[]) value);
-        } else if (property == FigureDimensionsProperty.SIZE) {
-            setSize((Integer[]) value);
-        } else if (property == CanvasProperty.AUTORESIZE) {
-            setAutoResize((Boolean) value);
-        } else if (property == CanvasProperty.VIEWPORT) {
-            setViewport((Integer[]) value);
-        } else if (property == CanvasProperty.AXESSIZE) {
-            setAxesSize((Integer[]) value);
-        } else if (property == FigureNameProperty.NAME) {
-            setName((String) value);
-        } else if (property == FigureNameProperty.ID) {
-            setId((Integer) value);
-        } else if (property == FigureProperty.INFOMESSAGE) {
-            setInfoMessage((String) value);
-        } else if (property == FigureProperty.COLORMAP) {
-            return getColorMap().setData((Double[]) value);
-        } else if (property == RenderingModeProperty.PIXMAP) {
-            setPixmap((Boolean) value);
-        } else if (property == RenderingModeProperty.PIXELDRAWINGMODE) {
-            setPixelDrawingMode((Integer) value);
-        } else if (property == RenderingModeProperty.ANTIALIASING) {
-            setAntialiasing((Integer) value);
-        } else if (property == RenderingModeProperty.IMMEDIATEDRAWING) {
-            return setImmediateDrawing((Boolean) value);
-        } else if (property == FigureProperty.BACKGROUND) {
-            setBackground((Integer) value);
-        } else if (property == EventHandlerProperty.EVENTHANDLER) {
-            setEventHandlerString((String) value);
-        } else if (property == EventHandlerProperty.EVENTHANDLERENABLE) {
-            setEventHandlerEnable((Boolean) value);
-        } else if (property == FigureProperty.TAG) {
-            setTag((String) value);
-        } else if (property == FigureProperty.ROTATIONTYPE) {
-            setRotation((Integer) value);
-        } else if (property == FigureProperty.RESIZEFCN) {
-            setResizeFcn((String) value);
-        } else if (property == FigureProperty.CLOSEREQUESTFCN) {
-            setCloseRequestFcn((String) value);
+        if (property instanceof FigureProperty) {
+            switch ((FigureProperty)property) {
+                case BACKGROUND:
+                    return setBackground((Integer) value);
+                case CLOSEREQUESTFCN:
+                    return setCloseRequestFcn((String) value);
+                case COLORMAP:
+                    return getColorMap().setData((Double[]) value);
+                case COLORMAPSIZE:
+                    return UpdateStatus.NoChange;
+                case INFOMESSAGE:
+                    return setInfoMessage((String) value);
+                case RESIZEFCN:
+                    return setResizeFcn((String) value);
+                case ROTATIONTYPE:
+                    return setRotation((Integer) value);
+            }
+        } else if (property instanceof CanvasProperty) {
+            switch ((CanvasProperty)property) {
+                case AUTORESIZE:
+                    return setAutoResize((Boolean) value);
+                case AXESSIZE:
+                    return setAxesSize((Integer[]) value);
+                case VIEWPORT:
+                    return setViewport((Integer[]) value);
+            }
+        } else if (property instanceof FigureDimensionsProperty) {
+            switch ((FigureDimensionsProperty)property) {
+                case POSITION:
+                    return setPosition((Integer[]) value);
+                case SIZE:
+                    return setSize((Integer[]) value);
+            }
+        } else if (property instanceof FigureNameProperty) {
+            switch ((FigureNameProperty)property) {
+                case ID:
+                    return setId((Integer) value);
+                case NAME:
+                    return setName((String) value);
+            }
+        } else if (property instanceof RenderingModeProperty) {
+            switch ((RenderingModeProperty)property) {
+                case ANTIALIASING:
+                    return setAntialiasing((Integer) value);
+                case IMMEDIATEDRAWING:
+                    return setImmediateDrawing((Boolean) value);
+                case PIXELDRAWINGMODE:
+                    return setPixelDrawingMode((Integer) value);
+                case PIXMAP:
+                    return setPixmap((Boolean) value);
+            }
+        } else if (property instanceof EventHandlerProperty) {
+            switch ((EventHandlerProperty)property) {
+                case EVENTHANDLER:
+                    return setEventHandlerString((String) value);
+                case EVENTHANDLERENABLE:
+                    return setEventHandlerEnable((Boolean) value);
+            }
         } else {
             return super.setProperty(property, value);
         }
@@ -565,8 +576,12 @@ public class Figure extends GraphicObject {
     /**
      * @param background the background to set
      */
-    public void setBackground(Integer background) {
+    public UpdateStatus setBackground(Integer background) {
+        if (this.background == background) {
+            return UpdateStatus.NoChange;
+        }
         this.background = background;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -579,8 +594,9 @@ public class Figure extends GraphicObject {
     /**
      * @param canvas the canvas to set
      */
-    public void setCanvas(Canvas canvas) {
+    public UpdateStatus setCanvas(Canvas canvas) {
         this.canvas = canvas;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -593,8 +609,12 @@ public class Figure extends GraphicObject {
     /**
      * @param autoResize the autoresize to set
      */
-    public void setAutoResize(Boolean autoResize) {
+    public UpdateStatus setAutoResize(Boolean autoResize) {
+        if (canvas.autoResize == autoResize) {
+            return UpdateStatus.NoChange;
+        }
         canvas.autoResize = autoResize;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -612,9 +632,13 @@ public class Figure extends GraphicObject {
     /**
      * @param viewport the viewport to set
      */
-    public void setViewport(Integer[] viewport) {
+    public UpdateStatus setViewport(Integer[] viewport) {
+        if (Arrays.equals(canvas.viewport, viewport)) {
+            return UpdateStatus.NoChange;
+        }
         canvas.viewport[0] = viewport[0];
         canvas.viewport[1] = viewport[1];
+        return UpdateStatus.Success;
     }
 
     /**
@@ -632,9 +656,14 @@ public class Figure extends GraphicObject {
     /**
      * @param axesSize the axes size to set
      */
-    public void setAxesSize(Integer[] axesSize) {
+    public UpdateStatus setAxesSize(Integer[] axesSize) {
+        if (Arrays.equals(canvas.axesSize, axesSize)) {
+            //must return Success to broadcast information
+            return UpdateStatus.Success;
+        }
         canvas.axesSize[0] = axesSize[0];
         canvas.axesSize[1] = axesSize[1];
+        return UpdateStatus.Success;
     }
 
     /**
@@ -654,8 +683,12 @@ public class Figure extends GraphicObject {
     /**
      * @param dimensions the dimensions to set
      */
-    public void setDimensions(FigureDimensions dimensions) {
+    public UpdateStatus setDimensions(FigureDimensions dimensions) {
+        if (this.dimensions == dimensions) {
+            return UpdateStatus.NoChange;
+        }
         this.dimensions = dimensions;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -673,9 +706,14 @@ public class Figure extends GraphicObject {
     /**
      * @param position the position to set
      */
-    public void setPosition(Integer[] position) {
+    public UpdateStatus setPosition(Integer[] position) {
+        if (Arrays.equals(dimensions.position, position)) {
+            return UpdateStatus.NoChange;
+        }
+
         dimensions.position[0] = position[0];
         dimensions.position[1] = position[1];
+        return UpdateStatus.Success;
     }
 
     /**
@@ -693,9 +731,14 @@ public class Figure extends GraphicObject {
     /**
      * @param size the size to set
      */
-    public void setSize(Integer[] size) {
+    public UpdateStatus setSize(Integer[] size) {
+        if (Arrays.equals(dimensions.size, size)) {
+            return UpdateStatus.NoChange;
+        }
+
         dimensions.size[0] = size[0];
         dimensions.size[1] = size[1];
+        return UpdateStatus.Success;
     }
 
     /**
@@ -708,8 +751,12 @@ public class Figure extends GraphicObject {
     /**
      * @param eventHandler the eventHandler to set
      */
-    public void setEventHandler(EventHandler eventHandler) {
+    public UpdateStatus setEventHandler(EventHandler eventHandler) {
+        if (this.eventHandler.equals(eventHandler)) {
+            return UpdateStatus.NoChange;
+        }
         this.eventHandler = eventHandler;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -722,8 +769,12 @@ public class Figure extends GraphicObject {
     /**
      * @param eventHandlerString the eventHandler string to set
      */
-    public void setEventHandlerString(String eventHandlerString) {
+    public UpdateStatus setEventHandlerString(String eventHandlerString) {
+        if (eventHandler.eventHandler.equals(eventHandlerString)) {
+            return UpdateStatus.NoChange;
+        }
         eventHandler.eventHandler = eventHandlerString;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -736,8 +787,12 @@ public class Figure extends GraphicObject {
     /**
      * @param eventHandlerEnabled the eventHandlerEnabled to set
      */
-    public void setEventHandlerEnable(Boolean eventHandlerEnabled) {
+    public UpdateStatus setEventHandlerEnable(Boolean eventHandlerEnabled) {
+        if (eventHandler.eventHandlerEnabled == eventHandlerEnabled) {
+            return UpdateStatus.NoChange;
+        }
         eventHandler.eventHandlerEnabled = eventHandlerEnabled;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -750,8 +805,12 @@ public class Figure extends GraphicObject {
     /**
      * @param infoMessage the infoMessage to set
      */
-    public void setInfoMessage(String infoMessage) {
+    public UpdateStatus setInfoMessage(String infoMessage) {
+        if (this.infoMessage != null && this.infoMessage.equals(infoMessage)) {
+            return UpdateStatus.NoChange;
+        }
         this.infoMessage = infoMessage;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -764,8 +823,12 @@ public class Figure extends GraphicObject {
     /**
      * @param figureName the figure name to set
      */
-    public void setFigureName(FigureName figureName) {
+    public UpdateStatus setFigureName(FigureName figureName) {
+        if (this.figureName.equals(figureName)) {
+            return UpdateStatus.NoChange;
+        }
         this.figureName = figureName;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -778,8 +841,12 @@ public class Figure extends GraphicObject {
     /**
      * @param name the name to set
      */
-    public void setName(String name) {
+    public UpdateStatus setName(String name) {
+        if (figureName.name.equals(name)) {
+            return UpdateStatus.NoChange;
+        }
         figureName.name = name;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -792,8 +859,10 @@ public class Figure extends GraphicObject {
     /**
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public UpdateStatus setId(Integer id) {
+        //must return Success to update Views
         figureName.id = id;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -806,8 +875,12 @@ public class Figure extends GraphicObject {
     /**
      * @param renderingMode the renderingMode to set
      */
-    public void setRenderingMode(RenderingMode renderingMode) {
+    public UpdateStatus setRenderingMode(RenderingMode renderingMode) {
+        if (this.renderingMode.equals(renderingMode)) {
+            return UpdateStatus.NoChange;
+        }
         this.renderingMode = renderingMode;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -820,8 +893,12 @@ public class Figure extends GraphicObject {
     /**
      * @param pixmap the pixmap to set
      */
-    public void setPixmap(Boolean pixmap) {
+    public UpdateStatus setPixmap(Boolean pixmap) {
+        if (renderingMode.pixmap == pixmap) {
+            return UpdateStatus.NoChange;
+        }
         renderingMode.pixmap = pixmap;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -841,15 +918,25 @@ public class Figure extends GraphicObject {
     /**
      * @param pixelDrawingMode the pixel drawing mode to set
      */
-    public void setPixelDrawingMode(PixelDrawingMode pixelDrawingMode) {
+    public UpdateStatus setPixelDrawingMode(PixelDrawingMode pixelDrawingMode) {
+        if (renderingMode.pixelDrawingMode.equals(pixelDrawingMode)) {
+            return UpdateStatus.NoChange;
+        }
         renderingMode.pixelDrawingMode = pixelDrawingMode;
+        return UpdateStatus.Success;
     }
 
     /**
      * @param pixelDrawingMode the pixel drawing mode to set
      */
-    public void setPixelDrawingMode(Integer pixelDrawingMode) {
-        renderingMode.pixelDrawingMode = PixelDrawingMode.intToEnum(pixelDrawingMode);
+    public UpdateStatus setPixelDrawingMode(Integer pixelDrawingMode) {
+        PixelDrawingMode mode = PixelDrawingMode.intToEnum(pixelDrawingMode);
+        if (renderingMode.pixelDrawingMode == mode) {
+            return UpdateStatus.NoChange;
+        }
+
+        renderingMode.pixelDrawingMode = mode;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -862,8 +949,12 @@ public class Figure extends GraphicObject {
     /**
      * @param antialiasing the antialiasing to set
      */
-    public void setAntialiasing(Integer antialiasing) {
+    public UpdateStatus setAntialiasing(Integer antialiasing) {
+        if (renderingMode.antialiasing == antialiasing) {
+            return UpdateStatus.NoChange;
+        }
         renderingMode.antialiasing = antialiasing;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -877,12 +968,12 @@ public class Figure extends GraphicObject {
      * @param immediateDrawing the immediateDrawing to set
      */
     public UpdateStatus setImmediateDrawing(Boolean immediateDrawing) {
-        if (renderingMode.immediateDrawing != immediateDrawing) {
-            renderingMode.immediateDrawing = immediateDrawing;
-            return UpdateStatus.Success;
+        if (renderingMode.immediateDrawing == immediateDrawing) {
+            return UpdateStatus.NoChange;
         }
 
-        return UpdateStatus.NoChange;
+        renderingMode.immediateDrawing = immediateDrawing;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -902,18 +993,25 @@ public class Figure extends GraphicObject {
     /**
      * @param rotation the rotation to set
      */
-    public void setRotation(RotationType rotation) {
+    public UpdateStatus setRotation(RotationType rotation) {
+        if (this.rotation.equals(rotation)) {
+            return UpdateStatus.NoChange;
+        }
         this.rotation = rotation;
+        return UpdateStatus.Success;
     }
 
     /**
      * @param rotation the rotation to set
      */
-    public void setRotation(Integer rotation) {
+    public UpdateStatus setRotation(Integer rotation) {
         RotationType rotationType = RotationType.intToEnum(rotation);
-        if (rotationType != null) {
-            this.rotation = rotationType;
+        if (rotationType == null || this.rotation == rotationType) {
+            return UpdateStatus.NoChange;
         }
+
+        this.rotation = rotationType;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -926,8 +1024,12 @@ public class Figure extends GraphicObject {
     /**
      * @param resizeFcn the resize function to set
      */
-    public void setResizeFcn(String resizeFcn) {
+    public UpdateStatus setResizeFcn(String resizeFcn) {
+        if (this.resizeFcn.equals(resizeFcn)) {
+            return UpdateStatus.NoChange;
+        }
         this.resizeFcn = resizeFcn;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -940,22 +1042,12 @@ public class Figure extends GraphicObject {
     /**
      * @param closeRequestFcn the close request function to set
      */
-    public void setCloseRequestFcn(String closeRequestFcn) {
+    public UpdateStatus setCloseRequestFcn(String closeRequestFcn) {
+        if (this.closeRequestFcn.equals(closeRequestFcn)) {
+            return UpdateStatus.NoChange;
+        }
         this.closeRequestFcn = closeRequestFcn;
-    }
-
-    /**
-     * @return the tag
-     */
-    public String getTag() {
-        return tag;
-    }
-
-    /**
-     * @param tag the tag to set
-     */
-    public void setTag(String tag) {
-        this.tag = tag;
+        return UpdateStatus.Success;
     }
 
     /**

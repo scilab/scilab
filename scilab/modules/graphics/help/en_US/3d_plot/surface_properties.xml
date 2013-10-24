@@ -213,7 +213,7 @@
                         colors.
                     </para>
                     <para>
-                        Not that the rules on <literal>color_mode</literal>,
+                        Note that the rules on <literal>color_mode</literal>,
                         <literal>foreground</literal> and <literal>hiddencolor</literal> are still applied
                         to this case.
                     </para>

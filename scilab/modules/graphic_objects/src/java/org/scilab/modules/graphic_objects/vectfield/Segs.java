@@ -12,12 +12,19 @@
 
 package org.scilab.modules.graphic_objects.vectfield;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_BACKGROUND__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_FOREGROUND__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_MODE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_SIZE_UNIT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_STYLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SEGS_COLORS__;
+
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.contouredObject.Mark;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
-
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 /**
  * Segs class
@@ -126,7 +133,7 @@ public class Segs extends VectField {
      * To be modified
      * @param number the number of arrows to set
      */
-    public void setNumberArrows(Integer number) {
+    public UpdateStatus setNumberArrows(Integer number) {
         int currentNumber;
 
         currentNumber = arrows.size();
@@ -138,6 +145,8 @@ public class Segs extends VectField {
                 arrows.get(i).setLineColor(0);
             }
         }
+
+        return UpdateStatus.Success;
     }
 
     /**
@@ -158,7 +167,7 @@ public class Segs extends VectField {
      * If the input color array contains only one element, each arrow's color is set to the latter.
      * @param colors the segs colors to set (number of elements either 1 or equal to the number of arrows)
      */
-    public void setColors(Integer[] colors) {
+    public UpdateStatus setColors(Integer[] colors) {
         if (colors.length == 1) {
             for (int i = 0; i < arrows.size(); i++) {
                 arrows.get(i).setLineColor(colors[0]);
@@ -168,6 +177,7 @@ public class Segs extends VectField {
                 arrows.get(i).setLineColor(colors[i]);
             }
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -184,10 +194,11 @@ public class Segs extends VectField {
      * To be done: change the argument to an array of Boolean
      * @param mode the mark mode to set
      */
-    public void setMarkMode(Boolean mode) {
+    public UpdateStatus setMarkMode(Boolean mode) {
         for (int i = 0; i < arrows.size(); i++) {
             arrows.get(i).setMarkMode(mode);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -204,10 +215,11 @@ public class Segs extends VectField {
      * To be done: change the argument to an array of Integer
      * @param style the mark style to set
      */
-    public void setMarkStyle(Integer style) {
+    public UpdateStatus setMarkStyle(Integer style) {
         for (int i = 0; i < arrows.size(); i++) {
             arrows.get(i).setMarkStyle(style);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -224,10 +236,11 @@ public class Segs extends VectField {
      * To be done: change the argument to an array of Integer
      * @param style the mark size unit to set
      */
-    public void setMarkSizeUnit(Integer sizeUnit) {
+    public UpdateStatus setMarkSizeUnit(Integer sizeUnit) {
         for (int i = 0; i < arrows.size(); i++) {
             arrows.get(i).setMarkSizeUnit(sizeUnit);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -244,10 +257,11 @@ public class Segs extends VectField {
      * To be done: change the argument to an array of Integer
      * @param style the mark size to set
      */
-    public void setMarkSize(Integer size) {
+    public UpdateStatus setMarkSize(Integer size) {
         for (int i = 0; i < arrows.size(); i++) {
             arrows.get(i).setMarkSize(size);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -264,10 +278,11 @@ public class Segs extends VectField {
      * To be done: change the argument to an array of Integer
      * @param style the mark foreground to set
      */
-    public void setMarkForeground(Integer foreground) {
+    public UpdateStatus setMarkForeground(Integer foreground) {
         for (int i = 0; i < arrows.size(); i++) {
             arrows.get(i).setMarkForeground(foreground);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -284,10 +299,11 @@ public class Segs extends VectField {
      * To be done: change the argument to an array of Integer
      * @param style the mark background to set
      */
-    public void setMarkBackground(Integer background) {
+    public UpdateStatus setMarkBackground(Integer background) {
         for (int i = 0; i < arrows.size(); i++) {
             arrows.get(i).setMarkBackground(background);
         }
+        return UpdateStatus.Success;
     }
 
     /**

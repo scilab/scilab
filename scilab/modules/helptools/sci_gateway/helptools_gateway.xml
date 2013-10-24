@@ -29,5 +29,5 @@
  Don't touch if you do not know what you are doing
 -->
     
-    <PRIMITIVE gatewayId="60" primitiveId="1" primitiveName="buildDocv2" />
+    <PRIMITIVE gatewayId="60" primitiveId="1" primitiveName="buildDoc" />
 </GATEWAY>

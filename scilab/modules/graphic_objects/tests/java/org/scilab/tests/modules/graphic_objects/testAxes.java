@@ -12,6 +12,9 @@
 
 package org.scilab.tests.modules.graphic_objects;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,22 +46,22 @@ public class testAxes {
     public static final int DEFAULT_NUMBER_OF_TICKS = 11;
 
     /** Figure identifier */
-    private String figureID;
+    private Integer figureID;
 
     /** The Axes identifier */
-    private String axesID;
+    private Integer axesID;
 
     /** X-Axis label identifier */
-    private String xlabelID;
+    private Integer xlabelID;
 
     /** Y-Axis label identifier */
-    private String ylabelID;
+    private Integer ylabelID;
 
     /** Z-Axis label identifier */
-    private String zlabelID;
+    private Integer zlabelID;
 
     /** Title label identifier */
-    private String titleID;
+    private Integer titleID;
 
     /** Graphic controller */
     private GraphicController controller;
@@ -93,7 +96,7 @@ public class testAxes {
         assert axes != null;
 
         /* Allocate an empty figure and link the axes and figure */
-        final String figureID = controller.askObject(Type.FIGURE);
+        final Integer figureID = controller.askObject(Type.FIGURE);
         axes.setParent(figureID);
     }
 
@@ -137,7 +140,7 @@ public class testAxes {
         assert initAxes != null;
 
         /* Allocate an empty figure and link the axes and figure */
-        final String figureInitID = controller.askObject(Type.FIGURE);
+        final Integer figureInitID = controller.askObject(Type.FIGURE);
         initAxes.setParent(figureInitID);
 
         /* GraphicObjects properties */
@@ -337,7 +340,7 @@ public class testAxes {
     @Test
     public void testReflectSetGetXAxisLabel() {
         controller.setProperty(axesID, __GO_X_AXIS_LABEL__, xlabelID);
-        String retXlabel = (String) controller.getProperty(axesID, __GO_X_AXIS_LABEL__);
+        Integer retXlabel = (Integer) controller.getProperty(axesID, __GO_X_AXIS_LABEL__);
         assert retXlabel.equals(xlabelID);
     }
     @Test
@@ -400,7 +403,7 @@ public class testAxes {
     @Test
     public void testReflectSetGetYAxisLabel() {
         controller.setProperty(axesID, __GO_Y_AXIS_LABEL__, ylabelID);
-        String retlabel = (String) controller.getProperty(axesID, __GO_Y_AXIS_LABEL__);
+        Integer retlabel = (Integer) controller.getProperty(axesID, __GO_Y_AXIS_LABEL__);
         assert retlabel.equals(ylabelID);
     }
     @Test
@@ -463,7 +466,7 @@ public class testAxes {
     @Test
     public void testReflectSetGetZAxisLabel() {
         controller.setProperty(axesID, __GO_Z_AXIS_LABEL__, zlabelID);
-        String retlabel = (String) controller.getProperty(axesID, __GO_Z_AXIS_LABEL__);
+        Integer retlabel = (Integer) controller.getProperty(axesID, __GO_Z_AXIS_LABEL__);
         assert retlabel.equals(zlabelID);
     }
     @Test
@@ -522,7 +525,7 @@ public class testAxes {
     @Test
     public void testReflectSetGetTitle() {
         controller.setProperty(axesID, __GO_TITLE__, titleID);
-        String retTitle = (String) controller.getProperty(axesID, __GO_TITLE__);
+        Integer retTitle = (Integer) controller.getProperty(axesID, __GO_TITLE__);
         assert retTitle.equals(titleID);
     }
     @Test
@@ -730,7 +733,7 @@ public class testAxes {
     @Test
     public void testFastSetGetParent() {
         controller.setProperty(axesID, __GO_PARENT__, figureID);
-        String retParent = (String) controller.getProperty(axesID, __GO_PARENT__);
+        Integer retParent = (Integer) controller.getProperty(axesID, __GO_PARENT__);
         assert retParent.equals(figureID);
     }
     @Test
@@ -763,7 +766,7 @@ public class testAxes {
     @Test
     public void testFastSetGetXAxisLabel() {
         controller.setProperty(axesID, __GO_X_AXIS_LABEL__, xlabelID);
-        String retXlabel = (String) controller.getProperty(axesID, __GO_X_AXIS_LABEL__);
+        Integer retXlabel = (Integer) controller.getProperty(axesID, __GO_X_AXIS_LABEL__);
         assert retXlabel.equals(xlabelID);
     }
     @Test
@@ -825,7 +828,7 @@ public class testAxes {
     @Test
     public void testFastSetGetYAxisLabel() {
         controller.setProperty(axesID, __GO_Y_AXIS_LABEL__, ylabelID);
-        String retlabel = (String) controller.getProperty(axesID, __GO_Y_AXIS_LABEL__);
+        Integer retlabel = (Integer) controller.getProperty(axesID, __GO_Y_AXIS_LABEL__);
         assert retlabel.equals(ylabelID);
     }
     @Test
@@ -887,7 +890,7 @@ public class testAxes {
     @Test
     public void testFastSetGetZAxisLabel() {
         controller.setProperty(axesID, __GO_Z_AXIS_LABEL__, zlabelID);
-        String retlabel = (String) controller.getProperty(axesID, __GO_Z_AXIS_LABEL__);
+        Integer retlabel = (Integer) controller.getProperty(axesID, __GO_Z_AXIS_LABEL__);
         assert retlabel.equals(zlabelID);
     }
     @Test
@@ -945,7 +948,7 @@ public class testAxes {
     @Test
     public void testFastSetGetTitle() {
         controller.setProperty(axesID, __GO_TITLE__, titleID);
-        String retTitle = (String) controller.getProperty(axesID, __GO_TITLE__);
+        Integer retTitle = (Integer) controller.getProperty(axesID, __GO_TITLE__);
         assert retTitle.equals(titleID);
     }
     @Test

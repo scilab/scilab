@@ -18,6 +18,7 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 import org.scilab.modules.graphic_objects.textObject.ClippableTextObject;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
@@ -180,15 +181,17 @@ public class Legend extends ClippableTextObject {
     /**
      * @param legendLocation the legendLocation to set
      */
-    public void setLegendLocation(Integer legendLocation) {
+    public UpdateStatus setLegendLocation(Integer legendLocation) {
         setLegendLocationAsEnum(LegendLocation.intToEnum(legendLocation));
+        return UpdateStatus.Success;
     }
 
     /**
      * @param legendLocation the legendLocation to set
      */
-    public void setLegendLocationAsEnum(LegendLocation legendLocation) {
+    public UpdateStatus setLegendLocationAsEnum(LegendLocation legendLocation) {
         this.legendLocation = legendLocation;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -248,7 +251,7 @@ public class Legend extends ClippableTextObject {
     /**
      * @param links the links to set
      */
-    public void setLinks(Integer[] links) {
+    public UpdateStatus setLinks(Integer[] links) {
         if (!this.links.isEmpty()) {
             this.links.clear();
         }
@@ -256,6 +259,7 @@ public class Legend extends ClippableTextObject {
         for (int i = 0; i < links.length; i++) {
             this.links.add(links[i]);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -291,8 +295,9 @@ public class Legend extends ClippableTextObject {
     /**
      * @param links the links to set
      */
-    public void setLinks(ArrayList<Integer> links) {
+    public UpdateStatus setLinks(ArrayList<Integer> links) {
         this.links = links;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -309,9 +314,10 @@ public class Legend extends ClippableTextObject {
     /**
      * @param position the position to set
      */
-    public void setPosition(Double[] position) {
+    public UpdateStatus setPosition(Double[] position) {
         this.position[0] = position[0];
         this.position[1] = position[1];
+        return UpdateStatus.Success;
     }
 
     /**
@@ -328,9 +334,10 @@ public class Legend extends ClippableTextObject {
     /**
     * @param size the size to set
     */
-    public void setSize(Double[] size) {
+    public UpdateStatus setSize(Double[] size) {
         this.size[0] = size[0];
         this.size[1] = size[1];
+        return UpdateStatus.Success;
     }
 
     /**

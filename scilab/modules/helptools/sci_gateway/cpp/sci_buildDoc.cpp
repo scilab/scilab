@@ -48,7 +48,7 @@ extern "C"
     }
 #endif
     /*--------------------------------------------------------------------------*/
-    int sci_buildDocv2(char *fname, unsigned long l)
+    int sci_buildDoc(char *fname, unsigned long l)
     {
         std::string exportFormat;
         std::string SciPath = getSCIpath(); /* Scilab path */

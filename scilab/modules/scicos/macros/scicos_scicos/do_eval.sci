@@ -131,7 +131,7 @@ function [scs_m,cpr,needcompile,ok]=do_eval(scs_m,cpr,%scicos_context)
                 end
 
                 %scicos_prob=%f
-                ier=execstr("o="+o.gui+"(''set'',o)","errcatch")
+                ier=execstr("o="+o.gui+"(''set'',o)","errcatch", "m")
                 if ier==0& %scicos_prob==%f then
                     needcompile1=max(needcompile1,needcompile) // for scifunc_block
                     model_n=o.model
@@ -192,6 +192,7 @@ function [scs_m,cpr,needcompile,ok]=do_eval(scs_m,cpr,%scicos_context)
 
                     scs_m.objs(%kk)=o
                 else
+                    error(msprintf(gettext("%s: Error while calling block %s [uid=''%s'']: invalid parameter (ier=%f, \%scicos_prob=%f).\n"), "do_eval", o.gui, o.model.uid, ier, %scicos_prob));
                     ok=%f
                     return
                 end

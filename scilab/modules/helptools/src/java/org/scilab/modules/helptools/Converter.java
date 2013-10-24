@@ -10,11 +10,16 @@ public interface Converter {
      * List all supported Converters backends for doc generation
      */
     public static enum Backend {
+        /* Docbook converters */
         JAVAHELP,
         HTML,
         WEB,
         CHM,
-        JAR_ONLY
+        FO,
+        /* Containers */
+        JAR_ONLY,
+        PDF,
+        PS
     }
 
     /**

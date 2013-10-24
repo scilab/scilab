@@ -12,12 +12,27 @@
 
 package org.scilab.modules.graphic_objects.vectfield;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ARROWS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ARROW_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BASE_X__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BASE_Y__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BASE_Z__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BASE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DIRECTION_X__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DIRECTION_Y__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DIRECTION_Z__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DIRECTION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LINE_MODE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LINE_STYLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LINE_THICKNESS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_NUMBER_ARROWS__;
+
 import java.util.ArrayList;
 
-import org.scilab.modules.graphic_objects.graphicObject.GraphicClippableObject;
 import org.scilab.modules.graphic_objects.contouredObject.Line;
 import org.scilab.modules.graphic_objects.contouredObject.Line.LineType;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicClippableObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 /**
  * VectField class
@@ -167,8 +182,9 @@ public abstract class VectField extends GraphicClippableObject {
     /**
      * @param arrows the arrows to set
      */
-    public void setArrows(ArrayList<Arrow> arrows) {
+    public UpdateStatus setArrows(ArrayList<Arrow> arrows) {
         this.arrows = arrows;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -190,8 +206,9 @@ public abstract class VectField extends GraphicClippableObject {
      * To be modified when Contour values can be specified independently
      * for each Arrow.
      * @param number the number of arrows to set
+     * @return
      */
-    public void setNumberArrows(Integer number) {
+    public UpdateStatus setNumberArrows(Integer number) {
         if (!arrows.isEmpty() && number != arrows.size()) {
             ArrayList <Arrow> newArrows = new ArrayList<Arrow>(0);
 
@@ -210,6 +227,7 @@ public abstract class VectField extends GraphicClippableObject {
             }
         }
 
+        return UpdateStatus.Success;
     }
 
     /**
@@ -233,7 +251,7 @@ public abstract class VectField extends GraphicClippableObject {
     /**
      * @param bases the arrow bases to set
      */
-    public void setBase(Double[] bases) {
+    public UpdateStatus setBase(Double[] bases) {
         Double[] arrowBase = new Double[3];
 
         final int len = Math.min(bases.length / 3, arrows.size());
@@ -243,6 +261,7 @@ public abstract class VectField extends GraphicClippableObject {
             arrowBase[2] = bases[3 * i + 2];
             arrows.get(i).setBase(arrowBase);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -264,13 +283,14 @@ public abstract class VectField extends GraphicClippableObject {
     /**
      * @param baseX the arrow base x coordinates to set
      */
-    public void setBaseX(Double[] baseX) {
+    public UpdateStatus setBaseX(Double[] baseX) {
         final int len = Math.min(baseX.length, arrows.size());
         for (int i = 0; i < len; i++) {
             Double[] base = arrows.get(i).getBase();
             base[0] = baseX[i];
             arrows.get(i).setBase(base);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -292,13 +312,14 @@ public abstract class VectField extends GraphicClippableObject {
     /**
      * @param baseY the arrow base y coordinates to set
      */
-    public void setBaseY(Double[] baseY) {
+    public UpdateStatus setBaseY(Double[] baseY) {
         final int len = Math.min(baseY.length, arrows.size());
         for (int i = 0; i < len; i++) {
             Double[] base = arrows.get(i).getBase();
             base[1] = baseY[i];
             arrows.get(i).setBase(base);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -320,13 +341,14 @@ public abstract class VectField extends GraphicClippableObject {
     /**
      * @param baseZ the arrow base z coordinates to set
      */
-    public void setBaseZ(Double[] baseZ) {
+    public UpdateStatus setBaseZ(Double[] baseZ) {
         final int len = Math.min(baseZ.length, arrows.size());
         for (int i = 0; i < len; i++) {
             Double[] base = arrows.get(i).getBase();
             base[2] = baseZ[i];
             arrows.get(i).setBase(base);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -350,7 +372,7 @@ public abstract class VectField extends GraphicClippableObject {
     /**
      * @param directions the arrow directions to set
      */
-    public void setDirection(Double[] directions) {
+    public UpdateStatus setDirection(Double[] directions) {
         Double[] arrowDirection = new Double[3];
 
         final int len = Math.min(directions.length / 3, arrows.size());
@@ -360,6 +382,7 @@ public abstract class VectField extends GraphicClippableObject {
             arrowDirection[2] = directions[3 * i + 2];
             arrows.get(i).setDirection(arrowDirection);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -381,13 +404,14 @@ public abstract class VectField extends GraphicClippableObject {
     /**
      * @param directionX the arrow direction x coordinates to set
      */
-    public void setDirectionX(Double[] directionX) {
+    public UpdateStatus setDirectionX(Double[] directionX) {
         final int len = Math.min(directionX.length, arrows.size());
         for (int i = 0; i < len; i++) {
             Double[] direction = arrows.get(i).getDirection();
             direction[0] = directionX[i];
             arrows.get(i).setDirection(direction);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -409,13 +433,14 @@ public abstract class VectField extends GraphicClippableObject {
     /**
      * @param directionY the arrow direction y coordinates to set
      */
-    public void setDirectionY(Double[] directionY) {
+    public UpdateStatus setDirectionY(Double[] directionY) {
         final int len = Math.min(directionY.length, arrows.size());
         for (int i = 0; i < len; i++) {
             Double[] direction = arrows.get(i).getDirection();
             direction[1] = directionY[i];
             arrows.get(i).setDirection(direction);
         }
+        return UpdateStatus.Success;
     }
 
 
@@ -439,13 +464,14 @@ public abstract class VectField extends GraphicClippableObject {
     /**
      * @param directionZ the arrow direction z coordinates to set
      */
-    public void setDirectionZ(Double[] directionZ) {
+    public UpdateStatus setDirectionZ(Double[] directionZ) {
         final int len = Math.min(directionZ.length, arrows.size());
         for (int i = 0; i < len; i++) {
             Double[] direction = arrows.get(i).getDirection();
             direction[2] = directionZ[i];
             arrows.get(i).setDirection(direction);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -466,10 +492,11 @@ public abstract class VectField extends GraphicClippableObject {
      * To be done: change the argument to an array of Double
      * @param size the arrow size to set
      */
-    public void setArrowSize(Double size) {
+    public UpdateStatus setArrowSize(Double size) {
         for (int i = 0; i < arrows.size(); i++) {
             arrows.get(i).setArrowSize(size);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -489,10 +516,11 @@ public abstract class VectField extends GraphicClippableObject {
      * To be done: change the argument to an array of Boolean
      * @param lineMode the arrow line mode to set
      */
-    public void setLineMode(Boolean lineMode) {
+    public UpdateStatus setLineMode(Boolean lineMode) {
         for (int i = 0; i < arrows.size(); i++) {
             arrows.get(i).setLineMode(lineMode);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -512,10 +540,11 @@ public abstract class VectField extends GraphicClippableObject {
      * To be done: change the argument to an array of Integer
      * @param lineStyle the arrow line style to set
      */
-    public void setLineStyle(Integer lineStyle) {
+    public UpdateStatus setLineStyle(Integer lineStyle) {
         for (int i = 0; i < arrows.size(); i++) {
             arrows.get(i).setLineStyle(lineStyle);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -547,10 +576,11 @@ public abstract class VectField extends GraphicClippableObject {
      * To be done: change the argument to an array of Double
      * @param lineThickness the arrow line thickness to set
      */
-    public void setLineThickness(Double lineThickness) {
+    public UpdateStatus setLineThickness(Double lineThickness) {
         for (int i = 0; i < arrows.size(); i++) {
             arrows.get(i).setLineThickness(lineThickness);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -570,10 +600,11 @@ public abstract class VectField extends GraphicClippableObject {
      * To be done: change the argument to an array of Integer
      * @param lineColor the arrow line color to set
      */
-    public void setLineColor(Integer lineColor) {
+    public UpdateStatus setLineColor(Integer lineColor) {
         for (int i = 0; i < arrows.size(); i++) {
             arrows.get(i).setLineColor(lineColor);
         }
+        return UpdateStatus.Success;
     }
 
 }

@@ -1,0 +1,21 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - S/E - Sylvestre Ledru
+//
+//  This file is distributed under the same license as the Scilab package.
+// ===========================================================================
+//
+// <-- Non-regression test for bug 13000 -->
+//
+// <-- CLI SHELL MODE -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=13000
+//
+// <-- Short Description -->
+// Endless recursive call on []./int8(3) and on int8(3)./[]
+//
+a = []./int8(3);
+assert_checkequal(a, []);
+a = int8(3)./[];
+assert_checkequal(a, []);

@@ -46,8 +46,8 @@ function [dif]=nand2mean(sample1,sample2,conf)
     n2=sum(bool2s(~isn2))
     mean1=sum(sample1)/n1
     mean2=sum(sample2)/n2
-    svarp=sqrt((sum((sample1(~isn1)-mean1)^2)+sum((sample2(~isn2) ..
-    -mean2)^2))/(n1+n2-2))
+    svarp=sqrt((sum((sample1(~isn1)-mean1).^2)+sum((sample2(~isn2) ..
+    -mean2).^2))/(n1+n2-2))
     dif(1)=mean1-mean2
     if (n1+n2-2)>100 then
         dif(2)=cdfnor("X",0,1,conf,1-conf)*svarp*sqrt((1/n1)+(1/n2))
