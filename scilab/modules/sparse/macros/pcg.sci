@@ -1,4 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: tagged as obsolete,
+//                                                         use conjgrad(A,b,"pcg",...) instead
 // Copyright (C) 2009 - INRIA - Michael Baudin
 // Copyright (C) 2008 - INRIA - Michael Baudin
 // Copyright (C) 2006 - INRIA - Serge Steer
@@ -57,6 +59,7 @@
 //     Matlab's pcg command.
 //
 function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x0, verbose )
+    warnobsolete("conjgrad", "5.5.1");
     [lhs,rhs] = argn(0);
     if (rhs < 2),
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"pcg",2,7));
@@ -306,4 +309,3 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
         end
     end
 endfunction
-

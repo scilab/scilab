@@ -19,6 +19,8 @@ Obsolete & Removed Functions
 * msd and st_deviation tagged as obsolete (See bug #7593). Will be removed in Scilab 5.5.1.
   Please use stdev instead.
 
+* pcg tagged as obsolete. Will be removed in Scilab 5.5.1.
+  Please use conjgrad instead.
 
 Scilab Bug Fixes
 ================
@@ -88,6 +90,8 @@ Scilab Bug Fixes
                      input matrix defined by the two first input arguments.
 
 * Bug #10273 fixed - spchol help page now displays an example showing how to use its output arguments.
+
+* Bug #11007, #11008 & #11009 fixed - New function conjgrad (Conjugate Gradient methods "pcg", "cgs", "bicg" and "bicgstab").
 
 * Bug #11571 fixed - x_mdialog did not let the Look&Feel select the window size.
 
@@ -404,8 +408,6 @@ Obsolete & Removed Functions
   opened with file instead.
 
 * milk_drop tagged as obsolete. Will be removed in Scilab 5.5.1.
-
-* st_deviation and msd tagged as obsolete, please use stdev intead. Will be removed in Scilab 5.5.1.
 
 
 Scilab Bug Fixes

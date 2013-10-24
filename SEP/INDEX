@@ -111,3 +111,4 @@ SEP #112: variance and variancef can now return the mean of the input in a new o
 SEP #113: resize_matrix hypermatrices support.
 SEP #114: New function jcreatejar.
 SEP #115: New function bode_asymp.
+SEP #116: conjgrad function, to regroup the Conjugate Gradient solvers. pcg obsolete as it is.
