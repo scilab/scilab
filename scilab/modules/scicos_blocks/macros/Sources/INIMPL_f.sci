@@ -40,6 +40,9 @@ function [x,y,typ]=INIMPL_f(job,arg1,arg2)
             [ok,prt,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"),"INIMPL_f");" "; ..
             gettext("Implicit input port");" ";], "Port Number", ..
             list("vec",1), exprs);
+            if ~ok then 
+                break
+            end
             prt=int(prt)
             if prt <= 0 then
                 block_parameter_error(msprintf(gettext("Wrong value for ''Port Number'' parameter: %d."), prt), ..
