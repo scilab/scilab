@@ -194,14 +194,4 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="CompiledSuperBlockcontent_Sigbuilder">
-        <title>Compiled Super Block content</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../help/images/Sigbuilder_img3_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-    </refsection>
 </refentry>

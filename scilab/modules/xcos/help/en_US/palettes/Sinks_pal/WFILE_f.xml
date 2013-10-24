@@ -118,19 +118,32 @@
     <refsection id="Description_WFILE_f">
         <title>Description</title>
         <para>
-            This block is <emphasis role="bold">obsolete</emphasis>. This block allows user to save data in a file with the name defined with the <emphasis role="bold">Output File Name</emphasis> parameter, in text formatted mode or in binary mode.
+            This block is <emphasis role="bold">obsolete</emphasis>, use <link linkend="WRITEC_f">WRITEC_f</link> instead.
+        </para>
+        <para>
+            This block allows user to save data in a file with the name defined with the <emphasis role="bold">Output File Name</emphasis> parameter, in text formatted mode or in binary mode.
         </para>
         <para>
             The file is a sequence of records. Each record has a length <emphasis role="bold">Output Size</emphasis> <literal> + 1 </literal> and the structure shown below:
         </para>
-        <para />
-        <mediaobject><imageobject>
-                <imagedata fileref="../../../images/sinks_pal/en_US/wfile_f_record_en_US.png" align="center" />
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="../../../images/palettes/sinks_pal/en_US/wfile_f_record_en_US.gif"/>
             </imageobject>
+            <textobject>
+                <programlisting role="pic"><![CDATA[
+.PS
+box "Date";
+box "Input 1";
+box "...";
+box "Input (N-1)";
+box "Input N";
+.PE
+                ]]></programlisting>
+            </textobject>
         </mediaobject>
         <para>
-            where the first field is the date of the event received on the activation input of the block during the simulation and other fields the regular input data. Each call to the
-            bloc writes a record in the file.
+            where the first field is the date of the event received on the activation input of the block during the simulation and other fields the regular input data. Each call to the bloc writes a record in the file.
         </para>
         <para>
             The <emphasis role="bold">Output Format</emphasis> parameter gives the record format.

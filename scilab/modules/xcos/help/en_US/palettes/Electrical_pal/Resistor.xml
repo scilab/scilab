@@ -94,45 +94,11 @@
         <title>Description</title>
         <para>
             A resistor is a two-port electrical component that resists an electric
-            current (
-            <emphasis role="bold">
-                <emphasis>I</emphasis>
-            </emphasis>
-            )
-            by producing a voltage drop (
-            <emphasis role="bold">
-                <emphasis>V
-                </emphasis>
-            </emphasis>
-            )between its terminals according to the Ohm's law.
+            current (<literal>I</literal>) by producing a voltage drop (<literal>V</literal>) between its terminals according to the Ohm's law.
         </para>
+        <latex>$$ R = I \over V $$</latex>
         <para>
-        </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/Resistor_img3_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-            The electrical resistance (
-            <emphasis role="bold">
-                <emphasis>R
-                </emphasis>
-            </emphasis>
-            )is equal to the voltage drop across
-            (
-            <emphasis role="bold">
-                <emphasis>V</emphasis>
-            </emphasis>
-            )the resistor divided
-            by the current (
-            <emphasis role="bold">
-                <emphasis>I</emphasis>
-            </emphasis>
-            )
-            through the resistor.
+            The electrical resistance (<literal>R</literal>) is equal to the voltage drop across (<literal>V</literal>) the resistor divided by the current (<literal>I</literal>) through the resistor.
         </para>
     </refsection>
     <refsection id="Dialogbox_Resistor">

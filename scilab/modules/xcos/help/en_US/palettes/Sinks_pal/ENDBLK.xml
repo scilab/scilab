@@ -77,13 +77,6 @@
                     </listitem>
                     <listitem>
                         <para>
-                            <link linkend="ENDBLK">Compiled Super Block
-                                content
-                            </link>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
                             <xref linkend="Seealso_ENDBLK">See also</xref>
                         </para>
                     </listitem>
@@ -116,7 +109,7 @@
         <para>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../images/ENDBLK_gui.gif" valign="middle"/>
+                    <imagedata align="center" fileref="../../../../images/gui/ENDBLK_gui.gif" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
         </para>
@@ -205,16 +198,6 @@
                 <para>SCI/modules/scicos_blocks/macros/Misc/ENDBLK.sci</para>
             </listitem>
         </itemizedlist>
-    </refsection>
-    <refsection id="CompiledSuperBlockcontent_ENDBLK">
-        <title>Compiled Super Block content</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../images/ENDBLK_img3_eng.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
     </refsection>
     <refsection id="Seealso_ENDBLK">
         <title>See also</title>

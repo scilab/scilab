@@ -95,30 +95,11 @@
             )entre ses bornes en accord avec
             la loi d'Ohm.
         </para>
+        <latex>$$ R = I \over V $$</latex>
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/Resistor_img3_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-            La résistance électrique (
-            <emphasis role="bold">
-                <emphasis>V</emphasis>
-            </emphasis>
-            )est égale
-            à la différence de potentiel entre les bornes de la résistance divisée par le courant
-            (
-            <emphasis role="bold">
-                <emphasis>I</emphasis>
-            </emphasis>
-            )traversant la résistance
-            (
-            <emphasis role="bold">
-                <emphasis>R</emphasis>
-            </emphasis>
-            ).
+            La résistance électrique (<literal>R</literal>) est égale
+            à la différence de potentiel entre les bornes (<literal>V</literal>) de la résistance divisée par le courant
+            (<literal>I</literal>) traversant la résistance.
         </para>
     </refsection>
     <refsection id="Dialogbox_Resistor">

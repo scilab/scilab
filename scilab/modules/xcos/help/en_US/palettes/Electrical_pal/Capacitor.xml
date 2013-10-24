@@ -98,15 +98,7 @@
             capacitor with capacitance  and the current  passing through it
             is given by the:
         </para>
-        <para>
-        </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/Capacitor_img5_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <latex>$ I = C \mathrm{d}V \ over \mathrm{d}t $</latex>
         <para>
             Capacitors can also be used to differentiate between high-frequency
             and low-frequency signals and this makes them useful in electronic

@@ -106,7 +106,7 @@
         <para>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../images/DIFF_f_gui.gif" valign="middle"/>
+                    <imagedata align="center" fileref="../../../../images/gui/DIFF_f_gui.gif" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
         </para>

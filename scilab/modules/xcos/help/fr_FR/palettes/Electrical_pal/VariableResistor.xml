@@ -78,22 +78,10 @@
         <title>Description</title>
         <para>
             Ce composant représente une résistance ohmique variable. La résistance
-            (
-            <emphasis role="bold">
-                <emphasis>Rx</emphasis>
-            </emphasis>
-            )est contrôlée
+            (<literal>Rx</literal>) est contrôlée
             par un port explicite.
         </para>
-        <para>
-        </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/VariableResistor_img3_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <latex>$$ R_x = V \over I $$</latex>
     </refsection>
     <refsection id="Defaultproperties_VariableResistor">
         <title>Propriétés par défaut</title>

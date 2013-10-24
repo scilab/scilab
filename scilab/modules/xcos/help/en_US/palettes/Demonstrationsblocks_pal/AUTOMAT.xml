@@ -66,16 +66,6 @@
                             <xref linkend="Defaultproperties_AUTOMAT">Default properties</xref>
                         </para>
                     </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_AUTOMAT">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_AUTOMAT">Computational function</xref>
-                        </para>
-                    </listitem>
                 </itemizedlist>
             </listitem>
         </itemizedlist>
@@ -95,8 +85,7 @@
         <para>
             This block gives the possibility to construct hybrid automata, i.e., a
             hybrid system whose discrete part is defined via modes and transitions
-            between modes, and the continuous part is defined via DAE
-            (differential algebraic equations). 
+            between modes, and the continuous part is defined via DAE (differential algebraic equations). 
         </para>
         <para>
             The automaton block provides a switching mechanism between subsystems
@@ -108,36 +97,20 @@
             subsystems are static functions.
         </para>
         <para>
-            Suppose that a hybrid automaton consists of 
-            <emphasis role="bold">
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata fileref="../../../images/AUTOMAT_img2_eng.gif" align="center" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </emphasis>
+            Suppose that a hybrid automaton consists of <literal>M</literal>
             control
             modes. The continuous-time dynamics in mode  is defined with DAE
-            (
-            ) where 
+            (<latex>$0 = F_i(\dot{x}, x, u)$</latex>
+            ) where <literal>i</literal> is in <literal>[1 .. M]</literal>
             and the dimension
-            of  is  () for any 
-            . Suppose that in
-            control mode , there are  jump conditions indicating jumps
-            toward other modes. The jump conditions are defined by
-            
-            functions where 
-            .
+            of <literal>x</literal> is <literal>N</literal> (<literal>N</literal> ≥ 0) for any <literal>i</literal> in <literal>[1 .. M]</literal>. Suppose that in
+            control mode <literal>i</literal>, there are <latex>$Z_i$</latex> jump conditions indicating jumps toward other modes. The jump conditions are defined by
+            functions <latex>$\mathrm{Jump}_{i,j}(\dot{x}, x, u)$</latex> where 
+            <literal>j</literal> is in <literal>[1 .. </literal><latex>$Z_i$</latex><literal>]</literal>.
         </para>
         <para>
             When a jump function changes sign and becomes positive, a mode
-            transition will happen. When  transition function becomes
-            positive, a transition to mode  happens and  state vector  is reset
-            to 
-            ,  
-            
-            for 
-            .
+            transition will happen. When <literal>k</literal>-th transition function becomes positive, a transition to mode <literal>k</literal> happens and state vector <literal>x</literal> is reset to : <latex>$\mathrm{Reset}_{k}(\dot{x}, x, u)$</latex> for i.e., <latex>$x_l = \mathrm{Reset}_{k,l}(\dot{x}, x, u) \mathrm{for} l \in \{1...N\} $</latex>.
         </para>
         <para>
             In order to develop an automaton containing a mode with multiple
@@ -148,174 +121,49 @@
         <para>
             The automaton block has the following input/output ports.
         </para>
-        <para>
-            
-        </para>
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">Output 1:</emphasis> The first output port is a vector of size two consisting of the current and the previous active control modes, i.e., 
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../images/AUTOMAT_img17_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    . 
+                    <emphasis role="bold">Output 1:</emphasis> The first output port is a vector of size two consisting of the current and the previous active control modes, i.e., <latex>$\mathrm{out}_1 = [\mathrm{current mode}, \mathrm{previous mode}]^t$</latex>. 
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Output 2:</emphasis> The second output port is a vector of size
-                    <emphasis role="bold">
-                        <inlinemediaobject>
-                            <imageobject>
-                                <imagedata fileref="../../../images/AUTOMAT_img18_eng.gif" align="center" valign="middle"/>
-                            </imageobject>
-                        </inlinemediaobject>
-                    </emphasis>
-                    providing the state vector and its first time derivative,  
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../images/AUTOMAT_img19_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    . 
+                    <emphasis role="bold">Output 2:</emphasis> The second output port is a vector of size <literal>2N</literal> providing the state vector and its first time derivative, <latex>$[x,\dot{x}]^t$</latex>. 
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Inputs:</emphasis> The automaton block has
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../images/AUTOMAT_img2_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    vector input ports corresponding to
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../images/AUTOMAT_img2_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    modes or subsystems of the automaton. Each input defines the dynamic behavior in the control each mode as well as the reset functions and the transition functions. The input port
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../images/AUTOMAT_img3_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    which is the output of the
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../images/AUTOMAT_img20_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    subsystem is a vector of size
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../images/AUTOMAT_img21_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    . Each input is composed of the following vector.
-                    
-                    
-                    
-                    
+                    <emphasis role="bold">Inputs:</emphasis> The automaton block has <literal>M</literal> vector input ports corresponding to <literal>M</literal> modes or subsystems of the automaton. Each input defines the dynamic behavior in the control each mode as well as the reset functions and the transition functions. The input port <literal>i</literal> which is the output of the <literal>i</literal>-th subsystem is a vector of size <literal>2N+</literal><latex>$Z_i$</latex>. Each input is composed of the following vector.
                 </para>
+                <latex>$$
+                    \mathrm{Input}_i = [F_i(\dot{x}, x, u), \mathrm{Reset}_i(\dot{x}, x, u), \mathrm{Jump}_i(\dot{x}, x, u)] ^ t
+                    $$
+                </latex>
                 <itemizedlist>
                     <listitem>
                         <para>
-                            The first 
-                            <inlinemediaobject>
-                                <imageobject>
-                                    <imagedata fileref="../../../images/AUTOMAT_img7_eng.gif" align="center" valign="middle"/>
-                                </imageobject>
-                            </inlinemediaobject>
-                            elements of the 
-                            <inlinemediaobject>
-                                <imageobject>
-                                    <imagedata fileref="../../../images/AUTOMAT_img23_eng.gif" align="center" valign="middle"/>
-                                </imageobject>
-                            </inlinemediaobject>
-                            are the continuous-time
-                            dynamics.  The dynamics of the system in the control mode 
-                            <inlinemediaobject>
-                                <imageobject>
-                                    <imagedata fileref="../../../images/AUTOMAT_img3_eng.gif" align="center" valign="middle"/>
-                                </imageobject>
-                            </inlinemediaobject>
-                            is
-                            described by a smooth index-1 DAE ( 
-                            <inlinemediaobject>
-                                <imageobject>
-                                    <imagedata fileref="../../../images/AUTOMAT_img24_eng.gif" align="center" valign="middle"/>
-                                </imageobject>
-                            </inlinemediaobject>
-                            ).
+                            The first <literal>N</literal> elements of the <literal>Input_i</literal> are the continuous-time dynamics.  The dynamics of the system in the control mode <literal>i</literal> is described by a smooth index-1 DAE <latex>$0 = F_i(\dot{x}, x, u, t)$</latex>.
                             
                             
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                            The next 
-                            <inlinemediaobject>
-                                <imageobject>
-                                    <imagedata fileref="../../../images/AUTOMAT_img7_eng.gif" align="center" valign="middle"/>
-                                </imageobject>
-                            </inlinemediaobject>
-                            elements of 
-                            <inlinemediaobject>
-                                <imageobject>
-                                    <imagedata fileref="../../../images/AUTOMAT_img23_eng.gif" align="center" valign="middle"/>
-                                </imageobject>
-                            </inlinemediaobject>
-                            are the values used to
+                            The next <literal>N</literal> elements of <literal>Input_i</literal> are the values used to
                             reset the continuous-time state when a transition to 
-                            control mode 
-                            <inlinemediaobject>
-                                <imageobject>
-                                    <imagedata fileref="../../../images/AUTOMAT_img3_eng.gif" align="center" valign="middle"/>
-                                </imageobject>
-                            </inlinemediaobject>
+                            control mode <literal>i</literal>
                             is activated.
-                            
-                            
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                            The next 
-                            <inlinemediaobject>
-                                <imageobject>
-                                    <imagedata fileref="../../../images/AUTOMAT_img9_eng.gif" align="center" valign="middle"/>
-                                </imageobject>
-                            </inlinemediaobject>
-                            elements of 
-                            <inlinemediaobject>
-                                <imageobject>
-                                    <imagedata fileref="../../../images/AUTOMAT_img23_eng.gif" align="center" valign="middle"/>
-                                </imageobject>
-                            </inlinemediaobject>
-                            are the jump or
-                            zero-crossing functions. If the 
-                            <inlinemediaobject>
-                                <imageobject>
-                                    <imagedata fileref="../../../images/AUTOMAT_img25_eng.gif" align="center" valign="middle"/>
-                                </imageobject>
-                            </inlinemediaobject>
+                            The next <literal>Z_i</literal> elements of <literal>Input_i</literal> are the jump or
+                            zero-crossing functions. If the <literal>j</literal>-th
                             zero-crossing function of
-                            mode 
-                            <inlinemediaobject>
-                                <imageobject>
-                                    <imagedata fileref="../../../images/AUTOMAT_img3_eng.gif" align="center" valign="middle"/>
-                                </imageobject>
-                            </inlinemediaobject>
+                            mode <literal>i</literal>
                             crosses zero with negative to positive direction, a
-                            transition to 
-                            <inlinemediaobject>
-                                <imageobject>
-                                    <imagedata fileref="../../../images/AUTOMAT_img25_eng.gif" align="center" valign="middle"/>
-                                </imageobject>
-                            </inlinemediaobject>
+                            transition to <literal>j</literal>-th
                             destination mode happens.
                         </para>
                     </listitem>
@@ -331,14 +179,6 @@
             In the interface window, the number of control modes, the initial
             control mode and the initial value of continuous-time state at the
             beginning of the simulation should be given.
-            
-        </para>
-        <para>
-            Find more documentation and demos about the Automaton block oat
-            www.scicos.org. Interested users are referred to the paper "Modeling
-            Hybrid Automata in Scicos", Masoud Najafi, Ramine Nikoukhah, 2007 IEEE
-            Multi-conference on Systems and Control, Singapore. 
-            
         </para>
     </refsection>
     <refsection id="Dialogbox_AUTOMAT">
@@ -386,19 +226,7 @@
                     <emphasis role="bold">Xproperties of continuous-time states in each Mode</emphasis>
                 </para>
                 <para>
-                    In this field the state types in mode are given. A state in an index 1 DAE can be either differential state or algebraic state. vector is coded in an M*N matrix, where M is the number of modes and N is the number of states. This matrices indicates whether a continuous-time state is algebraic or differential in each control mode. If in the
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../images/AUTOMAT_img20_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    mode,
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../images/AUTOMAT_img25_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    state is differential, the (i,j)-th element of the Xproperty matrix should set to "+1", otherwise it should set to "-1". Xproperty can be given as a 1*N vector if type of states remain the same in all modes.
+                    In this field the state types in mode are given. A state in an index 1 DAE can be either differential state or algebraic state. vector is coded in an M*N matrix, where M is the number of modes and N is the number of states. This matrices indicates whether a continuous-time state is algebraic or differential in each control mode. If in the <literal>i</literal>-th mode,<literal>j</literal>-th state is differential, the <literal>(i,j)</literal>-th element of the Xproperty matrix should set to "+1", otherwise it should set to "-1". Xproperty can be given as a 1*N vector if type of states remain the same in all modes.
                 </para>
                 <para> Properties : Type 'mat' of size [-1,-1]. </para>
             </listitem>
@@ -509,5 +337,14 @@
                 <para> SCI/modules/scicos_blocks/src/c/automat.c (Type 10004)</para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    
+    <refsection>
+        <title>References</title>
+        <simplelist type="vert">
+            <member>"Modeling Hybrid Automata in Scicos", Masoud Najafi, Ramine Nikoukhah, 2007 IEEE.
+                Multi-conference on Systems and Control, Singapore
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

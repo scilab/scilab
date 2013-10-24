@@ -91,7 +91,7 @@
             The Bus Creator block combines a set of signals, i.e., a
             group of signals represented by a single line in a block diagram. It
             allows you to reduce the number of lines required to route signals
-            from one part of a diagram to another. This makes your easier to
+            from one part of a diagram to another. This makes your diagram easier to
             understand.  
             
         </para>
@@ -159,15 +159,5 @@
                 <para> SCI/modules/scicos_blocks/macros/Events/ANDBLK.sci</para>
             </listitem>
         </itemizedlist>
-    </refsection>
-    <refsection id="CompiledSuperBlockcontent_ANDBLK">
-        <title>Compiled Super Block content</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/ANDBLK_img2_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
     </refsection>
 </refentry>

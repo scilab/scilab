@@ -100,7 +100,7 @@
             Ce bloc décale les bits du signal d'entrée. Dans cette opération les chiffres sont
             déplacés vers la droite ou la gauche. L'utilisateur peut choisir la méthode de
             décalage qui peut être normale ou cyclique en plaçant le paramètre
-            <emphasis role="bold">Shift Type</emphasis> à 0 ou 1.
+            <emphasis role="bold">Shift Type</emphasis> à <literal>0</literal> ou <literal>1</literal>.
             Le nombre et la direction des décalages sont réglés avec le paramètre
             <emphasis role="bold">Number of Bits to Shift Left</emphasis>.
             Si ce nombre est positif l'entrée est décalée à gauche, sinon elle est décalée à droite.
@@ -113,24 +113,23 @@
                 <para>
                     <emphasis role="bold">0</emphasis> : un décalage arithmétique est appliqué au signal d'entrée.
                     Dans ce cas, les bits qui sont sortis à l'une ou l'autre extrémité sont perdus. Des zéros sont
-                    insérés à droite, dans le cas d'un décalage à gauche;dans le cas d'un décalage à droite, des
+                    insérés à droite, dans le cas d'un décalage à gauche ; dans le cas d'un décalage à droite, des
                     copies du bit de signe sont insérées à gauche.
                 </para>
                 <para>
                     Par exemple un décalage arithmétique à droite de 1 bit donne : 
                     <inlinemediaobject>
                         <imageobject>
-                            <imagedata fileref="../../../images/integer_pal/fr_FR/shift_arithmetic_right_fr_FR.png"/>
+                            <imagedata fileref="../../../images/palettes/integer_pal/shift_arithmetic_right.gif"/>
                         </imageobject>
                     </inlinemediaobject>
                     et un décalage arithmétique à gauche donne :
                     <inlinemediaobject>
                         <imageobject>
-                            <imagedata fileref="../../../images/integer_pal/fr_FR/shift_arithmetic_left_fr_FR.png"/>
+                            <imagedata fileref="../../../images/palettes/integer_pal/shift_arithmetic_left.gif"/>
                         </imageobject>
                     </inlinemediaobject>
                 </para>
-                <para/>
             </listitem>
             <listitem>
                 <para>
@@ -143,13 +142,13 @@
                     Par exemple une rotation à droite de 1 bit donne : 
                     <inlinemediaobject>
                         <imageobject>
-                            <imagedata fileref="../../../images/integer_pal/fr_FR/shift_rotate_right_fr_FR.png"/>
+                            <imagedata fileref="../../../images/palettes/integer_pal/shift_rotate_right.gif"/>
                         </imageobject>
                     </inlinemediaobject>
                     et une rotation à gauche : 
                     <inlinemediaobject>
                         <imageobject>
-                            <imagedata fileref="../../../images/integer_pal/fr_FR/shift_rotate_left_fr_FR.png"/>
+                            <imagedata fileref="../../../images/palettes/integer_pal/shift_rotate_left.gif"/>
                         </imageobject>
                     </inlinemediaobject>
                 </para>

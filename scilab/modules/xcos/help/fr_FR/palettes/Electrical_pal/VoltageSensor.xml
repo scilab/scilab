@@ -79,17 +79,9 @@
         <para>
             Ce composant est utilisé pour mesurer la différence de tension entre deux noeuds
             d'un circuit électrique. Le signal de sortie est la différence entre les tensions
-            du port noir et du port blanc.
+            du port noir et du port blanc :
         </para>
-        <para>
-        </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/VoltageSensor_img2_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <latex scilab:localized="true">$$ V_{sortie} = V_{noir} - V_{blanc} $$</latex>
         <para>
             La conductance interne de ce bloc est nulle.
         </para>

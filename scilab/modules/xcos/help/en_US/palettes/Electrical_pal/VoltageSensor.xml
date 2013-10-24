@@ -90,20 +90,11 @@
         <para>
             This component is used to measure the voltage difference between two
             nodes in an electrical circuit. The output signal is the difference
-            between the voltages of the black port and the white port, ,
+            between the voltages of the black port and the white port, ie. ,
         </para>
-        <para>
-        </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/VoltageSensor_img2_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <latex>$$ V_{output} = V_{black} - V_{white} $$</latex>
         <para>
             The ohmic conductance of this block is zero.
-            
         </para>
     </refsection>
     <refsection id="Defaultproperties_VoltageSensor">

@@ -86,15 +86,9 @@
             La relation entre la tension aux bornes de l'inductance et le courant la traversant
             est donnée par :
         </para>
-        <para>
-        </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/Inductor_img5_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <latex><![CDATA[$$
+        v = L \times \frac{\mathrm d I}{\mathrm d t}
+        $$]]></latex>
         <para>
             Les inductances peuvent aussi être utilisées pour discriminer les signaux de haute et basse fréquences,
             ce qui les rend utiles dans les filtres électroniques. Une inductance a une grande impédance pour

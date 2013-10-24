@@ -80,13 +80,9 @@
             Ce bloc calcule le cosinus des éléments du vecteur d'entrée.
         </para>
         <para>
-        </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/COSBLK_f_img2_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
+            <link linkend="cos">
+                <latex>$y = \cos(u)$</latex>
+            </link>
         </para>
     </refsection>
     <refsection id="Defaultproperties_COSBLK_f">

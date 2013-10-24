@@ -119,12 +119,7 @@
                     <emphasis role="bold">Number of output ports or vector of sizes</emphasis>
                 </para>
                 <para>
-                    positive integer less than or equal to
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../../help/images/DEMUX_img5_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
+                    positive integer less than or equal to <literal>8</literal>
                     .
                 </para>
                 <para> Properties : Type 'vec' of size -1</para>

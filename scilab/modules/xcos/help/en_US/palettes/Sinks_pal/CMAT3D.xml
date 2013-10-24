@@ -136,13 +136,7 @@
                 </para>
                 <para> The colormap is a range color linked to the window output of the scope. You can put a jetcolormap or hotcolormap or graycolormap or your own (see colormap help).</para>
                 <para>
-                    Properties : Must be a mx3 matrix and m
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../../help/images/CMAT3D_img3_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    = 3 
+                    Properties : Must be a mx3 matrix and m ≥ 3 
                 </para>
             </listitem>
             <listitem>

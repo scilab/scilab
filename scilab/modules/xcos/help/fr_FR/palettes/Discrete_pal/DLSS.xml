@@ -105,12 +105,7 @@
                     <emphasis role="bold">A matrix</emphasis>
                 </para>
                 <para>
-                    La matrice carrée 
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../images/DLSS_img5_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
+                    La matrice carrée <latex>$A$</latex>
                 </para>
                 <para> Propriétés : Type 'mat' de taille [-1,-1]. </para>
             </listitem>
@@ -119,12 +114,7 @@
                     <emphasis role="bold">B matrix</emphasis>
                 </para>
                 <para>
-                    La matrice 
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../images/DLSS_img6_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
+                    La matrice <latex>$B$</latex>
                     ,[] si le système n'a pas d'entrées.
                 </para>
                 <para> Propriétés : Type 'mat' de taille ["size(%1,2)","-1"]. </para>
@@ -134,12 +124,7 @@
                     <emphasis role="bold">C matrix</emphasis>
                 </para>
                 <para>
-                    La matrice 
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../images/DLSS_img7_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
+                    La matrice <latex>$C$</latex>
                     ,[] si le système n'a pas de sorties.
                 </para>
                 <para> Propriétés : Type 'mat' de taille ["-1","size(%1,2)"]. </para>
@@ -149,12 +134,7 @@
                     <emphasis role="bold">D matrix</emphasis>
                 </para>
                 <para>
-                    La matrice 
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../images/DLSS_img8_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
+                    La matrice <latex>$D$</latex>
                     matrix, [] si le système n'a pas de terme D.
                 </para>
                 <para> Propriétés : Type 'mat' de taille [-1,-1]. </para>

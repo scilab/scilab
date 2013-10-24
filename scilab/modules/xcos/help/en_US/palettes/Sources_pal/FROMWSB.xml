@@ -143,81 +143,45 @@
                     <listitem>
                         <para>
                             <emphasis role="bold">0: "Zero order method"</emphasis>.
-                            This method generates a piecewise constant signal. i.e., for
-                            <inlinemediaobject>
-                                <imageobject>
-                                    <imagedata align="center" fileref="../../../../help/images/FROMWSB_img3_eng.gif" valign="middle"/>
-                                </imageobject>
-                            </inlinemediaobject>
-                            ,
-                            <inlinemediaobject>
-                                <imageobject>
-                                    <imagedata align="center" fileref="../../../../help/images/FROMWSB_img4_eng.gif" valign="middle"/>
-                                </imageobject>
-                            </inlinemediaobject>
-                            .This method is available for all data
-                            types.
+                            This method generates a piecewise constant signal. i.e., for <latex><![CDATA[$t_i \leq t < t_{i+1} $]]></latex>, <latex><![CDATA[$y(t) = y_i$]]></latex>. This method is available for all data types.
                         </para>
                     </listitem>
                     <listitem>
                         <para>
                             <emphasis role="bold">1: "Linear method"</emphasis>. This
-                            method generates a piecewise linear signal, i.e., for
-                            <inlinemediaobject>
-                                <imageobject>
-                                    <imagedata align="center" fileref="../../../../help/images/FROMWSB_img5_eng.gif" valign="middle"/>
-                                </imageobject>
-                            </inlinemediaobject>
-                            ,
-                            <inlinemediaobject>
-                                <imageobject>
-                                    <imagedata align="center" fileref="../../../../help/images/FROMWSB_img6_eng.gif" valign="middle"/>
-                                </imageobject>
-                            </inlinemediaobject>
-                            .For data types other than double and
-                            complex, the linear interpolation can be used, but the final
-                            output will be computed by casting interpolation result into the
-                            original data type.
+                            method generates a piecewise linear signal, i.e., for <latex><![CDATA[$t_i \leq t < t_{i+1} $]]></latex>, <latex><![CDATA[$y(t) = y_i + (t - t_i) \times {y_{i+1} - y_i} over {t_{i+1} - t_i}$]]></latex>. For data types other than double and complex, the linear interpolation can be used, but the final output will be computed by casting interpolation result into the original data type.
                         </para>
                     </listitem>
                     <listitem>
                         <para>
                             <emphasis role="bold">2:"NATURAL method"</emphasis>. This
                             cubic spline is computed by using the following conditions
-                            (considering 
-                            <inlinemediaobject>
-                                <imageobject>
-                                    <imagedata align="center" fileref="../../../../help/images/FROMWSB_img7_eng.gif" valign="middle"/>
-                                </imageobject>
-                            </inlinemediaobject>
-                            points 
-                            <inlinemediaobject>
-                                <imageobject>
-                                    <imagedata align="center" fileref="../../../../help/images/FROMWSB_img8_eng.gif" valign="middle"/>
-                                </imageobject>
-                            </inlinemediaobject>
-                            ): . This method is only available for Real
-                            and complex data types.
+                            (considering <literal>n</literal> points <literal>x_1, ..., x_n</literal>):
+                        </para>
+                        <latex>
+                            $$
+                            S^(2) (x_1) = 0
+                            \vdots
+                            S^(2) (x_n) = 0
+                            $$
+                        </latex>
+                        <para>This method is only available for Real and complex data types.
                         </para>
                     </listitem>
                     <listitem>
                         <para>
                             <emphasis role="bold">3:"NOT_A_KNOT method"</emphasis>. The
                             cubic spline is computed by using the following conditions
-                            (considering 
-                            <inlinemediaobject>
-                                <imageobject>
-                                    <imagedata align="center" fileref="../../../../help/images/FROMWSB_img7_eng.gif" valign="middle"/>
-                                </imageobject>
-                            </inlinemediaobject>
-                            points 
-                            <inlinemediaobject>
-                                <imageobject>
-                                    <imagedata align="center" fileref="../../../../help/images/FROMWSB_img8_eng.gif" valign="middle"/>
-                                </imageobject>
-                            </inlinemediaobject>
-                            ): . This method is only available for Real
-                            and complex data types.
+                            (considering <literal>n</literal> points <literal>x_1, ..., x_n</literal>) :
+                        </para>
+                        <latex>
+                            $$
+                            S^(3) (x_2^-) = S^(3) (x_2^+)
+                            \vdots
+                            S^(3) (x_{n-1}^-) = S^(3) (x_{n-1}^+)
+                            $$
+                        </latex>
+                        <para>This method is only available for Real and complex data types.
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -235,19 +199,7 @@
                     output of the block affects data used by the numerical solver, at
                     discontinuous points, a discrete event is generated and the numerical
                     solver is cold restarted. The discrete event is also generated at
-                    the
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata align="center" fileref="../../../../help/images/FROMWSB_img13_eng.gif" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    and
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata align="center" fileref="../../../../help/images/FROMWSB_img14_eng.gif" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    for other interpolating methods.
+                    the <literal>t_1</literal> and <literal>t_n</literal> for other interpolating methods.
                 </para>
             </listitem>
             <listitem>
@@ -363,16 +315,6 @@
                 <para>SCI/modules/scicos_blocks/macros/Sources/FROMWSB.sci</para>
             </listitem>
         </itemizedlist>
-    </refsection>
-    <refsection id="CompiledSuperBlockcontent_FROMWSB">
-        <title>Compiled Super Block content</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../help/images/FROMWSB_img15_eng.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
     </refsection>
     <refsection id="Seealso_FROMWSB">
         <title>See also</title>

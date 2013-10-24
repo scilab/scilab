@@ -89,13 +89,9 @@
         <title>Description</title>
         <para>That block computes the cosine of the elements of the input vector.</para>
         <para>
-        </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/COSBLK_f_img2_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
+            <link linkend="cos">
+                <latex>$y = \cos(u)$</latex>
+            </link>
         </para>
     </refsection>
     <refsection id="Defaultproperties_COSBLK_f">
