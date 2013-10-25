@@ -32,6 +32,10 @@ function sd = stdev(x, o, m)
 
     [lhs, rhs] = argn(0);
 
+    if rhs < 1 then
+        error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),"stdev",1,3));
+    end
+
     if rhs < 2 then
         o = "*"
         on = 0
