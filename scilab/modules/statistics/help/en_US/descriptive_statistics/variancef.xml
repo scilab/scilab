@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -17,9 +17,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>s=variancef(x,fre)
-            [s,m]=variancef(x,fre,'r') or s=variancef(x,fre,1)
-            [s,m]=variancef(x,fre,'c') or s=variancef(x,fre,2)
+        <synopsis>s = variancef(x, fre [,orien [,m]])
+            [s, m] = variancef(x, fre, 'r') or s = variancef(x, fre, 1)
+            [s, m] = variancef(x, fre, 'c') or s = variancef(x, fre, 2)
+            [s, m] = variancef(x, fre, 'r', m) or s = variancef(x, fre, m)
+            [s, m] = variancef(x, fre, 'c', m) or s = variancef(x, fre, m)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -29,6 +31,12 @@
                 <term>x</term>
                 <listitem>
                     <para>real or complex vector or matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>real or complex vector or matrix. The a priori weighted mean, to simplify computations</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -69,15 +77,30 @@
             The second output argument <literal>m</literal> is the mean of the input,
             with respect to the <literal>orien</literal> parameter.
         </para>
+        <para>
+            If the weighted mean of <literal>x</literal> is known, then it can be passed to <literal>variancef</literal> to simplify its computations.
+        </para>
+        <para>
+            <note>
+                If <code>m=%nan</code>, then the biased variance is returned:
+                that is, the chosen a priori mean is that of <varname>x</varname> and the denominator is <code>size(x,"*")</code>.
+            </note>
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x = [0.2113249 0.0002211 0.6653811; 0.7560439 0.9546254 0.6283918]
 fre = [1 2 3; 3 4 3]
 [s, m] = variancef(x, fre)
 [s, m] = variancef(x, fre, "r")
 [s, m] = variancef(x, fre, "c")
+
+// If the weighted mean is known
+m_r = meanf(x, fre, "r");
+m_c = meanf(x, fre, "c");
+[s, m] = variancef(x, fre, "r", mean_r)
+[s, m] = variancef(x, fre, "c", mean_c)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -96,5 +119,15 @@ fre = [1 2 3; 3 4 3]
         <para>
             Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
         </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>variancef(x,fre,orien,***) introduced. Variancef can now take the a priori mean if it is known, not to compute it internally.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

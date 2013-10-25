@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
  * Copyright (C) 2013 - Samuel GOUGEON
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -18,12 +18,13 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>s = variance(x [,orien [,w]])
-            [s,m] = variance(x,'r') or s = variance(x,1)
-            [s,m] = variance(x,'c') or s = variance(x,2)
-            [s,m] = variance(x,'*',1)
-            [s,m] = variance(x,'r',1)
-            [s,m] = variance(x,'c',1)
+        <synopsis>
+            s = variance(x [,orien [,m]])
+            [s, m] = variance(x, 'r') or s = variance(x, 1)
+            [s, m] = variance(x, 'c') or s = variance(x, 2)
+            [s, m] = variance(x, '*', m)
+            [s, m] = variance(x, 'r', m)
+            [s, m] = variance(x, 'c', m)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -52,18 +53,12 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>w</term>
+                <term>m</term>
                 <listitem>
-                    <para>w : type of normalization to use. Valid values are 
-                        <itemizedlist>
-                            <listitem>0 : provides the best unbiased estimator of the variance when the mean is not known a priori. This is the default.
-                                The sum is normalized by 1/(nE-1), where nE is the number of summed elements 
-                                (the number of rows nR if "r" is used; of columns nC if "c" is used; or by default nC*nR)
-                            </listitem>
-                            <listitem>1 : provides the second moment around the mean. The sum is normalized by 1/nE.
-                                This estimation is unbiased only if the mean is known a priori.
-                            </listitem>
-                        </itemizedlist>
+                    <para>
+                        m: the a priori mean. If it is passed to <literal>variance</literal>, then the sum is normalized by
+                        <literal>n</literal>, the function returns the second moment around the mean.
+                        Otherwise, it is normalized by <literal>n-1</literal> and <literal>variance</literal> provides the best unbiased estimator of the variance.
                     </para>
                 </listitem>
             </varlistentry>
@@ -89,27 +84,35 @@
         <para>
             The second output argument <literal>m</literal> is the mean of the input, with respect to the <literal>orien</literal> parameter.
         </para>
+        <para>
+            <note>
+                If <code>m=%nan</code>, then the biased variance is returned:
+                that is, the chosen a priori mean is that of <varname>x</varname> and the denominator is <code>n</code>.
+            </note>
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-x = [ 0.2113249 0.0002211 0.6653811;0.7560439 0.4453586 0.6283918 ]
+        <programlisting role="example"><![CDATA[
+x = [ 0.2113249 0.0002211 0.6653811; 0.7560439 0.4453586 0.6283918 ]
 s = variance(x)
 s = variance(x, "r")
 s = variance(x, "c")
+// If the a priori mean is known
+m_r = mean(x, "r");
+m_c = mean(x, "c");
+s = variance(x, "r", m_r)
+s = variance(x, "c", m_c)
 
 // with complex numbers
-x = rand(4,3) + rand(4,3)*%i
+x = rand(4, 3) + rand(4, 3)*%i
 s = variance(x)
-s = variance(x, "*", 1)	// should be smaller than the previous one
 s = variance(x, "r")
-s = variance(x, "r", 1)
 s = variance(x, "c")
 
 // with an hypermatrix
-x = rand(3,2,2)
+x = rand(3, 2, 2)
 s = variance(x)
-s = variance(x, "*", 1)	// should be smaller than the previous one
 // s = variance(x, "r")  // is not supported for an hypermatrix
 // s = variance(x, "c")  // is not supported for an hypermatrix
  ]]></programlisting>
@@ -135,6 +138,9 @@ s = variance(x, "*", 1)	// should be smaller than the previous one
         <title>History</title>
         <revhistory>
             <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>variance(x,orien,***) introduced. Variance can now take the a priori mean.
+                </revdescription>
                 <revnumber>5.4.1</revnumber>
                 <revdescription>variance(complexes) fixed. variance(x,"*",1) introduced. Vectorization of the code for directional usages variance(x,"r"|"c"). Full revision of the help page
                 </revdescription>

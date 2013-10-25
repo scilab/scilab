@@ -35,7 +35,7 @@ Scilab Bug Fixes
                     "dimension", "minbounds" and "maxbounds" fields.
 
 * Bug #7858 fixed - variance and variancef can now return the mean of the input
-                    in a new output argument.
+                    in a new output argument and take the a priori mean as input.
 
 * Bug #7879 fixed - string now accepts plist type, and printing a plist displays that string.
 

@@ -24,3 +24,25 @@ refM = [0.367985066667; 0.79718087];
 refV = [0.049647428728; 0.006107864498];
 [v, m] = variancef(x, fre, "c");
 assert_checkalmostequal([v m], [refV refM]);
+
+// With the a priori mean
+refM = 0.63623244375;
+refV = 0.090053830785;
+[v, m] = variancef(x, fre, "*", meanf(x,fre));
+assert_checkalmostequal([v m], [refV refM]);
+
+refM = [0.61986415 0.636490633333 0.64688645];
+refV = [0.35977704 0.23985136 0.23985136];
+[v, m] = variancef(x, fre, "r", meanf(x,fre,"r"));
+assert_checkalmostequal([v m], [refV refM]);
+
+refM = [0.367985066667; 0.79718087];
+refV = [0.041372857273; 0.005497078047];
+[v, m] = variancef(x, fre, "c", meanf(x,fre,"c"));
+assert_checkalmostequal([v m], [refV refM]);
+
+// Biased variance
+refM = 0.63623244375;
+refV = 0.090053830785;
+[v, m] = variancef(x, fre, "*", %nan);
+assert_checkalmostequal([v m], [refV refM]);
