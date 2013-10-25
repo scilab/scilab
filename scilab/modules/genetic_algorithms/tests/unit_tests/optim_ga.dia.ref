@@ -51,15 +51,15 @@ ga_params = add_param(ga_params, "pressure", pressure);
 optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
 optim_ga: Initialization of the population
 optim_ga: iteration 1 / 10 - min / max value found = 0.001391 / 0.995046
-optim_ga: iteration 2 / 10 - min / max value found = 0.000341 / 0.177816
-optim_ga: iteration 3 / 10 - min / max value found = 0.000133 / 0.044825
-optim_ga: iteration 4 / 10 - min / max value found = 0.000002 / 0.010889
-optim_ga: iteration 5 / 10 - min / max value found = 0.000002 / 0.001507
-optim_ga: iteration 6 / 10 - min / max value found = 0.000002 / 0.000310
-optim_ga: iteration 7 / 10 - min / max value found = 0.000001 / 0.000089
-optim_ga: iteration 8 / 10 - min / max value found = 0.000000 / 0.000014
-optim_ga: iteration 9 / 10 - min / max value found = 0.000000 / 0.000003
-optim_ga: iteration 10 / 10 - min / max value found = 0.000000 / 0.000001
+optim_ga: iteration 2 / 10 - min / max value found = 0.000206 / 0.191417
+optim_ga: iteration 3 / 10 - min / max value found = 0.000126 / 0.048784
+optim_ga: iteration 4 / 10 - min / max value found = 0.000118 / 0.011398
+optim_ga: iteration 5 / 10 - min / max value found = 0.000046 / 0.001167
+optim_ga: iteration 6 / 10 - min / max value found = 0.000034 / 0.000284
+optim_ga: iteration 7 / 10 - min / max value found = 0.000004 / 0.000114
+optim_ga: iteration 8 / 10 - min / max value found = 0.000001 / 0.000036
+optim_ga: iteration 9 / 10 - min / max value found = 0.000000 / 0.000010
+optim_ga: iteration 10 / 10 - min / max value found = 0.000000 / 0.000003
 assert_checkequal(length(pop_opt), length(pop_init));
 assert_checkequal(size(fobj_pop_opt), size(fobj_pop_init));
 // Customizing the init function, which computes the initial population.
@@ -94,15 +94,15 @@ optim_ga: Initialization of the population
  
  Initializing the Population with grand   
 optim_ga: iteration 1 / 10 - min / max value found = 0.010016 / 0.928237
-optim_ga: iteration 2 / 10 - min / max value found = 0.001402 / 0.198423
-optim_ga: iteration 3 / 10 - min / max value found = 0.000809 / 0.045008
-optim_ga: iteration 4 / 10 - min / max value found = 0.000053 / 0.013969
-optim_ga: iteration 5 / 10 - min / max value found = 0.000053 / 0.003974
-optim_ga: iteration 6 / 10 - min / max value found = 0.000040 / 0.000922
-optim_ga: iteration 7 / 10 - min / max value found = 0.000005 / 0.000240
-optim_ga: iteration 8 / 10 - min / max value found = 0.000001 / 0.000057
-optim_ga: iteration 9 / 10 - min / max value found = 0.000000 / 0.000020
-optim_ga: iteration 10 / 10 - min / max value found = 0.000000 / 0.000007
+optim_ga: iteration 2 / 10 - min / max value found = 0.006862 / 0.161421
+optim_ga: iteration 3 / 10 - min / max value found = 0.001781 / 0.037628
+optim_ga: iteration 4 / 10 - min / max value found = 0.000544 / 0.011567
+optim_ga: iteration 5 / 10 - min / max value found = 0.000039 / 0.003271
+optim_ga: iteration 6 / 10 - min / max value found = 0.000039 / 0.001117
+optim_ga: iteration 7 / 10 - min / max value found = 0.000005 / 0.000307
+optim_ga: iteration 8 / 10 - min / max value found = 0.000001 / 0.000092
+optim_ga: iteration 9 / 10 - min / max value found = 0.000000 / 0.000034
+optim_ga: iteration 10 / 10 - min / max value found = 0.000000 / 0.000010
 assert_checkequal(length(pop_opt), length(pop_init));
 assert_checkequal(size(fobj_pop_opt), size(fobj_pop_init));
 // Passing a list to the optim_ga function, where the first element of the list is
@@ -123,14 +123,14 @@ myobjfun = list(f, a1, a2);
 [pop_opt, fobj_pop_opt] = optim_ga(myobjfun, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
 optim_ga: Initialization of the population
 optim_ga: iteration 1 / 10 - min / max value found = 7.339791 / 29.150584
-optim_ga: iteration 2 / 10 - min / max value found = 7.054037 / 12.127766
-optim_ga: iteration 3 / 10 - min / max value found = 7.048084 / 9.120917
-optim_ga: iteration 4 / 10 - min / max value found = 7.025101 / 7.630176
-optim_ga: iteration 5 / 10 - min / max value found = 7.007453 / 7.191936
-optim_ga: iteration 6 / 10 - min / max value found = 7.005699 / 7.054037
-optim_ga: iteration 7 / 10 - min / max value found = 7.000896 / 7.020325
-optim_ga: iteration 8 / 10 - min / max value found = 7.000375 / 7.007070
-optim_ga: iteration 9 / 10 - min / max value found = 7.000156 / 7.002255
-optim_ga: iteration 10 / 10 - min / max value found = 7.000112 / 7.000828
+optim_ga: iteration 2 / 10 - min / max value found = 7.199192 / 11.923950
+optim_ga: iteration 3 / 10 - min / max value found = 7.199192 / 8.613638
+optim_ga: iteration 4 / 10 - min / max value found = 7.106121 / 7.425043
+optim_ga: iteration 5 / 10 - min / max value found = 7.026332 / 7.199192
+optim_ga: iteration 6 / 10 - min / max value found = 7.002293 / 7.078284
+optim_ga: iteration 7 / 10 - min / max value found = 7.002293 / 7.032606
+optim_ga: iteration 8 / 10 - min / max value found = 7.000564 / 7.012589
+optim_ga: iteration 9 / 10 - min / max value found = 7.000280 / 7.004547
+optim_ga: iteration 10 / 10 - min / max value found = 7.000039 / 7.001819
 assert_checkequal(length(pop_opt), length(pop_init));
 assert_checkequal(size(fobj_pop_opt), size(fobj_pop_init));
