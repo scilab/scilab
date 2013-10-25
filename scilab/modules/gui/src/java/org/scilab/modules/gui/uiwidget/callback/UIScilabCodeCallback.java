@@ -35,13 +35,13 @@ public class UIScilabCodeCallback extends UICallback {
 
     public void exec(final Object ... args) {
         if (component != null) {
-            InterpreterManagement.putCommandInScilabQueue(getStringToEval(component));
+            InterpreterManagement.requestScilabExec(getStringToEval(component));
         }
     }
 
     public void exec(final UIComponent comp, final Object ... args) {
         if (comp != null) {
-            InterpreterManagement.putCommandInScilabQueue(getStringToEval(comp));
+            InterpreterManagement.requestScilabExec(getStringToEval(comp));
         }
     }
 }
