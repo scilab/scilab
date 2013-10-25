@@ -112,7 +112,7 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_nsga(ga_f, pop
         FObj_Pop_Min = min(FObj_Pop);
 
         // Normalization of the efficiency
-        Efficiency = (1 - pressure) * (FObj_Pop - FObj_Pop_Min) / max([FObj_Pop_Max - FObj_Pop_Min %eps]) + pressure;
+        Efficiency = (1 - pressure) * (FObj_Pop_Max - FObj_Pop) / max([FObj_Pop_Max - FObj_Pop_Min %eps]) + pressure;
 
         //
         // Selection

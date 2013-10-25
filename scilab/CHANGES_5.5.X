@@ -78,7 +78,9 @@ Scilab Bug Fixes
 
 * Bug #13012 fixed - Vectorial export of rotated strings was wrong.
 
-* Bug #13014 fixed - Improvement for the optim_ga algorithm: update of the Efficiency inner variable.
+* Bug #13014 fixed - Update of the Efficiency inner variable improved in optim_ga.
+
+* Bug #13015 fixed - Computation of Efficiency innver variable improved in optim_ga.
 
 
 Xcos Bug Fixes
