@@ -49,7 +49,7 @@ public final class GraphicObjectBuilder {
         controller.setProperty(newFID, GraphicObjectProperties.__GO_SELECTED_CHILD__, newAID);
 
         for (Integer type : props) {
-            final double[] position = new double[] {1, 1, 1};
+            final Double[] position = new Double[] {1., 1., 1.};
             Integer modelLabelUID = (Integer) controller.getProperty(axesModelUID, type);
             Integer pobjUID = controller.createUID();
             GraphicModel.getModel().cloneObject(modelLabelUID, pobjUID);
