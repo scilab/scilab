@@ -99,7 +99,8 @@ src/c/getmaxMALLOC.c \
 src/c/sci_mem_alloc.c \
 src/c/hashtable/hashtable.c \
 src/c/hashtable/hashtable_itr.c \
-src/c/hashtable/hashtable_utility.c
+src/c/hashtable/hashtable_utility.c \
+src/c/scimem64.c
 
 CORE_CXX_SOURCES = src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
@@ -107,9 +108,7 @@ src/cpp/search_functions.cpp \
 src/cpp/demangle.cpp \
 src/cpp/backtrace_print.cpp
 
-if USE_DYNAMIC_STACK
-CORE_C_SOURCES += src/c/scimem64.c
-endif
+
 
 CORE_FORTRAN_SOURCES = src/fortran/clunit.f \
 src/fortran/getlin.f \
@@ -194,11 +193,8 @@ src/fortran/itosci.f \
 src/fortran/stackr2d.f \
 src/fortran/stacki2d.f \
 src/fortran/stackc2i.f \
-src/fortran/isinstring.f
-
-if USE_DYNAMIC_STACK
-CORE_FORTRAN_SOURCES += src/fortran/relocstack.f
-endif
+src/fortran/isinstring.f \
+src/fortran/relocstack.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_stacksize.c \
 sci_gateway/c/sci_resume.c \

@@ -24,7 +24,7 @@
 #define LONG_MAX 2147483647L
 #endif
 
-#ifdef USE_DYNAMIC_STACK
+#ifndef _MSC_VER
 #ifndef MAXLONG32
 #define MAXLONG32 2147483647L
 #endif
@@ -87,7 +87,7 @@ unsigned long GetLargestFreeMemoryRegion(void)
 #else
 unsigned long GetLargestFreeMemoryRegion(void)
 {
-#ifdef USE_DYNAMIC_STACK
+#ifndef _MSC_VER
     /* we need to limit values to 32 bits for Scilab :( */
     return MAXLONG32;
 #else
@@ -123,7 +123,7 @@ unsigned long GetLargestFreeMemoryRegion(void)
     }
 
     return largestSize;
-#endif /* #ifdef USE_DYNAMIC_STACK */
+#endif /* #ifdef _MSC_VER (was: USE_DYNAMIC_STACK) */
 }
 #endif
 /*-----------------------------------------------------------------------------------*/

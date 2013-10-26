@@ -105,17 +105,15 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@USE_DYNAMIC_STACK_TRUE@am__append_1 = src/c/scimem64.c
-@USE_DYNAMIC_STACK_TRUE@am__append_2 = src/fortran/relocstack.f
 
 # Used by sci_getdebuginfo:
-@TCLTK_TRUE@am__append_3 = $(TCL_INC_PATH) \
+@TCLTK_TRUE@am__append_1 = $(TCL_INC_PATH) \
 @TCLTK_TRUE@		                  $(TK_INC_PATH)
 
 DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 	$(srcdir)/Makefile.am $(top_srcdir)/config/mkinstalldirs \
 	$(top_srcdir)/config/depcomp $(libscicore_la_include_HEADERS)
-@NEED_JAVA_TRUE@am__append_4 = java
+@NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/core
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
@@ -176,82 +174,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscicore_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscicore_algo_la_LIBADD =
-am__libscicore_algo_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
-	src/c/tmpdir.c src/c/intmacr2tree.c src/c/run.c \
-	src/c/InitScilab.c src/c/getval.c src/c/md5.c src/c/inisci-c.c \
-	src/c/IsAScalar.c src/c/texmacs.c src/c/sciquit.c \
-	src/c/stack1.c src/c/realmain.c src/c/stack3.c src/c/str2sci.c \
-	src/c/getmodules.c src/c/setgetSCIpath.c src/c/getmemory.c \
-	src/c/Funtab.c src/c/csignal.c src/c/callinterf.c \
-	src/c/scimem.c src/c/banier.c src/c/isanan.c src/c/parse.c \
-	src/c/stack2.c src/c/xscion.c src/c/SetScilabEnvironment.c \
-	src/c/returnanan.c src/c/LoadFunctionsTab.c \
-	src/c/with_module.c src/c/loadversion.c src/c/version.c \
-	src/c/stackinfo.c src/c/scirun.c src/c/SCIHOME.c \
-	src/c/warningmode.c src/c/InitializeCore.c \
-	src/c/TerminateCore.c src/c/coretable.c src/c/returnProperty.c \
-	src/c/returnPropertyList.c src/c/scilabmode.c \
-	src/c/GetXmlFileEncoding.c src/c/islittleendian.c \
-	src/c/terme.c src/c/ifexpr.c src/c/expr.c \
-	src/c/getcommandlineargs.c src/c/syncexec.c \
-	src/c/callFunctionFromGateway.c src/c/getvariablesname.c \
-	src/c/commandwords.c src/c/freeArrayOfString.c \
-	src/c/getstaticdebuginfo.c src/c/getdynamicdebuginfo.c \
-	src/c/callDynamicGateway.c src/c/gw_dynamic_generic.c \
-	src/c/dynamic_gateways.c src/c/readGateway.c \
-	src/c/comparehandles.c src/c/setPrecisionFPU.c \
-	src/c/LaunchScilabSignal.c src/c/getos.c src/c/mode_exec.c \
-	src/c/predef.c src/c/transposeMatrix.c \
-	src/c/recursionFunction.c src/c/typename.c \
-	src/c/inittypenames.c src/c/funcprot.c src/c/eqid.c \
-	src/c/exitCodeValue.c src/c/getversion.c \
-	src/c/dynamic_tclsci.c src/c/dynamic_parallel.c \
-	src/c/storeCommand.c src/c/backtrace.c src/c/signal_mgmt.c \
-	src/c/suspendProcess.c src/c/setieee.c src/c/setlines.c \
-	src/c/setformat.c src/c/InitializePreferences.c \
-	src/c/sci_tools.c src/c/getmaxMALLOC.c src/c/sci_mem_alloc.c \
-	src/c/hashtable/hashtable.c src/c/hashtable/hashtable_itr.c \
-	src/c/hashtable/hashtable_utility.c src/c/scimem64.c \
-	src/cpp/hashtable_core.cpp src/cpp/namstr.cpp \
-	src/cpp/search_functions.cpp src/cpp/demangle.cpp \
-	src/cpp/backtrace_print.cpp src/fortran/clunit.f \
-	src/fortran/getlin.f src/fortran/allowptr.f \
-	src/fortran/isany.f src/fortran/hmcreate.f src/fortran/nextj.f \
-	src/fortran/setgetmode.f src/fortran/showstack.f \
-	src/fortran/misops.f src/fortran/setippty.f \
-	src/fortran/compil.f src/fortran/funnam.f src/fortran/cmdstr.f \
-	src/fortran/hndlops.f src/fortran/cmplxt.f \
-	src/fortran/skpins.f src/fortran/folhp.f src/fortran/cvname.f \
-	src/fortran/funs.f src/fortran/fact.f src/fortran/typ2cod.f \
-	src/fortran/prompt.f src/fortran/intstr.f \
-	src/fortran/createref.f src/fortran/btof.f \
-	src/fortran/getnum.f src/fortran/btofm.f src/fortran/getsym.f \
-	src/fortran/findequal.f src/fortran/stackg.f \
-	src/fortran/find.f src/fortran/setlnb.f src/fortran/mrknmd.f \
-	src/fortran/stackgl.f src/fortran/allops.f src/fortran/mname.f \
-	src/fortran/command.f src/fortran/ref2val.f \
-	src/fortran/stack.f src/fortran/isbrk.f src/fortran/xerbla.f \
-	src/fortran/dtosci.f src/fortran/bexec.f \
-	src/fortran/varfunptr.f src/fortran/getfun.f \
-	src/fortran/savlod.f src/fortran/error.f src/fortran/cvdm.f \
-	src/fortran/tradsl.f src/fortran/mkindx.f src/fortran/whatln.f \
-	src/fortran/errmgr.f src/fortran/defmat.f src/fortran/mklist.f \
-	src/fortran/sigbas.f src/fortran/indxg.f src/fortran/istrue.f \
-	src/fortran/inisci.f src/fortran/ptover.f \
-	src/fortran/getfunction.f src/fortran/stackp.f \
-	src/fortran/dbasin.f src/fortran/macro.f src/fortran/extlarg.f \
-	src/fortran/getstr.f src/fortran/cvwm.f \
-	src/fortran/storeglobal.f src/fortran/lst2vars.f \
-	src/fortran/basnms.f src/fortran/ptrback.f src/fortran/getch.f \
-	src/fortran/ftob.f src/fortran/seteol.f src/fortran/basin.f \
-	src/fortran/clause.f src/fortran/compcl.f src/fortran/expsum.f \
-	src/fortran/copyvar.f src/fortran/putid.f src/fortran/itosci.f \
-	src/fortran/stackr2d.f src/fortran/stacki2d.f \
-	src/fortran/stackc2i.f src/fortran/isinstring.f \
-	src/fortran/relocstack.f
-@USE_DYNAMIC_STACK_TRUE@am__objects_1 =  \
-@USE_DYNAMIC_STACK_TRUE@	libscicore_algo_la-scimem64.lo
-am__objects_2 = libscicore_algo_la-inffic.lo \
+am__objects_1 = libscicore_algo_la-inffic.lo \
 	libscicore_algo_la-cs2st.lo libscicore_algo_la-tmpdir.lo \
 	libscicore_algo_la-intmacr2tree.lo libscicore_algo_la-run.lo \
 	libscicore_algo_la-InitScilab.lo libscicore_algo_la-getval.lo \
@@ -322,14 +245,14 @@ am__objects_2 = libscicore_algo_la-inffic.lo \
 	libscicore_algo_la-sci_mem_alloc.lo \
 	libscicore_algo_la-hashtable.lo \
 	libscicore_algo_la-hashtable_itr.lo \
-	libscicore_algo_la-hashtable_utility.lo $(am__objects_1)
-am__objects_3 = libscicore_algo_la-hashtable_core.lo \
+	libscicore_algo_la-hashtable_utility.lo \
+	libscicore_algo_la-scimem64.lo
+am__objects_2 = libscicore_algo_la-hashtable_core.lo \
 	libscicore_algo_la-namstr.lo \
 	libscicore_algo_la-search_functions.lo \
 	libscicore_algo_la-demangle.lo \
 	libscicore_algo_la-backtrace_print.lo
-@USE_DYNAMIC_STACK_TRUE@am__objects_4 = relocstack.lo
-am__objects_5 = clunit.lo getlin.lo allowptr.lo isany.lo hmcreate.lo \
+am__objects_3 = clunit.lo getlin.lo allowptr.lo isany.lo hmcreate.lo \
 	nextj.lo setgetmode.lo showstack.lo misops.lo setippty.lo \
 	compil.lo funnam.lo cmdstr.lo hndlops.lo cmplxt.lo skpins.lo \
 	folhp.lo cvname.lo funs.lo fact.lo typ2cod.lo prompt.lo \
@@ -344,9 +267,9 @@ am__objects_5 = clunit.lo getlin.lo allowptr.lo isany.lo hmcreate.lo \
 	basnms.lo ptrback.lo getch.lo ftob.lo seteol.lo basin.lo \
 	clause.lo compcl.lo expsum.lo copyvar.lo putid.lo itosci.lo \
 	stackr2d.lo stacki2d.lo stackc2i.lo isinstring.lo \
-	$(am__objects_4)
-am_libscicore_algo_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
-	$(am__objects_5)
+	relocstack.lo
+am_libscicore_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
+	$(am__objects_3)
 libscicore_algo_la_OBJECTS = $(am_libscicore_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -355,7 +278,7 @@ am__v_lt_1 =
 @MAINTAINER_MODE_FALSE@am_libscicore_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscicore_algo_la_rpath =
 libscicore_la_DEPENDENCIES = libscicore-algo.la
-am__objects_6 = libscicore_la-sci_stacksize.lo \
+am__objects_4 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_resume.lo libscicore_la-sci_mtlb_mode.lo \
 	libscicore_la-sci_banner.lo libscicore_la-sci_where.lo \
 	libscicore_la-sci_errcatch.lo libscicore_la-sci_getos.lo \
@@ -385,13 +308,13 @@ am__objects_6 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_getvariablesonstack.lo \
 	libscicore_la-sci_readgateway.lo libscicore_la-sci_comp.lo \
 	libscicore_la-sci_exit.lo
-am__objects_7 = sci_f_global.lo sci_f_mtlb_mode.lo sci_f_resume.lo \
+am__objects_5 = sci_f_global.lo sci_f_mtlb_mode.lo sci_f_resume.lo \
 	sci_f_dispbpt.lo sci_f_intppty.lo sci_f_ieee.lo \
 	sci_f_macrovar.lo sci_f_exists.lo sci_f_errcatch.lo \
 	sci_f_argn.lo sci_f_setbpt.lo sci_f_clearglobal.lo \
 	sci_f_delbpt.lo where.lo sci_f_iserror.lo sci_f_comp.lo \
 	sci_f_isglobal.lo
-am_libscicore_la_OBJECTS = $(am__objects_6) $(am__objects_7)
+am_libscicore_la_OBJECTS = $(am__objects_4) $(am__objects_5)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
 libscicore_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=F77 \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(F77LD) \
@@ -467,8 +390,7 @@ am__v_F77LD_ = $(am__v_F77LD_@AM_DEFAULT_V@)
 am__v_F77LD_0 = @echo "  F77LD   " $@;
 am__v_F77LD_1 = 
 SOURCES = $(libscicore_algo_la_SOURCES) $(libscicore_la_SOURCES)
-DIST_SOURCES = $(am__libscicore_algo_la_SOURCES_DIST) \
-	$(libscicore_la_SOURCES)
+DIST_SOURCES = $(libscicore_algo_la_SOURCES) $(libscicore_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -766,83 +688,192 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/tmpdir.c \
-	src/c/intmacr2tree.c src/c/run.c src/c/InitScilab.c \
-	src/c/getval.c src/c/md5.c src/c/inisci-c.c src/c/IsAScalar.c \
-	src/c/texmacs.c src/c/sciquit.c src/c/stack1.c \
-	src/c/realmain.c src/c/stack3.c src/c/str2sci.c \
-	src/c/getmodules.c src/c/setgetSCIpath.c src/c/getmemory.c \
-	src/c/Funtab.c src/c/csignal.c src/c/callinterf.c \
-	src/c/scimem.c src/c/banier.c src/c/isanan.c src/c/parse.c \
-	src/c/stack2.c src/c/xscion.c src/c/SetScilabEnvironment.c \
-	src/c/returnanan.c src/c/LoadFunctionsTab.c \
-	src/c/with_module.c src/c/loadversion.c src/c/version.c \
-	src/c/stackinfo.c src/c/scirun.c src/c/SCIHOME.c \
-	src/c/warningmode.c src/c/InitializeCore.c \
-	src/c/TerminateCore.c src/c/coretable.c src/c/returnProperty.c \
-	src/c/returnPropertyList.c src/c/scilabmode.c \
-	src/c/GetXmlFileEncoding.c src/c/islittleendian.c \
-	src/c/terme.c src/c/ifexpr.c src/c/expr.c \
-	src/c/getcommandlineargs.c src/c/syncexec.c \
-	src/c/callFunctionFromGateway.c src/c/getvariablesname.c \
-	src/c/commandwords.c src/c/freeArrayOfString.c \
-	src/c/getstaticdebuginfo.c src/c/getdynamicdebuginfo.c \
-	src/c/callDynamicGateway.c src/c/gw_dynamic_generic.c \
-	src/c/dynamic_gateways.c src/c/readGateway.c \
-	src/c/comparehandles.c src/c/setPrecisionFPU.c \
-	src/c/LaunchScilabSignal.c src/c/getos.c src/c/mode_exec.c \
-	src/c/predef.c src/c/transposeMatrix.c \
-	src/c/recursionFunction.c src/c/typename.c \
-	src/c/inittypenames.c src/c/funcprot.c src/c/eqid.c \
-	src/c/exitCodeValue.c src/c/getversion.c \
-	src/c/dynamic_tclsci.c src/c/dynamic_parallel.c \
-	src/c/storeCommand.c src/c/backtrace.c src/c/signal_mgmt.c \
-	src/c/suspendProcess.c src/c/setieee.c src/c/setlines.c \
-	src/c/setformat.c src/c/InitializePreferences.c \
-	src/c/sci_tools.c src/c/getmaxMALLOC.c src/c/sci_mem_alloc.c \
-	src/c/hashtable/hashtable.c src/c/hashtable/hashtable_itr.c \
-	src/c/hashtable/hashtable_utility.c $(am__append_1)
+CORE_C_SOURCES = \
+src/c/inffic.c \
+src/c/cs2st.c \
+src/c/tmpdir.c \
+src/c/intmacr2tree.c \
+src/c/run.c \
+src/c/InitScilab.c \
+src/c/getval.c \
+src/c/md5.c \
+src/c/inisci-c.c \
+src/c/IsAScalar.c \
+src/c/texmacs.c \
+src/c/sciquit.c \
+src/c/stack1.c \
+src/c/realmain.c \
+src/c/stack3.c \
+src/c/str2sci.c \
+src/c/getmodules.c \
+src/c/setgetSCIpath.c \
+src/c/getmemory.c \
+src/c/Funtab.c \
+src/c/csignal.c \
+src/c/callinterf.c \
+src/c/scimem.c \
+src/c/banier.c \
+src/c/isanan.c \
+src/c/parse.c \
+src/c/stack2.c \
+src/c/xscion.c \
+src/c/SetScilabEnvironment.c \
+src/c/returnanan.c \
+src/c/LoadFunctionsTab.c \
+src/c/with_module.c \
+src/c/loadversion.c \
+src/c/version.c \
+src/c/stackinfo.c \
+src/c/scirun.c \
+src/c/SCIHOME.c \
+src/c/warningmode.c \
+src/c/InitializeCore.c \
+src/c/TerminateCore.c \
+src/c/coretable.c \
+src/c/returnProperty.c \
+src/c/returnPropertyList.c \
+src/c/scilabmode.c \
+src/c/GetXmlFileEncoding.c \
+src/c/islittleendian.c \
+src/c/terme.c \
+src/c/ifexpr.c \
+src/c/expr.c \
+src/c/getcommandlineargs.c \
+src/c/syncexec.c \
+src/c/callFunctionFromGateway.c \
+src/c/getvariablesname.c \
+src/c/commandwords.c \
+src/c/freeArrayOfString.c \
+src/c/getstaticdebuginfo.c \
+src/c/getdynamicdebuginfo.c \
+src/c/callDynamicGateway.c \
+src/c/gw_dynamic_generic.c \
+src/c/dynamic_gateways.c \
+src/c/readGateway.c \
+src/c/comparehandles.c \
+src/c/setPrecisionFPU.c \
+src/c/LaunchScilabSignal.c \
+src/c/getos.c \
+src/c/mode_exec.c \
+src/c/predef.c \
+src/c/transposeMatrix.c \
+src/c/recursionFunction.c \
+src/c/typename.c \
+src/c/inittypenames.c \
+src/c/funcprot.c \
+src/c/eqid.c \
+src/c/exitCodeValue.c \
+src/c/getversion.c \
+src/c/dynamic_tclsci.c \
+src/c/dynamic_parallel.c \
+src/c/storeCommand.c \
+src/c/backtrace.c \
+src/c/signal_mgmt.c \
+src/c/suspendProcess.c \
+src/c/setieee.c \
+src/c/setlines.c \
+src/c/setformat.c \
+src/c/InitializePreferences.c \
+src/c/sci_tools.c \
+src/c/getmaxMALLOC.c \
+src/c/sci_mem_alloc.c \
+src/c/hashtable/hashtable.c \
+src/c/hashtable/hashtable_itr.c \
+src/c/hashtable/hashtable_utility.c \
+src/c/scimem64.c
+
 CORE_CXX_SOURCES = src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
 src/cpp/search_functions.cpp \
 src/cpp/demangle.cpp \
 src/cpp/backtrace_print.cpp
 
-CORE_FORTRAN_SOURCES = src/fortran/clunit.f src/fortran/getlin.f \
-	src/fortran/allowptr.f src/fortran/isany.f \
-	src/fortran/hmcreate.f src/fortran/nextj.f \
-	src/fortran/setgetmode.f src/fortran/showstack.f \
-	src/fortran/misops.f src/fortran/setippty.f \
-	src/fortran/compil.f src/fortran/funnam.f src/fortran/cmdstr.f \
-	src/fortran/hndlops.f src/fortran/cmplxt.f \
-	src/fortran/skpins.f src/fortran/folhp.f src/fortran/cvname.f \
-	src/fortran/funs.f src/fortran/fact.f src/fortran/typ2cod.f \
-	src/fortran/prompt.f src/fortran/intstr.f \
-	src/fortran/createref.f src/fortran/btof.f \
-	src/fortran/getnum.f src/fortran/btofm.f src/fortran/getsym.f \
-	src/fortran/findequal.f src/fortran/stackg.f \
-	src/fortran/find.f src/fortran/setlnb.f src/fortran/mrknmd.f \
-	src/fortran/stackgl.f src/fortran/allops.f src/fortran/mname.f \
-	src/fortran/command.f src/fortran/ref2val.f \
-	src/fortran/stack.f src/fortran/isbrk.f src/fortran/xerbla.f \
-	src/fortran/dtosci.f src/fortran/bexec.f \
-	src/fortran/varfunptr.f src/fortran/getfun.f \
-	src/fortran/savlod.f src/fortran/error.f src/fortran/cvdm.f \
-	src/fortran/tradsl.f src/fortran/mkindx.f src/fortran/whatln.f \
-	src/fortran/errmgr.f src/fortran/defmat.f src/fortran/mklist.f \
-	src/fortran/sigbas.f src/fortran/indxg.f src/fortran/istrue.f \
-	src/fortran/inisci.f src/fortran/ptover.f \
-	src/fortran/getfunction.f src/fortran/stackp.f \
-	src/fortran/dbasin.f src/fortran/macro.f src/fortran/extlarg.f \
-	src/fortran/getstr.f src/fortran/cvwm.f \
-	src/fortran/storeglobal.f src/fortran/lst2vars.f \
-	src/fortran/basnms.f src/fortran/ptrback.f src/fortran/getch.f \
-	src/fortran/ftob.f src/fortran/seteol.f src/fortran/basin.f \
-	src/fortran/clause.f src/fortran/compcl.f src/fortran/expsum.f \
-	src/fortran/copyvar.f src/fortran/putid.f src/fortran/itosci.f \
-	src/fortran/stackr2d.f src/fortran/stacki2d.f \
-	src/fortran/stackc2i.f src/fortran/isinstring.f \
-	$(am__append_2)
+CORE_FORTRAN_SOURCES = src/fortran/clunit.f \
+src/fortran/getlin.f \
+src/fortran/allowptr.f \
+src/fortran/isany.f \
+src/fortran/hmcreate.f \
+src/fortran/nextj.f \
+src/fortran/setgetmode.f \
+src/fortran/showstack.f \
+src/fortran/misops.f \
+src/fortran/setippty.f \
+src/fortran/compil.f \
+src/fortran/funnam.f \
+src/fortran/cmdstr.f \
+src/fortran/hndlops.f \
+src/fortran/cmplxt.f \
+src/fortran/skpins.f \
+src/fortran/folhp.f \
+src/fortran/cvname.f \
+src/fortran/funs.f \
+src/fortran/fact.f \
+src/fortran/typ2cod.f \
+src/fortran/prompt.f \
+src/fortran/intstr.f \
+src/fortran/createref.f \
+src/fortran/btof.f \
+src/fortran/getnum.f \
+src/fortran/btofm.f \
+src/fortran/getsym.f \
+src/fortran/findequal.f \
+src/fortran/stackg.f \
+src/fortran/find.f \
+src/fortran/setlnb.f \
+src/fortran/mrknmd.f \
+src/fortran/stackgl.f \
+src/fortran/allops.f \
+src/fortran/mname.f \
+src/fortran/command.f \
+src/fortran/ref2val.f \
+src/fortran/stack.f \
+src/fortran/isbrk.f \
+src/fortran/xerbla.f \
+src/fortran/dtosci.f \
+src/fortran/bexec.f \
+src/fortran/varfunptr.f \
+src/fortran/getfun.f \
+src/fortran/savlod.f \
+src/fortran/error.f \
+src/fortran/cvdm.f \
+src/fortran/tradsl.f \
+src/fortran/mkindx.f \
+src/fortran/whatln.f \
+src/fortran/errmgr.f \
+src/fortran/defmat.f \
+src/fortran/mklist.f \
+src/fortran/sigbas.f \
+src/fortran/indxg.f \
+src/fortran/istrue.f \
+src/fortran/inisci.f \
+src/fortran/ptover.f \
+src/fortran/getfunction.f \
+src/fortran/stackp.f \
+src/fortran/dbasin.f \
+src/fortran/macro.f \
+src/fortran/extlarg.f \
+src/fortran/getstr.f \
+src/fortran/cvwm.f \
+src/fortran/storeglobal.f \
+src/fortran/lst2vars.f \
+src/fortran/basnms.f \
+src/fortran/ptrback.f \
+src/fortran/getch.f \
+src/fortran/ftob.f \
+src/fortran/seteol.f \
+src/fortran/basin.f \
+src/fortran/clause.f \
+src/fortran/compcl.f \
+src/fortran/expsum.f \
+src/fortran/copyvar.f \
+src/fortran/putid.f \
+src/fortran/itosci.f \
+src/fortran/stackr2d.f \
+src/fortran/stacki2d.f \
+src/fortran/stackc2i.f \
+src/fortran/isinstring.f \
+src/fortran/relocstack.f
+
 GATEWAY_C_SOURCES = sci_gateway/c/sci_stacksize.c \
 sci_gateway/c/sci_resume.c \
 sci_gateway/c/sci_mtlb_mode.c \
@@ -937,7 +968,7 @@ libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/modules/preferences/includes/ \
 	-I$(top_srcdir)/modules/external_objects/includes/ \
 	-I$(top_srcdir)/modules/functions/includes/ $(XML_FLAGS) \
-	$(AM_CPPFLAGS) $(am__append_3)
+	$(AM_CPPFLAGS) $(am__append_1)
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscicore.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscicore-algo.la libscicore.la
 @MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscicore-algo.la
@@ -1035,7 +1066,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_4)
+TARGETS_ALL = $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro

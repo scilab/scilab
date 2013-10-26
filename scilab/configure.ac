@@ -702,11 +702,9 @@ if test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"; then
    if test $f90compatible = false; then
       AC_MSG_ERROR([64 bits support needs a fortran 90 compiler (try --with-gfortran).])
    fi
-   AC_DEFINE([USE_DYNAMIC_STACK], [], [If we are building a 64 bits version])
 fi
 
 AM_CONDITIONAL(IS_64_BITS_CPU, test $IS_64_BITS_CPU = true)
-AM_CONDITIONAL(USE_DYNAMIC_STACK, test $IS_64_BITS_CPU = true -o "$MACOSX" = "1")
 
 ################
 ## SSE
@@ -1956,23 +1954,6 @@ fi
 
 # This script is used by Xcos in order to regenerate the function/block list
 AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scripts/GenBlocks.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/scicompile.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/compilerDetection.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/configure])
-
-# Generate stack.h
-if test "$IS_64_BITS_CPU" = true -o "$MACOSX" = "1"; then
-   stack_h_cpp_flags=-DUSE_DYNAMIC_STACK
-else
-   stack_h_cpp_flags=
-fi
-
-AC_CONFIG_COMMANDS([modules/core/includes/stack.h],
-  [if ! $CPP $stack_h_cpp_flags - < $srcdir/modules/core/includes/stack.h.in |\
-              $GREP -v '^#' > $srcdir/modules/core/includes/stack.h ; then
-     AC_MSG_ERROR([stack.h generation failed])
-   fi],
-  [CPP="$CPP"
-   GREP="$GREP"
-   stack_h_cpp_flags="$stack_h_cpp_flags"
-  ])
 
 AC_OUTPUT
 
