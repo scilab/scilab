@@ -184,14 +184,14 @@ am__v_lt_1 =
 @BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_la_DEPENDENCIES =  \
 @BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools-algo.la
 am__libscihelptools_la_SOURCES_DIST = sci_gateway/nogui/nogui.c \
-	sci_gateway/c/gw_helptools.c \
-	sci_gateway/cpp/sci_buildDoc.cpp
+	sci_gateway/c/gw_helptools.c sci_gateway/cpp/sci_buildDoc.cpp
 @BUILD_HELP_FALSE@@GUI_TRUE@am__objects_2 =  \
 @BUILD_HELP_FALSE@@GUI_TRUE@	libscihelptools_la-nogui.lo
 @BUILD_HELP_TRUE@@GUI_TRUE@am__objects_2 =  \
 @BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools_la-gw_helptools.lo
 @GUI_FALSE@am__objects_2 = libscihelptools_la-nogui.lo
-@BUILD_HELP_TRUE@@GUI_TRUE@am__objects_3 = libscihelptools_la-sci_buildDoc.lo
+@BUILD_HELP_TRUE@@GUI_TRUE@am__objects_3 =  \
+@BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools_la-sci_buildDoc.lo
 am_libscihelptools_la_OBJECTS = $(am__objects_2) $(am__objects_3)
 libscihelptools_la_OBJECTS = $(am_libscihelptools_la_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
