@@ -95,6 +95,8 @@ Scilab Bug Fixes
 Xcos Bug Fixes
 ==============
 
+* xcos_debug_gui function added  for a simple use of the Debug block.
+
 * Bug #12423 fixed - Data types of SWITCH2_m were not documented.
 
 * Bug #12998 fixed - 'ans' was not ignored in the context results.
