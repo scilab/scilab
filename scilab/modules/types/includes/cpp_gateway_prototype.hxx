@@ -18,5 +18,7 @@
 
 #define CPP_GATEWAY_PROTOTYPE(__gateway__) extern "C" types::Callable::ReturnValue (__gateway__)(types::typed_list &in, int _iRetCount, types::typed_list &out)
 #define CPP_GATEWAY_PROTOTYPE_EXPORT(__gateway__, __export__) extern "C" __export__ types::Callable::ReturnValue (__gateway__)(types::typed_list &in, int _iRetCount, types::typed_list &out)
+#define CPP_OPT_GATEWAY_PROTOTYPE(__gateway__) extern "C" types::Callable::ReturnValue (__gateway__)(types::typed_list &in, types::optional_list &opt, int _iRetCount, types::typed_list &out)
+#define CPP_OPT_GATEWAY_PROTOTYPE_EXPORT(__gateway__, __export__) extern "C" __export__ types::Callable::ReturnValue (__gateway__)(types::typed_list &in, types::optional_list &opt, int _iRetCount, types::typed_list &out)
 
 #endif /* !__CPP_GATEWAY_PROTOTYPE_HXX__ */

@@ -39,9 +39,10 @@ class TYPES_IMPEXP Function : public Callable
 public :
     enum FunctionType
     {
-        EntryPointC       = 0,
-        EntryPointCPP     = 1,
-        EntryPointMex     = 2
+        EntryPointC         = 0,
+        EntryPointCPP       = 1,
+        EntryPointMex       = 2,
+        EntryPointCPPOpt    = 3,
     };
 
     typedef void (*LOAD_DEPS)(void);
@@ -186,6 +187,7 @@ private :
     bool                    m_bLoaded;
     FunctionType            m_iType;
     GW_FUNC                 m_pFunc;
+    GW_FUNC_OPT             m_pOptFunc;
     OLDGW_FUNC              m_pOldFunc;
     MEXGW_FUNC              m_pMexFunc;
     Function*               m_pFunction;

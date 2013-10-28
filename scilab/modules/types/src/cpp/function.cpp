@@ -471,6 +471,9 @@ Callable::ReturnValue DynamicFunction::Init()
         char* _pstEntryPoint = wide_string_to_UTF8(m_wstEntryPoint.c_str());
         switch (m_iType)
         {
+            case EntryPointCPPOpt :
+                m_pOptFunc = (GW_FUNC_OPT)GetDynLibFuncPtr(m_hLib, _pstEntryPoint);
+                break;
             case EntryPointCPP :
                 m_pFunc = (GW_FUNC)GetDynLibFuncPtr(m_hLib, _pstEntryPoint);
                 break;
@@ -483,7 +486,7 @@ Callable::ReturnValue DynamicFunction::Init()
         }
     }
 
-    if (m_pFunc == NULL && m_pOldFunc == NULL && m_pMexFunc == NULL)
+    if (m_pFunc == NULL && m_pOldFunc == NULL && m_pMexFunc == NULL && m_pOptFunc == NULL)
     {
         char* pstEntry = wide_string_to_UTF8(m_wstEntryPoint.c_str());
         char* pstLib = wide_string_to_UTF8(m_wstLibName.c_str());
@@ -495,6 +498,9 @@ Callable::ReturnValue DynamicFunction::Init()
 
     switch (m_iType)
     {
+        case EntryPointCPPOpt :
+            m_pFunction = new OptFunction(m_wstName, m_pOptFunc, m_pLoadDeps, m_wstModule);
+            break;
         case EntryPointCPP :
             m_pFunction = new Function(m_wstName, m_pFunc, m_pLoadDeps, m_wstModule);
             break;
