@@ -83,6 +83,8 @@ Scilab Bug Fixes
 
 * Bug #13008 fixed - 'help $' now opens the 'Symbols' help page.
 
+* Bug #13011 fixed - ilib_compile failed under MacOS X 10.9.
+
 * Bug #13012 fixed - Vectorial export of rotated strings was wrong.
 
 * Bug #13014 fixed - Update of the Efficiency inner variable improved in optim_ga.
