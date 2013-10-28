@@ -1163,7 +1163,10 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
         setBlockType(modifiedBlock.getBlockType());
         setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
         setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
-
+        
+        setNbZerosCrossing(modifiedBlock.getNbZerosCrossing());
+        setNmode(modifiedBlock.getNmode());
+        
         setEquations(modifiedBlock.getEquations());
         setStyle(modifiedBlock.getStyle());
     }
