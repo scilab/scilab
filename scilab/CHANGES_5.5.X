@@ -83,6 +83,8 @@ Scilab Bug Fixes
 
 * Bug #13008 fixed - 'help $' now opens the 'Symbols' help page.
 
+* Bug #13010 fixed - Wrong class was returned by jcompile (with ecj).
+
 * Bug #13011 fixed - ilib_compile failed under MacOS X 10.9.
 
 * Bug #13012 fixed - Vectorial export of rotated strings was wrong.

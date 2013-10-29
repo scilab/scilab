@@ -184,7 +184,11 @@ public class ScilabJavaCompiler {
             if (isFile) {
                 return -1;
             } else {
-                return ScilabClassLoader.loadJavaClass(manager.className, true);
+                if (manager.className != null && !manager.className.isEmpty()) {
+                    return ScilabClassLoader.loadJavaClass(manager.className, true);
+                } else {
+                    return -1;
+                }
             }
         } else {
             if (!isECJ) {
@@ -352,7 +356,7 @@ public class ScilabJavaCompiler {
 
         @Override
         public JavaFileObject getJavaFileForOutput(Location location, String className, Kind kind, FileObject sibling) throws IOException {
-            if (sibling instanceof SourceString) {
+            if (sibling instanceof SourceString && className != null && className.indexOf('$') == -1) {
                 this.className = className.replace('/', '.');
             }
 
