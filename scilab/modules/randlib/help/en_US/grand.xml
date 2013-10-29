@@ -148,7 +148,7 @@
             ]]></programlisting>
         </para>
         <para>
-            where <literal>X</literal> of sizes <literal>m</literal>-by-<literal>n</literal>...
+            where <varname>X</varname> of sizes <varname>m</varname>-by-<varname>n</varnfme>...
             is a matrix or an hypermatrix only used as template.
         </para>
         <para>
@@ -234,7 +234,7 @@
                         <code>Y = grand(m, n, "nbn", N, p)</code> generates random variates from the
                         negative binomial distribution with parameters <varname>N</varname> (positive integer) and <varname>p</varname> (<literal>real</literal>
                         in <literal>(0,1)</literal>) : number of failures occurring before <varname>N</varname> successes
-                        in independent Bernouilli trials with probability <varname>p</varname> of success.
+                        in independent Bernoulli trials with probability <varname>p</varname> of success.
                         Related function: <link linkend="cdfnbn">cdfnbn</link>.
                     </para>
                 </listitem>
@@ -914,7 +914,7 @@ grand(12,"prm",(1:7)')
             Showing the first and last layers.
         </para>
         <programlisting role="example"><![CDATA[
-// Returns a 400-by-800-by-10 hypermatrix of random doubles,
+// Returns a 10-by-10-by-10 hypermatrix of random doubles,
 // with normal distribution, average 0 and standard deviation 1.
 // Showing the first and last layers.
 R = grand(10,10,10,"nor",0,1);
