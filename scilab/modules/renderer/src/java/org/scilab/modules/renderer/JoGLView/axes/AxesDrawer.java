@@ -275,7 +275,7 @@ public class AxesDrawer {
             /**
              * Draw hidden part of box.
              */
-            if (axes.getViewAsEnum() == ViewType.VIEW_2D) {
+            if (axes.getViewAsEnum() != ViewType.VIEW_2D) {
                 appearance.setLineColor(ColorFactory.createColor(colorMap, axes.getHiddenAxisColor()));
                 appearance.setLineWidth(axes.getLineThickness().floatValue());
                 appearance.setLinePattern(HIDDEN_BORDER_PATTERN.asPattern());
