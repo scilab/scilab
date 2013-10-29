@@ -45,12 +45,12 @@
         </para>
         <para>
             If <literal>functionname</literal> is the name of a undefined scilab function
-            <literal>edit(functionname)</literal> create a <literal>functionname.sci</literal> file in 
+            <literal>edit(functionname)</literal> create a <literal>functionname.sci</literal> file in
             the current directory.
         </para>
         <para>
             If <literal>functionname</literal> is not a valid macro or function name
-            <literal>edit(functionname)</literal> opens the file with file name equals to 
+            <literal>edit(functionname)</literal> opens the file with file name equal to
             <literal>functionname</literal>.
         </para>
         <para>
@@ -59,19 +59,19 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //open editor with text of this function
-edit('edit')  
+edit('edit')
 
 //open editor for a new function
-edit('myfunction')  
+edit('myfunction')
 
 //open the file bar.sci in TMPDIR directory
-edit(fullfile(TMPDIR+'bar.sci')) 
+edit(fullfile(TMPDIR+'bar.sci'))
 
 // open the file test_run.sci at line 123
 // relatively to the definition of test_run()
-edit('test_run', 123) 
+edit('test_run', 123)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

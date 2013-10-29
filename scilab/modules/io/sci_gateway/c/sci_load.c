@@ -38,7 +38,7 @@ int sci_load(char *fname, unsigned long fname_len)
         if (getWarningMode())
         {
             sciprint(_("%s: Feature %s is obsolete.\n"), _("Warning"), "load(file_descriptor)");
-            sciprint(_("%s: See help('load') for the rational.\n"), _("Warning"));
+            sciprint(_("%s: See help('load') for the rationale.\n"), _("Warning"));
             sciprint(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.0.0");
         }
         C2F(intload)(&Val, &k1);

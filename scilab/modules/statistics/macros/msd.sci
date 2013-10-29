@@ -40,6 +40,6 @@ function m=msd(x,orien)
     elseif orien=="r"|orien==1 then
         m=sqrt(sum((x-ones(x(:,1))*mean(x,orien)).^2,orien)/size(x,orien));
     else
-        error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"),"stdevf",2,"r","c",1,2)),
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"),"msd",2,"r","c",1,2)),
     end
 endfunction

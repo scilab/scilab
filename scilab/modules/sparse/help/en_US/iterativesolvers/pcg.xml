@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -45,7 +45,7 @@
                                 <literal>function.</literal>If A is a function, it must
                                 have the following header :
                             </para>
-                            <programlisting role=""><![CDATA[ 
+                            <programlisting role=""><![CDATA[
 function y = A ( x )
  ]]></programlisting>
                         </listitem>
@@ -71,7 +71,7 @@ function y = A ( x )
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>error relative tolerance (default: 1e-8). 
+                    <para>error relative tolerance (default: 1e-8).
                         The termination criteria is based on the 2-norm of the
                         residual r=b-Ax, divided by the 2-norm of the right hand side b.
                     </para>
@@ -172,24 +172,24 @@ function y = A ( x )
             problems
         </title>
         <para>In the following example, two linear systems are solved. The first
-            maxtrix has a condition number equals to ~0.02, which makes the algorithm
+            maxtrix has a condition number equal to ~0.02, which makes the algorithm
             converge in exactly 10 iterations. Since this is the size of the matrix,
             it is an expected behaviour for a gradient conjugate method. The second
-            one has a low condition number equals to 1.d-6, which makes the algorithm
+            one has a low condition number equal to 1.d-6, which makes the algorithm
             converge in a larger 22 iterations. This is why the parameter maxIter is
-            set to 30. See below for other examples of the "key=value" syntax. 
+            set to 30. See below for other examples of the "key=value" syntax.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Well conditionned problem
-A=[ 94  0   0   0    0   28  0   0   32  0  
-     0   59  13  5    0   0   0   10  0   0  
-     0   13  72  34   2   0   0   0   0   65 
-     0   5   34  114  0   0   0   0   0   55 
-     0   0   2   0    70  0   28  32  12  0  
-     28  0   0   0    0   87  20  0   33  0  
-     0   0   0   0    28  20  71  39  0   0  
-     0   10  0   0    32  0   39  46  8   0  
-     32  0   0   0    12  33  0   8   82  11 
+A=[ 94  0   0   0    0   28  0   0   32  0
+     0   59  13  5    0   0   0   10  0   0
+     0   13  72  34   2   0   0   0   0   65
+     0   5   34  114  0   0   0   0   0   55
+     0   0   2   0    70  0   28  32  12  0
+     28  0   0   0    0   87  20  0   33  0
+     0   0   0   0    28  20  71  39  0   0
+     0   10  0   0    32  0   39  46  8   0
+     32  0   0   0    12  33  0   8   82  11
      0   0   65  55   0   0   0   0   11  100];
 
 b=ones(10,1);
@@ -198,16 +198,16 @@ mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
 
 //Ill contionned one
 A=[ 894     0   0     0   0   28  0   0   1000  70000
-      0      5   13    5   0   0   0   0   0     0    
-      0      13  72    34  0   0   0   0   0     6500 
-      0      5   34    1   0   0   0   0   0     55   
-      0      0   0     0   70  0   28  32  12    0    
-      28     0   0     0   0   87  20  0   33    0    
-      0      0   0     0   28  20  71  39  0     0    
-      0      0   0     0   32  0   39  46  8     0    
-      1000   0   0     0   12  33  0   8   82    11   
+      0      5   13    5   0   0   0   0   0     0
+      0      13  72    34  0   0   0   0   0     6500
+      0      5   34    1   0   0   0   0   0     55
+      0      0   0     0   70  0   28  32  12    0
+      28     0   0     0   0   87  20  0   33    0
+      0      0   0     0   28  20  71  39  0     0
+      0      0   0     0   32  0   39  46  8     0
+      1000   0   0     0   12  33  0   8   82    11
       70000  0   6500  55  0   0   0   0   11    100];
- 
+
 [x, fail, err, iter, res]=pcg(A,b,maxIter=30,tol=1d-12);
 mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
  ]]></programlisting>
@@ -221,17 +221,17 @@ mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
             right-hand side, is given to the "pcg" primitive. The final case shown by
             this example, is when a list is passed to the primitive.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Well conditionned problem
-A=[ 94  0   0   0    0   28  0   0   32  0  
-     0   59  13  5    0   0   0   10  0   0  
-     0   13  72  34   2   0   0   0   0   65 
-     0   5   34  114  0   0   0   0   0   55 
-     0   0   2   0    70  0   28  32  12  0  
-     28  0   0   0    0   87  20  0   33  0  
-     0   0   0   0    28  20  71  39  0   0  
-     0   10  0   0    32  0   39  46  8   0  
-     32  0   0   0    12  33  0   8   82  11 
+A=[ 94  0   0   0    0   28  0   0   32  0
+     0   59  13  5    0   0   0   10  0   0
+     0   13  72  34   2   0   0   0   0   65
+     0   5   34  114  0   0   0   0   0   55
+     0   0   2   0    70  0   28  32  12  0
+     28  0   0   0    0   87  20  0   33  0
+     0   0   0   0    28  20  71  39  0   0
+     0   10  0   0    32  0   39  46  8   0
+     32  0   0   0    12  33  0   8   82  11
      0   0   65  55   0   0   0   0   11  100];
 b=ones(10,1);
 
@@ -242,8 +242,8 @@ mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
 
 // Define a function which computes the right-hand side.
 function y=Atimesx(x)
-  A=[ 94  0   0   0    0   28  0   0   32  0  
-       0   59  13  5    0   0   0   10  0   0  
+  A=[ 94  0   0   0    0   28  0   0   32  0
+       0   59  13  5    0   0   0   10  0   0
        0   13  72  34   2   0   0   0   0   65
        0   5   34  114  0   0   0   0   0   55
        0   0   2   0    70  0   28  32  12  0
@@ -281,7 +281,7 @@ mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
             Without the "key=value" syntax, the positionnal arguments would require
             that maxIter come first and verbose after.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Example of an argument passed with key=value syntax
 A=[100,1;1,10];
 b=[101;11];

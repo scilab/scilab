@@ -1190,12 +1190,12 @@
             "ind" parameter.
         </para>
         <para>At the beginning, Scilab calls the objective function, with the ind
-            parameter equals to 10. This tells the objective function to initialize
+            parameter equal to 10. This tells the objective function to initialize
             the sizes of the arrays it needs by setting the nizs, nrzs and ndzs
             integer parameters of the "nird" common. Then the objective function
             returns. At this point, Scilab creates internal variables and allocate
             memory for the variable izs, rzs and dzs. Scilab calls the objective
-            function back again, this time with ind equals to 11. This tells the
+            function back again, this time with ind equal to 11. This tells the
             objective function to initialize the arrays izs, rzs and dzs. When the
             objective function has done so, it returns. Then Scilab enters in the real
             optimization mode and calls the optimization solver the user requested.

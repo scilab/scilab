@@ -47,7 +47,7 @@
             The class must be in the classpath (to add a package or a directory in the Java classpath, just use <link type="scilab" linkend="scilab.help/javaclasspath">javaclasspath</link>).
         </para>
         <para>
-            When <literal>jimport("java.lang.String")</literal>, a mlist named String is created on the Scilab stack. The created mlist has a type equals to _JClass and can be used to instantiate new objects in using something like <literal>str = String.new("A Scilab String");</literal>. It is possible to call the static methods (if exist) of the class
+            When <literal>jimport("java.lang.String")</literal>, a mlist named String is created on the Scilab stack. The created mlist has a type equal to _JClass and can be used to instantiate new objects in using something like <literal>str = String.new("A Scilab String");</literal>. It is possible to call the static methods (if exist) of the class
         </para>
         <programlisting role="example"><![CDATA[
                jimport java.lang.Math;
@@ -110,4 +110,3 @@
         </revhistory>
     </refsection>
 </refentry>
-

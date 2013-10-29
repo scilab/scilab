@@ -62,7 +62,7 @@ public final class ModelicaMessages {
             .gettext("Generate Jacobian");
     public static final String ERROR = Messages.gettext("Error");
     public static final String UNKNOWNS_NEQ_EQUATIONS = Messages
-            .gettext("Unknowns not equals to Equations");
+            .gettext("Unknowns not equal to Equations");
     public static final String UNKNOWNS = Messages.gettext("Unknowns");
     public static final String REDUCED = Messages.gettext("Reduced");
     public static final String EXTENDED = Messages.gettext("Extended");

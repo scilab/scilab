@@ -762,7 +762,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
     }
 
     /**
-     * Check if there is a window which has a dockableID equals to the given uuid
+     * Check if there is a window which has a dockableID equal to the given uuid
      * @param winuuid the uuid of the window
      * @param uuid the uuid to test
      * @return true if a dockableId exists

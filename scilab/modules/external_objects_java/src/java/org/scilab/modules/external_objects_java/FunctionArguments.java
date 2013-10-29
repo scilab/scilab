@@ -135,7 +135,7 @@ public final class FunctionArguments {
      *    So the square of the distance between two Class array is defined as the sum of the square of the distance between
      *    Class elements.
      *    In the particular case where a int.class is required and the argument is double.class, if the double value is an integer
-     *    the argument is converted into an int. In this case, dist(int.class, double.class) is equals to 2048. This value has been
+     *    the argument is converted into an int. In this case, dist(int.class, double.class) is equal to 2048. This value has been
      *    choosed to be "sure" that another method with double.class will be considered better than the previous one.
      *    If the method has variable arguments foo(A a, B b, Object...), the Java reflection only shows that Class arguments are
      *    A.class, B.class and Object[].class. So such a method will give a very high distance (more than 2^40).
