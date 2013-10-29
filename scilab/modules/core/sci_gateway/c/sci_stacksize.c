@@ -260,7 +260,7 @@ static int setStacksizeMax(char *fname)
     freePhysicalMem =  (long long)(statex.ullAvailPageFile / sizeof(double));
     //if free memory is used, keep 10% to OS
 #else
-    freePhysicalMem = (long long)((sysconf(_SC_AVPHYS_PAGES) * sysconf(_SC_PAGE_SIZE)) / sizeof(double));
+    freePhysicalMem = (long long)((get_avphys_pages() * get_phys_pages()) / sizeof(double));
 #endif
 
     if (freePhysicalMem > 0 && freePhysicalMem < maxmemfree)
