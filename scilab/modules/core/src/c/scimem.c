@@ -17,8 +17,15 @@
 #include "localization.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
+#ifndef _MSC_VER
 extern int scimem64(int *n, int newsize, BOOL isglobal);
 extern void freemem64(BOOL isglobal);
+#else
+static char *the_p = NULL;
+static char *the_ps = NULL;
+static char *the_gp = NULL;
+static char *the_gps = NULL;
+#endif
 /*--------------------------------------------------------------------------*/
 int C2F(scimem) (int *newsize, int *ptr)
 {
