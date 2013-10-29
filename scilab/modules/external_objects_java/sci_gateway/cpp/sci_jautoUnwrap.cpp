@@ -27,7 +27,14 @@ int sci_jautoUnwrap(char * fname, unsigned long fname_len)
     try
     {
         const int envId = ScilabJavaEnvironment::start();
-        JavaOptionsSetter setter = ScilabJavaEnvironment::getInstance().getOptionsHelper().getSetter(JavaOptionsSetter::AUTOUNWRAP);
+        ScilabJavaEnvironment *javaEnvironment = ScilabJavaEnvironment::getInstance();
+        if (!javaEnvironment)
+        {
+            Scierror(999, "%s: No Java environment available (instance is null).", fname);
+            return 0;
+        }
+
+        JavaOptionsSetter setter = javaEnvironment->getOptionsHelper().getSetter(JavaOptionsSetter::AUTOUNWRAP);
         return ScilabGateway::getsetOptions(fname, envId, setter, pvApiCtx);
     }
     catch (std::exception & e)

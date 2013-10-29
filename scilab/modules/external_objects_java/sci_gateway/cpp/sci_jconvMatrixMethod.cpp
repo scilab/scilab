@@ -38,7 +38,7 @@ int sci_jconvMatrixMethod(char * fname, unsigned long fname_len)
     }
 
     envId = ScilabJavaEnvironment::start();
-    JavaOptionsSetter setter = ScilabJavaEnvironment::getInstance().getOptionsHelper().getSetter(JavaOptionsSetter::METHODOFCONV);
+    JavaOptionsSetter setter = ScilabJavaEnvironment::getInstance()->getOptionsHelper().getSetter(JavaOptionsSetter::METHODOFCONV);
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
     ScilabGatewayOptions & options = env.getGatewayOptions();
     OptionsHelper::setCopyOccurred(false);

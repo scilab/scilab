@@ -128,9 +128,9 @@ public :
 
     static void finish();
 
-    static ScilabJavaEnvironment & getInstance()
+    static ScilabJavaEnvironment* getInstance()
     {
-        return *instance;
+        return instance;
     }
 
     JavaOptionsHelper & getOptionsHelper();
