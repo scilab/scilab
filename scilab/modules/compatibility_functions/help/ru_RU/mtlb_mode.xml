@@ -17,7 +17,7 @@
             <varlistentry>
                 <term>mmode</term>
                 <listitem>
-                    <para>boolean</para>
+                    <para>логическое значение</para>
                 </listitem>
             </varlistentry>
         </variablelist>
