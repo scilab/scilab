@@ -14,6 +14,7 @@
 #include <Windows.h>
 #else
 #include <unistd.h>
+#include <sys/sysinfo.h>
 #endif
 #include <stdio.h>
 
