@@ -14,7 +14,9 @@
 #include <Windows.h>
 #else
 #include <unistd.h>
+#ifndef __APPLE__
 #include <sys/sysinfo.h>
+#endif
 #endif
 #include <stdio.h>
 
