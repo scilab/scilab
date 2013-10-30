@@ -61,9 +61,16 @@ public class UICheckbox extends UIComponent {
             checkbox = new JCheckBox(text, selected);
         }
 
-        setButtonGroup(group);
+        this.buttonGroup = group;
 
         return checkbox;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void initialize() {
+        setButtonGroup(this.buttonGroup);
     }
 
     /**
@@ -72,9 +79,9 @@ public class UICheckbox extends UIComponent {
      */
     public void setButtonGroup(String group) {
         if (group != null && !group.isEmpty()) {
-            getRoot().addToButtonGroup(group, checkbox);
+            getRoot().addToButtonGroup(group, this);
         } else {
-            getRoot().removeFromButtonGroup(this.buttonGroup, checkbox);
+            getRoot().removeFromButtonGroup(this.buttonGroup, this);
         }
         this.buttonGroup = group;
     }
@@ -85,6 +92,18 @@ public class UICheckbox extends UIComponent {
      */
     public String getButtonGroup() {
         return buttonGroup;
+    }
+
+    /**
+     * Get the uicomponent which is selected in the group
+     * @return the selected component
+     */
+    public UIComponent getSelectedInGroup() {
+        if (buttonGroup != null && !buttonGroup.isEmpty()) {
+            return getSelectedInGroup(buttonGroup);
+        }
+
+        return null;
     }
 
     /**

@@ -61,9 +61,16 @@ public class UIRadio extends UIComponent {
             radio = new JRadioButton(text, selected);
         }
 
-        setButtonGroup(group);
+        this.buttonGroup = group;
 
         return radio;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void initialize() {
+        setButtonGroup(this.buttonGroup);
     }
 
     /**
@@ -72,9 +79,9 @@ public class UIRadio extends UIComponent {
      */
     public void setButtonGroup(String group) {
         if (group != null && !group.isEmpty()) {
-            getRoot().addToButtonGroup(group, radio);
+            getRoot().addToButtonGroup(group, this);
         } else {
-            getRoot().removeFromButtonGroup(this.buttonGroup, radio);
+            getRoot().removeFromButtonGroup(this.buttonGroup, this);
         }
         this.buttonGroup = group;
     }
@@ -85,6 +92,18 @@ public class UIRadio extends UIComponent {
      */
     public String getButtonGroup() {
         return buttonGroup;
+    }
+
+    /**
+     * Get the uicomponent which is selected in the group
+     * @return the selected component
+     */
+    public UIComponent getSelectedInGroup() {
+        if (buttonGroup != null && !buttonGroup.isEmpty()) {
+            return getSelectedInGroup(buttonGroup);
+        }
+
+        return null;
     }
 
     /**

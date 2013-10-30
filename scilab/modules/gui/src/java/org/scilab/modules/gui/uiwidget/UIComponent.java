@@ -41,8 +41,6 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import javax.imageio.ImageIO;
-import javax.swing.AbstractButton;
-import javax.swing.ButtonGroup;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPopupMenu;
@@ -91,7 +89,7 @@ public abstract class UIComponent {
     private int uid;
     protected UIComponent root;
     protected UIComponent parent;
-    protected Map<String, ButtonGroup> buttonGroups;
+    protected Map<String, UIButtonGroup> buttonGroups;
     protected Map<String, UIComponent> children;
     protected List<UIComponent> childrenList;
     protected Map<String, Map<String, String>> style;
@@ -806,14 +804,14 @@ public abstract class UIComponent {
      * @param name the name of the button-group
      * @param button the button to add
      */
-    public void addToButtonGroup(String name, AbstractButton button) {
+    public void addToButtonGroup(String name, UIComponent button) {
         if (isRoot()) {
             if (buttonGroups == null) {
-                buttonGroups = new HashMap<String, ButtonGroup>();
+                buttonGroups = new HashMap<String, UIButtonGroup>();
             }
-            ButtonGroup bg = buttonGroups.get(name);
+            UIButtonGroup bg = buttonGroups.get(name);
             if (bg == null) {
-                bg = new ButtonGroup();
+                bg = new UIButtonGroup();
                 buttonGroups.put(name, bg);
             }
             bg.add(button);
@@ -821,13 +819,29 @@ public abstract class UIComponent {
     }
 
     /**
+     * Get the uicomponent which is selected in the group
+     * @param name the group name
+     * @return the selected component
+     */
+    protected UIComponent getSelectedInGroup(String name) {
+        if (getRoot().buttonGroups != null) {
+            UIButtonGroup group = getRoot().buttonGroups.get(name);
+            if (group != null) {
+                return group.getSelected();
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * Remove a button from a button-group
      * @param name the name of the button-group
      * @param button the button to remove
      */
-    public void removeFromButtonGroup(String name, AbstractButton button) {
+    public void removeFromButtonGroup(String name, UIComponent button) {
         if (isRoot() && buttonGroups != null) {
-            ButtonGroup bg = buttonGroups.get(name);
+            UIButtonGroup bg = buttonGroups.get(name);
             if (bg != null) {
                 bg.remove(button);
             }
@@ -928,6 +942,7 @@ public abstract class UIComponent {
             }
             jc.removeAll();
         }
+        buttonGroups = null;
         component = null;
         modifiableComponent = null;
         root = null;
