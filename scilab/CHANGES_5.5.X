@@ -4,6 +4,8 @@
 Scilab Bug Fixes
 ================
 
+* Bug #4401 fixed - isnum did not recognize all constants or some complex numbers.
+
 * Bug #5016 fixed - condestsp could return different results when repeated calls were performed.
 
 * Bug #6689 & #6690 fixed - grand now works with complexes, polynomials, booleans, integers, sparses and strings,

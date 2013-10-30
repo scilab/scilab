@@ -32,6 +32,12 @@
 #define ScilabPiString "%pi"
 #define ScilabNegPiString "-%pi"
 #define ScilabPosPiString "+%pi"
+#define ScilabEString "%e"
+#define ScilabPosEString "+%e"
+#define ScilabNegEString "-%e"
+#define ScilabEpsString "%eps"
+#define ScilabPosEpsString "+%eps"
+#define ScilabNegEpsString "-%eps"
 
 #ifdef __cplusplus
 extern "C" {
