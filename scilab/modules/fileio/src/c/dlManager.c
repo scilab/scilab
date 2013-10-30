@@ -25,6 +25,9 @@
 #include "charEncoding.h"
 #include "localization.h"
 #include "getos.h"
+#include "machine.h"
+#include "scicurdir.h"
+#include "splitpath.h"
 /* ==================================================================== */
 #ifndef HAVE_BASENAME
 static char *Curl_basename(char *path);
@@ -345,6 +348,8 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
     char *filename = NULL;
     FILE *file;
     inputString buffer;
+    char *destdir = NULL;
+    char *destfile = NULL;
 
     curl = curl_easy_init();
     if (curl == NULL)
@@ -362,30 +367,83 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         return NULL;
     }
 
-    if (dest == NULL)
+    // Get destination directory and filename
+    if (dest != NULL)
     {
-        /* No second argument provided */
-        filename = getFileNameFromURL(url);
-    }
-    else
-    {
-        if (isdir(dest))
-        {
-            /* The target is a directory. Select the name from the URL */
-            char *name = getFileNameFromURL(url);
+        // Destination is specified in argument
+        char* pathdrive = (char*)MALLOC(sizeof(char) * (PATH_MAX + 1));
+        char* pathdir = (char*)MALLOC(sizeof(char) * (PATH_MAX + 1));
+        char* pathfile = (char*)MALLOC(sizeof(char) * (PATH_MAX + 1));
+        char* pathext = (char*)MALLOC(sizeof(char) * (PATH_MAX + 1));
 
-            filename = (char *)MALLOC((strlen(name) + strlen("/") + strlen(dest) + 1) * sizeof(char));
-            strcpy(filename, dest);
-            strcat(filename, "/");
-            strcat(filename, name);
-            FREE(name);
+        splitpath(dest, TRUE, pathdrive, pathdir, pathfile, pathext);
+
+        if (!isdir(dest))
+        {
+            // Destination is a file
+            destdir = (char *)MALLOC((strlen(pathdrive) + strlen(pathdir) + 1) * sizeof(char));
+            strcpy(destdir, pathdrive);
+            strcat(destdir, pathdir);
+
+            // Get filename
+            destfile = (char *)MALLOC((strlen(pathfile) + strlen(pathext) + 1) * sizeof(char));
+            strcpy(destfile, pathfile);
+            strcat(destfile, pathext);
         }
         else
         {
-            filename = (char *)MALLOC((strlen(dest) + 1) * sizeof(char));
-            strcpy(filename, dest);
+            // Destination is a directory
+            destdir = (char *)MALLOC((strlen(pathdrive) + strlen(pathdir) + strlen(pathfile) + strlen(pathext) + strlen(DIR_SEPARATOR) + 1) * sizeof(char));
+            strcpy(destdir, pathdrive);
+            strcat(destdir, pathdir);
+            strcat(destdir, pathfile);
+            strcat(destdir, pathext);
+            strcat(destdir, DIR_SEPARATOR);
+
+            // Retrieve filename from URL
+            destfile = getFileNameFromURL(url);
         }
+
+        FREE(pathdrive);
+        FREE(pathdir);
+        FREE(pathfile);
+        FREE(pathext);
     }
+    else
+    {
+        // Destination is not specified in argument
+        // Destination directory is current dir
+        int err = 0;
+        char *currentdir;
+        currentdir = scigetcwd(&err);
+        if (!err)
+        {
+            destdir = (char *)MALLOC((strlen(currentdir) + strlen(DIR_SEPARATOR) + 1) * sizeof(char));
+            strcpy(destdir, currentdir);
+            strcat(destdir, DIR_SEPARATOR);
+            FREE(currentdir);
+        }
+        else
+        {
+            Scierror(999, _("Failed getting current dir, error code: %d\n"), err);
+            return NULL;
+        }
+
+        // Destination filename retrieved from URL
+        destfile = getFileNameFromURL(url);
+    }
+
+    if (destfile == NULL)
+    {
+        return NULL;
+    }
+
+    // Build file path
+    filename = (char *)MALLOC((strlen(destdir) + strlen(destfile) + 1) * sizeof(char));
+    strcpy(filename, destdir);
+    strcat(filename, destfile);
+    FREE(destdir);
+    FREE(destfile);
 
     res = curl_easy_setopt(curl, CURLOPT_URL, url);
     if (res != CURLE_OK)

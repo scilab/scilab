@@ -4,19 +4,26 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 // <-- CLI SHELL MODE -->
-// <-- Non-regression test for bug 12971 -->
+
+// <-- Non-regression test for bug 12976 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=12971
+// http://bugzilla.scilab.org/show_bug.cgi?id=12976
 //
 // <-- Short Description -->
-// getURL() downloaded file name is wrong
+// getURL() returns a file name instead of a file path
+
 curdir = pwd();
 cd(TMPDIR);
-filePath = getURL("www.scilab.org");
-expectedFilePath = fullfile(TMPDIR, "index.html");
-assert_checkequal(filePath, expectedFilePath);
-assert_checktrue(isfile(filePath));
-deletefile(filePath);
+
+filepath = getURL("http://www.scilab.org");
+assert_checkequal(filepath, fullfile(TMPDIR, "index.html"));
+deletefile(filepath);
+
+filepath = getURL("http://www.scilab.org", fullfile(TMPDIR, "scilab_homepage.html"));
+assert_checkequal(filepath, fullfile(TMPDIR, "scilab_homepage.html"));
+deletefile(filepath);
+
 cd(curdir);
