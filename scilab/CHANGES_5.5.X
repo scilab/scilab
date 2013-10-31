@@ -97,6 +97,8 @@ Scilab Bug Fixes
 
 * Bug #13015 fixed - Computation of Efficiency innver variable improved in optim_ga.
 
+* Bug #13032 fixed - Fixed CMATVIEW help example and created one for CMAT3D.
+
 
 Xcos Bug Fixes
 ==============
