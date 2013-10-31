@@ -65,7 +65,7 @@ function [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,
     list_points = params_pde.points;
     points=strcat(list_points,"|");
 
-    f = figure("Position",[50 50 670 620],"figure_name","PDE_IHM","BackgroundColor",[0.7 0.9 0.4]);
+    f = figure("Position",[50 50 670 620],"figure_name","PDE_IHM","BackgroundColor",[0.7 0.9 0.4], "visible", "off");
     f.axes_size=[670,620];
     f.closerequestfcn = "do_quitter()";
     //m=uimenu(f,'label', 'Model EDP');
@@ -351,7 +351,7 @@ function [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,
     "callback"  , "do_valider()","BackgroundColor",[0 1 0] );
     b4 = uicontrol(f, "Position"  , [610 90 50 20],"Style", "pushbutton","String", _("Cancel"),...
     "callback"  , "do_quitter()","BackgroundColor",[1 0 0] );
-
+    f.visible = "on";
     while fin,end
     if ok then
         close(f)

@@ -32,6 +32,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHILDMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIPARENTMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -1502,6 +1503,9 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         case __GO_EVENTHANDLER_NAME__ :
             String eventHandlerName = (String) GraphicController.getController().getProperty(getId(), __GO_EVENTHANDLER_NAME__);
             setEventHandler(eventHandlerName);
+            break;
+        case __GO_VISIBLE__ :
+            layerdPane.setVisible((Boolean) value);
             break;
         }
     }

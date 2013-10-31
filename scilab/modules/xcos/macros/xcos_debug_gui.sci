@@ -166,6 +166,7 @@ function gui=xcos_debug_create_gui()
 
     fig_id=max(winsid())+1
     fig = scf(fig_id)
+    fig.visible = "off";
     toolbar(fig.figure_id, "off");
     fig.axes_size       = [axes_w axes_h];
     // Remove Scilab graphics menus & toolbar
@@ -524,6 +525,7 @@ function gui=xcos_debug_create_gui()
     "Flags",Flags,"When",When,"Time",Time,...
     "Condition",Condition,...
     "Buttons",[Next,Stop,Pause]))
+    fig.visible = "on";
 endfunction
 function ok=xcos_debug_check_time(Time)
     if argn(2)<1 then Time=gcbo;end

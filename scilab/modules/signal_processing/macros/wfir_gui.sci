@@ -47,6 +47,7 @@ function [ok,values,exprs]=wfir_gui(exprs)
 
     fig_id=max(winsid())+1
     fig = scf(fig_id)
+    fig.visible = "off"
 
     // Remove Scilab graphics menus & toolbar
     //  drawlater (bug)
@@ -527,6 +528,7 @@ function [ok,values,exprs]=wfir_gui(exprs)
     // next used by wfirGetFilterParameters
     set(gui,"userdata",[Fview,Filtertype,Windowtype,Forderv,Forders,Lcfv,Lcfs,Hcfv,Hcfs,Fpv,Fps,Sfreq,Ftv,Wtv])
 
+    fig.visible = "on";
     realtimeinit(0.1);
     t=0;
     while ret==0&or(winsid()==fig_id) then
