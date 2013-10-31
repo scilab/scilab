@@ -158,10 +158,10 @@
                     modes.
                 </para>
                 <para>"iz" : get the register that store pointers of
-                    block-&gt;work.
+                    block->work.
                 </para>
                 <para>"izptr" : get the pointers vector of the register that store C
-                    pointers of block-&gt;work.
+                    pointers of block->work.
                 </para>
                 <para>"nblk" : get the number of block.</para>
                 <para>"outtbptr" : get the register that store C pointers of

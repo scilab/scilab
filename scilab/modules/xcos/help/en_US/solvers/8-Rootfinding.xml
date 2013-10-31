@@ -100,7 +100,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
             Now, in the two following scripts, we test the computational overhead of the rootfinding with <emphasis>LSodar</emphasis>:
         </para>
         <para>
-            First, a Sine function that crosses zero every &#960; period:
+            First, a Sine function that crosses zero every π period:
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/Rootfinding.sce">
                 Open the script
             </link>
