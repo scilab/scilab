@@ -3,12 +3,11 @@
 #
 # This file is distributed under the same license as the Scilab package.
 
-OPTIMIZATION_C_SOURCES = src/c/sp.c \
-src/c/fsolvetable.c \
-src/c/lsqrsolvtable.c \
-src/c/optimtable.c
+OPTIMIZATION_C_SOURCES = \
+src/c/sp.c
 
-OPTIMIZATION_FORTRAN_SOURCES = src/fortran/gcbd.f \
+OPTIMIZATION_FORTRAN_SOURCES = \
+src/fortran/gcbd.f \
 src/fortran/qpgen2.f \
 src/fortran/n1qn2a.f \
 src/fortran/fuclid.f \
@@ -72,11 +71,11 @@ src/fortran/rednor.f \
 src/fortran/zgcbd.f \
 src/fortran/writebuf.f \
 src/fortran/qpgen1sci.f \
-src/fortran/intreadmps.f \
 src/fortran/rdmps1.f \
 src/fortran/rdmpsz.f
 
-MINPACK_SOURCES = src/fortran/minpack/lmdif.f \
+MINPACK_SOURCES = \
+src/fortran/minpack/lmdif.f \
 src/fortran/minpack/qrfac.f \
 src/fortran/minpack/hybrj1.f \
 src/fortran/minpack/dogleg.f \
@@ -94,47 +93,55 @@ src/fortran/minpack/hybrd1.f \
 src/fortran/minpack/fdjac2.f \
 src/fortran/minpack/r1mpyq.f
 
+OPTIMIZATION_CPP_SOURCES = \
+src/cpp/optimizationfunctions.cpp \
+src/cpp/checkoptimerror.cpp \
+src/cpp/scioptimfunctions.cpp
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_semidef.c \
+GATEWAY_CPP_SOURCES = \
+sci_gateway/cpp/sci_optim.cpp \
+sci_gateway/cpp/sci_fsolve.cpp \
+sci_gateway/cpp/sci_semidef.cpp \
+sci_gateway/cpp/sci_lsqrsolve.cpp \
+sci_gateway/cpp/sci_readmps.cpp
+
+GATEWAY_C_SOURCES = \
 sci_gateway/c/sci_qld.c \
-sci_gateway/c/gw_optimization.c \
-sci_gateway/c/sci_optim.c \
-sci_gateway/c/sci_fsolv.c \
-sci_gateway/c/sci_sqrsolve.c \
-sci_gateway/c/sci_qp_solve.c \
-sci_gateway/c/sci_readmps.c
+sci_gateway/c/sci_qp_solve.c
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_semidef.f \
-sci_gateway/fortran/sci_f_fsolve.f \
-sci_gateway/fortran/sci_f_optim.f \
-sci_gateway/fortran/boptim.f \
-sci_gateway/fortran/bsolv.f \
-sci_gateway/fortran/bjlsqrsolv.f \
-sci_gateway/fortran/blsqrsolv.f \
-sci_gateway/fortran/bjsolv.f \
-sci_gateway/fortran/intlsqrsolve.f \
+GATEWAY_FORTRAN_SOURCES = \
 sci_gateway/fortran/Ex-optim.f \
 sci_gateway/fortran/Ex-fsolve.f \
 sci_gateway/fortran/Ex-lsqrsolve.f
 
-libscioptimization_la_CPPFLAGS = -I$(srcdir)/includes/ \
+libscioptimization_la_CPPFLAGS = \
+-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes/ \
 -I$(top_srcdir)/modules/localization/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
 -I$(top_srcdir)/modules/dynamic_link/includes/ \
 -I$(top_srcdir)/modules/operations/includes/ \
 -I$(top_srcdir)/modules/system_env/includes/ \
+-I$(top_srcdir)/modules/types/includes/ \
+-I$(top_srcdir)/modules/ast/includes/ \
+-I$(top_srcdir)/modules/symbol/includes/ \
+-I$(top_srcdir)/modules/threads/includes/ \
+-I$(top_srcdir)/modules/string/includes/ \
+-I$(top_srcdir)/modules/console/includes/ \
+-I$(top_srcdir)/modules/elementary_functions/includes/ \
+$(EIGEN_CPPFLAGS) \
 $(AM_CPPFLAGS)
+
 
 pkglib_LTLIBRARIES = libscioptimization.la
 noinst_LTLIBRARIES = libscioptimization-algo.la
 
 
-libscioptimization_algo_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(MINPACK_SOURCES)
-libscioptimization_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscioptimization_algo_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_CPP_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(MINPACK_SOURCES)
+libscioptimization_la_SOURCES = $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscioptimization_algo_la_CPPFLAGS = $(libscioptimization_la_CPPFLAGS)
 
-libscioptimization_la_LIBADD = libscioptimization-algo.la 
+libscioptimization_la_LIBADD = libscioptimization-algo.la
 
 
 #### Target ######
@@ -143,7 +150,7 @@ modulename=optimization
 
 #### optimization : Conf files ####
 libscioptimization_la_rootdir = $(mydatadir)
-libscioptimization_la_root_DATA =  license.txt 
+libscioptimization_la_root_DATA =  license.txt
 
 #### m2sci : Macros ####
 MACROSDIRSEXT =  macros/neldermead \

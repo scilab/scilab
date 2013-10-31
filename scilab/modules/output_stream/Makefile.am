@@ -16,7 +16,8 @@ OUTPUT_STREAM_CPP_SOURCES = \
 	src/cpp/diary_manager.cpp \
 	src/cpp/getDiaryDate.cpp \
 	src/cpp/getFullFilename.cpp \
-	src/cpp/scilab_sprintf.cpp
+	src/cpp/scilab_sprintf.cpp \
+	src/cpp/basout.cpp
 
 
 GATEWAY_CPP_SOURCES = \
@@ -34,7 +35,6 @@ OUTPUT_STREAM_C_SOURCES = \
 	src/c/msgout.c \
 	src/c/msgs.c \
 	src/c/msgstxt.c \
-	src/c/basout.c \
 	src/c/sciprint.c \
 	src/c/sciprint_full.c \
 	src/c/errmds.c \

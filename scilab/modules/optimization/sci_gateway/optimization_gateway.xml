@@ -19,11 +19,11 @@
  Don't touch if you do not know what you are doing
 -->
 <module name="optimization">
-    <gateway name="sci_optim"       function="optim"        type="0" />
-    <gateway name="sci_semidef"     function="semidef"      type="0" />
-    <gateway name="sci_fsolve"      function="fsolve"       type="0" />
-    <gateway name="sci_lsqrsolve"   function="lsqrsolve"    type="0" />
+    <gateway name="sci_optim"       function="optim"        type="3" />
+    <gateway name="sci_semidef"     function="semidef"      type="1" />
+    <gateway name="sci_fsolve"      function="fsolve"       type="1" />
+    <gateway name="sci_lsqrsolve"   function="lsqrsolve"    type="1" />
     <gateway name="sci_qld"         function="qld"          type="0" />
     <gateway name="sci_qp_solve"    function="qp_solve"     type="0" />
-    <gateway name="sci_readmps"     function="readmps"      type="0" />
+    <gateway name="sci_readmps"     function="readmps"      type="1" />
 </module>
