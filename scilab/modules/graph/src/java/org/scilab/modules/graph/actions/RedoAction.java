@@ -144,5 +144,9 @@ public class RedoAction extends DefaultAction {
         graph.removeUndoHandler();
         graph.getUndoManager().redo();
         graph.registerUndoHandler();
+
+        // revalidate the graph
+        graph.getAsComponent().clearCellOverlays();
+        graph.getAsComponent().validateGraph();
     }
 }

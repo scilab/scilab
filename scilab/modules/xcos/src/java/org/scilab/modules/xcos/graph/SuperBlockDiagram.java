@@ -34,11 +34,9 @@ import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
-import com.mxgraph.util.mxUtils;
 
 public final class SuperBlockDiagram extends XcosDiagram implements Serializable, Cloneable {
 
@@ -124,6 +122,8 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
     /**
      * Validate I/O ports.
      *
+     * /!\ No model modification should be made in this method, this is only a validation method.
+     *
      * @param cell
      *            Cell that represents the cell to validate.
      * @param context
@@ -193,19 +193,6 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
             err = str.toString();
         }
 
-        // Update the port labels on the superblock
-        if (err == null) {
-            mxCell identifier = this.getOrCreateCellIdentifier(block);
-            final Object current = this.getModel().getValue(identifier);
-            String text = "";
-            if (current == null) {
-                text = "";
-            } else {
-                text = mxUtils.getBodyMarkup(current.toString(), false);
-            }
-            this.fireEvent(new mxEventObject(mxEvent.LABEL_CHANGED, "cell", identifier, "value", text, "parent", block));
-        }
-
         return err;
     }
 
@@ -252,6 +239,10 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
             if (block != null) {
                 block.updateExportedPort();
             }
+
+            // validate display errors
+            graph.getAsComponent().clearCellOverlays();
+            graph.getAsComponent().validateGraph();
         }
     }
 

@@ -143,6 +143,10 @@ public class UndoAction extends DefaultAction {
         graph.removeUndoHandler();
         graph.getUndoManager().undo();
         graph.registerUndoHandler();
+
+        // revalidate the graph
+        graph.getAsComponent().clearCellOverlays();
+        graph.getAsComponent().validateGraph();
     }
 
 }

@@ -385,6 +385,12 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
             superBlock.invalidateRpar();
             superBlock.updateExportedPort();
 
+            /*
+             * Clear the transaction log in the child.
+             * From the user point of view, the operation cannot be undo'ed.
+             */
+            childGraph.getUndoManager().clear();
+
             Xcos.getInstance().addDiagram(parentGraph.getSavedFile(), childGraph);
         } finally {
             parentGraph.getModel().endUpdate();
@@ -675,10 +681,21 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
                 cellsToCopy.add(b.getChildLink());
             }
 
+            // create the local array to use the JGraphX API
+            final Object[] cells = cellsToCopy.toArray();
+
+            /*
+             * Translate the cells to the origin
+             *
+             * NOTE: this should be done on the parent diagram because
+             * getBoundsForCells only works for already added cells (not on the transaction)
+             */
+            mxRectangle rect = parentGraph.getBoundsForCells(cells, true, true, false);
+            parentGraph.moveCells(cells, -rect.getX(), -rect.getY());
+
             /*
              * Really copy the cells
              */
-            final Object[] cells = cellsToCopy.toArray();
             parentGraph.removeCells(cells, false);
             childGraph.addCells(cells);
 
