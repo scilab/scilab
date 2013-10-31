@@ -101,6 +101,8 @@ Scilab Bug Fixes
 
 * Bug #13015 fixed - Computation of Efficiency inner variable improved in optim_ga.
 
+* Bug #13022 fixed - Vectorial export did not clip large segments.
+
 * Bug #13032 fixed - Fixed CMATVIEW help example and created one for CMAT3D.
 
 * Bug #13036 fixed - Help page associated to history browser was wrong.

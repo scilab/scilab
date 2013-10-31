@@ -155,8 +155,8 @@ public class Triangle extends ConvexObject {
         Color cc = getColorsBarycenter(o.colors[0], o.colors[1], c, 1 - c);
 
         try {
-            list.add(new Segment(new Vector3d[] {o.vertices[0], p}, new Color[] {o.colors[0], cc}, o.stroke));
-            list.add(new Segment(new Vector3d[] {p, o.vertices[1]}, new Color[] {cc, o.colors[1]}, o.stroke));
+            list.add(new Segment(new Vector3d[] {o.vertices[0], p}, new Color[] {o.colors[0], cc}, o.stroke, o.is2D));
+            list.add(new Segment(new Vector3d[] {p, o.vertices[1]}, new Color[] {cc, o.colors[1]}, o.stroke, o.is2D));
         } catch (InvalidPolygonException e) { }
 
         List<ConvexObject> list1 = breakTriangleOnLine(this, p, Vector3d.product(v0v1, vertices[0].minus(p)));
@@ -347,8 +347,8 @@ public class Triangle extends ConvexObject {
         Color cc = getColorsBarycenter(s.colors[0], s.colors[1], c, 1 - c);
 
         try {
-            list.add(new Segment(new Vector3d[] {s.vertices[0], p}, new Color[] {s.colors[0], cc}, s.stroke));
-            list.add(new Segment(new Vector3d[] {p, s.vertices[1]}, new Color[] {cc, s.colors[1]}, s.stroke));
+            list.add(new Segment(new Vector3d[] {s.vertices[0], p}, new Color[] {s.colors[0], cc}, s.stroke, s.is2D));
+            list.add(new Segment(new Vector3d[] {p, s.vertices[1]}, new Color[] {cc, s.colors[1]}, s.stroke, s.is2D));
         } catch (InvalidPolygonException e) { }
 
 
