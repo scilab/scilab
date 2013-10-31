@@ -71,6 +71,8 @@ Scilab Bug Fixes
 
 * Bug #12971 fixed - getURL downloaded file name was wrong.
 
+* Bug #12973 fixed - Exception occuring when clicking on a figure at creation fixed.
+
 * Bug #12976 fixed - getURL returns a file name instead of a file path.
 
 * Bug #12978 fixed - exportUI returned an error when input argument was a figure handle.
