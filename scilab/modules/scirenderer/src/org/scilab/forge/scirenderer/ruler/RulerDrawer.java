@@ -279,6 +279,10 @@ public class RulerDrawer {
          * @param drawingTools {@link DrawingTools} used to perform the ruler drawing.
          */
         private synchronized void draw(DrawingTools drawingTools) {
+            if (rulerModel == null) {
+                return;
+            }
+
             BuffersManager bufferManager = drawingTools.getCanvas().getBuffersManager();
             ElementsBuffer vertices = bufferManager.createElementsBuffer();
             fillVertices(vertices, rulerModel, ticksValue, subTicksValue, canvasProjection);

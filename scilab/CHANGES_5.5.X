@@ -105,6 +105,8 @@ Scilab Bug Fixes
 
 * Bug #13032 fixed - Fixed CMATVIEW help example and created one for CMAT3D.
 
+* Bug #13033 fixed - -1 could not be used as nax argument in plot2d.
+
 * Bug #13036 fixed - Help page associated to history browser was wrong.
 
 * Bug #13042 fixed - Texts in graphics were not correctly centered.
