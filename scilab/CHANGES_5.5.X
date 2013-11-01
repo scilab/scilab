@@ -514,6 +514,8 @@ Scilab Bug Fixes
 
 * Bug #12826 fixed - <warning> and <note> tags were not managed in the documentation.
 
+* Bug #12854 fixed - the configure failed to detect custom installation of docbook.
+
 * Bug #12860 fixed - Missing semicolon in style.css added.
 
 * Bug #12880 fixed - A warning is displayed when transposing arguments of plot.
