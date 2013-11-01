@@ -2,7 +2,7 @@
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
-// Copyright (C) 2013 - Samuel GOUGEON
+// Copyright (C) 2013 - Samuel GOUGEON :  : bugs 12373 & 13002
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -16,39 +16,55 @@ function i = pmodulo(n, m)
 
     [lhs, rhs] = argn(0);
     if rhs <> 2 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "pmodulo", 2));
+        msg = _("%s: Wrong number of input argument(s): %d expected.\n")
+        error(msprintf(msg, "pmodulo", 2))
     end
 
-    if ~isreal(n) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A real expected.\n"), "pmodulo", 1));
+    mt = type(m($))
+    nt = type(n($))
+
+    // -----------------------  Checking arguments --------------------------
+
+    if or(type(n)==[15 16]) | and(nt <> [1 2 8]) | (nt==1 & ~isreal(n)) then
+        msg = _("%s: Wrong type for input argument #%d: Reals, encoded integers or polynomials expected.\n")
+        error(msprintf(msg, "pmodulo", 1))
     end
 
-    if ~isreal(m) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A real expected.\n"), "pmodulo", 2));
+    if or(type(m)==[15 16]) | and(mt <> [1 2 8]) | (mt==1 & ~isreal(m)) then
+        msg = _("%s: Wrong type for input argument #%d: Reals, encoded integers or polynomials expected.\n")
+        error(msprintf(msg, "pmodulo", 2))
     end
 
-    m = abs(m)  // else returns i<0 for m<0 : http://bugzilla.scilab.org/12373
-    if size(n,"*") == 1 then
-        i = zeros(m);
-        k = find(m == 0)
-        i(k) = n - floor(n ./ m(k)) .* m(k);
-        k = find(m~=0);
-        i(k) = n-floor(n./m(k)).*m(k);
-    elseif size(m,"*") == 1 then
-        i = zeros(n);
-        if m == 0 then
-            i = n - floor(n ./ m) .* m;
-        else
-            i = n-floor(n./m).*m;
-        end
+    if (nt==8 | mt==8)  & nt~=mt
+        msg = _("%s: Incompatible input arguments: Same types expected.\n")
+        error(msprintf(msg, "pmodulo"))
+    end
+
+    // --------------------------  Processing ----------------------------
+
+    if  nt==2 then
+        [i,q] = pdiv(n, m)
     else
-        if or(size(n)<>size(m)) then
-            error(msprintf(gettext("%s: Wrong size for input arguments: Same size expected.\n"),"pmodulo"));
+        ms = size(m)
+        ns = size(n)
+        m = m(:)
+        n = n(:)
+        m = abs(m)  // else returns i<0 for m<0 : http://bugzilla.scilab.org/12373
+        if length(n)>1 & length(m)>1 & or(ns<>ms) then
+            msg = _("%s: Wrong size for input arguments: Same size expected.\n")
+            error(msprintf(msg, "pmodulo"))
         end
-        i = zeros(n);
-        k = find(m==0);
-        i(k) = n(k) - floor(n(k) ./ m(k)) .* m(k);
-        k = find(m~=0);
-        i(k) = n(k)-floor(n(k)./m(k)).*m(k);
+        i = n - floor(n ./ m) .* m
+        k = find(i<0)           // this may occur for encoded integers
+        if length(m)>1 then
+            i(k) = i(k) + m(k)
+            i = iconvert(i, inttype(n))
+            i = matrix(i, ms)
+        else
+            i(k) = i(k) + m
+            i = iconvert(i, inttype(n))
+            i = matrix(i, ns)
+        end
     end
+
 endfunction

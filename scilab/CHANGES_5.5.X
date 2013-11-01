@@ -10,6 +10,8 @@ New Features
 * New functions introduced:
  - jcreatejar - Creates a Java archive (JAR) from a set of files / directories
 
+* modulo() and pmodulo() now support integers & hypermatrices (See bug #13002).
+
 
 Scilab Bug Fixes
 ================
@@ -128,6 +130,8 @@ Scilab Bug Fixes
 * Bug #12992 fixed - The sigma value was always equals to "LM" in eigs.
 
 * Bug #13000 fixed - []./int8(3) and on int8(3)./[] led to an endless recursive.
+
+* Bug #13002 fixed - modulo() and pmodulo() did not support integers & hypermatrices.
 
 * Bug #13003 fixed - String to enum converter added to Java external objects.
 
