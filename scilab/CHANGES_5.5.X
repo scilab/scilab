@@ -46,6 +46,8 @@ Scilab Bug Fixes
 
 * Bug #12769 fixed - xset("window", 1) did not set the current axes.
 
+* Bug #12882 fixed - Some help pages were not clear.
+
 * Bug #12910 fixed - Some typos fixed.
 
 * Bug #12938 fixed - No java compiler was available in Linux binary version.
@@ -95,7 +97,7 @@ Scilab Bug Fixes
 
 * Bug #13014 fixed - Update of the Efficiency inner variable improved in optim_ga.
 
-* Bug #13015 fixed - Computation of Efficiency innver variable improved in optim_ga.
+* Bug #13015 fixed - Computation of Efficiency inner variable improved in optim_ga.
 
 * Bug #13032 fixed - Fixed CMATVIEW help example and created one for CMAT3D.
 
