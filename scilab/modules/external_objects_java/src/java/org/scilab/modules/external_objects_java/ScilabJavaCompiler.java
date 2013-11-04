@@ -185,7 +185,7 @@ public class ScilabJavaCompiler {
                 return -1;
             } else {
                 if (manager.className != null && !manager.className.isEmpty()) {
-                    return ScilabClassLoader.loadJavaClass(manager.className, true);
+                    return ScilabClassLoader.loadJavaClass(BINPATH, manager.className);
                 } else {
                     return -1;
                 }
