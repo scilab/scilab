@@ -16,7 +16,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.ImageIcon;
 
-import org.scilab.modules.gui.bridge.CallScilabBridge;
+import org.scilab.modules.commons.ScilabGeneralPrefs;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -30,18 +30,18 @@ import org.scilab.modules.history_browser.CommandHistoryMessages;
  * Manage Help Actions
  * @author Vincent COUVERT
  */
-public final class HelpAction extends CommonCallBack {
+public final class PrefsAction extends CommonCallBack {
 
     private static final long serialVersionUID = 1L;
 
-    private static final String LABEL = CommandHistoryMessages.SCILAB_HELP;
-    private static final String ICON = ScilabSwingUtilities.findIcon("help-browser");
-    private static final char MNEMONIC = 'S';
+    private static final String LABEL = CommandHistoryMessages.SCILAB_PREFS;
+    private static final String ICON = ScilabSwingUtilities.findIcon("preferences-system");
+    private static final char MNEMONIC = 'P';
 
     /**
      * Constructor
      */
-    public HelpAction() {
+    public PrefsAction() {
         super("");
     }
 
@@ -77,7 +77,7 @@ public final class HelpAction extends CommonCallBack {
     private static CommonCallBack getCallBack() {
         CommonCallBack callback = null;
         try {
-            callback = HelpAction.class.getConstructor().newInstance();
+            callback = PrefsAction.class.getConstructor().newInstance();
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         } catch (SecurityException e) {
@@ -100,6 +100,6 @@ public final class HelpAction extends CommonCallBack {
      */
     @Override
     public void callBack() {
-        CallScilabBridge.openHelp("browsehistory");
+        ScilabGeneralPrefs.openPreferences("command-history/");
     }
 }

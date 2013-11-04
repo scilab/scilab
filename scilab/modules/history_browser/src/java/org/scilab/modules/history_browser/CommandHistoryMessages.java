@@ -40,6 +40,8 @@ public final class CommandHistoryMessages {
     public static final String ERROR = Messages.gettext("Error");
     public static final String CANNOT_DELETE_CURRENT_SESSION_NODE = Messages.gettext("Cannot delete current session beginning line.");
 
+    public static final String SCILAB_PREFS = Messages.gettext("History preferences");
+
     /**
      * This class is a static singleton
      * Thus it must not be instantiated
