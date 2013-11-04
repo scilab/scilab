@@ -14,28 +14,27 @@
 package org.scilab.modules.gui.bridge.label;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.image.BufferedImage;
 
 import javax.swing.BorderFactory;
-import javax.swing.Icon;
+import javax.swing.JComponent;
+import javax.swing.JEditorPane;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
 import javax.swing.text.html.HTMLDocument;
-import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 
-import org.scilab.modules.gui.SwingViewWidget;
+import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.label.SimpleLabel;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -48,42 +47,51 @@ import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.WebBrowser;
-import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 
 /**
  * Swing implementation for Scilab Labels in GUIs
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-@SuppressWarnings(value = { "serial" })
 public class SwingScilabLabel extends JScrollPane implements SwingViewObject, SimpleLabel {
 
     private static final long serialVersionUID = 7177323379068859441L;
 
-    private static final String DOLLAR = "$";
-
     private Integer uid;
 
-    private ScilabJTextPane label;
+    private JComponent label = new JLabel();
+
+    private boolean isJLabel = true;
 
     private String horizontalAlignment = "left"; /* Horizontal alignment property */
 
     private String verticalAlignment = "middle"; /* Vertical alignment property */
 
-    private JPanel alignmentPanel; /* Used for alignment */
+    private final JPanel alignmentPanel = new JPanel(); /* Used for alignment */
+
+    private final GridBagLayout alignmentLayout = new GridBagLayout();
 
     private String labelText = ""; /* Used to save user given text */
+
+    private static HyperlinkListener urlOpener = new HyperlinkListener() {
+        public void hyperlinkUpdate(HyperlinkEvent event) {
+            if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+                WebBrowser.openUrl(event.getURL(), event.getDescription());
+            }
+        }
+    };
 
     /**
      * Constructor
      */
     public SwingScilabLabel() {
         super();
-        getViewport().add(getAlignmentPanel());
+        alignmentPanel.setLayout(alignmentLayout);
+        alignmentPanel.add(label);
+        getViewport().add(alignmentPanel);
         setBorder(BorderFactory.createEmptyBorder());
         setViewportBorder(BorderFactory.createEmptyBorder());
         setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-
         // Initialize display
         setAlignment();
     }
@@ -93,42 +101,25 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
      * @param font new font to use.
      */
     public void setFont(Font font) {
-        getLabel().setFont(font); // Set font so that getFont can be used direclty
-
-        // Set the properties to the text (only for text label not for HTML or MATHML)
-        if ((labelText != null) && !(labelText.startsWith(DOLLAR) && labelText.endsWith(DOLLAR))
-                && !(labelText.startsWith("<") && labelText.endsWith(">"))) {
-            // Now set the stylesheet because of text/html contents
-            StyleSheet styleSheet = ((HTMLDocument) getLabel().getDocument()).getStyleSheet();
-            styleSheet.addRule("body {font-family:" + font.getName() + ";}");
-            styleSheet.addRule("body {font-size:" + font.getSize() + "pt;}");
-            if (font.isBold()) {
-                styleSheet.addRule("body {font-weight:bold;}");
-            } else {
-                styleSheet.addRule("body {font-weight:normal;}");
-            }
-            if (font.isItalic()) {
-                styleSheet.addRule("body {font-style:italic;}");
-            } else {
-                styleSheet.addRule("body {font-style:normal;}");
+        super.setFont(font);
+        if (label != null) {
+            label.setFont(font);
+            if (!isJLabel) {
+                StyleSheet styleSheet = ((HTMLDocument) ((JTextPane) label).getDocument()).getStyleSheet();
+                styleSheet.addRule("body {font-family:" + font.getName() + ";}");
+                styleSheet.addRule("body {font-size:" + font.getSize() + "pt;}");
+                if (font.isBold()) {
+                    styleSheet.addRule("body {font-weight:bold;}");
+                } else {
+                    styleSheet.addRule("body {font-weight:normal;}");
+                }
+                if (font.isItalic()) {
+                    styleSheet.addRule("body {font-style:italic;}");
+                } else {
+                    styleSheet.addRule("body {font-style:normal;}");
+                }
             }
         }
-    }
-
-    /**
-     * To get the Font of the element.
-     * @return font the Font
-     */
-    public Font getFont() {
-        return getLabel().getFont();
-    }
-
-    /**
-     * To get the Foreground color of the element.
-     * @return color the Color
-     */
-    public Color getForeground() {
-        return getLabel().getForeground();
     }
 
     /**
@@ -136,7 +127,10 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
      * @param color the Color
      */
     public void setForeground(Color color) {
-        getLabel().setForeground(color);
+        super.setForeground(color);
+        if (label != null) {
+            label.setForeground(color);
+        }
     }
 
     /**
@@ -144,16 +138,13 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
      * @param color the Color
      */
     public void setBackground(Color color) {
-        getAlignmentPanel().setBackground(color);
-        getLabel().setBackground(color);
-    }
-
-    /**
-     * To get the Background color of the element.
-     * @return color the Color
-     */
-    public Color getBackground() {
-        return getLabel().getBackground();
+        super.setBackground(color);
+        if (alignmentPanel != null) {
+            alignmentPanel.setBackground(color);
+        }
+        if (label != null) {
+            label.setBackground(color);
+        }
     }
 
     /**
@@ -163,26 +154,6 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
     public void draw() {
         this.setVisible(true);
         this.doLayout();
-    }
-
-    /**
-     * Sets the visibility status of an UIElement
-     * @param newVisibleState the visibility status we want to set for the UIElement
-     *                      (true if the UIElement is visible, false if not)
-     */
-    public void setVisible(boolean newVisibleState) {
-        super.setVisible(newVisibleState);
-        getLabel().setVisible(newVisibleState);
-    }
-
-    /**
-     * Sets the enable status of an UIElement
-     * @param newEnableState the enable status we want to set for the UIElement
-     *                      (true if the UIElement is enabled, false if not)
-     */
-    public void setEnabled(boolean newEnableState) {
-        super.setEnabled(newEnableState);
-        getLabel().setEnabled(newEnableState);
     }
 
     /**
@@ -282,6 +253,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
     public void setVerticalAlignment(String alignment) {
         verticalAlignment = alignment;
         setAlignment();
+
     }
 
     /**
@@ -318,31 +290,6 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
     }
 
     /**
-     * Create/Return the label Java object
-     * @return the label
-     */
-    private JTextPane getLabel() {
-        if (label == null) {
-            label = new ScilabJTextPane();
-            label.setContentType("text/html");
-            label.setOpaque(false);
-            label.setBorder(null);
-            label.setEditable(false);
-            ((HTMLEditorKit) label.getEditorKit()).setAutoFormSubmission(false);
-            /* Add a listener to make hyperlinks active */
-            label.addHyperlinkListener(new HyperlinkListener() {
-                public void hyperlinkUpdate(HyperlinkEvent event) {
-                    if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-                        WebBrowser.openUrl(event.getURL(), event.getDescription());
-                    }
-                }
-            });
-        }
-        return label;
-
-    }
-
-    /**
      * get the text displayed in the label
      * @return the label
      * @see org.scilab.modules.gui.text.SimpleText#getText()
@@ -360,16 +307,97 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         // Save the data given by the user so that it can be retrieved
         // (Java adds HTML tags in the getlabel().getText() returned value)
         labelText = newText;
-        getLabel().setText(newText);
+        if (labelText.startsWith("<")) {
+            // Try if we are in MathML
+            if (isJLabel && ScilabSpecialTextUtilities.setText(label, newText)) {
+                // MathML in JLabel : OK
+                // Rendering will be done using Icon
+                ((JLabel) label).setText(null);
+            } else if (!isJLabel) {
+                // Try rendering in a new JLabel
+                if (ScilabSpecialTextUtilities.setText(new JLabel(), newText)) {
+                    // MathML in JEditorPane : Change component
+                    changeLabelType(!isJLabel);
+                    ScilabSpecialTextUtilities.setText(label, newText);
+                    // Rendering will be done using Icon
+                    ((JLabel) label).setText(null);
+                } else {
+                    // HTML in JEditorPane : OK
+                    ((JEditorPane) label).setText(newText);
+                }
+            } else {
+                // HTML in JLabel :
+                changeLabelType(!isJLabel);
+                ((JEditorPane) label).setText(newText);
+            }
+        } else {
+            if (!isJLabel) {
+                changeLabelType(!isJLabel);
+            }
+
+            if (!ScilabSpecialTextUtilities.setText(label, newText)) {
+                // Normal Text
+                ((JLabel) label).setText(newText);
+            } else {
+                // Latex or MathML : Rendering will be done using Icon
+                ((JLabel) label).setText(null);
+            }
+        }
+
+    }
+
+    /**
+     * Change Label type to switch between JLabel abd JEditorPane
+     * JLabel is quicker on simple text
+     * JEditorPane can enable HyperLinks
+     * @param isHtmlLabel
+     */
+    private void changeLabelType(boolean isJLabel) {
+        this.isJLabel = isJLabel;
+        Color bgColor = label.getBackground();
+        Color fgColor = label.getForeground();
+        Font font = label.getFont();
+        Dimension dims = label.getSize();
+        label.setVisible(false);
+
+        alignmentPanel.remove(label);
+
+        if (!isJLabel) {
+            JTextPane newLabel = new JTextPane();
+            newLabel.addHyperlinkListener(urlOpener);
+            newLabel.setContentType("text/html");
+            newLabel.setEditable(false);         
+            StyleSheet styleSheet = ((HTMLDocument) newLabel.getDocument()).getStyleSheet();
+            styleSheet.addRule("body {font-family:" + font.getName() + ";}");
+            styleSheet.addRule("body {font-size:" + font.getSize() + "pt;}");
+            if (font.isBold()) {
+                styleSheet.addRule("body {font-weight:bold;}");
+            } else {
+                styleSheet.addRule("body {font-weight:normal;}");
+            }
+            if (font.isItalic()) {
+                styleSheet.addRule("body {font-style:italic;}");
+            } else {
+                styleSheet.addRule("body {font-style:normal;}");
+            }
+            label = newLabel;
+        } else {
+            label = new JLabel();
+        }
+
+        label.setBackground(bgColor);
+        label.setForeground(fgColor);
+        label.setFont(font);
+        label.setSize(dims);
+        label.setVisible(true);
+        alignmentPanel.add(label);
+        alignmentPanel.revalidate();
     }
 
     /**
      * Set alignment of the text component
      */
     private void setAlignment() {
-
-        getAlignmentPanel().remove(getLabel());
-
         GridBagConstraints gbc = new GridBagConstraints();
 
         gbc.gridx = 0;
@@ -380,61 +408,49 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         gbc.gridheight = 1;
 
         switch (ScilabAlignment.toSwingAlignment(horizontalAlignment)) {
-            case SwingConstants.LEFT:
-                switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
-                    case SwingConstants.TOP:
-                        gbc.anchor = GridBagConstraints.NORTHWEST;
-                        break;
-                    case SwingConstants.CENTER:
-                        gbc.anchor = GridBagConstraints.WEST;
-                        break;
-                    default: // SwingConstants.BOTTOM
-                        gbc.anchor = GridBagConstraints.SOUTHWEST;
-                        break;
-                }
+        case SwingConstants.LEFT:
+            switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
+            case SwingConstants.TOP:
+                gbc.anchor = GridBagConstraints.NORTHWEST;
                 break;
             case SwingConstants.CENTER:
-                switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
-                    case SwingConstants.TOP:
-                        gbc.anchor = GridBagConstraints.NORTH;
-                        break;
-                    case SwingConstants.CENTER:
-                        gbc.anchor = GridBagConstraints.CENTER;
-                        break;
-                    default: // SwingConstants.BOTTOM
-                        gbc.anchor = GridBagConstraints.SOUTH;
-                        break;
-                }
+                gbc.anchor = GridBagConstraints.WEST;
                 break;
-            default: // SwingConstants.RIGHT
-                switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
-                    case SwingConstants.TOP:
-                        gbc.anchor = GridBagConstraints.NORTHEAST;
-                        break;
-                    case SwingConstants.CENTER:
-                        gbc.anchor = GridBagConstraints.EAST;
-                        break;
-                    default: // SwingConstants.BOTTOM
-                        gbc.anchor = GridBagConstraints.SOUTHEAST;
-                        break;
-                }
+            default: // SwingConstants.BOTTOM
+            gbc.anchor = GridBagConstraints.SOUTHWEST;
+            break;
+            }
+            break;
+        case SwingConstants.CENTER:
+            switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
+            case SwingConstants.TOP:
+                gbc.anchor = GridBagConstraints.NORTH;
                 break;
+            case SwingConstants.CENTER:
+                gbc.anchor = GridBagConstraints.CENTER;
+                break;
+            default: // SwingConstants.BOTTOM
+            gbc.anchor = GridBagConstraints.SOUTH;
+            break;
+            }
+            break;
+        default: // SwingConstants.RIGHT
+            switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
+            case SwingConstants.TOP:
+                gbc.anchor = GridBagConstraints.NORTHEAST;
+                break;
+            case SwingConstants.CENTER:
+                gbc.anchor = GridBagConstraints.EAST;
+                break;
+            default: // SwingConstants.BOTTOM
+            gbc.anchor = GridBagConstraints.SOUTHEAST;
+            break;
+            }
+            break;
         }
 
-        getAlignmentPanel().add(getLabel(), gbc);
-
-    }
-
-    /**
-     * Get/Create the panel used for alignment management
-     * @return the panel
-     */
-    private JPanel getAlignmentPanel() {
-        if (alignmentPanel == null) {
-            alignmentPanel = new JPanel(new GridBagLayout());
-        }
-
-        return alignmentPanel;
+        alignmentLayout.setConstraints(label, gbc);
+        alignmentPanel.revalidate();
     }
 
     /**
@@ -462,84 +478,4 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         SwingViewWidget.update(this, property, value);
     }
 
-    /**
-     * Inner class to handle the case where the label is in LaTeX or in MathML
-     */
-    public class ScilabJTextPane extends JTextPane {
-
-        private int descent;
-        private int fontSize;
-        private String expression;
-        private Icon icon;
-
-        /**
-         * Get the icon set in the textpane
-         * @return the set icon
-         */
-        public Icon getIcon() {
-            return this.icon;
-        }
-
-        /**
-         * Sets the Icon of this textPane
-         * @param icon to set
-         */
-        public void setIcon(Icon icon) {
-            this.icon = icon;
-            if (icon != null) {
-                insertIcon(icon);
-                int width = icon.getIconWidth();
-                // We need to add the descent to avoid the vertical scrollbar
-                int height = icon.getIconHeight() + descent;
-                setSize(width, height);
-                SwingScilabLabel.this.setDims(new Size(width, height));
-            }
-        }
-
-        /**
-         * @param font to use in this textPane
-         */
-        public void setFont(Font font) {
-            super.setFont(font);
-            descent = getDescent(font);
-            if (font.getSize() != fontSize && expression != null) {
-                try {
-                    //If we have an icon, it is considered as one char
-                    getDocument().remove(0, 1);
-                } catch (BadLocationException e) { }
-                ScilabSpecialTextUtilities.setText(this, expression);
-                fontSize = font.getSize();
-            }
-        }
-
-        /**
-         * Sets the text of a Text Widget
-         * @param newText the text to set to the Text Widget
-         */
-        public void setText(String newText) {
-            Document doc = getDocument();
-            try {
-                doc.remove(0, doc.getLength());
-            } catch (BadLocationException e) {
-                System.err.println(e);
-            }
-            if (ScilabSpecialTextUtilities.setText(this, newText)) {
-                expression = newText;
-            } else {
-                super.setText(newText);
-            }
-        }
-
-        /**
-         * @param font where to get the descent
-         * @return the descent of the font
-         */
-        private int getDescent(Font font) {
-            Graphics g = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB).createGraphics();
-            g.setFont(font);
-            int d = (int) (g.getFontMetrics().getDescent() + 0.99f);
-            g.dispose();
-            return d;
-        }
-    }
 }
