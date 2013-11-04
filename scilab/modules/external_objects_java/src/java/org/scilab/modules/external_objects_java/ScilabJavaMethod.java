@@ -149,6 +149,7 @@ public final class ScilabJavaMethod {
         } catch (IllegalAccessException e) {
             throw new ScilabJavaException("Illegal access to the method " + name + ".");
         } catch (IllegalArgumentException e) {
+            e.printStackTrace();
             throw new ScilabJavaException("Illegal argument in the method " + name + ": \n" + e.getMessage());
         } catch (NullPointerException e) {
             throw new ScilabJavaException("The method " + name + " is called on a null object.");
