@@ -431,6 +431,11 @@ public class DataManager {
             fillVertexBuffer(buf.getBuffer(), id, buf.getScale(), buf.getTranslate());
         }
 
+        ElementsBuffer normalBuffer = normalBufferMap.get(id);
+        if (normalBuffer != null) {
+            fillNormalBuffer(normalBuffer, id);
+        }
+
         ElementsBuffer colorBuffer = colorBufferMap.get(id);
         if (colorBuffer != null) {
             fillColorBuffer(colorBuffer, id);
