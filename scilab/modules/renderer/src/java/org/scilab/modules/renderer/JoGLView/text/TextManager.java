@@ -183,8 +183,8 @@ public class TextManager {
         textHeight = textHeight.minus(unscaledTextPosition);
 
         if (text.getTextBoxMode() >= 1) {
-            textWidth = textWidth.getNormalized().times(textBox[0]);
-            textHeight = textHeight.getNormalized().times(textBox[1]);
+            textWidth = textWidth.getNormalized().times(textBox[0] * factors[0][0]);
+            textHeight = textHeight.getNormalized().times(textBox[1] * factors[0][1]);
         }
 
         /*
@@ -213,8 +213,8 @@ public class TextManager {
         textWidth = ScaleUtils.applyLogScale(textWidth, logFlags);
         textHeight = ScaleUtils.applyLogScale(textHeight, logFlags);
 
-        textWidth = textWidth.minus(textPosition);
-        textHeight = textHeight.minus(textPosition);
+        textWidth = textWidth.minus(unscaledTextPosition);
+        textHeight = textHeight.minus(unscaledTextPosition);
 
         projTextWidth = projection.projectDirection(textWidth);
         projTextHeight = projection.projectDirection(textHeight);
@@ -298,8 +298,6 @@ public class TextManager {
         cornerPositions[1] = new Vector3d(textPosition);
 
         if (text.getTextBoxMode() >= 1) {
-            Double[] textBox = text.getTextBox();
-
             Vector3d textBoxWidth = new Vector3d(textBoxVectors[0]);
             Vector3d textBoxHeight = new Vector3d(textBoxVectors[1]);
 
@@ -477,7 +475,6 @@ public class TextManager {
 
         return coordinates;
     }
-
 
     /**
      * Update the data if needed.

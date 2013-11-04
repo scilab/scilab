@@ -107,6 +107,8 @@ Scilab Bug Fixes
 
 * Bug #13036 fixed - Help page associated to history browser was wrong.
 
+* Bug #13042 fixed - Texts in graphics were not correctly centered.
+
 * Bug #13047 fixed - jcompile did not allow class reloading.
 
 * Bug #13049 fixed - New handled protocols added in links in SciNotes.
