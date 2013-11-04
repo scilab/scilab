@@ -1,6 +1,13 @@
                  Changes between version 5.5.0-beta-1 and 5.5.0
                  ==============================================
 
+New Features
+=============
+
+* The figures "visible" property now also applies to uicontrols.
+  In previous releases, only axes were managed by this property setting.
+
+
 Scilab Bug Fixes
 ================
 
