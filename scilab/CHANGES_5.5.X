@@ -109,6 +109,8 @@ Scilab Bug Fixes
 
 * Bug #13036 fixed - Help page associated to history browser was wrong.
 
+* Bug #13041 fixed - Wrong result was returned for "integer scalar" minus "integer vector".
+
 * Bug #13042 fixed - Texts in graphics were not correctly centered.
 
 * Bug #13047 fixed - jcompile did not allow class reloading.
