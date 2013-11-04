@@ -107,6 +107,8 @@ Scilab Bug Fixes
 
 * Bug #13047 fixed - jcompile did not allow class reloading.
 
+* Bug #13049 fixed - New handled protocols added in links in SciNotes.
+
 
 Xcos Bug Fixes
 ==============
