@@ -721,9 +721,6 @@
     <ClInclude Include="..\..\includes\stack-def.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\stack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\stack1.h">
       <Filter>Header Files</Filter>
     </ClInclude>

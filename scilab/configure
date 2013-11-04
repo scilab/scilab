@@ -40347,6 +40347,8 @@ fi
 # This script is used by Xcos in order to regenerate the function/block list
 
 
+cp $srcdir/modules/core/includes/stack.h.in $srcdir/modules/core/includes/stack.h
+
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure
