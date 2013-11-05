@@ -34,7 +34,7 @@ public class DatatipDrag {
     * @param endX Integer with pixel mouse position x after mouse drag.
     * @param endY Integer with pixel mouse position y after mouse drag.
     */
-    public static void dragDatatip(Integer datatipUid, int endX, int endY) {
+    public static void dragDatatip(int datatipUid, int endX, int endY) {
 
         Integer parentPolyline = DatatipCommon.getParentPolyline(datatipUid);
 

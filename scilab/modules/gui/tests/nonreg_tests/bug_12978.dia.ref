@@ -4,7 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- TEST WITH GRAPHIC -->
 //
 // <-- Non-regression test for bug 13053 -->
@@ -14,13 +13,19 @@
 //
 // <-- Short Description -->
 // datatipCreate did not return datatip handle.
-
 clf();
 x=linspace(-20,20,1000);
 plot(x,sinc(x),x,sinc(x^2));
+plot(x,sinc(x),x,sinc(x^2));
+                          !       
+at line      34 of exec file called by :    
+_TMP_28708_1blIKW/bug_12978.tst',-1
+ 
+Attention : La syntaxe "vector ^ scalar" est obsolète. Elle sera supprimée dans Scilab 6.0.
+  Veuillez utiliser "vector .^ scalar" à la place.
+
 e=gce();
 e=e.children;
 d1=datatipCreate(e(1),500);
-
 assert_checkequal(typeof(d1), "handle");
 assert_checkequal(d1.type, "Datatip");

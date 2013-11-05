@@ -119,6 +119,8 @@ Scilab Bug Fixes
 
 * Bug #13049 fixed - New handled protocols added in links in SciNotes.
 
+* Bug #13053 fixed - datatipCreate did not return datatip handle.
+
 
 Xcos Bug Fixes
 ==============

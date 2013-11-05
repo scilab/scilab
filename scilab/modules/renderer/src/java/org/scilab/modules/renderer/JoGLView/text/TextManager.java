@@ -151,13 +151,13 @@ public class TextManager {
         Double[] pos = text.getPosition();
 
         /* The text position vector before logarithmic scaling */
-        Vector3d unscaledTextPosition = new Vector3d(pos);
+        Vector3d textPosition = new Vector3d(pos);
 
         boolean[] logFlags = new boolean[] {parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
 
         /* Apply logarithmic scaling and then project */
-        Vector3d textPosition = ScaleUtils.applyLogScale(unscaledTextPosition, logFlags);
-        unscaledTextPosition = new Vector3d(unscaledTextPosition.getX() * factors[0][0] + factors[1][0], unscaledTextPosition.getY() * factors[0][1] + factors[1][1], unscaledTextPosition.getZ() * factors[0][2] + factors[1][2]);
+        textPosition = ScaleUtils.applyLogScale(textPosition, logFlags);
+        textPosition = new Vector3d(textPosition.getX() * factors[0][0] + factors[1][0], textPosition.getY() * factors[0][1] + factors[1][1], textPosition.getZ() * factors[0][2] + factors[1][2]);
         Vector3d projTextPosition = projection.project(textPosition);
 
         /* Compute the text label vectors in window coordinates */
@@ -179,8 +179,8 @@ public class TextManager {
         textHeight = ScaleUtils.applyInverseLogScale(textHeight, logFlags);
 
 
-        textWidth = textWidth.minus(unscaledTextPosition);
-        textHeight = textHeight.minus(unscaledTextPosition);
+        textWidth = textWidth.minus(textPosition);
+        textHeight = textHeight.minus(textPosition);
 
         if (text.getTextBoxMode() >= 1) {
             textWidth = textWidth.getNormalized().times(textBox[0] * factors[0][0]);
@@ -206,15 +206,15 @@ public class TextManager {
         }
 
         /* Computes the lower-right and upper-left corners. */
-        textWidth = textWidth.plus(unscaledTextPosition);
-        textHeight = textHeight.plus(unscaledTextPosition);
+        textWidth = textWidth.plus(textPosition);
+        textHeight = textHeight.plus(textPosition);
 
         /* Finally re-apply logarithmic scaling, compute the vectors and project */
         textWidth = ScaleUtils.applyLogScale(textWidth, logFlags);
         textHeight = ScaleUtils.applyLogScale(textHeight, logFlags);
 
-        textWidth = textWidth.minus(unscaledTextPosition);
-        textHeight = textHeight.minus(unscaledTextPosition);
+        textWidth = textWidth.minus(textPosition);
+        textHeight = textHeight.minus(textPosition);
 
         projTextWidth = projection.projectDirection(textWidth);
         projTextHeight = projection.projectDirection(textHeight);

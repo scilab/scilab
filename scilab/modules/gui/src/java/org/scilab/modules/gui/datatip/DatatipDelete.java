@@ -29,7 +29,7 @@ public class DatatipDelete {
     *
     * @param datatipUid Datatip unique identifier.
     */
-    public static void deleteDatatip(Integer datatipUid) {
+    public static void deleteDatatip(int datatipUid) {
 
         Double[] datatipPosition = (Double[]) GraphicController.getController().getProperty(datatipUid, GraphicObjectProperties.__GO_DATATIP_DATA__);
 
@@ -48,7 +48,7 @@ public class DatatipDelete {
     * @param polylineUid Polyline unique identifier.
     * @param indexRemove Index of the datatip to be removed.
     */
-    public static void datatipRemoveProgramIndex(Integer polylineUid, int indexRemove) {
+    public static void datatipRemoveProgramIndex(int polylineUid, int indexRemove) {
 
         Integer[] datatips = (new ObjectSearcher()).search(polylineUid, GraphicObjectProperties.__GO_DATATIP__);
 
@@ -69,7 +69,7 @@ public class DatatipDelete {
     * @param datatipUid Datatip unique identifier.
     * @param figureUid Figure unique identifier.
     */
-    public static void datatipRemoveProgramHandler(Integer datatipUid, Integer figureUid) {
+    public static void datatipRemoveProgramHandler(int datatipUid, Integer figureUid) {
         deleteDatatip(datatipUid);
     }
 

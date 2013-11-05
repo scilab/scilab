@@ -110,6 +110,8 @@ int sci_datatipcreate(char *fname, unsigned long fname_len)
                         Scierror(999, _("%s: Wrong size for input argument #%d: 1-by-%d or %d-by-1 vector expected.\n"), fname, 2, 2, 3);
                         return 1;
                     }
+
+                    llHandle = ScilabView::getObjectHandle(iDatatip_handler);
                 }
                 else
                 {
