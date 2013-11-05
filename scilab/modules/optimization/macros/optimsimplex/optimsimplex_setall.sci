@@ -23,8 +23,8 @@ function this = optimsimplex_setall ( this , simplex )
     if typeof(this) <> "TSIMPLEX" then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"), "optimsimplex_setall", 1));
     end
-    if typeof(simplex) <> "TSIMPLEX" then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"), "optimsimplex_setall", 2));
+    if type(simplex) <> 1 | ~isreal(simplex) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "optimsimplex_setall", 2));
     end
     nbve = size(simplex,1)
     np1 = size(simplex,2)

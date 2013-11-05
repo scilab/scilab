@@ -56,10 +56,10 @@ assert_checkerror("s1 = optimsimplex_getx(""1"");",refMsg);
 assert_checkerror("s1 = optimsimplex_getx(%t);",refMsg);
 // optimsimplex_setall
 refMsg = msprintf(_("%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"), "optimsimplex_setall", 1);
-refMsg2 = msprintf(_("%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"), "optimsimplex_setall", 2);
+refMsg2 = msprintf(_("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "optimsimplex_setall", 2);
 assert_checkerror("s1 = optimsimplex_setall(1, s1);",refMsg);
 assert_checkerror("s1 = optimsimplex_setall(""s1"", s1);",refMsg);
-assert_checkerror("s1 = optimsimplex_setall(s1, 1);",refMsg2);
+assert_checkerror("s1 = optimsimplex_setall(s1, %i);",refMsg2);
 assert_checkerror("s1 = optimsimplex_setall(s1, ""s1"");",refMsg2);
 // optimsimplex_setallfv
 refMsg = msprintf(_("%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"), "optimsimplex_setallfv", 1);
