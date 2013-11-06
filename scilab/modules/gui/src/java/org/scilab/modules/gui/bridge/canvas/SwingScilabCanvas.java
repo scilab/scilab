@@ -22,6 +22,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -97,6 +99,16 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
             @Override
             public void mouseEntered(MouseEvent e) {
                 GlobalEventWatcher.setAxesUID(figure.getIdentifier());
+            }
+        });
+
+        /* Workaround for bug 12682: setFocusable(false) did not work...
+           the GLJPanel always got the focus after zooming. So when it gets it, the
+           canvas will get it.*/
+        drawableComponent.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                SwingScilabCanvas.this.requestFocus();
             }
         });
 
