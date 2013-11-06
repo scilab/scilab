@@ -180,6 +180,7 @@ am__objects_2 =  \
 	libsciexternal_objects_java_algo_la-ScilabJavaEnvironmentWrapper.lo \
 	libsciexternal_objects_java_algo_la-ScilabJavaArray.lo \
 	libsciexternal_objects_java_algo_la-ScilabJavaCompiler.lo \
+	libsciexternal_objects_java_algo_la-ScilabJarCreator.lo \
 	libsciexternal_objects_java_algo_la-ScilabJavaClass.lo \
 	libsciexternal_objects_java_algo_la-ScilabJavaObject.lo \
 	libsciexternal_objects_java_algo_la-ScilabClassLoader.lo \
@@ -205,6 +206,7 @@ am__objects_3 =  \
 	libsciexternal_objects_java_la-sci_jgetfields.lo \
 	libsciexternal_objects_java_la-sci_jgetfield.lo \
 	libsciexternal_objects_java_la-sci_jcompile.lo \
+	libsciexternal_objects_java_la-sci_jcreatejar.lo \
 	libsciexternal_objects_java_la-sci_jnewInstance.lo \
 	libsciexternal_objects_java_la-sci_jremove.lo \
 	libsciexternal_objects_java_la-sci_jexists.lo \
@@ -681,6 +683,7 @@ src/cpp/JavaOptionsSetter.cpp \
 src/cpp/ScilabJavaEnvironmentWrapper.cpp \
 src/jni/ScilabJavaArray.cpp \
 src/jni/ScilabJavaCompiler.cpp \
+src/jni/ScilabJarCreator.cpp \
 src/jni/ScilabJavaClass.cpp \
 src/jni/ScilabJavaObject.cpp \
 src/jni/ScilabClassLoader.cpp \
@@ -697,6 +700,7 @@ sci_gateway/cpp/sci_jgetmethods.cpp \
 sci_gateway/cpp/sci_jgetfields.cpp \
 sci_gateway/cpp/sci_jgetfield.cpp \
 sci_gateway/cpp/sci_jcompile.cpp \
+sci_gateway/cpp/sci_jcreatejar.cpp \
 sci_gateway/cpp/sci_jnewInstance.cpp \
 sci_gateway/cpp/sci_jremove.cpp \
 sci_gateway/cpp/sci_jexists.cpp \
@@ -744,11 +748,11 @@ libsciexternal_objects_java_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/commons/src/jni/ \
     $(JAVA_JNI_INCLUDE)
 
-pkglib_LTLIBRARIES = libsciexternal_objects_java.la 
-noinst_LTLIBRARIES = libsciexternal_objects_java-algo.la 
+pkglib_LTLIBRARIES = libsciexternal_objects_java.la
+noinst_LTLIBRARIES = libsciexternal_objects_java-algo.la
 libsciexternal_objects_java_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 libsciexternal_objects_java_algo_la_SOURCES = $(EXTERNAL_OBJECTS_JAVA_C_SOURCES) $(EXTERNAL_OBJECTS_JAVA_JNI_SOURCES) $(EXTERNAL_OBJECTS_JAVA_CPP_SOURCES)
-libsciexternal_objects_java_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) 
+libsciexternal_objects_java_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libsciexternal_objects_java_algo_la_CFLAGS = $(libsciexternal_objects_java_la_CFLAGS)
 libsciexternal_objects_java_algo_la_CPPFLAGS = $(libsciexternal_objects_java_la_CPPFLAGS)
 libsciexternal_objects_java_la_LIBADD = libsciexternal_objects_java-algo.la $(top_builddir)/modules/commons/libscicommons.la $(top_builddir)/modules/jvm/libscijvm.la
@@ -869,6 +873,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_algo_la-JavaOptionsSetter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_algo_la-NoMoreScilabMemoryException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_algo_la-ScilabClassLoader.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_algo_la-ScilabJarCreator.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_algo_la-ScilabJavaArray.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_algo_la-ScilabJavaClass.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_algo_la-ScilabJavaCompiler.Plo@am__quote@
@@ -884,6 +889,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_la-sci_jcast.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_la-sci_jcompile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_la-sci_jconvMatrixMethod.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_la-sci_jcreatejar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_la-sci_jdeff.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_la-sci_jdisableTrace.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_la-sci_jenableTrace.Plo@am__quote@
@@ -995,6 +1001,13 @@ libsciexternal_objects_java_algo_la-ScilabJavaCompiler.lo: src/jni/ScilabJavaCom
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_java_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciexternal_objects_java_algo_la-ScilabJavaCompiler.lo `test -f 'src/jni/ScilabJavaCompiler.cpp' || echo '$(srcdir)/'`src/jni/ScilabJavaCompiler.cpp
 
+libsciexternal_objects_java_algo_la-ScilabJarCreator.lo: src/jni/ScilabJarCreator.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_java_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciexternal_objects_java_algo_la-ScilabJarCreator.lo -MD -MP -MF $(DEPDIR)/libsciexternal_objects_java_algo_la-ScilabJarCreator.Tpo -c -o libsciexternal_objects_java_algo_la-ScilabJarCreator.lo `test -f 'src/jni/ScilabJarCreator.cpp' || echo '$(srcdir)/'`src/jni/ScilabJarCreator.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciexternal_objects_java_algo_la-ScilabJarCreator.Tpo $(DEPDIR)/libsciexternal_objects_java_algo_la-ScilabJarCreator.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/ScilabJarCreator.cpp' object='libsciexternal_objects_java_algo_la-ScilabJarCreator.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_java_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciexternal_objects_java_algo_la-ScilabJarCreator.lo `test -f 'src/jni/ScilabJarCreator.cpp' || echo '$(srcdir)/'`src/jni/ScilabJarCreator.cpp
+
 libsciexternal_objects_java_algo_la-ScilabJavaClass.lo: src/jni/ScilabJavaClass.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_java_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciexternal_objects_java_algo_la-ScilabJavaClass.lo -MD -MP -MF $(DEPDIR)/libsciexternal_objects_java_algo_la-ScilabJavaClass.Tpo -c -o libsciexternal_objects_java_algo_la-ScilabJavaClass.lo `test -f 'src/jni/ScilabJavaClass.cpp' || echo '$(srcdir)/'`src/jni/ScilabJavaClass.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciexternal_objects_java_algo_la-ScilabJavaClass.Tpo $(DEPDIR)/libsciexternal_objects_java_algo_la-ScilabJavaClass.Plo
@@ -1071,6 +1084,13 @@ libsciexternal_objects_java_la-sci_jcompile.lo: sci_gateway/cpp/sci_jcompile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_jcompile.cpp' object='libsciexternal_objects_java_la-sci_jcompile.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciexternal_objects_java_la-sci_jcompile.lo `test -f 'sci_gateway/cpp/sci_jcompile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_jcompile.cpp
+
+libsciexternal_objects_java_la-sci_jcreatejar.lo: sci_gateway/cpp/sci_jcreatejar.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciexternal_objects_java_la-sci_jcreatejar.lo -MD -MP -MF $(DEPDIR)/libsciexternal_objects_java_la-sci_jcreatejar.Tpo -c -o libsciexternal_objects_java_la-sci_jcreatejar.lo `test -f 'sci_gateway/cpp/sci_jcreatejar.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_jcreatejar.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciexternal_objects_java_la-sci_jcreatejar.Tpo $(DEPDIR)/libsciexternal_objects_java_la-sci_jcreatejar.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_jcreatejar.cpp' object='libsciexternal_objects_java_la-sci_jcreatejar.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciexternal_objects_java_la-sci_jcreatejar.lo `test -f 'sci_gateway/cpp/sci_jcreatejar.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_jcreatejar.cpp
 
 libsciexternal_objects_java_la-sci_jnewInstance.lo: sci_gateway/cpp/sci_jnewInstance.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciexternal_objects_java_la-sci_jnewInstance.lo -MD -MP -MF $(DEPDIR)/libsciexternal_objects_java_la-sci_jnewInstance.Tpo -c -o libsciexternal_objects_java_la-sci_jnewInstance.lo `test -f 'sci_gateway/cpp/sci_jnewInstance.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_jnewInstance.cpp

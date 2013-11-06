@@ -26,6 +26,7 @@
 #include "ScilabOperations.hxx"
 #include "NoMoreScilabMemoryException.hxx"
 #include "ScilabAutoCleaner.hxx"
+#include "ScilabJarCreator.hxx"
 
 //#include "ScilabJavaObjectHelper.hxx"
 extern "C" {
@@ -522,4 +523,19 @@ void ScilabJavaEnvironment::getMethodResult(JavaVM * jvm_, const char * const me
         throw GiwsException::JniCallMethodException(curEnv);
     }
 };
+
+int ScilabJavaEnvironment::createJarArchive(char *jarFilePath, char **filePaths, int filePathsSize, char *filesRootPath,
+        char *manifestFilePath)
+{
+    JavaVM *vm = getScilabJavaVM();
+    try
+    {
+        return ScilabJarCreator::createJarArchive(vm, jarFilePath, filePaths, filePathsSize, filesRootPath, manifestFilePath, false);
+    }
+    catch (const GiwsException::JniException & e)
+    {
+        throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot create jar:\n%s"), e.getJavaDescription().c_str());
+    }
+}
+
 }

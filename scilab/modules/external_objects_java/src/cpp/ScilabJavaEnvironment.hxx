@@ -171,6 +171,8 @@ public :
         return traceEnabled;
     }
 
+    int createJarArchive(char *jarFilePath, char **filePaths, int filePathsSize, char *filesRootPath, char *manifestFilePath);
+
 private:
     ScilabJavaEnvironment();
 

@@ -7,6 +7,9 @@ New Features
 * The figures "visible" property now also applies to uicontrols.
   In previous releases, only axes were managed by this property setting.
 
+* New functions introduced:
+ - jcreatejar - Creates a Java archive (JAR) from a set of files / directories
+
 
 Scilab Bug Fixes
 ================

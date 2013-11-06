@@ -207,6 +207,7 @@
     <ClCompile Include="sci_gateway\cpp\sci_jcast.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_jcompile.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_jconvMatrixMethod.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_jcreatejar.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_jdeff.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_jdisableTrace.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_jenableTrace.cpp" />
@@ -233,6 +234,7 @@
     <ClCompile Include="src\cpp\ScilabJavaEnvironment.cpp" />
     <ClCompile Include="src\cpp\ScilabJavaEnvironmentWrapper.cpp" />
     <ClCompile Include="src\jni\ScilabClassLoader.cpp" />
+    <ClCompile Include="src\jni\ScilabJarCreator.cpp" />
     <ClCompile Include="src\jni\ScilabJavaArray.cpp" />
     <ClCompile Include="src\jni\ScilabJavaClass.cpp" />
     <ClCompile Include="src\jni\ScilabJavaCompiler.cpp" />
@@ -277,6 +279,7 @@
     <ClInclude Include="src\cpp\wrap.hpp" />
     <ClInclude Include="src\cpp\WrapAsDirectBufferTemplate.hpp" />
     <ClInclude Include="src\jni\ScilabClassLoader.hxx" />
+    <ClInclude Include="src\jni\ScilabJarCreator.hxx" />
     <ClInclude Include="src\jni\ScilabJavaArray.hxx" />
     <ClInclude Include="src\jni\ScilabJavaClass.hxx" />
     <ClInclude Include="src\jni\ScilabJavaCompiler.hxx" />
