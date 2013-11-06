@@ -69,7 +69,7 @@ public class DatatipDelete {
     * @param datatipUid Datatip unique identifier.
     * @param figureUid Figure unique identifier.
     */
-    public static void datatipRemoveProgramHandler(int datatipUid, Integer figureUid) {
+    public static void datatipRemoveProgramHandler(int datatipUid, int figureUid) {
         deleteDatatip(datatipUid);
     }
 
