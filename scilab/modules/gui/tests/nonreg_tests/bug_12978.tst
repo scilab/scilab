@@ -17,7 +17,7 @@
 
 clf();
 x=linspace(-20,20,1000);
-plot(x,sinc(x),x,sinc(x^2));
+plot(x,sinc(x),x,sinc(x.^2));
 e=gce();
 e=e.children;
 d1=datatipCreate(e(1),500);
