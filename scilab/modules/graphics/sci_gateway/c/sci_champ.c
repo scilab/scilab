@@ -53,6 +53,7 @@ int sci_champ_G(char *fname,
     };
 
     char   * strf = NULL;
+    char strfl[4];
     double* rect = NULL;
 
     int* piAddr1 = NULL;
@@ -194,7 +195,6 @@ int sci_champ_G(char *fname,
 
     if (isDefStrf(strf))
     {
-        char strfl[4];
         strcpy(strfl, DEFSTRFN);
         strf = strfl;
         if (!isDefRect(rect))
