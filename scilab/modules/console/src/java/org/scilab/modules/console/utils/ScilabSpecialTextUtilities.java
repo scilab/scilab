@@ -63,7 +63,13 @@ public final class ScilabSpecialTextUtilities {
                 icon = compileMathMLExpression(text, component.getFont().getSize());
             }
         }
-
+        
+        if (icon == null) {
+            // Shortcut when we are sure text is
+            // neither Latex nor MathML
+            return false;
+        }
+        
         try {
             setIcon(component, icon);
         } catch (InvocationTargetException e) {
