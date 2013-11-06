@@ -41,6 +41,8 @@ Scilab Bug Fixes
 
 * Bug #8031 fixed - cdfgam error message fixed.
 
+* Bug #8231 fixed - xrect help page did not say that clipping property was inherited.
+
 * Bug #8337 fixed - mtlb_rand now uses the "uniform" rule, whatever the random rule set is.
 
 * Bug #9110 fixed - Examples and references to other functions added in the Statistics help pages.

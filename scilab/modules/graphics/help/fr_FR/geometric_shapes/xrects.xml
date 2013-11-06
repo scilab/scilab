@@ -49,7 +49,8 @@
         <para>
             si <literal>fill(i)=0</literal>, le rectangle <literal>i</literal> est dessiné avec le style de ligne courant.
         </para>
-        <para>ATTENTION : notez que la valeur de la hauteur est positive en allant vers la bas.</para>
+        <warning>Notez que la valeur de la hauteur est positive en allant vers la bas.</warning>
+        <warning>Les rectangles créés héritent de la propriété de clip de l'axe courant.</warning>
     </refsection>
     <refsection>
         <title>Exemples</title>
