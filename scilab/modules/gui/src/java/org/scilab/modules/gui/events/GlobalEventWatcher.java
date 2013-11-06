@@ -102,7 +102,7 @@ public final class GlobalEventWatcher {
         catchingCallback = true;
     }
 
-    public static void disableableCatchingCallback() {
+    public static void disableCatchingCallback() {
         catchingCallback = false;
     }
 

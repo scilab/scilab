@@ -73,7 +73,7 @@ public final class Jxgetmouse {
          */
         GlobalEventWatcher.enable(new GlobalMouseEventWatcher(eventMask) {
             public void mouseEventFilter(MouseEvent mouseEvent,
-            Integer axesUID, int scilabMouseAction, boolean isControlDown) {
+                                         Integer axesUID, int scilabMouseAction, boolean isControlDown) {
                 mouseActionFilter(mouseEvent, axesUID, scilabMouseAction, isControlDown);
             }
         });
@@ -81,7 +81,7 @@ public final class Jxgetmouse {
         /*
          *  Force xgetmouse not to catch/disable callback execution.
          */
-        GlobalEventWatcher.disableableCatchingCallback();
+        GlobalEventWatcher.disableCatchingCallback();
 
         synchronized (ClickInfos.getInstance()) {
             try {
