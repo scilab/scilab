@@ -181,6 +181,8 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
      */
     public void setDims(Size newSize) {
         setSize(newSize.getWidth(), newSize.getHeight());
+        // Need validate to force alignement to be applyed
+        validate();
     }
 
     /**
