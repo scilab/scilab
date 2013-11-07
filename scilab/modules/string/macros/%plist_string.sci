@@ -16,7 +16,7 @@ function str = %plist_string ( this )
     prot = funcprot()
     funcprot(0)
 
-    fieldmat = getfield(1, params);
+    fieldmat = getfield(1, this);
     nf = size(fieldmat, "*") - 1;
     str = emptystr(nf+3, 1); // Allocating the result
     str(1) = sprintf("Parameters list:"); // Headers
@@ -26,7 +26,7 @@ function str = %plist_string ( this )
     k = 3; // Start printing after headers
     for i = 1 : nf
         key = fieldmat(i+1);
-        value = getfield(i+1, params);
+        value = getfield(i+1, this);
         if ( or ( typeof(value) == ["constant" "boolean" "string" ] ) ) then
             k = k + 1;
             if ( size(value, "*") == 1 ) then
