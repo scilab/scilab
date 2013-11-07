@@ -344,7 +344,10 @@ public class GraphicController {
 
         /* Insertion occurs at the head of the children list. */
         if (parentId != null && parentId != 0) {
-            getObjectFromId(parentId).addChild(childId);
+            GraphicObject go = getObjectFromId(parentId);
+            if (go != null) {
+                go.addChild(childId);
+            }
         }
 
         setProperty(childId, GraphicObjectProperties.__GO_PARENT__, parentId);
