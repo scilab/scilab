@@ -1182,6 +1182,13 @@ static void cosini(double *told)
                     sszz = outtbsz[jj] * outtbsz[jj + nlnk];
                     for (kk = 0; kk < sszz; kk++)
                     {
+                        int outtbdptr_isnan = outtbdptr[kk] != outtbdptr[kk];
+                        int outtbd_isnan = (SCSREAL_COP)outtbd[curouttbd + kk] != (SCSREAL_COP)outtbd[curouttbd + kk];
+
+                        if (outtbdptr_isnan == outtbd_isnan)
+                        {
+                            continue;
+                        }
                         if (outtbdptr[kk] != (SCSREAL_COP)outtbd[curouttbd + kk])
                         {
                             goto L30;
@@ -1195,7 +1202,14 @@ static void cosini(double *told)
                     sszz = 2 * outtbsz[jj] * outtbsz[jj + nlnk];
                     for (kk = 0; kk < sszz; kk++)
                     {
-                        if (outtbdptr[kk] != (SCSCOMPLEX_COP)outtbd[curouttbd + kk])
+                        int outtbdptr_isnan = outtbdptr[kk] != outtbdptr[kk];
+                        int outtbd_isnan = (SCSCOMPLEX_COP)outtbd[curouttbd + kk] != (SCSCOMPLEX_COP)outtbd[curouttbd + kk];
+
+                        if (outtbdptr_isnan == outtbd_isnan)
+                        {
+                            continue;
+                        }
+                        if (outtbdptr[kk] != (SCSCOMPLEX_COP)outtbd[curouttbd + kk] && outtbdptr[kk] == outtbdptr[kk])
                         {
                             goto L30;
                         }

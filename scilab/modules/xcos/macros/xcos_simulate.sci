@@ -220,7 +220,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
                 kfun    = curblock()
                 corinv  = %cpr.corinv
 
-                if kfun<>0 then //** block error
+                if kfun<>0 & length(corinv) > kfun then //** block error
                     path = corinv(kfun)
                     //** get error cmd for the block
                     get_errorcmd(path,"End problem.",str_err);
@@ -271,10 +271,10 @@ function %cpr = xcos_simulate(scs_m, needcompile)
         //** error case
         if ierr<>0 then
             str_err=split_lasterror(lasterror());
-
             kfun=curblock()
             corinv=%cpr.corinv
-            if kfun<>0 then  //** block error
+
+            if kfun<>0 & length(corinv) > kfun then  //** block error
                 path=corinv(kfun)
                 //** get error cmd for the block
                 disp(str_err);
@@ -327,11 +327,10 @@ function %cpr = xcos_simulate(scs_m, needcompile)
             //** error case
             if ierr<>0 then
                 str_err = split_lasterror(lasterror());
-
                 kfun   = curblock()
                 corinv = %cpr.corinv
 
-                if kfun<>0 then //** block error
+                if kfun<>0 & length(corinv) > kfun then //** block error
                     path = corinv(kfun)
                     //** get error cmd for the block
                     get_errorcmd(path,gettext("End problem"),str_err);
@@ -350,8 +349,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
         alreadyran = %f;
         kfun       = curblock();
         corinv     = %cpr.corinv;
-
-        if kfun<>0 then //** block error
+        if kfun<>0 & length(corinv) > kfun then //** block error
             path = corinv(kfun);
             //** get error cmd for the block
             execstr(get_errorcmd(path,gettext("Simulation problem"),str_err));

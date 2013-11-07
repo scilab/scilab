@@ -165,6 +165,8 @@ Xcos Bug Fixes
 
 * Bug #13030 fixed - Selection to superblock did not reset the origin.
 
+* Bug #13059 fixed - Nan propagated at startup made the simulation fail.
+
 
                  Changes between version 5.4.1 and 5.5.0-beta-1
                  ==============================================
