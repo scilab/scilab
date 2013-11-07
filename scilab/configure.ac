@@ -1941,6 +1941,7 @@ scilab-lib.properties
 scilab-lib-doc.properties
 modules/helptools/etc/SciDocConf.xml
 modules/core/includes/version.h
+modules/core/includes/stack.h
 ])
 
 # Detection of the module for the future version of Scilab 6
@@ -1954,8 +1955,6 @@ fi
 
 # This script is used by Xcos in order to regenerate the function/block list
 AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scripts/GenBlocks.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/scicompile.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/compilerDetection.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/configure])
-
-cp $srcdir/modules/core/includes/stack.h.in $srcdir/modules/core/includes/stack.h
 
 AC_OUTPUT
 
