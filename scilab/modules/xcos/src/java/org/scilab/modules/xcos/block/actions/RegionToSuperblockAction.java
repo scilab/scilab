@@ -8,6 +8,7 @@
 
 package org.scilab.modules.xcos.block.actions;
 
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,9 +42,11 @@ import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxICell;
+import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 
 /**
@@ -685,19 +688,31 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
             final Object[] cells = cellsToCopy.toArray();
 
             /*
-             * Translate the cells to the origin
-             *
-             * NOTE: this should be done on the parent diagram because
-             * getBoundsForCells only works for already added cells (not on the transaction)
-             */
-            mxRectangle rect = parentGraph.getBoundsForCells(cells, true, true, false);
-            parentGraph.moveCells(cells, -rect.getX(), -rect.getY());
-
-            /*
              * Really copy the cells
              */
             parentGraph.removeCells(cells, false);
             childGraph.addCells(cells);
+
+            /*
+             * Translate the cells to the origin
+             *
+             * In this algorithm only block position are handled to avoid any
+             * placement issue and a static margin is added to avoid
+             * misplacement.
+             */
+            final double margin = 10.0;
+            mxPoint orig = null;
+            for (int i = 0; i < cells.length; i++) {
+                if (cells[i] instanceof BasicBlock) {
+                    final mxGeometry geom = ((BasicBlock) cells[i]).getGeometry();
+                    if (orig == null) {
+                        orig = geom;
+                    } else {
+                        orig = new mxPoint(Math.min(geom.getX(), orig.getX()), Math.min(geom.getY(), orig.getY()));
+                    }
+                }
+            }
+            childGraph.moveCells(cells, -orig.getX() + margin, -orig.getY() + margin);
 
             childGraph.setChildrenParentDiagram();
             BlockPositioning.updateBlockView(superBlock);
