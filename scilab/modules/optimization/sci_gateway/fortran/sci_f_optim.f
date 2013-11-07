@@ -64,7 +64,6 @@ c
          if(eqid(idstk(1,top),impn)) then
             if (.not.getscalar('optim',top,top,lr)) return
             imp=stk(lr)
-            if (imp.lt.0) imp=0
             top=top-1
             rhs=rhs-1
          endif

@@ -1,10 +1,10 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 c
       subroutine n1fc1a(simul,prosca,n,mode,xn,fn,g,df0,eps0,dx,imp,
@@ -111,6 +111,8 @@ C
       itimp = 0
       indic = 1
       call simul(indic,n,xn,f,g,izs,rzs,dzs)
+c     error in user function
+      if(indic.eq.0) goto 990
 C
 C         calcul de la direction
 C

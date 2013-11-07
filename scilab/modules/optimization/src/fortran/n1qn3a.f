@@ -1,10 +1,10 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 c
       subroutine n1qn3a (simul,prosca,ctonb,ctcab,n,x,f,g,dxmin,df1,
@@ -46,10 +46,10 @@ c
       call prosca (n,g,g,ps,izs,rzs,dzs)
       gnorm=sqrt(ps)
       if (impres.ge.1) then
-      
+
         write (bufstr,900) f
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
-        
+
         write (bufstr,990) gnorm
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -99,6 +99,8 @@ c
           if(mod(iter,-impres).eq.0) then
               indic=1
               call simul (indic,n,x,f,g,izs,rzs,dzs)
+c             error in user function
+              if(indic.eq.0) goto 1000
               goto 100
           endif
       endif
