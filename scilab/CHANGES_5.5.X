@@ -49,6 +49,8 @@ Scilab Bug Fixes
 
 * Bug #9031 fixed - Misalignment of text when using xstring with a matrix fixed.
 
+* Bug #9033 fixed - auto_dimensionning property for text handles was not documented.
+
 * Bug #9110 fixed - Examples and references to other functions added in the Statistics help pages.
 
 * Bug #9627 fixed - Arguments checking added in optimsimplex_* functions.

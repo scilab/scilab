@@ -34,8 +34,9 @@
 /*------------------------------------------------------------------------*/
 int set_auto_dimensionning_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    BOOL status = FALSE;
+    static int oldTextBoxMode = -1;
 
+    BOOL status = FALSE;
     int b =  (int)FALSE;
 
     b = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "auto_dimensionning");
@@ -47,6 +48,18 @@ int set_auto_dimensionning_property(void* _pvCtx, int iObjUID, void* _pvData, in
 
     if (status == TRUE)
     {
+        if (b && oldTextBoxMode != -1)
+        {
+            setGraphicObjectProperty(iObjUID, __GO_TEXT_BOX_MODE__, &oldTextBoxMode, jni_int, 1);
+        }
+        else
+        {
+            int textBoxMode = 2;
+            int * piOldTextBoxMode = &oldTextBoxMode;
+            getGraphicObjectProperty(iObjUID, __GO_TEXT_BOX_MODE__, jni_int, (void**)&piOldTextBoxMode);
+            setGraphicObjectProperty(iObjUID, __GO_TEXT_BOX_MODE__, &textBoxMode, jni_int, 1);
+        }
+
         return SET_PROPERTY_SUCCEED;
     }
     else
