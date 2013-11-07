@@ -190,7 +190,7 @@ public class G2DTextureDrawingTools implements TextureDrawingTools {
             TextLayout textLayout = new TextLayout(textEntity.getText(), textEntity.getFont(), g2d.getFontRenderContext());
             Rectangle2D bounds = textLayout.getBounds();
             g2d.setFont(textEntity.getFont());
-            g2d.drawString(textEntity.getText(), (float) (x - bounds.getX()), (float) (y - bounds.getY()));
+            g2d.drawString(textEntity.getText(), (float) (x - bounds.getX()), (float) (y + textLayout.getAscent()));
         }
     }
 

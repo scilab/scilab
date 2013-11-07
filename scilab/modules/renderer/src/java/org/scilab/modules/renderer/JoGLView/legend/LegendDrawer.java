@@ -380,7 +380,7 @@ public class LegendDrawer {
         double normSpriteMargin = 0.0;
 
         if (nbValidLinks > 0) {
-            normSpriteMargin = (double) legendSpriteDrawer.getMargin() / (double) canvasHeight;
+            normSpriteMargin = (double) legendSpriteDrawer.getVMargin() / (double) canvasHeight;
         }
 
         lineVertexData[0] = (float) (legendCorner[0] + xOffset);

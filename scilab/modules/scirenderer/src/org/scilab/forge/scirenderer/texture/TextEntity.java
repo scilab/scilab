@@ -69,6 +69,8 @@ public class TextEntity {
      */
     private Font font;
 
+    private TextLayout layout;
+
     /**
      * Default constructor.
      * @param text the text content.
@@ -92,6 +94,7 @@ public class TextEntity {
      */
     public void setText(String text) {
         this.text = text;
+        this.layout = null;
     }
 
     /**
@@ -108,6 +111,7 @@ public class TextEntity {
      */
     public void setFont(Font font) {
         this.font = font;
+        this.layout = null;
     }
 
     /**
@@ -140,6 +144,7 @@ public class TextEntity {
      */
     public void setTextAntiAliased(boolean textAntiAliased) {
         this.textAntiAliased = textAntiAliased;
+        this.layout = null;
     }
 
     /**
@@ -156,6 +161,7 @@ public class TextEntity {
      */
     public void setTextUseFractionalMetrics(boolean textUseFractionalMetrics) {
         this.textUseFractionalMetrics = textUseFractionalMetrics;
+        this.layout = null;
     }
 
     /**
@@ -169,18 +175,26 @@ public class TextEntity {
                );
     }
 
+    public TextLayout getLayout() {
+        if (layout == null) {
+            FontRenderContext frc = new FontRenderContext(null, isTextAntiAliased(), isTextUseFractionalMetrics());
+            layout = new TextLayout(getText(), getFont(), frc);
+        }
+
+        return layout;
+    }
+
     /**
      * Return the dimension in pixel of the text entity.
      * @return the dimension in pixel of the text entity.
      */
     public Dimension getSize() {
         if (isValid()) {
-            FontRenderContext frc = new FontRenderContext(null, isTextAntiAliased(), isTextUseFractionalMetrics());
-            TextLayout textLayout = new TextLayout(getText(), getFont(), frc);
+            TextLayout textLayout = getLayout();
             Dimension dimension = new Dimension();
             Rectangle2D r = textLayout.getBounds();
             /* +1 added to fix rendering of ticks labels, a pixel row/column was missing */
-            dimension.setSize(r.getWidth() + 2, r.getHeight() + 1);
+            dimension.setSize(r.getWidth() + 2, textLayout.getAscent() + textLayout.getDescent() + 1);
             return dimension;
         } else {
             return new Dimension(0, 0);

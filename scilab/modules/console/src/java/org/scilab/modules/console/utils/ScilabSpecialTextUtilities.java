@@ -63,13 +63,13 @@ public final class ScilabSpecialTextUtilities {
                 icon = compileMathMLExpression(text, component.getFont().getSize());
             }
         }
-        
+
         if (icon == null) {
             // Shortcut when we are sure text is
             // neither Latex nor MathML
             return false;
         }
-        
+
         try {
             setIcon(component, icon);
         } catch (InvocationTargetException e) {
@@ -258,22 +258,31 @@ public final class ScilabSpecialTextUtilities {
             jev.draw(g2d, 0, ascent);
             g2d.dispose();
 
-            return new SpecialIcon(new ImageIcon(bimg));
+            return new SpecialIcon(new ImageIcon(bimg), (int) Math.ceil(jev.getDescentHeight()));
         }
     }
 
     /**
      * Inner class to distinguish normal icons and icons coming from a LaTeX or a MathML compilation
      */
-    private static class SpecialIcon implements Icon {
+    public static class SpecialIcon implements Icon {
 
         Icon icon;
+        int depth;
 
         /**
          * @param icon the Icon to wrap
          */
         SpecialIcon(Icon icon) {
             this.icon = icon;
+        }
+
+        /**
+         * @param icon the Icon to wrap
+         */
+        SpecialIcon(Icon icon, int depth) {
+            this.icon = icon;
+            this.depth = depth;
         }
 
         /**
@@ -288,6 +297,10 @@ public final class ScilabSpecialTextUtilities {
          */
         public int getIconWidth() {
             return icon.getIconWidth();
+        }
+
+        public int getIconDepth() {
+            return depth;
         }
 
         /**
