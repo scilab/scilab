@@ -142,7 +142,7 @@ public class Editor {
             redo.setEnabled(editorHistory.isRedoEnabled());
 
             menu.show(event.getComponent(), event.getX(), event.getY());
-            dialogComponent = (Component)event.getComponent();
+            dialogComponent = event.getComponent();
         } else {
             dataEditor.onRightClick(event);
         }

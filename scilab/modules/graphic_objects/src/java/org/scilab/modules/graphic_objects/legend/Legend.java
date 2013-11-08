@@ -201,7 +201,7 @@ public class Legend extends ClippableTextObject {
         ArrayList <Integer> validLinks = new ArrayList<Integer>(0);
 
         for (int i = 0; i < links.size(); i++) {
-            GraphicObject object = (GraphicObject) GraphicController.getController().getObjectFromId(links.get(i));
+            GraphicObject object = GraphicController.getController().getObjectFromId(links.get(i));
 
             if (object != null) {
                 validLinks.add(links.get(i));
@@ -218,7 +218,7 @@ public class Legend extends ClippableTextObject {
         int numValidLinks = 0;
 
         for (int i = 0; i < links.size(); i++) {
-            GraphicObject object = (GraphicObject) GraphicController.getController().getObjectFromId(links.get(i));
+            GraphicObject object = GraphicController.getController().getObjectFromId(links.get(i));
 
             if (object != null) {
                 numValidLinks++;
@@ -282,7 +282,7 @@ public class Legend extends ClippableTextObject {
 
         /* Text strings are stored in reverse order relative to links. */
         for (int i = 0; i < links.size(); i++) {
-            GraphicObject object = (GraphicObject) GraphicController.getController().getObjectFromId(links.get(links.size() - i - 1));
+            GraphicObject object = GraphicController.getController().getObjectFromId(links.get(links.size() - i - 1));
 
             if (object != null) {
                 validStrings.add(text[i].getText());

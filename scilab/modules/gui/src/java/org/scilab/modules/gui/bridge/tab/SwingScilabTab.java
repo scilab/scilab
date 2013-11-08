@@ -1461,8 +1461,8 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
                 SwingScilabWindow figure = SwingScilabWindow.allScilabWindows.get(parentWindowId);
                 Size oldFigureSize = figure.getDims();
                 figure.setDims(new Size(size[0], size[1]));
-                int deltaFigureX = size[0] - (int) oldFigureSize.getWidth();
-                int deltaFigureY = size[1] - (int) oldFigureSize.getHeight();
+                int deltaFigureX = size[0] - oldFigureSize.getWidth();
+                int deltaFigureY = size[1] - oldFigureSize.getHeight();
                 if ( oldFigureSize.getWidth() != 0 && oldFigureSize.getHeight() != 0
                         && ((oldFigureSize.getWidth() != size[0]) || (oldFigureSize.getHeight() != size[1]))
                         && ((Boolean) GraphicController.getController().getProperty(getId(), __GO_AUTORESIZE__))

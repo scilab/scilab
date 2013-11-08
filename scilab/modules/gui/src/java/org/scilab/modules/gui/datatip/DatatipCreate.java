@@ -144,8 +144,8 @@ public class DatatipCreate {
         int yInt = (int) pixelCoordinates[1];
 
         int[] coordInteger = new int[2];
-        coordInteger[0] = (int) xInt;
-        coordInteger[1] = (int) yInt;
+        coordInteger[0] = xInt;
+        coordInteger[1] = yInt;
 
         return coordInteger;
     }
