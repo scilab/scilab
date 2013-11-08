@@ -110,15 +110,15 @@
             <compilerarg value="-Xlint" />
             <!--  Silent some warnings -->
             <compilerarg value="-Xlint:-unchecked" />
-             <!-- Too borring and painful to fix -->
+            <!-- Too borring and painful to fix -->
             <compilerarg value="-Xlint:-rawtypes" />
-             <!-- Too borring and painful to fix -->
+            <!-- Too borring and painful to fix -->
             <compilerarg value="-Xlint:-path" />
-             <!--  Silent the bad path element -->
+            <!--  Silent the bad path element -->
             <compilerarg value="-Xlint:-serial" />
-             <!--  Silent warning about the serializable -->
+            <!--  Silent warning about the serializable -->
             <compilerarg value="-Xlint:-options" />
-             <!-- Silent 'bootstrap class path not set in conjunction with -source 1.6'. We don't want to manage the detection of rt.jar. See https://blogs.oracle.com/darcy/entry/bootclasspath_older_source -->
+            <!-- Silent 'bootstrap class path not set in conjunction with -source 1.6'. We don't want to manage the detection of rt.jar. See https://blogs.oracle.com/darcy/entry/bootclasspath_older_source -->
         </javac>
     </target>
     

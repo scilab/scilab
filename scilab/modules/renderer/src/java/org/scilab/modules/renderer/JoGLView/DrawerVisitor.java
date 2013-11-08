@@ -775,7 +775,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 if (datatip.getMarkMode()) {
                     /* TODO: appearance can be not-null */
                     Texture texture = markManager.getMarkSprite(datatip, colorMap, null);
-                    Vector3d markPos = datatipTextDrawer.calculateAnchorPoint(datatip);
+                    Vector3d markPos = DatatipTextDrawer.calculateAnchorPoint(datatip);
                     drawingTools.draw(texture, AnchorPosition.CENTER, markPos);
                 }
                 if (datatip.getTipLabelMode()) {

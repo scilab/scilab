@@ -86,7 +86,7 @@ public final class CreateNewVariableAction extends CommonCallBack {
         Object[] values = askForNewMatrix();
         if (!((String) values[0]).isEmpty()) {
             SwingEditvarTableModel model = (SwingEditvarTableModel) table.getModel();
-            String defaultValue = model.getDataAsScilabString(((String) values[3]));
+            String defaultValue = SwingEditvarTableModel.getDataAsScilabString(((String) values[3]));
             if (defaultValue.isEmpty()) {
                 defaultValue = "0";
             }

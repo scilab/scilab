@@ -173,7 +173,7 @@ public class Editor {
                         onClickInsert(selectedLegend.polyline);
                     } else {
                         /*try pick a label and open the dialog*/
-                        onClickLabel(entityPicker.pickLabel(figureUid, lastClick));
+                        onClickLabel(EntityPicker.pickLabel(figureUid, lastClick));
                     }
                     break;
                 default:

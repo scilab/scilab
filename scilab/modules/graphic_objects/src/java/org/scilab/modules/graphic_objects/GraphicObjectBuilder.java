@@ -30,8 +30,8 @@ public final class GraphicObjectBuilder {
         GraphicController controller = GraphicController.getController();
 
         final int[] props = new int[] {GraphicObjectProperties.__GO_X_AXIS_LABEL__, GraphicObjectProperties.__GO_Y_AXIS_LABEL__, GraphicObjectProperties.__GO_Z_AXIS_LABEL__, GraphicObjectProperties.__GO_TITLE__};
-        Integer figureModelUID = GraphicModel.getModel().getFigureModel().getIdentifier();
-        Integer axesModelUID = GraphicModel.getModel().getAxesModel().getIdentifier();
+        Integer figureModelUID = GraphicModel.getFigureModel().getIdentifier();
+        Integer axesModelUID = GraphicModel.getAxesModel().getIdentifier();
         Integer newFID = controller.createUID();
         Integer newAID = controller.createUID();
         GraphicModel.getModel().cloneObject(figureModelUID, newFID);
