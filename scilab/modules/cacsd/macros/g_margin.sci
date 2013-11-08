@@ -1,4 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
 // Copyright (C) INRIA -  Author: Serge Steer
 //
 // This file must be used under the terms of the CeCILL.
@@ -7,8 +8,13 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
-function [gm,fr]=g_margin(h)
-    //compute the gain margin of a SISO transfer function
+function [gm,fr] = g_margin(h)
+    // Compute the gain margin of a SISO transfer function
+
+    if argn(2) < 1 then
+        error(msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"g_margin",1));
+    end
+
     select typeof(h)
     case "rational" then
     case "state-space" then
