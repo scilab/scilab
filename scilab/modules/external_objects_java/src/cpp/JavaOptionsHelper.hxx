@@ -33,7 +33,7 @@ public :
 
     JavaOptionsHelper () : OptionsHelper(), showPrivate(false)
     {
-
+        setUseScilabIndex(true);
     }
 
     ~JavaOptionsHelper() { }
