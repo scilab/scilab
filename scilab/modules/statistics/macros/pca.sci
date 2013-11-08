@@ -59,6 +59,9 @@ function [lambda,facpr,comprinc]=pca(x)
     // splitted in printcomp (matlab compatibility) and show_pca Serge Steer
     // 2008
 
+    if argn(2) == 0 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"pca",1))
+    end
     if x==[] then
         lambda=%nan;
         facpr=%nan;
@@ -68,6 +71,3 @@ function [lambda,facpr,comprinc]=pca(x)
     [facpr,comprinc,lambda]=princomp(wcenter(x,1))
     lambda(:,2)=lambda(:,1)/sum(lambda(:,1))
 endfunction
-
-
-

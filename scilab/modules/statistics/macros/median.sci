@@ -16,7 +16,12 @@ function y=median(x,orient)
     //    - modified by farid.belahcene:the case when x is an hypermatrix
     //    - new syntaxes: median(x,'m') and median(x,dim)
 
-    [lhs,rhs]=argn(0)
+    [lhs, rhs] = argn(0);
+
+    if rhs == 0 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"),"median",1,2));
+    end
+
     if argn(2)<2 then
         orient=0;
     else
@@ -70,9 +75,3 @@ function y=median(x,orient)
     end
 
 endfunction
-
-
-
-
-
-

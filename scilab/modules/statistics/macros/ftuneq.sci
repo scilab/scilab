@@ -34,6 +34,9 @@ function [f,p]=ftuneq(varargin)
     //
     //
     [lhs,rhs]=argn(0)
+    if rhs == 0 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"ftuneq",1))
+    end
     data=[]
     total=0
     sse=0

@@ -36,6 +36,10 @@ function [s]=nancumsum(x,orient)
     //a NAN.
     //
     //
+    [lhs, rhs] = argn(0)
+    if rhs == 0 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"nancumsum",1,2))
+    end
     if argn(2)==1 then  orient="*",end
     isn=isnan(x)
     x(isn)=0
@@ -43,4 +47,3 @@ function [s]=nancumsum(x,orient)
     s(find(and(isn,orient)))=%nan
 
 endfunction
-

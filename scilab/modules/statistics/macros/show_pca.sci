@@ -19,7 +19,11 @@ function show_pca(lambda,facpr,N)
     //
     //Extracted out of pca, author: carlos klimann
 
-    if argn(2)<3 then
+    [lhs, rhs] = argn(0);
+    if rhs < 2 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"show_pca",2,3))
+    end
+    if rhs<3 then
         N=[1 2]
     end
     if size(N,"*")<>2 then

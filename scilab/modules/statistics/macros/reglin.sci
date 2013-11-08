@@ -16,6 +16,9 @@ function [a,b,sig]=reglin(x,y,dflag)
     //!
 
     [lhs,rhs]=argn(0);
+    if rhs < 2 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"reglin",2,3))
+    end
     if rhs <=2;dflag=0;end
     [n1,n2]=size(x)
     [p1,p2]=size(y)
