@@ -893,12 +893,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     }
 
     @Override
-    public void updateObject(Integer id, int property) {       
+    public void updateObject(Integer id, int property) {
         /*
          * Check if property is CHILDREN and if there is a new child I should care about
          */
-        if (property == GraphicObjectProperties.__GO_CHILDREN__)
-        {
+        if (property == GraphicObjectProperties.__GO_CHILDREN__) {
             if (id != figure.getIdentifier()) {
                 /* Ignore children that are not mine */
                 return;
@@ -917,7 +916,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     updatedOpenGLChildren.add(children[i]);
                 }
             }
-            if (currentOpenGLChildren.size() == updatedOpenGLChildren.size()){
+            if (currentOpenGLChildren.size() == updatedOpenGLChildren.size()) {
                 /* No change made on openGL children => nothing to do */
                 return;
             } else {
@@ -926,7 +925,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         }
         try {
             if (needUpdate(id, property)) {
-                if (GraphicObjectProperties.__GO_COLORMAP__ == property && figure.getIdentifier() == id) {
+                if (GraphicObjectProperties.__GO_COLORMAP__ == property && figure.getIdentifier().equals(id)) {
                     labelManager.disposeAll();
                     dataManager.disposeAllColorBuffers();
                     dataManager.disposeAllTextureCoordinatesBuffers();
@@ -1053,7 +1052,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     @Override
     public void deleteObject(Integer id) {
         openGLChildren.remove(id);
-        
+
         if (isImmediateDrawing(id)) {
             canvas.redraw();
         }
