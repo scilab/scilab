@@ -24,6 +24,9 @@ function [x1,p1,x,p]=kalm(y,x0,p0,f,g,h,q,r)
     //        :based on data up to t=0
     //!
 
+    if argn(2) <> 8 then
+        error(sprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "kalm", 8));
+    end
     k=p0*h'*(h*p0*h'+r)**(-1);
     p=(eye(p0)-k*h)*p0;
     p1=f*p*f'+g*q*g';
