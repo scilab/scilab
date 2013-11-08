@@ -160,7 +160,7 @@ SCICOS_BLOCKS_IMPEXP void cscopxy3d(scicos_block * block, scicos_flag flag)
                 set_block_error(-5);
             }
             iFigureUID = getFigure(block);
-            if (iFigureUID == NULL)
+            if (iFigureUID == 0)
             {
                 // allocation error
                 set_block_error(-5);
@@ -169,7 +169,7 @@ SCICOS_BLOCKS_IMPEXP void cscopxy3d(scicos_block * block, scicos_flag flag)
 
         case StateUpdate:
             iFigureUID = getFigure(block);
-            if (iFigureUID == NULL)
+            if (iFigureUID == 0)
             {
                 // allocation error
                 set_block_error(-5);
@@ -465,7 +465,7 @@ static int getFigure(scicos_block * block)
     // assert the sco is not NULL
     if (sco == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     // fast path for an existing object
@@ -575,7 +575,6 @@ static int getAxe(int iFigureUID, scicos_block * block)
 static int getPolyline(int iAxeUID, scicos_block * block, int row)
 {
     int iPolyline;
-    double d__0 = 0.0;
     BOOL b__true = TRUE;
 
     int color;
