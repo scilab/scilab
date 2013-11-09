@@ -636,6 +636,44 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 
         load_user_data(fd) // user_data
 
+    case "Datatip"
+        if is_higher_than([5 5 0 1]) then
+            visible=toggle(mget(1,characterFormat,fd)) // visible
+            sz = mget(2,characterFormat,fd)
+            tip_data = matrix(mget(prod(sz),"dl",fd),sz(1),-1) // tip_data
+            tip_box_mode = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // tip_box_mode
+            tip_label_mode = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // tip_label_mode
+            tip_orientation = mget(1,characterFormat,fd); // tip_orientation
+            tip_3component = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // tip_3component
+            tip_auto_orientation = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // tip_auto_orientation
+            tip_interp_mode = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // tip_interp_mode
+            tip_disp_function = load_text_matrix(fd); // tip_disp_function
+            mark_mode = toggle(mget(1,characterFormat,fd)) // mark_mode
+            mark_style = mget(1,characterFormat,fd); // mark_style
+            if ascii(mget(1,characterFormat,fd))=="t" then // mark_size_unit
+                msu="tabulated"
+            else
+                msu="point";
+            end
+            mark_size = mget(1,characterFormat,fd); // mark_size
+            mark_foreground=mget(1,"il",fd) // mark_foreground
+            mark_background=mget(1,"il",fd) // mark_background
+            tag = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ; // tag
+
+            h=get("hdl");
+            set(h, "font_foreground", mget(1, "il", fd)); // font_foreground
+            set(h,"foreground", mget(1,"il",fd)); // foreground
+            set(h, "background", mget(1, "il", fd)); // background
+            set(h,"mark_mode",mark_mode); // mark_mode
+            set(h,"mark_style",mark_style); // mark_style
+            set(h,"mark_size_unit",msu) // mark_size_unit
+            set(h,"mark_size",mark_size) // mark_size
+            set(h,"mark_foreground",mark_foreground) // mark_foreground
+            set(h,"mark_background",mark_background) // mark_background
+
+            load_user_data(fd) // user_data
+        end
+
     case "Plot3d" then
         visible=toggle(mget(1,characterFormat,fd)) // visible
         surface_mode   = toggle(mget(1,characterFormat,fd)) // surface_mode

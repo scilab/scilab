@@ -122,6 +122,9 @@
     <ClCompile Include="src\c\getHandleProperty\get_bar_width_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_datatips_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_box_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -753,6 +756,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_bar_width_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_datatips_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_box_property.c">

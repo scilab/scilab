@@ -18,6 +18,10 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
@@ -31,7 +35,7 @@ public class Polyline extends ClippableContouredObject {
     /** Polyline properties names */
     private enum PolylineProperty { CLOSED, ARROWSIZEFACTOR, POLYLINESTYLE,
                                     INTERPCOLORVECTOR, INTERPCOLORVECTORSET, INTERPCOLORMODE,
-                                    XSHIFT, YSHIFT, ZSHIFT, BARWIDTH
+                                    XSHIFT, YSHIFT, ZSHIFT, BARWIDTH, DATATIPS, DATATIPSCOUNT
                                   };
 
     /** Specifies whether the polyline is closed */
@@ -63,6 +67,9 @@ public class Polyline extends ClippableContouredObject {
 
     /** Bar width */
     private double barWidth;
+    
+    /** Datatips objects list */
+    private List <Integer> datatips;
 
     /** Constructor */
     public Polyline() {
@@ -77,6 +84,7 @@ public class Polyline extends ClippableContouredObject {
         yShift = null;
         zShift = null;
         barWidth = 0.0;
+        datatips = new LinkedList<Integer>();
     }
 
     @Override
@@ -111,6 +119,10 @@ public class Polyline extends ClippableContouredObject {
                 return PolylineProperty.ZSHIFT;
             case __GO_BAR_WIDTH__ :
                 return PolylineProperty.BARWIDTH;
+            case __GO_DATATIPS__ :
+                return PolylineProperty.DATATIPS;
+            case __GO_DATATIPS_COUNT__ :
+                return PolylineProperty.DATATIPSCOUNT;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -142,6 +154,10 @@ public class Polyline extends ClippableContouredObject {
             return getZShift();
         } else if (property == PolylineProperty.BARWIDTH) {
             return getBarWidth();
+        } else if (property == PolylineProperty.DATATIPS) {
+            return getDatatips();
+        } else if (property == PolylineProperty.DATATIPSCOUNT) {
+            return datatips.size();
         } else {
             return super.getProperty(property);
         }
@@ -175,6 +191,8 @@ public class Polyline extends ClippableContouredObject {
                 setZShift((double[]) value);
             } else if (property == PolylineProperty.BARWIDTH) {
                 setBarWidth((Double) value);
+            } else if (property == PolylineProperty.DATATIPS) {
+                setDatatips((Integer[]) value);
             } else {
                 return super.setProperty(property, value);
             }
@@ -357,6 +375,29 @@ public class Polyline extends ClippableContouredObject {
      */
     public Integer getType() {
         return GraphicObjectProperties.__GO_POLYLINE__;
+    }
+    
+    /**
+     * @return datatips
+     */
+    public Integer[] getDatatips() {
+        return datatips.toArray(new Integer[datatips.size()]);
+    }
+    
+    /**
+     * @param datatips the datatips to set
+     */
+    private UpdateStatus setDatatips(List<Integer> datatips) {
+        this.datatips = datatips;
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * @param datatips the datatips to set
+     */
+    public UpdateStatus setDatatips(Integer[] datatips) {
+        this.datatips = new LinkedList<Integer>(Arrays.asList(datatips));
+        return UpdateStatus.Success;
     }
 
 }

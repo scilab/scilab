@@ -233,6 +233,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_background_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_bar_layout_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_bar_width_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_datatips_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_box_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_callback_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_callback_type_property.c" />
@@ -468,6 +469,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\set_background_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_bar_layout_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_bar_width_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_datatips_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_box_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_callback_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_callback_type_property.c" />

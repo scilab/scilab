@@ -297,6 +297,34 @@ function save_graphichandle(h,fd)
         end
         user_data=h.user_data;save(fd,user_data) // user_data
 
+    case "Datatip"
+        mput(length(h.type),characterFormat,fd); // type
+        mput(ascii(h.type),characterFormat,fd);
+        mput(bool2s(h.visible=="on"),characterFormat,fd) // visible
+        mput(size(h.tip_data),characterFormat,fd); // tip_data
+        mput(h.tip_data,"dl",fd);
+        mput(length(h.tip_box_mode),characterFormat,fd); // tip_box_mode
+        mput(ascii(h.tip_box_mode),characterFormat,fd);
+        mput(length(h.tip_label_mode),characterFormat,fd); // tip_label_mode
+        mput(ascii(h.tip_label_mode),characterFormat,fd);
+        mput(h.tip_orientation,characterFormat,fd) // tip_orientation
+        mput(bool2s(h.tip_3component=="on"),characterFormat,fd) // tip_3component
+        mput(bool2s(h.tip_auto_orientation=="on"),characterFormat,fd) // tip_auto_orientation
+        mput(bool2s(h.tip_interp_mode=="on"),characterFormat,fd) // tip_interp_mode
+        mput(length(ascii(h.tip_disp_function)),stringFormat,fd); // tip_disp_function
+        mput(h.font_foreground, "il", fd) ; // font_foreground
+        mput(h.foreground,"il",fd) // foreground
+        mput(h.background, "il", fd) ; // background
+        mput(bool2s(h.mark_mode=="on"),characterFormat,fd) // mark_mode
+        mput(h.mark_style,characterFormat,fd) // mark_style
+        mput(ascii(part(h.mark_size_unit,1)),characterFormat,fd) // mark_size_unit
+        mput(h.mark_size,characterFormat,fd) // mark_size
+        mput(h.mark_foreground,"il",fd) // mark_foreground
+        mput(h.mark_background,"il",fd) // mark_background
+        user_data=h.user_data;save(fd,user_data) // user_data
+        mput(length(h.tag),"c",fd); // tag
+        mput(ascii(h.tag),"c",fd);
+
     case "Plot3d";
         mput(length(h.type),characterFormat,fd);mput(ascii(h.type),characterFormat,fd); // type
         mput(bool2s(h.visible=="on"),characterFormat,fd) // visible

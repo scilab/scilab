@@ -82,7 +82,7 @@ public class Datatip extends Text {
         interpMode = true;
         displayFnc = "";
         setVisible(true);
-        setHidden(true); /* To avoid to see the datatips in Scilab when reading 'children' property */
+        setHidden(false); /* To avoid to see the datatips in Scilab when reading 'children' property */
         setBox(true);
         setLineMode(true);
         setFillMode(true);
