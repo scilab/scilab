@@ -274,6 +274,9 @@
         <method name="createJarArchive" returnType="int" modifier="static">
             <param type="String" name="jarFilePath" />
             <param type="String[]" name="filePaths" />
+            <param type="String" name="filesRootPath" />
+            <param type="String" name="manifestFilePath" />
+            <param type="boolean" name="keepAbsolutePaths" />
         </method>
     </object>
 </package>
