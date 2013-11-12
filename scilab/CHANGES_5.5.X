@@ -163,6 +163,8 @@ Scilab Bug Fixes
 
 * Bug #13069 fixed - Documentation for %MODELICA_USER_LIBS updated.
 
+* Bug #13066 fixed - data_bounds was not fully documented in axes_properties.
+
 
 Xcos Bug Fixes
 ==============

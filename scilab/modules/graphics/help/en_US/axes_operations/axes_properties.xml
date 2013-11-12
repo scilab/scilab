@@ -468,10 +468,14 @@
                         <varlistentry>
                             <term>data_bounds: </term>
                             <listitem>
-                                <para>This field contains the boundary values for the x,y and z
-                                    coordinates. It is the matrix
-                                    <literal>[xmin,ymin,zmin;xmax,ymax,zmax]</literal> or
-                                    <literal>[xmin,ymin;xmax,ymax]</literal>. Note that, to stricly have the
+                                <para>This field contains the boundary values for the x, y and z
+                                    coordinates. It is either the matrix or the vector
+                                    <literal>[xmin,ymin; xmax,ymax]</literal>,
+                                    <literal>[xmin,ymin,zmin; xmax,ymax,zmax]</literal>,
+                                    <literal>[xmin,xmax,ymin,ymax]</literal>,
+                                    <literal>[xmin,xmax,ymin,ymax,zmin,zmax]</literal>,
+                                    <literal>[xmin;xmax;ymin;ymax]</literal> or
+                                    <literal>[xmin;xmax;ymin;ymax;zmin;zmax]</literal>. Note that, to stricly have the
                                     specified data bounds, <literal>tight_limits</literal> must be set to
                                     <literal>"on"</literal> value (see above).
                                     To manually set data_bounds set <literal>auto_scale="off"</literal>
