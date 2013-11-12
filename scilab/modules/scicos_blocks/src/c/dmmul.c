@@ -34,7 +34,12 @@
 static double c_b4 = 1.;
 static double c_b5 = 0.;
 /*--------------------------------------------------------------------------*/
-extern int C2F(dgemm)(); /* blas routine */
+typedef int integer;
+typedef double doublereal;
+extern int C2F(dgemm)(char *transa, char *transb, integer *m, integer *
+                      n, integer *k, doublereal *alpha, doublereal *a, integer *lda,
+                      doublereal *b, integer *ldb, doublereal *beta, doublereal *c, integer
+                      *ldc); /* blas routine */
 /*--------------------------------------------------------------------------*/
 int dmmul(double *a, int *na, double *b, int *nb, double *c__,
           int *nc, int *l, int *m, int *n)

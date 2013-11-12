@@ -25,13 +25,12 @@
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void extract_bit_8_LSB(scicos_block *block, int flag)
 {
-    int i = 0, maxim = 0;
+    int i = 0;
     char *y = NULL, *u = NULL, ref = 0, n = 0;
     int *ipar = NULL;
     y = Getint8OutPortPtrs(block, 1);
     u = Getint8InPortPtrs(block, 1);
     ipar = GetIparPtrs(block);
-    maxim = 8;
     ref = 0;
     for (i = 0; i < *ipar; i++)
     {

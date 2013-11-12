@@ -178,7 +178,7 @@ SCICOS_BLOCKS_IMPEXP void canimxy3d(scicos_block * block, scicos_flag flag)
                 break;
             }
 
-            appendData(block, block->inptr[0], block->inptr[1], block->inptr[2]);
+            appendData(block, GetRealInPortPtrs(block, 1), GetRealInPortPtrs(block, 2), GetRealInPortPtrs(block, 3));
             for (j = 0; j < block->insz[0]; j++)
             {
                 result = pushData(block, j);
@@ -539,7 +539,6 @@ static int getAxe(int iFigureUID, scicos_block * block)
 static int getPolyline(int iAxeUID, scicos_block * block, int row)
 {
     int iPolyline = 0;
-    static double d__0 = 0.0;
     static BOOL b__true = TRUE;
 
     int color;
@@ -646,7 +645,11 @@ static BOOL setPolylinesBounds(scicos_block * block)
     iAxeUID = getAxe(iFigureUID, block);
 
     result = setGraphicObjectProperty(iAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
-    result &= setGraphicObjectProperty(iAxeUID, __GO_ROTATION_ANGLES__, rotationAngle, jni_double_vector, 2);
+    if (result == FALSE)
+    {
+        return result;
+    }
+    result = setGraphicObjectProperty(iAxeUID, __GO_ROTATION_ANGLES__, rotationAngle, jni_double_vector, 2);
 
     return result;
 }

@@ -496,7 +496,15 @@ static BOOL setBounds(scicos_block * block, int iAxeUID, int iGrayplotUID)
     dataBounds[5] = 1.0;        // zMax
 
     result = setGraphicObjectProperty(iGrayplotUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
-    result &= setGraphicObjectProperty(iAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+    if (result == FALSE)
+    {
+        return result;
+    }
+    result = setGraphicObjectProperty(iAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+    if (result == FALSE)
+    {
+        return result;
+    }
 
     return result;
 }
@@ -521,14 +529,28 @@ static BOOL setDefaultValues(scicos_block * block, int iGrayplotUID)
     }
 
     result = setGraphicObjectProperty(iGrayplotUID, __GO_DATA_MODEL_Z__, values, jni_double_vector, m * n);
+    if (result == FALSE)
+    {
+        goto local_return;
+    }
 
     for (i = 1; i <= len; i++)
     {
         values[i] = (double)i;
     }
-    result &= setGraphicObjectProperty(iGrayplotUID, __GO_DATA_MODEL_X__, values, jni_double_vector, m);
-    result &= setGraphicObjectProperty(iGrayplotUID, __GO_DATA_MODEL_Y__, values, jni_double_vector, n);
 
+    result = setGraphicObjectProperty(iGrayplotUID, __GO_DATA_MODEL_X__, values, jni_double_vector, m);
+    if (result == FALSE)
+    {
+        goto local_return;
+    }
+    result = setGraphicObjectProperty(iGrayplotUID, __GO_DATA_MODEL_Y__, values, jni_double_vector, n);
+    if (result == FALSE)
+    {
+        goto local_return;
+    }
+
+local_return:
     FREE(values);
     return result;
 }

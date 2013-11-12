@@ -30,7 +30,7 @@ SCICOS_BLOCKS_IMPEXP void samphold4_m(scicos_block *block, int flag)
     Scicos block simulator
     returns sample and hold  of the input */
 
-    if ((flag == 1))
+    if (flag == 1)
     {
         int m = GetInPortRows(block, 1);
         int n = GetInPortCols(block, 1);

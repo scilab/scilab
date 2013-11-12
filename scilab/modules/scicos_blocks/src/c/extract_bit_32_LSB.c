@@ -26,13 +26,12 @@
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void extract_bit_32_LSB(scicos_block *block, int flag)
 {
-    int i = 0, maxim = 0;
+    int i = 0;
     SCSINT32_COP *y, *u, ref, n;
     int *ipar;
     y = Getint32OutPortPtrs(block, 1);
     u = Getint32InPortPtrs(block, 1);
     ipar = GetIparPtrs(block);
-    maxim = 32;
     ref = 0;
     for (i = 0; i < *ipar; i++)
     {

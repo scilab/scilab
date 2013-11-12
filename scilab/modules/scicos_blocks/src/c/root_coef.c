@@ -23,7 +23,7 @@
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(dprxc)();
+extern int C2F(dprxc)(int* n, double* roots, double* coeff);
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void root_coef(scicos_block *block, int flag)
 {

@@ -29,9 +29,14 @@
 #include "scicos_free.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(dgesvd)();
-extern int C2F(dlaset)();
-extern int C2F(dlacpy)();
+extern int C2F(dgesvd)(char *jobu, char *jobvt, int *m, int *n,
+                       double *a, int *lda, double *s, double *u, int *
+                       ldu, double *vt, int *ldvt, double *work, int *lwork,
+                       int *info);
+extern int C2F(dlaset)(char *uplo, int *m, int *n, double *
+                       alpha, double *beta, double *a, int *lda);
+extern int C2F(dlacpy)(char *uplo, int *m, int *n, double *
+                       a, int *lda, double *b, int *ldb);
 /*--------------------------------------------------------------------------*/
 typedef struct
 {
@@ -48,6 +53,7 @@ SCICOS_BLOCKS_IMPEXP void mat_sing(scicos_block *block, int flag)
     int nu = 0, mu = 0;
     int info = 0;
     int lwork = 0;
+    mat_sing_struct** work = (mat_sing_struct**) block->work;
     mat_sing_struct *ptr = NULL;
 
     mu = GetInPortRows(block, 1);
@@ -60,12 +66,12 @@ SCICOS_BLOCKS_IMPEXP void mat_sing(scicos_block *block, int flag)
     /*init : initialization*/
     if (flag == 4)
     {
-        if ((*(block->work) = (mat_sing_struct*) scicos_malloc(sizeof(mat_sing_struct))) == NULL)
+        if ((*work = (mat_sing_struct*) scicos_malloc(sizeof(mat_sing_struct))) == NULL)
         {
             set_block_error(-16);
             return;
         }
-        ptr = *(block->work);
+        ptr = *work;
         if ((ptr->LA = (double*) scicos_malloc(sizeof(double) * (mu * nu))) == NULL)
         {
             set_block_error(-16);
@@ -101,7 +107,7 @@ SCICOS_BLOCKS_IMPEXP void mat_sing(scicos_block *block, int flag)
     /* Terminaison */
     else if (flag == 5)
     {
-        ptr = *(block->work);
+        ptr = *work;
         if (ptr->dwork != 0)
         {
             scicos_free(ptr->LA);
@@ -115,7 +121,7 @@ SCICOS_BLOCKS_IMPEXP void mat_sing(scicos_block *block, int flag)
 
     else
     {
-        ptr = *(block->work);
+        ptr = *work;
         C2F(dlacpy)("F", &mu, &nu, u, &mu, ptr->LA, &mu);
         C2F(dgesvd)("A", "A", &mu, &nu, ptr->LA, &mu, y, ptr->LU, &mu, ptr->LVT, &nu, ptr->dwork, &lwork, &info);
         if (info != 0)

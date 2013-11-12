@@ -23,7 +23,8 @@
 #include "dynlib_scicos_blocks.h"
 /* Table of constant values */
 /*--------------------------------------------------------------------------*/
-extern int C2F(dmmul1)(); /* in elementary_functions */
+extern int C2F(dmmul1)(double *a, int *na, double *b, int *nb, double *c__,
+                       int *nc, int *l, int *m, int *n); /* in elementary_functions */
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP int dmmul1(double *a, int *na, double *b, int *nb, double *c__,
                                 int *nc, int *l, int *m, int *n)

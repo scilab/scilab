@@ -33,14 +33,12 @@ SCICOS_BLOCKS_IMPEXP void summation_ui16n(scicos_block *block, int flag)
         int nu = 0, mu = 0, nin = 0;
         unsigned short *y = NULL;
         int *ipar = NULL;
-        double *rpar = NULL;
         unsigned short *u = NULL;
 
         y = Getuint16OutPortPtrs(block, 1);
         nu = GetInPortRows(block, 1);
         mu = GetInPortCols(block, 1);
         ipar = GetIparPtrs(block);
-        rpar = GetRparPtrs(block);
         nin = GetNin(block);
 
         if (nin == 1)

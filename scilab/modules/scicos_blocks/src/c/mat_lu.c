@@ -29,8 +29,10 @@
 #include "scicos_free.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(dgetrf)();
-extern int C2F(dlaswp)();
+extern int C2F(dgetrf)(int *m, int *n, double *a, int *
+                       lda, int *ipiv, int *info);
+extern int C2F(dlaswp)(int *n, double *a, int *lda, int
+                       *k1, int *k2, int *ipiv, int *incx);
 /*--------------------------------------------------------------------------*/
 typedef struct
 {
@@ -49,6 +51,7 @@ SCICOS_BLOCKS_IMPEXP void mat_lu(scicos_block *block, int flag)
     int nu = 0;
     int info = 0;
     int i = 0, j = 0, l = 0, ij = 0, ik = 0;
+    mat_lu_struct** work = (mat_lu_struct**) block->work;
     mat_lu_struct *ptr = NULL;
 
     mu = GetInPortRows(block, 1);
@@ -60,12 +63,12 @@ SCICOS_BLOCKS_IMPEXP void mat_lu(scicos_block *block, int flag)
     /*init : initialization*/
     if (flag == 4)
     {
-        if ((*(block->work) = (mat_lu_struct*) scicos_malloc(sizeof(mat_lu_struct))) == NULL)
+        if ((*work = (mat_lu_struct*) scicos_malloc(sizeof(mat_lu_struct))) == NULL)
         {
             set_block_error(-16);
             return;
         }
-        ptr = *(block->work);
+        ptr = *work;
         if ((ptr->ipiv = (int*) scicos_malloc(sizeof(int) * nu)) == NULL)
         {
             set_block_error(-16);
@@ -101,7 +104,7 @@ SCICOS_BLOCKS_IMPEXP void mat_lu(scicos_block *block, int flag)
     /* Terminaison */
     else if (flag == 5)
     {
-        ptr = *(block->work);
+        ptr = *work;
         if ((ptr->IU) != NULL)
         {
             scicos_free(ptr->ipiv);
@@ -115,7 +118,7 @@ SCICOS_BLOCKS_IMPEXP void mat_lu(scicos_block *block, int flag)
 
     else
     {
-        ptr = *(block->work);
+        ptr = *work;
         for (i = 0; i < (mu * nu); i++)
         {
             ptr->dwork[i] = u[i];

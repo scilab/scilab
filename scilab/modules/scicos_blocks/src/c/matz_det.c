@@ -28,7 +28,8 @@
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(zgetrf)();
+extern int C2F(zgetrf)(int *m, int *n, double *a,
+                       int *lda, int *ipiv, int *info);
 /*--------------------------------------------------------------------------*/
 typedef struct FCOMPLEX
 {
@@ -52,6 +53,7 @@ SCICOS_BLOCKS_IMPEXP void matz_det(scicos_block *block, int flag)
     int i = 0;
     fcomplex D, l;
     double A = 0.;
+    mat_det_struct** work = (mat_det_struct**) block->work;
     mat_det_struct *mdet = NULL;
 
     nu = GetInPortRows(block, 1);
@@ -62,12 +64,12 @@ SCICOS_BLOCKS_IMPEXP void matz_det(scicos_block *block, int flag)
     /*init : initialization*/
     if (flag == 4)
     {
-        if ((*(block->work) = (mat_det_struct*) scicos_malloc(sizeof(mat_det_struct))) == NULL)
+        if ((*work = (mat_det_struct*) scicos_malloc(sizeof(mat_det_struct))) == NULL)
         {
             set_block_error(-16);
             return;
         }
-        mdet = *(block->work);
+        mdet = *work;
         if ((mdet->ipiv = (int*) scicos_malloc(sizeof(int) * nu)) == NULL)
         {
             set_block_error(-16);
@@ -86,7 +88,7 @@ SCICOS_BLOCKS_IMPEXP void matz_det(scicos_block *block, int flag)
     /* Terminaison */
     else if (flag == 5)
     {
-        mdet = *(block->work);
+        mdet = *work;
         if (mdet->wrk != NULL)
         {
             scicos_free(mdet->ipiv);
@@ -98,7 +100,7 @@ SCICOS_BLOCKS_IMPEXP void matz_det(scicos_block *block, int flag)
 
     else
     {
-        mdet = *(block->work);
+        mdet = *work;
         for (i = 0; i < (nu * nu); i++)
         {
             mdet->wrk[2 * i] = ur[i];

@@ -497,7 +497,7 @@ static BOOL pushData(scicos_block * block, int input)
     double *direction;
     sco_data *sco;
 
-    BOOL result = TRUE;
+    BOOL result;
 
     iFigureUID = getFigure(block);
     iAxeUID = getAxe(iFigureUID, block);
@@ -515,8 +515,12 @@ static BOOL pushData(scicos_block * block, int input)
 
     dataLen = 3 * sco->internal.maxNumberOfPoints[input];
 
-    result &= setGraphicObjectProperty(iSegsUID, __GO_BASE__, base, jni_double_vector, dataLen);
-    result &= setGraphicObjectProperty(iSegsUID, __GO_DIRECTION__, direction, jni_double_vector, dataLen);
+    result = setGraphicObjectProperty(iSegsUID, __GO_BASE__, base, jni_double_vector, dataLen);
+    if (result == FALSE)
+    {
+        return result;
+    }
+    result = setGraphicObjectProperty(iSegsUID, __GO_DIRECTION__, direction, jni_double_vector, dataLen);
 
     return result;
 }
@@ -777,7 +781,7 @@ static BOOL setSegsBuffers(scicos_block * block, int maxNumberOfPoints)
     for (i = 0; i < nclk; i++)
     {
         iSegsUID = getSegs(iAxeUID, block, i);
-        result &= setGraphicObjectProperty(iSegsUID, __GO_NUMBER_ARROWS__, &maxNumberOfPoints, jni_int, 1);
+        result = setGraphicObjectProperty(iSegsUID, __GO_NUMBER_ARROWS__, &maxNumberOfPoints, jni_int, 1);
 
         /*
          * Update color due to bug #9902

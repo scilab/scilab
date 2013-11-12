@@ -275,7 +275,7 @@ SCICOS_BLOCKS_IMPEXP void cscope(scicos_block * block, scicos_flag flag)
 static sco_data *getScoData(scicos_block * block)
 {
     sco_data *sco = (sco_data *) * (block->work);
-    int i, j, k, l;
+    int i, j;
 
     if (sco == NULL)
     {
@@ -365,14 +365,16 @@ error_handler_historyCoordinates_i:
     }
     FREE(sco->internal.historyCoordinates);
 error_handler_historyCoordinates:
-    i = block->nin - 1;
-    j = block->insz[i] - 1;
 error_handler_bufferCoordinates_ij:
-    for (k = 0; k < i; k++)
+    for (i = 0; i < block->nin - 1; i++)
     {
-        for (l = 0; l < j; l++)
+        for (j = 0; j < block->insz[i] - 1; j++)
         {
-            FREE(sco->internal.bufferCoordinates[k][l]);
+            double* ptr = sco->internal.bufferCoordinates[i][j];
+            if (ptr != NULL)
+            {
+                FREE(ptr);
+            }
         }
     }
     i = block->nin - 1;
@@ -970,7 +972,11 @@ static BOOL pushHistory(scicos_block * block, int input, int maxNumberOfPoints)
         iPolylineUID = getPolyline(iAxeUID, block, i, TRUE);
 
         data = sco->internal.historyCoordinates[input][i];
-        result &= setGraphicObjectProperty(iPolylineUID, __GO_DATA_MODEL_COORDINATES__, data, jni_double_vector, maxNumberOfPoints);
+        result = setGraphicObjectProperty(iPolylineUID, __GO_DATA_MODEL_COORDINATES__, data, jni_double_vector, maxNumberOfPoints);
+        if (result == FALSE)
+        {
+            return result;
+        }
     }
 
     return result;

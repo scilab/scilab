@@ -26,13 +26,12 @@
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void extract_bit_u16_RB1(scicos_block *block, int flag)
 {
-    int i = 0, maxim = 0, numb = 0;
+    int i = 0, numb = 0;
     unsigned short *y = NULL, *u = NULL, ref = 0, n = 0;
     int *ipar = NULL;
     y = Getuint16OutPortPtrs(block, 1);
     u = Getuint16InPortPtrs(block, 1);
     ipar = GetIparPtrs(block);
-    maxim = 16;
     ref = 0;
     numb = *(ipar + 1) - *ipar + 1;
     for (i = 0; i < numb; i++)

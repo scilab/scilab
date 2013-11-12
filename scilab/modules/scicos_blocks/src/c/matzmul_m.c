@@ -23,7 +23,7 @@
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(wmmul)();
+extern int C2F(wmmul)(double* Ar, double* Ai, int* na, double* Br, double* Bi, int* nb, double* Cr, double* Ci, int* nc, int* l, int* m, int* n);
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void matzmul_m(scicos_block *block, int flag)
 {
