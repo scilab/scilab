@@ -936,10 +936,10 @@ maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
-@JAVASCI_FALSE@install-data-local:
-@JAVASCI_FALSE@clean-local:
-@JAVASCI_FALSE@distclean-local:
 @JAVASCI_FALSE@install-html-local:
+@JAVASCI_FALSE@clean-local:
+@JAVASCI_FALSE@install-data-local:
+@JAVASCI_FALSE@distclean-local:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -1089,11 +1089,17 @@ uninstall-am: uninstall-libjavasci2_la_etcDATA \
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@@JAVASCI_TRUE@giws: $(GIWS_WRAPPERS)
-@GIWS_TRUE@@JAVASCI_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@@JAVASCI_TRUE@	@GIWS_OUTPUTDIR=src/jni/; \
+@GIWS_TRUE@@JAVASCI_TRUE@	MANDATORY_OPTIONS=--throws-exception-on-error --description-file; \
 @GIWS_TRUE@@JAVASCI_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@JAVASCI_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@@JAVASCI_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@@JAVASCI_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
+@GIWS_TRUE@@JAVASCI_TRUE@			if test -z "$(GIWS_OPTIONS)"; then \
+@GIWS_TRUE@@JAVASCI_TRUE@				$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR $$MANDATORY_OPTIONS $$file; \
+@GIWS_TRUE@@JAVASCI_TRUE@			else \
+@GIWS_TRUE@@JAVASCI_TRUE@				echo "Custom GIWS call with '$$GIWS_OPTIONS'"; \
+@GIWS_TRUE@@JAVASCI_TRUE@				$(GIWS_BIN) $$GIWS_OPTIONS --output-dir $$GIWS_OUTPUTDIR $$MANDATORY_OPTIONS $$file; \
+@GIWS_TRUE@@JAVASCI_TRUE@			fi \
 @GIWS_TRUE@@JAVASCI_TRUE@		done; \
 @GIWS_TRUE@@JAVASCI_TRUE@	fi
 

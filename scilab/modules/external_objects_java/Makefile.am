@@ -75,6 +75,7 @@ sci_gateway/cpp/sci_jinvoke_db.cpp
 GIWS_WRAPPERS = src/jni/ScilabObjects.giws.xml
 
 if GIWS
+GIWS_OPTIONS=--enable-return-size-array
 BUILT_SOURCES=giws
 endif
 

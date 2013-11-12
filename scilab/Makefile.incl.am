@@ -106,11 +106,17 @@ if GIWS
 
 ## build Swig Java => C wrappers
 giws: $(GIWS_WRAPPERS)
-	@GIWS_OUTPUTDIR=src/jni/;\
+	@GIWS_OUTPUTDIR=src/jni/; \
+	MANDATORY_OPTIONS=--throws-exception-on-error --description-file; \
 	if test -n "$(GIWS_WRAPPERS)"; then \
 		for file in $(GIWS_WRAPPERS) ; do \
 			echo "GIWS process of $$file ..."; \
-			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
+			if test -z "$(GIWS_OPTIONS)"; then \
+				$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR $$MANDATORY_OPTIONS $$file; \
+			else \
+				echo "Custom GIWS call with '$$GIWS_OPTIONS'"; \
+				$(GIWS_BIN) $$GIWS_OPTIONS --output-dir $$GIWS_OUTPUTDIR $$MANDATORY_OPTIONS $$file; \
+			fi \
 		done; \
 	fi
 
