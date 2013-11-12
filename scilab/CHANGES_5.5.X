@@ -159,6 +159,8 @@ Scilab Bug Fixes
 
 * Bug #13061 fixed - hdf5 demo failed with a read only file.
 
+* Bug #13063 fixed - Color selection in SciNotes preferences threw exceptions.
+
 
 Xcos Bug Fixes
 ==============
