@@ -161,6 +161,8 @@ Scilab Bug Fixes
 
 * Bug #13063 fixed - Color selection in SciNotes preferences threw exceptions.
 
+* Bug #13069 fixed - Documentation for %MODELICA_USER_LIBS updated.
+
 
 Xcos Bug Fixes
 ==============
