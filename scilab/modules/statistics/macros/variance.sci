@@ -99,8 +99,8 @@ function [s, m] = variance(x, orien, m)
         else
             if isscalar(m) then
                 if or(m==[0 1]) then
-                    tmp = _("%s: The use of input argument ''%s'' is now obsolete, please use ''%s'' instead.\n")
-                    warning(msprintf(tmp, "variance", "w", "m"))
+                    tmp = _("%s: The significance of input argument #%d has been modified. Please refer to the variance help page.\n")
+                    warning(msprintf(tmp, "variance", 3))
                 end
                 // If m is a scalar, extend it to the size of x.
                 // If lhs==1, we do not need to perform this operation, because in the following 'x - m', m can be a scalar

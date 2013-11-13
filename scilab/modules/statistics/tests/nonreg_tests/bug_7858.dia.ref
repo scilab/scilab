@@ -29,7 +29,7 @@ expectedV = [1.07 1.26]/3;
 assert_checkalmostequal([Variance Mean], [expectedV expectedM]);
 // With a scalar
 [Variance, Mean] = variance( x, orien, 1 );
-WARNING: variance: The use of input argument 'w' is now obsolete, please use 'm' instead.
+WARNING: variance: The significance of input argument #3 has been modified. Please refer to the variance help page.
 assert_checkalmostequal([Variance Mean], [expectedV expectedM]);
 orien = "c";
 expectedM = [1; 1; 1];
@@ -39,7 +39,7 @@ expectedV = [0.05; 0.81; 0.305];
 assert_checkalmostequal([Variance Mean], [expectedV expectedM]);
 // With a scalar
 [Variance, Mean] = variance( x, orien, 1 );
-WARNING: variance: The use of input argument 'w' is now obsolete, please use 'm' instead.
+WARNING: variance: The significance of input argument #3 has been modified. Please refer to the variance help page.
 assert_checkalmostequal([Variance Mean], [expectedV expectedM]);
 //--------------------------------------------------------------
 // Variancef
