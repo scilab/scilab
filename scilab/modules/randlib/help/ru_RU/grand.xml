@@ -149,8 +149,6 @@
             ]]></programlisting>
         </para>
         <para>
-            where <varname>X</varname> of sizes <varname>m</varname>-by-<varname>n</varname>...
-            is a matrix or an hypermatrix only used as template.
             где <varname>X</varname> - матрица или гиперматрица размером
             <varname>m</varname> на <varname>n</varname> на ... . В
             данном случае используются
