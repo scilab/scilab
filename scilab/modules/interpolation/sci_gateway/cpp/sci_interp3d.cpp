@@ -95,12 +95,12 @@ types::Function::ReturnValue sci_interp3d(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
 
-    pDblX = pTList->get(L"tx")->getAs<types::Double>();
-    pDblY = pTList->get(L"ty")->getAs<types::Double>();
-    pDblZ = pTList->get(L"tz")->getAs<types::Double>();
-    pDblOrder = pTList->get(L"order")->getAs<types::Double>();
-    pDblCoef = pTList->get(L"bcoef")->getAs<types::Double>();
-    pDblXyzminmax = pTList->get(L"xyzminmax")->getAs<types::Double>();
+    pDblX = pTList->getField(L"tx")->getAs<types::Double>();
+    pDblY = pTList->getField(L"ty")->getAs<types::Double>();
+    pDblZ = pTList->getField(L"tz")->getAs<types::Double>();
+    pDblOrder = pTList->getField(L"order")->getAs<types::Double>();
+    pDblCoef = pTList->getField(L"bcoef")->getAs<types::Double>();
+    pDblXyzminmax = pTList->getField(L"xyzminmax")->getAs<types::Double>();
 
     if (in[4]->isString() == false)
     {

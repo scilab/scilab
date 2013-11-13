@@ -8,7 +8,6 @@
 // <-- CLI SHELL MODE -->
 
 path = fullfile(SCI,"modules","optimization","tests","unit_tests");
-stacksize("max");
 //
 filename = fullfile(path,"test1.mps");
 huge = number_properties("huge");

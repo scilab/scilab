@@ -6,7 +6,6 @@
 // =============================================================================
 // <-- CLI SHELL MODE -->
 path = fullfile(SCI,"modules","optimization","tests","unit_tests");
-stacksize("max");
 //
 filename = fullfile(path,"test1.mps");
 huge = number_properties("huge");
@@ -31,10 +30,8 @@ assert_checkequal(P.ranges,huge*ones(4,1));
 assert_checkequal(P.bounds,[-huge,4;-1,1;-huge,huge]);
 assert_checkequal(P.stavar,[1;3;0]);
 disp(P)
- 
 MPS Object:
 ===========
-
 irobj: 1
 namec: COST    
 nameb: RHS1    
@@ -77,10 +74,8 @@ assert_checkequal(size(P.ranges),[822,1]);
 assert_checkequal(size(P.bounds),[1571,2]);
 assert_checkequal(size(P.stavar),[1571,1]);
 disp(P)
- 
 MPS Object:
 ===========
-
 irobj: 1
 namec: R0000   
 nameb: .00001  

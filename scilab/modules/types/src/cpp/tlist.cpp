@@ -88,7 +88,7 @@ bool TList::exists(const std::wstring& _sKey)
     return false;
 }
 
-InternalType* TList::get(const std::wstring& _sKey)
+InternalType* TList::getField(const std::wstring& _sKey)
 {
     return List::get(getIndexFromString(_sKey));
 }
@@ -127,7 +127,7 @@ std::vector<InternalType*> TList::extractStrings(const std::list<std::wstring>& 
 
     for (it = _stFields.begin() ; it != _stFields.end() ; it++)
     {
-        Result.push_back(get(*it));
+        Result.push_back(getField(*it));
     }
     return Result;
 }

@@ -522,7 +522,7 @@ public :
                 result_set(NULL);
                 if (psValue->exists(psvRightMember->name_get().name_get()))
                 {
-                    InternalType* pIT = psValue->get(psvRightMember->name_get().name_get());
+                    InternalType* pIT = psValue->getField(psvRightMember->name_get().name_get());
                     result_set(pIT);
                 }
                 else
@@ -548,7 +548,7 @@ public :
                 result_set(NULL);
                 if (psValue->exists(psvRightMember->name_get().name_get()))
                 {
-                    InternalType* pIT = psValue->get(psvRightMember->name_get().name_get());
+                    InternalType* pIT = psValue->getField(psvRightMember->name_get().name_get());
                     result_set(pIT);
                 }
                 else
