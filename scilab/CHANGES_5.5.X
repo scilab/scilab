@@ -169,6 +169,9 @@ Scilab Bug Fixes
 
 * Bug #13066 fixed - data_bounds was not fully documented in axes_properties.
 
+* Bug #13071 fixed - Three unused functions in Xcos macros now specified as not mandatory
+                     to write new blocks.
+
 
 Xcos Bug Fixes
 ==============
