@@ -25,6 +25,8 @@ Scilab Bug Fixes
 
 * Bug #6824 fixed - resize_matrix did not manage hypermatrices.
 
+* Bug #6832 fixed - Matrices of rationals can now be transposed via the " .' " operator.
+
 * Bug #7038 fixed - Toolbar button managing datatip mode did not toggle.
 
 * Bug #7047 fixed - milk_drop is now obsolete. It will be removed in Scilab 5.5.1, but will be kept as a demo.
