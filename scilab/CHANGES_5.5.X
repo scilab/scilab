@@ -130,6 +130,9 @@ Scilab Bug Fixes
 
 * Bug #12769 fixed - xset("window", 1) did not set the current axes.
 
+* Bug #12784 fixed - Misleading error message in many functions when passing an integer 
+                     argument instead of double argument fixed.
+
 * Bug #12882 fixed - Some help pages were not clear.
 
 * Bug #12910 fixed - Some typos fixed.

@@ -18,18 +18,14 @@ function cmap = graycolormap(varargin)
     n=varargin(1);
 
     // Check type of input argument
-    if typeof(n)<>"constant" then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer value expected.\n"), "graycolormap", 1));
-    end
-
     // Check if input argument is real
-    if ~isreal(n) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer value expected.\n"), "graycolormap", 1));
+    if typeof(n)<>"constant" | ~isreal(n) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: a real scalar expected.\n"), "graycolormap", 1));
     end
 
     // Check size of input argument
     if size(n,"*")<>1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: An integer value expected.\n"), "graycolormap", 1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: a real scalar expected.\n"), "graycolormap", 1));
     end
 
     cmap=((0:n-1)'/max(n-1,1))*[1 1 1];

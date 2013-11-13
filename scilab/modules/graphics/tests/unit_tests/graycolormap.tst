@@ -9,11 +9,11 @@
 
 assert_checkerror("graycolormap(0,1,2,3)", "%s: Wrong number of input argument(s): %d expected.\n", 10000, "graycolormap", 1);
 
-assert_checkerror("graycolormap(%t)", "%s: Wrong type for input argument #%d: An integer value expected.\n", 10000, "graycolormap", 1);
+assert_checkerror("graycolormap(%t)", "%s: Wrong type for input argument #%d: a real scalar expected.\n", 10000, "graycolormap", 1);
 
-assert_checkerror("graycolormap(%i)", "%s: Wrong type for input argument #%d: An integer value expected.\n", 10000, "graycolormap", 1);
+assert_checkerror("graycolormap(%i)", "%s: Wrong type for input argument #%d: a real scalar expected.\n", 10000, "graycolormap", 1);
 
-assert_checkerror("graycolormap([0 1 2 3])", "%s: Wrong size for input argument #%d: An integer value expected.\n", 10000, "graycolormap", 1);
+assert_checkerror("graycolormap([0 1 2 3])", "%s: Wrong size for input argument #%d: a real scalar expected.\n", 10000, "graycolormap", 1);
 
 assert_checkequal(graycolormap(0), []);
 
