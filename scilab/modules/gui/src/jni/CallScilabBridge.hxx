@@ -46,11 +46,11 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 #include "GiwsException.hxx"
 
-#if defined(_MSC_VER) /* Defined anyway with Visual */
-#include <Windows.h>
-#else
-typedef signed char byte;
-#endif
+        #if defined(_MSC_VER) /* Defined anyway with Visual */
+            #include <Windows.h>
+        #else
+            typedef signed char byte;
+        #endif
 
 
 #ifndef GIWSEXPORT
@@ -69,297 +69,295 @@ typedef signed char byte;
 # endif
 #endif
 
-namespace org_scilab_modules_gui_bridge
-{
-class GIWSEXPORT CallScilabBridge
-{
+namespace org_scilab_modules_gui_bridge {
+class GIWSEXPORT CallScilabBridge {
 
 private:
-    JavaVM * jvm;
+JavaVM * jvm;
 
 protected:
-    jmethodID voidsetMenuEnabledjintintjstringjava_lang_StringjbooleanbooleanID; // cache method id
-    jmethodID voidsetSubMenuEnabledjintintjstringjava_lang_StringjintintjbooleanbooleanID; // cache method id
-    jmethodID voidremoveMenujintintjstringjava_lang_StringID; // cache method id
-    jmethodID jstringdisplayAndWaitContextMenujintintID; // cache method id
-    jmethodID jintnewMessageBoxID; // cache method id
-    jmethodID voidsetMessageBoxTitlejintintjstringjava_lang_StringID; // cache method id
-    jmethodID voidsetMessageBoxMessagejintintjstringjava_lang_StringID; // cache method id
-    jmethodID voidsetMessageBoxMessagejintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
-    jclass stringArrayClass;
-    jmethodID voidmessageBoxDisplayAndWaitjintintID; // cache method id
-    jmethodID jintgetMessageBoxSelectedButtonjintintID; // cache method id
-    jmethodID voidsetMessageBoxDefaultSelectedButtonsjintintjintArray_intintID; // cache method id
-    jmethodID jintArray_getMessageBoxUserSelectedButtonsjintintID; // cache method id
-    jmethodID voidsetMessageBoxButtonsLabelsjintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
-    jmethodID voidsetMessageBoxInitialValuejintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
-    jmethodID jobjectArray_getMessageBoxValuejintintID; // cache method id
-    jmethodID jintgetMessageBoxValueSizejintintID; // cache method id
-    jmethodID voidsetMessageBoxListBoxItemsjintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
-    jmethodID jintgetMessageBoxSelectedItemjintintID; // cache method id
-    jmethodID voidsetMessageBoxLineLabelsjintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
-    jmethodID voidsetMessageBoxColumnLabelsjintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
-    jmethodID voidsetMessageBoxDefaultInputjintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
-    jmethodID voidsetMessageBoxModaljintintjbooleanbooleanID; // cache method id
-    jmethodID voidsetMessageBoxIconjintintjstringjava_lang_StringID; // cache method id
-    jmethodID jbooleanisToolbarVisiblejintintID; // cache method id
-    jmethodID voidsetToolbarVisiblejintintjbooleanbooleanID; // cache method id
-    jmethodID voidlaunchHelpBrowserjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-    jmethodID voidsearchKeywordjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID; // cache method id
-    jmethodID jintnewExportFileChooserjintintID; // cache method id
-    jmethodID jintnewFontChooserID; // cache method id
-    jmethodID voidfontChooserDisplayAndWaitjintintID; // cache method id
-    jmethodID voidsetFontChooserFontNamejintintjstringjava_lang_StringID; // cache method id
-    jmethodID voidsetFontChooserFontSizejintintjintintID; // cache method id
-    jmethodID voidsetFontChooserBoldjintintjbooleanbooleanID; // cache method id
-    jmethodID voidsetFontChooserItalicjintintjbooleanbooleanID; // cache method id
-    jmethodID jstringgetFontChooserFontNamejintintID; // cache method id
-    jmethodID jintgetFontChooserFontSizejintintID; // cache method id
-    jmethodID jbooleangetFontChooserBoldjintintID; // cache method id
-    jmethodID jbooleangetFontChooserItalicjintintID; // cache method id
-    jmethodID jintnewColorChooserID; // cache method id
-    jmethodID voidcolorChooserDisplayAndWaitjintintID; // cache method id
-    jmethodID voidsetColorChooserDefaultColorjintintjintArray_intintID; // cache method id
-    jmethodID jintArray_getColorChooserSelectedColorjintintID; // cache method id
-    jmethodID voidsetColorChooserTitlejintintjstringjava_lang_StringID; // cache method id
-    jmethodID jstringgetClipboardContentsID; // cache method id
-    jmethodID voidpasteClipboardIntoConsoleID; // cache method id
-    jmethodID voidcopyConsoleSelectionID; // cache method id
-    jmethodID voidemptyClipboardID; // cache method id
-    jmethodID voidsetClipboardContentsjstringjava_lang_StringID; // cache method id
-    jmethodID voidcopyFigureToClipBoardjintintID; // cache method id
-    jmethodID jintgetScreenResolutionID; // cache method id
-    jmethodID jdoublegetScreenWidthID; // cache method id
-    jmethodID jdoublegetScreenHeightID; // cache method id
-    jmethodID jintgetScreenDepthID; // cache method id
-    jmethodID jbooleanprintFigurejintintjbooleanbooleanjbooleanbooleanID; // cache method id
-    jmethodID jbooleanprintFilejstringjava_lang_StringID; // cache method id
-    jmethodID jbooleanprintStringjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-    jmethodID jbooleanpageSetupID; // cache method id
-    jmethodID voidrequestFocusjintintID; // cache method id
-    jmethodID voidraiseWindowjintintID; // cache method id
-    jmethodID voiduseCanvasForDisplayjbooleanbooleanID; // cache method id
-    jmethodID jbooleanuseCanvasForDisplayID; // cache method id
-    jmethodID voidscilabAboutBoxID; // cache method id
-    jmethodID voidfireClosingFinishedjintintID; // cache method id
+jmethodID voidsetMenuEnabledjintintjstringjava_lang_StringjbooleanbooleanID; // cache method id
+jmethodID voidsetSubMenuEnabledjintintjstringjava_lang_StringjintintjbooleanbooleanID; // cache method id
+jmethodID voidremoveMenujintintjstringjava_lang_StringID; // cache method id
+jmethodID jstringdisplayAndWaitContextMenujintintID; // cache method id
+jmethodID jintnewMessageBoxID; // cache method id
+jmethodID voidsetMessageBoxTitlejintintjstringjava_lang_StringID; // cache method id
+jmethodID voidsetMessageBoxMessagejintintjstringjava_lang_StringID; // cache method id
+jmethodID voidsetMessageBoxMessagejintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
+jclass stringArrayClass;
+jmethodID voidmessageBoxDisplayAndWaitjintintID; // cache method id
+jmethodID jintgetMessageBoxSelectedButtonjintintID; // cache method id
+jmethodID voidsetMessageBoxDefaultSelectedButtonsjintintjintArray_intintID; // cache method id
+jmethodID jintArray_getMessageBoxUserSelectedButtonsjintintID; // cache method id
+jmethodID voidsetMessageBoxButtonsLabelsjintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
+jmethodID voidsetMessageBoxInitialValuejintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
+jmethodID jobjectArray_getMessageBoxValuejintintID; // cache method id
+jmethodID jintgetMessageBoxValueSizejintintID; // cache method id
+jmethodID voidsetMessageBoxListBoxItemsjintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
+jmethodID jintgetMessageBoxSelectedItemjintintID; // cache method id
+jmethodID voidsetMessageBoxLineLabelsjintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
+jmethodID voidsetMessageBoxColumnLabelsjintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
+jmethodID voidsetMessageBoxDefaultInputjintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
+jmethodID voidsetMessageBoxModaljintintjbooleanbooleanID; // cache method id
+jmethodID voidsetMessageBoxIconjintintjstringjava_lang_StringID; // cache method id
+jmethodID jbooleanisToolbarVisiblejintintID; // cache method id
+jmethodID voidsetToolbarVisiblejintintjbooleanbooleanID; // cache method id
+jmethodID voidlaunchHelpBrowserjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_StringID; // cache method id
+jmethodID voidsearchKeywordjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID; // cache method id
+jmethodID jintnewExportFileChooserjintintID; // cache method id
+jmethodID jintnewFontChooserID; // cache method id
+jmethodID voidfontChooserDisplayAndWaitjintintID; // cache method id
+jmethodID voidsetFontChooserFontNamejintintjstringjava_lang_StringID; // cache method id
+jmethodID voidsetFontChooserFontSizejintintjintintID; // cache method id
+jmethodID voidsetFontChooserBoldjintintjbooleanbooleanID; // cache method id
+jmethodID voidsetFontChooserItalicjintintjbooleanbooleanID; // cache method id
+jmethodID jstringgetFontChooserFontNamejintintID; // cache method id
+jmethodID jintgetFontChooserFontSizejintintID; // cache method id
+jmethodID jbooleangetFontChooserBoldjintintID; // cache method id
+jmethodID jbooleangetFontChooserItalicjintintID; // cache method id
+jmethodID jintnewColorChooserID; // cache method id
+jmethodID voidcolorChooserDisplayAndWaitjintintID; // cache method id
+jmethodID voidsetColorChooserDefaultColorjintintjintArray_intintID; // cache method id
+jmethodID jintArray_getColorChooserSelectedColorjintintID; // cache method id
+jmethodID voidsetColorChooserTitlejintintjstringjava_lang_StringID; // cache method id
+jmethodID jstringgetClipboardContentsID; // cache method id
+jmethodID voidpasteClipboardIntoConsoleID; // cache method id
+jmethodID voidcopyConsoleSelectionID; // cache method id
+jmethodID voidemptyClipboardID; // cache method id
+jmethodID voidsetClipboardContentsjstringjava_lang_StringID; // cache method id
+jmethodID voidcopyFigureToClipBoardjintintID; // cache method id
+jmethodID jintgetScreenResolutionID; // cache method id
+jmethodID jdoublegetScreenWidthID; // cache method id
+jmethodID jdoublegetScreenHeightID; // cache method id
+jmethodID jintgetScreenDepthID; // cache method id
+jmethodID jbooleanprintFigurejintintjbooleanbooleanjbooleanbooleanID; // cache method id
+jmethodID jbooleanprintFilejstringjava_lang_StringID; // cache method id
+jmethodID jbooleanprintStringjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
+jmethodID jbooleanpageSetupID; // cache method id
+jmethodID voidrequestFocusjintintID; // cache method id
+jmethodID voidraiseWindowjintintID; // cache method id
+jmethodID voiduseCanvasForDisplayjbooleanbooleanID; // cache method id
+jmethodID jbooleanuseCanvasForDisplayID; // cache method id
+jmethodID voidscilabAboutBoxID; // cache method id
+jmethodID voidfireClosingFinishedjintintID; // cache method id
 
 
 
-    jobject instance;
-    jclass instanceClass; // cache class
+jobject instance;
+jclass instanceClass; // cache class
+
+                       
+// Caching (if any)
 
 
-    // Caching (if any)
-
-
-    /**
-    * Get the environment matching to the current thread.
-    */
-    virtual JNIEnv * getCurrentEnv();
+/**
+* Get the environment matching to the current thread.
+*/
+virtual JNIEnv * getCurrentEnv();
 
 public:
-    // Constructor
-    /**
-    * Create a wrapping of the object from a JNIEnv.
-    * It will call the default constructor
-    * @param JEnv_ the Java Env
-    */
-    CallScilabBridge(JavaVM * jvm_);
+// Constructor
+/**
+* Create a wrapping of the object from a JNIEnv.
+* It will call the default constructor
+* @param JEnv_ the Java Env
+*/
+CallScilabBridge(JavaVM * jvm_);
 
-    /**
-    * Create a wrapping of an already existing object from a JNIEnv.
-    * The object must have already been instantiated
-    * @param JEnv_ the Java Env
-    * @param JObj the object
-    */
-    CallScilabBridge(JavaVM * jvm_, jobject JObj);
+/**
+* Create a wrapping of an already existing object from a JNIEnv.
+* The object must have already been instantiated
+* @param JEnv_ the Java Env
+* @param JObj the object
+*/
+CallScilabBridge(JavaVM * jvm_, jobject JObj);
 
 
-    /**
-    * This is a fake constructor to avoid the constructor
-    * chaining when dealing with extended giws classes
-    */
+/** 
+* This is a fake constructor to avoid the constructor
+* chaining when dealing with extended giws classes 
+*/
 #ifdef FAKEGIWSDATATYPE
-    CallScilabBridge(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
+CallScilabBridge(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
 #endif
 
-    // Destructor
-    ~CallScilabBridge();
+// Destructor
+~CallScilabBridge();
 
-    // Generic method
-    // Synchronization methods
-    /**
-    * Enter monitor associated with the object.
-    * Equivalent of creating a "synchronized(obj)" scope in Java.
-    */
-    void synchronize();
+// Generic method
+// Synchronization methods
+/**
+* Enter monitor associated with the object.
+* Equivalent of creating a "synchronized(obj)" scope in Java.
+*/
+void synchronize();
 
-    /**
-    * Exit monitor associated with the object.
-    * Equivalent of ending a "synchronized(obj)" scope.
-    */
-    void endSynchronize();
+/**
+* Exit monitor associated with the object.
+* Equivalent of ending a "synchronized(obj)" scope.
+*/
+void endSynchronize();
 
-    // Methods
-    static void setMenuEnabled(JavaVM * jvm_, int parentUID, char const* menuName, bool status);
+// Methods
+static void setMenuEnabled(JavaVM * jvm_, int parentUID, char const* menuName, bool status);
 
-    static void setSubMenuEnabled(JavaVM * jvm_, int parentUID, char const* menuName, int position, bool status);
+static void setSubMenuEnabled(JavaVM * jvm_, int parentUID, char const* menuName, int position, bool status);
 
-    static void removeMenu(JavaVM * jvm_, int parentUID, char const* menuName);
+static void removeMenu(JavaVM * jvm_, int parentUID, char const* menuName);
 
-    static char* displayAndWaitContextMenu(JavaVM * jvm_, int UID);
+static char* displayAndWaitContextMenu(JavaVM * jvm_, int UID);
 
-    static int newMessageBox(JavaVM * jvm_);
+static int newMessageBox(JavaVM * jvm_);
 
-    static void setMessageBoxTitle(JavaVM * jvm_, int id, char const* title);
+static void setMessageBoxTitle(JavaVM * jvm_, int id, char const* title);
 
-    static void setMessageBoxMessage(JavaVM * jvm_, int id, char const* message);
+static void setMessageBoxMessage(JavaVM * jvm_, int id, char const* message);
 
-    static void setMessageBoxMessage(JavaVM * jvm_, int id, char const* const* message, int messageSize);
+static void setMessageBoxMessage(JavaVM * jvm_, int id, char const* const* message, int messageSize);
 
-    static void messageBoxDisplayAndWait(JavaVM * jvm_, int id);
+static void messageBoxDisplayAndWait(JavaVM * jvm_, int id);
 
-    static int getMessageBoxSelectedButton(JavaVM * jvm_, int id);
+static int getMessageBoxSelectedButton(JavaVM * jvm_, int id);
 
-    static void setMessageBoxDefaultSelectedButtons(JavaVM * jvm_, int id, int const* index, int indexSize);
+static void setMessageBoxDefaultSelectedButtons(JavaVM * jvm_, int id, int const* index, int indexSize);
 
-    static int* getMessageBoxUserSelectedButtons(JavaVM * jvm_, int id);
+static int* getMessageBoxUserSelectedButtons(JavaVM * jvm_, int id);
 
-    static void setMessageBoxButtonsLabels(JavaVM * jvm_, int id, char const* const* labels, int labelsSize);
+static void setMessageBoxButtonsLabels(JavaVM * jvm_, int id, char const* const* labels, int labelsSize);
 
-    static void setMessageBoxInitialValue(JavaVM * jvm_, int id, char const* const* value, int valueSize);
+static void setMessageBoxInitialValue(JavaVM * jvm_, int id, char const* const* value, int valueSize);
 
-    static char** getMessageBoxValue(JavaVM * jvm_, int id);
+static char** getMessageBoxValue(JavaVM * jvm_, int id);
 
-    static int getMessageBoxValueSize(JavaVM * jvm_, int id);
+static int getMessageBoxValueSize(JavaVM * jvm_, int id);
 
-    static void setMessageBoxListBoxItems(JavaVM * jvm_, int id, char const* const* items, int itemsSize);
+static void setMessageBoxListBoxItems(JavaVM * jvm_, int id, char const* const* items, int itemsSize);
 
-    static int getMessageBoxSelectedItem(JavaVM * jvm_, int id);
+static int getMessageBoxSelectedItem(JavaVM * jvm_, int id);
 
-    static void setMessageBoxLineLabels(JavaVM * jvm_, int id, char const* const* labels, int labelsSize);
+static void setMessageBoxLineLabels(JavaVM * jvm_, int id, char const* const* labels, int labelsSize);
 
-    static void setMessageBoxColumnLabels(JavaVM * jvm_, int id, char const* const* labels, int labelsSize);
+static void setMessageBoxColumnLabels(JavaVM * jvm_, int id, char const* const* labels, int labelsSize);
 
-    static void setMessageBoxDefaultInput(JavaVM * jvm_, int id, char const* const* values, int valuesSize);
+static void setMessageBoxDefaultInput(JavaVM * jvm_, int id, char const* const* values, int valuesSize);
 
-    static void setMessageBoxModal(JavaVM * jvm_, int id, bool status);
+static void setMessageBoxModal(JavaVM * jvm_, int id, bool status);
 
-    static void setMessageBoxIcon(JavaVM * jvm_, int id, char const* name);
+static void setMessageBoxIcon(JavaVM * jvm_, int id, char const* name);
 
-    static bool isToolbarVisible(JavaVM * jvm_, int parentUID);
+static bool isToolbarVisible(JavaVM * jvm_, int parentUID);
 
-    static void setToolbarVisible(JavaVM * jvm_, int parentUID, bool status);
+static void setToolbarVisible(JavaVM * jvm_, int parentUID, bool status);
 
-    static void launchHelpBrowser(JavaVM * jvm_, char const* const* helps, int helpsSize, char const* language);
+static void launchHelpBrowser(JavaVM * jvm_, char const* const* helps, int helpsSize, char const* language);
 
-    static void searchKeyword(JavaVM * jvm_, char const* const* helps, int helpsSize, char const* keyword, char const* language, bool fullText);
+static void searchKeyword(JavaVM * jvm_, char const* const* helps, int helpsSize, char const* keyword, char const* language, bool fullText);
 
-    static int newExportFileChooser(JavaVM * jvm_, int figureUID);
+static int newExportFileChooser(JavaVM * jvm_, int figureUID);
 
-    static int newFontChooser(JavaVM * jvm_);
+static int newFontChooser(JavaVM * jvm_);
 
-    static void fontChooserDisplayAndWait(JavaVM * jvm_, int objID);
+static void fontChooserDisplayAndWait(JavaVM * jvm_, int objID);
 
-    static void setFontChooserFontName(JavaVM * jvm_, int objID, char const* fontName);
+static void setFontChooserFontName(JavaVM * jvm_, int objID, char const* fontName);
 
-    static void setFontChooserFontSize(JavaVM * jvm_, int objID, int fontSize);
+static void setFontChooserFontSize(JavaVM * jvm_, int objID, int fontSize);
 
-    static void setFontChooserBold(JavaVM * jvm_, int objID, bool bold);
+static void setFontChooserBold(JavaVM * jvm_, int objID, bool bold);
 
-    static void setFontChooserItalic(JavaVM * jvm_, int objID, bool italic);
+static void setFontChooserItalic(JavaVM * jvm_, int objID, bool italic);
 
-    static char* getFontChooserFontName(JavaVM * jvm_, int objID);
+static char* getFontChooserFontName(JavaVM * jvm_, int objID);
 
-    static int getFontChooserFontSize(JavaVM * jvm_, int objID);
+static int getFontChooserFontSize(JavaVM * jvm_, int objID);
 
-    static bool getFontChooserBold(JavaVM * jvm_, int objID);
+static bool getFontChooserBold(JavaVM * jvm_, int objID);
 
-    static bool getFontChooserItalic(JavaVM * jvm_, int objID);
+static bool getFontChooserItalic(JavaVM * jvm_, int objID);
 
-    static int newColorChooser(JavaVM * jvm_);
+static int newColorChooser(JavaVM * jvm_);
 
-    static void colorChooserDisplayAndWait(JavaVM * jvm_, int objID);
+static void colorChooserDisplayAndWait(JavaVM * jvm_, int objID);
 
-    static void setColorChooserDefaultColor(JavaVM * jvm_, int objID, int const* rgb, int rgbSize);
+static void setColorChooserDefaultColor(JavaVM * jvm_, int objID, int const* rgb, int rgbSize);
 
-    static int* getColorChooserSelectedColor(JavaVM * jvm_, int objID);
+static int* getColorChooserSelectedColor(JavaVM * jvm_, int objID);
 
-    static void setColorChooserTitle(JavaVM * jvm_, int objID, char const* title);
+static void setColorChooserTitle(JavaVM * jvm_, int objID, char const* title);
 
-    static char* getClipboardContents(JavaVM * jvm_);
+static char* getClipboardContents(JavaVM * jvm_);
 
-    static void pasteClipboardIntoConsole(JavaVM * jvm_);
+static void pasteClipboardIntoConsole(JavaVM * jvm_);
 
-    static void copyConsoleSelection(JavaVM * jvm_);
+static void copyConsoleSelection(JavaVM * jvm_);
 
-    static void emptyClipboard(JavaVM * jvm_);
+static void emptyClipboard(JavaVM * jvm_);
 
-    static void setClipboardContents(JavaVM * jvm_, char const* text);
+static void setClipboardContents(JavaVM * jvm_, char const* text);
 
-    static void copyFigureToClipBoard(JavaVM * jvm_, int figID);
+static void copyFigureToClipBoard(JavaVM * jvm_, int figID);
 
-    static int getScreenResolution(JavaVM * jvm_);
+static int getScreenResolution(JavaVM * jvm_);
 
-    static double getScreenWidth(JavaVM * jvm_);
+static double getScreenWidth(JavaVM * jvm_);
 
-    static double getScreenHeight(JavaVM * jvm_);
+static double getScreenHeight(JavaVM * jvm_);
 
-    static int getScreenDepth(JavaVM * jvm_);
+static int getScreenDepth(JavaVM * jvm_);
 
-    static bool printFigure(JavaVM * jvm_, int figID, bool postScript, bool displayDialog);
+static bool printFigure(JavaVM * jvm_, int figID, bool postScript, bool displayDialog);
 
-    static bool printFile(JavaVM * jvm_, char const* fileName);
+static bool printFile(JavaVM * jvm_, char const* fileName);
 
-    static bool printString(JavaVM * jvm_, char const* theString, char const* pageHeader);
+static bool printString(JavaVM * jvm_, char const* theString, char const* pageHeader);
 
-    static bool pageSetup(JavaVM * jvm_);
+static bool pageSetup(JavaVM * jvm_);
 
-    static void requestFocus(JavaVM * jvm_, int objUID);
+static void requestFocus(JavaVM * jvm_, int objUID);
 
-    static void raiseWindow(JavaVM * jvm_, int objID);
+static void raiseWindow(JavaVM * jvm_, int objID);
 
-    static void useCanvasForDisplay(JavaVM * jvm_, bool onOrOff);
+static void useCanvasForDisplay(JavaVM * jvm_, bool onOrOff);
 
-    static bool useCanvasForDisplay(JavaVM * jvm_);
+static bool useCanvasForDisplay(JavaVM * jvm_);
 
-    static void scilabAboutBox(JavaVM * jvm_);
+static void scilabAboutBox(JavaVM * jvm_);
 
-    static void fireClosingFinished(JavaVM * jvm_, int figUID);
+static void fireClosingFinished(JavaVM * jvm_, int figUID);
 
 
-    /**
-    * Get class name to use for static methods
-    * @return class name to use for static methods
-    */
+                        /**
+                        * Get class name to use for static methods
+                        * @return class name to use for static methods
+                        */
+                        
+                static const std::string className()
+                {
+                return "org/scilab/modules/gui/bridge/CallScilabBridge";
+                }
+                
 
-    static const std::string className()
-    {
-        return "org/scilab/modules/gui/bridge/CallScilabBridge";
-    }
+                        /**
+                        * Get class to use for static methods
+                        * @return class to use for static methods
+                        */
+                        
+                static jclass initClass(JNIEnv * curEnv)
+                {
+                    static jclass cls = 0;
 
+                    if (cls == 0)
+                    {
+                        jclass _cls = curEnv->FindClass(className().c_str());
+                        if (_cls)
+                        {
+                            cls = static_cast<jclass>(curEnv->NewGlobalRef(_cls));
+                        }
+                    }
 
-    /**
-    * Get class to use for static methods
-    * @return class to use for static methods
-    */
-
-    static jclass initClass(JNIEnv * curEnv)
-    {
-        static jclass cls = 0;
-
-        if (cls == 0)
-        {
-            jclass _cls = curEnv->FindClass(className().c_str());
-            if (_cls)
-            {
-                cls = static_cast<jclass>(curEnv->NewGlobalRef(_cls));
-            }
-        }
-
-        return cls;
-    }
-
+                    return cls;
+                 }
+                
 };
 
 

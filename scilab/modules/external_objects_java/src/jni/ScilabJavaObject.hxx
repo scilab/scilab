@@ -46,11 +46,11 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 #include "GiwsException.hxx"
 
-#if defined(_MSC_VER) /* Defined anyway with Visual */
-#include <Windows.h>
-#else
-typedef signed char byte;
-#endif
+        #if defined(_MSC_VER) /* Defined anyway with Visual */
+            #include <Windows.h>
+        #else
+            typedef signed char byte;
+        #endif
 
 
 #ifndef GIWSEXPORT
@@ -69,267 +69,265 @@ typedef signed char byte;
 # endif
 #endif
 
-namespace org_scilab_modules_external_objects_java
-{
-class GIWSEXPORT ScilabJavaObject
-{
+namespace org_scilab_modules_external_objects_java {
+class GIWSEXPORT ScilabJavaObject {
 
 private:
-    JavaVM * jvm;
+JavaVM * jvm;
 
 protected:
-    jmethodID jintinvokejintintjstringjava_lang_StringjintArray_intintID; // cache method id
-    jmethodID jintextractjintintjintArray_intintID; // cache method id
-    jmethodID voidinsertjintintjintArray_intintjintintID; // cache method id
-    jmethodID jobjectArray_getInfosID; // cache method id
-    jmethodID voidinitScilabJavaObjectID; // cache method id
-    jmethodID voidgarbageCollectID; // cache method id
-    jmethodID jstringgetRepresentationjintintID; // cache method id
-    jmethodID jbooleanisValidJavaObjectjintintID; // cache method id
-    jmethodID voidenableTracejstringjava_lang_StringID; // cache method id
-    jmethodID voiddisableTraceID; // cache method id
-    jmethodID voidwriteLogjstringjava_lang_StringID; // cache method id
-    jmethodID voidsetFieldjintintjstringjava_lang_StringjintintID; // cache method id
-    jmethodID jintgetFieldjintintjstringjava_lang_StringID; // cache method id
-    jmethodID jintgetFieldTypejintintjstringjava_lang_StringID; // cache method id
-    jmethodID jintjavaCastjintintjstringjava_lang_StringID; // cache method id
-    jmethodID jintjavaCastjintintjintintID; // cache method id
-    jmethodID jstringgetClassNamejintintID; // cache method id
-    jmethodID jintgetArrayElementjintintjintArray_intintID; // cache method id
-    jmethodID voidsetArrayElementjintintjintArray_intintjintintID; // cache method id
-    jmethodID voidremoveScilabJavaObjectjintintID; // cache method id
-    jmethodID voidremoveScilabJavaObjectjintArray_intintID; // cache method id
-    jmethodID voidlimitDirectBufferjintintID; // cache method id
-    jmethodID jintisUnwrappablejintintID; // cache method id
-    jmethodID jintwrapjdoubledoubleID; // cache method id
-    jmethodID jintwrapjdoubleArray_doubledoubleID; // cache method id
-    jmethodID jintwrapjobjectArray__doubledoubleID; // cache method id
-    jmethodID jintwrapjintintID; // cache method id
-    jmethodID jintwrapjintArray_intintID; // cache method id
-    jmethodID jintwrapjobjectArray__intintID; // cache method id
-    jmethodID jintwrapjbytebyteID; // cache method id
-    jmethodID jintwrapjbyteArray_bytebyteID; // cache method id
-    jmethodID jintwrapjobjectArray__bytebyteID; // cache method id
-    jmethodID jintwrapjshortshortID; // cache method id
-    jmethodID jintwrapjshortArray_shortshortID; // cache method id
-    jmethodID jintwrapjobjectArray__shortshortID; // cache method id
-    jmethodID jintwrapjstringjava_lang_StringID; // cache method id
-    jmethodID jintwrapjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
-    jclass stringArrayClass;
-    jmethodID jintwrapjobjectArray__java_lang_Stringjava_lang_StringID; // cache method id
-    jmethodID jintwrapjbooleanbooleanID; // cache method id
-    jmethodID jintwrapjbooleanArray_booleanbooleanID; // cache method id
-    jmethodID jintwrapjobjectArray__booleanbooleanID; // cache method id
-    jmethodID jintwrapjcharcharID; // cache method id
-    jmethodID jintwrapjcharArray_charcharID; // cache method id
-    jmethodID jintwrapjobjectArray__charcharID; // cache method id
-    jmethodID jintwrapjfloatfloatID; // cache method id
-    jmethodID jintwrapjfloatArray_floatfloatID; // cache method id
-    jmethodID jintwrapjobjectArray__floatfloatID; // cache method id
-    jmethodID jintwrapjlonglongID; // cache method id
-    jmethodID jintwrapjlongArray_longlongID; // cache method id
-    jmethodID jintwrapjobjectArray__longlongID; // cache method id
-    jmethodID jobjectArray_getAccessibleFieldsjintintID; // cache method id
-    jmethodID jobjectArray_getAccessibleMethodsjintintID; // cache method id
-    jmethodID jobjectArray_getCompletionjintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
+jmethodID jintinvokejintintjstringjava_lang_StringjintArray_intintID; // cache method id
+jmethodID jintextractjintintjintArray_intintID; // cache method id
+jmethodID voidinsertjintintjintArray_intintjintintID; // cache method id
+jmethodID jobjectArray_getInfosID; // cache method id
+jmethodID voidinitScilabJavaObjectID; // cache method id
+jmethodID voidgarbageCollectID; // cache method id
+jmethodID jstringgetRepresentationjintintID; // cache method id
+jmethodID jbooleanisValidJavaObjectjintintID; // cache method id
+jmethodID voidenableTracejstringjava_lang_StringID; // cache method id
+jmethodID voiddisableTraceID; // cache method id
+jmethodID voidwriteLogjstringjava_lang_StringID; // cache method id
+jmethodID voidsetFieldjintintjstringjava_lang_StringjintintID; // cache method id
+jmethodID jintgetFieldjintintjstringjava_lang_StringID; // cache method id
+jmethodID jintgetFieldTypejintintjstringjava_lang_StringID; // cache method id
+jmethodID jintjavaCastjintintjstringjava_lang_StringID; // cache method id
+jmethodID jintjavaCastjintintjintintID; // cache method id
+jmethodID jstringgetClassNamejintintID; // cache method id
+jmethodID jintgetArrayElementjintintjintArray_intintID; // cache method id
+jmethodID voidsetArrayElementjintintjintArray_intintjintintID; // cache method id
+jmethodID voidremoveScilabJavaObjectjintintID; // cache method id
+jmethodID voidremoveScilabJavaObjectjintArray_intintID; // cache method id
+jmethodID voidlimitDirectBufferjintintID; // cache method id
+jmethodID jintisUnwrappablejintintID; // cache method id
+jmethodID jintwrapjdoubledoubleID; // cache method id
+jmethodID jintwrapjdoubleArray_doubledoubleID; // cache method id
+jmethodID jintwrapjobjectArray__doubledoubleID; // cache method id
+jmethodID jintwrapjintintID; // cache method id
+jmethodID jintwrapjintArray_intintID; // cache method id
+jmethodID jintwrapjobjectArray__intintID; // cache method id
+jmethodID jintwrapjbytebyteID; // cache method id
+jmethodID jintwrapjbyteArray_bytebyteID; // cache method id
+jmethodID jintwrapjobjectArray__bytebyteID; // cache method id
+jmethodID jintwrapjshortshortID; // cache method id
+jmethodID jintwrapjshortArray_shortshortID; // cache method id
+jmethodID jintwrapjobjectArray__shortshortID; // cache method id
+jmethodID jintwrapjstringjava_lang_StringID; // cache method id
+jmethodID jintwrapjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
+jclass stringArrayClass;
+jmethodID jintwrapjobjectArray__java_lang_Stringjava_lang_StringID; // cache method id
+jmethodID jintwrapjbooleanbooleanID; // cache method id
+jmethodID jintwrapjbooleanArray_booleanbooleanID; // cache method id
+jmethodID jintwrapjobjectArray__booleanbooleanID; // cache method id
+jmethodID jintwrapjcharcharID; // cache method id
+jmethodID jintwrapjcharArray_charcharID; // cache method id
+jmethodID jintwrapjobjectArray__charcharID; // cache method id
+jmethodID jintwrapjfloatfloatID; // cache method id
+jmethodID jintwrapjfloatArray_floatfloatID; // cache method id
+jmethodID jintwrapjobjectArray__floatfloatID; // cache method id
+jmethodID jintwrapjlonglongID; // cache method id
+jmethodID jintwrapjlongArray_longlongID; // cache method id
+jmethodID jintwrapjobjectArray__longlongID; // cache method id
+jmethodID jobjectArray_getAccessibleFieldsjintintID; // cache method id
+jmethodID jobjectArray_getAccessibleMethodsjintintID; // cache method id
+jmethodID jobjectArray_getCompletionjintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
 
 
 
-    jobject instance;
-    jclass instanceClass; // cache class
+jobject instance;
+jclass instanceClass; // cache class
+
+                       
+// Caching (if any)
 
 
-    // Caching (if any)
-
-
-    /**
-    * Get the environment matching to the current thread.
-    */
-    virtual JNIEnv * getCurrentEnv();
+/**
+* Get the environment matching to the current thread.
+*/
+virtual JNIEnv * getCurrentEnv();
 
 public:
-    // Constructor
-    /**
-    * Create a wrapping of the object from a JNIEnv.
-    * It will call the default constructor
-    * @param JEnv_ the Java Env
-    */
-    ScilabJavaObject(JavaVM * jvm_);
+// Constructor
+/**
+* Create a wrapping of the object from a JNIEnv.
+* It will call the default constructor
+* @param JEnv_ the Java Env
+*/
+ScilabJavaObject(JavaVM * jvm_);
 
-    /**
-    * Create a wrapping of an already existing object from a JNIEnv.
-    * The object must have already been instantiated
-    * @param JEnv_ the Java Env
-    * @param JObj the object
-    */
-    ScilabJavaObject(JavaVM * jvm_, jobject JObj);
+/**
+* Create a wrapping of an already existing object from a JNIEnv.
+* The object must have already been instantiated
+* @param JEnv_ the Java Env
+* @param JObj the object
+*/
+ScilabJavaObject(JavaVM * jvm_, jobject JObj);
 
 
-    /**
-    * This is a fake constructor to avoid the constructor
-    * chaining when dealing with extended giws classes
-    */
+/** 
+* This is a fake constructor to avoid the constructor
+* chaining when dealing with extended giws classes 
+*/
 #ifdef FAKEGIWSDATATYPE
-    ScilabJavaObject(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
+ScilabJavaObject(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
 #endif
 
-    // Destructor
-    ~ScilabJavaObject();
+// Destructor
+~ScilabJavaObject();
 
-    // Generic method
-    // Synchronization methods
-    /**
-    * Enter monitor associated with the object.
-    * Equivalent of creating a "synchronized(obj)" scope in Java.
-    */
-    void synchronize();
+// Generic method
+// Synchronization methods
+/**
+* Enter monitor associated with the object.
+* Equivalent of creating a "synchronized(obj)" scope in Java.
+*/
+void synchronize();
 
-    /**
-    * Exit monitor associated with the object.
-    * Equivalent of ending a "synchronized(obj)" scope.
-    */
-    void endSynchronize();
+/**
+* Exit monitor associated with the object.
+* Equivalent of ending a "synchronized(obj)" scope.
+*/
+void endSynchronize();
 
-    // Methods
-    static int invoke(JavaVM * jvm_, int id, char const* methodName, int const* args, int argsSize);
+// Methods
+static int invoke(JavaVM * jvm_, int id, char const* methodName, int const* args, int argsSize);
 
-    static int extract(JavaVM * jvm_, int id, int const* args, int argsSize);
+static int extract(JavaVM * jvm_, int id, int const* args, int argsSize);
 
-    static void insert(JavaVM * jvm_, int id, int const* keys, int keysSize, int value);
+static void insert(JavaVM * jvm_, int id, int const* keys, int keysSize, int value);
 
-    static char** getInfos(JavaVM * jvm_, int *lenRow);
+static char** getInfos(JavaVM * jvm_, int *lenRow);
 
-    static void initScilabJavaObject(JavaVM * jvm_);
+static void initScilabJavaObject(JavaVM * jvm_);
 
-    static void garbageCollect(JavaVM * jvm_);
+static void garbageCollect(JavaVM * jvm_);
 
-    static char* getRepresentation(JavaVM * jvm_, int id);
+static char* getRepresentation(JavaVM * jvm_, int id);
 
-    static bool isValidJavaObject(JavaVM * jvm_, int id);
+static bool isValidJavaObject(JavaVM * jvm_, int id);
 
-    static void enableTrace(JavaVM * jvm_, char const* filename);
+static void enableTrace(JavaVM * jvm_, char const* filename);
 
-    static void disableTrace(JavaVM * jvm_);
+static void disableTrace(JavaVM * jvm_);
 
-    static void writeLog(JavaVM * jvm_, char const* s);
+static void writeLog(JavaVM * jvm_, char const* s);
 
-    static void setField(JavaVM * jvm_, int id, char const* fieldName, int idarg);
+static void setField(JavaVM * jvm_, int id, char const* fieldName, int idarg);
 
-    static int getField(JavaVM * jvm_, int id, char const* fieldName);
+static int getField(JavaVM * jvm_, int id, char const* fieldName);
 
-    static int getFieldType(JavaVM * jvm_, int id, char const* fieldName);
+static int getFieldType(JavaVM * jvm_, int id, char const* fieldName);
 
-    static int javaCast(JavaVM * jvm_, int id, char const* objName);
+static int javaCast(JavaVM * jvm_, int id, char const* objName);
 
-    static int javaCast(JavaVM * jvm_, int id, int classId);
+static int javaCast(JavaVM * jvm_, int id, int classId);
 
-    static char* getClassName(JavaVM * jvm_, int id);
+static char* getClassName(JavaVM * jvm_, int id);
 
-    static int getArrayElement(JavaVM * jvm_, int id, int const* index, int indexSize);
+static int getArrayElement(JavaVM * jvm_, int id, int const* index, int indexSize);
 
-    static void setArrayElement(JavaVM * jvm_, int id, int const* index, int indexSize, int idArg);
+static void setArrayElement(JavaVM * jvm_, int id, int const* index, int indexSize, int idArg);
 
-    static void removeScilabJavaObject(JavaVM * jvm_, int id);
+static void removeScilabJavaObject(JavaVM * jvm_, int id);
 
-    static void removeScilabJavaObject(JavaVM * jvm_, int const* id, int idSize);
+static void removeScilabJavaObject(JavaVM * jvm_, int const* id, int idSize);
 
-    static void limitDirectBuffer(JavaVM * jvm_, int id);
+static void limitDirectBuffer(JavaVM * jvm_, int id);
 
-    static int isUnwrappable(JavaVM * jvm_, int id);
+static int isUnwrappable(JavaVM * jvm_, int id);
 
-    static int wrap(JavaVM * jvm_, double x);
+static int wrap(JavaVM * jvm_, double x);
 
-    static int wrap(JavaVM * jvm_, double const* x, int xSize);
+static int wrap(JavaVM * jvm_, double const* x, int xSize);
 
-    static int wrap(JavaVM * jvm_, double const* const* x, int xSize, int xSizeCol);
+static int wrap(JavaVM * jvm_, double const* const* x, int xSize, int xSizeCol);
 
-    static int wrap(JavaVM * jvm_, int x);
+static int wrap(JavaVM * jvm_, int x);
 
-    static int wrap(JavaVM * jvm_, int const* x, int xSize);
+static int wrap(JavaVM * jvm_, int const* x, int xSize);
 
-    static int wrap(JavaVM * jvm_, int const* const* x, int xSize, int xSizeCol);
+static int wrap(JavaVM * jvm_, int const* const* x, int xSize, int xSizeCol);
 
-    static int wrap(JavaVM * jvm_, byte x);
+static int wrap(JavaVM * jvm_, byte x);
 
-    static int wrap(JavaVM * jvm_, byte const* x, int xSize);
+static int wrap(JavaVM * jvm_, byte const* x, int xSize);
 
-    static int wrap(JavaVM * jvm_, byte const* const* x, int xSize, int xSizeCol);
+static int wrap(JavaVM * jvm_, byte const* const* x, int xSize, int xSizeCol);
 
-    static int wrap(JavaVM * jvm_, short x);
+static int wrap(JavaVM * jvm_, short x);
 
-    static int wrap(JavaVM * jvm_, short const* x, int xSize);
+static int wrap(JavaVM * jvm_, short const* x, int xSize);
 
-    static int wrap(JavaVM * jvm_, short const* const* x, int xSize, int xSizeCol);
+static int wrap(JavaVM * jvm_, short const* const* x, int xSize, int xSizeCol);
 
-    static int wrap(JavaVM * jvm_, char const* x);
+static int wrap(JavaVM * jvm_, char const* x);
 
-    static int wrap(JavaVM * jvm_, char const* const* x, int xSize);
+static int wrap(JavaVM * jvm_, char const* const* x, int xSize);
 
-    static int wrap(JavaVM * jvm_, char const* const* const* x, int xSize, int xSizeCol);
+static int wrap(JavaVM * jvm_, char const* const* const* x, int xSize, int xSizeCol);
 
-    static int wrap(JavaVM * jvm_, bool x);
+static int wrap(JavaVM * jvm_, bool x);
 
-    static int wrap(JavaVM * jvm_, bool const* x, int xSize);
+static int wrap(JavaVM * jvm_, bool const* x, int xSize);
 
-    static int wrap(JavaVM * jvm_, bool const* const* x, int xSize, int xSizeCol);
+static int wrap(JavaVM * jvm_, bool const* const* x, int xSize, int xSizeCol);
 
-    static int wrap(JavaVM * jvm_, unsigned short x);
+static int wrap(JavaVM * jvm_, unsigned short x);
 
-    static int wrap(JavaVM * jvm_, unsigned short const* x, int xSize);
+static int wrap(JavaVM * jvm_, unsigned short const* x, int xSize);
 
-    static int wrap(JavaVM * jvm_, unsigned short const* const* x, int xSize, int xSizeCol);
+static int wrap(JavaVM * jvm_, unsigned short const* const* x, int xSize, int xSizeCol);
 
-    static int wrap(JavaVM * jvm_, float x);
+static int wrap(JavaVM * jvm_, float x);
 
-    static int wrap(JavaVM * jvm_, float const* x, int xSize);
+static int wrap(JavaVM * jvm_, float const* x, int xSize);
 
-    static int wrap(JavaVM * jvm_, float const* const* x, int xSize, int xSizeCol);
+static int wrap(JavaVM * jvm_, float const* const* x, int xSize, int xSizeCol);
 
-    static int wrap(JavaVM * jvm_, long long x);
+static int wrap(JavaVM * jvm_, long long x);
 
-    static int wrap(JavaVM * jvm_, long long const* x, int xSize);
+static int wrap(JavaVM * jvm_, long long const* x, int xSize);
 
-    static int wrap(JavaVM * jvm_, long long const* const* x, int xSize, int xSizeCol);
+static int wrap(JavaVM * jvm_, long long const* const* x, int xSize, int xSizeCol);
 
-    static char** getAccessibleFields(JavaVM * jvm_, int id, int *lenRow);
+static char** getAccessibleFields(JavaVM * jvm_, int id, int *lenRow);
 
-    static char** getAccessibleMethods(JavaVM * jvm_, int id, int *lenRow);
+static char** getAccessibleMethods(JavaVM * jvm_, int id, int *lenRow);
 
-    static char** getCompletion(JavaVM * jvm_, int id, char const* const* fieldPath, int fieldPathSize, int *lenRow);
+static char** getCompletion(JavaVM * jvm_, int id, char const* const* fieldPath, int fieldPathSize, int *lenRow);
 
 
-    /**
-    * Get class name to use for static methods
-    * @return class name to use for static methods
-    */
+                        /**
+                        * Get class name to use for static methods
+                        * @return class name to use for static methods
+                        */
+                        
+                static const std::string className()
+                {
+                return "org/scilab/modules/external_objects_java/ScilabJavaObject";
+                }
+                
 
-    static const std::string className()
-    {
-        return "org/scilab/modules/external_objects_java/ScilabJavaObject";
-    }
+                        /**
+                        * Get class to use for static methods
+                        * @return class to use for static methods
+                        */
+                        
+                static jclass initClass(JNIEnv * curEnv)
+                {
+                    static jclass cls = 0;
 
+                    if (cls == 0)
+                    {
+                        jclass _cls = curEnv->FindClass(className().c_str());
+                        if (_cls)
+                        {
+                            cls = static_cast<jclass>(curEnv->NewGlobalRef(_cls));
+                        }
+                    }
 
-    /**
-    * Get class to use for static methods
-    * @return class to use for static methods
-    */
-
-    static jclass initClass(JNIEnv * curEnv)
-    {
-        static jclass cls = 0;
-
-        if (cls == 0)
-        {
-            jclass _cls = curEnv->FindClass(className().c_str());
-            if (_cls)
-            {
-                cls = static_cast<jclass>(curEnv->NewGlobalRef(_cls));
-            }
-        }
-
-        return cls;
-    }
-
+                    return cls;
+                 }
+                
 };
 
 

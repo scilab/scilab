@@ -46,11 +46,11 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 #include "GiwsException.hxx"
 
-#if defined(_MSC_VER) /* Defined anyway with Visual */
-#include <Windows.h>
-#else
-typedef signed char byte;
-#endif
+        #if defined(_MSC_VER) /* Defined anyway with Visual */
+            #include <Windows.h>
+        #else
+            typedef signed char byte;
+        #endif
 
 
 #ifndef GIWSEXPORT
@@ -69,180 +69,178 @@ typedef signed char byte;
 # endif
 #endif
 
-namespace org_scilab_modules_gui_filechooser
-{
-class GIWSEXPORT Juigetfile
-{
+namespace org_scilab_modules_gui_filechooser {
+class GIWSEXPORT Juigetfile {
 
 private:
-    JavaVM * jvm;
+JavaVM * jvm;
 
 protected:
-    jmethodID voiduigetfileID; // cache method id
-    jmethodID voiduigetfilejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
-    jclass stringArrayClass;
-    jmethodID voiduigetfilejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-    jmethodID voiduigetfilejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-    jmethodID voiduigetfilejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID; // cache method id
-    jmethodID voiduiputfileID; // cache method id
-    jmethodID voiduiputfilejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
-    jmethodID voiduiputfilejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-    jmethodID voiduiputfilejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-    jmethodID voiduiputfilejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID; // cache method id
-    jmethodID jstringgetTitleBoxID; // cache method id
-    jmethodID jobjectArray_getMaskID; // cache method id
-    jmethodID jobjectArray_getMaskDescriptionID; // cache method id
-    jmethodID jstringgetInitialDirectoryID; // cache method id
-    jmethodID jintgetSelectionSizeID; // cache method id
-    jmethodID jobjectArray_getSelectionID; // cache method id
-    jmethodID jobjectArray_getSelectionFileNamesID; // cache method id
-    jmethodID jbooleanisMultipleSelectionID; // cache method id
-    jmethodID jstringgetSelectionPathNameID; // cache method id
-    jmethodID jintgetFilterIndexID; // cache method id
-    jmethodID jstringgetMenuCallbackID; // cache method id
-    jmethodID voiduigetdirID; // cache method id
-    jmethodID voiduigetdirjstringjava_lang_StringID; // cache method id
-    jmethodID voiduigetdirjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
+jmethodID voiduigetfileID; // cache method id
+jmethodID voiduigetfilejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
+jclass stringArrayClass;
+jmethodID voiduigetfilejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_StringID; // cache method id
+jmethodID voiduigetfilejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
+jmethodID voiduigetfilejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID; // cache method id
+jmethodID voiduiputfileID; // cache method id
+jmethodID voiduiputfilejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
+jmethodID voiduiputfilejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_StringID; // cache method id
+jmethodID voiduiputfilejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
+jmethodID voiduiputfilejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID; // cache method id
+jmethodID jstringgetTitleBoxID; // cache method id
+jmethodID jobjectArray_getMaskID; // cache method id
+jmethodID jobjectArray_getMaskDescriptionID; // cache method id
+jmethodID jstringgetInitialDirectoryID; // cache method id
+jmethodID jintgetSelectionSizeID; // cache method id
+jmethodID jobjectArray_getSelectionID; // cache method id
+jmethodID jobjectArray_getSelectionFileNamesID; // cache method id
+jmethodID jbooleanisMultipleSelectionID; // cache method id
+jmethodID jstringgetSelectionPathNameID; // cache method id
+jmethodID jintgetFilterIndexID; // cache method id
+jmethodID jstringgetMenuCallbackID; // cache method id
+jmethodID voiduigetdirID; // cache method id
+jmethodID voiduigetdirjstringjava_lang_StringID; // cache method id
+jmethodID voiduigetdirjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
 
 
 
-    jobject instance;
-    jclass instanceClass; // cache class
+jobject instance;
+jclass instanceClass; // cache class
+
+                       
+// Caching (if any)
 
 
-    // Caching (if any)
-
-
-    /**
-    * Get the environment matching to the current thread.
-    */
-    virtual JNIEnv * getCurrentEnv();
+/**
+* Get the environment matching to the current thread.
+*/
+virtual JNIEnv * getCurrentEnv();
 
 public:
-    // Constructor
-    /**
-    * Create a wrapping of the object from a JNIEnv.
-    * It will call the default constructor
-    * @param JEnv_ the Java Env
-    */
-    Juigetfile(JavaVM * jvm_);
+// Constructor
+/**
+* Create a wrapping of the object from a JNIEnv.
+* It will call the default constructor
+* @param JEnv_ the Java Env
+*/
+Juigetfile(JavaVM * jvm_);
 
-    /**
-    * Create a wrapping of an already existing object from a JNIEnv.
-    * The object must have already been instantiated
-    * @param JEnv_ the Java Env
-    * @param JObj the object
-    */
-    Juigetfile(JavaVM * jvm_, jobject JObj);
+/**
+* Create a wrapping of an already existing object from a JNIEnv.
+* The object must have already been instantiated
+* @param JEnv_ the Java Env
+* @param JObj the object
+*/
+Juigetfile(JavaVM * jvm_, jobject JObj);
 
 
-    /**
-    * This is a fake constructor to avoid the constructor
-    * chaining when dealing with extended giws classes
-    */
+/** 
+* This is a fake constructor to avoid the constructor
+* chaining when dealing with extended giws classes 
+*/
 #ifdef FAKEGIWSDATATYPE
-    Juigetfile(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
+Juigetfile(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
 #endif
 
-    // Destructor
-    ~Juigetfile();
+// Destructor
+~Juigetfile();
 
-    // Generic method
-    // Synchronization methods
-    /**
-    * Enter monitor associated with the object.
-    * Equivalent of creating a "synchronized(obj)" scope in Java.
-    */
-    void synchronize();
+// Generic method
+// Synchronization methods
+/**
+* Enter monitor associated with the object.
+* Equivalent of creating a "synchronized(obj)" scope in Java.
+*/
+void synchronize();
 
-    /**
-    * Exit monitor associated with the object.
-    * Equivalent of ending a "synchronized(obj)" scope.
-    */
-    void endSynchronize();
+/**
+* Exit monitor associated with the object.
+* Equivalent of ending a "synchronized(obj)" scope.
+*/
+void endSynchronize();
 
-    // Methods
-    static void uigetfile(JavaVM * jvm_);
+// Methods
+static void uigetfile(JavaVM * jvm_);
 
-    static void uigetfile(JavaVM * jvm_, char const* const* mask, int maskSize, char const* const* description, int descriptionSize);
+static void uigetfile(JavaVM * jvm_, char const* const* mask, int maskSize, char const* const* description, int descriptionSize);
 
-    static void uigetfile(JavaVM * jvm_, char const* const* mask, int maskSize, char const* const* description, int descriptionSize, char const* initialDirectory);
+static void uigetfile(JavaVM * jvm_, char const* const* mask, int maskSize, char const* const* description, int descriptionSize, char const* initialDirectory);
 
-    static void uigetfile(JavaVM * jvm_, char const* const* mask, int maskSize, char const* const* description, int descriptionSize, char const* initialDirectory, char const* boxtTitle);
+static void uigetfile(JavaVM * jvm_, char const* const* mask, int maskSize, char const* const* description, int descriptionSize, char const* initialDirectory, char const* boxtTitle);
 
-    static void uigetfile(JavaVM * jvm_, char const* const* mask, int maskSize, char const* const* description, int descriptionSize, char const* initialDirectory, char const* boxtTitle, bool multipleSelection);
+static void uigetfile(JavaVM * jvm_, char const* const* mask, int maskSize, char const* const* description, int descriptionSize, char const* initialDirectory, char const* boxtTitle, bool multipleSelection);
 
-    static void uiputfile(JavaVM * jvm_);
+static void uiputfile(JavaVM * jvm_);
 
-    static void uiputfile(JavaVM * jvm_, char const* const* mask, int maskSize, char const* const* description, int descriptionSize);
+static void uiputfile(JavaVM * jvm_, char const* const* mask, int maskSize, char const* const* description, int descriptionSize);
 
-    static void uiputfile(JavaVM * jvm_, char const* const* mask, int maskSize, char const* const* description, int descriptionSize, char const* initialDirectory);
+static void uiputfile(JavaVM * jvm_, char const* const* mask, int maskSize, char const* const* description, int descriptionSize, char const* initialDirectory);
 
-    static void uiputfile(JavaVM * jvm_, char const* const* mask, int maskSize, char const* const* description, int descriptionSize, char const* initialDirectory, char const* boxtTitle);
+static void uiputfile(JavaVM * jvm_, char const* const* mask, int maskSize, char const* const* description, int descriptionSize, char const* initialDirectory, char const* boxtTitle);
 
-    static void uiputfile(JavaVM * jvm_, char const* const* mask, int maskSize, char const* const* description, int descriptionSize, char const* initialDirectory, char const* boxtTitle, bool multipleSelection);
+static void uiputfile(JavaVM * jvm_, char const* const* mask, int maskSize, char const* const* description, int descriptionSize, char const* initialDirectory, char const* boxtTitle, bool multipleSelection);
 
-    static char* getTitleBox(JavaVM * jvm_);
+static char* getTitleBox(JavaVM * jvm_);
 
-    static char** getMask(JavaVM * jvm_);
+static char** getMask(JavaVM * jvm_);
 
-    static char** getMaskDescription(JavaVM * jvm_);
+static char** getMaskDescription(JavaVM * jvm_);
 
-    static char* getInitialDirectory(JavaVM * jvm_);
+static char* getInitialDirectory(JavaVM * jvm_);
 
-    static int getSelectionSize(JavaVM * jvm_);
+static int getSelectionSize(JavaVM * jvm_);
 
-    static char** getSelection(JavaVM * jvm_);
+static char** getSelection(JavaVM * jvm_);
 
-    static char** getSelectionFileNames(JavaVM * jvm_);
+static char** getSelectionFileNames(JavaVM * jvm_);
 
-    static bool isMultipleSelection(JavaVM * jvm_);
+static bool isMultipleSelection(JavaVM * jvm_);
 
-    static char* getSelectionPathName(JavaVM * jvm_);
+static char* getSelectionPathName(JavaVM * jvm_);
 
-    static int getFilterIndex(JavaVM * jvm_);
+static int getFilterIndex(JavaVM * jvm_);
 
-    static char* getMenuCallback(JavaVM * jvm_);
+static char* getMenuCallback(JavaVM * jvm_);
 
-    static void uigetdir(JavaVM * jvm_);
+static void uigetdir(JavaVM * jvm_);
 
-    static void uigetdir(JavaVM * jvm_, char const* initialDirectory);
+static void uigetdir(JavaVM * jvm_, char const* initialDirectory);
 
-    static void uigetdir(JavaVM * jvm_, char const* initialDirectory, char const* title);
-
-
-    /**
-    * Get class name to use for static methods
-    * @return class name to use for static methods
-    */
-
-    static const std::string className()
-    {
-        return "org/scilab/modules/gui/filechooser/Juigetfile";
-    }
+static void uigetdir(JavaVM * jvm_, char const* initialDirectory, char const* title);
 
 
-    /**
-    * Get class to use for static methods
-    * @return class to use for static methods
-    */
+                        /**
+                        * Get class name to use for static methods
+                        * @return class name to use for static methods
+                        */
+                        
+                static const std::string className()
+                {
+                return "org/scilab/modules/gui/filechooser/Juigetfile";
+                }
+                
 
-    static jclass initClass(JNIEnv * curEnv)
-    {
-        static jclass cls = 0;
+                        /**
+                        * Get class to use for static methods
+                        * @return class to use for static methods
+                        */
+                        
+                static jclass initClass(JNIEnv * curEnv)
+                {
+                    static jclass cls = 0;
 
-        if (cls == 0)
-        {
-            jclass _cls = curEnv->FindClass(className().c_str());
-            if (_cls)
-            {
-                cls = static_cast<jclass>(curEnv->NewGlobalRef(_cls));
-            }
-        }
+                    if (cls == 0)
+                    {
+                        jclass _cls = curEnv->FindClass(className().c_str());
+                        if (_cls)
+                        {
+                            cls = static_cast<jclass>(curEnv->NewGlobalRef(_cls));
+                        }
+                    }
 
-        return cls;
-    }
-
+                    return cls;
+                 }
+                
 };
 
 

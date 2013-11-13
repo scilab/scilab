@@ -36,171 +36,150 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
 
-namespace org_scilab_modules_xcos_modelica
-{
+namespace org_scilab_modules_xcos_modelica {
 
-// Static declarations (if any)
-
+                // Static declarations (if any)
+                
 // Returns the current env
 
-JNIEnv * Modelica::getCurrentEnv()
-{
-    JNIEnv * curEnv = NULL;
-    jint res = this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    if (res != JNI_OK)
-    {
-        throw GiwsException::JniException(getCurrentEnv());
-    }
-    return curEnv;
+JNIEnv * Modelica::getCurrentEnv() {
+JNIEnv * curEnv = NULL;
+jint res=this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+if (res != JNI_OK) {
+throw GiwsException::JniException(getCurrentEnv());
+}
+return curEnv;
 }
 // Destructor
 
-Modelica::~Modelica()
-{
-    JNIEnv * curEnv = NULL;
-    this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    curEnv->DeleteGlobalRef(this->instance);
-    curEnv->DeleteGlobalRef(this->instanceClass);
+Modelica::~Modelica() {
+JNIEnv * curEnv = NULL;
+this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+curEnv->DeleteGlobalRef(this->instance);
+curEnv->DeleteGlobalRef(this->instanceClass);
 }
 // Constructors
-Modelica::Modelica(JavaVM * jvm_)
-{
-    jmethodID constructObject = NULL ;
-    jobject localInstance ;
-    jclass localClass ;
+Modelica::Modelica(JavaVM * jvm_) {
+jmethodID constructObject = NULL ;
+jobject localInstance ;
+jclass localClass ;
 
-    const std::string construct = "<init>";
-    const std::string param = "()V";
-    jvm = jvm_;
+const std::string construct="<init>";
+const std::string param="()V";
+jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+JNIEnv * curEnv = getCurrentEnv();
 
-    localClass = curEnv->FindClass( this->className().c_str() ) ;
-    if (localClass == NULL)
-    {
-        throw GiwsException::JniClassNotFoundException(curEnv, this->className());
-    }
+localClass = curEnv->FindClass( this->className().c_str() ) ;
+if (localClass == NULL) {
+  throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+}
 
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
 
-    /* localClass is not needed anymore */
-    curEnv->DeleteLocalRef(localClass);
+/* localClass is not needed anymore */
+curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
 
-    constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
-    if (constructObject == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
+if(constructObject == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
-    localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
-    if (localInstance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
+if(localInstance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+ 
+this->instance = curEnv->NewGlobalRef(localInstance) ;
+if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+/* localInstance not needed anymore */
+curEnv->DeleteLocalRef(localInstance);
 
-    this->instance = curEnv->NewGlobalRef(localInstance) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* localInstance not needed anymore */
-    curEnv->DeleteLocalRef(localInstance);
-
-    /* Methods ID set to NULL */
-    voidloadjstringjava_lang_Stringjstringjava_lang_StringID = NULL;
+                /* Methods ID set to NULL */
+voidloadjstringjava_lang_Stringjstringjava_lang_StringID=NULL;
 
 
 }
 
-Modelica::Modelica(JavaVM * jvm_, jobject JObj)
-{
-    jvm = jvm_;
+Modelica::Modelica(JavaVM * jvm_, jobject JObj) {
+        jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+        JNIEnv * curEnv = getCurrentEnv();
 
-    jclass localClass = curEnv->GetObjectClass(JObj);
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
-    curEnv->DeleteLocalRef(localClass);
+jclass localClass = curEnv->GetObjectClass(JObj);
+        this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+        curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+        if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
 
-    this->instance = curEnv->NewGlobalRef(JObj) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* Methods ID set to NULL */
-    voidloadjstringjava_lang_Stringjstringjava_lang_StringID = NULL;
+        this->instance = curEnv->NewGlobalRef(JObj) ;
+        if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
+        /* Methods ID set to NULL */
+        voidloadjstringjava_lang_Stringjstringjava_lang_StringID=NULL;
 
 
 }
 
 // Generic methods
 
-void Modelica::synchronize()
-{
-    if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "Modelica");
-    }
+void Modelica::synchronize() {
+if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "Modelica");
+}
 }
 
-void Modelica::endSynchronize()
-{
-    if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "Modelica");
-    }
+void Modelica::endSynchronize() {
+if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "Modelica");
+}
 }
 // Method(s)
 
-void Modelica::load (JavaVM * jvm_, char const* init, char const* relation)
+void Modelica::load (JavaVM * jvm_, char const* init, char const* relation){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidloadjstringjava_lang_Stringjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "load", "(Ljava/lang/String;Ljava/lang/String;)V" ) ;
+if (voidloadjstringjava_lang_Stringjstringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "load");
+}
+
+jstring init_ = curEnv->NewStringUTF( init );
+if (init != NULL && init_ == NULL)
 {
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidloadjstringjava_lang_Stringjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "load", "(Ljava/lang/String;Ljava/lang/String;)V" ) ;
-    if (voidloadjstringjava_lang_Stringjstringjava_lang_StringID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "load");
-    }
-
-    jstring init_ = curEnv->NewStringUTF( init );
-    if (init != NULL && init_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
 
-    jstring relation_ = curEnv->NewStringUTF( relation );
-    if (relation != NULL && relation_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
+jstring relation_ = curEnv->NewStringUTF( relation );
+if (relation != NULL && relation_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
 
-    curEnv->CallStaticVoidMethod(cls, voidloadjstringjava_lang_Stringjstringjava_lang_StringID , init_, relation_);
-    curEnv->DeleteLocalRef(init_);
-    curEnv->DeleteLocalRef(relation_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+                         curEnv->CallStaticVoidMethod(cls, voidloadjstringjava_lang_Stringjstringjava_lang_StringID ,init_, relation_);
+                        curEnv->DeleteLocalRef(init_);
+curEnv->DeleteLocalRef(relation_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 }
 
 }

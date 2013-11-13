@@ -36,296 +36,255 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
 
-namespace org_scilab_modules_gui_events
-{
+namespace org_scilab_modules_gui_events {
 
-// Static declarations (if any)
-
+                // Static declarations (if any)
+                
 // Returns the current env
 
-JNIEnv * Jxgetmouse::getCurrentEnv()
-{
-    JNIEnv * curEnv = NULL;
-    jint res = this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    if (res != JNI_OK)
-    {
-        throw GiwsException::JniException(getCurrentEnv());
-    }
-    return curEnv;
+JNIEnv * Jxgetmouse::getCurrentEnv() {
+JNIEnv * curEnv = NULL;
+jint res=this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+if (res != JNI_OK) {
+throw GiwsException::JniException(getCurrentEnv());
+}
+return curEnv;
 }
 // Destructor
 
-Jxgetmouse::~Jxgetmouse()
-{
-    JNIEnv * curEnv = NULL;
-    this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    curEnv->DeleteGlobalRef(this->instance);
-    curEnv->DeleteGlobalRef(this->instanceClass);
+Jxgetmouse::~Jxgetmouse() {
+JNIEnv * curEnv = NULL;
+this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+curEnv->DeleteGlobalRef(this->instance);
+curEnv->DeleteGlobalRef(this->instanceClass);
 }
 // Constructors
-Jxgetmouse::Jxgetmouse(JavaVM * jvm_)
-{
-    jmethodID constructObject = NULL ;
-    jobject localInstance ;
-    jclass localClass ;
+Jxgetmouse::Jxgetmouse(JavaVM * jvm_) {
+jmethodID constructObject = NULL ;
+jobject localInstance ;
+jclass localClass ;
 
-    const std::string construct = "<init>";
-    const std::string param = "()V";
-    jvm = jvm_;
+const std::string construct="<init>";
+const std::string param="()V";
+jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+JNIEnv * curEnv = getCurrentEnv();
 
-    localClass = curEnv->FindClass( this->className().c_str() ) ;
-    if (localClass == NULL)
-    {
-        throw GiwsException::JniClassNotFoundException(curEnv, this->className());
-    }
+localClass = curEnv->FindClass( this->className().c_str() ) ;
+if (localClass == NULL) {
+  throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+}
 
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
 
-    /* localClass is not needed anymore */
-    curEnv->DeleteLocalRef(localClass);
+/* localClass is not needed anymore */
+curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
 
-    constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
-    if (constructObject == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
+if(constructObject == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
-    localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
-    if (localInstance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
+if(localInstance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+ 
+this->instance = curEnv->NewGlobalRef(localInstance) ;
+if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+/* localInstance not needed anymore */
+curEnv->DeleteLocalRef(localInstance);
 
-    this->instance = curEnv->NewGlobalRef(localInstance) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* localInstance not needed anymore */
-    curEnv->DeleteLocalRef(localInstance);
-
-    /* Methods ID set to NULL */
-    voidxgetmouseID = NULL;
-    voidxgetmousejbooleanbooleanjbooleanbooleanID = NULL;
-    jintgetMouseButtonNumberID = NULL;
-    jintgetWindowsIDID = NULL;
-    jdoublegetXCoordinateID = NULL;
-    jdoublegetYCoordinateID = NULL;
+                /* Methods ID set to NULL */
+voidxgetmouseID=NULL;
+voidxgetmousejbooleanbooleanjbooleanbooleanID=NULL;
+jintgetMouseButtonNumberID=NULL;
+jintgetWindowsIDID=NULL;
+jdoublegetXCoordinateID=NULL;
+jdoublegetYCoordinateID=NULL;
 
 
 }
 
-Jxgetmouse::Jxgetmouse(JavaVM * jvm_, jobject JObj)
-{
-    jvm = jvm_;
+Jxgetmouse::Jxgetmouse(JavaVM * jvm_, jobject JObj) {
+        jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+        JNIEnv * curEnv = getCurrentEnv();
 
-    jclass localClass = curEnv->GetObjectClass(JObj);
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
-    curEnv->DeleteLocalRef(localClass);
+jclass localClass = curEnv->GetObjectClass(JObj);
+        this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+        curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+        if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
 
-    this->instance = curEnv->NewGlobalRef(JObj) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* Methods ID set to NULL */
-    voidxgetmouseID = NULL;
-    voidxgetmousejbooleanbooleanjbooleanbooleanID = NULL;
-    jintgetMouseButtonNumberID = NULL;
-    jintgetWindowsIDID = NULL;
-    jdoublegetXCoordinateID = NULL;
-    jdoublegetYCoordinateID = NULL;
+        this->instance = curEnv->NewGlobalRef(JObj) ;
+        if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
+        /* Methods ID set to NULL */
+        voidxgetmouseID=NULL;
+voidxgetmousejbooleanbooleanjbooleanbooleanID=NULL;
+jintgetMouseButtonNumberID=NULL;
+jintgetWindowsIDID=NULL;
+jdoublegetXCoordinateID=NULL;
+jdoublegetYCoordinateID=NULL;
 
 
 }
 
 // Generic methods
 
-void Jxgetmouse::synchronize()
-{
-    if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "Jxgetmouse");
-    }
+void Jxgetmouse::synchronize() {
+if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "Jxgetmouse");
+}
 }
 
-void Jxgetmouse::endSynchronize()
-{
-    if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "Jxgetmouse");
-    }
+void Jxgetmouse::endSynchronize() {
+if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "Jxgetmouse");
+}
 }
 // Method(s)
 
-void Jxgetmouse::xgetmouse (JavaVM * jvm_)
-{
+void Jxgetmouse::xgetmouse (JavaVM * jvm_){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidxgetmouseID = curEnv->GetStaticMethodID(cls, "xgetmouse", "()V" ) ;
-    if (voidxgetmouseID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "xgetmouse");
-    }
-
-    curEnv->CallStaticVoidMethod(cls, voidxgetmouseID );
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
 }
 
-void Jxgetmouse::xgetmouse (JavaVM * jvm_, bool withMotion, bool withRelease)
-{
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidxgetmousejbooleanbooleanjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "xgetmouse", "(ZZ)V" ) ;
-    if (voidxgetmousejbooleanbooleanjbooleanbooleanID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "xgetmouse");
-    }
-
-    jboolean withMotion_ = (static_cast<bool>(withMotion) ? JNI_TRUE : JNI_FALSE);
-
-    jboolean withRelease_ = (static_cast<bool>(withRelease) ? JNI_TRUE : JNI_FALSE);
-
-    curEnv->CallStaticVoidMethod(cls, voidxgetmousejbooleanbooleanjbooleanbooleanID , withMotion_, withRelease_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+static jmethodID voidxgetmouseID = curEnv->GetStaticMethodID(cls, "xgetmouse", "()V" ) ;
+if (voidxgetmouseID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "xgetmouse");
 }
 
-int Jxgetmouse::getMouseButtonNumber (JavaVM * jvm_)
-{
+                         curEnv->CallStaticVoidMethod(cls, voidxgetmouseID );
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+void Jxgetmouse::xgetmouse (JavaVM * jvm_, bool withMotion, bool withRelease){
 
-    static jmethodID jintgetMouseButtonNumberID = curEnv->GetStaticMethodID(cls, "getMouseButtonNumber", "()I" ) ;
-    if (jintgetMouseButtonNumberID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "getMouseButtonNumber");
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-    jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintgetMouseButtonNumberID ));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return res;
+static jmethodID voidxgetmousejbooleanbooleanjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "xgetmouse", "(ZZ)V" ) ;
+if (voidxgetmousejbooleanbooleanjbooleanbooleanID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "xgetmouse");
+}
+
+jboolean withMotion_ = (static_cast<bool>(withMotion) ? JNI_TRUE : JNI_FALSE);
+
+jboolean withRelease_ = (static_cast<bool>(withRelease) ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voidxgetmousejbooleanbooleanjbooleanbooleanID ,withMotion_, withRelease_);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+int Jxgetmouse::getMouseButtonNumber (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jintgetMouseButtonNumberID = curEnv->GetStaticMethodID(cls, "getMouseButtonNumber", "()I" ) ;
+if (jintgetMouseButtonNumberID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getMouseButtonNumber");
+}
+
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintgetMouseButtonNumberID ));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
 
 }
 
-int Jxgetmouse::getWindowsID (JavaVM * jvm_)
-{
+int Jxgetmouse::getWindowsID (JavaVM * jvm_){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-    static jmethodID jintgetWindowsIDID = curEnv->GetStaticMethodID(cls, "getWindowsID", "()I" ) ;
-    if (jintgetWindowsIDID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "getWindowsID");
-    }
+static jmethodID jintgetWindowsIDID = curEnv->GetStaticMethodID(cls, "getWindowsID", "()I" ) ;
+if (jintgetWindowsIDID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getWindowsID");
+}
 
-    jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintgetWindowsIDID ));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return res;
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintgetWindowsIDID ));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
 
 }
 
-double Jxgetmouse::getXCoordinate (JavaVM * jvm_)
-{
+double Jxgetmouse::getXCoordinate (JavaVM * jvm_){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-    static jmethodID jdoublegetXCoordinateID = curEnv->GetStaticMethodID(cls, "getXCoordinate", "()D" ) ;
-    if (jdoublegetXCoordinateID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "getXCoordinate");
-    }
+static jmethodID jdoublegetXCoordinateID = curEnv->GetStaticMethodID(cls, "getXCoordinate", "()D" ) ;
+if (jdoublegetXCoordinateID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getXCoordinate");
+}
 
-    jdouble res =  static_cast<jdouble>( curEnv->CallStaticDoubleMethod(cls, jdoublegetXCoordinateID ));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return res;
+                        jdouble res =  static_cast<jdouble>( curEnv->CallStaticDoubleMethod(cls, jdoublegetXCoordinateID ));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
 
 }
 
-double Jxgetmouse::getYCoordinate (JavaVM * jvm_)
-{
+double Jxgetmouse::getYCoordinate (JavaVM * jvm_){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-    static jmethodID jdoublegetYCoordinateID = curEnv->GetStaticMethodID(cls, "getYCoordinate", "()D" ) ;
-    if (jdoublegetYCoordinateID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "getYCoordinate");
-    }
+static jmethodID jdoublegetYCoordinateID = curEnv->GetStaticMethodID(cls, "getYCoordinate", "()D" ) ;
+if (jdoublegetYCoordinateID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getYCoordinate");
+}
 
-    jdouble res =  static_cast<jdouble>( curEnv->CallStaticDoubleMethod(cls, jdoublegetYCoordinateID ));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return res;
+                        jdouble res =  static_cast<jdouble>( curEnv->CallStaticDoubleMethod(cls, jdoublegetYCoordinateID ));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
 
 }
 

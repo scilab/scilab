@@ -46,11 +46,11 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 #include "GiwsException.hxx"
 
-#if defined(_MSC_VER) /* Defined anyway with Visual */
-#include <Windows.h>
-#else
-typedef signed char byte;
-#endif
+        #if defined(_MSC_VER) /* Defined anyway with Visual */
+            #include <Windows.h>
+        #else
+            typedef signed char byte;
+        #endif
 
 
 #ifndef GIWSEXPORT
@@ -69,116 +69,114 @@ typedef signed char byte;
 # endif
 #endif
 
-namespace org_scilab_modules_gui_editor
-{
-class GIWSEXPORT EditorManager
-{
+namespace org_scilab_modules_gui_editor {
+class GIWSEXPORT EditorManager {
 
 private:
-    JavaVM * jvm;
+JavaVM * jvm;
 
 protected:
-    jmethodID voidenableModifyjintintID; // cache method id
-    jmethodID voiddisableModifyjintintID; // cache method id
-    jmethodID jbooleanisModifyEnabledjintintID; // cache method id
+jmethodID voidenableModifyjintintID; // cache method id
+jmethodID voiddisableModifyjintintID; // cache method id
+jmethodID jbooleanisModifyEnabledjintintID; // cache method id
 
 
 
-    jobject instance;
-    jclass instanceClass; // cache class
+jobject instance;
+jclass instanceClass; // cache class
+
+                       
+// Caching (if any)
 
 
-    // Caching (if any)
-
-
-    /**
-    * Get the environment matching to the current thread.
-    */
-    virtual JNIEnv * getCurrentEnv();
+/**
+* Get the environment matching to the current thread.
+*/
+virtual JNIEnv * getCurrentEnv();
 
 public:
-    // Constructor
-    /**
-    * Create a wrapping of the object from a JNIEnv.
-    * It will call the default constructor
-    * @param JEnv_ the Java Env
-    */
-    EditorManager(JavaVM * jvm_);
+// Constructor
+/**
+* Create a wrapping of the object from a JNIEnv.
+* It will call the default constructor
+* @param JEnv_ the Java Env
+*/
+EditorManager(JavaVM * jvm_);
 
-    /**
-    * Create a wrapping of an already existing object from a JNIEnv.
-    * The object must have already been instantiated
-    * @param JEnv_ the Java Env
-    * @param JObj the object
-    */
-    EditorManager(JavaVM * jvm_, jobject JObj);
+/**
+* Create a wrapping of an already existing object from a JNIEnv.
+* The object must have already been instantiated
+* @param JEnv_ the Java Env
+* @param JObj the object
+*/
+EditorManager(JavaVM * jvm_, jobject JObj);
 
 
-    /**
-    * This is a fake constructor to avoid the constructor
-    * chaining when dealing with extended giws classes
-    */
+/** 
+* This is a fake constructor to avoid the constructor
+* chaining when dealing with extended giws classes 
+*/
 #ifdef FAKEGIWSDATATYPE
-    EditorManager(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
+EditorManager(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
 #endif
 
-    // Destructor
-    ~EditorManager();
+// Destructor
+~EditorManager();
 
-    // Generic method
-    // Synchronization methods
-    /**
-    * Enter monitor associated with the object.
-    * Equivalent of creating a "synchronized(obj)" scope in Java.
-    */
-    void synchronize();
+// Generic method
+// Synchronization methods
+/**
+* Enter monitor associated with the object.
+* Equivalent of creating a "synchronized(obj)" scope in Java.
+*/
+void synchronize();
 
-    /**
-    * Exit monitor associated with the object.
-    * Equivalent of ending a "synchronized(obj)" scope.
-    */
-    void endSynchronize();
+/**
+* Exit monitor associated with the object.
+* Equivalent of ending a "synchronized(obj)" scope.
+*/
+void endSynchronize();
 
-    // Methods
-    static void enableModify(JavaVM * jvm_, int uid);
+// Methods
+static void enableModify(JavaVM * jvm_, int uid);
 
-    static void disableModify(JavaVM * jvm_, int uid);
+static void disableModify(JavaVM * jvm_, int uid);
 
-    static bool isModifyEnabled(JavaVM * jvm_, int uid);
-
-
-    /**
-    * Get class name to use for static methods
-    * @return class name to use for static methods
-    */
-
-    static const std::string className()
-    {
-        return "org/scilab/modules/gui/editor/EditorManager";
-    }
+static bool isModifyEnabled(JavaVM * jvm_, int uid);
 
 
-    /**
-    * Get class to use for static methods
-    * @return class to use for static methods
-    */
+                        /**
+                        * Get class name to use for static methods
+                        * @return class name to use for static methods
+                        */
+                        
+                static const std::string className()
+                {
+                return "org/scilab/modules/gui/editor/EditorManager";
+                }
+                
 
-    static jclass initClass(JNIEnv * curEnv)
-    {
-        static jclass cls = 0;
+                        /**
+                        * Get class to use for static methods
+                        * @return class to use for static methods
+                        */
+                        
+                static jclass initClass(JNIEnv * curEnv)
+                {
+                    static jclass cls = 0;
 
-        if (cls == 0)
-        {
-            jclass _cls = curEnv->FindClass(className().c_str());
-            if (_cls)
-            {
-                cls = static_cast<jclass>(curEnv->NewGlobalRef(_cls));
-            }
-        }
+                    if (cls == 0)
+                    {
+                        jclass _cls = curEnv->FindClass(className().c_str());
+                        if (_cls)
+                        {
+                            cls = static_cast<jclass>(curEnv->NewGlobalRef(_cls));
+                        }
+                    }
 
-        return cls;
-    }
-
+                    return cls;
+                 }
+                
 };
 
 

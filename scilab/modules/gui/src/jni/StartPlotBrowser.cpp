@@ -36,155 +36,134 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
 
-namespace org_scilab_modules_gui_plotbrowser
-{
+namespace org_scilab_modules_gui_plotbrowser {
 
-// Static declarations (if any)
-
+                // Static declarations (if any)
+                
 // Returns the current env
 
-JNIEnv * StartPlotBrowser::getCurrentEnv()
-{
-    JNIEnv * curEnv = NULL;
-    jint res = this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    if (res != JNI_OK)
-    {
-        throw GiwsException::JniException(getCurrentEnv());
-    }
-    return curEnv;
+JNIEnv * StartPlotBrowser::getCurrentEnv() {
+JNIEnv * curEnv = NULL;
+jint res=this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+if (res != JNI_OK) {
+throw GiwsException::JniException(getCurrentEnv());
+}
+return curEnv;
 }
 // Destructor
 
-StartPlotBrowser::~StartPlotBrowser()
-{
-    JNIEnv * curEnv = NULL;
-    this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    curEnv->DeleteGlobalRef(this->instance);
-    curEnv->DeleteGlobalRef(this->instanceClass);
+StartPlotBrowser::~StartPlotBrowser() {
+JNIEnv * curEnv = NULL;
+this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+curEnv->DeleteGlobalRef(this->instance);
+curEnv->DeleteGlobalRef(this->instanceClass);
 }
 // Constructors
-StartPlotBrowser::StartPlotBrowser(JavaVM * jvm_)
-{
-    jmethodID constructObject = NULL ;
-    jobject localInstance ;
-    jclass localClass ;
+StartPlotBrowser::StartPlotBrowser(JavaVM * jvm_) {
+jmethodID constructObject = NULL ;
+jobject localInstance ;
+jclass localClass ;
 
-    const std::string construct = "<init>";
-    const std::string param = "()V";
-    jvm = jvm_;
+const std::string construct="<init>";
+const std::string param="()V";
+jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+JNIEnv * curEnv = getCurrentEnv();
 
-    localClass = curEnv->FindClass( this->className().c_str() ) ;
-    if (localClass == NULL)
-    {
-        throw GiwsException::JniClassNotFoundException(curEnv, this->className());
-    }
+localClass = curEnv->FindClass( this->className().c_str() ) ;
+if (localClass == NULL) {
+  throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+}
 
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
 
-    /* localClass is not needed anymore */
-    curEnv->DeleteLocalRef(localClass);
+/* localClass is not needed anymore */
+curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
 
-    constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
-    if (constructObject == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
+if(constructObject == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
-    localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
-    if (localInstance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
+if(localInstance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+ 
+this->instance = curEnv->NewGlobalRef(localInstance) ;
+if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+/* localInstance not needed anymore */
+curEnv->DeleteLocalRef(localInstance);
 
-    this->instance = curEnv->NewGlobalRef(localInstance) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* localInstance not needed anymore */
-    curEnv->DeleteLocalRef(localInstance);
-
-    /* Methods ID set to NULL */
-    voidplotBrowserjintintID = NULL;
+                /* Methods ID set to NULL */
+voidplotBrowserjintintID=NULL;
 
 
 }
 
-StartPlotBrowser::StartPlotBrowser(JavaVM * jvm_, jobject JObj)
-{
-    jvm = jvm_;
+StartPlotBrowser::StartPlotBrowser(JavaVM * jvm_, jobject JObj) {
+        jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+        JNIEnv * curEnv = getCurrentEnv();
 
-    jclass localClass = curEnv->GetObjectClass(JObj);
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
-    curEnv->DeleteLocalRef(localClass);
+jclass localClass = curEnv->GetObjectClass(JObj);
+        this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+        curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+        if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
 
-    this->instance = curEnv->NewGlobalRef(JObj) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* Methods ID set to NULL */
-    voidplotBrowserjintintID = NULL;
+        this->instance = curEnv->NewGlobalRef(JObj) ;
+        if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
+        /* Methods ID set to NULL */
+        voidplotBrowserjintintID=NULL;
 
 
 }
 
 // Generic methods
 
-void StartPlotBrowser::synchronize()
-{
-    if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "StartPlotBrowser");
-    }
+void StartPlotBrowser::synchronize() {
+if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "StartPlotBrowser");
+}
 }
 
-void StartPlotBrowser::endSynchronize()
-{
-    if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "StartPlotBrowser");
-    }
+void StartPlotBrowser::endSynchronize() {
+if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "StartPlotBrowser");
+}
 }
 // Method(s)
 
-void StartPlotBrowser::plotBrowser (JavaVM * jvm_, int uid)
-{
+void StartPlotBrowser::plotBrowser (JavaVM * jvm_, int uid){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-    static jmethodID voidplotBrowserjintintID = curEnv->GetStaticMethodID(cls, "plotBrowser", "(I)V" ) ;
-    if (voidplotBrowserjintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "plotBrowser");
-    }
+static jmethodID voidplotBrowserjintintID = curEnv->GetStaticMethodID(cls, "plotBrowser", "(I)V" ) ;
+if (voidplotBrowserjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "plotBrowser");
+}
 
-    curEnv->CallStaticVoidMethod(cls, voidplotBrowserjintintID , uid);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+                         curEnv->CallStaticVoidMethod(cls, voidplotBrowserjintintID ,uid);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 }
 
 }

@@ -36,155 +36,134 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
 
-namespace org_scilab_modules_gui_ged
-{
+namespace org_scilab_modules_gui_ged {
 
-// Static declarations (if any)
-
+                // Static declarations (if any)
+                
 // Returns the current env
 
-JNIEnv * StartGED::getCurrentEnv()
-{
-    JNIEnv * curEnv = NULL;
-    jint res = this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    if (res != JNI_OK)
-    {
-        throw GiwsException::JniException(getCurrentEnv());
-    }
-    return curEnv;
+JNIEnv * StartGED::getCurrentEnv() {
+JNIEnv * curEnv = NULL;
+jint res=this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+if (res != JNI_OK) {
+throw GiwsException::JniException(getCurrentEnv());
+}
+return curEnv;
 }
 // Destructor
 
-StartGED::~StartGED()
-{
-    JNIEnv * curEnv = NULL;
-    this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    curEnv->DeleteGlobalRef(this->instance);
-    curEnv->DeleteGlobalRef(this->instanceClass);
+StartGED::~StartGED() {
+JNIEnv * curEnv = NULL;
+this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+curEnv->DeleteGlobalRef(this->instance);
+curEnv->DeleteGlobalRef(this->instanceClass);
 }
 // Constructors
-StartGED::StartGED(JavaVM * jvm_)
-{
-    jmethodID constructObject = NULL ;
-    jobject localInstance ;
-    jclass localClass ;
+StartGED::StartGED(JavaVM * jvm_) {
+jmethodID constructObject = NULL ;
+jobject localInstance ;
+jclass localClass ;
 
-    const std::string construct = "<init>";
-    const std::string param = "()V";
-    jvm = jvm_;
+const std::string construct="<init>";
+const std::string param="()V";
+jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+JNIEnv * curEnv = getCurrentEnv();
 
-    localClass = curEnv->FindClass( this->className().c_str() ) ;
-    if (localClass == NULL)
-    {
-        throw GiwsException::JniClassNotFoundException(curEnv, this->className());
-    }
+localClass = curEnv->FindClass( this->className().c_str() ) ;
+if (localClass == NULL) {
+  throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+}
 
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
 
-    /* localClass is not needed anymore */
-    curEnv->DeleteLocalRef(localClass);
+/* localClass is not needed anymore */
+curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
 
-    constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
-    if (constructObject == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
+if(constructObject == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
-    localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
-    if (localInstance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
+if(localInstance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+ 
+this->instance = curEnv->NewGlobalRef(localInstance) ;
+if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+/* localInstance not needed anymore */
+curEnv->DeleteLocalRef(localInstance);
 
-    this->instance = curEnv->NewGlobalRef(localInstance) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* localInstance not needed anymore */
-    curEnv->DeleteLocalRef(localInstance);
-
-    /* Methods ID set to NULL */
-    voidquickGEDjintintID = NULL;
+                /* Methods ID set to NULL */
+voidquickGEDjintintID=NULL;
 
 
 }
 
-StartGED::StartGED(JavaVM * jvm_, jobject JObj)
-{
-    jvm = jvm_;
+StartGED::StartGED(JavaVM * jvm_, jobject JObj) {
+        jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+        JNIEnv * curEnv = getCurrentEnv();
 
-    jclass localClass = curEnv->GetObjectClass(JObj);
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
-    curEnv->DeleteLocalRef(localClass);
+jclass localClass = curEnv->GetObjectClass(JObj);
+        this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+        curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+        if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
 
-    this->instance = curEnv->NewGlobalRef(JObj) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* Methods ID set to NULL */
-    voidquickGEDjintintID = NULL;
+        this->instance = curEnv->NewGlobalRef(JObj) ;
+        if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
+        /* Methods ID set to NULL */
+        voidquickGEDjintintID=NULL;
 
 
 }
 
 // Generic methods
 
-void StartGED::synchronize()
-{
-    if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "StartGED");
-    }
+void StartGED::synchronize() {
+if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "StartGED");
+}
 }
 
-void StartGED::endSynchronize()
-{
-    if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "StartGED");
-    }
+void StartGED::endSynchronize() {
+if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "StartGED");
+}
 }
 // Method(s)
 
-void StartGED::quickGED (JavaVM * jvm_, int uid)
-{
+void StartGED::quickGED (JavaVM * jvm_, int uid){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-    static jmethodID voidquickGEDjintintID = curEnv->GetStaticMethodID(cls, "quickGED", "(I)V" ) ;
-    if (voidquickGEDjintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "quickGED");
-    }
+static jmethodID voidquickGEDjintintID = curEnv->GetStaticMethodID(cls, "quickGED", "(I)V" ) ;
+if (voidquickGEDjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "quickGED");
+}
 
-    curEnv->CallStaticVoidMethod(cls, voidquickGEDjintintID , uid);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+                         curEnv->CallStaticVoidMethod(cls, voidquickGEDjintintID ,uid);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 }
 
 }

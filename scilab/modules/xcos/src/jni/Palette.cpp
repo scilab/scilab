@@ -36,533 +36,483 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
 
-namespace org_scilab_modules_xcos_palette
-{
+namespace org_scilab_modules_xcos_palette {
 
-// Static declarations (if any)
-
+                // Static declarations (if any)
+                
 // Returns the current env
 
-JNIEnv * Palette::getCurrentEnv()
-{
-    JNIEnv * curEnv = NULL;
-    jint res = this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    if (res != JNI_OK)
-    {
-        throw GiwsException::JniException(getCurrentEnv());
-    }
-    return curEnv;
+JNIEnv * Palette::getCurrentEnv() {
+JNIEnv * curEnv = NULL;
+jint res=this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+if (res != JNI_OK) {
+throw GiwsException::JniException(getCurrentEnv());
+}
+return curEnv;
 }
 // Destructor
 
-Palette::~Palette()
-{
-    JNIEnv * curEnv = NULL;
-    this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    curEnv->DeleteGlobalRef(this->instance);
-    curEnv->DeleteGlobalRef(this->instanceClass);
-    curEnv->DeleteGlobalRef(this->stringArrayClass);
-}
+Palette::~Palette() {
+JNIEnv * curEnv = NULL;
+this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+curEnv->DeleteGlobalRef(this->instance);
+curEnv->DeleteGlobalRef(this->instanceClass);
+curEnv->DeleteGlobalRef(this->stringArrayClass);}
 // Constructors
-Palette::Palette(JavaVM * jvm_)
-{
-    jmethodID constructObject = NULL ;
-    jobject localInstance ;
-    jclass localClass ;
+Palette::Palette(JavaVM * jvm_) {
+jmethodID constructObject = NULL ;
+jobject localInstance ;
+jclass localClass ;
 
-    const std::string construct = "<init>";
-    const std::string param = "()V";
-    jvm = jvm_;
+const std::string construct="<init>";
+const std::string param="()V";
+jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+JNIEnv * curEnv = getCurrentEnv();
 
-    localClass = curEnv->FindClass( this->className().c_str() ) ;
-    if (localClass == NULL)
-    {
-        throw GiwsException::JniClassNotFoundException(curEnv, this->className());
-    }
+localClass = curEnv->FindClass( this->className().c_str() ) ;
+if (localClass == NULL) {
+  throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+}
 
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
 
-    /* localClass is not needed anymore */
-    curEnv->DeleteLocalRef(localClass);
+/* localClass is not needed anymore */
+curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
 
-    constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
-    if (constructObject == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
+if(constructObject == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
-    localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
-    if (localInstance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
+if(localInstance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+ 
+this->instance = curEnv->NewGlobalRef(localInstance) ;
+if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+/* localInstance not needed anymore */
+curEnv->DeleteLocalRef(localInstance);
 
-    this->instance = curEnv->NewGlobalRef(localInstance) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* localInstance not needed anymore */
-    curEnv->DeleteLocalRef(localInstance);
-
-    /* Methods ID set to NULL */
-    voidloadPaljstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID = NULL;
-    voidloadPaljstringjava_lang_StringID = NULL;
-    voidaddCategoryjobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID = NULL;
-    voidremovejobjectArray_java_lang_Stringjava_lang_StringID = NULL;
-    voidenablejobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID = NULL;
-    voidmovejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID = NULL;
-    voidgeneratePaletteIconjstringjava_lang_StringID = NULL;
-    voidgetjobjectArray_java_lang_Stringjava_lang_StringID = NULL;
+                /* Methods ID set to NULL */
+voidloadPaljstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
+voidloadPaljstringjava_lang_StringID=NULL;
+voidaddCategoryjobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID=NULL;
+voidremovejobjectArray_java_lang_Stringjava_lang_StringID=NULL;
+voidenablejobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID=NULL;
+voidmovejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
+voidgeneratePaletteIconjstringjava_lang_StringID=NULL;
+voidgetjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 
 
 }
 
-Palette::Palette(JavaVM * jvm_, jobject JObj)
-{
-    jvm = jvm_;
+Palette::Palette(JavaVM * jvm_, jobject JObj) {
+        jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+        JNIEnv * curEnv = getCurrentEnv();
 
-    jclass localClass = curEnv->GetObjectClass(JObj);
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
-    curEnv->DeleteLocalRef(localClass);
+jclass localClass = curEnv->GetObjectClass(JObj);
+        this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+        curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+        if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
 
-    this->instance = curEnv->NewGlobalRef(JObj) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* Methods ID set to NULL */
-    voidloadPaljstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID = NULL;
-    voidloadPaljstringjava_lang_StringID = NULL;
-    voidaddCategoryjobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID = NULL;
-    voidremovejobjectArray_java_lang_Stringjava_lang_StringID = NULL;
-    voidenablejobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID = NULL;
-    voidmovejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID = NULL;
-    voidgeneratePaletteIconjstringjava_lang_StringID = NULL;
-    voidgetjobjectArray_java_lang_Stringjava_lang_StringID = NULL;
+        this->instance = curEnv->NewGlobalRef(JObj) ;
+        if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
+        /* Methods ID set to NULL */
+        voidloadPaljstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
+voidloadPaljstringjava_lang_StringID=NULL;
+voidaddCategoryjobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID=NULL;
+voidremovejobjectArray_java_lang_Stringjava_lang_StringID=NULL;
+voidenablejobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID=NULL;
+voidmovejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
+voidgeneratePaletteIconjstringjava_lang_StringID=NULL;
+voidgetjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 
 
 }
 
 // Generic methods
 
-void Palette::synchronize()
-{
-    if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "Palette");
-    }
+void Palette::synchronize() {
+if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "Palette");
+}
 }
 
-void Palette::endSynchronize()
-{
-    if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "Palette");
-    }
+void Palette::endSynchronize() {
+if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "Palette");
+}
 }
 // Method(s)
 
-void Palette::loadPal (JavaVM * jvm_, char const* name, char const* const* category, int categorySize)
-{
+void Palette::loadPal (JavaVM * jvm_, char const* name, char const* const* category, int categorySize){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidloadPaljstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "loadPal", "(Ljava/lang/String;[Ljava/lang/String;)V" ) ;
-    if (voidloadPaljstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "loadPal");
-    }
-
-    jstring name_ = curEnv->NewStringUTF( name );
-    if (name != NULL && name_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-    jclass stringArrayClass = curEnv->FindClass("java/lang/String");
-
-    // create java array of strings.
-    jobjectArray category_ = curEnv->NewObjectArray( categorySize, stringArrayClass, NULL);
-    if (category_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-    // convert each char * to java strings and fill the java array.
-    for ( int i = 0; i < categorySize; i++)
-    {
-        jstring TempString = curEnv->NewStringUTF( category[i] );
-        if (TempString == NULL)
-        {
-            throw GiwsException::JniBadAllocException(curEnv);
-        }
-
-        curEnv->SetObjectArrayElement( category_, i, TempString);
-
-        // avoid keeping reference on too many strings
-        curEnv->DeleteLocalRef(TempString);
-    }
-    curEnv->CallStaticVoidMethod(cls, voidloadPaljstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID , name_, category_);
-    curEnv->DeleteLocalRef(stringArrayClass);
-    curEnv->DeleteLocalRef(name_);
-    curEnv->DeleteLocalRef(category_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
 }
 
-void Palette::loadPal (JavaVM * jvm_, char const* name)
-{
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidloadPaljstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "loadPal", "(Ljava/lang/String;)V" ) ;
-    if (voidloadPaljstringjava_lang_StringID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "loadPal");
-    }
-
-    jstring name_ = curEnv->NewStringUTF( name );
-    if (name != NULL && name_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-
-    curEnv->CallStaticVoidMethod(cls, voidloadPaljstringjava_lang_StringID , name_);
-    curEnv->DeleteLocalRef(name_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+static jmethodID voidloadPaljstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "loadPal", "(Ljava/lang/String;[Ljava/lang/String;)V" ) ;
+if (voidloadPaljstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "loadPal");
 }
 
-void Palette::addCategory (JavaVM * jvm_, char const* const* name, int nameSize, bool visible)
+jstring name_ = curEnv->NewStringUTF( name );
+if (name != NULL && name_ == NULL)
 {
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidaddCategoryjobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "addCategory", "([Ljava/lang/String;Z)V" ) ;
-    if (voidaddCategoryjobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "addCategory");
-    }
-    jclass stringArrayClass = curEnv->FindClass("java/lang/String");
-
-    // create java array of strings.
-    jobjectArray name_ = curEnv->NewObjectArray( nameSize, stringArrayClass, NULL);
-    if (name_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-    // convert each char * to java strings and fill the java array.
-    for ( int i = 0; i < nameSize; i++)
-    {
-        jstring TempString = curEnv->NewStringUTF( name[i] );
-        if (TempString == NULL)
-        {
-            throw GiwsException::JniBadAllocException(curEnv);
-        }
-
-        curEnv->SetObjectArrayElement( name_, i, TempString);
-
-        // avoid keeping reference on too many strings
-        curEnv->DeleteLocalRef(TempString);
-    }
-    jboolean visible_ = (static_cast<bool>(visible) ? JNI_TRUE : JNI_FALSE);
-
-    curEnv->CallStaticVoidMethod(cls, voidaddCategoryjobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID , name_, visible_);
-    curEnv->DeleteLocalRef(stringArrayClass);
-    curEnv->DeleteLocalRef(name_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+throw GiwsException::JniBadAllocException(curEnv);
 }
 
-void Palette::remove (JavaVM * jvm_, char const* const* name, int nameSize)
+jclass stringArrayClass = curEnv->FindClass("java/lang/String");
+
+// create java array of strings.
+jobjectArray category_ = curEnv->NewObjectArray( categorySize, stringArrayClass, NULL);
+if (category_ == NULL)
 {
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidremovejobjectArray_java_lang_Stringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "remove", "([Ljava/lang/String;)V" ) ;
-    if (voidremovejobjectArray_java_lang_Stringjava_lang_StringID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "remove");
-    }
-    jclass stringArrayClass = curEnv->FindClass("java/lang/String");
-
-    // create java array of strings.
-    jobjectArray name_ = curEnv->NewObjectArray( nameSize, stringArrayClass, NULL);
-    if (name_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-    // convert each char * to java strings and fill the java array.
-    for ( int i = 0; i < nameSize; i++)
-    {
-        jstring TempString = curEnv->NewStringUTF( name[i] );
-        if (TempString == NULL)
-        {
-            throw GiwsException::JniBadAllocException(curEnv);
-        }
-
-        curEnv->SetObjectArrayElement( name_, i, TempString);
-
-        // avoid keeping reference on too many strings
-        curEnv->DeleteLocalRef(TempString);
-    }
-    curEnv->CallStaticVoidMethod(cls, voidremovejobjectArray_java_lang_Stringjava_lang_StringID , name_);
-    curEnv->DeleteLocalRef(stringArrayClass);
-    curEnv->DeleteLocalRef(name_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+throw GiwsException::JniBadAllocException(curEnv);
 }
 
-void Palette::enable (JavaVM * jvm_, char const* const* name, int nameSize, bool status)
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < categorySize; i++)
 {
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidenablejobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "enable", "([Ljava/lang/String;Z)V" ) ;
-    if (voidenablejobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "enable");
-    }
-    jclass stringArrayClass = curEnv->FindClass("java/lang/String");
-
-    // create java array of strings.
-    jobjectArray name_ = curEnv->NewObjectArray( nameSize, stringArrayClass, NULL);
-    if (name_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-    // convert each char * to java strings and fill the java array.
-    for ( int i = 0; i < nameSize; i++)
-    {
-        jstring TempString = curEnv->NewStringUTF( name[i] );
-        if (TempString == NULL)
-        {
-            throw GiwsException::JniBadAllocException(curEnv);
-        }
-
-        curEnv->SetObjectArrayElement( name_, i, TempString);
-
-        // avoid keeping reference on too many strings
-        curEnv->DeleteLocalRef(TempString);
-    }
-    jboolean status_ = (static_cast<bool>(status) ? JNI_TRUE : JNI_FALSE);
-
-    curEnv->CallStaticVoidMethod(cls, voidenablejobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID , name_, status_);
-    curEnv->DeleteLocalRef(stringArrayClass);
-    curEnv->DeleteLocalRef(name_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+jstring TempString = curEnv->NewStringUTF( category[i] );
+if (TempString == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
 }
 
-void Palette::move (JavaVM * jvm_, char const* const* source, int sourceSize, char const* const* target, int targetSize)
-{
+curEnv->SetObjectArrayElement( category_, i, TempString);
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidmovejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "move", "([Ljava/lang/String;[Ljava/lang/String;)V" ) ;
-    if (voidmovejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "move");
-    }
-    jclass stringArrayClass = curEnv->FindClass("java/lang/String");
-
-    // create java array of strings.
-    jobjectArray source_ = curEnv->NewObjectArray( sourceSize, stringArrayClass, NULL);
-    if (source_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-    // convert each char * to java strings and fill the java array.
-    for ( int i = 0; i < sourceSize; i++)
-    {
-        jstring TempString = curEnv->NewStringUTF( source[i] );
-        if (TempString == NULL)
-        {
-            throw GiwsException::JniBadAllocException(curEnv);
-        }
-
-        curEnv->SetObjectArrayElement( source_, i, TempString);
-
-        // avoid keeping reference on too many strings
-        curEnv->DeleteLocalRef(TempString);
-    }
-
-    // create java array of strings.
-    jobjectArray target_ = curEnv->NewObjectArray( targetSize, stringArrayClass, NULL);
-    if (target_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-    // convert each char * to java strings and fill the java array.
-    for ( int i = 0; i < targetSize; i++)
-    {
-        jstring TempString = curEnv->NewStringUTF( target[i] );
-        if (TempString == NULL)
-        {
-            throw GiwsException::JniBadAllocException(curEnv);
-        }
-
-        curEnv->SetObjectArrayElement( target_, i, TempString);
-
-        // avoid keeping reference on too many strings
-        curEnv->DeleteLocalRef(TempString);
-    }
-    curEnv->CallStaticVoidMethod(cls, voidmovejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID , source_, target_);
-    curEnv->DeleteLocalRef(stringArrayClass);
-    curEnv->DeleteLocalRef(source_);
-    curEnv->DeleteLocalRef(target_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+// avoid keeping reference on too many strings
+curEnv->DeleteLocalRef(TempString);
+}
+                         curEnv->CallStaticVoidMethod(cls, voidloadPaljstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID ,name_, category_);
+                        curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(name_);
+curEnv->DeleteLocalRef(category_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 }
 
-void Palette::generatePaletteIcon (JavaVM * jvm_, char const* iconPath)
-{
+void Palette::loadPal (JavaVM * jvm_, char const* name){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidgeneratePaletteIconjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "generatePaletteIcon", "(Ljava/lang/String;)V" ) ;
-    if (voidgeneratePaletteIconjstringjava_lang_StringID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "generatePaletteIcon");
-    }
-
-    jstring iconPath_ = curEnv->NewStringUTF( iconPath );
-    if (iconPath != NULL && iconPath_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-
-    curEnv->CallStaticVoidMethod(cls, voidgeneratePaletteIconjstringjava_lang_StringID , iconPath_);
-    curEnv->DeleteLocalRef(iconPath_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
 }
 
-void Palette::get (JavaVM * jvm_, char const* const* path, int pathSize)
+static jmethodID voidloadPaljstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "loadPal", "(Ljava/lang/String;)V" ) ;
+if (voidloadPaljstringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "loadPal");
+}
+
+jstring name_ = curEnv->NewStringUTF( name );
+if (name != NULL && name_ == NULL)
 {
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
 
-    static jmethodID voidgetjobjectArray_java_lang_Stringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "get", "([Ljava/lang/String;)V" ) ;
-    if (voidgetjobjectArray_java_lang_Stringjava_lang_StringID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "get");
-    }
-    jclass stringArrayClass = curEnv->FindClass("java/lang/String");
+                         curEnv->CallStaticVoidMethod(cls, voidloadPaljstringjava_lang_StringID ,name_);
+                        curEnv->DeleteLocalRef(name_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
 
-    // create java array of strings.
-    jobjectArray path_ = curEnv->NewObjectArray( pathSize, stringArrayClass, NULL);
-    if (path_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
+void Palette::addCategory (JavaVM * jvm_, char const* const* name, int nameSize, bool visible){
 
-    // convert each char * to java strings and fill the java array.
-    for ( int i = 0; i < pathSize; i++)
-    {
-        jstring TempString = curEnv->NewStringUTF( path[i] );
-        if (TempString == NULL)
-        {
-            throw GiwsException::JniBadAllocException(curEnv);
-        }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-        curEnv->SetObjectArrayElement( path_, i, TempString);
+static jmethodID voidaddCategoryjobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "addCategory", "([Ljava/lang/String;Z)V" ) ;
+if (voidaddCategoryjobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "addCategory");
+}
+jclass stringArrayClass = curEnv->FindClass("java/lang/String");
 
-        // avoid keeping reference on too many strings
-        curEnv->DeleteLocalRef(TempString);
-    }
-    curEnv->CallStaticVoidMethod(cls, voidgetjobjectArray_java_lang_Stringjava_lang_StringID , path_);
-    curEnv->DeleteLocalRef(stringArrayClass);
-    curEnv->DeleteLocalRef(path_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+// create java array of strings.
+jobjectArray name_ = curEnv->NewObjectArray( nameSize, stringArrayClass, NULL);
+if (name_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < nameSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( name[i] );
+if (TempString == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetObjectArrayElement( name_, i, TempString);
+
+// avoid keeping reference on too many strings
+curEnv->DeleteLocalRef(TempString);
+}
+jboolean visible_ = (static_cast<bool>(visible) ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voidaddCategoryjobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID ,name_, visible_);
+                        curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(name_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void Palette::remove (JavaVM * jvm_, char const* const* name, int nameSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidremovejobjectArray_java_lang_Stringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "remove", "([Ljava/lang/String;)V" ) ;
+if (voidremovejobjectArray_java_lang_Stringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "remove");
+}
+jclass stringArrayClass = curEnv->FindClass("java/lang/String");
+
+// create java array of strings.
+jobjectArray name_ = curEnv->NewObjectArray( nameSize, stringArrayClass, NULL);
+if (name_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < nameSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( name[i] );
+if (TempString == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetObjectArrayElement( name_, i, TempString);
+
+// avoid keeping reference on too many strings
+curEnv->DeleteLocalRef(TempString);
+}
+                         curEnv->CallStaticVoidMethod(cls, voidremovejobjectArray_java_lang_Stringjava_lang_StringID ,name_);
+                        curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(name_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void Palette::enable (JavaVM * jvm_, char const* const* name, int nameSize, bool status){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidenablejobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "enable", "([Ljava/lang/String;Z)V" ) ;
+if (voidenablejobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "enable");
+}
+jclass stringArrayClass = curEnv->FindClass("java/lang/String");
+
+// create java array of strings.
+jobjectArray name_ = curEnv->NewObjectArray( nameSize, stringArrayClass, NULL);
+if (name_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < nameSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( name[i] );
+if (TempString == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetObjectArrayElement( name_, i, TempString);
+
+// avoid keeping reference on too many strings
+curEnv->DeleteLocalRef(TempString);
+}
+jboolean status_ = (static_cast<bool>(status) ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voidenablejobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID ,name_, status_);
+                        curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(name_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void Palette::move (JavaVM * jvm_, char const* const* source, int sourceSize, char const* const* target, int targetSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidmovejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "move", "([Ljava/lang/String;[Ljava/lang/String;)V" ) ;
+if (voidmovejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "move");
+}
+jclass stringArrayClass = curEnv->FindClass("java/lang/String");
+
+// create java array of strings.
+jobjectArray source_ = curEnv->NewObjectArray( sourceSize, stringArrayClass, NULL);
+if (source_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < sourceSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( source[i] );
+if (TempString == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetObjectArrayElement( source_, i, TempString);
+
+// avoid keeping reference on too many strings
+curEnv->DeleteLocalRef(TempString);
+}
+
+// create java array of strings.
+jobjectArray target_ = curEnv->NewObjectArray( targetSize, stringArrayClass, NULL);
+if (target_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < targetSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( target[i] );
+if (TempString == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetObjectArrayElement( target_, i, TempString);
+
+// avoid keeping reference on too many strings
+curEnv->DeleteLocalRef(TempString);
+}
+                         curEnv->CallStaticVoidMethod(cls, voidmovejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID ,source_, target_);
+                        curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(source_);
+curEnv->DeleteLocalRef(target_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void Palette::generatePaletteIcon (JavaVM * jvm_, char const* iconPath){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidgeneratePaletteIconjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "generatePaletteIcon", "(Ljava/lang/String;)V" ) ;
+if (voidgeneratePaletteIconjstringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "generatePaletteIcon");
+}
+
+jstring iconPath_ = curEnv->NewStringUTF( iconPath );
+if (iconPath != NULL && iconPath_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+
+                         curEnv->CallStaticVoidMethod(cls, voidgeneratePaletteIconjstringjava_lang_StringID ,iconPath_);
+                        curEnv->DeleteLocalRef(iconPath_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void Palette::get (JavaVM * jvm_, char const* const* path, int pathSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidgetjobjectArray_java_lang_Stringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "get", "([Ljava/lang/String;)V" ) ;
+if (voidgetjobjectArray_java_lang_Stringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "get");
+}
+jclass stringArrayClass = curEnv->FindClass("java/lang/String");
+
+// create java array of strings.
+jobjectArray path_ = curEnv->NewObjectArray( pathSize, stringArrayClass, NULL);
+if (path_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < pathSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( path[i] );
+if (TempString == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetObjectArrayElement( path_, i, TempString);
+
+// avoid keeping reference on too many strings
+curEnv->DeleteLocalRef(TempString);
+}
+                         curEnv->CallStaticVoidMethod(cls, voidgetjobjectArray_java_lang_Stringjava_lang_StringID ,path_);
+                        curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(path_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 }
 
 }

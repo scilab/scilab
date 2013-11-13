@@ -46,11 +46,11 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 #include "GiwsException.hxx"
 
-#if defined(_MSC_VER) /* Defined anyway with Visual */
-#include <Windows.h>
-#else
-typedef signed char byte;
-#endif
+        #if defined(_MSC_VER) /* Defined anyway with Visual */
+            #include <Windows.h>
+        #else
+            typedef signed char byte;
+        #endif
 
 
 #ifndef GIWSEXPORT
@@ -69,189 +69,187 @@ typedef signed char byte;
 # endif
 #endif
 
-namespace org_scilab_modules_ui_data
-{
-class GIWSEXPORT EditVar
-{
+namespace org_scilab_modules_ui_data {
+class GIWSEXPORT EditVar {
 
 private:
-    JavaVM * jvm;
+JavaVM * jvm;
 
 protected:
-    jmethodID voidopenVariableEditorDoublejobjectArray__doubledoublejstringjava_lang_StringID; // cache method id
-    jmethodID voidopenVariableEditorBooleanSparsejobjectArray__intintjstringjava_lang_StringID; // cache method id
-    jmethodID voidopenVariableEditorSparsejobjectArray__doubledoublejstringjava_lang_StringID; // cache method id
-    jmethodID voidopenVariableEditorComplexSparsejobjectArray__doubledoublejobjectArray__doubledoublejstringjava_lang_StringID; // cache method id
-    jmethodID voidopenVariableEditorComplexjobjectArray__doubledoublejobjectArray__doubledoublejstringjava_lang_StringID; // cache method id
-    jmethodID voidopenVariableEditorStringjobjectArray__java_lang_Stringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-    jclass stringArrayClass;
-    jmethodID voidopenVariableEditorBooleanjobjectArray__intintjstringjava_lang_StringID; // cache method id
-    jmethodID voidopenVariableEditorInteger8jobjectArray__bytebytejstringjava_lang_StringID; // cache method id
-    jmethodID voidopenVariableEditorUInteger8jobjectArray__shortshortjstringjava_lang_StringID; // cache method id
-    jmethodID voidopenVariableEditorInteger16jobjectArray__shortshortjstringjava_lang_StringID; // cache method id
-    jmethodID voidopenVariableEditorUInteger16jobjectArray__intintjstringjava_lang_StringID; // cache method id
-    jmethodID voidopenVariableEditorInteger32jobjectArray__intintjstringjava_lang_StringID; // cache method id
-    jmethodID voidopenVariableEditorUInteger32jobjectArray__longlongjstringjava_lang_StringID; // cache method id
-    jmethodID voidrefreshVariableEditorDoublejobjectArray__doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
-    jmethodID voidrefreshVariableEditorBooleanSparsejobjectArray__intintjdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
-    jmethodID voidrefreshVariableEditorSparsejobjectArray__doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
-    jmethodID voidrefreshVariableEditorComplexSparsejobjectArray__doubledoublejobjectArray__doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
-    jmethodID voidrefreshVariableEditorComplexjobjectArray__doubledoublejobjectArray__doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
-    jmethodID voidrefreshVariableEditorStringjobjectArray__java_lang_Stringjava_lang_StringjdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
-    jmethodID voidrefreshVariableEditorBooleanjobjectArray__intintjdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
-    jmethodID voidrefreshVariableEditorInteger8jobjectArray__bytebytejdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
-    jmethodID voidrefreshVariableEditorUInteger8jobjectArray__shortshortjdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
-    jmethodID voidrefreshVariableEditorInteger16jobjectArray__shortshortjdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
-    jmethodID voidrefreshVariableEditorUInteger16jobjectArray__intintjdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
-    jmethodID voidrefreshVariableEditorInteger32jobjectArray__intintjdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
-    jmethodID voidrefreshVariableEditorUInteger32jobjectArray__longlongjdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
-    jmethodID voidcloseVariableEditorID; // cache method id
+jmethodID voidopenVariableEditorDoublejobjectArray__doubledoublejstringjava_lang_StringID; // cache method id
+jmethodID voidopenVariableEditorBooleanSparsejobjectArray__intintjstringjava_lang_StringID; // cache method id
+jmethodID voidopenVariableEditorSparsejobjectArray__doubledoublejstringjava_lang_StringID; // cache method id
+jmethodID voidopenVariableEditorComplexSparsejobjectArray__doubledoublejobjectArray__doubledoublejstringjava_lang_StringID; // cache method id
+jmethodID voidopenVariableEditorComplexjobjectArray__doubledoublejobjectArray__doubledoublejstringjava_lang_StringID; // cache method id
+jmethodID voidopenVariableEditorStringjobjectArray__java_lang_Stringjava_lang_Stringjstringjava_lang_StringID; // cache method id
+jclass stringArrayClass;
+jmethodID voidopenVariableEditorBooleanjobjectArray__intintjstringjava_lang_StringID; // cache method id
+jmethodID voidopenVariableEditorInteger8jobjectArray__bytebytejstringjava_lang_StringID; // cache method id
+jmethodID voidopenVariableEditorUInteger8jobjectArray__shortshortjstringjava_lang_StringID; // cache method id
+jmethodID voidopenVariableEditorInteger16jobjectArray__shortshortjstringjava_lang_StringID; // cache method id
+jmethodID voidopenVariableEditorUInteger16jobjectArray__intintjstringjava_lang_StringID; // cache method id
+jmethodID voidopenVariableEditorInteger32jobjectArray__intintjstringjava_lang_StringID; // cache method id
+jmethodID voidopenVariableEditorUInteger32jobjectArray__longlongjstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorDoublejobjectArray__doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorBooleanSparsejobjectArray__intintjdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorSparsejobjectArray__doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorComplexSparsejobjectArray__doubledoublejobjectArray__doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorComplexjobjectArray__doubledoublejobjectArray__doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorStringjobjectArray__java_lang_Stringjava_lang_StringjdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorBooleanjobjectArray__intintjdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorInteger8jobjectArray__bytebytejdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorUInteger8jobjectArray__shortshortjdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorInteger16jobjectArray__shortshortjdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorUInteger16jobjectArray__intintjdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorInteger32jobjectArray__intintjdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorUInteger32jobjectArray__longlongjdoubleArray_doubledoublejdoubleArray_doubledoublejstringjava_lang_StringID; // cache method id
+jmethodID voidcloseVariableEditorID; // cache method id
 
 
 
-    jobject instance;
-    jclass instanceClass; // cache class
+jobject instance;
+jclass instanceClass; // cache class
+
+                       
+// Caching (if any)
 
 
-    // Caching (if any)
-
-
-    /**
-    * Get the environment matching to the current thread.
-    */
-    virtual JNIEnv * getCurrentEnv();
+/**
+* Get the environment matching to the current thread.
+*/
+virtual JNIEnv * getCurrentEnv();
 
 public:
-    // Constructor
-    /**
-    * Create a wrapping of the object from a JNIEnv.
-    * It will call the default constructor
-    * @param JEnv_ the Java Env
-    */
-    EditVar(JavaVM * jvm_);
+// Constructor
+/**
+* Create a wrapping of the object from a JNIEnv.
+* It will call the default constructor
+* @param JEnv_ the Java Env
+*/
+EditVar(JavaVM * jvm_);
 
-    /**
-    * Create a wrapping of an already existing object from a JNIEnv.
-    * The object must have already been instantiated
-    * @param JEnv_ the Java Env
-    * @param JObj the object
-    */
-    EditVar(JavaVM * jvm_, jobject JObj);
+/**
+* Create a wrapping of an already existing object from a JNIEnv.
+* The object must have already been instantiated
+* @param JEnv_ the Java Env
+* @param JObj the object
+*/
+EditVar(JavaVM * jvm_, jobject JObj);
 
 
-    /**
-    * This is a fake constructor to avoid the constructor
-    * chaining when dealing with extended giws classes
-    */
+/** 
+* This is a fake constructor to avoid the constructor
+* chaining when dealing with extended giws classes 
+*/
 #ifdef FAKEGIWSDATATYPE
-    EditVar(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
+EditVar(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
 #endif
 
-    // Destructor
-    ~EditVar();
+// Destructor
+~EditVar();
 
-    // Generic method
-    // Synchronization methods
-    /**
-    * Enter monitor associated with the object.
-    * Equivalent of creating a "synchronized(obj)" scope in Java.
-    */
-    void synchronize();
+// Generic method
+// Synchronization methods
+/**
+* Enter monitor associated with the object.
+* Equivalent of creating a "synchronized(obj)" scope in Java.
+*/
+void synchronize();
 
-    /**
-    * Exit monitor associated with the object.
-    * Equivalent of ending a "synchronized(obj)" scope.
-    */
-    void endSynchronize();
+/**
+* Exit monitor associated with the object.
+* Equivalent of ending a "synchronized(obj)" scope.
+*/
+void endSynchronize();
 
-    // Methods
-    static void openVariableEditorDouble(JavaVM * jvm_, double const* const* data, int dataSize, int dataSizeCol, char const* variableName);
+// Methods
+static void openVariableEditorDouble(JavaVM * jvm_, double const* const* data, int dataSize, int dataSizeCol, char const* variableName);
 
-    static void openVariableEditorBooleanSparse(JavaVM * jvm_, int const* const* data, int dataSize, int dataSizeCol, char const* variableName);
+static void openVariableEditorBooleanSparse(JavaVM * jvm_, int const* const* data, int dataSize, int dataSizeCol, char const* variableName);
 
-    static void openVariableEditorSparse(JavaVM * jvm_, double const* const* data, int dataSize, int dataSizeCol, char const* variableName);
+static void openVariableEditorSparse(JavaVM * jvm_, double const* const* data, int dataSize, int dataSizeCol, char const* variableName);
 
-    static void openVariableEditorComplexSparse(JavaVM * jvm_, double const* const* realData, int realDataSize, int realDataSizeCol, double const* const* complexData, int complexDataSize, int complexDataSizeCol, char const* variableName);
+static void openVariableEditorComplexSparse(JavaVM * jvm_, double const* const* realData, int realDataSize, int realDataSizeCol, double const* const* complexData, int complexDataSize, int complexDataSizeCol, char const* variableName);
 
-    static void openVariableEditorComplex(JavaVM * jvm_, double const* const* realData, int realDataSize, int realDataSizeCol, double const* const* imgData, int imgDataSize, int imgDataSizeCol, char const* variableName);
+static void openVariableEditorComplex(JavaVM * jvm_, double const* const* realData, int realDataSize, int realDataSizeCol, double const* const* imgData, int imgDataSize, int imgDataSizeCol, char const* variableName);
 
-    static void openVariableEditorString(JavaVM * jvm_, char const* const* const* data, int dataSize, int dataSizeCol, char const* variableName);
+static void openVariableEditorString(JavaVM * jvm_, char const* const* const* data, int dataSize, int dataSizeCol, char const* variableName);
 
-    static void openVariableEditorBoolean(JavaVM * jvm_, int const* const* data, int dataSize, int dataSizeCol, char const* variableName);
+static void openVariableEditorBoolean(JavaVM * jvm_, int const* const* data, int dataSize, int dataSizeCol, char const* variableName);
 
-    static void openVariableEditorInteger8(JavaVM * jvm_, byte const* const* data, int dataSize, int dataSizeCol, char const* variableName);
+static void openVariableEditorInteger8(JavaVM * jvm_, byte const* const* data, int dataSize, int dataSizeCol, char const* variableName);
 
-    static void openVariableEditorUInteger8(JavaVM * jvm_, short const* const* data, int dataSize, int dataSizeCol, char const* variableName);
+static void openVariableEditorUInteger8(JavaVM * jvm_, short const* const* data, int dataSize, int dataSizeCol, char const* variableName);
 
-    static void openVariableEditorInteger16(JavaVM * jvm_, short const* const* data, int dataSize, int dataSizeCol, char const* variableName);
+static void openVariableEditorInteger16(JavaVM * jvm_, short const* const* data, int dataSize, int dataSizeCol, char const* variableName);
 
-    static void openVariableEditorUInteger16(JavaVM * jvm_, int const* const* data, int dataSize, int dataSizeCol, char const* variableName);
+static void openVariableEditorUInteger16(JavaVM * jvm_, int const* const* data, int dataSize, int dataSizeCol, char const* variableName);
 
-    static void openVariableEditorInteger32(JavaVM * jvm_, int const* const* data, int dataSize, int dataSizeCol, char const* variableName);
+static void openVariableEditorInteger32(JavaVM * jvm_, int const* const* data, int dataSize, int dataSizeCol, char const* variableName);
 
-    static void openVariableEditorUInteger32(JavaVM * jvm_, long long const* const* data, int dataSize, int dataSizeCol, char const* variableName);
+static void openVariableEditorUInteger32(JavaVM * jvm_, long long const* const* data, int dataSize, int dataSizeCol, char const* variableName);
 
-    static void refreshVariableEditorDouble(JavaVM * jvm_, double const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
+static void refreshVariableEditorDouble(JavaVM * jvm_, double const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
 
-    static void refreshVariableEditorBooleanSparse(JavaVM * jvm_, int const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
+static void refreshVariableEditorBooleanSparse(JavaVM * jvm_, int const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
 
-    static void refreshVariableEditorSparse(JavaVM * jvm_, double const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
+static void refreshVariableEditorSparse(JavaVM * jvm_, double const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
 
-    static void refreshVariableEditorComplexSparse(JavaVM * jvm_, double const* const* realData, int realDataSize, int realDataSizeCol, double const* const* complexData, int complexDataSize, int complexDataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
+static void refreshVariableEditorComplexSparse(JavaVM * jvm_, double const* const* realData, int realDataSize, int realDataSizeCol, double const* const* complexData, int complexDataSize, int complexDataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
 
-    static void refreshVariableEditorComplex(JavaVM * jvm_, double const* const* realData, int realDataSize, int realDataSizeCol, double const* const* imgData, int imgDataSize, int imgDataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
+static void refreshVariableEditorComplex(JavaVM * jvm_, double const* const* realData, int realDataSize, int realDataSizeCol, double const* const* imgData, int imgDataSize, int imgDataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
 
-    static void refreshVariableEditorString(JavaVM * jvm_, char const* const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
+static void refreshVariableEditorString(JavaVM * jvm_, char const* const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
 
-    static void refreshVariableEditorBoolean(JavaVM * jvm_, int const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
+static void refreshVariableEditorBoolean(JavaVM * jvm_, int const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
 
-    static void refreshVariableEditorInteger8(JavaVM * jvm_, byte const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
+static void refreshVariableEditorInteger8(JavaVM * jvm_, byte const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
 
-    static void refreshVariableEditorUInteger8(JavaVM * jvm_, short const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
+static void refreshVariableEditorUInteger8(JavaVM * jvm_, short const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
 
-    static void refreshVariableEditorInteger16(JavaVM * jvm_, short const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
+static void refreshVariableEditorInteger16(JavaVM * jvm_, short const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
 
-    static void refreshVariableEditorUInteger16(JavaVM * jvm_, int const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
+static void refreshVariableEditorUInteger16(JavaVM * jvm_, int const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
 
-    static void refreshVariableEditorInteger32(JavaVM * jvm_, int const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
+static void refreshVariableEditorInteger32(JavaVM * jvm_, int const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
 
-    static void refreshVariableEditorUInteger32(JavaVM * jvm_, long long const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
+static void refreshVariableEditorUInteger32(JavaVM * jvm_, long long const* const* data, int dataSize, int dataSizeCol, double const* rowsIndex, int rowsIndexSize, double const* colsIndex, int colsIndexSize, char const* variableName);
 
-    static void closeVariableEditor(JavaVM * jvm_);
-
-
-    /**
-    * Get class name to use for static methods
-    * @return class name to use for static methods
-    */
-
-    static const std::string className()
-    {
-        return "org/scilab/modules/ui_data/EditVar";
-    }
+static void closeVariableEditor(JavaVM * jvm_);
 
 
-    /**
-    * Get class to use for static methods
-    * @return class to use for static methods
-    */
+                        /**
+                        * Get class name to use for static methods
+                        * @return class name to use for static methods
+                        */
+                        
+                static const std::string className()
+                {
+                return "org/scilab/modules/ui_data/EditVar";
+                }
+                
 
-    static jclass initClass(JNIEnv * curEnv)
-    {
-        static jclass cls = 0;
+                        /**
+                        * Get class to use for static methods
+                        * @return class to use for static methods
+                        */
+                        
+                static jclass initClass(JNIEnv * curEnv)
+                {
+                    static jclass cls = 0;
 
-        if (cls == 0)
-        {
-            jclass _cls = curEnv->FindClass(className().c_str());
-            if (_cls)
-            {
-                cls = static_cast<jclass>(curEnv->NewGlobalRef(_cls));
-            }
-        }
+                    if (cls == 0)
+                    {
+                        jclass _cls = curEnv->FindClass(className().c_str());
+                        if (_cls)
+                        {
+                            cls = static_cast<jclass>(curEnv->NewGlobalRef(_cls));
+                        }
+                    }
 
-        return cls;
-    }
-
+                    return cls;
+                 }
+                
 };
 
 

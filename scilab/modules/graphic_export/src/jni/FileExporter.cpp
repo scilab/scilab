@@ -36,183 +36,157 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
 
-namespace org_scilab_modules_graphic_export
-{
+namespace org_scilab_modules_graphic_export {
 
-// Static declarations (if any)
-
+                // Static declarations (if any)
+                
 // Returns the current env
 
-JNIEnv * FileExporter::getCurrentEnv()
-{
-    JNIEnv * curEnv = NULL;
-    jint res = this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    if (res != JNI_OK)
-    {
-        throw GiwsException::JniException(getCurrentEnv());
-    }
-    return curEnv;
+JNIEnv * FileExporter::getCurrentEnv() {
+JNIEnv * curEnv = NULL;
+jint res=this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+if (res != JNI_OK) {
+throw GiwsException::JniException(getCurrentEnv());
+}
+return curEnv;
 }
 // Destructor
 
-FileExporter::~FileExporter()
-{
-    JNIEnv * curEnv = NULL;
-    this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    curEnv->DeleteGlobalRef(this->instance);
-    curEnv->DeleteGlobalRef(this->instanceClass);
+FileExporter::~FileExporter() {
+JNIEnv * curEnv = NULL;
+this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+curEnv->DeleteGlobalRef(this->instance);
+curEnv->DeleteGlobalRef(this->instanceClass);
 }
 // Constructors
-FileExporter::FileExporter(JavaVM * jvm_)
-{
-    jmethodID constructObject = NULL ;
-    jobject localInstance ;
-    jclass localClass ;
+FileExporter::FileExporter(JavaVM * jvm_) {
+jmethodID constructObject = NULL ;
+jobject localInstance ;
+jclass localClass ;
 
-    const std::string construct = "<init>";
-    const std::string param = "()V";
-    jvm = jvm_;
+const std::string construct="<init>";
+const std::string param="()V";
+jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+JNIEnv * curEnv = getCurrentEnv();
 
-    localClass = curEnv->FindClass( this->className().c_str() ) ;
-    if (localClass == NULL)
-    {
-        throw GiwsException::JniClassNotFoundException(curEnv, this->className());
-    }
+localClass = curEnv->FindClass( this->className().c_str() ) ;
+if (localClass == NULL) {
+  throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+}
 
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
 
-    /* localClass is not needed anymore */
-    curEnv->DeleteLocalRef(localClass);
+/* localClass is not needed anymore */
+curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
 
-    constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
-    if (constructObject == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
+if(constructObject == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
-    localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
-    if (localInstance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
+if(localInstance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+ 
+this->instance = curEnv->NewGlobalRef(localInstance) ;
+if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+/* localInstance not needed anymore */
+curEnv->DeleteLocalRef(localInstance);
 
-    this->instance = curEnv->NewGlobalRef(localInstance) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* localInstance not needed anymore */
-    curEnv->DeleteLocalRef(localInstance);
-
-    /* Methods ID set to NULL */
-    jstringfileExportjintintjstringjava_lang_StringjintintjfloatfloatjintintID = NULL;
+                /* Methods ID set to NULL */
+jstringfileExportjintintjstringjava_lang_StringjintintjfloatfloatjintintID=NULL;
 
 
 }
 
-FileExporter::FileExporter(JavaVM * jvm_, jobject JObj)
-{
-    jvm = jvm_;
+FileExporter::FileExporter(JavaVM * jvm_, jobject JObj) {
+        jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+        JNIEnv * curEnv = getCurrentEnv();
 
-    jclass localClass = curEnv->GetObjectClass(JObj);
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
-    curEnv->DeleteLocalRef(localClass);
+jclass localClass = curEnv->GetObjectClass(JObj);
+        this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+        curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+        if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
 
-    this->instance = curEnv->NewGlobalRef(JObj) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* Methods ID set to NULL */
-    jstringfileExportjintintjstringjava_lang_StringjintintjfloatfloatjintintID = NULL;
+        this->instance = curEnv->NewGlobalRef(JObj) ;
+        if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
+        /* Methods ID set to NULL */
+        jstringfileExportjintintjstringjava_lang_StringjintintjfloatfloatjintintID=NULL;
 
 
 }
 
 // Generic methods
 
-void FileExporter::synchronize()
-{
-    if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "FileExporter");
-    }
+void FileExporter::synchronize() {
+if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "FileExporter");
+}
 }
 
-void FileExporter::endSynchronize()
-{
-    if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "FileExporter");
-    }
+void FileExporter::endSynchronize() {
+if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "FileExporter");
+}
 }
 // Method(s)
 
-char* FileExporter::fileExport (JavaVM * jvm_, int figureUID, char const* fileName, int fileType, float jpegCompressionQuality, int orientation)
+char* FileExporter::fileExport (JavaVM * jvm_, int figureUID, char const* fileName, int fileType, float jpegCompressionQuality, int orientation){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jstringfileExportjintintjstringjava_lang_StringjintintjfloatfloatjintintID = curEnv->GetStaticMethodID(cls, "fileExport", "(ILjava/lang/String;IFI)Ljava/lang/String;" ) ;
+if (jstringfileExportjintintjstringjava_lang_StringjintintjfloatfloatjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "fileExport");
+}
+
+jstring fileName_ = curEnv->NewStringUTF( fileName );
+if (fileName != NULL && fileName_ == NULL)
 {
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID jstringfileExportjintintjstringjava_lang_StringjintintjfloatfloatjintintID = curEnv->GetStaticMethodID(cls, "fileExport", "(ILjava/lang/String;IFI)Ljava/lang/String;" ) ;
-    if (jstringfileExportjintintjstringjava_lang_StringjintintjfloatfloatjintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "fileExport");
-    }
-
-    jstring fileName_ = curEnv->NewStringUTF( fileName );
-    if (fileName != NULL && fileName_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
 
-    jstring res =  static_cast<jstring>( curEnv->CallStaticObjectMethod(cls, jstringfileExportjintintjstringjava_lang_StringjintintjfloatfloatjintintID , figureUID, fileName_, fileType, jpegCompressionQuality, orientation));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    if (res != NULL)
-    {
+                        jstring res =  static_cast<jstring>( curEnv->CallStaticObjectMethod(cls, jstringfileExportjintintjstringjava_lang_StringjintintjfloatfloatjintintID ,figureUID, fileName_, fileType, jpegCompressionQuality, orientation));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}if (res != NULL) { 
 
-        const char *tempString = curEnv->GetStringUTFChars(res, 0);
-        char * myStringBuffer = new char[strlen(tempString) + 1];
-        strcpy(myStringBuffer, tempString);
-        curEnv->ReleaseStringUTFChars(res, tempString);
-        curEnv->DeleteLocalRef(res);
-        curEnv->DeleteLocalRef(fileName_);
-        if (curEnv->ExceptionCheck())
-        {
-            delete[] myStringBuffer;
-            throw GiwsException::JniCallMethodException(curEnv);
-        }
-        return myStringBuffer;
-    }
-    else
-    {
-        curEnv->DeleteLocalRef(res);
-        return NULL;
-    }
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer = new char[strlen(tempString) + 1];
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+curEnv->DeleteLocalRef(res);
+curEnv->DeleteLocalRef(fileName_);
+if (curEnv->ExceptionCheck()) {
+delete[] myStringBuffer;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+return myStringBuffer;
+ } else { 
+curEnv->DeleteLocalRef(res);
+return NULL;
+}
 }
 
 }

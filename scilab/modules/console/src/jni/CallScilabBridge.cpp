@@ -36,410 +36,352 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
 
-namespace org_scilab_modules_gui_bridge
-{
+namespace org_scilab_modules_gui_bridge {
 
-// Static declarations (if any)
-
+                // Static declarations (if any)
+                
 // Returns the current env
 
-JNIEnv * CallScilabBridge::getCurrentEnv()
-{
-    JNIEnv * curEnv = NULL;
-    jint res = this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    if (res != JNI_OK)
-    {
-        throw GiwsException::JniException(getCurrentEnv());
-    }
-    return curEnv;
+JNIEnv * CallScilabBridge::getCurrentEnv() {
+JNIEnv * curEnv = NULL;
+jint res=this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+if (res != JNI_OK) {
+throw GiwsException::JniException(getCurrentEnv());
+}
+return curEnv;
 }
 // Destructor
 
-CallScilabBridge::~CallScilabBridge()
-{
-    JNIEnv * curEnv = NULL;
-    this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    curEnv->DeleteGlobalRef(this->instance);
-    curEnv->DeleteGlobalRef(this->instanceClass);
+CallScilabBridge::~CallScilabBridge() {
+JNIEnv * curEnv = NULL;
+this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+curEnv->DeleteGlobalRef(this->instance);
+curEnv->DeleteGlobalRef(this->instanceClass);
 }
 // Constructors
-CallScilabBridge::CallScilabBridge(JavaVM * jvm_)
-{
-    jmethodID constructObject = NULL ;
-    jobject localInstance ;
-    jclass localClass ;
+CallScilabBridge::CallScilabBridge(JavaVM * jvm_) {
+jmethodID constructObject = NULL ;
+jobject localInstance ;
+jclass localClass ;
 
-    const std::string construct = "<init>";
-    const std::string param = "()V";
-    jvm = jvm_;
+const std::string construct="<init>";
+const std::string param="()V";
+jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+JNIEnv * curEnv = getCurrentEnv();
 
-    localClass = curEnv->FindClass( this->className().c_str() ) ;
-    if (localClass == NULL)
-    {
-        throw GiwsException::JniClassNotFoundException(curEnv, this->className());
-    }
+localClass = curEnv->FindClass( this->className().c_str() ) ;
+if (localClass == NULL) {
+  throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+}
 
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
 
-    /* localClass is not needed anymore */
-    curEnv->DeleteLocalRef(localClass);
+/* localClass is not needed anymore */
+curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
 
-    constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
-    if (constructObject == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
+if(constructObject == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
-    localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
-    if (localInstance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
+if(localInstance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+ 
+this->instance = curEnv->NewGlobalRef(localInstance) ;
+if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+/* localInstance not needed anymore */
+curEnv->DeleteLocalRef(localInstance);
 
-    this->instance = curEnv->NewGlobalRef(localInstance) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* localInstance not needed anymore */
-    curEnv->DeleteLocalRef(localInstance);
-
-    /* Methods ID set to NULL */
-    voiddisplayjstringjava_lang_StringID = NULL;
-    jstringreadLineID = NULL;
-    voidclearID = NULL;
-    voidclearjintintID = NULL;
-    jintgetCharWithoutOutputID = NULL;
-    voidtoHomeID = NULL;
-    voidscilabLinesUpdateID = NULL;
-    voidsetPromptjstringjava_lang_StringID = NULL;
-    jbooleanisWaitingForInputID = NULL;
+                /* Methods ID set to NULL */
+voiddisplayjstringjava_lang_StringID=NULL;
+jstringreadLineID=NULL;
+voidclearID=NULL;
+voidclearjintintID=NULL;
+jintgetCharWithoutOutputID=NULL;
+voidtoHomeID=NULL;
+voidscilabLinesUpdateID=NULL;
+voidsetPromptjstringjava_lang_StringID=NULL;
+jbooleanisWaitingForInputID=NULL;
 
 
 }
 
-CallScilabBridge::CallScilabBridge(JavaVM * jvm_, jobject JObj)
-{
-    jvm = jvm_;
+CallScilabBridge::CallScilabBridge(JavaVM * jvm_, jobject JObj) {
+        jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+        JNIEnv * curEnv = getCurrentEnv();
 
-    jclass localClass = curEnv->GetObjectClass(JObj);
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
-    curEnv->DeleteLocalRef(localClass);
+jclass localClass = curEnv->GetObjectClass(JObj);
+        this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+        curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+        if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
 
-    this->instance = curEnv->NewGlobalRef(JObj) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* Methods ID set to NULL */
-    voiddisplayjstringjava_lang_StringID = NULL;
-    jstringreadLineID = NULL;
-    voidclearID = NULL;
-    voidclearjintintID = NULL;
-    jintgetCharWithoutOutputID = NULL;
-    voidtoHomeID = NULL;
-    voidscilabLinesUpdateID = NULL;
-    voidsetPromptjstringjava_lang_StringID = NULL;
-    jbooleanisWaitingForInputID = NULL;
+        this->instance = curEnv->NewGlobalRef(JObj) ;
+        if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
+        /* Methods ID set to NULL */
+        voiddisplayjstringjava_lang_StringID=NULL;
+jstringreadLineID=NULL;
+voidclearID=NULL;
+voidclearjintintID=NULL;
+jintgetCharWithoutOutputID=NULL;
+voidtoHomeID=NULL;
+voidscilabLinesUpdateID=NULL;
+voidsetPromptjstringjava_lang_StringID=NULL;
+jbooleanisWaitingForInputID=NULL;
 
 
 }
 
 // Generic methods
 
-void CallScilabBridge::synchronize()
-{
-    if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "CallScilabBridge");
-    }
+void CallScilabBridge::synchronize() {
+if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "CallScilabBridge");
+}
 }
 
-void CallScilabBridge::endSynchronize()
-{
-    if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "CallScilabBridge");
-    }
+void CallScilabBridge::endSynchronize() {
+if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "CallScilabBridge");
+}
 }
 // Method(s)
 
-void CallScilabBridge::display (JavaVM * jvm_, char const* dataToDisplay)
-{
+void CallScilabBridge::display (JavaVM * jvm_, char const* dataToDisplay){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voiddisplayjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "display", "(Ljava/lang/String;)V" ) ;
-    if (voiddisplayjstringjava_lang_StringID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "display");
-    }
-
-    jstring dataToDisplay_ = curEnv->NewStringUTF( dataToDisplay );
-    if (dataToDisplay != NULL && dataToDisplay_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-
-    curEnv->CallStaticVoidMethod(cls, voiddisplayjstringjava_lang_StringID , dataToDisplay_);
-    curEnv->DeleteLocalRef(dataToDisplay_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
 }
 
-char* CallScilabBridge::readLine (JavaVM * jvm_)
-{
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID jstringreadLineID = curEnv->GetStaticMethodID(cls, "readLine", "()Ljava/lang/String;" ) ;
-    if (jstringreadLineID == NULL)
-    {
-
-        jvm_->DetachCurrentThread();
-        throw GiwsException::JniMethodNotFoundException(curEnv, "readLine");
-    }
-
-    jstring res =  static_cast<jstring>( curEnv->CallStaticObjectMethod(cls, jstringreadLineID ));
-    if (curEnv->ExceptionCheck())
-    {
-
-        jvm_->DetachCurrentThread();
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    if (res != NULL)
-    {
-
-        const char *tempString = curEnv->GetStringUTFChars(res, 0);
-        char * myStringBuffer = new char[strlen(tempString) + 1];
-        strcpy(myStringBuffer, tempString);
-        curEnv->ReleaseStringUTFChars(res, tempString);
-        curEnv->DeleteLocalRef(res);
-        if (curEnv->ExceptionCheck())
-        {
-            delete[] myStringBuffer;
-
-            jvm_->DetachCurrentThread();
-            throw GiwsException::JniCallMethodException(curEnv);
-        }
-        jvm_->DetachCurrentThread();
-
-        return myStringBuffer;
-    }
-    else
-    {
-        curEnv->DeleteLocalRef(res);
-        return NULL;
-    }
+static jmethodID voiddisplayjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "display", "(Ljava/lang/String;)V" ) ;
+if (voiddisplayjstringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "display");
 }
 
-void CallScilabBridge::clear (JavaVM * jvm_)
+jstring dataToDisplay_ = curEnv->NewStringUTF( dataToDisplay );
+if (dataToDisplay != NULL && dataToDisplay_ == NULL)
 {
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidclearID = curEnv->GetStaticMethodID(cls, "clear", "()V" ) ;
-    if (voidclearID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "clear");
-    }
-
-    curEnv->CallStaticVoidMethod(cls, voidclearID );
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+throw GiwsException::JniBadAllocException(curEnv);
 }
 
-void CallScilabBridge::clear (JavaVM * jvm_, int nbLines)
-{
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidclearjintintID = curEnv->GetStaticMethodID(cls, "clear", "(I)V" ) ;
-    if (voidclearjintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "clear");
-    }
-
-    curEnv->CallStaticVoidMethod(cls, voidclearjintintID , nbLines);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+                         curEnv->CallStaticVoidMethod(cls, voiddisplayjstringjava_lang_StringID ,dataToDisplay_);
+                        curEnv->DeleteLocalRef(dataToDisplay_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 }
 
-int CallScilabBridge::getCharWithoutOutput (JavaVM * jvm_)
-{
+char* CallScilabBridge::readLine (JavaVM * jvm_){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-    static jmethodID jintgetCharWithoutOutputID = curEnv->GetStaticMethodID(cls, "getCharWithoutOutput", "()I" ) ;
-    if (jintgetCharWithoutOutputID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "getCharWithoutOutput");
-    }
+static jmethodID jstringreadLineID = curEnv->GetStaticMethodID(cls, "readLine", "()Ljava/lang/String;" ) ;
+if (jstringreadLineID == NULL) {
 
-    jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintgetCharWithoutOutputID ));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return res;
+jvm_->DetachCurrentThread();
+throw GiwsException::JniMethodNotFoundException(curEnv, "readLine");
+}
+
+                        jstring res =  static_cast<jstring>( curEnv->CallStaticObjectMethod(cls, jstringreadLineID ));
+                        if (curEnv->ExceptionCheck()) {
+
+jvm_->DetachCurrentThread();
+throw GiwsException::JniCallMethodException(curEnv);
+}if (res != NULL) { 
+
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer = new char[strlen(tempString) + 1];
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+curEnv->DeleteLocalRef(res);
+if (curEnv->ExceptionCheck()) {
+delete[] myStringBuffer;
+                                
+jvm_->DetachCurrentThread();
+throw GiwsException::JniCallMethodException(curEnv);
+}
+jvm_->DetachCurrentThread();
+
+return myStringBuffer;
+ } else { 
+curEnv->DeleteLocalRef(res);
+return NULL;
+}
+}
+
+void CallScilabBridge::clear (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidclearID = curEnv->GetStaticMethodID(cls, "clear", "()V" ) ;
+if (voidclearID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "clear");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidclearID );
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::clear (JavaVM * jvm_, int nbLines){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidclearjintintID = curEnv->GetStaticMethodID(cls, "clear", "(I)V" ) ;
+if (voidclearjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "clear");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidclearjintintID ,nbLines);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+int CallScilabBridge::getCharWithoutOutput (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jintgetCharWithoutOutputID = curEnv->GetStaticMethodID(cls, "getCharWithoutOutput", "()I" ) ;
+if (jintgetCharWithoutOutputID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getCharWithoutOutput");
+}
+
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintgetCharWithoutOutputID ));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
 
 }
 
-void CallScilabBridge::toHome (JavaVM * jvm_)
-{
+void CallScilabBridge::toHome (JavaVM * jvm_){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidtoHomeID = curEnv->GetStaticMethodID(cls, "toHome", "()V" ) ;
-    if (voidtoHomeID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "toHome");
-    }
-
-    curEnv->CallStaticVoidMethod(cls, voidtoHomeID );
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
 }
 
-void CallScilabBridge::scilabLinesUpdate (JavaVM * jvm_)
-{
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidscilabLinesUpdateID = curEnv->GetStaticMethodID(cls, "scilabLinesUpdate", "()V" ) ;
-    if (voidscilabLinesUpdateID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "scilabLinesUpdate");
-    }
-
-    curEnv->CallStaticVoidMethod(cls, voidscilabLinesUpdateID );
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+static jmethodID voidtoHomeID = curEnv->GetStaticMethodID(cls, "toHome", "()V" ) ;
+if (voidtoHomeID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "toHome");
 }
 
-void CallScilabBridge::setPrompt (JavaVM * jvm_, char const* promptToSet)
-{
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidsetPromptjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "setPrompt", "(Ljava/lang/String;)V" ) ;
-    if (voidsetPromptjstringjava_lang_StringID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "setPrompt");
-    }
-
-    jstring promptToSet_ = curEnv->NewStringUTF( promptToSet );
-    if (promptToSet != NULL && promptToSet_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-
-    curEnv->CallStaticVoidMethod(cls, voidsetPromptjstringjava_lang_StringID , promptToSet_);
-    curEnv->DeleteLocalRef(promptToSet_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+                         curEnv->CallStaticVoidMethod(cls, voidtoHomeID );
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 }
 
-bool CallScilabBridge::isWaitingForInput (JavaVM * jvm_)
+void CallScilabBridge::scilabLinesUpdate (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidscilabLinesUpdateID = curEnv->GetStaticMethodID(cls, "scilabLinesUpdate", "()V" ) ;
+if (voidscilabLinesUpdateID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "scilabLinesUpdate");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidscilabLinesUpdateID );
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::setPrompt (JavaVM * jvm_, char const* promptToSet){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidsetPromptjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "setPrompt", "(Ljava/lang/String;)V" ) ;
+if (voidsetPromptjstringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setPrompt");
+}
+
+jstring promptToSet_ = curEnv->NewStringUTF( promptToSet );
+if (promptToSet != NULL && promptToSet_ == NULL)
 {
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
 
-    static jmethodID jbooleanisWaitingForInputID = curEnv->GetStaticMethodID(cls, "isWaitingForInput", "()Z" ) ;
-    if (jbooleanisWaitingForInputID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "isWaitingForInput");
-    }
+                         curEnv->CallStaticVoidMethod(cls, voidsetPromptjstringjava_lang_StringID ,promptToSet_);
+                        curEnv->DeleteLocalRef(promptToSet_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
 
-    jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleanisWaitingForInputID ));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return (res == JNI_TRUE);
+bool CallScilabBridge::isWaitingForInput (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jbooleanisWaitingForInputID = curEnv->GetStaticMethodID(cls, "isWaitingForInput", "()Z" ) ;
+if (jbooleanisWaitingForInputID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "isWaitingForInput");
+}
+
+                        jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleanisWaitingForInputID ));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return (res == JNI_TRUE);
 
 }
 

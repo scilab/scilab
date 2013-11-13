@@ -36,291 +36,248 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
 
-namespace org_scilab_modules_graphic_export
-{
+namespace org_scilab_modules_graphic_export {
 
-// Static declarations (if any)
-
+                // Static declarations (if any)
+                
 // Returns the current env
 
-JNIEnv * Driver::getCurrentEnv()
-{
-    JNIEnv * curEnv = NULL;
-    jint res = this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    if (res != JNI_OK)
-    {
-        throw GiwsException::JniException(getCurrentEnv());
-    }
-    return curEnv;
+JNIEnv * Driver::getCurrentEnv() {
+JNIEnv * curEnv = NULL;
+jint res=this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+if (res != JNI_OK) {
+throw GiwsException::JniException(getCurrentEnv());
+}
+return curEnv;
 }
 // Destructor
 
-Driver::~Driver()
-{
-    JNIEnv * curEnv = NULL;
-    this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    curEnv->DeleteGlobalRef(this->instance);
-    curEnv->DeleteGlobalRef(this->instanceClass);
+Driver::~Driver() {
+JNIEnv * curEnv = NULL;
+this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+curEnv->DeleteGlobalRef(this->instance);
+curEnv->DeleteGlobalRef(this->instanceClass);
 }
 // Constructors
-Driver::Driver(JavaVM * jvm_)
-{
-    jmethodID constructObject = NULL ;
-    jobject localInstance ;
-    jclass localClass ;
+Driver::Driver(JavaVM * jvm_) {
+jmethodID constructObject = NULL ;
+jobject localInstance ;
+jclass localClass ;
 
-    const std::string construct = "<init>";
-    const std::string param = "()V";
-    jvm = jvm_;
+const std::string construct="<init>";
+const std::string param="()V";
+jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+JNIEnv * curEnv = getCurrentEnv();
 
-    localClass = curEnv->FindClass( this->className().c_str() ) ;
-    if (localClass == NULL)
-    {
-        throw GiwsException::JniClassNotFoundException(curEnv, this->className());
-    }
+localClass = curEnv->FindClass( this->className().c_str() ) ;
+if (localClass == NULL) {
+  throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+}
 
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
 
-    /* localClass is not needed anymore */
-    curEnv->DeleteLocalRef(localClass);
+/* localClass is not needed anymore */
+curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
 
-    constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
-    if (constructObject == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
+if(constructObject == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
-    localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
-    if (localInstance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
+if(localInstance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+ 
+this->instance = curEnv->NewGlobalRef(localInstance) ;
+if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+/* localInstance not needed anymore */
+curEnv->DeleteLocalRef(localInstance);
 
-    this->instance = curEnv->NewGlobalRef(localInstance) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* localInstance not needed anymore */
-    curEnv->DeleteLocalRef(localInstance);
-
-    /* Methods ID set to NULL */
-    jbooleansetDriverjstringjava_lang_StringID = NULL;
-    jstringgetDriverID = NULL;
-    voidsetPathjstringjava_lang_StringID = NULL;
-    jstringendjintintID = NULL;
+                /* Methods ID set to NULL */
+jbooleansetDriverjstringjava_lang_StringID=NULL;
+jstringgetDriverID=NULL;
+voidsetPathjstringjava_lang_StringID=NULL;
+jstringendjintintID=NULL;
 
 
 }
 
-Driver::Driver(JavaVM * jvm_, jobject JObj)
-{
-    jvm = jvm_;
+Driver::Driver(JavaVM * jvm_, jobject JObj) {
+        jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+        JNIEnv * curEnv = getCurrentEnv();
 
-    jclass localClass = curEnv->GetObjectClass(JObj);
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
-    curEnv->DeleteLocalRef(localClass);
+jclass localClass = curEnv->GetObjectClass(JObj);
+        this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+        curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+        if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
 
-    this->instance = curEnv->NewGlobalRef(JObj) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* Methods ID set to NULL */
-    jbooleansetDriverjstringjava_lang_StringID = NULL;
-    jstringgetDriverID = NULL;
-    voidsetPathjstringjava_lang_StringID = NULL;
-    jstringendjintintID = NULL;
+        this->instance = curEnv->NewGlobalRef(JObj) ;
+        if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
+        /* Methods ID set to NULL */
+        jbooleansetDriverjstringjava_lang_StringID=NULL;
+jstringgetDriverID=NULL;
+voidsetPathjstringjava_lang_StringID=NULL;
+jstringendjintintID=NULL;
 
 
 }
 
 // Generic methods
 
-void Driver::synchronize()
-{
-    if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "Driver");
-    }
+void Driver::synchronize() {
+if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "Driver");
+}
 }
 
-void Driver::endSynchronize()
-{
-    if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "Driver");
-    }
+void Driver::endSynchronize() {
+if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "Driver");
+}
 }
 // Method(s)
 
-bool Driver::setDriver (JavaVM * jvm_, char const* driver)
+bool Driver::setDriver (JavaVM * jvm_, char const* driver){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jbooleansetDriverjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "setDriver", "(Ljava/lang/String;)Z" ) ;
+if (jbooleansetDriverjstringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setDriver");
+}
+
+jstring driver_ = curEnv->NewStringUTF( driver );
+if (driver != NULL && driver_ == NULL)
 {
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID jbooleansetDriverjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "setDriver", "(Ljava/lang/String;)Z" ) ;
-    if (jbooleansetDriverjstringjava_lang_StringID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "setDriver");
-    }
-
-    jstring driver_ = curEnv->NewStringUTF( driver );
-    if (driver != NULL && driver_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
 
-    jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleansetDriverjstringjava_lang_StringID , driver_));
-    curEnv->DeleteLocalRef(driver_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return (res == JNI_TRUE);
+                        jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleansetDriverjstringjava_lang_StringID ,driver_));
+                        curEnv->DeleteLocalRef(driver_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return (res == JNI_TRUE);
 
 }
 
-char* Driver::getDriver (JavaVM * jvm_)
-{
+char* Driver::getDriver (JavaVM * jvm_){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID jstringgetDriverID = curEnv->GetStaticMethodID(cls, "getDriver", "()Ljava/lang/String;" ) ;
-    if (jstringgetDriverID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "getDriver");
-    }
-
-    jstring res =  static_cast<jstring>( curEnv->CallStaticObjectMethod(cls, jstringgetDriverID ));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    if (res != NULL)
-    {
-
-        const char *tempString = curEnv->GetStringUTFChars(res, 0);
-        char * myStringBuffer = new char[strlen(tempString) + 1];
-        strcpy(myStringBuffer, tempString);
-        curEnv->ReleaseStringUTFChars(res, tempString);
-        curEnv->DeleteLocalRef(res);
-        if (curEnv->ExceptionCheck())
-        {
-            delete[] myStringBuffer;
-            throw GiwsException::JniCallMethodException(curEnv);
-        }
-        return myStringBuffer;
-    }
-    else
-    {
-        curEnv->DeleteLocalRef(res);
-        return NULL;
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
 }
 
-void Driver::setPath (JavaVM * jvm_, char const* path)
-{
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidsetPathjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "setPath", "(Ljava/lang/String;)V" ) ;
-    if (voidsetPathjstringjava_lang_StringID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "setPath");
-    }
-
-    jstring path_ = curEnv->NewStringUTF( path );
-    if (path != NULL && path_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-
-    curEnv->CallStaticVoidMethod(cls, voidsetPathjstringjava_lang_StringID , path_);
-    curEnv->DeleteLocalRef(path_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+static jmethodID jstringgetDriverID = curEnv->GetStaticMethodID(cls, "getDriver", "()Ljava/lang/String;" ) ;
+if (jstringgetDriverID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getDriver");
 }
 
-char* Driver::end (JavaVM * jvm_, int uid)
+                        jstring res =  static_cast<jstring>( curEnv->CallStaticObjectMethod(cls, jstringgetDriverID ));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}if (res != NULL) { 
+
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer = new char[strlen(tempString) + 1];
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+curEnv->DeleteLocalRef(res);
+if (curEnv->ExceptionCheck()) {
+delete[] myStringBuffer;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+return myStringBuffer;
+ } else { 
+curEnv->DeleteLocalRef(res);
+return NULL;
+}
+}
+
+void Driver::setPath (JavaVM * jvm_, char const* path){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidsetPathjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "setPath", "(Ljava/lang/String;)V" ) ;
+if (voidsetPathjstringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setPath");
+}
+
+jstring path_ = curEnv->NewStringUTF( path );
+if (path != NULL && path_ == NULL)
 {
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
 
-    static jmethodID jstringendjintintID = curEnv->GetStaticMethodID(cls, "end", "(I)Ljava/lang/String;" ) ;
-    if (jstringendjintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "end");
-    }
+                         curEnv->CallStaticVoidMethod(cls, voidsetPathjstringjava_lang_StringID ,path_);
+                        curEnv->DeleteLocalRef(path_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
 
-    jstring res =  static_cast<jstring>( curEnv->CallStaticObjectMethod(cls, jstringendjintintID , uid));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    if (res != NULL)
-    {
+char* Driver::end (JavaVM * jvm_, int uid){
 
-        const char *tempString = curEnv->GetStringUTFChars(res, 0);
-        char * myStringBuffer = new char[strlen(tempString) + 1];
-        strcpy(myStringBuffer, tempString);
-        curEnv->ReleaseStringUTFChars(res, tempString);
-        curEnv->DeleteLocalRef(res);
-        if (curEnv->ExceptionCheck())
-        {
-            delete[] myStringBuffer;
-            throw GiwsException::JniCallMethodException(curEnv);
-        }
-        return myStringBuffer;
-    }
-    else
-    {
-        curEnv->DeleteLocalRef(res);
-        return NULL;
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jstringendjintintID = curEnv->GetStaticMethodID(cls, "end", "(I)Ljava/lang/String;" ) ;
+if (jstringendjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "end");
+}
+
+                        jstring res =  static_cast<jstring>( curEnv->CallStaticObjectMethod(cls, jstringendjintintID ,uid));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}if (res != NULL) { 
+
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer = new char[strlen(tempString) + 1];
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+curEnv->DeleteLocalRef(res);
+if (curEnv->ExceptionCheck()) {
+delete[] myStringBuffer;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+return myStringBuffer;
+ } else { 
+curEnv->DeleteLocalRef(res);
+return NULL;
+}
 }
 
 }

@@ -36,314 +36,267 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
 
-namespace org_scilab_modules_gui_utils
-{
+namespace org_scilab_modules_gui_utils {
 
-// Static declarations (if any)
-
+                // Static declarations (if any)
+                
 // Returns the current env
 
-JNIEnv * LookAndFeelManager::getCurrentEnv()
-{
-    JNIEnv * curEnv = NULL;
-    jint res = this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    if (res != JNI_OK)
-    {
-        throw GiwsException::JniException(getCurrentEnv());
-    }
-    return curEnv;
+JNIEnv * LookAndFeelManager::getCurrentEnv() {
+JNIEnv * curEnv = NULL;
+jint res=this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+if (res != JNI_OK) {
+throw GiwsException::JniException(getCurrentEnv());
+}
+return curEnv;
 }
 // Destructor
 
-LookAndFeelManager::~LookAndFeelManager()
-{
-    JNIEnv * curEnv = NULL;
-    this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    curEnv->DeleteGlobalRef(this->instance);
-    curEnv->DeleteGlobalRef(this->instanceClass);
+LookAndFeelManager::~LookAndFeelManager() {
+JNIEnv * curEnv = NULL;
+this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+curEnv->DeleteGlobalRef(this->instance);
+curEnv->DeleteGlobalRef(this->instanceClass);
 }
 // Constructors
-LookAndFeelManager::LookAndFeelManager(JavaVM * jvm_)
-{
-    jmethodID constructObject = NULL ;
-    jobject localInstance ;
-    jclass localClass ;
+LookAndFeelManager::LookAndFeelManager(JavaVM * jvm_) {
+jmethodID constructObject = NULL ;
+jobject localInstance ;
+jclass localClass ;
 
-    const std::string construct = "<init>";
-    const std::string param = "()V";
-    jvm = jvm_;
+const std::string construct="<init>";
+const std::string param="()V";
+jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+JNIEnv * curEnv = getCurrentEnv();
 
-    localClass = curEnv->FindClass( this->className().c_str() ) ;
-    if (localClass == NULL)
-    {
-        throw GiwsException::JniClassNotFoundException(curEnv, this->className());
-    }
+localClass = curEnv->FindClass( this->className().c_str() ) ;
+if (localClass == NULL) {
+  throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+}
 
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
 
-    /* localClass is not needed anymore */
-    curEnv->DeleteLocalRef(localClass);
+/* localClass is not needed anymore */
+curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
 
-    constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
-    if (constructObject == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
+if(constructObject == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
-    localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
-    if (localInstance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
+if(localInstance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+ 
+this->instance = curEnv->NewGlobalRef(localInstance) ;
+if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+/* localInstance not needed anymore */
+curEnv->DeleteLocalRef(localInstance);
 
-    this->instance = curEnv->NewGlobalRef(localInstance) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* localInstance not needed anymore */
-    curEnv->DeleteLocalRef(localInstance);
-
-    /* Methods ID set to NULL */
-    jbooleanisSupportedLookAndFeeljstringjava_lang_StringID = NULL;
-    jstringgetCurrentLookAndFeelID = NULL;
-    jbooleansetLookAndFeeljstringjava_lang_StringID = NULL;
-    jbooleansetSystemLookAndFeelID = NULL;
-    jobjectArray_getInstalledLookAndFeelsID = NULL;
-    jintnumbersOfInstalledLookAndFeelsID = NULL;
+                /* Methods ID set to NULL */
+jbooleanisSupportedLookAndFeeljstringjava_lang_StringID=NULL;
+jstringgetCurrentLookAndFeelID=NULL;
+jbooleansetLookAndFeeljstringjava_lang_StringID=NULL;
+jbooleansetSystemLookAndFeelID=NULL;
+jobjectArray_getInstalledLookAndFeelsID=NULL;
+jintnumbersOfInstalledLookAndFeelsID=NULL;
 
 
 }
 
-LookAndFeelManager::LookAndFeelManager(JavaVM * jvm_, jobject JObj)
-{
-    jvm = jvm_;
+LookAndFeelManager::LookAndFeelManager(JavaVM * jvm_, jobject JObj) {
+        jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+        JNIEnv * curEnv = getCurrentEnv();
 
-    jclass localClass = curEnv->GetObjectClass(JObj);
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
-    curEnv->DeleteLocalRef(localClass);
+jclass localClass = curEnv->GetObjectClass(JObj);
+        this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+        curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+        if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
 
-    this->instance = curEnv->NewGlobalRef(JObj) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* Methods ID set to NULL */
-    jbooleanisSupportedLookAndFeeljstringjava_lang_StringID = NULL;
-    jstringgetCurrentLookAndFeelID = NULL;
-    jbooleansetLookAndFeeljstringjava_lang_StringID = NULL;
-    jbooleansetSystemLookAndFeelID = NULL;
-    jobjectArray_getInstalledLookAndFeelsID = NULL;
-    jintnumbersOfInstalledLookAndFeelsID = NULL;
+        this->instance = curEnv->NewGlobalRef(JObj) ;
+        if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
+        /* Methods ID set to NULL */
+        jbooleanisSupportedLookAndFeeljstringjava_lang_StringID=NULL;
+jstringgetCurrentLookAndFeelID=NULL;
+jbooleansetLookAndFeeljstringjava_lang_StringID=NULL;
+jbooleansetSystemLookAndFeelID=NULL;
+jobjectArray_getInstalledLookAndFeelsID=NULL;
+jintnumbersOfInstalledLookAndFeelsID=NULL;
 
 
 }
 
 // Generic methods
 
-void LookAndFeelManager::synchronize()
-{
-    if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "LookAndFeelManager");
-    }
+void LookAndFeelManager::synchronize() {
+if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "LookAndFeelManager");
+}
 }
 
-void LookAndFeelManager::endSynchronize()
-{
-    if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "LookAndFeelManager");
-    }
+void LookAndFeelManager::endSynchronize() {
+if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "LookAndFeelManager");
+}
 }
 // Method(s)
 
-bool LookAndFeelManager::isSupportedLookAndFeel (char const* lookandfeel)
+bool LookAndFeelManager::isSupportedLookAndFeel (char const* lookandfeel){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (jbooleanisSupportedLookAndFeeljstringjava_lang_StringID==NULL) { /* Use the cache */
+ jbooleanisSupportedLookAndFeeljstringjava_lang_StringID = curEnv->GetMethodID(this->instanceClass, "isSupportedLookAndFeel", "(Ljava/lang/String;)Z" ) ;
+if (jbooleanisSupportedLookAndFeeljstringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "isSupportedLookAndFeel");
+}
+}
+jstring lookandfeel_ = curEnv->NewStringUTF( lookandfeel );
+if (lookandfeel != NULL && lookandfeel_ == NULL)
 {
-
-    JNIEnv * curEnv = getCurrentEnv();
-
-    if (jbooleanisSupportedLookAndFeeljstringjava_lang_StringID == NULL) /* Use the cache */
-    {
-        jbooleanisSupportedLookAndFeeljstringjava_lang_StringID = curEnv->GetMethodID(this->instanceClass, "isSupportedLookAndFeel", "(Ljava/lang/String;)Z" ) ;
-        if (jbooleanisSupportedLookAndFeeljstringjava_lang_StringID == NULL)
-        {
-            throw GiwsException::JniMethodNotFoundException(curEnv, "isSupportedLookAndFeel");
-        }
-    }
-    jstring lookandfeel_ = curEnv->NewStringUTF( lookandfeel );
-    if (lookandfeel != NULL && lookandfeel_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
 
-    jboolean res =  static_cast<jboolean>( curEnv->CallBooleanMethod( this->instance, jbooleanisSupportedLookAndFeeljstringjava_lang_StringID , lookandfeel_));
-    curEnv->DeleteLocalRef(lookandfeel_);
+                        jboolean res =  static_cast<jboolean>( curEnv->CallBooleanMethod( this->instance, jbooleanisSupportedLookAndFeeljstringjava_lang_StringID ,lookandfeel_));
+                        curEnv->DeleteLocalRef(lookandfeel_);
 
-    return (res == JNI_TRUE);
+return (res == JNI_TRUE);
 
 }
 
-char* LookAndFeelManager::getCurrentLookAndFeel ()
-{
+char* LookAndFeelManager::getCurrentLookAndFeel (){
 
-    JNIEnv * curEnv = getCurrentEnv();
+JNIEnv * curEnv = getCurrentEnv();
 
-    if (jstringgetCurrentLookAndFeelID == NULL) /* Use the cache */
-    {
-        jstringgetCurrentLookAndFeelID = curEnv->GetMethodID(this->instanceClass, "getCurrentLookAndFeel", "()Ljava/lang/String;" ) ;
-        if (jstringgetCurrentLookAndFeelID == NULL)
-        {
-            throw GiwsException::JniMethodNotFoundException(curEnv, "getCurrentLookAndFeel");
-        }
-    }
-    jstring res =  static_cast<jstring>( curEnv->CallObjectMethod( this->instance, jstringgetCurrentLookAndFeelID ));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    if (res != NULL)
-    {
+if (jstringgetCurrentLookAndFeelID==NULL) { /* Use the cache */
+ jstringgetCurrentLookAndFeelID = curEnv->GetMethodID(this->instanceClass, "getCurrentLookAndFeel", "()Ljava/lang/String;" ) ;
+if (jstringgetCurrentLookAndFeelID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getCurrentLookAndFeel");
+}
+}
+                        jstring res =  static_cast<jstring>( curEnv->CallObjectMethod( this->instance, jstringgetCurrentLookAndFeelID ));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}if (res != NULL) { 
 
-        const char *tempString = curEnv->GetStringUTFChars(res, 0);
-        char * myStringBuffer = new char[strlen(tempString) + 1];
-        strcpy(myStringBuffer, tempString);
-        curEnv->ReleaseStringUTFChars(res, tempString);
-        curEnv->DeleteLocalRef(res);
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer = new char[strlen(tempString) + 1];
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+curEnv->DeleteLocalRef(res);
 
-        return myStringBuffer;
-    }
-    else
-    {
-        curEnv->DeleteLocalRef(res);
-        return NULL;
-    }
+return myStringBuffer;
+ } else { 
+curEnv->DeleteLocalRef(res);
+return NULL;
+}
 }
 
-bool LookAndFeelManager::setLookAndFeel (char const* lookandfeel)
+bool LookAndFeelManager::setLookAndFeel (char const* lookandfeel){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (jbooleansetLookAndFeeljstringjava_lang_StringID==NULL) { /* Use the cache */
+ jbooleansetLookAndFeeljstringjava_lang_StringID = curEnv->GetMethodID(this->instanceClass, "setLookAndFeel", "(Ljava/lang/String;)Z" ) ;
+if (jbooleansetLookAndFeeljstringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setLookAndFeel");
+}
+}
+jstring lookandfeel_ = curEnv->NewStringUTF( lookandfeel );
+if (lookandfeel != NULL && lookandfeel_ == NULL)
 {
-
-    JNIEnv * curEnv = getCurrentEnv();
-
-    if (jbooleansetLookAndFeeljstringjava_lang_StringID == NULL) /* Use the cache */
-    {
-        jbooleansetLookAndFeeljstringjava_lang_StringID = curEnv->GetMethodID(this->instanceClass, "setLookAndFeel", "(Ljava/lang/String;)Z" ) ;
-        if (jbooleansetLookAndFeeljstringjava_lang_StringID == NULL)
-        {
-            throw GiwsException::JniMethodNotFoundException(curEnv, "setLookAndFeel");
-        }
-    }
-    jstring lookandfeel_ = curEnv->NewStringUTF( lookandfeel );
-    if (lookandfeel != NULL && lookandfeel_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
 
-    jboolean res =  static_cast<jboolean>( curEnv->CallBooleanMethod( this->instance, jbooleansetLookAndFeeljstringjava_lang_StringID , lookandfeel_));
-    curEnv->DeleteLocalRef(lookandfeel_);
+                        jboolean res =  static_cast<jboolean>( curEnv->CallBooleanMethod( this->instance, jbooleansetLookAndFeeljstringjava_lang_StringID ,lookandfeel_));
+                        curEnv->DeleteLocalRef(lookandfeel_);
 
-    return (res == JNI_TRUE);
+return (res == JNI_TRUE);
 
 }
 
-bool LookAndFeelManager::setSystemLookAndFeel ()
-{
+bool LookAndFeelManager::setSystemLookAndFeel (){
 
-    JNIEnv * curEnv = getCurrentEnv();
+JNIEnv * curEnv = getCurrentEnv();
 
-    if (jbooleansetSystemLookAndFeelID == NULL) /* Use the cache */
-    {
-        jbooleansetSystemLookAndFeelID = curEnv->GetMethodID(this->instanceClass, "setSystemLookAndFeel", "()Z" ) ;
-        if (jbooleansetSystemLookAndFeelID == NULL)
-        {
-            throw GiwsException::JniMethodNotFoundException(curEnv, "setSystemLookAndFeel");
-        }
-    }
-    jboolean res =  static_cast<jboolean>( curEnv->CallBooleanMethod( this->instance, jbooleansetSystemLookAndFeelID ));
-
-    return (res == JNI_TRUE);
+if (jbooleansetSystemLookAndFeelID==NULL) { /* Use the cache */
+ jbooleansetSystemLookAndFeelID = curEnv->GetMethodID(this->instanceClass, "setSystemLookAndFeel", "()Z" ) ;
+if (jbooleansetSystemLookAndFeelID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setSystemLookAndFeel");
+}
+}
+                        jboolean res =  static_cast<jboolean>( curEnv->CallBooleanMethod( this->instance, jbooleansetSystemLookAndFeelID ));
+                        
+return (res == JNI_TRUE);
 
 }
 
-char** LookAndFeelManager::getInstalledLookAndFeels ()
-{
+char** LookAndFeelManager::getInstalledLookAndFeels (){
 
-    JNIEnv * curEnv = getCurrentEnv();
+JNIEnv * curEnv = getCurrentEnv();
 
-    if (jobjectArray_getInstalledLookAndFeelsID == NULL) /* Use the cache */
-    {
-        jobjectArray_getInstalledLookAndFeelsID = curEnv->GetMethodID(this->instanceClass, "getInstalledLookAndFeels", "()[Ljava/lang/String;" ) ;
-        if (jobjectArray_getInstalledLookAndFeelsID == NULL)
-        {
-            throw GiwsException::JniMethodNotFoundException(curEnv, "getInstalledLookAndFeels");
-        }
-    }
-    jobjectArray res =  static_cast<jobjectArray>( curEnv->CallObjectMethod( this->instance, jobjectArray_getInstalledLookAndFeelsID ));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    if (res != NULL)
-    {
-        int lenRow;
-        lenRow = curEnv->GetArrayLength(res);
+if (jobjectArray_getInstalledLookAndFeelsID==NULL) { /* Use the cache */
+ jobjectArray_getInstalledLookAndFeelsID = curEnv->GetMethodID(this->instanceClass, "getInstalledLookAndFeels", "()[Ljava/lang/String;" ) ;
+if (jobjectArray_getInstalledLookAndFeelsID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getInstalledLookAndFeels");
+}
+}
+                        jobjectArray res =  static_cast<jobjectArray>( curEnv->CallObjectMethod( this->instance, jobjectArray_getInstalledLookAndFeelsID ));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}if (res != NULL) { int lenRow;
+ lenRow = curEnv->GetArrayLength(res);
 
-        char **arrayOfString;
-        arrayOfString = new char *[lenRow];
-        for (jsize i = 0; i < lenRow; i++)
-        {
-            jstring resString = reinterpret_cast<jstring>(curEnv->GetObjectArrayElement(res, i));
-            const char *tempString = curEnv->GetStringUTFChars(resString, 0);
-            arrayOfString[i] = new char[strlen(tempString) + 1];
+char **arrayOfString;
+arrayOfString = new char *[lenRow];
+for (jsize i = 0; i < lenRow; i++){
+jstring resString = reinterpret_cast<jstring>(curEnv->GetObjectArrayElement(res, i));
+const char *tempString = curEnv->GetStringUTFChars(resString, 0);
+arrayOfString[i] = new char[strlen(tempString) + 1];
 
-            strcpy(arrayOfString[i], tempString);
-            curEnv->ReleaseStringUTFChars(resString, tempString);
-            curEnv->DeleteLocalRef(resString);
-        }
-
-        curEnv->DeleteLocalRef(res);
-        return arrayOfString;
-    }
-    else
-    {
-        curEnv->DeleteLocalRef(res);
-        return NULL;
-    }
+strcpy(arrayOfString[i], tempString);
+curEnv->ReleaseStringUTFChars(resString, tempString);
+curEnv->DeleteLocalRef(resString);
 }
 
-int LookAndFeelManager::numbersOfInstalledLookAndFeels ()
-{
+curEnv->DeleteLocalRef(res);
+return arrayOfString;
+ } else { 
+curEnv->DeleteLocalRef(res);
+return NULL;
+}
+}
 
-    JNIEnv * curEnv = getCurrentEnv();
+int LookAndFeelManager::numbersOfInstalledLookAndFeels (){
 
-    if (jintnumbersOfInstalledLookAndFeelsID == NULL) /* Use the cache */
-    {
-        jintnumbersOfInstalledLookAndFeelsID = curEnv->GetMethodID(this->instanceClass, "numbersOfInstalledLookAndFeels", "()I" ) ;
-        if (jintnumbersOfInstalledLookAndFeelsID == NULL)
-        {
-            throw GiwsException::JniMethodNotFoundException(curEnv, "numbersOfInstalledLookAndFeels");
-        }
-    }
-    jint res =  static_cast<jint>( curEnv->CallIntMethod( this->instance, jintnumbersOfInstalledLookAndFeelsID ));
+JNIEnv * curEnv = getCurrentEnv();
 
-    return res;
+if (jintnumbersOfInstalledLookAndFeelsID==NULL) { /* Use the cache */
+ jintnumbersOfInstalledLookAndFeelsID = curEnv->GetMethodID(this->instanceClass, "numbersOfInstalledLookAndFeels", "()I" ) ;
+if (jintnumbersOfInstalledLookAndFeelsID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "numbersOfInstalledLookAndFeels");
+}
+}
+                        jint res =  static_cast<jint>( curEnv->CallIntMethod( this->instance, jintnumbersOfInstalledLookAndFeelsID ));
+                        
+return res;
 
 }
 

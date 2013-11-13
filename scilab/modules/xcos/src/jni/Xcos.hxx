@@ -46,11 +46,11 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 #include "GiwsException.hxx"
 
-#if defined(_MSC_VER) /* Defined anyway with Visual */
-#include <Windows.h>
-#else
-typedef signed char byte;
-#endif
+        #if defined(_MSC_VER) /* Defined anyway with Visual */
+            #include <Windows.h>
+        #else
+            typedef signed char byte;
+        #endif
 
 
 #ifndef GIWSEXPORT
@@ -69,135 +69,133 @@ typedef signed char byte;
 # endif
 #endif
 
-namespace org_scilab_modules_xcos
-{
-class GIWSEXPORT Xcos
-{
+namespace org_scilab_modules_xcos {
+class GIWSEXPORT Xcos {
 
 private:
-    JavaVM * jvm;
+JavaVM * jvm;
 
 protected:
-    jmethodID voidxcosjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-    jmethodID voidwarnCellByUIDjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-    jclass stringArrayClass;
-    jmethodID voidcloseXcosFromScilabID; // cache method id
-    jmethodID jintxcosDiagramToScilabjstringjava_lang_StringID; // cache method id
-    jmethodID voidxcosDiagramOpenjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
-    jmethodID voidxcosDiagramClosejobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
-    jmethodID voidaddToolsMenujstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-    jmethodID voidupdateBlockjstringjava_lang_StringID; // cache method id
-    jmethodID voidxcosSimulationStartedID; // cache method id
+jmethodID voidxcosjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
+jmethodID voidwarnCellByUIDjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_StringID; // cache method id
+jclass stringArrayClass;
+jmethodID voidcloseXcosFromScilabID; // cache method id
+jmethodID jintxcosDiagramToScilabjstringjava_lang_StringID; // cache method id
+jmethodID voidxcosDiagramOpenjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
+jmethodID voidxcosDiagramClosejobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
+jmethodID voidaddToolsMenujstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
+jmethodID voidupdateBlockjstringjava_lang_StringID; // cache method id
+jmethodID voidxcosSimulationStartedID; // cache method id
 
 
 
-    jobject instance;
-    jclass instanceClass; // cache class
+jobject instance;
+jclass instanceClass; // cache class
+
+                       
+// Caching (if any)
 
 
-    // Caching (if any)
-
-
-    /**
-    * Get the environment matching to the current thread.
-    */
-    virtual JNIEnv * getCurrentEnv();
+/**
+* Get the environment matching to the current thread.
+*/
+virtual JNIEnv * getCurrentEnv();
 
 public:
-    // Constructor
-    /**
-    * Create a wrapping of the object from a JNIEnv.
-    * It will call the default constructor
-    * @param JEnv_ the Java Env
-    */
-    Xcos(JavaVM * jvm_);
+// Constructor
+/**
+* Create a wrapping of the object from a JNIEnv.
+* It will call the default constructor
+* @param JEnv_ the Java Env
+*/
+Xcos(JavaVM * jvm_);
 
-    /**
-    * Create a wrapping of an already existing object from a JNIEnv.
-    * The object must have already been instantiated
-    * @param JEnv_ the Java Env
-    * @param JObj the object
-    */
-    Xcos(JavaVM * jvm_, jobject JObj);
+/**
+* Create a wrapping of an already existing object from a JNIEnv.
+* The object must have already been instantiated
+* @param JEnv_ the Java Env
+* @param JObj the object
+*/
+Xcos(JavaVM * jvm_, jobject JObj);
 
 
-    /**
-    * This is a fake constructor to avoid the constructor
-    * chaining when dealing with extended giws classes
-    */
+/** 
+* This is a fake constructor to avoid the constructor
+* chaining when dealing with extended giws classes 
+*/
 #ifdef FAKEGIWSDATATYPE
-    Xcos(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
+Xcos(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
 #endif
 
-    // Destructor
-    ~Xcos();
+// Destructor
+~Xcos();
 
-    // Generic method
-    // Synchronization methods
-    /**
-    * Enter monitor associated with the object.
-    * Equivalent of creating a "synchronized(obj)" scope in Java.
-    */
-    void synchronize();
+// Generic method
+// Synchronization methods
+/**
+* Enter monitor associated with the object.
+* Equivalent of creating a "synchronized(obj)" scope in Java.
+*/
+void synchronize();
 
-    /**
-    * Exit monitor associated with the object.
-    * Equivalent of ending a "synchronized(obj)" scope.
-    */
-    void endSynchronize();
+/**
+* Exit monitor associated with the object.
+* Equivalent of ending a "synchronized(obj)" scope.
+*/
+void endSynchronize();
 
-    // Methods
-    static void xcos(JavaVM * jvm_, char const* file, char const* variable);
+// Methods
+static void xcos(JavaVM * jvm_, char const* file, char const* variable);
 
-    static void warnCellByUID(JavaVM * jvm_, char const* const* uids, int uidsSize, char const* message);
+static void warnCellByUID(JavaVM * jvm_, char const* const* uids, int uidsSize, char const* message);
 
-    static void closeXcosFromScilab(JavaVM * jvm_);
+static void closeXcosFromScilab(JavaVM * jvm_);
 
-    static int xcosDiagramToScilab(JavaVM * jvm_, char const* xcosFile);
+static int xcosDiagramToScilab(JavaVM * jvm_, char const* xcosFile);
 
-    static void xcosDiagramOpen(JavaVM * jvm_, char const* const* UID, int UIDSize);
+static void xcosDiagramOpen(JavaVM * jvm_, char const* const* UID, int UIDSize);
 
-    static void xcosDiagramClose(JavaVM * jvm_, char const* const* UID, int UIDSize);
+static void xcosDiagramClose(JavaVM * jvm_, char const* const* UID, int UIDSize);
 
-    static void addToolsMenu(JavaVM * jvm_, char const* label, char const* command);
+static void addToolsMenu(JavaVM * jvm_, char const* label, char const* command);
 
-    static void updateBlock(JavaVM * jvm_, char const* h5File);
+static void updateBlock(JavaVM * jvm_, char const* h5File);
 
-    static void xcosSimulationStarted(JavaVM * jvm_);
-
-
-    /**
-    * Get class name to use for static methods
-    * @return class name to use for static methods
-    */
-
-    static const std::string className()
-    {
-        return "org/scilab/modules/xcos/Xcos";
-    }
+static void xcosSimulationStarted(JavaVM * jvm_);
 
 
-    /**
-    * Get class to use for static methods
-    * @return class to use for static methods
-    */
+                        /**
+                        * Get class name to use for static methods
+                        * @return class name to use for static methods
+                        */
+                        
+                static const std::string className()
+                {
+                return "org/scilab/modules/xcos/Xcos";
+                }
+                
 
-    static jclass initClass(JNIEnv * curEnv)
-    {
-        static jclass cls = 0;
+                        /**
+                        * Get class to use for static methods
+                        * @return class to use for static methods
+                        */
+                        
+                static jclass initClass(JNIEnv * curEnv)
+                {
+                    static jclass cls = 0;
 
-        if (cls == 0)
-        {
-            jclass _cls = curEnv->FindClass(className().c_str());
-            if (_cls)
-            {
-                cls = static_cast<jclass>(curEnv->NewGlobalRef(_cls));
-            }
-        }
+                    if (cls == 0)
+                    {
+                        jclass _cls = curEnv->FindClass(className().c_str());
+                        if (_cls)
+                        {
+                            cls = static_cast<jclass>(curEnv->NewGlobalRef(_cls));
+                        }
+                    }
 
-        return cls;
-    }
-
+                    return cls;
+                 }
+                
 };
 
 

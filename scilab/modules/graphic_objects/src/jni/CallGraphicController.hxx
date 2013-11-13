@@ -46,11 +46,11 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 #include "GiwsException.hxx"
 
-#if defined(_MSC_VER) /* Defined anyway with Visual */
-#include <Windows.h>
-#else
-typedef signed char byte;
-#endif
+        #if defined(_MSC_VER) /* Defined anyway with Visual */
+            #include <Windows.h>
+        #else
+            typedef signed char byte;
+        #endif
 
 
 #ifndef GIWSEXPORT
@@ -69,174 +69,172 @@ typedef signed char byte;
 # endif
 #endif
 
-namespace org_scilab_modules_graphic_objects
-{
-class GIWSEXPORT CallGraphicController
-{
+namespace org_scilab_modules_graphic_objects {
+class GIWSEXPORT CallGraphicController {
 
 private:
-    JavaVM * jvm;
+JavaVM * jvm;
 
 protected:
-    jmethodID voiddeleteGraphicObjectjintintID; // cache method id
-    jmethodID jintcloneGraphicObjectjintintID; // cache method id
-    jmethodID jintaskGraphicObjectjintintID; // cache method id
-    jmethodID voidsetGraphicObjectRelationshipjintintjintintID; // cache method id
-    jmethodID voidremoveRelationShipAndDeletejintintID; // cache method id
-    jmethodID jstringgetGraphicObjectPropertyAsStringjintintjintintID; // cache method id
-    jmethodID jbooleansetGraphicObjectPropertyjintintjintintjstringjava_lang_StringID; // cache method id
-    jmethodID jobjectArray_getGraphicObjectPropertyAsStringVectorjintintjintintID; // cache method id
-    jmethodID jbooleansetGraphicObjectPropertyjintintjintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
-    jclass stringArrayClass;
-    jmethodID jbooleansetGraphicObjectPropertyjintintjintintjdoubledoubleID; // cache method id
-    jmethodID jdoubleArray_getGraphicObjectPropertyAsDoubleVectorjintintjintintID; // cache method id
-    jmethodID jbooleansetGraphicObjectPropertyjintintjintintjdoubleArray_doubledoubleID; // cache method id
-    jmethodID jbooleansetGraphicObjectPropertyjintintjintintjintintID; // cache method id
-    jmethodID jintArray_getGraphicObjectPropertyAsIntegerVectorjintintjintintID; // cache method id
-    jmethodID jbooleansetGraphicObjectPropertyjintintjintintjintArray_intintID; // cache method id
-    jmethodID jbooleansetGraphicObjectPropertyjintintjintintjbooleanbooleanID; // cache method id
-    jmethodID jintArray_getGraphicObjectPropertyAsBooleanVectorjintintjintintID; // cache method id
-    jmethodID jbooleansetGraphicObjectPropertyjintintjintintjbooleanArray_booleanbooleanID; // cache method id
-    jmethodID voidregisterScilabViewID; // cache method id
-    jmethodID voidunregisterScilabViewID; // cache method id
-    jmethodID jintgetConsoleIdentifierID; // cache method id
-    jmethodID voidbuildFigureMenuBarjintintID; // cache method id
+jmethodID voiddeleteGraphicObjectjintintID; // cache method id
+jmethodID jintcloneGraphicObjectjintintID; // cache method id
+jmethodID jintaskGraphicObjectjintintID; // cache method id
+jmethodID voidsetGraphicObjectRelationshipjintintjintintID; // cache method id
+jmethodID voidremoveRelationShipAndDeletejintintID; // cache method id
+jmethodID jstringgetGraphicObjectPropertyAsStringjintintjintintID; // cache method id
+jmethodID jbooleansetGraphicObjectPropertyjintintjintintjstringjava_lang_StringID; // cache method id
+jmethodID jobjectArray_getGraphicObjectPropertyAsStringVectorjintintjintintID; // cache method id
+jmethodID jbooleansetGraphicObjectPropertyjintintjintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
+jclass stringArrayClass;
+jmethodID jbooleansetGraphicObjectPropertyjintintjintintjdoubledoubleID; // cache method id
+jmethodID jdoubleArray_getGraphicObjectPropertyAsDoubleVectorjintintjintintID; // cache method id
+jmethodID jbooleansetGraphicObjectPropertyjintintjintintjdoubleArray_doubledoubleID; // cache method id
+jmethodID jbooleansetGraphicObjectPropertyjintintjintintjintintID; // cache method id
+jmethodID jintArray_getGraphicObjectPropertyAsIntegerVectorjintintjintintID; // cache method id
+jmethodID jbooleansetGraphicObjectPropertyjintintjintintjintArray_intintID; // cache method id
+jmethodID jbooleansetGraphicObjectPropertyjintintjintintjbooleanbooleanID; // cache method id
+jmethodID jintArray_getGraphicObjectPropertyAsBooleanVectorjintintjintintID; // cache method id
+jmethodID jbooleansetGraphicObjectPropertyjintintjintintjbooleanArray_booleanbooleanID; // cache method id
+jmethodID voidregisterScilabViewID; // cache method id
+jmethodID voidunregisterScilabViewID; // cache method id
+jmethodID jintgetConsoleIdentifierID; // cache method id
+jmethodID voidbuildFigureMenuBarjintintID; // cache method id
 
 
 
-    jobject instance;
-    jclass instanceClass; // cache class
+jobject instance;
+jclass instanceClass; // cache class
+
+                       
+// Caching (if any)
 
 
-    // Caching (if any)
-
-
-    /**
-    * Get the environment matching to the current thread.
-    */
-    virtual JNIEnv * getCurrentEnv();
+/**
+* Get the environment matching to the current thread.
+*/
+virtual JNIEnv * getCurrentEnv();
 
 public:
-    // Constructor
-    /**
-    * Create a wrapping of the object from a JNIEnv.
-    * It will call the default constructor
-    * @param JEnv_ the Java Env
-    */
-    CallGraphicController(JavaVM * jvm_);
+// Constructor
+/**
+* Create a wrapping of the object from a JNIEnv.
+* It will call the default constructor
+* @param JEnv_ the Java Env
+*/
+CallGraphicController(JavaVM * jvm_);
 
-    /**
-    * Create a wrapping of an already existing object from a JNIEnv.
-    * The object must have already been instantiated
-    * @param JEnv_ the Java Env
-    * @param JObj the object
-    */
-    CallGraphicController(JavaVM * jvm_, jobject JObj);
+/**
+* Create a wrapping of an already existing object from a JNIEnv.
+* The object must have already been instantiated
+* @param JEnv_ the Java Env
+* @param JObj the object
+*/
+CallGraphicController(JavaVM * jvm_, jobject JObj);
 
 
-    /**
-    * This is a fake constructor to avoid the constructor
-    * chaining when dealing with extended giws classes
-    */
+/** 
+* This is a fake constructor to avoid the constructor
+* chaining when dealing with extended giws classes 
+*/
 #ifdef FAKEGIWSDATATYPE
-    CallGraphicController(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
+CallGraphicController(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
 #endif
 
-    // Destructor
-    ~CallGraphicController();
+// Destructor
+~CallGraphicController();
 
-    // Generic method
-    // Synchronization methods
-    /**
-    * Enter monitor associated with the object.
-    * Equivalent of creating a "synchronized(obj)" scope in Java.
-    */
-    void synchronize();
+// Generic method
+// Synchronization methods
+/**
+* Enter monitor associated with the object.
+* Equivalent of creating a "synchronized(obj)" scope in Java.
+*/
+void synchronize();
 
-    /**
-    * Exit monitor associated with the object.
-    * Equivalent of ending a "synchronized(obj)" scope.
-    */
-    void endSynchronize();
+/**
+* Exit monitor associated with the object.
+* Equivalent of ending a "synchronized(obj)" scope.
+*/
+void endSynchronize();
 
-    // Methods
-    static void deleteGraphicObject(JavaVM * jvm_, int id);
+// Methods
+static void deleteGraphicObject(JavaVM * jvm_, int id);
 
-    static int cloneGraphicObject(JavaVM * jvm_, int id);
+static int cloneGraphicObject(JavaVM * jvm_, int id);
 
-    static int askGraphicObject(JavaVM * jvm_, int typeName);
+static int askGraphicObject(JavaVM * jvm_, int typeName);
 
-    static void setGraphicObjectRelationship(JavaVM * jvm_, int parentId, int childId);
+static void setGraphicObjectRelationship(JavaVM * jvm_, int parentId, int childId);
 
-    static void removeRelationShipAndDelete(JavaVM * jvm_, int id);
+static void removeRelationShipAndDelete(JavaVM * jvm_, int id);
 
-    static char* getGraphicObjectPropertyAsString(JavaVM * jvm_, int id, int propertyName);
+static char* getGraphicObjectPropertyAsString(JavaVM * jvm_, int id, int propertyName);
 
-    static bool setGraphicObjectProperty(JavaVM * jvm_, int id, int propertyName, char const* value);
+static bool setGraphicObjectProperty(JavaVM * jvm_, int id, int propertyName, char const* value);
 
-    static char** getGraphicObjectPropertyAsStringVector(JavaVM * jvm_, int id, int propertyName);
+static char** getGraphicObjectPropertyAsStringVector(JavaVM * jvm_, int id, int propertyName);
 
-    static bool setGraphicObjectProperty(JavaVM * jvm_, int id, int propertyName, char const* const* value, int valueSize);
+static bool setGraphicObjectProperty(JavaVM * jvm_, int id, int propertyName, char const* const* value, int valueSize);
 
-    static bool setGraphicObjectProperty(JavaVM * jvm_, int id, int propertyName, double value);
+static bool setGraphicObjectProperty(JavaVM * jvm_, int id, int propertyName, double value);
 
-    static double* getGraphicObjectPropertyAsDoubleVector(JavaVM * jvm_, int id, int propertyName);
+static double* getGraphicObjectPropertyAsDoubleVector(JavaVM * jvm_, int id, int propertyName);
 
-    static bool setGraphicObjectProperty(JavaVM * jvm_, int id, int propertyName, double const* value, int valueSize);
+static bool setGraphicObjectProperty(JavaVM * jvm_, int id, int propertyName, double const* value, int valueSize);
 
-    static bool setGraphicObjectProperty(JavaVM * jvm_, int id, int propertyName, int value);
+static bool setGraphicObjectProperty(JavaVM * jvm_, int id, int propertyName, int value);
 
-    static int* getGraphicObjectPropertyAsIntegerVector(JavaVM * jvm_, int id, int propertyName);
+static int* getGraphicObjectPropertyAsIntegerVector(JavaVM * jvm_, int id, int propertyName);
 
-    static bool setGraphicObjectProperty(JavaVM * jvm_, int id, int propertyName, int const* value, int valueSize);
+static bool setGraphicObjectProperty(JavaVM * jvm_, int id, int propertyName, int const* value, int valueSize);
 
-    static bool setGraphicObjectProperty(JavaVM * jvm_, int id, int propertyName, bool value);
+static bool setGraphicObjectProperty(JavaVM * jvm_, int id, int propertyName, bool value);
 
-    static int* getGraphicObjectPropertyAsBooleanVector(JavaVM * jvm_, int id, int propertyName);
+static int* getGraphicObjectPropertyAsBooleanVector(JavaVM * jvm_, int id, int propertyName);
 
-    static bool setGraphicObjectProperty(JavaVM * jvm_, int id, int propertyName, bool const* value, int valueSize);
+static bool setGraphicObjectProperty(JavaVM * jvm_, int id, int propertyName, bool const* value, int valueSize);
 
-    static void registerScilabView(JavaVM * jvm_);
+static void registerScilabView(JavaVM * jvm_);
 
-    static void unregisterScilabView(JavaVM * jvm_);
+static void unregisterScilabView(JavaVM * jvm_);
 
-    static int getConsoleIdentifier(JavaVM * jvm_);
+static int getConsoleIdentifier(JavaVM * jvm_);
 
-    static void buildFigureMenuBar(JavaVM * jvm_, int figureId);
-
-
-    /**
-    * Get class name to use for static methods
-    * @return class name to use for static methods
-    */
-
-    static const std::string className()
-    {
-        return "org/scilab/modules/graphic_objects/CallGraphicController";
-    }
+static void buildFigureMenuBar(JavaVM * jvm_, int figureId);
 
 
-    /**
-    * Get class to use for static methods
-    * @return class to use for static methods
-    */
+                        /**
+                        * Get class name to use for static methods
+                        * @return class name to use for static methods
+                        */
+                        
+                static const std::string className()
+                {
+                return "org/scilab/modules/graphic_objects/CallGraphicController";
+                }
+                
 
-    static jclass initClass(JNIEnv * curEnv)
-    {
-        static jclass cls = 0;
+                        /**
+                        * Get class to use for static methods
+                        * @return class to use for static methods
+                        */
+                        
+                static jclass initClass(JNIEnv * curEnv)
+                {
+                    static jclass cls = 0;
 
-        if (cls == 0)
-        {
-            jclass _cls = curEnv->FindClass(className().c_str());
-            if (_cls)
-            {
-                cls = static_cast<jclass>(curEnv->NewGlobalRef(_cls));
-            }
-        }
+                    if (cls == 0)
+                    {
+                        jclass _cls = curEnv->FindClass(className().c_str());
+                        if (_cls)
+                        {
+                            cls = static_cast<jclass>(curEnv->NewGlobalRef(_cls));
+                        }
+                    }
 
-        return cls;
-    }
-
+                    return cls;
+                 }
+                
 };
 
 

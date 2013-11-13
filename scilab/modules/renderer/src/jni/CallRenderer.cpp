@@ -36,566 +36,477 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
 
-namespace org_scilab_modules_renderer
-{
+namespace org_scilab_modules_renderer {
 
-// Static declarations (if any)
-
+                // Static declarations (if any)
+                
 // Returns the current env
 
-JNIEnv * CallRenderer::getCurrentEnv()
-{
-    JNIEnv * curEnv = NULL;
-    jint res = this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    if (res != JNI_OK)
-    {
-        throw GiwsException::JniException(getCurrentEnv());
-    }
-    return curEnv;
+JNIEnv * CallRenderer::getCurrentEnv() {
+JNIEnv * curEnv = NULL;
+jint res=this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+if (res != JNI_OK) {
+throw GiwsException::JniException(getCurrentEnv());
+}
+return curEnv;
 }
 // Destructor
 
-CallRenderer::~CallRenderer()
-{
-    JNIEnv * curEnv = NULL;
-    this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    curEnv->DeleteGlobalRef(this->instance);
-    curEnv->DeleteGlobalRef(this->instanceClass);
+CallRenderer::~CallRenderer() {
+JNIEnv * curEnv = NULL;
+this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+curEnv->DeleteGlobalRef(this->instance);
+curEnv->DeleteGlobalRef(this->instanceClass);
 }
 // Constructors
-CallRenderer::CallRenderer(JavaVM * jvm_)
-{
-    jmethodID constructObject = NULL ;
-    jobject localInstance ;
-    jclass localClass ;
+CallRenderer::CallRenderer(JavaVM * jvm_) {
+jmethodID constructObject = NULL ;
+jobject localInstance ;
+jclass localClass ;
 
-    const std::string construct = "<init>";
-    const std::string param = "()V";
-    jvm = jvm_;
+const std::string construct="<init>";
+const std::string param="()V";
+jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+JNIEnv * curEnv = getCurrentEnv();
 
-    localClass = curEnv->FindClass( this->className().c_str() ) ;
-    if (localClass == NULL)
-    {
-        throw GiwsException::JniClassNotFoundException(curEnv, this->className());
-    }
+localClass = curEnv->FindClass( this->className().c_str() ) ;
+if (localClass == NULL) {
+  throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+}
 
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
 
-    /* localClass is not needed anymore */
-    curEnv->DeleteLocalRef(localClass);
+/* localClass is not needed anymore */
+curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
 
-    constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
-    if (constructObject == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
+if(constructObject == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
-    localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
-    if (localInstance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
+if(localInstance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+ 
+this->instance = curEnv->NewGlobalRef(localInstance) ;
+if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+/* localInstance not needed anymore */
+curEnv->DeleteLocalRef(localInstance);
 
-    this->instance = curEnv->NewGlobalRef(localInstance) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* localInstance not needed anymore */
-    curEnv->DeleteLocalRef(localInstance);
-
-    /* Methods ID set to NULL */
-    voidstartInteractiveZoomjintintID = NULL;
-    jdoubleArray_clickRubberBoxjintintjdoubleArray_doubledoubleID = NULL;
-    jdoubleArray_dragRubberBoxjintintID = NULL;
-    voidupdateTextBoundsjintintID = NULL;
-    voidupdateSubwinScalejintintID = NULL;
-    jdoubleArray_get2dViewCoordinatesjintintjdoubleArray_doubledoubleID = NULL;
-    jdoubleArray_getPixelFrom2dViewCoordinatesjintintjdoubleArray_doubledoubleID = NULL;
-    jdoubleArray_get2dViewFromPixelCoordinatesjintintjdoubleArray_doubledoubleID = NULL;
-    jdoubleArray_getViewingAreajintintID = NULL;
+                /* Methods ID set to NULL */
+voidstartInteractiveZoomjintintID=NULL;
+jdoubleArray_clickRubberBoxjintintjdoubleArray_doubledoubleID=NULL;
+jdoubleArray_dragRubberBoxjintintID=NULL;
+voidupdateTextBoundsjintintID=NULL;
+voidupdateSubwinScalejintintID=NULL;
+jdoubleArray_get2dViewCoordinatesjintintjdoubleArray_doubledoubleID=NULL;
+jdoubleArray_getPixelFrom2dViewCoordinatesjintintjdoubleArray_doubledoubleID=NULL;
+jdoubleArray_get2dViewFromPixelCoordinatesjintintjdoubleArray_doubledoubleID=NULL;
+jdoubleArray_getViewingAreajintintID=NULL;
 
 
 }
 
-CallRenderer::CallRenderer(JavaVM * jvm_, jobject JObj)
-{
-    jvm = jvm_;
+CallRenderer::CallRenderer(JavaVM * jvm_, jobject JObj) {
+        jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+        JNIEnv * curEnv = getCurrentEnv();
 
-    jclass localClass = curEnv->GetObjectClass(JObj);
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
-    curEnv->DeleteLocalRef(localClass);
+jclass localClass = curEnv->GetObjectClass(JObj);
+        this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+        curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+        if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
 
-    this->instance = curEnv->NewGlobalRef(JObj) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* Methods ID set to NULL */
-    voidstartInteractiveZoomjintintID = NULL;
-    jdoubleArray_clickRubberBoxjintintjdoubleArray_doubledoubleID = NULL;
-    jdoubleArray_dragRubberBoxjintintID = NULL;
-    voidupdateTextBoundsjintintID = NULL;
-    voidupdateSubwinScalejintintID = NULL;
-    jdoubleArray_get2dViewCoordinatesjintintjdoubleArray_doubledoubleID = NULL;
-    jdoubleArray_getPixelFrom2dViewCoordinatesjintintjdoubleArray_doubledoubleID = NULL;
-    jdoubleArray_get2dViewFromPixelCoordinatesjintintjdoubleArray_doubledoubleID = NULL;
-    jdoubleArray_getViewingAreajintintID = NULL;
+        this->instance = curEnv->NewGlobalRef(JObj) ;
+        if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
+        /* Methods ID set to NULL */
+        voidstartInteractiveZoomjintintID=NULL;
+jdoubleArray_clickRubberBoxjintintjdoubleArray_doubledoubleID=NULL;
+jdoubleArray_dragRubberBoxjintintID=NULL;
+voidupdateTextBoundsjintintID=NULL;
+voidupdateSubwinScalejintintID=NULL;
+jdoubleArray_get2dViewCoordinatesjintintjdoubleArray_doubledoubleID=NULL;
+jdoubleArray_getPixelFrom2dViewCoordinatesjintintjdoubleArray_doubledoubleID=NULL;
+jdoubleArray_get2dViewFromPixelCoordinatesjintintjdoubleArray_doubledoubleID=NULL;
+jdoubleArray_getViewingAreajintintID=NULL;
 
 
 }
 
 // Generic methods
 
-void CallRenderer::synchronize()
-{
-    if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "CallRenderer");
-    }
+void CallRenderer::synchronize() {
+if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "CallRenderer");
+}
 }
 
-void CallRenderer::endSynchronize()
-{
-    if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "CallRenderer");
-    }
+void CallRenderer::endSynchronize() {
+if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "CallRenderer");
+}
 }
 // Method(s)
 
-void CallRenderer::startInteractiveZoom (JavaVM * jvm_, int id)
-{
+void CallRenderer::startInteractiveZoom (JavaVM * jvm_, int id){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidstartInteractiveZoomjintintID = curEnv->GetStaticMethodID(cls, "startInteractiveZoom", "(I)V" ) ;
-    if (voidstartInteractiveZoomjintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "startInteractiveZoom");
-    }
-
-    curEnv->CallStaticVoidMethod(cls, voidstartInteractiveZoomjintintID , id);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
 }
 
-double* CallRenderer::clickRubberBox (JavaVM * jvm_, int id, double const* startRectangle, int startRectangleSize)
+static jmethodID voidstartInteractiveZoomjintintID = curEnv->GetStaticMethodID(cls, "startInteractiveZoom", "(I)V" ) ;
+if (voidstartInteractiveZoomjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "startInteractiveZoom");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidstartInteractiveZoomjintintID ,id);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+double* CallRenderer::clickRubberBox (JavaVM * jvm_, int id, double const* startRectangle, int startRectangleSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jdoubleArray_clickRubberBoxjintintjdoubleArray_doubledoubleID = curEnv->GetStaticMethodID(cls, "clickRubberBox", "(I[D)[D" ) ;
+if (jdoubleArray_clickRubberBoxjintintjdoubleArray_doubledoubleID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "clickRubberBox");
+}
+
+jdoubleArray startRectangle_ = curEnv->NewDoubleArray( startRectangleSize ) ;
+
+if (startRectangle_ == NULL)
 {
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID jdoubleArray_clickRubberBoxjintintjdoubleArray_doubledoubleID = curEnv->GetStaticMethodID(cls, "clickRubberBox", "(I[D)[D" ) ;
-    if (jdoubleArray_clickRubberBoxjintintjdoubleArray_doubledoubleID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "clickRubberBox");
-    }
-
-    jdoubleArray startRectangle_ = curEnv->NewDoubleArray( startRectangleSize ) ;
-
-    if (startRectangle_ == NULL)
-    {
-        // check that allocation succeed
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-    curEnv->SetDoubleArrayRegion( startRectangle_, 0, startRectangleSize, (jdouble*)(startRectangle) ) ;
+curEnv->SetDoubleArrayRegion( startRectangle_, 0, startRectangleSize, (jdouble*)(startRectangle) ) ;
 
 
-    jdoubleArray res =  static_cast<jdoubleArray>( curEnv->CallStaticObjectMethod(cls, jdoubleArray_clickRubberBoxjintintjdoubleArray_doubledoubleID , id, startRectangle_));
-    if (res == NULL)
-    {
-        return NULL;
-    }
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    int lenRow;
-    lenRow = curEnv->GetArrayLength(res);
-    jboolean isCopy = JNI_FALSE;
+                        jdoubleArray res =  static_cast<jdoubleArray>( curEnv->CallStaticObjectMethod(cls, jdoubleArray_clickRubberBoxjintintjdoubleArray_doubledoubleID ,id, startRectangle_));
+                        if (res == NULL) { return NULL; }
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}int lenRow;
+ lenRow = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
 
-    /* GetPrimitiveArrayCritical is faster than getXXXArrayElements */
-    jdouble *resultsArray = static_cast<jdouble *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
-    double* myArray = new double[ lenRow];
+/* GetPrimitiveArrayCritical is faster than getXXXArrayElements */
+jdouble *resultsArray = static_cast<jdouble *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
+double* myArray= new double[ lenRow];
 
-    for (jsize i = 0; i <  lenRow; i++)
-    {
-        myArray[i] = resultsArray[i];
-    }
-    curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+for (jsize i = 0; i <  lenRow; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 
-    curEnv->DeleteLocalRef(res);
-    curEnv->DeleteLocalRef(startRectangle_);
-    if (curEnv->ExceptionCheck())
-    {
-        delete[] myArray;
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return myArray;
+                        curEnv->DeleteLocalRef(res);
+curEnv->DeleteLocalRef(startRectangle_);
+if (curEnv->ExceptionCheck()) {
+delete[] myArray;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+return myArray;
 
 }
 
-double* CallRenderer::dragRubberBox (JavaVM * jvm_, int id)
-{
+double* CallRenderer::dragRubberBox (JavaVM * jvm_, int id){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-    static jmethodID jdoubleArray_dragRubberBoxjintintID = curEnv->GetStaticMethodID(cls, "dragRubberBox", "(I)[D" ) ;
-    if (jdoubleArray_dragRubberBoxjintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "dragRubberBox");
-    }
+static jmethodID jdoubleArray_dragRubberBoxjintintID = curEnv->GetStaticMethodID(cls, "dragRubberBox", "(I)[D" ) ;
+if (jdoubleArray_dragRubberBoxjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "dragRubberBox");
+}
 
-    jdoubleArray res =  static_cast<jdoubleArray>( curEnv->CallStaticObjectMethod(cls, jdoubleArray_dragRubberBoxjintintID , id));
-    if (res == NULL)
-    {
-        return NULL;
-    }
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    int lenRow;
-    lenRow = curEnv->GetArrayLength(res);
-    jboolean isCopy = JNI_FALSE;
+                        jdoubleArray res =  static_cast<jdoubleArray>( curEnv->CallStaticObjectMethod(cls, jdoubleArray_dragRubberBoxjintintID ,id));
+                        if (res == NULL) { return NULL; }
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}int lenRow;
+ lenRow = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
 
-    /* GetPrimitiveArrayCritical is faster than getXXXArrayElements */
-    jdouble *resultsArray = static_cast<jdouble *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
-    double* myArray = new double[ lenRow];
+/* GetPrimitiveArrayCritical is faster than getXXXArrayElements */
+jdouble *resultsArray = static_cast<jdouble *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
+double* myArray= new double[ lenRow];
 
-    for (jsize i = 0; i <  lenRow; i++)
-    {
-        myArray[i] = resultsArray[i];
-    }
-    curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+for (jsize i = 0; i <  lenRow; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 
-    curEnv->DeleteLocalRef(res);
-    if (curEnv->ExceptionCheck())
-    {
-        delete[] myArray;
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return myArray;
+                        curEnv->DeleteLocalRef(res);
+if (curEnv->ExceptionCheck()) {
+delete[] myArray;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+return myArray;
 
 }
 
-void CallRenderer::updateTextBounds (JavaVM * jvm_, int id)
-{
+void CallRenderer::updateTextBounds (JavaVM * jvm_, int id){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidupdateTextBoundsjintintID = curEnv->GetStaticMethodID(cls, "updateTextBounds", "(I)V" ) ;
-    if (voidupdateTextBoundsjintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "updateTextBounds");
-    }
-
-    curEnv->CallStaticVoidMethod(cls, voidupdateTextBoundsjintintID , id);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
 }
 
-void CallRenderer::updateSubwinScale (JavaVM * jvm_, int id)
-{
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidupdateSubwinScalejintintID = curEnv->GetStaticMethodID(cls, "updateSubwinScale", "(I)V" ) ;
-    if (voidupdateSubwinScalejintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "updateSubwinScale");
-    }
-
-    curEnv->CallStaticVoidMethod(cls, voidupdateSubwinScalejintintID , id);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+static jmethodID voidupdateTextBoundsjintintID = curEnv->GetStaticMethodID(cls, "updateTextBounds", "(I)V" ) ;
+if (voidupdateTextBoundsjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "updateTextBounds");
 }
 
-double* CallRenderer::get2dViewCoordinates (JavaVM * jvm_, int id, double const* coords, int coordsSize)
+                         curEnv->CallStaticVoidMethod(cls, voidupdateTextBoundsjintintID ,id);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallRenderer::updateSubwinScale (JavaVM * jvm_, int id){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidupdateSubwinScalejintintID = curEnv->GetStaticMethodID(cls, "updateSubwinScale", "(I)V" ) ;
+if (voidupdateSubwinScalejintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "updateSubwinScale");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidupdateSubwinScalejintintID ,id);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+double* CallRenderer::get2dViewCoordinates (JavaVM * jvm_, int id, double const* coords, int coordsSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jdoubleArray_get2dViewCoordinatesjintintjdoubleArray_doubledoubleID = curEnv->GetStaticMethodID(cls, "get2dViewCoordinates", "(I[D)[D" ) ;
+if (jdoubleArray_get2dViewCoordinatesjintintjdoubleArray_doubledoubleID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "get2dViewCoordinates");
+}
+
+jdoubleArray coords_ = curEnv->NewDoubleArray( coordsSize ) ;
+
+if (coords_ == NULL)
 {
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID jdoubleArray_get2dViewCoordinatesjintintjdoubleArray_doubledoubleID = curEnv->GetStaticMethodID(cls, "get2dViewCoordinates", "(I[D)[D" ) ;
-    if (jdoubleArray_get2dViewCoordinatesjintintjdoubleArray_doubledoubleID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "get2dViewCoordinates");
-    }
-
-    jdoubleArray coords_ = curEnv->NewDoubleArray( coordsSize ) ;
-
-    if (coords_ == NULL)
-    {
-        // check that allocation succeed
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-    curEnv->SetDoubleArrayRegion( coords_, 0, coordsSize, (jdouble*)(coords) ) ;
+curEnv->SetDoubleArrayRegion( coords_, 0, coordsSize, (jdouble*)(coords) ) ;
 
 
-    jdoubleArray res =  static_cast<jdoubleArray>( curEnv->CallStaticObjectMethod(cls, jdoubleArray_get2dViewCoordinatesjintintjdoubleArray_doubledoubleID , id, coords_));
-    if (res == NULL)
-    {
-        return NULL;
-    }
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    int lenRow;
-    lenRow = curEnv->GetArrayLength(res);
-    jboolean isCopy = JNI_FALSE;
+                        jdoubleArray res =  static_cast<jdoubleArray>( curEnv->CallStaticObjectMethod(cls, jdoubleArray_get2dViewCoordinatesjintintjdoubleArray_doubledoubleID ,id, coords_));
+                        if (res == NULL) { return NULL; }
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}int lenRow;
+ lenRow = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
 
-    /* GetPrimitiveArrayCritical is faster than getXXXArrayElements */
-    jdouble *resultsArray = static_cast<jdouble *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
-    double* myArray = new double[ lenRow];
+/* GetPrimitiveArrayCritical is faster than getXXXArrayElements */
+jdouble *resultsArray = static_cast<jdouble *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
+double* myArray= new double[ lenRow];
 
-    for (jsize i = 0; i <  lenRow; i++)
-    {
-        myArray[i] = resultsArray[i];
-    }
-    curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+for (jsize i = 0; i <  lenRow; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 
-    curEnv->DeleteLocalRef(res);
-    curEnv->DeleteLocalRef(coords_);
-    if (curEnv->ExceptionCheck())
-    {
-        delete[] myArray;
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return myArray;
+                        curEnv->DeleteLocalRef(res);
+curEnv->DeleteLocalRef(coords_);
+if (curEnv->ExceptionCheck()) {
+delete[] myArray;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+return myArray;
 
 }
 
-double* CallRenderer::getPixelFrom2dViewCoordinates (JavaVM * jvm_, int id, double const* coords, int coordsSize)
+double* CallRenderer::getPixelFrom2dViewCoordinates (JavaVM * jvm_, int id, double const* coords, int coordsSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jdoubleArray_getPixelFrom2dViewCoordinatesjintintjdoubleArray_doubledoubleID = curEnv->GetStaticMethodID(cls, "getPixelFrom2dViewCoordinates", "(I[D)[D" ) ;
+if (jdoubleArray_getPixelFrom2dViewCoordinatesjintintjdoubleArray_doubledoubleID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getPixelFrom2dViewCoordinates");
+}
+
+jdoubleArray coords_ = curEnv->NewDoubleArray( coordsSize ) ;
+
+if (coords_ == NULL)
 {
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID jdoubleArray_getPixelFrom2dViewCoordinatesjintintjdoubleArray_doubledoubleID = curEnv->GetStaticMethodID(cls, "getPixelFrom2dViewCoordinates", "(I[D)[D" ) ;
-    if (jdoubleArray_getPixelFrom2dViewCoordinatesjintintjdoubleArray_doubledoubleID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "getPixelFrom2dViewCoordinates");
-    }
-
-    jdoubleArray coords_ = curEnv->NewDoubleArray( coordsSize ) ;
-
-    if (coords_ == NULL)
-    {
-        // check that allocation succeed
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-    curEnv->SetDoubleArrayRegion( coords_, 0, coordsSize, (jdouble*)(coords) ) ;
+curEnv->SetDoubleArrayRegion( coords_, 0, coordsSize, (jdouble*)(coords) ) ;
 
 
-    jdoubleArray res =  static_cast<jdoubleArray>( curEnv->CallStaticObjectMethod(cls, jdoubleArray_getPixelFrom2dViewCoordinatesjintintjdoubleArray_doubledoubleID , id, coords_));
-    if (res == NULL)
-    {
-        return NULL;
-    }
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    int lenRow;
-    lenRow = curEnv->GetArrayLength(res);
-    jboolean isCopy = JNI_FALSE;
+                        jdoubleArray res =  static_cast<jdoubleArray>( curEnv->CallStaticObjectMethod(cls, jdoubleArray_getPixelFrom2dViewCoordinatesjintintjdoubleArray_doubledoubleID ,id, coords_));
+                        if (res == NULL) { return NULL; }
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}int lenRow;
+ lenRow = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
 
-    /* GetPrimitiveArrayCritical is faster than getXXXArrayElements */
-    jdouble *resultsArray = static_cast<jdouble *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
-    double* myArray = new double[ lenRow];
+/* GetPrimitiveArrayCritical is faster than getXXXArrayElements */
+jdouble *resultsArray = static_cast<jdouble *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
+double* myArray= new double[ lenRow];
 
-    for (jsize i = 0; i <  lenRow; i++)
-    {
-        myArray[i] = resultsArray[i];
-    }
-    curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+for (jsize i = 0; i <  lenRow; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 
-    curEnv->DeleteLocalRef(res);
-    curEnv->DeleteLocalRef(coords_);
-    if (curEnv->ExceptionCheck())
-    {
-        delete[] myArray;
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return myArray;
+                        curEnv->DeleteLocalRef(res);
+curEnv->DeleteLocalRef(coords_);
+if (curEnv->ExceptionCheck()) {
+delete[] myArray;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+return myArray;
 
 }
 
-double* CallRenderer::get2dViewFromPixelCoordinates (JavaVM * jvm_, int id, double const* coords, int coordsSize)
+double* CallRenderer::get2dViewFromPixelCoordinates (JavaVM * jvm_, int id, double const* coords, int coordsSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jdoubleArray_get2dViewFromPixelCoordinatesjintintjdoubleArray_doubledoubleID = curEnv->GetStaticMethodID(cls, "get2dViewFromPixelCoordinates", "(I[D)[D" ) ;
+if (jdoubleArray_get2dViewFromPixelCoordinatesjintintjdoubleArray_doubledoubleID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "get2dViewFromPixelCoordinates");
+}
+
+jdoubleArray coords_ = curEnv->NewDoubleArray( coordsSize ) ;
+
+if (coords_ == NULL)
 {
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID jdoubleArray_get2dViewFromPixelCoordinatesjintintjdoubleArray_doubledoubleID = curEnv->GetStaticMethodID(cls, "get2dViewFromPixelCoordinates", "(I[D)[D" ) ;
-    if (jdoubleArray_get2dViewFromPixelCoordinatesjintintjdoubleArray_doubledoubleID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "get2dViewFromPixelCoordinates");
-    }
-
-    jdoubleArray coords_ = curEnv->NewDoubleArray( coordsSize ) ;
-
-    if (coords_ == NULL)
-    {
-        // check that allocation succeed
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-    curEnv->SetDoubleArrayRegion( coords_, 0, coordsSize, (jdouble*)(coords) ) ;
+curEnv->SetDoubleArrayRegion( coords_, 0, coordsSize, (jdouble*)(coords) ) ;
 
 
-    jdoubleArray res =  static_cast<jdoubleArray>( curEnv->CallStaticObjectMethod(cls, jdoubleArray_get2dViewFromPixelCoordinatesjintintjdoubleArray_doubledoubleID , id, coords_));
-    if (res == NULL)
-    {
-        return NULL;
-    }
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    int lenRow;
-    lenRow = curEnv->GetArrayLength(res);
-    jboolean isCopy = JNI_FALSE;
+                        jdoubleArray res =  static_cast<jdoubleArray>( curEnv->CallStaticObjectMethod(cls, jdoubleArray_get2dViewFromPixelCoordinatesjintintjdoubleArray_doubledoubleID ,id, coords_));
+                        if (res == NULL) { return NULL; }
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}int lenRow;
+ lenRow = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
 
-    /* GetPrimitiveArrayCritical is faster than getXXXArrayElements */
-    jdouble *resultsArray = static_cast<jdouble *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
-    double* myArray = new double[ lenRow];
+/* GetPrimitiveArrayCritical is faster than getXXXArrayElements */
+jdouble *resultsArray = static_cast<jdouble *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
+double* myArray= new double[ lenRow];
 
-    for (jsize i = 0; i <  lenRow; i++)
-    {
-        myArray[i] = resultsArray[i];
-    }
-    curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+for (jsize i = 0; i <  lenRow; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 
-    curEnv->DeleteLocalRef(res);
-    curEnv->DeleteLocalRef(coords_);
-    if (curEnv->ExceptionCheck())
-    {
-        delete[] myArray;
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return myArray;
+                        curEnv->DeleteLocalRef(res);
+curEnv->DeleteLocalRef(coords_);
+if (curEnv->ExceptionCheck()) {
+delete[] myArray;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+return myArray;
 
 }
 
-double* CallRenderer::getViewingArea (JavaVM * jvm_, int id)
-{
+double* CallRenderer::getViewingArea (JavaVM * jvm_, int id){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-    static jmethodID jdoubleArray_getViewingAreajintintID = curEnv->GetStaticMethodID(cls, "getViewingArea", "(I)[D" ) ;
-    if (jdoubleArray_getViewingAreajintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "getViewingArea");
-    }
+static jmethodID jdoubleArray_getViewingAreajintintID = curEnv->GetStaticMethodID(cls, "getViewingArea", "(I)[D" ) ;
+if (jdoubleArray_getViewingAreajintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getViewingArea");
+}
 
-    jdoubleArray res =  static_cast<jdoubleArray>( curEnv->CallStaticObjectMethod(cls, jdoubleArray_getViewingAreajintintID , id));
-    if (res == NULL)
-    {
-        return NULL;
-    }
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    int lenRow;
-    lenRow = curEnv->GetArrayLength(res);
-    jboolean isCopy = JNI_FALSE;
+                        jdoubleArray res =  static_cast<jdoubleArray>( curEnv->CallStaticObjectMethod(cls, jdoubleArray_getViewingAreajintintID ,id));
+                        if (res == NULL) { return NULL; }
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}int lenRow;
+ lenRow = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
 
-    /* GetPrimitiveArrayCritical is faster than getXXXArrayElements */
-    jdouble *resultsArray = static_cast<jdouble *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
-    double* myArray = new double[ lenRow];
+/* GetPrimitiveArrayCritical is faster than getXXXArrayElements */
+jdouble *resultsArray = static_cast<jdouble *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
+double* myArray= new double[ lenRow];
 
-    for (jsize i = 0; i <  lenRow; i++)
-    {
-        myArray[i] = resultsArray[i];
-    }
-    curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+for (jsize i = 0; i <  lenRow; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 
-    curEnv->DeleteLocalRef(res);
-    if (curEnv->ExceptionCheck())
-    {
-        delete[] myArray;
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return myArray;
+                        curEnv->DeleteLocalRef(res);
+if (curEnv->ExceptionCheck()) {
+delete[] myArray;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+return myArray;
 
 }
 

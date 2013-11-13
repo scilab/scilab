@@ -36,207 +36,185 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
 
-namespace org_scilab_modules_external_objects_java
-{
+namespace org_scilab_modules_external_objects_java {
 
-// Static declarations (if any)
-
+                // Static declarations (if any)
+                
 // Returns the current env
 
-JNIEnv * ScilabJarCreator::getCurrentEnv()
-{
-    JNIEnv * curEnv = NULL;
-    jint res = this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    if (res != JNI_OK)
-    {
-        throw GiwsException::JniException(getCurrentEnv());
-    }
-    return curEnv;
+JNIEnv * ScilabJarCreator::getCurrentEnv() {
+JNIEnv * curEnv = NULL;
+jint res=this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+if (res != JNI_OK) {
+throw GiwsException::JniException(getCurrentEnv());
+}
+return curEnv;
 }
 // Destructor
 
-ScilabJarCreator::~ScilabJarCreator()
-{
-    JNIEnv * curEnv = NULL;
-    this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    curEnv->DeleteGlobalRef(this->instance);
-    curEnv->DeleteGlobalRef(this->instanceClass);
-    curEnv->DeleteGlobalRef(this->stringArrayClass);
-}
+ScilabJarCreator::~ScilabJarCreator() {
+JNIEnv * curEnv = NULL;
+this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+curEnv->DeleteGlobalRef(this->instance);
+curEnv->DeleteGlobalRef(this->instanceClass);
+curEnv->DeleteGlobalRef(this->stringArrayClass);}
 // Constructors
-ScilabJarCreator::ScilabJarCreator(JavaVM * jvm_)
-{
-    jmethodID constructObject = NULL ;
-    jobject localInstance ;
-    jclass localClass ;
+ScilabJarCreator::ScilabJarCreator(JavaVM * jvm_) {
+jmethodID constructObject = NULL ;
+jobject localInstance ;
+jclass localClass ;
 
-    const std::string construct = "<init>";
-    const std::string param = "()V";
-    jvm = jvm_;
+const std::string construct="<init>";
+const std::string param="()V";
+jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+JNIEnv * curEnv = getCurrentEnv();
 
-    localClass = curEnv->FindClass( this->className().c_str() ) ;
-    if (localClass == NULL)
-    {
-        throw GiwsException::JniClassNotFoundException(curEnv, this->className());
-    }
+localClass = curEnv->FindClass( this->className().c_str() ) ;
+if (localClass == NULL) {
+  throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+}
 
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
 
-    /* localClass is not needed anymore */
-    curEnv->DeleteLocalRef(localClass);
+/* localClass is not needed anymore */
+curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
 
-    constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
-    if (constructObject == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
+if(constructObject == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
-    localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
-    if (localInstance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
+if(localInstance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+ 
+this->instance = curEnv->NewGlobalRef(localInstance) ;
+if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+/* localInstance not needed anymore */
+curEnv->DeleteLocalRef(localInstance);
 
-    this->instance = curEnv->NewGlobalRef(localInstance) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* localInstance not needed anymore */
-    curEnv->DeleteLocalRef(localInstance);
-
-    /* Methods ID set to NULL */
-    jintcreateJarArchivejstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID = NULL;
+                /* Methods ID set to NULL */
+jintcreateJarArchivejstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID=NULL;
 
 
 }
 
-ScilabJarCreator::ScilabJarCreator(JavaVM * jvm_, jobject JObj)
-{
-    jvm = jvm_;
+ScilabJarCreator::ScilabJarCreator(JavaVM * jvm_, jobject JObj) {
+        jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+        JNIEnv * curEnv = getCurrentEnv();
 
-    jclass localClass = curEnv->GetObjectClass(JObj);
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
-    curEnv->DeleteLocalRef(localClass);
+jclass localClass = curEnv->GetObjectClass(JObj);
+        this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+        curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+        if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
 
-    this->instance = curEnv->NewGlobalRef(JObj) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* Methods ID set to NULL */
-    jintcreateJarArchivejstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID = NULL;
+        this->instance = curEnv->NewGlobalRef(JObj) ;
+        if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
+        /* Methods ID set to NULL */
+        jintcreateJarArchivejstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID=NULL;
 
 
 }
 
 // Generic methods
 
-void ScilabJarCreator::synchronize()
-{
-    if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "ScilabJarCreator");
-    }
+void ScilabJarCreator::synchronize() {
+if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "ScilabJarCreator");
+}
 }
 
-void ScilabJarCreator::endSynchronize()
-{
-    if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "ScilabJarCreator");
-    }
+void ScilabJarCreator::endSynchronize() {
+if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "ScilabJarCreator");
+}
 }
 // Method(s)
 
-int ScilabJarCreator::createJarArchive (JavaVM * jvm_, char const* jarFilePath, char const* const* filePaths, int filePathsSize, char const* filesRootPath, char const* manifestFilePath, bool keepAbsolutePaths)
+int ScilabJarCreator::createJarArchive (JavaVM * jvm_, char const* jarFilePath, char const* const* filePaths, int filePathsSize, char const* filesRootPath, char const* manifestFilePath, bool keepAbsolutePaths){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jintcreateJarArchivejstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "createJarArchive", "(Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)I" ) ;
+if (jintcreateJarArchivejstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "createJarArchive");
+}
+
+jstring jarFilePath_ = curEnv->NewStringUTF( jarFilePath );
+if (jarFilePath != NULL && jarFilePath_ == NULL)
 {
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+jclass stringArrayClass = curEnv->FindClass("java/lang/String");
 
-    static jmethodID jintcreateJarArchivejstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "createJarArchive", "(Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)I" ) ;
-    if (jintcreateJarArchivejstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "createJarArchive");
-    }
+// create java array of strings.
+jobjectArray filePaths_ = curEnv->NewObjectArray( filePathsSize, stringArrayClass, NULL);
+if (filePaths_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
-    jstring jarFilePath_ = curEnv->NewStringUTF( jarFilePath );
-    if (jarFilePath != NULL && jarFilePath_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < filePathsSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( filePaths[i] );
+if (TempString == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
-    jclass stringArrayClass = curEnv->FindClass("java/lang/String");
+curEnv->SetObjectArrayElement( filePaths_, i, TempString);
 
-    // create java array of strings.
-    jobjectArray filePaths_ = curEnv->NewObjectArray( filePathsSize, stringArrayClass, NULL);
-    if (filePaths_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-    // convert each char * to java strings and fill the java array.
-    for ( int i = 0; i < filePathsSize; i++)
-    {
-        jstring TempString = curEnv->NewStringUTF( filePaths[i] );
-        if (TempString == NULL)
-        {
-            throw GiwsException::JniBadAllocException(curEnv);
-        }
-
-        curEnv->SetObjectArrayElement( filePaths_, i, TempString);
-
-        // avoid keeping reference on too many strings
-        curEnv->DeleteLocalRef(TempString);
-    }
-    jstring filesRootPath_ = curEnv->NewStringUTF( filesRootPath );
-    if (filesRootPath != NULL && filesRootPath_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
+// avoid keeping reference on too many strings
+curEnv->DeleteLocalRef(TempString);
+}
+jstring filesRootPath_ = curEnv->NewStringUTF( filesRootPath );
+if (filesRootPath != NULL && filesRootPath_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
 
-    jstring manifestFilePath_ = curEnv->NewStringUTF( manifestFilePath );
-    if (manifestFilePath != NULL && manifestFilePath_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
+jstring manifestFilePath_ = curEnv->NewStringUTF( manifestFilePath );
+if (manifestFilePath != NULL && manifestFilePath_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
 
-    jboolean keepAbsolutePaths_ = (static_cast<bool>(keepAbsolutePaths) ? JNI_TRUE : JNI_FALSE);
+jboolean keepAbsolutePaths_ = (static_cast<bool>(keepAbsolutePaths) ? JNI_TRUE : JNI_FALSE);
 
-    jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintcreateJarArchivejstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID , jarFilePath_, filePaths_, filesRootPath_, manifestFilePath_, keepAbsolutePaths_));
-    curEnv->DeleteLocalRef(stringArrayClass);
-    curEnv->DeleteLocalRef(jarFilePath_);
-    curEnv->DeleteLocalRef(filePaths_);
-    curEnv->DeleteLocalRef(filesRootPath_);
-    curEnv->DeleteLocalRef(manifestFilePath_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return res;
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintcreateJarArchivejstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID ,jarFilePath_, filePaths_, filesRootPath_, manifestFilePath_, keepAbsolutePaths_));
+                        curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(jarFilePath_);
+curEnv->DeleteLocalRef(filePaths_);
+curEnv->DeleteLocalRef(filesRootPath_);
+curEnv->DeleteLocalRef(manifestFilePath_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
 
 }
 

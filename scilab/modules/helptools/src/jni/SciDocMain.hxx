@@ -46,11 +46,11 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 #include "GiwsException.hxx"
 
-#if defined(_MSC_VER) /* Defined anyway with Visual */
-#include <Windows.h>
-#else
-typedef signed char byte;
-#endif
+        #if defined(_MSC_VER) /* Defined anyway with Visual */
+            #include <Windows.h>
+        #else
+            typedef signed char byte;
+        #endif
 
 
 #ifndef GIWSEXPORT
@@ -69,128 +69,126 @@ typedef signed char byte;
 # endif
 #endif
 
-namespace org_scilab_modules_helptools
-{
-class GIWSEXPORT SciDocMain
-{
+namespace org_scilab_modules_helptools {
+class GIWSEXPORT SciDocMain {
 
 private:
-    JavaVM * jvm;
+JavaVM * jvm;
 
 protected:
-    jmethodID voidbuildDocumentationjstringjava_lang_StringID; // cache method id
-    jmethodID jbooleansetOutputDirectoryjstringjava_lang_StringID; // cache method id
-    jmethodID voidsetWorkingLanguagejstringjava_lang_StringID; // cache method id
-    jmethodID voidsetExportFormatjstringjava_lang_StringID; // cache method id
-    jmethodID voidsetIsToolboxjbooleanbooleanID; // cache method id
-    jmethodID jstringprocessjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-    jmethodID voidgenerateJavahelpjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID; // cache method id
+jmethodID voidbuildDocumentationjstringjava_lang_StringID; // cache method id
+jmethodID jbooleansetOutputDirectoryjstringjava_lang_StringID; // cache method id
+jmethodID voidsetWorkingLanguagejstringjava_lang_StringID; // cache method id
+jmethodID voidsetExportFormatjstringjava_lang_StringID; // cache method id
+jmethodID voidsetIsToolboxjbooleanbooleanID; // cache method id
+jmethodID jstringprocessjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
+jmethodID voidgenerateJavahelpjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID; // cache method id
 
 
 
-    jobject instance;
-    jclass instanceClass; // cache class
+jobject instance;
+jclass instanceClass; // cache class
+
+                       
+// Caching (if any)
 
 
-    // Caching (if any)
-
-
-    /**
-    * Get the environment matching to the current thread.
-    */
-    virtual JNIEnv * getCurrentEnv();
+/**
+* Get the environment matching to the current thread.
+*/
+virtual JNIEnv * getCurrentEnv();
 
 public:
-    // Constructor
-    /**
-    * Create a wrapping of the object from a JNIEnv.
-    * It will call the default constructor
-    * @param JEnv_ the Java Env
-    */
-    SciDocMain(JavaVM * jvm_);
+// Constructor
+/**
+* Create a wrapping of the object from a JNIEnv.
+* It will call the default constructor
+* @param JEnv_ the Java Env
+*/
+SciDocMain(JavaVM * jvm_);
 
-    /**
-    * Create a wrapping of an already existing object from a JNIEnv.
-    * The object must have already been instantiated
-    * @param JEnv_ the Java Env
-    * @param JObj the object
-    */
-    SciDocMain(JavaVM * jvm_, jobject JObj);
+/**
+* Create a wrapping of an already existing object from a JNIEnv.
+* The object must have already been instantiated
+* @param JEnv_ the Java Env
+* @param JObj the object
+*/
+SciDocMain(JavaVM * jvm_, jobject JObj);
 
 
-    /**
-    * This is a fake constructor to avoid the constructor
-    * chaining when dealing with extended giws classes
-    */
+/** 
+* This is a fake constructor to avoid the constructor
+* chaining when dealing with extended giws classes 
+*/
 #ifdef FAKEGIWSDATATYPE
-    SciDocMain(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
+SciDocMain(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
 #endif
 
-    // Destructor
-    ~SciDocMain();
+// Destructor
+~SciDocMain();
 
-    // Generic method
-    // Synchronization methods
-    /**
-    * Enter monitor associated with the object.
-    * Equivalent of creating a "synchronized(obj)" scope in Java.
-    */
-    void synchronize();
+// Generic method
+// Synchronization methods
+/**
+* Enter monitor associated with the object.
+* Equivalent of creating a "synchronized(obj)" scope in Java.
+*/
+void synchronize();
 
-    /**
-    * Exit monitor associated with the object.
-    * Equivalent of ending a "synchronized(obj)" scope.
-    */
-    void endSynchronize();
+/**
+* Exit monitor associated with the object.
+* Equivalent of ending a "synchronized(obj)" scope.
+*/
+void endSynchronize();
 
-    // Methods
-    void buildDocumentation(char const* type);
+// Methods
+void buildDocumentation(char const* type);
 
-    bool setOutputDirectory(char const* directory);
+bool setOutputDirectory(char const* directory);
 
-    void setWorkingLanguage(char const* language);
+void setWorkingLanguage(char const* language);
 
-    void setExportFormat(char const* format);
+void setExportFormat(char const* format);
 
-    void setIsToolbox(bool isToolbox);
+void setIsToolbox(bool isToolbox);
 
-    char* process(char const* sourceDoc, char const* styleSheet);
+char* process(char const* sourceDoc, char const* styleSheet);
 
-    static void generateJavahelp(JavaVM * jvm_, char const* outputDir, char const* language, bool isToolbox);
-
-
-    /**
-    * Get class name to use for static methods
-    * @return class name to use for static methods
-    */
-
-    static const std::string className()
-    {
-        return "org/scilab/modules/helptools/SciDocMain";
-    }
+static void generateJavahelp(JavaVM * jvm_, char const* outputDir, char const* language, bool isToolbox);
 
 
-    /**
-    * Get class to use for static methods
-    * @return class to use for static methods
-    */
+                        /**
+                        * Get class name to use for static methods
+                        * @return class name to use for static methods
+                        */
+                        
+                static const std::string className()
+                {
+                return "org/scilab/modules/helptools/SciDocMain";
+                }
+                
 
-    static jclass initClass(JNIEnv * curEnv)
-    {
-        static jclass cls = 0;
+                        /**
+                        * Get class to use for static methods
+                        * @return class to use for static methods
+                        */
+                        
+                static jclass initClass(JNIEnv * curEnv)
+                {
+                    static jclass cls = 0;
 
-        if (cls == 0)
-        {
-            jclass _cls = curEnv->FindClass(className().c_str());
-            if (_cls)
-            {
-                cls = static_cast<jclass>(curEnv->NewGlobalRef(_cls));
-            }
-        }
+                    if (cls == 0)
+                    {
+                        jclass _cls = curEnv->FindClass(className().c_str());
+                        if (_cls)
+                        {
+                            cls = static_cast<jclass>(curEnv->NewGlobalRef(_cls));
+                        }
+                    }
 
-        return cls;
-    }
-
+                    return cls;
+                 }
+                
 };
 
 

@@ -36,212 +36,180 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
 
-namespace org_scilab_modules_types
-{
+namespace org_scilab_modules_types {
 
-// Static declarations (if any)
-
+                // Static declarations (if any)
+                
 // Returns the current env
 
-JNIEnv * ScilabVariablesRefresh::getCurrentEnv()
-{
-    JNIEnv * curEnv = NULL;
-    jint res = this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    if (res != JNI_OK)
-    {
-        throw GiwsException::JniException(getCurrentEnv());
-    }
-    return curEnv;
+JNIEnv * ScilabVariablesRefresh::getCurrentEnv() {
+JNIEnv * curEnv = NULL;
+jint res=this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+if (res != JNI_OK) {
+throw GiwsException::JniException(getCurrentEnv());
+}
+return curEnv;
 }
 // Destructor
 
-ScilabVariablesRefresh::~ScilabVariablesRefresh()
-{
-    JNIEnv * curEnv = NULL;
-    this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    curEnv->DeleteGlobalRef(this->instance);
-    curEnv->DeleteGlobalRef(this->instanceClass);
+ScilabVariablesRefresh::~ScilabVariablesRefresh() {
+JNIEnv * curEnv = NULL;
+this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+curEnv->DeleteGlobalRef(this->instance);
+curEnv->DeleteGlobalRef(this->instanceClass);
 }
 // Constructors
-ScilabVariablesRefresh::ScilabVariablesRefresh(JavaVM * jvm_)
-{
-    jmethodID constructObject = NULL ;
-    jobject localInstance ;
-    jclass localClass ;
+ScilabVariablesRefresh::ScilabVariablesRefresh(JavaVM * jvm_) {
+jmethodID constructObject = NULL ;
+jobject localInstance ;
+jclass localClass ;
 
-    const std::string construct = "<init>";
-    const std::string param = "()V";
-    jvm = jvm_;
+const std::string construct="<init>";
+const std::string param="()V";
+jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+JNIEnv * curEnv = getCurrentEnv();
 
-    localClass = curEnv->FindClass( this->className().c_str() ) ;
-    if (localClass == NULL)
-    {
-        throw GiwsException::JniClassNotFoundException(curEnv, this->className());
-    }
+localClass = curEnv->FindClass( this->className().c_str() ) ;
+if (localClass == NULL) {
+  throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+}
 
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
 
-    /* localClass is not needed anymore */
-    curEnv->DeleteLocalRef(localClass);
+/* localClass is not needed anymore */
+curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
 
-    constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
-    if (constructObject == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
+if(constructObject == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
-    localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
-    if (localInstance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
+if(localInstance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+ 
+this->instance = curEnv->NewGlobalRef(localInstance) ;
+if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+/* localInstance not needed anymore */
+curEnv->DeleteLocalRef(localInstance);
 
-    this->instance = curEnv->NewGlobalRef(localInstance) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* localInstance not needed anymore */
-    curEnv->DeleteLocalRef(localInstance);
-
-    /* Methods ID set to NULL */
-    jobjectArray_getAllListenedVariablesID = NULL;
-    jintgetScilabVariablesRefreshIdID = NULL;
+                /* Methods ID set to NULL */
+jobjectArray_getAllListenedVariablesID=NULL;
+jintgetScilabVariablesRefreshIdID=NULL;
 
 
 }
 
-ScilabVariablesRefresh::ScilabVariablesRefresh(JavaVM * jvm_, jobject JObj)
-{
-    jvm = jvm_;
+ScilabVariablesRefresh::ScilabVariablesRefresh(JavaVM * jvm_, jobject JObj) {
+        jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+        JNIEnv * curEnv = getCurrentEnv();
 
-    jclass localClass = curEnv->GetObjectClass(JObj);
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
-    curEnv->DeleteLocalRef(localClass);
+jclass localClass = curEnv->GetObjectClass(JObj);
+        this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+        curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+        if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
 
-    this->instance = curEnv->NewGlobalRef(JObj) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* Methods ID set to NULL */
-    jobjectArray_getAllListenedVariablesID = NULL;
-    jintgetScilabVariablesRefreshIdID = NULL;
+        this->instance = curEnv->NewGlobalRef(JObj) ;
+        if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
+        /* Methods ID set to NULL */
+        jobjectArray_getAllListenedVariablesID=NULL;
+jintgetScilabVariablesRefreshIdID=NULL;
 
 
 }
 
 // Generic methods
 
-void ScilabVariablesRefresh::synchronize()
-{
-    if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "ScilabVariablesRefresh");
-    }
+void ScilabVariablesRefresh::synchronize() {
+if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "ScilabVariablesRefresh");
+}
 }
 
-void ScilabVariablesRefresh::endSynchronize()
-{
-    if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "ScilabVariablesRefresh");
-    }
+void ScilabVariablesRefresh::endSynchronize() {
+if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "ScilabVariablesRefresh");
+}
 }
 // Method(s)
 
-char** ScilabVariablesRefresh::getAllListenedVariables (JavaVM * jvm_)
-{
+char** ScilabVariablesRefresh::getAllListenedVariables (JavaVM * jvm_){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID jobjectArray_getAllListenedVariablesID = curEnv->GetStaticMethodID(cls, "getAllListenedVariables", "()[Ljava/lang/String;" ) ;
-    if (jobjectArray_getAllListenedVariablesID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "getAllListenedVariables");
-    }
-
-    jobjectArray res =  static_cast<jobjectArray>( curEnv->CallStaticObjectMethod(cls, jobjectArray_getAllListenedVariablesID ));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    if (res != NULL)
-    {
-        int lenRow;
-        lenRow = curEnv->GetArrayLength(res);
-
-        char **arrayOfString;
-        arrayOfString = new char *[lenRow];
-        for (jsize i = 0; i < lenRow; i++)
-        {
-            jstring resString = reinterpret_cast<jstring>(curEnv->GetObjectArrayElement(res, i));
-            const char *tempString = curEnv->GetStringUTFChars(resString, 0);
-            arrayOfString[i] = new char[strlen(tempString) + 1];
-
-            strcpy(arrayOfString[i], tempString);
-            curEnv->ReleaseStringUTFChars(resString, tempString);
-            curEnv->DeleteLocalRef(resString);
-        }
-        if (curEnv->ExceptionCheck())
-        {
-            delete[] arrayOfString;
-            throw GiwsException::JniCallMethodException(curEnv);
-        }
-        curEnv->DeleteLocalRef(res);
-        return arrayOfString;
-    }
-    else
-    {
-        curEnv->DeleteLocalRef(res);
-        return NULL;
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
 }
 
-int ScilabVariablesRefresh::getScilabVariablesRefreshId (JavaVM * jvm_)
-{
+static jmethodID jobjectArray_getAllListenedVariablesID = curEnv->GetStaticMethodID(cls, "getAllListenedVariables", "()[Ljava/lang/String;" ) ;
+if (jobjectArray_getAllListenedVariablesID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getAllListenedVariables");
+}
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+                        jobjectArray res =  static_cast<jobjectArray>( curEnv->CallStaticObjectMethod(cls, jobjectArray_getAllListenedVariablesID ));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}if (res != NULL) { int lenRow;
+ lenRow = curEnv->GetArrayLength(res);
 
-    static jmethodID jintgetScilabVariablesRefreshIdID = curEnv->GetStaticMethodID(cls, "getScilabVariablesRefreshId", "()I" ) ;
-    if (jintgetScilabVariablesRefreshIdID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "getScilabVariablesRefreshId");
-    }
+char **arrayOfString;
+arrayOfString = new char *[lenRow];
+for (jsize i = 0; i < lenRow; i++){
+jstring resString = reinterpret_cast<jstring>(curEnv->GetObjectArrayElement(res, i));
+const char *tempString = curEnv->GetStringUTFChars(resString, 0);
+arrayOfString[i] = new char[strlen(tempString) + 1];
 
-    jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintgetScilabVariablesRefreshIdID ));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return res;
+strcpy(arrayOfString[i], tempString);
+curEnv->ReleaseStringUTFChars(resString, tempString);
+curEnv->DeleteLocalRef(resString);
+}
+if (curEnv->ExceptionCheck()) {
+delete[] arrayOfString;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+curEnv->DeleteLocalRef(res);
+return arrayOfString;
+ } else { 
+curEnv->DeleteLocalRef(res);
+return NULL;
+}
+}
+
+int ScilabVariablesRefresh::getScilabVariablesRefreshId (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jintgetScilabVariablesRefreshIdID = curEnv->GetStaticMethodID(cls, "getScilabVariablesRefreshId", "()I" ) ;
+if (jintgetScilabVariablesRefreshIdID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getScilabVariablesRefreshId");
+}
+
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintgetScilabVariablesRefreshIdID ));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
 
 }
 

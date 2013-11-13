@@ -36,206 +36,180 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
 
-namespace org_scilab_modules_gui_tree
-{
+namespace org_scilab_modules_gui_tree {
 
-// Static declarations (if any)
-
+                // Static declarations (if any)
+                
 // Returns the current env
 
-JNIEnv * ScilabDisplayTree::getCurrentEnv()
-{
-    JNIEnv * curEnv = NULL;
-    jint res = this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    if (res != JNI_OK)
-    {
-        throw GiwsException::JniException(getCurrentEnv());
-    }
-    return curEnv;
+JNIEnv * ScilabDisplayTree::getCurrentEnv() {
+JNIEnv * curEnv = NULL;
+jint res=this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+if (res != JNI_OK) {
+throw GiwsException::JniException(getCurrentEnv());
+}
+return curEnv;
 }
 // Destructor
 
-ScilabDisplayTree::~ScilabDisplayTree()
-{
-    JNIEnv * curEnv = NULL;
-    this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    curEnv->DeleteGlobalRef(this->instance);
-    curEnv->DeleteGlobalRef(this->instanceClass);
-    curEnv->DeleteGlobalRef(this->stringArrayClass);
-}
+ScilabDisplayTree::~ScilabDisplayTree() {
+JNIEnv * curEnv = NULL;
+this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+curEnv->DeleteGlobalRef(this->instance);
+curEnv->DeleteGlobalRef(this->instanceClass);
+curEnv->DeleteGlobalRef(this->stringArrayClass);}
 // Constructors
-ScilabDisplayTree::ScilabDisplayTree(JavaVM * jvm_)
-{
-    jmethodID constructObject = NULL ;
-    jobject localInstance ;
-    jclass localClass ;
+ScilabDisplayTree::ScilabDisplayTree(JavaVM * jvm_) {
+jmethodID constructObject = NULL ;
+jobject localInstance ;
+jclass localClass ;
 
-    const std::string construct = "<init>";
-    const std::string param = "()V";
-    jvm = jvm_;
+const std::string construct="<init>";
+const std::string param="()V";
+jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+JNIEnv * curEnv = getCurrentEnv();
 
-    localClass = curEnv->FindClass( this->className().c_str() ) ;
-    if (localClass == NULL)
-    {
-        throw GiwsException::JniClassNotFoundException(curEnv, this->className());
-    }
+localClass = curEnv->FindClass( this->className().c_str() ) ;
+if (localClass == NULL) {
+  throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+}
 
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
 
-    /* localClass is not needed anymore */
-    curEnv->DeleteLocalRef(localClass);
+/* localClass is not needed anymore */
+curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
 
-    constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
-    if (constructObject == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
+if(constructObject == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
-    localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
-    if (localInstance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
+if(localInstance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+ 
+this->instance = curEnv->NewGlobalRef(localInstance) ;
+if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+/* localInstance not needed anymore */
+curEnv->DeleteLocalRef(localInstance);
 
-    this->instance = curEnv->NewGlobalRef(localInstance) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* localInstance not needed anymore */
-    curEnv->DeleteLocalRef(localInstance);
-
-    /* Methods ID set to NULL */
-    voidscilabDisplayTreeID = NULL;
-    voidscilabDisplayTreejobjectArray_java_lang_Stringjava_lang_StringID = NULL;
+                /* Methods ID set to NULL */
+voidscilabDisplayTreeID=NULL;
+voidscilabDisplayTreejobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 
 
 }
 
-ScilabDisplayTree::ScilabDisplayTree(JavaVM * jvm_, jobject JObj)
-{
-    jvm = jvm_;
+ScilabDisplayTree::ScilabDisplayTree(JavaVM * jvm_, jobject JObj) {
+        jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+        JNIEnv * curEnv = getCurrentEnv();
 
-    jclass localClass = curEnv->GetObjectClass(JObj);
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
-    curEnv->DeleteLocalRef(localClass);
+jclass localClass = curEnv->GetObjectClass(JObj);
+        this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+        curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+        if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
 
-    this->instance = curEnv->NewGlobalRef(JObj) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* Methods ID set to NULL */
-    voidscilabDisplayTreeID = NULL;
-    voidscilabDisplayTreejobjectArray_java_lang_Stringjava_lang_StringID = NULL;
+        this->instance = curEnv->NewGlobalRef(JObj) ;
+        if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
+        /* Methods ID set to NULL */
+        voidscilabDisplayTreeID=NULL;
+voidscilabDisplayTreejobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 
 
 }
 
 // Generic methods
 
-void ScilabDisplayTree::synchronize()
-{
-    if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "ScilabDisplayTree");
-    }
+void ScilabDisplayTree::synchronize() {
+if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "ScilabDisplayTree");
+}
 }
 
-void ScilabDisplayTree::endSynchronize()
-{
-    if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "ScilabDisplayTree");
-    }
+void ScilabDisplayTree::endSynchronize() {
+if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "ScilabDisplayTree");
+}
 }
 // Method(s)
 
-void ScilabDisplayTree::scilabDisplayTree (JavaVM * jvm_)
-{
+void ScilabDisplayTree::scilabDisplayTree (JavaVM * jvm_){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidscilabDisplayTreeID = curEnv->GetStaticMethodID(cls, "scilabDisplayTree", "()V" ) ;
-    if (voidscilabDisplayTreeID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "scilabDisplayTree");
-    }
-
-    curEnv->CallStaticVoidMethod(cls, voidscilabDisplayTreeID );
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
 }
 
-void ScilabDisplayTree::scilabDisplayTree (JavaVM * jvm_, char const* const* treeData, int treeDataSize)
+static jmethodID voidscilabDisplayTreeID = curEnv->GetStaticMethodID(cls, "scilabDisplayTree", "()V" ) ;
+if (voidscilabDisplayTreeID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "scilabDisplayTree");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidscilabDisplayTreeID );
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void ScilabDisplayTree::scilabDisplayTree (JavaVM * jvm_, char const* const* treeData, int treeDataSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidscilabDisplayTreejobjectArray_java_lang_Stringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "scilabDisplayTree", "([Ljava/lang/String;)V" ) ;
+if (voidscilabDisplayTreejobjectArray_java_lang_Stringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "scilabDisplayTree");
+}
+jclass stringArrayClass = curEnv->FindClass("java/lang/String");
+
+// create java array of strings.
+jobjectArray treeData_ = curEnv->NewObjectArray( treeDataSize, stringArrayClass, NULL);
+if (treeData_ == NULL)
 {
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < treeDataSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( treeData[i] );
+if (TempString == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
-    static jmethodID voidscilabDisplayTreejobjectArray_java_lang_Stringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "scilabDisplayTree", "([Ljava/lang/String;)V" ) ;
-    if (voidscilabDisplayTreejobjectArray_java_lang_Stringjava_lang_StringID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "scilabDisplayTree");
-    }
-    jclass stringArrayClass = curEnv->FindClass("java/lang/String");
+curEnv->SetObjectArrayElement( treeData_, i, TempString);
 
-    // create java array of strings.
-    jobjectArray treeData_ = curEnv->NewObjectArray( treeDataSize, stringArrayClass, NULL);
-    if (treeData_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-    // convert each char * to java strings and fill the java array.
-    for ( int i = 0; i < treeDataSize; i++)
-    {
-        jstring TempString = curEnv->NewStringUTF( treeData[i] );
-        if (TempString == NULL)
-        {
-            throw GiwsException::JniBadAllocException(curEnv);
-        }
-
-        curEnv->SetObjectArrayElement( treeData_, i, TempString);
-
-        // avoid keeping reference on too many strings
-        curEnv->DeleteLocalRef(TempString);
-    }
-    curEnv->CallStaticVoidMethod(cls, voidscilabDisplayTreejobjectArray_java_lang_Stringjava_lang_StringID , treeData_);
-    curEnv->DeleteLocalRef(stringArrayClass);
-    curEnv->DeleteLocalRef(treeData_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+// avoid keeping reference on too many strings
+curEnv->DeleteLocalRef(TempString);
+}
+                         curEnv->CallStaticVoidMethod(cls, voidscilabDisplayTreejobjectArray_java_lang_Stringjava_lang_StringID ,treeData_);
+                        curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(treeData_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 }
 
 }

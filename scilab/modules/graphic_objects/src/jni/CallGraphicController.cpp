@@ -36,914 +36,778 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
 
-namespace org_scilab_modules_graphic_objects
-{
+namespace org_scilab_modules_graphic_objects {
 
-// Static declarations (if any)
-
+                // Static declarations (if any)
+                
 // Returns the current env
 
-JNIEnv * CallGraphicController::getCurrentEnv()
-{
-    JNIEnv * curEnv = NULL;
-    jint res = this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    if (res != JNI_OK)
-    {
-        throw GiwsException::JniException(getCurrentEnv());
-    }
-    return curEnv;
+JNIEnv * CallGraphicController::getCurrentEnv() {
+JNIEnv * curEnv = NULL;
+jint res=this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+if (res != JNI_OK) {
+throw GiwsException::JniException(getCurrentEnv());
+}
+return curEnv;
 }
 // Destructor
 
-CallGraphicController::~CallGraphicController()
-{
-    JNIEnv * curEnv = NULL;
-    this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    curEnv->DeleteGlobalRef(this->instance);
-    curEnv->DeleteGlobalRef(this->instanceClass);
-    curEnv->DeleteGlobalRef(this->stringArrayClass);
-}
+CallGraphicController::~CallGraphicController() {
+JNIEnv * curEnv = NULL;
+this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+curEnv->DeleteGlobalRef(this->instance);
+curEnv->DeleteGlobalRef(this->instanceClass);
+curEnv->DeleteGlobalRef(this->stringArrayClass);}
 // Constructors
-CallGraphicController::CallGraphicController(JavaVM * jvm_)
-{
-    jmethodID constructObject = NULL ;
-    jobject localInstance ;
-    jclass localClass ;
+CallGraphicController::CallGraphicController(JavaVM * jvm_) {
+jmethodID constructObject = NULL ;
+jobject localInstance ;
+jclass localClass ;
 
-    const std::string construct = "<init>";
-    const std::string param = "()V";
-    jvm = jvm_;
+const std::string construct="<init>";
+const std::string param="()V";
+jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+JNIEnv * curEnv = getCurrentEnv();
 
-    localClass = curEnv->FindClass( this->className().c_str() ) ;
-    if (localClass == NULL)
-    {
-        throw GiwsException::JniClassNotFoundException(curEnv, this->className());
-    }
+localClass = curEnv->FindClass( this->className().c_str() ) ;
+if (localClass == NULL) {
+  throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+}
 
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
 
-    /* localClass is not needed anymore */
-    curEnv->DeleteLocalRef(localClass);
+/* localClass is not needed anymore */
+curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
 
-    constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
-    if (constructObject == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
+if(constructObject == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
-    localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
-    if (localInstance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
+if(localInstance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+ 
+this->instance = curEnv->NewGlobalRef(localInstance) ;
+if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+/* localInstance not needed anymore */
+curEnv->DeleteLocalRef(localInstance);
 
-    this->instance = curEnv->NewGlobalRef(localInstance) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* localInstance not needed anymore */
-    curEnv->DeleteLocalRef(localInstance);
-
-    /* Methods ID set to NULL */
-    voiddeleteGraphicObjectjintintID = NULL;
-    jintcloneGraphicObjectjintintID = NULL;
-    jintaskGraphicObjectjintintID = NULL;
-    voidsetGraphicObjectRelationshipjintintjintintID = NULL;
-    voidremoveRelationShipAndDeletejintintID = NULL;
-    jstringgetGraphicObjectPropertyAsStringjintintjintintID = NULL;
-    jbooleansetGraphicObjectPropertyjintintjintintjstringjava_lang_StringID = NULL;
-    jobjectArray_getGraphicObjectPropertyAsStringVectorjintintjintintID = NULL;
-    jbooleansetGraphicObjectPropertyjintintjintintjobjectArray_java_lang_Stringjava_lang_StringID = NULL;
-    jbooleansetGraphicObjectPropertyjintintjintintjdoubledoubleID = NULL;
-    jdoubleArray_getGraphicObjectPropertyAsDoubleVectorjintintjintintID = NULL;
-    jbooleansetGraphicObjectPropertyjintintjintintjdoubleArray_doubledoubleID = NULL;
-    jbooleansetGraphicObjectPropertyjintintjintintjintintID = NULL;
-    jintArray_getGraphicObjectPropertyAsIntegerVectorjintintjintintID = NULL;
-    jbooleansetGraphicObjectPropertyjintintjintintjintArray_intintID = NULL;
-    jbooleansetGraphicObjectPropertyjintintjintintjbooleanbooleanID = NULL;
-    jintArray_getGraphicObjectPropertyAsBooleanVectorjintintjintintID = NULL;
-    jbooleansetGraphicObjectPropertyjintintjintintjbooleanArray_booleanbooleanID = NULL;
-    voidregisterScilabViewID = NULL;
-    voidunregisterScilabViewID = NULL;
-    jintgetConsoleIdentifierID = NULL;
-    voidbuildFigureMenuBarjintintID = NULL;
+                /* Methods ID set to NULL */
+voiddeleteGraphicObjectjintintID=NULL;
+jintcloneGraphicObjectjintintID=NULL;
+jintaskGraphicObjectjintintID=NULL;
+voidsetGraphicObjectRelationshipjintintjintintID=NULL;
+voidremoveRelationShipAndDeletejintintID=NULL;
+jstringgetGraphicObjectPropertyAsStringjintintjintintID=NULL;
+jbooleansetGraphicObjectPropertyjintintjintintjstringjava_lang_StringID=NULL;
+jobjectArray_getGraphicObjectPropertyAsStringVectorjintintjintintID=NULL;
+jbooleansetGraphicObjectPropertyjintintjintintjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
+jbooleansetGraphicObjectPropertyjintintjintintjdoubledoubleID=NULL;
+jdoubleArray_getGraphicObjectPropertyAsDoubleVectorjintintjintintID=NULL;
+jbooleansetGraphicObjectPropertyjintintjintintjdoubleArray_doubledoubleID=NULL;
+jbooleansetGraphicObjectPropertyjintintjintintjintintID=NULL;
+jintArray_getGraphicObjectPropertyAsIntegerVectorjintintjintintID=NULL;
+jbooleansetGraphicObjectPropertyjintintjintintjintArray_intintID=NULL;
+jbooleansetGraphicObjectPropertyjintintjintintjbooleanbooleanID=NULL;
+jintArray_getGraphicObjectPropertyAsBooleanVectorjintintjintintID=NULL;
+jbooleansetGraphicObjectPropertyjintintjintintjbooleanArray_booleanbooleanID=NULL;
+voidregisterScilabViewID=NULL;
+voidunregisterScilabViewID=NULL;
+jintgetConsoleIdentifierID=NULL;
+voidbuildFigureMenuBarjintintID=NULL;
 
 
 }
 
-CallGraphicController::CallGraphicController(JavaVM * jvm_, jobject JObj)
-{
-    jvm = jvm_;
+CallGraphicController::CallGraphicController(JavaVM * jvm_, jobject JObj) {
+        jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+        JNIEnv * curEnv = getCurrentEnv();
 
-    jclass localClass = curEnv->GetObjectClass(JObj);
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
-    curEnv->DeleteLocalRef(localClass);
+jclass localClass = curEnv->GetObjectClass(JObj);
+        this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+        curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+        if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
 
-    this->instance = curEnv->NewGlobalRef(JObj) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* Methods ID set to NULL */
-    voiddeleteGraphicObjectjintintID = NULL;
-    jintcloneGraphicObjectjintintID = NULL;
-    jintaskGraphicObjectjintintID = NULL;
-    voidsetGraphicObjectRelationshipjintintjintintID = NULL;
-    voidremoveRelationShipAndDeletejintintID = NULL;
-    jstringgetGraphicObjectPropertyAsStringjintintjintintID = NULL;
-    jbooleansetGraphicObjectPropertyjintintjintintjstringjava_lang_StringID = NULL;
-    jobjectArray_getGraphicObjectPropertyAsStringVectorjintintjintintID = NULL;
-    jbooleansetGraphicObjectPropertyjintintjintintjobjectArray_java_lang_Stringjava_lang_StringID = NULL;
-    jbooleansetGraphicObjectPropertyjintintjintintjdoubledoubleID = NULL;
-    jdoubleArray_getGraphicObjectPropertyAsDoubleVectorjintintjintintID = NULL;
-    jbooleansetGraphicObjectPropertyjintintjintintjdoubleArray_doubledoubleID = NULL;
-    jbooleansetGraphicObjectPropertyjintintjintintjintintID = NULL;
-    jintArray_getGraphicObjectPropertyAsIntegerVectorjintintjintintID = NULL;
-    jbooleansetGraphicObjectPropertyjintintjintintjintArray_intintID = NULL;
-    jbooleansetGraphicObjectPropertyjintintjintintjbooleanbooleanID = NULL;
-    jintArray_getGraphicObjectPropertyAsBooleanVectorjintintjintintID = NULL;
-    jbooleansetGraphicObjectPropertyjintintjintintjbooleanArray_booleanbooleanID = NULL;
-    voidregisterScilabViewID = NULL;
-    voidunregisterScilabViewID = NULL;
-    jintgetConsoleIdentifierID = NULL;
-    voidbuildFigureMenuBarjintintID = NULL;
+        this->instance = curEnv->NewGlobalRef(JObj) ;
+        if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
+        /* Methods ID set to NULL */
+        voiddeleteGraphicObjectjintintID=NULL;
+jintcloneGraphicObjectjintintID=NULL;
+jintaskGraphicObjectjintintID=NULL;
+voidsetGraphicObjectRelationshipjintintjintintID=NULL;
+voidremoveRelationShipAndDeletejintintID=NULL;
+jstringgetGraphicObjectPropertyAsStringjintintjintintID=NULL;
+jbooleansetGraphicObjectPropertyjintintjintintjstringjava_lang_StringID=NULL;
+jobjectArray_getGraphicObjectPropertyAsStringVectorjintintjintintID=NULL;
+jbooleansetGraphicObjectPropertyjintintjintintjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
+jbooleansetGraphicObjectPropertyjintintjintintjdoubledoubleID=NULL;
+jdoubleArray_getGraphicObjectPropertyAsDoubleVectorjintintjintintID=NULL;
+jbooleansetGraphicObjectPropertyjintintjintintjdoubleArray_doubledoubleID=NULL;
+jbooleansetGraphicObjectPropertyjintintjintintjintintID=NULL;
+jintArray_getGraphicObjectPropertyAsIntegerVectorjintintjintintID=NULL;
+jbooleansetGraphicObjectPropertyjintintjintintjintArray_intintID=NULL;
+jbooleansetGraphicObjectPropertyjintintjintintjbooleanbooleanID=NULL;
+jintArray_getGraphicObjectPropertyAsBooleanVectorjintintjintintID=NULL;
+jbooleansetGraphicObjectPropertyjintintjintintjbooleanArray_booleanbooleanID=NULL;
+voidregisterScilabViewID=NULL;
+voidunregisterScilabViewID=NULL;
+jintgetConsoleIdentifierID=NULL;
+voidbuildFigureMenuBarjintintID=NULL;
 
 
 }
 
 // Generic methods
 
-void CallGraphicController::synchronize()
-{
-    if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "CallGraphicController");
-    }
+void CallGraphicController::synchronize() {
+if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "CallGraphicController");
+}
 }
 
-void CallGraphicController::endSynchronize()
-{
-    if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "CallGraphicController");
-    }
+void CallGraphicController::endSynchronize() {
+if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "CallGraphicController");
+}
 }
 // Method(s)
 
-void CallGraphicController::deleteGraphicObject (JavaVM * jvm_, int id)
-{
+void CallGraphicController::deleteGraphicObject (JavaVM * jvm_, int id){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voiddeleteGraphicObjectjintintID = curEnv->GetStaticMethodID(cls, "deleteGraphicObject", "(I)V" ) ;
-    if (voiddeleteGraphicObjectjintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "deleteGraphicObject");
-    }
-
-    curEnv->CallStaticVoidMethod(cls, voiddeleteGraphicObjectjintintID , id);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
 }
 
-int CallGraphicController::cloneGraphicObject (JavaVM * jvm_, int id)
-{
+static jmethodID voiddeleteGraphicObjectjintintID = curEnv->GetStaticMethodID(cls, "deleteGraphicObject", "(I)V" ) ;
+if (voiddeleteGraphicObjectjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "deleteGraphicObject");
+}
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+                         curEnv->CallStaticVoidMethod(cls, voiddeleteGraphicObjectjintintID ,id);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
 
-    static jmethodID jintcloneGraphicObjectjintintID = curEnv->GetStaticMethodID(cls, "cloneGraphicObject", "(I)I" ) ;
-    if (jintcloneGraphicObjectjintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "cloneGraphicObject");
-    }
+int CallGraphicController::cloneGraphicObject (JavaVM * jvm_, int id){
 
-    jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintcloneGraphicObjectjintintID , id));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return res;
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jintcloneGraphicObjectjintintID = curEnv->GetStaticMethodID(cls, "cloneGraphicObject", "(I)I" ) ;
+if (jintcloneGraphicObjectjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "cloneGraphicObject");
+}
+
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintcloneGraphicObjectjintintID ,id));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
 
 }
 
-int CallGraphicController::askGraphicObject (JavaVM * jvm_, int typeName)
-{
+int CallGraphicController::askGraphicObject (JavaVM * jvm_, int typeName){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-    static jmethodID jintaskGraphicObjectjintintID = curEnv->GetStaticMethodID(cls, "askGraphicObject", "(I)I" ) ;
-    if (jintaskGraphicObjectjintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "askGraphicObject");
-    }
+static jmethodID jintaskGraphicObjectjintintID = curEnv->GetStaticMethodID(cls, "askGraphicObject", "(I)I" ) ;
+if (jintaskGraphicObjectjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "askGraphicObject");
+}
 
-    jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintaskGraphicObjectjintintID , typeName));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return res;
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintaskGraphicObjectjintintID ,typeName));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
 
 }
 
-void CallGraphicController::setGraphicObjectRelationship (JavaVM * jvm_, int parentId, int childId)
-{
+void CallGraphicController::setGraphicObjectRelationship (JavaVM * jvm_, int parentId, int childId){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidsetGraphicObjectRelationshipjintintjintintID = curEnv->GetStaticMethodID(cls, "setGraphicObjectRelationship", "(II)V" ) ;
-    if (voidsetGraphicObjectRelationshipjintintjintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "setGraphicObjectRelationship");
-    }
-
-    curEnv->CallStaticVoidMethod(cls, voidsetGraphicObjectRelationshipjintintjintintID , parentId, childId);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
 }
 
-void CallGraphicController::removeRelationShipAndDelete (JavaVM * jvm_, int id)
-{
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidremoveRelationShipAndDeletejintintID = curEnv->GetStaticMethodID(cls, "removeRelationShipAndDelete", "(I)V" ) ;
-    if (voidremoveRelationShipAndDeletejintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "removeRelationShipAndDelete");
-    }
-
-    curEnv->CallStaticVoidMethod(cls, voidremoveRelationShipAndDeletejintintID , id);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+static jmethodID voidsetGraphicObjectRelationshipjintintjintintID = curEnv->GetStaticMethodID(cls, "setGraphicObjectRelationship", "(II)V" ) ;
+if (voidsetGraphicObjectRelationshipjintintjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setGraphicObjectRelationship");
 }
 
-char* CallGraphicController::getGraphicObjectPropertyAsString (JavaVM * jvm_, int id, int propertyName)
-{
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID jstringgetGraphicObjectPropertyAsStringjintintjintintID = curEnv->GetStaticMethodID(cls, "getGraphicObjectPropertyAsString", "(II)Ljava/lang/String;" ) ;
-    if (jstringgetGraphicObjectPropertyAsStringjintintjintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "getGraphicObjectPropertyAsString");
-    }
-
-    jstring res =  static_cast<jstring>( curEnv->CallStaticObjectMethod(cls, jstringgetGraphicObjectPropertyAsStringjintintjintintID , id, propertyName));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    if (res != NULL)
-    {
-
-        const char *tempString = curEnv->GetStringUTFChars(res, 0);
-        char * myStringBuffer = new char[strlen(tempString) + 1];
-        strcpy(myStringBuffer, tempString);
-        curEnv->ReleaseStringUTFChars(res, tempString);
-        curEnv->DeleteLocalRef(res);
-        if (curEnv->ExceptionCheck())
-        {
-            delete[] myStringBuffer;
-            throw GiwsException::JniCallMethodException(curEnv);
-        }
-        return myStringBuffer;
-    }
-    else
-    {
-        curEnv->DeleteLocalRef(res);
-        return NULL;
-    }
+                         curEnv->CallStaticVoidMethod(cls, voidsetGraphicObjectRelationshipjintintjintintID ,parentId, childId);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 }
 
-bool CallGraphicController::setGraphicObjectProperty (JavaVM * jvm_, int id, int propertyName, char const* value)
+void CallGraphicController::removeRelationShipAndDelete (JavaVM * jvm_, int id){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidremoveRelationShipAndDeletejintintID = curEnv->GetStaticMethodID(cls, "removeRelationShipAndDelete", "(I)V" ) ;
+if (voidremoveRelationShipAndDeletejintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "removeRelationShipAndDelete");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidremoveRelationShipAndDeletejintintID ,id);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+char* CallGraphicController::getGraphicObjectPropertyAsString (JavaVM * jvm_, int id, int propertyName){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jstringgetGraphicObjectPropertyAsStringjintintjintintID = curEnv->GetStaticMethodID(cls, "getGraphicObjectPropertyAsString", "(II)Ljava/lang/String;" ) ;
+if (jstringgetGraphicObjectPropertyAsStringjintintjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getGraphicObjectPropertyAsString");
+}
+
+                        jstring res =  static_cast<jstring>( curEnv->CallStaticObjectMethod(cls, jstringgetGraphicObjectPropertyAsStringjintintjintintID ,id, propertyName));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}if (res != NULL) { 
+
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer = new char[strlen(tempString) + 1];
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+curEnv->DeleteLocalRef(res);
+if (curEnv->ExceptionCheck()) {
+delete[] myStringBuffer;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+return myStringBuffer;
+ } else { 
+curEnv->DeleteLocalRef(res);
+return NULL;
+}
+}
+
+bool CallGraphicController::setGraphicObjectProperty (JavaVM * jvm_, int id, int propertyName, char const* value){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jbooleansetGraphicObjectPropertyjintintjintintjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "setGraphicObjectProperty", "(IILjava/lang/String;)Z" ) ;
+if (jbooleansetGraphicObjectPropertyjintintjintintjstringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setGraphicObjectProperty");
+}
+
+jstring value_ = curEnv->NewStringUTF( value );
+if (value != NULL && value_ == NULL)
 {
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID jbooleansetGraphicObjectPropertyjintintjintintjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "setGraphicObjectProperty", "(IILjava/lang/String;)Z" ) ;
-    if (jbooleansetGraphicObjectPropertyjintintjintintjstringjava_lang_StringID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "setGraphicObjectProperty");
-    }
-
-    jstring value_ = curEnv->NewStringUTF( value );
-    if (value != NULL && value_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
 
-    jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleansetGraphicObjectPropertyjintintjintintjstringjava_lang_StringID , id, propertyName, value_));
-    curEnv->DeleteLocalRef(value_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return (res == JNI_TRUE);
+                        jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleansetGraphicObjectPropertyjintintjintintjstringjava_lang_StringID ,id, propertyName, value_));
+                        curEnv->DeleteLocalRef(value_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return (res == JNI_TRUE);
 
 }
 
-char** CallGraphicController::getGraphicObjectPropertyAsStringVector (JavaVM * jvm_, int id, int propertyName)
-{
+char** CallGraphicController::getGraphicObjectPropertyAsStringVector (JavaVM * jvm_, int id, int propertyName){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID jobjectArray_getGraphicObjectPropertyAsStringVectorjintintjintintID = curEnv->GetStaticMethodID(cls, "getGraphicObjectPropertyAsStringVector", "(II)[Ljava/lang/String;" ) ;
-    if (jobjectArray_getGraphicObjectPropertyAsStringVectorjintintjintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "getGraphicObjectPropertyAsStringVector");
-    }
-
-    jobjectArray res =  static_cast<jobjectArray>( curEnv->CallStaticObjectMethod(cls, jobjectArray_getGraphicObjectPropertyAsStringVectorjintintjintintID , id, propertyName));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    if (res != NULL)
-    {
-        int lenRow;
-        lenRow = curEnv->GetArrayLength(res);
-
-        char **arrayOfString;
-        arrayOfString = new char *[lenRow];
-        for (jsize i = 0; i < lenRow; i++)
-        {
-            jstring resString = reinterpret_cast<jstring>(curEnv->GetObjectArrayElement(res, i));
-            const char *tempString = curEnv->GetStringUTFChars(resString, 0);
-            arrayOfString[i] = new char[strlen(tempString) + 1];
-
-            strcpy(arrayOfString[i], tempString);
-            curEnv->ReleaseStringUTFChars(resString, tempString);
-            curEnv->DeleteLocalRef(resString);
-        }
-        if (curEnv->ExceptionCheck())
-        {
-            delete[] arrayOfString;
-            throw GiwsException::JniCallMethodException(curEnv);
-        }
-        curEnv->DeleteLocalRef(res);
-        return arrayOfString;
-    }
-    else
-    {
-        curEnv->DeleteLocalRef(res);
-        return NULL;
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
 }
 
-bool CallGraphicController::setGraphicObjectProperty (JavaVM * jvm_, int id, int propertyName, char const* const* value, int valueSize)
+static jmethodID jobjectArray_getGraphicObjectPropertyAsStringVectorjintintjintintID = curEnv->GetStaticMethodID(cls, "getGraphicObjectPropertyAsStringVector", "(II)[Ljava/lang/String;" ) ;
+if (jobjectArray_getGraphicObjectPropertyAsStringVectorjintintjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getGraphicObjectPropertyAsStringVector");
+}
+
+                        jobjectArray res =  static_cast<jobjectArray>( curEnv->CallStaticObjectMethod(cls, jobjectArray_getGraphicObjectPropertyAsStringVectorjintintjintintID ,id, propertyName));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}if (res != NULL) { int lenRow;
+ lenRow = curEnv->GetArrayLength(res);
+
+char **arrayOfString;
+arrayOfString = new char *[lenRow];
+for (jsize i = 0; i < lenRow; i++){
+jstring resString = reinterpret_cast<jstring>(curEnv->GetObjectArrayElement(res, i));
+const char *tempString = curEnv->GetStringUTFChars(resString, 0);
+arrayOfString[i] = new char[strlen(tempString) + 1];
+
+strcpy(arrayOfString[i], tempString);
+curEnv->ReleaseStringUTFChars(resString, tempString);
+curEnv->DeleteLocalRef(resString);
+}
+if (curEnv->ExceptionCheck()) {
+delete[] arrayOfString;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+curEnv->DeleteLocalRef(res);
+return arrayOfString;
+ } else { 
+curEnv->DeleteLocalRef(res);
+return NULL;
+}
+}
+
+bool CallGraphicController::setGraphicObjectProperty (JavaVM * jvm_, int id, int propertyName, char const* const* value, int valueSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jbooleansetGraphicObjectPropertyjintintjintintjobjectArray_java_lang_Stringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "setGraphicObjectProperty", "(II[Ljava/lang/String;)Z" ) ;
+if (jbooleansetGraphicObjectPropertyjintintjintintjobjectArray_java_lang_Stringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setGraphicObjectProperty");
+}
+jclass stringArrayClass = curEnv->FindClass("java/lang/String");
+
+// create java array of strings.
+jobjectArray value_ = curEnv->NewObjectArray( valueSize, stringArrayClass, NULL);
+if (value_ == NULL)
 {
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < valueSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( value[i] );
+if (TempString == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
-    static jmethodID jbooleansetGraphicObjectPropertyjintintjintintjobjectArray_java_lang_Stringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "setGraphicObjectProperty", "(II[Ljava/lang/String;)Z" ) ;
-    if (jbooleansetGraphicObjectPropertyjintintjintintjobjectArray_java_lang_Stringjava_lang_StringID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "setGraphicObjectProperty");
-    }
-    jclass stringArrayClass = curEnv->FindClass("java/lang/String");
+curEnv->SetObjectArrayElement( value_, i, TempString);
 
-    // create java array of strings.
-    jobjectArray value_ = curEnv->NewObjectArray( valueSize, stringArrayClass, NULL);
-    if (value_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-    // convert each char * to java strings and fill the java array.
-    for ( int i = 0; i < valueSize; i++)
-    {
-        jstring TempString = curEnv->NewStringUTF( value[i] );
-        if (TempString == NULL)
-        {
-            throw GiwsException::JniBadAllocException(curEnv);
-        }
-
-        curEnv->SetObjectArrayElement( value_, i, TempString);
-
-        // avoid keeping reference on too many strings
-        curEnv->DeleteLocalRef(TempString);
-    }
-    jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleansetGraphicObjectPropertyjintintjintintjobjectArray_java_lang_Stringjava_lang_StringID , id, propertyName, value_));
-    curEnv->DeleteLocalRef(stringArrayClass);
-    curEnv->DeleteLocalRef(value_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return (res == JNI_TRUE);
+// avoid keeping reference on too many strings
+curEnv->DeleteLocalRef(TempString);
+}
+                        jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleansetGraphicObjectPropertyjintintjintintjobjectArray_java_lang_Stringjava_lang_StringID ,id, propertyName, value_));
+                        curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(value_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return (res == JNI_TRUE);
 
 }
 
-bool CallGraphicController::setGraphicObjectProperty (JavaVM * jvm_, int id, int propertyName, double value)
-{
+bool CallGraphicController::setGraphicObjectProperty (JavaVM * jvm_, int id, int propertyName, double value){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-    static jmethodID jbooleansetGraphicObjectPropertyjintintjintintjdoubledoubleID = curEnv->GetStaticMethodID(cls, "setGraphicObjectProperty", "(IID)Z" ) ;
-    if (jbooleansetGraphicObjectPropertyjintintjintintjdoubledoubleID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "setGraphicObjectProperty");
-    }
+static jmethodID jbooleansetGraphicObjectPropertyjintintjintintjdoubledoubleID = curEnv->GetStaticMethodID(cls, "setGraphicObjectProperty", "(IID)Z" ) ;
+if (jbooleansetGraphicObjectPropertyjintintjintintjdoubledoubleID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setGraphicObjectProperty");
+}
 
-    jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleansetGraphicObjectPropertyjintintjintintjdoubledoubleID , id, propertyName, value));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return (res == JNI_TRUE);
+                        jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleansetGraphicObjectPropertyjintintjintintjdoubledoubleID ,id, propertyName, value));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return (res == JNI_TRUE);
 
 }
 
-double* CallGraphicController::getGraphicObjectPropertyAsDoubleVector (JavaVM * jvm_, int id, int propertyName)
-{
+double* CallGraphicController::getGraphicObjectPropertyAsDoubleVector (JavaVM * jvm_, int id, int propertyName){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-    static jmethodID jdoubleArray_getGraphicObjectPropertyAsDoubleVectorjintintjintintID = curEnv->GetStaticMethodID(cls, "getGraphicObjectPropertyAsDoubleVector", "(II)[D" ) ;
-    if (jdoubleArray_getGraphicObjectPropertyAsDoubleVectorjintintjintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "getGraphicObjectPropertyAsDoubleVector");
-    }
+static jmethodID jdoubleArray_getGraphicObjectPropertyAsDoubleVectorjintintjintintID = curEnv->GetStaticMethodID(cls, "getGraphicObjectPropertyAsDoubleVector", "(II)[D" ) ;
+if (jdoubleArray_getGraphicObjectPropertyAsDoubleVectorjintintjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getGraphicObjectPropertyAsDoubleVector");
+}
 
-    jdoubleArray res =  static_cast<jdoubleArray>( curEnv->CallStaticObjectMethod(cls, jdoubleArray_getGraphicObjectPropertyAsDoubleVectorjintintjintintID , id, propertyName));
-    if (res == NULL)
-    {
-        return NULL;
-    }
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    int lenRow;
-    lenRow = curEnv->GetArrayLength(res);
-    jboolean isCopy = JNI_FALSE;
+                        jdoubleArray res =  static_cast<jdoubleArray>( curEnv->CallStaticObjectMethod(cls, jdoubleArray_getGraphicObjectPropertyAsDoubleVectorjintintjintintID ,id, propertyName));
+                        if (res == NULL) { return NULL; }
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}int lenRow;
+ lenRow = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
 
-    /* GetPrimitiveArrayCritical is faster than getXXXArrayElements */
-    jdouble *resultsArray = static_cast<jdouble *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
-    double* myArray = new double[ lenRow];
+/* GetPrimitiveArrayCritical is faster than getXXXArrayElements */
+jdouble *resultsArray = static_cast<jdouble *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
+double* myArray= new double[ lenRow];
 
-    for (jsize i = 0; i <  lenRow; i++)
-    {
-        myArray[i] = resultsArray[i];
-    }
-    curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+for (jsize i = 0; i <  lenRow; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 
-    curEnv->DeleteLocalRef(res);
-    if (curEnv->ExceptionCheck())
-    {
-        delete[] myArray;
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return myArray;
+                        curEnv->DeleteLocalRef(res);
+if (curEnv->ExceptionCheck()) {
+delete[] myArray;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+return myArray;
 
 }
 
-bool CallGraphicController::setGraphicObjectProperty (JavaVM * jvm_, int id, int propertyName, double const* value, int valueSize)
+bool CallGraphicController::setGraphicObjectProperty (JavaVM * jvm_, int id, int propertyName, double const* value, int valueSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jbooleansetGraphicObjectPropertyjintintjintintjdoubleArray_doubledoubleID = curEnv->GetStaticMethodID(cls, "setGraphicObjectProperty", "(II[D)Z" ) ;
+if (jbooleansetGraphicObjectPropertyjintintjintintjdoubleArray_doubledoubleID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setGraphicObjectProperty");
+}
+
+jdoubleArray value_ = curEnv->NewDoubleArray( valueSize ) ;
+
+if (value_ == NULL)
 {
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID jbooleansetGraphicObjectPropertyjintintjintintjdoubleArray_doubledoubleID = curEnv->GetStaticMethodID(cls, "setGraphicObjectProperty", "(II[D)Z" ) ;
-    if (jbooleansetGraphicObjectPropertyjintintjintintjdoubleArray_doubledoubleID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "setGraphicObjectProperty");
-    }
-
-    jdoubleArray value_ = curEnv->NewDoubleArray( valueSize ) ;
-
-    if (value_ == NULL)
-    {
-        // check that allocation succeed
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-    curEnv->SetDoubleArrayRegion( value_, 0, valueSize, (jdouble*)(value) ) ;
+curEnv->SetDoubleArrayRegion( value_, 0, valueSize, (jdouble*)(value) ) ;
 
 
-    jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleansetGraphicObjectPropertyjintintjintintjdoubleArray_doubledoubleID , id, propertyName, value_));
-    curEnv->DeleteLocalRef(value_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return (res == JNI_TRUE);
+                        jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleansetGraphicObjectPropertyjintintjintintjdoubleArray_doubledoubleID ,id, propertyName, value_));
+                        curEnv->DeleteLocalRef(value_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return (res == JNI_TRUE);
 
 }
 
-bool CallGraphicController::setGraphicObjectProperty (JavaVM * jvm_, int id, int propertyName, int value)
-{
+bool CallGraphicController::setGraphicObjectProperty (JavaVM * jvm_, int id, int propertyName, int value){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-    static jmethodID jbooleansetGraphicObjectPropertyjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "setGraphicObjectProperty", "(III)Z" ) ;
-    if (jbooleansetGraphicObjectPropertyjintintjintintjintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "setGraphicObjectProperty");
-    }
+static jmethodID jbooleansetGraphicObjectPropertyjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "setGraphicObjectProperty", "(III)Z" ) ;
+if (jbooleansetGraphicObjectPropertyjintintjintintjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setGraphicObjectProperty");
+}
 
-    jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleansetGraphicObjectPropertyjintintjintintjintintID , id, propertyName, value));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return (res == JNI_TRUE);
+                        jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleansetGraphicObjectPropertyjintintjintintjintintID ,id, propertyName, value));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return (res == JNI_TRUE);
 
 }
 
-int* CallGraphicController::getGraphicObjectPropertyAsIntegerVector (JavaVM * jvm_, int id, int propertyName)
-{
+int* CallGraphicController::getGraphicObjectPropertyAsIntegerVector (JavaVM * jvm_, int id, int propertyName){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-    static jmethodID jintArray_getGraphicObjectPropertyAsIntegerVectorjintintjintintID = curEnv->GetStaticMethodID(cls, "getGraphicObjectPropertyAsIntegerVector", "(II)[I" ) ;
-    if (jintArray_getGraphicObjectPropertyAsIntegerVectorjintintjintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "getGraphicObjectPropertyAsIntegerVector");
-    }
+static jmethodID jintArray_getGraphicObjectPropertyAsIntegerVectorjintintjintintID = curEnv->GetStaticMethodID(cls, "getGraphicObjectPropertyAsIntegerVector", "(II)[I" ) ;
+if (jintArray_getGraphicObjectPropertyAsIntegerVectorjintintjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getGraphicObjectPropertyAsIntegerVector");
+}
 
-    jintArray res =  static_cast<jintArray>( curEnv->CallStaticObjectMethod(cls, jintArray_getGraphicObjectPropertyAsIntegerVectorjintintjintintID , id, propertyName));
-    if (res == NULL)
-    {
-        return NULL;
-    }
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    int lenRow;
-    lenRow = curEnv->GetArrayLength(res);
-    jboolean isCopy = JNI_FALSE;
+                        jintArray res =  static_cast<jintArray>( curEnv->CallStaticObjectMethod(cls, jintArray_getGraphicObjectPropertyAsIntegerVectorjintintjintintID ,id, propertyName));
+                        if (res == NULL) { return NULL; }
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}int lenRow;
+ lenRow = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
 
-    /* GetPrimitiveArrayCritical is faster than getXXXArrayElements */
-    jint *resultsArray = static_cast<jint *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
-    int* myArray = new int[ lenRow];
+/* GetPrimitiveArrayCritical is faster than getXXXArrayElements */
+jint *resultsArray = static_cast<jint *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
+int* myArray= new int[ lenRow];
 
-    for (jsize i = 0; i <  lenRow; i++)
-    {
-        myArray[i] = resultsArray[i];
-    }
-    curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+for (jsize i = 0; i <  lenRow; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 
-    curEnv->DeleteLocalRef(res);
-    if (curEnv->ExceptionCheck())
-    {
-        delete[] myArray;
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return myArray;
+                        curEnv->DeleteLocalRef(res);
+if (curEnv->ExceptionCheck()) {
+delete[] myArray;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+return myArray;
 
 }
 
-bool CallGraphicController::setGraphicObjectProperty (JavaVM * jvm_, int id, int propertyName, int const* value, int valueSize)
+bool CallGraphicController::setGraphicObjectProperty (JavaVM * jvm_, int id, int propertyName, int const* value, int valueSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jbooleansetGraphicObjectPropertyjintintjintintjintArray_intintID = curEnv->GetStaticMethodID(cls, "setGraphicObjectProperty", "(II[I)Z" ) ;
+if (jbooleansetGraphicObjectPropertyjintintjintintjintArray_intintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setGraphicObjectProperty");
+}
+
+jintArray value_ = curEnv->NewIntArray( valueSize ) ;
+
+if (value_ == NULL)
 {
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID jbooleansetGraphicObjectPropertyjintintjintintjintArray_intintID = curEnv->GetStaticMethodID(cls, "setGraphicObjectProperty", "(II[I)Z" ) ;
-    if (jbooleansetGraphicObjectPropertyjintintjintintjintArray_intintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "setGraphicObjectProperty");
-    }
-
-    jintArray value_ = curEnv->NewIntArray( valueSize ) ;
-
-    if (value_ == NULL)
-    {
-        // check that allocation succeed
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-    curEnv->SetIntArrayRegion( value_, 0, valueSize, (jint*)(value) ) ;
+curEnv->SetIntArrayRegion( value_, 0, valueSize, (jint*)(value) ) ;
 
 
-    jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleansetGraphicObjectPropertyjintintjintintjintArray_intintID , id, propertyName, value_));
-    curEnv->DeleteLocalRef(value_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return (res == JNI_TRUE);
+                        jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleansetGraphicObjectPropertyjintintjintintjintArray_intintID ,id, propertyName, value_));
+                        curEnv->DeleteLocalRef(value_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return (res == JNI_TRUE);
 
 }
 
-bool CallGraphicController::setGraphicObjectProperty (JavaVM * jvm_, int id, int propertyName, bool value)
-{
+bool CallGraphicController::setGraphicObjectProperty (JavaVM * jvm_, int id, int propertyName, bool value){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-    static jmethodID jbooleansetGraphicObjectPropertyjintintjintintjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "setGraphicObjectProperty", "(IIZ)Z" ) ;
-    if (jbooleansetGraphicObjectPropertyjintintjintintjbooleanbooleanID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "setGraphicObjectProperty");
-    }
+static jmethodID jbooleansetGraphicObjectPropertyjintintjintintjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "setGraphicObjectProperty", "(IIZ)Z" ) ;
+if (jbooleansetGraphicObjectPropertyjintintjintintjbooleanbooleanID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setGraphicObjectProperty");
+}
 
-    jboolean value_ = (static_cast<bool>(value) ? JNI_TRUE : JNI_FALSE);
+jboolean value_ = (static_cast<bool>(value) ? JNI_TRUE : JNI_FALSE);
 
-    jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleansetGraphicObjectPropertyjintintjintintjbooleanbooleanID , id, propertyName, value_));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return (res == JNI_TRUE);
+                        jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleansetGraphicObjectPropertyjintintjintintjbooleanbooleanID ,id, propertyName, value_));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return (res == JNI_TRUE);
 
 }
 
-int* CallGraphicController::getGraphicObjectPropertyAsBooleanVector (JavaVM * jvm_, int id, int propertyName)
-{
+int* CallGraphicController::getGraphicObjectPropertyAsBooleanVector (JavaVM * jvm_, int id, int propertyName){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-    static jmethodID jintArray_getGraphicObjectPropertyAsBooleanVectorjintintjintintID = curEnv->GetStaticMethodID(cls, "getGraphicObjectPropertyAsBooleanVector", "(II)[I" ) ;
-    if (jintArray_getGraphicObjectPropertyAsBooleanVectorjintintjintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "getGraphicObjectPropertyAsBooleanVector");
-    }
+static jmethodID jintArray_getGraphicObjectPropertyAsBooleanVectorjintintjintintID = curEnv->GetStaticMethodID(cls, "getGraphicObjectPropertyAsBooleanVector", "(II)[I" ) ;
+if (jintArray_getGraphicObjectPropertyAsBooleanVectorjintintjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getGraphicObjectPropertyAsBooleanVector");
+}
 
-    jintArray res =  static_cast<jintArray>( curEnv->CallStaticObjectMethod(cls, jintArray_getGraphicObjectPropertyAsBooleanVectorjintintjintintID , id, propertyName));
-    if (res == NULL)
-    {
-        return NULL;
-    }
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    int lenRow;
-    lenRow = curEnv->GetArrayLength(res);
-    jboolean isCopy = JNI_FALSE;
+                        jintArray res =  static_cast<jintArray>( curEnv->CallStaticObjectMethod(cls, jintArray_getGraphicObjectPropertyAsBooleanVectorjintintjintintID ,id, propertyName));
+                        if (res == NULL) { return NULL; }
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}int lenRow;
+ lenRow = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
 
-    /* GetPrimitiveArrayCritical is faster than getXXXArrayElements */
-    jint *resultsArray = static_cast<jint *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
-    int* myArray = new int[ lenRow];
+/* GetPrimitiveArrayCritical is faster than getXXXArrayElements */
+jint *resultsArray = static_cast<jint *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
+int* myArray= new int[ lenRow];
 
-    for (jsize i = 0; i <  lenRow; i++)
-    {
-        myArray[i] = resultsArray[i];
-    }
-    curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+for (jsize i = 0; i <  lenRow; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 
-    curEnv->DeleteLocalRef(res);
-    if (curEnv->ExceptionCheck())
-    {
-        delete[] myArray;
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return myArray;
+                        curEnv->DeleteLocalRef(res);
+if (curEnv->ExceptionCheck()) {
+delete[] myArray;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+return myArray;
 
 }
 
-bool CallGraphicController::setGraphicObjectProperty (JavaVM * jvm_, int id, int propertyName, bool const* value, int valueSize)
-{
+bool CallGraphicController::setGraphicObjectProperty (JavaVM * jvm_, int id, int propertyName, bool const* value, int valueSize){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-    static jmethodID jbooleansetGraphicObjectPropertyjintintjintintjbooleanArray_booleanbooleanID = curEnv->GetStaticMethodID(cls, "setGraphicObjectProperty", "(II[Z)Z" ) ;
-    if (jbooleansetGraphicObjectPropertyjintintjintintjbooleanArray_booleanbooleanID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "setGraphicObjectProperty");
-    }
+static jmethodID jbooleansetGraphicObjectPropertyjintintjintintjbooleanArray_booleanbooleanID = curEnv->GetStaticMethodID(cls, "setGraphicObjectProperty", "(II[Z)Z" ) ;
+if (jbooleansetGraphicObjectPropertyjintintjintintjbooleanArray_booleanbooleanID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setGraphicObjectProperty");
+}
 
-    jbooleanArray value_ = curEnv->NewBooleanArray( valueSize ) ;
-    curEnv->SetBooleanArrayRegion( value_, 0, valueSize, (jboolean*)value ) ;
+jbooleanArray value_ = curEnv->NewBooleanArray( valueSize ) ;
+curEnv->SetBooleanArrayRegion( value_, 0, valueSize, (jboolean*)value ) ;
 
-    jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleansetGraphicObjectPropertyjintintjintintjbooleanArray_booleanbooleanID , id, propertyName, value_));
-    curEnv->DeleteLocalRef(value_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return (res == JNI_TRUE);
+                        jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleansetGraphicObjectPropertyjintintjintintjbooleanArray_booleanbooleanID ,id, propertyName, value_));
+                        curEnv->DeleteLocalRef(value_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return (res == JNI_TRUE);
 
 }
 
-void CallGraphicController::registerScilabView (JavaVM * jvm_)
-{
+void CallGraphicController::registerScilabView (JavaVM * jvm_){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidregisterScilabViewID = curEnv->GetStaticMethodID(cls, "registerScilabView", "()V" ) ;
-    if (voidregisterScilabViewID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "registerScilabView");
-    }
-
-    curEnv->CallStaticVoidMethod(cls, voidregisterScilabViewID );
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
 }
 
-void CallGraphicController::unregisterScilabView (JavaVM * jvm_)
-{
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidunregisterScilabViewID = curEnv->GetStaticMethodID(cls, "unregisterScilabView", "()V" ) ;
-    if (voidunregisterScilabViewID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "unregisterScilabView");
-    }
-
-    curEnv->CallStaticVoidMethod(cls, voidunregisterScilabViewID );
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+static jmethodID voidregisterScilabViewID = curEnv->GetStaticMethodID(cls, "registerScilabView", "()V" ) ;
+if (voidregisterScilabViewID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "registerScilabView");
 }
 
-int CallGraphicController::getConsoleIdentifier (JavaVM * jvm_)
-{
+                         curEnv->CallStaticVoidMethod(cls, voidregisterScilabViewID );
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+void CallGraphicController::unregisterScilabView (JavaVM * jvm_){
 
-    static jmethodID jintgetConsoleIdentifierID = curEnv->GetStaticMethodID(cls, "getConsoleIdentifier", "()I" ) ;
-    if (jintgetConsoleIdentifierID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "getConsoleIdentifier");
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-    jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintgetConsoleIdentifierID ));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-    return res;
+static jmethodID voidunregisterScilabViewID = curEnv->GetStaticMethodID(cls, "unregisterScilabView", "()V" ) ;
+if (voidunregisterScilabViewID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "unregisterScilabView");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidunregisterScilabViewID );
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+int CallGraphicController::getConsoleIdentifier (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jintgetConsoleIdentifierID = curEnv->GetStaticMethodID(cls, "getConsoleIdentifier", "()I" ) ;
+if (jintgetConsoleIdentifierID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getConsoleIdentifier");
+}
+
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintgetConsoleIdentifierID ));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
 
 }
 
-void CallGraphicController::buildFigureMenuBar (JavaVM * jvm_, int figureId)
-{
+void CallGraphicController::buildFigureMenuBar (JavaVM * jvm_, int figureId){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-    static jmethodID voidbuildFigureMenuBarjintintID = curEnv->GetStaticMethodID(cls, "buildFigureMenuBar", "(I)V" ) ;
-    if (voidbuildFigureMenuBarjintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "buildFigureMenuBar");
-    }
+static jmethodID voidbuildFigureMenuBarjintintID = curEnv->GetStaticMethodID(cls, "buildFigureMenuBar", "(I)V" ) ;
+if (voidbuildFigureMenuBarjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "buildFigureMenuBar");
+}
 
-    curEnv->CallStaticVoidMethod(cls, voidbuildFigureMenuBarjintintID , figureId);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+                         curEnv->CallStaticVoidMethod(cls, voidbuildFigureMenuBarjintintID ,figureId);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 }
 
 }

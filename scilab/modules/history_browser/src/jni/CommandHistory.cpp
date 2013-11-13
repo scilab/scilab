@@ -36,319 +36,274 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
 
-namespace org_scilab_modules_history_browser
-{
+namespace org_scilab_modules_history_browser {
 
-// Static declarations (if any)
-
+                // Static declarations (if any)
+                
 // Returns the current env
 
-JNIEnv * CommandHistory::getCurrentEnv()
-{
-    JNIEnv * curEnv = NULL;
-    jint res = this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    if (res != JNI_OK)
-    {
-        throw GiwsException::JniException(getCurrentEnv());
-    }
-    return curEnv;
+JNIEnv * CommandHistory::getCurrentEnv() {
+JNIEnv * curEnv = NULL;
+jint res=this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+if (res != JNI_OK) {
+throw GiwsException::JniException(getCurrentEnv());
+}
+return curEnv;
 }
 // Destructor
 
-CommandHistory::~CommandHistory()
-{
-    JNIEnv * curEnv = NULL;
-    this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    curEnv->DeleteGlobalRef(this->instance);
-    curEnv->DeleteGlobalRef(this->instanceClass);
+CommandHistory::~CommandHistory() {
+JNIEnv * curEnv = NULL;
+this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+curEnv->DeleteGlobalRef(this->instance);
+curEnv->DeleteGlobalRef(this->instanceClass);
 }
 // Constructors
-CommandHistory::CommandHistory(JavaVM * jvm_)
-{
-    jmethodID constructObject = NULL ;
-    jobject localInstance ;
-    jclass localClass ;
+CommandHistory::CommandHistory(JavaVM * jvm_) {
+jmethodID constructObject = NULL ;
+jobject localInstance ;
+jclass localClass ;
 
-    const std::string construct = "<init>";
-    const std::string param = "()V";
-    jvm = jvm_;
+const std::string construct="<init>";
+const std::string param="()V";
+jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+JNIEnv * curEnv = getCurrentEnv();
 
-    localClass = curEnv->FindClass( this->className().c_str() ) ;
-    if (localClass == NULL)
-    {
-        throw GiwsException::JniClassNotFoundException(curEnv, this->className());
-    }
+localClass = curEnv->FindClass( this->className().c_str() ) ;
+if (localClass == NULL) {
+  throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+}
 
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
 
-    /* localClass is not needed anymore */
-    curEnv->DeleteLocalRef(localClass);
+/* localClass is not needed anymore */
+curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
 
-    constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
-    if (constructObject == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
+if(constructObject == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
 
-    localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
-    if (localInstance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
+if(localInstance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+ 
+this->instance = curEnv->NewGlobalRef(localInstance) ;
+if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+}
+/* localInstance not needed anymore */
+curEnv->DeleteLocalRef(localInstance);
 
-    this->instance = curEnv->NewGlobalRef(localInstance) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* localInstance not needed anymore */
-    curEnv->DeleteLocalRef(localInstance);
-
-    /* Methods ID set to NULL */
-    voidappendLinejstringjava_lang_StringID = NULL;
-    voidloadFromFileID = NULL;
-    voidinitializeID = NULL;
-    voidresetID = NULL;
-    voidexpandAllID = NULL;
-    voiddeleteLinejintintID = NULL;
-    voidlaunchHistoryBrowserID = NULL;
+                /* Methods ID set to NULL */
+voidappendLinejstringjava_lang_StringID=NULL;
+voidloadFromFileID=NULL;
+voidinitializeID=NULL;
+voidresetID=NULL;
+voidexpandAllID=NULL;
+voiddeleteLinejintintID=NULL;
+voidlaunchHistoryBrowserID=NULL;
 
 
 }
 
-CommandHistory::CommandHistory(JavaVM * jvm_, jobject JObj)
-{
-    jvm = jvm_;
+CommandHistory::CommandHistory(JavaVM * jvm_, jobject JObj) {
+        jvm=jvm_;
 
-    JNIEnv * curEnv = getCurrentEnv();
+        JNIEnv * curEnv = getCurrentEnv();
 
-    jclass localClass = curEnv->GetObjectClass(JObj);
-    this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
-    curEnv->DeleteLocalRef(localClass);
+jclass localClass = curEnv->GetObjectClass(JObj);
+        this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
+        curEnv->DeleteLocalRef(localClass);
 
-    if (this->instanceClass == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
+        if (this->instanceClass == NULL) {
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
 
-    this->instance = curEnv->NewGlobalRef(JObj) ;
-    if (this->instance == NULL)
-    {
-        throw GiwsException::JniObjectCreationException(curEnv, this->className());
-    }
-    /* Methods ID set to NULL */
-    voidappendLinejstringjava_lang_StringID = NULL;
-    voidloadFromFileID = NULL;
-    voidinitializeID = NULL;
-    voidresetID = NULL;
-    voidexpandAllID = NULL;
-    voiddeleteLinejintintID = NULL;
-    voidlaunchHistoryBrowserID = NULL;
+        this->instance = curEnv->NewGlobalRef(JObj) ;
+        if(this->instance == NULL){
+throw GiwsException::JniObjectCreationException(curEnv, this->className());
+        }
+        /* Methods ID set to NULL */
+        voidappendLinejstringjava_lang_StringID=NULL;
+voidloadFromFileID=NULL;
+voidinitializeID=NULL;
+voidresetID=NULL;
+voidexpandAllID=NULL;
+voiddeleteLinejintintID=NULL;
+voidlaunchHistoryBrowserID=NULL;
 
 
 }
 
 // Generic methods
 
-void CommandHistory::synchronize()
-{
-    if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "CommandHistory");
-    }
+void CommandHistory::synchronize() {
+if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "CommandHistory");
+}
 }
 
-void CommandHistory::endSynchronize()
-{
-    if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK)
-    {
-        throw GiwsException::JniMonitorException(getCurrentEnv(), "CommandHistory");
-    }
+void CommandHistory::endSynchronize() {
+if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
+throw GiwsException::JniMonitorException(getCurrentEnv(), "CommandHistory");
+}
 }
 // Method(s)
 
-void CommandHistory::appendLine (JavaVM * jvm_, char const* lineToAppend)
-{
+void CommandHistory::appendLine (JavaVM * jvm_, char const* lineToAppend){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidappendLinejstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "appendLine", "(Ljava/lang/String;)V" ) ;
-    if (voidappendLinejstringjava_lang_StringID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "appendLine");
-    }
-
-    jstring lineToAppend_ = curEnv->NewStringUTF( lineToAppend );
-    if (lineToAppend != NULL && lineToAppend_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-
-    curEnv->CallStaticVoidMethod(cls, voidappendLinejstringjava_lang_StringID , lineToAppend_);
-    curEnv->DeleteLocalRef(lineToAppend_);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
 }
 
-void CommandHistory::loadFromFile (JavaVM * jvm_)
-{
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidloadFromFileID = curEnv->GetStaticMethodID(cls, "loadFromFile", "()V" ) ;
-    if (voidloadFromFileID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "loadFromFile");
-    }
-
-    curEnv->CallStaticVoidMethod(cls, voidloadFromFileID );
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+static jmethodID voidappendLinejstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "appendLine", "(Ljava/lang/String;)V" ) ;
+if (voidappendLinejstringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "appendLine");
 }
 
-void CommandHistory::initialize (JavaVM * jvm_)
+jstring lineToAppend_ = curEnv->NewStringUTF( lineToAppend );
+if (lineToAppend != NULL && lineToAppend_ == NULL)
 {
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidinitializeID = curEnv->GetStaticMethodID(cls, "initialize", "()V" ) ;
-    if (voidinitializeID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "initialize");
-    }
-
-    curEnv->CallStaticVoidMethod(cls, voidinitializeID );
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+throw GiwsException::JniBadAllocException(curEnv);
 }
 
-void CommandHistory::reset (JavaVM * jvm_)
-{
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidresetID = curEnv->GetStaticMethodID(cls, "reset", "()V" ) ;
-    if (voidresetID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "reset");
-    }
-
-    curEnv->CallStaticVoidMethod(cls, voidresetID );
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+                         curEnv->CallStaticVoidMethod(cls, voidappendLinejstringjava_lang_StringID ,lineToAppend_);
+                        curEnv->DeleteLocalRef(lineToAppend_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 }
 
-void CommandHistory::expandAll (JavaVM * jvm_)
-{
+void CommandHistory::loadFromFile (JavaVM * jvm_){
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voidexpandAllID = curEnv->GetStaticMethodID(cls, "expandAll", "()V" ) ;
-    if (voidexpandAllID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "expandAll");
-    }
-
-    curEnv->CallStaticVoidMethod(cls, voidexpandAllID );
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
 }
 
-void CommandHistory::deleteLine (JavaVM * jvm_, int lineNumber)
-{
-
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    static jmethodID voiddeleteLinejintintID = curEnv->GetStaticMethodID(cls, "deleteLine", "(I)V" ) ;
-    if (voiddeleteLinejintintID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "deleteLine");
-    }
-
-    curEnv->CallStaticVoidMethod(cls, voiddeleteLinejintintID , lineNumber);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+static jmethodID voidloadFromFileID = curEnv->GetStaticMethodID(cls, "loadFromFile", "()V" ) ;
+if (voidloadFromFileID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "loadFromFile");
 }
 
-void CommandHistory::launchHistoryBrowser (JavaVM * jvm_)
-{
+                         curEnv->CallStaticVoidMethod(cls, voidloadFromFileID );
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
 
-    JNIEnv * curEnv = NULL;
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = initClass(curEnv);
-    if ( cls == NULL)
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+void CommandHistory::initialize (JavaVM * jvm_){
 
-    static jmethodID voidlaunchHistoryBrowserID = curEnv->GetStaticMethodID(cls, "launchHistoryBrowser", "()V" ) ;
-    if (voidlaunchHistoryBrowserID == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "launchHistoryBrowser");
-    }
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 
-    curEnv->CallStaticVoidMethod(cls, voidlaunchHistoryBrowserID );
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
+static jmethodID voidinitializeID = curEnv->GetStaticMethodID(cls, "initialize", "()V" ) ;
+if (voidinitializeID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "initialize");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidinitializeID );
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CommandHistory::reset (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidresetID = curEnv->GetStaticMethodID(cls, "reset", "()V" ) ;
+if (voidresetID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "reset");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidresetID );
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CommandHistory::expandAll (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidexpandAllID = curEnv->GetStaticMethodID(cls, "expandAll", "()V" ) ;
+if (voidexpandAllID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "expandAll");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidexpandAllID );
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CommandHistory::deleteLine (JavaVM * jvm_, int lineNumber){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voiddeleteLinejintintID = curEnv->GetStaticMethodID(cls, "deleteLine", "(I)V" ) ;
+if (voiddeleteLinejintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "deleteLine");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voiddeleteLinejintintID ,lineNumber);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CommandHistory::launchHistoryBrowser (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidlaunchHistoryBrowserID = curEnv->GetStaticMethodID(cls, "launchHistoryBrowser", "()V" ) ;
+if (voidlaunchHistoryBrowserID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "launchHistoryBrowser");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidlaunchHistoryBrowserID );
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 }
 
 }
