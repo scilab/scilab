@@ -168,7 +168,7 @@ static int Fsepare(char *fmt, int dec, int *l, double xmin, double xmax, double 
     /**  we don't use %.*f format if numbers are two big **/
     if (strcmp("%.*f", fmt) == 0 && (Abs(xmax) > 1.e+10 || Abs(xmin) > 1.e+10))
     {
-        return(0);
+        return (0);
     }
     sprintf(buf1, fmt, dec, xmin);
     while (x < xmax)
@@ -179,10 +179,10 @@ static int Fsepare(char *fmt, int dec, int *l, double xmin, double xmax, double 
         *l = (((int)strlen(buf1) >= *l) ? (int) strlen(buf1) : *l);
         if (strcmp(buf1, buf2) == 0)
         {
-            return(0);
+            return (0);
         }
     }
-    return(1);
+    return (1);
 }
 
 void ChoixFormatE1(char *fmt, double *xx, int nx)
@@ -262,7 +262,7 @@ static int Fsepare1(char *fmt, int dec, int *l, double *xx, int nx)
     /**  we don't use %.*f format if numbers are two big **/
     if (strcmp("%.*f", fmt) == 0 && (Abs(xx[nx - 1]) > 1.e+10 || Abs(xx[0]) > 1.e+10))
     {
-        return(0);
+        return (0);
     }
     sprintf(buf1, fmt, dec, xx[0]);
     for (i = 1 ; i < nx ; i++)
@@ -272,10 +272,10 @@ static int Fsepare1(char *fmt, int dec, int *l, double *xx, int nx)
         *l = (((int)strlen(buf1) >= *l) ? (int) strlen(buf1) : *l);
         if (strcmp(buf1, buf2) == 0)
         {
-            return(0);
+            return (0);
         }
     }
-    return(1);
+    return (1);
 }
 
 /*----------------------------------------------------
@@ -309,7 +309,7 @@ int C2F(graduate)(double *xmi, double *xma, double *xi, double *xa, int *np1, in
     {
         graduate1(xmi, xma, xi, xa, np1, np2, kminr, kmaxr, ar, 0);
     }
-    return(0);
+    return (0);
 }
 
 static void graduate1(double *xmi, double *xma, double *xi, double *xa, int *np1, int *np2, int *kminr, int *kmaxr, int *ar, int count)
@@ -841,7 +841,8 @@ int ComputeC_format(int iObjUID, char * c_format)
     int iType = -1;
     int *piType = &iType;
     int  xpassed = 0, ypassed = 0, Nx = 0, Ny = 0, x3, y3;
-    char* parentAxesID = NULL;
+    int parentAxesID;
+    int * piParentAxesID = &parentAxesID;
     int logFlag = 0;
     int* piLogFlag = &logFlag;
 
@@ -853,7 +854,7 @@ int ComputeC_format(int iObjUID, char * c_format)
         return -1;
     }
 
-    getGraphicObjectProperty(iObjUID, __GO_PARENT_AXES__, jni_string, (void **)&parentAxesID);
+    getGraphicObjectProperty(iObjUID, __GO_PARENT_AXES__, jni_int, (void **)&piParentAxesID);
 
     getGraphicObjectProperty(iObjUID, __GO_TICKS_DIRECTION__, jni_int, (void **)&piPos);
     getGraphicObjectProperty(iObjUID, __GO_TICKS_STYLE__, jni_int, (void **)&piXy_type);
@@ -1321,6 +1322,6 @@ static char FPF[32] = {'\0'};
 
 char * getFPF(void)
 {
-    return(FPF);
+    return (FPF);
 }
 /*--------------------------------------------------------------------------*/

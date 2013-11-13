@@ -139,7 +139,7 @@ int sciFigureZoom2D(int iFigureUID, const double zoomRect[4])
 
     if ((pChildrenCount != NULL) && (childrenCount > 0))
     {
-        getGraphicObjectProperty(iFigureUID, __GO_CHILDREN__, jni_string_vector, (void **) &piChildren);
+        getGraphicObjectProperty(iFigureUID, __GO_CHILDREN__, jni_int_vector, (void **) &piChildren);
         for (i = 0; i < childrenCount; i++)
         {
             sciZoomRect(piChildren[i], zoomRect);

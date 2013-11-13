@@ -113,7 +113,7 @@ int set_links_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, 
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(iObjUID, __GO_LINKS__, links, jni_string_vector, iLinksCount);
+    status = setGraphicObjectProperty(iObjUID, __GO_LINKS__, links, jni_int_vector, iLinksCount);
 
     FREE(links);
 
