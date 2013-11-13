@@ -37,15 +37,15 @@ public class AxesHandler {
 
     public enum axisTo { __X__, __Y__, __Z__, __TITLE__ };
 
+    private static Integer lastAxes;
+
     private static Integer[] searchAxes(Integer uid) {
         return (new ObjectSearcher()).search(uid, GraphicObjectProperties.__GO_AXES__);
     }
 
-
     public static Axes getAxesFromUid(Integer uid) {
         return (Axes)GraphicController.getController().getObjectFromId(uid);
     }
-
 
     /**
     * Given a mouse coordinate point (x, y) in pixels
@@ -56,10 +56,9 @@ public class AxesHandler {
     * @return Retrieved axes or null if there isn't an axes.
     */
     public static Integer clickedAxes(Integer figure, Integer[] position) {
-
         Integer[] axes = searchAxes(figure);
         if (axes == null) {
-            return null;
+            return lastAxes;
         }
         Integer[] figureSize = (Integer[])GraphicController.getController().getProperty(figure, GraphicObjectProperties.__GO_AXES_SIZE__);
 
@@ -73,10 +72,11 @@ public class AxesHandler {
             yf = (figureSize[1] * (axesBound[1] + axesBound[3]));
 
             if (position[0] > xi && position[0] < xf && position[1] > yi && position[1] < yf) {
+                lastAxes = axes[i];
                 return axes[i];
             }
         }
-        return null;
+        return lastAxes;
     }
 
 
