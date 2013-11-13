@@ -1813,7 +1813,7 @@ check-code:
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/; \
-@GIWS_TRUE@	MANDATORY_OPTIONS=--throws-exception-on-error --description-file; \
+@GIWS_TRUE@	MANDATORY_OPTIONS="--throws-exception-on-error --description-file"; \
 @GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \

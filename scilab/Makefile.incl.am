@@ -107,7 +107,7 @@ if GIWS
 ## build Swig Java => C wrappers
 giws: $(GIWS_WRAPPERS)
 	@GIWS_OUTPUTDIR=src/jni/; \
-	MANDATORY_OPTIONS=--throws-exception-on-error --description-file; \
+	MANDATORY_OPTIONS="--throws-exception-on-error --description-file"; \
 	if test -n "$(GIWS_WRAPPERS)"; then \
 		for file in $(GIWS_WRAPPERS) ; do \
 			echo "GIWS process of $$file ..."; \
