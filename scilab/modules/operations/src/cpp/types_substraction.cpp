@@ -195,6 +195,13 @@ InternalType* GenericUnaryMinus(InternalType* _pRightOperand)
         }
     }
 
+    // - Sparse
+    if (_pRightOperand->isSparse())
+    {
+        Sparse* pSp = dynamic_cast<Sparse*>(_pRightOperand)->multiply(-1);
+        return pSp;
+    }
+
     /*
     ** Default case : Return NULL will Call Overloading.
     */
