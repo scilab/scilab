@@ -32,6 +32,6 @@ function [v]=mvvacov(x)
     if rhs<>1 then error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"mvvacov",1)), end
     [n p]=size(x);
     fact=1/n
-    v=fact*((x'*x)-(fact*(x'*ones(n,1)*ones(1,n))*x))
+    v = fact * ((x'*x) - fact * ( (ones(1,n)*x)' * (ones(1,n)*x)))
 endfunction
 

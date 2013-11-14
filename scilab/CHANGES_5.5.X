@@ -157,6 +157,8 @@ Scilab Bug Fixes
 
 * Bug #13049 fixed - New handled protocols added in links in SciNotes.
 
+* Bug #13050 fixed - The result of mvvacov was not symmetric.
+
 * Bug #13053 fixed - datatipCreate did not return datatip handle.
 
 * Bug #13055 fixed - Array indexing did not follow Scilab convention in JIMS.
