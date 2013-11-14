@@ -84,6 +84,7 @@ function [s, m] = variance(x, orien, m)
     // ------------
 
     d = size(x, orien) - 1 + exists("m","local") // Denominator. If m is given, then the a priori mean is known and we divide by size(n,orien)
+
     if rhs == 3 & isnan(m) then
         // This will compute the "biased variance": the denominator is size(x,orien) but the a priori mean is not considered as provided.
         rhs = 2
@@ -105,8 +106,8 @@ function [s, m] = variance(x, orien, m)
                 // If lhs==1, we do not need to perform this operation, because in the following 'x - m', m can be a scalar
                 m = m*ones(x)
             else
-                if transposed == %t then
-                    m = m';
+                if transposed then
+                    m = m.';
                 end
                 m = m.*.ones(size(x,1),1)
             end
