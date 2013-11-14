@@ -4,6 +4,7 @@
 // Copyright (C) 2010 - Samuel Gougeon
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 // Copyright (C) 2013 - A. Khorshidi (new option)
+// Copyright (C) 2013 - Scilab Enterpriss - Paul Bignier: added output
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -12,7 +13,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
-function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,normalization,polygon)
+function [y, ind] = histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,normalization,polygon)
     // histplot(n,data,<opt_arg_seq>)
     // draws histogram of entries in  data put into n classes
     //
@@ -45,7 +46,7 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
     //    - modify a little the demo
     //    - add some checking on n|x and data
     //
-    [lhs,rhs]=argn()
+    [lhs, rhs] = argn()
 
     if rhs == 0 then   // demo
         histplot([-4.5:0.25:4.5],rand(1,20000,"n"),style=2,axesflag=1,..
@@ -66,16 +67,16 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
     end
 
     if type(n) ~= 1 |  ~isreal(n)
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real  expected.\n"),"histplot",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real expected.\n"),"histplot",1));
     elseif type(data) ~= 1 | ~isreal(data)
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real  expected.\n"),"histplot",2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real expected.\n"),"histplot",2));
     end
 
-    // this is the only specific optionnal argument for histplot
+    // This is the only specific optional argument for histplot
     if ~exists("normalization","local") then, normalization=%t,end
     if ~exists("polygon","local") then, polygon=%f,end
 
-    // now parse optionnal arguments to be sent to plot2d
+    // Now parse optionnal arguments to be sent to plot2d
     opt_arg_seq = []
     opt_arg_list = ["style","strf","leg","rect","nax","logflag","frameflag","axesflag"]
     for opt_arg = opt_arg_list
@@ -84,31 +85,14 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
         end
     end
 
-    p = length(data)
-    if length(n) == 1 then  // the number of classes is provided
-        if n < 1
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the interval %s.\n"),"histplot",1,"[1, oo)"));
-        elseif n~=floor(n)
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Integer expected.\n"),"histplot",1))
-        end
-        mind = min(data);
-        maxd = max(data);
-        if (mind == maxd) then
-            mind = mind - floor(n/2);
-            maxd = maxd + ceil(n/2);
-        end
-        x = linspace(mind, maxd, n+1);
-    else                    // the classes are provided
-        x = matrix(n,1,-1)   // force row form
-        if min(diff(x)) <= 0 then
-            error(msprintf(gettext("%s: Wrong values for input argument #%d: Elements must be in increasing order.\n"),"histplot",1))
-        end
+    [y, ind] = histc(n, data, normalization);
+
+    if length(n) == 1 then  // The number of classes is provided
+        x = linspace(min(data), max(data), n+1); // Class boundary
+    else // The classes are provided
+        x = matrix(n,1,-1);   // Force row form
         n = length(x)-1
     end
-
-    [ind , y] = dsearch(data, x)
-
-    if normalization then y=y ./ (p *(x(2:$)-x(1:$-1))),end
 
     if polygon then
         xmid=(x(1:$-1)+x(2:$))/2;...

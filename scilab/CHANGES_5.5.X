@@ -47,6 +47,9 @@ Scilab Bug Fixes
 
 * Bug #5886 fixed - There was no property labels_font_style on axis.
 
+* Bug #6036 fixed - It is now possible to compute an histogram instead of plotting it
+                    with new function histc(). Besides, histplot can now return the computed data.
+
 * Bug #6615 fixed - ui(get|put)file did not center the file dialog on the last focused window.
 
 * Bug #6689 & #6690 fixed - grand now works with complexes, polynomials, booleans, integers, sparses and strings,
