@@ -36,11 +36,11 @@ axes = gca();
 
 // check axes properties
 surf1 = axes.children(1);
-if (surf1.clip_box <> [1, 2, 3, 4]) then pause; end
-if (surf1.clip_state <> "on") then pause; end
+assert_checkequal(surf1.clip_box, [1, 2, 3, 4]);
+assert_checkequal(surf1.clip_state, "on");
 surf2 = axes.children(2);
-if (surf2.clip_box <> []) then pause; end
-if (surf2.clip_state <> "clipgrf") then pause; end
+assert_checkequal(surf2.clip_box, []);
+assert_checkequal(surf2.clip_state, "clipgrf");
 
 // same for grayplot
 clf();
@@ -135,4 +135,23 @@ surf2 = axes.children(2).children(1);
 if (surf2.clip_box <> []) then pause; end
 if (surf2.clip_state <> "clipgrf") then pause; end
 
+// datatip test
+x=linspace(0,1,9)';
+y=x.^3;
+clf();
+plot(x,y);
+e=gce();p=e.children(1);//get the handle on the polyline
+p.mark_mode="on";p.mark_style=2;p.mark_size=12;
+t=datatipCreate(p,5);
 
+// save the curves
+f = gcf();
+save(plotExportFile, "f");
+// close window
+delete(f);
+// reload data
+load(plotExportFile);
+
+e = gce();
+e = e.children(1);
+assert_checkequal(e.datatips.tip_data, [0.5, 0.125, 0]);
