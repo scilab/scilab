@@ -59,7 +59,7 @@ Scilab Bug Fixes
 
 * Bug #9110 fixed - Examples and references to other functions added in the Statistics help pages.
 
-* Bug #9139 fixed - Big polylines could not be exported in PS/EPS.
+* Bug #9319 fixed - Big polylines could not be exported in PS/EPS.
 
 * Bug #9627 fixed - Arguments checking added in optimsimplex_* functions.
 
