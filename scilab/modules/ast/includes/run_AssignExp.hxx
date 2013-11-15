@@ -810,6 +810,12 @@ void visitprivate(const AssignExp  &e)
                     delete (*pArgs)[iArg];
                 }
             }
+
+            if (pITR->isDeletable())
+            {
+                delete pITR;
+            }
+
             result_clear();
             delete pArgs;
             return;

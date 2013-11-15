@@ -179,6 +179,7 @@ std::vector<InternalType*>	List::extract(typed_list* _pArgs)
         outList.push_back(pIT);
     }
 
+    //free pArg content
     for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
     {
         if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
@@ -186,6 +187,7 @@ std::vector<InternalType*>	List::extract(typed_list* _pArgs)
             delete pArg[iArg];
         }
     }
+
     return outList;
 }
 
@@ -290,6 +292,16 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
     }
 
     m_iSize = (int)m_plData->size();
+
+    //free pArg content
+    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    {
+        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+        {
+            delete pArg[iArg];
+        }
+    }
+
     return this;
 }
 

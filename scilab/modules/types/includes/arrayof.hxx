@@ -538,6 +538,15 @@ public :
         delete[] piCoord;
         delete[] piViewDims;
 
+        //free pArg content
+        for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+        {
+            if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+            {
+                delete pArg[iArg];
+            }
+        }
+
         return this;
     }
 
@@ -605,6 +614,10 @@ public :
             if (piMaxDim[i] == 1)
             {
                 iDims--;
+                if (pArg.back()->isDeletable())
+                {
+                    delete pArg.back();
+                }
                 pArg.pop_back();
             }
             else
@@ -656,6 +669,15 @@ public :
         if (pOut != pOut2)
         {
             delete pOut;
+        }
+
+        //free pArg content
+        for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+        {
+            if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+            {
+                delete pArg[iArg];
+            }
         }
 
         return pOut2;
@@ -901,12 +923,12 @@ public :
             }
         }
 
-        //free allocated data
-        for (int i = 0 ; i < iDims ; i++)
+        //free pArg content
+        for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
         {
-            if (pArg[i] != (*_pArgs)[i])
+            if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
             {
-                delete pArg[i];
+                delete pArg[iArg];
             }
         }
 
@@ -1096,12 +1118,12 @@ public :
             piIndex[0]++;
         }
 
-        //free allocated data
-        for (int i = 0 ; i < iDims ; i++)
+        //free pArg content
+        for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
         {
-            if (pArg[i] != (*_pArgs)[i])
+            if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
             {
-                delete pArg[i];
+                delete pArg[iArg];
             }
         }
 

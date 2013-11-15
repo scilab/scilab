@@ -818,6 +818,15 @@ InternalType* Sparse::insertNew(typed_list* _pArgs, InternalType* _pSource)
         delete pOut;
     }
 
+    //free pArg content
+    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    {
+        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+        {
+            delete pArg[iArg];
+        }
+    }
+
     return pOut2;
 }
 
@@ -980,6 +989,15 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
     }
 
     finalize();
+
+    //free pArg content
+    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    {
+        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+        {
+            delete pArg[iArg];
+        }
+    }
     return this;
 }
 
@@ -1141,6 +1159,16 @@ Sparse* Sparse::insert(typed_list* _pArgs, Sparse* _pSource)
     }
 
     finalize();
+
+    //free pArg content
+    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    {
+        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+        {
+            delete pArg[iArg];
+        }
+    }
+
     return this;
 }
 
@@ -1366,6 +1394,16 @@ Sparse* Sparse::remove(typed_list* _pArgs)
 
     delete[] piIndexes;
     delete[] piViewDims;
+
+    //free pArg content
+    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    {
+        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+        {
+            delete pArg[iArg];
+        }
+    }
+
     return pOut;
 }
 
@@ -1524,6 +1562,16 @@ InternalType* Sparse::extract(typed_list* _pArgs)
     }
 
     finalize();
+
+    //free pArg content
+    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    {
+        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+        {
+            delete pArg[iArg];
+        }
+    }
+
     return pOut;
 }
 
@@ -2320,6 +2368,16 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
     }
 
     finalize();
+
+    //free pArg content
+    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    {
+        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+        {
+            delete pArg[iArg];
+        }
+    }
+
     return this;
 }
 
@@ -2446,6 +2504,16 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, InternalType* _pSource)
     }
 
     finalize();
+
+    //free pArg content
+    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    {
+        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+        {
+            delete pArg[iArg];
+        }
+    }
+
     return this;
 }
 
@@ -2664,6 +2732,16 @@ SparseBool* SparseBool::remove(typed_list* _pArgs)
 
     delete[] piIndexes;
     delete[] piViewDims;
+
+    //free pArg content
+    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    {
+        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+        {
+            delete pArg[iArg];
+        }
+    }
+
     return pOut;
 }
 
@@ -2776,6 +2854,15 @@ InternalType* SparseBool::insertNew(typed_list* _pArgs, InternalType* _pSource)
     if (pOut != pOut2)
     {
         delete pOut;
+    }
+
+    //free pArg content
+    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    {
+        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+        {
+            delete pArg[iArg];
+        }
     }
 
     return pOut2;
@@ -2915,6 +3002,16 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
     }
 
     finalize();
+
+    //free pArg content
+    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    {
+        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+        {
+            delete pArg[iArg];
+        }
+    }
+
     return pOut;
 }
 

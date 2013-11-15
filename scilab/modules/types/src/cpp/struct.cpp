@@ -456,10 +456,8 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
 
             delete pS;
             ResultList.push_back(pFields);
-            return ResultList;
         }
-
-        if (iIndex == 2)
+        else if (iIndex == 2)
         {
             //struct dims
             Int32* pDims = new Int32(1, getDims());
@@ -469,21 +467,16 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
             }
 
             ResultList.push_back(pDims);
-            return ResultList;
         }
-
-        if (getSize() == 0)
+        else if (getSize() == 0)
         {
-            return ResultList;
+            break;
         }
-
-        if (iIndex > get(0)->getData().size() + 2)
+        else if (iIndex > get(0)->getData().size() + 2)
         {
-            return ResultList;
+            break;
         }
-
-
-        if (getSize() == 1)
+        else if (getSize() == 1)
         {
             //return elements
             ResultList.push_back(get(0)->getData()[iIndex - 3]->clone());
@@ -500,6 +493,15 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
             }
 
             ResultList.push_back(pL);
+        }
+    }
+
+    //free pArg content
+    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    {
+        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+        {
+            delete pArg[iArg];
         }
     }
 

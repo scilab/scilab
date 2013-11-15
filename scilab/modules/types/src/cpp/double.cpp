@@ -772,13 +772,16 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
 
 InternalType* Double::clone()
 {
+    int iOne = 1;
     Double *pReturn = new Double(m_iDims, m_piDims, m_bComplex);
-    memcpy(pReturn->getReal(), m_pRealData, m_iSize * sizeof(double));
+    //memcpy(pReturn->getReal(), m_pRealData, m_iSize * sizeof(double));
+    dcopy_(&m_iSize, m_pRealData, &iOne, pReturn->getReal(), &iOne);
 
     if (m_bComplex)
     {
         pReturn->setComplex(true);
-        memcpy(pReturn->getImg(), m_pImgData, m_iSize * sizeof(double));
+        //memcpy(pReturn->getImg(), m_pImgData, m_iSize * sizeof(double));
+        dcopy_(&m_iSize, m_pImgData, &iOne, pReturn->getImg(), &iOne);
     }
     return pReturn;
 }
