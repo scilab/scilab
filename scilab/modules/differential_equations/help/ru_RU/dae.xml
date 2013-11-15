@@ -559,7 +559,7 @@ plot(yy(1,1),yy(2,1),'r+')
 xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
 cd(previous_dir);
 ]]></programlisting>
-        <scilab:image><![CDATA[
+        <scilab:image localized="false"><![CDATA[
 code=['#include <math.h>'
       'void res22(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
       '{res[0] = yd[0] - y[1];'
