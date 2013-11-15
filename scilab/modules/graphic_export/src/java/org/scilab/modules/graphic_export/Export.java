@@ -228,6 +228,7 @@ public class Export {
                 exporter.dispose();
                 exporter = null;
                 visitorsToExp.remove(visitor);
+                canvas.destroy();
             }
         } else {
             DrawerVisitor visitor = DrawerVisitor.getVisitor(uid);
@@ -253,6 +254,7 @@ public class Export {
                 }
                 DrawerVisitor.changeVisitor(figure, null);
                 GraphicController.getController().unregister(visitor);
+                canvas.destroy();
             }
         }
 
@@ -792,6 +794,15 @@ public class Export {
                     }
 
                     @Override
+                    public boolean shouldBeClipped(Shape clip, Shape s) {
+                        if (clip == null || s == null) {
+                            return false;
+                        }
+
+                        return clip.getBounds2D().intersects(s.getBounds2D());
+                    }
+
+                    @Override
                     public int processShape(Shape s) throws IOException {
                         if (s instanceof Ellipse2D.Double) {
                             Ellipse2D.Double ell = (Ellipse2D.Double) s;
@@ -898,7 +909,18 @@ public class Export {
                         gen.writeln("/ReEncode { /MyEncoding exch def exch findfont dup length dict begin {def} forall /Encoding MyEncoding def currentdict end definefont } def");
                         gen.writeln("/Helvetica /HelveticaLatin1 ISOLatin1Encoding ReEncode");
                         gen.writeln("/Times /TimesLatin1 ISOLatin1Encoding ReEncode");
+
+                        // DP macro is used to draw an array as a polyline
                         gen.writeln("/DP {/Points exch def Points 0 get Points 1 get M 2 2 Points length 1 sub {/i exch def Points i get Points i 1 add get L}for} def");
+                    }
+
+                    @Override
+                    public boolean shouldBeClipped(Shape clip, Shape s) {
+                        if (clip == null || s == null) {
+                            return false;
+                        }
+
+                        return clip.getBounds2D().intersects(s.getBounds2D());
                     }
 
                     @Override

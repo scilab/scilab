@@ -139,6 +139,10 @@ public class Motor3D {
      */
     public void draw() {
         Scene.drawRoot(g2d);
+        clean();
+    }
+
+    public void clean() {
         Scene.clearAll();
         G2DTextureManager.clear();
     }
