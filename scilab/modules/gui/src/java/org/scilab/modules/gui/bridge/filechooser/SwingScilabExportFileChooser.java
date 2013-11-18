@@ -25,6 +25,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.TitledBorder;
 
 import org.scilab.modules.graphic_export.FileExporter;
+import org.scilab.modules.gui.SwingView;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.localization.Messages;
@@ -76,6 +78,8 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
     public SwingScilabExportFileChooser(Integer figureUID) {
         super();
         this.figureUID = figureUID;
+        SwingScilabTab tab = (SwingScilabTab) SwingView.getFromId(figureUID);
+        setParentFrame(tab.getParentWindow());
         exportCustomFileChooser(figureUID);
     }
 

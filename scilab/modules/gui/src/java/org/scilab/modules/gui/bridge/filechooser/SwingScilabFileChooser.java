@@ -13,6 +13,8 @@
 
 package org.scilab.modules.gui.bridge.filechooser;
 
+import java.awt.Component;
+import java.awt.KeyboardFocusManager;
 import java.io.File;
 import java.util.StringTokenizer;
 
@@ -20,6 +22,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.filechooser.FileChooserInfos;
 import org.scilab.modules.gui.filechooser.SimpleFileChooser;
@@ -137,10 +140,15 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
      */
     @Override
     public void displayAndWait() {
-        JFrame parentFrame;
+        JFrame parentFrame = null;
         if (parent == null) {
-            parentFrame = new JFrame();
-            parentFrame.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")).getImage());
+            Component focused = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+            if (focused != null) {
+                parentFrame = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, focused);
+            }
+            if (parentFrame == null) {
+                parentFrame = new JFrame();
+            }
         } else {
             parentFrame = parent;
         }

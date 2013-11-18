@@ -20,6 +20,8 @@ Scilab Bug Fixes
 
 * Bug #5016 fixed - condestsp could return different results when repeated calls were performed.
 
+* Bug #6615 fixed - ui(get|put)file did not center the file dialog on the last focused window.
+
 * Bug #6689 & #6690 fixed - grand now works with complexes, polynomials, booleans, integers, sparses and strings,
                             and can take row vectors, matrices and hypermatrices of thoses types.
 
