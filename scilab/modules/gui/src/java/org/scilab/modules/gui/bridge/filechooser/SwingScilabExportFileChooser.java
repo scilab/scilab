@@ -25,6 +25,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.TitledBorder;
 
 import org.scilab.modules.graphic_export.FileExporter;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.tab.SimpleTab;
@@ -91,6 +93,15 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
      * @param figureId exported figure number
      */
     public void exportCustomFileChooser(Integer figureUID) {
+        Figure figure = (Figure) GraphicController.getController().getObjectFromId(figureUID);
+        String defaultName = figure.getName();
+        int figureId = figure.getId();
+        if (defaultName != null && !defaultName.isEmpty()) {
+            defaultName = defaultName.replaceFirst("%d", Integer.toString(figureId));
+        } else {
+            defaultName = Messages.gettext("Untitled-export");
+        }
+
         ArrayList<FileMask> v = new ArrayList<FileMask>(NB_FILE_MASKS);  /* The order does matter */
         v.add(new FileMask(png, pngDesc));
         v.add(new FileMask(jpg, jpgDesc));
@@ -107,7 +118,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 
         super.setDialogTitle(Messages.gettext("Export"));
         super.setApproveButtonText(Messages.gettext("Export"));
-        File exportFile = new File(Messages.gettext("Untitled-export"));
+        File exportFile = new File(defaultName);
         super.setSelectedFile(exportFile);
         super.setAcceptAllFileFilterUsed(false);
 

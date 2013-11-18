@@ -80,6 +80,8 @@ Scilab Bug Fixes
 
 * Bug #11575 fixed - There was no preview of GIF files in exportUI dialog.
 
+* Bug #11576 fixed - exportUI did not propose gcf().figure_name as default file name.
+
 * Bug #11680 fixed - GUI functions in Scilab 5.4.X were much slower than in Scilab 5.3.3.
 
 * Bug #12492 fixed - Exported EPS files were invalid when dash patterns were too long.
