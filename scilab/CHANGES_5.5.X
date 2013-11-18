@@ -178,6 +178,8 @@ Scilab Bug Fixes
 * Bug #13071 fixed - Three unused functions in Xcos macros now specified as not mandatory
                      to write new blocks.
 
+* Bug #13093 fixed - Removed trailing "\n" in the head_comments error message.
+
 
 Xcos Bug Fixes
 ==============
