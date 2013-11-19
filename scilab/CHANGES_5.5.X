@@ -155,6 +155,8 @@ Scilab Bug Fixes
 
 * Bug #13022 fixed - Vectorial export did not clip large segments.
 
+* Bug #13023 fixed - xs2pdf crashed under Windows when the target file was already open.
+
 * Bug #13027 fixed - There was no autowrap into array in JIMS.
 
 * Bug #13032 fixed - Fixed CMATVIEW help example and created one for CMAT3D.

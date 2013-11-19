@@ -54,6 +54,8 @@ public class FileExporter {
                 return Messages.gettext("Unable to create export file, not enough memory. Decreasing the number of elements or the size of the figure should fix this error.");
             case Export.UNKNOWN_ERROR :
                 return Messages.gettext("Unable to create export file, please fill a bug report at http://bugzilla.scilab.org.");
+            case Export.FILENOTFOUND_ERROR :
+                return Messages.gettext("Unable to create export file, the file cannot be created or is locked by an other process.");
             default :
                 return "";
         }

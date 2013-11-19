@@ -24,6 +24,7 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -74,6 +75,7 @@ public class Export {
     public static final int INVALID_FILE = 2;
     public static final int MEMORY_ERROR = 3;
     public static final int UNKNOWN_ERROR = 4;
+    public static final int FILENOTFOUND_ERROR = 5;
 
     private static final float DEFAULT_JPEG_COMPRESSION = 0.95f;
 
@@ -182,6 +184,9 @@ public class Export {
         try {
             return exportVectorial(uid, types[type], f, params, headless);
         } catch (IOException e) {
+            if (e instanceof FileNotFoundException) {
+                return FILENOTFOUND_ERROR;
+            }
             return IOEXCEPTION_ERROR;
         }
     }
@@ -203,6 +208,10 @@ public class Export {
             int height = dims[1];
 
             Graphics2D g2d = exporter.getGraphics2D(width, height, file, params);
+            if (g2d == null) {
+                return FILENOTFOUND_ERROR;
+            }
+
             params.setParamsOnGraphics(g2d);
 
             Canvas canvas = G2DCanvasFactory.createCanvas(g2d, width, height);
@@ -220,6 +229,8 @@ public class Export {
                 exporter.write();
             } catch (OutOfMemoryError e) {
                 return MEMORY_ERROR;
+            } catch (IOException e) {
+                throw e;
             } catch (Throwable e) {
                 return UNKNOWN_ERROR;
             } finally {
@@ -244,6 +255,8 @@ public class Export {
                 }
             } catch (OutOfMemoryError e) {
                 return MEMORY_ERROR;
+            } catch (IOException e) {
+                throw e;
             } catch (Throwable e) {
                 return UNKNOWN_ERROR;
             } finally {
@@ -284,6 +297,9 @@ public class Export {
         try {
             exportBitmap(uid, types[type], f, fromScreen, params);
         } catch (IOException e) {
+            if (e instanceof FileNotFoundException) {
+                return FILENOTFOUND_ERROR;
+            }
             return IOEXCEPTION_ERROR;
         }
 
