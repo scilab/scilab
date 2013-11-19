@@ -21,7 +21,11 @@
 
 function tree_show(x,titletop)
 
-    if type(x)<>16&type(x)<>17&type(x)<>15 then
+    if argn(2) < 1 then
+        error(sprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "tree_show", 1, 2));
+    end
+
+    if type(x)<>16 & type(x)<>17 & type(x)<>15 then
         error("Wrong type; input must be a list.")
     end
 
