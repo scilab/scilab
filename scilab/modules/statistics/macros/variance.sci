@@ -76,8 +76,8 @@ function [s, m] = variance(x, orien, m)
             orien = "r"
         end
     else
-        tmp = gettext("%s: Wrong value for input argument: ''%s'', ''%s'', %d or %d expected.\n")
-        error(msprintf(tmp, "variance", "c", "r", 1, 2))
+        tmp = gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n")
+        error(msprintf(tmp, "variance", 2, "c", "r", 1, 2))
     end
 
     // Calculations

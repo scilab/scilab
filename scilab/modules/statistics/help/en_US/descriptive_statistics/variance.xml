@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2000 - INRIA - Carlos Klimann
  * Copyright (C) 2013 - Samuel GOUGEON
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,17 +14,22 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="variance">
     <refnamediv>
         <refname>variance</refname>
-        <refpurpose>variance and mean of the values of a vector or matrix (or hypermatrix) real or complex</refpurpose>
+        <refpurpose>variance (and mean) of a vector or matrix (or hypermatrix) of real or complex numbers</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            s = variance(x [,orien [,m]])
-            [s, m] = variance(x, 'r') or s = variance(x, 1)
-            [s, m] = variance(x, 'c') or s = variance(x, 2)
-            [s, m] = variance(x, '*', m)
-            [s, m] = variance(x, 'r', m)
-            [s, m] = variance(x, 'c', m)
+            [s [,mc]] = variance(x [,orien [,m]])
+            
+            [s, mc] = variance(x)
+            [s, mc] = variance(x, "r"|1 )
+            [s, mc] = variance(x, "c"|2 )
+            [s, mc] = variance(x, "*"  , %nan)
+            [s, mc] = variance(x, "r"|1, %nan)
+            [s, mc] = variance(x, "c"|2, %nan)
+            s = variance(x, "*", m)
+            s = variance(x, "r"|1, m)
+            s = variance(x, "c"|2, m)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -34,7 +39,7 @@
                 <term>x</term>
                 <listitem>
                     <para>
-                        real or complex vector or matrix. An hypermatrix is accepted only for undirectional computations <literal>variance(x)</literal> or <literal>variance(x,"*",1)</literal>
+                        real or complex vector or matrix. A hypermatrix is accepted only for undirectional computations <literal>variance(x)</literal> or <literal>variance(x,"*",m)</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -43,10 +48,10 @@
                 <listitem>
                     <para>the orientation of the computation. Valid values are
                         <itemizedlist>
-                            <listitem>1 or "r" : result is a row, after a column-wise computation.</listitem>
-                            <listitem>2 or "c" : result is a column, after a row-wise computation.</listitem>
+                            <listitem>1 or "r": result is a row, after a column-wise computation.</listitem>
+                            <listitem>2 or "c": result is a column, after a row-wise computation.</listitem>
                             <listitem>
-                                "*" : full undirectional computation (default); useful explicitly when <literal>w</literal> is used.
+                                "*": full undirectional computation (default); explicitly required when <varname>m</varname> is used.
                             </listitem>
                         </itemizedlist>
                     </para>
@@ -56,10 +61,44 @@
                 <term>m</term>
                 <listitem>
                     <para>
-                        m: the a priori mean. If it is passed to <literal>variance</literal>, then the sum is normalized by
-                        <literal>n</literal>, the function returns the second moment around the mean.
-                        Otherwise, it is normalized by <literal>n-1</literal> and <literal>variance</literal> provides the best unbiased estimator of the variance.
+                        The known mean of the underlying statistical distribution law (assuming that it is known).
+                        <itemizedlist>
+                            <listitem>
+                                "*" mode (default): <varname>m</varname> must be scalar
+                            </listitem>
+                            <listitem>
+                                "r" or 1 mode: <varname>m</varname> is a row of length <literal>size(x,2)</literal>. The variance along the column #j is computed using <literal>m(j)</literal> as the mean for the considered column. If <literal>m(j)</literal> is the same for all columns, it can be provided as a scalar <varname>m</varname>.
+                            </listitem>
+                            <listitem>
+                                "c" or 2 mode: <varname>m</varname> is a column of length <literal>size(x,1)</literal>. The variance along the row #i is computed using <literal>m(i)</literal> as the mean for the considered row. If <literal>m(i)</literal> is the same for all rows, it can be provided as a scalar <varname>m</varname>.
+                            </listitem>
+                        </itemizedlist>
                     </para>
+                    <para>
+                        When <varname>m</varname> is not provided, the <literal>variance</literal> is built dividing the quadratic distance of <literal>n</literal> values to <literal>mean(x)</literal> (or <literal>mean(x,"c")</literal> or <literal>mean(x,"r")</literal>) by <literal>n-1</literal> (<literal>n</literal> being <literal>length(x)</literal> or <literal>size(x,1)</literal> or <literal>size(x,2)</literal>). If the elements of <varname>x</varname> are mutually independent, the result is then statistically unbiased.
+                    </para>
+                    <para>
+                        Else, the <literal>variance</literal> is built dividing the quadratic distance of values to <varname>m</varname> by the number n of considered values (n being length(x) or size(x,1) or size(x,2)).
+                    </para>
+                    <para>
+                        If a true value <varname>m</varname> independent from x elements is used, <varname>x</varname> and <varname>m</varname> values are mutually independent, and the result is then unbiased.
+                    </para>
+                    <para>
+                        When the special value <literal>m = %nan</literal> is provided, the variance is still normalized by n (not n-1) but is computed using
+                        <literal>m=mean(x)</literal> instead (or <literal>m = mean(x,"c")</literal> or <literal>m = mean(x,"r")</literal>). This <varname>m</varname> does not bring independent information, and yields a statistically biased result.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    The variance of unweighted values of <varname>x</varname> elements. It is a scalar or a column vector or a row vector according to <varname>orien</varname>.
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mc</term>
+                <listitem>
+                    Scalar or <varname>orien</varname>-wise mean of <varname>x</varname> elements (unweighted) (<literal>= mean(x,..)</literal>), as computed before and used as reference in the variance.
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -67,28 +106,31 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function computes the variance of the real or complex numbers stored into a vector or matrix <literal>x</literal>. If <literal>x</literal> is complex, <literal>variance(x,..) = variance(real(x),..) + variance(imag(x),..)</literal> is returned.
+            This function computes the variance of the real or complex numbers stored into a vector or matrix <varname>x</varname>. If <varname>x</varname> is complex, <literal>variance(x,..) = variance(real(x),..) + variance(imag(x),..)</literal> is returned.
         </para>
         <para>
-            For a vector, a matrix, or an hypermatrix <literal>x</literal>, <literal>s = variance(x)</literal> or <literal>s = variance(x, "*", 1)</literal>
-            returns in the scalar <literal>s</literal> the variance of all the entries of <literal>x</literal>.
+            For a vector, a matrix, or a hypermatrix <varname>x</varname>, <code>s = variance(x)</code>
+            returns in the scalar <varname>s</varname> the variance of all the entries of <varname>x</varname>.
         </para>
         <para>
-            <literal>s = variance(x,'c')</literal> (or,  equivalently, <literal>s = variance(x,2)</literal>)
-            is the columnwise variance: s is a column vector, with <literal>s(j) = variance(x(j,:))</literal>.
+            <code>s = variance(x,"c")</code> (or,  equivalently, <code>s = variance(x,2)</code>)
+            is the columnwise variance: <varname>s</varname> is a column vector, with <code>s(j) = variance(x(j,:))</code>.
         </para>
         <para>
-            <literal>s = variance(x,'r')</literal> (or,  equivalently, <literal>s = variance(x,1)</literal>)
-            is the rowwise variance: s is a row vector, with s(i) the variance of <literal>s(i) = variance(x(:,i))</literal>.
+            <code>s = variance(x,"r")</code> (or,  equivalently, <code>s = variance(x,1)</code>)
+            is the rowwise variance: <varname>s</varname> is a row vector, with <code>s(i) = variance(x(:,i))</code>.
         </para>
         <para>
-            The second output argument <literal>m</literal> is the mean of the input, with respect to the <literal>orien</literal> parameter.
+            The second output argument <varname>m</varname> is the mean of the input, with respect to the <varname>orien</varname> parameter.
         </para>
         <para>
-            <note>
-                If <code>m=%nan</code>, then the biased variance is returned:
-                that is, the chosen a priori mean is that of <varname>x</varname> and the denominator is <code>n</code>.
-            </note>
+            <warning>
+                The <literal>variance(x, "*"|"c"|"r", 1)</literal> synopsis used only in Scilab 5.4.1 must be replaced with
+                <literal>variance(x, "*"|"c"|"r", %nan)</literal>. <literal>variance(x, "*"|"c"|"r", 1)</literal> will warn
+                the user until Scilab 6.0. Indeed, <literal>1</literal> will be now considered as <literal>m=1</literal>.
+                If <literal>1</literal> is the true value provided as <varname>m</varname>, the warning may be avoided entering <literal>1+%eps</literal> instead
+                of <literal>1</literal>.
+            </warning>
         </para>
     </refsection>
     <refsection>
@@ -98,23 +140,34 @@ x = [ 0.2113249 0.0002211 0.6653811; 0.7560439 0.4453586 0.6283918 ]
 s = variance(x)
 s = variance(x, "r")
 s = variance(x, "c")
-// If the a priori mean is known
-m_r = mean(x, "r");
-m_c = mean(x, "c");
-s = variance(x, "r", m_r)
-s = variance(x, "c", m_c)
 
-// with complex numbers
+// The underlying statistical distribution and its mean are known:
+x = grand(100, 5, "unf", 0, 7);      // Uniform distribution on [0, 7]
+// => the true asymptotic mean is (0+7)/2 = 3.5 and variance = (7-0)^2/12
+(7-0)^2/12                  // True asymptotic variance
+s = variance(x)             // Unbiased (division by n-1).
+s = variance(x, "*", 3.5)   // Unbiased (division by n). Always >= variance(x)
+s = variance(x, "*", %nan)    // Biased   (division by n). Always <= variance(x)
+// Across columns:
+s = variance(x, "c")
+s = variance(x, "c", 3.5)
+s = variance(x, "c", %nan)
+
+// With complex numbers uniformly distributed on [0,1] + [0,1].i:
 x = rand(4, 3) + rand(4, 3)*%i
 s = variance(x)
+s = variance(x, "*", 0.5 + 0.5*%i)
+s = variance(x, "*", %nan)
 s = variance(x, "r")
 s = variance(x, "c")
 
-// with an hypermatrix
-x = rand(3, 2, 2)
+// With a hypermatrix
+x = rand(3, 2, 2)    // Uniform distribution on [0, 1]
 s = variance(x)
-// s = variance(x, "r")  // is not supported for an hypermatrix
-// s = variance(x, "c")  // is not supported for an hypermatrix
+s = variance(x, "*", 0.5)
+s = variance(x, "*", %nan)
+// s = variance(x, "r")  // Is not supported for a hypermatrix
+// s = variance(x, "c")  // Is not supported for a hypermatrix
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -125,6 +178,9 @@ s = variance(x)
             </member>
             <member>
                 <link linkend="mtlb_var">mtlb_var</link>
+            </member>
+            <member>
+                <link linkend="stdev">stdev</link>
             </member>
         </simplelist>
     </refsection>
@@ -139,10 +195,31 @@ s = variance(x)
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revdescription>variance(x,orien,***) introduced. Variance can now take the a priori mean.
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            <para>variance(x, orien, 0|1) removed (as introduced in Scilab 5.4.1)</para>
+                        </listitem>
+                        <listitem>
+                            <para>variance(x, orien, m) introduced: the true mean m of the underlaying statistical law can be used.</para>
+                        </listitem>
+                        <listitem>
+                            <para>variance(x, orien, %nan) introduced: mean(x,..) is used but divided by n values (instead of n-1)</para>
+                        </listitem>
+                        <listitem>
+                            <para>[s, mc] = variance(x,..) introduced: the mean mc computed from x is now also returned</para>
+                        </listitem>
+                    </itemizedlist>
                 </revdescription>
+            </revision>
+            <revision>
                 <revnumber>5.4.1</revnumber>
-                <revdescription>variance(complexes) fixed. variance(x,"*",1) introduced. Vectorization of the code for directional usages variance(x,"r"|"c"). Full revision of the help page
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            <para>variance(complexes) fixed. variance(x,"*",1) introduced. Vectorization of the code for directional usages variance(x,"r"|"c"). Full revision of the help page</para>
+                        </listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+ * Copyright (C) 2013 - Samuel Gougeon
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="variancef">
+    <refnamediv>
+        <refname>variancef</refname>
+        <refpurpose>variance (et moyenne) d'un vecteur ou d'une matrice réelle ou complexe de nombres pondérés en fréquence</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>
+            [s [,mc]] = variancef(x, fre [,orien [,m]])
+            
+            [s, mc] = variancef(x)
+            [s, mc] = variancef(x, fre, "r"|1 )
+            [s, mc] = variancef(x, fre, "c"|2 )
+            [s, mc] = variancef(x, fre, "*"  , %nan)
+            [s, mc] = variancef(x, fre, "r"|1, %nan)
+            [s, mc] = variancef(x, fre, "c"|2, %nan)
+            s = variancef(x, fre, "*", m)
+            s = variancef(x, fre, "r", m)
+            s = variancef(x, fre, "c", m)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        vecteur ou matrice réel(le) ou complexe
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fre</term>
+                <listitem>
+                    <para>
+                        vecteur ou matrice d'entiers positifs = fréquences: <code>fre(i,j)</code> est le nombre de fois que <code>x(i,j)</code> doit être compté.
+                        <varname>fre</varname> et <varname>x</varname> doivent être de même taille.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>orien</term>
+                <listitem>
+                    <para>l'orientation du calcul. Les valeurs acceptées sont:
+                        <itemizedlist>
+                            <listitem>1 ou "r" : le résultat est une rangée, après un calcul en colonne.</listitem>
+                            <listitem>2 ou "c" : le résultat est une colonne, après un calcul en ligne.</listitem>
+                            <listitem>
+                                "*" : calcul tous les éléments de <varname>x</varname> confondus (mode utilisé par défaut); utile si le 3ème paramètre <varname>m</varname> doit par ailleurs être indiqué.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>
+                        Espérance mathématique de la loi de distribution de probabilité sous-jacente (supposée connue).
+                        <itemizedlist>
+                            <listitem>
+                                "*" mode (par défaut): <varname>m</varname> doit être scalaire
+                            </listitem>
+                            <listitem>
+                                mode "r" or 1 : <varname>m</varname> un vecteur ligne à <literal>size(x,2)</literal> éléments. La variance des éléments de la colonne #j de <varname>x</varname> est calculée en utilisant <literal>m(j)</literal> comme moyenne pour la colonne. Si <varname>m</varname> est la même pour toutes les colonnes, sa valeur scalaire peut être fournie au lieu d'une ligne.
+                            </listitem>
+                            <listitem>
+                                mode "c" ou 2 : <varname>m</varname> un vecteur colonne à <literal>size(x,1)</literal> éléments. La variance des éléments de la ligne #i de <varname>x</varname> est calculée en utilisant <literal>m(i)</literal> comme moyenne pour la ligne. Si <varname>m</varname> est la même pour toutes les lignes, sa valeur scalaire peut être fournie au lieu d'une colonne.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        Lorsque <varname>m</varname> n'est pas indiquée, la <literal>variance</literal> est estimée en divisant par (n-1) (non n) la distance quadratique totale des n valeurs à la moyenne calculée <literal>mean(x)</literal>(ou <literal>mean(x,"c")</literal> ou <literal>mean(x,"r")</literal>) (n vaut length(x) ou size(x,1) ou size(x,2)). Si les éléments de <varname>x</varname> sont indépendants entre eux, l'estimation de la variance retournée est non biaisée.
+                    </para>
+                    <para>
+                        Sinon, la <literal>variance</literal> est estimée en divisant par <literal>n</literal> (au lieu de <literal>n-1</literal>) la distance quadratique totale des valeurs <literal>x(k)</literal> à <varname>m</varname> (<literal>n</literal> valant toujours <literal>length(x)</literal> ou <literal>size(x,1)</literal> ou <literal>size(x,2)</literal>). Alors :
+                        <itemizedlist>
+                            <listitem>
+                                Si une véritable valeur <varname>m</varname> indépendante des éléments de x est fournie, elle est utilisée comme moyenne de référence dans le calcul de la <literal>variance</literal>. La valeur obtenue et retournée pour celle-ci est alors réputée non biaisée.
+                            </listitem>
+                            <listitem>
+                                Si la valeur spéciale <literal>m=%nan</literal> est fournie, la <literal>variance</literal> est toujours "normalisée" par n (non n-1) mais est estimée en utilisant l'estimation "empirique"
+                                <literal>m=mean(x)</literal> de la moyenne de référence (ou <literal>m = mean(x,"c")</literal> ou <literal>m = mean(x,"r")</literal>). Comme <varname>m=%nan</varname> n'apporte aucune information nouvelle à "l'équation", celle-ci retourne une estimation biaisée de la variance.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    Estimation de la variance des valeurs de <varname>x</varname> (pondérées). <varname>s</varname> est un scalaire ou un vecteur ligne ou colonne selon l'option <varname>orien</varname> utilisée.
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mc</term>
+                <listitem>
+                    Moyenne pondérée calculée à partir de <varname>x</varname> (<literal>= mean(x,..)</literal>) et utilisée comme référence dans le calcul de la variance. Valeur scalaire ou en vecteur colonne ou ligne, selon l'option <varname>orien</varname> utilisée.
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Cette fonction calcule la variance des valeurs d'un vecteur ou une matrice
+            <varname>x</varname>, chacun des <literal>x(i,j)</literal> étant compté <literal>fre(i,j)</literal> fois.
+            If <varname>x</varname> est complexe, alors <literal>variancef(x, fre,..) = variancef(real(x), fre,..) + variancef(imag(x), fre,..)</literal> est retourné.
+        </para>
+        <para>
+            <literal>s = variancef(x,fre)</literal> (ou <literal>s=variancef(x,fre,"*")</literal>) retourne la variance scalaire calculée à partir de toutes les valeurs de <varname>x</varname>.
+        </para>
+        <para>
+            <literal>s = variancef(x,fre,"r")</literal>(ou <literal>s = variancef(x,fre,1)</literal>) retourne un vecteur ligne <varname>s</varname> tel que pour chaque j,
+            <literal>s(j) = variancef(x(:,j),fre(:,j),..)</literal>.
+        </para>
+        <para>
+            <literal>s = variancef(x,fre,"c")</literal>(ou <literal>s = variancef(x,fre,2)</literal>) retourne un vecteur colonne <varname>s</varname> tel que pour chaque i,
+            <literal>s(i) = variancef(x(i,:),fre(i,:),..)</literal>.
+        </para>
+        <para>
+            Quand la moyenne <varname>m</varname> est fournie, elle est utilisée comme référence dans le calcul de la variance au lieu d'être évaluée intérieurement à partir de <varname>x</varname> (à moins qu'elle ne soit égale à <code>%nan</code> : Voir la description de <varname>m</varname>). Ceci permet de calculer la variance d'un échantillon <varname>x</varname> en regard d'un modèle statistique donné (plutôt que d'extraire une dispersion empirique pour construire le modèle).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+x = [0.2113249 0.0002211 0.6653811; 0.7560439 0.9546254 0.6283918]
+fre = [1 2 3; 3 4 3]
+[s, m] = variancef(x, fre)
+[s, m] = variancef(x, fre, "r")
+[s, m] = variancef(x, fre, "c")
+
+// Exemple #2:
+x0 = grand(20, 7, "uin", -9,10)+0.4
+x = matrix((-9:10)+0.4, 5, 4)
+fre = members(x, x0)        // Calcule les fréquences des éléments de x dans x0
+[s, m] = variancef(x, fre)  // Doit être égal à variance(x0)
+[s, m] = variance(x0)
+
+// Exemple #2 (suite):
+m = (-9+10)/2+0.4               // Moyenne asymptotique connue (si x0 avait un nombre infini d'éléments)
+s = variancef(x, fre, "*", m)   // Variance "échantillon" en regard de la vraie moyenne
+s0 = (10 - (-9))^2 /12          // Variance asymptotique connue
+s2 = variancef(x, fre, "*", %nan)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="variance">variance</link>
+            </member>
+            <member>
+                <link linkend="mtlb_var">mtlb_var</link>
+            </member>
+            <member>
+                <link linkend="stdevf">stdevf</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Bibliographie</title>
+        <para>
+            Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            <para>variancef() peut être appelée avec des nombres complexes.</para>
+                        </listitem>
+                        <listitem>
+                            <para>variancef(x, fre, orien, m) introduit: la vraie moyenne m de la loi de distribution de probabilité sous-jacente peut être utilisée.</para>
+                        </listitem>
+                        <listitem>
+                            <para>variancef(x, fre, orien, %nan) introduit: mean(x, fre,..) est utilisé mais divisé par n valeurs (à la place de n-1)</para>
+                        </listitem>
+                        <listitem>
+                            <para>[s, mc] = variancef(x,fre,..) introduit : la moyenne mc évaluée à partir de x et fre est maintenant retournée</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
