@@ -135,6 +135,48 @@ int sciSetMarkSize(int iObjUID, int marksize)
     return -1;
 }
 
+int sciSetMarkOffset(int iObjUID, int offset)
+{
+    if (offset < 0)
+    {
+        Scierror(999, _("The mark offset must be greater or equal than %d.\n"), 0);
+        return -1;
+    }
+    else
+    {
+        BOOL status = setGraphicObjectProperty(iObjUID, __GO_MARK_OFFSET__, &offset, jni_int, 1);
+
+        if (status == TRUE)
+        {
+            return 0;
+        }
+    }
+
+    printSetGetErrorMessage("mark_offset");
+    return -1;
+}
+
+int sciSetMarkStride(int iObjUID, int stride)
+{
+    if (stride < 1)
+    {
+        Scierror(999, _("The mark stride must be greater or equal than %d.\n"), 1);
+        return -1;
+    }
+    else
+    {
+        BOOL status = setGraphicObjectProperty(iObjUID, __GO_MARK_STRIDE__, &stride, jni_int, 1);
+
+        if (status == TRUE)
+        {
+            return 0;
+        }
+    }
+
+    printSetGetErrorMessage("mark_stride");
+    return -1;
+}
+
 /**sciSetText
  * Sets the Text in TEXT, TITLE or LEGEND
  * @param char * pobjUID: the pointer to the entity

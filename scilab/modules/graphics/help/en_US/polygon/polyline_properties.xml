@@ -289,6 +289,26 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>mark_offset: </term>
+                <listitem>
+                    <para>
+                        This field contains the <literal>mark_offset</literal> property
+                        value which is the offset to use to draw the first mark. Its value should be an integer
+                        greater or equal to 0 (default value is 0).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mark_stride: </term>
+                <listitem>
+                    <para>
+                        This field contains the <literal>mark_stride</literal> property
+                        value which is the stride to use to draw the marks (i.e. stride-1 points are skipped
+                        between two consecutive marks). Its value should be integer greater or equal to 1 (default value is 1).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>x_shift: </term>
                 <listitem>
                     <para>This field contains the offset computed by a call to the

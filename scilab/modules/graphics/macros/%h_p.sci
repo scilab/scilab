@@ -85,6 +85,8 @@ function %h_p(h)
             "mark_size = "+string(h.mark_size)
             "mark_foreground = "+string(h.mark_foreground)
             "mark_background = "+string(h.mark_background)
+            "mark_offset = "+string(h.mark_offset)
+            "mark_stride = "+string(h.mark_stride)
             "x_shift = "+bxs
             "y_shift = "+bys
             "z_shift = "+bzs

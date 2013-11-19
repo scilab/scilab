@@ -159,12 +159,12 @@ public class JoGLDrawingTools implements DrawingTools {
 
     @Override
     public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions) throws SciRendererException {
-        canvas.getTextureManager().draw(this, texture, anchor, positions, 0);
+        canvas.getTextureManager().draw(this, texture, anchor, positions, 0, 1, 0);
     }
 
     @Override
-    public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, double rotationAngle) throws SciRendererException {
-        canvas.getTextureManager().draw(this, texture, anchor, positions, rotationAngle);
+    public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle) throws SciRendererException {
+        canvas.getTextureManager().draw(this, texture, anchor, positions, offset, stride, rotationAngle);
     }
 
     @Override

@@ -284,6 +284,8 @@ function save_graphichandle(h,fd)
         mput(h.background,"il",fd) // background
         mput(h.mark_foreground,"il",fd) // mark_foreground
         mput(h.mark_background,"il",fd) // mark_background
+        mput(h.mark_offset,"il",fd) // mark_offset
+        mput(h.mark_stride,"il",fd) // mark_stride
 
         mput(size(h.x_shift,"*"),"sl",fd); mput(h.x_shift,"dl",fd); // x_shift
         mput(size(h.y_shift,"*"),"sl",fd); mput(h.y_shift,"dl",fd); // y_shift

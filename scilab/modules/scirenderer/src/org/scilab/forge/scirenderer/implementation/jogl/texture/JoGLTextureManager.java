@@ -81,18 +81,37 @@ public class JoGLTextureManager implements TextureManager {
         }
     }
 
-    public void draw(JoGLDrawingTools drawingTools, Texture texture, AnchorPosition anchor, ElementsBuffer positions, double rotationAngle) throws SciRendererException {
+    public void draw(JoGLDrawingTools drawingTools, Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle) throws SciRendererException {
         if ((texture instanceof JoGLTexture) && (allTextures.contains((JoGLTexture) texture))) {
             if (positions != null) {
                 FloatBuffer data = positions.getData();
                 if (data != null) {
-                    data.rewind();
                     float[] position = {0, 0, 0, 1};
                     final JoGLTexture jt = (JoGLTexture) texture;
                     if (jt.preDraw(drawingTools)) {
-                        while (data.remaining() >= 4) {
-                            data.get(position);
-                            jt.draw(drawingTools, anchor, new Vector3d(position), rotationAngle);
+                        stride = stride < 1 ? 1 : stride;
+                        offset = offset < 0 ? 0 : offset;
+                        if (stride == 1) {
+                            data.position(4 * offset);
+                            while (data.remaining() >= 4) {
+                                data.get(position);
+                                jt.draw(drawingTools, anchor, new Vector3d(position), rotationAngle);
+                            }
+                        } else {
+                            int mark = 4 * offset;
+                            if (mark < data.capacity()) {
+                                data.position(mark);
+                                while (data.remaining() >= 4) {
+                                    data.get(position);
+                                    mark += stride * 4;
+                                    if (mark < data.capacity()) {
+                                        data.position(mark);
+                                    } else {
+                                        break;
+                                    }
+                                    jt.draw(drawingTools, anchor, new Vector3d(position), rotationAngle);
+                                }
+                            }
                         }
                         jt.postDraw(drawingTools);
                     }

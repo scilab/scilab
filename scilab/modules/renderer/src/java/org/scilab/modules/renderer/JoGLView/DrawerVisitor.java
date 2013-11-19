@@ -563,7 +563,9 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     if (polyline.getMarkMode()) {
                         Texture sprite = markManager.getMarkSprite(polyline, colorMap, appearance);
                         ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());
-                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions);
+                        int offset = polyline.getMarkOffset();
+                        int stride = polyline.getMarkStride();
+                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions, offset, stride, 0);
                     }
                 } catch (ObjectRemovedException e) {
                     invalidate(polyline, e);

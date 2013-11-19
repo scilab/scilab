@@ -84,6 +84,8 @@ int get_mark_style_property(void* _pvCtx, int iObjUID);
 int get_mark_mode_property(void* _pvCtx, int iObjUID);
 int get_mark_size_unit_property(void* _pvCtx, int iObjUID);
 int get_mark_size_property(void* _pvCtx, int iObjUID);
+int get_mark_offset_property(void* _pvCtx, int iObjUID);
+int get_mark_stride_property(void* _pvCtx, int iObjUID);
 int get_mark_foreground_property(void* _pvCtx, int iObjUID);
 int get_mark_background_property(void* _pvCtx, int iObjUID);
 int get_bar_layout_property(void* _pvCtx, int iObjUID);

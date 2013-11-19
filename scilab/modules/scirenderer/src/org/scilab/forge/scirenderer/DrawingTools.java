@@ -115,7 +115,7 @@ public interface DrawingTools {
      * @param rotationAngle the rotation angle.
      * @throws SciRendererException if the texture is not drawable.
      */
-    void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, double rotationAngle) throws SciRendererException;
+    void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle) throws SciRendererException;
 
     /**
      * Draw the given texture at given position.

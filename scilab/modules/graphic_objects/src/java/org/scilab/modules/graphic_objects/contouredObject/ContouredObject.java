@@ -27,7 +27,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  */
 public abstract class ContouredObject extends GraphicObject {
     /** ContouredObject properties */
-    public enum ContouredObjectPropertyType { LINE, FILLMODE, BACKGROUND, MARK };
+    public enum ContouredObjectPropertyType { LINE, FILLMODE, BACKGROUND, MARK, MARK_OFFSET, MARK_STRIDE };
 
     /** Line property */
     private Line line;
@@ -41,12 +41,17 @@ public abstract class ContouredObject extends GraphicObject {
     /** Mark property */
     private Mark mark;
 
+    private int offset;
+    private int stride;
+
     /** Default constructor */
     public ContouredObject() {
         line = new Line();
         fillMode = false;
         background = 0;
         mark = new Mark();
+        offset = 0;
+        stride = 1;
     }
 
     public ContouredObject clone() {
@@ -93,6 +98,10 @@ public abstract class ContouredObject extends GraphicObject {
                 return MarkPropertyType.FOREGROUND;
             case __GO_MARK_BACKGROUND__ :
                 return MarkPropertyType.BACKGROUND;
+            case __GO_MARK_OFFSET__ :
+                return ContouredObjectPropertyType.MARK_OFFSET;
+            case __GO_MARK_STRIDE__ :
+                return ContouredObjectPropertyType.MARK_STRIDE;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -132,6 +141,10 @@ public abstract class ContouredObject extends GraphicObject {
             return getMarkForeground();
         } else if (property == MarkPropertyType.BACKGROUND) {
             return getMarkBackground();
+        } else if (property == ContouredObjectPropertyType.MARK_OFFSET) {
+            return getMarkOffset();
+        } else if (property == ContouredObjectPropertyType.MARK_STRIDE) {
+            return getMarkStride();
         } else {
             return super.getProperty(property);
         }
@@ -172,11 +185,53 @@ public abstract class ContouredObject extends GraphicObject {
             this.setMarkForeground((Integer) value);
         } else if (property == MarkPropertyType.BACKGROUND) {
             this.setMarkBackground((Integer) value);
+        } else if (property == ContouredObjectPropertyType.MARK_OFFSET) {
+            this.setMarkOffset((Integer) value);
+        } else if (property == ContouredObjectPropertyType.MARK_STRIDE) {
+            this.setMarkStride((Integer) value);
         } else {
             return super.setProperty(property, value);
         }
 
         return UpdateStatus.Success;
+    }
+
+    /**
+     * @return the offset
+     */
+    public Integer getMarkOffset() {
+        return offset;
+    }
+
+    /**
+     * @param offset the offset to set
+     */
+    public UpdateStatus setMarkOffset(Integer offset) {
+        if (this.offset != offset) {
+            this.offset = offset < 0 ? 0 : offset;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
+    }
+
+    /**
+     * @return the stride
+     */
+    public Integer getMarkStride() {
+        return stride;
+    }
+
+    /**
+     * @param stride the stride to set
+     */
+    public UpdateStatus setMarkStride(Integer stride) {
+        if (this.stride != stride) {
+            this.stride = stride < 1 ? 1 : stride;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
     }
 
     /**

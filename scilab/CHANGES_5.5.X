@@ -39,6 +39,9 @@ Obsolete & Removed Functions
 Scilab Bug Fixes
 ================
 
+* Bug #1253 fixed - There was no possibility to draw only few marks on a polyline which
+                    contains a lot of points.
+
 * Bug #1751 fixed - Margins were not computed according to contents.
 
 * Bug #2067 fixed - Scilab crashed when plot was called with a large numerical value.
