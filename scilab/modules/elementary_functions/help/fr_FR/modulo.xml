@@ -7,18 +7,18 @@
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="modulo" xml:lang="fr">
     <refnamediv>
         <refname>modulo</refname>
-        <refpurpose>reste arithmétique symétrique modulo m</refpurpose>
+        <refpurpose>reste symétrique modulo m ayant le signe du dividande</refpurpose>
     </refnamediv>
     <refnamediv xml:id="pmodulo">
         <refname>pmodulo</refname>
-        <refpurpose>reste arithmétique positif modulo m</refpurpose>
+        <refpurpose>reste modulo m euclidien positif</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -29,15 +29,20 @@
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>n</term>
+                <term>m, n</term>
                 <listitem>
-                    <para>vecteur ou matrice de rééls ou de polynômes</para>
+                    <para>Scalaire, vecteur, matrice ou hypermatrice d'entiers encodés, de décimaux réels ou de polynômes (les hypermatrices de polynômes ne sont pas admises). 
+                        <varname>m</varname> et <varname>n</varname> doivent être de même type. S'ils sont de types entiers, il peuvent être d'encodages distincts (par exemple int8 et int16) Si aucune des deux n'est scalaire, elles doivent avoir les mêmes dimensions.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>m</term>
+                <term>i</term>
                 <listitem>
-                    <para>vecteur ou matrice de rééls ou de polynômes</para>
+                    <para>
+                        Scalaire, vecteur, matrice ou hypermatrice du type de <varname>n</varname> (voire de même inttype).
+                        <varname>i</varname> a les dimensions de la plus large de <varname>m</varname> ou<varname>n</varname>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -53,19 +58,11 @@
             <literal>n</literal> et/ou <literal>m</literal> sont négatifs.
         </para>
         <para>
-            <literal>pmodulo</literal> calcule <literal>i = n - |m| .* floor (n ./
-                |m|)
-            </literal>
-            ,la réponse est positive ou nulle.
+            <literal>pmodulo</literal> calcule <literal>i = n - |m| .* floor (n ./|m|)</literal>,la réponse est positive ou nulle.
         </para>
-    </refsection>
-    <refsection>
-        <title>Remarque</title>
-        <para>
-            <note>
-                Si m et n sont des vecteurs ou des matrices, ils doivent être de même taille.
-            </note>
-        </para>
+        <warning>
+            Si <literal>m</literal> contient au moins une valeur nulle, <code>modulo(x,m)</code> et <code>pmodulo(x,m)</code> effectueront une division par zéro. Si <varname>m</varname> est de type réel, l'exception sera traitée selon le mode <literal>ieee()</literal> actif. Si <literal>m</literal> est de type entier, une erreur sera toujours émise.
+        </warning>
     </refsection>
     <refsection>
         <title>Exemples</title>
@@ -80,6 +77,49 @@ modulo(10, -4)
 pmodulo(-3, 9)
 pmodulo(10, -6)
 pmodulo(-10, -6)
+
+// Entiers encodés
+modulo( int8(-13), int16(-7))
+pmodulo(int8(-13), int16(-7))
+modulo( int8(-13), int16([-7 5]))
+pmodulo(int8(-13), int16([-7 5]))
+modulo( int8([-13 8]), int16(-7))
+pmodulo(int8([-13 8]), int16(-7))
+modulo( int8([-13 8]), int16([-7 5]))
+pmodulo(int8([-13 8]), int16([-7 5]))
+
+// Hypermatrices
+m = grand(2,2,2,"uin",-100,100)
+n = grand(2,2,2,"uin",-10 ,10);
+n(n==0) = 1
+modulo(m, 5)
+pmodulo(m,5)
+modulo(51, n)
+pmodulo(51,n)
+modulo(m, n)
+pmodulo(m,n)
+
+// Polynômes
+modulo( %z^2+1, %z)
+pmodulo(%z^2+1, %z)
+
  ]]></programlisting>
+    </refsection>
+    <refsection role= "see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ieee">ieee</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Extension aux entiers encodés et aux hypermatrices d'entiers ou de réels.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -820,7 +820,10 @@ public final class SwingView implements GraphicView {
 
                 /* Add an uicontrol */
                 if (childType == __GO_UICONTROL__) {
-                    ((SwingScilabTab) updatedComponent).addMember(allObjects.get(childId).getValue());
+                    SwingViewObject uiContol = allObjects.get(childId).getValue();
+                    ((SwingScilabTab) updatedComponent).addMember(uiContol);
+                    // Force Position
+                    uiContol.update(__GO_POSITION__, (Double[]) GraphicController.getController().getProperty(childId, __GO_POSITION__));
                     needRevalidate = true;
                 }
 

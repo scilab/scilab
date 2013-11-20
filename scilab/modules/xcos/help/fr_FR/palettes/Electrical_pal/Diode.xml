@@ -82,39 +82,19 @@
     <refsection id="Description_Diode">
         <title>Description</title>
         <para>
-            Ce composant est constitué d'une diode simple en parallèle avec une résistance (
-            <emphasis role="bold">
-                <emphasis>R</emphasis>
-            </emphasis>
-            ). Le courant (
-            <emphasis role="bold">
-                <emphasis>i</emphasis>
-            </emphasis>
-            )traversant ce composant est défini
-            comme une fonction de la tension à ses bornes, (
-            <emphasis role="bold">
-                <emphasis>V</emphasis>
-            </emphasis>
-            ):
+            Ce composant est constitué d'une diode simple en parallèle avec une résistance (<literal>R</literal>). Le courant (<literal>I</literal> )traversant ce composant est défini
+            comme une fonction de la tension à ses bornes, <literal>V</literal> :
         </para>
-        <para>
-        </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/Diode_img3_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <latex><![CDATA[
+        $$
+        i = I_{ds} \times (\exp {v/V_t} - 1) + v \over R
+        $$
+        ]]></latex>
         <para>
             où 
-            <emphasis role="bold">
-                <emphasis>Ids</emphasis>
-            </emphasis>
+            <literal>Ids</literal>
             et 
-            <emphasis role="bold">
-                <emphasis>Vt</emphasis>
-            </emphasis>
+            <literal>Vt</literal>
             sont respectivement le courant de saturation et
             l'équivalent de tension de température. Si l'exponentielle franchit une certaine limite
             (<emphasis role="bold">Max exponent for linear continuation</emphasis>), la caractéristique

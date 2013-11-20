@@ -107,7 +107,18 @@
     <!-- Compile sources -->
     <target name="compile" description="Build sources" depends="init">
         <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="6" target="6" encoding="utf-8">
-            <compilerarg value="-Xlint"/>
+            <compilerarg value="-Xlint" />
+            <!--  Silent some warnings -->
+            <compilerarg value="-Xlint:-unchecked" />
+            <!-- Too borring and painful to fix -->
+            <compilerarg value="-Xlint:-rawtypes" />
+            <!-- Too borring and painful to fix -->
+            <compilerarg value="-Xlint:-path" />
+            <!--  Silent the bad path element -->
+            <compilerarg value="-Xlint:-serial" />
+            <!--  Silent warning about the serializable -->
+            <compilerarg value="-Xlint:-options" />
+            <!-- Silent 'bootstrap class path not set in conjunction with -source 1.6'. We don't want to manage the detection of rt.jar. See https://blogs.oracle.com/darcy/entry/bootclasspath_older_source -->
         </javac>
     </target>
     

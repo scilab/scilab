@@ -123,10 +123,11 @@ double pickSurface(int uid, double x, double y,  double z, double dx, double dy,
 
 
     int axes_uid = 0;
+    int * paxes_uid = &axes_uid;
     int zoom_enabled = 0;
     int *ptr = &zoom_enabled;
     double *bounds;
-    getGraphicObjectProperty(uid, __GO_PARENT_AXES__, jni_string, (void**) &axes_uid);
+    getGraphicObjectProperty(uid, __GO_PARENT_AXES__, jni_int, (void**) &paxes_uid);
     getGraphicObjectProperty(axes_uid, __GO_ZOOM_ENABLED__, jni_bool, (void**) &ptr);
 
     if (zoom_enabled)

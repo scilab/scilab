@@ -86,6 +86,7 @@ void TriangleMeshFecDataDecomposer::fillVertices(int id, float* buffer, int buff
 void TriangleMeshFecDataDecomposer::fillTextureCoordinates(int id, float* buffer, int bufferLength)
 {
     int parentFigure = 0;
+    int * piParentFigure = &parentFigure;
     int colormapSize = 0;
     int* piColormapSize = &colormapSize;
     int* colorRange = NULL;
@@ -105,7 +106,7 @@ void TriangleMeshFecDataDecomposer::fillTextureCoordinates(int id, float* buffer
 
     int bufferOffset = 0;
 
-    getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_string, (void**) &parentFigure);
+    getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_int, (void**) &piParentFigure);
     /* Temporary: to avoid getting a null parent_figure property when the object is built */
     if (parentFigure == 0)
     {
@@ -176,6 +177,7 @@ void TriangleMeshFecDataDecomposer::fillColors(int id, float* buffer, int buffer
 {
     int parent = 0;
     int parentFigure = 0;
+    int * piParentFigure = &parentFigure;
 
     double* values = NULL;
     double* zBounds = NULL;
@@ -209,7 +211,7 @@ void TriangleMeshFecDataDecomposer::fillColors(int id, float* buffer, int buffer
         return;
     }
 
-    getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_string, (void**) &parentFigure);
+    getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_int, (void**) &piParentFigure);
 
     getGraphicObjectProperty(parentFigure, __GO_COLORMAP__, jni_double_vector, (void**) &colormap);
     getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, (void**) &piColormapSize);

@@ -19,7 +19,7 @@ function m2sci_gui()
     margin = 13;
 
     // Figure creation
-    m2scifig = figure("figure_name", gettext("Matlab to Scilab conversion tool"));
+    m2scifig = figure("figure_name", gettext("Matlab to Scilab conversion tool"), "visible", "off");
 
     // Remove Scilab graphics menus & toolbar
     delmenu(m2scifig.figure_id, gettext("&File"));
@@ -39,8 +39,7 @@ function m2sci_gui()
     figw = 500;
     figh = 17*margin + btnh + 7*widgeth;
     m2scifig.axes_size = [figw figh];
-    m2scifig.auto_resize = "off";
-    m2scifig.visible = "off"; // to be sure that no plot can appear in the window
+    m2scifig.children(1).visible = "off"; // to be sure that no plot can appear in the window
 
     //-------------------
     // --- Validation ---
@@ -440,4 +439,5 @@ function m2sci_gui()
     "tag", "dirradio", ...
     "callback", "cb_m2sci_gui");
 
+    m2scifig.visible = "on";
 endfunction

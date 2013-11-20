@@ -177,7 +177,7 @@ SCICOS_BLOCKS_IMPEXP void cevscpe(scicos_block * block, scicos_flag flag)
                 set_block_error(-5);
             }
             iFigureUID = getFigure(block);
-            if (iFigureUID == NULL)
+            if (iFigureUID == 0)
             {
                 // allocation error
                 set_block_error(-5);
@@ -189,7 +189,7 @@ SCICOS_BLOCKS_IMPEXP void cevscpe(scicos_block * block, scicos_flag flag)
 
         case StateUpdate:
             iFigureUID = getFigure(block);
-            if (iFigureUID == NULL)
+            if (iFigureUID == 0)
             {
                 // allocation error
                 set_block_error(-5);
@@ -574,7 +574,7 @@ static int getFigure(scicos_block * block)
     // assert the sco is not NULL
     if (sco == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     // fast path for an existing object
@@ -593,7 +593,7 @@ static int getFigure(scicos_block * block)
 
     iFigureUID = getFigureFromIndex(figNum);
     // create on demand
-    if (iFigureUID == NULL)
+    if (iFigureUID == 0)
     {
         iFigureUID = createNewFigureWithAxes();
         setGraphicObjectProperty(iFigureUID, __GO_ID__, &figNum, jni_int, 1);
@@ -720,7 +720,7 @@ static int getSegs(int iAxeUID, scicos_block * block, int input)
         }
         else
         {
-            return NULL;
+            return 0;
         }
     }
 

@@ -7,6 +7,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [z]=milk_drop(x,y)
+    warnobsolete(scilabRemovedVersion="5.5.1");
 
     if argn(2)<>2 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "milk_drop", 2));

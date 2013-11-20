@@ -106,11 +106,25 @@ c
       dimension trav(ntrav),itrav(nitrav),izs(*)
       external simul
 c
+c---- initial printing
       if(imp.ge.1) then
-        write(bufstr,1010)
-        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
-        endif
-1010  format(' *********** qnbd ****************')
+         call basout(io_out, io, '')
+         write(bufstr,1010)
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         write(bufstr,750) n,epsg,imp
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         write(bufstr,751) itmax
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         write(bufstr,752) napmax
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         call basout(io_out ,io ,
+     $    '------------------------------------------------')
+1010    format(' *********** qnbd (with bound cstr) ****************')
+750     format('dimension=',i10,', epsq=',e24.16,
+     $ ', verbosity level: imp=',i10)
+751     format('max number of iterations allowed: iter=',i10)
+752     format('max number of calls to costf allowed: nap=',i10)
+      endif
 c
 c
 c     parametres caracteristiques de l algorithme

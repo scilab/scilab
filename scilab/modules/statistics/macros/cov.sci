@@ -151,10 +151,10 @@ function C = cov(varargin)
         if (typeof(x) <> "constant")
             error(msprintf(gettext("%s: Wrong type for input argument #%d: a real matrix expected.\n"),"cov", 1));
         end
-        if (typeof(x) <> "constant")
+        if (typeof(y) <> "constant")
             error(msprintf(gettext("%s: Wrong type for input argument #%d: a real matrix expected.\n"),"cov", 2));
         end
-        if (typeof(x) <> "constant")
+        if (typeof(nrmlztn) <> "constant")
             error(msprintf(gettext("%s: Wrong type for input argument #%d: an integer expected.\n"),"cov", 3));
         end
         //

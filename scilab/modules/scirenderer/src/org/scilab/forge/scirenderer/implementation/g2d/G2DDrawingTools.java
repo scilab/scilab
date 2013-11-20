@@ -60,7 +60,7 @@ public class G2DDrawingTools implements DrawingTools {
                 if (transformationManager.isUsingSceneCoordinate()) {
                     g2dCanvas.getMotor3D().setTransformation(transformationManager.getG2DProjection(), transformationManager.getG2DSingleProjection());
                 } else {
-                    g2dCanvas.getMotor3D().setTransformation(transformationManager.getG2DWindowProjection(), null);
+                    g2dCanvas.getMotor3D().setTransformation(transformationManager.getG2DWindowProjection(), transformationManager.getG2DSingleProjection());
                 }
             }
         });

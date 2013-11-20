@@ -295,7 +295,7 @@ final class ScilabTypeUtils {
             for (int i = 0; i < c; i++) {
                 buffer.position(r * i);
                 buffer.limit(r * i + r);
-                if (!buffer.equals(buffer.wrap(data[i]))) {
+                if (!buffer.equals(DoubleBuffer.wrap(data[i]))) {
                     buffer.clear();
                     return false;
                 }
@@ -331,7 +331,7 @@ final class ScilabTypeUtils {
             for (int i = 0; i < c; i++) {
                 buffer.position(r * i);
                 buffer.limit(r * i + r);
-                if (!buffer.equals(buffer.wrap(data[i]))) {
+                if (!buffer.equals(ByteBuffer.wrap(data[i]))) {
                     buffer.clear();
                     return false;
                 }
@@ -367,7 +367,7 @@ final class ScilabTypeUtils {
             for (int i = 0; i < c; i++) {
                 buffer.position(r * i);
                 buffer.limit(r * i + r);
-                if (!buffer.equals(buffer.wrap(data[i]))) {
+                if (!buffer.equals(ShortBuffer.wrap(data[i]))) {
                     buffer.clear();
                     return false;
                 }
@@ -403,7 +403,7 @@ final class ScilabTypeUtils {
             for (int i = 0; i < c; i++) {
                 buffer.position(r * i);
                 buffer.limit(r * i + r);
-                if (!buffer.equals(buffer.wrap(data[i]))) {
+                if (!buffer.equals(IntBuffer.wrap(data[i]))) {
                     buffer.clear();
                     return false;
                 }
@@ -439,7 +439,7 @@ final class ScilabTypeUtils {
             for (int i = 0; i < c; i++) {
                 buffer.position(r * i);
                 buffer.limit(r * i + r);
-                if (!buffer.equals(buffer.wrap(data[i]))) {
+                if (!buffer.equals(LongBuffer.wrap(data[i]))) {
                     buffer.clear();
                     return false;
                 }

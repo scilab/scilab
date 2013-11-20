@@ -216,7 +216,7 @@ SCICOS_BLOCKS_IMPEXP void cscope(scicos_block * block, scicos_flag flag)
                 break;
             }
             iFigureUID = getFigure(block);
-            if (iFigureUID == NULL)
+            if (iFigureUID == 0)
             {
                 // allocation error
                 set_block_error(-5);
@@ -226,7 +226,7 @@ SCICOS_BLOCKS_IMPEXP void cscope(scicos_block * block, scicos_flag flag)
 
         case StateUpdate:
             iFigureUID = getFigure(block);
-            if (iFigureUID == NULL)
+            if (iFigureUID == 0)
             {
                 // allocation error
                 set_block_error(-5);
@@ -692,8 +692,8 @@ static void setFigureSettings(int iFigureUID, scicos_block * block)
 static int getFigure(scicos_block * block)
 {
     signed int figNum;
-    int iFigureUID = NULL;
-    int iAxe = NULL;
+    int iFigureUID = 0;
+    int iAxe = 0;
     int i__1 = 1;
     sco_data *sco = (sco_data *) * (block->work);
 
@@ -702,11 +702,11 @@ static int getFigure(scicos_block * block)
     // assert the sco is not NULL
     if (sco == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedFigureUID != NULL)
+    if (sco->scope.cachedFigureUID != 0)
     {
         return sco->scope.cachedFigureUID;
     }
@@ -721,7 +721,7 @@ static int getFigure(scicos_block * block)
 
     iFigureUID = getFigureFromIndex(figNum);
     // create on demand
-    if (iFigureUID == NULL)
+    if (iFigureUID == 0)
     {
         iFigureUID = createNewFigureWithAxes();
         setGraphicObjectProperty(iFigureUID, __GO_ID__, &figNum, jni_int, 1);
@@ -756,7 +756,7 @@ static int getFigure(scicos_block * block)
         setFigureSettings(iFigureUID, block);
     }
 
-    if (sco->scope.cachedFigureUID == NULL)
+    if (sco->scope.cachedFigureUID == 0)
     {
         sco->scope.cachedFigureUID = iFigureUID;
     }
@@ -772,7 +772,7 @@ static int getAxe(int iFigureUID, scicos_block * block, int input)
     // assert the sco is not NULL
     if (sco == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     // fast path for an existing object
@@ -786,7 +786,7 @@ static int getAxe(int iFigureUID, scicos_block * block, int input)
     /*
      * Allocate if necessary
      */
-    if (iAxe == NULL)
+    if (iAxe == 0)
     {
         cloneAxesModel(iFigureUID);
         iAxe = findChildWithKindAt(iFigureUID, __GO_AXES__, input);
@@ -795,7 +795,7 @@ static int getAxe(int iFigureUID, scicos_block * block, int input)
     /*
      * Setup on first access
      */
-    if (iAxe != NULL)
+    if (iAxe != 0)
     {
         // allocate the polylines through the getter
         for (i = 0; i < block->insz[input]; i++)
@@ -809,7 +809,7 @@ static int getAxe(int iFigureUID, scicos_block * block, int input)
     }
     else
     {
-        return NULL;
+        return 0;
     }
 
     /*
@@ -834,7 +834,7 @@ static int getPolyline(int iAxeUID, scicos_block * block, int row, BOOL history)
     // assert the sco is not NULL
     if (sco == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     if (!history)
@@ -851,11 +851,11 @@ static int getPolyline(int iAxeUID, scicos_block * block, int row, BOOL history)
     // assert that the structure is in a good shape
     if (polylinesUIDs == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     // fast path for an existing object
-    if (polylinesUIDs[row] != NULL)
+    if (polylinesUIDs[row] != 0)
     {
         return polylinesUIDs[row];
     }
@@ -865,18 +865,18 @@ static int getPolyline(int iAxeUID, scicos_block * block, int row, BOOL history)
     /*
      * Allocate if necessary
      */
-    if (iPolyline == NULL)
+    if (iPolyline == 0)
     {
         iPolyline = createGraphicObject(__GO_POLYLINE__);
 
-        if (iPolyline != NULL)
+        if (iPolyline != 0)
         {
             createDataObject(iPolyline, __GO_POLYLINE__);
             setGraphicObjectRelationship(iAxeUID, iPolyline);
         }
         else
         {
-            return NULL;
+            return 0;
         }
     }
 

@@ -24,6 +24,7 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -74,6 +75,7 @@ public class Export {
     public static final int INVALID_FILE = 2;
     public static final int MEMORY_ERROR = 3;
     public static final int UNKNOWN_ERROR = 4;
+    public static final int FILENOTFOUND_ERROR = 5;
 
     private static final float DEFAULT_JPEG_COMPRESSION = 0.95f;
 
@@ -182,6 +184,9 @@ public class Export {
         try {
             return exportVectorial(uid, types[type], f, params, headless);
         } catch (IOException e) {
+            if (e instanceof FileNotFoundException) {
+                return FILENOTFOUND_ERROR;
+            }
             return IOEXCEPTION_ERROR;
         }
     }
@@ -203,6 +208,10 @@ public class Export {
             int height = dims[1];
 
             Graphics2D g2d = exporter.getGraphics2D(width, height, file, params);
+            if (g2d == null) {
+                return FILENOTFOUND_ERROR;
+            }
+
             params.setParamsOnGraphics(g2d);
 
             Canvas canvas = G2DCanvasFactory.createCanvas(g2d, width, height);
@@ -220,6 +229,8 @@ public class Export {
                 exporter.write();
             } catch (OutOfMemoryError e) {
                 return MEMORY_ERROR;
+            } catch (IOException e) {
+                throw e;
             } catch (Throwable e) {
                 return UNKNOWN_ERROR;
             } finally {
@@ -228,6 +239,7 @@ public class Export {
                 exporter.dispose();
                 exporter = null;
                 visitorsToExp.remove(visitor);
+                canvas.destroy();
             }
         } else {
             DrawerVisitor visitor = DrawerVisitor.getVisitor(uid);
@@ -243,6 +255,8 @@ public class Export {
                 }
             } catch (OutOfMemoryError e) {
                 return MEMORY_ERROR;
+            } catch (IOException e) {
+                throw e;
             } catch (Throwable e) {
                 return UNKNOWN_ERROR;
             } finally {
@@ -253,6 +267,7 @@ public class Export {
                 }
                 DrawerVisitor.changeVisitor(figure, null);
                 GraphicController.getController().unregister(visitor);
+                canvas.destroy();
             }
         }
 
@@ -282,6 +297,9 @@ public class Export {
         try {
             exportBitmap(uid, types[type], f, fromScreen, params);
         } catch (IOException e) {
+            if (e instanceof FileNotFoundException) {
+                return FILENOTFOUND_ERROR;
+            }
             return IOEXCEPTION_ERROR;
         }
 
@@ -792,6 +810,15 @@ public class Export {
                     }
 
                     @Override
+                    public boolean shouldBeClipped(Shape clip, Shape s) {
+                        if (clip == null || s == null) {
+                            return false;
+                        }
+
+                        return clip.getBounds2D().intersects(s.getBounds2D());
+                    }
+
+                    @Override
                     public int processShape(Shape s) throws IOException {
                         if (s instanceof Ellipse2D.Double) {
                             Ellipse2D.Double ell = (Ellipse2D.Double) s;
@@ -898,7 +925,18 @@ public class Export {
                         gen.writeln("/ReEncode { /MyEncoding exch def exch findfont dup length dict begin {def} forall /Encoding MyEncoding def currentdict end definefont } def");
                         gen.writeln("/Helvetica /HelveticaLatin1 ISOLatin1Encoding ReEncode");
                         gen.writeln("/Times /TimesLatin1 ISOLatin1Encoding ReEncode");
+
+                        // DP macro is used to draw an array as a polyline
                         gen.writeln("/DP {/Points exch def Points 0 get Points 1 get M 2 2 Points length 1 sub {/i exch def Points i get Points i 1 add get L}for} def");
+                    }
+
+                    @Override
+                    public boolean shouldBeClipped(Shape clip, Shape s) {
+                        if (clip == null || s == null) {
+                            return false;
+                        }
+
+                        return clip.getBounds2D().intersects(s.getBounds2D());
                     }
 
                     @Override

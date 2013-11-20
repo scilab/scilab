@@ -38,7 +38,7 @@
             Cette méthode est explicite, donc non concernée par les itérations fonctionnelles ou de Newton, et est déconseillée pour les problèmes raides.
         </para>
         <para>
-            C'est une amélioration de la méthode d'Euler, qui approxime 
+            C'est une amélioration de la méthode d'Euler, qui approxime
             <emphasis>
                 y<subscript>n+1</subscript>
             </emphasis>
@@ -51,14 +51,14 @@
             Une différence notable de <emphasis>Runge-Kutta</emphasis> par rapport à <emphasis>Sundials</emphasis> est qu'il calcule jusqu'à la septième dérivée de <emphasis>y</emphasis>, alors que les autres n'utilisent que des combinaisons linéaires de <emphasis>y</emphasis> et <emphasis>y'</emphasis>.
         </para>
         <para>
-            Ici, la valeur suivante est déterminée par la valeur actuelle 
+            Ici, la valeur suivante est déterminée par la valeur actuelle
             <emphasis>
                 y<subscript>n</subscript>
             </emphasis>
             plus la moyenne pondérée de six incréments, où chaque incrément est le produit du pas, <emphasis>h</emphasis>, et une estimation de la pente spécifiée par la fonction <emphasis>f(t,y)</emphasis> :
             <itemizedlist>
                 <listitem>
-                    <emphasis>k1</emphasis> est l'incrément basé sur la pente au début de l'intervalle, utilisant 
+                    <emphasis>k1</emphasis> est l'incrément basé sur la pente au début de l'intervalle, utilisant
                     <emphasis>
                         y<subscript>n</subscript>
                     </emphasis>
@@ -73,44 +73,44 @@
             </itemizedlist>
         </para>
         <para>
-            On peut voir qu'avec les <emphasis>ki</emphasis>, on progresse dans les dérivées de 
+            On peut voir qu'avec les <emphasis>ki</emphasis>, on progresse dans les dérivées de
             <emphasis>
                 y<subscript>n</subscript>
             </emphasis>
-            . Dans le calcul des <emphasis>ki</emphasis>, on utilise délibérément des coefficients qui donnent une erreur en 
+            . Dans le calcul des <emphasis>ki</emphasis>, on utilise délibérément des coefficients qui donnent une erreur en
             <emphasis>
                 O(h<superscript>5</superscript>)
             </emphasis>
             à chaque pas.
         </para>
         <para>
-            L'erreur totale est donc en 
+            L'erreur totale est donc en
             <emphasis>
                 nombre de pas * O(h<superscript>5</superscript>)
             </emphasis>
-            . Et puisque par définition <emphasis>nombre de pas = taille de l'intervalle / h</emphasis>, l'erreur totale est en 
+            . Et puisque par définition <emphasis>nombre de pas = taille de l'intervalle / h</emphasis>, l'erreur totale est en
             <emphasis>
                 O(h<superscript>4</superscript>)
             </emphasis>
             .
         </para>
         <para>
-            Cette analyse d'erreur a baptisé la méthode <emphasis>Dormand-Prince 4(5)</emphasis>: 
+            Cette analyse d'erreur a baptisé la méthode <emphasis>Dormand-Prince 4(5)</emphasis>:
             <emphasis>
                 O(h<superscript>5</superscript>)
             </emphasis>
-            par pas de temps, 
+            par pas de temps,
             <emphasis>
                 O(h<superscript>4</superscript>)
             </emphasis>
             au total.
         </para>
         <para>
-            Bien que le solveur fonctionne bien pour <link linkend="Simulatemenu_Menu_entries">max step size</link> jusqu'à 
+            Bien que le solveur fonctionne bien pour <link linkend="Simulatemenu_Menu_entries">max step size</link> jusqu'à
             <emphasis>
                 10<superscript>-3</superscript>
             </emphasis>
-            , des erreurs d'arrondi surviennent parfois quand l'on approche 
+            , des erreurs d'arrondi surviennent parfois quand l'on approche
             <emphasis>
                 4*10<superscript>-4</superscript>
             </emphasis>

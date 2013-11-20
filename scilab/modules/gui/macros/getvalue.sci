@@ -53,7 +53,7 @@ function [%ok,%1,%2,%3,%4,%5,...
     // before numerical evaluation
     //%Example
     // labels=['magnitude';'frequency';'phase    '];
-    // [ampl,freq,ph]=getvalue('define sine signal',labels,..
+    // [ampl,Freq,ph]=getvalue('define sine signal',labels,..
     //            list('vec',1,'vec',1,'vec',1),['0.85';'10^2';'%pi/3'])
     //
     //%See also

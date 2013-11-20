@@ -173,7 +173,7 @@ public class BufferedImageTextureDrawingTools implements TextureDrawingTools {
             g2d.setColor(textEntity.getTextColor());
             TextLayout textLayout = new TextLayout(textEntity.getText(), textEntity.getFont(), g2d.getFontRenderContext());
             Rectangle2D bounds = textLayout.getBounds();
-            textLayout.draw(g2d, (float) (x + 1 - bounds.getX()), (float) (y + 1 - bounds.getY()));
+            textLayout.draw(g2d, (float) (x + 1 - bounds.getX()), (float) (y + textLayout.getAscent()));
         }
     }
 

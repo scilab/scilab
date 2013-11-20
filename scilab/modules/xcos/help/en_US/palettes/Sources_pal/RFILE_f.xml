@@ -116,11 +116,21 @@
             </literal>
             and the structure shown below:
         </para>
-        <para/>
         <mediaobject>
             <imageobject>
-                <imagedata fileref="../../../images/sources_pal/en_US/rfile_f_record_en_US.png" align="center"/>
+                <imagedata fileref="../../../images/palettes/sources_pal/en_US/rfile_f_record_en_US.gif"/>
             </imageobject>
+            <textobject>
+                <programlisting role="pic"><![CDATA[
+.PS
+box "Field #1";
+box "Field #2";
+box "...";
+box "Field #(N-1)";
+box "Field #N";
+.PE
+                ]]></programlisting>
+            </textobject>
         </mediaobject>
         <para>
             The <emphasis role="bold">Time Record Selection</emphasis> parameter allows to user the selection of one field in the

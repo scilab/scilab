@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -110,14 +110,14 @@
         </para>
         <para>
             For a vector or matrix <literal> x</literal>, <literal>
-                m=trimmean(x,discard) 
+                m=trimmean(x,discard)
             </literal>
             returns in scalar<literal> m</literal>
             the trimmed mean of all the entries of <literal> x</literal>.
         </para>
         <para>
             <literal> m=trimmean(x,'r') </literal> (or, equivalently, <literal>
-                m=trimmean(x,1) 
+                m=trimmean(x,1)
             </literal>
             )returns in each entry of the row vector
             <literal> m</literal> the trimmed mean of each column of <literal>
@@ -127,7 +127,7 @@
         </para>
         <para>
             <literal> m=trimmean(x,'c') </literal> (or, equivalently, <literal>
-                m=trimmean(x,2) 
+                m=trimmean(x,2)
             </literal>
             )returns in each entry of the column vector
             <literal> m</literal> the trimmed mean of each row of <literal>
@@ -139,13 +139,13 @@
     <refsection>
         <title>Example with x as vector</title>
         <para>In the following example, one computes the trimmed mean of one data
-            vector, with the default discard value equals to 50 and verbose logging.
+            vector, with the default discard value equal to 50 and verbose logging.
             The data is made of 9 entries. The algorithms sorts the vector and keeps
             only indices from 3 to 7, skipping indices 1, 2, 8 and 9. The value 4000,
             which is much larger than the others is not taken into account. The
             computed trimmed mean is therefore 50.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 data = [10, 20, 30, 40, 50, 60, 70, 80, 4000];
 computed = trimmean(data,verbose=1);
  ]]></programlisting>
@@ -158,7 +158,7 @@ computed = trimmean(data,verbose=1);
             one computes a trimmed mean. The trimmed mean is the line vector [25 25 25
             25].
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 data = [10 10 10 10
         20 20 20 20
         30 30 30 30

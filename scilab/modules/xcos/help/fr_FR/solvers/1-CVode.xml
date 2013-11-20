@@ -29,11 +29,11 @@
             </latex>
         </para>
         <para>
-            Partant de 
+            Partant de
             <emphasis>
                 y<subscript>0</subscript>
             </emphasis>
-            , <emphasis>CVode</emphasis> approxime 
+            , <emphasis>CVode</emphasis> approxime
             <emphasis>
                 y<subscript>n+1</subscript>
             </emphasis>
@@ -46,15 +46,15 @@
                 \end{eqnarray}
             </latex>
             <para>
-                &#160; avec 
+                 avec
                 <emphasis>
                     y<subscript>n</subscript>
                 </emphasis>
-                l'approximation de 
+                l'approximation de
                 <emphasis>
                     y(t<subscript>n</subscript>)
                 </emphasis>
-                , et 
+                , et
                 <emphasis>
                     h<subscript>n</subscript>
                 </emphasis>
@@ -66,7 +66,7 @@
             </para>
         </para>
         <para>
-            Ces méthodes implicites sont caractérisées par leur order <emphasis>q</emphasis>, qui indique le nombre de points intermédiaires requis pour le calcul de 
+            Ces méthodes implicites sont caractérisées par leur order <emphasis>q</emphasis>, qui indique le nombre de points intermédiaires requis pour le calcul de
             <emphasis>
                 y<subscript>n+1</subscript>
             </emphasis>
@@ -100,9 +100,9 @@
             </listitem>
         </itemizedlist>
         <para>
-            Les coefficients sont fixes, déterminés uniformément par le type de méthode, son ordre, les pas de temps et la normalisation 
+            Les coefficients sont fixes, déterminés uniformément par le type de méthode, son ordre, les pas de temps et la normalisation
             <emphasis>
-                &#x3B1;<subscript>n, 0</subscript> = -1
+                α<subscript>n, 0</subscript> = -1
             </emphasis>
             .
         </para>
@@ -118,7 +118,7 @@
             Ce système peut être résolu par des itérations <emphasis>fonctionnelles</emphasis> ou de <emphasis>Newton</emphasis>, décrites ci-après.
         </para>
         <para>
-            Dans les deux cas suivants, le 
+            Dans les deux cas suivants, le
             <emphasis>
                 y<subscript>n(0)</subscript>
             </emphasis>
@@ -127,14 +127,14 @@
         <itemizedlist>
             <para>  </para>
             <listitem>
-                <emphasis role="bold">Fonctionnelles :</emphasis> cette méthode n'implique que des évaluations de <emphasis>f</emphasis>, elle calcule 
+                <emphasis role="bold">Fonctionnelles :</emphasis> cette méthode n'implique que des évaluations de <emphasis>f</emphasis>, elle calcule
                 <emphasis>
                     y<subscript>n(0)</subscript>
                 </emphasis>
                 simplement en itérant la formule :
                 <para>
                     <latex>
-                        y_{n(m+1)} = h_n &#x3B2;_{n,0} f(t_n,y_{n(m)}) + a_n
+                        y_{n(m+1)} = h_n β_{n,0} f(t_n,y_{n(m)}) + a_n
                     </latex>
                     <latex scilab:localized="true">
                         où \hspace{2 mm} a_n\equiv \sum_{i>0} (\alpha_{n,i} y_{n-i} + h_n\beta_{n,i}\dot{y}_{n-i})
@@ -152,11 +152,11 @@
             </listitem>
         </itemizedlist>
         <para>
-            Dans les deux cas, <emphasis>CVode</emphasis> se sert des valeurs passées pour contrôler l'erreur locale 
+            Dans les deux cas, <emphasis>CVode</emphasis> se sert des valeurs passées pour contrôler l'erreur locale
             <emphasis>
                 y<subscript>n(m)</subscript> - y<subscript>n(0)</subscript>
             </emphasis>
-            et recalcule 
+            et recalcule
             <emphasis>
                 h<subscript>n</subscript>
             </emphasis>

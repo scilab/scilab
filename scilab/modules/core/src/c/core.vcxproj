@@ -474,7 +474,6 @@ cd ..
     <ClInclude Include="..\..\includes\SetScilabEnvironment.h" />
     <ClInclude Include="..\..\includes\stack-c.h" />
     <ClInclude Include="..\..\includes\stack-def.h" />
-    <ClInclude Include="..\..\includes\stack.h" />
     <ClInclude Include="..\..\includes\stack1.h" />
     <ClInclude Include="..\..\includes\stack2.h" />
     <ClInclude Include="..\..\includes\stack3.h" />

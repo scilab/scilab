@@ -112,10 +112,21 @@
             Ce  bloc permet à l'utilisateur d'écrire des données dans un fichier binaire C dont le nom est défini par la chaîne  <emphasis role="bold">Output File Name</emphasis>. Le fichier est une séquence
             d'enregistrements. Chaque enregistrement a une longueur fixée par le paramètre <emphasis role="bold">Input Size</emphasis> et la structure ci-dessous :
         </para>
-        <para />
-        <mediaobject><imageobject>
-                <imagedata fileref="../../../images/sinks_pal/fr_FR/writec_f_record_fr_FR.png" align="center" />
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="../../../images/palettes/sinks_pal/fr_FR/writec_f_record_fr_FR.gif"/>
             </imageobject>
+            <textobject>
+                <programlisting role="pic"><![CDATA[
+.PS
+box "Champ #1";
+box "Champ #2";
+box "...";
+box "Champ #(N-1)";
+box "Champ #N";
+.PE
+                ]]></programlisting>
+            </textobject>
         </mediaobject>
         <para>où les entrées du bloc sont numérotées de haut en bas.</para>
         <para>

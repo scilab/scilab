@@ -128,19 +128,7 @@
                     <emphasis role="bold">color </emphasis>
                 </para>
                 <para>
-                    an integer. It is the color number (
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../../help/images/CANIMXY3D_img3_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    ) or marker type (
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../../help/images/CANIMXY3D_img4_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    ) used to draw the evolution of the input port signal. See<emphasis role="bold">xset()</emphasis> for color (dash type) definitions.
+                    an integer. It is the color number (≥ 0) or marker type (&lt; 0) used to draw the evolution of the input port signal. See<emphasis role="bold">xset()</emphasis> for color (dash type) definitions.
                 </para>
                 <para> Properties : Type 'vec' of size -1 </para>
             </listitem>

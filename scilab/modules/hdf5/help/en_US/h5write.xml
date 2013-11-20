@@ -96,19 +96,19 @@
                 </imageobject>
             </inlinemediaobject>
         </para>
-        <para>The arguments start, count, stride and block must have a size equals to the number of dimensions of the data:
+        <para>The arguments start, count, stride and block must have a size equal to the number of dimensions of the data:
             <simplelist type="inline">
                 <member>
-                    start: gives the coordinates in the data where to start the selection. 
+                    start: gives the coordinates in the data where to start the selection.
                 </member>
                 <member>
-                    count: gives the number of selected blocks in each dimension. 
+                    count: gives the number of selected blocks in each dimension.
                 </member>
                 <member>
-                    stride: gives the shift between two consecutives blocks in each dimension. Take care that the stride must be greater than the corresponding block dimension. 
+                    stride: gives the shift between two consecutives blocks in each dimension. Take care that the stride must be greater than the corresponding block dimension.
                 </member>
                 <member>
-                    block: gives the block dimensions. 
+                    block: gives the block dimensions.
                 </member>
             </simplelist>
             By default stride and block are set to 1 in each dimension.
@@ -121,7 +121,7 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 x = matrix(1:20, 4, 5);
-save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones 	
+save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones
 
 // Open the created file
 a = h5open(TMPDIR + "/x.sod");

@@ -93,7 +93,7 @@ public class PlotBrowser {
             }
         } else {
             SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass
-                                       (SwingScilabWindow.class, (SwingPlotBrowser) plotBrowserTab);
+                                       (SwingScilabWindow.class, plotBrowserTab);
             window.setVisible(true);
             window.toFront();
             new SwapFigure(objectID);

@@ -13,7 +13,9 @@ package org.scilab.forge.scirenderer.implementation.g2d.motor;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.geom.Path2D;
+import java.awt.geom.Rectangle2D;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,6 +45,7 @@ public abstract class AbstractDrawable3DObject {
     protected boolean marked;
     protected boolean marked2;
     protected Boolean degenerated;
+    protected double[] clip = new double[] {Double.NaN, Double.NaN, Double.NaN, Double.NaN};
 
     /**
      * Default constructor
@@ -62,6 +65,46 @@ public abstract class AbstractDrawable3DObject {
         }
         setPrecedence(defaultPrecedence++);
         getNormal();
+    }
+
+    /**
+     * Create a clip rect for 2D view according to clipping planes passed as arguments
+     * @param v the clipping plane equation
+     */
+    void makeClip(double[] v) {
+        if (v[1] == 0) {
+            double x = -v[3] / v[0];
+            if (Double.isNaN(clip[0])) {
+                clip[0] = x;
+            } else if (clip[0] > x) {
+                clip[1] = clip[0];
+                clip[0] = x;
+            } else {
+                clip[1] = x;
+            }
+        } else {
+            double y = -v[3] / v[1];
+            if (Double.isNaN(clip[2])) {
+                clip[2] = y;
+            } else if (clip[2] > y) {
+                clip[3] = clip[2];
+                clip[2] = y;
+            } else {
+                clip[3] = y;
+            }
+        }
+    }
+
+    /**
+     * Get the clipping shape (for 2D view)
+     * @return the clipping shape
+     */
+    Shape getClip() {
+        if (!Double.isNaN(clip[0]) && !Double.isNaN(clip[1]) && !Double.isNaN(clip[2]) && !Double.isNaN(clip[3])) {
+            return new Rectangle2D.Double(clip[0], clip[2], clip[1] - clip[0], clip[3] - clip[2]);
+        }
+
+        return null;
     }
 
     /**

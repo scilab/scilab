@@ -257,104 +257,133 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
             int i = 0;
             int iSize = 0;
             double dblFabs = 0;
-            double* dXGrads = (double*) malloc(aaint[1] * sizeof(double));
-            double* dYGrads = (double*) malloc(aaint[3] * sizeof(double));
             char** stringVector = NULL;
 
-            // set auto ticks to off
-            setGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
-            setGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
-
-            // Compute X grads
-            dXGrads[0] = drect[0];
-            if (aaint[1] > 1)
+            if (aaint[1] == -1)
             {
-                double pas = (drect[1] - drect[0]) / (aaint[1] - 1);
+                autoTicks = 1;
+                setGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+            }
+            else if (aaint[1] == 0)
+            {
+                setGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_TICKS_LOCATIONS__, NULL, jni_double_vector, 0);
+                autoTicks = 0;
+                setGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+            }
+            else
+            {
+                double* dXGrads = (double*) MALLOC(aaint[1] * sizeof(double));
+
+                // Compute X grads
+                dXGrads[0] = drect[0];
+                if (aaint[1] > 1)
+                {
+                    double pas = (drect[1] - drect[0]) / (aaint[1] - 1);
+                    for (i = 0; i < aaint[1]; i++)
+                    {
+                        dXGrads[i] = drect[0] + pas * i;
+                    }
+                }
+
+                autoTicks = 0;
+                setGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+                setGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_TICKS_LOCATIONS__, dXGrads, jni_double_vector, aaint[1]);
+                // Create X Labels
+                stringVector = (char **) MALLOC(aaint[1] * sizeof(char*));
                 for (i = 0; i < aaint[1]; i++)
                 {
-                    dXGrads[i] = drect[0] + pas * i;
+                    iSize = 6;
+                    if (dXGrads[i] < 0)
+                    {
+                        iSize += 2;
+                    }
+                    dblFabs = fabs(dXGrads[i]);
+                    if (dblFabs >= 10)
+                    {
+                        iSize = iSize + (int)floor(log10(dblFabs));
+                    }
+
+                    stringVector[i] = (char*) MALLOC(iSize * sizeof(char));
+                    sprintf(stringVector[i], "%.3f", dXGrads[i]);
+                    stringVector[i][iSize - 1] = '\0';
                 }
+
+                setGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, aaint[1]);
+
+                for (i = 0; i < aaint[1]; i++)
+                {
+                    FREE(stringVector[i]);
+                }
+
+                FREE(stringVector);
+                FREE(dXGrads);
+                stringVector = NULL;
             }
 
-            setGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_TICKS_LOCATIONS__, dXGrads, jni_double_vector, aaint[1]);
-
-            // Compute Y grads
-            dYGrads[0] = drect[2];
-            if (aaint[3] > 1)
+            if (aaint[3] == -1)
             {
-                double pas = (drect[3] - drect[2]) / (aaint[3] - 1);
+                autoTicks = 1;
+                setGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+            }
+            else if (aaint[3] == 0)
+            {
+                setGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_TICKS_LOCATIONS__, NULL, jni_double_vector, 0);
+                autoTicks = 0;
+                setGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+            }
+            else
+            {
+                double* dYGrads = (double*) MALLOC(aaint[3] * sizeof(double));
+
+                // Compute Y grads
+                dYGrads[0] = drect[2];
+                if (aaint[3] > 1)
+                {
+                    double pas = (drect[3] - drect[2]) / (aaint[3] - 1);
+                    for (i = 0; i < aaint[3]; i++)
+                    {
+                        dYGrads[i] = drect[2] + pas * i;
+                    }
+                }
+
+                autoTicks = 0;
+                setGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+                setGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_TICKS_LOCATIONS__, dYGrads, jni_double_vector, aaint[3]);
+
+                // Create Y Labels
+                stringVector = (char**) MALLOC(aaint[3] * sizeof(char*));
                 for (i = 0; i < aaint[3]; i++)
                 {
-                    dYGrads[i] = drect[2] + pas * i;
+                    iSize = 6;
+                    if (dYGrads[i] < 0)
+                    {
+                        iSize += 2;
+                    }
+                    dblFabs = fabs(dYGrads[i]);
+                    if (dblFabs >= 10)
+                    {
+                        iSize = iSize + (int)floor(log10(dblFabs));
+                    }
+                    stringVector[i] = (char*) MALLOC(iSize * sizeof(char));
+                    sprintf(stringVector[i], "%.3f", dYGrads[i]);
+                    stringVector[i][iSize - 1] = '\0';
                 }
-            }
 
-            setGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_TICKS_LOCATIONS__, dYGrads, jni_double_vector, aaint[3]);
+                setGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, aaint[3]);
 
-            // Create X Labels
-            stringVector = (char **) malloc(aaint[1] * sizeof(char*));
-            for (i = 0; i < aaint[1]; i++)
-            {
-                iSize = 6;
-                if (dXGrads[i] < 0)
+                for (i = 0; i < aaint[3]; i++)
                 {
-                    iSize += 2;
-                }
-                dblFabs = fabs(dXGrads[i]);
-                if (dblFabs >= 10)
-                {
-                    iSize = iSize + (int)floor(log10(dblFabs));
+                    FREE(stringVector[i]);
                 }
 
-                stringVector[i] = (char*) malloc(iSize * sizeof(char));
-                sprintf(stringVector[i], "%.3f", dXGrads[i]);
-                stringVector[i][iSize - 1] = '\0';
+                FREE(stringVector);
+                FREE(dYGrads);
+                stringVector = NULL;
             }
-
-            setGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, aaint[1]);
-
-            for (i = 0; i < aaint[1]; i++)
-            {
-                free(stringVector[i]);
-            }
-
-            free(stringVector);
-            stringVector = NULL;
-
-            // Create Y Labels
-            stringVector = (char**) malloc(aaint[3] * sizeof(char*));
-            for (i = 0; i < aaint[3]; i++)
-            {
-                iSize = 6;
-                if (dYGrads[i] < 0)
-                {
-                    iSize += 2;
-                }
-                dblFabs = fabs(dYGrads[i]);
-                if (dblFabs >= 10)
-                {
-                    iSize = iSize + (int)floor(log10(dblFabs));
-                }
-                stringVector[i] = (char*) malloc(iSize * sizeof(char));
-                sprintf(stringVector[i], "%.3f", dYGrads[i]);
-                stringVector[i][iSize - 1] = '\0';
-            }
-
-            setGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, aaint[3]);
-
-            for (i = 0; i < aaint[3]; i++)
-            {
-                free(stringVector[i]);
-            }
-
-            free(stringVector);
-            free(dXGrads);
-            free(dYGrads);
 
             // X and Y subticks
             setGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_SUBTICKS__, aaint, jni_int, 1);
             setGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_SUBTICKS__, &aaint[2], jni_int, 1);
-
         }
         else
         {

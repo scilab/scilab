@@ -45,7 +45,7 @@
 
 /* MAXLONG on 64 bits platform is not 2147483647 but 9223372036854775807 */
 /* For scilab's stack size, we need to limit to 2147483647 */
-#ifdef USE_DYNAMIC_STACK
+#ifndef _MSC_VER
 #ifndef MAXLONG32
 #define MAXLONG32 2147483647L
 #endif
@@ -57,14 +57,14 @@ int C2F(getstackinfo)(int *total, int *used)
 {
     *used = C2F(vstk).lstk[C2F(vstk).isiz - 1] - C2F(vstk).lstk[Bot - 1] + 1;
     *total = C2F(vstk).lstk[C2F(vstk).isiz - 1] - C2F(vstk).lstk[0];
-    return(0);
+    return (0);
 }
 /*--------------------------------------------------------------------------*/
 int C2F(getgstackinfo)(int *total, int *used)
 {
     *used = C2F(vstk).lstk[C2F(vstk).gtop] - C2F(vstk).lstk[C2F(vstk).isiz + 1] + 1;
     *total = C2F(vstk).lstk[C2F(vstk).gbot - 1] - C2F(vstk).lstk[C2F(vstk).isiz + 1] ;
-    return(0);
+    return (0);
 }
 /*--------------------------------------------------------------------------*/
 int C2F(getvariablesinfo)(int *total, int *used)
@@ -88,7 +88,7 @@ int getIntermediateMemoryNeeded(void)
 /*--------------------------------------------------------------------------*/
 BOOL is_a_valid_size_for_scilab_stack(int sizestack)
 {
-#if (defined(_MSC_VER) && defined(_WIN64)) || defined (USE_DYNAMIC_STACK)
+#if (defined(_MSC_VER) && defined(_WIN64)) || !defined (_MSC_VER)
     /* On x64 with scilab's stack , we need to limit stack access */
     if ((unsigned long)sizestack >= get_max_memory_for_scilab_stack() + 1)
     {
@@ -108,7 +108,7 @@ BOOL is_a_valid_size_for_scilab_stack(int sizestack)
 /*--------------------------------------------------------------------------*/
 unsigned long get_max_memory_for_scilab_stack(void)
 {
-#if (defined(_MSC_VER) && defined(_WIN64)) || defined (USE_DYNAMIC_STACK)
+#if (defined(_MSC_VER) && defined(_WIN64)) || !defined (_MSC_VER)
     return MAXLONG32 / sizeof(double);
 #else
     return MAXLONG / sizeof(double);

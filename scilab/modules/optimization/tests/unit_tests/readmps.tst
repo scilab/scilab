@@ -33,6 +33,12 @@ assert_checkequal(P.ranges,huge*ones(4,1));
 assert_checkequal(P.bounds,[-huge,4;-1,1;-huge,huge]);
 assert_checkequal(P.stavar,[1;3;0]);
 disp(P)
+refMsg = msprintf(_(" RDMPS1 ERROR: Number of nonzeros of matrix A exceeds MAXNZA."));
+assert_checkerror("P=readmps(filename,[0 10^30],[4 3 8]);", refMsg);
+P=readmps(filename,[0 10^30],[4 3 9]);
+assert_checkequal(size(P.acoeff), [9 1]);
+P=readmps(filename,[0 10^30],[4 3 10]);
+assert_checkequal(size(P.acoeff), [10 1]);
 //
 filename = fullfile(path,"25FV47.SIF");
 huge = number_properties("huge");

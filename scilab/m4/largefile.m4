@@ -6,7 +6,6 @@ dnl *************************************
 dnl *** Checks for large file support ***
 dnl *************************************
     AC_SYS_LARGEFILE
-    echo "ac:  $ac_cv_sys_file_offset_bits"
     AC_CACHE_CHECK([for _LARGEFILE64_SOURCE value needed for large files], largefile64_cv_source,
     [
         AC_TRY_COMPILE([

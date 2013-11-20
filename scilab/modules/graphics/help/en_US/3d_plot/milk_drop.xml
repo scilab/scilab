@@ -2,18 +2,20 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="milk_drop">
     <refnamediv>
         <refname>milk_drop</refname>
-        <refpurpose>Milk drop 3D function</refpurpose>
+        <refpurpose>
+            Milk drop 3D function. <emphasis role="bold">This function is obsolete.</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -38,15 +40,19 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+            This function is obsolete.
+            It will be permanently removed in Scilab 5.5.1
+        </warning>
         <para>
             <literal>milk_drop</literal> is a function representing the surface of a milk drop
-            falling down into milk. It
-            can be used to test functions <literal>eval3d</literal> and <literal>plot3d</literal>.
+            falling down into milk. It can be used to test functions
+            <literal>eval3d</literal> and <literal>plot3d</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=-2:0.1:2;
 y=x;
 z=eval3d(milk_drop,x,y);
@@ -68,5 +74,16 @@ plot3d(x,y,z)
                 <link linkend="plot3d">plot3d</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    Function tagged as obsolete. Will be removed in 5.5.1.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

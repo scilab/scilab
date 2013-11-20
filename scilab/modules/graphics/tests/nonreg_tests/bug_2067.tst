@@ -4,8 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- NOT FIXED -->
-
 // <-- TEST WITH GRAPHIC -->
 
 // <-- Non-regression test for bug 2067 -->

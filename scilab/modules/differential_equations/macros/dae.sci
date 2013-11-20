@@ -13,15 +13,15 @@ function [varargout] = dae(varargin)
 
     [lhs, rhs] = argn();
 
+    if size(varargin) == 0 then
+        error(sprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "dae", 3, 8));
+    end
     if isdef("%DAEOPTIONS") == %F then
         if varargin(1) <> "root2" then
             %DAEOPTIONS = list ([], 0, [], [], [], 0, 0);
         else
             %DAEOPTIONS = list ([], 0, [], [], [], 0, [], 0, [], 0, [], [], [], 1);
         end
-    end
-    if size(varargin) == 0 then
-        error(sprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "dae", 3, 8));
     end
     if type(varargin(1)) == 1 then //standard case (dassl)
 

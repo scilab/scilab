@@ -21,10 +21,15 @@ import java.lang.reflect.Proxy;
 import java.util.Collection;
 import java.util.TreeSet;
 
+import javax.swing.AbstractButton;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JToggleButton;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
+import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
@@ -127,6 +132,7 @@ public final class ToolBarBuilder {
         protected static final String INSTRUCTION = "instruction";
         protected static final String TRUE = "true";
         protected static final String TOOLTIPTEXT = "tooltiptext";
+        protected static final String TOGGLE = "toggle";
 
         private final Document dom;
         private final Collection<String> internalMethodNames;
@@ -189,61 +195,80 @@ public final class ToolBarBuilder {
             Node button = menubar.getFirstChild();
 
             NamedNodeMap buttonAttributes = null;
-            PushButton pushButton = null;
+            AbstractButton pushButton = null;
 
-            // Get all children
-            while (button != null) {
+            try {
+                // Get all children
+                while (button != null) {
+                    if (button.getNodeName().equals(BUTTON)) {
+                        // Read all its attributes
+                        buttonAttributes = button.getAttributes();
 
-                if (button.getNodeName().equals(BUTTON)) {
-                    // The child is a button
-                    pushButton = ScilabPushButton.createPushButton();
-                    // Read all its attributes
-                    buttonAttributes = button.getAttributes();
-
-                    for (int i = 0; i < buttonAttributes.getLength(); i++) {
-
-                        if (buttonAttributes.item(i).getNodeName().equals(ICON)) {
-                            // Icon file
-                            pushButton.setIcon(ScilabSwingUtilities.findIcon(buttonAttributes.item(i).getNodeValue()));
-                        } else if (buttonAttributes.item(i).getNodeName().equals(ENABLED)) {
-                            // Enable are disable the button
-                            pushButton.setEnabled(buttonAttributes.item(i).getNodeValue().equals(TRUE));
-                        } else if (buttonAttributes.item(i).getNodeName().equals(TOOLTIPTEXT)) {
-                            // Add a ToolTip on the button
-                            pushButton.setToolTipText(Messages.gettext(buttonAttributes.item(i).getNodeValue()));
+                        boolean toggle = false;
+                        for (int i = 0; i < buttonAttributes.getLength(); i++) {
+                            if (buttonAttributes.item(i).getNodeName().equals(TOGGLE)) {
+                                toggle = buttonAttributes.item(i).getNodeValue().equals(TRUE);
+                                break;
+                            }
                         }
-                    }
-                    // Add the button to the toolbar
-                    tb.add(pushButton);
 
-                    // Then we get its callback (if exists)
-                    Node callback = button.getFirstChild();
-                    while (callback != null) {
-                        if (callback.getNodeName() == CALLBACK) {
-                            NamedNodeMap cbAttributes = callback.getAttributes();
-                            String command = null;
-                            int commandType = CallBack.UNTYPED;
-                            for (int j = 0; j < cbAttributes.getLength(); j++) {
-                                if (cbAttributes.item(j).getNodeName() == INSTRUCTION) {
-                                    command = cbAttributes.item(j).getNodeValue();
-                                } else if (cbAttributes.item(j).getNodeName() == TYPE) {
-                                    commandType = Integer.parseInt(cbAttributes.item(j).getNodeValue());
+                        if (toggle) {
+                            pushButton = new JToggleButton();
+                        } else {
+                            pushButton = new JButton();
+                        }
+
+                        pushButton.setFocusable(false);
+                        pushButton.setContentAreaFilled(true);
+                        pushButton.setOpaque(false);
+
+                        for (int i = 0; i < buttonAttributes.getLength(); i++) {
+                            if (buttonAttributes.item(i).getNodeName().equals(ICON)) {
+                                // Icon file
+                                pushButton.setIcon(new ImageIcon(ScilabSwingUtilities.findIcon(buttonAttributes.item(i).getNodeValue())));
+                            } else if (buttonAttributes.item(i).getNodeName().equals(ENABLED)) {
+                                // Enable are disable the button
+                                pushButton.setEnabled(buttonAttributes.item(i).getNodeValue().equals(TRUE));
+                            } else if (buttonAttributes.item(i).getNodeName().equals(TOOLTIPTEXT)) {
+                                // Add a ToolTip on the button
+                                pushButton.setToolTipText(Messages.gettext(buttonAttributes.item(i).getNodeValue()));
+                            }
+                        }
+                        // Add the button to the toolbar
+                        ((SwingScilabToolBar) tb.getAsSimpleToolBar()).add(pushButton);
+
+                        // Then we get its callback (if exists)
+                        Node callback = button.getFirstChild();
+                        while (callback != null) {
+                            if (callback.getNodeName() == CALLBACK) {
+                                NamedNodeMap cbAttributes = callback.getAttributes();
+                                String command = null;
+                                int commandType = CallBack.UNTYPED;
+                                for (int j = 0; j < cbAttributes.getLength(); j++) {
+                                    if (cbAttributes.item(j).getNodeName() == INSTRUCTION) {
+                                        command = cbAttributes.item(j).getNodeValue();
+                                    } else if (cbAttributes.item(j).getNodeName() == TYPE) {
+                                        commandType = Integer.parseInt(cbAttributes.item(j).getNodeValue());
+                                    }
+                                }
+                                if (command != null && commandType != CallBack.UNTYPED) {
+                                    pushButton.addActionListener(CommonCallBack.createCallback(replaceFigureID(command), commandType));
                                 }
                             }
-                            if (command != null && commandType != CallBack.UNTYPED) {
-                                pushButton.setCallback(CommonCallBack.createCallback(replaceFigureID(command), commandType));
-                            }
+                            // Read next child
+                            callback = callback.getNextSibling();
                         }
-                        // Read next child
-                        callback = callback.getNextSibling();
-                    }
 
-                } else if (button.getNodeName().equals(SEPARATOR)) {
-                    // The child is a separator
-                    tb.addSeparator();
+                    } else if (button.getNodeName().equals(SEPARATOR)) {
+                        // The child is a separator
+                        tb.addSeparator();
+                    }
+                    // Get next child
+                    button = button.getNextSibling();
                 }
-                // Get next child
-                button = button.getNextSibling();
+            } catch (Exception e) {
+                System.err.println(e);
+                e.printStackTrace();
             }
         }
 

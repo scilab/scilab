@@ -11,6 +11,12 @@
  *
  */
 
+/* sci_types.i */
+/**
+ * Windows: swig -java -package org.scilab.modules.graphic_objects -outdir ../java/org/scilab/modules/graphic_objects/ PolylineData.i
+ * Other: Use the option --enable-build-swig to the configure
+*/
+
 %module PolylineData
  
 
@@ -269,7 +275,7 @@ BOOL translatePoint(int uid, int index, double x, double y, double z, int flagX,
 		}
 	}
 	/*update*/
-	setGraphicObjectProperty(uid, __GO_DATA_MODEL__, uid, jni_string, 1);
+	setGraphicObjectProperty(uid, __GO_DATA_MODEL__, &uid, jni_int, 1);
 	return TRUE;
 }
 
@@ -299,7 +305,7 @@ BOOL setPointValue(int uid, int index, double x, double y, double z)
 		}	
 	}
 	/*update*/
-	setGraphicObjectProperty(uid, __GO_DATA_MODEL__, uid, jni_string, 1);
+	setGraphicObjectProperty(uid, __GO_DATA_MODEL__, &uid, jni_int, 1);
 	return TRUE;
 }
 

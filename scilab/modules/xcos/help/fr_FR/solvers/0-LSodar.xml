@@ -145,11 +145,11 @@ Temps pour Adams / Functional :
             ]]></screen>
         </para>
         <para>
-            Ces résultats montrent que pour un problème non-raide, à même précision demandée, <emphasis>LSodar</emphasis> est significativement plus rapide. D'autres tests ont montré la proximité des résultats. En effet, on trouve que l'écart entre les solutions de <emphasis>LSodar</emphasis> et <emphasis>CVode</emphasis> est de l'ordre de la plus haute tolérance ( 
+            Ces résultats montrent que pour un problème non-raide, à même précision demandée, <emphasis>LSodar</emphasis> est significativement plus rapide. D'autres tests ont montré la proximité des résultats. En effet, on trouve que l'écart entre les solutions de <emphasis>LSodar</emphasis> et <emphasis>CVode</emphasis> est de l'ordre de la plus haute tolérance (
             <emphasis>
                 y<subscript>lsodar</subscript> - y<subscript>cvode</subscript>
             </emphasis>
-            &#8776; <emphasis>max(reltol, abstol)</emphasis> ).
+            ≈ <emphasis>max(reltol, abstol)</emphasis> ).
         </para>
         <para>
             Les solveurs d'EDO à pas variable ne sont pas appropriés pour des applications temps réel déterministes car le surplus de calcul au passage d'un pas de temps varie au cours de l'application.

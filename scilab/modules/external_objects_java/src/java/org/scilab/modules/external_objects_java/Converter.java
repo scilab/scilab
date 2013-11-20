@@ -23,7 +23,7 @@ public interface Converter {
     Object convert(Object original, Class<?> to);
 
     /**
-     * Check if the converter is able to convert an object with class equals to from to an object with class to
+     * Check if the converter is able to convert an object with class equal to 'from' to an object with class 'to'
      * @param from the base class
      * @param to the destination class
      * @return true if the converter is able to convert

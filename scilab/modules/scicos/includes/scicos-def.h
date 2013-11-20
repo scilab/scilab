@@ -83,9 +83,10 @@ typedef struct
     int cosd;
 } COSDEBUG_struct;
 
+#define COSERR_len 4096
 typedef struct
 {
-    char buf[4096];
+    char buf[COSERR_len];
 } COSERR_struct;
 
 typedef struct

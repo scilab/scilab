@@ -472,6 +472,10 @@ public class EntityPicker {
     Integer pickSurface(Integer figure, Integer[] pos) {
         Integer uid = AxesHandler.clickedAxes(figure, pos);
         curAxes = (Axes)GraphicController.getController().getObjectFromId(uid);
+        if (curAxes == null) {
+            return null;
+        }
+
         double[][] factors = curAxes.getScaleTranslateFactors();
         double[] mat = DrawerVisitor.getVisitor(figure).getAxesDrawer().getProjection(uid).getMatrix();
 

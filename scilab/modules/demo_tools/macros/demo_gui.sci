@@ -33,6 +33,8 @@ function demo_gui()
     // =========================================================================
 
     demo_fig     = figure(100000);
+    demo_fig.visible = "off";
+    demo_fig.children(1).visible = "off"; // to be sure that no plot can appear in the axe
     demo_fig.tag = "scilab_demo_fig";
 
     // Parameters
@@ -61,7 +63,6 @@ function demo_gui()
     delmenu(demo_fig.figure_id, gettext("&Edit"));
     delmenu(demo_fig.figure_id, gettext("&?"));
     toolbar(demo_fig.figure_id, "off");
-    demo_fig.visible = "off"; // to be sure that no plot can appear in the plot
 
     // Add the new one
 
@@ -102,6 +103,8 @@ function demo_gui()
     demo_fig.axes_size     = [axes_w axes_h];
 
     demo_fig.resizefcn = "resize_demo_gui";
+
+    demo_fig.visible = "on"; // Display now
 
 endfunction
 

@@ -45,7 +45,8 @@ static gw_generic_table Tab[] =
     {sci_jinvoke, "jinvoke"},
     {sci_jconvMatrixMethod, "jconvMatrixMethod"},
     {sci_jgetinfo, "jgetinfo"},
-    {sci_jinvoke_db, "jinvoke_db"}
+    {sci_jinvoke_db, "jinvoke_db"},
+    {sci_jcreatejar, "jcreatejar"}
 };
 
 /*--------------------------------------------------------------------------*/

@@ -8,7 +8,7 @@
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -87,7 +87,7 @@
                 <term>Y</term>
                 <listitem>
                     <para>
-                        depending on the input, a matrix or hypermatrix of doubles, with random entries.
+                        depending on the input, a matrix or hypermatrix, with random entries.
                     </para>
                 </listitem>
             </varlistentry>
@@ -148,7 +148,7 @@
             ]]></programlisting>
         </para>
         <para>
-            where <literal>X</literal> of sizes <literal>m</literal>-by-<literal>n</literal>...
+            where <varname>X</varname> of sizes <varname>m</varname>-by-<varname>n</varname>...
             is a matrix or an hypermatrix only used as template.
         </para>
         <para>
@@ -172,17 +172,17 @@
         <programlisting role="no-scilab-exec"><![CDATA[
             S = grand("getgen")
             grand("setgen", gen)
-            
+
             S = grand("getsd")
             grand("setsd", S)
-            
+
             grand("setcgn", G)
             S = grand("getcgn")
-            
+
             grand("initgn", I)
-            
+
             grand("setall", s1, s2, s3, s4)
-            
+
             grand("advnst", K)
         ]]></programlisting>
         <para>
@@ -234,7 +234,7 @@
                         <code>Y = grand(m, n, "nbn", N, p)</code> generates random variates from the
                         negative binomial distribution with parameters <varname>N</varname> (positive integer) and <varname>p</varname> (<literal>real</literal>
                         in <literal>(0,1)</literal>) : number of failures occurring before <varname>N</varname> successes
-                        in independent Bernouilli trials with probability <varname>p</varname> of success.
+                        in independent Bernoulli trials with probability <varname>p</varname> of success.
                         Related function: <link linkend="cdfnbn">cdfnbn</link>.
                     </para>
                 </listitem>
@@ -337,9 +337,9 @@
             <varlistentry>
                 <term>multivariate gaussian (multivariate normal)</term>
                 <listitem>
-                    <para>   
+                    <para>
                         <code>Y = grand(n, "mn", Mean, Cov)</code>
-                        generates multivariate normal random         
+                        generates multivariate normal random
                         variates; <varname>Mean</varname> must be a <literal>m x 1</literal>
                         column vector and <varname>Cov</varname> a <varname>m</varname>-by-<varname>m</varname>
                         symmetric positive definite matrix  (<varname>Y</varname> is then
@@ -418,9 +418,9 @@
                 <listitem>
                     <para>
                         <code>Y = grand(n, "prm", vect)</code> generates
-                        <varname>n</varname> random permutations of the column
-                        vector (<literal>m x 1</literal>)
-                        <varname>vect</varname>.
+                        <varname>n</varname> random permutations of <varname>vect</varname>.
+                        <varname>vect</varname> can be a column vector of reals, or a vector, matrix or hypermatrix of
+                        complexes, integers, booleans, polynomials or strings; full or sparse.
                         Due to the stack structure, <varname>vect</varname> should not and cannot be a row vector.
                         This feature covers Matlab's <code>randperm()</code> function,
                         because <code>randperm(n)</code> is equivalent to <code>grand(1,'prm',(1:n)')</code>
@@ -743,22 +743,22 @@
                     <variablelist>
                         <varlistentry>
                             <term>I = -1</term>
-                            <listitem>  
-                                <para>sets the state to its initial seed</para> 
+                            <listitem>
+                                <para>sets the state to its initial seed</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>I = 0</term>
                             <listitem>
-                                <para>sets the state to its last (previous) seed (i.e. to the beginning  of the current segment)</para> 
+                                <para>sets the state to its last (previous) seed (i.e. to the beginning  of the current segment)</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>I = 1</term>
-                            <listitem>  
-                                <para>     
-                                    sets the state to a new seed <literal>W</literal> values from its last seed (i.e. to the beginning          
-                                    of the next segment) and resets the current segment parameters.    
+                            <listitem>
+                                <para>
+                                    sets the state to a new seed <literal>W</literal> values from its last seed (i.e. to the beginning
+                                    of the next segment) and resets the current segment parameters.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -792,8 +792,8 @@
             In the following example, we generate random numbers from various distributions and
             plot the associated histograms.
         </para>
-        <programlisting role="example"><![CDATA[ 
-// Returns a 400-by-800 matrix of random doubles, 
+        <programlisting role="example"><![CDATA[
+// Returns a 400-by-800 matrix of random doubles,
 // with normal distribution and average 0 and standard deviation 1.
 R = grand(400,800,"nor",0,1);
 scf();
@@ -806,8 +806,8 @@ xtitle("Normal random numbers from grand","X","Frequency");
             xtitle("Normal random numbers from grand","X","Frequency");
         </scilab:image>
         
-        <programlisting role="example"><![CDATA[ 
-// Returns a 400-by-800 matrix of random doubles, 
+        <programlisting role="example"><![CDATA[
+// Returns a 400-by-800 matrix of random doubles,
 // uniform in [0,1).
 R = grand(400,800,"def");
 scf();
@@ -820,8 +820,8 @@ xtitle("Uniform random numbers from grand","X","Frequency");
             xtitle("Uniform random numbers from grand","X","Frequency");
         </scilab:image>
         
-        <programlisting role="example"><![CDATA[ 
-// Returns a 400-by-800 matrix of random doubles, 
+        <programlisting role="example"><![CDATA[
+// Returns a 400-by-800 matrix of random doubles,
 // with Poisson distribution and average equal to 5.
 R = grand(400,800,"poi",5);
 scf();
@@ -838,7 +838,7 @@ xtitle("Poisson random numbers from grand","X","Frequency");
             In the following example, we generate random numbers from the exponential distribution and
             then compare the empirical with the theoretical distribution.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 lambda=1.6;
 N=100000;
 X = grand(1,N,"exp",lambda);
@@ -867,11 +867,11 @@ xtitle("Exponential random numbers from grand","X","Frequency");
             In the following example, we generate random numbers from the gamma distribution and
             then compare the empirical with the theoretical distribution.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 N=10000;
 A=10;
 B=4;
-R=grand(1,N,"gam",A,B); 
+R=grand(1,N,"gam",A,B);
 XS=gsort(R,"g","i")';
 PS=(1:N)'/N;
 P=cdfgam("PQ",XS,A*ones(XS),B*ones(XS));
@@ -885,7 +885,7 @@ xtitle("Cumulative distribution function of Gamma random numbers","X","F");
             N=10000;
             A=10;
             B=4;
-            R=grand(1,N,"gam",A,B); 
+            R=grand(1,N,"gam",A,B);
             XS=gsort(R,"g","i")';
             PS=(1:N)'/N;
             P=cdfgam("PQ",XS,A*ones(XS),B*ones(XS));
@@ -898,14 +898,14 @@ xtitle("Cumulative distribution function of Gamma random numbers","X","F");
         <para>
             In the following example, we generate 10 random integers in the [1,365] interval.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 grand(10,1,"uin",1,365)
  ]]></programlisting>
         <para>
             In the following example, we generate 12 permutations of the [1,2,...,7] set.
             The 12 permutations are stored column-by-column.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 grand(12,"prm",(1:7)')
  ]]></programlisting>
         <para>
@@ -913,8 +913,8 @@ grand(12,"prm",(1:7)')
             hypermatrix of random numbers from the "normal" distribution and plot the associated histograms.
             Showing the first and last layers.
         </para>
-        <programlisting role="example"><![CDATA[ 
-// Returns a 400-by-800-by-10 hypermatrix of random doubles,
+        <programlisting role="example"><![CDATA[
+// Returns a 10-by-10-by-10 hypermatrix of random doubles,
 // with normal distribution, average 0 and standard deviation 1.
 // Showing the first and last layers.
 R = grand(10,10,10,"nor",0,1);

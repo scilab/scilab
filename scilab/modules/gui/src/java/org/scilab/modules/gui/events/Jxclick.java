@@ -53,7 +53,7 @@ public final class Jxclick {
          */
         GlobalEventWatcher.enable(new GlobalMouseEventWatcher(AWTEvent.MOUSE_EVENT_MASK) {
             public void mouseEventFilter(MouseEvent mouseEvent,
-            Integer axesUID, int scilabMouseAction, boolean isControlDown) {
+                                         Integer axesUID, int scilabMouseAction, boolean isControlDown) {
                 mouseActionFilter(mouseEvent, axesUID, scilabMouseAction, isControlDown);
             }
         });
@@ -95,7 +95,7 @@ public final class Jxclick {
     /**
      * @return the windowID
      */
-    public static Integer getWindowID() {
+    public static int getWindowID() {
         return ClickInfos.getInstance().getWindowID();
     }
     /**

@@ -46,6 +46,7 @@ int sci_grayplot(char *fname, unsigned long fname_len)
     };
 
     char   * strf    = NULL ;
+    char strfl[4];
     double* rect    = NULL ;
     int    * nax     = NULL ;
     BOOL     flagNax = FALSE;
@@ -172,8 +173,6 @@ int sci_grayplot(char *fname, unsigned long fname_len)
 
     if (isDefStrf(strf))
     {
-        char strfl[4];
-
         strcpy(strfl, DEFSTRFN);
 
         strf = strfl;

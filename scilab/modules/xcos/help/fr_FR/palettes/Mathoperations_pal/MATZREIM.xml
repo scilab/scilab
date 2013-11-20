@@ -148,7 +148,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">decomposition type (1=Complex2Real&amp;amp;Imag 2=Real&amp;amp;Imag2Complex)</emphasis>
+                    <emphasis role="bold">decomposition type (1=Complex2Real&amp;Imag 2=Real&amp;Imag2Complex)</emphasis>
                 </para>
                 <para> Indique le type de décomposition utilisé. Voir la partie description pour plus d'information.</para>
                 <para> Propriétés : Type 'vec' de taille 1.</para>

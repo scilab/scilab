@@ -97,16 +97,11 @@
         <para>The Derivative block approximates the instantaneous derivative of
             its input with respect to time t.
         </para>
-        <para>It is a measure of how an output changes as its input changes Δu. The
-            derivative is given by:
-        </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../images/DERIV_img2_eng.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <latex>
+            $$
+            y(t) = {u(t) - u(t-h)} over h
+            $$
+        </latex>
         <para>The derivative block has no setting and the initial output for the
             block is zero.
         </para>

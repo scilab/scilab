@@ -219,7 +219,7 @@ public final class ScilabLexer {
 
     public ScilabLexer(Set<String> primitives, Set<String> macros) {
         commands = primitives;
-        this.macros = macros;
+        ScilabLexer.macros = macros;
     }
 
     private void loadNames(String[] files, Set<String> set) {

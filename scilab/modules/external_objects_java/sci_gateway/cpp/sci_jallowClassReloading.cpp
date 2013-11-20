@@ -27,7 +27,15 @@ int sci_jallowClassReloading(char * fname, unsigned long fname_len)
     try
     {
         const int envId = ScilabJavaEnvironment::start();
-        JavaOptionsSetter setter = ScilabJavaEnvironment::getInstance().getOptionsHelper().getSetter(JavaOptionsSetter::ALLOWRELOAD);
+
+        ScilabJavaEnvironment *javaEnvironment = ScilabJavaEnvironment::getInstance();
+        if (!javaEnvironment)
+        {
+            Scierror(999, "%s: No Java environment available (instance is null).", fname);
+            return 0;
+        }
+
+        JavaOptionsSetter setter = javaEnvironment->getOptionsHelper().getSetter(JavaOptionsSetter::ALLOWRELOAD);
         return ScilabGateway::getsetOptions(fname, envId, setter, pvApiCtx);
     }
     catch (std::exception & e)

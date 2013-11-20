@@ -493,7 +493,7 @@ static int getAxe(int iFigureUID, scicos_block * block)
     // assert the sco is not NULL
     if (sco == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     // fast path for an existing object
@@ -526,7 +526,7 @@ static int getAxe(int iFigureUID, scicos_block * block)
     }
     else
     {
-        return NULL;
+        return 0;
     }
 
     /*

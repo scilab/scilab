@@ -44,7 +44,7 @@ public class SpritedRectangle extends ConvexObject {
     private Vector3d position;
 
     public SpritedRectangle(Vector3d vertex, Texture sprite, AnchorPosition anchor, G2DTextureDrawingTools drawingTools, double rotationAngle) throws InvalidPolygonException {
-        super(getSpriteVertices(vertex, sprite, anchor), null);
+        super(getSpriteVertices(vertex, sprite, anchor, rotationAngle), null);
         this.sprite = sprite;
         this.drawingTools = drawingTools;
         this.rotationAngle = rotationAngle;
@@ -235,8 +235,8 @@ public class SpritedRectangle extends ConvexObject {
             default:
         }
 
-        double x = vertex.getX() + deltaX;
-        double y = vertex.getY() - deltaY;
+        double x = deltaX;
+        double y = -deltaY;
         double z = vertex.getZ();
 
         return new Vector3d[] {new Vector3d(x - spriteWidth / 2, y - spriteHeight / 2, z),
@@ -244,6 +244,35 @@ public class SpritedRectangle extends ConvexObject {
                    new Vector3d(x + spriteWidth / 2, y + spriteHeight / 2, z),
                    new Vector3d(x + spriteWidth / 2, y - spriteHeight / 2, z)
         };
+    }
+
+    private static Vector3d[] getSpriteVertices(Vector3d vertex, Texture sprite, AnchorPosition anchor, double rotationAngle) {
+        Vector3d[] points = getSpriteVertices(vertex, sprite, anchor);
+
+        if (rotationAngle != 0) {
+            final double a = -rotationAngle * Math.PI / 180;
+            final double ca = Math.cos(a);
+            final double sa = Math.sin(a);
+
+            for (int i = 0; i < 4; i++) {
+                points[i] = new Vector3d(vertex.getX() + ca * points[i].getX() - sa * points[i].getY(), vertex.getY() + sa * points[i].getX() + ca * points[i].getY(), vertex.getZ());
+            }
+        } else {
+            for (int i = 0; i < 4; i++) {
+                points[i] = new Vector3d(vertex.getX() + points[i].getX(), vertex.getY() + points[i].getY(), vertex.getZ());
+            }
+        }
+
+        return points;
+    }
+
+    private static Vector3d unrotate(Vector3d v, Vector3d t, double rotationAngle) {
+        v = v.minus(t);
+        final double a = rotationAngle * Math.PI / 180;
+        final double ca = Math.cos(a);
+        final double sa = Math.sin(a);
+
+        return new Vector3d(ca * v.getX() - sa * v.getY(), sa * v.getX() + ca * v.getY(), v.getZ());
     }
 
     public Texture getSprite() {
@@ -260,7 +289,8 @@ public class SpritedRectangle extends ConvexObject {
             if (rotationAngle != 0) {
                 g2d.translate(position.getX(), position.getY());
                 g2d.rotate(-rotationAngle * Math.PI / 180);
-                g2d.translate(vertices[0].getX() - position.getX(), vertices[0].getY() - position.getY());
+                Vector3d v = unrotate(vertices[0], position, rotationAngle);
+                g2d.translate(v.getX(), v.getY());
             } else {
                 g2d.translate(vertices[0].getX(), vertices[0].getY());
             }

@@ -83,13 +83,11 @@
         <title>Description</title>
         <para>Le bloc dérivée approxime la dérivée instantanée de son entrée par rapport au temps t.</para>
         <para>Il mesure la variation de la sortie en fonction de la variation de l'entée Δu. La dérivée est donnée par :</para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../images/DERIV_img2_eng.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <latex>
+            $$
+            y(t) = {u(t) - u(t-h)} over h
+            $$
+        </latex>
         <para>Le bloc dérivée n'a pas de paramètres et la valeur initiale de la sortie pour le bloc est zéro.</para>
     </refsection>
     <refsection id="Defaultproperties_DERIV">

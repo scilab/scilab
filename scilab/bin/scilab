@@ -344,7 +344,7 @@ check_and_disable_selinux() {
             if test $SCIVERBOSE -ne 0; then
                 echo "Disabling SELinux on Scilab"
             fi
-            
+
             JVMLIB_32=$SCIBINARYBASE/java/lib/i386/server/libjvm.so
             if test -f $JVMLIB_32; then
                 /usr/bin/chcon -t textrel_shlib_t "$JVMLIB_32"
@@ -728,7 +728,7 @@ check_macosx_version()
     case $macosxMajorVersion in
         10)
             case $macosxMinorVersion in
-                7|8)
+                7|8|9)
                    # We force to install JRE on Lion
                    /usr/libexec/java_home --request > /dev/null
                    ;;

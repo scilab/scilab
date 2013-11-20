@@ -102,7 +102,7 @@ c     .   vector-const
 c     .  cst-vector
          call gencopy(it1,1,istk(l1),1,is1,1)
          call gencopy(it1,mn2,istk(l2),1,istk(l1),1)
-         call gensubst(it1,mn2,istk(l1),1,is1,0)
+         call gensubst1(it1,mn2,istk(l1),1,is1,0)
          lstk(top+1)=sadr(l1+memused(it1,mn2))
 
          istk(il1+1)=m2

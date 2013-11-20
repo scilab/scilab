@@ -52,6 +52,15 @@ c     implied polynomials vector extraction
 
       if(mn2.eq.0) then 
 c     .  arg2=[]
+         if(stk(sadr(il1+4)).le.0.and.   !index<=0
+     &   abs(istk(il1)).ne.4.or.         !type(index)!=4 (no error if index=%t)
+     &   abs(istk(il1)).ne.1.and.        !type(index)!=1 (no error if index>0)
+     &   abs(istk(il1)).ne.2.and.        !type(index)!=2 (no error if index=$)
+     &   abs(istk(il1)).ne.4.and.        
+     &   abs(istk(il1)).ne.129) then     !type(index)!=129 (no error if index=1:$)
+            call error(21)
+            return
+         endif   
          if(m1.le.0) then
 c            arg2(:) or arg2([])
             il1=iadr(lstk(top))

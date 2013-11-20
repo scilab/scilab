@@ -15,6 +15,8 @@
 //   <no arg>
 //
 function n = optimsimplex_getnbve ( this )
+    if typeof(this) <> "TSIMPLEX" then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"), "optimsimplex_getnbve", 1));
+    end
     n = this.nbve
 endfunction
-

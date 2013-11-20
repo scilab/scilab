@@ -71,11 +71,6 @@
                             <xref linkend="Interfacingfunction_EDGE_TRIGGER">Interfacing function</xref>
                         </para>
                     </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="EDGE_TRIGGER">Compiled Super Block content</link>
-                        </para>
-                    </listitem>
                 </itemizedlist>
             </listitem>
         </itemizedlist>
@@ -190,15 +185,5 @@
                 <para> SCI/modules/scicos_blocks/macros/Misc/EDGE_TRIGGER.sci</para>
             </listitem>
         </itemizedlist>
-    </refsection>
-    <refsection id="CompiledSuperBlockcontent_EDGE_TRIGGER">
-        <title>Compiled Super Block content</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../help/images/EDGE_TRIGGER_img3_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
     </refsection>
 </refentry>

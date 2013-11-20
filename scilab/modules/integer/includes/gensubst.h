@@ -30,4 +30,6 @@
  */
 INTEGER_IMPEXP int C2F(gensubst)(int *typ, int *n, int *dx, int *incx, int *dy, int *incy);
 
+INTEGER_IMPEXP int C2F(gensubst1)(int *typ, int *n, int *dx, int *incx, int *dy, int *incy);
+
 #endif /* __GENSUBST_H__ */

@@ -85,15 +85,7 @@
             Une capacité est un composant qui dans un circuit électrique peut stocker de l'énergie.
             La relation entre la tension aux bornes de la capacité et le courant la traversant est donnée par :
         </para>
-        <para>
-        </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/Capacitor_img5_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <latex>$ I = C \mathrm{d}V \ over \mathrm{d}t $</latex>
         <para>
             Les capacités peuvent aussi être utilisées pour discriminer les signaux de haute et basse fréquences,
             ce qui les rend utiles dans les filtres électroniques. Une capacité a une grande impédance pour les signaux de

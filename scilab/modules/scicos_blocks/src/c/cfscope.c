@@ -172,7 +172,7 @@ SCICOS_BLOCKS_IMPEXP void cfscope(scicos_block * block, scicos_flag flag)
                 break;
             }
             iFigureUID = getFigure(block);
-            if (iFigureUID == NULL)
+            if (iFigureUID == 0)
             {
                 // allocation error
                 set_block_error(-5);
@@ -182,7 +182,7 @@ SCICOS_BLOCKS_IMPEXP void cfscope(scicos_block * block, scicos_flag flag)
 
         case StateUpdate:
             iFigureUID = getFigure(block);
-            if (iFigureUID == NULL)
+            if (iFigureUID == 0)
             {
                 // allocation error
                 set_block_error(-5);
@@ -561,7 +561,7 @@ static int getFigure(scicos_block * block)
 
     iFigureUID = getFigureFromIndex(figNum);
     // create on demand
-    if (iFigureUID == NULL)
+    if (iFigureUID == 0)
     {
         iFigureUID = createNewFigureWithAxes();
         setGraphicObjectProperty(iFigureUID, __GO_ID__, &figNum, jni_int, 1);
@@ -608,7 +608,7 @@ static int getAxe(int iFigureUID, scicos_block * block, int input)
     // assert the sco is not NULL
     if (sco == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     // fast path for an existing object
@@ -622,7 +622,7 @@ static int getAxe(int iFigureUID, scicos_block * block, int input)
     /*
      * Allocate if necessary
      */
-    if (iAxe == NULL)
+    if (iAxe == 0)
     {
         cloneAxesModel(iFigureUID);
         iAxe = findChildWithKindAt(iFigureUID, __GO_AXES__, input);
@@ -631,7 +631,7 @@ static int getAxe(int iFigureUID, scicos_block * block, int input)
     /*
      * Setup on first access
      */
-    if (iAxe != NULL)
+    if (iAxe != 0)
     {
         // allocate the polylines through the getter
         for (i = 0; i < links_count; i++)
@@ -641,7 +641,7 @@ static int getAxe(int iFigureUID, scicos_block * block, int input)
     }
     else
     {
-        return NULL;
+        return 0;
     }
 
     /*

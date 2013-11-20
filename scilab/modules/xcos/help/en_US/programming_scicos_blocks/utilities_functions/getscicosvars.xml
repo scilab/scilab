@@ -158,22 +158,10 @@
                     modes.
                 </para>
                 <para>"iz" : get the register that store pointers of
-                    block-
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata align="center" fileref="../../../../help/images/getscicosvars_img1_eng.gif" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    work.
+                    block->work.
                 </para>
                 <para>"izptr" : get the pointers vector of the register that store C
-                    pointers of block-
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata align="center" fileref="../../../../help/images/getscicosvars_img1_eng.gif" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    work.
+                    pointers of block->work.
                 </para>
                 <para>"nblk" : get the number of block.</para>
                 <para>"outtbptr" : get the register that store C pointers of

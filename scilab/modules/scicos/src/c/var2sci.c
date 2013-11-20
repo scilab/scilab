@@ -30,7 +30,7 @@ int var2sci(void *x, int n, int m, int typ_var)
     * variables and constants d?inition
     ************************************/
     /*counter and address variable declaration*/
-    int nm = 0, il = 0, l = 0, lw = 0, j = 0, i = 0, err = 0;
+    int nm = 0, il = 0, l = 0, j = 0, i = 0, err = 0;
 
     /*define all type of accepted ptr */
     SCSREAL_COP *x_d = NULL, *ptr_d = NULL;
@@ -46,8 +46,7 @@ int var2sci(void *x, int n, int m, int typ_var)
     /* Check if the stack is not full */
     if (Top >= Bot)
     {
-        err = 1;
-        return err;
+        return 1;
     }
     else
     {
@@ -110,8 +109,7 @@ int var2sci(void *x, int n, int m, int typ_var)
     err = l + nm - *Lstk(Bot);
     if (err > 0)
     {
-        err = 2;
-        return err;
+        return 2;
     }
 
     /**************************
@@ -250,7 +248,6 @@ int var2sci(void *x, int n, int m, int typ_var)
             break;
 
         case SCSUNKNOW_N  :
-            lw = Top;
             x_d = (double *) x;
             C2F(unsfdcopy)(&nm, x_d, (j = 1, &j), stk(*Lstk(Top)), (i = 1, &i));
             break;
@@ -272,8 +269,6 @@ int var2sci(void *x, int n, int m, int typ_var)
     /* set value in lstk */
     *Lstk(Top + 1) = l + nm;
 
-    /*return error flag = 0 */
-    err = 0;
     return 0;
 }
 /*--------------------------------------------------------------------------*/

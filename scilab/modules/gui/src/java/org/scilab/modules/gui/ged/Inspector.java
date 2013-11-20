@@ -94,7 +94,7 @@ public class Inspector {
             }
         } else {
             SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass
-                                       (SwingScilabWindow.class, (SwingInspector) inspectorTab);
+                                       (SwingScilabWindow.class, inspectorTab);
             window.setVisible(true);
             window.toFront();
             new SwapObject(objectID);

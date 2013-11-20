@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
  * Copyright (C) INRIA - Jean-Baptiste silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -140,6 +140,14 @@
                         in a graph. On the contrary, when using the <emphasis role="bold">'filled'</emphasis> mode, the text size follow
                         the graphic scale. It is then possible to zoom upon text objects.
                     </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>auto_dimensionning: </term>
+                <listitem>
+                  <para>
+                    auto_dimensionning set to "off" is equivalent to text_box_mode set to "filled". If text_box_mode is "off" or "centered" then it implies that auto_dimensionning is "on".
+                  </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

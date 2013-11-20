@@ -16,7 +16,7 @@
 /*------------------------------------------------------------------------*/
 /* file: get_children_property.c                                          */
 /* desc : function to retrieve in Scilab the children field of a          */
-/*        handle                                                          */
+/*        handle except datatips                                          */
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
@@ -40,7 +40,7 @@ int get_children_property(void* _pvCtx, int iObjUID)
     int* piChildrenUID = NULL;
     int iHidden = 0;
     int *piHidden = &iHidden;
-    int iNotHiddenChildrenNumber = 0;
+    int childrenNumber = 0;
     int iChildIndex = 0;
     int iShowHiddenHandles = 0;
     int *piShowHiddenHandles = &iShowHiddenHandles;
@@ -48,6 +48,9 @@ int get_children_property(void* _pvCtx, int iObjUID)
     // All Graphic Objects have __GO_CHILDREN__ & __GO_CHILDREN_COUNT__ properties.
     int iChildrenCount = 0;
     int *piChildrenCount = &iChildrenCount;
+
+    int type = -1;
+    int *piType = &type;
 
     getGraphicObjectProperty(iObjUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&piChildrenCount);
     if (piChildrenCount == NULL || piChildrenCount[0] == 0)
@@ -62,17 +65,21 @@ int get_children_property(void* _pvCtx, int iObjUID)
 
     if (iShowHiddenHandles == 0)
     {
-        // Find number of not hidden children
+        // Find number of not hidden children except datatips
         for (i = 0; i < piChildrenCount[0]; ++i)
         {
             getGraphicObjectProperty(piChildrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
             if (iHidden == 0)
             {
-                iNotHiddenChildrenNumber++;
+                getGraphicObjectProperty(piChildrenUID[i], __GO_TYPE__, jni_int, (void**) &piType);
+                if (type != __GO_DATATIP__)
+                {
+                    childrenNumber++;
+                }
             }
         }
 
-        if (iNotHiddenChildrenNumber == 0)
+        if (childrenNumber == 0)
         {
             // No Child
             return sciReturnEmptyMatrix(_pvCtx);
@@ -80,21 +87,40 @@ int get_children_property(void* _pvCtx, int iObjUID)
     }
     else
     {
-        iNotHiddenChildrenNumber = piChildrenCount[0];
+        // Find all children except datatips
+        for (i = 0; i < piChildrenCount[0]; ++i)
+        {
+            getGraphicObjectProperty(piChildrenUID[i], __GO_TYPE__, jni_int, (void**) &piType);
+            if (type != __GO_DATATIP__)
+            {
+                childrenNumber++;
+            }
+        }
+
+        if (childrenNumber == 0)
+        {
+            // No Child
+            return sciReturnEmptyMatrix(_pvCtx);
+        }
+
     }
 
-    plChildren = MALLOC(iNotHiddenChildrenNumber * sizeof(long));
+    plChildren = MALLOC(childrenNumber * sizeof(long));
 
     for (i = 0; i < piChildrenCount[0]; ++i)
     {
         getGraphicObjectProperty(piChildrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
         if (iHidden == 0 || iShowHiddenHandles == 1)
         {
-            plChildren[iChildIndex++] = getHandle(piChildrenUID[i]);
+	    getGraphicObjectProperty(piChildrenUID[i], __GO_TYPE__, jni_int, (void**) &piType);
+	    if (type != __GO_DATATIP__)
+	    {
+                plChildren[iChildIndex++] = getHandle(piChildrenUID[i]);
+	    }
         }
     }
 
-    status = sciReturnColHandleVector(_pvCtx, plChildren, iNotHiddenChildrenNumber);
+    status = sciReturnColHandleVector(_pvCtx, plChildren, childrenNumber);
     FREE(plChildren);
 
     return status;

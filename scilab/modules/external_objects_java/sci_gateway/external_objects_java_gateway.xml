@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte Denizet
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -29,30 +29,31 @@
  Don't touch if you do not know what you are doing
 
 -->
-    <PRIMITIVE gatewayId="73" primitiveId="1" primitiveName="jimport" />
-    <PRIMITIVE gatewayId="73" primitiveId="2" primitiveName="jgetclassname" />
-    <PRIMITIVE gatewayId="73" primitiveId="3" primitiveName="jwrap" />
-    <PRIMITIVE gatewayId="73" primitiveId="4" primitiveName="jgetmethods" />
-    <PRIMITIVE gatewayId="73" primitiveId="5" primitiveName="jgetfields" />
-    <PRIMITIVE gatewayId="73" primitiveId="6" primitiveName="jgetfield" />
-    <PRIMITIVE gatewayId="73" primitiveId="7" primitiveName="jcompile" />
-    <PRIMITIVE gatewayId="73" primitiveId="8" primitiveName="jnewInstance" />
-    <PRIMITIVE gatewayId="73" primitiveId="9" primitiveName="jremove" />
-    <PRIMITIVE gatewayId="73" primitiveId="10" primitiveName="jexists" />
-    <PRIMITIVE gatewayId="73" primitiveId="11" primitiveName="junwrap" />
-    <PRIMITIVE gatewayId="73" primitiveId="12" primitiveName="junwraprem" />
-    <PRIMITIVE gatewayId="73" primitiveId="13" primitiveName="jenableTrace" />
-    <PRIMITIVE gatewayId="73" primitiveId="14" primitiveName="jdisableTrace" />
-    <PRIMITIVE gatewayId="73" primitiveId="15" primitiveName="jdeff" />
-    <PRIMITIVE gatewayId="73" primitiveId="16" primitiveName="jarray" />
-    <PRIMITIVE gatewayId="73" primitiveId="17" primitiveName="jcast" />
-    <PRIMITIVE gatewayId="73" primitiveId="18" primitiveName="jallowClassReloading" />
-    <PRIMITIVE gatewayId="73" primitiveId="19" primitiveName="jwrapinfloat" />
-    <PRIMITIVE gatewayId="73" primitiveId="20" primitiveName="jsetfield" />
-    <PRIMITIVE gatewayId="73" primitiveId="21" primitiveName="jautoUnwrap" />
-    <PRIMITIVE gatewayId="73" primitiveId="22" primitiveName="jautoTranspose" />
-    <PRIMITIVE gatewayId="73" primitiveId="23" primitiveName="jinvoke" />
-    <PRIMITIVE gatewayId="73" primitiveId="24" primitiveName="jconvMatrixMethod" />
-    <PRIMITIVE gatewayId="73" primitiveId="25" primitiveName="jgetinfo" />
-    <PRIMITIVE gatewayId="73" primitiveId="26" primitiveName="jinvoke_db" />
+    <PRIMITIVE gatewayId="72" primitiveId="1" primitiveName="jimport" />
+    <PRIMITIVE gatewayId="72" primitiveId="2" primitiveName="jgetclassname" />
+    <PRIMITIVE gatewayId="72" primitiveId="3" primitiveName="jwrap" />
+    <PRIMITIVE gatewayId="72" primitiveId="4" primitiveName="jgetmethods" />
+    <PRIMITIVE gatewayId="72" primitiveId="5" primitiveName="jgetfields" />
+    <PRIMITIVE gatewayId="72" primitiveId="6" primitiveName="jgetfield" />
+    <PRIMITIVE gatewayId="72" primitiveId="7" primitiveName="jcompile" />
+    <PRIMITIVE gatewayId="72" primitiveId="8" primitiveName="jnewInstance" />
+    <PRIMITIVE gatewayId="72" primitiveId="9" primitiveName="jremove" />
+    <PRIMITIVE gatewayId="72" primitiveId="10" primitiveName="jexists" />
+    <PRIMITIVE gatewayId="72" primitiveId="11" primitiveName="junwrap" />
+    <PRIMITIVE gatewayId="72" primitiveId="12" primitiveName="junwraprem" />
+    <PRIMITIVE gatewayId="72" primitiveId="13" primitiveName="jenableTrace" />
+    <PRIMITIVE gatewayId="72" primitiveId="14" primitiveName="jdisableTrace" />
+    <PRIMITIVE gatewayId="72" primitiveId="15" primitiveName="jdeff" />
+    <PRIMITIVE gatewayId="72" primitiveId="16" primitiveName="jarray" />
+    <PRIMITIVE gatewayId="72" primitiveId="17" primitiveName="jcast" />
+    <PRIMITIVE gatewayId="72" primitiveId="18" primitiveName="jallowClassReloading" />
+    <PRIMITIVE gatewayId="72" primitiveId="19" primitiveName="jwrapinfloat" />
+    <PRIMITIVE gatewayId="72" primitiveId="20" primitiveName="jsetfield" />
+    <PRIMITIVE gatewayId="72" primitiveId="21" primitiveName="jautoUnwrap" />
+    <PRIMITIVE gatewayId="72" primitiveId="22" primitiveName="jautoTranspose" />
+    <PRIMITIVE gatewayId="72" primitiveId="23" primitiveName="jinvoke" />
+    <PRIMITIVE gatewayId="72" primitiveId="24" primitiveName="jconvMatrixMethod" />
+    <PRIMITIVE gatewayId="72" primitiveId="25" primitiveName="jgetinfo" />
+    <PRIMITIVE gatewayId="72" primitiveId="26" primitiveName="jinvoke_db" />
+    <PRIMITIVE gatewayId="72" primitiveId="27" primitiveName="jcreatejar" />
 </GATEWAY>

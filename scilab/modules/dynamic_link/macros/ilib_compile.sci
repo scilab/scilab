@@ -120,7 +120,8 @@ function libn = ilib_compile(lib_name, ..
         // Note that, for the configure, the setup is done by compilerDetection.sh
         cmdGCC="if test -x ""$(which gcc 2>/dev/null)""; then echo $(LC_ALL=C gcc -print-search-dirs|awk ''$1==""install:""{print $2}''); fi";
         [GCClibpath, ierr, stderr] = unix_g(cmdGCC);
-        if (GCClibpath <> "" & ierr == 0 & grep(getenv("LD_LIBRARY_PATH"),GCClibpath) == []) then
+
+        if (GCClibpath <> "" & GCClibpath <> [] & ierr == 0 & grep(getenv("LD_LIBRARY_PATH"),GCClibpath) == []) then
             setenv("LD_LIBRARY_PATH",GCClibpath+"/../../../:"+getenv("LD_LIBRARY_PATH"));
         end
 

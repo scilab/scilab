@@ -96,6 +96,22 @@ double stringToDouble(const char *pSTR, BOOL bConvertByNAN, stringToDoubleError 
         {
             dValue = -M_PI;
         }
+        else if ((stricmp(pSTR, ScilabEString) == 0) || (stricmp(pSTR, ScilabPosEString) == 0))
+        {
+            dValue = exp(1);
+        }
+        else if (stricmp(pSTR, ScilabNegEString) == 0)
+        {
+            dValue = -exp(1);
+        }
+        else if ((stricmp(pSTR, ScilabEpsString) == 0) || (stricmp(pSTR, ScilabPosEpsString) == 0))
+        {
+            dValue = EPSILON;
+        }
+        else if (stricmp(pSTR, ScilabNegEpsString) == 0)
+        {
+            dValue = -EPSILON;
+        }
         else
         {
             char* pstReplaced = replace_D_By_E(pSTR);

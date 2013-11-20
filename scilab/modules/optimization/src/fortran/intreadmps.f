@@ -1,16 +1,16 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 c SCILAB function : readmps, fin = 1
       subroutine intreadmps(id)
-c     
+c
       include 'stack.h'
-c     
+c
       integer iadr, sadr
       integer topk,rhsk, topf,mode(2)
       logical checkrhs,checklhs,getsmat,checkval,getvect
@@ -24,29 +24,29 @@ c
       character*8 namec,nameb,namran,nambnd,nammps
       character*2 typrow
       character*8 fname
-c     
+c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
       fname='readmps'
 c
       rhs = max(0,rhs)
-c     
+c
       lbuf = 1
-      topk = top 
-      rhsk = rhs 
-c     
+      topk = top
+      rhsk = rhs
+c
       big=dlamch('o')
 
       if(.not.checklhs(fname,1,1)) return
       if(.not.checkrhs(fname,2,3)) return
 
-c     
+c
 c     checking variable file (number 1)
       if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
       if(.not.checkval(fname,m1*n1,1)) return
       topf=top-rhs+1
-c     
+c
 c     checking variable bnd (number 2)
       if(.not.getvect(fname,top,top-rhs+2,it2,m2,n2,lr2,lc2)) return
       if(.not.checkval(fname,n2*m2,2)) return
@@ -59,6 +59,9 @@ c     . checking variable max (number 3)
          maxm=stk(lr3)
          maxn=stk(lr3+1)
          maxnza=stk(lr3+2)
+         m=maxm
+         n=maxn
+         nza=maxnza
       else
          mode(1)=-1
          mode(2)=0
@@ -82,7 +85,6 @@ c     . checking variable max (number 3)
          maxn=n
          maxnza=nza
       endif
-      
 
       mode(1)=-1
       mode(2)=0
@@ -168,9 +170,6 @@ c      ll=ll+(8*n)/4
          call error(17)
          goto 998
       endif
-      maxm=m
-      maxn=n
-      maxnza=nza
       nameb= '        '
       namec= '        '
       namran='        '
@@ -191,8 +190,8 @@ c      passing pb with linux
      x     istk(ilrwnmbs),istk(ilclpnts),istk(lirow),
      x     stk(lacoef),stk(lrhsb),stk(lranges),
      x     stk(lbnds+n),stk(lbnds),stk(lrelt))
-      
-      
+
+
       call clunit(-lunit,buf,mode)
       if(ierr.ne.0) then
          call error(1000+ierr)
@@ -230,7 +229,7 @@ c      call cvstr(8*n,istk(lcolnams),cstk(lclname:),0)
 998   call clunit(-lunit,buf,mode)
       return
       end
-c     
+c
       subroutine mpstyp(ivt,job)
 c     definition of first field  of tlist's type: mps
 c     tlist fields are:

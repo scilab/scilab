@@ -17,7 +17,7 @@
 #include "localization.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
-#ifdef USE_DYNAMIC_STACK
+#ifndef _MSC_VER
 extern int scimem64(int *n, int newsize, BOOL isglobal);
 extern void freemem64(BOOL isglobal);
 #else
@@ -29,7 +29,7 @@ static char *the_gps = NULL;
 /*--------------------------------------------------------------------------*/
 int C2F(scimem) (int *newsize, int *ptr)
 {
-#ifdef USE_DYNAMIC_STACK
+#ifndef _MSC_VER
     return scimem64(ptr, *newsize, FALSE);
 #else
     register char *p1 = NULL;
@@ -68,7 +68,7 @@ int C2F(scimem) (int *newsize, int *ptr)
 /*--------------------------------------------------------------------------*/
 int C2F(scigmem) (int *n, int *ptr)
 {
-#ifdef USE_DYNAMIC_STACK
+#ifndef _MSC_VER
     return scimem64(ptr, *n, TRUE);
 #else
     register char *p1 = NULL;
@@ -102,7 +102,7 @@ int C2F(scigmem) (int *n, int *ptr)
 /*--------------------------------------------------------------------------*/
 void C2F(freeglobalstacklastmemory) (void)
 {
-#ifndef USE_DYNAMIC_STACK
+#ifdef _MSC_VER
     if (the_gps != NULL)
     {
         SCISTACKFREE(the_gps);
@@ -114,7 +114,7 @@ void C2F(freeglobalstacklastmemory) (void)
 /*--------------------------------------------------------------------------*/
 void C2F(freestacklastmemory) (void)
 {
-#ifndef USE_DYNAMIC_STACK
+#ifdef _MSC_VER
     if (the_ps != NULL)
     {
         SCISTACKFREE(the_ps);
@@ -126,7 +126,7 @@ void C2F(freestacklastmemory) (void)
 /*--------------------------------------------------------------------------*/
 void freeGlobalStackCurrentMemory()
 {
-#ifdef USE_DYNAMIC_STACK
+#ifndef _MSC_VER
     freemem64(TRUE);
 #else
     if (the_gp != NULL)
@@ -139,7 +139,7 @@ void freeGlobalStackCurrentMemory()
 
 void freeStackCurrentMemory()
 {
-#ifdef USE_DYNAMIC_STACK
+#ifndef _MSC_VER
     freemem64(FALSE);
 #else
     if (the_p != NULL)

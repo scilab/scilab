@@ -205,7 +205,7 @@ public class ScicosParametersTest {
                 }
 
                 /*
-                 * The latest value must be equals to the previous one or to the
+                 * The latest value must be equal to the previous one or to the
                  * type's default value
                  */
                 final Object o;
@@ -281,7 +281,7 @@ public class ScicosParametersTest {
                 }
 
                 /*
-                 * The latest value must be equals to the previous one or to the
+                 * The latest value must be equal to the previous one or to the
                  * type's default value
                  */
                 final Object o;

@@ -19,8 +19,10 @@
 //   <no arg>
 //
 function simplex = optimsimplex_getall ( this )
+    if typeof(this) <> "TSIMPLEX" then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"), "optimsimplex_getall", 1));
+    end
     simplex = zeros ( this.nbve , this.n+1 );
     simplex ( 1:this.nbve , 1 ) = this.fv ( 1:this.nbve , 1 )
     simplex ( 1:this.nbve , 2:this.n+1 ) = this.x ( 1:this.nbve , 1:this.n )
 endfunction
-

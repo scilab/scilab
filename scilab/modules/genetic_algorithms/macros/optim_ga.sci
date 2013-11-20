@@ -76,8 +76,7 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(ga_f, pop_s
     FObj_Pop_Min = min(FObj_Pop);
 
     // Normalization of the efficiency
-
-    Efficiency = (1 - pressure) * (FObj_Pop_Max - FObj_Pop)/max([FObj_Pop_Max - FObj_Pop_Min, %eps]) + pressure;
+    Efficiency = (1 - pressure) * (FObj_Pop_Max - FObj_Pop) / max([FObj_Pop_Max - FObj_Pop_Min %eps]) + pressure;
 
     // The genetic algorithm
     for i=1:nb_generation
@@ -154,7 +153,7 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(ga_f, pop_s
         // Recombination
         //
 
-        [Pop, FObj_Pop] = selection_func(Pop,Indiv1,Indiv2,FObj_Pop,FObj_Indiv1,FObj_Indiv2,[],[],[],param);
+        [Pop, FObj_Pop, Efficiency] = selection_func(Pop,Indiv1,Indiv2,FObj_Pop,FObj_Indiv1,FObj_Indiv2,[],[],[],param);
 
         if (Log) then
             printf(gettext(" - min / max value found = %f / %f\n"), min(FObj_Pop), max(FObj_Pop));

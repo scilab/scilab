@@ -155,7 +155,7 @@ SCICOS_BLOCKS_IMPEXP void cmatview(scicos_block * block, scicos_flag flag)
                 break;
             }
             iFigureUID = getFigure(block);
-            if (iFigureUID == NULL)
+            if (iFigureUID == 0)
             {
                 // allocation error
                 set_block_error(-5);
@@ -165,7 +165,7 @@ SCICOS_BLOCKS_IMPEXP void cmatview(scicos_block * block, scicos_flag flag)
 
         case StateUpdate:
             iFigureUID = getFigure(block);
-            if (iFigureUID == NULL)
+            if (iFigureUID == 0)
             {
                 // allocation error
                 set_block_error(-5);
@@ -335,7 +335,7 @@ static int getFigure(scicos_block * block)
 
     iFigureUID = getFigureFromIndex(figNum);
     // create on demand
-    if (iFigureUID == NULL)
+    if (iFigureUID == 0)
     {
         iFigureUID = createNewFigureWithAxes();
         setGraphicObjectProperty(iFigureUID, __GO_ID__, &figNum, jni_int, 1);

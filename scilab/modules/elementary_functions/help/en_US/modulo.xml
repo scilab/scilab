@@ -7,18 +7,18 @@
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="modulo" xml:lang="en">
     <refnamediv>
         <refname>modulo</refname>
-        <refpurpose>symmetric arithmetic remainder modulo m</refpurpose>
+        <refpurpose>remainder modulo m with the left operand sign</refpurpose>
     </refnamediv>
     <refnamediv xml:id="pmodulo">
         <refname>pmodulo</refname>
-        <refpurpose>positive arithmetic remainder modulo m</refpurpose>
+        <refpurpose>positive euclidian remainder modulo m</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -29,15 +29,21 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>n</term>
+                <term>m, n</term>
                 <listitem>
-                    <para>real or polynomial vector or matrix </para>
+                    <para>Scalar, vector, matrix or hypermatrix of encoded integers, reals or polynomials (Hypermatrix is not supported for polynomials). 
+                        <varname>m</varname> and <varname>n</varname> must have the same type. If they are of integer type, they may be of distinct 
+                        encoding length (for instance int8 and int16). If none of them is scalar, they must have the same sizes.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>m</term>
+                <term>i</term>
                 <listitem>
-                    <para>real or polynomial vector or matrix </para>
+                    <para>
+                        Scalar, vector, matrix or hypermatrix of same type (and inttype) as <varname>n</varname>.
+                        <varname>i</varname> takes the sizes of the bigger <varname>m</varname> or<varname>n</varname>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -45,35 +51,20 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>modulo</function> computes <code>i = n (modulo
-                m)
-            </code>
-            i.e. remainder of <varname>n</varname> divided by
-            <varname>m</varname>.
+            <function>modulo</function> computes <code>i = n (modulo m)</code>
+            i.e. remainder of <varname>n</varname> divided by <varname>m</varname>.
         </para>
         <para>
             <code>i = n - m .* int (n ./ m)</code>. Here the answer may be negative
             if <varname>n</varname> or <varname>m</varname> are negative.
         </para>
         <para>
-            <function>pmodulo</function> computes <code>i = n - |m| .* floor (n
-                ./ |m|)
-            </code>
-            , the answer is positive or zero.
+            <function>pmodulo</function> computes <code>i = n - |m| .* floor (n ./ |m|)</code>,
+            the answer is positive or zero.
         </para>
-        <para>
-            <code>modulo(x,0)</code> returns an error message: "Division by zero...". With ieee(2), <code>modulo(x,0)</code> returns <constant>%nan</constant>.
-        </para>
-        <para>
-            <code>pmodulo(x,0)</code> returns an error message: "Division by zero...". With ieee(2), <code>pmodulo(x,0)</code> returns <constant>%nan</constant>.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Remark</title>
-        <para><note>
-                If m and n are vector or matrix type, m and n must have the same dimensions.
-            </note>
-        </para>
+        <warning>
+            If <varname>m</varname> contains at least one 0 value, <code>modulo(x,m)</code> and <code>pmodulo(x,m)</code> will perform a division by zero. If <varname>m</varname> is of real type, this exception will be processed according to the <literal>ieee()</literal> mode. For encoded integers, it will always yield an error.
+        </warning>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -88,6 +79,51 @@ modulo(10, -4)
 pmodulo(-3, 9)
 pmodulo(10, -6)
 pmodulo(-10, -6)
+
+// Encoded integers
+modulo( int8(-13), int16(-7))
+pmodulo(int8(-13), int16(-7))
+modulo( int8(-13), int16([-7 5]))
+pmodulo(int8(-13), int16([-7 5]))
+modulo( int8([-13 8]), int16(-7))
+pmodulo(int8([-13 8]), int16(-7))
+modulo( int8([-13 8]), int16([-7 5]))
+pmodulo(int8([-13 8]), int16([-7 5]))
+
+// Hypermatrices
+m = grand(2,2,2,"uin",-100,100)
+n = grand(2,2,2,"uin",-10 ,10);
+n(n==0) = 1
+modulo(m, 5)
+pmodulo(m,5)
+modulo(51, n)
+pmodulo(51,n)
+modulo(m, n)
+pmodulo(m,n)
+
+// Polynomials
+modulo( %z^2+1, %z)
+pmodulo(%z^2+1, %z)
+
+
  ]]></programlisting>
     </refsection>
+    <refsection role= "see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ieee">ieee</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Extension to encoded integers and to hypermatrices of encoded integers or reals.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+    
 </refentry>

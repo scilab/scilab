@@ -7,15 +7,22 @@
         <p>Scilab includes hundreds of mathematical functions. It has a high level programming language allowing access to advanced data structures, 2-D and 3-D graphical functions.</p>
         <p>A large number of functionalities is included in Scilab:</p>
         <ul>
-            <li>Maths &amp; Simulation: For usual engineering and science applications including mathematical operations and data analysis.</li>
-            <li>2-D &amp; 3-D Visualization: Graphics functions to visualize, annotate and export data and many ways to create and customize various types of plots and charts.</li>
-            <li>Optimization: Algorithms to solve constrained and unconstrained continuous and discrete optimization problems.</li> 
-            <li>Statistics: Tools to perform data analysis and modeling.</li>
-            <li>Control System Design &amp; Analysis: Standard algorithms and tools for control system study.</li>
-            <li>Signal Processing: Visualize, analyze and filter signals in time and frequency domains.</li>
-            <li>Application Development: Increase Scilab native functionalities and manage data exchanges with external tools.</li>
-            <li>Xcos - Hybrid dynamic systems modeler and simulator: Modeling mechanical systems, hydraulic circuits, control systems...</li>
-        </description>
-        <url type="homepage">http://www.scilab.org</url>
-    </application>
-    
+            <li>Maths &amp; Simulation: For usual engineering and science applications</li>
+            <li>2-D &amp; 3-D Visualization: Graphics functions to visualize, annotate and export data</li>
+            <li>Optimization: Algorithms to solve constrained and unconstrained continuous and discrete problems</li>
+            <li>Statistics: Tools to perform data analysis and modeling</li>
+            <li>Control System Design &amp; Analysis: Standard algorithms and tools for control system study</li>
+            <li>Signal Processing: Visualize, analyze and filter signals in time and frequency domains</li>
+            <li>Application Development: Increase Scilab native functionalities and manage data exchanges</li>
+            <li>Xcos - Hybrid dynamic systems modeler and simulator: Modeling physical systems, control systems</li>
+        </ul>
+    </description>
+    <screenshots>
+        <screenshot type="default" width="800" height="600">http://cgit.scilab.org/cgit.cgi/scilab/plain/scilab/desktop/images/scilab-desktop.png</screenshot>
+        <screenshot width="800" height="600">http://cgit.scilab.org/cgit.cgi/scilab/plain/scilab/desktop/images/scilab-plot.png</screenshot>
+        <screenshot width="800" height="600">http://cgit.scilab.org/cgit.cgi/scilab/plain/scilab/desktop/images/scilab-xcos.png</screenshot>
+    </screenshots>
+    <url type="homepage">http://www.scilab.org</url>
+    <updatecontact>dev@lists.scilab.org</updatecontact>
+</application>
+

@@ -152,6 +152,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
         if (isdef("editor") | (funptr("editor") <> 0)) then
             editor(TMPDIR + filesep() + "function_template.sci");
         end
+        [helptxt, demotxt] = help_from_sci("TMPDIR/function_template");
         return;
     end
 
@@ -423,4 +424,3 @@ function [txt, doing] = change_activity(currently_doing, start_doing)
     end
 endfunction
 //==============================================================================
-

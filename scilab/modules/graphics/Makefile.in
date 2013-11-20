@@ -187,6 +187,7 @@ am__objects_1 = libscigraphics_algo_la-GetCommandArg.lo \
 	libscigraphics_algo_la-get_bar_layout_property.lo \
 	libscigraphics_algo_la-get_current_axes_property.lo \
 	libscigraphics_algo_la-get_bar_width_property.lo \
+	libscigraphics_algo_la-get_datatips_property.lo \
 	libscigraphics_algo_la-get_font_color_property.lo \
 	libscigraphics_algo_la-get_default_axes_property.lo \
 	libscigraphics_algo_la-get_y_shift_property.lo \
@@ -347,6 +348,7 @@ am__objects_1 = libscigraphics_algo_la-GetCommandArg.lo \
 	libscigraphics_algo_la-set_text_box_mode_property.lo \
 	libscigraphics_algo_la-set_bar_layout_property.lo \
 	libscigraphics_algo_la-set_bar_width_property.lo \
+	libscigraphics_algo_la-set_datatips_property.lo \
 	libscigraphics_algo_la-SetPropertyStatus.lo \
 	libscigraphics_algo_la-set_font_style_property.lo \
 	libscigraphics_algo_la-set_surface_mode_property.lo \
@@ -926,6 +928,7 @@ src/c/getHandleProperty/get_font_foreground_property.c \
 src/c/getHandleProperty/get_bar_layout_property.c \
 src/c/getHandleProperty/get_current_axes_property.c \
 src/c/getHandleProperty/get_bar_width_property.c \
+src/c/getHandleProperty/get_datatips_property.c \
 src/c/getHandleProperty/get_font_color_property.c \
 src/c/getHandleProperty/get_default_axes_property.c \
 src/c/getHandleProperty/get_y_shift_property.c \
@@ -1086,6 +1089,7 @@ src/c/getHandleProperty/set_font_foreground_property.c \
 src/c/getHandleProperty/set_text_box_mode_property.c \
 src/c/getHandleProperty/set_bar_layout_property.c \
 src/c/getHandleProperty/set_bar_width_property.c \
+src/c/getHandleProperty/set_datatips_property.c \
 src/c/getHandleProperty/SetPropertyStatus.c \
 src/c/getHandleProperty/set_font_style_property.c \
 src/c/getHandleProperty/set_surface_mode_property.c \
@@ -1627,6 +1631,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_data_mapping_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_data_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_datatip_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_datatips_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_default_axes_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_default_figure_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_diffuse_color_property.Plo@am__quote@
@@ -1780,6 +1785,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_data_mapping_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_data_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_datatip_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_datatips_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_default_values_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_diffuse_color_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_direction_property.Plo@am__quote@
@@ -2076,6 +2082,13 @@ libscigraphics_algo_la-get_bar_width_property.lo: src/c/getHandleProperty/get_ba
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_bar_width_property.c' object='libscigraphics_algo_la-get_bar_width_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_bar_width_property.lo `test -f 'src/c/getHandleProperty/get_bar_width_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_bar_width_property.c
+
+libscigraphics_algo_la-get_datatips_property.lo: src/c/getHandleProperty/get_datatips_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-get_datatips_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-get_datatips_property.Tpo -c -o libscigraphics_algo_la-get_datatips_property.lo `test -f 'src/c/getHandleProperty/get_datatips_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_datatips_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-get_datatips_property.Tpo $(DEPDIR)/libscigraphics_algo_la-get_datatips_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_datatips_property.c' object='libscigraphics_algo_la-get_datatips_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_datatips_property.lo `test -f 'src/c/getHandleProperty/get_datatips_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_datatips_property.c
 
 libscigraphics_algo_la-get_font_color_property.lo: src/c/getHandleProperty/get_font_color_property.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-get_font_color_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-get_font_color_property.Tpo -c -o libscigraphics_algo_la-get_font_color_property.lo `test -f 'src/c/getHandleProperty/get_font_color_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_font_color_property.c
@@ -3196,6 +3209,13 @@ libscigraphics_algo_la-set_bar_width_property.lo: src/c/getHandleProperty/set_ba
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_bar_width_property.c' object='libscigraphics_algo_la-set_bar_width_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-set_bar_width_property.lo `test -f 'src/c/getHandleProperty/set_bar_width_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_bar_width_property.c
+
+libscigraphics_algo_la-set_datatips_property.lo: src/c/getHandleProperty/set_datatips_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-set_datatips_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-set_datatips_property.Tpo -c -o libscigraphics_algo_la-set_datatips_property.lo `test -f 'src/c/getHandleProperty/set_datatips_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_datatips_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-set_datatips_property.Tpo $(DEPDIR)/libscigraphics_algo_la-set_datatips_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_datatips_property.c' object='libscigraphics_algo_la-set_datatips_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-set_datatips_property.lo `test -f 'src/c/getHandleProperty/set_datatips_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_datatips_property.c
 
 libscigraphics_algo_la-SetPropertyStatus.lo: src/c/getHandleProperty/SetPropertyStatus.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-SetPropertyStatus.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-SetPropertyStatus.Tpo -c -o libscigraphics_algo_la-SetPropertyStatus.lo `test -f 'src/c/getHandleProperty/SetPropertyStatus.c' || echo '$(srcdir)/'`src/c/getHandleProperty/SetPropertyStatus.c
@@ -5039,11 +5059,17 @@ check-code:
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
-@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/; \
+@GIWS_TRUE@	MANDATORY_OPTIONS="--throws-exception-on-error --description-file"; \
 @GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
+@GIWS_TRUE@			if test -z "$(GIWS_OPTIONS)"; then \
+@GIWS_TRUE@				$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR $$MANDATORY_OPTIONS $$file; \
+@GIWS_TRUE@			else \
+@GIWS_TRUE@				echo "Custom GIWS call with '$$GIWS_OPTIONS'"; \
+@GIWS_TRUE@				$(GIWS_BIN) $$GIWS_OPTIONS --output-dir $$GIWS_OUTPUTDIR $$MANDATORY_OPTIONS $$file; \
+@GIWS_TRUE@			fi \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 

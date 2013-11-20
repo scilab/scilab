@@ -14,7 +14,7 @@
             <varlistentry>
                 <term>desc  </term>
                 <listitem>
-                    <para>vecteur colonne de chaînes de caractères, 
+                    <para>vecteur colonne de chaînes de caractères,
                     </para>
                 </listitem>
             </varlistentry>
@@ -143,9 +143,9 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 labels=["module";"frequence";"phase    "];
-[ok,mag,freq,ph]=getvalue("signal sinusoidal",labels,...
+[ok,mag,Freq,ph]=getvalue("signal sinusoidal",labels,...
 list("vec",1,"vec",1,"vec",1),["0.85";"10^2";"%pi/3"])
  ]]></programlisting>
     </refsection>

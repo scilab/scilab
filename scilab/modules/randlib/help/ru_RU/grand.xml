@@ -3,6 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Jean-Philippe Chancelier and Bruno Pincon
  * Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
+ * Copyright (C) 2013 - Samuel GOUGEON : extension to hypermatrices
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -36,12 +37,13 @@
             Y = grand(m, n, "uin", Low, High)
             Y = grand(m, n, "lgi")
             
+            Y = grand(m, n, o,..,"..",...)
             Y = grand(X, ...)
             
-            Y = grand(n,  "mn", Mean, Cov)
-            Y = grand(n,  "markov", P, x0)
-            Y = grand(n,  "mul", nb, P)
-            Y = grand(n,  "prm", vect)
+            Y = grand(n, "mn", Mean, Cov)
+            Y = grand(n, "markov", P, x0)
+            Y = grand(n, "mul", nb, P)
+            Y = grand(n, "prm", vect)
             
             S = grand("getgen")
             grand("setgen", gen)
@@ -65,10 +67,10 @@
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>m, n</term>
+                <term>m, n, o</term>
                 <listitem>
                     <para>
-                        целые числа, определяющие размеры матрицы <varname>Y</varname>.
+                        целые числа, определяющие размеры матрицы/гиперматрицы <varname>Y</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -84,7 +86,7 @@
                 <term>Y</term>
                 <listitem>
                     <para>
-                        матрица размером <varname>m</varname> на <varname>n</varname>, элементы которой являются случайными числами двойной точности (double).
+                        матрица или гиперматрица со случайными элементами, зависящая от входных аргументов.
                     </para>
                 </listitem>
             </varlistentry>
@@ -130,9 +132,16 @@
         <para>
             формируют матрицу размером <varname>m</varname> на <varname>n</varname>,
             элементы которой являются случайными числами.
+            
+            Все эти последовательности вызова могут быть расширены для создания гиперматрицы случайных чисел, у которой более двух размерностей, определённых в виде целых чисел, перечисленных перед типом статистического распределения:
         </para>
         <para>
-            Последовательность вызова:
+            <programlisting role="no-scilab-exec"><![CDATA[
+                Y = grand(m, n, o, ..., "..", ...)
+            ]]></programlisting>
+        </para>
+        <para>
+            Другой способ указать размеры ожидаемого вектора, матрицы или гиперматрицы случайных чисел:
         </para>
         <para>
             <programlisting role="no-scilab-exec"><![CDATA[
@@ -140,8 +149,9 @@
             ]]></programlisting>
         </para>
         <para>
-            где <varname>X</varname> - матрица размером <varname>m</varname> на
-            <varname>n</varname>, производит тот же эффект. В данном случае используются
+            где <varname>X</varname> - матрица или гиперматрица размером
+            <varname>m</varname> на <varname>n</varname> на ... . В
+            данном случае используются
             только размеры матрицы <varname>X</varname>.
         </para>
         <para>
@@ -382,8 +392,13 @@
                 <term>случайные перестановки</term>
                 <listitem>
                     <para>
-                        <code>Y = grand(n, "prm", vect)</code> формирует <varname>n</varname> случайных перестановок вектора-столбца
-                        <varname>vect</varname> размером <literal>m</literal> на <literal>1</literal>.
+                        <code>Y = grand(n, "prm", vect)</code> формирует <varname>n</varname> случайных перестановок                     <varname>vect</varname>.
+                        <varname>vect</varname> может быть вектор-столбцов вещественных чисел или вектором, матрицей или гиперматрицей комплексных, целых, логических, полиномиальных или строковых значений; полной или разрежённой.
+                        Из-за стековой структуры, <varname>vect</varname> не должен и не может быть вектор-строкой.
+                        Эта возможность перекрывает Matlab'овскую функцию <code>randperm()</code> поскольку
+                        <code>randperm(n)</code> эквивалентно <code>grand(1,'prm',(1:n)')</code>,
+                        а <code>randperm(n, k)</code> может быть получено через
+                        <code>grand(1,'prm',(1:n)'); ans(1:k)</code>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -904,6 +919,30 @@ grand(10,1,"uin",1,365)
         <programlisting role="example"><![CDATA[
 grand(12,"prm",(1:7)')
  ]]></programlisting>
+        <para>
+            В следующем примере мы формируем гиперматрицу случайных чисел с "нормальным" распределением размерами <varname>10</varname> на <varname>10</varname> на <varname>10</varname> и строим гистограммы. Показываются первый и последний слои.
+        </para>
+        <programlisting role="example"><![CDATA[
+// Возвращает гиперматрицу случайных чисел с нормальным
+// распределением, мат. ожидание 0 и среднеквадратичное отклонение 1, // размерами 10 на 10 на 10.
+// Показаны только первый и последний слои.
+R = grand(10,10,10,"nor",0,1);
+subplot(1,2,1)
+hist3d(R(:,:,1));
+xtitle("Слой 1");
+subplot(1,2,2)
+hist3d(R(:,:,10));
+xtitle("Слой 10");
+ ]]></programlisting>
+        <scilab:image localized="true">
+            R = grand(10,10,10,"nor",0,1);
+            subplot(1,2,1)
+            hist3d(R(:,:,1));
+            xtitle("Слой 1");
+            subplot(1,2,2)
+            hist3d(R(:,:,10));
+            xtitle("Слой 10");
+        </scilab:image>
     </refsection>
     <refsection>
         <title>Получение более или менее предсказуемых чисел</title>

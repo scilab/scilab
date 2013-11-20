@@ -62,6 +62,7 @@ import org.scilab.modules.history_browser.actions.DeleteAction;
 import org.scilab.modules.history_browser.actions.EditInScinotesAction;
 import org.scilab.modules.history_browser.actions.EvaluateAction;
 import org.scilab.modules.history_browser.actions.HelpAction;
+import org.scilab.modules.history_browser.actions.PrefsAction;
 import org.scilab.modules.history_manager.HistoryManagement;
 import org.scilab.modules.localization.Messages;
 
@@ -111,7 +112,7 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
      */
     private CommandHistory() {
         super(CommandHistoryMessages.TITLE, COMMANDHISTORYUUID);
-        setAssociatedXMLIDForHelp("historybrowser");
+        setAssociatedXMLIDForHelp("browsehistory");
         initialize();
         addMenuBar(createMenuBar());
         addToolBar(createToolBar());
@@ -479,6 +480,8 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
         toolBar.add(CutAction.createPushButton());
         toolBar.add(DeleteAction.createPushButton());
 
+        toolBar.addSeparator();
+        toolBar.add(PrefsAction.createPushButton());
         toolBar.addSeparator();
 
         toolBar.add(HelpAction.createPushButton());

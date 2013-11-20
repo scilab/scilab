@@ -122,19 +122,7 @@
                     <emphasis role="bold">Color </emphasis>
                 </para>
                 <para>
-                    a vector of integers. The i-th element is the color number (
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../../help/images/CSCOPE_img3_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    ) or dash type (
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../../help/images/CSCOPE_img4_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    ) used to draw the evolution of the i-th input port signal. See<emphasis role="bold">plot2d</emphasis> for color (dash type) definitions.
+                    a vector of integers. The i-th element is the color number (≥ 0) or marker type (&lt; 0) used to draw the evolution of the i-th input port signal. See<emphasis role="bold">plot2d</emphasis> for color (dash type) definitions.
                 </para>
                 <para> Properties : Type 'vec' of size 8 </para>
             </listitem>

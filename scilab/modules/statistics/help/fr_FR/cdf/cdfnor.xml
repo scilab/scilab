@@ -208,7 +208,7 @@ x = cdfnor("X",Mean*ones(p),Std*ones(p),p,q);
 plot(p,x)
 xtitle("Fonction standard cumulative inverse","p","x");
    ]]></programlisting>
-        <scilab:image>
+        <scilab:image localized="true">
             Mean = 0;
             Std = 1;
             p = linspace(1e-10,1-1e-10,1000);

@@ -1456,6 +1456,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleTr(final Map<String, String> attributes, final String contents) throws SAXException {
         String bgcolor = attributes.get("bgcolor");
+
         return encloseContents("tr", new String[] {"bgcolor", bgcolor}, contents);
     }
 
@@ -1469,7 +1470,10 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     public String handleTd(final Map<String, String> attributes, final String contents) throws SAXException {
         String align = attributes.get("align");
         String bgcolor = attributes.get("bgcolor");
-        return encloseContents("td", new String[] {"align", align, "bgcolor", bgcolor}, contents);
+        String colspan = attributes.get("colspan");
+        String rowspan = attributes.get("rowspan");
+
+        return encloseContents("td", new String[] {"align", align, "bgcolor", bgcolor, "colspan", colspan, "rowspan", rowspan}, contents);
     }
 
     /**
@@ -1532,6 +1536,17 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleImageobject(final Map<String, String> attributes, final String contents) throws SAXException {
         return contents;
+    }
+
+    /**
+     * Handle an textobject (as an alternative to imageobject)
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleTextobject(final Map<String, String> attributes, final String contents) throws SAXException {
+        return "<!-- " + contents + " -->";
     }
 
     /**

@@ -255,3 +255,21 @@ save(plotExportFile, "f");
 delete(f);
 // reload data
 load(plotExportFile);
+// datatip test
+x=linspace(0,1,9)';
+y=x.^3;
+clf();
+plot(x,y);
+e=gce();p=e.children(1);//get the handle on the polyline
+p.mark_mode="on";p.mark_style=2;p.mark_size=12;
+t=datatipCreate(p,5);
+// save the curves
+f = gcf();
+save(plotExportFile, "f");
+// close window
+delete(f);
+// reload data
+load(plotExportFile);
+e = gce();
+e = e.children(1);
+assert_checkequal(e.datatips.tip_data, [0.5, 0.125, 0]);

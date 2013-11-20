@@ -115,7 +115,7 @@ void createScilabTMPDIR(void)
     if ( alreadyCreated == 0 )
     {
         static char bufenv[PATH_MAX + 16];
-        char *tmp_dir_strdup[PATH_MAX];
+        char tmp_dir_strdup[PATH_MAX];
         char *res = NULL;
 
         alreadyCreated++;

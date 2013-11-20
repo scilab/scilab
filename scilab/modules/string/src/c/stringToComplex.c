@@ -179,6 +179,28 @@ static int ParseNumber(const char* tx)
         return lookahead;
     }
 
+    // Special cases: constants
+    if (strlen(tx) >= 5 && strncmp(tx, "+%eps", 5) == 0 || strncmp(tx, "-%eps", 5) == 0 || strncmp(tx, "+%nan", 5) == 0 ||
+            strncmp(tx, "-%nan", 5) == 0 || strncmp(tx, "+%inf", 5) == 0 || strncmp(tx, "-%inf", 5) == 0)
+    {
+        return 5;
+    }
+    else if (strlen(tx) >= 4 && strncmp(tx, "%eps", 4) == 0 || strncmp(tx, "+%pi", 4) == 0 || strncmp(tx, "-%pi", 4) == 0 ||
+             strncmp(tx, "+Inf", 4) == 0 || strncmp(tx, "-Inf", 4) == 0 || strncmp(tx, "+Nan", 4) == 0 ||
+             strncmp(tx, "-Nan", 4) == 0 || strncmp(tx, "%nan", 4) == 0 || strncmp(tx, "%inf", 4) == 0 )
+    {
+        return 4;
+    }
+    else if (strlen(tx) >= 3 && strncmp(tx, "+%e", 3) == 0 || strncmp(tx, "-%e", 3) == 0 || strncmp(tx, "%pi", 3) == 0 ||
+             strncmp(tx, "Nan", 3) == 0 || strncmp(tx, "Inf", 3) == 0 || strncmp(tx, "%pi", 3) == 0)
+    {
+        return 3;
+    }
+    else if (strlen(tx) >= 2 && strncmp(tx, "%e", 2) == 0)
+    {
+        return 2;
+    }
+
     if ((tx[len] == '+') || (tx[len] == '-'))
     {
         len++;
@@ -231,6 +253,7 @@ static stringToComplexError ParseComplexValue(const char *tx, BOOL bConvertByNAN
     size_t lnum = 0;
     BOOL haveImagI = FALSE;
     char *modifiedTxt = NULL;
+    int i = 0;
 
     *real = stringToDouble(tx, FALSE, &ierrDouble);
     *imag = 0;
@@ -293,12 +316,39 @@ static stringToComplexError ParseComplexValue(const char *tx, BOOL bConvertByNAN
         inum_string = midstring(modifiedTxt, lnum, -1);
 
         if ((inum_string[strlen(inum_string) - 1] == 'i') ||
-                (inum_string[strlen(inum_string) - 1] == 'j'))
+                (inum_string[strlen(inum_string) - 1] == 'j')) // The imaginary part looks like "a*%i"
         {
             inum_string[strlen(inum_string) - 1] = 0;
             if (inum_string[strlen(inum_string) - 1] == '*')
             {
                 inum_string[strlen(inum_string) - 1] = 0;
+            }
+
+            if (strcmp(inum_string, "+") == 0)
+            {
+                FREE(inum_string);
+                inum_string = strdup("+1");
+            }
+
+            if (strcmp(inum_string, "-") == 0)
+            {
+                FREE(inum_string);
+                inum_string = strdup("-1");
+            }
+            haveImagI = TRUE;
+        }
+        else if (inum_string[1] == 'i' || inum_string[1] == 'j') // The imaginary part looks like "%i*a". For instance if string() has been used
+        {
+            for (i = 1; i < strlen(inum_string); ++i)
+            {
+                inum_string[i] = inum_string[i + 1];    // Removing the "i"
+            }
+            if (inum_string[1] == '*')
+            {
+                for (i = 1; i < strlen(inum_string); ++i)
+                {
+                    inum_string[i] = inum_string[i + 1];    // Removing the "*"
+                }
             }
 
             if (strcmp(inum_string, "+") == 0)

@@ -13,6 +13,7 @@ package org.scilab.forge.scirenderer.implementation.g2d.motor;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.Stroke;
 import java.awt.geom.Path2D;
 import java.util.ArrayList;
@@ -32,17 +33,19 @@ public class Segment extends ConvexObject implements Comparable<Segment> {
     private Integer hash;
     protected G2DStroke stroke;
     protected List<ConvexObject> segmentOn;
+    protected boolean is2D;
 
-    public Segment(Vector3d[] vertices, Color[] colors, G2DStroke stroke) throws InvalidPolygonException {
+    public Segment(Vector3d[] vertices, Color[] colors, G2DStroke stroke, boolean is2D) throws InvalidPolygonException {
         super(vertices, colors);
         if (vertices.length != 2) {
             throw new InvalidPolygonException("Invalid segment: must have 2 vertices.");
         }
         this.stroke = stroke;
+        this.is2D = is2D;
     }
 
     public Segment(Vector3d[] vertices, Color[] colors) throws InvalidPolygonException {
-        this(vertices, colors, null);
+        this(vertices, colors, null, false);
     }
 
     public void setStroke(G2DStroke stroke) {
@@ -129,6 +132,11 @@ public class Segment extends ConvexObject implements Comparable<Segment> {
     @Override
     public List<ConvexObject> breakObject(Vector4d v) {
         double[] vv = v.getData();
+
+        if (is2D && vv[2] == 0) {
+            makeClip(vv);
+        }
+
         Vector3d np = new Vector3d(vv);
         boolean a = isBehind(vertices[0], np, vv[3]);
         boolean b = isBehind(vertices[1], np, vv[3]);
@@ -150,9 +158,9 @@ public class Segment extends ConvexObject implements Comparable<Segment> {
 
         try {
             if (a) {
-                s = new Segment(new Vector3d[] {vertices[0], p}, new Color[] {colors[0], color}, this.stroke);
+                s = new Segment(new Vector3d[] {vertices[0], p}, new Color[] {colors[0], color}, this.stroke, this.is2D);
             } else {
-                s = new Segment(new Vector3d[] {p, vertices[1]}, new Color[] {color, colors[1]}, this.stroke);
+                s = new Segment(new Vector3d[] {p, vertices[1]}, new Color[] {color, colors[1]}, this.stroke, this.is2D);
             }
 
             List<ConvexObject> list = new ArrayList<ConvexObject>(1);
@@ -171,15 +179,15 @@ public class Segment extends ConvexObject implements Comparable<Segment> {
             Vector3d q = Vector3d.getBarycenter(vertices[0], vertices[1], c, 1 - c);
             Color color = getColorsBarycenter(colors[0], colors[1], c, 1 - c);
             try {
-                list.add(new Segment(new Vector3d[] {vertices[0], q}, new Color[] {colors[0], color}, stroke));
-                list.add(new Segment(new Vector3d[] {q, vertices[1]}, new Color[] {color, colors[1]}, stroke));
+                list.add(new Segment(new Vector3d[] {vertices[0], q}, new Color[] {colors[0], color}, stroke, this.is2D));
+                list.add(new Segment(new Vector3d[] {q, vertices[1]}, new Color[] {color, colors[1]}, stroke, this.is2D));
 
                 return list;
             } catch (InvalidPolygonException e) { }
         } else {
             List<Segment> list = new ArrayList<Segment>(1);
             try {
-                list.add(new Segment(new Vector3d[] {vertices[0], vertices[1]}, new Color[] {colors[0], colors[1]}, stroke));
+                list.add(new Segment(new Vector3d[] {vertices[0], vertices[1]}, new Color[] {colors[0], colors[1]}, stroke, this.is2D));
 
                 return list;
             } catch (InvalidPolygonException e) { }
@@ -198,10 +206,20 @@ public class Segment extends ConvexObject implements Comparable<Segment> {
                 g2d.setStroke(stroke);
             }
 
+            Shape oldClip = g2d.getClip();
+            Shape newClip = getClip();
+            if (newClip != null) {
+                g2d.clip(newClip);
+            }
+
             g2d.draw(polyline);
 
             if (oldStroke != stroke) {
                 g2d.setStroke(oldStroke);
+            }
+
+            if (newClip != null) {
+                g2d.setClip(oldClip);
             }
 
             drawAreas(g2d);

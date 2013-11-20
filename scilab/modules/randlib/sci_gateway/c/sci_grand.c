@@ -1,5 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: added support for complexes, polynomials,
+*                                                         integers, booleans, strings and sparses.
 * Copyright (C) ENPC
 *
 * This file must be used under the terms of the CeCILL.
@@ -1016,7 +1018,7 @@ int sci_Rand(char *fname, unsigned long fname_len)
     }
     else if ( strcmp(cstk(ls), "prm") == 0)
     {
-        int nn;
+        int nn, Cmplx, *header;
         if ( suite != 3 || ResL * ResC != 1)
         {
             Scierror(999, _("%s: Wrong value for input argument: Number of random simulation expected.\n"), fname);
@@ -1028,11 +1030,39 @@ int sci_Rand(char *fname, unsigned long fname_len)
             Scierror(999, _("Missing vect for random permutation\n"));
             return 0;
         }
-        GetRhsVar(suite, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
-        if ( n1 != 1)
+        switch (GetType(suite))
         {
-            Scierror(999, _("%s: Wrong type for input argument: Column vector expected.\n"), fname);
-            return 0;
+            case 1:
+                header = (int *)GetData(suite);
+                Cmplx = header[3];
+                if (Cmplx == 0)
+                {
+                    GetRhsVar(suite, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
+                    if ( n1 != 1)
+                    {
+                        OverLoad(suite);
+                        return 0;
+                    }
+                    break;
+                }
+                else
+                {
+                    OverLoad(suite); // Complex, call %s_grand
+                    return 0;
+                    break;
+                }
+            case 2:  // Polynomial, call %p_grand
+            case 4:  // Boolean,    call %b_grand
+            case 5:  // Sparse,     call %sp_grand
+            case 8:  // Integer,    call %i_grand
+            case 10: // String,     call %c_grand
+            case 17: // String,     call %c_grand
+                OverLoad(suite);
+                return 0;
+                break;
+            default:
+                Scierror(999, _("%s: Wrong type for input argument: Matrix (full or sparse) or Hypermatrix of Reals, Complexes, Integers, Booleans, Strings or Polynomials expected.\n"), fname);
+                return 0;
         }
         CreateVar(suite + 1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &nn, &lr);
         for ( i = 0 ; i < nn ; i++)

@@ -1,31 +1,98 @@
                  Changes between version 5.5.0-beta-1 and 5.5.0
                  ==============================================
 
+New Features
+=============
+
+* The figures "visible" property now also applies to uicontrols.
+  In previous releases, only axes were managed by this property setting.
+
+* New functions introduced:
+ - jcreatejar - Creates a Java archive (JAR) from a set of files / directories
+
+* modulo() and pmodulo() now support integers & hypermatrices (See bug #13002).
+
+
 Scilab Bug Fixes
 ================
+
+* Bug #2067 fixed - Scilab crashed when plot was called with a large numerical value.
+
+* Bug #4401 fixed - isnum did not recognize all constants or some complex numbers.
+
+* Bug #5016 fixed - condestsp could return different results when repeated calls were performed.
+
+* Bug #6615 fixed - ui(get|put)file did not center the file dialog on the last focused window.
+
+* Bug #6689 & #6690 fixed - grand now works with complexes, polynomials, booleans, integers, sparses and strings,
+                            and can take row vectors, matrices and hypermatrices of thoses types.
+
+* Bug #6824 fixed - resize_matrix did not manage hypermatrices.
+
+* Bug #6832 fixed - Matrices of rationals can now be transposed via the " .' " operator.
+
+* Bug #7038 fixed - Toolbar button managing datatip mode did not toggle.
+
+* Bug #7047 fixed - milk_drop is now obsolete. It will be removed in Scilab 5.5.1, but will be kept as a demo.
+
+* Bug #7133 fixed - help_from_sci with no input argument now launches a full demonstration.
 
 * Bug #7570 fixed - The switch criterion on x and y is now explicited in beta() help page.
 
 * Bug #7705 fixed - In the Genetic algorithms help pages, documented the
                     "dimension", "minbounds" and "maxbounds" fields.
 
+* Bug #7858 fixed - variance and variancef can now return the mean of the input
+                    in a new output argument and take the a priori mean as input.
+
+* Bug #7879 fixed - string now accepts plist type, and printing a plist displays that string.
+
 * Bug #8031 fixed - cdfgam error message fixed.
+
+* Bug #8060 fixed - Display of a list improved in the variable browser.
+
+* Bug #8231 fixed - xrect help page did not say that clipping property was inherited.
 
 * Bug #8337 fixed - mtlb_rand now uses the "uniform" rule, whatever the random rule set is.
 
+* Bug #8745 fixed - Extracting from an empty matrix automatically returned an empty matrix.
+
+* Bug #9031 fixed - Misalignment of text when using xstring with a matrix fixed.
+
+* Bug #9033 fixed - auto_dimensionning property for text handles was not documented.
+
 * Bug #9110 fixed - Examples and references to other functions added in the Statistics help pages.
+
+* Bug #9319 fixed - Big polylines could not be exported in PS/EPS.
+
+* Bug #9627 fixed - Arguments checking added in optimsimplex_* functions.
+
+* Bug #9697 fixed - Printed information for optim "qn" and "gc" with bounds and imp=1 fixed.
 
 * Bug #10175 fixed - Clearer example added for sp2adj to adj2sp conversion (and backwards conversion).
 
 * Bug #10234 fixed - reglin function moved from CACSD to Statistics module.
 
+* Bug #10271 fixed - ordmmd now checks the consistency of the third input argument with the
+                     input matrix defined by the two first input arguments.
+
 * Bug #10273 fixed - spchol help page now displays an example showing how to use its output arguments.
 
 * Bug #11571 fixed - x_mdialog did not let the Look&Feel select the window size.
 
+* Bug #11575 fixed - There was no preview of GIF files in exportUI dialog.
+
+* Bug #11576 fixed - exportUI did not propose gcf().figure_name as default file name.
+
 * Bug #11680 fixed - GUI functions in Scilab 5.4.X were much slower than in Scilab 5.3.3.
 
+* Bug #12492 fixed - Exported EPS files were invalid when dash patterns were too long.
+
+* Bug #12682 fixed - Key events were disabled after zooming.
+
 * Bug #12769 fixed - xset("window", 1) did not set the current axes.
+
+* Bug #12882 fixed - Some help pages were not clear.
 
 * Bug #12910 fixed - Some typos fixed.
 
@@ -50,11 +117,21 @@ Scilab Bug Fixes
 
 * Bug #12971 fixed - getURL downloaded file name was wrong.
 
+* Bug #12973 fixed - Exception occuring when clicking on a figure at creation fixed.
+
+* Bug #12976 fixed - getURL returns a file name instead of a file path.
+
 * Bug #12978 fixed - exportUI returned an error when input argument was a figure handle.
 
 * Bug #12979 fixed - exportUI did not work with vectorial export.
 
+* Bug #12990 fixed - GED features conflicted with figure events.
+
+* Bug #12992 fixed - The sigma value was always equals to "LM" in eigs.
+
 * Bug #13000 fixed - []./int8(3) and on int8(3)./[] led to an endless recursive.
+
+* Bug #13002 fixed - modulo() and pmodulo() did not support integers & hypermatrices.
 
 * Bug #13003 fixed - String to enum converter added to Java external objects.
 
@@ -66,15 +143,72 @@ Scilab Bug Fixes
 
 * Bug #13008 fixed - 'help $' now opens the 'Symbols' help page.
 
+* Bug #13010 fixed - Wrong class was returned by jcompile (with ecj).
+
+* Bug #13011 fixed - ilib_compile failed under MacOS X 10.9.
+
+* Bug #13012 fixed - Vectorial export of rotated strings was wrong.
+
+* Bug #13014 fixed - Update of the Efficiency inner variable improved in optim_ga.
+
+* Bug #13015 fixed - Computation of Efficiency inner variable improved in optim_ga.
+
+* Bug #13022 fixed - Vectorial export did not clip large segments.
+
+* Bug #13023 fixed - xs2pdf crashed under Windows when the target file was already open.
+
+* Bug #13027 fixed - There was no autowrap into array in JIMS.
+
+* Bug #13032 fixed - Fixed CMATVIEW help example and created one for CMAT3D.
+
+* Bug #13033 fixed - -1 could not be used as nax argument in plot2d.
+
+* Bug #13036 fixed - Help page associated to history browser was wrong.
+
+* Bug #13041 fixed - Wrong result was returned for "integer scalar" minus "integer vector".
+
+* Bug #13042 fixed - Texts in graphics were not correctly centered.
+
+* Bug #13047 fixed - jcompile did not allow class reloading.
+
+* Bug #13049 fixed - New handled protocols added in links in SciNotes.
+
+* Bug #13050 fixed - The result of mvvacov was not symmetric.
+
+* Bug #13053 fixed - datatipCreate did not return datatip handle.
+
+* Bug #13055 fixed - Array indexing did not follow Scilab convention in JIMS.
+
+* Bug #13061 fixed - hdf5 demo failed with a read only file.
+
+* Bug #13063 fixed - Color selection in SciNotes preferences threw exceptions.
+
+* Bug #13069 fixed - Documentation for %MODELICA_USER_LIBS updated.
+
+* Bug #13066 fixed - data_bounds was not fully documented in axes_properties.
+
+* Bug #13071 fixed - Three unused functions in Xcos macros now specified as not mandatory
+                     to write new blocks.
+
+* Bug #13092 fixed - Optimizations now check the user function output (must be a real).
+
+* Bug #13093 fixed - Removed trailing "\n" in the head_comments error message.
+
 
 Xcos Bug Fixes
 ==============
+
+* xcos_debug_gui function added  for a simple use of the Debug block.
 
 * Bug #12423 fixed - Data types of SWITCH2_m were not documented.
 
 * Bug #12998 fixed - 'ans' was not ignored in the context results.
 
-* Bug #13006 fixed - Selection to Super block (in_f and out_f) was failing.
+* Bug #13006 fixed - Selection to superblock (in_f and out_f) was failing.
+
+* Bug #13030 fixed - Selection to superblock did not reset the origin.
+
+* Bug #13059 fixed - Nan propagated at startup made the simulation fail.
 
 
                  Changes between version 5.4.1 and 5.5.0-beta-1
@@ -257,6 +391,8 @@ Obsolete & Removed Functions
 
 * fprintf removed, please use mfprintf for files opened with mopen or write for files
   opened with file instead.
+
+* milk_drop tagged as obsolete. Will be removed in Scilab 5.5.1.
 
 
 Scilab Bug Fixes
@@ -766,6 +902,9 @@ Scilab Bug Fixes
 
 * Bug #12791 fixed - More information is now given in case of failure during the ATOMS
                     autoload step.
+
+* Bug #12793 fixed - Improved the bode() plots with a new option "rad" to convert plot into rad/s
+                     and a new function bode_asymp() to draw the system asymptotes.
 
 * Bug #12794 fixed - calfrq.sci code did not follow Scilab standard.
 

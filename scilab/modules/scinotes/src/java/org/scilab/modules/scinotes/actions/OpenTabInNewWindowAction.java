@@ -48,6 +48,6 @@ public final class OpenTabInNewWindowAction extends DefaultAction {
      * Action
      */
     public void doAction() {
-        getEditor().cloneAndCloseCurrentTab(getEditor(), false);
+        SciNotes.cloneAndCloseCurrentTab(getEditor(), false);
     }
 }

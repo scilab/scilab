@@ -46,7 +46,7 @@ public class EditorManager {
      * Enables the editor which belongs to the given figure uid.
      * @param figureUid Figure wich the editor belongs.
      */
-    public static void enableModify(Integer uid) {
+    public static void enableModify(int uid) {
         Editor editor = allEditors.get(uid);
         if (editor != null) {
             editor.setDataModifyEnabled(true);
@@ -57,7 +57,7 @@ public class EditorManager {
      * Disables the editor which belongs to the given figure uid.
      * @param figureUid Figure wich the editor belongs.
      */
-    public static void disableModify(Integer uid) {
+    public static void disableModify(int uid) {
         Editor editor = allEditors.get(uid);
         if (editor != null) {
             editor.setDataModifyEnabled(false);
@@ -68,7 +68,7 @@ public class EditorManager {
      * Checks if the editor which belongs to the given figure uid is enabled.
      * @return True if the editor is enableb, false otherwise.
      */
-    public static boolean isModifyEnabled(Integer uid) {
+    public static boolean isModifyEnabled(int uid) {
         Editor editor = allEditors.get(uid);
         if (editor != null) {
             return editor.isDataModifyEnabled();
@@ -79,7 +79,7 @@ public class EditorManager {
     /**
      * Remove the editor from the map.
      */
-    public static void deleteEditor(Integer uid) {
+    public static void deleteEditor(int uid) {
         allEditors.remove(uid);
     }
 
@@ -88,7 +88,7 @@ public class EditorManager {
      * @param uid The figure uid.
      * @return The editor instance.
      */
-    public static Editor getFromUid(Integer uid) {
+    public static Editor getFromUid(int uid) {
         return allEditors.get(uid);
     }
 }

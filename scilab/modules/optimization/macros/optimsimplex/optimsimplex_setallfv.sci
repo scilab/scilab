@@ -17,6 +17,12 @@
 //   fv : the array of function values
 //
 function this = optimsimplex_setallfv ( this , fv )
+    if typeof(this) <> "TSIMPLEX" then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"), "optimsimplex_setallfv", 1));
+    end
+    if type(fv) <> 1 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A real vector expected.\n"), "optimsimplex_setallfv", 2));
+    end
     fv1 = size ( fv , 1 );
     if fv1 <> this.nbve then
         error ( msprintf ( gettext ( "%s: The number of rows in the function value array is %d, while expected %d." ), "optimsimplex_setallfv" , fv1 , this.nbve ))
@@ -27,4 +33,3 @@ function this = optimsimplex_setallfv ( this , fv )
     end
     this.fv ( 1:this.nbve , 1 ) = fv ( 1:this.nbve );
 endfunction
-

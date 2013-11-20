@@ -1961,7 +1961,7 @@ public class SciNotes extends SwingScilabTab {
                         pane.setCaretPosition(sep.getCaretPosition());
                         pane.getXln().setWhereamiLineNumbering(SciNotesOptions.getSciNotesDisplay().showLineNumbers, SciNotesOptions.getSciNotesDisplay().whereami);
                         ed.tabPane.setComponentAt(i, pane.getEditorComponent());
-                        ed.activateHelpOnTyping(pane);
+                        SciNotes.activateHelpOnTyping(pane);
                         ed.initInputMap(pane);
                         if (((ScilabDocument) sep.getDocument()).getBinary()) {
                             pane.setBinary(true);

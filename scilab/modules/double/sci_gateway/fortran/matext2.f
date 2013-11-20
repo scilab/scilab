@@ -54,6 +54,21 @@ c     arg3(arg1,arg2)
       endif
       if(mn3.eq.0) then 
 c     .  arg3=[]
+         if(stk(sadr(il2+4)).le.0.and.   !index1<=0
+     &   abs(istk(il2)).ne.4.or.         !type(index1)!=4 (no error if index1=%t)
+     &   abs(istk(il2)).ne.1.and.        !type(index1)!=1 (no error if index1>0)
+     &   abs(istk(il2)).ne.2.and.        !type(index1)!=2 (no error if index1=$)
+     &   abs(istk(il2)).ne.4.and.
+     &   abs(istk(il2)).ne.129.or.       !type(index1)!=129 (no error if index1=1:$)
+     &   stk(sadr(il1+4)).le.0.and.
+     &   abs(istk(il1)).ne.4.or.
+     &   abs(istk(il1)).ne.1.and.
+     &   abs(istk(il1)).ne.2.and.
+     &   abs(istk(il1)).ne.4.and.
+     &   abs(istk(il1)).ne.129) then
+            call error(21)
+            return
+         endif 
          if(m1.le.0.or.m2.le.0) then
             il1=iadr(lstk(top))
             istk(il1)=1

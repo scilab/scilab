@@ -302,7 +302,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
         gbc.gridx = gbc.gridy = 0;
         gbc.gridwidth = gbc.gridheight = 1;
         gbc.weightx = gbc.weighty = 0;
-        gbc.anchor = gbc.LINE_START;
+        gbc.anchor = GridBagConstraints.LINE_START;
         panelBase.add(baseDirLabel, gbc);
 
         gbc.gridx = 0;
@@ -327,13 +327,13 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
         gbc.gridy = 1;
         gbc.gridwidth = 1;
         gbc.weightx = 0;
-        gbc.fill = gbc.NONE;
+        gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.BASELINE;
         panelBase.add(chooseBaseDirButton, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 3;
-        gbc.anchor = gbc.LINE_START;
+        gbc.anchor = GridBagConstraints.LINE_START;
         panelBase.add(filePatternLabel, gbc);
 
         gbc.gridy = 4;
@@ -356,7 +356,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
         gbc.gridy = 6;
         gbc.gridwidth = 1;
         gbc.weightx = 0;
-        gbc.anchor = gbc.LINE_START;
+        gbc.anchor = GridBagConstraints.LINE_START;
         panelBase.add(wordPatternLabel, gbc);
 
         gbc.gridy = 7;

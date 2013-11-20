@@ -157,7 +157,7 @@ SCICOS_BLOCKS_IMPEXP void cscopxy(scicos_block * block, scicos_flag flag)
                 set_block_error(-5);
             }
             iFigureUID = getFigure(block);
-            if (iFigureUID == NULL)
+            if (iFigureUID == 0)
             {
                 // allocation error
                 set_block_error(-5);
@@ -166,7 +166,7 @@ SCICOS_BLOCKS_IMPEXP void cscopxy(scicos_block * block, scicos_flag flag)
 
         case StateUpdate:
             iFigureUID = getFigure(block);
-            if (iFigureUID == NULL)
+            if (iFigureUID == 0)
             {
                 // allocation error
                 set_block_error(-5);
@@ -442,15 +442,15 @@ static void setFigureSettings(int iFigureUID, scicos_block * block)
 static int getFigure(scicos_block * block)
 {
     signed int figNum;
-    int iFigureUID = NULL;
-    int iAxe = NULL;
+    int iFigureUID = 0;
+    int iAxe = 0;
     int i__1 = 1;
     sco_data *sco = (sco_data *) * (block->work);
 
     // assert the sco is not NULL
     if (sco == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     // fast path for an existing object
@@ -512,7 +512,7 @@ static int getAxe(int iFigureUID, scicos_block * block)
     // assert the sco is not NULL
     if (sco == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     // fast path for an existing object
@@ -545,7 +545,7 @@ static int getAxe(int iFigureUID, scicos_block * block)
     }
     else
     {
-        return NULL;
+        return 0;
     }
 
     /*

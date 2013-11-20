@@ -104,18 +104,14 @@
             hydraulic resistance and pressure loss is directly proportional to the
             flow rate. Conventionally, the flow direction is the positive when fluid
             flows from the black port to the white port. The pressure loss is
-            obtained
+            obtained with :
         </para>
-        <para>with</para>
-        <para/>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../help/images/PerteDP_img2_eng.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>. The key parameters of this block are the pipes' length, the pipe's
+        <latex>
+            $$
+            P_{loss} = P_{black} - P_{white}
+            $$
+        </latex>
+        <para>The key parameters of this block are the pipes' length, the pipe's
             diameter, inlet and outlet altitudes, and some other thermal-hydraulic
             coefficients.
         </para>

@@ -17,6 +17,20 @@
 //   fv : the function value
 //
 function this = optimsimplex_setfv ( this , ive , fv )
+    if typeof(this) <> "TSIMPLEX" then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"), "optimsimplex_setfv", 1));
+    end
+    if type(ive) <> 1 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A real scalar expected.\n"), "optimsimplex_setfv", 2));
+    end
+    if type(fv) <> 1 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A real vector expected.\n"), "optimsimplex_setfv", 3));
+    end
+    if or(size(ive) <> [1 1]) then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: A real scalar expected.\n"), "optimsimplex_setfv", 2));
+    end
+    if ive-floor(ive) <> 0 then
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: An integer expected.\n"), "optimsimplex_setfv", 2));
+    end
     this.fv ( ive , 1 ) = fv;
 endfunction
-

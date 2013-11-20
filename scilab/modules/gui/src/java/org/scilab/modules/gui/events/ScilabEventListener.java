@@ -158,7 +158,7 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
     }
 
     public void mouseDragged(MouseEvent arg0) {
-        if (eventTranslator.getClickAction() == eventTranslator.javaButton2Scilab(MouseEvent.BUTTON1, SciTranslator.PRESSED, false)) { /* If LEFT BUTTON PRESSED */
+        if (eventTranslator.getClickAction() == SciTranslator.javaButton2Scilab(MouseEvent.BUTTON1, SciTranslator.PRESSED, false)) { /* If LEFT BUTTON PRESSED */
             this.freedom = false;
             mouseX = arg0.getX();
             mouseY = arg0.getY();
