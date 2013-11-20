@@ -88,6 +88,8 @@ Scilab Bug Fixes
 
 * Bug #12492 fixed - Exported EPS files were invalid when dash patterns were too long.
 
+* Bug #12673 fixed - Ticks were drawn outside of axes area.
+
 * Bug #12682 fixed - Key events were disabled after zooming.
 
 * Bug #12769 fixed - xset("window", 1) did not set the current axes.
