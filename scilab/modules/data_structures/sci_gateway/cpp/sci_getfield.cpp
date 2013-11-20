@@ -127,7 +127,10 @@ static types::Function::ReturnValue sci_getfieldStruct(types::typed_list &in, in
     else
     {
         //extraction by index
-        vectResult = pSt->extractFields(&in);
+        // do not extract myself of myself
+        types::typed_list input;
+        input.push_back(in[0]);
+        vectResult = pSt->extractFields(&input);
     }
 
     if (vectResult.size() == 0)
