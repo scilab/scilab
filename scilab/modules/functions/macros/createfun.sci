@@ -12,6 +12,9 @@ function %fun=createfun(t)
     //sequence and the following the function instructions, it returns et
     //Scilab function.
     // This is  mainly used by sci2exp
+    if argn(2) < 1 then
+        error(sprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "createfun", 1));
+    end
     h=t(1)
     k=strindex(h,"=")
     if k==[] then k1=1,else k1=k(1),end

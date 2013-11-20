@@ -16,7 +16,9 @@ function txt = fun2string(fun,nam)
     // nam   : nam of the scilab function to generate
     // txt   : character string column vector: the text of resulting scilab function
     //!
-    if argn(2)<2 then nam="ans",end
+    if argn(2) < 1 then
+        error(sprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "fun2string", 1, 2));
+    elseif argn(2)<2 then nam="ans",end
     if type(fun)==11 then comp(fun),end
     if type(fun)<>15 then
         lst=macr2lst(fun);

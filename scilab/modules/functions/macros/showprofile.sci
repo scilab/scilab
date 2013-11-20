@@ -9,6 +9,9 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function showprofile(fun)
+    if argn(2) < 1 then
+        error(sprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "showprofile", 1));
+    end
     lst = macr2lst(fun)
     count = profile(lst)
     count(:,2) = round(100*count(:,2))/100

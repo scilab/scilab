@@ -9,6 +9,10 @@
 
 function plotprofile(fun)
 
+    if argn(2) < 1 then
+        error(sprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "plotprofile", 1));
+    end
+
     sep="="
     sep=part(sep,ones(1,72))
 

@@ -13,6 +13,10 @@ function [success, funcs, success_files, failed_files] = genlib(nam, path, force
 
     // get all .sci files in the specified directory
 
+    if argn(2) < 1 then
+        error(sprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "genlib", 1, 5));
+    end
+
     if type(nam) <> 10 then
         error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "genlib", 1));
     end
