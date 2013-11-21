@@ -123,9 +123,6 @@
     <ClCompile Include="nextk.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\polops.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="quad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -297,9 +294,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="nextk.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\polops.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="quad.f">

@@ -261,8 +261,6 @@ cd ..
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="amell.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\bgetx.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\bgety.c" />
     <ClCompile Include="bldenz.c" />
     <ClCompile Include="blnumz.c" />
     <ClCompile Include="bounn.c" />
@@ -323,8 +321,6 @@ cd ..
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="amell.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\bgetx.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\bgety.f" />
     <f2c_rule Include="bldenz.f" />
     <f2c_rule Include="blnumz.f" />
     <f2c_rule Include="bounn.f" />

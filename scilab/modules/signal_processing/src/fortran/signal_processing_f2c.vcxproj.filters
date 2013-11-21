@@ -24,12 +24,6 @@
     <ClCompile Include="amell.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\bgetx.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\bgety.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="bldenz.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -204,12 +198,6 @@
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="amell.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\bgetx.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\bgety.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="bldenz.f">

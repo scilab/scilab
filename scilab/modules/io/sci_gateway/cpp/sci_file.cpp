@@ -30,9 +30,9 @@ extern "C"
 #include "mseek.h"
 
     extern int C2F(clunit)(int* , char*, int*, int);
-    extern int C2F(rewind_inter)(int*);
-    extern int C2F(backspace_inter)(int*);
-    extern int C2F(read_inter)(int*, char*, int);
+    extern int C2F(rewindinter)(int*);
+    extern int C2F(backspaceinter)(int*);
+    extern int C2F(readinter)(int*, char*, int);
 }
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, types::typed_list &out);
@@ -294,7 +294,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
             }
             else if (pFile && pFile->getFileType() == 1)
             {
-                C2F(rewind_inter)(&iFileUnit);
+                C2F(rewindinter)(&iFileUnit);
             }
             else
             {
@@ -314,7 +314,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
             }
             else if (pFile && pFile->getFileType() == 1)
             {
-                C2F(backspace_inter)(&iFileUnit);
+                C2F(backspaceinter)(&iFileUnit);
             }
             else
             {
@@ -336,7 +336,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
                 int iErr = 0;
                 while (iErr == 0)
                 {
-                    iErr = C2F(read_inter)(&iFileUnit, "(a)", 1L);
+                    iErr = C2F(readinter)(&iFileUnit, "(a)", 1L);
                 }
 
                 if (iErr == 2)
@@ -345,7 +345,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
                     return types::Function::Error;
                 }
 
-                C2F(backspace_inter)(&iFileUnit);
+                C2F(backspaceinter)(&iFileUnit);
             }
             else
             {

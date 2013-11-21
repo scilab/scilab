@@ -220,8 +220,8 @@ am__libscicore_algo_la_SOURCES_DIST = src/c/csignal.c src/c/cs2st.c \
 	src/fortran/putid.f src/fortran/itosci.f \
 	src/fortran/stackr2d.f src/fortran/stacki2d.f \
 	src/fortran/stackc2i.f src/fortran/isinstring.f \
-	src/fortran/read_inter.f src/fortran/rewind_inter.f \
-	src/fortran/backspace_inter.f src/fortran/relocstack.f
+	src/fortran/readinter.f src/fortran/rewindinter.f \
+	src/fortran/backspaceinter.f src/fortran/relocstack.f
 @USE_DYNAMIC_STACK_TRUE@am__objects_1 =  \
 @USE_DYNAMIC_STACK_TRUE@	libscicore_algo_la-scimem64.lo
 am__objects_2 = libscicore_algo_la-csignal.lo \
@@ -284,9 +284,8 @@ am__objects_5 = clunit.lo getlin.lo allowptr.lo isany.lo setgetmode.lo \
 	error.lo cvdm.lo mkindx.lo whatln.lo errmgr.lo mklist.lo \
 	indxg.lo istrue.lo extlarg.lo lst2vars.lo basnms.lo ptrback.lo \
 	getch.lo ftob.lo expsum.lo copyvar.lo putid.lo itosci.lo \
-	stackr2d.lo stacki2d.lo stackc2i.lo isinstring.lo \
-	read_inter.lo rewind_inter.lo backspace_inter.lo \
-	$(am__objects_4)
+	stackr2d.lo stacki2d.lo stackc2i.lo isinstring.lo readinter.lo \
+	rewindinter.lo backspaceinter.lo $(am__objects_4)
 am_libscicore_algo_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
 	$(am__objects_5)
 libscicore_algo_la_OBJECTS = $(am_libscicore_algo_la_OBJECTS)
@@ -751,8 +750,8 @@ CORE_FORTRAN_SOURCES = src/fortran/clunit.f src/fortran/getlin.f \
 	src/fortran/expsum.f src/fortran/copyvar.f src/fortran/putid.f \
 	src/fortran/itosci.f src/fortran/stackr2d.f \
 	src/fortran/stacki2d.f src/fortran/stackc2i.f \
-	src/fortran/isinstring.f src/fortran/read_inter.f \
-	src/fortran/rewind_inter.f src/fortran/backspace_inter.f \
+	src/fortran/isinstring.f src/fortran/readinter.f \
+	src/fortran/rewindinter.f src/fortran/backspaceinter.f \
 	$(am__append_2)
 GATEWAY_C_SOURCES = \
 	sci_gateway/c/gw_core.c \
@@ -2047,14 +2046,14 @@ stackc2i.lo: src/fortran/stackc2i.f
 isinstring.lo: src/fortran/isinstring.f
 	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o isinstring.lo `test -f 'src/fortran/isinstring.f' || echo '$(srcdir)/'`src/fortran/isinstring.f
 
-read_inter.lo: src/fortran/read_inter.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o read_inter.lo `test -f 'src/fortran/read_inter.f' || echo '$(srcdir)/'`src/fortran/read_inter.f
+readinter.lo: src/fortran/readinter.f
+	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o readinter.lo `test -f 'src/fortran/readinter.f' || echo '$(srcdir)/'`src/fortran/readinter.f
 
-rewind_inter.lo: src/fortran/rewind_inter.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rewind_inter.lo `test -f 'src/fortran/rewind_inter.f' || echo '$(srcdir)/'`src/fortran/rewind_inter.f
+rewindinter.lo: src/fortran/rewindinter.f
+	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rewindinter.lo `test -f 'src/fortran/rewindinter.f' || echo '$(srcdir)/'`src/fortran/rewindinter.f
 
-backspace_inter.lo: src/fortran/backspace_inter.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o backspace_inter.lo `test -f 'src/fortran/backspace_inter.f' || echo '$(srcdir)/'`src/fortran/backspace_inter.f
+backspaceinter.lo: src/fortran/backspaceinter.f
+	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o backspaceinter.lo `test -f 'src/fortran/backspaceinter.f' || echo '$(srcdir)/'`src/fortran/backspaceinter.f
 
 relocstack.lo: src/fortran/relocstack.f
 	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o relocstack.lo `test -f 'src/fortran/relocstack.f' || echo '$(srcdir)/'`src/fortran/relocstack.f

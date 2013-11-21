@@ -93,6 +93,15 @@
     <ClCompile Include="indxg.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="backspaceinter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="readinter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rewindinter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\callinter.h.f">
@@ -170,6 +179,15 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="indxg.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="backspaceinter.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="readinter.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="rewindinter.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
   </ItemGroup>

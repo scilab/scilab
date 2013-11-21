@@ -69,7 +69,7 @@
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="allowptr.f"/>
-		<File RelativePath=".\backspace_inter.f"/>
+		<File RelativePath=".\backspaceinter.f"/>
 		<File RelativePath="basnms.f"/>
 		<File RelativePath="bexec.f"/>
 		<File RelativePath="btof.f"/>
@@ -103,9 +103,9 @@
 		<File RelativePath="prompt.f"/>
 		<File RelativePath="ptrback.f"/>
 		<File RelativePath="putid.f"/>
-		<File RelativePath=".\read_inter.f"/>
+		<File RelativePath=".\readinter.f"/>
 		<File RelativePath="ref2val.f"/>
-		<File RelativePath=".\rewind_inter.f"/>
+		<File RelativePath=".\rewindinter.f"/>
 		<File RelativePath="savlod.f"/>
 		<File RelativePath="setgetmode.f"/>
 		<File RelativePath="setippty.f"/>

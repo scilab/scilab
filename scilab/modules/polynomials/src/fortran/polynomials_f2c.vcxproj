@@ -311,7 +311,6 @@ cd ..
     <ClCompile Include="mptri.c" />
     <ClCompile Include="newest.c" />
     <ClCompile Include="nextk.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\polops.c" />
     <ClCompile Include="quad.c" />
     <ClCompile Include="quadit.c" />
     <ClCompile Include="quadsd.c" />
@@ -371,7 +370,6 @@ cd ..
     <f2c_rule Include="mptri.f" />
     <f2c_rule Include="newest.f" />
     <f2c_rule Include="nextk.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\polops.f" />
     <f2c_rule Include="quad.f" />
     <f2c_rule Include="quadit.f" />
     <f2c_rule Include="quadsd.f" />

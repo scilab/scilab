@@ -322,6 +322,7 @@ cd ..
   <ItemGroup>
     <ClCompile Include="..\c\withf2c.c" />
     <ClCompile Include="allowptr.c" />
+    <ClCompile Include="backspaceinter.c" />
     <ClCompile Include="basnms.c" />
     <ClCompile Include="clunit.c" />
     <ClCompile Include="cmplxt.c" />
@@ -339,6 +340,8 @@ cd ..
     <ClCompile Include="prompt.c" />
     <ClCompile Include="ptrback.c" />
     <ClCompile Include="putid.c" />
+    <ClCompile Include="readinter.c" />
+    <ClCompile Include="rewindinter.c" />
     <ClCompile Include="setgetmode.c" />
     <ClCompile Include="setippty.c" />
     <ClCompile Include="showstack.c" />
@@ -351,6 +354,7 @@ cd ..
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="allowptr.f" />
+    <f2c_rule Include="backspaceinter.f" />
     <f2c_rule Include="basnms.f" />
     <f2c_rule Include="clunit.f" />
     <f2c_rule Include="cmplxt.f" />
@@ -368,6 +372,8 @@ cd ..
     <f2c_rule Include="prompt.f" />
     <f2c_rule Include="ptrback.f" />
     <f2c_rule Include="putid.f" />
+    <f2c_rule Include="readinter.f" />
+    <f2c_rule Include="rewindinter.f" />
     <f2c_rule Include="setgetmode.f" />
     <f2c_rule Include="setippty.f" />
     <f2c_rule Include="showstack.f" />

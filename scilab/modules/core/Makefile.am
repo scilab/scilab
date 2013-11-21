@@ -123,9 +123,9 @@ src/fortran/stackr2d.f \
 src/fortran/stacki2d.f \
 src/fortran/stackc2i.f \
 src/fortran/isinstring.f \
-src/fortran/read_inter.f \
-src/fortran/rewind_inter.f \
-src/fortran/backspace_inter.f
+src/fortran/readinter.f \
+src/fortran/rewindinter.f \
+src/fortran/backspaceinter.f
 
 if USE_DYNAMIC_STACK
 CORE_FORTRAN_SOURCES += src/fortran/relocstack.f
