@@ -73,7 +73,7 @@ int sciSetLineWidth (int iObjUID, double linewidth)
 
     if (linewidth < 0)
     {
-        Scierror(999, _("Line width must be greater than %d.\n"), 0);
+        Scierror(999, _("Wrong value for '%s' property: Must be greater or equal to %d.\n"), "thickness", 0);
         return -1;
     }
     else
@@ -97,7 +97,7 @@ int sciSetLineStyle(int iObjUID, int linestyle)
     BOOL status = FALSE;
     if (linestyle < 0)
     {
-        Scierror(999, _("The line style must be greater than %d.\n"), 0);
+        Scierror(999, _("Wrong value for '%s' property: Must be greater or equal to %d.\n"), "line_style", 0);
         return -1;
     }
     else
@@ -118,7 +118,7 @@ int sciSetMarkSize(int iObjUID, int marksize)
 {
     if (marksize < 0)
     {
-        Scierror(999, _("The mark size must be greater or equal than %d.\n"), 0);
+        Scierror(999, _("Wrong value for '%s' property: Must be greater or equal to %d.\n"), "mark_size", 0);
         return -1;
     }
     else
@@ -308,7 +308,7 @@ int sciSetPoint(int iObjUID, double *tab, int *numrow, int *numcol)
             double* currentUpperLeftPoint = NULL;
             double upperLeftPoint[3];
             int widthIndex = 2;
-            int size = *numrow * *numcol;
+            int size = *numrow **numcol;
 
             if (size != 5 && size != 4)
             {
@@ -358,7 +358,7 @@ int sciSetPoint(int iObjUID, double *tab, int *numrow, int *numcol)
             double* currentUpperLeftPoint = NULL;
             int size = 0;
 
-            size = *numrow * *numcol;
+            size = *numrow **numcol;
 
             if ((size != 7) && (size != 6))
             {
@@ -413,7 +413,7 @@ int sciSetPoint(int iObjUID, double *tab, int *numrow, int *numcol)
             int iView = 0;
             int* piView = &iView;
 
-            if ((*numrow * *numcol != 2) && (*numrow * *numcol != 3))
+            if ((*numrow **numcol != 2) && (*numrow **numcol != 3))
             {
                 Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"), 2, 3, "z");
                 return -1;

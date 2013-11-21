@@ -69,6 +69,8 @@ Scilab Bug Fixes
 
 * Bug #8133 fixed - Ticks disappeared in planar 3D view.
 
+* Bug #8196 fixed - Wrong error message with negative thickness.
+
 * Bug #8231 fixed - xrect help page did not say that clipping property was inherited.
 
 * Bug #8337 fixed - mtlb_rand now uses the "uniform" rule, whatever the random rule set is.
