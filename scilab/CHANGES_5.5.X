@@ -12,6 +12,8 @@ New Features
 
 * modulo() and pmodulo() now support integers & hypermatrices (See bug #13002).
 
+* test_run() can now separate 32bits systems from 64bits ones.
+
 
 Obsolete & Removed Functions
 ============================
@@ -21,6 +23,9 @@ Obsolete & Removed Functions
 
 * pcg tagged as obsolete. Will be removed in Scilab 5.5.1.
   Please use conjgrad instead.
+
+* milk_drop tagged as obsolete. Will be removed in Scilab 5.5.1.
+
 
 Scilab Bug Fixes
 ================
@@ -301,8 +306,6 @@ BDF methods with direct and preconditioned Krylov linear solvers, based on ODEPA
 
 * License update: switch to the CeCILL 2.1.
 
-* test_run() can now separate 32bits systems from 64bits ones.
-
 
 Improvements
 =============
@@ -408,8 +411,6 @@ Obsolete & Removed Functions
 
 * fprintf removed, please use mfprintf for files opened with mopen or write for files
   opened with file instead.
-
-* milk_drop tagged as obsolete. Will be removed in Scilab 5.5.1.
 
 
 Scilab Bug Fixes
