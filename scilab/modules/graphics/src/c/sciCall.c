@@ -49,6 +49,10 @@
 #include "Format.h"
 #include "deleteGraphicObject.h"
 
+/** Update data bounds according to the given data bound passed in rect */
+static void updateXYDataBounds(int iSubwinUID, double rect[6]);
+static void updateXYZDataBounds(int iSubwinUID, double rect[6]);
+
 /*------------------------------------------------
  * Objrect :
  * On recupere la figure courante, puis on recupere la sous fenetre qui y est selectionnee
@@ -68,11 +72,20 @@ void Objrect (double* x         ,
 {
     int iNewObjUID = 0;
     int iSubwinUID = 0;
+    double rect[6];
 
     iSubwinUID = getCurrentSubWin();
 
     /* check if the auto_clear property is on and then erase everything */
     checkRedrawing();
+
+    rect[0] = *x;
+    rect[1] = *x + *width;
+    rect[2] = *y - *height;
+    rect[3] = *y;
+
+    updateXYDataBounds(iSubwinUID, rect);
+
     /*newObjUID = ConstructRectangle(iSubwinUID , *x, *y, *height, *width,
       foreground, background, isfilled, isline);*/
 
@@ -111,13 +124,22 @@ void Objarc(double* angle1    ,
 {
     int iSubwinUID = 0;
     int iObjUID = 0;
+    double rect[6];
 
     iSubwinUID = getCurrentSubWin();
     checkRedrawing();
+
+    rect[0] = *x;
+    rect[1] = *x + *width;
+    rect[2] = *y - *height;
+    rect[3] = *y;
+
+    updateXYDataBounds(iSubwinUID, rect);
+
     iObjUID = createArc(iSubwinUID, *x, *y,
                         *height, *width, *angle1, *angle2, foreground, background, isfilled, isline);
-    setCurrentObject(iObjUID);
 
+    setCurrentObject(iObjUID);
     *hdl = getHandle(iObjUID);
 }
 
@@ -134,10 +156,16 @@ void Objpoly (double  * x     ,
 {
     int iSubwinUID = 0;
     int iObjUID = 0;
+    double rect[6];
 
     iSubwinUID = getCurrentSubWin();
 
     checkRedrawing();
+
+    MiniMaxi(x, n, rect, rect + 1);
+    MiniMaxi(y, n, rect + 2, rect + 3);
+
+    updateXYDataBounds(iSubwinUID, rect);
 
     if (mark <= 0)
     {
@@ -181,10 +209,16 @@ void Objfpoly (double  * x    ,
     int *piContourColor = &contourcolor;
 
     int closed = 1; /* we close the polyline by default */
+    double rect[6];
 
     iSubwinUID = getOrCreateDefaultSubwin();
 
     checkRedrawing();
+
+    MiniMaxi(x, n, rect, rect + 1);
+    MiniMaxi(y, n, rect + 2, rect + 3);
+
+    updateXYDataBounds(iSubwinUID, rect);
 
     if (shading == 2)
     {
@@ -246,9 +280,23 @@ void Objsegs (int * style,
     int type = 0, colored = 0;
     double *fx = NULL, *fy = NULL; // No fx or fy
     int typeofchamp = -1; /* no champ here, only segs ; this info is useless */
+    double rect[6];
 
     checkRedrawing();
     iSubwinUID = getCurrentSubWin();
+
+    MiniMaxi(x, n1, rect, rect + 1);
+    MiniMaxi(y, n1, rect + 2, rect + 3);
+
+    if (z)
+    {
+        MiniMaxi(z, n1, rect + 4, rect + 5);
+        updateXYZDataBounds(iSubwinUID, rect);
+    }
+    else
+    {
+        updateXYDataBounds(iSubwinUID, rect);
+    }
 
     iObjUID = createSegs(iSubwinUID, x, n1, y, n1, z, (z == NULL ? 0 : n1), style, flag == 0 ? 1 : n1, arsize);
 
@@ -831,5 +879,54 @@ void Objfec (double    x[]        ,
 {
     C2F(fec)(x, y, noeud, fun, n, m, strflag, legend, brect, aaint,
              Zminmax, Colminmax, ColOut, WithMesh, flagNax, 4L, bsiz);
+}
+/*------------------------------------------------------------------------*/
+static void updateXYDataBounds(int iSubwinUID, double rect[6])
+{
+    int firstPlot = 0;
+    int * piFirstPlot = &firstPlot;
+
+    getGraphicObjectProperty(iSubwinUID, __GO_FIRST_PLOT__, jni_bool, (void **)&piFirstPlot);
+    if (firstPlot)
+    {
+        rect[4] = 0;
+        rect[5] = 0;
+    }
+    else
+    {
+        double * dataBounds = NULL;
+        getGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
+
+        rect[0] = Min(rect[0], dataBounds[0]);
+        rect[1] = Max(rect[1], dataBounds[1]);
+        rect[2] = Min(rect[2], dataBounds[2]);
+        rect[3] = Max(rect[3], dataBounds[3]);
+        rect[4] = dataBounds[4];
+        rect[5] = dataBounds[5];
+    }
+
+    setGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, rect, jni_double_vector, 6);
+}
+/*------------------------------------------------------------------------*/
+static void updateXYZDataBounds(int iSubwinUID, double rect[6])
+{
+    int firstPlot = 0;
+    int * piFirstPlot = &firstPlot;
+
+    getGraphicObjectProperty(iSubwinUID, __GO_FIRST_PLOT__, jni_bool, (void **)&piFirstPlot);
+    if (firstPlot != 0)
+    {
+        double * dataBounds = NULL;
+        getGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
+
+        rect[0] = Min(rect[0], dataBounds[0]);
+        rect[1] = Max(rect[1], dataBounds[1]);
+        rect[2] = Min(rect[2], dataBounds[2]);
+        rect[3] = Max(rect[3], dataBounds[3]);
+        rect[4] = Min(rect[4], dataBounds[4]);
+        rect[5] = Max(rect[5], dataBounds[5]);
+    }
+
+    setGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, rect, jni_double_vector, 6);
 }
 /*------------------------------------------------------------------------*/
