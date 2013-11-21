@@ -227,23 +227,21 @@ public class AxesRulerDrawer {
         }
 
         // Draw Z ruler
-        if (axes.getViewAsEnum() == Camera.ViewType.VIEW_3D && axes.getRotationAngles()[1] != 90.0) {
+        if (axes.getViewAsEnum() == Camera.ViewType.VIEW_3D) {
             double txs, tys, xs, ys;
-
             if (Math.abs(matrix[2]) < Math.abs(matrix[6])) {
-                xs = Math.signum(matrix[2]);
-                ys = -Math.signum(matrix[6]);
+                xs = matrix[2] > 0 ? 1 : -1;
+                ys = matrix[6] > 0 ? -1 : 1;
                 txs = xs;
                 tys = 0;
             } else {
-                xs = -Math.signum(matrix[2]);
-                ys = Math.signum(matrix[6]);
+                xs = matrix[2] > 0 ? -1 : 1;
+                ys = matrix[6] > 0 ? 1 : -1;
                 txs = 0;
                 tys = ys;
             }
 
             rulerModel = getDefaultRulerModel(axes, colorMap);
-
             rulerModel.setFirstPoint(new Vector3d(xs, ys, -1));
             rulerModel.setSecondPoint(new Vector3d(xs, ys, 1));
             rulerModel.setTicksDirection(new Vector3d(txs, tys, 0));
@@ -281,7 +279,7 @@ public class AxesRulerDrawer {
 
                 zAxisLabelPositioner.setTicksDirection(new Vector3d(txs, tys, 0.0));
                 zAxisLabelPositioner.setDistanceRatio(distanceRatio);
-                zAxisLabelPositioner.setProjectedTicksDirection(rulerDrawingResult.getNormalizedTicksDirection().setZ(0));
+                zAxisLabelPositioner.setProjectedTicksDirection(rulerDrawingResult.getNormalizedTicksDirection().setZ(0).setY(1e-7));
             } else {
                 /* z-axis not visible: compute the projected ticks direction and distance ratio (see the x-axis case). */
                 Vector3d zTicksDirection = new Vector3d(txs, tys, 0);
@@ -312,7 +310,7 @@ public class AxesRulerDrawer {
 
         RulerDrawer[] rulerDrawers = rulerDrawerManager.get(axes);
         ElementsBuffer vertexBuffer = drawingTools.getCanvas().getBuffersManager().createElementsBuffer();
-        final boolean is3D = axes.getViewAsEnum() == Camera.ViewType.VIEW_3D && axes.getRotationAngles()[1] != 90.0;
+        final boolean is3D = axes.getViewAsEnum() == Camera.ViewType.VIEW_3D;// && axes.getRotationAngles()[1] != 90.0;
 
         if (rulerDrawers[0].getModel() == null || rulerDrawers[1].getModel() == null || (is3D && rulerDrawers[2].getModel() == null)) {
             computeRulers(axes, axesDrawer, colorMap, drawingTools, drawingTools.getTransformationManager().getModelViewStack().peek(), drawingTools.getTransformationManager().getCanvasProjection());
@@ -412,7 +410,7 @@ public class AxesRulerDrawer {
             if (axes.getZAxisVisible()) {
                 rulerDrawers[2].draw(drawingTools);
 
-                if (axes.getZAxisGridColor() != -1 || !axes.getZAxisVisible()) {
+                if (axes.getZAxisGridColor() != -1) {
                     FloatBuffer vertexData;
                     if (axes.getZAxisLogFlag()) {
                         List<Double> values = rulerDrawers[2].getSubTicksValue();
@@ -453,7 +451,7 @@ public class AxesRulerDrawer {
         drawingTools.getCanvas().getBuffersManager().dispose(vertexBuffer);
     }
 
-    private double getNonZeroSignum(double value) {
+    private static final double getNonZeroSignum(double value) {
         if (value < 0) {
             return -1;
         } else {
