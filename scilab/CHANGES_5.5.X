@@ -38,6 +38,8 @@ Scilab Bug Fixes
 
 * Bug #5016 fixed - condestsp could return different results when repeated calls were performed.
 
+* Bug #5886 fixed - There was no property labels_font_style on axis.
+
 * Bug #6615 fixed - ui(get|put)file did not center the file dialog on the last focused window.
 
 * Bug #6689 & #6690 fixed - grand now works with complexes, polynomials, booleans, integers, sparses and strings,

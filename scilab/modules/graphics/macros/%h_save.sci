@@ -639,6 +639,7 @@ function save_graphichandle(h,fd)
         save_text_vector(h.tics_labels,fd) // tics_labels
         mput(h.labels_font_size,"il",fd) // label_font_size
         mput(h.labels_font_color,"il",fd) // labels_font_color
+        mput(h.labels_font_style,"il",fd) // labels_font_style
         mput(bool2s(h.fractional_font=="on"),characterFormat,fd) // fractional_font
         mput(length(h.clip_state),characterFormat,fd); // clip_state
         mput(ascii(h.clip_state),characterFormat,fd);

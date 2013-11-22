@@ -1407,6 +1407,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
             end
             h.labels_font_size = labelfontsize // label_font_size
             h.labels_font_color= mget(1,"il",fd); // labels_font_color
+            if is_higher_than([5 5 0 1]) then
+                h.labels_font_style = mget(1,"il",fd);
+            end
             if is_higher_than( [4 1 2 0] ) then
                 set( h, "fractional_font", toggle( mget( 1, characterFormat, fd ) ) ) ; // fractional_font
             end
