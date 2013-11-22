@@ -23,7 +23,18 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>winsid</literal> est utilisée pour obtenir la liste des fenêtre graphiques ouvertes, sous forme d'un vecteur ligne.
+            <function>winsid</function> est utilisée pour obtenir la liste des fenêtre graphiques ouvertes, sous forme d'un vecteur ligne.
         </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="close">close</link>
+            </member>
+            <member>
+                <link linkend="xdel">xdel</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>
