@@ -29,7 +29,7 @@ compa = abs(lsodarval-cvval);
 // Extract mean, standard deviation, maximum
 mea = mean(compa);
 [maxi, indexMaxi] = max(compa);
-stdeviation = st_deviation(compa);
+stdeviation = stdev(compa);
 
 // Verifying closeness of the results
 assert_checktrue(maxi <= 1d-8);
@@ -56,7 +56,7 @@ compa = abs(lsodarval-cvval);
 // Extract mean, standard deviation, maximum
 mea = mean(compa);
 [maxi, indexMaxi] = max(compa);
-stdeviation = st_deviation(compa);
+stdeviation = stdev(compa);
 
 // Verifying closeness of the results
 assert_checktrue(maxi <= 10^-4);

@@ -16,6 +16,6 @@
 //   <no arg>
 //
 function sd = optimsimplex_fvstdev ( this )
-    sd = st_deviation(this.fv)
+    sd = stdev(this.fv)
 endfunction
 
