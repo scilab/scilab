@@ -130,7 +130,12 @@ public class AxesDrawer {
         Transformation zoneProjection = computeZoneProjection(axes);
         Transformation transformation = computeBoxTransformation(axes, new Dimension(size[0], size[1]), false);
         Transformation dataTransformation = computeDataTransformation(axes);
-        Transformation windowTrans = drawingTools.getTransformationManager().getWindowTransformation().getInverseTransformation();
+        Transformation windowTrans;
+        if (drawingTools == null) {
+            windowTrans = TransformationFactory.getIdentity();
+        } else {
+            windowTrans = drawingTools.getTransformationManager().getWindowTransformation().getInverseTransformation();
+        }
         Transformation current = zoneProjection.rightTimes(transformation);
         current = current.rightTimes(dataTransformation);
 
@@ -142,7 +147,6 @@ public class AxesDrawer {
      * @param axes the axes
      */
     public void computeRulers(Axes axes) {
-        DrawingTools drawingTools = visitor.getDrawingTools();
         ColorMap colorMap = visitor.getColorMap();
         try {
             Integer[] size = visitor.getFigure().getAxesSize();
@@ -153,7 +157,7 @@ public class AxesDrawer {
             Transformation transformation = computeBoxTransformation(axes, new Dimension(size[0], size[1]), false);
             Transformation canvasTrans = windowTrans.rightTimes(zoneProjection).rightTimes(transformation);
 
-            rulerDrawer.computeRulers(axes, this, colorMap, drawingTools, transformation, canvasTrans);
+            rulerDrawer.computeRulers(axes, this, colorMap, transformation, canvasTrans);
         } catch (DegenerateMatrixException e) {
 
         }
@@ -601,6 +605,10 @@ public class AxesDrawer {
      */
     private Transformation computeProjection(Axes axes, DrawingTools drawingTools, Dimension canvasDimension, boolean use2dView) {
         Transformation projection;
+
+        if (drawingTools == null) {
+            return TransformationFactory.getIdentity();
+        }
 
         try {
             /* Compute the zone projection. */

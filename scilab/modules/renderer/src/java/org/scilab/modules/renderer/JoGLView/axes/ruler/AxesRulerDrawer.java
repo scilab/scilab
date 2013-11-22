@@ -94,12 +94,11 @@ public class AxesRulerDrawer {
      * @param axes the current {@see Axes}
      * @param axesDrawer the drawer used to draw the current {@see Axes}
      * @param colorMap current {@see ColorMap}
-     * @param drawingTools the used {@see DrawingTools}
      * @param transformation the current modelView projection
      * @param canvasProjection the canvas projection
      * @throws org.scilab.forge.scirenderer.SciRendererException if draw fail.
      */
-    public void computeRulers(Axes axes, AxesDrawer axesDrawer, ColorMap colorMap, DrawingTools drawingTools, Transformation transformation, Transformation canvasProjection) {
+    public void computeRulers(Axes axes, AxesDrawer axesDrawer, ColorMap colorMap, Transformation transformation, Transformation canvasProjection) {
         Double[] bounds = axes.getDisplayedBounds();
         double[] matrix = transformation.getMatrix();
 
@@ -154,7 +153,7 @@ public class AxesRulerDrawer {
         xAxisLabelPositioner.setLabelPosition(xAxisPosition);
 
         if (axes.getXAxisVisible()) {
-            rulerDrawingResult = rulerDrawers[0].computeRuler(drawingTools, rulerModel, canvasProjection);
+            rulerDrawingResult = rulerDrawers[0].computeRuler(rulerModel, canvasProjection);
             values = rulerDrawingResult.getTicksValues();
 
             if (axes.getXAxisAutoTicks()) {
@@ -202,7 +201,7 @@ public class AxesRulerDrawer {
         yAxisLabelPositioner.setLabelPosition(yAxisPosition);
 
         if (axes.getYAxisVisible()) {
-            rulerDrawingResult = rulerDrawers[1].computeRuler(drawingTools, rulerModel, canvasProjection);
+            rulerDrawingResult = rulerDrawers[1].computeRuler(rulerModel, canvasProjection);
             values = rulerDrawingResult.getTicksValues();
             if (axes.getYAxisAutoTicks()) {
                 Arrays.sort(values);
@@ -264,7 +263,7 @@ public class AxesRulerDrawer {
             zAxisLabelPositioner.setLabelPosition(new Vector3d(xs, ys, 0));
 
             if (axes.getZAxisVisible()) {
-                rulerDrawingResult = rulerDrawers[2].computeRuler(drawingTools, rulerModel, canvasProjection);
+                rulerDrawingResult = rulerDrawers[2].computeRuler(rulerModel, canvasProjection);
                 values = rulerDrawingResult.getTicksValues();
                 if (axes.getZAxisAutoTicks()) {
                     Arrays.sort(values);
@@ -313,7 +312,7 @@ public class AxesRulerDrawer {
         final boolean is3D = axes.getViewAsEnum() == Camera.ViewType.VIEW_3D;// && axes.getRotationAngles()[1] != 90.0;
 
         if (rulerDrawers[0].getModel() == null || rulerDrawers[1].getModel() == null || (is3D && rulerDrawers[2].getModel() == null)) {
-            computeRulers(axes, axesDrawer, colorMap, drawingTools, drawingTools.getTransformationManager().getModelViewStack().peek(), drawingTools.getTransformationManager().getCanvasProjection());
+            computeRulers(axes, axesDrawer, colorMap, drawingTools.getTransformationManager().getModelViewStack().peek(), drawingTools.getTransformationManager().getCanvasProjection());
         }
 
         int gridPosition;
