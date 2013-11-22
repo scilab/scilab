@@ -34,6 +34,8 @@ Scilab Bug Fixes
 
 * Bug #4401 fixed - isnum did not recognize all constants or some complex numbers.
 
+* Bug #4965 fixed - Setting links property for a handle of type legend did not work.
+
 * Bug #5016 fixed - condestsp could return different results when repeated calls were performed.
 
 * Bug #6615 fixed - ui(get|put)file did not center the file dialog on the last focused window.
