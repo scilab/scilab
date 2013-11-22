@@ -939,8 +939,13 @@ function %h_p(h)
             // =====================================================================
 
         case "uicontextmenu"
+            if isempty(h.parent) then // For an uicontextmenu, parent can be empty
+                parent = "";
+            else
+                parent = h.parent.type;
+            end
             t=[t;
-            "Parent: "+h.parent.type
+            "Parent: "+parent
             "Children: "+fmtchildren(h.children)
             ]
 
