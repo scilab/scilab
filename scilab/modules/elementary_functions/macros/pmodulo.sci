@@ -26,12 +26,12 @@ function i = pmodulo(n, m)
     // -----------------------  Checking arguments --------------------------
 
     if or(type(n)==[15 16]) | and(nt <> [1 2 8]) | (nt==1 & ~isreal(n)) then
-        msg = _("%s: Wrong type for input argument #%d: Reals, encoded integers or polynomials expected.\n")
+        msg = _("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected.\n")
         error(msprintf(msg, "pmodulo", 1))
     end
 
     if or(type(m)==[15 16]) | and(mt <> [1 2 8]) | (mt==1 & ~isreal(m)) then
-        msg = _("%s: Wrong type for input argument #%d: Reals, encoded integers or polynomials expected.\n")
+        msg = _("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected.\n")
         error(msprintf(msg, "pmodulo", 2))
     end
 
