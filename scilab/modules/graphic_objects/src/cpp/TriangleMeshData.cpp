@@ -86,41 +86,32 @@ int TriangleMeshData::getPropertyFromName(int propertyName)
 
 int TriangleMeshData::setDataProperty(int property, void const* value, int numElements)
 {
-    if (property == NUM_VERTICES)
+    switch (property)
     {
-        return setNumVertices(*((unsigned int const*) value));
-    }
-    else if (property == NUM_INDICES)
-    {
-        return setNumIndices(*((unsigned int const*) value));
-    }
-    else if (property == X_COORDINATES)
-    {
-        setDataX((double const*) value, numElements);
-    }
-    else if (property == Y_COORDINATES)
-    {
-        setDataY((double const*) value, numElements);
-    }
-    else if (property == Z_COORDINATES)
-    {
-        setDataZ((double const*) value, numElements);
-    }
-    else if (property == COORDINATES)
-    {
-        setVertices((double const*) value, numElements);
-    }
-    else if (property == INDICES)
-    {
-        setIndices((unsigned int const*) value, numElements);
-    }
-    else if (property == VALUES)
-    {
-        setValues((double const*) value, numElements);
-    }
-    else
-    {
-        return Data3D::setDataProperty(property, value, numElements);
+        case NUM_VERTICES :
+            return setNumVertices(*((unsigned int const*) value));
+        case NUM_INDICES :
+            return setNumIndices(*((unsigned int const*) value));
+        case X_COORDINATES :
+            setDataX((double const*) value, numElements);
+            break;
+        case Y_COORDINATES :
+            setDataY((double const*) value, numElements);
+            break;
+        case Z_COORDINATES :
+            setDataZ((double const*) value, numElements);
+            break;
+        case COORDINATES :
+            setVertices((double const*) value, numElements);
+            break;
+        case INDICES :
+            setIndices((unsigned int const*) value, numElements);
+            break;
+        case VALUES :
+            setValues((double const*) value, numElements);
+            break;
+        default :
+            return Data3D::setDataProperty(property, value, numElements);
     }
 
     return 1;
@@ -128,29 +119,25 @@ int TriangleMeshData::setDataProperty(int property, void const* value, int numEl
 
 void TriangleMeshData::getDataProperty(int property, void **_pvData)
 {
-    if (property == NUM_VERTICES)
+    switch (property)
     {
-        ((int *)*_pvData)[0] = getNumVertices();
-    }
-    else if (property == NUM_INDICES)
-    {
-        ((int *)*_pvData)[0] = getNumIndices();
-    }
-    else if (property == COORDINATES)
-    {
-        *_pvData = getVertices();
-    }
-    else if (property == INDICES)
-    {
-        *_pvData = getIndices();
-    }
-    else if (property == VALUES)
-    {
-        *_pvData = getValues();
-    }
-    else
-    {
-        Data3D::getDataProperty(property, _pvData);
+        case NUM_VERTICES :
+            ((int *)*_pvData)[0] = getNumVertices();
+            break;
+        case NUM_INDICES :
+            ((int *)*_pvData)[0] = getNumIndices();
+            break;
+        case COORDINATES :
+            *_pvData = getVertices();
+            break;
+        case INDICES :
+            *_pvData = getIndices();
+            break;
+        case VALUES :
+            *_pvData = getValues();
+            break;
+        default :
+            Data3D::getDataProperty(property, _pvData);
     }
 }
 

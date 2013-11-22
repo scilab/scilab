@@ -46,58 +46,46 @@ int PolylineDecomposer::getDataSize(int id)
         return 0;
     }
 
-    /* Segments */
-    if (polylineStyle == 1)
+    switch (polylineStyle)
     {
-        return nPoints;
-    }
-    /* Staircase */
-    else if (polylineStyle == 2)
-    {
-        if (closed)
-        {
+        case 1 :
+            /* Segments */
+            return nPoints;
+        case 2 :
+            /* Staircase */
+            if (closed)
+            {
+                return 2 * nPoints;
+            }
+            else
+            {
+                return (2 * nPoints) - 1;
+            }
+        case 3 :
+            /* Vertical segments plus segments */
             return 2 * nPoints;
-        }
-        else
+        case 4 :
+            /* Segments with arrow heads */
         {
-            return (2 * nPoints) - 1;
+            int nArrowVertices;
+            /* The numbers of arrow head vertices and indices are exactly the same */
+            nArrowVertices = PolylineDecomposer::getArrowTriangleIndicesSize(nPoints, closed);
+
+            return nPoints + nArrowVertices;
         }
+        case 5 :
+            /* Filled patch  */
+            return nPoints;
+        case 6 :
+            /* Vertical bars plus segments */
+            return 5 * nPoints;
+        case 7 :
+            /* Horizontal bars plus segments */
+            return 5 * nPoints;
+        default :
+            /* To be done: remaining styles */
+            return 0;
     }
-    /* Vertical segments plus segments */
-    else if (polylineStyle == 3)
-    {
-        return 2 * nPoints;
-    }
-    /* Segments with arrow heads */
-    else if (polylineStyle == 4)
-    {
-        int nArrowVertices;
-        /* The numbers of arrow head vertices and indices are exactly the same */
-        nArrowVertices = PolylineDecomposer::getArrowTriangleIndicesSize(nPoints, closed);
-
-        return nPoints + nArrowVertices;
-    }
-    /* Filled patch  */
-    else if (polylineStyle == 5)
-    {
-        return nPoints;
-    }
-    /* Vertical bars plus segments */
-    else if (polylineStyle == 6)
-    {
-        return 5 * nPoints;
-    }
-    /* Horizontal bars plus segments */
-    else if (polylineStyle == 7)
-    {
-        return 5 * nPoints;
-    }
-    /* To be done: remaining styles */
-    else
-    {
-        return 0;
-    }
-
 }
 
 void PolylineDecomposer::fillVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
@@ -122,35 +110,30 @@ void PolylineDecomposer::fillVertices(int id, float* buffer, int bufferLength, i
 
     getGraphicObjectProperty(id, __GO_POLYLINE_STYLE__, jni_int, (void**) &piPolylineStyle);
 
-    if (polylineStyle == 1)
+    switch (polylineStyle)
     {
-        fillSegmentsDecompositionVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, t, nPoints, xshift, yshift, zshift);
+        case 1 :
+            fillSegmentsDecompositionVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, t, nPoints, xshift, yshift, zshift);
+            break;
+        case 2 :
+            fillStairDecompositionVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, t, nPoints, xshift, yshift, zshift);
+            break;
+        case 3 :
+            fillVerticalLinesDecompositionVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, t, nPoints, xshift, yshift, zshift);
+            break;
+        case 4 :
+            fillSegmentsDecompositionVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, t, nPoints, xshift, yshift, zshift);
+            break;
+        case 5 :
+            fillSegmentsDecompositionVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, t, nPoints, xshift, yshift, zshift);
+            break;
+        case 6 :
+            fillVerticalBarsDecompositionVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, t, nPoints, xshift, yshift, zshift);
+            break;
+        case 7 :
+            fillHorizontalBarsDecompositionVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, t, nPoints, xshift, yshift, zshift);
+            break;
     }
-    else if (polylineStyle == 2)
-    {
-        fillStairDecompositionVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, t, nPoints, xshift, yshift, zshift);
-    }
-    else if (polylineStyle == 3)
-    {
-        fillVerticalLinesDecompositionVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, t, nPoints, xshift, yshift, zshift);
-    }
-    else if (polylineStyle == 4)
-    {
-        fillSegmentsDecompositionVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, t, nPoints, xshift, yshift, zshift);
-    }
-    else if (polylineStyle == 5)
-    {
-        fillSegmentsDecompositionVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, t, nPoints, xshift, yshift, zshift);
-    }
-    else if (polylineStyle == 6)
-    {
-        fillVerticalBarsDecompositionVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, t, nPoints, xshift, yshift, zshift);
-    }
-    else if (polylineStyle == 7)
-    {
-        fillHorizontalBarsDecompositionVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, t, nPoints, xshift, yshift, zshift);
-    }
-
 }
 
 void PolylineDecomposer::fillSegmentsDecompositionVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
@@ -992,26 +975,19 @@ int PolylineDecomposer::fillIndices(int id, int* buffer, int bufferLength, int l
         return 0;
     }
 
-    if (polylineStyle == 1)
+    switch (polylineStyle)
     {
-        return fillTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, fillMode, polylineStyle);
-    }
-    else if (polylineStyle == 4)
-    {
-        return fillArrowTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift);
-    }
-    else if (polylineStyle == 5)
-    {
-        /* Set fill mode to on, since patches are always filled whatever fill mode's value */
-        return fillTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, 1, polylineStyle);
-    }
-    else if (polylineStyle == 6)
-    {
-        return fillBarsDecompositionTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift);
-    }
-    else if (polylineStyle == 7)
-    {
-        return fillBarsDecompositionTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift);
+        case 1 :
+            return fillTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, fillMode, polylineStyle);
+        case 4 :
+            return fillArrowTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift);
+        case 5 :
+            /* Set fill mode to on, since patches are always filled whatever fill mode's value */
+            return fillTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, 1, polylineStyle);
+        case 6 :
+            return fillBarsDecompositionTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift);
+        case 7 :
+            return fillBarsDecompositionTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift);
     }
 
     return 0;
@@ -1341,46 +1317,32 @@ int PolylineDecomposer::getWireIndicesSize(int id)
         return 0;
     }
 
-    /* Segments */
-    if (polylineStyle == 1)
+    switch (polylineStyle)
     {
-        return getSegmentsDecompositionSegmentIndicesSize(nPoints, lineMode, closed);
-    }
-    /* Staircase */
-    else if (polylineStyle == 2)
-    {
-        return getStairDecompositionSegmentIndicesSize(nPoints, lineMode, closed);
-    }
-    /* Vertical segments plus segments */
-    else if (polylineStyle == 3)
-    {
-        return getVerticalLinesDecompositionSegmentIndicesSize(nPoints, lineMode);
-    }
-    /* Segments with arrow heads */
-    else if (polylineStyle == 4)
-    {
-        return getSegmentsDecompositionSegmentIndicesSize(nPoints, lineMode, closed);
-    }
-    /* Filled patch  */
-    else if (polylineStyle == 5)
-    {
-        return getSegmentsDecompositionSegmentIndicesSize(nPoints, lineMode, closed);
-    }
-    /* Vertical bars plus segments */
-    else if (polylineStyle == 6)
-    {
-        return getBarsDecompositionSegmentIndicesSize(nPoints, lineMode);
-    }
-    /* Horizontal bars plus segments */
-    else if (polylineStyle == 7)
-    {
-        return getBarsDecompositionSegmentIndicesSize(nPoints, lineMode);
-    }
-    else
-    {
-        return 0;
+        case 1:
+            /* Segments */
+            return getSegmentsDecompositionSegmentIndicesSize(nPoints, lineMode, closed);
+        case 2 :
+            /* Staircase */
+            return getStairDecompositionSegmentIndicesSize(nPoints, lineMode, closed);
+        case 3 :
+            /* Vertical segments plus segments */
+            return getVerticalLinesDecompositionSegmentIndicesSize(nPoints, lineMode);
+        case 4 :
+            /* Segments with arrow heads */
+            return getSegmentsDecompositionSegmentIndicesSize(nPoints, lineMode, closed);
+        case 5 :
+            /* Filled patch  */
+            return getSegmentsDecompositionSegmentIndicesSize(nPoints, lineMode, closed);
+        case 6 :
+            /* Vertical bars plus segments */
+            return getBarsDecompositionSegmentIndicesSize(nPoints, lineMode);
+        case 7 :
+            /* Horizontal bars plus segments */
+            return getBarsDecompositionSegmentIndicesSize(nPoints, lineMode);
     }
 
+    return 0;
 }
 
 int PolylineDecomposer::getSegmentsDecompositionSegmentIndicesSize(int nPoints, int lineMode, int closed)
@@ -1492,33 +1454,22 @@ int PolylineDecomposer::fillWireIndices(int id, int* buffer, int bufferLength, i
     getGraphicObjectProperty(id, __GO_LINE_MODE__, jni_bool, (void**) &piLineMode);
     getGraphicObjectProperty(id, __GO_CLOSED__, jni_bool, (void**) &piClosed);
 
-    if (polylineStyle == 1)
+    switch (polylineStyle)
     {
-        return fillSegmentsDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode, closed);
-    }
-    else if (polylineStyle == 2)
-    {
-        return fillStairDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode, closed);
-    }
-    else if (polylineStyle == 3)
-    {
-        return fillVerticalLinesDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode);
-    }
-    else if (polylineStyle == 4)
-    {
-        return fillSegmentsDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode, closed);
-    }
-    else if (polylineStyle == 5)
-    {
-        return fillSegmentsDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode, closed);
-    }
-    else if (polylineStyle == 6)
-    {
-        return fillBarsDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode);
-    }
-    else if (polylineStyle == 7)
-    {
-        return fillBarsDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode);
+        case 1 :
+            return fillSegmentsDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode, closed);
+        case 2 :
+            return fillStairDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode, closed);
+        case 3 :
+            return fillVerticalLinesDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode);
+        case 4 :
+            return fillSegmentsDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode, closed);
+        case 5 :
+            return fillSegmentsDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode, closed);
+        case 6 :
+            return fillBarsDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode);
+        case 7 :
+            return fillBarsDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode);
     }
 
     return 0;
@@ -1781,6 +1732,4 @@ void PolylineDecomposer::getShiftedPolylinePoint(double* coordinates, double* xs
     {
         *z += zshift[index];
     }
-
 }
-
