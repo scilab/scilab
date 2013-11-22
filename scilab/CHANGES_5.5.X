@@ -101,6 +101,8 @@ Scilab Bug Fixes
 
 * Bug #10234 fixed - reglin function moved from CACSD to Statistics module.
 
+* Bug #10243 fixed - fun2string(X) called X before returning its code.
+
 * Bug #10271 fixed - ordmmd now checks the consistency of the third input argument with the
                      input matrix defined by the two first input arguments.
 
