@@ -50,6 +50,12 @@ assert_checkalmostequal(stdev(x, 1, 1),   refR);
 assert_checkalmostequal(stdev(x, "r", 1), refR);
 assert_checkalmostequal(stdev(x, 2, 1),   refC);
 assert_checkalmostequal(stdev(x, "c", 1), refC);
+// Scalar a priori mean for hypermatrix
+grand("setsd", 0);
+x = grand(4, 3, 2, "unf", 0, 10);
+refHM = [2.09659394107671737 2.55579559873818374 1.1805640530346788];
+refHM(:, :, 2) = [3.14196221819646615 2.64930672717197169 2.1435288607041616];
+assert_checkalmostequal(stdev(x, "r", 5), refHM);
 // Error checks
 refMsg = msprintf(_("%s: Wrong size for input argument #%d.\n"),"stdev",3);
 assert_checkerror("stdev(x, ""*"", [1 1])",   refMsg);

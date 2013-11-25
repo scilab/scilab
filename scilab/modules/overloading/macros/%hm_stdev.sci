@@ -43,7 +43,11 @@ function x = %hm_stdev(m, d, ms)
     I = ones(ind).*.I+ind.*.ones(I);
 
     if argn(2) == 3 then
-        x = stdev(matrix(m.entries(I),dims(d),-1), 1, ms.entries');
+        if isscalar(ms) then
+            x = stdev(matrix(m.entries(I),dims(d),-1), 1, ms);
+        else
+            x = stdev(matrix(m.entries(I),dims(d),-1), 1, ms.entries');
+        end
     else
         x = stdev(matrix(m.entries(I),dims(d),-1), 1);
     end
