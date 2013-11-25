@@ -34,7 +34,7 @@ Scilab Bug Fixes
 
 * Bug #4401 fixed - isnum did not recognize all constants or some complex numbers.
 
-* Bug #4649 fixed - Fix a license issue in the xs2ppm help page.
+* Bug #4649 fixed - License issue in the xs2ppm help page fixed.
 
 * Bug #4965 fixed - Setting links property for a handle of type legend did not work.
 
@@ -55,8 +55,7 @@ Scilab Bug Fixes
 
 * Bug #7047 fixed - milk_drop is now obsolete. It will be removed in Scilab 5.5.1, but will be kept as a demo.
 
-* Bug #7084 fixed - Remove old, not documented and deprecated the gr_menu
-                    function.
+* Bug #7084 fixed - Old, not documented and deprecated gr_menu function removed.
 
 * Bug #7133 fixed - help_from_sci with no input argument now launches a full demonstration.
 
@@ -66,6 +65,8 @@ Scilab Bug Fixes
 
 * Bug #7705 fixed - In the Genetic algorithms help pages, documented the
                     "dimension", "minbounds" and "maxbounds" fields.
+
+* Bug #7739 fixed - Axis position was invalid in log modes.
 
 * Bug #7858 fixed - variance and variancef can now return the mean of the input
                     in a new output argument and take the a priori mean as input.
