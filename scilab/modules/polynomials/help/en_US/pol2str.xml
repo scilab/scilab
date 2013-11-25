@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
+ * Copyright (C) 2013 - Samuel GOUGEON : upgrade for 5.5.0
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,13 +26,13 @@
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>matrix of real polynomial</para>
+                    <para>matrix or hypermatrix of polynomials with real or complex coefficients</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>strs</term>
                 <listitem>
-                    <para>a matrix of strings</para>
+                    <para>matrix or hypermatrix of strings</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -40,6 +41,11 @@
         <title>Description</title>
         <para>
             converts polynomial to character string (utility function).
+        </para>
+        <para>
+            <note>
+                The output format of coefficients is set through  <link linkend="format">format(..)</link>.
+            </note>
         </para>
     </refsection>
     
@@ -51,6 +57,8 @@ pol2str(%z)
 p = poly ([1, 2, 3], "x","coeff");
 pol2str(p)
 
+p = (1+%i+%z)^(1:4)
+pol2str(p)
  ]]></programlisting>
     </refsection>
     
@@ -61,10 +69,20 @@ pol2str(p)
                 <link linkend="string">string</link>
             </member>
             <member>
-                <member>
-                    <link linkend="prettyprint">prettyprint</link>
-                </member>
+                <link linkend="prettyprint">prettyprint</link>
+            </member>
+            <member>
+                <link linkend="sci2exp">sci2exp</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history tag">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>pol2str() extended to polynomials with complex coefficients and to hypermatrix. Array processing vectorized.</revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

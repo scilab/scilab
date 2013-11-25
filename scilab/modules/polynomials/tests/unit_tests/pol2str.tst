@@ -7,16 +7,22 @@
 
 // <-- CLI SHELL MODE -->
 
-assert_checkequal(pol2str(%z), " +z");
-assert_checkequal(pol2str([%z %z]), [" +z", " +z"]);
+assert_checkequal(pol2str(%z), "z");
+assert_checkequal(pol2str([%z %z]), ["z", "z"]);
 
 p = poly ([1, 2, 3], "x","coeff");
 P = [p, p ,p ; p, p, p];
 R = pol2str(P);
-REF = [" 1+2*x+3*x^2", " 1+2*x+3*x^2", " 1+2*x+3*x^2";
-       " 1+2*x+3*x^2", " 1+2*x+3*x^2", " 1+2*x+3*x^2"];
- 
+REF = ["1+2*x+3*x^2", "1+2*x+3*x^2", "1+2*x+3*x^2";
+"1+2*x+3*x^2", "1+2*x+3*x^2", "1+2*x+3*x^2"];
+
 assert_checkequal(R, REF);
- 
+
 msgerror = msprintf(gettext("%s: Wrong type for input argument #%d: Polynomial expected.\n"), "pol2str", 1);
-assert_checkerror("pol2str(1)", msgerror); 
+assert_checkerror("pol2str(1)", msgerror);
+
+assert_checkequal(pol2str(%i*%z),"%i*z");
+ref = hypermat([1 1 2], ["1+0.8497452*z";"1+0.685731*z"]);
+assert_checktrue(and(pol2str(1+hypermat([1 1 2], [0.8497452;0.6857310])*%z) == ref));
+
+

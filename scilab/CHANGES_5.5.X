@@ -15,6 +15,8 @@ New Features
 
 * test_run() can now separate 32bits systems from 64bits ones.
 
+* pol2str(): support to polynomials with complex coefficients and hypermatrices (See bug #13109).
+
 
 Obsolete & Removed Functions
 ============================
@@ -247,6 +249,8 @@ Scilab Bug Fixes
 * Bug #13093 fixed - Removed trailing "\n" in the head_comments error message.
 
 * Bug #13101 fixed - When x-axis was in reverse position x_location='origin' failed.
+
+* Bug #13109 fixed - pll2str now supports polynomials with complex coefficients and hypermatrices.
 
 
 Xcos Bug Fixes
