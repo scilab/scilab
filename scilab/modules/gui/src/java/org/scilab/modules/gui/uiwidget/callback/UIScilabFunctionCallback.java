@@ -27,13 +27,13 @@ public class UIScilabFunctionCallback extends UICallback {
 
     public void exec(final Object ... args) {
         if (component != null) {
-            InterpreterManagement.requestScilabExec(getActionString(component, args));
+            InterpreterManagement.putCommandInScilabQueue(getActionString(component, args));
         }
     }
 
     public void exec(final UIComponent comp, final Object ... args) {
         if (comp != null) {
-            InterpreterManagement.requestScilabExec(getActionString(comp, args));
+            InterpreterManagement.putCommandInScilabQueue(getActionString(comp, args));
         }
     }
 
