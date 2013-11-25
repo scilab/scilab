@@ -108,8 +108,8 @@ public class AxesRulerDrawer {
         RulerDrawer[] rulerDrawers = rulerDrawerManager.get(axes);
         DefaultRulerModel rulerModel = getDefaultRulerModel(axes, colorMap);
 
-        Vector3d xAxisPosition = computeXAxisPosition(matrix, bounds, axes.getXAxis().getAxisLocation());
-        Vector3d yAxisPosition = computeYAxisPosition(matrix, bounds, axes.getYAxis().getAxisLocation());
+        Vector3d xAxisPosition = computeXAxisPosition(matrix, bounds, axes.getXAxis().getAxisLocation(), axes.getYAxis().getReverse());
+        Vector3d yAxisPosition = computeYAxisPosition(matrix, bounds, axes.getYAxis().getAxisLocation(), axes.getXAxis().getReverse());
 
         Vector3d px = canvasProjection.projectDirection(new Vector3d(1, 0, 0)).setZ(0);
         Vector3d py = canvasProjection.projectDirection(new Vector3d(0, 1, 0)).setZ(0);
@@ -475,7 +475,7 @@ public class AxesRulerDrawer {
         rulerModel.setValues(min, max);
     }
 
-    private Vector3d computeXAxisPosition(double[] projectionMatrix, Double[] bounds, AxisProperty.AxisLocation axisLocation) {
+    private Vector3d computeXAxisPosition(double[] projectionMatrix, Double[] bounds, AxisProperty.AxisLocation axisLocation, boolean reverse) {
         double y, z;
         switch (axisLocation) {
             default:
@@ -499,7 +499,7 @@ public class AxesRulerDrawer {
                 break;
             case ORIGIN:
                 z = Math.signum(projectionMatrix[9]);  // First : switch Z such that Y was maximal.
-                y = (bounds[3] + bounds[2]) / (bounds[3] - bounds[2]);
+                y = (reverse ? -1 : 1) * (bounds[3] + bounds[2]) / (bounds[3] - bounds[2]);
                 if (Math.abs(y) > 1) {
                     y = Math.signum(y);
                 }
@@ -508,7 +508,7 @@ public class AxesRulerDrawer {
         return new Vector3d(0, y, z);
     }
 
-    private Vector3d computeYAxisPosition(double[] matrix, Double[] bounds, AxisProperty.AxisLocation axisLocation) {
+    private Vector3d computeYAxisPosition(double[] matrix, Double[] bounds, AxisProperty.AxisLocation axisLocation, boolean reverse) {
         double x, z;
         switch (axisLocation) {
             default:
@@ -532,7 +532,7 @@ public class AxesRulerDrawer {
                 break;
             case ORIGIN:
                 z = Math.signum(matrix[9]);  // First : switch Z such that Y was minimal.
-                x = (bounds[1] + bounds[0]) / (bounds[1] - bounds[0]);
+                x = (reverse ? -1 : 1) * (bounds[1] + bounds[0]) / (bounds[1] - bounds[0]);
                 if (Math.abs(x) > 1) {
                     x = Math.signum(x);
                 }

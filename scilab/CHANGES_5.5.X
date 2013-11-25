@@ -244,6 +244,8 @@ Scilab Bug Fixes
 
 * Bug #13093 fixed - Removed trailing "\n" in the head_comments error message.
 
+* Bug #13101 fixed - When x-axis was in reverse position x_location='origin' failed.
+
 
 Xcos Bug Fixes
 ==============
