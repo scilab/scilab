@@ -55,6 +55,9 @@ Scilab Bug Fixes
 
 * Bug #7047 fixed - milk_drop is now obsolete. It will be removed in Scilab 5.5.1, but will be kept as a demo.
 
+* Bug #7084 fixed - Remove old, not documented and deprecated the gr_menu
+                    function.
+
 * Bug #7133 fixed - help_from_sci with no input argument now launches a full demonstration.
 
 * Bug #7570 fixed - The switch criterion on x and y is now explicited in beta() help page.
