@@ -20,28 +20,30 @@
 //
 
 function [x,y,typ]=DOLLAR_f(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         //backward compatibility
-        if size(exprs,"*")<2 then exprs(2)="0";end
+        if size(exprs,"*")<2 then
+            exprs(2)="0";
+        end
         while %t do
             [ok,a,inh,exprs]=scicos_getvalue("Set 1/z block parameters",..
             ["initial condition";"Inherit (no:0, yes:1)"],...
             list("vec",-1,"vec",-1),exprs)
-            if ~ok then break,end
-            out=size(a,"*");if out==0 then out=[],end
+            if ~ok then
+                break,
+            end
+            out=size(a,"*");
+            if out==0 then
+                out=[],
+            end
             in=out
 
             if ok then
@@ -50,8 +52,11 @@ function [x,y,typ]=DOLLAR_f(job,arg1,arg2)
 
             if ok then
                 graphics.exprs=exprs;
-                model.dstate=a;model.in=in;model.out=out
-                x.graphics=graphics;x.model=model
+                model.dstate=a;
+                model.in=in;
+                model.out=out
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
@@ -69,7 +74,7 @@ function [x,y,typ]=DOLLAR_f(job,arg1,arg2)
         model.blocktype="d"
         model.dep_ut=[%f %f]
 
-        gr_i="xstringb(orig(1),orig(2),''1/z'',sz(1),sz(2),''fill'')"
+        gr_i=[]
         x=standard_define([2 2],model,exprs,gr_i)
     end
 endfunction

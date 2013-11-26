@@ -19,16 +19,10 @@
 // See the file ../license.txt
 //
 function [x,y,typ]=PID(job,arg1,arg2)
-    x=[];y=[],typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         // look for the children blocks
         ppath = list(0,0,0);
@@ -40,15 +34,21 @@ function [x,y,typ]=PID(job,arg1,arg2)
 
                 if from.gui == "GAINBLK" then
                     select to.gui,
-                    case "SUMMATION" then ppath(1) = o.from(1),
-                    case "INTEGRAL_m" then ppath(2) = o.from(1),
-                    case "DERIV" then ppath(3) = o.from(1),
+                    case "SUMMATION" then
+                        ppath(1) = o.from(1),
+                    case "INTEGRAL_m" then
+                        ppath(2) = o.from(1),
+                    case "DERIV" then
+                        ppath(3) = o.from(1),
                     end
                 elseif to.gui == "GAINBLK" then
                     select from.gui,
-                    case "SUMMATION" then ppath(1) = o.to(1),
-                    case "INTEGRAL_m" then ppath(2) = o.to(1),
-                    case "DERIV" then ppath(3) = o.to(1),
+                    case "SUMMATION" then
+                        ppath(1) = o.to(1),
+                    case "INTEGRAL_m" then
+                        ppath(2) = o.to(1),
+                    case "DERIV" then
+                        ppath(3) = o.to(1),
                     end
                 end
 
@@ -71,7 +71,9 @@ function [x,y,typ]=PID(job,arg1,arg2)
         while %t do
             [ok,p,i,d,exprs0]=scicos_getvalue("Set PID parameters",..
             ["Proportional";"Integral";"Derivation"],list("vec",-1,"vec",-1,"vec",-1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             if ok then
                 xx1.graphics.exprs=exprs0(1)
                 xx1.model.rpar=p
@@ -122,14 +124,7 @@ function [x,y,typ]=PID(job,arg1,arg2)
         pout=9,..
         pein=[],..
         peout=[],..
-        gr_i=list(..
-        ["thick=xget(''thickness'')";
-        "pat=xget(''pattern'')";
-        "fnt=xget(''font'')";
-        "xpoly(orig(1)+[0.7;0.62;0.549;0.44;0.364;0.291]*sz(1),orig(2)+[0.947;0.947;0.884;0.321;0.255;0.255]*sz(2),''lines'')";
-        "xset(''thickness'',thick)";
-        "xset(''pattern'',pat)";
-        "xset(''font'',fnt(1),fnt(2))"],8),..
+        gr_i=[],..
         id="1/s",..
         in_implicit="E",..
         out_implicit="E"),..
@@ -169,22 +164,7 @@ function [x,y,typ]=PID(job,arg1,arg2)
         pout=19,..
         pein=[],..
         peout=[],..
-        gr_i=list(..
-        ["[x,y,typ]=standard_inputs(o) ";
-        "dd=sz(1)/8,de=0,";
-        "if ~arg1.graphics.flip then dd=6*sz(1)/8,de=-sz(1)/8,end";
-        "for k=1:size(x,''*'')";
-        "if size(sgn,1)>1 then";
-        "  if sgn(k)>0 then";
-        "    xstring(orig(1)+dd,y(k)-4,''+'')";
-        "  else";
-        "    xstring(orig(1)+dd,y(k)-4,''-'')";
-        "  end";
-        "end";
-        "end";
-        "xx=sz(1)*[.8 .4 0.75 .4 .8]+orig(1)+de";
-        "yy=sz(2)*[.8 .8 .5 .2 .2]+orig(2)";
-        "xpoly(xx,yy,''lines'')"],8),..
+        gr_i=[],..
         id="",..
         in_implicit=["E";"E";"E"],..
         out_implicit="E"),..
@@ -224,7 +204,7 @@ function [x,y,typ]=PID(job,arg1,arg2)
         pout=10,..
         pein=[],..
         peout=[],..
-        gr_i=list("",8),..
+        gr_i=[],..
         id="",..
         in_implicit="E",..
         out_implicit="E"),..
@@ -264,7 +244,7 @@ function [x,y,typ]=PID(job,arg1,arg2)
         pout=11,..
         pein=[],..
         peout=[],..
-        gr_i=list("xstringb(orig(1),orig(2),''  du/dt  '',sz(1),sz(2),''fill'');",8),..
+        gr_i=[],..
         id="s",..
         in_implicit="E",..
         out_implicit="E"),..
@@ -304,7 +284,7 @@ function [x,y,typ]=PID(job,arg1,arg2)
         pout=7,..
         pein=[],..
         peout=[],..
-        gr_i=list("",8),..
+        gr_i=[],..
         id="",..
         in_implicit="E",..
         out_implicit="E"),..
@@ -344,7 +324,7 @@ function [x,y,typ]=PID(job,arg1,arg2)
         pout=8,..
         pein=[],..
         peout=[],..
-        gr_i=list("",8),..
+        gr_i=[],..
         id="",..
         in_implicit="E",..
         out_implicit="E"),..
@@ -424,7 +404,7 @@ function [x,y,typ]=PID(job,arg1,arg2)
         pout=[13;14],..
         pein=[],..
         peout=[],..
-        gr_i=list([],8),..
+        gr_i=[],..
         id="",..
         in_implicit="E",..
         out_implicit=["E";"E";"E"]),..
@@ -480,7 +460,7 @@ function [x,y,typ]=PID(job,arg1,arg2)
         pout=[16;17],..
         pein=[],..
         peout=[],..
-        gr_i=list([],8),..
+        gr_i=[],..
         id="",..
         in_implicit="E",..
         out_implicit=["E";"E";"E"]),..
@@ -536,7 +516,7 @@ function [x,y,typ]=PID(job,arg1,arg2)
         pout=[],..
         pein=[],..
         peout=[],..
-        gr_i=list(" ",8),..
+        gr_i=[],..
         id="",..
         in_implicit="E",..
         out_implicit=[]),..
@@ -584,7 +564,7 @@ function [x,y,typ]=PID(job,arg1,arg2)
         pout=21,..
         pein=[],..
         peout=[],..
-        gr_i=list(" ",8),..
+        gr_i=[],..
         id="",..
         in_implicit=[],..
         out_implicit="E"),..
@@ -634,7 +614,7 @@ function [x,y,typ]=PID(job,arg1,arg2)
         model.dep_ut=[%f %f]
         model.rpar=scs_m
 
-        gr_i=["xstringb(orig(1),orig(2),[''PID''],sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([2 2],model,[],gr_i)
     end
 endfunction

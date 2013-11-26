@@ -20,20 +20,17 @@
 //
 
 function [x,y,typ]=DLSS(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1
-        graphics=arg1.graphics;exprs=graphics.exprs
-        if size(exprs,"*")==7 then exprs=exprs([1:4 7]),end //compatibility
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
+        if size(exprs,"*")==7 then
+            exprs=exprs([1:4 7]),
+        end //compatibility
         model=arg1.model;
         while %t do
             [ok,A,B,C,D,x0,exprs]=scicos_getvalue("Set discrete linear system parameters",..
@@ -48,9 +45,17 @@ function [x,y,typ]=DLSS(job,arg1,arg2)
             "mat",[-1 -1],..
             "vec","size(%1,2)"),..
             exprs)
-            if ~ok then break,end
-            out=size(C,1);if out==0 then out=[],end
-            in=size(B,2);if in==0 then in=[],end
+            if ~ok then
+                break,
+            end
+            out=size(C,1);
+            if out==0 then
+                out=[],
+            end
+            in=size(B,2);
+            if in==0 then
+                in=[],
+            end
             [ms,ns]=size(A)
             okD=%t
             if size(D,"*")<>size(C,1)*size(B,2) then
@@ -80,14 +85,20 @@ function [x,y,typ]=DLSS(job,arg1,arg2)
                     else
                         model.dep_ut=[%f %f];
                     end
-                    model.dstate=x0(:);model.rpar=rpar
-                    x.graphics=graphics;x.model=model
+                    model.dstate=x0(:);
+                    model.rpar=rpar
+                    x.graphics=graphics;
+                    x.model=model
                     break
                 end
             end
         end
     case "define" then
-        x0=0;A=-1;B=1;C=1;D=0;
+        x0=0;
+        A=-1;
+        B=1;
+        C=1;
+        D=0;
         model=scicos_model()
         model.sim=list("dsslti4",4)
         model.in=1
@@ -103,8 +114,7 @@ function [x,y,typ]=DLSS(job,arg1,arg2)
         strcat(sci2exp(C));
         strcat(sci2exp(D));
         strcat(sci2exp(x0))]
-        gr_i=["txt=[''x+=Ax+Bu'';''y=Cx+Du''];";
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([4 2],model,exprs,gr_i)
     end
 endfunction
