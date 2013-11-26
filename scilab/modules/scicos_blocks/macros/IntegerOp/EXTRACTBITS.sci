@@ -21,21 +21,10 @@
 //
 
 function [x,y,typ]=EXTRACTBITS(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        if (size(arg1.model.ipar,"*")~=4) then numb=[];
-        else numb=arg1.model.ipar(3)
-        end
-        VOP=["Upper Half","Lower Half","Upper End","Lower End","      "+string(arg1.graphics.exprs(3))+"      "]
-        OPER=VOP(evstr( arg1.graphics.exprs(2)))
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
         graphics=arg1.graphics;exprs=graphics.exprs
@@ -52,7 +41,9 @@ function [x,y,typ]=EXTRACTBITS(job,arg1,arg2)
             gettext("Number of Bits or Index of Bit"); gettext("Treat Bit Field as an Integer (0:No, 1:Yes)")],..
             list("vec",1,"vec",1,"vec",-1,"vec",1), exprs);
 
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             bitstr = strcat(string(bit(:))," ")
             if (rule < 1) | (rule > 5) then
                 block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Bits to Extract"), rule), ..
@@ -64,14 +55,17 @@ function [x,y,typ]=EXTRACTBITS(job,arg1,arg2)
                 ok = %f
             else
 
-                in=[model.in model.in2];bit=int(bit);rule=int(rule);
+                in=[model.in model.in2];
+                bit=int(bit);
+                rule=int(rule);
 
                 if (rule==3)|(rule==4) then
                     if (size(bit,"*") ~= 1) then
                         block_parameter_error(msprintf(gettext("Wrong size for ''%s'' parameter: %s."), gettext("Number of Bits or Index of Bit"), bitstr), ..
                         gettext("Must be a single value."));
                         ok=%f;
-                    else numb=bit;
+                    else
+                        numb=bit;
                     end
                 elseif (rule==5)
                     if (size(bit,"*") ~= 2) then
@@ -82,9 +76,12 @@ function [x,y,typ]=EXTRACTBITS(job,arg1,arg2)
                         block_parameter_error(msprintf(gettext("Wrong values for ''%s'' parameter: %s."), gettext("Number of Bits or Index of Bit"), bitstr), ..
                         msprintf(gettext("''Start'' must be less than ''End''.")));
                         ok=%f;
-                    else numb=bit(2)-bit(1);
+                    else
+                        numb=bit(2)-bit(1);
                     end ;
-                else bit=0;numb=[]
+                else
+                    bit=0;
+                    numb=[]
                 end
             end
 
@@ -99,33 +96,42 @@ function [x,y,typ]=EXTRACTBITS(job,arg1,arg2)
                     select rule
                     case 1 then
                         select scal
-                        case 0 then model.sim=list("extract_bit_32_UH0",4)
+                        case 0 then
+                            model.sim=list("extract_bit_32_UH0",4)
                         case 1 then
                             select Datatype
-                            case 3 then model.sim=list("extract_bit_32_UH1",4)
-                            case 6 then model.sim=list("extract_bit_u32_UH1",4)
+                            case 3 then
+                                model.sim=list("extract_bit_32_UH1",4)
+                            case 6 then
+                                model.sim=list("extract_bit_u32_UH1",4)
                             end
                         end
                     case 2 then
                         model.sim=list("extract_bit_32_LH",4)
                     case 3 then
                         select scal
-                        case 0 then model.sim=list("extract_bit_32_MSB0",4)
+                        case 0 then
+                            model.sim=list("extract_bit_32_MSB0",4)
                         case 1 then
                             select Datatype
-                            case 3 then model.sim=list("extract_bit_32_MSB1",4)
-                            case 6 then model.sim=list("extract_bit_u32_MSB1",4)
+                            case 3 then
+                                model.sim=list("extract_bit_32_MSB1",4)
+                            case 6 then
+                                model.sim=list("extract_bit_u32_MSB1",4)
                             end
                         end
                     case 4 then
                         model.sim=list("extract_bit_32_LSB",4)
                     case 5 then
                         select scal
-                        case 0 then model.sim=list("extract_bit_32_RB0",4)
+                        case 0 then
+                            model.sim=list("extract_bit_32_RB0",4)
                         case 1 then
                             select Datatype
-                            case 3 then model.sim=list("extract_bit_32_RB1",4)
-                            case 6 then model.sim=list("extract_bit_u32_RB1",4)
+                            case 3 then
+                                model.sim=list("extract_bit_32_RB1",4)
+                            case 6 then
+                                model.sim=list("extract_bit_u32_RB1",4)
                             end
                         end
                     end
@@ -138,33 +144,42 @@ function [x,y,typ]=EXTRACTBITS(job,arg1,arg2)
                     select rule
                     case 1 then
                         select scal
-                        case 0 then model.sim=list("extract_bit_16_UH0",4)
+                        case 0 then
+                            model.sim=list("extract_bit_16_UH0",4)
                         case 1 then
                             select Datatype
-                            case 4 then model.sim=list("extract_bit_16_UH1",4)
-                            case 7 then model.sim=list("extract_bit_u16_UH1",4)
+                            case 4 then
+                                model.sim=list("extract_bit_16_UH1",4)
+                            case 7 then
+                                model.sim=list("extract_bit_u16_UH1",4)
                             end
                         end
                     case 2 then
                         model.sim=list("extract_bit_16_LH",4)
                     case 3 then
                         select scal
-                        case 0 then model.sim=list("extract_bit_16_MSB0",4)
+                        case 0 then
+                            model.sim=list("extract_bit_16_MSB0",4)
                         case 1 then
                             select Datatype
-                            case 4 then model.sim=list("extract_bit_16_MSB1",4)
-                            case 7 then model.sim=list("extract_bit_u16_MSB1",4)
+                            case 4 then
+                                model.sim=list("extract_bit_16_MSB1",4)
+                            case 7 then
+                                model.sim=list("extract_bit_u16_MSB1",4)
                             end
                         end
                     case 4 then
                         model.sim=list("extract_bit_16_LSB",4)
                     case 5 then
                         select scal
-                        case 0 then model.sim=list("extract_bit_16_RB0",4)
+                        case 0 then
+                            model.sim=list("extract_bit_16_RB0",4)
                         case 1 then
                             select Datatype
-                            case 4 then model.sim=list("extract_bit_16_RB1",4)
-                            case 7 then model.sim=list("extract_bit_u16_RB1",4)
+                            case 4 then
+                                model.sim=list("extract_bit_16_RB1",4)
+                            case 7 then
+                                model.sim=list("extract_bit_u16_RB1",4)
                             end
                         end
                     end
@@ -177,33 +192,42 @@ function [x,y,typ]=EXTRACTBITS(job,arg1,arg2)
                     select rule
                     case 1 then
                         select scal
-                        case 0 then model.sim=list("extract_bit_8_UH0",4)
+                        case 0 then
+                            model.sim=list("extract_bit_8_UH0",4)
                         case 1 then
                             select Datatype
-                            case 5 then model.sim=list("extract_bit_8_UH1",4)
-                            case 8 then model.sim=list("extract_bit_u8_UH1",4)
+                            case 5 then
+                                model.sim=list("extract_bit_8_UH1",4)
+                            case 8 then
+                                model.sim=list("extract_bit_u8_UH1",4)
                             end
                         end
                     case 2 then
                         model.sim=list("extract_bit_8_LH",4)
                     case 3 then
                         select scal
-                        case 0 then model.sim=list("extract_bit_8_MSB0",4)
+                        case 0 then
+                            model.sim=list("extract_bit_8_MSB0",4)
                         case 1 then
                             select Datatype
-                            case 5 then model.sim=list("extract_bit_8_MSB1",4)
-                            case 8 then model.sim=list("extract_bit_u8_MSB1",4)
+                            case 5 then
+                                model.sim=list("extract_bit_8_MSB1",4)
+                            case 8 then
+                                model.sim=list("extract_bit_u8_MSB1",4)
                             end
                         end
                     case 4 then
                         model.sim=list("extract_bit_8_LSB",4)
                     case 5 then
                         select scal
-                        case 0 then model.sim=list("extract_bit_8_RB0",4)
+                        case 0 then
+                            model.sim=list("extract_bit_8_RB0",4)
                         case 1 then
                             select Datatype
-                            case 5 then model.sim=list("extract_bit_8_RB1",4)
-                            case 8 then model.sim=list("extract_bit_u8_RB1",4)
+                            case 5 then
+                                model.sim=list("extract_bit_8_RB1",4)
+                            case 8 then
+                                model.sim=list("extract_bit_u8_RB1",4)
                             end
                         end
                     end
@@ -223,7 +247,8 @@ function [x,y,typ]=EXTRACTBITS(job,arg1,arg2)
             if ok then
                 graphics.exprs=exprs;
                 model.ipar=[int(bit(:));int(numb(:))];
-                x.graphics=graphics;x.model=model;
+                x.graphics=graphics;
+                x.model=model;
                 break
             end
         end
@@ -243,7 +268,7 @@ function [x,y,typ]=EXTRACTBITS(job,arg1,arg2)
         model.dep_ut=[%t %f]
 
         exprs=[sci2exp(3);sci2exp(1);sci2exp(0);sci2exp(0)]
-        gr_i=["xstringb(orig(1),orig(2),['' Extract ''+string(numb)+'' Bits'';OPER],sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([4 2],model,exprs,gr_i)
 
     end
