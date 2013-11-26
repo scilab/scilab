@@ -20,19 +20,14 @@
 //
 
 function [x,y,typ]=EVTDLY_c(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         while %t do
             [ok,dt,ff,exprs]=scicos_getvalue(["Set Event Delay block parameters";
@@ -44,7 +39,9 @@ function [x,y,typ]=EVTDLY_c(job,arg1,arg2)
             "       to disable any output event."],..
             ["Delay";"Date of initial output event"],..
             list("vec",1,"vec",1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             if dt<=0 then
                 message("Delay must be positive")
                 ok=%f
@@ -71,9 +68,7 @@ function [x,y,typ]=EVTDLY_c(job,arg1,arg2)
         model.dep_ut=[%f %f]
 
         exprs=[string(dt);sci2exp(ff)]
-        gr_i=["dt=o.model.rpar(1);";
-        "txt=[''Delay'';string(dt)];";
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([3 2],model,exprs,gr_i)
     end
 endfunction
