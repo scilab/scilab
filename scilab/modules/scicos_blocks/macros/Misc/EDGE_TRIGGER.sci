@@ -20,16 +20,10 @@
 //
 
 function [x,y,typ]=EDGE_TRIGGER(job,arg1,arg2)
-    x=[];y=[],typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         // look for the internal edge trigger block
         for i=1:length(arg1.model.rpar.objs) do
@@ -222,7 +216,7 @@ function [x,y,typ]=EDGE_TRIGGER(job,arg1,arg2)
         model.evtout = 1;
         model.rpar = scs_m_1;
 
-        gr_i="xstringb(orig(1),orig(2),[''EDGE'';''TRIGGER''],sz(1),sz(2),''fill'')";
+        gr_i=[];
         x=standard_define([3 2],model,[],gr_i)
     end
 endfunction

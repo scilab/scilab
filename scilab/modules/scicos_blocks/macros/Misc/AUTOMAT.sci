@@ -20,25 +20,23 @@
 //
 
 function [x,y,typ]=AUTOMAT(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
-        model=arg1.model;ipar=model.ipar;
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
+        model=arg1.model;
+        ipar=model.ipar;
         NMode=ipar(1)
         NX=ipar(3)
         while %t do
             CX="C1";
-            MSG0="''Jump from Mode "; MSG2=":[..;M_final(Guard=In(";MSG3=").i);..]''"
+            MSG0="''Jump from Mode ";
+            MSG2=":[..;M_final(Guard=In(";
+            MSG3=").i);..]''"
             MSG=MSG0+"1"+MSG2+"1"+MSG3;
             VEC="''mat'',[-1,1]";
             for i=2:NMode
@@ -50,7 +48,10 @@ function [x,y,typ]=AUTOMAT(job,arg1,arg2)
             GTV="[ok,NMode,Minitial,NX,X0,XP,"+CX+",exprs]=scicos_getvalue(''Set Finite state machine model'',..
             [''Number (finite-state) Modes'';''Initial Mode'';''Number of continuous-time states'';''Continuous-time states intial values'';''Xproperties of continuous-time states in each Mode'';"+MSG+"],..
             list(''vec'',1,''vec'',1,''vec'',1,''mat'',[-1,-1],''mat'',[-1,-1],"+VEC+"),exprs)"
-            execstr(GTV); if ~ok then break,end
+            execstr(GTV);
+            if ~ok then
+                break,
+            end
             NMode_old=size(exprs,"*")-5;//-number of fileds before CX
             ModifEncore=%f;
 
@@ -85,7 +86,11 @@ function [x,y,typ]=AUTOMAT(job,arg1,arg2)
                 ipar=[NMode;Minitial;NX;XP];
                 rpar=matrix(X0,NX,1);// put X0 in a column vector;
                 INP=ones(NMode,1);
-                if NX>0 then OUT=[2;2*NX];else OUT=[2];end
+                if NX>0 then
+                    OUT=[2;2*NX];
+                else
+                    OUT=[2];
+                end
                 MaxModes=1;
                 nzcross=0;
                 for i=1:NMode
@@ -113,7 +118,9 @@ function [x,y,typ]=AUTOMAT(job,arg1,arg2)
             end
             if ~ModifEncore then
                 [model,graphics,ok]=check_io(model,graphics,INP,OUT,[],[1])
-                if ~ok then break,end
+                if ~ok then
+                    break,
+                end
                 model.nzcross=nzcross;
                 model.state=ones(2*NX,1);
                 graphics.gr_i(1)(1)="txt=[''Automaton'';''nM="+string(NMode)+",nX="+string(NX)+"''];"
@@ -151,8 +158,7 @@ function [x,y,typ]=AUTOMAT(job,arg1,arg2)
         model.ipar=ipar;
         model.rpar=rpar;
 
-        gr_i=["txt=[''Automaton'';''nM="+string(NMode)+",nX="+string(NX)+"''];"..
-        ;"xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"]
+        gr_i=[]
 
         x=standard_define([4 2],model,exprs,gr_i);
     end

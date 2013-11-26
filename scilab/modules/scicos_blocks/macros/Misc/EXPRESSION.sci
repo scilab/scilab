@@ -20,22 +20,19 @@
 //
 
 function [x,y,typ]=EXPRESSION(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1
-        model=arg1.model;graphics=arg1.graphics;
+        model=arg1.model;
+        graphics=arg1.graphics;
         exprs=graphics.exprs
         %scicos_context=%scicos_context;
-        for ii=1:8,execstr("%scicos_context.u"+string(ii)+"=0"),end
+        for ii=1:8,
+            execstr("%scicos_context.u"+string(ii)+"=0"),
+        end
         ieee(2)
         while %t do
             [ok,%nin,%exx,%usenz,exprs]=scicos_getvalue(..
@@ -48,9 +45,13 @@ function [x,y,typ]=EXPRESSION(job,arg1,arg2)
             ieee(0)
             clear %scicos_context
 
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             %exx=strsubst(exprs(2)," ","")
-            if %exx==emptystr() then %exx="0",end  //avoid empty
+            if %exx==emptystr() then
+                %exx="0",
+            end  //avoid empty
             //expression
 
             if %nin==1 then
@@ -59,7 +60,9 @@ function [x,y,typ]=EXPRESSION(job,arg1,arg2)
                 %nini=%nin
             end
             %head="%foo("
-            for %jji=1:%nini-1,%head=%head+"u"+string(%jji)+",",end
+            for %jji=1:%nini-1,
+                %head=%head+"u"+string(%jji)+",",
+            end
             %head=%head+"u"+string(%nini)+")"
             ok=execstr("deff(%head,%exx)","errcatch")==0
             if ~ok then
@@ -114,7 +117,7 @@ function [x,y,typ]=EXPRESSION(job,arg1,arg2)
         model.nmode=nz
         model.dep_ut=[%t %f]
         exprs=[string(size(in,"*"));txt;"1"]
-        gr_i=["xstringb(orig(1),orig(2),[''Mathematical'';''Expression''],sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([5 2],model,exprs,gr_i)
     end
 endfunction
@@ -175,7 +178,9 @@ function [ok,%ipar,%rpar,%nz]=compile_expr(%foo)
                     return
                 else
                     %ipar=[%ipar;5;100+%jjk]
-                    if or(100+%jjk==%ZCR) then %nz=%nz+1,end
+                    if or(100+%jjk==%ZCR) then
+                        %nz=%nz+1,
+                    end
                     %ijk=%ijk+1
                 end
             else
@@ -213,7 +218,9 @@ function [ok,%ipar,%rpar,%nz]=compile_expr(%foo)
                 %ipar=[%ipar;5;99]
             else
                 %ipar=[%ipar;5;evstr(%lst(%ijk)(2))]
-                if or(evstr(%lst(%ijk)(2))==%ZCR) then %nz=%nz+1,end
+                if or(evstr(%lst(%ijk)(2))==%ZCR) then
+                    %nz=%nz+1,
+                end
             end
         case 6
             //      %ipar=[%ipar;6;evstr(%lst(%ijk)(2))]

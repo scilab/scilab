@@ -21,22 +21,6 @@
 
 function [x,y,typ]=scifunc_block(job,arg1,arg2)
     //%Description
-    // job=='plot' :      block drawing
-    //                    arg1 is block data structure
-    //                    arg2 :unused
-    // job=='getinputs' : return position and type of inputs ports
-    //                    arg1 is block data structure
-    //                    x  : x coordinates of ports
-    //                    x  : y coordinates of ports
-    //                    typ: type of ports
-    // job=='getoutputs' : return position and type of outputs ports
-    //                    arg1 is block data structure
-    //                    x  : x coordinates of ports
-    //                    x  : y coordinates of ports
-    //                    typ: type of ports
-    // job=='getorigin'  : return block origin coordinates
-    //                    x  : x coordinates of block origin
-    //                    x  : y coordinates of block origin
     // job=='set'        : block parameters acquisition
     //                    arg1 is block data structure
     //                    x is returned block data structure
@@ -66,23 +50,20 @@ function [x,y,typ]=scifunc_block(job,arg1,arg2)
     //                        'z' if zero-crossing.
     //          firing      - vector of initial output event firing times
     //
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         needcompile=0
         x=arg1
-        model=arg1.model;graphics=arg1.graphics;
+        model=arg1.model;
+        graphics=arg1.graphics;
         exprs=graphics.exprs
 
-        if size(exprs(1),"*")==8 then exprs(1)(9)="0";end
+        if size(exprs(1),"*")==8 then
+            exprs(1)(9)="0";
+        end
         while %t do
             [ok,i,o,ci,co,xx,z,rpar,auto0,deptime,lab]=scicos_getvalue(..
             ["Set scifunc_block parameters";"only regular blocks supported"],..
@@ -97,19 +78,29 @@ function [x,y,typ]=scifunc_block(job,arg1,arg2)
             "is block always active (0:no, 1:yes)"  ],..
             list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,..
             "vec",-1,"vec","sum(%4)","vec",1),exprs(1))
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             exprs(1)=lab
-            xx=xx(:);z=z(:);rpar=rpar(:)
+            xx=xx(:);
+            z=z(:);
+            rpar=rpar(:)
             nrp=prod(size(rpar))
             // create simulator
-            i=int(i(:));ni=size(i,1);
-            o=int(o(:));no=size(o,1);
-            ci=int(ci(:));nci=size(ci,1);
-            co=int(co(:));nco=size(co,1);
+            i=int(i(:));
+            ni=size(i,1);
+            o=int(o(:));
+            no=size(o,1);
+            ci=int(ci(:));
+            nci=size(ci,1);
+            co=int(co(:));
+            nco=size(co,1);
             [ok,tt,dep_ut]=genfunc1(exprs(2),i,o,nci,nco,size(xx,1),size(z,1),..
             nrp,"c")
             dep_ut(2)=(1==deptime)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             [model,graphics,ok]=check_io(model,graphics,i,o,ci,co)
             if ok then
                 auto=auto0
@@ -120,7 +111,9 @@ function [x,y,typ]=scifunc_block(job,arg1,arg2)
                     model.opar=model.ipar;
                     model.ipar=0;
                 end
-                if or(model.opar<>tt) then needcompile=4,end
+                if or(model.opar<>tt) then
+                    needcompile=4,
+                end
                 model.opar=tt
                 model.firing=auto
                 model.dep_ut=dep_ut
@@ -162,7 +155,7 @@ function [x,y,typ]=scifunc_block(job,arg1,arg2)
         strcat(sci2exp(x0));strcat(sci2exp(z0));
         strcat(sci2exp(rpar));sci2exp(auto)],..
         list("y1=sin(u1)"," "," ","y1=sin(u1)"," "," "," "))
-        gr_i=["xstringb(orig(1),orig(2),''Scifunc'',sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([2 2],model,exprs,gr_i)
     end
 endfunction
