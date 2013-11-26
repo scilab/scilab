@@ -20,24 +20,21 @@
 //
 
 function [x,y,typ]=MUX_f(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         while %t do
             [ok,in,exprs]=scicos_getvalue("Set MUX block parameters",..
             "number of input ports or vector of sizes",list("vec",-1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             if size(in,"*")==1 then
                 if in<2|in>8 then
                     message("Block must have at least two input ports and at most eight")
@@ -51,14 +48,22 @@ function [x,y,typ]=MUX_f(job,arg1,arg2)
                     "and at most eight, and size 0 is not allowed. "])
                     ok=%f
                 else
-                    if min(in)<0 then nout=0,else nout=sum(in),end
+                    if min(in)<0 then
+                        nout=0,
+                    else
+                        nout=sum(in),
+                    end
                     [model,graphics,ok]=check_io(model,graphics,in(:),nout,[],[])
-                    if ok then in=size(in,"*"),end
+                    if ok then
+                        in=size(in,"*"),
+                    end
                 end
             end
             if ok then
-                graphics.exprs=exprs;model.ipar=in
-                x.graphics=graphics;x.model=model
+                graphics.exprs=exprs;
+                model.ipar=in
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
@@ -73,7 +78,7 @@ function [x,y,typ]=MUX_f(job,arg1,arg2)
         model.dep_ut=[%t %f]
 
         exprs=string(in)
-        gr_i="xstringb(orig(1),orig(2),''Mux'',sz(1),sz(2),''fill'')"
+        gr_i=[]
         x=standard_define([0.5 2],model,exprs,gr_i)
     end
 endfunction

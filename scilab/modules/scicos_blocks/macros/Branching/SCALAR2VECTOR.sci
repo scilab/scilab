@@ -20,26 +20,23 @@
 //
 
 function [x,y,typ]=SCALAR2VECTOR(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         while %t do
             [ok,nout,exprs]=..
             scicos_getvalue("Set block parameters",..
             ["size of output (-1: if don''t know)"],..
             list("vec",1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             nout=int(nout)
             if(nout<>-1 & (nout<=0)) then
                 message("size of output must be -1 or >0")
@@ -50,7 +47,8 @@ function [x,y,typ]=SCALAR2VECTOR(job,arg1,arg2)
             end
             if ok then
                 graphics.exprs=exprs;// Correction ED le 24/11/04
-                x.graphics=graphics;x.model=model
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
@@ -64,8 +62,7 @@ function [x,y,typ]=SCALAR2VECTOR(job,arg1,arg2)
         model.dep_ut=[%t %f]
 
         exprs=[string([nout])]
-        gr_i=["txt=[''Scalar'';''  to '';''vector''];";
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"]
+        gr_i=[]
 
         x=standard_define([3 2],model,exprs,gr_i)
     end
