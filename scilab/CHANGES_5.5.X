@@ -145,7 +145,7 @@ Scilab Bug Fixes
 
 * Bug #12769 fixed - xset("window", 1) did not set the current axes.
 
-* Bug #12784 fixed - Misleading error message in many functions when passing an integer 
+* Bug #12784 fixed - Misleading error message in many functions when passing an integer
                      argument instead of double argument fixed.
 
 * Bug #12882 fixed - Some help pages were not clear.
@@ -255,6 +255,8 @@ Scilab Bug Fixes
 * Bug #13101 fixed - When x-axis was in reverse position x_location='origin' failed.
 
 * Bug #13109 fixed - pll2str now supports polynomials with complex coefficients and hypermatrices.
+
+* Bug #13116 fixed - qpsolve now respects upper-bounds constraints.
 
 
 Xcos Bug Fixes
