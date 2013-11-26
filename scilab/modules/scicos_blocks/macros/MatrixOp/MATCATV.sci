@@ -20,19 +20,15 @@
 //
 
 function [x,y,typ] = MATCATV(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1
-        model=arg1.model;graphics=arg1.graphics;label=graphics.exprs
+        model=arg1.model;
+        graphics=arg1.graphics;
+        label=graphics.exprs
         if size(label,"*")>1 then //compatibility
             label="size(evstr("+label(2)+"),''*'')";
         end
@@ -41,7 +37,9 @@ function [x,y,typ] = MATCATV(job,arg1,arg2)
             scicos_getvalue("Set MATCATV block parameters",..
             ["Number od inputs"],..
             list("vec",1),label)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             label=lab
             in=[-([2:nin+1]') -ones(nin,1)]
             it= -ones(nin,1);
@@ -80,7 +78,7 @@ function [x,y,typ] = MATCATV(job,arg1,arg2)
         model.firing=[]
         model.dep_ut=[%t %f]
         label=[sci2exp(2)];
-        gr_i=["text=[''Vert'';'' Cat''];";"xstringb(orig(1),orig(2),text,sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([2 3],model,label,gr_i)
     end
 endfunction
