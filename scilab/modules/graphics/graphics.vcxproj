@@ -387,7 +387,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\Plo2dEch.c" />
     <ClCompile Include="src\c\Plo2dn.c" />
     <ClCompile Include="sci_gateway\c\sci_champ.c" />
-    <ClCompile Include="sci_gateway\c\sci_clear_pixmap.c" />
     <ClCompile Include="sci_gateway\c\sci_contour2di.c" />
     <ClCompile Include="sci_gateway\c\sci_copy.c" />
     <ClCompile Include="sci_gateway\c\sci_delete.c" />

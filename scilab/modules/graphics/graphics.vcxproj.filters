@@ -512,9 +512,6 @@
     <ClCompile Include="sci_gateway\c\sci_champ.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_clear_pixmap.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_contour2di.c">
       <Filter>Source Files</Filter>
     </ClCompile>

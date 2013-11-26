@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -198,10 +198,10 @@
                             <listitem>
                                 <para>このプロパティは図の表示を制御します.
                                     この値は
-                                    <literal>"on"</literal> (デフォルトモード) または <literal>"off"</literal>です. 
+                                    <literal>"on"</literal> (デフォルトモード) または <literal>"off"</literal>です.
                                     (複数の描画や再描画を適用することにより)グラフィックスコマンドが大量に連続する場合に,
                                     表示を遅延させるために使用されます.
-                                    
+
                                     Note that, when using
                                     <literal>drawlater</literal> または <literal>drawnow</literal> コマンドを
                                     使用した場合, カレントの図のプロパティの値を変更することに注意してください
@@ -213,7 +213,7 @@
                         <varlistentry>
                             <term>background: </term>
                             <listitem>
-                                <para>このプロパティは図の背景を制御します. 
+                                <para>このプロパティは図の背景を制御します.
                                     カレントのカラーマップに関連する添え字を値として指定します.
                                 </para>
                             </listitem>
@@ -275,7 +275,7 @@
                         <varlistentry>
                             <term>rotation_style: </term>
                             <listitem>
-                                <para>このフィールドは "3D Rot"(3次元回転) ボタンに関係します. 
+                                <para>このフィールドは "3D Rot"(3次元回転) ボタンに関係します.
                                     デフォルトは,選択された3次元プロットのみが回転することを意味する
                                     <literal>unary</literal>となっています.
                                     この値は,全ての3次元プロットが回転することを意味する <literal>multiple</literal>
@@ -314,11 +314,11 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
-lines(0) // disables vertical paging 
+        <programlisting role="example"><![CDATA[
+lines(0) // disables vertical paging
 
 //Example 1
-f=get("current_figure") //get the handle of the current figure : 
+f=get("current_figure") //get the handle of the current figure :
                         //if none exists, create a figure and return the corresponding handle
 f.figure_position
 f.figure_size=[200,200]
@@ -372,9 +372,6 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
             </member>
             <member>
                 <link linkend="axes_properties">axes_properties</link>
-            </member>
-            <member>
-                <link linkend="clear_pixmap">clear_pixmap</link>
             </member>
             <member/>
             <member>
