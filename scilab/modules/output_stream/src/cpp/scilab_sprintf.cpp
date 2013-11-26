@@ -51,49 +51,59 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
         //for the input string "bla1 %s bla2 %d bla3"
         //store  :
         //pwstToken[0] : "bla1 "
-        //pwstToken[0] : "%s bla2 "
+        //pwstToken[1] : "%s bla2 "
         //pwstToken[2] : "%d bla3"
 
-        size_t iStart       = 0;
-        size_t iEnd         = 0;
-        int iToken          = 0;
+        size_t iStart   = 0;
+        size_t iEnd     = 0;
+        int iToken      = 0;
+        int iPosArg     = 0;
+
         TokenDef* pToken = new TokenDef[_iArgsCount + 1];
         wchar_t* pwstStart  = pwstFirstOutput;
 
-        bool bFinish = false;
+        bool bFinish         = false;
+        bool bPercentPercent = false;
+
         while (!bFinish)
         {
             wchar_t* pwstEnd = wcsstr(pwstStart + (iToken == 0 ? 0 : 1), L"%");
+            iStart = pwstStart - pwstFirstOutput;
+            bPercentPercent = false;
             if (pwstEnd != NULL)
             {
-                if (pwstEnd[1] == L'%')
+                if (iToken && pwstStart[1] == L'%')
                 {
                     //manage "%%"
-                    pwstEnd = wcsstr(pwstEnd + 2, L"%");
+                    pwstEnd = wcsstr(pwstEnd + 1, L"%");
                     if (pwstEnd == NULL)
                     {
                         //end of string
-                        iStart  = pwstStart - pwstFirstOutput;
-                        iEnd = wcslen(pwstFirstOutput);
+                        iEnd    = wcslen(pwstFirstOutput);
                         bFinish = true;
                     }
+                    else
+                    {
+                        iEnd = pwstEnd - pwstFirstOutput;
+                    }
+
+                    // skip the first %
+                    iStart++;
+                    bPercentPercent = true;
                 }
                 else
                 {
-                    iStart  = pwstStart - pwstFirstOutput;
-                    iEnd    = pwstEnd - pwstFirstOutput;
+                    iEnd = pwstEnd - pwstFirstOutput;
                 }
             }
             else
             {
                 //end of string
-                iStart  = pwstStart - pwstFirstOutput;
-                iEnd = wcslen(pwstFirstOutput);
+                iEnd    = wcslen(pwstFirstOutput);
                 bFinish = true;
             }
 
             pToken[iToken].pwstToken = new wchar_t[iEnd - iStart + 1];
-
             wcsncpy(pToken[iToken].pwstToken, pwstFirstOutput + iStart, iEnd - iStart);
             pToken[iToken].pwstToken[iEnd - iStart] = L'\0';
 
@@ -103,8 +113,7 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
 
             //find %
             wchar_t* pwstPercent = wcsstr(pToken[iToken].pwstToken, L"%");
-
-            if (pwstPercent != NULL)
+            if (pwstPercent != NULL && bPercentPercent == false)
             {
                 //looking for flags
                 if (*(pwstPercent + 1) == L'-' ||
@@ -162,39 +171,41 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
                     case L'u' : //unsigned
                     case L'x' : //hex
                     case L'X' : //HEX
-                        if (_pArgs[iToken - 1].type != InternalType::RealDouble)
+                        if (_pArgs[iPosArg].type != InternalType::RealDouble)
                         {
                             Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), _pwstName);
                             return NULL;
                         }
                         pToken[iToken].outputType = InternalType::RealInt32;
+                        iPosArg++;
                         break;
                     case L'f' : //float
                     case L'e' : //exp
                     case L'E' : //EXP
                     case L'g' : //shorter between float or exp
                     case L'G' : //shorter between float or EXP
-                        if (_pArgs[iToken - 1].type != InternalType::RealDouble)
+                        if (_pArgs[iPosArg].type != InternalType::RealDouble)
                         {
                             Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), _pwstName);
                             return NULL;
                         }
                         pToken[iToken].outputType = InternalType::RealDouble;
+                        iPosArg++;
                         break;
                     case L's' :
                     case L'c' :
-                        if (_pArgs[iToken - 1].type != InternalType::RealString)
+                        if (_pArgs[iPosArg].type != InternalType::RealString)
                         {
                             Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), _pwstName);
                             return NULL;
                         }
                         pToken[iToken].outputType = InternalType::RealString;
+                        iPosArg++;
                         break;
                     default :
                         //houston ...
                         break;
                 }
-
             }
 
             pwstStart = pwstEnd;
@@ -231,27 +242,27 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
         {
             //copy the 0th token
             wcscat(pwstFirstOutput, pToken[0].pwstToken);
-
+            iPosArg = 0;
             //start at 1, the 0th is always without %
             for (int i = 1 ; i < _iArgsCount + 1 ; i++)
             {
                 wchar_t pwstTemp[bsiz];
                 void* pvVal = NULL;
-                if (_pArgs[i - 1].type == InternalType::RealDouble)
+                if (pToken[i].outputType == InternalType::RealDouble)
                 {
-                    double dblVal = in[_pArgs[i - 1].iArg]->getAs<Double>()->get(j, _pArgs[i - 1].iPos);
-                    if (pToken[i].outputType == InternalType::RealDouble)
-                    {
-                        swprintf(pwstTemp, bsiz, pToken[i].pwstToken, dblVal);
-                    }
-                    else if (pToken[i].outputType == InternalType::RealInt32)
-                    {
-                        swprintf(pwstTemp, bsiz, pToken[i].pwstToken, (int)dblVal);
-                    }
+                    double dblVal = in[_pArgs[iPosArg].iArg]->getAs<Double>()->get(j, _pArgs[iPosArg].iPos);
+                    swprintf(pwstTemp, bsiz, pToken[i].pwstToken, dblVal);
+                    iPosArg++;
                 }
-                else if (_pArgs[i - 1].type == InternalType::RealString)
+                else if (pToken[i].outputType == InternalType::RealInt32)
                 {
-                    wchar_t* pwstStr = in[_pArgs[i - 1].iArg]->getAs<types::String>()->get(j, _pArgs[i - 1].iPos);
+                    double dblVal = in[_pArgs[iPosArg].iArg]->getAs<Double>()->get(j, _pArgs[iPosArg].iPos);
+                    swprintf(pwstTemp, bsiz, pToken[i].pwstToken, (int)dblVal);
+                    iPosArg++;
+                }
+                else if (pToken[i].outputType == InternalType::RealString)
+                {
+                    wchar_t* pwstStr = in[_pArgs[iPosArg].iArg]->getAs<types::String>()->get(j, _pArgs[iPosArg].iPos);
                     int posC = (int)wcscspn(pToken[i].pwstToken, L"c");
                     int posS = (int)wcscspn(pToken[i].pwstToken, L"s");
                     if (!posS || !posC)
@@ -296,10 +307,12 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
                             swprintf(pwstTemp, bsiz, pToken[i].pwstToken, pwstStr);
                         }
                     }
+                    iPosArg++;
                 }
                 else
                 {
-                    //impossible but maybe in the futur
+                    // management of %%
+                    wcscpy(pwstTemp, pToken[i].pwstToken);
                 }
 
                 wcscat(pwstFirstOutput, pwstTemp);
