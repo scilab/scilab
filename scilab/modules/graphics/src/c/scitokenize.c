@@ -25,9 +25,10 @@ int scitokenize(char * legend, char *** Strptr, int *n)
     int prevIndex = 0;
     int stringLength = 0, j = 0;
     char **Str = NULL;
+    int lenlegend = (int)strlen(legend);
 
     /* first get the number of tokens */
-    for (i = 0; i < (int)strlen(legend); i++)
+    for (i = 0; i < lenlegend; i++)
     {
         if (legend[i] == '@')
         {

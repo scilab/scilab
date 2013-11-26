@@ -199,7 +199,8 @@ static BOOL Is_a_correct_function_name(char *functionname)
             {
                 return FALSE;
             }
-            for (i = 1; i < (int)strlen(functionname); i++)
+            int len_functionname = (int)strlen(functionname);
+            for (i = 1; i < len_functionname; i++)
             {
                 /*
                 ???? = 3

@@ -302,7 +302,8 @@ static void ExtensionFileIntoLowerCase(char *fichier)
 static void ReplaceSlash(char *pathout, char *pathin)
 {
     int i = 0;
-    for (i = 0; i < (int)strlen(pathin); i++)
+    int len_pathin = (int)strlen(pathin);
+    for (i = 0; i < len_pathin; i++)
     {
         if (pathin[i] == '\\')
         {

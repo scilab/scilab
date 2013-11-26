@@ -32,6 +32,7 @@ int sci_mfprintf(char *fname, unsigned long fname_len)
     int l2 = 0, m2 = 0, n2 = 0;
     int lcount = 0, rval = 0, mx = 0, mk = 0, nk = 0, k = 0;
     char *ptrFormat = NULL;
+    int lenptrFormat = 0;
     int i = 0;
     int NumberPercent = 0;
     int param1 = 0;
@@ -111,7 +112,8 @@ int sci_mfprintf(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    for (i = 0; i < (int)strlen(ptrFormat); i++)
+    lenptrFormat = (int)strlen(ptrFormat);
+    for (i = 0; i < lenptrFormat; i++)
     {
         if (ptrFormat[i] == '%')
         {
