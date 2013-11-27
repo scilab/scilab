@@ -47,8 +47,8 @@ function legends(leg, style, opt, with_box, font_size )
         font_size = 1 ; // default size
     end
 
-
-    if or(size(style)==1) then, style=matrix(style,1,-1),end
+    ns=size(style)
+    if ns ~= [2 1] & or(ns==1) then, style=matrix(style,1,-1),end
     ns=size(style,2)
 
     //preserve current graphic context
@@ -175,7 +175,7 @@ function legends(leg, style, opt, with_box, font_size )
                     r=gce(),
                     r.mark_mode="on"
                     r.mark_style=-style(1,k)
-                    if size(style,1)==2 then r.foreground=style(2,k);end
+                    if size(style,1)==2 then r.mark_foreground=style(2,k);end
                 else
                     xpoly([x;x+drx],[y;y]-bbx(k,2)/2,"lines")
                     r=gce(),

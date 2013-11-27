@@ -133,6 +133,8 @@ Scilab Bug Fixes
 
 * Bug #11680 fixed - GUI functions in Scilab 5.4.X were much slower than in Scilab 5.3.3.
 
+* Bug #12334 fixed - Mark color in legend was invalid.
+
 * Bug #12485 fixed - xchange returned bad values with log scale.
 
 * Bug #12492 fixed - Exported EPS files were invalid when dash patterns were too long.
