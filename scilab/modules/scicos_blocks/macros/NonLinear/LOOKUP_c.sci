@@ -24,16 +24,10 @@ function [x,y,typ]=LOOKUP_c(job,arg1,arg2)
     // origine: serge Steer, Habib Jreij INRIA 1993
     // Copyright INRIA
 
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
 
         x=arg1
@@ -54,19 +48,42 @@ function [x,y,typ]=LOOKUP_c(job,arg1,arg2)
             // extra: 0:hold; 1: use end values
             //
 
-            if  ~ok then break;end
+            if ~ok then
+                break;
+            end
             PeriodicOption="n";
 
-            if PeriodicOption=="y" | PeriodicOption=="Y" then,PO=1;else,PO=0;end
-            mtd=int(Method); if mtd<0 then mtd=0;end; if mtd>9 then mtd=9;end;
+            if PeriodicOption=="y" | PeriodicOption=="Y" then,
+                PO=1;
+            else,
+                PO=0;
+            end
+            mtd=int(Method);
+            if mtd<0 then
+                mtd=0;
+            end;
+            if mtd>9 then
+                mtd=9;
+            end;
             METHOD=getmethod(mtd);
-            extrapo=int(extrapo); if extrapo<0 then extrapo=0;end; if extrapo>1 then extrapo=1;end;
+            extrapo=int(extrapo);
+            if extrapo<0 then
+                extrapo=0;
+            end;
+            if extrapo>1 then
+                extrapo=1;
+            end;
 
 
             if ~Ask_again then
-                xx=xx(:);yy=yy(:);
-                [nx,mx]=size(xx); [ny,my]=size(yy);
-                if ~((nx==ny)&(mx==my)) then, x_message("incompatible size of x and y");  Ask_again=%t;end
+                xx=xx(:);
+                yy=yy(:);
+                [nx,mx]=size(xx);
+                [ny,my]=size(yy);
+                if ~((nx==ny)&(mx==my)) then,
+                    x_message("incompatible size of x and y");
+                    Ask_again=%t;
+                end
             end
 
             if ~Ask_again then//+++++++++++++++++++++++++++++++++++++++
@@ -85,23 +102,36 @@ function [x,y,typ]=LOOKUP_c(job,arg1,arg2)
                     curwin=max(winsid())+1;
                     [orpar,oipar,ok]=poke_point(xy,ipar,rpar);
                     curwin=save_curwin;
-                    if ~ok then break;end;//  exit without save
+                    if ~ok then
+                        break;
+                    end;//  exit without save
 
                     // verifying the data change
-                    N2=oipar(1);xy2=[orpar(1:N2),orpar(N2+1:2*N2)];
+                    N2=oipar(1);
+                    xy2=[orpar(1:N2),orpar(N2+1:2*N2)];
                     New_methhod=oipar(2);
                     DChange=%f;
                     METHOD=getmethod(New_methhod);
-                    if or(xy(:,1)<>xy2(:,1)) then, DChange=%t;end
-                    if or(xy(1:N-1,2)<>xy2(1:N2-1,2)) then, DChange=%t;end
-                    if (xy(N,2)<>xy2(N2,2) & (METHOD<>"periodic")) then, DChange=%t;end
+                    if or(xy(:,1)<>xy2(:,1)) then,
+                        DChange=%t;
+                    end
+                    if or(xy(1:N-1,2)<>xy2(1:N2-1,2)) then,
+                        DChange=%t;
+                    end
+                    if (xy(N,2)<>xy2(N2,2) & (METHOD<>"periodic")) then,
+                        DChange=%t;
+                    end
                     if DChange then
                         exprs(2)=strcat(sci2exp(xy2(:,1)))
                         exprs(3)=strcat(sci2exp(xy2(:,2)))
                     end
                     exprs(1)=sci2exp(New_methhod);
                     exprs(4)=sci2exp(oipar(4));
-                    if oipar(3)==1 then,perop="y";else,perop="n";end
+                    if oipar(3)==1 then,
+                        perop="y";
+                    else,
+                        perop="n";
+                    end
                     SaveExit=%t
                 else//_____________________No graphics__________________________
                     [Xdummy,Ydummy,orpar]=Do_Spline(N,mtd,xy(:,1),xy(:,2),xy($,1),xy(1,1),0);
@@ -141,7 +171,9 @@ function [x,y,typ]=LOOKUP_c(job,arg1,arg2)
 
         xx=[-1;0.5;1;1.5;2.5]
         yy=[-6;-1;-3;3;-4]
-        N=length(xx);  Method=1;   Graf="n"
+        N=length(xx);
+        Method=1;
+        Graf="n"
         model.sim=list("lookup_c",4)
         model.in=-1
         model.in2=-2
@@ -160,19 +192,7 @@ function [x,y,typ]=LOOKUP_c(job,arg1,arg2)
         model.firing=0
         exprs=[sci2exp(Method);sci2exp(xx);sci2exp(yy);sci2exp(0);Graf]
 
-        gr_i=["rpar=arg1.model.rpar;n=model.ipar(1);order=model.ipar(2);";
-        "xx=rpar(1:n);yy=rpar(n+1:2*n);";
-        "[XX,YY,rpardummy]=Do_Spline(n,order,xx,yy,xx(n),xx(1),model.ipar(4))";
-        "xmx=max(XX);xmn=min(XX);";
-        "ymx=max(YY);ymn=min(YY);";
-        "dx=xmx-xmn;if dx==0 then dx=max(xmx/2,1);end";
-        "xmn=xmn-dx/20;xmx=xmx+dx/20;";
-        "dy=ymx-ymn;if dy==0 then dy=max(ymx/2,1);end;";
-        "ymn=ymn-dy/20;ymx=ymx+dy/20;";
-        "xx2=orig(1)+sz(1)*((XX-xmn)/(xmx-xmn));";
-        "yy2=orig(2)+sz(2)*((YY-ymn)/(ymx-ymn));";
-        "xset(''color'',2)";
-        "xpoly(xx2,yy2,''lines'');"]
+        gr_i=[]
         x=standard_define([2 2],model,exprs,gr_i)
     end
 endfunction
@@ -210,7 +230,9 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
     "Cmenu=[]"])
 
     ok=%f
-    if rhs==0 then ixy=[];end;
+    if rhs==0 then
+        ixy=[];
+    end;
     if size(xy,"c")<2 then
         xinfo(" No y provided");
         return
@@ -225,46 +247,71 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
         extrapo=0
         ipar=[N;NOrder;PeridicOption;extrapo]
         rpar=[]
-    else if rhs==2 then
-            NOrder=iparin(2);
-            PeridicOption=iparin(3);
-            extrapo=iparin(4);
-            ipar=iparin;
-            rpar=[]
-        else if rhs==3 then
-                NOrder=iparin(2);
-                PeridicOption=iparin(3);
-                extrapo=iparin(4);
-                ipar=iparin;
-                rpar=rparin
-            end
-        end
+    elseif rhs==2 then
+        NOrder=iparin(2);
+        PeridicOption=iparin(3);
+        extrapo=iparin(4);
+        ipar=iparin;
+        rpar=[]
+    elseif rhs==3 then
+        NOrder=iparin(2);
+        PeridicOption=iparin(3);
+        extrapo=iparin(4);
+        ipar=iparin;
+        rpar=rparin
     end
 
-    Amp=[];wp=[]; phase=[];offset=[];np1=[];
+    Amp=[];
+    wp=[];
+    phase=[];
+    offset=[];
+    np1=[];
     Sin_exprs=list(string(Amp),string(wp), string(phase),string(offset),string(np1));
-    sAmp=[];sTp=[]; sdelay=[];
+    sAmp=[];
+    sTp=[];
+    sdelay=[];
     Sawt1_exprs=list(string(sAmp),string(sTp),string(sdelay));
-    sAmp2=[];sTp2=[];
+    sAmp2=[];
+    sTp2=[];
     Sawt2_exprs=list(string(sAmp2),string(sTp2));
 
-    Amp3=[];Tp3=[];Pw3=[];Pd3=[];Bias3=[];
+    Amp3=[];
+    Tp3=[];
+    Pw3=[];
+    Pd3=[];
+    Bias3=[];
     Pulse_exprs=list(string(Amp3), string(Tp3),string(Pw3),string(Pd3),string(Bias3))
 
-    mean4=[];var4=[];seed4=[];sample4=[];np4=[];
+    mean4=[];
+    var4=[];
+    seed4=[];
+    sample4=[];
+    np4=[];
     random_n_exprs=list(string(mean4),string(var4), string(seed4),string(sample4),string(np4))
 
-    min5=[];max5=[];seed5=[];sample5=[];np5=[];
+    min5=[];
+    max5=[];
+    seed5=[];
+    sample5=[];
+    np5=[];
     random_u_exprs=list(string(min5), string(max5), string(seed5),string(sample5),string(np5))
 
     // bornes initiales du graphique
-    xmx=max(xy(:,1));xmn=min(xy(:,1)),
-    ymx=max(xy(:,2));ymn=min(xy(:,2));
-    dx=xmx-xmn;dy=ymx-ymn
-    if dx==0 then dx=max(xmx/2,1),end;
+    xmx=max(xy(:,1));
+    xmn=min(xy(:,1)),
+    ymx=max(xy(:,2));
+    ymn=min(xy(:,2));
+    dx=xmx-xmn;
+    dy=ymx-ymn
+    if dx==0 then
+        dx=max(xmx/2,1),
+    end;
     xmx=xmx+dx/50;
-    if dy==0 then dy=max(ymx/2,1),end;
-    ymn=ymn-dy/50;ymx=ymx+dy/50;
+    if dy==0 then
+        dy=max(ymx/2,1),
+    end;
+    ymn=ymn-dy/50;
+    ymx=ymx+dy/50;
 
     rect=[xmn,ymn;xmx,ymx];
     //===================================================================
@@ -300,10 +347,14 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
     menus=list(MENU,menu_s,menu_o,menu_d,menu_t,menu_e);
 
     scam="menus(1)(1)"
-    w="menus(3)(";r=")";Orderm=w(ones(menu_o))+string(1:size(menu_o,"*"))+r(ones(menu_o))
-    w="menus(4)(";r=")";Datam=w(ones(menu_d))+string(1:size(menu_d,"*"))+r(ones(menu_d))
-    w="menus(5)(";r=")";Standm=w(ones(menu_t))+string(1:size(menu_t,"*"))+r(ones(menu_t))
-    w="menus(6)(";r=")";Exitm=w(ones(menu_e))+string(1:size(menu_e,"*"))+r(ones(menu_e))
+    w="menus(3)(";r=")";
+    Orderm=w(ones(menu_o))+string(1:size(menu_o,"*"))+r(ones(menu_o))
+    w="menus(4)(";r=")";
+    Datam=w(ones(menu_d))+string(1:size(menu_d,"*"))+r(ones(menu_d))
+    w="menus(5)(";r=")";
+    Standm=w(ones(menu_t))+string(1:size(menu_t,"*"))+r(ones(menu_t))
+    w="menus(6)(";r=")";
+    Exitm=w(ones(menu_e))+string(1:size(menu_e,"*"))+r(ones(menu_e))
 
     execstr("Autoscale_"+string(curwin)+"=scam")
     execstr("Spline_"+string(curwin)+"=Orderm")
@@ -347,7 +398,11 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
             Cmenu="Mouse click is Offside!";
         end
         if Cmenu==[] then Cmenu="edit",end
-        if (Cmenu=="Exit") |(Cmenu=="Quit" ) then, ipar=[];rpar=[];ok=%f;return; end
+        if (Cmenu=="Exit") |(Cmenu=="Quit" ) then,
+            ipar=[];
+            rpar=[];
+            ok=%f;return;
+        end
         //-------------------------------------------------------------------
         if ((Cmenu=="zero order-below") | (Cmenu=="linear") | (Cmenu=="order 2")| ...
             (Cmenu=="not_a_knot")| (Cmenu=="periodic")| (Cmenu=="monotone")| ...
@@ -402,10 +457,20 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
             //-------------------------------------------------------------------
         case "Extrapolation" then
             //extrapo
-            if extrapo==1 then, ans0="1",else, ans0="0",end;
+            if extrapo==1 then,
+                ans0="1",
+            else,
+                ans0="0",
+            end;
             [mok,myans]=scicos_getvalue("Extrapolation method (just for Method 1)",["0: hold end values, 1: extrapolation"],list("vec",1),list(ans0));
             if (mok==%t) then
-                extrapo=int(myans); if extrapo<0 then extrapo=0;end; if extrapo>1 then extrapo=1;end;
+                extrapo=int(myans);
+                if extrapo<0 then
+                    extrapo=0;
+                end;
+                if extrapo>1 then
+                    extrapo=1;
+                end;
                 ipar(4)=extrapo;
                 [rpar,ipar]=AutoScale(a,xy,ipar,rpar)
             end
@@ -415,7 +480,9 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
             ["Amplitude";"Frequency(rad/sec)"; ...
             "Phase(rad)";"Bias";"number of points"],list("vec",1,"vec",1,"vec",1, ...
             "vec",1,"vec",1),Sin_exprs)
-            if np1< 2 then np1=2;end
+            if np1< 2 then
+                np1=2;
+            end
             if mok & wp>0  then
                 NOrder=3;
                 ipar(2)=NOrder;
@@ -467,17 +534,25 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
             if mok & Tp3>0  then
                 NOrder=0;
                 ipar(2)=NOrder;
-                if (Pd3>0) then xt=0;yt=Bias3;else xt=[];yt=[]; end
+                if (Pd3>0) then
+                    xt=0;
+                    yt=Bias3;
+                else
+                    xt=[];
+                    yt=[];
+                end
                 //otherwise there	would be double	points at 0
                 if Pd3<Tp3 then
                     if Pw3>0 then
                         xt=[xt;Pd3; Pw3*Tp3/100+Pd3;Tp3];
                         yt=[yt;Amp3+Bias3;Bias3;Bias3];
                     else
-                        xt=[0;Tp3];yt=[Bias3;Bias3];
+                        xt=[0;Tp3];
+                        yt=[Bias3;Bias3];
                     end
                 else
-                    xt=[0;Tp3];yt=[Bias3;Bias3];
+                    xt=[0;Tp3];
+                    yt=[Bias3;Bias3];
                 end
 
                 xy=[xt,yt];
@@ -493,8 +568,10 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
             if mok & sample4>0 then
                 NOrder=0;
                 ipar(2)=NOrder;
-                rand("normal");  rand("seed",seed4);
-                xt=0:sample4:sample4*(np4-1);xt=xt(:);
+                rand("normal");
+                rand("seed",seed4);
+                xt=0:sample4:sample4*(np4-1);
+                xt=xt(:);
                 yt=mean4+sqrt(var4)*rand(np4,1);
                 xy=[xt,yt];
                 [rpar,ipar]=AutoScale(a,xy,ipar,rpar);
@@ -509,8 +586,10 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
             if mok & sample5>0 then
                 NOrder=0;
                 ipar(2)=NOrder;
-                rand("uniform"); rand("seed",seed5);
-                xt=0:sample5:sample5*(np5-1);xt=xt(:);
+                rand("uniform");
+                rand("seed",seed5);
+                xt=0:sample5:sample5*(np5-1);
+                xt=xt(:);
                 yt=min5+(max5-min5)*rand(np5,1);
                 xy=[xt,yt];
                 [rpar,ipar]=AutoScale(a,xy,ipar,rpar);
@@ -601,7 +680,8 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
         case "edit" then
             HIT=%f
             if N<>0 then
-                xt=xy(:,1);yt=xy(:,2);
+                xt=xy(:,1);
+                yt=xy(:,2);
                 dist=((xt-ones(N,1)*xc))^2+((yt-ones(N,1)*yc))^2
                 [dca,k]=min(dist);
                 rectx=a.data_bounds;
@@ -660,7 +740,8 @@ endfunction
 //========================================================================
 function [orpar,oipar]=drawSplin(a,xy,iipar,irpar)
     N=size(xy,"r");// new size of xy
-    x=xy(:,1);  y=xy(:,2);
+    x=xy(:,1);
+    y=xy(:,2);
     points=a.children(2).children
     splines=a.children(1).children
     order=iipar(2);
@@ -670,17 +751,27 @@ function [orpar,oipar]=drawSplin(a,xy,iipar,irpar)
 
     METHOD=getmethod(order);
 
-    if periodicoption==1 then PERIODIC="periodic, T="+string(x(N)-x(1));
-    else PERIODIC="aperiodic";end
+    if periodicoption==1 then
+        PERIODIC="periodic, T="+string(x(N)-x(1));
+    else
+        PERIODIC="aperiodic";
+    end
     a.title.text=[string(N)+" points,  "+"Method: "+METHOD+",  "+PERIODIC];
 
-    if (N==0) then, return; end
-    if (N==1) then, order=0; end
+    if (N==0) then,
+        return;
+    end
+    if (N==1) then,
+        order=0;
+    end
     //  NP=50;// number of intermediate points between two data points
 
-    xmx=max(points.data(:,1));    xmn=min(points.data(:,1));
-    xmx1=max(a.x_ticks.locations); xmn1=min(a.x_ticks.locations)
-    xmx=max(xmx,xmx1);    xmn=min(xmn,xmn1);
+    xmx=max(points.data(:,1));
+    xmn=min(points.data(:,1));
+    xmx1=max(a.x_ticks.locations);
+    xmn1=min(a.x_ticks.locations)
+    xmx=max(xmx,xmx1);
+    xmn=min(xmn,xmn1);
     [X,Y,orpar]=Do_Spline(N,order,x,y,xmx,xmn,extrapo);
 
     if (periodicoption==1) then
@@ -702,7 +793,8 @@ function [xyt,orpar,oipar]=movept(a,xy,iipar,irpar,k)
     oipar=iipar
     orpar=irpar
     order=iipar(2);
-    x=xy(:,1);  y=xy(:,2);
+    x=xy(:,1);
+    y=xy(:,2);
 
     x(k)=[];
     y(k)=[];
@@ -710,7 +802,10 @@ function [xyt,orpar,oipar]=movept(a,xy,iipar,irpar,k)
     btn=-1
 
     while ~(btn==3 | btn==0| btn==10| btn==-5)
-        rep=xgetmouse([%t %t]); xc=rep(1);yc=rep(2);btn=rep(3);
+        rep=xgetmouse([%t %t]);
+        xc=rep(1);
+        yc=rep(2);
+        btn=rep(3);
 
         xt=[x;xc];
         yt=[y;yc];
@@ -736,20 +831,31 @@ function   rectx=findrect(a)
     end
 
 
-    ymx1=max(splines.data(:,2));  ymn1=min(splines.data(:,2))
+    ymx1=max(splines.data(:,2));
+    ymn1=min(splines.data(:,2))
 
-    xmx=max(points.data(:,1));xmn=min(points.data(:,1));
-    ymx=max(points.data(:,2));ymn=min(points.data(:,2));
+    xmx=max(points.data(:,1));
+    xmn=min(points.data(:,1));
+    ymx=max(points.data(:,2));
+    ymn=min(points.data(:,2));
 
 
-    XMX=max(xmx);            XMN=max(xmn);
-    YMX=max(ymx,ymx1);  YMN=min(ymn,ymn1);
+    XMX=max(xmx);
+    XMN=max(xmn);
+    YMX=max(ymx,ymx1);
+    YMN=min(ymn,ymn1);
 
-    dx=XMX-XMN;dy=YMX-YMN
-    if dx==0 then dx=max(XMX/2,1),end;
+    dx=XMX-XMN;
+    dy=YMX-YMN
+    if dx==0 then
+        dx=max(XMX/2,1),
+    end;
     XMX=XMX+dx/50
-    if dy==0 then dy=max(YMX/2,1),end;
-    YMN=YMN-dy/50;YMX=YMX+dy/50;
+    if dy==0 then
+        dy=max(YMX/2,1),
+    end;
+    YMN=YMN-dy/50;
+    YMX=YMX+dy/50;
     rectx=[XMN,YMN;XMX,YMX];
 endfunction
 
@@ -760,13 +866,16 @@ function [tok,xyo]=ReadExcel()
     "g";"h";"i";"j";"k";"l";"m";"n";"o";"p";"q";"r";"s";"t";"u";"v"; ...
     "w";"x";"y";"z"];
     TN=["0","1","2","3","4","5","6","7","8","9"];
-    xyo=[];tok=%f;
+    xyo=[];
+    tok=%f;
     while %t
         [zok,filen,sheetN,xa,ya]=scicos_getvalue("Excel data file ",["Filename";"Sheet # ";"X[start:Stop]";"Y[start:stop]"],list("str",1, ...
         "vec",1,"str",1, ...
         "str",1), ...
         list(["Classeur1.xls"],["1"],["C5:C25"],["D5:D25"]));
-        if ~zok then break,end
+        if ~zok then
+            break,
+        end
 
         try
             [fd,SST,Sheetnames,Sheetpos] = xls_open(filen);
@@ -780,35 +889,69 @@ function [tok,xyo]=ReadExcel()
                 [Value,TextInd] = xls_read(fd,Sheetpos(sheetN))
                 mclose(fd)
             end
-            xa=strsubst(xa," ",""); px=strindex(xa,":");
-            ya=strsubst(ya," ",""); py=strindex(ya,":");
-            x1=part(xa,1:px-1); x2=part(xa,px+1:length(xa));
-            y1=part(ya,1:py-1); y2=part(ya,py+1:length(ya));
+            xa=strsubst(xa," ","");
+            px=strindex(xa,":");
+            ya=strsubst(ya," ","");
+            py=strindex(ya,":");
+            x1=part(xa,1:px-1);
+            x2=part(xa,px+1:length(xa));
+            y1=part(ya,1:py-1);
+            y2=part(ya,py+1:length(ya));
 
             x1p=min(strindex(x1,TN));
-            if x1p==[] then, xinfo("Bad address in X:"+x1); break, end
-            x11=part(x1,1:x1p-1);x12=part(x1,x1p:length(x1));
+            if x1p==[] then,
+                xinfo("Bad address in X:"+x1);
+                break,
+            end
+            x11=part(x1,1:x1p-1);
+            x12=part(x1,x1p:length(x1));
 
             x2p=min(strindex(x2,TN));
-            if x2p==[] then, xinfo("Bad address in X:"+x2); break, end
-            x21=part(x2,1:x2p-1);x22=part(x2,x2p:length(x2));
+            if x2p==[] then,
+                xinfo("Bad address in X:"+x2);
+                break,
+            end
+            x21=part(x2,1:x2p-1);
+            x22=part(x2,x2p:length(x2));
 
             y1p=min(strindex(y1,TN));
-            if y1p==[] then, xinfo("Bad address in Y:"+y1); break, end
-            y11=part(y1,1:y1p-1);y12=part(y1,y1p:length(y1));
+            if y1p==[] then,
+                xinfo("Bad address in Y:"+y1);
+                break,
+            end
+            y11=part(y1,1:y1p-1);
+            y12=part(y1,y1p:length(y1));
 
             y2p=min(strindex(y2,TN));
-            if y2p==[] then, xinfo("Bad address in Y:"+y2); break, end
-            y21=part(y2,1:y2p-1);y22=part(y2,y2p:length(y2));
+            if y2p==[] then,
+                xinfo("Bad address in Y:"+y2);
+                break,
+            end
+            y21=part(y2,1:y2p-1);
+            y22=part(y2,y2p:length(y2));
 
             // x11 x12: x21 x22
 
-            lx11=length(x11);lx21=length(x21);
-            ly11=length(y11);ly21=length(y21)
-            xstC=0;for i=1:lx11,xstC=xstC+modulo(find(TA==part(x11,lx11-i+1)),26)*26^(i-1);end
-            xenC=0;for i=1:lx21,xenC=xenC+modulo(find(TA==part(x21,lx21-i+1)),26)*26^(i-1);end
-            ystC=0;for i=1:ly11,ystC=ystC+modulo(find(TA==part(y11,ly11-i+1)),26)*26^(i-1);end
-            yenC=0;for i=1:ly11,yenC=yenC+modulo(find(TA==part(y21,ly21-i+1)),26)*26^(i-1);end
+            lx11=length(x11);
+            lx21=length(x21);
+            ly11=length(y11);
+            ly21=length(y21)
+            xstC=0;
+            for i=1:lx11,
+                xstC=xstC+modulo(find(TA==part(x11,lx11-i+1)),26)*26^(i-1);
+            end
+            xenC=0;
+            for i=1:lx21,
+                xenC=xenC+modulo(find(TA==part(x21,lx21-i+1)),26)*26^(i-1);
+            end
+            ystC=0;
+            for i=1:ly11,
+                ystC=ystC+modulo(find(TA==part(y11,ly11-i+1)),26)*26^(i-1);
+            end
+            yenC=0;
+            for i=1:ly11,
+                yenC=yenC+modulo(find(TA==part(y21,ly21-i+1)),26)*26^(i-1);
+            end
 
             xstR=evstr(x12);
             xenR=evstr(x22);
@@ -818,10 +961,12 @@ function [tok,xyo]=ReadExcel()
             [mv,nv]=size(Value)
 
             if ~(xstR<=mv & xstR>0 & xenR<=mv & xenR>0&ystR<=mv & ystR>0&yenR<=mv&yenR>0 ) then
-                xinfo("error in Row data addresses"); break
+                xinfo("error in Row data addresses");
+                break
             end
             if ~(xstC<=nv & xstC>0 & xenC<=nv & xenC>0&ystC<=nv & ystC>0&yenC<=nv&yenC>0 ) then
-                xinfo("error in Column data addresses"); break
+                xinfo("error in Column data addresses");
+                break
             end
 
             xo=Value(min(xstR,xenR):max(xstR,xenR),min(xstC,xenC):max(xstC,xenC));
@@ -835,7 +980,8 @@ function [tok,xyo]=ReadExcel()
             xyo=[xo,yo];
             [xyo]=cleandata(xyo)
 
-            tok=%t;break,
+            tok=%t;
+            break,
         catch
             xinfo(" Scicos cannot read your Excel file, please verify the parameters ");
             break
@@ -888,28 +1034,45 @@ endfunction
 //============================
 function METHOD=getmethod(order)
     select order
-    case 0 then, METHOD="zero order-below"
-    case 1 then, METHOD="linear"
-    case 2 then, METHOD="order 2"
-    case 3 then, METHOD="not_a_knot"
-    case 4 then, METHOD="periodic"
-    case 5 then, METHOD="monotone"
-    case 6 then, METHOD="fast"
-    case 7 then, METHOD="clamped"
-    case 8 then, METHOD="zero order-above"
-    case 9 then, METHOD="zero order-nearest"
+    case 0 then,
+        METHOD="zero order-below"
+    case 1 then,
+        METHOD="linear"
+    case 2 then,
+        METHOD="order 2"
+    case 3 then,
+        METHOD="not_a_knot"
+    case 4 then,
+        METHOD="periodic"
+    case 5 then,
+        METHOD="monotone"
+    case 6 then,
+        METHOD="fast"
+    case 7 then,
+        METHOD="clamped"
+    case 8 then,
+        METHOD="zero order-above"
+    case 9 then,
+        METHOD="zero order-nearest"
     end
 endfunction
 //=======================================
 function [sok,xye]=ReadFromFile()
-    xye=[];sok=%f;
+    xye=[];
+    sok=%f;
     while %t
         [sok,filen,Cformat,Cx,Cy]=scicos_getvalue("Text data file ",["Filename";"Reading [C] format";"Abscissa column";"Output column"],list("str",1,"str",1,"vec",1,"vec",1), ...
         list(["mydatafile.dat"],["%g %g"],["1"],["2"]));
-        if ~sok then break,end
+        if ~sok then
+            break,
+        end
         px=strindex(Cformat,"%");
         NC=size(px,"*");
-        if NC==[] then, xinfo("Bad format in reading data file");sok=%f;break;end
+        if NC==[] then,
+            xinfo("Bad format in reading data file");
+            sok=%f;
+            break;
+        end
         Lx=[];
         try
             fd=mopen(filen,"r");
@@ -921,13 +1084,22 @@ function [sok,xye]=ReadFromFile()
         end
 
         [nD,mD]=size(Lx);
-        if ((mD==0) | (nD==0)) then,  xinfo("No data read");sok=%f;break;end
-        if (mD<>NC) then, xinfo("Bad format");sok=%f;break;end
+        if ((mD==0) | (nD==0)) then,
+            xinfo("No data read");
+            sok=%f;
+            break;
+        end
+        if (mD<>NC) then,
+            xinfo("Bad format");
+            sok=%f;
+            break;
+        end
 
         xe=Lx(:,Cx);ye=Lx(:,Cy);
         xye=[xe,ye];
         [xye]=cleandata(xye)
-        sok=%t;break,
+        sok=%t;
+        break,
     end
 endfunction
 //=======================================
@@ -938,10 +1110,16 @@ function [sok]=SaveToFile(xye)
     while %t
         [sok,filen,Cformat]=scicos_getvalue("Text data file ",["Filename";"Writing [C] format"],list("str",1,"str",1), ...
         list(["mydatafile.dat"],["%g %g"]));
-        if ~sok then break,end
+        if ~sok then
+            break,
+        end
         px=strindex(Cformat,"%");
         NC=size(px,"*");
-        if NC<>2 then, xinfo("Bad format in writing data file");sok=%f;break;end
+        if NC<>2 then,
+            xinfo("Bad format in writing data file");
+            sok=%f;
+            break;
+        end
 
         Cformat=Cformat+"\n";
 
@@ -954,12 +1132,15 @@ function [sok]=SaveToFile(xye)
             break;
         end
 
-        sok=%t;break,
+        sok=%t;
+        break,
     end
 endfunction
 //=========================================================
 function [X,Y,orpar]=Do_Spline(N,order,x,y,xmx,xmn,extrapo)
-    X=[];Y=[];orpar=[];
+    X=[];
+    Y=[];
+    orpar=[];
 
     METHOD=getmethod(order);
 
@@ -999,7 +1180,9 @@ function [X,Y,orpar]=Do_Spline(N,order,x,y,xmx,xmn,extrapo)
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     if (METHOD=="linear") then
 
-        if N<=1 then return; end
+        if N<=1 then
+            return;
+        end
         if extrapo==0 then
             X=[xmn];
             Y=[y(1)];
@@ -1023,11 +1206,16 @@ function [X,Y,orpar]=Do_Spline(N,order,x,y,xmx,xmn,extrapo)
         return
     end
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    if (N<25) then NP=10;else
-        if (N<50) then NP=5;else
-            if (N<100) then NP=2;else
-                if (N<200) then NP=1;else
-        NP=0;end;end;end;
+    if (N<25) then
+        NP=10;
+    elseif (N<50) then
+        NP=5;
+    elseif (N<100) then
+        NP=2;
+    elseif (N<200) then
+        NP=1;
+    else
+        NP=0;
     end
     for i=1:N-1
         X=[X;linspace(x(i),x(i+1),NP+2)']; // pour tous sauf "linear" et "zero order"
@@ -1043,7 +1231,9 @@ function [X,Y,orpar]=Do_Spline(N,order,x,y,xmx,xmn,extrapo)
         C=Z(2*N-1:3*N-3);
         for j=1:size(X,"*")
             for i=N-1:-1:1
-                if X(j)>=x(i) then,break;end
+                if X(j)>=x(i) then,
+                    break;
+                end
             end
             Y(j)=A(i)*(X(j)-x(i))^2+B(i)*(X(j)-x(i))+C(i);
         end
