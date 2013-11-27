@@ -11,13 +11,11 @@
 function [x, iact, iter, f]=qpsolve(Q,p,C,b,ci,cs,me)
     rhs = argn(2);
     if rhs <> 7
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "qsolve", 7));
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "qpsolve", 7));
     end
-    Cb=[];bb=[];
-    isCsparse=typeof(C)=="sparse"|ci<>[]|cs<>[]
     C(me+1:$,:)=-C(me+1:$,:);
     b(me+1:$)=-b(me+1:$);
-    // replace boundary contraints by linear constraints
+    // Replace boundary contraints by linear constraints
     Cb=[];bb=[];
     if ci<>[] then
         Cb=[Cb;speye(Q)]
