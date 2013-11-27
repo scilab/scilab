@@ -202,6 +202,17 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
+                            <term>labels_font_style: </term>
+                            <listitem>
+                                <para>Specifies the font used to display the legend labels.
+                                    This is a positive integer referencing one of the loaded fonts.
+                                    Its value must be between 0, referencing the first font,
+                                    and the number of loaded fonts minus one, referencing the last font.
+                                    For more information see <link linkend="graphics_fonts">graphics_fonts</link>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
                             <term>fractional_font: </term>
                             <listitem>
                                 <para>
