@@ -20,19 +20,14 @@
 //
 
 function [x,y,typ]=CEVENTSCOPE(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        x=[];y=[];typ=[];
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         while %t do
             [ok,nclock,clrs,win,wpos,wdim,per,exprs]=scicos_getvalue(..
@@ -48,7 +43,9 @@ function [x,y,typ]=CEVENTSCOPE(job,arg1,arg2)
             clrs=int(clrs)
             win=int(win)
 
-            if ~ok then break,end //user cancel modification
+            if ~ok then
+                break,
+            end //user cancel modification
             mess=[]
             if size(wpos,"*")<>0 &size(wpos,"*")<>2 then
                 mess=[mess;"Window position must be [] or a 2 vector";" "]
@@ -81,19 +78,26 @@ function [x,y,typ]=CEVENTSCOPE(job,arg1,arg2)
                 " ";mess])
             end
             if ok then
-                if wpos==[] then wpos=[-1;-1];end
-                if wdim==[] then wdim=[-1;-1];end
+                if wpos==[] then
+                    wpos=[-1;-1];
+                end
+                if wdim==[] then
+                    wdim=[-1;-1];
+                end
                 rpar=per
                 ipar=[win;1;clrs(:);wpos(:);wdim(:)]
-                model.rpar=rpar;model.ipar=ipar
+                model.rpar=rpar;
+                model.ipar=ipar
                 graphics.exprs=exprs;
-                x.graphics=graphics;x.model=model
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
     case "define" then
         nclock=1
-        win=-1; clrs=[1;3;5;7;9;11;13;15];
+        win=-1;
+        clrs=[1;3;5;7;9;11;13;15];
         wdim=[600;400]
         wpos=[-1;-1]
         per=30;
@@ -112,18 +116,7 @@ function [x,y,typ]=CEVENTSCOPE(job,arg1,arg2)
         sci2exp([]);
         sci2exp(wdim);
         string(per)]
-        gr_i=["thick=xget(''thickness'');xset(''thickness'',2);";
-        "xrect(orig(1)+sz(1)/10,orig(2)+(1-1/10)*sz(2),sz(1)*8/10,sz(2)*8/10);";
-        "xx=[orig(1)+sz(1)/5,orig(1)+sz(1)/5;";
-        "orig(1)+(1-1/5)*sz(1),orig(1)+sz(1)/5];";
-        "yy=[orig(2)+sz(2)/5,orig(2)+sz(2)/5;";
-        "orig(2)+sz(2)/5,orig(2)+(1-1/5)*sz(2)];";
-        "xarrows(xx,yy);";
-        "t=(0:0.3:2*%pi)'';";
-        "xx=orig(1)+(1/5+3*t/(10*%pi))*sz(1);";
-        "yy=orig(2)+(1/4.3+(sin(t)+1)*3/10)*sz(2);";
-        "xpoly(xx,yy,''lines'');";
-        "xset(''thickness'',thick);"]
+        gr_i=[]
         x=standard_define([2 2],model,exprs,gr_i)
     end
 endfunction

@@ -21,7 +21,9 @@
 //
 
 function [x,y,typ]=CLKOUTV_f(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
     case "plot" then
         xf=60;
@@ -30,15 +32,19 @@ function [x,y,typ]=CLKOUTV_f(job,arg1,arg2)
         sz=arg1.graphics.sz;
         orient=arg1.graphics.flip;
         prt=arg1.model.ipar;
-        pat=xget("pattern");xset("pattern",default_color(-1));
-        thick=xget("thickness");xset("thickness",2);
+        pat=xget("pattern");
+        xset("pattern",default_color(-1));
+        thick=xget("thickness");
+        xset("thickness",2);
         x=orig(1)+sz(1)*[1/2;1;  1;0;0  ];
         y=orig(2)+sz(2)*[0;  1/3;1;1;1/3];
-        xo=orig(1);yo=orig(2)+sz(2)/3;
+        xo=orig(1);
+        yo=orig(2)+sz(2)/3;
 
         gr_i=arg1.graphics.gr_i;
         if type(gr_i)==15 then
-            coli=gr_i(2);pcoli=xget("pattern");
+            coli=gr_i(2);
+            pcoli=xget("pattern");
             xfpolys(x,y,coli);
             xset("pattern",coli);
             xstringb(xo,yo,string(prt),sz(1),sz(2)/1.5);
@@ -75,7 +81,9 @@ function [x,y,typ]=CLKOUTV_f(job,arg1,arg2)
         y=orig(2)+sz(2)
         typ=-ones(x)
     case "getoutputs" then
-        x=[];y=[];typ=[];
+        x=[];
+        y=[];
+        typ=[];
     case "getorigin" then
         [x,y]=standard_origin(arg1)
     case "set" then
@@ -86,7 +94,9 @@ function [x,y,typ]=CLKOUTV_f(job,arg1,arg2)
         while %t do
             [ok,prt,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"CLKOUTV_f");" ";gettext("Event output port")],..
             gettext("Port number"),list("vec",1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             prt=int(prt)
             if prt<=0 then
                 block_parameter_error(msprintf(gettext("Wrong value for ''Port Number'' parameter: %d."),prt), ..

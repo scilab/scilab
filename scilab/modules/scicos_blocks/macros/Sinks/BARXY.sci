@@ -11,16 +11,10 @@
 //
 
 function [x,y,typ]=BARXY(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        // deprecated
-    case "getinputs" then
-        // deprecater
-    case "getoutputs" then
-        // deprecated
-    case "getorigin" then
-        // deprecated
     case "set" then
         x=arg1;
         graphics=arg1.graphics;

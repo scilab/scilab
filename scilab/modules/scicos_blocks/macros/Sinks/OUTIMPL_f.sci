@@ -21,31 +21,33 @@
 //
 
 function [x,y,typ]=OUTIMPL_f(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        x=[];y=[];typ=[];
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
-        if size(exprs,"*")==2 then exprs=exprs(1),end //compatibility
+        if size(exprs,"*")==2 then
+            exprs=exprs(1),
+        end //compatibility
         while %t do
             [ok,prt,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"OUTIMPL_f");" ";gettext("Implicit output port")],..
             gettext("Port number"),list("vec",1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             prt=int(prt)
             if prt<=0 then
                 block_parameter_error(msprintf(gettext("Wrong value for ''Port Number'' parameter: %d."),prt), ..
                 gettext("Strictly positive integer expected."));
             else
-                if model.ipar<>prt then needcompile=4;y=needcompile,end
+                if model.ipar<>prt then
+                    needcompile=4;
+                    y=needcompile,
+                end
                 model.ipar=prt
                 graphics.exprs=exprs
                 x.graphics=graphics
@@ -67,7 +69,7 @@ function [x,y,typ]=OUTIMPL_f(job,arg1,arg2)
         mo.inputs="n"
         model.equations=mo
         exprs="1"
-        gr_i=["prt=string(model.ipar);xstringb(orig(1),orig(2),prt,sz(1),sz(2))"]
+        gr_i=[]
         x=standard_define([1 1],model,exprs,gr_i)
         //  x.graphics.flip=%f //flip it
         x.graphics.in_implicit=["I"]

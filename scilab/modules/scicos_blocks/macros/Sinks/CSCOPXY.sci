@@ -20,19 +20,14 @@
 //
 
 function [x,y,typ]=CSCOPXY(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        x=[];y=[];typ=[];
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         //dstate=model.dstate;
         while %t do
@@ -51,7 +46,9 @@ function [x,y,typ]=CSCOPXY(job,arg1,arg2)
             "Buffer size"],..
             list("vec",1,"vec",1,"vec",1,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,..
             "vec",1,"vec",1,"vec",1),exprs)
-            if ~ok then break,end //user cancel modification
+            if ~ok then
+                break,
+            end //user cancel modification
 
             mess=[];
             if size(wpos,"*")<>0 &size(wpos,"*")<>2 then
@@ -92,24 +89,34 @@ function [x,y,typ]=CSCOPXY(job,arg1,arg2)
                 in = nbr_curves*ones(2,1);
                 in2 = ones(2,1);
                 [model,graphics,ok]=set_io(model,graphics,list([in in2],ones(2,1)),list(),ones(1,1),[]);
-                if wpos==[] then wpos=[-1;-1];end
-                if wdim==[] then wdim=[-1;-1];end
+                if wpos==[] then
+                    wpos=[-1;-1];
+                end
+                if wdim==[] then
+                    wdim=[-1;-1];
+                end
                 rpar=[xmin;xmax;ymin;ymax]
                 ipar=[win;1;N;clrs;siz;1;wpos(:);wdim(:);nbr_curves]
                 //if prod(size(dstate))<>2*N+1 then dstate=-eye(2*N+1,1),end
                 //model.dstate=dstate;
-                model.rpar=rpar;model.ipar=ipar
+                model.rpar=rpar;
+                model.ipar=ipar
                 graphics.exprs=exprs;
-                x.graphics=graphics;x.model=model
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
     case "define" then
-        win=-1; clrs=4;siz=1
+        win=-1;
+        clrs=4;siz=1
         wdim=[600;400]
         wpos=[-1;-1]
         N=2;
-        xmin=-15;xmax=15;ymin=-15;ymax=+15
+        xmin=-15;
+        xmax=15;
+        ymin=-15;
+        ymax=+15
         nbr_curves = 1;
 
         model=scicos_model()
@@ -134,12 +141,7 @@ function [x,y,typ]=CSCOPXY(job,arg1,arg2)
         string(ymin);
         string(ymax);
         string(N)];
-        gr_i=["thick=xget(''thickness'');xset(''thickness'',2);";
-        "t=(0:0.2:2*%pi)'';";
-        "xx=orig(1)+(1/5+(cos(3*t)+1)*3/10)*sz(1);";
-        "yy=orig(2)+(1/4.3+(sin(t+1)+1)*3/10)*sz(2);";
-        "xpoly(xx,yy,''lines'');";
-        "xset(''thickness'',thick)"]
+        gr_i=[]
         x=standard_define([2 2],model,exprs,gr_i)
     end
 endfunction

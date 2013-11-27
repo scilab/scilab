@@ -20,19 +20,14 @@
 //
 
 function [x,y,typ]=CSCOPXY3D(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        x=[];y=[];typ=[];
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         while %t do
             [ok,nbr_curves,clrs,siz,win,wpos,wdim,vec_x,vec_y,vec_z,param3ds,N,exprs]=scicos_getvalue(..
@@ -50,7 +45,9 @@ function [x,y,typ]=CSCOPXY3D(job,arg1,arg2)
             "Buffer size"],..
             list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),..
             exprs)
-            if ~ok then break,end //user cancel modification
+            if ~ok then
+                break,
+            end //user cancel modification
             mess=[];
             if size(wpos,"*")<>0 &size(wpos,"*")<>2 then
                 mess=[mess;"Window position must be [] or a 2 vector";" "]
@@ -100,14 +97,20 @@ function [x,y,typ]=CSCOPXY3D(job,arg1,arg2)
                 in = nbr_curves*ones(3,1);
                 in2 = ones(3,1);
                 [model,graphics,ok]=set_io(model,graphics,list([in in2],ones(3,1)),list(),ones(1,1),[]);
-                if wpos==[] then wpos=[-1;-1];end
-                if wdim==[] then wdim=[-1;-1];end
+                if wpos==[] then
+                    wpos=[-1;-1];
+                end
+                if wdim==[] then
+                    wdim=[-1;-1];
+                end
                 rpar=[vec_x(:);vec_y(:);vec_z(:);param3ds(:)]
                 size_siz = size(siz,"*");
                 ipar=[win;size_siz;N;clrs(:);siz(:);1;wpos(:);wdim(:);nbr_curves]
-                model.rpar=rpar;model.ipar=ipar
+                model.rpar=rpar;
+                model.ipar=ipar
                 graphics.exprs=exprs;
-                x.graphics=graphics;x.model=model
+                x.graphics=graphics;
+                x.model=model
                 break
             else
                 message(mess);
@@ -148,12 +151,7 @@ function [x,y,typ]=CSCOPXY3D(job,arg1,arg2)
         strcat(string(vec_z)," ");
         strcat(string(param3ds)," ");
         string(N)];
-        gr_i=["thick=xget(''thickness'');xset(''thickness'',2);";
-        "t=(0:0.2:2*%pi)'';";
-        "xx=orig(1)+(1/5+(cos(3*t)+1)*3/10)*sz(1);";
-        "yy=orig(2)+(1/4.3+(sin(t+1)+1)*3/10)*sz(2);";
-        "xpoly(xx,yy,''lines'');";
-        "xset(''thickness'',thick)"]
+        gr_i=[]
         x=standard_define([2 2],model,exprs,gr_i)
     end
 endfunction
