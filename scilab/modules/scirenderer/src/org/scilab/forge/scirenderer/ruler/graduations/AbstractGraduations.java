@@ -105,8 +105,6 @@ public abstract class AbstractGraduations implements Graduations {
         this.upperBound = upperBound;
     }
 
-
-
     @Override
     public final double getLowerBound() {
         return lowerBound;
@@ -160,13 +158,18 @@ public abstract class AbstractGraduations implements Graduations {
     public final DecimalFormat getFormat() {
         if (numberFormat == null) {
             double maxDisplayedValue = Math.max(Math.abs(lowerBound), Math.abs(upperBound));
+            double len = Math.abs(upperBound - lowerBound);
 
-            if ((maxDisplayedValue < 1e-3) || (maxDisplayedValue >= 1e6)) {
+            if (maxDisplayedValue < 1e-3) {
+                numberFormat = new DecimalFormat("0.##########E00");
+            } else if (len <= 1e-3) {
+                numberFormat = new TinyIntervalFormat("0.####E00", "0.###E00");
+            } else if (maxDisplayedValue >= 1e6) {
                 numberFormat = new DecimalFormat("0.##########E00");
             } else if (maxDisplayedValue < 1) {
-                numberFormat = new DecimalFormat("0.######");
+                numberFormat = new DecimalFormat("0.##########E00");
             } else {
-                numberFormat = new DecimalFormat();
+                numberFormat = new DecimalFormat("#,##0.####");
             }
 
             DecimalFormatSymbols decimalFormatSymbols = numberFormat.getDecimalFormatSymbols();

@@ -748,6 +748,8 @@ Scilab Bug Fixes
 
 * Bug #11065 fixed - The second output argument of unique function contained a wrong result.
 
+* Bug #11067 fixed - Display of ticks labels with closed associated values was wrong.
+
 * Bug #11139 fixed - conj was not defined for sparse matrices (+ unit test added).
 
 * Bug #11308 fixed - Calling sequences in dsearch help page were wrong.
