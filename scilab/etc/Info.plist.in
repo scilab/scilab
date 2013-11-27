@@ -10,7 +10,7 @@
 	<key>CFBundleExecutable</key>
 	<string>bin/scilab</string>
 	<key>CFBundleGetInfoString</key>
-	<string>Scilab @SCILAB_BINARY_VERSION@, © 1998-2013 Scilab Enterprises</string>
+	<string>Scilab @SCILAB_BINARY_VERSION@, © 2011-2013 Scilab Enterprises</string>
 	<key>CFBundleIconFile</key>
 	<string>puffin</string>
 	<key>CFBundleIdentifier</key>
