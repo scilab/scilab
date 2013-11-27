@@ -32,7 +32,9 @@ function [x,y,typ]=CONST_f(job,arg1,arg2)
         while %t do
             [ok,C,exprs]=scicos_getvalue(["Set Contant Block"],..
             "Constant",list("vec",-1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             nout=size(C,"*")
             if nout==0 then
                 message("C must have at least one element")

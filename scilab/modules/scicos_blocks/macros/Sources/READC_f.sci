@@ -22,22 +22,11 @@
 
 function [x,y,typ] = READC_f(job,arg1,arg2)
 
-    x = [];
-    y = [];
-    typ = []
+    x=[];
+    y=[];
+    typ=[];
 
     select job
-    case "plot" then
-        standard_draw(arg1)
-
-    case "getinputs" then
-        [x,y,typ] = standard_inputs(arg1)
-
-    case "getoutputs" then
-        [x,y,typ] = standard_outputs(arg1)
-
-    case "getorigin" then
-        [x,y] = standard_origin(arg1)
 
     case "set" then
         x = arg1;
@@ -62,7 +51,6 @@ function [x,y,typ] = READC_f(job,arg1,arg2)
 
             if ~ok then
                 break
-
             end //user cancel modification
 
             fname1 = pathconvert(stripblanks(fname1), %f, %t)
@@ -125,18 +113,14 @@ function [x,y,typ] = READC_f(job,arg1,arg2)
             elseif offset < 1 then
                 block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Initial Record Index"), offset), ..
                 gettext("Strictly positive integer expected."));
-
             else
-
                 if tmask1 == [] then
                     ievt = 0;
                     tmask1 = 0;
                     outpt = [];
-
                 else
                     ievt = 1;
                     outpt = 1;
-
                 end
 
                 out = size(outmask,"*")
@@ -146,10 +130,8 @@ function [x,y,typ] = READC_f(job,arg1,arg2)
                 if ok then
                     if ievt == 0 then
                         model.firing = -1
-
                     else
                         model.firing = 0
-
                     end
 
                     ipar = [ ...
@@ -167,7 +149,6 @@ function [x,y,typ] = READC_f(job,arg1,arg2)
 
                     if prod(size(dstate)) <> (N*M) + 3 then
                         dstate = [-1; -1; lunit; zeros(N*M, 1)]
-
                     end
 
                     model.dstate = dstate;
@@ -223,10 +204,7 @@ function [x,y,typ] = READC_f(job,arg1,arg2)
         string(N); string(offset);string(swap) ...
         ];
 
-        gr_i = [ ...
-        "txt=[""read from"";""C binary file""];"; ...
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),""fill"")" ...
-        ];
+        gr_i = [];
 
         x = standard_define([4 2],model,exprs,gr_i)
     end

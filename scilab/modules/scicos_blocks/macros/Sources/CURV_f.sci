@@ -21,21 +21,11 @@
 
 function [x,y,typ] = CURV_f(job,arg1,arg2)
 
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
 
     select job
-    case "plot" then
-        standard_draw(arg1)
-
-    case "getinputs" then
-        [x,y,typ] = standard_inputs(arg1)
-
-    case "getoutputs" then
-        [x,y,typ] = standard_outputs(arg1)
-
-    case "getorigin" then
-        [x,y] = standard_origin(arg1)
-
     case "set" then
         x = arg1;
         model    = arg1.model;
@@ -95,16 +85,7 @@ function [x,y,typ] = CURV_f(job,arg1,arg2)
         model.blocktype = "c"
         model.dep_ut    = [%f %t]
 
-        gr_i = ["rpar=arg1.model.rpar;n=model.ipar(1);";
-        "thick=xget(''thickness'');xset(''thickness'',2);";
-        "xx=rpar(1:n);yy=rpar(n+1:2*n);";
-        "rect=rpar(2*n+1:2*n+4);";
-        "mxx=rect(3)-rect(1);";
-        "mxy=rect(4)-rect(2);";
-        "xx=orig(1)+sz(1)*(1/10+(4/5)*((xx-rect(1))/mxx));";
-        "yy=orig(2)+sz(2)*(1/10+(4/5)*((yy-rect(2))/mxy));";
-        "xpoly(xx,yy,''lines'');";
-        "xset(''thickness'',thick);"]
+        gr_i = []
         x = standard_define([2 2],model,[],gr_i)
     end
 

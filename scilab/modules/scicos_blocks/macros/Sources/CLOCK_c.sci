@@ -21,16 +21,10 @@
 //
 
 function [x,y,typ]=CLOCK_c(job,arg1,arg2)
-    x=[];y=[],typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         // look for the evtdly block
         for i=1:length(arg1.model.rpar.objs) do
@@ -51,7 +45,9 @@ function [x,y,typ]=CLOCK_c(job,arg1,arg2)
             [ok, dt, t0, exprs0]=scicos_getvalue([msprintf(gettext("Set %s block parameters"), "CLOCK_c");" "; gettext("Event clock generator");" "; ..
             gettext("&nbsp; Do not start if ''Initialisation Time'' is negative");" "], [gettext("Period");gettext("Initialisation Time")], list("vec",1,"vec",1), exprs);
 
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             if dt <= 0 then
                 block_parameter_error(msprintf(gettext("Wrong values for ''%s'' parameter: %5.1e."), gettext("Period"), dt), gettext("Strictly positive number expected."));
                 ok=%f
@@ -70,7 +66,11 @@ function [x,y,typ]=CLOCK_c(job,arg1,arg2)
             // parameter  changed
             newpar(size(newpar)+1)=path// Notify modification
         end
-        if t0_old<>t0 then needcompile=2,else needcompile=0,end
+        if t0_old<>t0 then
+            needcompile=2,
+        else
+            needcompile=0,
+        end
         x=arg1
         y=needcompile
         typ=newpar
@@ -98,23 +98,7 @@ function [x,y,typ]=CLOCK_c(job,arg1,arg2)
         split.graphics.pein=3,
         split.graphics.peout=[5;6]
 
-        gr_i=list(["wd=xget(''wdim'').*[1.016,1.12];";
-        "thick=xget(''thickness'');xset(''thickness'',2);";
-        "p=wd(2)/wd(1);p=1;";
-        "rx=sz(1)*p/2;ry=sz(2)/2;";
-        "xarcs([orig(1)+0.05*sz(1);";
-        "orig(2)+0.95*sz(2);";
-        "   0.9*sz(1)*p;";
-        "   0.9*sz(2);";
-        "   0;";
-        "   360*64],scs_color(5));";
-        "xset(''thickness'',1);";
-        "xx=[orig(1)+rx    orig(1)+rx;";
-        "    orig(1)+rx    orig(1)+rx+0.6*rx*cos(%pi/6)];";
-        "yy=[orig(2)+ry    orig(2)+ry ;";
-        "  orig(2)+1.8*ry  orig(2)+ry+0.6*ry*sin(%pi/6)];";
-        "xsegs(xx,yy,scs_color(10));";
-        "xset(''thickness'',thick);"],8)
+        gr_i=[]
         diagram=scicos_diagram();
         diagram.objs(1)=output_port
         diagram.objs(2)=evtdly
