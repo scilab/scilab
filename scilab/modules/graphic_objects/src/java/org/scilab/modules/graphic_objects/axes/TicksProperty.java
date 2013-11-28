@@ -125,7 +125,7 @@ public class TicksProperty {
             labelsStrings = new String[number];
 
             for (int i = 0; i < number; i++) {
-                labelsStrings[i] = new String(labels.get(i).getText());
+                labelsStrings[i] = new String(labels.get(i).getText()).replaceAll("\u00A0", " ");
             }
 
             return labelsStrings;
