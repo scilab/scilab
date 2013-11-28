@@ -37,6 +37,7 @@ import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
+import org.scilab.modules.renderer.JoGLView.axes.ruler.AxesRulerSpriteFactory;
 import org.scilab.modules.renderer.JoGLView.interaction.util.HelpersGeometry;
 import org.scilab.modules.renderer.JoGLView.interaction.util.PointAComputer;
 import org.scilab.modules.renderer.JoGLView.interaction.util.PointBComputer;
@@ -53,6 +54,10 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
 
     /** Decimal format used to show info messages */
     private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("0.###E0");
+
+    static {
+        AxesRulerSpriteFactory.setScilabStyle(DECIMAL_FORMAT);
+    }
 
     /** Axes name used to show info messages */
     private static final String[] AXES_NAMES = new String[] {"X", "Y", "Z"};

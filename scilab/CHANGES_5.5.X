@@ -148,6 +148,8 @@ Scilab Bug Fixes
 
 * Bug #12496 fixed - zoom_rect could lead to a crash in log scale.
 
+* Bug #12535 fixed - In french version, comma was used as decimal separator when zooming (rather than point).
+
 * Bug #12673 fixed - Ticks were drawn outside of axes area.
 
 * Bug #12682 fixed - Key events were disabled after zooming.

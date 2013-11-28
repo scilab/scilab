@@ -37,7 +37,7 @@ import java.text.DecimalFormatSymbols;
  *
  * @author Pierre Lando
  */
-class AxesRulerSpriteFactory implements RulerSpriteFactory {
+public class AxesRulerSpriteFactory implements RulerSpriteFactory {
     /**
      * The symbol used for ticks label in log and auto ticks mode.
      */
