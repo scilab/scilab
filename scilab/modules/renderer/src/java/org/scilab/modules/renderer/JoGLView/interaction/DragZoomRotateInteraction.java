@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2012 - DIGITEO - Pierre Lando
+ * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,6 +26,7 @@ import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
+import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
 
 /**
  * This class manage figure interaction.
@@ -174,9 +176,30 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                 bounds[4] = (bounds[4] - factors[1][2]) / factors[0][2];
                 bounds[5] = (bounds[5] - factors[1][2]) / factors[0][2];
 
+                boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
+                ScaleUtils.applyInverseLogScaleToBounds(bounds, logFlags);
+
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
+
             }
+        }
+    }
+
+    private static void applyUnlog(Double[] bounds, Axes axes) {
+        if (axes.getXAxisLogFlag()) {
+            bounds[0] = Math.pow(10, bounds[0]);
+            bounds[1] = Math.pow(10, bounds[1]);
+        }
+
+        if (axes.getYAxisLogFlag()) {
+            bounds[2] = Math.pow(10, bounds[2]);
+            bounds[3] = Math.pow(10, bounds[3]);
+        }
+
+        if (axes.getZAxisLogFlag()) {
+            bounds[4] = Math.pow(10, bounds[4]);
+            bounds[5] = Math.pow(10, bounds[5]);
         }
     }
 
@@ -276,8 +299,10 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                         bounds[3] += yDelta * rotatedDY;
                     }
 
-
                     Boolean zoomed = tightZoomBoxToDataBounds(currentAxes, bounds);
+                    boolean[] logFlags = { currentAxes.getXAxisLogFlag(), currentAxes.getYAxisLogFlag(), currentAxes.getZAxisLogFlag()};
+                    ScaleUtils.applyInverseLogScaleToBounds(bounds, logFlags);
+
                     GraphicController.getController().setProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
                     GraphicController.getController().setProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
                 }
@@ -296,6 +321,9 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                 bounds[5] += zDelta * dy;
 
                 Boolean zoomed = tightZoomBoxToDataBounds(currentAxes, bounds);
+                boolean[] logFlags = { currentAxes.getXAxisLogFlag(), currentAxes.getYAxisLogFlag(), currentAxes.getZAxisLogFlag()};
+                ScaleUtils.applyInverseLogScaleToBounds(bounds, logFlags);
+
                 GraphicController.getController().setProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
                 GraphicController.getController().setProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
             }

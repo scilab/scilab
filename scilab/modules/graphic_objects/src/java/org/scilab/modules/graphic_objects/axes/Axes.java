@@ -1920,7 +1920,7 @@ public class Axes extends GraphicObject {
 
     public Double[] getCorrectedBounds() {
         if (getZoomEnabled()) {
-            Double[] b = getZoomBox();
+            Double[] b = getCorrectZoomBox();
             double[][] factors = getScaleTranslateFactors();
 
             b[0] = b[0] * factors[0][0] + factors[1][0];
@@ -1942,7 +1942,7 @@ public class Axes extends GraphicObject {
      */
     public Double[] getDisplayedBounds() {
         if (getZoomEnabled()) {
-            return getZoomBox();
+            return getCorrectZoomBox();
         } else {
             return getMaximalDisplayedBounds();
         }
@@ -2085,6 +2085,26 @@ public class Axes extends GraphicObject {
      */
     public Double[] getZoomBox() {
         return box.getZoomBox();
+    }
+
+    public Double[] getCorrectZoomBox() {
+        Double[] b = getZoomBox();
+        if (getXAxisLogFlag()) {
+            b[0] = Math.log10(b[0]);
+            b[1] = Math.log10(b[1]);
+        }
+
+        if (getYAxisLogFlag()) {
+            b[2] = Math.log10(b[2]);
+            b[3] = Math.log10(b[3]);
+        }
+
+        if (getZAxisLogFlag()) {
+            b[4] = Math.log10(b[4]);
+            b[5] = Math.log10(b[5]);
+        }
+
+        return b;
     }
 
     /**
