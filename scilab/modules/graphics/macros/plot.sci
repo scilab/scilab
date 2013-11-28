@@ -81,7 +81,7 @@ function plot(varargin)
     if (couple==[]) // No data couple found
         // Search for at least a single data , i.e.: plot(y)
 
-        if (argTypes(1,1)==1 & ListArg(1)<>[]) then // case plot(SINGLE y,...)
+        if ((argTypes(1,1)==1 | argTypes(1,1)==8) & ListArg(1)<>[]) then // case plot(SINGLE y,...)
             couple = 1;
             provided_data = 1;
 
