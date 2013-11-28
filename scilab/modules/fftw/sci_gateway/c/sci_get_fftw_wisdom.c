@@ -50,7 +50,8 @@ int sci_get_fftw_wisdom(char *fname, unsigned long fname_len)
     j = 0;
     if (Str)
     {
-        for (i = 0; i < (int)strlen(Str); i++)
+        int lenStr = (int)strlen(Str);
+        for (i = 0; i < lenStr; i++)
         {
             if (Str[i] == '\n')
             {

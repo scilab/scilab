@@ -21,23 +21,23 @@
 
 function [x,y,typ]=MATSUM(job,arg1,arg2)
     //
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1
-        model=arg1.model;graphics=arg1.graphics;label=graphics.exprs
-        if size(label,"*")==14 then label(9)=[],end //compatiblity
+        model=arg1.model;
+        graphics=arg1.graphics;
+        label=graphics.exprs
+        if size(label,"*")==14 then
+            label(9)=[],
+        end //compatiblity
         while %t do
             [ok,typ,decomptyp,lab]=scicos_getvalue("Set MATSUM block parameters",["Datatype(1=real double  2=Complex)";"Sum along (0=all 1=lines  2=Columns)"],list("vec",1,"vec",1),label)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             label=lab
             if (typ==1) then
                 if (decomptyp==0) then
@@ -49,7 +49,9 @@ function [x,y,typ]=MATSUM(job,arg1,arg2)
                 elseif (decomptyp==1) then
                     function_name="mat_sumc";
                     out=[1 -2];
-                else message("decomposition type is not supported");ok=%f;
+                else
+                    message("decomposition type is not supported");
+                    ok=%f;
                 end
                 it=1;
                 ot=1;
@@ -63,11 +65,15 @@ function [x,y,typ]=MATSUM(job,arg1,arg2)
                 elseif (decomptyp==1) then
                     function_name="matz_sumc";
                     out=[1 -2];
-                else message("decomposition type is not supported");ok=%f;
+                else
+                    message("decomposition type is not supported");
+                    ok=%f;
                 end
                 it=2;
                 ot=2
-            else message("Datatype is not supported");ok=%f;
+            else
+                message("Datatype is not supported");
+                ok=%f;
             end
             in=[model.in model.in2];
             funtyp=4;
@@ -105,7 +111,7 @@ function [x,y,typ]=MATSUM(job,arg1,arg2)
         model.firing=[]
         model.dep_ut=[%t %f]
         label=[sci2exp(1);sci2exp(0)];
-        gr_i=["xstringb(orig(1),orig(2),''MATSUM'',sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([3 2],model,label,gr_i)
     end
 endfunction

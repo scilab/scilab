@@ -85,6 +85,10 @@
                                 The <literal>"nd"</literal> algorithm does not accept
                                 bounds on <literal>x</literal>.
                             </para>
+                            <para>
+                                The <literal>"qn"</literal> cannot be used if
+                                <literal>size(x0)&gt;46333</literal>.
+                            </para>
                         </listitem>
                     </itemizedlist>
                 </listitem>

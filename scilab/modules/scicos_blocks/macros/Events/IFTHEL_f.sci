@@ -20,30 +20,35 @@
 //
 
 function [x,y,typ]=IFTHEL_f(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
-        if exprs==[] then exprs=string(1);end
-        if size(exprs,"*")==1 then exprs(2)=string(1);end
+        if exprs==[] then
+            exprs=string(1);
+        end
+        if size(exprs,"*")==1 then
+            exprs(2)=string(1);
+        end
         while %t do
             [ok,inh,nmod,exprs]=scicos_getvalue("Set parameters",..
             ["Inherit (1: no, 0: yes)";"zero-crossing (0: no, 1: yes)"],..
             list("vec",1,"vec",1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             model.dep_ut=[%t %f];  //compatibility
-            if nmod<>0 then nmod=1,end
-            if inh<>1 then inh=[]; end
+            if nmod<>0 then
+                nmod=1,
+            end
+            if inh<>1 then
+                inh=[];
+            end
             [model,graphics,ok]=check_io(model,graphics,1,[],inh,[1;1])
             if ok then
                 graphics.exprs=exprs;
@@ -51,7 +56,8 @@ function [x,y,typ]=IFTHEL_f(job,arg1,arg2)
                 model.sim(2)=-1
                 model.nmode=nmod
                 model.nzcross=nmod
-                x.graphics=graphics;x.model=model
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
@@ -69,8 +75,7 @@ function [x,y,typ]=IFTHEL_f(job,arg1,arg2)
         model.nmode=1
         model.nzcross=1
 
-        gr_i=["txt=[''If in>0'';'' '';'' then    else''];";
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');"]
+        gr_i=[]
         exprs=[string(model.in);string(model.nmode)];
         x=standard_define([3 3],model,exprs,gr_i)
     end

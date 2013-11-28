@@ -14,7 +14,7 @@
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="jgetmethods">
     <refnamediv>
-        <refname>jgetmehtods</refname>
+        <refname>jgetmethods</refname>
         <refpurpose>Get all the methods of a Java object</refpurpose>
     </refnamediv>
     <refsynopsisdiv>

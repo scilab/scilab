@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: made obsolete, merged in conjgrad
  * Copyright (C) XXXX-2008 - INRIA
  *
  * This file must be used under the terms of the CeCILL.
@@ -149,6 +150,11 @@ function y = A ( x )
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+            This function is obsolete.
+            It has been merged into <link linkend="conjgrad">conjgrad</link>.
+            <literal>pcg(A, b, ...) => conjgrad(A, b, "pcg", ...)</literal>.
+        </warning>
         <para>
             Solves the linear system <literal>Ax=b</literal> using the conjugate
             gradient method with or without preconditioning. The preconditionning
@@ -295,6 +301,9 @@ b=[101;11];
         <title>See Also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="conjgrad">conjgrad</link>
+            </member>
+            <member>
                 <link linkend="backslash">backslash</link>
             </member>
             <member>
@@ -316,5 +325,16 @@ b=[101;11];
             SIAM Publications, 2003, ftp
             ftp.cs.umn.edu/dept/users/saad/PS/all_ps.zip
         </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    Calling pcg(A, b, ...) is deprecated. conjgrad(A, b, "pcg", ...) should be used instead.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

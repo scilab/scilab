@@ -20,19 +20,14 @@
 //
 
 function [x,y,typ] = INTEGRAL_m(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         while %t do
             [ok,x0,reinit,satur,maxp,lowp,exprs]=scicos_getvalue("Set Integral block parameters",..
@@ -40,14 +35,26 @@ function [x,y,typ] = INTEGRAL_m(job,arg1,arg2)
             "With re-intialization (1:yes, 0:no)";"With saturation (1:yes, 0:no)";
             "Upper limit";"Lower limit"],..
             list("mat",[-1 -1],"vec",1,"vec",1,"mat",[-1 -1],"mat",[-1 -1]),exprs)
-            if ~ok then break,end
-            if isreal(x0) then Datatype=1; else Datatype=2; end;
-            if reinit<>0 then reinit=1;end
+            if ~ok then
+                break,
+            end
+            if isreal(x0) then
+                Datatype=1;
+            else
+                Datatype=2;
+            end;
+            if reinit<>0 then
+                reinit=1;
+            end
             if satur<>0 then
                 satur=1;
                 if Datatype==1 then
-                    if size(maxp,"*")==1 then maxp=maxp*ones(x0),end
-                    if size(lowp,"*")==1 then lowp=lowp*ones(x0),end
+                    if size(maxp,"*")==1 then
+                        maxp=maxp*ones(x0),
+                    end
+                    if size(lowp,"*")==1 then
+                        lowp=lowp*ones(x0),
+                    end
                     if (size(x0)<>size(maxp) | size(x0)<>size(lowp)) then
                         message("x0 and Upper limit and Lower limit must have same size")
                         ok=%f
@@ -63,8 +70,12 @@ function [x,y,typ] = INTEGRAL_m(job,arg1,arg2)
                         model.nmode=size(x0,"*")
                     end
                 elseif (Datatype==2) then
-                    if size(maxp,"*")==1 then maxp=maxp*ones(x0)+%i*(maxp*ones(x0)),end
-                    if size(lowp,"*")==1 then lowp=lowp*ones(x0)+%i*(lowp*ones(x0)),end
+                    if size(maxp,"*")==1 then
+                        maxp=maxp*ones(x0)+%i*(maxp*ones(x0)),
+                    end
+                    if size(lowp,"*")==1 then
+                        lowp=lowp*ones(x0)+%i*(lowp*ones(x0)),
+                    end
                     if (size(x0)<>size(maxp) | size(x0)<>size(lowp)) then
                         message("x0 and Upper limit and Lower limit must have same size")
                         ok=%f
@@ -97,7 +108,10 @@ function [x,y,typ] = INTEGRAL_m(job,arg1,arg2)
                     model.sim=list("integralz_func",4)
                     it=[2;2*ones(reinit,1)]
                     ot=2;
-                else message("Datatype is not supported");ok=%f;end
+                else
+                    message("Datatype is not supported");
+                    ok=%f;
+                end
                 if ok then
                     in=[size(x0,1)*[1;ones(reinit,1)],size(x0,2)*[1;ones(reinit,1)]]
                     out=size(x0)
@@ -106,12 +120,15 @@ function [x,y,typ] = INTEGRAL_m(job,arg1,arg2)
             end
             if ok then
                 graphics.exprs=exprs
-                x.graphics=graphics;x.model=model
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
     case "define" then
-        maxp=1;minp=-1;rpar=[]
+        maxp=1;
+        minp=-1;
+        rpar=[]
         model=scicos_model()
         model.state=0
         model.sim=list("integral_func",4)
@@ -124,23 +141,7 @@ function [x,y,typ] = INTEGRAL_m(job,arg1,arg2)
         model.dep_ut=[%f %t]
 
         exprs=string([0;0;0;maxp;minp])
-        gr_i=["thick=xget(''thickness'')"
-        "pat=xget(''pattern'')"
-        "fnt=xget(''font'')"
-        "xpoly(orig(1)+[0.7;0.62;0.549;0.44;0.364;0.291]*sz(1),orig(2)+[0.947;0.947;0.884;0.321;0.255;0.255]*sz(2),"'lines"')"
-        "txt=''1/s'';"
-        "style=5;"
-        "rectstr=stringbox(txt,orig(1),orig(2),0,style,1);"
-        "if ~exists(''%zoom'') then %zoom=1, end;"
-        "w=(rectstr(1,3)-rectstr(1,2))*%zoom;"
-        "h=(rectstr(2,2)-rectstr(2,4))*%zoom;"
-        "xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');"
-        "e=gce();"
-        "e.font_style=style;"
-        "xset(''thickness'',thick)"
-        "xset(''pattern'',pat)"
-        "xset(''font'',fnt(1),fnt(2))"
-        ]
+        gr_i=[]
         x=standard_define([2 2],model,exprs,gr_i)
     end
 endfunction

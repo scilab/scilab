@@ -6,9 +6,9 @@
 // =============================================================================
 // <-- TEST WITH GRAPHIC -->
 assert_checkerror("summercolormap(0,1,2,3)", "%s: Wrong number of input argument(s): %d expected.\n", 10000, "summercolormap", 1);
-assert_checkerror("summercolormap(%t)", "%s: Wrong type for input argument #%d: An integer value expected.\n", 10000, "summercolormap", 1);
-assert_checkerror("summercolormap(%i)", "%s: Wrong type for input argument #%d: An integer value expected.\n", 10000, "summercolormap", 1);
-assert_checkerror("summercolormap([0 1 2 3])", "%s: Wrong size for input argument #%d: An integer value expected.\n", 10000, "summercolormap", 1);
+assert_checkerror("summercolormap(%t)", "%s: Wrong type for input argument #%d: a real scalar expected.\n", 10000, "summercolormap", 1);
+assert_checkerror("summercolormap(%i)", "%s: Wrong type for input argument #%d: a real scalar expected.\n", 10000, "summercolormap", 1);
+assert_checkerror("summercolormap([0 1 2 3])", "%s: Wrong size for input argument #%d: a real scalar expected.\n", 10000, "summercolormap", 1);
 assert_checkequal(summercolormap(0), []);
 assert_checkequal(summercolormap(1), [0 0.5 0.4]);
 assert_checkequal(summercolormap(2), [0 0.5 0.4;1 1 0.4]);

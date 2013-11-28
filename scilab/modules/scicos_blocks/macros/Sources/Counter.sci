@@ -21,29 +21,14 @@
 //
 
 function [x,y,typ] = Counter(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        graphics=arg1.graphics;
-        ierr=execstr("(evstr(graphics.exprs(3))==1)","errcatch")
-        if ierr<>0 then graphics.exprs(3)="1";end
-        if (evstr(graphics.exprs(3))==1) then
-            from=graphics.exprs(1)
-            to=graphics.exprs(2)
-        else
-            from=graphics.exprs(2)
-            to=graphics.exprs(1)
-        end
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         while %t do
             [ok,minim,maxim,rule,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"), "Counter"); " "; ..
@@ -52,8 +37,11 @@ function [x,y,typ] = Counter(job,arg1,arg2)
             gettext("Rule (1:Increment, 2:Decrement)");], ..
             list("vec",1,"vec",1,"vec",1),exprs);
 
-            if ~ok then break,end
-            maxim=int(maxim);minim=int(minim);
+            if ~ok then
+                break,
+            end
+            maxim=int(maxim);
+            minim=int(minim);
 
             if maxim < minim then
                 block_parameter_error(msprintf(gettext("Wrong values for ''Maximum'' and ''Minimum'' parameters: %d &lt; %d"), minim, maxim), ..
@@ -65,7 +53,8 @@ function [x,y,typ] = Counter(job,arg1,arg2)
                 graphics.exprs=exprs
                 model.dstate=0
                 model.ipar=[rule;maxim;minim]
-                x.graphics=graphics;x.model=model
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
@@ -84,7 +73,7 @@ function [x,y,typ] = Counter(job,arg1,arg2)
         model.dep_ut=[%f %f]
 
         exprs=[string(minim);string(maxim);string(rule)]
-        gr_i=["xstringb(orig(1),orig(2),[''Counter'';+from+'' --> ''+to],sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([3 2],model,exprs,gr_i)
     end
 endfunction

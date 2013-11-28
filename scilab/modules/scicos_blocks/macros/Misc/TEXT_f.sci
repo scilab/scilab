@@ -22,61 +22,11 @@
 function [x,y,typ]=TEXT_f(job,arg1,arg2)
     //** 22-23 Aug 2006: some carefull adjustements for the fonts
     //**                 inside the new graphics datastructure
-    x=[]; y=[]; typ=[];
+    x=[];
+    y=[];
+    typ=[];
 
     select job
-
-    case "plot" then //normal  position
-        graphics = arg1.graphics;
-        model    = arg1.model;
-
-        if model.rpar==[] then
-            model.rpar=graphics.exprs(1)
-        end //compatibility
-
-        //** save the previous parameter
-        //** ppat    = xget('pattern'); //** Get the current pattern or the current color.
-        //** oldfont = xget('font')   ; //** Get font=[fontid,fontsize] .
-        gh_winpal = gca(); //** get the current Axes proprieties
-
-        default_font_style = gh_winpal.font_style ;
-        default_font_size  = gh_winpal.font_size  ;
-        default_font_color = gh_winpal.font_color ;
-
-        //** set the new parameters
-        //** xset('font',model.ipar(1),model.ipar(2))
-        gh_winpal.font_style = model.ipar(1) ;
-        gh_winpal.font_size  = model.ipar(2) ;
-
-
-        //** special case for Windows
-        if getos() == "Windows" then
-            //** xset('pattern',scs_m.props.options.Background(1))
-            gh_winpal.font_color = scs_m.props.options.Background(1) ;
-
-            xstring(graphics.orig(1),graphics.orig(2),model.rpar)
-        end
-
-        //** set the new parameters
-        //** xset('pattern', default_color(1))  ;
-        gh_winpal.font_color = default_color(1) ;
-
-        //** print the string
-        xstring(graphics.orig(1), graphics.orig(2), model.rpar)
-
-        //** restore the old settings
-        //** xset('font',oldfont(1),oldfont(2))
-        //** xset('pattern',ppat)
-        gh_winpal.font_style = default_font_style ;
-        gh_winpal.font_size  = default_font_size  ;
-        gh_winpal.font_color = default_font_color ;
-
-    case "getinputs" then
-
-    case "getoutputs" then
-
-    case "getorigin" then
-        [x,y] = standard_origin(arg1)
 
     case "set" then
         x = arg1 ;
@@ -92,7 +42,9 @@ function [x,y,typ]=TEXT_f(job,arg1,arg2)
             [ok,txt,font,siz,exprs] = scicos_getvalue("Set Text block parameters",..
             ["Text";"Font number";"Font size"], list("str",-1,"vec",1,"vec",1),exprs)
 
-            if ~ok then break,end //**
+            if ~ok then
+                break,
+            end //**
 
             if font<=0|font>6 then
                 message("Font number must be greater than 0 and less than 7")

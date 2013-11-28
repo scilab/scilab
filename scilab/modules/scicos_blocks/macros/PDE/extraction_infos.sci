@@ -62,8 +62,28 @@ function [a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,CI,
     //--------------------------------------------------------------------------------------------------------//
 
     // domaine
-    choix=0;signe=1;discr=0;type_meth=1;degre=1;Nbr_maillage = 10; oper=[];
-    a1=[];b1=[];a2=[];b2=[];a3=[];b3=[];a4=[];b4=[];a5=[];b5=[];a6=[];b6=[];a7=[];b7=[];mesures=[];
+    choix=0;
+    signe=1;
+    discr=0;
+    type_meth=1;
+    degre=1;
+    Nbr_maillage = 10;
+    oper=[];
+    a1=[];
+    b1=[];
+    a2=[];
+    b2=[];
+    a3=[];
+    b3=[];
+    a4=[];
+    b4=[];
+    a5=[];
+    b5=[];
+    a6=[];
+    b6=[];
+    a7=[];
+    b7=[];
+    mesures=[];
     a_domaine=evstr(get(edita,"String"));
     b_domaine=evstr(get(editb,"String"));
     //discriminant (O: discriminant constant, 1: discriminant non constant )

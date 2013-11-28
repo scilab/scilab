@@ -20,21 +20,17 @@
 //
 
 function [x,y,typ]=DLR(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
-        x0=model.dstate;ns=prod(size(x0));
+        x0=model.dstate;
+        ns=prod(size(x0));
         %scicos_context=%scicos_context; //copy the semi-global variable locally
         %scicos_context.z=%z //add z definition to the context
         while %t do
@@ -42,7 +38,9 @@ function [x,y,typ]=DLR(job,arg1,arg2)
             ["Numerator (z)";
             "Denominator (z)"],..
             list("pol",1,"pol",1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             if degree(num)>degree(den) then
                 message("Transfer function must be proper")
                 ok=%f
@@ -69,14 +67,20 @@ function [x,y,typ]=DLR(job,arg1,arg2)
                     mmm=[%f %f];
                 end
                 if or(model.dep_ut<>mmm) then
-                model.dep_ut=mmm,end
-                x.graphics=graphics;x.model=model
+                    model.dep_ut=mmm,
+                end
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
         x.model.firing=[] //compatibility
     case "define" then
-        x0=0;A=-1;B=1;C=1;D=0;
+        x0=0;
+        A=-1;
+        B=1;
+        C=1;
+        D=0;
         exprs=["1";"1+z"]
 
         model=scicos_model()
@@ -89,8 +93,7 @@ function [x,y,typ]=DLR(job,arg1,arg2)
         model.blocktype="d"
         model.dep_ut=[%f %f]
 
-        gr_i=["xstringb(orig(1),orig(2),[''num(z)'';''den(z)''],sz(1),sz(2),''fill'')";
-        "xpoly([orig(1)+.1*sz(1),orig(1)+.9*sz(1)],[1,1]*(orig(2)+sz(2)/2))"]
+        gr_i=[]
         x=standard_define([3 2],model,exprs,gr_i)
     end
 endfunction

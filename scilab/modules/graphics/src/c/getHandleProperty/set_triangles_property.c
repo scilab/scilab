@@ -67,7 +67,7 @@ int set_triangles_property(void* _pvCtx, int iObjUID, void* _pvData, int valueTy
     }
 
     /* Resizes the triangle array if required */
-    result  = setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_INDICES__, &nbRow, jni_int, 1);
+    result  = setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_NUM_INDICES__, &nbRow, jni_int, 1);
 
     if (result == FALSE)
     {

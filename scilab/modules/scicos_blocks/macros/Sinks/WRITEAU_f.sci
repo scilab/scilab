@@ -21,19 +21,14 @@
 //
 
 function [x,y,typ]=WRITEAU_f(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        x=[];y=[];typ=[];
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         ipar=model.ipar;
         dstate=model.dstate
@@ -42,7 +37,9 @@ function [x,y,typ]=WRITEAU_f(job,arg1,arg2)
             [ok,N,swap,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "WRITEAU_f");" "; ..
             gettext("Write ''.au'' sound file on audio device")],[gettext("Buffer Size"); gettext("Swap Mode (0:No, 1:Yes)")], ..
             list("vec",1,"vec",1),exprs)
-            if ~ok then break,end //user cancel modification
+            if ~ok then
+                break,
+            end //user cancel modification
 
             nin=1
 
@@ -70,15 +67,18 @@ function [x,y,typ]=WRITEAU_f(job,arg1,arg2)
                     dstate=[-1;lunit;zeros((nin+1)*N,1)]
                 end
                 model.in=1
-                model.dstate=dstate;model.ipar=ipar
+                model.dstate=dstate;
+                model.ipar=ipar
                 graphics.exprs=exprs;
-                x.graphics=graphics;x.model=model
+                x.graphics=graphics;
+                x.model=model
                 break
             end
 
         end
     case "define" then
-        in=1;nin=sum(in)
+        in=1;
+        nin=sum(in)
         frmt="uc "
         fname="/dev/audio"
         swap=0
@@ -96,8 +96,7 @@ function [x,y,typ]=WRITEAU_f(job,arg1,arg2)
 
         exprs=[string(N)
         string(swap)]
-        gr_i=["txt=[''write AU to'';''/dev/audio''];";
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"]
+        gr_i=[]
         x=standard_define([4 2],model,exprs,gr_i)
     end
 endfunction

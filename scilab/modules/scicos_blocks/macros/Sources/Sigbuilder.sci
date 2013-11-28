@@ -21,20 +21,11 @@
 
 function [x,y,typ] = Sigbuilder(job,arg1,arg2)
     //** updated for Scilab 5.1 by Simone Mannori
-    x=[]; y=[]; typ=[] ;
+    x=[];
+    y=[];
+    typ=[];
 
     select job
-    case "plot" then
-        standard_draw(arg1);
-
-    case "getinputs" then
-        [x,y,typ] = standard_inputs(arg1);
-
-    case "getoutputs" then
-        [x,y,typ] = standard_outputs(arg1);
-
-    case "getorigin" then
-        [x,y] = standard_origin(arg1);
 
     case "set" then
         // look for the internal curve block
@@ -146,20 +137,7 @@ function [x,y,typ] = Sigbuilder(job,arg1,arg2)
         pout=6,..
         pein=4,..
         peout=2,..
-        gr_i=list(..
-        ["rpar=arg1.model.rpar;n=model.ipar(1);order=model.ipar(2);";
-        "xx=rpar(1:n);yy=rpar(n+1:2*n);";
-        "[XX,YY,rpardummy]=Do_Spline(n,order,xx,yy)";
-        "xmx=max(XX);xmn=min(XX);";
-        "ymx=max(YY);ymn=min(YY);";
-        "dx=xmx-xmn;if dx==0 then dx=max(xmx/2,1);end";
-        "xmn=xmn-dx/20;xmx=xmx+dx/20;";
-        "dy=ymx-ymn;if dy==0 then dy=max(ymx/2,1);end;";
-        "ymn=ymn-dy/20;ymx=ymx+dy/20;";
-        "xx2=orig(1)+sz(1)*((XX-xmn)/(xmx-xmn));";
-        "yy2=orig(2)+sz(2)*((YY-ymn)/(ymx-ymn));";
-        "xset(''color'',2)";
-        "xpoly(xx2,yy2,''lines'');"],8),..
+        gr_i=[],..
         id="",..
         in_implicit=[],..
         out_implicit="E"),..
@@ -207,7 +185,7 @@ function [x,y,typ] = Sigbuilder(job,arg1,arg2)
         pout=[],..
         pein=2,..
         peout=[8;4],..
-        gr_i=list([],8),..
+        gr_i=[],..
         id="",..
         in_implicit=[],..
         out_implicit=[]),..
@@ -255,7 +233,7 @@ function [x,y,typ] = Sigbuilder(job,arg1,arg2)
         pout=[],..
         pein=[],..
         peout=[],..
-        gr_i=list(" ",8),..
+        gr_i=[],..
         id="",..
         in_implicit="E",..
         out_implicit=[]),..
@@ -303,7 +281,7 @@ function [x,y,typ] = Sigbuilder(job,arg1,arg2)
         pout=[],..
         pein=8,..
         peout=[],..
-        gr_i=list(" ",8),..
+        gr_i=[],..
         id="",..
         in_implicit=[],..
         out_implicit=[]),..
@@ -362,23 +340,7 @@ function [x,y,typ] = Sigbuilder(job,arg1,arg2)
         nzcross=0,..
         nmode=0,..
         equations=list())
-        //  gr_i='xstringb(orig(1),orig(2),''Sigbuilder'',sz(1),sz(2),''fill'')';
-        gr_i=["ipar=arg1.model.rpar.objs(1).model.ipar";
-        "rpar=arg1.model.rpar.objs(1).model.rpar";
-        "n=ipar(1);order=ipar(2);";
-        "xx=rpar(1:n);yy=rpar(n+1:2*n);";
-        "[XX,YY,rpardummy]=Do_Spline2(n,order,xx,yy)";
-        "xmx=max(XX);xmn=min(XX);";
-        "ymx=max(YY);ymn=min(YY);";
-        "dx=xmx-xmn;if dx==0 then dx=max(xmx/2,1);end";
-        "xmn=xmn-dx/20;xmx=xmx+dx/20;";
-        "dy=ymx-ymn;if dy==0 then dy=max(ymx/2,1);end;";
-        "ymn=ymn-dy/20;ymx=ymx+dy/20;";
-        "rect=[xmn,ymn;xmx,ymx];";
-        "xx2=orig(1)+sz(1)*((XX-xmn)/(xmx-xmn));";
-        "yy2=orig(2)+sz(2)*((YY-ymn)/(ymx-ymn));";
-        "xset(''color'',2)";
-        "xpoly(xx2,yy2,''lines'');"]
+        gr_i=[]
 
         x=standard_define([3 2],model,[],gr_i)
     end
@@ -409,10 +371,18 @@ function [X,Y,orpar]=Do_Spline2(N,order,x,y)
         return;
     end
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    if (N<20) then NP=4;else
-        if (N<40) then NP=2;else
-            if (N<100) then NP=1;else
-        NP=0;end;end;
+    if (N<20) then
+        NP=4;
+    else
+        if (N<40) then
+            NP=2;
+        else
+            if (N<100) then
+                NP=1;
+            else
+                NP=0;
+            end;
+        end;
     end
     for i=1:N-1
         X=[X;linspace(x(i),x(i+1),NP+2)']; // pour tous sauf "linear" et "zero order"

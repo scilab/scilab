@@ -73,7 +73,13 @@ class UserDefineGraduation implements Graduations {
     @Override
     public List<Double> getAllValues() {
         if (allValues == null) {
-            allValues = new LinkedList<Double>(Arrays.asList(axisProperty.getTicksLocations()));
+            Double[] locs = axisProperty.getTicksLocations();
+            allValues = new LinkedList<Double>();
+            for (Double d : locs) {
+                if (contain(d)) {
+                    allValues.add(d);
+                }
+            }
         }
         return allValues;
     }

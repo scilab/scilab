@@ -580,6 +580,12 @@ c     optimiseur n1qn1 : Quasi-Newton without constraints
       if(icontr.eq.1.and.ialg.eq.1) then
          lvar=ldisp
          mode=3
+c        If nx is greater than 46333, then we cannot compute nx*(nx+13)/2 properly,
+c        which is the required memory for the "qn" algorithm
+         if (nx.gt.46333) then
+            call error(17)
+            return
+         endif
          ntv=nx*(nx+13)/2
          ldisp=lvar + nx
          if(indtv.eq.0) then

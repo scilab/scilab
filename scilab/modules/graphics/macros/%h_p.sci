@@ -907,6 +907,7 @@ function %h_p(h)
             "format_n = "+sci2exp(h.format_n)
             "labels_font_size = "+string(h.labels_font_size)
             "labels_font_color = "+string(h.labels_font_color)
+            "labels_font_style = "+string(h.labels_font_style)
             "fractional_font = " + sci2exp(h.fractional_font)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box,0)
@@ -939,8 +940,13 @@ function %h_p(h)
             // =====================================================================
 
         case "uicontextmenu"
+            if isempty(h.parent) then // For an uicontextmenu, parent can be empty
+                parent = "";
+            else
+                parent = h.parent.type;
+            end
             t=[t;
-            "Parent: "+h.parent.type
+            "Parent: "+parent
             "Children: "+fmtchildren(h.children)
             ]
 

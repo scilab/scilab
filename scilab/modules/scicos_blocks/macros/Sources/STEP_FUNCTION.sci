@@ -20,7 +20,9 @@
 //
 
 function [x,y,typ]=STEP_FUNCTION(job,arg1,arg2)
-    x=[];y=[],typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
     case "set" then
         // look for the internal edge trigger block

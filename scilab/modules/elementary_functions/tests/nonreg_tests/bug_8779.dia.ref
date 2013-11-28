@@ -25,3 +25,7 @@ assert_checkequal(k, (1:8));
 [y,k] = gsort(ones(1,8), "lc", "i");
 assert_checkequal(y, ones(1, 8));
 assert_checkequal(k, (1:8));
+A = [1 2 3;4 5 6;4 5 6;7 8 9;8 9 10;4 5 6];
+[x,k] = gsort(A, "lr", "i");
+assert_checkequal(k, [1;2;3;6;4;5]);
+assert_checkequal(x, [1 2 3;4 5 6;4 5 6; 4 5 6;7 8 9;8 9 10]);

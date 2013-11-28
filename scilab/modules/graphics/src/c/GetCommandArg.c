@@ -219,6 +219,7 @@ int get_strf_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** st
             getAllocatedSingleString(_pvCtx, piAddr, &pstData);
             if ((int)strlen(pstData) != 3)
             {
+                freeAllocatedSingleString(pstData);
                 Scierror(999, _("%s: Wrong size for input argument #%d: String of %d characters expected.\n"), fname, pos, 3);
                 return 0;
             }
@@ -239,6 +240,7 @@ int get_strf_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** st
         getAllocatedSingleString(_pvCtx, piAddr, &pstData);
         if ((int)strlen(pstData) != 3)
         {
+            freeAllocatedSingleString(pstData);
             Scierror(999, _("%s: Wrong size for input argument #%d: String of %d characters expected.\n"), fname, kopt, 3);
             return 0;
         }

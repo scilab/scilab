@@ -151,16 +151,19 @@ static int sci_strcat_three_rhs(char *fname)
             for (i = 0; i < mn; i++)
             {
                 int j = 0;
-
-                for (j = 0; j < (int)strlen(Input_String_One[i]); j++)
+                int len_Input_String_One = (int)strlen(Input_String_One[i]);
+                for (j = 0; j < len_Input_String_One; j++)
                 {
                     *cstk(l3 + k++) = Input_String_One[i][j];
                 }
                 if (i != mn - 1)
-                    for (j = 0; j < (int)strlen(Input_String_Two); j++)
+                {
+                    int len_Input_String_Two = (int)strlen(Input_String_Two);
+                    for (j = 0; j < len_Input_String_Two; j++)
                     {
                         *cstk(l3 + k++) = Input_String_Two[j];
                     }
+                }
             }
             freeArrayOfString(Input_String_One, mn);
             LhsVar(1) = Rhs + 1;

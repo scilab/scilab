@@ -20,34 +20,35 @@
 //
 
 function [x,y,typ]=REGISTER(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
-        if size(exprs,1)==1 then exprs=[exprs;sci2exp(1)];end
+        if size(exprs,1)==1 then
+            exprs=[exprs;sci2exp(1)];
+        end
         while %t do
             [ok,z0,it,exprs]=scicos_getvalue("Set delay parameters",..
             ["Register initial condition";..
             "Datatype (1=double 3=int32 ...)"],..
             list("vec",-1,"vec",1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             if prod(size(z0))<1 then
                 message("Register length must be at least 1")
                 ok=%f
             end
             if it==1 then
-                model.sim=list("delay4",4);z0=double(z0);
-                model.dstate=z0;model.odstate=list();
+                model.sim=list("delay4",4);
+                z0=double(z0);
+                model.dstate=z0;
+                model.odstate=list();
             else
                 if it==3 then
                     model.sim=list("delay4_i32",4)
@@ -67,9 +68,12 @@ function [x,y,typ]=REGISTER(job,arg1,arg2)
                 elseif it==8 then
                     model.sim=list("delay4_ui8",4)
                     z0=uint8(z0)
-                else message("Datatype is not supported");ok=%f
+                else
+                    message("Datatype is not supported");
+                    ok=%f
                 end
-                model.odstate=list(z0);model.dstate=[]
+                model.odstate=list(z0);
+                model.dstate=[]
             end
             if ok then
                 in=[1 1]
@@ -77,7 +81,8 @@ function [x,y,typ]=REGISTER(job,arg1,arg2)
             end
             if ok then
                 graphics.exprs=exprs;
-                x.graphics=graphics;x.model=model
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
@@ -94,9 +99,7 @@ function [x,y,typ]=REGISTER(job,arg1,arg2)
         model.dep_ut=[%f %f]
 
         exprs=strcat(string(z0), ";")
-        gr_i=["dly=model.rpar;";
-        "txt=[''Shift'';''Register'';string(dly)];";
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"]
+        gr_i=[]
         x=standard_define([3 2],model,exprs,gr_i)
     end
 endfunction

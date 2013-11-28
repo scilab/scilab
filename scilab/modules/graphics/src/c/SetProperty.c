@@ -73,7 +73,7 @@ int sciSetLineWidth (int iObjUID, double linewidth)
 
     if (linewidth < 0)
     {
-        Scierror(999, _("Line width must be greater than %d.\n"), 0);
+        Scierror(999, _("Wrong value for '%s' property: Must be greater or equal to %d.\n"), "thickness", 0);
         return -1;
     }
     else
@@ -97,7 +97,7 @@ int sciSetLineStyle(int iObjUID, int linestyle)
     BOOL status = FALSE;
     if (linestyle < 0)
     {
-        Scierror(999, _("The line style must be greater than %d.\n"), 0);
+        Scierror(999, _("Wrong value for '%s' property: Must be greater or equal to %d.\n"), "line_style", 0);
         return -1;
     }
     else
@@ -118,7 +118,7 @@ int sciSetMarkSize(int iObjUID, int marksize)
 {
     if (marksize < 0)
     {
-        Scierror(999, _("The mark size must be greater or equal than %d.\n"), 0);
+        Scierror(999, _("Wrong value for '%s' property: Must be greater or equal to %d.\n"), "mark_size", 0);
         return -1;
     }
     else
@@ -269,7 +269,7 @@ int sciSetPoint(int iObjUID, double *tab, int *numrow, int *numcol)
             numElementsArray[1] = n1;
 
             /* Resizes the data coordinates array if required */
-            result = setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 2);
+            result = setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 2);
 
             /*
              * For now, the FALSE return value corresponds to a failed memory allocation,
@@ -284,12 +284,12 @@ int sciSetPoint(int iObjUID, double *tab, int *numrow, int *numcol)
 
             if (*numcol > 0)
             {
-                setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_X__, tab, jni_double_vector, n1);
-                setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Y__, &tab[n1], jni_double_vector, n1);
+                setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_X__, tab, jni_double_vector, n1);
+                setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_Y__, &tab[n1], jni_double_vector, n1);
 
                 if (*numcol == 3)
                 {
-                    setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z__, &tab[2 * n1], jni_double_vector, n1);
+                    setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_Z__, &tab[2 * n1], jni_double_vector, n1);
                     zCoordinatesSet = 1;
                 }
                 else
@@ -300,6 +300,11 @@ int sciSetPoint(int iObjUID, double *tab, int *numrow, int *numcol)
                 /* Required for now to indicate that the z coordinates have been set or not */
                 setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z_COORDINATES_SET__, &zCoordinatesSet, jni_int, 1);
             }
+            else
+            {
+                // to be sure that Java will be warned
+                setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL__, NULL, jni_double_vector, 0);
+            }
 
             return 0;
         }
@@ -308,7 +313,7 @@ int sciSetPoint(int iObjUID, double *tab, int *numrow, int *numcol)
             double* currentUpperLeftPoint = NULL;
             double upperLeftPoint[3];
             int widthIndex = 2;
-            int size = *numrow * *numcol;
+            int size = *numrow **numcol;
 
             if (size != 5 && size != 4)
             {
@@ -358,7 +363,7 @@ int sciSetPoint(int iObjUID, double *tab, int *numrow, int *numcol)
             double* currentUpperLeftPoint = NULL;
             int size = 0;
 
-            size = *numrow * *numcol;
+            size = *numrow **numcol;
 
             if ((size != 7) && (size != 6))
             {
@@ -413,7 +418,7 @@ int sciSetPoint(int iObjUID, double *tab, int *numrow, int *numcol)
             int iView = 0;
             int* piView = &iView;
 
-            if ((*numrow * *numcol != 2) && (*numrow * *numcol != 3))
+            if ((*numrow **numcol != 2) && (*numrow **numcol != 3))
             {
                 Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"), 2, 3, "z");
                 return -1;
@@ -549,7 +554,7 @@ int sciSetPoint(int iObjUID, double *tab, int *numrow, int *numcol)
             gridSize[2] = ny + 1;
             gridSize[3] = 1;
 
-            result = setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+            result = setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
 
             if (result == FALSE)
             {
@@ -573,7 +578,7 @@ int sciSetPoint(int iObjUID, double *tab, int *numrow, int *numcol)
             Nnode = *numrow;
 
             /* Resizes the data coordinates array if required */
-            result = setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_VERTICES__, &Nnode, jni_int, 1);
+            result = setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_NUM_VERTICES__, &Nnode, jni_int, 1);
 
             if (result == FALSE)
             {
@@ -581,8 +586,8 @@ int sciSetPoint(int iObjUID, double *tab, int *numrow, int *numcol)
                 return -1;
             }
 
-            setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_X__, tab, jni_double_vector, Nnode);
-            setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Y__, &tab[Nnode], jni_double_vector, Nnode);
+            setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_X__, tab, jni_double_vector, Nnode);
+            setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_Y__, &tab[Nnode], jni_double_vector, Nnode);
             setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_VALUES__, &tab[2 * Nnode], jni_double_vector, Nnode);
             return 0;
         }

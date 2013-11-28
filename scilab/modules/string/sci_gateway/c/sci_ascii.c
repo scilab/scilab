@@ -64,85 +64,6 @@ int sci_ascii(char *fname, unsigned long fname_len)
 /*--------------------------------------------------------------------------*/
 static int asciiStrings(char *fname)
 {
-    /* interface written with stack3 */
-    /* 3 phases :
-    	 1] get data from stack
-    		conversion scilab code to ascii and strings (char **)
-    	 2] algo. conversion ascii to values
-    	 3] put results on stack
-    */
-
-    /* interface written with stack1*/
-    /* it works immediately on stack (read and write)
-    conversion scilab code to ascii values
-    */
-
-    /* Benchmark
-    str_test_mat =  ["abscefghijklmnopqrstuvxyz","abscefghijklmnopqrstuvxyz", ..
-    "abscefghijklmnopqrstuvxyz","abscefghijklmnopqrstuvxyz"; ..
-    "abscefghijklmnopqrstuvxyz","abscefghijklmnopqrstuvxyz", ..
-    "abscefghijklmnopqrstuvxyz","abscefghijklmnopqrstuvxyz"];
-
-    tic();
-    for i=1:10000000
-    ascii(["abscefghijklmnopqrstuvxyz","abscefghijklmnopqrstuvxyz"]);
-    end
-    duree = toc();
-
-    printf("\nDUREE 1 = %d seconds\n\n",duree);
-    */
-
-    /* on windows C2D 6600 2400 mhz */
-    /* scilab 4.1.2 : 40 s */
-    /* scilab with stack3 interface : 75 s*/
-    /* scilab with stack1 interface : 41 s */
-
-    /*
-    	char **Input_StringMatrix = NULL;
-    	int x = 0,y = 0,Row_Num = 0,Col_Num = 0;
-
-    	int Length_Output_Matrix = 0;
-    	double *Output_IntMatrix = NULL;
-    	int nbOutput_IntMatrix = 0;
-    	int numRow = 1;
-
-    	GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_Num,&Col_Num,&Input_StringMatrix);
-
-    	Length_Output_Matrix = 0;
-    	for (x = 0;x < Row_Num*Col_Num;x++) Length_Output_Matrix = Length_Output_Matrix + (int)strlen(Input_StringMatrix[x]);
-
-    	if (Length_Output_Matrix !=0)
-    	{
-    		Output_IntMatrix = (double*)MALLOC(sizeof(double)*(Length_Output_Matrix));
-    	}
-    	else Output_IntMatrix = (double*)MALLOC(sizeof(double));
-
-    	if (Output_IntMatrix == NULL)
-    	{
-    		freeArrayOfString(Input_StringMatrix,Row_Num*Col_Num);
-    		Scierror(999,_("%s: Memory allocation error.\n"),fname);
-    		return 0;
-    	}
-
-    	for (x = 0; x < Row_Num*Col_Num; x++)
-    	{
-    		for (y = 0;y < (int)strlen(Input_StringMatrix[x]); y++)
-    		{
-    			Output_IntMatrix[nbOutput_IntMatrix]=Input_StringMatrix[x][y];
-    			nbOutput_IntMatrix++;
-    		}
-    	}
-
-    	freeArrayOfString(Input_StringMatrix,Row_Num*Col_Num);
-
-
-    	CreateVarFromPtr(Rhs + 1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbOutput_IntMatrix,&Output_IntMatrix);
-
-    	LhsVar(1) = Rhs + 1 ;
-    	if (Output_IntMatrix) { FREE(Output_IntMatrix); Output_IntMatrix=NULL;}
-        PutLhsVar();
-    	return 0;
-    */
 
     BOOL is_a_reference_on_stack = FALSE; /* variable is a reference on stack */
     int i = 0, j = 0;
@@ -161,9 +82,9 @@ static int asciiStrings(char *fname)
     is_a_reference_on_stack = (il != ilr);
 
     /* find number of characters */
-    nbr_characters = *istk(il + 4 + *istk(il + 1) * *istk(il + 2)) - 1;
+    nbr_characters = *istk(il + 4 + *istk(il + 1) **istk(il + 2)) - 1;
 
-    l = il + 5 + *istk(il + 1) * *istk(il + 2);
+    l = il + 5 + *istk(il + 1) **istk(il + 2);
 
     if (is_a_reference_on_stack)
     {

@@ -21,7 +21,7 @@
         <title>呼び出し手順</title>
         <synopsis>
             x = bytecode(f)
-            f= bytecode(X)
+            f = bytecode(x)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -48,16 +48,16 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>x= bytecode(f) </literal> は,
-            Scilab関数 <literal>f</literal> の "バイトコード"を
-            整数配列<literal>x</literal>に返します.
+            <code>x = bytecode(f)</code> は,
+            Scilab関数 <varname>f</varname> の "バイトコード"を
+            整数配列<varname>x</varname>に返します.
         </para>
         <para>
-            <literal>f= bytecode(x) </literal> は,
-            Scilabの整数配列 <literal>x</literal> で指定した
-            "バイトコード"が示す関数 <literal>f</literal> を
+            <code>f= bytecode(x)</code> は,
+            Scilabの整数配列 <varname>x</varname> で指定した
+            "バイトコード"が示す関数 <varname>f</varname> を
             返します.
-            <literal>x</literal> の有効性は確認されないことに
+            <varname>x</varname> の有効性は確認されないことに
             注意してください.
         </para>
     </refsection>
@@ -70,7 +70,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function a=foo(),a=sin(3),endfunction
 bytecode(foo)
  ]]></programlisting>

@@ -259,7 +259,7 @@ static int moveObj(int iObjUID, double displacement[], int displacementSize)
             }
 
             /* The z coordinates flag must be set explicitely for now. */
-            setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z_COORDINATES_SET__, &zCoordinatesSet, jni_int, 1);
+            setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_Z_COORDINATES_SET__, &zCoordinatesSet, jni_int, 1);
 
             /* Model data has been updated by direct pointer access, trigger update within the renderer. */
             setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z__, dataZ, jni_double_vector, iNum);

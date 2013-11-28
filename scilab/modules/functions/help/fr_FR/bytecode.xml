@@ -18,7 +18,7 @@
         <title>Séquence d'appel</title>
         <synopsis>
             x = bytecode(f)
-            f= bytecode(X)
+            f = bytecode(x)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -36,7 +36,7 @@
                 <term>x</term>
                 <listitem>
                     <para>
-                        un vecteur d'entiers, 
+                        un vecteur d'entiers,
                     </para>
                 </listitem>
             </varlistentry>
@@ -45,16 +45,18 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>x= bytecode(f) </literal> retourne le pseudo code de la fonction
-            <literal>f</literal> dans le vecteur d'entiers Scilab
-            <literal>x</literal>.
+            <code>x = bytecode(f)</code> retourne le pseudo code de la fonction
+            <varname>f</varname> dans le vecteur d'entiers Scilab
+            <varname>x</varname>.
         </para>
         <para>
-            <literal>f= bytecode(x) </literal> retourne dans
-            <literal>f</literal> la fonction correspondant au pseudo code
+            <code>f= bytecode(x)</code> retourne dans
+            <varname>f</varname> la fonction correspondant au pseudo code
             donné dans le vecteur d'entiers
-            <literal>x</literal>. Attention la validité du pseudo code
-            n'est pas vérifiée.
+            <varname>x</varname>.
+            <warning>
+                Attention la validité du pseudo code n'est pas vérifiée.
+            </warning>
         </para>
     </refsection>
     <refsection>
@@ -67,7 +69,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function a=foo(),a=sin(3),endfunction
 bytecode(foo)
  ]]></programlisting>

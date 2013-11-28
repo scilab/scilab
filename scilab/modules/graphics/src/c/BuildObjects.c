@@ -228,7 +228,7 @@ int ConstructSubWin(int iParentfigureUID)
  * This function is to be used with objects including a text object.
  */
 int allocateText(int iParentsubwinUID,
-                 char * * text,
+                 char ** text,
                  int nbRow,
                  int nbCol,
                  double x,
@@ -578,7 +578,7 @@ int allocatePolyline(int iParentsubwinUID, double *pvecx, double *pvecy, double 
          * Sets the number of elements (vertices composing the polyline) and allocates the coordinates array
          * The FALSE value is used to identify a failed memory allocation for now.
          */
-        result = setGraphicObjectProperty(iObj, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 2);
+        result = setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 2);
 
         if (result == FALSE)
         {
@@ -638,7 +638,7 @@ int allocatePolyline(int iParentsubwinUID, double *pvecx, double *pvecy, double 
          * x, y or z coordinates, and initializing coordinates to 0 during allocation
          * to ensure consistency
          */
-        setGraphicObjectProperty(iObj, __GO_DATA_MODEL_COORDINATES__, dataVector, jni_double, n1);
+        setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_COORDINATES__, dataVector, jni_double, n1);
 
         FREE(dataVector);
 
@@ -1058,7 +1058,7 @@ int ConstructSurface(int iParentsubwinUID, sciTypeOf3D typeof3d,
         gridSize[3] = *n2;
 
         /* Allocates the coordinates arrays */
-        result = setGraphicObjectProperty(iObj, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+        result = setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
     }
     /* Fac3d case */
     else
@@ -1075,7 +1075,7 @@ int ConstructSurface(int iParentsubwinUID, sciTypeOf3D typeof3d,
         numElementsArray[2] = nc;
 
         /* Allocates the coordinates and color arrays */
-        result = setGraphicObjectProperty(iObj, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 3);
+        result = setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 3);
     }
 
     if (result == 0)
@@ -1085,14 +1085,18 @@ int ConstructSurface(int iParentsubwinUID, sciTypeOf3D typeof3d,
         return 0;
     }
 
-    setGraphicObjectProperty(iObj, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, nx);
-    setGraphicObjectProperty(iObj, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, ny);
-    setGraphicObjectProperty(iObj, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, nz);
+    setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, nx);
+    setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, ny);
 
     /* Add the color matrix dimensions as a property ? */
     if (nc > 0)
     {
+        setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, nz);
         setGraphicObjectProperty(iObj, __GO_DATA_MODEL_COLORS__, zcol, jni_double_vector, nc);
+    }
+    else
+    {
+        setGraphicObjectProperty(iObj, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, nz);
     }
 
     /*-------END Replaced by: --------*/
@@ -1209,7 +1213,7 @@ int ConstructGrayplot(int iParentsubwinUID, double *pvecx, double *pvecy, double
     }
 
     /* Allocates the coordinates arrays */
-    result = setGraphicObjectProperty(iObj, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+    result = setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
 
     if (result == 0)
     {
@@ -1221,8 +1225,8 @@ int ConstructGrayplot(int iParentsubwinUID, double *pvecx, double *pvecy, double
     /* Only for Grayplot objects, for Matplot objects, x and y coordinates are automatically computed */
     if (type == 0)
     {
-        setGraphicObjectProperty(iObj, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, n1);
-        setGraphicObjectProperty(iObj, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, n2);
+        setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, n1);
+        setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, n2);
     }
 
     if (type == 0)
@@ -1320,7 +1324,7 @@ int ConstructImplot(int iParentsubwinUID, double *pvecx, unsigned char *pvecz, i
     gridSize[3] = 1;
 
     /* Allocates the coordinates arrays */
-    result = setGraphicObjectProperty(iObj, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+    result = setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
     if (result == 0)
     {
         deleteGraphicObject(iObj);
@@ -1340,7 +1344,7 @@ int ConstructImplot(int iParentsubwinUID, double *pvecx, unsigned char *pvecz, i
     numElements = (n1 - 1) * (n2 - 1);
     if (plottype != -1)
     {
-        setGraphicObjectProperty(iObj, __GO_DATA_MODEL_MATPLOT_DATA_INFOS__, &plottype, jni_int, 1);
+        setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_MATPLOT_DATA_INFOS__, &plottype, jni_int, 1);
     }
 
     setGraphicObjectProperty(iObj, __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__, pvecz, jni_double_vector, numElements);
@@ -1598,7 +1602,7 @@ int ConstructFec(int iParentsubwinUID, double *pvecx, double *pvecy, double *pno
     }
 
     /* Allocates the coordinates array */
-    result = setGraphicObjectProperty(iObj, __GO_DATA_MODEL_NUM_VERTICES__, &Nnode, jni_int, 1);
+    result = setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_NUM_VERTICES__, &Nnode, jni_int, 1);
 
     if (result == 0)
     {
@@ -1608,7 +1612,7 @@ int ConstructFec(int iParentsubwinUID, double *pvecx, double *pvecy, double *pno
     }
 
     /* Allocates the triangle indices and values array */
-    result = setGraphicObjectProperty(iObj, __GO_DATA_MODEL_NUM_INDICES__, &Ntr, jni_int, 1);
+    result = setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_NUM_INDICES__, &Ntr, jni_int, 1);
 
     if (result == 0)
     {
@@ -1617,11 +1621,11 @@ int ConstructFec(int iParentsubwinUID, double *pvecx, double *pvecy, double *pno
         return 0;
     }
 
-    setGraphicObjectProperty(iObj, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, Nnode);
-    setGraphicObjectProperty(iObj, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, Nnode);
+    setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, Nnode);
+    setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, Nnode);
 
     /* Fec-specific property: triangle indices plus special values (triangle number and flag) */
-    setGraphicObjectProperty(iObj, __GO_DATA_MODEL_FEC_TRIANGLES__, pnoeud, jni_double_vector, Ntr);
+    setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_FEC_TRIANGLES__, pnoeud, jni_double_vector, Ntr);
 
     /* Function values */
     setGraphicObjectProperty(iObj, __GO_DATA_MODEL_VALUES__, pfun, jni_double_vector, Nnode);

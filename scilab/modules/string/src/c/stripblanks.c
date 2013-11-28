@@ -90,7 +90,8 @@ void stripblanks(char **InputStrings, char **OutputStrings, int InputStringsDim,
         /* search character ' ' or TAB from beginning of the string */
         if (lengthInput_Two > 0)
         {
-            for (i = 0; i < (int)strlen(InputStrings[x]); i++)
+            int len_InputStrings = (int)strlen(InputStrings[x]);
+            for (i = 0; i < len_InputStrings; i++)
             {
                 if (withTAB)
                 {

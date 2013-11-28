@@ -20,25 +20,22 @@
 //
 
 function [x,y,typ]=ZCROSS_f(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         while %t do
             [ok,in,exprs]=scicos_getvalue(["Set Zero-Crossing parameters";..
             "All surfaces must cross together"],..
             "Input size",list("vec",1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             in=int(in)
             if in<=0 then
                 message("Block must have at least one input")
@@ -52,7 +49,8 @@ function [x,y,typ]=ZCROSS_f(job,arg1,arg2)
                 model.in=in
                 model.nzcross=in
                 model.firing=-1 //compatibility
-                x.graphics=graphics;x.model=model
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
@@ -71,7 +69,7 @@ function [x,y,typ]=ZCROSS_f(job,arg1,arg2)
         model.dep_ut=[%t %f]
 
         exprs=strcat(sci2exp(in))
-        gr_i=["xstringb(orig(1),orig(2),''Zcross'',sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([2 2],model,exprs,gr_i)
     end
 endfunction

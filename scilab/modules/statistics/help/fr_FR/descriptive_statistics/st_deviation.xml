@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2000 - INRIA 
- * 
+ * Copyright (C) 2000 - INRIA
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="st_deviation">
     <refnamediv>
         <refname>st_deviation</refname>
-        <refpurpose>écart-type des termes d'une matrice  </refpurpose>
+        <refpurpose>
+            écart-type des termes d'une matrice
+            <emphasis role="bold">Cette fonction est obsolète.</emphasis>
+        </refpurpose>
     </refnamediv>
     <refnamediv xml:id="stdev">
         <refname>stdev</refname>
@@ -50,6 +53,10 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+            Cette fonction est <emphasis role="bold">obsolète</emphasis>,
+            utilisez <link linkend="stdev">stdev</link> à la place.
+        </warning>
         <para>
             st_deviation calcule l'estimateur sans biais de l'écart-type (normalisé par N-1, ou N est le nombre d'échantillons).
         </para>
@@ -67,7 +74,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=[1,2,10;7,7.1,7.01];
 st_deviation(A)
 st_deviation(A,'r')
@@ -93,5 +100,16 @@ st_deviation(A,'c')
                 <link linkend="stdevf">stdevf</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    Fonction obsolète. Sera supprimée dans la version 5.5.1. Veuillez utiliser <link linkend="stdev">stdev</link> à la place.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -25,27 +25,15 @@ function [x,y,typ]=PDE(job,arg1,arg2)
     // Reference: "Scicos user guid", http://www.scicos.org                                       //
     //--------------------------------------------------------------------------------------------//
 
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
 
     select job
-    case "plot" then
-        if arg1.model.sim(2)==2004 then
-            CCC=[strsubst(arg1.model.sim(1),"_explicite","");"Explicite"]
-        elseif arg1.model.sim(2)==12004
-            CCC=[strsubst(arg1.model.sim(1),"_implicite","");"implicite"]
-        else
-            CCC="  PDE"
-        end
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;label=graphics.exprs
+        graphics=arg1.graphics;
+        label=graphics.exprs
         model=arg1.model;
         params_pde=label(1);
 
@@ -70,18 +58,25 @@ function [x,y,typ]=PDE(job,arg1,arg2)
             //**********************************
             // Get the name of the file
             //***********************************
-            okk=%f;rdnom="PDE";ok1=%t;
+            okk=%f;
+            rdnom="PDE";
+            ok1=%t;
             while %t do
                 [okk,rdnom,lab]=scicos_getvalue("PLEASE, GIVE US THE BLOCK''s NAME. ",..
                 "New block''s name :",list("str",1),label(3));
 
-                if okk==%f then ok1=%f;return; end
+                if okk==%f then
+                    ok1=%f;
+                    return;
+                end
                 label(3)=lab;
                 rdnom=stripblanks(rdnom);
                 if rdnom==emptystr() then
                     ok1=%f;x_message("sorry C file name not defined");
                 end
-                if ok1 then break,end
+                if ok1 then
+                    break,
+                end
             end
 
             // arbre de decision
@@ -104,7 +99,9 @@ function [x,y,typ]=PDE(job,arg1,arg2)
                 else
                     delta=evstr(a4)^2-4*evstr(a1)*evstr(a2);
                 end
-                if (delta==[]) then, delta=0; end
+                if (delta==[]) then,
+                    delta=0;
+                end
                 type_meth=arbre_decision(delta);
             end
             // a voir si c'est à rajouter pour ne pas regenerer dans le cas d'eval
@@ -159,7 +156,9 @@ function [x,y,typ]=PDE(job,arg1,arg2)
             // if (fun(3) == "clickin") then
             // always ulink and link
             [ok1]=CFORTREDP(rdnom,tt);
-            if ~ok1 then break,end
+            if ~ok1 then
+                break,
+            end
             //end
 
             if ~ok then
@@ -192,8 +191,7 @@ function [x,y,typ]=PDE(job,arg1,arg2)
         "0","0","0","0","","","","","","","","","0","IN_CL1(t)","0","IN_CL2(t)","");
         // dans label on mis infos de scicos_getvalue, infos ihm et le code C
         label=list(params_pde,[],"");
-        gr_i=["txt=CCC;";
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([3 3],model,label,gr_i)
 
     end

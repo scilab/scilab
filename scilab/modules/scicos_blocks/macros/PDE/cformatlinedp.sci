@@ -42,15 +42,27 @@ function t1=cformatlinedp(t ,l,sep)
     bl=part(" ",ones(1,nw))
     l1=l-nw;first=%t
     while %t
-        if length(t)<=l then t1=[t1;bl+t],return,end
+        if length(t)<=l then
+            t1=[t1;bl+t],
+            return,
+        end
         k=strindex(t,sep);
-        if k==[] then t1=[t1;bl+t],return,end
+        if k==[] then
+            t1=[t1;bl+t],
+            return,
+        end
         k($+1)=length(t)+1 // positions of the commas
         i=find(k(1:$-1)<=l&k(2:$)>l) //nearest left comma (reltively to l)
-        if i==[] then i=1,end
+        if i==[] then
+            i=1,
+        end
         t1=[t1;bl+part(t,1:k(i))]
         t=part(t,k(i)+1:length(t))
-        if first then l1=l1-2;bl=bl+"  ";first=%f;end
+        if first then
+            l1=l1-2;
+            bl=bl+"  ";
+            first=%f;
+        end
     end
 endfunction
 

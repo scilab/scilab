@@ -195,11 +195,14 @@ static BOOL Is_a_correct_function_name(char *functionname)
         if ( (strlen(functionname) > 0) && (strlen(functionname) <  nlgh) )
         {
             int i = 0;
+            int len_functionname = (int)strlen(functionname);
+
             if (isdigit(functionname[0]))
             {
                 return FALSE;
             }
-            for (i = 1; i < (int)strlen(functionname); i++)
+
+            for (i = 1; i < len_functionname; i++)
             {
                 /*
                 ???? = 3

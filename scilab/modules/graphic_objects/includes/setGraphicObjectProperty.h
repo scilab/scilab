@@ -23,5 +23,7 @@
 
 GRAPHIC_OBJECTS_IMPEXP void setGraphicObjectRelationship(int iParentId, int iChildId);
 GRAPHIC_OBJECTS_IMPEXP BOOL setGraphicObjectProperty(int iUID, const int _iPropertyName, void const* _pvValue, enum _ReturnType_ _valueTtype, int numElements);
+GRAPHIC_OBJECTS_IMPEXP BOOL setGraphicObjectPropertyAndNoWarn(int iUID, const int _iPropertyName, void const* _pvValue, enum _ReturnType_ _valueTtype, int numElements);
+GRAPHIC_OBJECTS_IMPEXP BOOL setGraphicObjectPropertyAndWarn(int iUID, const int _iPropertyName, void const* _pvValue, enum _ReturnType_ _valueTtype, int numElements, int warnJava);
 
 #endif /* !__SETGRAPHICOBJECTPROPERTY_H__ */

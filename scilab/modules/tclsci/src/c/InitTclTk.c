@@ -210,7 +210,7 @@ static void *DaemonOpenTCLsci(void* in)
     // TCL command. This causes any TCL application to start
     // and run as if it's in the main program thread.
     startTclLoop();
-    return(0);
+    return (0);
 
 }
 /*--------------------------------------------------------------------------*/
@@ -255,13 +255,14 @@ static char *GetSciPath(void)
     char *PathUnix = NULL;
     char *SciPathTmp = NULL;
     int i = 0;
+    int lenPathUnix = 0;
 
     SciPathTmp = getSCIpath();
 
     if (SciPathTmp)
     {
         PathUnix = strdup(SciPathTmp);
-        for (i = 0; i < (int)strlen(PathUnix); i++)
+        for (i = 0; i < lenPathUnix; i++)
         {
             if (PathUnix[i] == '\\')
             {

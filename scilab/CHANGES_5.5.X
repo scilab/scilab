@@ -12,6 +12,20 @@ New Features
 
 * modulo() and pmodulo() now support integers & hypermatrices (See bug #13002).
 
+* test_run() can now separate 32bits systems from 64bits ones.
+
+
+Obsolete & Removed Functions
+============================
+
+* msd and st_deviation tagged as obsolete (See bug #7593). Will be removed in Scilab 5.5.1.
+  Please use stdev instead.
+
+* pcg tagged as obsolete. Will be removed in Scilab 5.5.1.
+  Please use conjgrad instead.
+
+* milk_drop tagged as obsolete. Will be removed in Scilab 5.5.1.
+
 
 Scilab Bug Fixes
 ================
@@ -20,7 +34,13 @@ Scilab Bug Fixes
 
 * Bug #4401 fixed - isnum did not recognize all constants or some complex numbers.
 
+* Bug #4649 fixed - License issue in the xs2ppm help page fixed.
+
+* Bug #4965 fixed - Setting links property for a handle of type legend did not work.
+
 * Bug #5016 fixed - condestsp could return different results when repeated calls were performed.
+
+* Bug #5886 fixed - There was no property labels_font_style on axis.
 
 * Bug #6615 fixed - ui(get|put)file did not center the file dialog on the last focused window.
 
@@ -35,12 +55,18 @@ Scilab Bug Fixes
 
 * Bug #7047 fixed - milk_drop is now obsolete. It will be removed in Scilab 5.5.1, but will be kept as a demo.
 
+* Bug #7084 fixed - Old, not documented and deprecated gr_menu function removed.
+
 * Bug #7133 fixed - help_from_sci with no input argument now launches a full demonstration.
 
 * Bug #7570 fixed - The switch criterion on x and y is now explicited in beta() help page.
 
+* Bug #7593 fixed - stdev now encompasses msd and st_deviation thanks to a new optional input argument.
+
 * Bug #7705 fixed - In the Genetic algorithms help pages, documented the
                     "dimension", "minbounds" and "maxbounds" fields.
+
+* Bug #7739 fixed - Axis position was invalid in log modes.
 
 * Bug #7858 fixed - variance and variancef can now return the mean of the input
                     in a new output argument and take the a priori mean as input.
@@ -50,6 +76,10 @@ Scilab Bug Fixes
 * Bug #8031 fixed - cdfgam error message fixed.
 
 * Bug #8060 fixed - Display of a list improved in the variable browser.
+
+* Bug #8133 fixed - Ticks disappeared in planar 3D view.
+
+* Bug #8196 fixed - Wrong error message with negative thickness.
 
 * Bug #8231 fixed - xrect help page did not say that clipping property was inherited.
 
@@ -69,14 +99,28 @@ Scilab Bug Fixes
 
 * Bug #9697 fixed - Printed information for optim "qn" and "gc" with bounds and imp=1 fixed.
 
+* Bug #9701 fixed - optim with "qn" option was failing for large problems.
+
+* Bug #9840 fixed - Default G tolerance in lsqrsolve was too large.
+
+* Bug #10012 fixed - lmisolver and lmitool called with no input now produce errors.
+
 * Bug #10175 fixed - Clearer example added for sp2adj to adj2sp conversion (and backwards conversion).
 
 * Bug #10234 fixed - reglin function moved from CACSD to Statistics module.
+
+* Bug #10243 fixed - fun2string(X) called X before returning its code.
 
 * Bug #10271 fixed - ordmmd now checks the consistency of the third input argument with the
                      input matrix defined by the two first input arguments.
 
 * Bug #10273 fixed - spchol help page now displays an example showing how to use its output arguments.
+
+* Bug #10936 fixed - Scilab hung with invalid strf in plot2d.
+
+* Bug #11007, #11008 & #11009 fixed - New function conjgrad (Conjugate Gradient methods "pcg", "cgs", "bicg" and "bicgstab").
+
+* Bug #11305 fixed - Performances improved with a better way to update data.
 
 * Bug #11571 fixed - x_mdialog did not let the Look&Feel select the window size.
 
@@ -88,9 +132,14 @@ Scilab Bug Fixes
 
 * Bug #12492 fixed - Exported EPS files were invalid when dash patterns were too long.
 
+* Bug #12673 fixed - Ticks were drawn outside of axes area.
+
 * Bug #12682 fixed - Key events were disabled after zooming.
 
 * Bug #12769 fixed - xset("window", 1) did not set the current axes.
+
+* Bug #12784 fixed - Misleading error message in many functions when passing an integer 
+                     argument instead of double argument fixed.
 
 * Bug #12882 fixed - Some help pages were not clear.
 
@@ -129,9 +178,11 @@ Scilab Bug Fixes
 
 * Bug #12992 fixed - The sigma value was always equals to "LM" in eigs.
 
+* Bug #12993 fixed - stdev returned value depended on 'x' being defined in the environment.
+
 * Bug #13000 fixed - []./int8(3) and on int8(3)./[] led to an endless recursive.
 
-* Bug #13002 fixed - modulo() and pmodulo() did not support integers & hypermatrices.
+* Bug #13002 fixed - modulo and pmodulo did not support integers & hypermatrices.
 
 * Bug #13003 fixed - String to enum converter added to Java external objects.
 
@@ -193,6 +244,8 @@ Scilab Bug Fixes
 * Bug #13092 fixed - Optimizations now check the user function output (must be a real).
 
 * Bug #13093 fixed - Removed trailing "\n" in the head_comments error message.
+
+* Bug #13101 fixed - When x-axis was in reverse position x_location='origin' failed.
 
 
 Xcos Bug Fixes
@@ -283,8 +336,6 @@ BDF methods with direct and preconditioned Krylov linear solvers, based on ODEPA
   Calling Scilab with this option will leave the console box window opened at startup.
 
 * License update: switch to the CeCILL 2.1.
-
-* test_run() can now separate 32bits systems from 64bits ones.
 
 
 Improvements
@@ -391,8 +442,6 @@ Obsolete & Removed Functions
 
 * fprintf removed, please use mfprintf for files opened with mopen or write for files
   opened with file instead.
-
-* milk_drop tagged as obsolete. Will be removed in Scilab 5.5.1.
 
 
 Scilab Bug Fixes

@@ -17,39 +17,40 @@
 // =============================================================================
 
 assert_checkfalse(execstr("modulo", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "modulo", 2); 
+refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "modulo", 2);
 assert_checkerror("modulo", refMsg);
 
 assert_checkfalse(execstr("pmodulo", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "pmodulo", 2); 
+refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "pmodulo", 2);
 assert_checkerror("pmodulo", refMsg);
 
 assert_checkfalse(execstr("modulo(1)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "modulo", 2); 
+refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "modulo", 2);
 assert_checkerror("modulo(1)", refMsg);
 
 assert_checkfalse(execstr("pmodulo(1)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "pmodulo", 2); 
+refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "pmodulo", 2);
 assert_checkerror("pmodulo(1)", refMsg);
 
 assert_checkfalse(execstr("modulo(4*%i,1)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A real expected.\n"), "modulo", 1); 
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected.\n"), "modulo", 1);
 assert_checkerror("modulo(4*%i,1)", refMsg);
 
 assert_checkfalse(execstr("modulo(10,%i)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A real expected.\n"), "modulo", 2); 
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected.\n"), "modulo", 2);
 assert_checkerror("modulo(10,%i)", refMsg);
 
 assert_checkfalse(execstr("pmodulo(4*%i,1)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A real expected.\n"), "pmodulo", 1); 
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected.\n"), "pmodulo", 1);
 assert_checkerror("pmodulo(4*%i,1)", refMsg);
 
 assert_checkfalse(execstr("pmodulo(10,%i)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A real expected.\n"), "pmodulo", 2); 
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected.\n"), "pmodulo", 2);
 assert_checkerror("pmodulo(10,%i)", refMsg);
 
 
 
 
 
-
+
+

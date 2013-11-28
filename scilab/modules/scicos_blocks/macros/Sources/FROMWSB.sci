@@ -20,17 +20,10 @@
 //
 
 function [x,y,typ] = FROMWSB(job,arg1,arg2)
-    x=[];y=[],typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        varnam=string(arg1.model.rpar.objs(1).graphics.exprs(1))
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         // look for the internal edge trigger block
         for i=1:length(arg1.model.rpar.objs) do
@@ -139,9 +132,7 @@ function [x,y,typ] = FROMWSB(job,arg1,arg2)
         pout=4,..
         pein=2,..
         peout=2,..
-        gr_i=list(..
-        ["txt=[''From workspace''];";
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"],8),..
+        gr_i=[],..
         id="",..
         in_implicit=[],..
         out_implicit="E"),..
@@ -189,7 +180,7 @@ function [x,y,typ] = FROMWSB(job,arg1,arg2)
         pout=[],..
         pein=[],..
         peout=[],..
-        gr_i=list(" ",8),..
+        gr_i=[],..
         id="",..
         in_implicit="E",..
         out_implicit=[]),..
@@ -249,16 +240,7 @@ function [x,y,typ] = FROMWSB(job,arg1,arg2)
         nmode=0,..
         equations=list())
         //## modif made by hand
-        gr_i=["xstringb(orig(1),orig(2),''From workspace'',sz(1),sz(2),''fill'')"
-        "txt=varnam;"
-        "style=5;"
-        "rectstr=stringbox(txt,orig(1),orig(2),0,style,1);"
-        "if ~exists(''%zoom'') then %zoom=1, end;"
-        "w=(rectstr(1,3)-rectstr(1,2))*%zoom;"
-        "h=(rectstr(2,2)-rectstr(2,4))*%zoom;"
-        "xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');"
-        "e=gce();"
-        "e.font_style=style;"]
+        gr_i=[]
         x=standard_define([5 2],model,[],gr_i)
     end
 endfunction

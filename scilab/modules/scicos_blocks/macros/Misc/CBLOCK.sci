@@ -20,19 +20,14 @@
 //
 
 function [x,y,typ]=CBLOCK(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1
-        model=arg1.model;graphics=arg1.graphics;
+        model=arg1.model;
+        graphics=arg1.graphics;
         label=graphics.exprs;
         while %t do
             [ok,function_name,impli,i,o,ci,co,xx,ng,z,rpar,ipar,auto0,depu,dept,lab]=..
@@ -54,25 +49,53 @@ function [x,y,typ]=CBLOCK(job,arg1,arg2)
             list("str",1,"str",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,..
             "vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)",..
             "str",1,"str",1),label(1))
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             label(1)=lab
             funam=stripblanks(function_name)
-            xx=xx(:);z=z(:);rpar=rpar(:);ipar=int(ipar(:));
-            nx=size(xx,1);nz=size(z,1);
+            xx=xx(:);
+            z=z(:);
+            rpar=rpar(:);
+            ipar=int(ipar(:));
+            nx=size(xx,1);
+            nz=size(z,1);
             i=int(i(:));
-            o=int(o(:));nout=size(o,1);
-            ci=int(ci(:));nevin=size(ci,1);
-            co=int(co(:));nevout=size(co,1);
-            if part(impli,1)=="y" then funtyp=12004, else funtyp=2004,end
-            if [ci;co]<>[] then
-                if max([ci;co])>1 then message("vector event links not supported");ok=%f;end
+            o=int(o(:));
+            nout=size(o,1);
+            ci=int(ci(:));
+            nevin=size(ci,1);
+            co=int(co(:));
+            nevout=size(co,1);
+            if part(impli,1)=="y" then
+                funtyp=12004,
+            else
+                funtyp=2004,
             end
-            depu=stripblanks(depu);if part(depu,1)=="y" then depu=%t; else depu=%f;end
-            dept=stripblanks(dept);if part(dept,1)=="y" then dept=%t; else dept=%f;end
+            if [ci;co]<>[] then
+                if max([ci;co])>1 then
+                    message("vector event links not supported");
+                    ok=%f;
+                end
+            end
+            depu=stripblanks(depu);
+            if part(depu,1)=="y" then
+                depu=%t;
+            else
+                depu=%f;
+            end
+            dept=stripblanks(dept);
+            if part(dept,1)=="y" then
+                dept=%t;
+            else
+                dept=%f;
+            end
             dep_ut=[depu dept];
 
 
-            if funam==" " then break,end
+            if funam==" " then
+                break,
+            end
 
             if model.sim(1)<>funam|sign(size(model.state,"*"))<>sign(nx)|..
                 sign(size(model.dstate,"*"))<>sign(nz)|model.nzcross<>ng|..
@@ -85,7 +108,9 @@ function [x,y,typ]=CBLOCK(job,arg1,arg2)
 
                 [ok,tt,cancel]=CFORTR2(funam,tt)
                 if ~ok then
-                    if cancel then break,end
+                    if cancel then
+                        break,
+                    end
                 else
                     [model,graphics,ok]=check_io(model,graphics,i,o,ci,co)
                     if ok then
@@ -109,7 +134,9 @@ function [x,y,typ]=CBLOCK(job,arg1,arg2)
                     end
                 end
             end
-            if ok|cancel then break,end
+            if ok|cancel then
+                break,
+            end
         end
 
     case "define" then
@@ -145,7 +172,7 @@ function [x,y,typ]=CBLOCK(job,arg1,arg2)
         sci2exp(x0),sci2exp(0),sci2exp(z0),sci2exp(rpar),sci2exp(ipar),..
         sci2exp(auto),"y","n"]',[])
 
-        gr_i=["xstringb(orig(1),orig(2),''C block2'',sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([4 2],model,label,gr_i)
     end
 endfunction

@@ -355,12 +355,10 @@ public class GraphicController {
         /* Object updates can now be performed. */
         if (oldParent != null && oldParent instanceof Integer && ((Integer)oldParent) != 0) {
             objectUpdate((Integer)oldParent, GraphicObjectProperties.__GO_CHILDREN__);
-            objectUpdate((Integer)oldParent, GraphicObjectProperties.__GO_DATATIPS__);
         }
 
         if (parentId != null && parentId != 0) {
             objectUpdate(parentId, GraphicObjectProperties.__GO_CHILDREN__);
-            objectUpdate(parentId, GraphicObjectProperties.__GO_DATATIPS__);
         }
 
         // Useless (already done in setProperty(childId, GraphicObjectProperties.__GO_PARENT__, parentId);)

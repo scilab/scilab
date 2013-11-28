@@ -87,41 +87,30 @@ int NgonPolylineData::getPropertyFromName(int propertyName)
 
 int NgonPolylineData::setDataProperty(int property, void const* value, int numElements)
 {
-    if (property == NUM_ELEMENTS_ARRAY)
+    switch (property)
     {
-        return setNumElementsArray((int const*) value);
-    }
-    else if (property == X_COORDINATES_SHIFT)
-    {
-        return setXCoordinatesShift((double const*) value, numElements);
-    }
-    else if (property == Y_COORDINATES_SHIFT)
-    {
-        return setYCoordinatesShift((double const*) value, numElements);
-    }
-    else if (property == Z_COORDINATES_SHIFT)
-    {
-        return setZCoordinatesShift((double const*) value, numElements);
-    }
-    else if (property == X_COORDINATES_SHIFT_SET)
-    {
-        setXCoordinatesShiftSet(*((int const*) value));
-    }
-    else if (property == Y_COORDINATES_SHIFT_SET)
-    {
-        setYCoordinatesShiftSet(*((int const*) value));
-    }
-    else if (property == Z_COORDINATES_SHIFT_SET)
-    {
-        setZCoordinatesShiftSet(*((int const*) value));
-    }
-    else if (property == Z_COORDINATES_SET)
-    {
-        setZCoordinatesSet(*((int const*) value));
-    }
-    else
-    {
-        return NgonGeneralData::setDataProperty(property, value, numElements);
+        case NUM_ELEMENTS_ARRAY :
+            return setNumElementsArray((int const*) value);
+        case X_COORDINATES_SHIFT :
+            return setXCoordinatesShift((double const*) value, numElements);
+        case Y_COORDINATES_SHIFT :
+            return setYCoordinatesShift((double const*) value, numElements);
+        case Z_COORDINATES_SHIFT :
+            return setZCoordinatesShift((double const*) value, numElements);
+        case X_COORDINATES_SHIFT_SET :
+            setXCoordinatesShiftSet(*((int const*) value));
+            break;
+        case Y_COORDINATES_SHIFT_SET :
+            setYCoordinatesShiftSet(*((int const*) value));
+            break;
+        case Z_COORDINATES_SHIFT_SET :
+            setZCoordinatesShiftSet(*((int const*) value));
+            break;
+        case Z_COORDINATES_SET :
+            setZCoordinatesSet(*((int const*) value));
+            break;
+        default :
+            return NgonGeneralData::setDataProperty(property, value, numElements);
     }
 
     return 1;
@@ -129,43 +118,35 @@ int NgonPolylineData::setDataProperty(int property, void const* value, int numEl
 
 void NgonPolylineData::getDataProperty(int property, void **_pvData)
 {
-    if (property == X_COORDINATES_SHIFT)
+    switch (property)
     {
-        *_pvData = getXCoordinatesShift();
+        case X_COORDINATES_SHIFT :
+            *_pvData = getXCoordinatesShift();
+            break;
+        case Y_COORDINATES_SHIFT :
+            *_pvData = getYCoordinatesShift();
+            break;
+        case Z_COORDINATES_SHIFT :
+            *_pvData = getZCoordinatesShift();
+            break;
+        case NUM_ELEMENTS :
+            ((int *) *_pvData)[0] = getNumElements();
+            break;
+        case X_COORDINATES_SHIFT_SET :
+            ((int *) *_pvData)[0] = getXCoordinatesShiftSet();
+            break;
+        case Y_COORDINATES_SHIFT_SET :
+            ((int *) *_pvData)[0] = getYCoordinatesShiftSet();
+            break;
+        case Z_COORDINATES_SHIFT_SET :
+            ((int *) *_pvData)[0] = getZCoordinatesShiftSet();
+            break;
+        case Z_COORDINATES_SET :
+            ((int *) *_pvData)[0] = getZCoordinatesSet();
+            break;
+        default :
+            NgonGeneralData::getDataProperty(property, _pvData);
     }
-    else if (property == Y_COORDINATES_SHIFT)
-    {
-        *_pvData = getYCoordinatesShift();
-    }
-    else if (property == Z_COORDINATES_SHIFT)
-    {
-        *_pvData = getZCoordinatesShift();
-    }
-    else if (property == NUM_ELEMENTS)
-    {
-        ((int *) *_pvData)[0] = getNumElements();
-    }
-    else if (property == X_COORDINATES_SHIFT_SET)
-    {
-        ((int *) *_pvData)[0] = getXCoordinatesShiftSet();
-    }
-    else if (property == Y_COORDINATES_SHIFT_SET)
-    {
-        ((int *) *_pvData)[0] = getYCoordinatesShiftSet();
-    }
-    else if (property == Z_COORDINATES_SHIFT_SET)
-    {
-        ((int *) *_pvData)[0] = getZCoordinatesShiftSet();
-    }
-    else if (property == Z_COORDINATES_SET)
-    {
-        ((int *) *_pvData)[0] = getZCoordinatesSet();
-    }
-    else
-    {
-        NgonGeneralData::getDataProperty(property, _pvData);
-    }
-
 }
 
 int NgonPolylineData::getNumElements(void)
@@ -347,7 +328,7 @@ int NgonPolylineData::setNumElementsArray(int const* numElementsArray)
         return 1;
     }
 
-    if (numGons*numVerticesPerGon != newNumElements)
+    if (numGons * numVerticesPerGon != newNumElements)
     {
         double* newCoordinates = NULL;
         double* xShiftNew = NULL;

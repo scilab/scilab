@@ -22,6 +22,7 @@ int sci_mprintf(char *fname, unsigned long fname_len)
     static int l1, m1, n1, lcount, rval, k ;
 
     char *ptrFormat   = NULL;
+    int lenptrFormat  = 0;
     int i             = 0;
     int NumberPercent = 0;
     int NumberCols    = 0;
@@ -46,8 +47,8 @@ int sci_mprintf(char *fname, unsigned long fname_len)
     GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
 
     ptrFormat = cstk(l1);
-
-    for ( i = 0; i < (int)strlen(ptrFormat); i++)
+    lenptrFormat = (int)strlen(ptrFormat);
+    for ( i = 0; i < lenptrFormat; i++)
     {
         if (ptrFormat[i] == '%')
         {

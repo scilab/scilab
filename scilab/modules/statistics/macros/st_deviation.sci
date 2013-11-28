@@ -1,4 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: made obsolete, merged in stdev
 // Copyright (C) XXXX - INRIA
 // Copyright (C) XXXX - ENPC
 // Copyright (C) XXXX - Ecole des Mines de Nantes - Philippe Castagliola
@@ -10,9 +11,10 @@
 
 function sd=st_deviation(x,cr)
     //
+    warnobsolete("stdev", "5.5.1");
     if argn(2)<2 then cr="*",end
     if x == [] then sd=%nan;return ;end
-    if typeof(x)=="hypermat" then sd=%hm_st_deviation(x,cr),return,end
+    if typeof(x)=="hypermat" then sd=%hm_stdev(x,cr),return,end
     [m,n]=size(x);
     if cr=="*" then
         n=m*n

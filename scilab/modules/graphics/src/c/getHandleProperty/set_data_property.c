@@ -150,7 +150,7 @@ int setgrayplotdata(void* _pvCtx, int iObjUID, AssignedList * tlist)
     gridSize[3] = 1;
 
     /* Resizes the coordinates arrays if required */
-    result = setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+    result = setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
 
     if (result == FALSE)
     {
@@ -158,8 +158,8 @@ int setgrayplotdata(void* _pvCtx, int iObjUID, AssignedList * tlist)
         return SET_PROPERTY_ERROR;
     }
 
-    setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, nbRow[0]);
-    setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, nbRow[1]);
+    setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, nbRow[0]);
+    setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, nbRow[1]);
     setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, nbRow[2]*nbCol[2]);
 
     return SET_PROPERTY_SUCCEED;
@@ -367,7 +367,7 @@ int set3ddata(void* _pvCtx, int iObjUID, AssignedList * tlist)
         numElementsArray[1] = m1;
         numElementsArray[2] = m3n * n3n;
 
-        result = setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 3);
+        result = setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 3);
 
         if (result == 0)
         {
@@ -385,7 +385,7 @@ int set3ddata(void* _pvCtx, int iObjUID, AssignedList * tlist)
         gridSize[2] = m2;
         gridSize[3] = n2;
 
-        result = setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+        result = setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
 
         if (result == 0)
         {
@@ -394,20 +394,8 @@ int set3ddata(void* _pvCtx, int iObjUID, AssignedList * tlist)
         }
     }
 
-    setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, m1 * n1);
-    setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, m2 * n2);
-    setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, m3 * n3);
-
-    if (getAssignedListNbElement(tlist) == 4) /* F.Leray There is a color matrix */
-    {
-        inputColors = getCurrentDoubleMatrixFromList(_pvCtx, tlist, &m3n, &n3n);
-        nbInputColors = m3n * n3n;
-    }
-    else
-    {
-        inputColors = NULL;
-        nbInputColors = 0;
-    }
+    setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, m1 * n1);
+    setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, m2 * n2);
 
     /*
      * Plot 3d case not treated for now
@@ -415,7 +403,23 @@ int set3ddata(void* _pvCtx, int iObjUID, AssignedList * tlist)
      */
     if (isFac3d == 1)
     {
+        if (getAssignedListNbElement(tlist) == 4) /* F.Leray There is a color matrix */
+        {
+            inputColors = getCurrentDoubleMatrixFromList(_pvCtx, tlist, &m3n, &n3n);
+            nbInputColors = m3n * n3n;
+        }
+        else
+        {
+            inputColors = NULL;
+            nbInputColors = 0;
+        }
+
+        setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, m3 * n3);
         setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_COLORS__, inputColors, jni_double_vector, nbInputColors);
+    }
+    else
+    {
+        setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, m3 * n3);
     }
 
     /* Color vector/matrix dimensions: to be checked for MVC implementation */
@@ -654,12 +658,12 @@ int set_data_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
                 {
                     gridSize[0] = dims[1] + 1;
                     gridSize[2] = dims[0] + 1;
-                    setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+                    setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
                 }
 
                 if (plottype != -1)
                 {
-                    setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_MATPLOT_DATA_INFOS__, &plottype, jni_int, 1);
+                    setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_MATPLOT_DATA_INFOS__, &plottype, jni_int, 1);
                 }
                 setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__, l1, jni_double_vector, dims[0] * dims[1]);
             }
@@ -799,12 +803,12 @@ int set_data_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
             {
                 gridSize[0] = n + 1;
                 gridSize[2] = m + 1;
-                setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+                setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
             }
 
             if (plottype != -1)
             {
-                setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_MATPLOT_DATA_INFOS__, &plottype, jni_int, 1);
+                setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_MATPLOT_DATA_INFOS__, &plottype, jni_int, 1);
             }
 
             setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__, l, jni_double_vector, m * n);
@@ -815,13 +819,13 @@ int set_data_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
             {
                 gridSize[0] = nbCol + 1;
                 gridSize[2] = nbRow + 1;
-                setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+                setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
             }
 
             if ((DataType)datatype != MATPLOT_Double)
             {
                 plottype = buildMatplotType(MATPLOT_Double, (DataOrder)dataorder, (ImageType)imagetype);
-                setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_MATPLOT_DATA_INFOS__, &plottype, jni_int, 1);
+                setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_MATPLOT_DATA_INFOS__, &plottype, jni_int, 1);
             }
 
             setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__, _pvData, jni_double_vector, nbRow * nbCol);

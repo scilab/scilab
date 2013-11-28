@@ -21,17 +21,10 @@
 //
 
 function [x,y,typ]=INTMUL(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        sgn=arg1.model.ipar
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
         graphics=arg1.graphics
@@ -42,7 +35,9 @@ function [x,y,typ]=INTMUL(job,arg1,arg2)
             [msprintf(gettext("Set %s block parameters"),"INTMUL"); " "; gettext("Integer matrix multiplication");" ";],..
             [msprintf(gettext("Data Type %s"), "(3:int32, 4:int16, 5:int8, ...)"); gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")],..
             list("vec",1,"vec",1), exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
 
             it=Datatype*ones(1,2);
             ot=Datatype;
@@ -114,7 +109,8 @@ function [x,y,typ]=INTMUL(job,arg1,arg2)
             if ok then
                 model.ipar=np
                 graphics.exprs=exprs
-                x.graphics=graphics;x.model=model
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
@@ -135,8 +131,7 @@ function [x,y,typ]=INTMUL(job,arg1,arg2)
 
 
         exprs=[sci2exp(3);sci2exp(0)]
-        gr_i=["txt=['' INTMUL ''];";
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"]
+        gr_i=[]
         x=standard_define([2 2],model, exprs,gr_i)
     end
 endfunction

@@ -5,15 +5,15 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH GRAPHIC -->
+// <-- TEST WITH Ga rAPHIC -->
 
 assert_checkerror("autumncolormap(0,1,2,3)", "%s: Wrong number of input argument(s): %d expected.\n", 10000, "autumncolormap", 1);
 
-assert_checkerror("autumncolormap(%t)", "%s: Wrong type for input argument #%d: An integer value expected.\n", 10000, "autumncolormap", 1);
+assert_checkerror("autumncolormap(%t)", "%s: Wrong type for input argument #%d: a real scalar expected.\n", 10000, "autumncolormap", 1);
 
-assert_checkerror("autumncolormap(%i)", "%s: Wrong type for input argument #%d: An integer value expected.\n", 10000, "autumncolormap", 1);
+assert_checkerror("autumncolormap(%i)", "%s: Wrong type for input argument #%d: a real scalar expected.\n", 10000, "autumncolormap", 1);
 
-assert_checkerror("autumncolormap([0 1 2 3])", "%s: Wrong size for input argument #%d: An integer value expected.\n", 10000, "autumncolormap", 1);
+assert_checkerror("autumncolormap([0 1 2 3])", "%s: Wrong size for input argument #%d: a real scalar expected.\n", 10000, "autumncolormap", 1);
 
 assert_checkequal(autumncolormap(0), []);
 

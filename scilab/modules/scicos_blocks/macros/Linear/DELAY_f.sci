@@ -20,16 +20,10 @@
 //
 
 function [x,y,typ]=DELAY_f(job,arg1,arg2)
-    x=[];y=[],typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         // look for the children blocks
         ppath = list(0,0);
@@ -63,7 +57,9 @@ function [x,y,typ]=DELAY_f(job,arg1,arg2)
             "number-1 of state of the register"],..
             ["Discretization time step";
             "Register initial state"],list("vec",1,"vec",-1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             mess=[]
             if prod(size(z0))<1 then
                 mess=[mess;"Register length must be at least 1";" "]
@@ -160,8 +156,7 @@ function [x,y,typ]=DELAY_f(job,arg1,arg2)
         x=scicos_block()
         x.gui="DELAY_f"
         x.graphics.sz=[2,2]
-        x.graphics.gr_i=list("xstringb(orig(1),orig(2),''Delay'',sz(1),s"+...
-        "z(2),''fill'')",8)
+        x.graphics.gr_i=[]
         x.graphics.pin=0
         x.graphics.pout=0
         x.model.sim="csuper"

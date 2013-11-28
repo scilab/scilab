@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA Serge Steer
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="bytecode">
+    <refnamediv>
+        <refname>bytecode</refname>
+        <refpurpose>
+            возвращает "байт-код" указанной функции в виде Scilab-массива и наоборот.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            x = bytecode(f)
+            f = bytecode(x)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>
+                        Scilab-функция.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        вектор-строка значений типа int32
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <code>x = bytecode(f)</code> возвращает "байт-код" функции
+            <varname>f</varname> в виде целочисленного массива
+            <varname>x</varname>.
+        </para>
+        <para>
+            <code>f= bytecode(x)</code> возвращает в <varname>f</varname>
+            функцию, связанную с "байт-кодом", заданным в целочисленном
+            массиве <varname>x</varname>.
+            <warning>
+                Внимание: корректность <varname>x</varname> не проверяется.
+            </warning>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примечание</title>
+        <para>
+            Байт-код Scilab-функции будет в будущем значительно преобразован, поэтому использование этой функции должно быть ограничено обработкой инструкций профилирования.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+function a=foo(),a=sin(3),endfunction
+bytecode(foo)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="add_profiling">add_profiling</link>
+            </member>
+            <member>
+                <link linkend="bytecodewalk">bytecodewalk</link>
+            </member>
+            <member>
+                <link linkend="macr2lst">macr2lst</link>
+            </member>
+            <member>
+                <link linkend="macr2tree">macr2tree</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

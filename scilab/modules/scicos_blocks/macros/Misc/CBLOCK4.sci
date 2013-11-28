@@ -21,17 +21,11 @@
 function [x,y,typ]=CBLOCK4(job,arg1,arg2)
     //
     // Copyright INRIA
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
 
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1
         model=arg1.model;
@@ -127,7 +121,9 @@ function [x,y,typ]=CBLOCK4(job,arg1,arg2)
                 while %t
                     [ok,tt,cancel]=CC4(funam,tt)
                     if ~ok then
-                        if cancel then break,end
+                        if cancel then
+                            break,
+                        end
                     else
                         model.sim=list(funam,funtyp)
                         model.state=xx
@@ -189,7 +185,7 @@ function [x,y,typ]=CBLOCK4(job,arg1,arg2)
         "n"],...
         []);
 
-        gr_i=["xstringb(orig(1),orig(2),''C block4'',sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([4 2],model,label,gr_i)
     end
 endfunction

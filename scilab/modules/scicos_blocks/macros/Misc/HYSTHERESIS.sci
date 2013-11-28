@@ -20,34 +20,34 @@
 //
 
 function [x,y,typ]=HYSTHERESIS(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         while %t do
             [ok,high_lim,low_lim,out_high,out_low,nzz,exprs]=scicos_getvalue("Set parameters",..
             ["switch on at";"switch off at";"output when on";
             "output when off";"use zero crossing: yes (1), no (0)"],..
             list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             if low_lim>high_lim then
                 message("switch on value must be larger than switch off value")
             else
                 graphics.exprs=exprs;
                 model.rpar=[high_lim,low_lim,out_high,out_low]'
-                if nzz>0 then nzz=2,end
+                if nzz>0 then
+                    nzz=2,
+                end
                 model.nzcross=nzz
-                x.graphics=graphics;x.model=model
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
@@ -70,9 +70,7 @@ function [x,y,typ]=HYSTHERESIS(job,arg1,arg2)
         exprs=[string(rpar);string(sign(nzz))]
 
 
-        gr_i=["xrect(orig(1)+0.329*sz(1),orig(2)+0.843*sz(2),0.282*sz(1),0.686*sz(2))";
-        "xrect(orig(1)+0.613*sz(1),orig(2)+0.843*sz(2),0.256*sz(1),0.003*sz(2))";
-        "xrect(orig(1)+0.082*sz(1),orig(2)+0.16*sz(2),0.245*sz(1),0.003*sz(2))"]
+        gr_i=[]
 
         x=standard_define([2 2],model,exprs,gr_i)
     end

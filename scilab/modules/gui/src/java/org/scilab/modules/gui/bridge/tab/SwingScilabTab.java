@@ -1590,7 +1590,6 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
             contentCanvas.removeEventHandlerKeyListener(eventHandler);
             contentCanvas.removeEventHandlerMouseListener(eventHandler);
             contentCanvas.removeEventHandlerMouseMotionListener(eventHandler);
-            eventHandler = null;
         }
     }
 }

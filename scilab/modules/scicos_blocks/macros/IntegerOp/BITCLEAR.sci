@@ -21,20 +21,14 @@
 //
 
 function [x,y,typ]=BITCLEAR(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        OPER=string( arg1.graphics.exprs(2))
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         while %t do
 
@@ -42,7 +36,9 @@ function [x,y,typ]=BITCLEAR(job,arg1,arg2)
             [msprintf(gettext("Data Type %s"), "(3:int32, 4:int16, 5:int8, ...)"); gettext("Index of Bit (0 is least significant)")],..
             list("vec",1,"vec",1), exprs);
 
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             in=[model.in model.in2];
 
             if floor(bit) <> bit then
@@ -97,7 +93,8 @@ function [x,y,typ]=BITCLEAR(job,arg1,arg2)
             if ok then
                 graphics.exprs=exprs;
                 model.opar=list(n)
-                x.graphics=graphics;x.model=model;
+                x.graphics=graphics;
+                x.model=model;
                 break
             end
         end
@@ -116,7 +113,7 @@ function [x,y,typ]=BITCLEAR(job,arg1,arg2)
         model.dep_ut=[%t %f]
 
         exprs=[sci2exp(3);sci2exp(0)]
-        gr_i=["xstringb(orig(1),orig(2),[''Clear'';''bit: ''+OPER],sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([4 2],model,exprs,gr_i)
 
     end

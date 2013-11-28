@@ -1,4 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: made obsolete, merged in stdev
 // Copyright (C) 1999 - INRIA - Carlos Klimann
 //
 // This file must be used under the terms of the CeCILL.
@@ -29,6 +30,8 @@ function m=msd(x,orien)
     //5th edition, John Wiley, 1990.
     //
     //
+    warnobsolete("stdev", "5.5.1");
+
     rhs=argn(2)
     if rhs==0 then error(msprintf(gettext("%s: Wrong number of input argument: At least %d expected.\n"),"msd",1)), end
     if x==[] then s=%nan, return, end

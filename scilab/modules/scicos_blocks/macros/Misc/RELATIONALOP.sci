@@ -20,31 +20,31 @@
 //
 
 function [x,y,typ] = RELATIONALOP(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        VOP=["==", "~=", "<", "<=", ">",">="]
-        OPER=VOP(evstr( arg1.graphics.exprs(1))+1)
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
-        if size(exprs,1)==2 then exprs=[exprs;sci2exp(1)]; end
+        if size(exprs,1)==2 then
+            exprs=[exprs;sci2exp(1)];
+        end
         while %t do
             [ok,rule,zcr,Datatype,exprs]=scicos_getvalue("Set parameters",..
             ["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)";..
             "Use zero crossing (no: 0), (yes: 1)"
             "Datatype (1=double 3=int32 ...)"],..
             list("vec",1,"vec",1,"vec",1),exprs)
-            if ~ok then break,end
-            rule=int(rule);if zcr<>0 then zcr=1,end
+            if ~ok then
+                break,
+            end
+            rule=int(rule);
+            if zcr<>0 then
+                zcr=1,
+            end
             if (rule<0)|(rule>5) then
                 message("Incorrect operator "+string(rule)+" ; must be 0 to 5.")
             end
@@ -62,7 +62,9 @@ function [x,y,typ] = RELATIONALOP(job,arg1,arg2)
                 model.sim=list("relational_op_ui16",4)
             elseif(Datatype==8) then
                 model.sim=list("relational_op_ui8",4)
-            else message("Datatype is not supported");ok=%f;
+            else
+                message("Datatype is not supported");
+                ok=%f;
             end
             if ok then
                 it=Datatype*ones(1,2)
@@ -76,7 +78,8 @@ function [x,y,typ] = RELATIONALOP(job,arg1,arg2)
                 model.ipar=[rule],
                 model.nzcross=zcr,
                 model.nmode=zcr,
-                x.graphics=graphics;x.model=model
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
@@ -91,7 +94,7 @@ function [x,y,typ] = RELATIONALOP(job,arg1,arg2)
         model.dep_ut=[%t %f]
 
         exprs=[string(ipar);string(0)]
-        gr_i=["xstringb(orig(1),orig(2),[''Relational'';''Op : ''+OPER],sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([3 2],model,exprs,gr_i)
     end
 endfunction

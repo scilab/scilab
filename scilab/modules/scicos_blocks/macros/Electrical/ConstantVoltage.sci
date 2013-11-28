@@ -20,28 +20,26 @@
 //
 
 function [x,y,typ]=ConstantVoltage(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1,%f)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         while %t do
             [ok,V,exprs]=scicos_getvalue("Set ConstantVoltage block parameter",..
             "V (volt)",list("vec",1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             model.rpar=V
             model.equations.parameters(2)=list(V)
             graphics.exprs=exprs
-            x.graphics=graphics;x.model=model
+            x.graphics=graphics;
+            x.model=model
             break
         end
 
@@ -62,13 +60,7 @@ function [x,y,typ]=ConstantVoltage(job,arg1,arg2)
         model.equations=mo
         exprs=string(V)
 
-        gr_i=["xset(''thickness'',2)"
-        "xx=[0 5 5 5]/12;";
-        "if orient then yy=[1 1 2 0]/2;else yy=[2,2,3,1]/4,end"
-        "xpoly(orig(1)+xx*sz(1),orig(2)+yy*sz(2));";
-        "xx=[2 2 2 3]/3;";
-        "if orient then yy=[1,3,2,2]/4;else yy=[0 2 1 1]/2;end"
-        "xpoly(orig(1)+xx*sz(1),orig(2)+yy*sz(2));"]
+        gr_i=[]
 
         x=standard_define([1.5 1.1],model,exprs,list(gr_i,0))
         x.graphics.in_implicit=["I"]

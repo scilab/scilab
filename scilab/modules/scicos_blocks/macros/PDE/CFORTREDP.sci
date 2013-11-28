@@ -26,6 +26,7 @@ function [ok]=CFORTREDP(funam,tt)
     if tt<>[] then
         [ok]=scicos_block_link(funam,tt,"c");
     else
-        ok=%f;break;
+        ok=%f;
+        break;
     end
 endfunction

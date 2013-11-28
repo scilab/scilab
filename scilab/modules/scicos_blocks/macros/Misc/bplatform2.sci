@@ -27,8 +27,13 @@ function [blocks] = bplatform2(blocks,flag)
     end
     xold=blocks.z
     rpar=blocks.rpar
-    plen=rpar(1);csiz=rpar(2);phi=rpar(3);
-    xmin=rpar(4);xmax=rpar(5);ymin=rpar(6);ymax=rpar(7);
+    plen=rpar(1);
+    csiz=rpar(2);
+    phi=rpar(3);
+    xmin=rpar(4);
+    xmax=rpar(5);
+    ymin=rpar(6);
+    ymax=rpar(7);
     rcirc=1;
     tplat=0.2;
 
