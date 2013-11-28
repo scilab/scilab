@@ -24,8 +24,7 @@ c
          return
       endif
       if(rhs.gt.2) then
-         call setfunnam(ids(1,pt+1),'%hm_eye',7)
-         fun=-1
+         call error(42)
          return
       endif
 
