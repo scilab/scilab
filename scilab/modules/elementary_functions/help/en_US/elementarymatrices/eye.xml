@@ -29,7 +29,7 @@
                 <term>A,X</term>
                 <listitem>
                     <para>
-                        matrices or <literal>syslin</literal> lists
+                        matrices, hypermatrices, or <literal>syslin</literal> lists
                     </para>
                 </listitem>
             </varlistentry>
@@ -46,7 +46,9 @@
         <para>according to its arguments defines an
             <literal>m</literal>x<literal>n</literal> matrix with 1 along the main
             diagonal or an identity matrix of the same dimension as
-            <literal>A</literal> .
+            <literal>A</literal> . In case <varname>A</varname> is an hypermatrix, 
+            <varname>X</varname> will be defined as:
+            <literal>X(i,i,...,i)=1</literal> (with <literal>i=min(size(A)</literal>).
         </para>
         <para>
             Caution: <literal>eye(10)</literal> is interpreted as
@@ -74,6 +76,7 @@ s=poly(0,'s');A=[s,1;s,s+1];eye(A)
 A=[1/s,1;s,2];eye(A);
 A=ssrand(2,2,3);eye(A)
 [1 2;3 4]+2*eye()
+eye(zeros(4,4,4,4))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

@@ -18,7 +18,7 @@
                 <term>A,X</term>
                 <listitem>
                     <para>
-                        matrices ou listes de type <literal>syslin</literal>.
+                        matrices, hypermatrices ou listes de type <literal>syslin</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -35,7 +35,9 @@
         <para>Renvoie, suivant les arguments, une matrice
             <literal>m</literal>x<literal>n</literal> avec des 1 sur la diagonale
             principale ou une matrice identité de même taille que <literal>A</literal>
-            .
+            . Dans le cas où <varname>A</varname> est une hypermatrice, 
+            alors <varname>X</varname> sera de la forme:
+            <literal>X(i,i,...,i)=1</literal> (avec <literal>i=min(size(A)</literal>).
         </para>
         <para>
             Attention : <literal>eye(10)</literal> est équivalent à
@@ -63,6 +65,7 @@ s=poly(0,'s');A=[s,1;s,s+1];eye(A)
 A=[1/s,1;s,2];eye(A);
 A=ssrand(2,2,3);eye(A)
 [1 2;3 4]+2*eye()
+eye(zeros(4,4,4,4))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
