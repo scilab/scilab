@@ -344,18 +344,6 @@ int sci_xget(char *fname, unsigned long fname_len)
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
     }
-    else if (strcmp(l1, "pixmap") == 0)
-    {
-        int iPixmap = 0;
-        int *piPixmap = &iPixmap;
-
-        getOrCreateDefaultSubwin();
-        getGraphicObjectProperty(getCurrentFigure(), __GO_PIXMAP__, jni_bool, (void **)&piPixmap);
-
-        createScalarDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iPixmap);
-        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
-        ReturnArguments(pvApiCtx);
-    }
     else if (strcmp(l1, "white") == 0)
     {
         int iNumColors = 0;

@@ -61,7 +61,6 @@ int get_figure_resizefcn_property(void* _pvCtx, int iObjUID);
 int get_figure_closerequestfcn_property(void* _pvCtx, int iObjUID);
 int get_rotation_style_property(void* _pvCtx, int iObjUID);
 int get_immediate_drawing_property(void* _pvCtx, int iObjUID);
-int get_pixmap_property(void* _pvCtx, int iObjUID);
 int get_type_property(void* _pvCtx, int iObjUID);
 int get_parent_property(void* _pvCtx, int iObjUID);
 int get_current_axes_property(void* _pvCtx, int iObjUID);

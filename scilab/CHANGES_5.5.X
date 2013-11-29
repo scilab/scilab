@@ -38,6 +38,8 @@ Obsolete & Removed Functions
 
 * clear_pixmap removed, please use drawlater/drawnow instead.
 
+* pixmap property removed for figures, please use drawlater/drawnow instead.
+
 * demo_message and demo_mdialog removed.
 
 * with_embedded_jre removed.
@@ -542,6 +544,8 @@ Xcos
 * Bug #13030 fixed - Selection to superblock did not reset the origin.
 
 * Bug #13059 fixed - Nan propagated at startup made the simulation fail.
+
+* Bug #13114 fixed - pixmap property removed from Scilab.
 
 * Bug #13172 fixed - Logic bloc help file had some typo.
 

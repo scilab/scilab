@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -255,11 +255,11 @@
             surface is plotted assuming that it is linear on a set of triangles built
             from the grid (here with n1=5, n2=3):
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 _____________
 | /| /| /| /|
-|/_|/_|/_|/_| 
-| /| /| /| /| 
+|/_|/_|/_|/_|
+| /| /| /| /|
 |/_|/_|/_|/_|
  ]]></programlisting>
         <para>
@@ -295,14 +295,14 @@ t=-%pi:0.1:%pi; m=sin(t)'*cos(t);
 clf()
 xset("colormap",jetcolormap(64))
 colorbar(-1,1)
-Sgrayplot(t,t,m, strf="041") 
+Sgrayplot(t,t,m, strf="041")
 ]]></programlisting>
         <scilab:image>
             t=-%pi:0.1:%pi; m=sin(t)'*cos(t);
             clf()
             xset("colormap",jetcolormap(64))
             colorbar(-1,1)
-            Sgrayplot(t,t,m, strf="041") 
+            Sgrayplot(t,t,m, strf="041")
         </scilab:image>
         <programlisting role="example"><![CDATA[
 // example #3: an animation display cos(t)*sin(x)sin(y).
@@ -315,7 +315,6 @@ t = linspace(0,4*%pi,nt);
 show_window(); clf()
 f=gcf();
 f.color_map=jetcolormap(64);
-f.pixmap='on';
 colorbar(-1,1)
 Sgrayplot(x,y,cos(t(1))*z, strf="042", zminmax=[-1,1])
 c=gce(),e=c.children
@@ -323,7 +322,6 @@ xtitle("Kaa''s eyes")
 for i = 1:nt
   e.data(:,3)=matrix(cos(t(i))*z,-1,1);
 end
-f.pixmap='off';
  ]]></programlisting>
         <scilab:image>
             n = 30;
@@ -335,7 +333,6 @@ f.pixmap='off';
             show_window(); clf()
             f=gcf();
             f.color_map=jetcolormap(64);
-            f.pixmap='on';
             colorbar(-1,1)
             Sgrayplot(x,y,cos(t(1))*z, strf="042", zminmax=[-1,1])
             c=gce(),e=c.children
@@ -343,7 +340,6 @@ f.pixmap='off';
             for i = 1:nt
             e.data(:,3)=matrix(cos(t(i))*z,-1,1);
             end
-            f.pixmap='off';
         </scilab:image>
     </refsection>
     <refsection role="see also">

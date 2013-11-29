@@ -76,7 +76,7 @@ static gw_generic_table Tab[] =
     {sci_xtitle, "xtitle"},
     {sci_xgraduate, "xgraduate"},
     {sci_xname, "xname"},
-    {NULL, ""}, //clear_pixmap
+    {NULL, ""}, // clear_pixmap: removed
     {sci_zoom_rect, "zoom_rect"},
     {sci_unzoom, "unzoom"},
     {sci_stringbox, "stringbox"},

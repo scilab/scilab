@@ -40,14 +40,12 @@ function []=chaind(p,r,rect)
             end
             xset("alufunction",3);
         else
-            pix=xget("pixmap");xset("pixmap",1)
             for j=1:3:n2,
                 xset("wwpc");
                 xpoly(rect([1 3 3 1]),rect([2,2,4,4]),"lines",1)
                 chaind([x(:,j),y(:,j)],rr,rect);
                 xset("wshow")
             end
-            xset("pixmap",pix)
         end
 
         function []=chainb(yt)
@@ -76,7 +74,6 @@ function []=chaind(p,r,rect)
                 end
                 xset("alufunction",3);
             else
-                pix=xget("pixmap");xset("pixmap",1)
                 for j=1:3:n2,
                     xset("wwpc");
                     xpoly(rect([1 3 3 1]),rect([2,2,4,4]),"lines",1)
@@ -84,7 +81,6 @@ function []=chaind(p,r,rect)
                     chaind([x(:,j),y(:,j)],rr,rect);
                     xset("wshow")
                 end
-                xset("pixmap",pix)
             end
 
 

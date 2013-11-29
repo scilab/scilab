@@ -46,7 +46,6 @@ static char * KeyTab_[NUMSETFONC + 1] =
     "mark size",
     "old_style",
     "pattern",
-    "pixmap",
     "thickness",
     "use color",
     "viewport",

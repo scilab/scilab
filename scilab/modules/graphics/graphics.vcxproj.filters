@@ -338,9 +338,6 @@
     <ClCompile Include="src\c\getHandleProperty\get_pixel_drawing_mode_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\get_pixmap_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_polyline_style_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -960,9 +957,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_pixel_drawing_mode_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\set_pixmap_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_polyline_style_property.c">

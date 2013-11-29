@@ -412,7 +412,6 @@ int sci_xset(char *fname, unsigned long fname_len)
         setGraphicObjectProperty(iFigureUID, __GO_VIEWPORT__, piViewPort, jni_int_vector, 2);
         setGraphicObjectProperty(iFigureUID, __GO_NAME__, _("Figure n°%d"), jni_string, 1);
         setGraphicObjectProperty(iFigureUID, __GO_INFO_MESSAGE__, "", jni_string, 1);
-        setGraphicObjectProperty(iFigureUID, __GO_PIXMAP__, &bFalse, jni_bool, 1);
         setGraphicObjectProperty(iFigureUID, __GO_PIXEL_DRAWING_MODE__, &iCopy, jni_int, 1);
         setGraphicObjectProperty(iFigureUID, __GO_ANTIALIASING__, &iZero, jni_int, 1);
         setGraphicObjectProperty(iFigureUID, __GO_IMMEDIATE_DRAWING__, &bTrue, jni_bool, 1);
@@ -606,18 +605,6 @@ int sci_xset(char *fname, unsigned long fname_len)
         figureSize[1] = x[1];
         setGraphicObjectProperty(getCurrentFigure(), __GO_SIZE__, figureSize, jni_int_vector, 2);
     } /*Ajout A.Djalel le 10/11/03 */
-    else if (strcmp((l1), "pixmap") == 0)
-    {
-        int iPixmapMode = x[0];
-        if (nbInputArgument(pvApiCtx) != 2)
-        {
-            freeAllocatedSingleString(l1);
-            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
-            return 1;
-        }
-        getOrCreateDefaultSubwin();
-        setGraphicObjectProperty(getCurrentFigure(), __GO_PIXMAP__, &iPixmapMode, jni_bool, 1);
-    }
     else if (strcmp((l1), "viewport") == 0)
     {
         int viewport[4] = {x[0], x[1], 0, 0};

@@ -92,7 +92,6 @@ function clf(varargin)
             "figure_name",
             "color_map",
             "info_message",
-            "pixmap",
             "pixel_drawing_mode",
             "immediate_drawing",
             "background",

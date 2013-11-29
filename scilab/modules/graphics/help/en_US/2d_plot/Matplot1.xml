@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -58,7 +58,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf();
 ax = gca();//get current axes handle
 ax.data_bounds = [0, 0; 10, 10]; //set the data_bounds
@@ -84,7 +84,7 @@ Matplot1(a,[5,6,7,8])
             // second matrix in rectangle [5,6,7,8]
             Matplot1(a,[5,6,7,8])
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //--- (animation)
 n=100;
 

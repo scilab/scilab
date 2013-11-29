@@ -34,10 +34,6 @@ assert_checkequal(f.figure_id, 0)
  ans  =
  
   T  
-assert_checkequal(f.pixmap, "off")
- ans  =
- 
-  T  
 assert_checkequal(f.pixel_drawing_mode, "copy")
  ans  =
  

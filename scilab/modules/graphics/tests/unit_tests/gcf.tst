@@ -18,7 +18,6 @@ assert_checkequal(f.auto_resize, "on");
 assert_checkequal(f.viewport, [0,0]);
 assert_checkequal(f.figure_name, gettext("Graphic window number %d"));
 assert_checkequal(f.figure_id, 0);
-assert_checkequal(f.pixmap, "off");
 assert_checkequal(f.pixel_drawing_mode, "copy");
 assert_checkequal(f.anti_aliasing, "off");
 assert_checkequal(f.immediate_drawing, "on");
@@ -36,4 +35,3 @@ assert_checkequal(f.menubar_visible, "on");
 assert_checkequal(f.infobar_visible, "on");
 assert_checkequal(f.dockable, "on");
 assert_checkequal(f.layout, "none");
-

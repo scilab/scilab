@@ -258,20 +258,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>xset("pixmap", flag)</term>
-                <listitem>
-                    <para>
-                        If <literal>flag=0</literal> the graphics are directly
-                        displayed on the screen. If <literal>flag=1</literal>
-                        the graphics are done on a pixmap and are sent to the
-                        graphics window with the command
-                        <code>xset("wshow")</code>. The pixmap is cleared with
-                        the command <code>xset("wwpc")</code>. Note that the
-                        usual command <code>clf()</code> also clears the pixmap.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>xset("thickness", value)</term>
                 <listitem>
                     <para>
@@ -361,22 +347,6 @@ plot2d();
 xset("wresize",0);
 xset("wdim",1000,500)
  ]]></programlisting>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>xset("wshow")</term>
-                <listitem>
-                    <para>
-                        See <literal>xset("pixmap", 1)</literal> above.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>xset("wwpc")</term>
-                <listitem>
-                    <para>
-                        See <literal>xset("pixmap", 1)</literal> above.
-                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>

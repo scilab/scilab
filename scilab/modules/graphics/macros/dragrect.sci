@@ -16,7 +16,7 @@ function [rects,btn]=dragrect(varargin)
 
     if size(rects,1)==1 then rects=rects(:),end
     n=size(rects,2)
-    f=gcf();pix=f.pixmap;f.pixmap="on";
+    f=gcf();
     xrects(rects)
     R=gce(); //Compound of rectangles
     rep=[rects(1),rects(2),-1]
@@ -30,7 +30,6 @@ function [rects,btn]=dragrect(varargin)
         move(R,repn(1:2)-rep(1:2))
         rep=repn
     end
-    f.pixmap=stripblanks(pix)
     delete(R)
     btn=rep(3)
 endfunction

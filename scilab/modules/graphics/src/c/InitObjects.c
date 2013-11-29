@@ -145,8 +145,6 @@ void InitFigureModel(int iFiguremdlUID)
     //setGraphicObjectProperty(iFiguremdlUID, __GO_USER_DATA__, "", jni_string, 0);
     // Size of user data
     //setGraphicObjectProperty(iFiguremdlUID, __GO_USER_DATA_SIZE__, &iZero, jni_int, 1);
-    // Pixmap Mode
-    setGraphicObjectProperty(iFiguremdlUID, __GO_PIXMAP__, &bFalse, jni_bool, 1);
     // Info Message
     setGraphicObjectProperty(iFiguremdlUID, __GO_INFO_MESSAGE__, "", jni_string, 1);
     // Event Handler

@@ -36,7 +36,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MENUBAR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_NAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PIXEL_DRAWING_MODE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PIXMAP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_RESIZEFCN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_RESIZE__;
@@ -271,14 +270,12 @@ public class Figure extends GraphicObject {
     }
 
     /** RenderingMode properties names */
-    public enum RenderingModeProperty { PIXMAP, PIXELDRAWINGMODE, ANTIALIASING, IMMEDIATEDRAWING };
+    public enum RenderingModeProperty { PIXELDRAWINGMODE, ANTIALIASING, IMMEDIATEDRAWING };
 
     /**
      * RenderingMode class
      */
     private class RenderingMode {
-        /** Specifies rendering into a pixmap */
-        private boolean pixmap;
 
         /** Specifies the pixel drawing mode used */
         private PixelDrawingMode pixelDrawingMode;
@@ -293,7 +290,6 @@ public class Figure extends GraphicObject {
          * Default constructor
          */
         public RenderingMode() {
-            pixmap = false;
             pixelDrawingMode = PixelDrawingMode.COPY;
             antialiasing = 0;
             immediateDrawing = true;
@@ -304,7 +300,6 @@ public class Figure extends GraphicObject {
          * @param renderingMode the RenderingMode to copy
          */
         public RenderingMode(RenderingMode renderingMode) {
-            pixmap = renderingMode.pixmap;
             pixelDrawingMode = renderingMode.pixelDrawingMode;
             antialiasing = renderingMode.antialiasing;
             immediateDrawing = renderingMode.immediateDrawing;
@@ -487,8 +482,6 @@ public class Figure extends GraphicObject {
                 return FigureProperty.COLORMAP;
             case __GO_COLORMAP_SIZE__ :
                 return FigureProperty.COLORMAPSIZE;
-            case __GO_PIXMAP__ :
-                return RenderingModeProperty.PIXMAP;
             case __GO_PIXEL_DRAWING_MODE__ :
                 return RenderingModeProperty.PIXELDRAWINGMODE;
             case __GO_ANTIALIASING__ :
@@ -566,8 +559,6 @@ public class Figure extends GraphicObject {
             return getColorMap().getData();
         } else if (property == FigureProperty.COLORMAPSIZE) {
             return getColorMap().getSize();
-        } else if (property == RenderingModeProperty.PIXMAP) {
-            return getPixmap();
         } else if (property == RenderingModeProperty.PIXELDRAWINGMODE) {
             return getPixelDrawingMode();
         } else if (property == RenderingModeProperty.ANTIALIASING) {
@@ -702,8 +693,6 @@ public class Figure extends GraphicObject {
                     return setImmediateDrawing((Boolean) value);
                 case PIXELDRAWINGMODE:
                     return setPixelDrawingMode((Integer) value);
-                case PIXMAP:
-                    return setPixmap((Boolean) value);
             }
         } else if (property instanceof EventHandlerProperty) {
             switch ((EventHandlerProperty)property) {
@@ -1037,24 +1026,6 @@ public class Figure extends GraphicObject {
     }
 
     /**
-     * @return the pixmap
-     */
-    public Boolean getPixmap() {
-        return renderingMode.pixmap;
-    }
-
-    /**
-     * @param pixmap the pixmap to set
-     */
-    public UpdateStatus setPixmap(Boolean pixmap) {
-        if (renderingMode.pixmap == pixmap) {
-            return UpdateStatus.NoChange;
-        }
-        renderingMode.pixmap = pixmap;
-        return UpdateStatus.Success;
-    }
-
-    /**
      * @return the pixel drawing mode enum
      */
     public PixelDrawingMode getPixelDrawingModeAsEnum() {
@@ -1093,7 +1064,7 @@ public class Figure extends GraphicObject {
     }
 
     /**
-     * @return the pixmap
+     * @return the antialiasing
      */
     public Integer getAntialiasing() {
         return renderingMode.antialiasing;

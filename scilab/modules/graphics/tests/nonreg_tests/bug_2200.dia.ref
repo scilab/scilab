@@ -11,7 +11,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=2200
 //
 // <-- Short Description -->
-// When figure has property pixmap='on' then the window is cleared when resized.
+// When is resized in "drawlater mode", then the window is cleared.
 warning("off");
 f=gcf();
 drawlater();

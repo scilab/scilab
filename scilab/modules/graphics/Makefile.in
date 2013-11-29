@@ -206,7 +206,6 @@ am__objects_1 = src/c/libscigraphics_algo_la-GetCommandArg.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_surface_mode_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_figure_id_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_mark_mode_property.lo \
-	src/c/getHandleProperty/libscigraphics_algo_la-get_pixmap_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_interp_color_mode.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_font_size_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_x_shift_property.lo \
@@ -341,7 +340,6 @@ am__objects_1 = src/c/libscigraphics_algo_la-GetCommandArg.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_current_axes_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_current_entity_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_figure_id_property.lo \
-	src/c/getHandleProperty/libscigraphics_algo_la-set_pixmap_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_figure_style_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_mark_size_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_mark_offset_property.lo \
@@ -996,7 +994,6 @@ src/c/getHandleProperty/get_parent_property.c \
 src/c/getHandleProperty/get_surface_mode_property.c \
 src/c/getHandleProperty/get_figure_id_property.c \
 src/c/getHandleProperty/get_mark_mode_property.c \
-src/c/getHandleProperty/get_pixmap_property.c \
 src/c/getHandleProperty/get_interp_color_mode.c \
 src/c/getHandleProperty/get_font_size_property.c \
 src/c/getHandleProperty/get_x_shift_property.c \
@@ -1131,7 +1128,6 @@ src/c/getHandleProperty/set_auto_resize_property.c \
 src/c/getHandleProperty/set_current_axes_property.c \
 src/c/getHandleProperty/set_current_entity_property.c \
 src/c/getHandleProperty/set_figure_id_property.c \
-src/c/getHandleProperty/set_pixmap_property.c \
 src/c/getHandleProperty/set_figure_style_property.c \
 src/c/getHandleProperty/set_mark_size_property.c \
 src/c/getHandleProperty/set_mark_offset_property.c \
@@ -1740,9 +1736,6 @@ src/c/getHandleProperty/libscigraphics_algo_la-get_figure_id_property.lo:  \
 src/c/getHandleProperty/libscigraphics_algo_la-get_mark_mode_property.lo:  \
 	src/c/getHandleProperty/$(am__dirstamp) \
 	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
-src/c/getHandleProperty/libscigraphics_algo_la-get_pixmap_property.lo:  \
-	src/c/getHandleProperty/$(am__dirstamp) \
-	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
 src/c/getHandleProperty/libscigraphics_algo_la-get_interp_color_mode.lo:  \
 	src/c/getHandleProperty/$(am__dirstamp) \
 	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
@@ -2142,9 +2135,6 @@ src/c/getHandleProperty/libscigraphics_algo_la-set_current_entity_property.lo:  
 	src/c/getHandleProperty/$(am__dirstamp) \
 	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
 src/c/getHandleProperty/libscigraphics_algo_la-set_figure_id_property.lo:  \
-	src/c/getHandleProperty/$(am__dirstamp) \
-	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
-src/c/getHandleProperty/libscigraphics_algo_la-set_pixmap_property.lo:  \
 	src/c/getHandleProperty/$(am__dirstamp) \
 	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
 src/c/getHandleProperty/libscigraphics_algo_la-set_figure_style_property.lo:  \
@@ -3119,7 +3109,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_outside_colors_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_parent_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_pixel_drawing_mode_property.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_pixmap_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_polyline_style_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_position_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_rect_property.Plo@am__quote@
@@ -3281,7 +3270,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_outside_colors_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_parent_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_pixel_drawing_mode_property.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_pixmap_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_polyline_style_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_position_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_rect_property.Plo@am__quote@
@@ -3594,13 +3582,6 @@ src/c/getHandleProperty/libscigraphics_algo_la-get_mark_mode_property.lo: src/c/
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_mark_mode_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_mark_mode_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_mark_mode_property.lo `test -f 'src/c/getHandleProperty/get_mark_mode_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_mark_mode_property.c
-
-src/c/getHandleProperty/libscigraphics_algo_la-get_pixmap_property.lo: src/c/getHandleProperty/get_pixmap_property.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_pixmap_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_pixmap_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_pixmap_property.lo `test -f 'src/c/getHandleProperty/get_pixmap_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_pixmap_property.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_pixmap_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_pixmap_property.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_pixmap_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_pixmap_property.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_pixmap_property.lo `test -f 'src/c/getHandleProperty/get_pixmap_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_pixmap_property.c
 
 src/c/getHandleProperty/libscigraphics_algo_la-get_interp_color_mode.lo: src/c/getHandleProperty/get_interp_color_mode.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_interp_color_mode.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_interp_color_mode.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_interp_color_mode.lo `test -f 'src/c/getHandleProperty/get_interp_color_mode.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_interp_color_mode.c
@@ -4539,13 +4520,6 @@ src/c/getHandleProperty/libscigraphics_algo_la-set_figure_id_property.lo: src/c/
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_figure_id_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-set_figure_id_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_figure_id_property.lo `test -f 'src/c/getHandleProperty/set_figure_id_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_figure_id_property.c
-
-src/c/getHandleProperty/libscigraphics_algo_la-set_pixmap_property.lo: src/c/getHandleProperty/set_pixmap_property.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-set_pixmap_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_pixmap_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_pixmap_property.lo `test -f 'src/c/getHandleProperty/set_pixmap_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_pixmap_property.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_pixmap_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_pixmap_property.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_pixmap_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-set_pixmap_property.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_pixmap_property.lo `test -f 'src/c/getHandleProperty/set_pixmap_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_pixmap_property.c
 
 src/c/getHandleProperty/libscigraphics_algo_la-set_figure_style_property.lo: src/c/getHandleProperty/set_figure_style_property.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-set_figure_style_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_figure_style_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_figure_style_property.lo `test -f 'src/c/getHandleProperty/set_figure_style_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_figure_style_property.c

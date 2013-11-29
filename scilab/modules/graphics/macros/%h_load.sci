@@ -83,7 +83,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
             end
             figure_id=mget(1,"sl",fd); // figure_id
             h.color_map=matrix(mget(mget(1,"il",fd),"dl",fd),-1,3) // color_map
-            pixmap=toggle(mget(1,characterFormat,fd)); // pixmap
+            if ~is_higher_than([5 4 0 1]) then
+                pixmap=toggle(mget(1,characterFormat,fd)); // pixmap, removed from V5.5.0 on
+            end
             pixel_drawing_mode=ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // pixel_drawing_mode
             if (is_higher_than([5 1 0 0])) then
                 anti_aliasing=ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // anti_aliasing
@@ -132,7 +134,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
             end
             h.figure_name=figure_name
             h.color_map=matrix(mget(mget(1,"il",fd),"dl",fd),-1,3) // color_map
-            h.pixmap=toggle(mget(1,characterFormat,fd)); // pixmap
+            if ~is_higher_than([5 4 0 1]) then
+                pixmap=toggle(mget(1,characterFormat,fd)); // pixmap, removed from V5.5.0 on
+            end
             h.pixel_drawing_mode=ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // pixel_drawing_mode
             if (is_higher_than([5 1 0 0])) then
                 h.anti_aliasing=ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // anti_aliasing

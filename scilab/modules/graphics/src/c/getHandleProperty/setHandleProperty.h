@@ -70,7 +70,6 @@ int set_figure_resizefcn_property(void* _pvCtx, int iObj, void* _pvData, int val
 int set_figure_closerequestfcn_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_rotation_style_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_immediate_drawing_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
-int set_pixmap_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_background_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_interp_color_vector_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_interp_color_mode_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);

@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -242,18 +242,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>xset("pixmap",flag)</term>
-                <listitem>
-                    <para>se flag=0, os gráficos são diretamente exibidos na tela. Se
-                        flag=1, os gráficos são feitos em um pixmap (mapa de pixel) e
-                        enviados à janela de gráficos através do comando
-                        <literal>xset("wshow")</literal>. O pixmap é limpo com o comando
-                        <literal>xset("wwpc")</literal>. Note que o comando usual
-                        <literal>clf()</literal> também limpa o pixmap.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>xset("thickness",value)</term>
                 <listitem>
                     <para>ajusta o valor de espessura das linhas em pixel (0 e 1 têm o
@@ -319,7 +307,7 @@
                     <para>se flag= 1então o gráfico é automaticamente redimensionado
                         para preencher a janela de gráficos.
                     </para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 xdel();
 xset("wresize",1);
 plot2d();
@@ -329,28 +317,12 @@ xset("wdim",1000,500)
                         gráfico é redimensionada. O cursor no canto superior esquerdo ou as
                         setas do teclado podem ser utilizadas para rolar o gráfico .
                     </para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 xdel();
 plot2d();
 xset("wresize",0);
 xset("wdim",1000,500)
  ]]></programlisting>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>xset("wshow")</term>
-                <listitem>
-                    <para>
-                        ver <literal>xset("pixmap",1)</literal> acima.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>xset("wwpc")</term>
-                <listitem>
-                    <para>
-                        ver <literal>xset("pixmap",1)</literal> acima.
-                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>

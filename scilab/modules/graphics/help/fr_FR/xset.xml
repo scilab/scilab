@@ -239,18 +239,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>xset("pixmap",flag)</term>
-                <listitem>
-                    <para>Si flag=0 les graphiques sont dessinés directement sur
-                        l'écran. Si flag=1 les graphiques sont dessinés sur un pixmap et
-                        sont affichés à   l'écran avec la commande
-                        <literal>xset("wshow")</literal>. Le pixmap est effacé avec la
-                        commande <literal>xset("wwpc")</literal>. Noter que la commande
-                        <literal>clf()</literal> efface aussi le pixmap.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>xset("thickness",value)</term>
                 <listitem>
                     <para>Choisit l'épaisseur des lignes en pixels (0 et 1 = épaisseur
@@ -318,7 +306,7 @@
                     <para>Si flag=1 alors les graphiques sont automatiquement
                         redimensionnés de manière à   remplir la fenêtre graphique.
                     </para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 xdel();
 xset("wresize",1);
 plot2d();
@@ -329,28 +317,12 @@ xset("wdim",1000,500)
                         fenêtre ou les flèches du clavier peuvent être utilisées pour faire
                         glisser le contenu de la fenêtre.
                     </para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 xdel();
 plot2d();
 xset("wresize",0);
 xset("wdim",1000,500)
  ]]></programlisting>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>xset("wshow")</term>
-                <listitem>
-                    <para>
-                        Voir <literal>xset("pixmap",1)</literal> ci-dessus.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>xset("wwpc")</term>
-                <listitem>
-                    <para>
-                        Voir <literal>xset("pixmap",1)</literal> ci-dessus.
-                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>

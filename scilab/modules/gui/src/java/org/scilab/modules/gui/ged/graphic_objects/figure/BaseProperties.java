@@ -66,9 +66,6 @@ public class BaseProperties extends SimpleSection {
         //Components of the property: Immediate Drawing
         figure.immediateDrawing(sectionPanel, row++, column, leftmargin, objectID);
 
-        //Components of the property: Pixmap.
-        figure.pixmap(sectionPanel, row++, column, leftmargin, objectID);
-
         //Components of the property: Visible.
         graphicObject.visible(sectionPanel, row++, column, leftmargin, objectID);
     }

@@ -65,7 +65,6 @@ static setHashTableCouple propertySetTable[] =
     {"figure_id", set_figure_id_property},
     {"rotation_style", set_rotation_style_property},
     {"immediate_drawing", set_immediate_drawing_property},
-    {"pixmap", set_pixmap_property},
     {"parent", set_parent_property},
     {"current_axes", set_current_axes_property},
     {"current_figure", set_current_figure_property},

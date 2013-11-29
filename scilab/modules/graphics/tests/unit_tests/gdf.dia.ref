@@ -15,7 +15,6 @@ if f.auto_resize <> "on" then bugmes();quit;end
 if or(f.viewport <> [0,0]) then bugmes();quit;end
 if f.figure_name <> gettext("Graphic window number %d") then bugmes();quit;end
 if f.figure_id <> 0 then bugmes();quit;end
-if f.pixmap <> "off" then bugmes();quit;end
 if f.pixel_drawing_mode <> "copy" then bugmes();quit;end
 if f.anti_aliasing <> "off" then bugmes();quit;end
 if f.immediate_drawing <> "on" then bugmes();quit;end

@@ -33,7 +33,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 
 /**
 * Figure properties:
-* ANTIALIASING, AUTORESIZE, AXESSIZE, CLOSEREQUESTFCN, EVENTHANDLER, IMMEDIATE_DRAWING, PIXMAP
+* ANTIALIASING, AUTORESIZE, AXESSIZE, CLOSEREQUESTFCN, EVENTHANDLER, IMMEDIATE_DRAWING,
 * VIEWPORT, FIGURESIZE, FIGUREPOSITION, FIGUREID, PIXELDRAWINGMODE
 *
 * @author Marcos CARDINOT <mcardinot@gmail.com>
@@ -620,37 +620,6 @@ public class Figure extends ContentLayout {
         //Get the current status of the property: Pixel Drawing Mode.
         cPixelDrawingMode.setSelectedIndex((Integer) GraphicController.getController()
                                            .getProperty(UID, GraphicObjectProperties.__GO_PIXEL_DRAWING_MODE__));
-    }
-
-    /**
-     * Components of the property: Pixmap
-     * @param panel
-     * @param ROW
-     * @param COLUMN
-     * @param LEFTMARGIN
-     * @param UID
-     * @param parentFigure
-     */
-    public void pixmap(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
-        JLabel lPixmap = new JLabel();
-        final JComboBox cPixmap = new JComboBox();
-
-        addLabelComboBox(panel, lPixmap, MessagesGED.pixmap,
-                         cPixmap, new String[] {MessagesGED.off , MessagesGED.on},
-                         LEFTMARGIN, COLUMN, ROW++);
-        cPixmap.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                GraphicController.getController().setProperty(
-                    UID, GraphicObjectProperties.__GO_PIXMAP__,
-                    cPixmap.getSelectedIndex() == 0 ? false : true);
-            }
-        });
-
-        // Get the current status of the property: Pixmap
-        boolean enable = (Boolean) GraphicController.getController()
-                         .getProperty(UID, GraphicObjectProperties.__GO_PIXMAP__);
-        cPixmap.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**

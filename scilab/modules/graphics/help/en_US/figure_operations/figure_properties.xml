@@ -147,14 +147,6 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>pixmap: </term>
-                            <listitem>
-                                <para>This property controls the pixmap status of a Graphic Window.
-                                    This property is obsolete.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
                             <term>pixel_drawing_mode: </term>
                             <listitem>
                                 <para>This field specifies the bitwise operation used for pixel rendering.

@@ -61,7 +61,6 @@ function save_graphichandle(h,fd)
 
         mput(size(h.color_map,"*"),"il",fd); // color_map
         mput(h.color_map,"dl",fd) ;
-        mput(bool2s(h.pixmap=="on"),characterFormat,fd) ; // pix_map
         mput(length(h.pixel_drawing_mode),characterFormat,fd); // pixel_drawing_mode
         mput(ascii(h.pixel_drawing_mode),characterFormat,fd);
         mput(length(h.anti_aliasing),characterFormat,fd); // anti_aliasing

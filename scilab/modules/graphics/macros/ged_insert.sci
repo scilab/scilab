@@ -214,7 +214,6 @@ function  ged_insert_end()
     if or(win==winsid()) then //  the window still exists
         sca(default_axes); // resume the default axes
         f=gcf()
-        f.pixmap=stripblanks(pix)
         clearglobal active men
     end
     if win<>ged_current_figure then xset("window",ged_current_figure),end

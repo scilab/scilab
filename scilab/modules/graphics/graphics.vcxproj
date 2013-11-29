@@ -324,7 +324,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_outside_colors_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_parent_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_pixel_drawing_mode_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\get_pixmap_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_polyline_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_position_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_rect_property.c" />
@@ -572,7 +571,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\set_outside_colors_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_parent_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_pixel_drawing_mode_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\set_pixmap_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_polyline_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_position_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_rotation_angles_property.c" />

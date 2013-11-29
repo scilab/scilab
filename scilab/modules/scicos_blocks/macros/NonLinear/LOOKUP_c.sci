@@ -369,7 +369,6 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
     addmenu(curwin,MENU(5),menu_e)
     //===================================================================
     //initial draw
-    f.pixmap="off";
     drawlater();
     a=gca(f);
     a.data_bounds=rect;
@@ -712,9 +711,7 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
             end
 
             if (HIT)&(btn==0) then             // move point
-                f.pixmap="on";
                 [xy,rpar,ipar]=movept(a,xy,ipar,rpar,k)
-                f.pixmap="off";
             end
 
             if (HIT)&(btn==10) then             // change data:: double click

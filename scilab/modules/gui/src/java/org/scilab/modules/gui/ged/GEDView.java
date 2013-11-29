@@ -24,7 +24,6 @@ public class GEDView implements GraphicView {
 
     private static boolean visible = true;
     private static boolean autoresize = true;
-    private static boolean pixmap = false;
     private static Integer pixelDrawingMode = 3;
     private static Integer antialiasing = 0;
     private static Integer rotationType = 0;
@@ -69,13 +68,6 @@ public class GEDView implements GraphicView {
                     if (autoresize != c_autoresize) {
                         isValid = true;
                         autoresize = c_autoresize;
-                    }
-                    break;
-                case GraphicObjectProperties.__GO_PIXMAP__:
-                    boolean c_pixmap = (Boolean) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PIXMAP__);
-                    if (pixmap != c_pixmap) {
-                        isValid = true;
-                        pixmap = c_pixmap;
                     }
                     break;
                 case GraphicObjectProperties.__GO_PIXEL_DRAWING_MODE__:

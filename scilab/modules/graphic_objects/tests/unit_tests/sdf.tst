@@ -9,4 +9,3 @@
 
 aze=sdf();
 assert_checkequal(typeof(aze),"handle");
-assert_checkequal(aze.pixmap,"off");

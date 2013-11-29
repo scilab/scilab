@@ -279,7 +279,9 @@ function totalSize = getSingleHandleInfo(fd, totalSize)
         end
         totalSize = seekShort(fd, totalSize); //figure_id
         totalSize = seekMatrix(fd, totalSize); // color_map
-        totalSize = seekBool(fd, totalSize); // pixmap
+        if ~is_higher_than([5 4 0 1]) then
+            totalSize = seekBool(fd, totalSize); // pixmap
+        end
         totalSize = seekString(fd, totalSize); // pixel_drawing_mode
         if (is_higher_than([5 1 0 0])) then
             totalSize = seekString(fd, totalSize); // anti_aliasing

@@ -59,7 +59,6 @@ src/c/getHandleProperty/get_parent_property.c \
 src/c/getHandleProperty/get_surface_mode_property.c \
 src/c/getHandleProperty/get_figure_id_property.c \
 src/c/getHandleProperty/get_mark_mode_property.c \
-src/c/getHandleProperty/get_pixmap_property.c \
 src/c/getHandleProperty/get_interp_color_mode.c \
 src/c/getHandleProperty/get_font_size_property.c \
 src/c/getHandleProperty/get_x_shift_property.c \
@@ -194,7 +193,6 @@ src/c/getHandleProperty/set_auto_resize_property.c \
 src/c/getHandleProperty/set_current_axes_property.c \
 src/c/getHandleProperty/set_current_entity_property.c \
 src/c/getHandleProperty/set_figure_id_property.c \
-src/c/getHandleProperty/set_pixmap_property.c \
 src/c/getHandleProperty/set_figure_style_property.c \
 src/c/getHandleProperty/set_mark_size_property.c \
 src/c/getHandleProperty/set_mark_offset_property.c \
