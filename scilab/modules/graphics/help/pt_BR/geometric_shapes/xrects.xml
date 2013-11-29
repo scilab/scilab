@@ -41,10 +41,7 @@
         <para>
             <literal>xrects</literal> desenha ou preenche retângulos. Cada
             coluna de <literal>rects</literal> descreve um retângulo (ponto superior
-            esquerdo, largura, altura): <literal>rects=[x1 y1 w1 h1;x2 y2 w2
-                h2;...]'
-            </literal>
-            .
+            esquerdo, largura, altura): <literal>rects=[x1 x2... ; y1 y2... ; w1 w2... ; h1 h2...]</literal>.
         </para>
         <para>
             <literal>fill(i)</literal> fornece o padrão para preenchimento ou

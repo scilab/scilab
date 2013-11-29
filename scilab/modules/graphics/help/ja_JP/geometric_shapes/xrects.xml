@@ -41,7 +41,7 @@
         <para>
             <literal>xrects</literal>は一連の矩形を描画または塗りつぶします. 
             <literal>rects</literal>の各列は矩形(左上の点,幅,高さ)をユーザ座標で記述します:
-            <literal>rects=[x1 y1 w1 h1;x2 y2 w2 h2;...]'</literal>.
+            <literal>rects=[x1 x2... ; y1 y2... ; w1 w2... ; h1 h2...]</literal>.
         </para>
         <para>
             <literal>fill(i)</literal> は矩形iを塗りつぶしまたは描画する際に使用される

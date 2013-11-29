@@ -33,7 +33,7 @@
             <literal>xrects</literal> dessine ou remplit un ensemble de rectangles. 
             Chaque colonne de <literal>rects</literal> décrit un 
             rectangle (point en haut à gauche, largeur, hauteur) en coordonnées utilisateur:
-            <literal>rects=[x1 y1 w1 h1;x2 y2 w2 h2;...]'</literal>.
+            <literal>rects=[x1 x2... ; y1 y2... ; w1 w2... ; h1 h2...]</literal>.
         </para>
         <para>
             <literal>fill(i)</literal> définit le motif utilisé pour dessiner ou remplir le rectangle i:
