@@ -17,31 +17,31 @@
 // =============================================================================
 
 assert_checkfalse(execstr("qpsolve", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "qsolve", 7);
+refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "qpsolve", 7);
 assert_checkerror("qpsolve", refMsg);
 
 assert_checkfalse(execstr("qpsolve(1)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "qsolve", 7);
+refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "qpsolve", 7);
 assert_checkerror("qpsolve(1)", refMsg);
 
 assert_checkfalse(execstr("qpsolve(1, 1)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "qsolve", 7);
+refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "qpsolve", 7);
 assert_checkerror("qpsolve(1, 1)", refMsg);
 
 assert_checkfalse(execstr("qpsolve(1, 1, 1)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "qsolve", 7);
+refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "qpsolve", 7);
 assert_checkerror("qpsolve(1, 1, 1)", refMsg);
 
 assert_checkfalse(execstr("qpsolve(1, 1, 1, 1)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "qsolve", 7);
+refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "qpsolve", 7);
 assert_checkerror("qpsolve(1, 1, 1, 1)", refMsg);
 
 assert_checkfalse(execstr("qpsolve(1, 1, 1, 1, 1)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "qsolve", 7);
+refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "qpsolve", 7);
 assert_checkerror("qpsolve(1, 1, 1, 1, 1)", refMsg);
 
 assert_checkfalse(execstr("qpsolve(1, 1, 1, 1, 1, 1)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "qsolve", 7);
+refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "qpsolve", 7);
 assert_checkerror("qpsolve(1, 1, 1, 1, 1, 1)", refMsg);
 
 
