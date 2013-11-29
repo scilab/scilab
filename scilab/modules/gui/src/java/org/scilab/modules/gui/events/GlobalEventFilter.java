@@ -43,12 +43,12 @@ public class GlobalEventFilter {
      * @param figureUID Scilab ID of the figure where the even occurred
      * @param isControlDown : is CTRL key modifier activated.
      */
-    public static void filterKey(int keyPressed, Integer figureUID, boolean isControlDown) {
+    public static void filterKey(int keyPressed, Integer figureUID, boolean isControlDown, Component source) {
         synchronized (ClickInfos.getInstance()) {
             ClickInfos.getInstance().setMouseButtonNumber(SciTranslator.javaKey2Scilab(keyPressed, isControlDown));
             ClickInfos.getInstance().setWindowID(figureUID);
-            ClickInfos.getInstance().setXCoordinate(MouseInfo.getPointerInfo().getLocation().x);
-            ClickInfos.getInstance().setYCoordinate(MouseInfo.getPointerInfo().getLocation().y);
+            ClickInfos.getInstance().setXCoordinate(MouseInfo.getPointerInfo().getLocation().x - source.getLocationOnScreen().getX());
+            ClickInfos.getInstance().setYCoordinate(MouseInfo.getPointerInfo().getLocation().y - source.getLocationOnScreen().getY());
             ClickInfos.getInstance().notify();
         }
     }
@@ -102,19 +102,11 @@ public class GlobalEventFilter {
                 );
                 ClickInfos.getInstance().setWindowID(axesUID);
                 try {
-                    ClickInfos.getInstance().setXCoordinate(mouseEvent.getX()
-                                                            + ((Component) mouseEvent.getSource()).getLocationOnScreen().getX()
-                                                            - ((Component) mouseEvent.getSource()).getLocationOnScreen().getX());
-                    ClickInfos.getInstance().setYCoordinate(mouseEvent.getY()
-                                                            + ((Component) mouseEvent.getSource()).getLocationOnScreen().getY()
-                                                            - ((Component) mouseEvent.getSource()).getLocationOnScreen().getY());
+                    ClickInfos.getInstance().setXCoordinate(mouseEvent.getX());
+                    ClickInfos.getInstance().setYCoordinate(mouseEvent.getY());
                 } catch (Exception e) {
-                    ClickInfos.getInstance().setXCoordinate(mouseEvent.getX()
-                                                            + ((Component) mouseEvent.getSource()).getX()
-                                                            - ((Component) mouseEvent.getSource()).getX());
-                    ClickInfos.getInstance().setYCoordinate(mouseEvent.getY()
-                                                            + ((Component) mouseEvent.getSource()).getY()
-                                                            - ((Component) mouseEvent.getSource()).getY());
+                    ClickInfos.getInstance().setXCoordinate(mouseEvent.getX());
+                    ClickInfos.getInstance().setYCoordinate(mouseEvent.getY());
                 } finally {
                     ClickInfos.getInstance().notify();
                 }

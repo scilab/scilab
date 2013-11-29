@@ -119,8 +119,6 @@ public final class Jxgetmouse {
         return ClickInfos.getInstance().getWindowID();
     }
 
-
-
     /**
      * Manage xgetmouse behaviour for keyboard entry.
      * 1 - Key has been pressed.
@@ -144,22 +142,22 @@ public final class Jxgetmouse {
                 }
             }
             isControlDown = keyEvent.isControlDown();
-        } else if (keyEvent.getSource() != null
-                   && keyEvent.getSource() instanceof SwingScilabCanvas) {
+        } else if (keyEvent.getSource() instanceof SwingScilabCanvas) {
             /* Now we have have to be sure we are in a Canvas. */
             /*
              * If a RELEASED is seen use -keyChar
              */
             if (keyEvent.getID() == KeyEvent.KEY_RELEASED) {
-                GlobalEventFilter.filterKey(-keyChar, GlobalEventWatcher.getAxesUID(), isControlDown);
+                GlobalEventFilter.filterKey(-keyChar, GlobalEventWatcher.getAxesUID(), isControlDown, (SwingScilabCanvas) keyEvent.getSource());
             } else if (keyEvent.getID() == KeyEvent.KEY_TYPED) {
                 /*
                  * Or If a TYPED is seen use keyChar
                  */
-                GlobalEventFilter.filterKey(keyChar, GlobalEventWatcher.getAxesUID(), isControlDown);
+                GlobalEventFilter.filterKey(keyChar, GlobalEventWatcher.getAxesUID(), isControlDown, (SwingScilabCanvas) keyEvent.getSource());
             }
         }
     }
+
     /**
      * Manage xgetmouse behaviour for mouse entry.
      *
@@ -182,7 +180,4 @@ public final class Jxgetmouse {
             GlobalEventFilter.filterMouse(mouseEvent, axesUID, scilabMouseAction, false);
         }
     }
-
-
 }
-

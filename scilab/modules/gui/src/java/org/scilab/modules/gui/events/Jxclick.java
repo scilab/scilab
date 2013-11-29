@@ -124,11 +124,8 @@ public final class Jxclick {
                 }
             }
         } else if (keyEvent.getID() == KeyEvent.KEY_TYPED) {
-            if (keyEvent.getSource() != null
-                    && keyEvent.getSource() instanceof SwingScilabCanvas) {
-                if (GlobalEventWatcher.isActivated()) {
-                    GlobalEventFilter.filterKey(keyChar, GlobalEventWatcher.getAxesUID(), keyEvent.isControlDown());
-                }
+            if (keyEvent.getSource() instanceof SwingScilabCanvas && GlobalEventWatcher.isActivated()) {
+                GlobalEventFilter.filterKey(keyChar, GlobalEventWatcher.getAxesUID(), keyEvent.isControlDown(), (SwingScilabCanvas) keyEvent.getSource());
             }
         }
     }
