@@ -50,7 +50,13 @@ function [cf, ind] = histc(n, data, normalization)
         elseif n ~= floor(n)
             error(msprintf(_("%s: Wrong type for input argument #%d: Integer expected.\n"),"histc",1))
         end
-        cb = linspace(min(data), max(data), n+1); // Class boundary
+        mind = min(data);
+        maxd = max(data);
+        if (mind == maxd) then
+            mind = mind - floor(n/2);
+            maxd = maxd + ceil(n/2);
+        end
+        cb = linspace(mind, maxd, n+1); // Class boundary
     else // The classes are provided
         cb = matrix(n, 1, -1);   // Force row form
         if min(diff(cb)) <= 0 then
