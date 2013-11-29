@@ -48,6 +48,8 @@ function [y, ind] = histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,ax
     //
     [lhs, rhs] = argn()
 
+    y = [];
+    ind = [];
     if rhs == 0 then   // demo
         histplot([-4.5:0.25:4.5],rand(1,20000,"n"),style=2,axesflag=1,..
         frameflag=1,rect=[-4.5 0 4.5 0.47]);
