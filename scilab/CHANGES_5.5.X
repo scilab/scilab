@@ -277,6 +277,8 @@ Scilab Bug Fixes
 
 * Bug #13116 fixed - qpsolve now respects upper-bounds constraints.
 
+* Bug #13121 fixed - ode "rk" option crashed Scilab when the user derivative function failed.
+
 
 Xcos Bug Fixes
 ==============
