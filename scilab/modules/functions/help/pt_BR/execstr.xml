@@ -2,15 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="execstr" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="execstr" xml:lang="pt">
     <refnamediv>
         <refname>execstr</refname>
         <refpurpose>executa código Scilab em strings</refpurpose>
@@ -18,7 +18,7 @@
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
         <synopsis>execstr(instr)
-            ierr=execstr(instr,'errcatch' [,msg])
+            ierr = execstr(instr, 'errcatch' [,msg])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -50,21 +50,23 @@
     <refsection>
         <title>Descrição</title>
         <para>Executa as instruções Scilab fornecidas pelo argumento
-            <literal>instr</literal>.
+            <varname>instr</varname>.
         </para>
-        <para>Note que instr não deve fazer uso de marcas de continuação(..)
-        </para>
-        <para/>
-        <para>Se o flag 'errcatch' não estiver presente, a manipulação de erros
+        <note>
+            Note que <varname>instr</varname> não deve fazer uso de marcas de continuação (..)
+        </note>
+        <para>
+            Se o flag <literal>'errcatch'</literal> não estiver presente, a manipulação de erros
             ocorre de maneira usual.
         </para>
-        <para>Se o flag 'errcatch' for ajustado, e um erro for encontrado enquanto
-            são executadas as instruções definidas em <literal>instr</literal>,
-            <literal>execstr</literal> não imprime uma mensagem de erro, mas aborta a
-            execução das instruções <literal>instr</literal> (no ponto onde o erro
-            ocorreu) e retorna com <literal>ierr</literal> igual ao número de erro.
+        <para>
+            Se o flag <literal>'errcatch'</literal> for ajustado, e um erro for encontrado enquanto
+            são executadas as instruções definidas em <varname>instr</varname>,
+            <function>execstr</function> não imprime uma mensagem de erro, mas aborta a
+            execução das instruções <varname>instr</varname> (no ponto onde o erro
+            ocorreu) e retorna com <varname>ierr</varname> igual ao número de erro.
             Neste caso a exibição da mensagem de erro é controlada pela opção
-            <literal>msg</literal> :
+            <varname>msg</varname> :
         </para>
         <variablelist>
             <varlistentry>
@@ -83,14 +85,15 @@
                 </listitem>
             </varlistentry>
         </variablelist>
-        <para>ierr= execstr(instr,'errcatch') pode manipular erros sintáticos.
+        <para>
+            <code>ierr = execstr(instr, 'errcatch')</code> pode manipular erros sintáticos.
             Isto é útil para a avaliação de uma instrução obtida por uma pegunta ao
             usuário.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 execstr('a=1') // ajusta a=1.
 execstr('1+1') // faz nada (enquanto evstr('1+1') retorna 2)
 
@@ -110,6 +113,21 @@ lasterror(%t)
 
 execstr('a=[1 2 3)','errcatch')
 lasterror(%t)
+
+// variable1 does not exist
+if execstr('variable1;','errcatch')<>0 then
+   disp("Trigger an error");
+else
+   disp("execstr is happy");
+end
+
+// variable2 exists ... no error is triggered by execstr
+variable2=[2,3];
+if execstr('variable2;','errcatch')<>0 then
+   disp("Trigger an error");
+else
+   disp("execstr is happy");
+end
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

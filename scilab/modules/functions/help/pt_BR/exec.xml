@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="exec" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="exec" xml:lang="pt">
     <refnamediv>
         <refname>exec</refname>
         <refpurpose>execução de arquivo script ("script" significa
@@ -10,8 +10,8 @@
         <title>Seqüência de Chamamento</title>
         <synopsis>exec(path [,mode])
             exec(fun [,mode])
-            ierr=exec(path,'errcatch' [,mode])
-            ierr=exec(fun,'errcatch' [,mode])
+            ierr = exec(path,'errcatch' [,mode])
+            ierr = exec(fun,'errcatch' [,mode])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -46,34 +46,85 @@
     <refsection>
         <title>Descrição</title>
         <para>
-            <literal>exec(path [,mode])</literal> executa seqüencialmente as
-            instruções contidas no arquivo fornecido por <literal>path</literal> com
-            um modo de execução opcional <literal>mode</literal> .
+            <code>exec(path [,mode])</code> executa seqüencialmente as
+            instruções contidas no arquivo fornecido por <varname>path</varname> com
+            um modo de execução opcional <varname>mode</varname> .
         </para>
         <para>
-            Os casos diferentes para <literal>mode</literal> são :
+            Os casos diferentes para <varname>mode</varname> são :
         </para>
-        <para>0 : o valor padrão</para>
-        <para>-1 : nada é impresso</para>
-        <para>1 : eco de cada linha de comando</para>
-        <para>2 : prompt --&gt; é impresso</para>
-        <para>3 : ecos + prompts</para>
-        <para>4 : pára antes de cada prompt. A execução retorna após cada retorno
-            de carro.
-        </para>
-        <para>7 : paradas + prompts + ecos : útil para demos.</para>
+        <variablelist>
+            <varlistentry>
+                <term>0</term>
+                <listitem>
+                    <para>
+                        o valor padrão.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-1</term>
+                <listitem>
+                    <para>
+                        nada é impresso.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>1</term>
+                <listitem>
+                    <para>
+                        eco de cada linha de comando.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>2</term>
+                <listitem>
+                    <para>
+                        prompt <literal>--&gt;</literal> é impresso.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>3</term>
+                <listitem>
+                    <para>
+                        ecos + prompts.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>4</term>
+                <listitem>
+                    <para>
+                        pára antes de cada prompt. A execução retorna
+                        após cada retorno de carro.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>7</term>
+                <listitem>
+                    <para>
+                        paradas + prompts + ecos : útil para demos.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
         <para>
-            <literal>exec(fun [,mode])</literal> executa a função
-            <literal>fun</literal> como um script: sem argumentos de entrada ou saída
+            <code>exec(fun [,mode])</code> executa a função
+            <varname>fun</varname> como um script: sem argumentos de entrada ou saída
             nem ambientes de variáveis específicos. Esta forma é mais eficiente,
-            porque o código script pode se pré-compilado (ver comp). Este método
+            porque o código script pode se pré-compilado (ver <link linkend="comp">comp</link>). Este método
             para avaliação de scripts permite armazenar scripts como funções em
             bibliotecas.
         </para>
-        <para>Se um erro é encontrado durante a execução, se o flag 'errcatch'
-            estiver presente <literal>exec</literal> não imprime mensagem de erro,
-            aborta execução de instruções e retorna com <literal>ierr</literal> e
-            igual ao número de erro. Se o flag 'errcatch' não estiver presente, a
+        <para>
+            Se um erro é encontrado durante a execução, se o flag <literal>'errcatch'</literal>
+            estiver presente <function>exec</function> não imprime mensagem de erro,
+            aborta execução de instruções e retorna com <varname>ierr</varname> e
+            igual ao número de erro. Se o flag <literal>'errcatch'</literal> não estiver presente, a
             manipulação de erros padrão é utilizada.
         </para>
     </refsection>
@@ -81,15 +132,16 @@
         <title>Observação </title>
         <para>Arquivos executáveis (exec files) podem agora ser usados para
             definir funções "inline" utilizando a sintaxe de definição (ver
-            function).
+            <link linkend="function">function</link>).
         </para>
     </refsection>
     <!--
-    <para><literal>exec</literal> supports files encoded as ANSI/ASCII and UTF-8 (NO-BOM).</para>
- -->
+    <para><function>exec</function> supports files encoded as ANSI/ASCII and UTF-8 (NO-BOM).</para>
+    <para>The length of each line in a file is limited to 4096 characters.</para>
+-->
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // criando um arquivo script
 mputl('a=1;b=2',TMPDIR+'/meuscript')
 // executando-o
@@ -109,6 +161,7 @@ x=1 //criando x para torná-la conhecida pelo script foo
 exec(foo)
 // a e y são criadas no ambiente corrente
 whos -name "a "
+whos -name "y "
  ]]></programlisting>
     </refsection>
     <refsection>

@@ -8,38 +8,38 @@
         <title>Séquence d'appel</title>
         <synopsis>exec(path [,mode])
             exec(fun [,mode])
-            ierr=exec(path,'errcatch' [,mode])
-            ierr=exec(fun,'errcatch' [,mode])
+            ierr = exec(path, 'errcatch' [,mode])
+            ierr = exec(fun, 'errcatch' [,mode])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>path  </term>
+                <term>path</term>
                 <listitem>
-                    <para>chaîne de caractères, le chemin du script à exécuter
+                    <para>chaîne de caractères, le chemin du script à exécuter.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>mode  </term>
+                <term>mode</term>
                 <listitem>
-                    <para>entier, précisant le mode d'exécution (voir plus bas)
+                    <para>entier, précisant le mode d'exécution (voir plus bas).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>fun  </term>
+                <term>fun</term>
                 <listitem>
-                    <para>identificateur d'une fonction scilab
+                    <para>identificateur d'une fonction scilab.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>ierr  </term>
+                <term>ierr</term>
                 <listitem>
-                    <para>entier, 0 ou numéro d'erreur 
+                    <para>entier, 0 ou numéro d'erreur.
                     </para>
                 </listitem>
             </varlistentry>
@@ -48,12 +48,12 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>exec(path [,mode])</literal> exécute séquentiellement les instructions
-            Scilab contenues dans le fichier spécifié par <literal>path</literal> avec le
-            mode d'exécution optionnel <literal>mode</literal> .
+            <code>exec(path [,mode])</code> exécute séquentiellement les instructions
+            Scilab contenues dans le fichier spécifié par <varname>path</varname> avec le
+            mode d'exécution optionnel <varname>mode</varname> .
         </para>
         <para>
-            Les différentes valeurs de <literal>mode</literal> sont :
+            Les différentes valeurs de <varname>mode</varname> sont :
         </para>
         <variablelist>
             <varlistentry>
@@ -92,7 +92,7 @@
                 <term>4</term>
                 <listitem>
                     <para>pause dans l'exécution au début de chaque ligne. L'exécution
-                        reprend après un appui sur la touche entrée/return. 
+                        reprend après un appui sur la touche entrée/return.
                     </para>
                 </listitem>
             </varlistentry>
@@ -104,21 +104,21 @@
             </varlistentry>
         </variablelist>
         <para>
-            <literal>exec(fun [,mode])</literal> exécute la fonction <literal>fun</literal> comme
+            <code>exec(fun [,mode])</code> exécute la fonction <varname>fun</varname> comme
             un script : aucun argument n'est utilisé en entrée ou en sortie, et
             l'exécution se fait dans l'environnement courant (les variables
             créées dans la fonction sont conservées après l'exécution). Cette
             forme est plus efficace, car ainsi les instructions du script peuvent
-            être pré-compilées (voir comp). Cette méthode d'exécution des
+            être pré-compilées (voir <link linkend="comp">comp</link>). Cette méthode d'exécution des
             scripts permet aussi de stocker des scripts comme des fonctions dans des
-            bibliothèques. 
+            bibliothèques.
         </para>
         <para>
             Si une erreur se produit pendant l'exécution, si la chaîne de
-            caractères 'errcatch' est présente, <literal>exec</literal> ne
+            caractères <literal>'errcatch'</literal> est présente, <function>exec</function> ne
             produit pas de message d'erreur, mais stoppe l'exécution du
-            script et renvoie une valeur de <literal>ierr</literal> égale au numéro de
-            l'erreur. Si la chaîne 'errcatch' n'est pas présente,
+            script et renvoie une valeur de <varname>ierr</varname> égale au numéro de
+            l'erreur. Si la chaîne <literal>'errcatch'</literal> n'est pas présente,
             la gestion habituelle des erreurs est utilisée.
         </para>
     </refsection>
@@ -126,16 +126,16 @@
         <title>REMARQUES</title>
         <para>
             Les scripts peuvent maintenant contenir des définitions de fonctions en
-            ligne (voir fonction). 
+            ligne (voir <link linkend="function">fonction</link>).
         </para>
         <para>
-            <literal>exec</literal> prend en charge les fichiers encodés aux formats ANSI/ASCII et UTF-8.
+            <function>exec</function> prend en charge les fichiers encodés aux formats ANSI/ASCII et UTF-8.
         </para>
         <para>La longueur des lignes des fichiers est limitée à 4096 caractères.</para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // création d'un script
 mputl('a=1;b=2',TMPDIR+'/myscript')
 
@@ -159,6 +159,7 @@ exec(foo)
 
 // a et y ont été créées dans l'environnement courant
 whos -name "a "
+whos -name "y "
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
