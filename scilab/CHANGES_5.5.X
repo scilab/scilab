@@ -142,6 +142,8 @@ Scilab Bug Fixes
 
 * Bug #12334 fixed - Mark color in legend was invalid.
 
+* Bug #12481 fixed - xlabel could not be used with Scilab property names.
+
 * Bug #12485 fixed - xchange returned bad values with log scale.
 
 * Bug #12492 fixed - Exported EPS files were invalid when dash patterns were too long.
