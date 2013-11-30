@@ -21,7 +21,7 @@
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <programlisting><![CDATA[ 
+        <programlisting role='no-scilab-exec'><![CDATA[
 function <lhs_arguments>=<function_name><rhs_arguments>
   <statements>
 endfunction
@@ -43,7 +43,7 @@ endfunction
                     <itemizedlist>
                         <listitem>
                             <para>
-                                a comma separated sequence of variable names enclosed in parenthesis, like  <literal>(x1,...,xm)</literal>. Last variable name can be the key word <literal>varargin</literal> (see varargin)
+                                a comma separated sequence of variable names enclosed in parenthesis, like  <literal>(x1,...,xm)</literal>. Last variable name can be the key word <literal>varargin</literal> (see <link linkend="varargin">varargin</link>)
                             </para>
                         </listitem>
                         <listitem>
@@ -61,12 +61,12 @@ endfunction
                     <itemizedlist>
                         <listitem>
                             <para>
-                                a comma separated sequence of variable names enclosed in brackets, like  <literal>[y1,...,yn]</literal>. Last variable name can be the key word <literal>varargout</literal> (see varargout)
+                                a comma separated sequence of variable names enclosed in brackets, like  <literal>[y1,...,yn]</literal>. Last variable name can be the key word <literal>varargout</literal> (see <link linkend="varargout">varargout</link>)
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                the sequence <literal>[]</literal> ,if the function has no input argument. In this case the syntax may also be:  <literal>function &lt;function_name&gt;&lt;rhs_arguments&gt;</literal>
+                                the sequence <literal>[]</literal>, if the function has no output argument. In this case the syntax may also be:  <literal>function &lt;function_name&gt;&lt;rhs_arguments&gt;</literal>
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -76,7 +76,7 @@ endfunction
                 <term>&lt;statements&gt;</term>
                 <listitem>
                     <para>
-                        stands for a set of scilab instructions (statements)  This syntax may be used to define function (see <link linkend="functions">functions</link>) inline or in a script file (see <link linkend="exec">exec</link>). For compatibility with old Scilab versions, functions defined in a script file containing only function definitions can be "loaded" into Scilab using the <literal>exec</literal> function.
+                        stands for a set of Scilab instructions (statements). This syntax may be used to define function (see <link linkend="functions">functions</link>) inline or in a script file (see <link linkend="exec">exec</link>). For compatibility with old Scilab versions, functions defined in a script file containing only function definitions can be "loaded" into Scilab using the <function>exec</function> function.
                     </para>
                 </listitem>
             </varlistentry>
@@ -87,16 +87,16 @@ endfunction
             followed by statements in the same line if a comma or a semicolon is
             added at its end.
         </para>
-        <para>
+        <note>
             Note that <literal>&lt;function_name&gt;</literal> must respect some syntax rules (see <link linkend="names">names</link>).
-        </para>
+        </note>
         <para>
             Function definitions can be nested.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //inline definition (see function)
 function [x,y]=myfct(a,b)
 x=a+b
@@ -105,7 +105,7 @@ endfunction
 
 [x,y]=myfct(3,2)
 
-//a one line function definition
+//an one line function definition
 function y=sq(x),y=x^2,endfunction
 
 sq(3)
@@ -119,7 +119,7 @@ endfunction
 
 foo(%pi/3)
 
-// definition in an script file (see exec)
+// definition in a script file (see exec)
 exec SCI/modules/elementary_functions/macros/asinh.sci;
  ]]></programlisting>
     </refsection>

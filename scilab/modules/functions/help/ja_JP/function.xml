@@ -21,7 +21,7 @@
     </refnamediv>
     <refsection>
         <title>説明</title>
-        <programlisting><![CDATA[ 
+        <programlisting role='no-scilab-exec'><![CDATA[
 function <lhs_arguments>=<function_name><rhs_arguments>
   <statements>
 endfunction
@@ -46,7 +46,7 @@ endfunction
                                 これは,<literal>(x1,...,xm)</literal>のように括弧で括った
                                 カンマ区切りの変数名の一覧となります.
                                 最後の変数名はキーワード<literal>varargin</literal>とすることも可能です
-                                (varargin 参照)
+                                (<link linkend="varargin">varargin</link> 参照)
                             </para>
                         </listitem>
                         <listitem>
@@ -66,7 +66,7 @@ endfunction
                             <para>
                                 これは,<literal>[y1,...,yn]</literal>のように角括弧で括ったカンマ区切りの
                                 変数名の一覧となります.
-                                最後の変数名はキーワード <literal>varargout</literal> ( varargout 参照)とすること
+                                最後の変数名はキーワード <literal>varargout</literal> (<link linkend="varargout">varargout</link> 参照)とすること
                                 が可能です.
                             </para>
                         </listitem>
@@ -85,7 +85,7 @@ endfunction
                 <listitem>
                     <para>Scilab命令(ステートメント)の集合を意味します.
                         この構文は,インラインまたはスクリプトファイル(exec 参照)の中で
-                        関数を定義する (functions 参照)ために使用できます.
+                        関数を定義する (<link linkend="functions">functions</link> 参照)ために使用できます.
                         古いバージョンのScilabとの互換性のため,
                         function 定義のみを含むスクリプトファイルで定義された関数は,
                         <literal>exec</literal>関数によりScilabに"ロードする"ことができます.
@@ -99,14 +99,17 @@ endfunction
             このシーケンスはカンマまたはセミコロンを終端に付けることにより,
             同じ行に命令を続けることができます.
         </para>
+        <note>
+            Note that <literal>&lt;function_name&gt;</literal> must respect some syntax rules (see <link linkend="names">names</link>).
+        </note>
         <para>
             function の定義はネストすることが可能です.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
-//inline definition (see function)
+        <programlisting role="example"><![CDATA[
+//inline definition
 function [x,y]=myfct(a,b)
 x=a+b
 y=a-b
@@ -142,7 +145,7 @@ exec SCI/modules/elementary_functions/macros/asinh.sci;
                 <link linkend="exec">exec</link>
             </member>
             <member>
-                <link linkend="exec">exec</link>
+                <link linkend="names">names</link>
             </member>
         </simplelist>
     </refsection>
