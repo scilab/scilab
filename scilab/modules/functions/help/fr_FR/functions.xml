@@ -32,9 +32,9 @@
         <itemizedlist>
             <listitem>
                 <para>une ligne de déclaration formelle</para>
-                <programlisting><![CDATA[ 
+                <programlisting role='no-scilab-exec'><![CDATA[
 function [y1,...,yn]=foo(x1,...,xm)
-function [y1,...,yn,varargout]=foo(x1,...,xm,varargin) 
+function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
  ]]></programlisting>
             </listitem>
             <listitem>
@@ -72,20 +72,23 @@ function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
             <listitem>
                 <para>Il est aussi possible d'utiliser des "arguments
                     nommés" pour spécifier les valeurs des arguments d'entrée :
-                    supposons que la fonction <literal>fun1</literal> est
-                    définie ainsi <literal>function y1=fun1(x1,x2,x3)</literal>
+                    supposons que la fonction <varname>x2</varname> est
+                    définie ainsi <code>function y1 = fun1(x1, x2, x3)</code>
                     alors on peut utiliser la syntaxe
-                    <literal>y=fun1(x1=33,x3=[1 2 3])</literal>, et dans
-                    <literal>fun1</literal> x2 ne sera pas défini.
+                    <code>y = fun1(x1=33, x3=[1 2 3])</code>, et dans
+                    <varname>x2</varname> ne sera pas défini.
                 </para>
                 <para>Il est aussi possible d'appeler la fonction
-                    <literal>fun1</literal> avec une syntaxe comme
-                    <literal>y=fun1(x1=33,y='foo')</literal>. Dans ce cas la
-                    variable <literal>y</literal> sera définie dans le contexte
-                    local de la fonction. Noter qu'alors il n'est pas possible
-                    de passer plus d'arguments d'entrée que le nombre
-                    d'arguments formel declarés dans la définition de la syntaxe
-                    d'appel de la fonction.
+                    <varname>x2</varname> avec une syntaxe comme
+                    <code>y = fun1(x1=33, y='foo')</code>. Dans ce cas la
+                    variable <varname>y</varname> sera définie dans le contexte
+                    local de la fonction.
+                    <note>
+                        Noter qu'alors il n'est pas possible de passer
+                        plus d'arguments d'entrée que le nombre
+                        d'arguments formel declarés dans la définition
+                        de la syntaxe d'appel de la fonction.
+                    </note>
                 </para>
                 <para>Il est possible de vérifier quelles sont les variables
                     définies avec la fonction <link linkend="exists">exists</link>.
@@ -96,11 +99,11 @@ function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
                     appelée avec des arguments d'entrée de type chaîne de
                     caractère, la syntaxe d'appel peut être simplifiée :
                 </para>
-                <programlisting><![CDATA[ 
-fun('a','toto','une chaîne') 
+                <programlisting role='no-scilab-exec'><![CDATA[
+fun('a','toto','une chaîne')
  ]]></programlisting>
                 <para>est alors équivalent à: </para>
-                <programlisting><![CDATA[ 
+                <programlisting role='no-scilab-exec'><![CDATA[
 fun a toto 'une chaîne'
  ]]></programlisting>
             </listitem>
@@ -124,7 +127,7 @@ fun a toto 'une chaîne'
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // définition en ligne
 function [x,y]=myfct(a,b)
 x=a+b
