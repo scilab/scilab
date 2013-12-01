@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
+ * Copyright (C) DIGITEO - 2012 - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,126 +11,144 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="overloading" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="overloading" xml:lang="ru">
     <refnamediv>
-        <refname>overloading</refname>
-        <refpurpose>表示,関数および演算子オーバーロード機能</refpurpose>
+        <refname>перегрузка</refname>
+        <refpurpose>
+            возможности перегрузки отображения, функций и операторов
+        </refpurpose>
     </refnamediv>
     <refsection>
-        <title>説明</title>
-        <para>Scilabにおいては, 変数表示, 関数および演算子は 関数(Scilabコードまたはプリミティブ)により新規オブジェクト用に
-            定義することができます.
+        <title>Описание</title>
+        <para>
+            В Scilab'е вывод на экран переменной, функции и операторы могут быть определены для новых объектов с помощью функций (в Scilab-коде или примитивов).
         </para>
         <variablelist>
             <varlistentry>
-                <term>表示</term>
+                <term>Вывод на экран</term>
                 <listitem>
                     <para>
-                        <literal>tlist</literal>により定義される 新規オブジェクトの表示は,
-                        オーバーロードすることができます (デフォルトの表示は<literal>list</literal>の出力に似ています).
-                        オーバーロード関数は入力引数を1つとし,出力引数を持たない必要があります.
-                        その関数の名前は,<literal>%&lt;tlist_type&gt;_p</literal>のように 作成します. ただし,
-                        <literal>%&lt;tlist_type&gt;</literal> は,
-                        <literal>tlist</literal>型の要素の最初のエントリを 最初の9文字に丸めたものを意味します.
+                        Вывод на экран новых объектов, определённых с
+                        помощью структуры типизированного списка
+                        <literal>tlist</literal>, может быть перегружен
+                        (по умолчанию вывод на экран схож с с выводом на
+                        экран списка <literal>list</literal>). Функция
+                        перегрузки не должна иметь выходных аргументов,
+                        но должна иметь один входной аргумент. Её имя
+                        формируется следующим образом:
+                        <literal>%&lt;тип_tlist&gt;_p</literal>,
+                        где <literal>%&lt;тип_tlist&gt;</literal>
+                        указывает на первый вход компонента типа
+                        <literal>tlist</literal>, усечённого до первых
+                        9-ти символов.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>演算子</term>
+                <term>Операторы</term>
                 <listitem>
-                    <para>指定したオペランド型について定義されていない各演算子を 定義することができます.
-                        オーバーロード関数は入力引数を1つ,オペランドの数に基づき 1個または2個の入力を有する必要があります.
-                        関数名は以下のように作成されます:
+                    <para>
+                        Каждый оператор, который не определён для типов
+                        указанных операндов, может быть определён.
+                        Функция перегрузки должна иметь один выходной
+                        аргумент и один или два входных в соответствии с
+                        количеством операндов. Имя функции формируется
+                        следующим образом:
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
-        <para>2項演算子の場合:
-            <literal>%&lt;first_operand_type&gt;_&lt;op_code&gt;_&lt;second_operand_type&gt;</literal>
+        <para>для бинарных операторов:
+            <literal>%&lt;тип_первого_операнда&gt;_&lt;код_оператора&gt;_&lt;тип_второго_операнда&gt;</literal>;
         </para>
-        <para>単項演算子の場合:
-            <literal>%&lt;operand_type&gt;_&lt;op_code&gt;</literal>
+        <para>для унарных операторов:
+            <literal>%&lt;operand_type&gt;_&lt;код_оператора&gt;</literal>;
         </para>
-        <para>n項演算子の展開および挿入は以下のように記述されます.</para>
+        <para>
+            операторы выделения и вставки, которые являются n-арными
+            операторами, описаны ниже.
+        </para>
         <warning>
-            <function>typename</function>関数に登録された型のみが
-            オーバーロードマクロの中で使用できることに注意してください.
+            Будьте осторожны. В макросе перегрузки можно использовать
+            только те типы, которые зарегистрированы функцией
+            <function>typename</function>.
         </warning>
         <para>
             <literal>&lt;operand_type&gt;</literal>,
-            <literal>&lt;first_operand_type&gt;</literal>,
-            <literal>&lt;second_operand_type&gt;</literal> は, 以下のテーブルに記述された各データ型に関連する
-            文字の並びです:
+            <literal>&lt;тип_первого_операнда&gt;</literal>,
+            <literal>&lt;тип_второго_операнда&gt;</literal> являются
+            последовательностями символов, связанных с каждым типом
+            данных как это описано в следующей таблице:
         </para>
         <informaltable border="1">
             <tr>
-                <td>データ型</td>
-                <td>文字コード</td>
+                <td>тип данных</td>
+                <td>символьный код</td>
                 <td>typeof</td>
-                <td>コメント</td>
+                <td>комментарии</td>
             </tr>
             <tr>
-                <td>double行列</td>
+                <td>матрица чисел удвоенной точности</td>
                 <td>
                     <literal>s</literal>
                 </td>
                 <td>
-                    <literal>定数</literal>
+                    <literal>constant</literal>
                 </td>
                 <td/>
             </tr>
             <tr>
-                <td>多項式行列</td>
+                <td>матрица полиномов</td>
                 <td>
                     <literal>p</literal>
                 </td>
                 <td>
-                    <literal>多項式</literal>
+                    <literal>polynomial</literal>
                 </td>
                 <td/>
             </tr>
             <tr>
-                <td>論理値行列</td>
+                <td>матрица логических значений</td>
                 <td>
                     <literal>b</literal>
                 </td>
                 <td>
-                    <literal>論理値</literal>
+                    <literal>boolean</literal>
                 </td>
                 <td/>
             </tr>
             <tr>
-                <td>疎行列</td>
+                <td>разрежённая матрица</td>
                 <td>
                     <literal>sp</literal>
                 </td>
                 <td>
-                    <literal>疎行列</literal>
+                    <literal>sparse</literal>
                 </td>
                 <td/>
             </tr>
             <tr>
-                <td>論理値疎行列</td>
+                <td>разрежённая матрица логических значений</td>
                 <td>
                     <literal>spb</literal>
                 </td>
                 <td>
-                    <literal>論理値疎行列</literal>
+                    <literal>boolean sparse</literal>
                 </td>
                 <td/>
             </tr>
             <tr>
-                <td>Matlab 疎行列</td>
+                <td>разрежённая матрица Matlab'а</td>
                 <td>
                     <literal>msp</literal>
                 </td>
                 <td>
-                    <literal>Matlab疎行列</literal>
+                    <literal>Matlab sparse</literal>
                 </td>
                 <td/>
             </tr>
             <tr>
-                <td>整数行列</td>
+                <td>матрица целочисленных значений</td>
                 <td>
                     <literal>i</literal>
                 </td>
@@ -139,27 +158,27 @@
                 <td/>
             </tr>
             <tr>
-                <td>文字列行列</td>
+                <td>матрица строк</td>
                 <td>
                     <literal>c</literal>
                 </td>
                 <td>
-                    <literal>文字列</literal>
+                    <literal>string</literal>
                 </td>
                 <td/>
             </tr>
             <tr>
-                <td>ハンドル</td>
+                <td>дескриптор</td>
                 <td>
                     <literal>h</literal>
                 </td>
                 <td>
-                    <literal>ハンドル</literal>
+                    <literal>handle</literal>
                 </td>
                 <td/>
             </tr>
             <tr>
-                <td>コンパイルされた関数</td>
+                <td>компилированная функция</td>
                 <td>
                     <literal>fptr</literal>
                 </td>
@@ -169,57 +188,57 @@
                 <td/>
             </tr>
             <tr>
-                <td>スクリプト関数</td>
+                <td>сценарий, функция</td>
                 <td>
                     <literal>mc</literal>
                 </td>
                 <td>
-                    <literal>関数</literal>
+                    <literal>function</literal>
                 </td>
                 <td/>
             </tr>
             <tr>
-                <td>ライブラリ</td>
+                <td>библиотека</td>
+                <td>
+                    <literal>f</literal>
+                </td>
+                <td>
+                    <literal>library</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>список</td>
                 <td>
                     <literal>l</literal>
                 </td>
                 <td>
-                    <literal>ライブラリ</literal>
+                    <literal>list</literal>
                 </td>
                 <td/>
             </tr>
             <tr>
-                <td>リスト</td>
+                <td>типизированный список</td>
                 <td>
-                    <literal>l</literal>
+                    <literal>tlist type</literal>
                 </td>
                 <td>
-                    <literal>リスト</literal>
+                    <literal>tlist type</literal>
                 </td>
-                <td/>
+                <td>первая строка первого элемента типизированного списка</td>
             </tr>
             <tr>
-                <td>tlist</td>
+                <td>матричноориентированный список</td>
                 <td>
-                    <literal>tlist型</literal>
+                    <literal>mlist type</literal>
                 </td>
                 <td>
-                    <literal>tlist型</literal>
+                    <literal>mlist type</literal>
                 </td>
-                <td>最初のtlistエントリの最初の文字列</td>
+                <td>первая строка первого элемента матричноориентированного списка</td>
             </tr>
             <tr>
-                <td>mlist</td>
-                <td>
-                    <literal>mlist型</literal>
-                </td>
-                <td>
-                    <literal>mlist型</literal>
-                </td>
-                <td>最初のmlistエントリの最初の文字列</td>
-            </tr>
-            <tr>
-                <td>ハイパー行列</td>
+                <td>гиперматрица</td>
                 <td>
                     <literal>hm</literal>
                 </td>
@@ -229,17 +248,17 @@
                 <td/>
             </tr>
             <tr>
-                <td>ポインタ</td>
+                <td>указатель</td>
                 <td>
                     <literal>ptr</literal>
                 </td>
                 <td>
-                    <literal>ポインタ</literal>
+                    <literal>pointer</literal>
                 </td>
                 <td/>
             </tr>
             <tr>
-                <td>セル</td>
+                <td>cell-массив</td>
                 <td>
                     <literal>ce</literal>
                 </td>
@@ -249,7 +268,7 @@
                 <td/>
             </tr>
             <tr>
-                <td>structure</td>
+                <td>структура</td>
                 <td>
                     <literal>st</literal>
                 </td>
@@ -259,27 +278,27 @@
                 <td/>
             </tr>
             <tr>
-                <td>有理数</td>
+                <td>рациональное значение</td>
                 <td>
                     <literal>r</literal>
                 </td>
                 <td>
-                    <literal>有理数</literal>
+                    <literal>rational</literal>
                 </td>
                 <td/>
             </tr>
             <tr>
-                <td>線形状態空間</td>
+                <td>линейное пространство состояний</td>
                 <td>
                     <literal>lss</literal>
                 </td>
                 <td>
-                    <literal>状態空間</literal>
+                    <literal>state-space</literal>
                 </td>
                 <td/>
             </tr>
             <tr>
-                <td>暗黙の多項式</td>
+                <td>неявный полином</td>
                 <td>
                     <literal>ip</literal>
                 </td>
@@ -290,15 +309,16 @@
             </tr>
         </informaltable>
         <para>
-            <literal>&lt;op_code&gt;</literal> は, 以下のテーブルに記述された
-            各演算子に関連する文字です:
+            <literal>&lt;код_оператора&gt;</literal> - это одиночный
+            символ, связанный с каждым оператором, как описано в
+            следующей таблице:
         </para>
         <informaltable border="1">
             <tr>
                 <td>
-                    <literal>op</literal>
+                    <literal>оператор</literal>
                 </td>
-                <td>char code</td>
+                <td>символьный код</td>
             </tr>
             <tr>
                 <td>
@@ -416,13 +436,13 @@
             </tr>
             <tr>
                 <td>
-                    <literal>() extraction</literal>
+                    <literal>() выделение</literal>
                 </td>
                 <td>e</td>
             </tr>
             <tr>
                 <td>
-                    <literal>() insertion</literal>
+                    <literal>() вставка</literal>
                 </td>
                 <td>i</td>
             </tr>
@@ -500,48 +520,57 @@
             </tr>
         </informaltable>
         <para>
-            展開構文<literal>b=a(i1,...,in)</literal>の オーバーロード関数は,
-            以下のような呼び出し手順となります:
-            <literal>b=%&lt;type_of_a&gt;_e_(i1,...,in,a)</literal>
+            Функция перегрузки для синтаксиса выделения
+            <literal>b= a(i1, ..., in)</literal>
+            имеет следующую последовательность вызова:
+            <literal>b = %&lt;тип_a&gt;;_e_(i1, ..., in, a)</literal>
         </para>
         <para>
-            そして,構文 <literal>[x1,..,xm]=a(i1,...,in)</literal> は
-            以下のような呼び出し手順となります:
-            <literal>[x1,..,xm]=%&lt;type_of_a&gt;_e_(i1,...,in,a)</literal>
+            и синтаксис <literal>[x1, .., xm] = a(i1, ..., in)</literal>
+            имеет следующую последовательность вызова:
+            <literal>[x1, .., xm] = %&lt;тип_a&gt;;_e_(i1, ..., in, a)</literal>.
         </para>
         <para>
-            挿入構文に関するオーバーロード関数 <literal>a(i1,...,in)=b</literal>
-            は以下のような呼び出し手順となります:
-            <literal>a=%&lt;type_of_b&gt;_i_&lt;type_of_a&gt;(i1,...,in,b,a)</literal>.
+            Функция перегрузки, связанная с синтаксисом вставки
+            <literal>a(i1, ..., in) = b</literal> имеет следующую
+            последовательность вызова:
+            <literal>a = %&lt;тип_b&gt;;_i_&lt;тип_a&gt;;(i1, ..., in, b, a)</literal>.
         </para>
         <para>
-            文字コード<literal>6</literal> を
-            <code>x.b(2) = 33</code>のような複雑な挿入アルゴリズム で使用することができます.
-            ただし,<literal>b</literal>フィールドは構造体<literal>x</literal>で 定義されません.
-            挿入は自動的に<literal>temp=x.b;</literal> <code>temp(2) = 33</code>;
-            <code>x.b = temp</code>に分解されます. 文字コード<literal>6</literal>
-            がこのアルゴリズムの最初の手順で 使用されます.オーバーロード関数<literal>6</literal> は,
-            <literal>e</literal>のものに非常によく似ています.
+            Символьный код <literal>6</literal> может использоваться в
+            некоторых сложных алгоритмах вставки, таких как <code>x.b(2) = 33</code>,
+            где поле <literal>b</literal> не определено в структуре
+            <literal>x</literal>. Вставка автоматически разлагается на
+            <code>temp = x.b</code>; <code>temp(2) = 33</code>;
+            <code>x.b = temp</code>. Символьный код <literal>6</literal>
+            используется для первого шага этого алгоритма. Функция
+            перегрузки <literal>6</literal> очень похожа на функцию
+            перегрузки <literal>e</literal>.
         </para>
         <variablelist>
             <varlistentry>
-                <term>関数 :</term>
+                <term>Функции:</term>
                 <listitem>
                     <para>
-                        いくつかの基本プリミティブ関数新規データ型に関してオーバーロードができます. 特定のデータ型に関してこのような関数が未定義の場合,
-                        関数<literal>%&lt;type_of_an_argument&gt;_&lt;function_name&gt;</literal>
-                        がコールされます. ユーザはこのコールされた関数に入力データ型に関する 定義を追加することができます.
+                        Некоторые основные функции-примитивы могут быть
+                        также перегружены для новых типов данных. Когда
+                        такая функция не определена для особого типа
+                        данных, то вызывается функция
+                        <literal>%&lt;тип_аргумента&gt;_&lt;имя_функции&gt;</literal>.
+                        Пользователь может добавить в этой вызываемой
+                        функции определение, связанное с типами входных данных.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>例</title>
+        <title>Примеры</title>
     </refsection>
     <refsection>
-        <programlisting role="example">//表示
-            var = tlist('tab', ['a', 'b'], ['x'; 'y'], rand(2, 2)) // the type of var is 'tab'
+        <programlisting role="example">
+            //ВЫВОД НА ЭКРАН
+            var = tlist('tab', ['a', 'b'], ['x'; 'y'], rand(2, 2)) // у переменной var тип 'tab'
             
             typeof(var)
             
@@ -549,33 +578,35 @@
             disp([[' '; l(3)] [l(2); string(l(4))]])
             endfunction
             
-            var // after overloading
+            var // после перегрузки
         </programlisting>
     </refsection>
     <refsection>
-        <programlisting role="example">//演算子
-            's' + 1 // it is impossible to add a number to a string
+        <programlisting role="example">
+            //ОПЕРАТОР
+            's' + 1 // нельзя прибавить число к строке
             
             function x = %c_a_s(a, b)
             x = a + string(b);
             endfunction
             
-            's' + 1 // after overloading
+            's' + 1 // после перегрузки
         </programlisting>
     </refsection>
     <refsection>
-        <programlisting role="example">//関数
-            sin('2 * x') // the sin function does not work with a string
+        <programlisting role="example">
+            //ФУНКЦИЯ
+            sin('2 * x') // sin не работает со строкой
             
             function x = %c_sin(a)
             x = 'sin(' + a + ')'
             endfunction
             
-            sin('2 * x') // after overloading
+            sin('2 * x') // после перегрузки
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>参照</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="tlist">tlist</link>

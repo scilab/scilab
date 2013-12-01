@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="overloading" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="overloading" xml:lang="pt">
     <refnamediv>
         <refname>overloading</refname>
         <refpurpose>capacidades de overloading ("sobrecarga") de exibições,
@@ -52,7 +52,7 @@
         </variablelist>
         <para>para operadores binários:
             <literal>%&lt;tipo_do_primeiro_operando&gt;_&lt;código_do_
-                operador&gt;_&lt;tipo_do_segundo_operando&gt; 
+                operador&gt;_&lt;tipo_do_segundo_operando&gt;
             </literal>
         </para>
         <para>para operadores unários:
@@ -61,6 +61,11 @@
         <para>Operadores de extração e inserção que são n-nários são descritos
             abaixo.
         </para>
+        <warning>
+            Be careful, only the types registered by the
+            <function>typename</function> function can be used in an
+            overloading macros.
+        </warning>
         <para>
             <literal>&lt;tipo_do_operando&gt;</literal>,
             <literal>&lt;tipo_do_primeiro_operando&gt;</literal>,
@@ -388,17 +393,17 @@
         <para>A função de sobrecarga associada à sintaxe de inserção
             <literal>a(i1,...,in)=b</literal> tem a segunite seqüência de
             chamamento:<literal>
-                a=%&lt;tipo_de_b&gt;_i_&lt;tipo_de_a&gt;(i1,...,in,b,a) 
+                a=%&lt;tipo_de_b&gt;_i_&lt;tipo_de_a&gt;(i1,...,in,b,a)
             </literal>
             .
         </para>
         <para>
             O código "char" <literal>6</literal> pode ser usado para alguns
-            algoritmos de inserção complexos como <literal>x.b(2)=33</literal> onde o
+            algoritmos de inserção complexos como <code>x.b(2) = 33</code> onde o
             campo <literal>b</literal> não está definido na estrutura
             <literal>x</literal>. A inserção é automaticamente decomposta em
-            <literal>temp=x.b;</literal> <literal>temp(2)=33;</literal>
-            <literal>x.b=temp</literal>. O código "char" <literal>6</literal> é usado
+            <literal>temp=x.b;</literal> <code>temp(2) = 33</code>;
+            <code>x.b = temp</code>. O código "char" <literal>6</literal> é usado
             para o primeiro passo desse algoritmo. A função de sobrecarga de
             <literal>6</literal> é muito semelhante à função de
             <literal>e</literal>'s.
@@ -410,7 +415,7 @@
                     <para>algumas funções primitivas básicas também podem ser
                         sobrecarregadas para novos tipo de dados. Quando tal função não é
                         definida para tipos de dados particulares, a função <literal>
-                            %&lt;tipo_de_um_argumento&gt;_&lt;nome_da_função&gt; 
+                            %&lt;tipo_de_um_argumento&gt;_&lt;nome_da_função&gt;
                         </literal>
                         é
                         chamada. O usuário pode adicionar a esta função chamada a definição
@@ -425,29 +430,37 @@
     </refsection>
     <refsection>
         <programlisting role="example">//EXIBIÇÃO
+            var = tlist('tab', ['a', 'b'], ['x'; 'y'], rand(2, 2)) // the type of var is 'tab'
+            
+            typeof(var)
+            
             function [] = %tab_p(l)
             disp([[' '; l(3)] [l(2); string(l(4))]])
             endfunction
             
-            tlist('tab', ['a', 'b'], ['x'; 'y'], rand(2, 2))
+            var // after overloading
         </programlisting>
     </refsection>
     <refsection>
         <programlisting role="example">//OPERADOR
+            's' + 1 // it is impossible to add a number to a string
+            
             function x = %c_a_s(a, b)
             x = a + string(b);
             endfunction
             
-            's' + 1
+            's' + 1 // after overloading
         </programlisting>
     </refsection>
     <refsection>
         <programlisting role="example">//FUNÇÃO
+            sin('2 * x') // the sin function does not work with a string
+            
             function x = %c_sin(a)
             x = 'sin(' + a + ')'
             endfunction
             
-            sin('2 * x')
+            sin('2 * x') // after overloading
         </programlisting>
     </refsection>
     <refsection>
@@ -461,6 +474,15 @@
             </member>
             <member>
                 <link linkend="symbols">symbols</link>
+            </member>
+            <member>
+                <link linkend="typeof">typeof</link>
+            </member>
+            <member>
+                <link linkend="type">type</link>
+            </member>
+            <member>
+                <link linkend="typename">typename</link>
             </member>
         </simplelist>
     </refsection>
