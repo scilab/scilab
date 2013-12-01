@@ -33,14 +33,14 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>path</literal>ディレクトリで定義された
+            <varname>path</varname>ディレクトリで定義された
             (Scilab関数を含む)
             全ての <literal>.sci</literal>ファイルをロードします.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 getd('SCI/modules/cacsd/macros')
  ]]></programlisting>
     </refsection>

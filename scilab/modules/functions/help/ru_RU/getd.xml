@@ -10,47 +10,52 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="getd">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="getd">
     <refnamediv>
         <refname>getd</refname>
-        <refpurpose>Load all functions defined in a directory</refpurpose>
+        <refpurpose>
+            загрузка всех функций, определённых в директории
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Последовательность вызова</title>
         <synopsis>getd(path)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>path</term>
                 <listitem>
-                    <para>a string. The directory pathname.</para>
                     <para>
-                        "." if <function>getd</function> is called without input argument or if <varname>path</varname> is an empty string.
+                        строка, имя путь к директории.
+                    </para>
+                    <para>
+                        Если функция <function>getd</function> вызвана без входного аргумента, либо если <varname>path</varname> - пустая строка, то путь к директории ".".
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Описание</title>
         <para>
-            Loads all <literal>.sci</literal> files (containing Scilab functions) defined in
-            the <varname>path</varname> directory.
+            Загружает все <literal>.sci</literal> файлы (содержащие
+            Scilab-функции), определённые в директории
+            <varname>path</varname>.
         </para>
         <para>
-            If the file does not contain a function, the script will be executed.
+            Если файл не содержит функции, то этот сценарий будет исполнен.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 getd('SCI/modules/cacsd/macros')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="exec">exec</link>
