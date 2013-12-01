@@ -21,14 +21,14 @@
             マクロはScilabプロシージャ("macro", "function" および "procedure"
             は同じ意味です)です.
             通常,これらはエディタによりファイルの中で定義さえ,
-            <literal>exec</literal>によりまたは
+            <function>exec</function>によりまたは
             ライブラリによりScilabにロードされます.
         </para>
         <para>
-            マクロをオンラインで定義することも可能です(<literal>deff</literal>参照).
+            マクロをオンラインで定義することも可能です(<link linkend="deff">deff</link>参照).
             マクロを含むファイルは以下のように開始する必要があります:
         </para>
-        <programlisting><![CDATA[ 
+        <programlisting role='no-scilab-exec'><![CDATA[
 function [y1,...,yn]=foo(x1,...,xm)
  ]]></programlisting>
         <para>
@@ -40,11 +40,11 @@ function [y1,...,yn]=foo(x1,...,xm)
             <literal>%</literal>記号で始まり(例: <literal>%foo</literal>),
             その引数がリストであるマクロは,
             特定の処理を実行する際に使用されます:
-            例えば, <literal>z=%rmr(x,y)</literal> は
-            <literal>x</literal> および <literal>z</literal>が
-            有理数の場合に<literal>z=x*y</literal>と等価です.
-            (すなわち, 多項式<literal>n</literal> および
-            <literal>d</literal> を指定した <literal>x=list('r',n,d,[])</literal>)
+            例えば, <code>z=%rmr(x,y)</code> は
+            <varname>x</varname> および <varname>z</varname>が
+            有理数の場合に<code>z=x*y</code>と等価です.
+            (すなわち, 多項式<varname>n</varname> および
+            <varname>d</varname> を指定した <code>x=list('r',n,d,[])</code>)
         </para>
     </refsection>
     <refsection role="see also">

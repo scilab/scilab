@@ -19,15 +19,15 @@
         <title>Description</title>
         <para>
             Macros are Scilab procedures ("macro", "function" and "procedure"
-            have the save meaning). Usually, they are defined 
-            in files with an editor and loaded into Scilab by <literal>exec</literal> or through
+            have the save meaning). Usually, they are defined
+            in files with an editor and loaded into Scilab by <function>exec</function> or through
             a library.
         </para>
         <para>
-            They can also be defined on-line (see <literal>deff</literal>). 
+            They can also be defined on-line (see <link linkend="deff">deff</link>).
             A file which contains a macro must begin as follows:
         </para>
-        <programlisting><![CDATA[ 
+        <programlisting role='no-scilab-exec'><![CDATA[
 function [y1,...,yn]=foo(x1,...,xm)
  ]]></programlisting>
         <para>
@@ -37,10 +37,10 @@ function [y1,...,yn]=foo(x1,...,xm)
             A macro can be compiled for faster execution. Collections
             of macros can be collected in libraries.
             Macros which begin with <literal>%</literal> sign (e.g. <literal>%foo</literal>) and whose
-            arguments are lists are used to perform specific 
-            operations: for example, <literal>z=%rmr(x,y)</literal> is equivalent
-            to <literal>z=x*y</literal> when <literal>x</literal> and <literal>z</literal> are rationals 
-            (i.e. <literal>x=list('r',n,d,[])</literal> with <literal>n</literal> and <literal>d</literal> polynomials).
+            arguments are lists are used to perform specific
+            operations: for example, <code>z=%rmr(x,y)</code> is equivalent
+            to <code>z=x*y</code> when <varname>x</varname> and <varname>z</varname> are rationals
+            (i.e. <code>x=list('r',n,d,[])</code> with <varname>n</varname> and <varname>d</varname> polynomials).
         </para>
     </refsection>
     <refsection role="see also">
