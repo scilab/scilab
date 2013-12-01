@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="listfunctions">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="listfunctions">
     <refnamediv>
         <refname>listfunctions</refname>
-        <refpurpose>properties of all functions in
-            the workspace
+        <refpurpose>
+            свойства всех функций в рабочем пространстве
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[flist,compiled,profilable,called] = listfunctions([scope])</synopsis>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            [flist,compiled,profilable,called] = listfunctions([scope])
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>scope</term>
                 <listitem>
                     <para>
-                        a string, <literal>"local"</literal> (default) or <literal>"global"</literal>.
+                        строка, <literal>"local"</literal> (по умолчанию) или <literal>"global"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -25,7 +27,8 @@
                 <term>flist</term>
                 <listitem>
                     <para>
-                        a string array, names of all the function variables in the specified namespace.
+                        массив строк, имена всех переменных-функций в
+                        указанном рабочем пространстве.
                     </para>
                 </listitem>
             </varlistentry>
@@ -33,7 +36,9 @@
                 <term>compiled</term>
                 <listitem>
                     <para>
-                        a boolean array, true if the corresponding element of <varname>flist</varname> is of type 13.
+                        массив логических значений, ИСТИНА, если
+                        соответствующий элемент из списка
+                        <varname>flist</varname> имеет тип 13.
                     </para>
                 </listitem>
             </varlistentry>
@@ -41,9 +46,11 @@
                 <term>profilable</term>
                 <listitem>
                     <para>
-                        a boolean array, true if the corresponding element of <varname>flist</varname> is of type 13,
-                        and additionally profiling information is found in the pseudocode of
-                        the function.
+                        массив логических значений, ИСТИНА, если
+                        соответствующий элемент из списка
+                        <varname>flist</varname> имеет тип 13 и к тому
+                        же в псевдокоде функции найдена информация
+                        профилирования.
                     </para>
                 </listitem>
             </varlistentry>
@@ -51,28 +58,33 @@
                 <term>called</term>
                 <listitem>
                     <para>
-                        an uint32 array, number of times the corresponding element of <varname>flist</varname> has been
-                        already called (nonzero only for profilable functions).
+                        массив значений типа uint32, количество раз,
+                        когда соответствующий элемент из списка
+                        <varname>flist</varname> уже был вызван
+                        (ненулевой только для профилируемых функций).
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Описание</title>
         <itemizedlist>
             <listitem>
                 <para>
-                    This function checks all the variables in the workspace (given by
-                    <link linkend="who">who</link>) and collects those of type 11 or 13; for the latter,
-                    <code>lst = macr2lst(fun)</code> is called, in order to check for the magic
-                    profiling entry at the end of the first codeline, i.e. <code>lst(5)(1)=="25"</code>.
+                    Эта функция проверяет все переменные в рабочем
+                    пространстве (указанные с помощью функции
+                    <link linkend="who">who</link>) и собирает те,
+                    которые имеют тип 11 или 13; для последних
+                    вызывается <code>lst = macr2lst(fun)</code> для
+                    того, чтобы проверить магический вход профилирования
+                    в конце первой строки кода, т. е. <code>lst(5)(1)=="25"</code>.
                 </para>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 recompilefunction("asinh","p")
 [flist,compiled,profilable,called] = listfunctions();
@@ -80,7 +92,7 @@ flist(profilable)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="function">function</link>
@@ -112,7 +124,7 @@ flist(profilable)
         </simplelist>
     </refsection>
     <refsection>
-        <title>Bibliography</title>
+        <title>Литература</title>
         <para>
             <ulink url="http://wiki.scilab.org/Scilab_function_variables%3A_representation%2C_manipulation">http://wiki.scilab.org/Scilab_function_variables%3A_representation%2C_manipulation</ulink>
         </para>

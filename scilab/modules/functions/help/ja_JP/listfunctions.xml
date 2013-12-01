@@ -16,14 +16,15 @@
             <varlistentry>
                 <term>scope</term>
                 <listitem>
-                    <para>文字列, "local" (デフォルト) または "global"
+                    <para>
+                        文字列, <literal>"local"</literal> (デフォルト) または <literal>"global"</literal>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>flist</term>
                 <listitem>
-                    <para>文字列の配列, 
+                    <para>文字列の配列,
                         指定した名前空間にある全関数変数の名前
                     </para>
                 </listitem>
@@ -31,16 +32,16 @@
             <varlistentry>
                 <term>compiled</term>
                 <listitem>
-                    <para>論理値配列, 
-                        対応するflistの要素が型=13の場合に真
+                    <para>論理値配列,
+                        対応する<varname>flist</varname>の要素が型=13の場合に真
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>profilable</term>
                 <listitem>
-                    <para>論理値配列, 
-                        対応するflistの要素が型=13の場合に真となり,
+                    <para>論理値配列,
+                        対応する<varname>flist</varname>の要素が型=13の場合に真となり,
                         プロファイル情報が関数の擬似コードの中に追加されます.
                     </para>
                 </listitem>
@@ -48,8 +49,8 @@
             <varlistentry>
                 <term>called</term>
                 <listitem>
-                    <para>uint32 配列, 
-                        flist の対応する要素がコールされた回数
+                    <para>uint32 配列,
+                        <varname>flist</varname> の対応する要素がコールされた回数
                         (プロファイル可能な関数の場合のみ非ゼロ)
                     </para>
                 </listitem>
@@ -64,17 +65,17 @@
                     この関数は,(<link linkend="who">who</link>で指定した)
                     ワークスペースの全ての変数を確認し,
                     型11または13の変数を収集します;
-                    後で, lst=<link linkend="macr2lst">macr2lst</link>(fun) が
+                    後で, <code>lst = macr2lst(fun)</code> が
                     コールされた際,
                     最初のコード行の末尾に特殊なプロファイルエントリ
-                    lst(5)(1)=="25" がチェックされます.
+                    <code>lst(5)(1)=="25"</code> がチェックされます.
                 </para>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 recompilefunction("asinh","p")
 [flist,compiled,profilable,called] = listfunctions();
 flist(profilable)
@@ -99,10 +100,16 @@ flist(profilable)
                 <link linkend="fun2string">fun2string</link>
             </member>
             <member>
+                <link linkend="macr2lst">macr2lst</link>
+            </member>
+            <member>
                 <link linkend="profile">profile</link>
             </member>
             <member>
                 <link linkend="recompilefunction">recompilefunction</link>
+            </member>
+            <member>
+                <link linkend="who">who</link>
             </member>
         </simplelist>
     </refsection>
