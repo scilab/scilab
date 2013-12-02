@@ -15,4 +15,4 @@
 // <-- Short Description -->
 // The pow function is not accurate on Linux.
 
-assert_checkequal(0.9999999999999999^-18014398509482000.0, 7.3890560989306637)
+assert_checkalmostequal(0.9999999999999999^-18014398509482000.0, 7.3890560989306637)
