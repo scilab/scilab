@@ -275,6 +275,8 @@ Scilab Bug Fixes
 
 * Bug #13109 fixed - pll2str now supports polynomials with complex coefficients and hypermatrices.
 
+* Bug #13111 fixed - sqrt returned different results when imaginary part was -0 versus 0.
+
 * Bug #13114 fixed - clear_pixmap should have been removed in Scilab 5.4.1.
 
 * Bug #13116 fixed - qpsolve now respects upper-bounds constraints.
