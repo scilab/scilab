@@ -12,12 +12,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="jcreatejar">
     <refnamediv>
         <refname>jcreatejar</refname>
-        <refpurpose>Creates a Java Archive (JAR) from a set of files / directories</refpurpose>
+        <refpurpose>Creates a Java ARchive (JAR) from a set of files / directories</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            jcreatejar(jarFilePath, filePaths[, rootPath, [, manifestFilePath]])
+            jcreatejar(jarFilePath, filePaths[, rootPath[, manifestFilePath]])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -52,7 +52,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Creates a JAR (Java Archive) file from a set of input files / directories. A common use is to a create Java packages (which contain Java class files).
+            Creates a JAR (Java ARchive) file from a set of input files / directories. A common use is to a create Java packages (which contain Java classes).
             For example, the function <link linkend="ilib_build_jar">ilib_build_jar</link> uses <literal>jcreatejar</literal> to build toolboxes containing Java sources.
             But <literal>jcreatejar</literal> can also be used to compress files of any type (for example to send them over a network).
         </para>
@@ -64,13 +64,13 @@
             The manifest file can be automatically found at that location in the input tree, or the file path to the manifest can be given in the <literal>manifestFilePath</literal> argument. If the manifest file cannot be found, a default manifest will be created in the JAR. Note: if a manifest is given, it must contain a version attribute, otherwise the manifest in the JAR will be empty.
         </para>
         <para>
-            The JAR destination file path, stored in the argument <literal>jarFilePath</literal>, should have the extension <literal>.jar</literal>. The destination JAR file, if it already exists, is overwriten.
+            The JAR destination file path, stored in the argument <literal>jarFilePath</literal>, should have the extension <literal>.jar</literal>. The destination JAR file, if it already exists, is overwritten.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-// Example of jcreatejar: create a Java package (of classes)
+// Example of jcreatejar: create a JAR containing a Java package
 
 // Create a directory for package sources
 jar_src_path = fullfile(TMPDIR, 'jarPackageExample');
