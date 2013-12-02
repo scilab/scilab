@@ -48,8 +48,10 @@
             </note>
         </para>
     </refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[
+    
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
 pol2str(%z)
 
 p = poly ([1, 2, 3], "x","coeff");
@@ -57,29 +59,30 @@ pol2str(p)
 
 p = (1+%i+%z)^(1:4)
 pol2str(p)
- ]]></programlisting>
-</refsection>
-<refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-        <member>
-            <link linkend="string">string</link>
-        </member>
-        <member>
-            <link linkend="prettyprint">prettyprint</link>
-        </member>
-        <member>
-            <link linkend="sci2exp">sci2exp</link>
-        </member>
-    </simplelist>
-</refsection>
-<refsection role="history tag">
-    <title>ヒストリカル</title>
-    <revhistory>
-        <revision>
-            <revnumber>5.5.0</revnumber>
-            <revdescription>複素係数とhypermatricesと多項式への拡張。多項式のベクトル化処理テーブル</revdescription>
-        </revision>
-    </revhistory>
-</refsection>
+]]></programlisting>
+    </refsection>
+    
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="string">string</link>
+            </member>
+            <member>
+                <link linkend="prettyprint">prettyprint</link>
+            </member>
+            <member>
+                <link linkend="sci2exp">sci2exp</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history tag">
+        <title>ヒストリカル</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>複素係数とhypermatricesと多項式への拡張。多項式のベクトル化処理テーブル</revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>
