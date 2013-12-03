@@ -26,7 +26,7 @@ c
 c     The original version has been modified to replace statically
 c     allocated arrays dysav, ytemp and ysav by rwork arguments parts
 c     array + blas use. Serge Steer INRIA- feb 2012
-
+      include 'stack.h'
       integer n,i
       double precision fcor,one,safety,errcon
       parameter (fcor=.0666666667,one=1.0,safety=0.9,errcon=6.e-4)
@@ -36,15 +36,13 @@ c     array + blas use. Serge Steer INRIA- feb 2012
       double precision rwork(*)
 
       external derivs
-      integer iero
-      common/ierode/iero
 
       lysav=1
       ldysav=lysav+n
       lytemp=ldysav+n
       lwork=lytemp+n
 
-      iero=0
+      ierror=0
       pgrow=-0.20d0
       pshrnk=-0.25d0
       xsav=x
@@ -55,19 +53,19 @@ c     array + blas use. Serge Steer INRIA- feb 2012
 1     hh=0.5*h
       call rk4(rwork(lysav),rwork(ldysav),n,xsav,hh,rwork(lytemp),
      $     derivs,rwork(lwork))
-      if (iero.gt.0) return
+      if (ierror.gt.0) return
       x=xsav+hh
       call derivs(n,x,rwork(lytemp),dydx)
-      if (iero.gt.0) return
+      if (ierror.gt.0) return
       call rk4(rwork(lytemp),dydx,n,x,hh,y,derivs,rwork(lwork))
       x=xsav+h
       if(x.eq.xsav) then
-         iero=1
+         ierror=1
          return
       endif
       call rk4(rwork(lysav),rwork(ldysav),n,xsav,h,rwork(lytemp),
      $     derivs,rwork(lwork))
-      if (iero.gt.0) return
+      if (ierror.gt.0) return
       errmax=0.0d0
        do 12 i=0,n-1
         rwork(lytemp+i)=y(i+1)-rwork(lytemp+i)
