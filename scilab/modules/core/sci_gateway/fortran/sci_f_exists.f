@@ -1,5 +1,5 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-c Copyright (C) 2014 - Scilab Enterprises - Paul Bignier: bug #13136 fixed
+c Copyright (C) 2014 - Scilab Enterprises - Paul Bignier: bugs #11001 #13136 fixed
 c Copyright (C) INRIA
 c
 c This file must be used under the terms of the CeCILL.
@@ -102,6 +102,11 @@ c           look for libraries functions
                call funs(id)
                fun=kfun
             endif
+         endif
+c
+         if(fin.le.0) then
+c        variable not found, look for primitives
+            call funtab(id, fin, 1, 'NULL_NAME', 0)
          endif
 c
 c        To prevent the input from being progressively overwritten by the return,

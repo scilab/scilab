@@ -154,6 +154,8 @@ Scilab Bug Fixes
 
 * Bug #10998 fixed - matrix*hypermatrix and hypermatrix*matrix operations failed.
 
+* Bug #11001 fixed - exists and isdef did not work with primitives.
+
 * Bug #11007, #11008 & #11009 fixed - New function conjgrad (Conjugate Gradient methods "pcg", "cgs", "bicg" and "bicgstab").
 
 * Bug #11305 fixed - Performances improved with a better way to update data.
