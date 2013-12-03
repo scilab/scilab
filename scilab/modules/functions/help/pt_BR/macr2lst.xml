@@ -6,19 +6,35 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>[txt]=macr2lst(function-name)</synopsis>
+        <synopsis>lst = macr2lst(function_name)</synopsis>
     </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>function_name</term>
+                <listitem>
+                    <para>a function to be converted.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>lst</term>
+                <listitem>
+                    <para>a list.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
     <refsection>
         <title>Descrição</title>
         <para>Esta primitiva converte uma versão compilada do Scilab
-            <literal>function-name</literal> em uma lista que codifica a representação
+            <varname>function_name</varname> em uma lista que codifica a representação
             interna da função (notação polonesa inversa).
         </para>
         <para>A primeira entrada da lista é o nome da função, as segunda e
             terceira são, respectivamente, os vetores das variáveis de lado esquerdo e
             direito (lhs e rhs). As entradas seguintes são registros de operação
-            básica ou listas que contém as estruturas de controle hierárquicas como if
-            , for, ...
+            básica ou listas que contém as estruturas de controle hierárquicas como <literal>if</literal>, <literal>for</literal>, ...
         </para>
         <para>Registros de operação básica são descritos por um vetor de strings
             cujo primeiro elemento representa código do operador (op code).
@@ -167,10 +183,10 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //EXIBIÇÃO
 function y=foo(x,flag)
-  if flag then 
+  if flag then
     y=sin(x)
   else
     y=cos(x)

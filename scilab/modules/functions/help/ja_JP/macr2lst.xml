@@ -6,23 +6,40 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[txt]=macr2lst(function-name)</synopsis>
+        <synopsis>lst = macr2lst(function_name)</synopsis>
     </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>function_name</term>
+                <listitem>
+                    <para>a function to be converted.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>lst</term>
+                <listitem>
+                    <para>a list.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
     <refsection>
         <title>説明</title>
         <para>
-            このプリミティブは,コンパイル済みのScilab関数 <literal>function-name</literal>
+            このプリミティブは,コンパイル済みのScilab関数 <varname>function_name</varname>
             を,関数の内部表現をコード化(逆ポーランド表記)したリストに変換します.
         </para>
         <para>
             リストの最初のエントリは関数名,2番目および3番目のエントリは
             それぞれ左辺引数および右辺引数の変数名となります.
             それ以降のエントリは,基本的な演算子レコードもしくは
-            if, for, ... のような制御構造の階層を含むリストのどちらかです.
+            <literal>if</literal>, <literal>for</literal>, ... のような制御構造の階層を含むリストのどちらかです.
         </para>
         <para>
             基本的な演算子レコードは, 文字列ベクトルにより記述されます.
-            その最初の要素はオペコードを表します. 
+            その最初の要素はオペコードを表します.
         </para>
         <informaltable border="1">
             <tr>
@@ -168,10 +185,10 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //DISPLAY
 function y=foo(x,flag)
-  if flag then 
+  if flag then
     y=sin(x)
   else
     y=cos(x)
