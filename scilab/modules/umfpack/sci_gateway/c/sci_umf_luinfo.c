@@ -76,6 +76,7 @@ int sci_umf_luinfo(char* fname, unsigned long l)
     int it_flag     = 0;
     int* piAddr1    = NULL;
     int iErr        = 0;
+    int iType1      = 0;
 
     /* Check numbers of input/output arguments */
     CheckInputArgument(pvApiCtx, 1, 1);
@@ -86,6 +87,15 @@ int sci_umf_luinfo(char* fname, unsigned long l)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        return 1;
+    }
+
+    /* Check if the first argument is a pointer */
+    sciErr = getVarType(pvApiCtx, piAddr1, &iType1);
+    if (sciErr.iErr || iType1 != sci_pointer)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A pointer expected.\n"), fname, 1);
         return 1;
     }
 
