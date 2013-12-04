@@ -76,7 +76,9 @@ code2str([-28 12 18 21 10 11])
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-                <revremark>This function will be removed in Scilab 6.0.0</revremark>
+                <revremark>
+                    Эта функция будет удалена в Scilab 6.0.0
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

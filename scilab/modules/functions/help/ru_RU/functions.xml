@@ -28,7 +28,7 @@
         <title>Определение функции</title>
         <para>
             Обычно они определяются в файлах с помощью редактора и загружаются в Scilab, используя функцию <link linkend="exec">exec</link> или через библиотеку (см.
-            <link linkend="lib">lib</link> либо <link linkend="genlib">genlib</link>). Однако, они также могут быть определены во время исполнения программы (см. <link linkend="deff">deff</link> либо <link linkend="function">function</link>.
+            <link linkend="lib">lib</link> либо <link linkend="genlib">genlib</link>). Однако, они также могут быть определены во время исполнения программы (см. <link linkend="deff">deff</link> либо <link linkend="function">function</link>).
             Функция определяется двумя составляющими:
         </para>
         <itemizedlist>
@@ -87,7 +87,7 @@ function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
                 </para>
                 <para>
                     Её можно также вызвать следующим синтаксисом:
-                    <code>y = fun1(x1=33, y='foo')</code>. в таком
+                    <code>y = fun1(x1=33, y='foo')</code>. В таком
                     случае переменная <varname>y</varname> будет
                     доступна в контексте функции
                     <function>fun1</function>.

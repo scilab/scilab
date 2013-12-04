@@ -121,7 +121,7 @@ deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
                 <link linkend="profile">profile</link>
             </member>
             <member>
-                <link linkend="quote">quote</link>
+                <link linkend="quote">кавычка</link>
             </member>
         </simplelist>
     </refsection>

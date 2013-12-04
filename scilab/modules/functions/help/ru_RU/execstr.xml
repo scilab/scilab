@@ -66,14 +66,14 @@
             Если флаг <literal>'errcatch'</literal> не указан, то обработка ошибок ведётся как обычно.
         </para>
         <para>
-            Если указан флаг <literal>'errcatch'</literal>, и во время исполнения инструкций в <varname>instr</varname> произойдёт ошибка,то функция <function>execstr</function> не выдасть сообщения об ошибке, но прекратит исполнение инструкций <varname>instr</varname> (в том месте, где произошла ошибка), и вернёт номер ошибки <varname>ierr</varname>. В этом случае отображение ошибки управляется опцией <varname>msg</varname>:
+            Если указан флаг <literal>'errcatch'</literal>, и во время исполнения инструкций в <varname>instr</varname> произойдёт ошибка, то функция <function>execstr</function> не выдаст сообщения об ошибке, но прекратит исполнение инструкций <varname>instr</varname> (в том месте, где произошла ошибка), и вернёт номер ошибки <varname>ierr</varname>. В этом случае отображение ошибки управляется опцией <varname>msg</varname>:
         </para>
         <variablelist>
             <varlistentry>
                 <term>"m"</term>
                 <listitem>
                     <para>
-                        сообщение об ошибке отображение и записывается.
+                        сообщение об ошибке выводится на экран и записывается.
                     </para>
                 </listitem>
             </varlistentry>
@@ -81,7 +81,7 @@
                 <term>"n"</term>
                 <listitem>
                     <para>
-                        сообщиение об ошибке не отображается, однако записывается (see <link linkend="lasterror">lasterror</link>). Это значение по умолчанию.
+                        сообщение об ошибке не отображается, однако записывается (see <link linkend="lasterror">lasterror</link>). Это значение по умолчанию.
                     </para>
                 </listitem>
             </varlistentry>
