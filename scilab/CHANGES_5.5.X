@@ -144,6 +144,8 @@ Scilab Bug Fixes
 
 * Bug #11680 fixed - GUI functions in Scilab 5.4.X were much slower than in Scilab 5.3.3.
 
+* Bug #12121 fixed - inv function did not work for complex sparse matrices.
+
 * Bug #12334 fixed - Mark color in legend was invalid.
 
 * Bug #12481 fixed - xlabel could not be used with Scilab property names.
