@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -375,7 +375,10 @@ private:
                 }
             }
             j = ScilabJavaObject::wrap(vm, xx, r, c);
-            for (i = 0; i < r; delete[] xx[i++]);
+            for (i = 0; i < r; delete[] xx[i++])
+            {
+                ;
+            }
             delete[] xx;
             return j;
         }
@@ -384,7 +387,10 @@ private:
             T ** xx = new T*[c];
             int i;
             xx[0] = x;
-            for (i = 1; i < c; xx[i] = xx[i++ - 1] + r);
+            for (i = 1; i < c; xx[i] = xx[i++ - 1] + r)
+            {
+                ;
+            }
             i = ScilabJavaObject::wrap(vm, xx, c, r);
             delete[] xx;
             return i;
@@ -407,7 +413,10 @@ private:
                 }
             }
             j = ScilabJavaObject::wrap(vm, xx, r, c);
-            for (i = 0; i < r; delete[] xx[i++]);
+            for (i = 0; i < r; delete[] xx[i++])
+            {
+                ;
+            }
             delete[] xx;
             return j;
         }
@@ -424,7 +433,10 @@ private:
                 }
             }
             j = ScilabJavaObject::wrap(vm, xx, c, r);
-            for (i = 0; i < c; delete[] xx[i++]);
+            for (i = 0; i < c; delete[] xx[i++])
+            {
+                ;
+            }
             delete[] xx;
             return j;
         }

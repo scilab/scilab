@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -23,7 +23,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 public class Light extends GraphicObject {
 
     public enum LightProperty {POSITION, DIRECTION, TYPE};
-    
+
     public enum LightType {DIRECTIONAL, POINT};
 
     /** light position */
@@ -34,7 +34,7 @@ public class Light extends GraphicObject {
 
     /** light type */
     LightType type;
-    
+
     /** the light color */
     ColorTriplet lightColor;
 
@@ -45,7 +45,7 @@ public class Light extends GraphicObject {
         position = new Double[] {0.0, 0.0, 1.0};
         direction = new Double[] {0.0, 0.0, 1.0};
         type = LightType.POINT;
-        
+
         Double[] dark_gray = new Double[] {0.1, 0.1, 0.1};
         Double[] white = new Double[] {1.0, 1.0, 1.0};
         setAmbientColor(dark_gray);
@@ -63,20 +63,22 @@ public class Light extends GraphicObject {
         setPosition(other.position);
         setDirection(other.direction);
     }
-    
+
     @Override
     public void accept(Visitor visitor) {
     }
 
     /** returns the light's position */
     public Double[] getPosition() {
-        Double[] ret = new Double[]{position[0], position[1], position[2]};
+        Double[] ret = new Double[] {position[0], position[1], position[2]};
         return ret;
     }
 
     /** Sets the light's position */
     public UpdateStatus setPosition(Double[] pos) {
-        if (pos.length != 3) return UpdateStatus.Fail;
+        if (pos.length != 3) {
+            return UpdateStatus.Fail;
+        }
 
         if (position[0] != pos[0] || position[1] != pos[1] || position[2] != pos[2]) {
             position[0] = pos[0];
@@ -89,13 +91,15 @@ public class Light extends GraphicObject {
 
     /** returns the light's direction */
     public Double[] getDirection() {
-        Double[] ret = new Double[]{direction[0], direction[1], direction[2]};
+        Double[] ret = new Double[] {direction[0], direction[1], direction[2]};
         return ret;
     }
 
     /** Sets the light's direction */
     public UpdateStatus setDirection(Double[] dir) {
-        if (dir.length != 3) return UpdateStatus.Fail;
+        if (dir.length != 3) {
+            return UpdateStatus.Fail;
+        }
 
         if (direction[0] != dir[0] || direction[1] != dir[1] || direction[2] != dir[2]) {
             direction[0] = dir[0];
@@ -136,7 +140,7 @@ public class Light extends GraphicObject {
     public LightType getLightType() {
         return type;
     }
-    
+
     /**
      * Returns the enum associated to a property name
      * @param propertyName the property name
@@ -166,7 +170,7 @@ public class Light extends GraphicObject {
      * @return the property value
      */
     public Object getProperty(Object property) {
-       if (property instanceof ColorTriplet.ColorTripletProperty) {
+        if (property instanceof ColorTriplet.ColorTripletProperty) {
             ColorTriplet.ColorTripletProperty cp = (ColorTriplet.ColorTripletProperty)property;
             switch (cp) {
                 case AMBIENTCOLOR:

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -104,11 +104,11 @@ int get_datatips_property(void* _pvCtx, int iObjUID)
         getGraphicObjectProperty(piChildrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
         if (iHidden == 0 || iShowHiddenHandles == 1)
         {
-	    getGraphicObjectProperty(piChildrenUID[i], __GO_TYPE__, jni_int, (void**) &piType);
-	    if (type == __GO_DATATIP__)
-	    {
+            getGraphicObjectProperty(piChildrenUID[i], __GO_TYPE__, jni_int, (void**) &piType);
+            if (type == __GO_DATATIP__)
+            {
                 plDatatips[iDatatipIndex++] = getHandle(piChildrenUID[i]);
-	    }
+            }
         }
     }
 

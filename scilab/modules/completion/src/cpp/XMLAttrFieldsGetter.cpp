@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -43,7 +43,10 @@ const char ** XMLAttrFieldsGetter::getFieldsName(const XMLAttr * a, char ** fiel
     {
         const char ** fieldsName = a->getNames();
         int size = 0;
-        for (; fieldsName[size]; size++);
+        for (; fieldsName[size]; size++)
+        {
+            ;
+        }
 
         const char ** cpy = copy(fieldsName, size);
         delete [] fieldsName;
