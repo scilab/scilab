@@ -8,9 +8,21 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function M2=%s_m_hm(M1,M2)
+
+    siz1 = size(M1);
+    siz2 = size(M2);
+
     if size(M1,"*")<>1 then
-        M2=hypermat(size(M1),M1)*M2
+        if length(siz2)<>3 then
+            error(msprintf(_("%s: Wrong size for input argument #%d: 3D maximum expected.\n"),"%s_m_hm",2));
+        end
+        if siz1(2)<>siz2(1) then
+            error(msprintf(_("%s: Wrong size for argument: Incompatible dimensions.\n"),"s_m_hm"));
+        end
+        M2 = hypermat([siz2(1) siz2(2)*siz2(3)], M2);
+        M2 = hypermat([siz1(1) siz2(2) siz2(3)], M1*M2);
     else
-        M2.entries=M1*M2.entries
+        M2.entries = M1*M2.entries
     end
+
 endfunction

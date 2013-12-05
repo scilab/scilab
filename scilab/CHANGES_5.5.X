@@ -132,6 +132,8 @@ Scilab Bug Fixes
 
 * Bug #10936 fixed - Scilab hung with invalid strf in plot2d.
 
+* Bug #10998 fixed - matrix*hypermatrix and hypermatrix*matrix operations failed.
+
 * Bug #11007, #11008 & #11009 fixed - New function conjgrad (Conjugate Gradient methods "pcg", "cgs", "bicg" and "bicgstab").
 
 * Bug #11305 fixed - Performances improved with a better way to update data.
