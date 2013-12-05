@@ -10,6 +10,7 @@ New Features
 * New functions introduced:
  - jcreatejar - Creates a Java archive (JAR) from a set of files / directories
  - ilib_build_jar - Builds Java packages from sources into a JAR file
+ - ifftshift - inverse FFT shift
 
 * modulo() and pmodulo() now support integers & hypermatrices (See bug #13002).
 
@@ -120,6 +121,8 @@ Scilab Bug Fixes
 * Bug #10083 fixed - plot3d could not be used with only one input argument.
 
 * Bug #10175 fixed - Clearer example added for sp2adj to adj2sp conversion (and backwards conversion).
+
+* Bug #10221 fixed - ifftshift function did not exist in Scilab.
 
 * Bug #10234 fixed - reglin function moved from CACSD to Statistics module.
 

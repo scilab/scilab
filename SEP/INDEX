@@ -113,3 +113,4 @@ SEP #114: New function jcreatejar.
 SEP #115: New function bode_asymp.
 SEP #116: conjgrad function, to regroup the Conjugate Gradient solvers. pcg obsolete as it is.
 SEP #117: New function ilib_build_jar
+SEP #118: New function ifftshift
