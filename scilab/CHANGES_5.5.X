@@ -88,6 +88,8 @@ Scilab Bug Fixes
 
 * Bug #7879 fixed - string now accepts plist type, and printing a plist displays that string.
 
+* Bug #7916 fixed - nansum([]) returned Nan value while this function must ignore it.
+
 * Bug #8031 fixed - cdfgam error message fixed.
 
 * Bug #8060 fixed - Display of a list improved in the variable browser.

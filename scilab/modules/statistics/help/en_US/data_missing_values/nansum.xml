@@ -66,11 +66,6 @@
             in each entry of the column vector s of type size(x,'c')x1
             the sum of each row of x (ignoring the NANs).
         </para>
-        <para>
-            For the  last two cases,  if a row  or column is  in whole
-            composed of NAN, the corresponding place of s will contain
-            a NAN.
-        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
