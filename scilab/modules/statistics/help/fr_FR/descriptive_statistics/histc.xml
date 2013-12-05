@@ -119,13 +119,7 @@ clf(); histplot(20, d, normalization=%f);
 clf(); histplot(20, d);
 ]]></programlisting>
                 <scilab:image>
-                    // L'échantillon aléatoire gaussien
                     d = rand(1, 10000, 'normal');
-                    
-                    [cf, ind] = histc(20, d, normalization=%f)
-                    // On utilise histplot pour avoir une représentation graphique
-                    clf(); histplot(20, d, normalization=%f);
-                    
                     [cf, ind] = histc(20, d)
                     clf(); histplot(20, d);
                 </scilab:image>
