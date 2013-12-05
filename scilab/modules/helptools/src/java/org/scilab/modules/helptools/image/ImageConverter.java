@@ -226,7 +226,7 @@ public final class ImageConverter {
      * @param imageFile the filename
      * @return true if the code has been rendered into {@code imageFile}
      */
-    public String getImageByCode(String currentFile, String code, Map<String, String> attrs, String mime, File imageFile, String imageName, String baseImagePath, int lineNumber, String language, boolean isLocalized) {
+    public String getImageByCode(String currentFile, String code, Map<String, String> attrs, String mime, File imageFile, String imageName, String baseImagePath, int lineNumber, String language, Boolean isLocalized) {
         ExternalImageConverter imgConv = externalConverters.get(mime);
         if (imgConv == null) {
             System.err.println("In file " + currentFile + " at line " + lineNumber + ": invalid code:\n" + code);
@@ -238,8 +238,9 @@ public final class ImageConverter {
         }
 
         File current = new File(currentFile);
-        if (!compareMD5(code, imageFile.getName())) {
-            if (isLocalized || language.equals("en_US")) {
+
+        if ((language.equals("en_US") || !imageFile.exists() || isLocalized != null) && !compareMD5(code, imageFile.getName())) {
+            if ((isLocalized != null && isLocalized.booleanValue()) || language.equals("en_US")) {
                 System.err.println("Info: Create image " + imageFile.getName() + " from line " + lineNumber + " in " + current.getName());
             } else if (!language.equals("en_US") && imageFile.exists()) {
                 System.err.println("Warning: Overwrite image " + imageFile.getName() + " from line " + lineNumber + " in " + current.getName() + ". Check the code or use scilab:localized=\"true\" attribute.");
