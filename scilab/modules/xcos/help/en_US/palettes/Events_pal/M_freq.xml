@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="M_freq">
@@ -103,27 +103,27 @@
     <refsection id="Description_M_freq">
         <title>Description</title>
         <para>
-            This blocks generates events at specific sample time of the simulation time. The sample time is given in the "Sample Time" field and the offset is given in the "Offset" field. This block has one event input, the number of event outputs depends on the number of different sample time. For example if the vector of sample time is [1 1 2] and the vector of offset is [0 .5 0] then the block has 7 outputs.  
+            This blocks generates events at specific sample time of the simulation time. The sample time is given in the "Sample Time" field and the offset is given in the "Offset" field. This block has one event input, the number of event outputs depends on the number of different sample time. For example if the vector of sample time is [1 1 2] and the vector of offset is [0 .5 0] then the block has 7 outputs.
         </para>
-        <para>- The first output is activated when the simulation time is equal to a multiple of the first sample time plus the first offset  
+        <para>- The first output is activated when the simulation time is equal to a multiple of the first sample time plus the first offset
         </para>
-        <para>- The second output is activated when the simulation time is equal to a multiple of the second sample time plus the second offset.  
+        <para>- The second output is activated when the simulation time is equal to a multiple of the second sample time plus the second offset.
         </para>
-        <para>- The third output is activated when we have both cases, first case and second case.  
+        <para>- The third output is activated when we have both cases, first case and second case.
         </para>
-        <para>- The fourth output is activated when the simulation time is equal to a multiple of the third sample time plus the third offset.  
+        <para>- The fourth output is activated when the simulation time is equal to a multiple of the third sample time plus the third offset.
         </para>
-        <para>- The fifth output is activated when we have both cases, first case and forth case.  
+        <para>- The fifth output is activated when we have both cases, first case and forth case.
         </para>
-        <para>- The sixth output is activated when we have both cases, second case and fourth case.  
+        <para>- The sixth output is activated when we have both cases, second case and fourth case.
         </para>
-        <para>- The seventh output is activated when we have both cases, third case and forth case.  
-        </para>
-        <para>
-            etc... 
+        <para>- The seventh output is activated when we have both cases, third case and forth case.
         </para>
         <para>
-            So the number of outputs is equal to 2**number of different time values. Each of these time values is represented by a binary number associated to the output's number in decimal.  
+            etc...
+        </para>
+        <para>
+            So the number of outputs is equal to 2**number of different time values. Each of these time values is represented by a binary number associated to the output's number in decimal.
         </para>
         <para>
         </para>
@@ -159,7 +159,7 @@
     </refsection>
     <refsection id="Example_M_freq">
         <title>Example</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 Let us take the example where the sample time is equal to [1 1 2] and the offset is equal to [0 .5 0]. Consider t=simulation time.
 When t=0, the fifth output is activated (001 + 100).
 When t=0.5, the second output is activated (010).
@@ -239,6 +239,16 @@ When t=2 we loop back to 0.
                 <para> SCI/modules/scicos_blocks/src/c/m_frequ.c (Type 4)</para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_M_freq">
+        <title>Multiple frequency example</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/M_freq_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/events_pal/M_freq_Example.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
     </refsection>
     <refsection id="Seealso_M_freq">
         <title>See also</title>
