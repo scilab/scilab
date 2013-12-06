@@ -50,6 +50,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.event.PopupMenuEvent;
@@ -206,7 +207,6 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
             if (startPos != endPos) {
                 if (startLine != endLine) {
                     radioSelection.doClick();
-                    radioSelection.setSelected(true);
                     comboFind.setSelectedIndex(-1);
                     comboReplace.setSelectedIndex(-1);
                 } else {
@@ -493,10 +493,13 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
                 scinotesTextPane.addFocusListener(new FocusListener() {
                     @Override
                     public void focusGained(FocusEvent e) {
-                        removeAllHighlights();
-                        previousRegexp = "";
-                        radioAll.setSelected(true);
-                        getEditor().getTextPane().removeFocusListener(this);
+                        JFrame opposite = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, e.getOppositeComponent());
+                        if (opposite == frame) {
+                            removeAllHighlights();
+                            previousRegexp = "";
+                            radioAll.setSelected(true);
+                            getEditor().getTextPane().removeFocusListener(this);
+                        }
                     }
 
                     @Override
