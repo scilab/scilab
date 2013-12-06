@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="nancumsum">
     <refnamediv>
         <refname>nancumsum</refname>
-        <refpurpose>Thos function returns
+        <refpurpose>This function returns
             the cumulative sum of the values of a matrix
         </refpurpose>
     </refnamediv>
@@ -42,7 +42,7 @@
                 <term>s</term>
                 <listitem>
                     <para>numerical scalar or vector. It contains the cumulative
-                        sum of the values of x, ignoring the NAN's.
+                        sum of the values of <literal>x</literal>, ignoring the NAN's.
                     </para>
                 </listitem>
             </varlistentry>
@@ -51,38 +51,33 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function returns in scalar or vector s the cumulative
+            This function returns in scalar or vector <literal>s</literal> the cumulative
             sum  of the  values (ignoring  the  NANs) of  a vector  or
-            matrix (real or complex) x.
+            matrix (real or complex) <literal>x</literal>.
         </para>
         <para>
-            This function  for a vector or a  matrix x, s=nancumsum(x)
-            (or, equivalently  s=nancumsum(x,'*') returns in  scalar s
+            This function  for a vector or a  matrix <literal>x</literal>, <literal>s=nancumsum(x)</literal>
+            (or, equivalently  <literal>s=nancumsum(x,'*')</literal>) returns in  scalar <literal>s</literal>
             the cumulative sum (ignoring  the NANs) of all the entries
-            of x taken columnwise.
+            of <literal>x</literal> taken columnwise.
         </para>
         <para>
-            s=nancumsum(x,'r')  (or,  equivalently,  s=nancumsum(x,1))
-            returns in  the cols(x) sized vector s  the cumulative sum
-            (ignoring    the    NANs)    of    the    rows    of    x:
-            s(:,i)=nancumsum(x(:,i))
+            <literal>s=nancumsum(x,'r')</literal>  (or,  equivalently,  <literal>s=nancumsum(x,1)</literal>)
+            returns in <literal>s</literal>  the cumulative sum
+            (ignoring    the    NANs)    of    the    rows    of    <literal>x</literal>:
+            <literal>s(:,i)=nancumsum(x(:,i)</literal>)
         </para>
         <para>
             s=nancumsum(x,'c')  (or,  equivalently,  s=nancumsum(x,2))
-            returns in  the rows(x) sized vector s  the cumulative sum
-            (ignoring     NANs)    of     the     columns    of     x:
-            s(i,:)=nancumsum(x(i,:))
-        </para>
-        <para>
-            For the  last two cases,  if a row  or column is  in whole
-            composed of NAN, the corresponding place of s will contain
-            a NAN.
+            returns in <literal>s</literal>  the cumulative sum
+            (ignoring     NANs)    of     the     columns    of     <literal>x</literal>:
+            <literal>s(i,:)=nancumsum(x(i,:))</literal>
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-a=[1 2 3;4 5 6]
+a=[1 2 %nan;%nan 5 6]
 s=nancumsum(a)
 s=nancumsum(a,'r')
 s=nancumsum(a,'c')
