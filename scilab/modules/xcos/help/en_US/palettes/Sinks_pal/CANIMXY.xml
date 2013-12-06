@@ -280,16 +280,6 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_CANIMXY">
-        <title>See also</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="CANIMXY3D">CANIMXY3D - z=f(x,y) animated viewer</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Example_CANIMXY">
         <title>Animated point viewer example</title>
         <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/CANIMXY_Example.zcos">
@@ -299,5 +289,15 @@
                 </imageobject>
             </inlinemediaobject>
         </link>
+    </refsection>
+    <refsection id="Seealso_CANIMXY">
+        <title>See also</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="CANIMXY3D">CANIMXY3D - z=f(x,y) animated viewer</link>
+                </para>
+            </listitem>
+        </itemizedlist>
     </refsection>
 </refentry>
