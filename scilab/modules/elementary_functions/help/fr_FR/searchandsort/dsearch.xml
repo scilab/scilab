@@ -34,7 +34,7 @@
                 <listitem>
                     <para>
                         matrice ou hypermatrice de nombres réels, d'entiers encodés, ou de textes : éléments à catégoriser. 
-						Les nombres complexes et les polynômes ne sont pas admis.
+                        Les nombres complexes et les polynômes ne sont pas admis.
                     </para>
                 </listitem>
             </varlistentry>
@@ -43,17 +43,17 @@
                 <listitem>
                     <para>
                         vecteur ligne ou colonne définissant les catégories, de même type que <varname>X</varname> (Si <varname>X</varname> contient des entiers encodés, <varname>bins</varname> peut être de type décimal).
-						<itemizedlist>
-							<listitem>
-								Cas discret (pm="d"): <varname>bins</varname> contient les valeurs auxquelles les éléments de <varname>X</varname> doivent être identifiés. Si <varname>X</varname> est numérique (nombres réels ou entiers encodés), <varname>bins</varname> doit être préalablement trié par ordre croissant, et sans doublons.
-							</listitem>
-							<listitem>
-								Cas continu (par défaut, pm="c"): <varname>bins</varname> contient les bornes d'intervalles <literal>Ik</literal> contigus : <literal>I1 = [bins(1), bins(2)]</literal>, <literal>I2 = (bins(2), bins(3)]</literal>,..., <literal>In = (bins(n), bins(n+1)]</literal>. Noter que <literal>I1</literal> est fermé à gauche, alors que les <literal>I(k>1)</literal> sont semi-ouverts à gauche.
-								Les bornes <varname>bins</varname> doivent être préalablement triées en ordre strictement croissant : bins(1) &lt; bins(2) &lt; ... &lt; bins(n). 
-								Pour le traitement du texte, l'ordre lexicographique sensible à la casse est considéré.
-							</listitem>
-						</itemizedlist>
-					</para>
+                        <itemizedlist>
+                            <listitem>
+                                Cas discret (pm="d"): <varname>bins</varname> contient les valeurs auxquelles les éléments de <varname>X</varname> doivent être identifiés. Si <varname>X</varname> est numérique (nombres réels ou entiers encodés), <varname>bins</varname> doit être préalablement trié par ordre croissant, et sans doublons.
+                            </listitem>
+                            <listitem>
+                                Cas continu (par défaut, pm="c"): <varname>bins</varname> contient les bornes d'intervalles <literal>Ik</literal> contigus : <literal>I1 = [bins(1), bins(2)]</literal>, <literal>I2 = (bins(2), bins(3)]</literal>,..., <literal>In = (bins(n), bins(n+1)]</literal>. Noter que <literal>I1</literal> est fermé à gauche, alors que les <literal>I(k>1)</literal> sont semi-ouverts à gauche.
+                                Les bornes <varname>bins</varname> doivent être préalablement triées en ordre strictement croissant : bins(1) &lt; bins(2) &lt; ... &lt; bins(n). 
+                                Pour le traitement du texte, l'ordre lexicographique sensible à la casse est considéré.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -75,9 +75,11 @@
             <varlistentry>
                 <term>counts</term>
                 <listitem>Nombre d'éléments de X dans les catégories respectives.
-                    <para>Cas continu(pm="c"): counts(i) éléments de <varname>X</varname> appartiennent à l'intervalle <literal>Ik</literal> tel que défini ci-dessus (voir le paramètre <varname>bins</varname>). Les éléments de <varname>X</varname> juste égaux à bins(1) sont comptés dans counts(1). <varname>counts</varname> est un vecteur de même taille que <varname>bins</varname>, - 1.
-					</para>
-					<para>Cas discrêt(pm="d"): <literal>counts(i)</literal> indique le nombre d'éléments de <varname>X</varname> égaux à <literal>bins(i)</literal>
+                    <para>
+                        Cas continu(pm="c"): counts(i) éléments de <varname>X</varname> appartiennent à l'intervalle <literal>Ik</literal> tel que défini ci-dessus (voir le paramètre <varname>bins</varname>). Les éléments de <varname>X</varname> juste égaux à bins(1) sont comptés dans counts(1). <varname>counts</varname> est un vecteur de même taille que <varname>bins</varname>, - 1.
+                    </para>
+                    <para>
+                        Cas discrêt(pm="d"): <literal>counts(i)</literal> indique le nombre d'éléments de <varname>X</varname> égaux à <literal>bins(i)</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -95,13 +97,13 @@
         <title>Description</title>
         <para>
             Pour chaque élément <varname>X(i)</varname>, la fonction <varname>dsearch</varname> détermine la valeur <literal>bins(j)</literal> ou l'intervalle <literal>(bins(j), bins(j+1)]</literal> égale à ou contenant <varname>X(i)</varname>. Elle retourne <literal>i_bin(i) = j</literal>, ou 0 si aucune valeur ou intervalle ne convient (le premier intervalle inclut <literal>bins(1)</literal> à gauche). L'effectif de chaque de chaque catégorie est retourné dans le vecteur <varname>counts</varname>. Le nombre d'éléments de <varname>X</varname> n'allant dans aucune catégorie est retourné dans <varname>outside</varname> (donc <literal>outside = sum(bool2s(i_bin==0))</literal>).
-		</para>
+        </para>
         <para>
-			<literal>dsearch(..)</literal> peut être surchargée.
+            <literal>dsearch(..)</literal> peut être surchargée.
             Le mode pm="c" par défaut peut être utilisé pour calculer l'histogramme empirique d'une fonction appliquée à un ensemble de points donnés.
         </para>
     </refsection>
-	
+    
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[ 		
@@ -128,8 +130,8 @@ bins = unique(matrix(strsplit(s, L:L:nC*L-1), 1, nC))
 T
 [i_bin, counts, outside] = dsearch(T, bins)
     ]]>
-	</programlisting>
-	
+        </programlisting>
+        
         <para>
             Dans l'exemple suivant, considérons 3 intervalles <literal>I1 = [5,11]</literal>, 
             <literal>I2 = (11,15]</literal> and <literal>I3 = (15,20]</literal>.
@@ -253,13 +255,13 @@ dsearch   : the array s (arg 2) is not well ordered
         <title>Exemples avancés</title>
         <para>
             Dans l'exemple suivant, l'histogramme empirique d'un tirage aléatoire à distribution uniforme sur [0, 1]
-			est comparé avec la fonction de distribution théorique uniforme.
+            est comparé avec la fonction de distribution théorique uniforme.
             A cette fin, une catégorisation par intervalles contigus est utilisée (pm="c").
             Une matrice X  de m=50000 nombres aléatoires à ditribution uniforme sur [0,1[ sont générés.
-			n=10 bornes régulièrement espacées sur [0,1] sont générées et partionnent ce domaine 
-			en n-1=9 intervalles de largeurs identiques.
-			dsearch() classe et dénombre les effectifs de X dans chaque intervalle.
-			La valeur de counts(i)/m attendue (pour m -> inf) vaut 1/(n-1).
+            n=10 bornes régulièrement espacées sur [0,1] sont générées et partionnent ce domaine 
+            en n-1=9 intervalles de largeurs identiques.
+            dsearch() classe et dénombre les effectifs de X dans chaque intervalle.
+            La valeur de counts(i)/m attendue (pour m -> inf) vaut 1/(n-1).
         </para>
         <programlisting role="example"><![CDATA[
 m = 50000 ;
@@ -274,7 +276,7 @@ plot(bins(1:n-1), e,"r-");
 legend(["Experiment","Expectation"]);
 xtitle("Uniform random numbers","X","P(X)");
  ]]></programlisting>
-        <scilab:image>
+        <scilab:image localized="true">
             m = 50000 ;
             n = 10;
             X = grand(m,1,"def");
@@ -284,8 +286,8 @@ xtitle("Uniform random numbers","X","P(X)");
             scf() ; 
             plot(bins(1:n-1), counts/m,"bo");
             plot(bins(1:n-1), e,"r-");
-            legend(["Experiment","Expectation"]);
-            xtitle("Uniform random numbers","X","P(X)");
+            legend(["Tirage","Théorie"]);
+            xtitle("Distribution uniforme","X","P(X)");
         </scilab:image>
         <para>
             Dans l'exemple suivant, l'histogramme d'un tirage aléatoire à distribution binomiale
@@ -308,7 +310,7 @@ plot(bins, Pexa', "r-");
 xtitle("Distribution binomiale B(8,0.5)","X","P(X)");
 legend(["Tirage","Théorie"]);
 ]]></programlisting>
-        <scilab:image>
+        <scilab:image localized="true">
             N = 8 ; 
             p = 0.5; 
             m = 50000;
@@ -366,7 +368,7 @@ legend(["Tirage","Théorie"]);
       // NOTE : pour vérifier, décommenter et exécuter la ligne suivante
       // YY = interp(X,x,y,d); plot2d(X,YY,3,"000")
       ]]></programlisting>
-        <scilab:image>
+        <scilab:image localized="true">
             
             function y=Ll(t,k,x)
             y=(t-x(k+1))./(x(k)-x(k+1))
@@ -401,7 +403,7 @@ legend(["Tirage","Théorie"]);
             legend(["Polynôme d''interpolation","Données à interpoler"]);
         </scilab:image>
     </refsection>
-	
+    
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
