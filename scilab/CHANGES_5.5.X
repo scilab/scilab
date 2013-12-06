@@ -49,7 +49,7 @@ Scilab Bug Fixes
 
 * Bug #5886 fixed - There was no property labels_font_style on axis.
 
-* Bug #6036 fixed - It is now possible to compute an histogram instead of plotting it
+* Bug #6306 fixed - It is now possible to compute an histogram instead of plotting it
                     with new function histc(). Besides, histplot can now return the computed data.
 
 * Bug #6404 fixed - xrects help page was not clear about argument specification.
