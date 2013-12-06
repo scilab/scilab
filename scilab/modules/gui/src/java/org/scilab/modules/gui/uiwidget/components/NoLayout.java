@@ -130,18 +130,6 @@ public class NoLayout implements LayoutManager2 {
                             break;
                     }
 
-                    switch (constraint.unit[1]) {
-                        case UNIT_NORMALIZED:
-                            rr.y = (int) (rp.height * (1 - correct(constraint.bounds.height) - correct(constraint.bounds.y)));
-                            break;
-                        case UNIT_POINTS:
-                            rr.y = (int) (rp.height - (constraint.bounds.y + constraint.bounds.height) * scale);
-                            break;
-                        default:
-                            rr.y = (int) (rp.height - constraint.bounds.y - constraint.bounds.height);
-                            break;
-                    }
-
                     switch (constraint.unit[2]) {
                         case UNIT_NORMALIZED:
                             rr.width = (int) (correct(constraint.bounds.width) * rp.width);
@@ -163,6 +151,18 @@ public class NoLayout implements LayoutManager2 {
                             break;
                         default:
                             rr.height = (int) constraint.bounds.height;
+                            break;
+                    }
+
+                    switch (constraint.unit[1]) {
+                        case UNIT_NORMALIZED:
+                            rr.y = (int) (rp.height * (1 - correct(constraint.bounds.y))) - rr.height;
+                            break;
+                        case UNIT_POINTS:
+                            rr.y = (int) (rp.height - constraint.bounds.y * scale) - rr.height;
+                            break;
+                        default:
+                            rr.y = (int) (rp.height - constraint.bounds.y) - rr.height;
                             break;
                     }
 
@@ -250,7 +250,7 @@ public class NoLayout implements LayoutManager2 {
 
 
         public String toString() {
-            return "NoLayoutConstraint:" + bounds;
+            return "NoLayoutConstraint:" + bounds + " units:" + unit[0] + ";" + unit[1] + ";" + unit[2] + ";" + unit[3];
         }
     }
 }

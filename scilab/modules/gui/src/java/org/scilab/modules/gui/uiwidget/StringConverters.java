@@ -664,7 +664,7 @@ public final class StringConverters {
                 String[] toks = str.split("[ ,;]");
                 for (int i = 0; i < toks.length && i < 4; i++) {
                     try {
-                        d[i] = (int) Double.parseDouble(toks[i]);
+                        d[i] = Double.parseDouble(toks[i]);
                     } catch (NumberFormatException ee) {
                         d[i] = 0;
                     }

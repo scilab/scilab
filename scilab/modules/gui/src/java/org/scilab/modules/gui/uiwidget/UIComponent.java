@@ -2615,6 +2615,14 @@ public abstract class UIComponent {
                 setNoLayoutConstraint(ScilabTypeConverters.getObjectFromValue(Rectangle2D.Double.class, (ScilabType) attributes.get("position")));
             }
             uselessAttrs.remove("position");
+            if (uselessAttrs.contains("units")) {
+                if (attributes instanceof StringMap) {
+                    setUnits(StringConverters.getObjectFromValue(String[].class, (String) attributes.get("units")));
+                } else {
+                    setUnits(ScilabTypeConverters.getObjectFromValue(String[].class, (ScilabType) attributes.get("units")));
+                }
+                uselessAttrs.remove("units");
+            }
         }
 
         setAttributesAndStyle(attributes, uselessAttrs);
