@@ -287,6 +287,8 @@ Scilab Bug Fixes
 
 * Bug #13121 fixed - ode "rk" option crashed Scilab when the user derivative function failed.
 
+* Bug #13132 fixed - There were missing graduations when data_bounds interval was too small.
+
 
 Xcos Bug Fixes
 ==============

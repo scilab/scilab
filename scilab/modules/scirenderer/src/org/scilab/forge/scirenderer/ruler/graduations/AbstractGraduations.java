@@ -23,6 +23,8 @@ import java.text.DecimalFormatSymbols;
  */
 public abstract class AbstractGraduations implements Graduations {
 
+    protected static final double PRECISION = 1e-8;
+
     /** The left bracket used by {@link #toString()} */
     private static final String LEFT_BRACKET = "[";
 
@@ -145,10 +147,10 @@ public abstract class AbstractGraduations implements Graduations {
      * Equivalent to contain but for interval [0, upper-lower] (to avoid rounding error in computations)
      */
     public final boolean containRelative(double value) {
-        if (value == 0) {
+        if (value == 0 || Math.abs(value / (upperBound - lowerBound)) <= PRECISION) {
             return isLowerBoundIncluded;
         }
-        if (value == upperBound - lowerBound || Math.abs(1 - value / (upperBound - lowerBound)) <= 1e-15) {
+        if (value == upperBound - lowerBound || Math.abs(1 - value / (upperBound - lowerBound)) <= PRECISION) {
             return isUpperBoundIncluded;
         }
         return (0 < value) && (value < upperBound - lowerBound);
@@ -163,7 +165,7 @@ public abstract class AbstractGraduations implements Graduations {
             if (maxDisplayedValue < 1e-3) {
                 numberFormat = new DecimalFormat("0.##########E00");
             } else if (len <= 1e-3) {
-                numberFormat = new TinyIntervalFormat("0.####E00", "0.###E00");
+                numberFormat = new TinyIntervalFormat("0.####E00", "0.##E00");
             } else if (maxDisplayedValue >= 1e6) {
                 numberFormat = new DecimalFormat("0.##########E00");
             } else if (maxDisplayedValue < 1) {
@@ -207,7 +209,7 @@ public abstract class AbstractGraduations implements Graduations {
     }
 
     @Override
-    public final String toString() {
+    public String toString() {
         String lowerBoundBracket;
         String upperBoundBracket;
 

@@ -42,6 +42,7 @@ public class TinyIntervalFormat extends DecimalFormat {
      */
     public StringBuffer format(double number, StringBuffer result, FieldPosition fieldPosition) {
         double[] parts = getParts(number);
+
         if (parts[1] == 0) {
             return super.format(number, result, fieldPosition);
         }
@@ -58,9 +59,11 @@ public class TinyIntervalFormat extends DecimalFormat {
             } else if (parts[1] < 0) {
                 result.append("-");
             }
+
+            return fracFormat.format(Math.abs(parts[1]), result, fieldPosition);
         }
 
-        return fracFormat.format(Math.abs(parts[1]), result, fieldPosition);
+        return fracFormat.format(parts[1], result, fieldPosition);
     }
 
     /**
@@ -81,12 +84,12 @@ public class TinyIntervalFormat extends DecimalFormat {
         double p = 1;
         double y = x;
         double f = y - Math.round(y);
-        while (Math.abs(f) > 1e-3) {
+        while (Math.abs(f) > 1e-2) {
             y *= 10;
             p *= 10;
             f = y - Math.round(y);
         }
 
-        return new double[] {Math.round(y) / p, f};
+        return new double[] {Math.round(y) / p, f / p};
     }
 }
