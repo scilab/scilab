@@ -18,7 +18,7 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            doc = xmlRead(path [, validateDTD])
+            doc = xmlRead(path [, encoding] [, validateDTD])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -28,6 +28,12 @@
                 <term>path</term>
                 <listitem>
                     <para>a string, the path to the file to read.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>encoding</term>
+                <listitem>
+                    <para>a string, the file encoding.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -48,6 +54,7 @@
         <title>Description</title>
         <para>Read and parse a XML file. The returned document allows to access to the DOM tree which is kept in memory.</para>
         <para>If validateDTD is set to true, the document will be validated or not during the parsing operation.</para>
+	<para>The encoding argument is used to precise the file encoding.</para>
         <para>
             It is important to notice that the tree must be freed (to avoid memory leaks) with the function <link linkend="xmlDelete">xmlDelete</link>.
         </para>
@@ -98,6 +105,10 @@
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>XML module introduced.</revremark>
+            </revision>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Add new argument to select file encoding.</revremark>
             </revision>
         </revhistory>
     </refsection>

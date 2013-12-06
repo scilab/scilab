@@ -135,6 +135,8 @@ Scilab Bug Fixes
 
 * Bug #10273 fixed - spchol help page now displays an example showing how to use its output arguments.
 
+* Bug #10645 fixed - File encoding could not be given as argument in xmlRead.
+
 * Bug #10936 fixed - Scilab hung with invalid strf in plot2d.
 
 * Bug #10998 fixed - matrix*hypermatrix and hypermatrix*matrix operations failed.
