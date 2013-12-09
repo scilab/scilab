@@ -35,7 +35,7 @@
             <varlistentry>
                 <term>P,Q (Q=1-P)  </term>
                 <listitem>
-                    <para>The cumulation from 0 to S of the binomial distribution. (Probablility of S or fewer successes in XN trials each with probability of success PR.) Input range: [0,1].</para>
+                    <para>The cumulation from 0 to S of the binomial distribution. (Probability of S or fewer successes in XN trials each with probability of success PR.) Input range: [0,1].</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

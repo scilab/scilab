@@ -13,7 +13,7 @@ function s=samplef(n,X,f,orient)
     //This function gives s, a  vector of length n.  It contains
     //a  sample of  n  extractions, with  replacement, from  the
     //vector  (or  matrix)  X,  each element  counted  with  the
-    //frequence given by the corresponding value in vector f.
+    //frequency given by the corresponding value in vector f.
     //
     //s=samplef(n,X,f)   (or  s=samplef(n,X,f,'*'))   returns  a
     //vector s whose values are a random sample of n values from

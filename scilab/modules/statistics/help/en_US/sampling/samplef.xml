@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -14,7 +14,7 @@
     <refnamediv>
         <refname>samplef</refname>
         <refpurpose>sample with replacement from a population
-            and frequences of his values.
+            and frequencies of his values.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -39,7 +39,7 @@
             <varlistentry>
                 <term>f</term>
                 <listitem>
-                    <para>positive integer matrix with same type than X. It indicates frequences
+                    <para>positive integer matrix with same type than X. It indicates frequencies
                         of corresponding values of X.
                     </para>
                 </listitem>
@@ -64,7 +64,7 @@
             This function gives s, a  vector of length n.  It contains
             a  sample of  n  extractions, with  replacement, from  the
             vector  (or  matrix)  X,  each element  counted  with  the
-            frequence given by the corresponding value in vector f.
+            frequency given by the corresponding value in vector f.
         </para>
         <para>
             s=samplef(n,X,f)   (or  s=samplef(n,X,f,'*'))   returns  a
@@ -94,7 +94,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=[3 7 9;22 4 2]
 f1=[10 1 1 1 1 1]
 f2=[1 ; 15]

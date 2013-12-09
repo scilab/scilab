@@ -189,7 +189,7 @@
     <refsection id="Examples_freq_div">
         <title>Examples</title>
         <para>
-            The following example divides a frequence per three.
+            The following example divides a frequency per three.
             <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/en_US/freq_div_en_US.zcos">
                 Open this example in Xcos
             </link>

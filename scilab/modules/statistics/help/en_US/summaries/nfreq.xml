@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -14,7 +14,7 @@
     <refnamediv>
         <refname>nfreq</refname>
         <refpurpose>
-            frequence of the values in a vector or matrix. <emphasis role="bold">This function is obsolete.</emphasis>
+            frequency of the values in a vector or matrix. <emphasis role="bold">This function is obsolete.</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -35,7 +35,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Frequence of the  values in a real or  complex vector or a
+            Frequency of the  values in a real or  complex vector or a
             real or complex matrix <literal>x</literal>.
         </para>
         <para>
@@ -43,7 +43,7 @@
             <literal>x</literal>,  <literal>m=freq(x)</literal> returns in  the first  column of
             the  <literal>size(x,'*')x2</literal>  matrix  <literal>m</literal>  the  values  of
             <literal>x</literal>  and  in the  second  column  of  this matrix  the
-            frequences of the corresponding values.
+            frequencies of the corresponding values.
         </para>
         <para>
             Note that the  <link linkend="tabul">tabul</link> function is more efficient, applies
@@ -54,7 +54,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[2 8 0 3 7 6 8 7 9 1]
 m=nfreq(x)
  ]]></programlisting>

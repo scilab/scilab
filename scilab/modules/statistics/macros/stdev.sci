@@ -49,7 +49,7 @@ function sd = stdev(x, o, m)
             on = 2
         else
             if type(o) <> 1 | size(o, "*") <> 1 | o < 0 | floor(o) <> o then
-                error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'',''%s'', ''%s'' or a positive integer expected.\n"),"stdev",2,"*","r","c")),
+                error(msprintf(_("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'' or a positive integer expected.\n"),"stdev",2,"*","r","c")),
             else
                 on = o
             end

@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -40,7 +40,7 @@
             <varlistentry>
                 <term>s</term>
                 <listitem>
-                    <para>Numerical scalar or vector containig the value of the adding operation.</para>
+                    <para>Numerical scalar or vector containing the value of the adding operation.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -53,7 +53,7 @@
         </para>
         <para>
             For a vector or matrix x, s=nansum(x) (or s=nansum(x,'*'))
-            returns in  scalar s the sum of values of all entries 
+            returns in  scalar s the sum of values of all entries
             (ignoring the NAN's) of a vector or matrix x.
         </para>
         <para>
@@ -74,7 +74,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[0.2113249 %nan 0.6653811;0.7560439 0.3303271 0.6283918]
 m=nansum(x)
 m=nansum(x,1)

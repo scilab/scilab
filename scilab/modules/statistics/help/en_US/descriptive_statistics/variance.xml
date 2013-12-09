@@ -201,7 +201,7 @@ s = variance(x, "*", %nan)
                             <para>variance(x, orien, 0|1) removed (as introduced in Scilab 5.4.1)</para>
                         </listitem>
                         <listitem>
-                            <para>variance(x, orien, m) introduced: the true mean m of the underlaying statistical law can be used.</para>
+                            <para>variance(x, orien, m) introduced: the true mean m of the underlying statistical law can be used.</para>
                         </listitem>
                         <listitem>
                             <para>variance(x, orien, %nan) introduced: mean(x,..) is used but divided by n values (instead of n-1)</para>

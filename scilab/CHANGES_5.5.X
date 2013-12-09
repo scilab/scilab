@@ -304,6 +304,8 @@ Scilab Bug Fixes
 
 * Bug #13139 fixed - fft help page fixed.
 
+* Bug #13140 fixed - Various typos fixed.
+
 
 Xcos Bug Fixes
 ==============

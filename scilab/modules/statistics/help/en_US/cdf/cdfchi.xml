@@ -81,7 +81,7 @@
         <title>Examples</title>
         <para>
             In the following example, we compute the probability of the event <literal>x=0.1</literal>
-            for the the chi-square distribution function with <literal>Df=2</literal>.
+            for the chi-square distribution function with <literal>Df=2</literal>.
         </para>
         <programlisting role="example"><![CDATA[
     Df = 2;
