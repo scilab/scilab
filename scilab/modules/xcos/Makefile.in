@@ -171,9 +171,11 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscixcos_la_imagesdir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscixcos_algo_la_LIBADD =
-am__objects_1 = libscixcos_algo_la-Xcos.lo \
-	libscixcos_algo_la-Palette.lo libscixcos_algo_la-Modelica.lo \
-	libscixcos_algo_la-xcosUtilities.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+am__objects_1 = src/jni/libscixcos_algo_la-Xcos.lo \
+	src/jni/libscixcos_algo_la-Palette.lo \
+	src/jni/libscixcos_algo_la-Modelica.lo \
+	src/cpp/libscixcos_algo_la-xcosUtilities.lo
 am_libscixcos_algo_la_OBJECTS = $(am__objects_1)
 libscixcos_algo_la_OBJECTS = $(am_libscixcos_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -182,28 +184,28 @@ am__v_lt_0 = --silent
 am__v_lt_1 = 
 @GUI_TRUE@@XCOS_TRUE@am_libscixcos_algo_la_rpath =
 libscixcos_disable_la_LIBADD =
-am__objects_2 = libscixcos_disable_la-noxcos.lo
+am__objects_2 = src/noxcos/libscixcos_disable_la-noxcos.lo
 am_libscixcos_disable_la_OBJECTS = $(am__objects_2)
 libscixcos_disable_la_OBJECTS = $(am_libscixcos_disable_la_OBJECTS)
 libscixcos_la_DEPENDENCIES = libscixcos-algo.la
-am__objects_3 = libscixcos_la-gw_xcos.lo
-am__objects_4 = libscixcos_la-sci_Xcos.lo \
-	libscixcos_la-sci_warnBlockByUID.lo \
-	libscixcos_la-sci_closeXcosFromScilab.lo \
-	libscixcos_la-sci_xcosDiagramToScilab.lo \
-	libscixcos_la-sci_xcosPalLoad.lo \
-	libscixcos_la-sci_xcosPalCategoryAdd.lo \
-	libscixcos_la-sci_xcosPalDelete.lo \
-	libscixcos_la-sci_xcosPalMove.lo \
-	libscixcos_la-sci_xcosPalEnable.lo \
-	libscixcos_la-sci_xcosPalDisable.lo \
-	libscixcos_la-sci_xcosPalGenerateIcon.lo \
-	libscixcos_la-sci_xcosPalGet.lo \
-	libscixcos_la-sci_xcosConfigureXmlFile.lo \
-	libscixcos_la-sci_xcosAddToolsMenu.lo \
-	libscixcos_la-sci_xcosUpdateBlock.lo \
-	libscixcos_la-sci_loadXcos.lo \
-	libscixcos_la-sci_xcosSimulationStarted.lo
+am__objects_3 = sci_gateway/c/libscixcos_la-gw_xcos.lo
+am__objects_4 = sci_gateway/cpp/libscixcos_la-sci_Xcos.lo \
+	sci_gateway/cpp/libscixcos_la-sci_warnBlockByUID.lo \
+	sci_gateway/cpp/libscixcos_la-sci_closeXcosFromScilab.lo \
+	sci_gateway/cpp/libscixcos_la-sci_xcosDiagramToScilab.lo \
+	sci_gateway/cpp/libscixcos_la-sci_xcosPalLoad.lo \
+	sci_gateway/cpp/libscixcos_la-sci_xcosPalCategoryAdd.lo \
+	sci_gateway/cpp/libscixcos_la-sci_xcosPalDelete.lo \
+	sci_gateway/cpp/libscixcos_la-sci_xcosPalMove.lo \
+	sci_gateway/cpp/libscixcos_la-sci_xcosPalEnable.lo \
+	sci_gateway/cpp/libscixcos_la-sci_xcosPalDisable.lo \
+	sci_gateway/cpp/libscixcos_la-sci_xcosPalGenerateIcon.lo \
+	sci_gateway/cpp/libscixcos_la-sci_xcosPalGet.lo \
+	sci_gateway/cpp/libscixcos_la-sci_xcosConfigureXmlFile.lo \
+	sci_gateway/cpp/libscixcos_la-sci_xcosAddToolsMenu.lo \
+	sci_gateway/cpp/libscixcos_la-sci_xcosUpdateBlock.lo \
+	sci_gateway/cpp/libscixcos_la-sci_loadXcos.lo \
+	sci_gateway/cpp/libscixcos_la-sci_xcosSimulationStarted.lo
 am_libscixcos_la_OBJECTS = $(am__objects_3) $(am__objects_4)
 libscixcos_la_OBJECTS = $(am_libscixcos_la_OBJECTS)
 @GUI_TRUE@@XCOS_TRUE@am_libscixcos_la_rpath = -rpath $(pkglibdir)
@@ -1113,254 +1115,369 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/jni/$(am__dirstamp):
+	@$(MKDIR_P) src/jni
+	@: > src/jni/$(am__dirstamp)
+src/jni/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/jni/$(DEPDIR)
+	@: > src/jni/$(DEPDIR)/$(am__dirstamp)
+src/jni/libscixcos_algo_la-Xcos.lo: src/jni/$(am__dirstamp) \
+	src/jni/$(DEPDIR)/$(am__dirstamp)
+src/jni/libscixcos_algo_la-Palette.lo: src/jni/$(am__dirstamp) \
+	src/jni/$(DEPDIR)/$(am__dirstamp)
+src/jni/libscixcos_algo_la-Modelica.lo: src/jni/$(am__dirstamp) \
+	src/jni/$(DEPDIR)/$(am__dirstamp)
+src/cpp/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp
+	@: > src/cpp/$(am__dirstamp)
+src/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp/$(DEPDIR)
+	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscixcos_algo_la-xcosUtilities.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscixcos-algo.la: $(libscixcos_algo_la_OBJECTS) $(libscixcos_algo_la_DEPENDENCIES) $(EXTRA_libscixcos_algo_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libscixcos_algo_la_rpath) $(libscixcos_algo_la_OBJECTS) $(libscixcos_algo_la_LIBADD) $(LIBS)
+src/noxcos/$(am__dirstamp):
+	@$(MKDIR_P) src/noxcos
+	@: > src/noxcos/$(am__dirstamp)
+src/noxcos/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/noxcos/$(DEPDIR)
+	@: > src/noxcos/$(DEPDIR)/$(am__dirstamp)
+src/noxcos/libscixcos_disable_la-noxcos.lo:  \
+	src/noxcos/$(am__dirstamp) \
+	src/noxcos/$(DEPDIR)/$(am__dirstamp)
 
 libscixcos-disable.la: $(libscixcos_disable_la_OBJECTS) $(libscixcos_disable_la_DEPENDENCIES) $(EXTRA_libscixcos_disable_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) -rpath $(pkglibdir) $(libscixcos_disable_la_OBJECTS) $(libscixcos_disable_la_LIBADD) $(LIBS)
+sci_gateway/c/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c
+	@: > sci_gateway/c/$(am__dirstamp)
+sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
+	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscixcos_la-gw_xcos.lo: sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/cpp
+	@: > sci_gateway/cpp/$(am__dirstamp)
+sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/cpp/$(DEPDIR)
+	@: > sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixcos_la-sci_Xcos.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixcos_la-sci_warnBlockByUID.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixcos_la-sci_closeXcosFromScilab.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixcos_la-sci_xcosDiagramToScilab.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixcos_la-sci_xcosPalLoad.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixcos_la-sci_xcosPalCategoryAdd.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixcos_la-sci_xcosPalDelete.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixcos_la-sci_xcosPalMove.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixcos_la-sci_xcosPalEnable.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixcos_la-sci_xcosPalDisable.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixcos_la-sci_xcosPalGenerateIcon.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixcos_la-sci_xcosPalGet.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixcos_la-sci_xcosConfigureXmlFile.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixcos_la-sci_xcosAddToolsMenu.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixcos_la-sci_xcosUpdateBlock.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixcos_la-sci_loadXcos.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixcos_la-sci_xcosSimulationStarted.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscixcos.la: $(libscixcos_la_OBJECTS) $(libscixcos_la_DEPENDENCIES) $(EXTRA_libscixcos_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libscixcos_la_rpath) $(libscixcos_la_OBJECTS) $(libscixcos_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f sci_gateway/c/*.$(OBJEXT)
+	-rm -f sci_gateway/c/*.lo
+	-rm -f sci_gateway/cpp/*.$(OBJEXT)
+	-rm -f sci_gateway/cpp/*.lo
+	-rm -f src/cpp/*.$(OBJEXT)
+	-rm -f src/cpp/*.lo
+	-rm -f src/jni/*.$(OBJEXT)
+	-rm -f src/jni/*.lo
+	-rm -f src/noxcos/*.$(OBJEXT)
+	-rm -f src/noxcos/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_algo_la-Modelica.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_algo_la-Palette.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_algo_la-Xcos.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_algo_la-xcosUtilities.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_disable_la-noxcos.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-gw_xcos.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_Xcos.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_closeXcosFromScilab.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_loadXcos.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_warnBlockByUID.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosAddToolsMenu.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosConfigureXmlFile.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosDiagramToScilab.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosPalCategoryAdd.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosPalDelete.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosPalDisable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosPalEnable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosPalGenerateIcon.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosPalGet.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosPalLoad.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosPalMove.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosSimulationStarted.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosUpdateBlock.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscixcos_la-gw_xcos.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_Xcos.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_closeXcosFromScilab.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_loadXcos.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_warnBlockByUID.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosAddToolsMenu.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosConfigureXmlFile.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosDiagramToScilab.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalCategoryAdd.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalDelete.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalDisable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalEnable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalGenerateIcon.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalGet.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalLoad.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalMove.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosSimulationStarted.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosUpdateBlock.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixcos_algo_la-xcosUtilities.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscixcos_algo_la-Modelica.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscixcos_algo_la-Palette.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscixcos_algo_la-Xcos.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/noxcos/$(DEPDIR)/libscixcos_disable_la-noxcos.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libscixcos_disable_la-noxcos.lo: src/noxcos/noxcos.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscixcos_disable_la-noxcos.lo -MD -MP -MF $(DEPDIR)/libscixcos_disable_la-noxcos.Tpo -c -o libscixcos_disable_la-noxcos.lo `test -f 'src/noxcos/noxcos.c' || echo '$(srcdir)/'`src/noxcos/noxcos.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_disable_la-noxcos.Tpo $(DEPDIR)/libscixcos_disable_la-noxcos.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/noxcos/noxcos.c' object='libscixcos_disable_la-noxcos.lo' libtool=yes @AMDEPBACKSLASH@
+src/noxcos/libscixcos_disable_la-noxcos.lo: src/noxcos/noxcos.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/noxcos/libscixcos_disable_la-noxcos.lo -MD -MP -MF src/noxcos/$(DEPDIR)/libscixcos_disable_la-noxcos.Tpo -c -o src/noxcos/libscixcos_disable_la-noxcos.lo `test -f 'src/noxcos/noxcos.c' || echo '$(srcdir)/'`src/noxcos/noxcos.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/noxcos/$(DEPDIR)/libscixcos_disable_la-noxcos.Tpo src/noxcos/$(DEPDIR)/libscixcos_disable_la-noxcos.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/noxcos/noxcos.c' object='src/noxcos/libscixcos_disable_la-noxcos.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscixcos_disable_la-noxcos.lo `test -f 'src/noxcos/noxcos.c' || echo '$(srcdir)/'`src/noxcos/noxcos.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/noxcos/libscixcos_disable_la-noxcos.lo `test -f 'src/noxcos/noxcos.c' || echo '$(srcdir)/'`src/noxcos/noxcos.c
 
-libscixcos_la-gw_xcos.lo: sci_gateway/c/gw_xcos.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscixcos_la-gw_xcos.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-gw_xcos.Tpo -c -o libscixcos_la-gw_xcos.lo `test -f 'sci_gateway/c/gw_xcos.c' || echo '$(srcdir)/'`sci_gateway/c/gw_xcos.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_la-gw_xcos.Tpo $(DEPDIR)/libscixcos_la-gw_xcos.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_xcos.c' object='libscixcos_la-gw_xcos.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscixcos_la-gw_xcos.lo: sci_gateway/c/gw_xcos.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscixcos_la-gw_xcos.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscixcos_la-gw_xcos.Tpo -c -o sci_gateway/c/libscixcos_la-gw_xcos.lo `test -f 'sci_gateway/c/gw_xcos.c' || echo '$(srcdir)/'`sci_gateway/c/gw_xcos.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscixcos_la-gw_xcos.Tpo sci_gateway/c/$(DEPDIR)/libscixcos_la-gw_xcos.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_xcos.c' object='sci_gateway/c/libscixcos_la-gw_xcos.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscixcos_la-gw_xcos.lo `test -f 'sci_gateway/c/gw_xcos.c' || echo '$(srcdir)/'`sci_gateway/c/gw_xcos.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscixcos_la-gw_xcos.lo `test -f 'sci_gateway/c/gw_xcos.c' || echo '$(srcdir)/'`sci_gateway/c/gw_xcos.c
 
 .cpp.o:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .cpp.lo:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
-libscixcos_algo_la-Xcos.lo: src/jni/Xcos.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_algo_la-Xcos.lo -MD -MP -MF $(DEPDIR)/libscixcos_algo_la-Xcos.Tpo -c -o libscixcos_algo_la-Xcos.lo `test -f 'src/jni/Xcos.cpp' || echo '$(srcdir)/'`src/jni/Xcos.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_algo_la-Xcos.Tpo $(DEPDIR)/libscixcos_algo_la-Xcos.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/Xcos.cpp' object='libscixcos_algo_la-Xcos.lo' libtool=yes @AMDEPBACKSLASH@
+src/jni/libscixcos_algo_la-Xcos.lo: src/jni/Xcos.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscixcos_algo_la-Xcos.lo -MD -MP -MF src/jni/$(DEPDIR)/libscixcos_algo_la-Xcos.Tpo -c -o src/jni/libscixcos_algo_la-Xcos.lo `test -f 'src/jni/Xcos.cpp' || echo '$(srcdir)/'`src/jni/Xcos.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscixcos_algo_la-Xcos.Tpo src/jni/$(DEPDIR)/libscixcos_algo_la-Xcos.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/Xcos.cpp' object='src/jni/libscixcos_algo_la-Xcos.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_algo_la-Xcos.lo `test -f 'src/jni/Xcos.cpp' || echo '$(srcdir)/'`src/jni/Xcos.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscixcos_algo_la-Xcos.lo `test -f 'src/jni/Xcos.cpp' || echo '$(srcdir)/'`src/jni/Xcos.cpp
 
-libscixcos_algo_la-Palette.lo: src/jni/Palette.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_algo_la-Palette.lo -MD -MP -MF $(DEPDIR)/libscixcos_algo_la-Palette.Tpo -c -o libscixcos_algo_la-Palette.lo `test -f 'src/jni/Palette.cpp' || echo '$(srcdir)/'`src/jni/Palette.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_algo_la-Palette.Tpo $(DEPDIR)/libscixcos_algo_la-Palette.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/Palette.cpp' object='libscixcos_algo_la-Palette.lo' libtool=yes @AMDEPBACKSLASH@
+src/jni/libscixcos_algo_la-Palette.lo: src/jni/Palette.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscixcos_algo_la-Palette.lo -MD -MP -MF src/jni/$(DEPDIR)/libscixcos_algo_la-Palette.Tpo -c -o src/jni/libscixcos_algo_la-Palette.lo `test -f 'src/jni/Palette.cpp' || echo '$(srcdir)/'`src/jni/Palette.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscixcos_algo_la-Palette.Tpo src/jni/$(DEPDIR)/libscixcos_algo_la-Palette.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/Palette.cpp' object='src/jni/libscixcos_algo_la-Palette.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_algo_la-Palette.lo `test -f 'src/jni/Palette.cpp' || echo '$(srcdir)/'`src/jni/Palette.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscixcos_algo_la-Palette.lo `test -f 'src/jni/Palette.cpp' || echo '$(srcdir)/'`src/jni/Palette.cpp
 
-libscixcos_algo_la-Modelica.lo: src/jni/Modelica.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_algo_la-Modelica.lo -MD -MP -MF $(DEPDIR)/libscixcos_algo_la-Modelica.Tpo -c -o libscixcos_algo_la-Modelica.lo `test -f 'src/jni/Modelica.cpp' || echo '$(srcdir)/'`src/jni/Modelica.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_algo_la-Modelica.Tpo $(DEPDIR)/libscixcos_algo_la-Modelica.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/Modelica.cpp' object='libscixcos_algo_la-Modelica.lo' libtool=yes @AMDEPBACKSLASH@
+src/jni/libscixcos_algo_la-Modelica.lo: src/jni/Modelica.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscixcos_algo_la-Modelica.lo -MD -MP -MF src/jni/$(DEPDIR)/libscixcos_algo_la-Modelica.Tpo -c -o src/jni/libscixcos_algo_la-Modelica.lo `test -f 'src/jni/Modelica.cpp' || echo '$(srcdir)/'`src/jni/Modelica.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscixcos_algo_la-Modelica.Tpo src/jni/$(DEPDIR)/libscixcos_algo_la-Modelica.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/Modelica.cpp' object='src/jni/libscixcos_algo_la-Modelica.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_algo_la-Modelica.lo `test -f 'src/jni/Modelica.cpp' || echo '$(srcdir)/'`src/jni/Modelica.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscixcos_algo_la-Modelica.lo `test -f 'src/jni/Modelica.cpp' || echo '$(srcdir)/'`src/jni/Modelica.cpp
 
-libscixcos_algo_la-xcosUtilities.lo: src/cpp/xcosUtilities.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_algo_la-xcosUtilities.lo -MD -MP -MF $(DEPDIR)/libscixcos_algo_la-xcosUtilities.Tpo -c -o libscixcos_algo_la-xcosUtilities.lo `test -f 'src/cpp/xcosUtilities.cpp' || echo '$(srcdir)/'`src/cpp/xcosUtilities.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_algo_la-xcosUtilities.Tpo $(DEPDIR)/libscixcos_algo_la-xcosUtilities.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/xcosUtilities.cpp' object='libscixcos_algo_la-xcosUtilities.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscixcos_algo_la-xcosUtilities.lo: src/cpp/xcosUtilities.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscixcos_algo_la-xcosUtilities.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscixcos_algo_la-xcosUtilities.Tpo -c -o src/cpp/libscixcos_algo_la-xcosUtilities.lo `test -f 'src/cpp/xcosUtilities.cpp' || echo '$(srcdir)/'`src/cpp/xcosUtilities.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscixcos_algo_la-xcosUtilities.Tpo src/cpp/$(DEPDIR)/libscixcos_algo_la-xcosUtilities.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/xcosUtilities.cpp' object='src/cpp/libscixcos_algo_la-xcosUtilities.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_algo_la-xcosUtilities.lo `test -f 'src/cpp/xcosUtilities.cpp' || echo '$(srcdir)/'`src/cpp/xcosUtilities.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixcos_algo_la-xcosUtilities.lo `test -f 'src/cpp/xcosUtilities.cpp' || echo '$(srcdir)/'`src/cpp/xcosUtilities.cpp
 
-libscixcos_la-sci_Xcos.lo: sci_gateway/cpp/sci_Xcos.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_Xcos.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_Xcos.Tpo -c -o libscixcos_la-sci_Xcos.lo `test -f 'sci_gateway/cpp/sci_Xcos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_Xcos.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_la-sci_Xcos.Tpo $(DEPDIR)/libscixcos_la-sci_Xcos.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_Xcos.cpp' object='libscixcos_la-sci_Xcos.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixcos_la-sci_Xcos.lo: sci_gateway/cpp/sci_Xcos.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_Xcos.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_Xcos.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_Xcos.lo `test -f 'sci_gateway/cpp/sci_Xcos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_Xcos.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_Xcos.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_Xcos.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_Xcos.cpp' object='sci_gateway/cpp/libscixcos_la-sci_Xcos.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_Xcos.lo `test -f 'sci_gateway/cpp/sci_Xcos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_Xcos.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_Xcos.lo `test -f 'sci_gateway/cpp/sci_Xcos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_Xcos.cpp
 
-libscixcos_la-sci_warnBlockByUID.lo: sci_gateway/cpp/sci_warnBlockByUID.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_warnBlockByUID.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_warnBlockByUID.Tpo -c -o libscixcos_la-sci_warnBlockByUID.lo `test -f 'sci_gateway/cpp/sci_warnBlockByUID.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_warnBlockByUID.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_la-sci_warnBlockByUID.Tpo $(DEPDIR)/libscixcos_la-sci_warnBlockByUID.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_warnBlockByUID.cpp' object='libscixcos_la-sci_warnBlockByUID.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixcos_la-sci_warnBlockByUID.lo: sci_gateway/cpp/sci_warnBlockByUID.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_warnBlockByUID.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_warnBlockByUID.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_warnBlockByUID.lo `test -f 'sci_gateway/cpp/sci_warnBlockByUID.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_warnBlockByUID.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_warnBlockByUID.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_warnBlockByUID.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_warnBlockByUID.cpp' object='sci_gateway/cpp/libscixcos_la-sci_warnBlockByUID.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_warnBlockByUID.lo `test -f 'sci_gateway/cpp/sci_warnBlockByUID.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_warnBlockByUID.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_warnBlockByUID.lo `test -f 'sci_gateway/cpp/sci_warnBlockByUID.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_warnBlockByUID.cpp
 
-libscixcos_la-sci_closeXcosFromScilab.lo: sci_gateway/cpp/sci_closeXcosFromScilab.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_closeXcosFromScilab.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_closeXcosFromScilab.Tpo -c -o libscixcos_la-sci_closeXcosFromScilab.lo `test -f 'sci_gateway/cpp/sci_closeXcosFromScilab.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_closeXcosFromScilab.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_la-sci_closeXcosFromScilab.Tpo $(DEPDIR)/libscixcos_la-sci_closeXcosFromScilab.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_closeXcosFromScilab.cpp' object='libscixcos_la-sci_closeXcosFromScilab.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixcos_la-sci_closeXcosFromScilab.lo: sci_gateway/cpp/sci_closeXcosFromScilab.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_closeXcosFromScilab.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_closeXcosFromScilab.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_closeXcosFromScilab.lo `test -f 'sci_gateway/cpp/sci_closeXcosFromScilab.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_closeXcosFromScilab.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_closeXcosFromScilab.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_closeXcosFromScilab.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_closeXcosFromScilab.cpp' object='sci_gateway/cpp/libscixcos_la-sci_closeXcosFromScilab.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_closeXcosFromScilab.lo `test -f 'sci_gateway/cpp/sci_closeXcosFromScilab.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_closeXcosFromScilab.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_closeXcosFromScilab.lo `test -f 'sci_gateway/cpp/sci_closeXcosFromScilab.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_closeXcosFromScilab.cpp
 
-libscixcos_la-sci_xcosDiagramToScilab.lo: sci_gateway/cpp/sci_xcosDiagramToScilab.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosDiagramToScilab.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosDiagramToScilab.Tpo -c -o libscixcos_la-sci_xcosDiagramToScilab.lo `test -f 'sci_gateway/cpp/sci_xcosDiagramToScilab.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosDiagramToScilab.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosDiagramToScilab.Tpo $(DEPDIR)/libscixcos_la-sci_xcosDiagramToScilab.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosDiagramToScilab.cpp' object='libscixcos_la-sci_xcosDiagramToScilab.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixcos_la-sci_xcosDiagramToScilab.lo: sci_gateway/cpp/sci_xcosDiagramToScilab.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_xcosDiagramToScilab.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosDiagramToScilab.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_xcosDiagramToScilab.lo `test -f 'sci_gateway/cpp/sci_xcosDiagramToScilab.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosDiagramToScilab.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosDiagramToScilab.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosDiagramToScilab.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosDiagramToScilab.cpp' object='sci_gateway/cpp/libscixcos_la-sci_xcosDiagramToScilab.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosDiagramToScilab.lo `test -f 'sci_gateway/cpp/sci_xcosDiagramToScilab.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosDiagramToScilab.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_xcosDiagramToScilab.lo `test -f 'sci_gateway/cpp/sci_xcosDiagramToScilab.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosDiagramToScilab.cpp
 
-libscixcos_la-sci_xcosPalLoad.lo: sci_gateway/cpp/sci_xcosPalLoad.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosPalLoad.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosPalLoad.Tpo -c -o libscixcos_la-sci_xcosPalLoad.lo `test -f 'sci_gateway/cpp/sci_xcosPalLoad.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalLoad.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosPalLoad.Tpo $(DEPDIR)/libscixcos_la-sci_xcosPalLoad.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosPalLoad.cpp' object='libscixcos_la-sci_xcosPalLoad.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixcos_la-sci_xcosPalLoad.lo: sci_gateway/cpp/sci_xcosPalLoad.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_xcosPalLoad.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalLoad.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_xcosPalLoad.lo `test -f 'sci_gateway/cpp/sci_xcosPalLoad.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalLoad.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalLoad.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalLoad.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosPalLoad.cpp' object='sci_gateway/cpp/libscixcos_la-sci_xcosPalLoad.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosPalLoad.lo `test -f 'sci_gateway/cpp/sci_xcosPalLoad.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalLoad.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_xcosPalLoad.lo `test -f 'sci_gateway/cpp/sci_xcosPalLoad.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalLoad.cpp
 
-libscixcos_la-sci_xcosPalCategoryAdd.lo: sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosPalCategoryAdd.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosPalCategoryAdd.Tpo -c -o libscixcos_la-sci_xcosPalCategoryAdd.lo `test -f 'sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosPalCategoryAdd.Tpo $(DEPDIR)/libscixcos_la-sci_xcosPalCategoryAdd.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp' object='libscixcos_la-sci_xcosPalCategoryAdd.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixcos_la-sci_xcosPalCategoryAdd.lo: sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_xcosPalCategoryAdd.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalCategoryAdd.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_xcosPalCategoryAdd.lo `test -f 'sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalCategoryAdd.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalCategoryAdd.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp' object='sci_gateway/cpp/libscixcos_la-sci_xcosPalCategoryAdd.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosPalCategoryAdd.lo `test -f 'sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_xcosPalCategoryAdd.lo `test -f 'sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp
 
-libscixcos_la-sci_xcosPalDelete.lo: sci_gateway/cpp/sci_xcosPalDelete.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosPalDelete.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosPalDelete.Tpo -c -o libscixcos_la-sci_xcosPalDelete.lo `test -f 'sci_gateway/cpp/sci_xcosPalDelete.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalDelete.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosPalDelete.Tpo $(DEPDIR)/libscixcos_la-sci_xcosPalDelete.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosPalDelete.cpp' object='libscixcos_la-sci_xcosPalDelete.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixcos_la-sci_xcosPalDelete.lo: sci_gateway/cpp/sci_xcosPalDelete.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_xcosPalDelete.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalDelete.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_xcosPalDelete.lo `test -f 'sci_gateway/cpp/sci_xcosPalDelete.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalDelete.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalDelete.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalDelete.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosPalDelete.cpp' object='sci_gateway/cpp/libscixcos_la-sci_xcosPalDelete.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosPalDelete.lo `test -f 'sci_gateway/cpp/sci_xcosPalDelete.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalDelete.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_xcosPalDelete.lo `test -f 'sci_gateway/cpp/sci_xcosPalDelete.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalDelete.cpp
 
-libscixcos_la-sci_xcosPalMove.lo: sci_gateway/cpp/sci_xcosPalMove.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosPalMove.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosPalMove.Tpo -c -o libscixcos_la-sci_xcosPalMove.lo `test -f 'sci_gateway/cpp/sci_xcosPalMove.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalMove.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosPalMove.Tpo $(DEPDIR)/libscixcos_la-sci_xcosPalMove.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosPalMove.cpp' object='libscixcos_la-sci_xcosPalMove.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixcos_la-sci_xcosPalMove.lo: sci_gateway/cpp/sci_xcosPalMove.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_xcosPalMove.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalMove.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_xcosPalMove.lo `test -f 'sci_gateway/cpp/sci_xcosPalMove.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalMove.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalMove.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalMove.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosPalMove.cpp' object='sci_gateway/cpp/libscixcos_la-sci_xcosPalMove.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosPalMove.lo `test -f 'sci_gateway/cpp/sci_xcosPalMove.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalMove.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_xcosPalMove.lo `test -f 'sci_gateway/cpp/sci_xcosPalMove.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalMove.cpp
 
-libscixcos_la-sci_xcosPalEnable.lo: sci_gateway/cpp/sci_xcosPalEnable.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosPalEnable.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosPalEnable.Tpo -c -o libscixcos_la-sci_xcosPalEnable.lo `test -f 'sci_gateway/cpp/sci_xcosPalEnable.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalEnable.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosPalEnable.Tpo $(DEPDIR)/libscixcos_la-sci_xcosPalEnable.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosPalEnable.cpp' object='libscixcos_la-sci_xcosPalEnable.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixcos_la-sci_xcosPalEnable.lo: sci_gateway/cpp/sci_xcosPalEnable.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_xcosPalEnable.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalEnable.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_xcosPalEnable.lo `test -f 'sci_gateway/cpp/sci_xcosPalEnable.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalEnable.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalEnable.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalEnable.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosPalEnable.cpp' object='sci_gateway/cpp/libscixcos_la-sci_xcosPalEnable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosPalEnable.lo `test -f 'sci_gateway/cpp/sci_xcosPalEnable.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalEnable.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_xcosPalEnable.lo `test -f 'sci_gateway/cpp/sci_xcosPalEnable.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalEnable.cpp
 
-libscixcos_la-sci_xcosPalDisable.lo: sci_gateway/cpp/sci_xcosPalDisable.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosPalDisable.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosPalDisable.Tpo -c -o libscixcos_la-sci_xcosPalDisable.lo `test -f 'sci_gateway/cpp/sci_xcosPalDisable.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalDisable.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosPalDisable.Tpo $(DEPDIR)/libscixcos_la-sci_xcosPalDisable.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosPalDisable.cpp' object='libscixcos_la-sci_xcosPalDisable.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixcos_la-sci_xcosPalDisable.lo: sci_gateway/cpp/sci_xcosPalDisable.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_xcosPalDisable.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalDisable.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_xcosPalDisable.lo `test -f 'sci_gateway/cpp/sci_xcosPalDisable.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalDisable.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalDisable.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalDisable.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosPalDisable.cpp' object='sci_gateway/cpp/libscixcos_la-sci_xcosPalDisable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosPalDisable.lo `test -f 'sci_gateway/cpp/sci_xcosPalDisable.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalDisable.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_xcosPalDisable.lo `test -f 'sci_gateway/cpp/sci_xcosPalDisable.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalDisable.cpp
 
-libscixcos_la-sci_xcosPalGenerateIcon.lo: sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosPalGenerateIcon.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosPalGenerateIcon.Tpo -c -o libscixcos_la-sci_xcosPalGenerateIcon.lo `test -f 'sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosPalGenerateIcon.Tpo $(DEPDIR)/libscixcos_la-sci_xcosPalGenerateIcon.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp' object='libscixcos_la-sci_xcosPalGenerateIcon.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixcos_la-sci_xcosPalGenerateIcon.lo: sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_xcosPalGenerateIcon.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalGenerateIcon.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_xcosPalGenerateIcon.lo `test -f 'sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalGenerateIcon.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalGenerateIcon.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp' object='sci_gateway/cpp/libscixcos_la-sci_xcosPalGenerateIcon.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosPalGenerateIcon.lo `test -f 'sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_xcosPalGenerateIcon.lo `test -f 'sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp
 
-libscixcos_la-sci_xcosPalGet.lo: sci_gateway/cpp/sci_xcosPalGet.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosPalGet.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosPalGet.Tpo -c -o libscixcos_la-sci_xcosPalGet.lo `test -f 'sci_gateway/cpp/sci_xcosPalGet.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalGet.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosPalGet.Tpo $(DEPDIR)/libscixcos_la-sci_xcosPalGet.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosPalGet.cpp' object='libscixcos_la-sci_xcosPalGet.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixcos_la-sci_xcosPalGet.lo: sci_gateway/cpp/sci_xcosPalGet.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_xcosPalGet.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalGet.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_xcosPalGet.lo `test -f 'sci_gateway/cpp/sci_xcosPalGet.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalGet.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalGet.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalGet.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosPalGet.cpp' object='sci_gateway/cpp/libscixcos_la-sci_xcosPalGet.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosPalGet.lo `test -f 'sci_gateway/cpp/sci_xcosPalGet.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalGet.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_xcosPalGet.lo `test -f 'sci_gateway/cpp/sci_xcosPalGet.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalGet.cpp
 
-libscixcos_la-sci_xcosConfigureXmlFile.lo: sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosConfigureXmlFile.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosConfigureXmlFile.Tpo -c -o libscixcos_la-sci_xcosConfigureXmlFile.lo `test -f 'sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosConfigureXmlFile.Tpo $(DEPDIR)/libscixcos_la-sci_xcosConfigureXmlFile.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp' object='libscixcos_la-sci_xcosConfigureXmlFile.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixcos_la-sci_xcosConfigureXmlFile.lo: sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_xcosConfigureXmlFile.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosConfigureXmlFile.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_xcosConfigureXmlFile.lo `test -f 'sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosConfigureXmlFile.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosConfigureXmlFile.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp' object='sci_gateway/cpp/libscixcos_la-sci_xcosConfigureXmlFile.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosConfigureXmlFile.lo `test -f 'sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_xcosConfigureXmlFile.lo `test -f 'sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp
 
-libscixcos_la-sci_xcosAddToolsMenu.lo: sci_gateway/cpp/sci_xcosAddToolsMenu.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosAddToolsMenu.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosAddToolsMenu.Tpo -c -o libscixcos_la-sci_xcosAddToolsMenu.lo `test -f 'sci_gateway/cpp/sci_xcosAddToolsMenu.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosAddToolsMenu.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosAddToolsMenu.Tpo $(DEPDIR)/libscixcos_la-sci_xcosAddToolsMenu.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosAddToolsMenu.cpp' object='libscixcos_la-sci_xcosAddToolsMenu.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixcos_la-sci_xcosAddToolsMenu.lo: sci_gateway/cpp/sci_xcosAddToolsMenu.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_xcosAddToolsMenu.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosAddToolsMenu.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_xcosAddToolsMenu.lo `test -f 'sci_gateway/cpp/sci_xcosAddToolsMenu.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosAddToolsMenu.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosAddToolsMenu.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosAddToolsMenu.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosAddToolsMenu.cpp' object='sci_gateway/cpp/libscixcos_la-sci_xcosAddToolsMenu.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosAddToolsMenu.lo `test -f 'sci_gateway/cpp/sci_xcosAddToolsMenu.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosAddToolsMenu.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_xcosAddToolsMenu.lo `test -f 'sci_gateway/cpp/sci_xcosAddToolsMenu.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosAddToolsMenu.cpp
 
-libscixcos_la-sci_xcosUpdateBlock.lo: sci_gateway/cpp/sci_xcosUpdateBlock.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosUpdateBlock.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosUpdateBlock.Tpo -c -o libscixcos_la-sci_xcosUpdateBlock.lo `test -f 'sci_gateway/cpp/sci_xcosUpdateBlock.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosUpdateBlock.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosUpdateBlock.Tpo $(DEPDIR)/libscixcos_la-sci_xcosUpdateBlock.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosUpdateBlock.cpp' object='libscixcos_la-sci_xcosUpdateBlock.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixcos_la-sci_xcosUpdateBlock.lo: sci_gateway/cpp/sci_xcosUpdateBlock.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_xcosUpdateBlock.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosUpdateBlock.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_xcosUpdateBlock.lo `test -f 'sci_gateway/cpp/sci_xcosUpdateBlock.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosUpdateBlock.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosUpdateBlock.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosUpdateBlock.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosUpdateBlock.cpp' object='sci_gateway/cpp/libscixcos_la-sci_xcosUpdateBlock.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosUpdateBlock.lo `test -f 'sci_gateway/cpp/sci_xcosUpdateBlock.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosUpdateBlock.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_xcosUpdateBlock.lo `test -f 'sci_gateway/cpp/sci_xcosUpdateBlock.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosUpdateBlock.cpp
 
-libscixcos_la-sci_loadXcos.lo: sci_gateway/cpp/sci_loadXcos.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_loadXcos.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_loadXcos.Tpo -c -o libscixcos_la-sci_loadXcos.lo `test -f 'sci_gateway/cpp/sci_loadXcos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_loadXcos.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_la-sci_loadXcos.Tpo $(DEPDIR)/libscixcos_la-sci_loadXcos.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_loadXcos.cpp' object='libscixcos_la-sci_loadXcos.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixcos_la-sci_loadXcos.lo: sci_gateway/cpp/sci_loadXcos.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_loadXcos.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_loadXcos.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_loadXcos.lo `test -f 'sci_gateway/cpp/sci_loadXcos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_loadXcos.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_loadXcos.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_loadXcos.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_loadXcos.cpp' object='sci_gateway/cpp/libscixcos_la-sci_loadXcos.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_loadXcos.lo `test -f 'sci_gateway/cpp/sci_loadXcos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_loadXcos.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_loadXcos.lo `test -f 'sci_gateway/cpp/sci_loadXcos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_loadXcos.cpp
 
-libscixcos_la-sci_xcosSimulationStarted.lo: sci_gateway/cpp/sci_xcosSimulationStarted.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosSimulationStarted.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosSimulationStarted.Tpo -c -o libscixcos_la-sci_xcosSimulationStarted.lo `test -f 'sci_gateway/cpp/sci_xcosSimulationStarted.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosSimulationStarted.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosSimulationStarted.Tpo $(DEPDIR)/libscixcos_la-sci_xcosSimulationStarted.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosSimulationStarted.cpp' object='libscixcos_la-sci_xcosSimulationStarted.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixcos_la-sci_xcosSimulationStarted.lo: sci_gateway/cpp/sci_xcosSimulationStarted.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_xcosSimulationStarted.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosSimulationStarted.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_xcosSimulationStarted.lo `test -f 'sci_gateway/cpp/sci_xcosSimulationStarted.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosSimulationStarted.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosSimulationStarted.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosSimulationStarted.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosSimulationStarted.cpp' object='sci_gateway/cpp/libscixcos_la-sci_xcosSimulationStarted.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosSimulationStarted.lo `test -f 'sci_gateway/cpp/sci_xcosSimulationStarted.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosSimulationStarted.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_xcosSimulationStarted.lo `test -f 'sci_gateway/cpp/sci_xcosSimulationStarted.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosSimulationStarted.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
+	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
+	-rm -rf src/cpp/.libs src/cpp/_libs
+	-rm -rf src/jni/.libs src/jni/_libs
+	-rm -rf src/noxcos/.libs src/noxcos/_libs
 install-libscixcos_la_etcDATA: $(libscixcos_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libscixcos_la_etc_DATA)'; test -n "$(libscixcos_la_etcdir)" || list=; \
@@ -1567,6 +1684,16 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/c/$(am__dirstamp)
+	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/cpp/$(am__dirstamp)
+	-rm -f src/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/cpp/$(am__dirstamp)
+	-rm -f src/jni/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/jni/$(am__dirstamp)
+	-rm -f src/noxcos/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/noxcos/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1578,7 +1705,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR) src/noxcos/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1627,7 +1754,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR) src/noxcos/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

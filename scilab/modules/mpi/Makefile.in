@@ -169,16 +169,21 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscimpi_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscimpi_la_LIBADD =
-am__objects_1 = libscimpi_la-sci_mpi_init.lo \
-	libscimpi_la-sci_mpi_finalize.lo \
-	libscimpi_la-sci_mpi_comm_size.lo \
-	libscimpi_la-sci_mpi_comm_rank.lo libscimpi_la-gw_mpi.lo \
-	libscimpi_la-sci_mpi_recv.lo libscimpi_la-sci_mpi_send.lo \
-	libscimpi_la-sci_mpi_irecv.lo libscimpi_la-sci_mpi_isend.lo \
-	libscimpi_la-sci_mpi_bcast.lo libscimpi_la-sci_mpi_wait.lo \
-	libscimpi_la-sci_mpi_get_processor_name.lo
-am__objects_2 = libscimpi_la-serialization.lo \
-	libscimpi_la-deserialization.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+am__objects_1 = sci_gateway/c/libscimpi_la-sci_mpi_init.lo \
+	sci_gateway/c/libscimpi_la-sci_mpi_finalize.lo \
+	sci_gateway/c/libscimpi_la-sci_mpi_comm_size.lo \
+	sci_gateway/c/libscimpi_la-sci_mpi_comm_rank.lo \
+	sci_gateway/c/libscimpi_la-gw_mpi.lo \
+	sci_gateway/c/libscimpi_la-sci_mpi_recv.lo \
+	sci_gateway/c/libscimpi_la-sci_mpi_send.lo \
+	sci_gateway/c/libscimpi_la-sci_mpi_irecv.lo \
+	sci_gateway/c/libscimpi_la-sci_mpi_isend.lo \
+	sci_gateway/c/libscimpi_la-sci_mpi_bcast.lo \
+	sci_gateway/c/libscimpi_la-sci_mpi_wait.lo \
+	sci_gateway/c/libscimpi_la-sci_mpi_get_processor_name.lo
+am__objects_2 = src/c/libscimpi_la-serialization.lo \
+	src/c/libscimpi_la-deserialization.lo
 am_libscimpi_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscimpi_la_OBJECTS = $(am_libscimpi_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -722,155 +727,215 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+sci_gateway/c/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c
+	@: > sci_gateway/c/$(am__dirstamp)
+sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
+	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscimpi_la-sci_mpi_init.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscimpi_la-sci_mpi_finalize.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscimpi_la-sci_mpi_comm_size.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscimpi_la-sci_mpi_comm_rank.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscimpi_la-gw_mpi.lo: sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscimpi_la-sci_mpi_recv.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscimpi_la-sci_mpi_send.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscimpi_la-sci_mpi_irecv.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscimpi_la-sci_mpi_isend.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscimpi_la-sci_mpi_bcast.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscimpi_la-sci_mpi_wait.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscimpi_la-sci_mpi_get_processor_name.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+src/c/$(am__dirstamp):
+	@$(MKDIR_P) src/c
+	@: > src/c/$(am__dirstamp)
+src/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/c/$(DEPDIR)
+	@: > src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscimpi_la-serialization.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscimpi_la-deserialization.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
 
 libscimpi.la: $(libscimpi_la_OBJECTS) $(libscimpi_la_DEPENDENCIES) $(EXTRA_libscimpi_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(libscimpi_la_LINK) -rpath $(pkglibdir) $(libscimpi_la_OBJECTS) $(libscimpi_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f sci_gateway/c/*.$(OBJEXT)
+	-rm -f sci_gateway/c/*.lo
+	-rm -f src/c/*.$(OBJEXT)
+	-rm -f src/c/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-deserialization.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-gw_mpi.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_bcast.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_comm_rank.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_comm_size.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_finalize.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_get_processor_name.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_init.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_irecv.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_isend.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_recv.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_send.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_wait.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-serialization.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimpi_la-gw_mpi.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_bcast.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_comm_rank.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_comm_size.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_finalize.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_get_processor_name.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_init.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_irecv.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_isend.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_recv.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_send.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_wait.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscimpi_la-deserialization.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscimpi_la-serialization.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libscimpi_la-sci_mpi_init.lo: sci_gateway/c/sci_mpi_init.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT libscimpi_la-sci_mpi_init.lo -MD -MP -MF $(DEPDIR)/libscimpi_la-sci_mpi_init.Tpo -c -o libscimpi_la-sci_mpi_init.lo `test -f 'sci_gateway/c/sci_mpi_init.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_init.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscimpi_la-sci_mpi_init.Tpo $(DEPDIR)/libscimpi_la-sci_mpi_init.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_init.c' object='libscimpi_la-sci_mpi_init.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscimpi_la-sci_mpi_init.lo: sci_gateway/c/sci_mpi_init.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscimpi_la-sci_mpi_init.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_init.Tpo -c -o sci_gateway/c/libscimpi_la-sci_mpi_init.lo `test -f 'sci_gateway/c/sci_mpi_init.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_init.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_init.Tpo sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_init.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_init.c' object='sci_gateway/c/libscimpi_la-sci_mpi_init.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o libscimpi_la-sci_mpi_init.lo `test -f 'sci_gateway/c/sci_mpi_init.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_init.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscimpi_la-sci_mpi_init.lo `test -f 'sci_gateway/c/sci_mpi_init.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_init.c
 
-libscimpi_la-sci_mpi_finalize.lo: sci_gateway/c/sci_mpi_finalize.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT libscimpi_la-sci_mpi_finalize.lo -MD -MP -MF $(DEPDIR)/libscimpi_la-sci_mpi_finalize.Tpo -c -o libscimpi_la-sci_mpi_finalize.lo `test -f 'sci_gateway/c/sci_mpi_finalize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_finalize.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscimpi_la-sci_mpi_finalize.Tpo $(DEPDIR)/libscimpi_la-sci_mpi_finalize.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_finalize.c' object='libscimpi_la-sci_mpi_finalize.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscimpi_la-sci_mpi_finalize.lo: sci_gateway/c/sci_mpi_finalize.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscimpi_la-sci_mpi_finalize.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_finalize.Tpo -c -o sci_gateway/c/libscimpi_la-sci_mpi_finalize.lo `test -f 'sci_gateway/c/sci_mpi_finalize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_finalize.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_finalize.Tpo sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_finalize.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_finalize.c' object='sci_gateway/c/libscimpi_la-sci_mpi_finalize.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o libscimpi_la-sci_mpi_finalize.lo `test -f 'sci_gateway/c/sci_mpi_finalize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_finalize.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscimpi_la-sci_mpi_finalize.lo `test -f 'sci_gateway/c/sci_mpi_finalize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_finalize.c
 
-libscimpi_la-sci_mpi_comm_size.lo: sci_gateway/c/sci_mpi_comm_size.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT libscimpi_la-sci_mpi_comm_size.lo -MD -MP -MF $(DEPDIR)/libscimpi_la-sci_mpi_comm_size.Tpo -c -o libscimpi_la-sci_mpi_comm_size.lo `test -f 'sci_gateway/c/sci_mpi_comm_size.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_comm_size.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscimpi_la-sci_mpi_comm_size.Tpo $(DEPDIR)/libscimpi_la-sci_mpi_comm_size.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_comm_size.c' object='libscimpi_la-sci_mpi_comm_size.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscimpi_la-sci_mpi_comm_size.lo: sci_gateway/c/sci_mpi_comm_size.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscimpi_la-sci_mpi_comm_size.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_comm_size.Tpo -c -o sci_gateway/c/libscimpi_la-sci_mpi_comm_size.lo `test -f 'sci_gateway/c/sci_mpi_comm_size.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_comm_size.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_comm_size.Tpo sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_comm_size.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_comm_size.c' object='sci_gateway/c/libscimpi_la-sci_mpi_comm_size.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o libscimpi_la-sci_mpi_comm_size.lo `test -f 'sci_gateway/c/sci_mpi_comm_size.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_comm_size.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscimpi_la-sci_mpi_comm_size.lo `test -f 'sci_gateway/c/sci_mpi_comm_size.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_comm_size.c
 
-libscimpi_la-sci_mpi_comm_rank.lo: sci_gateway/c/sci_mpi_comm_rank.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT libscimpi_la-sci_mpi_comm_rank.lo -MD -MP -MF $(DEPDIR)/libscimpi_la-sci_mpi_comm_rank.Tpo -c -o libscimpi_la-sci_mpi_comm_rank.lo `test -f 'sci_gateway/c/sci_mpi_comm_rank.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_comm_rank.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscimpi_la-sci_mpi_comm_rank.Tpo $(DEPDIR)/libscimpi_la-sci_mpi_comm_rank.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_comm_rank.c' object='libscimpi_la-sci_mpi_comm_rank.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscimpi_la-sci_mpi_comm_rank.lo: sci_gateway/c/sci_mpi_comm_rank.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscimpi_la-sci_mpi_comm_rank.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_comm_rank.Tpo -c -o sci_gateway/c/libscimpi_la-sci_mpi_comm_rank.lo `test -f 'sci_gateway/c/sci_mpi_comm_rank.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_comm_rank.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_comm_rank.Tpo sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_comm_rank.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_comm_rank.c' object='sci_gateway/c/libscimpi_la-sci_mpi_comm_rank.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o libscimpi_la-sci_mpi_comm_rank.lo `test -f 'sci_gateway/c/sci_mpi_comm_rank.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_comm_rank.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscimpi_la-sci_mpi_comm_rank.lo `test -f 'sci_gateway/c/sci_mpi_comm_rank.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_comm_rank.c
 
-libscimpi_la-gw_mpi.lo: sci_gateway/c/gw_mpi.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT libscimpi_la-gw_mpi.lo -MD -MP -MF $(DEPDIR)/libscimpi_la-gw_mpi.Tpo -c -o libscimpi_la-gw_mpi.lo `test -f 'sci_gateway/c/gw_mpi.c' || echo '$(srcdir)/'`sci_gateway/c/gw_mpi.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscimpi_la-gw_mpi.Tpo $(DEPDIR)/libscimpi_la-gw_mpi.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_mpi.c' object='libscimpi_la-gw_mpi.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscimpi_la-gw_mpi.lo: sci_gateway/c/gw_mpi.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscimpi_la-gw_mpi.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscimpi_la-gw_mpi.Tpo -c -o sci_gateway/c/libscimpi_la-gw_mpi.lo `test -f 'sci_gateway/c/gw_mpi.c' || echo '$(srcdir)/'`sci_gateway/c/gw_mpi.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscimpi_la-gw_mpi.Tpo sci_gateway/c/$(DEPDIR)/libscimpi_la-gw_mpi.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_mpi.c' object='sci_gateway/c/libscimpi_la-gw_mpi.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o libscimpi_la-gw_mpi.lo `test -f 'sci_gateway/c/gw_mpi.c' || echo '$(srcdir)/'`sci_gateway/c/gw_mpi.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscimpi_la-gw_mpi.lo `test -f 'sci_gateway/c/gw_mpi.c' || echo '$(srcdir)/'`sci_gateway/c/gw_mpi.c
 
-libscimpi_la-sci_mpi_recv.lo: sci_gateway/c/sci_mpi_recv.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT libscimpi_la-sci_mpi_recv.lo -MD -MP -MF $(DEPDIR)/libscimpi_la-sci_mpi_recv.Tpo -c -o libscimpi_la-sci_mpi_recv.lo `test -f 'sci_gateway/c/sci_mpi_recv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_recv.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscimpi_la-sci_mpi_recv.Tpo $(DEPDIR)/libscimpi_la-sci_mpi_recv.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_recv.c' object='libscimpi_la-sci_mpi_recv.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscimpi_la-sci_mpi_recv.lo: sci_gateway/c/sci_mpi_recv.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscimpi_la-sci_mpi_recv.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_recv.Tpo -c -o sci_gateway/c/libscimpi_la-sci_mpi_recv.lo `test -f 'sci_gateway/c/sci_mpi_recv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_recv.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_recv.Tpo sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_recv.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_recv.c' object='sci_gateway/c/libscimpi_la-sci_mpi_recv.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o libscimpi_la-sci_mpi_recv.lo `test -f 'sci_gateway/c/sci_mpi_recv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_recv.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscimpi_la-sci_mpi_recv.lo `test -f 'sci_gateway/c/sci_mpi_recv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_recv.c
 
-libscimpi_la-sci_mpi_send.lo: sci_gateway/c/sci_mpi_send.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT libscimpi_la-sci_mpi_send.lo -MD -MP -MF $(DEPDIR)/libscimpi_la-sci_mpi_send.Tpo -c -o libscimpi_la-sci_mpi_send.lo `test -f 'sci_gateway/c/sci_mpi_send.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_send.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscimpi_la-sci_mpi_send.Tpo $(DEPDIR)/libscimpi_la-sci_mpi_send.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_send.c' object='libscimpi_la-sci_mpi_send.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscimpi_la-sci_mpi_send.lo: sci_gateway/c/sci_mpi_send.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscimpi_la-sci_mpi_send.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_send.Tpo -c -o sci_gateway/c/libscimpi_la-sci_mpi_send.lo `test -f 'sci_gateway/c/sci_mpi_send.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_send.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_send.Tpo sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_send.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_send.c' object='sci_gateway/c/libscimpi_la-sci_mpi_send.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o libscimpi_la-sci_mpi_send.lo `test -f 'sci_gateway/c/sci_mpi_send.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_send.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscimpi_la-sci_mpi_send.lo `test -f 'sci_gateway/c/sci_mpi_send.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_send.c
 
-libscimpi_la-sci_mpi_irecv.lo: sci_gateway/c/sci_mpi_irecv.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT libscimpi_la-sci_mpi_irecv.lo -MD -MP -MF $(DEPDIR)/libscimpi_la-sci_mpi_irecv.Tpo -c -o libscimpi_la-sci_mpi_irecv.lo `test -f 'sci_gateway/c/sci_mpi_irecv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_irecv.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscimpi_la-sci_mpi_irecv.Tpo $(DEPDIR)/libscimpi_la-sci_mpi_irecv.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_irecv.c' object='libscimpi_la-sci_mpi_irecv.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscimpi_la-sci_mpi_irecv.lo: sci_gateway/c/sci_mpi_irecv.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscimpi_la-sci_mpi_irecv.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_irecv.Tpo -c -o sci_gateway/c/libscimpi_la-sci_mpi_irecv.lo `test -f 'sci_gateway/c/sci_mpi_irecv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_irecv.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_irecv.Tpo sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_irecv.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_irecv.c' object='sci_gateway/c/libscimpi_la-sci_mpi_irecv.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o libscimpi_la-sci_mpi_irecv.lo `test -f 'sci_gateway/c/sci_mpi_irecv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_irecv.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscimpi_la-sci_mpi_irecv.lo `test -f 'sci_gateway/c/sci_mpi_irecv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_irecv.c
 
-libscimpi_la-sci_mpi_isend.lo: sci_gateway/c/sci_mpi_isend.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT libscimpi_la-sci_mpi_isend.lo -MD -MP -MF $(DEPDIR)/libscimpi_la-sci_mpi_isend.Tpo -c -o libscimpi_la-sci_mpi_isend.lo `test -f 'sci_gateway/c/sci_mpi_isend.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_isend.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscimpi_la-sci_mpi_isend.Tpo $(DEPDIR)/libscimpi_la-sci_mpi_isend.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_isend.c' object='libscimpi_la-sci_mpi_isend.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscimpi_la-sci_mpi_isend.lo: sci_gateway/c/sci_mpi_isend.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscimpi_la-sci_mpi_isend.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_isend.Tpo -c -o sci_gateway/c/libscimpi_la-sci_mpi_isend.lo `test -f 'sci_gateway/c/sci_mpi_isend.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_isend.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_isend.Tpo sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_isend.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_isend.c' object='sci_gateway/c/libscimpi_la-sci_mpi_isend.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o libscimpi_la-sci_mpi_isend.lo `test -f 'sci_gateway/c/sci_mpi_isend.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_isend.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscimpi_la-sci_mpi_isend.lo `test -f 'sci_gateway/c/sci_mpi_isend.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_isend.c
 
-libscimpi_la-sci_mpi_bcast.lo: sci_gateway/c/sci_mpi_bcast.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT libscimpi_la-sci_mpi_bcast.lo -MD -MP -MF $(DEPDIR)/libscimpi_la-sci_mpi_bcast.Tpo -c -o libscimpi_la-sci_mpi_bcast.lo `test -f 'sci_gateway/c/sci_mpi_bcast.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_bcast.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscimpi_la-sci_mpi_bcast.Tpo $(DEPDIR)/libscimpi_la-sci_mpi_bcast.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_bcast.c' object='libscimpi_la-sci_mpi_bcast.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscimpi_la-sci_mpi_bcast.lo: sci_gateway/c/sci_mpi_bcast.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscimpi_la-sci_mpi_bcast.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_bcast.Tpo -c -o sci_gateway/c/libscimpi_la-sci_mpi_bcast.lo `test -f 'sci_gateway/c/sci_mpi_bcast.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_bcast.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_bcast.Tpo sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_bcast.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_bcast.c' object='sci_gateway/c/libscimpi_la-sci_mpi_bcast.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o libscimpi_la-sci_mpi_bcast.lo `test -f 'sci_gateway/c/sci_mpi_bcast.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_bcast.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscimpi_la-sci_mpi_bcast.lo `test -f 'sci_gateway/c/sci_mpi_bcast.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_bcast.c
 
-libscimpi_la-sci_mpi_wait.lo: sci_gateway/c/sci_mpi_wait.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT libscimpi_la-sci_mpi_wait.lo -MD -MP -MF $(DEPDIR)/libscimpi_la-sci_mpi_wait.Tpo -c -o libscimpi_la-sci_mpi_wait.lo `test -f 'sci_gateway/c/sci_mpi_wait.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_wait.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscimpi_la-sci_mpi_wait.Tpo $(DEPDIR)/libscimpi_la-sci_mpi_wait.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_wait.c' object='libscimpi_la-sci_mpi_wait.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscimpi_la-sci_mpi_wait.lo: sci_gateway/c/sci_mpi_wait.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscimpi_la-sci_mpi_wait.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_wait.Tpo -c -o sci_gateway/c/libscimpi_la-sci_mpi_wait.lo `test -f 'sci_gateway/c/sci_mpi_wait.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_wait.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_wait.Tpo sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_wait.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_wait.c' object='sci_gateway/c/libscimpi_la-sci_mpi_wait.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o libscimpi_la-sci_mpi_wait.lo `test -f 'sci_gateway/c/sci_mpi_wait.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_wait.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscimpi_la-sci_mpi_wait.lo `test -f 'sci_gateway/c/sci_mpi_wait.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_wait.c
 
-libscimpi_la-sci_mpi_get_processor_name.lo: sci_gateway/c/sci_mpi_get_processor_name.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT libscimpi_la-sci_mpi_get_processor_name.lo -MD -MP -MF $(DEPDIR)/libscimpi_la-sci_mpi_get_processor_name.Tpo -c -o libscimpi_la-sci_mpi_get_processor_name.lo `test -f 'sci_gateway/c/sci_mpi_get_processor_name.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_get_processor_name.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscimpi_la-sci_mpi_get_processor_name.Tpo $(DEPDIR)/libscimpi_la-sci_mpi_get_processor_name.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_get_processor_name.c' object='libscimpi_la-sci_mpi_get_processor_name.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscimpi_la-sci_mpi_get_processor_name.lo: sci_gateway/c/sci_mpi_get_processor_name.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscimpi_la-sci_mpi_get_processor_name.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_get_processor_name.Tpo -c -o sci_gateway/c/libscimpi_la-sci_mpi_get_processor_name.lo `test -f 'sci_gateway/c/sci_mpi_get_processor_name.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_get_processor_name.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_get_processor_name.Tpo sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_get_processor_name.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_get_processor_name.c' object='sci_gateway/c/libscimpi_la-sci_mpi_get_processor_name.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o libscimpi_la-sci_mpi_get_processor_name.lo `test -f 'sci_gateway/c/sci_mpi_get_processor_name.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_get_processor_name.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscimpi_la-sci_mpi_get_processor_name.lo `test -f 'sci_gateway/c/sci_mpi_get_processor_name.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_get_processor_name.c
 
-libscimpi_la-serialization.lo: src/c/serialization.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT libscimpi_la-serialization.lo -MD -MP -MF $(DEPDIR)/libscimpi_la-serialization.Tpo -c -o libscimpi_la-serialization.lo `test -f 'src/c/serialization.c' || echo '$(srcdir)/'`src/c/serialization.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscimpi_la-serialization.Tpo $(DEPDIR)/libscimpi_la-serialization.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/serialization.c' object='libscimpi_la-serialization.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscimpi_la-serialization.lo: src/c/serialization.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT src/c/libscimpi_la-serialization.lo -MD -MP -MF src/c/$(DEPDIR)/libscimpi_la-serialization.Tpo -c -o src/c/libscimpi_la-serialization.lo `test -f 'src/c/serialization.c' || echo '$(srcdir)/'`src/c/serialization.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscimpi_la-serialization.Tpo src/c/$(DEPDIR)/libscimpi_la-serialization.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/serialization.c' object='src/c/libscimpi_la-serialization.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o libscimpi_la-serialization.lo `test -f 'src/c/serialization.c' || echo '$(srcdir)/'`src/c/serialization.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o src/c/libscimpi_la-serialization.lo `test -f 'src/c/serialization.c' || echo '$(srcdir)/'`src/c/serialization.c
 
-libscimpi_la-deserialization.lo: src/c/deserialization.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT libscimpi_la-deserialization.lo -MD -MP -MF $(DEPDIR)/libscimpi_la-deserialization.Tpo -c -o libscimpi_la-deserialization.lo `test -f 'src/c/deserialization.c' || echo '$(srcdir)/'`src/c/deserialization.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscimpi_la-deserialization.Tpo $(DEPDIR)/libscimpi_la-deserialization.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/deserialization.c' object='libscimpi_la-deserialization.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscimpi_la-deserialization.lo: src/c/deserialization.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT src/c/libscimpi_la-deserialization.lo -MD -MP -MF src/c/$(DEPDIR)/libscimpi_la-deserialization.Tpo -c -o src/c/libscimpi_la-deserialization.lo `test -f 'src/c/deserialization.c' || echo '$(srcdir)/'`src/c/deserialization.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscimpi_la-deserialization.Tpo src/c/$(DEPDIR)/libscimpi_la-deserialization.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/deserialization.c' object='src/c/libscimpi_la-deserialization.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o libscimpi_la-deserialization.lo `test -f 'src/c/deserialization.c' || echo '$(srcdir)/'`src/c/deserialization.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o src/c/libscimpi_la-deserialization.lo `test -f 'src/c/deserialization.c' || echo '$(srcdir)/'`src/c/deserialization.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
+	-rm -rf src/c/.libs src/c/_libs
 install-libscimpi_la_etcDATA: $(libscimpi_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libscimpi_la_etc_DATA)'; test -n "$(libscimpi_la_etcdir)" || list=; \
@@ -1072,6 +1137,10 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/c/$(am__dirstamp)
+	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/c/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1082,7 +1151,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1131,7 +1200,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

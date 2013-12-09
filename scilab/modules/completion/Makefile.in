@@ -185,31 +185,33 @@ am__libscicompletion_algo_la_SOURCES_DIST = src/jni/Completion_wrap.c \
 	src/cpp/UnknownMlistFieldsGetter.cpp \
 	src/cpp/StructFieldsGetter.cpp src/cpp/HandleFieldsGetter.cpp \
 	src/cpp/getfields.cpp
-@GUI_TRUE@am__objects_1 = libscicompletion_algo_la-Completion_wrap.lo
-am__objects_2 = libscicompletion_algo_la-completion.lo \
-	libscicompletion_algo_la-completion_generic.lo \
-	libscicompletion_algo_la-getfilesdictionary.lo \
-	libscicompletion_algo_la-getmacrosdictionary.lo \
-	libscicompletion_algo_la-getfieldsdictionary.lo \
-	libscicompletion_algo_la-toolsdictionary.lo \
-	libscicompletion_algo_la-completion_wrap_java.lo \
-	libscicompletion_algo_la-getPartLine.lo \
-	libscicompletion_algo_la-getCommonPart.lo \
-	libscicompletion_algo_la-completeLine.lo \
-	libscicompletion_algo_la-completeLine_wrap_java.lo
-am__objects_3 = libscicompletion_algo_la-FieldsManager.lo \
-	libscicompletion_algo_la-XMLFieldsGetter.lo \
-	libscicompletion_algo_la-XMLDocFieldsGetter.lo \
-	libscicompletion_algo_la-XMLElemFieldsGetter.lo \
-	libscicompletion_algo_la-XMLAttrFieldsGetter.lo \
-	libscicompletion_algo_la-XMLNsFieldsGetter.lo \
-	libscicompletion_algo_la-XMLListFieldsGetter.lo \
-	libscicompletion_algo_la-XMLSetFieldsGetter.lo \
-	libscicompletion_algo_la-EOFieldsGetter.lo \
-	libscicompletion_algo_la-UnknownMlistFieldsGetter.lo \
-	libscicompletion_algo_la-StructFieldsGetter.lo \
-	libscicompletion_algo_la-HandleFieldsGetter.lo \
-	libscicompletion_algo_la-getfields.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+@GUI_TRUE@am__objects_1 =  \
+@GUI_TRUE@	src/jni/libscicompletion_algo_la-Completion_wrap.lo
+am__objects_2 = src/c/libscicompletion_algo_la-completion.lo \
+	src/c/libscicompletion_algo_la-completion_generic.lo \
+	src/c/libscicompletion_algo_la-getfilesdictionary.lo \
+	src/c/libscicompletion_algo_la-getmacrosdictionary.lo \
+	src/c/libscicompletion_algo_la-getfieldsdictionary.lo \
+	src/c/libscicompletion_algo_la-toolsdictionary.lo \
+	src/c/libscicompletion_algo_la-completion_wrap_java.lo \
+	src/c/libscicompletion_algo_la-getPartLine.lo \
+	src/c/libscicompletion_algo_la-getCommonPart.lo \
+	src/c/libscicompletion_algo_la-completeLine.lo \
+	src/c/libscicompletion_algo_la-completeLine_wrap_java.lo
+am__objects_3 = src/cpp/libscicompletion_algo_la-FieldsManager.lo \
+	src/cpp/libscicompletion_algo_la-XMLFieldsGetter.lo \
+	src/cpp/libscicompletion_algo_la-XMLDocFieldsGetter.lo \
+	src/cpp/libscicompletion_algo_la-XMLElemFieldsGetter.lo \
+	src/cpp/libscicompletion_algo_la-XMLAttrFieldsGetter.lo \
+	src/cpp/libscicompletion_algo_la-XMLNsFieldsGetter.lo \
+	src/cpp/libscicompletion_algo_la-XMLListFieldsGetter.lo \
+	src/cpp/libscicompletion_algo_la-XMLSetFieldsGetter.lo \
+	src/cpp/libscicompletion_algo_la-EOFieldsGetter.lo \
+	src/cpp/libscicompletion_algo_la-UnknownMlistFieldsGetter.lo \
+	src/cpp/libscicompletion_algo_la-StructFieldsGetter.lo \
+	src/cpp/libscicompletion_algo_la-HandleFieldsGetter.lo \
+	src/cpp/libscicompletion_algo_la-getfields.lo
 am_libscicompletion_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3)
 libscicompletion_algo_la_OBJECTS =  \
@@ -219,8 +221,8 @@ am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
 libscicompletion_la_DEPENDENCIES = libscicompletion-algo.la
-am__objects_4 = libscicompletion_la-sci_completion.lo \
-	libscicompletion_la-gw_completion.lo
+am__objects_4 = sci_gateway/c/libscicompletion_la-sci_completion.lo \
+	sci_gateway/c/libscicompletion_la-gw_completion.lo
 am_libscicompletion_la_OBJECTS = $(am__objects_4)
 libscicompletion_la_OBJECTS = $(am_libscicompletion_la_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -844,283 +846,381 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/jni/$(am__dirstamp):
+	@$(MKDIR_P) src/jni
+	@: > src/jni/$(am__dirstamp)
+src/jni/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/jni/$(DEPDIR)
+	@: > src/jni/$(DEPDIR)/$(am__dirstamp)
+src/jni/libscicompletion_algo_la-Completion_wrap.lo:  \
+	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
+src/c/$(am__dirstamp):
+	@$(MKDIR_P) src/c
+	@: > src/c/$(am__dirstamp)
+src/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/c/$(DEPDIR)
+	@: > src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscicompletion_algo_la-completion.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscicompletion_algo_la-completion_generic.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscicompletion_algo_la-getfilesdictionary.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscicompletion_algo_la-getmacrosdictionary.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscicompletion_algo_la-getfieldsdictionary.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscicompletion_algo_la-toolsdictionary.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscicompletion_algo_la-completion_wrap_java.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscicompletion_algo_la-getPartLine.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscicompletion_algo_la-getCommonPart.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscicompletion_algo_la-completeLine.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscicompletion_algo_la-completeLine_wrap_java.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/cpp/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp
+	@: > src/cpp/$(am__dirstamp)
+src/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp/$(DEPDIR)
+	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscicompletion_algo_la-FieldsManager.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscicompletion_algo_la-XMLFieldsGetter.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscicompletion_algo_la-XMLDocFieldsGetter.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscicompletion_algo_la-XMLElemFieldsGetter.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscicompletion_algo_la-XMLAttrFieldsGetter.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscicompletion_algo_la-XMLNsFieldsGetter.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscicompletion_algo_la-XMLListFieldsGetter.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscicompletion_algo_la-XMLSetFieldsGetter.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscicompletion_algo_la-EOFieldsGetter.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscicompletion_algo_la-UnknownMlistFieldsGetter.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscicompletion_algo_la-StructFieldsGetter.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscicompletion_algo_la-HandleFieldsGetter.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscicompletion_algo_la-getfields.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscicompletion-algo.la: $(libscicompletion_algo_la_OBJECTS) $(libscicompletion_algo_la_DEPENDENCIES) $(EXTRA_libscicompletion_algo_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK)  $(libscicompletion_algo_la_OBJECTS) $(libscicompletion_algo_la_LIBADD) $(LIBS)
+sci_gateway/c/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c
+	@: > sci_gateway/c/$(am__dirstamp)
+sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
+	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscicompletion_la-sci_completion.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscicompletion_la-gw_completion.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 
 libscicompletion.la: $(libscicompletion_la_OBJECTS) $(libscicompletion_la_DEPENDENCIES) $(EXTRA_libscicompletion_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) -rpath $(pkglibdir) $(libscicompletion_la_OBJECTS) $(libscicompletion_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f sci_gateway/c/*.$(OBJEXT)
+	-rm -f sci_gateway/c/*.lo
+	-rm -f src/c/*.$(OBJEXT)
+	-rm -f src/c/*.lo
+	-rm -f src/cpp/*.$(OBJEXT)
+	-rm -f src/cpp/*.lo
+	-rm -f src/jni/*.$(OBJEXT)
+	-rm -f src/jni/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-Completion_wrap.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-EOFieldsGetter.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-FieldsManager.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-HandleFieldsGetter.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-StructFieldsGetter.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-UnknownMlistFieldsGetter.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-XMLAttrFieldsGetter.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-XMLDocFieldsGetter.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-XMLElemFieldsGetter.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-XMLFieldsGetter.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-XMLListFieldsGetter.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-XMLNsFieldsGetter.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-XMLSetFieldsGetter.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-completeLine.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-completeLine_wrap_java.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-completion.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-completion_generic.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-completion_wrap_java.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-getCommonPart.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-getPartLine.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-getfields.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-getfieldsdictionary.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-getfilesdictionary.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-getmacrosdictionary.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_algo_la-toolsdictionary.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-gw_completion.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-sci_completion.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscicompletion_la-gw_completion.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscicompletion_la-sci_completion.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicompletion_algo_la-completeLine.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicompletion_algo_la-completeLine_wrap_java.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicompletion_algo_la-completion.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicompletion_algo_la-completion_generic.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicompletion_algo_la-completion_wrap_java.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicompletion_algo_la-getCommonPart.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicompletion_algo_la-getPartLine.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicompletion_algo_la-getfieldsdictionary.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicompletion_algo_la-getfilesdictionary.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicompletion_algo_la-getmacrosdictionary.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicompletion_algo_la-toolsdictionary.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-EOFieldsGetter.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-FieldsManager.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-HandleFieldsGetter.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-StructFieldsGetter.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-UnknownMlistFieldsGetter.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLAttrFieldsGetter.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLDocFieldsGetter.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLElemFieldsGetter.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLFieldsGetter.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLListFieldsGetter.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLNsFieldsGetter.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLSetFieldsGetter.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-getfields.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscicompletion_algo_la-Completion_wrap.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libscicompletion_algo_la-Completion_wrap.lo: src/jni/Completion_wrap.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicompletion_algo_la-Completion_wrap.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-Completion_wrap.Tpo -c -o libscicompletion_algo_la-Completion_wrap.lo `test -f 'src/jni/Completion_wrap.c' || echo '$(srcdir)/'`src/jni/Completion_wrap.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-Completion_wrap.Tpo $(DEPDIR)/libscicompletion_algo_la-Completion_wrap.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/jni/Completion_wrap.c' object='libscicompletion_algo_la-Completion_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+src/jni/libscicompletion_algo_la-Completion_wrap.lo: src/jni/Completion_wrap.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/jni/libscicompletion_algo_la-Completion_wrap.lo -MD -MP -MF src/jni/$(DEPDIR)/libscicompletion_algo_la-Completion_wrap.Tpo -c -o src/jni/libscicompletion_algo_la-Completion_wrap.lo `test -f 'src/jni/Completion_wrap.c' || echo '$(srcdir)/'`src/jni/Completion_wrap.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscicompletion_algo_la-Completion_wrap.Tpo src/jni/$(DEPDIR)/libscicompletion_algo_la-Completion_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/jni/Completion_wrap.c' object='src/jni/libscicompletion_algo_la-Completion_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicompletion_algo_la-Completion_wrap.lo `test -f 'src/jni/Completion_wrap.c' || echo '$(srcdir)/'`src/jni/Completion_wrap.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/jni/libscicompletion_algo_la-Completion_wrap.lo `test -f 'src/jni/Completion_wrap.c' || echo '$(srcdir)/'`src/jni/Completion_wrap.c
 
-libscicompletion_algo_la-completion.lo: src/c/completion.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicompletion_algo_la-completion.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-completion.Tpo -c -o libscicompletion_algo_la-completion.lo `test -f 'src/c/completion.c' || echo '$(srcdir)/'`src/c/completion.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-completion.Tpo $(DEPDIR)/libscicompletion_algo_la-completion.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/completion.c' object='libscicompletion_algo_la-completion.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscicompletion_algo_la-completion.lo: src/c/completion.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicompletion_algo_la-completion.lo -MD -MP -MF src/c/$(DEPDIR)/libscicompletion_algo_la-completion.Tpo -c -o src/c/libscicompletion_algo_la-completion.lo `test -f 'src/c/completion.c' || echo '$(srcdir)/'`src/c/completion.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicompletion_algo_la-completion.Tpo src/c/$(DEPDIR)/libscicompletion_algo_la-completion.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/completion.c' object='src/c/libscicompletion_algo_la-completion.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicompletion_algo_la-completion.lo `test -f 'src/c/completion.c' || echo '$(srcdir)/'`src/c/completion.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicompletion_algo_la-completion.lo `test -f 'src/c/completion.c' || echo '$(srcdir)/'`src/c/completion.c
 
-libscicompletion_algo_la-completion_generic.lo: src/c/completion_generic.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicompletion_algo_la-completion_generic.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-completion_generic.Tpo -c -o libscicompletion_algo_la-completion_generic.lo `test -f 'src/c/completion_generic.c' || echo '$(srcdir)/'`src/c/completion_generic.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-completion_generic.Tpo $(DEPDIR)/libscicompletion_algo_la-completion_generic.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/completion_generic.c' object='libscicompletion_algo_la-completion_generic.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscicompletion_algo_la-completion_generic.lo: src/c/completion_generic.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicompletion_algo_la-completion_generic.lo -MD -MP -MF src/c/$(DEPDIR)/libscicompletion_algo_la-completion_generic.Tpo -c -o src/c/libscicompletion_algo_la-completion_generic.lo `test -f 'src/c/completion_generic.c' || echo '$(srcdir)/'`src/c/completion_generic.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicompletion_algo_la-completion_generic.Tpo src/c/$(DEPDIR)/libscicompletion_algo_la-completion_generic.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/completion_generic.c' object='src/c/libscicompletion_algo_la-completion_generic.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicompletion_algo_la-completion_generic.lo `test -f 'src/c/completion_generic.c' || echo '$(srcdir)/'`src/c/completion_generic.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicompletion_algo_la-completion_generic.lo `test -f 'src/c/completion_generic.c' || echo '$(srcdir)/'`src/c/completion_generic.c
 
-libscicompletion_algo_la-getfilesdictionary.lo: src/c/getfilesdictionary.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicompletion_algo_la-getfilesdictionary.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-getfilesdictionary.Tpo -c -o libscicompletion_algo_la-getfilesdictionary.lo `test -f 'src/c/getfilesdictionary.c' || echo '$(srcdir)/'`src/c/getfilesdictionary.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-getfilesdictionary.Tpo $(DEPDIR)/libscicompletion_algo_la-getfilesdictionary.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getfilesdictionary.c' object='libscicompletion_algo_la-getfilesdictionary.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscicompletion_algo_la-getfilesdictionary.lo: src/c/getfilesdictionary.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicompletion_algo_la-getfilesdictionary.lo -MD -MP -MF src/c/$(DEPDIR)/libscicompletion_algo_la-getfilesdictionary.Tpo -c -o src/c/libscicompletion_algo_la-getfilesdictionary.lo `test -f 'src/c/getfilesdictionary.c' || echo '$(srcdir)/'`src/c/getfilesdictionary.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicompletion_algo_la-getfilesdictionary.Tpo src/c/$(DEPDIR)/libscicompletion_algo_la-getfilesdictionary.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getfilesdictionary.c' object='src/c/libscicompletion_algo_la-getfilesdictionary.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicompletion_algo_la-getfilesdictionary.lo `test -f 'src/c/getfilesdictionary.c' || echo '$(srcdir)/'`src/c/getfilesdictionary.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicompletion_algo_la-getfilesdictionary.lo `test -f 'src/c/getfilesdictionary.c' || echo '$(srcdir)/'`src/c/getfilesdictionary.c
 
-libscicompletion_algo_la-getmacrosdictionary.lo: src/c/getmacrosdictionary.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicompletion_algo_la-getmacrosdictionary.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-getmacrosdictionary.Tpo -c -o libscicompletion_algo_la-getmacrosdictionary.lo `test -f 'src/c/getmacrosdictionary.c' || echo '$(srcdir)/'`src/c/getmacrosdictionary.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-getmacrosdictionary.Tpo $(DEPDIR)/libscicompletion_algo_la-getmacrosdictionary.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getmacrosdictionary.c' object='libscicompletion_algo_la-getmacrosdictionary.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscicompletion_algo_la-getmacrosdictionary.lo: src/c/getmacrosdictionary.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicompletion_algo_la-getmacrosdictionary.lo -MD -MP -MF src/c/$(DEPDIR)/libscicompletion_algo_la-getmacrosdictionary.Tpo -c -o src/c/libscicompletion_algo_la-getmacrosdictionary.lo `test -f 'src/c/getmacrosdictionary.c' || echo '$(srcdir)/'`src/c/getmacrosdictionary.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicompletion_algo_la-getmacrosdictionary.Tpo src/c/$(DEPDIR)/libscicompletion_algo_la-getmacrosdictionary.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getmacrosdictionary.c' object='src/c/libscicompletion_algo_la-getmacrosdictionary.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicompletion_algo_la-getmacrosdictionary.lo `test -f 'src/c/getmacrosdictionary.c' || echo '$(srcdir)/'`src/c/getmacrosdictionary.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicompletion_algo_la-getmacrosdictionary.lo `test -f 'src/c/getmacrosdictionary.c' || echo '$(srcdir)/'`src/c/getmacrosdictionary.c
 
-libscicompletion_algo_la-getfieldsdictionary.lo: src/c/getfieldsdictionary.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicompletion_algo_la-getfieldsdictionary.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-getfieldsdictionary.Tpo -c -o libscicompletion_algo_la-getfieldsdictionary.lo `test -f 'src/c/getfieldsdictionary.c' || echo '$(srcdir)/'`src/c/getfieldsdictionary.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-getfieldsdictionary.Tpo $(DEPDIR)/libscicompletion_algo_la-getfieldsdictionary.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getfieldsdictionary.c' object='libscicompletion_algo_la-getfieldsdictionary.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscicompletion_algo_la-getfieldsdictionary.lo: src/c/getfieldsdictionary.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicompletion_algo_la-getfieldsdictionary.lo -MD -MP -MF src/c/$(DEPDIR)/libscicompletion_algo_la-getfieldsdictionary.Tpo -c -o src/c/libscicompletion_algo_la-getfieldsdictionary.lo `test -f 'src/c/getfieldsdictionary.c' || echo '$(srcdir)/'`src/c/getfieldsdictionary.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicompletion_algo_la-getfieldsdictionary.Tpo src/c/$(DEPDIR)/libscicompletion_algo_la-getfieldsdictionary.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getfieldsdictionary.c' object='src/c/libscicompletion_algo_la-getfieldsdictionary.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicompletion_algo_la-getfieldsdictionary.lo `test -f 'src/c/getfieldsdictionary.c' || echo '$(srcdir)/'`src/c/getfieldsdictionary.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicompletion_algo_la-getfieldsdictionary.lo `test -f 'src/c/getfieldsdictionary.c' || echo '$(srcdir)/'`src/c/getfieldsdictionary.c
 
-libscicompletion_algo_la-toolsdictionary.lo: src/c/toolsdictionary.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicompletion_algo_la-toolsdictionary.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-toolsdictionary.Tpo -c -o libscicompletion_algo_la-toolsdictionary.lo `test -f 'src/c/toolsdictionary.c' || echo '$(srcdir)/'`src/c/toolsdictionary.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-toolsdictionary.Tpo $(DEPDIR)/libscicompletion_algo_la-toolsdictionary.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/toolsdictionary.c' object='libscicompletion_algo_la-toolsdictionary.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscicompletion_algo_la-toolsdictionary.lo: src/c/toolsdictionary.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicompletion_algo_la-toolsdictionary.lo -MD -MP -MF src/c/$(DEPDIR)/libscicompletion_algo_la-toolsdictionary.Tpo -c -o src/c/libscicompletion_algo_la-toolsdictionary.lo `test -f 'src/c/toolsdictionary.c' || echo '$(srcdir)/'`src/c/toolsdictionary.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicompletion_algo_la-toolsdictionary.Tpo src/c/$(DEPDIR)/libscicompletion_algo_la-toolsdictionary.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/toolsdictionary.c' object='src/c/libscicompletion_algo_la-toolsdictionary.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicompletion_algo_la-toolsdictionary.lo `test -f 'src/c/toolsdictionary.c' || echo '$(srcdir)/'`src/c/toolsdictionary.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicompletion_algo_la-toolsdictionary.lo `test -f 'src/c/toolsdictionary.c' || echo '$(srcdir)/'`src/c/toolsdictionary.c
 
-libscicompletion_algo_la-completion_wrap_java.lo: src/c/completion_wrap_java.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicompletion_algo_la-completion_wrap_java.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-completion_wrap_java.Tpo -c -o libscicompletion_algo_la-completion_wrap_java.lo `test -f 'src/c/completion_wrap_java.c' || echo '$(srcdir)/'`src/c/completion_wrap_java.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-completion_wrap_java.Tpo $(DEPDIR)/libscicompletion_algo_la-completion_wrap_java.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/completion_wrap_java.c' object='libscicompletion_algo_la-completion_wrap_java.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscicompletion_algo_la-completion_wrap_java.lo: src/c/completion_wrap_java.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicompletion_algo_la-completion_wrap_java.lo -MD -MP -MF src/c/$(DEPDIR)/libscicompletion_algo_la-completion_wrap_java.Tpo -c -o src/c/libscicompletion_algo_la-completion_wrap_java.lo `test -f 'src/c/completion_wrap_java.c' || echo '$(srcdir)/'`src/c/completion_wrap_java.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicompletion_algo_la-completion_wrap_java.Tpo src/c/$(DEPDIR)/libscicompletion_algo_la-completion_wrap_java.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/completion_wrap_java.c' object='src/c/libscicompletion_algo_la-completion_wrap_java.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicompletion_algo_la-completion_wrap_java.lo `test -f 'src/c/completion_wrap_java.c' || echo '$(srcdir)/'`src/c/completion_wrap_java.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicompletion_algo_la-completion_wrap_java.lo `test -f 'src/c/completion_wrap_java.c' || echo '$(srcdir)/'`src/c/completion_wrap_java.c
 
-libscicompletion_algo_la-getPartLine.lo: src/c/getPartLine.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicompletion_algo_la-getPartLine.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-getPartLine.Tpo -c -o libscicompletion_algo_la-getPartLine.lo `test -f 'src/c/getPartLine.c' || echo '$(srcdir)/'`src/c/getPartLine.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-getPartLine.Tpo $(DEPDIR)/libscicompletion_algo_la-getPartLine.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getPartLine.c' object='libscicompletion_algo_la-getPartLine.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscicompletion_algo_la-getPartLine.lo: src/c/getPartLine.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicompletion_algo_la-getPartLine.lo -MD -MP -MF src/c/$(DEPDIR)/libscicompletion_algo_la-getPartLine.Tpo -c -o src/c/libscicompletion_algo_la-getPartLine.lo `test -f 'src/c/getPartLine.c' || echo '$(srcdir)/'`src/c/getPartLine.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicompletion_algo_la-getPartLine.Tpo src/c/$(DEPDIR)/libscicompletion_algo_la-getPartLine.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getPartLine.c' object='src/c/libscicompletion_algo_la-getPartLine.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicompletion_algo_la-getPartLine.lo `test -f 'src/c/getPartLine.c' || echo '$(srcdir)/'`src/c/getPartLine.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicompletion_algo_la-getPartLine.lo `test -f 'src/c/getPartLine.c' || echo '$(srcdir)/'`src/c/getPartLine.c
 
-libscicompletion_algo_la-getCommonPart.lo: src/c/getCommonPart.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicompletion_algo_la-getCommonPart.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-getCommonPart.Tpo -c -o libscicompletion_algo_la-getCommonPart.lo `test -f 'src/c/getCommonPart.c' || echo '$(srcdir)/'`src/c/getCommonPart.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-getCommonPart.Tpo $(DEPDIR)/libscicompletion_algo_la-getCommonPart.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getCommonPart.c' object='libscicompletion_algo_la-getCommonPart.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscicompletion_algo_la-getCommonPart.lo: src/c/getCommonPart.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicompletion_algo_la-getCommonPart.lo -MD -MP -MF src/c/$(DEPDIR)/libscicompletion_algo_la-getCommonPart.Tpo -c -o src/c/libscicompletion_algo_la-getCommonPart.lo `test -f 'src/c/getCommonPart.c' || echo '$(srcdir)/'`src/c/getCommonPart.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicompletion_algo_la-getCommonPart.Tpo src/c/$(DEPDIR)/libscicompletion_algo_la-getCommonPart.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getCommonPart.c' object='src/c/libscicompletion_algo_la-getCommonPart.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicompletion_algo_la-getCommonPart.lo `test -f 'src/c/getCommonPart.c' || echo '$(srcdir)/'`src/c/getCommonPart.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicompletion_algo_la-getCommonPart.lo `test -f 'src/c/getCommonPart.c' || echo '$(srcdir)/'`src/c/getCommonPart.c
 
-libscicompletion_algo_la-completeLine.lo: src/c/completeLine.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicompletion_algo_la-completeLine.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-completeLine.Tpo -c -o libscicompletion_algo_la-completeLine.lo `test -f 'src/c/completeLine.c' || echo '$(srcdir)/'`src/c/completeLine.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-completeLine.Tpo $(DEPDIR)/libscicompletion_algo_la-completeLine.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/completeLine.c' object='libscicompletion_algo_la-completeLine.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscicompletion_algo_la-completeLine.lo: src/c/completeLine.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicompletion_algo_la-completeLine.lo -MD -MP -MF src/c/$(DEPDIR)/libscicompletion_algo_la-completeLine.Tpo -c -o src/c/libscicompletion_algo_la-completeLine.lo `test -f 'src/c/completeLine.c' || echo '$(srcdir)/'`src/c/completeLine.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicompletion_algo_la-completeLine.Tpo src/c/$(DEPDIR)/libscicompletion_algo_la-completeLine.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/completeLine.c' object='src/c/libscicompletion_algo_la-completeLine.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicompletion_algo_la-completeLine.lo `test -f 'src/c/completeLine.c' || echo '$(srcdir)/'`src/c/completeLine.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicompletion_algo_la-completeLine.lo `test -f 'src/c/completeLine.c' || echo '$(srcdir)/'`src/c/completeLine.c
 
-libscicompletion_algo_la-completeLine_wrap_java.lo: src/c/completeLine_wrap_java.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicompletion_algo_la-completeLine_wrap_java.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-completeLine_wrap_java.Tpo -c -o libscicompletion_algo_la-completeLine_wrap_java.lo `test -f 'src/c/completeLine_wrap_java.c' || echo '$(srcdir)/'`src/c/completeLine_wrap_java.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-completeLine_wrap_java.Tpo $(DEPDIR)/libscicompletion_algo_la-completeLine_wrap_java.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/completeLine_wrap_java.c' object='libscicompletion_algo_la-completeLine_wrap_java.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscicompletion_algo_la-completeLine_wrap_java.lo: src/c/completeLine_wrap_java.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicompletion_algo_la-completeLine_wrap_java.lo -MD -MP -MF src/c/$(DEPDIR)/libscicompletion_algo_la-completeLine_wrap_java.Tpo -c -o src/c/libscicompletion_algo_la-completeLine_wrap_java.lo `test -f 'src/c/completeLine_wrap_java.c' || echo '$(srcdir)/'`src/c/completeLine_wrap_java.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicompletion_algo_la-completeLine_wrap_java.Tpo src/c/$(DEPDIR)/libscicompletion_algo_la-completeLine_wrap_java.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/completeLine_wrap_java.c' object='src/c/libscicompletion_algo_la-completeLine_wrap_java.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicompletion_algo_la-completeLine_wrap_java.lo `test -f 'src/c/completeLine_wrap_java.c' || echo '$(srcdir)/'`src/c/completeLine_wrap_java.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicompletion_algo_la-completeLine_wrap_java.lo `test -f 'src/c/completeLine_wrap_java.c' || echo '$(srcdir)/'`src/c/completeLine_wrap_java.c
 
-libscicompletion_la-sci_completion.lo: sci_gateway/c/sci_completion.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicompletion_la-sci_completion.lo -MD -MP -MF $(DEPDIR)/libscicompletion_la-sci_completion.Tpo -c -o libscicompletion_la-sci_completion.lo `test -f 'sci_gateway/c/sci_completion.c' || echo '$(srcdir)/'`sci_gateway/c/sci_completion.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_la-sci_completion.Tpo $(DEPDIR)/libscicompletion_la-sci_completion.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_completion.c' object='libscicompletion_la-sci_completion.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscicompletion_la-sci_completion.lo: sci_gateway/c/sci_completion.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscicompletion_la-sci_completion.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscicompletion_la-sci_completion.Tpo -c -o sci_gateway/c/libscicompletion_la-sci_completion.lo `test -f 'sci_gateway/c/sci_completion.c' || echo '$(srcdir)/'`sci_gateway/c/sci_completion.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscicompletion_la-sci_completion.Tpo sci_gateway/c/$(DEPDIR)/libscicompletion_la-sci_completion.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_completion.c' object='sci_gateway/c/libscicompletion_la-sci_completion.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicompletion_la-sci_completion.lo `test -f 'sci_gateway/c/sci_completion.c' || echo '$(srcdir)/'`sci_gateway/c/sci_completion.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscicompletion_la-sci_completion.lo `test -f 'sci_gateway/c/sci_completion.c' || echo '$(srcdir)/'`sci_gateway/c/sci_completion.c
 
-libscicompletion_la-gw_completion.lo: sci_gateway/c/gw_completion.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicompletion_la-gw_completion.lo -MD -MP -MF $(DEPDIR)/libscicompletion_la-gw_completion.Tpo -c -o libscicompletion_la-gw_completion.lo `test -f 'sci_gateway/c/gw_completion.c' || echo '$(srcdir)/'`sci_gateway/c/gw_completion.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_la-gw_completion.Tpo $(DEPDIR)/libscicompletion_la-gw_completion.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_completion.c' object='libscicompletion_la-gw_completion.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscicompletion_la-gw_completion.lo: sci_gateway/c/gw_completion.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscicompletion_la-gw_completion.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscicompletion_la-gw_completion.Tpo -c -o sci_gateway/c/libscicompletion_la-gw_completion.lo `test -f 'sci_gateway/c/gw_completion.c' || echo '$(srcdir)/'`sci_gateway/c/gw_completion.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscicompletion_la-gw_completion.Tpo sci_gateway/c/$(DEPDIR)/libscicompletion_la-gw_completion.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_completion.c' object='sci_gateway/c/libscicompletion_la-gw_completion.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicompletion_la-gw_completion.lo `test -f 'sci_gateway/c/gw_completion.c' || echo '$(srcdir)/'`sci_gateway/c/gw_completion.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscicompletion_la-gw_completion.lo `test -f 'sci_gateway/c/gw_completion.c' || echo '$(srcdir)/'`sci_gateway/c/gw_completion.c
 
 .cpp.o:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .cpp.lo:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
-libscicompletion_algo_la-FieldsManager.lo: src/cpp/FieldsManager.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicompletion_algo_la-FieldsManager.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-FieldsManager.Tpo -c -o libscicompletion_algo_la-FieldsManager.lo `test -f 'src/cpp/FieldsManager.cpp' || echo '$(srcdir)/'`src/cpp/FieldsManager.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-FieldsManager.Tpo $(DEPDIR)/libscicompletion_algo_la-FieldsManager.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/FieldsManager.cpp' object='libscicompletion_algo_la-FieldsManager.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscicompletion_algo_la-FieldsManager.lo: src/cpp/FieldsManager.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicompletion_algo_la-FieldsManager.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicompletion_algo_la-FieldsManager.Tpo -c -o src/cpp/libscicompletion_algo_la-FieldsManager.lo `test -f 'src/cpp/FieldsManager.cpp' || echo '$(srcdir)/'`src/cpp/FieldsManager.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicompletion_algo_la-FieldsManager.Tpo src/cpp/$(DEPDIR)/libscicompletion_algo_la-FieldsManager.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/FieldsManager.cpp' object='src/cpp/libscicompletion_algo_la-FieldsManager.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicompletion_algo_la-FieldsManager.lo `test -f 'src/cpp/FieldsManager.cpp' || echo '$(srcdir)/'`src/cpp/FieldsManager.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicompletion_algo_la-FieldsManager.lo `test -f 'src/cpp/FieldsManager.cpp' || echo '$(srcdir)/'`src/cpp/FieldsManager.cpp
 
-libscicompletion_algo_la-XMLFieldsGetter.lo: src/cpp/XMLFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicompletion_algo_la-XMLFieldsGetter.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-XMLFieldsGetter.Tpo -c -o libscicompletion_algo_la-XMLFieldsGetter.lo `test -f 'src/cpp/XMLFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-XMLFieldsGetter.Tpo $(DEPDIR)/libscicompletion_algo_la-XMLFieldsGetter.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLFieldsGetter.cpp' object='libscicompletion_algo_la-XMLFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscicompletion_algo_la-XMLFieldsGetter.lo: src/cpp/XMLFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicompletion_algo_la-XMLFieldsGetter.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLFieldsGetter.Tpo -c -o src/cpp/libscicompletion_algo_la-XMLFieldsGetter.lo `test -f 'src/cpp/XMLFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLFieldsGetter.Tpo src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLFieldsGetter.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLFieldsGetter.cpp' object='src/cpp/libscicompletion_algo_la-XMLFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicompletion_algo_la-XMLFieldsGetter.lo `test -f 'src/cpp/XMLFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLFieldsGetter.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicompletion_algo_la-XMLFieldsGetter.lo `test -f 'src/cpp/XMLFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLFieldsGetter.cpp
 
-libscicompletion_algo_la-XMLDocFieldsGetter.lo: src/cpp/XMLDocFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicompletion_algo_la-XMLDocFieldsGetter.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-XMLDocFieldsGetter.Tpo -c -o libscicompletion_algo_la-XMLDocFieldsGetter.lo `test -f 'src/cpp/XMLDocFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLDocFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-XMLDocFieldsGetter.Tpo $(DEPDIR)/libscicompletion_algo_la-XMLDocFieldsGetter.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLDocFieldsGetter.cpp' object='libscicompletion_algo_la-XMLDocFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscicompletion_algo_la-XMLDocFieldsGetter.lo: src/cpp/XMLDocFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicompletion_algo_la-XMLDocFieldsGetter.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLDocFieldsGetter.Tpo -c -o src/cpp/libscicompletion_algo_la-XMLDocFieldsGetter.lo `test -f 'src/cpp/XMLDocFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLDocFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLDocFieldsGetter.Tpo src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLDocFieldsGetter.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLDocFieldsGetter.cpp' object='src/cpp/libscicompletion_algo_la-XMLDocFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicompletion_algo_la-XMLDocFieldsGetter.lo `test -f 'src/cpp/XMLDocFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLDocFieldsGetter.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicompletion_algo_la-XMLDocFieldsGetter.lo `test -f 'src/cpp/XMLDocFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLDocFieldsGetter.cpp
 
-libscicompletion_algo_la-XMLElemFieldsGetter.lo: src/cpp/XMLElemFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicompletion_algo_la-XMLElemFieldsGetter.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-XMLElemFieldsGetter.Tpo -c -o libscicompletion_algo_la-XMLElemFieldsGetter.lo `test -f 'src/cpp/XMLElemFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLElemFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-XMLElemFieldsGetter.Tpo $(DEPDIR)/libscicompletion_algo_la-XMLElemFieldsGetter.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLElemFieldsGetter.cpp' object='libscicompletion_algo_la-XMLElemFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscicompletion_algo_la-XMLElemFieldsGetter.lo: src/cpp/XMLElemFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicompletion_algo_la-XMLElemFieldsGetter.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLElemFieldsGetter.Tpo -c -o src/cpp/libscicompletion_algo_la-XMLElemFieldsGetter.lo `test -f 'src/cpp/XMLElemFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLElemFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLElemFieldsGetter.Tpo src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLElemFieldsGetter.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLElemFieldsGetter.cpp' object='src/cpp/libscicompletion_algo_la-XMLElemFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicompletion_algo_la-XMLElemFieldsGetter.lo `test -f 'src/cpp/XMLElemFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLElemFieldsGetter.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicompletion_algo_la-XMLElemFieldsGetter.lo `test -f 'src/cpp/XMLElemFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLElemFieldsGetter.cpp
 
-libscicompletion_algo_la-XMLAttrFieldsGetter.lo: src/cpp/XMLAttrFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicompletion_algo_la-XMLAttrFieldsGetter.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-XMLAttrFieldsGetter.Tpo -c -o libscicompletion_algo_la-XMLAttrFieldsGetter.lo `test -f 'src/cpp/XMLAttrFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLAttrFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-XMLAttrFieldsGetter.Tpo $(DEPDIR)/libscicompletion_algo_la-XMLAttrFieldsGetter.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLAttrFieldsGetter.cpp' object='libscicompletion_algo_la-XMLAttrFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscicompletion_algo_la-XMLAttrFieldsGetter.lo: src/cpp/XMLAttrFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicompletion_algo_la-XMLAttrFieldsGetter.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLAttrFieldsGetter.Tpo -c -o src/cpp/libscicompletion_algo_la-XMLAttrFieldsGetter.lo `test -f 'src/cpp/XMLAttrFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLAttrFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLAttrFieldsGetter.Tpo src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLAttrFieldsGetter.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLAttrFieldsGetter.cpp' object='src/cpp/libscicompletion_algo_la-XMLAttrFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicompletion_algo_la-XMLAttrFieldsGetter.lo `test -f 'src/cpp/XMLAttrFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLAttrFieldsGetter.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicompletion_algo_la-XMLAttrFieldsGetter.lo `test -f 'src/cpp/XMLAttrFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLAttrFieldsGetter.cpp
 
-libscicompletion_algo_la-XMLNsFieldsGetter.lo: src/cpp/XMLNsFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicompletion_algo_la-XMLNsFieldsGetter.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-XMLNsFieldsGetter.Tpo -c -o libscicompletion_algo_la-XMLNsFieldsGetter.lo `test -f 'src/cpp/XMLNsFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLNsFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-XMLNsFieldsGetter.Tpo $(DEPDIR)/libscicompletion_algo_la-XMLNsFieldsGetter.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLNsFieldsGetter.cpp' object='libscicompletion_algo_la-XMLNsFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscicompletion_algo_la-XMLNsFieldsGetter.lo: src/cpp/XMLNsFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicompletion_algo_la-XMLNsFieldsGetter.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLNsFieldsGetter.Tpo -c -o src/cpp/libscicompletion_algo_la-XMLNsFieldsGetter.lo `test -f 'src/cpp/XMLNsFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLNsFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLNsFieldsGetter.Tpo src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLNsFieldsGetter.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLNsFieldsGetter.cpp' object='src/cpp/libscicompletion_algo_la-XMLNsFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicompletion_algo_la-XMLNsFieldsGetter.lo `test -f 'src/cpp/XMLNsFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLNsFieldsGetter.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicompletion_algo_la-XMLNsFieldsGetter.lo `test -f 'src/cpp/XMLNsFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLNsFieldsGetter.cpp
 
-libscicompletion_algo_la-XMLListFieldsGetter.lo: src/cpp/XMLListFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicompletion_algo_la-XMLListFieldsGetter.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-XMLListFieldsGetter.Tpo -c -o libscicompletion_algo_la-XMLListFieldsGetter.lo `test -f 'src/cpp/XMLListFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLListFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-XMLListFieldsGetter.Tpo $(DEPDIR)/libscicompletion_algo_la-XMLListFieldsGetter.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLListFieldsGetter.cpp' object='libscicompletion_algo_la-XMLListFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscicompletion_algo_la-XMLListFieldsGetter.lo: src/cpp/XMLListFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicompletion_algo_la-XMLListFieldsGetter.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLListFieldsGetter.Tpo -c -o src/cpp/libscicompletion_algo_la-XMLListFieldsGetter.lo `test -f 'src/cpp/XMLListFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLListFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLListFieldsGetter.Tpo src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLListFieldsGetter.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLListFieldsGetter.cpp' object='src/cpp/libscicompletion_algo_la-XMLListFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicompletion_algo_la-XMLListFieldsGetter.lo `test -f 'src/cpp/XMLListFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLListFieldsGetter.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicompletion_algo_la-XMLListFieldsGetter.lo `test -f 'src/cpp/XMLListFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLListFieldsGetter.cpp
 
-libscicompletion_algo_la-XMLSetFieldsGetter.lo: src/cpp/XMLSetFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicompletion_algo_la-XMLSetFieldsGetter.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-XMLSetFieldsGetter.Tpo -c -o libscicompletion_algo_la-XMLSetFieldsGetter.lo `test -f 'src/cpp/XMLSetFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLSetFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-XMLSetFieldsGetter.Tpo $(DEPDIR)/libscicompletion_algo_la-XMLSetFieldsGetter.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLSetFieldsGetter.cpp' object='libscicompletion_algo_la-XMLSetFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscicompletion_algo_la-XMLSetFieldsGetter.lo: src/cpp/XMLSetFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicompletion_algo_la-XMLSetFieldsGetter.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLSetFieldsGetter.Tpo -c -o src/cpp/libscicompletion_algo_la-XMLSetFieldsGetter.lo `test -f 'src/cpp/XMLSetFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLSetFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLSetFieldsGetter.Tpo src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLSetFieldsGetter.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLSetFieldsGetter.cpp' object='src/cpp/libscicompletion_algo_la-XMLSetFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicompletion_algo_la-XMLSetFieldsGetter.lo `test -f 'src/cpp/XMLSetFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLSetFieldsGetter.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicompletion_algo_la-XMLSetFieldsGetter.lo `test -f 'src/cpp/XMLSetFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/XMLSetFieldsGetter.cpp
 
-libscicompletion_algo_la-EOFieldsGetter.lo: src/cpp/EOFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicompletion_algo_la-EOFieldsGetter.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-EOFieldsGetter.Tpo -c -o libscicompletion_algo_la-EOFieldsGetter.lo `test -f 'src/cpp/EOFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/EOFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-EOFieldsGetter.Tpo $(DEPDIR)/libscicompletion_algo_la-EOFieldsGetter.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/EOFieldsGetter.cpp' object='libscicompletion_algo_la-EOFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscicompletion_algo_la-EOFieldsGetter.lo: src/cpp/EOFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicompletion_algo_la-EOFieldsGetter.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicompletion_algo_la-EOFieldsGetter.Tpo -c -o src/cpp/libscicompletion_algo_la-EOFieldsGetter.lo `test -f 'src/cpp/EOFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/EOFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicompletion_algo_la-EOFieldsGetter.Tpo src/cpp/$(DEPDIR)/libscicompletion_algo_la-EOFieldsGetter.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/EOFieldsGetter.cpp' object='src/cpp/libscicompletion_algo_la-EOFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicompletion_algo_la-EOFieldsGetter.lo `test -f 'src/cpp/EOFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/EOFieldsGetter.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicompletion_algo_la-EOFieldsGetter.lo `test -f 'src/cpp/EOFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/EOFieldsGetter.cpp
 
-libscicompletion_algo_la-UnknownMlistFieldsGetter.lo: src/cpp/UnknownMlistFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicompletion_algo_la-UnknownMlistFieldsGetter.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-UnknownMlistFieldsGetter.Tpo -c -o libscicompletion_algo_la-UnknownMlistFieldsGetter.lo `test -f 'src/cpp/UnknownMlistFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/UnknownMlistFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-UnknownMlistFieldsGetter.Tpo $(DEPDIR)/libscicompletion_algo_la-UnknownMlistFieldsGetter.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/UnknownMlistFieldsGetter.cpp' object='libscicompletion_algo_la-UnknownMlistFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscicompletion_algo_la-UnknownMlistFieldsGetter.lo: src/cpp/UnknownMlistFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicompletion_algo_la-UnknownMlistFieldsGetter.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicompletion_algo_la-UnknownMlistFieldsGetter.Tpo -c -o src/cpp/libscicompletion_algo_la-UnknownMlistFieldsGetter.lo `test -f 'src/cpp/UnknownMlistFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/UnknownMlistFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicompletion_algo_la-UnknownMlistFieldsGetter.Tpo src/cpp/$(DEPDIR)/libscicompletion_algo_la-UnknownMlistFieldsGetter.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/UnknownMlistFieldsGetter.cpp' object='src/cpp/libscicompletion_algo_la-UnknownMlistFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicompletion_algo_la-UnknownMlistFieldsGetter.lo `test -f 'src/cpp/UnknownMlistFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/UnknownMlistFieldsGetter.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicompletion_algo_la-UnknownMlistFieldsGetter.lo `test -f 'src/cpp/UnknownMlistFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/UnknownMlistFieldsGetter.cpp
 
-libscicompletion_algo_la-StructFieldsGetter.lo: src/cpp/StructFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicompletion_algo_la-StructFieldsGetter.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-StructFieldsGetter.Tpo -c -o libscicompletion_algo_la-StructFieldsGetter.lo `test -f 'src/cpp/StructFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/StructFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-StructFieldsGetter.Tpo $(DEPDIR)/libscicompletion_algo_la-StructFieldsGetter.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/StructFieldsGetter.cpp' object='libscicompletion_algo_la-StructFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscicompletion_algo_la-StructFieldsGetter.lo: src/cpp/StructFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicompletion_algo_la-StructFieldsGetter.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicompletion_algo_la-StructFieldsGetter.Tpo -c -o src/cpp/libscicompletion_algo_la-StructFieldsGetter.lo `test -f 'src/cpp/StructFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/StructFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicompletion_algo_la-StructFieldsGetter.Tpo src/cpp/$(DEPDIR)/libscicompletion_algo_la-StructFieldsGetter.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/StructFieldsGetter.cpp' object='src/cpp/libscicompletion_algo_la-StructFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicompletion_algo_la-StructFieldsGetter.lo `test -f 'src/cpp/StructFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/StructFieldsGetter.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicompletion_algo_la-StructFieldsGetter.lo `test -f 'src/cpp/StructFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/StructFieldsGetter.cpp
 
-libscicompletion_algo_la-HandleFieldsGetter.lo: src/cpp/HandleFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicompletion_algo_la-HandleFieldsGetter.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-HandleFieldsGetter.Tpo -c -o libscicompletion_algo_la-HandleFieldsGetter.lo `test -f 'src/cpp/HandleFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/HandleFieldsGetter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-HandleFieldsGetter.Tpo $(DEPDIR)/libscicompletion_algo_la-HandleFieldsGetter.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/HandleFieldsGetter.cpp' object='libscicompletion_algo_la-HandleFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscicompletion_algo_la-HandleFieldsGetter.lo: src/cpp/HandleFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicompletion_algo_la-HandleFieldsGetter.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicompletion_algo_la-HandleFieldsGetter.Tpo -c -o src/cpp/libscicompletion_algo_la-HandleFieldsGetter.lo `test -f 'src/cpp/HandleFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/HandleFieldsGetter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicompletion_algo_la-HandleFieldsGetter.Tpo src/cpp/$(DEPDIR)/libscicompletion_algo_la-HandleFieldsGetter.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/HandleFieldsGetter.cpp' object='src/cpp/libscicompletion_algo_la-HandleFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicompletion_algo_la-HandleFieldsGetter.lo `test -f 'src/cpp/HandleFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/HandleFieldsGetter.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicompletion_algo_la-HandleFieldsGetter.lo `test -f 'src/cpp/HandleFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/HandleFieldsGetter.cpp
 
-libscicompletion_algo_la-getfields.lo: src/cpp/getfields.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicompletion_algo_la-getfields.lo -MD -MP -MF $(DEPDIR)/libscicompletion_algo_la-getfields.Tpo -c -o libscicompletion_algo_la-getfields.lo `test -f 'src/cpp/getfields.cpp' || echo '$(srcdir)/'`src/cpp/getfields.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicompletion_algo_la-getfields.Tpo $(DEPDIR)/libscicompletion_algo_la-getfields.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/getfields.cpp' object='libscicompletion_algo_la-getfields.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscicompletion_algo_la-getfields.lo: src/cpp/getfields.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicompletion_algo_la-getfields.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicompletion_algo_la-getfields.Tpo -c -o src/cpp/libscicompletion_algo_la-getfields.lo `test -f 'src/cpp/getfields.cpp' || echo '$(srcdir)/'`src/cpp/getfields.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicompletion_algo_la-getfields.Tpo src/cpp/$(DEPDIR)/libscicompletion_algo_la-getfields.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/getfields.cpp' object='src/cpp/libscicompletion_algo_la-getfields.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicompletion_algo_la-getfields.lo `test -f 'src/cpp/getfields.cpp' || echo '$(srcdir)/'`src/cpp/getfields.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicompletion_algo_la-getfields.lo `test -f 'src/cpp/getfields.cpp' || echo '$(srcdir)/'`src/cpp/getfields.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
+	-rm -rf src/c/.libs src/c/_libs
+	-rm -rf src/cpp/.libs src/cpp/_libs
+	-rm -rf src/jni/.libs src/jni/_libs
 install-libscicompletion_la_etcDATA: $(libscicompletion_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libscicompletion_la_etc_DATA)'; test -n "$(libscicompletion_la_etcdir)" || list=; \
@@ -1345,6 +1445,14 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/c/$(am__dirstamp)
+	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/c/$(am__dirstamp)
+	-rm -f src/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/cpp/$(am__dirstamp)
+	-rm -f src/jni/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/jni/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1356,7 +1464,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1407,7 +1515,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

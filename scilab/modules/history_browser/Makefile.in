@@ -171,8 +171,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscihistory_browser_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscihistory_browser_disable_la_LIBADD =
-am__objects_1 =  \
-	libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+am__objects_1 = src/nohistory_browser/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.lo
 am_libscihistory_browser_disable_la_OBJECTS = $(am__objects_1)
 libscihistory_browser_disable_la_OBJECTS =  \
 	$(am_libscihistory_browser_disable_la_OBJECTS)
@@ -186,13 +186,12 @@ am__libscihistory_browser_la_SOURCES_DIST =  \
 	src/jni/CommandHistory.cpp src/cpp/CommandHistory_Wrap.cpp \
 	sci_gateway/c/gw_history_browser.c \
 	sci_gateway/c/sci_browsehistory.c
-@GUI_FALSE@am__objects_2 = libscihistory_browser_la-CommandHistory_Wrap_Fake.lo
-@GUI_TRUE@am__objects_3 = libscihistory_browser_la-CommandHistory.lo
-@GUI_TRUE@am__objects_4 =  \
-@GUI_TRUE@	libscihistory_browser_la-CommandHistory_Wrap.lo
-@GUI_TRUE@am__objects_5 =  \
-@GUI_TRUE@	libscihistory_browser_la-gw_history_browser.lo \
-@GUI_TRUE@	libscihistory_browser_la-sci_browsehistory.lo
+@GUI_FALSE@am__objects_2 = src/nohistory_browser/libscihistory_browser_la-CommandHistory_Wrap_Fake.lo
+@GUI_TRUE@am__objects_3 =  \
+@GUI_TRUE@	src/jni/libscihistory_browser_la-CommandHistory.lo
+@GUI_TRUE@am__objects_4 = src/cpp/libscihistory_browser_la-CommandHistory_Wrap.lo
+@GUI_TRUE@am__objects_5 = sci_gateway/c/libscihistory_browser_la-gw_history_browser.lo \
+@GUI_TRUE@	sci_gateway/c/libscihistory_browser_la-sci_browsehistory.lo
 am_libscihistory_browser_la_OBJECTS = $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4) $(am__objects_5)
 libscihistory_browser_la_OBJECTS =  \
@@ -752,115 +751,173 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/nohistory_browser/$(am__dirstamp):
+	@$(MKDIR_P) src/nohistory_browser
+	@: > src/nohistory_browser/$(am__dirstamp)
+src/nohistory_browser/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/nohistory_browser/$(DEPDIR)
+	@: > src/nohistory_browser/$(DEPDIR)/$(am__dirstamp)
+src/nohistory_browser/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.lo:  \
+	src/nohistory_browser/$(am__dirstamp) \
+	src/nohistory_browser/$(DEPDIR)/$(am__dirstamp)
 
 libscihistory_browser-disable.la: $(libscihistory_browser_disable_la_OBJECTS) $(libscihistory_browser_disable_la_DEPENDENCIES) $(EXTRA_libscihistory_browser_disable_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) -rpath $(pkglibdir) $(libscihistory_browser_disable_la_OBJECTS) $(libscihistory_browser_disable_la_LIBADD) $(LIBS)
+src/nohistory_browser/libscihistory_browser_la-CommandHistory_Wrap_Fake.lo:  \
+	src/nohistory_browser/$(am__dirstamp) \
+	src/nohistory_browser/$(DEPDIR)/$(am__dirstamp)
+src/jni/$(am__dirstamp):
+	@$(MKDIR_P) src/jni
+	@: > src/jni/$(am__dirstamp)
+src/jni/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/jni/$(DEPDIR)
+	@: > src/jni/$(DEPDIR)/$(am__dirstamp)
+src/jni/libscihistory_browser_la-CommandHistory.lo:  \
+	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
+src/cpp/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp
+	@: > src/cpp/$(am__dirstamp)
+src/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp/$(DEPDIR)
+	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscihistory_browser_la-CommandHistory_Wrap.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c
+	@: > sci_gateway/c/$(am__dirstamp)
+sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
+	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscihistory_browser_la-gw_history_browser.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscihistory_browser_la-sci_browsehistory.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 
 libscihistory_browser.la: $(libscihistory_browser_la_OBJECTS) $(libscihistory_browser_la_DEPENDENCIES) $(EXTRA_libscihistory_browser_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(libscihistory_browser_la_LINK) $(am_libscihistory_browser_la_rpath) $(libscihistory_browser_la_OBJECTS) $(libscihistory_browser_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f sci_gateway/c/*.$(OBJEXT)
+	-rm -f sci_gateway/c/*.lo
+	-rm -f src/cpp/*.$(OBJEXT)
+	-rm -f src/cpp/*.lo
+	-rm -f src/jni/*.$(OBJEXT)
+	-rm -f src/jni/*.lo
+	-rm -f src/nohistory_browser/*.$(OBJEXT)
+	-rm -f src/nohistory_browser/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_browser_la-CommandHistory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap_Fake.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_browser_la-gw_history_browser.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_browser_la-sci_browsehistory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscihistory_browser_la-gw_history_browser.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscihistory_browser_la-sci_browsehistory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscihistory_browser_la-CommandHistory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/nohistory_browser/$(DEPDIR)/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/nohistory_browser/$(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap_Fake.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.lo: src/nohistory_browser/CommandHistory_Wrap_Fake.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.lo -MD -MP -MF $(DEPDIR)/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.Tpo -c -o libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.lo `test -f 'src/nohistory_browser/CommandHistory_Wrap_Fake.c' || echo '$(srcdir)/'`src/nohistory_browser/CommandHistory_Wrap_Fake.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.Tpo $(DEPDIR)/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/nohistory_browser/CommandHistory_Wrap_Fake.c' object='libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.lo' libtool=yes @AMDEPBACKSLASH@
+src/nohistory_browser/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.lo: src/nohistory_browser/CommandHistory_Wrap_Fake.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/nohistory_browser/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.lo -MD -MP -MF src/nohistory_browser/$(DEPDIR)/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.Tpo -c -o src/nohistory_browser/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.lo `test -f 'src/nohistory_browser/CommandHistory_Wrap_Fake.c' || echo '$(srcdir)/'`src/nohistory_browser/CommandHistory_Wrap_Fake.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/nohistory_browser/$(DEPDIR)/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.Tpo src/nohistory_browser/$(DEPDIR)/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/nohistory_browser/CommandHistory_Wrap_Fake.c' object='src/nohistory_browser/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.lo `test -f 'src/nohistory_browser/CommandHistory_Wrap_Fake.c' || echo '$(srcdir)/'`src/nohistory_browser/CommandHistory_Wrap_Fake.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/nohistory_browser/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.lo `test -f 'src/nohistory_browser/CommandHistory_Wrap_Fake.c' || echo '$(srcdir)/'`src/nohistory_browser/CommandHistory_Wrap_Fake.c
 
-libscihistory_browser_la-CommandHistory_Wrap_Fake.lo: src/nohistory_browser/CommandHistory_Wrap_Fake.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscihistory_browser_la-CommandHistory_Wrap_Fake.lo -MD -MP -MF $(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap_Fake.Tpo -c -o libscihistory_browser_la-CommandHistory_Wrap_Fake.lo `test -f 'src/nohistory_browser/CommandHistory_Wrap_Fake.c' || echo '$(srcdir)/'`src/nohistory_browser/CommandHistory_Wrap_Fake.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap_Fake.Tpo $(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap_Fake.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/nohistory_browser/CommandHistory_Wrap_Fake.c' object='libscihistory_browser_la-CommandHistory_Wrap_Fake.lo' libtool=yes @AMDEPBACKSLASH@
+src/nohistory_browser/libscihistory_browser_la-CommandHistory_Wrap_Fake.lo: src/nohistory_browser/CommandHistory_Wrap_Fake.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/nohistory_browser/libscihistory_browser_la-CommandHistory_Wrap_Fake.lo -MD -MP -MF src/nohistory_browser/$(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap_Fake.Tpo -c -o src/nohistory_browser/libscihistory_browser_la-CommandHistory_Wrap_Fake.lo `test -f 'src/nohistory_browser/CommandHistory_Wrap_Fake.c' || echo '$(srcdir)/'`src/nohistory_browser/CommandHistory_Wrap_Fake.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/nohistory_browser/$(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap_Fake.Tpo src/nohistory_browser/$(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap_Fake.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/nohistory_browser/CommandHistory_Wrap_Fake.c' object='src/nohistory_browser/libscihistory_browser_la-CommandHistory_Wrap_Fake.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscihistory_browser_la-CommandHistory_Wrap_Fake.lo `test -f 'src/nohistory_browser/CommandHistory_Wrap_Fake.c' || echo '$(srcdir)/'`src/nohistory_browser/CommandHistory_Wrap_Fake.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/nohistory_browser/libscihistory_browser_la-CommandHistory_Wrap_Fake.lo `test -f 'src/nohistory_browser/CommandHistory_Wrap_Fake.c' || echo '$(srcdir)/'`src/nohistory_browser/CommandHistory_Wrap_Fake.c
 
-libscihistory_browser_la-gw_history_browser.lo: sci_gateway/c/gw_history_browser.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscihistory_browser_la-gw_history_browser.lo -MD -MP -MF $(DEPDIR)/libscihistory_browser_la-gw_history_browser.Tpo -c -o libscihistory_browser_la-gw_history_browser.lo `test -f 'sci_gateway/c/gw_history_browser.c' || echo '$(srcdir)/'`sci_gateway/c/gw_history_browser.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscihistory_browser_la-gw_history_browser.Tpo $(DEPDIR)/libscihistory_browser_la-gw_history_browser.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_history_browser.c' object='libscihistory_browser_la-gw_history_browser.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscihistory_browser_la-gw_history_browser.lo: sci_gateway/c/gw_history_browser.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscihistory_browser_la-gw_history_browser.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscihistory_browser_la-gw_history_browser.Tpo -c -o sci_gateway/c/libscihistory_browser_la-gw_history_browser.lo `test -f 'sci_gateway/c/gw_history_browser.c' || echo '$(srcdir)/'`sci_gateway/c/gw_history_browser.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscihistory_browser_la-gw_history_browser.Tpo sci_gateway/c/$(DEPDIR)/libscihistory_browser_la-gw_history_browser.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_history_browser.c' object='sci_gateway/c/libscihistory_browser_la-gw_history_browser.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscihistory_browser_la-gw_history_browser.lo `test -f 'sci_gateway/c/gw_history_browser.c' || echo '$(srcdir)/'`sci_gateway/c/gw_history_browser.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscihistory_browser_la-gw_history_browser.lo `test -f 'sci_gateway/c/gw_history_browser.c' || echo '$(srcdir)/'`sci_gateway/c/gw_history_browser.c
 
-libscihistory_browser_la-sci_browsehistory.lo: sci_gateway/c/sci_browsehistory.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscihistory_browser_la-sci_browsehistory.lo -MD -MP -MF $(DEPDIR)/libscihistory_browser_la-sci_browsehistory.Tpo -c -o libscihistory_browser_la-sci_browsehistory.lo `test -f 'sci_gateway/c/sci_browsehistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_browsehistory.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscihistory_browser_la-sci_browsehistory.Tpo $(DEPDIR)/libscihistory_browser_la-sci_browsehistory.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_browsehistory.c' object='libscihistory_browser_la-sci_browsehistory.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscihistory_browser_la-sci_browsehistory.lo: sci_gateway/c/sci_browsehistory.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscihistory_browser_la-sci_browsehistory.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscihistory_browser_la-sci_browsehistory.Tpo -c -o sci_gateway/c/libscihistory_browser_la-sci_browsehistory.lo `test -f 'sci_gateway/c/sci_browsehistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_browsehistory.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscihistory_browser_la-sci_browsehistory.Tpo sci_gateway/c/$(DEPDIR)/libscihistory_browser_la-sci_browsehistory.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_browsehistory.c' object='sci_gateway/c/libscihistory_browser_la-sci_browsehistory.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscihistory_browser_la-sci_browsehistory.lo `test -f 'sci_gateway/c/sci_browsehistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_browsehistory.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscihistory_browser_la-sci_browsehistory.lo `test -f 'sci_gateway/c/sci_browsehistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_browsehistory.c
 
 .cpp.o:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .cpp.lo:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
-libscihistory_browser_la-CommandHistory.lo: src/jni/CommandHistory.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_browser_la-CommandHistory.lo -MD -MP -MF $(DEPDIR)/libscihistory_browser_la-CommandHistory.Tpo -c -o libscihistory_browser_la-CommandHistory.lo `test -f 'src/jni/CommandHistory.cpp' || echo '$(srcdir)/'`src/jni/CommandHistory.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscihistory_browser_la-CommandHistory.Tpo $(DEPDIR)/libscihistory_browser_la-CommandHistory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/CommandHistory.cpp' object='libscihistory_browser_la-CommandHistory.lo' libtool=yes @AMDEPBACKSLASH@
+src/jni/libscihistory_browser_la-CommandHistory.lo: src/jni/CommandHistory.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscihistory_browser_la-CommandHistory.lo -MD -MP -MF src/jni/$(DEPDIR)/libscihistory_browser_la-CommandHistory.Tpo -c -o src/jni/libscihistory_browser_la-CommandHistory.lo `test -f 'src/jni/CommandHistory.cpp' || echo '$(srcdir)/'`src/jni/CommandHistory.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscihistory_browser_la-CommandHistory.Tpo src/jni/$(DEPDIR)/libscihistory_browser_la-CommandHistory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/CommandHistory.cpp' object='src/jni/libscihistory_browser_la-CommandHistory.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_browser_la-CommandHistory.lo `test -f 'src/jni/CommandHistory.cpp' || echo '$(srcdir)/'`src/jni/CommandHistory.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscihistory_browser_la-CommandHistory.lo `test -f 'src/jni/CommandHistory.cpp' || echo '$(srcdir)/'`src/jni/CommandHistory.cpp
 
-libscihistory_browser_la-CommandHistory_Wrap.lo: src/cpp/CommandHistory_Wrap.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_browser_la-CommandHistory_Wrap.lo -MD -MP -MF $(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap.Tpo -c -o libscihistory_browser_la-CommandHistory_Wrap.lo `test -f 'src/cpp/CommandHistory_Wrap.cpp' || echo '$(srcdir)/'`src/cpp/CommandHistory_Wrap.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap.Tpo $(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/CommandHistory_Wrap.cpp' object='libscihistory_browser_la-CommandHistory_Wrap.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscihistory_browser_la-CommandHistory_Wrap.lo: src/cpp/CommandHistory_Wrap.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscihistory_browser_la-CommandHistory_Wrap.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap.Tpo -c -o src/cpp/libscihistory_browser_la-CommandHistory_Wrap.lo `test -f 'src/cpp/CommandHistory_Wrap.cpp' || echo '$(srcdir)/'`src/cpp/CommandHistory_Wrap.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap.Tpo src/cpp/$(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/CommandHistory_Wrap.cpp' object='src/cpp/libscihistory_browser_la-CommandHistory_Wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_browser_la-CommandHistory_Wrap.lo `test -f 'src/cpp/CommandHistory_Wrap.cpp' || echo '$(srcdir)/'`src/cpp/CommandHistory_Wrap.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscihistory_browser_la-CommandHistory_Wrap.lo `test -f 'src/cpp/CommandHistory_Wrap.cpp' || echo '$(srcdir)/'`src/cpp/CommandHistory_Wrap.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
+	-rm -rf src/cpp/.libs src/cpp/_libs
+	-rm -rf src/jni/.libs src/jni/_libs
+	-rm -rf src/nohistory_browser/.libs src/nohistory_browser/_libs
 install-libscihistory_browser_la_etcDATA: $(libscihistory_browser_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libscihistory_browser_la_etc_DATA)'; test -n "$(libscihistory_browser_la_etcdir)" || list=; \
@@ -1043,6 +1100,14 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/c/$(am__dirstamp)
+	-rm -f src/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/cpp/$(am__dirstamp)
+	-rm -f src/jni/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/jni/$(am__dirstamp)
+	-rm -f src/nohistory_browser/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/nohistory_browser/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1054,7 +1119,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR) src/nohistory_browser/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1103,7 +1168,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR) src/nohistory_browser/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

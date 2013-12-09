@@ -81,7 +81,7 @@ AC_LIB_RPATH
 # if the version is different
 AM_MAINTAINER_MODE
 
-AM_INIT_AUTOMAKE([-Wall foreign serial-tests]) # Not using -Werror because we override {C,F}FLAGS in order to disable optimisation
+AM_INIT_AUTOMAKE([-Wall foreign serial-tests subdir-objects]) # Not using -Werror because we override {C,F}FLAGS in order to disable optimisation
 
 AC_CANONICAL_HOST
 

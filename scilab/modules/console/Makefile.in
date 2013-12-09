@@ -195,35 +195,36 @@ am__libsciconsole_minimal_la_SOURCES_DIST = src/noconsole/noconsole.c \
 	src/c/cmdLine/getKey.c src/c/cmdLine/getNbrLine.c \
 	src/c/cmdLine/gotoFunctions.c src/c/cmdLine/initConsoleMode.c \
 	src/c/cmdLine/termcapManagement.c src/c/others/initMacOSXEnv.c
-@IS_MACOSX_TRUE@am__objects_1 =  \
-@IS_MACOSX_TRUE@	libsciconsole_minimal_la-initMacOSXEnv.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+@IS_MACOSX_TRUE@am__objects_1 = src/c/others/libsciconsole_minimal_la-initMacOSXEnv.lo
 am_libsciconsole_minimal_la_OBJECTS =  \
-	libsciconsole_minimal_la-noconsole.lo \
-	libsciconsole_minimal_la-gw_console.lo \
-	libsciconsole_minimal_la-sci_clc.lo \
-	libsciconsole_minimal_la-sci_tohome.lo \
-	libsciconsole_minimal_la-sci_lines.lo \
-	libsciconsole_minimal_la-sci_prompt.lo \
-	libsciconsole_minimal_la-sci_iswaitingforinput.lo \
-	libsciconsole_minimal_la-clc.lo \
-	libsciconsole_minimal_la-tohome.lo \
-	libsciconsole_minimal_la-more.lo \
-	libsciconsole_minimal_la-scilines.lo \
-	libsciconsole_minimal_la-GetCommandLine.lo \
-	libsciconsole_minimal_la-gotoxy_nw.lo \
-	libsciconsole_minimal_la-clrscr_nw.lo \
-	libsciconsole_minimal_la-prompt.lo \
-	libsciconsole_minimal_la-promptecho.lo \
-	libsciconsole_minimal_la-autoCompletionCli.lo \
-	libsciconsole_minimal_la-charactersManagement.lo \
-	libsciconsole_minimal_la-cliDisplayManagement.lo \
-	libsciconsole_minimal_la-cliHistory.lo \
-	libsciconsole_minimal_la-cliPrompt.lo \
-	libsciconsole_minimal_la-getKey.lo \
-	libsciconsole_minimal_la-getNbrLine.lo \
-	libsciconsole_minimal_la-gotoFunctions.lo \
-	libsciconsole_minimal_la-initConsoleMode.lo \
-	libsciconsole_minimal_la-termcapManagement.lo $(am__objects_1)
+	src/noconsole/libsciconsole_minimal_la-noconsole.lo \
+	sci_gateway/c/libsciconsole_minimal_la-gw_console.lo \
+	sci_gateway/c/libsciconsole_minimal_la-sci_clc.lo \
+	sci_gateway/c/libsciconsole_minimal_la-sci_tohome.lo \
+	sci_gateway/c/libsciconsole_minimal_la-sci_lines.lo \
+	sci_gateway/c/libsciconsole_minimal_la-sci_prompt.lo \
+	sci_gateway/c/libsciconsole_minimal_la-sci_iswaitingforinput.lo \
+	src/c/libsciconsole_minimal_la-clc.lo \
+	src/c/libsciconsole_minimal_la-tohome.lo \
+	src/c/libsciconsole_minimal_la-more.lo \
+	src/c/libsciconsole_minimal_la-scilines.lo \
+	src/c/libsciconsole_minimal_la-GetCommandLine.lo \
+	src/c/others/libsciconsole_minimal_la-gotoxy_nw.lo \
+	src/c/others/libsciconsole_minimal_la-clrscr_nw.lo \
+	src/c/libsciconsole_minimal_la-prompt.lo \
+	src/c/libsciconsole_minimal_la-promptecho.lo \
+	src/c/cmdLine/libsciconsole_minimal_la-autoCompletionCli.lo \
+	src/c/cmdLine/libsciconsole_minimal_la-charactersManagement.lo \
+	src/c/cmdLine/libsciconsole_minimal_la-cliDisplayManagement.lo \
+	src/c/cmdLine/libsciconsole_minimal_la-cliHistory.lo \
+	src/c/cmdLine/libsciconsole_minimal_la-cliPrompt.lo \
+	src/c/cmdLine/libsciconsole_minimal_la-getKey.lo \
+	src/c/cmdLine/libsciconsole_minimal_la-getNbrLine.lo \
+	src/c/cmdLine/libsciconsole_minimal_la-gotoFunctions.lo \
+	src/c/cmdLine/libsciconsole_minimal_la-initConsoleMode.lo \
+	src/c/cmdLine/libsciconsole_minimal_la-termcapManagement.lo \
+	$(am__objects_1)
 libsciconsole_minimal_la_OBJECTS =  \
 	$(am_libsciconsole_minimal_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -243,25 +244,27 @@ am__libsciconsole_la_SOURCES_DIST = src/jni/GuiManagement_wrap.c \
 	sci_gateway/c/sci_tohome.c sci_gateway/c/sci_lines.c \
 	sci_gateway/c/sci_prompt.c \
 	sci_gateway/c/sci_iswaitingforinput.c
-am__objects_2 = libsciconsole_la-GuiManagement_wrap.lo \
-	libsciconsole_la-DropFiles_wrap.lo
-@IS_MACOSX_TRUE@am__objects_3 = libsciconsole_la-initMacOSXEnv.lo
-am__objects_4 = libsciconsole_la-GuiManagement.lo \
-	libsciconsole_la-dropFiles.lo $(am__objects_3)
-am__objects_5 = libsciconsole_la-CallScilabBridge.lo
-am__objects_6 = libsciconsole_la-ClearConsole.lo \
-	libsciconsole_la-ClearConsolePart.lo \
-	libsciconsole_la-ConsolePrintf.lo \
-	libsciconsole_la-ConsoleRead.lo \
-	libsciconsole_la-ConsoleIsWaitingForInput.lo \
-	libsciconsole_la-GetCharWithoutOutput.lo \
-	libsciconsole_la-PromptToHome.lo \
-	libsciconsole_la-ScilabLinesUpdate.lo \
-	libsciconsole_la-SetConsolePrompt.lo
-am__objects_7 = libsciconsole_la-gw_console.lo \
-	libsciconsole_la-sci_clc.lo libsciconsole_la-sci_tohome.lo \
-	libsciconsole_la-sci_lines.lo libsciconsole_la-sci_prompt.lo \
-	libsciconsole_la-sci_iswaitingforinput.lo
+am__objects_2 = src/jni/libsciconsole_la-GuiManagement_wrap.lo \
+	src/jni/libsciconsole_la-DropFiles_wrap.lo
+@IS_MACOSX_TRUE@am__objects_3 = src/c/others/libsciconsole_la-initMacOSXEnv.lo
+am__objects_4 = src/c/libsciconsole_la-GuiManagement.lo \
+	src/c/libsciconsole_la-dropFiles.lo $(am__objects_3)
+am__objects_5 = src/jni/libsciconsole_la-CallScilabBridge.lo
+am__objects_6 = src/cpp/libsciconsole_la-ClearConsole.lo \
+	src/cpp/libsciconsole_la-ClearConsolePart.lo \
+	src/cpp/libsciconsole_la-ConsolePrintf.lo \
+	src/cpp/libsciconsole_la-ConsoleRead.lo \
+	src/cpp/libsciconsole_la-ConsoleIsWaitingForInput.lo \
+	src/cpp/libsciconsole_la-GetCharWithoutOutput.lo \
+	src/cpp/libsciconsole_la-PromptToHome.lo \
+	src/cpp/libsciconsole_la-ScilabLinesUpdate.lo \
+	src/cpp/libsciconsole_la-SetConsolePrompt.lo
+am__objects_7 = sci_gateway/c/libsciconsole_la-gw_console.lo \
+	sci_gateway/c/libsciconsole_la-sci_clc.lo \
+	sci_gateway/c/libsciconsole_la-sci_tohome.lo \
+	sci_gateway/c/libsciconsole_la-sci_lines.lo \
+	sci_gateway/c/libsciconsole_la-sci_prompt.lo \
+	sci_gateway/c/libsciconsole_la-sci_iswaitingforinput.lo
 am_libsciconsole_la_OBJECTS = $(am__objects_2) $(am__objects_4) \
 	$(am__objects_5) $(am__objects_6) $(am__objects_7)
 libsciconsole_la_OBJECTS = $(am_libsciconsole_la_OBJECTS)
@@ -890,451 +893,643 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/noconsole/$(am__dirstamp):
+	@$(MKDIR_P) src/noconsole
+	@: > src/noconsole/$(am__dirstamp)
+src/noconsole/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/noconsole/$(DEPDIR)
+	@: > src/noconsole/$(DEPDIR)/$(am__dirstamp)
+src/noconsole/libsciconsole_minimal_la-noconsole.lo:  \
+	src/noconsole/$(am__dirstamp) \
+	src/noconsole/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c
+	@: > sci_gateway/c/$(am__dirstamp)
+sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
+	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciconsole_minimal_la-gw_console.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciconsole_minimal_la-sci_clc.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciconsole_minimal_la-sci_tohome.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciconsole_minimal_la-sci_lines.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciconsole_minimal_la-sci_prompt.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciconsole_minimal_la-sci_iswaitingforinput.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+src/c/$(am__dirstamp):
+	@$(MKDIR_P) src/c
+	@: > src/c/$(am__dirstamp)
+src/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/c/$(DEPDIR)
+	@: > src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciconsole_minimal_la-clc.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciconsole_minimal_la-tohome.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciconsole_minimal_la-more.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciconsole_minimal_la-scilines.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciconsole_minimal_la-GetCommandLine.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/others/$(am__dirstamp):
+	@$(MKDIR_P) src/c/others
+	@: > src/c/others/$(am__dirstamp)
+src/c/others/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/c/others/$(DEPDIR)
+	@: > src/c/others/$(DEPDIR)/$(am__dirstamp)
+src/c/others/libsciconsole_minimal_la-gotoxy_nw.lo:  \
+	src/c/others/$(am__dirstamp) \
+	src/c/others/$(DEPDIR)/$(am__dirstamp)
+src/c/others/libsciconsole_minimal_la-clrscr_nw.lo:  \
+	src/c/others/$(am__dirstamp) \
+	src/c/others/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciconsole_minimal_la-prompt.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciconsole_minimal_la-promptecho.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/cmdLine/$(am__dirstamp):
+	@$(MKDIR_P) src/c/cmdLine
+	@: > src/c/cmdLine/$(am__dirstamp)
+src/c/cmdLine/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/c/cmdLine/$(DEPDIR)
+	@: > src/c/cmdLine/$(DEPDIR)/$(am__dirstamp)
+src/c/cmdLine/libsciconsole_minimal_la-autoCompletionCli.lo:  \
+	src/c/cmdLine/$(am__dirstamp) \
+	src/c/cmdLine/$(DEPDIR)/$(am__dirstamp)
+src/c/cmdLine/libsciconsole_minimal_la-charactersManagement.lo:  \
+	src/c/cmdLine/$(am__dirstamp) \
+	src/c/cmdLine/$(DEPDIR)/$(am__dirstamp)
+src/c/cmdLine/libsciconsole_minimal_la-cliDisplayManagement.lo:  \
+	src/c/cmdLine/$(am__dirstamp) \
+	src/c/cmdLine/$(DEPDIR)/$(am__dirstamp)
+src/c/cmdLine/libsciconsole_minimal_la-cliHistory.lo:  \
+	src/c/cmdLine/$(am__dirstamp) \
+	src/c/cmdLine/$(DEPDIR)/$(am__dirstamp)
+src/c/cmdLine/libsciconsole_minimal_la-cliPrompt.lo:  \
+	src/c/cmdLine/$(am__dirstamp) \
+	src/c/cmdLine/$(DEPDIR)/$(am__dirstamp)
+src/c/cmdLine/libsciconsole_minimal_la-getKey.lo:  \
+	src/c/cmdLine/$(am__dirstamp) \
+	src/c/cmdLine/$(DEPDIR)/$(am__dirstamp)
+src/c/cmdLine/libsciconsole_minimal_la-getNbrLine.lo:  \
+	src/c/cmdLine/$(am__dirstamp) \
+	src/c/cmdLine/$(DEPDIR)/$(am__dirstamp)
+src/c/cmdLine/libsciconsole_minimal_la-gotoFunctions.lo:  \
+	src/c/cmdLine/$(am__dirstamp) \
+	src/c/cmdLine/$(DEPDIR)/$(am__dirstamp)
+src/c/cmdLine/libsciconsole_minimal_la-initConsoleMode.lo:  \
+	src/c/cmdLine/$(am__dirstamp) \
+	src/c/cmdLine/$(DEPDIR)/$(am__dirstamp)
+src/c/cmdLine/libsciconsole_minimal_la-termcapManagement.lo:  \
+	src/c/cmdLine/$(am__dirstamp) \
+	src/c/cmdLine/$(DEPDIR)/$(am__dirstamp)
+src/c/others/libsciconsole_minimal_la-initMacOSXEnv.lo:  \
+	src/c/others/$(am__dirstamp) \
+	src/c/others/$(DEPDIR)/$(am__dirstamp)
 
 libsciconsole-minimal.la: $(libsciconsole_minimal_la_OBJECTS) $(libsciconsole_minimal_la_DEPENDENCIES) $(EXTRA_libsciconsole_minimal_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) -rpath $(pkglibdir) $(libsciconsole_minimal_la_OBJECTS) $(libsciconsole_minimal_la_LIBADD) $(LIBS)
+src/jni/$(am__dirstamp):
+	@$(MKDIR_P) src/jni
+	@: > src/jni/$(am__dirstamp)
+src/jni/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/jni/$(DEPDIR)
+	@: > src/jni/$(DEPDIR)/$(am__dirstamp)
+src/jni/libsciconsole_la-GuiManagement_wrap.lo:  \
+	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
+src/jni/libsciconsole_la-DropFiles_wrap.lo: src/jni/$(am__dirstamp) \
+	src/jni/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciconsole_la-GuiManagement.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciconsole_la-dropFiles.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/others/libsciconsole_la-initMacOSXEnv.lo:  \
+	src/c/others/$(am__dirstamp) \
+	src/c/others/$(DEPDIR)/$(am__dirstamp)
+src/jni/libsciconsole_la-CallScilabBridge.lo: src/jni/$(am__dirstamp) \
+	src/jni/$(DEPDIR)/$(am__dirstamp)
+src/cpp/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp
+	@: > src/cpp/$(am__dirstamp)
+src/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp/$(DEPDIR)
+	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciconsole_la-ClearConsole.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciconsole_la-ClearConsolePart.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciconsole_la-ConsolePrintf.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciconsole_la-ConsoleRead.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciconsole_la-ConsoleIsWaitingForInput.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciconsole_la-GetCharWithoutOutput.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciconsole_la-PromptToHome.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciconsole_la-ScilabLinesUpdate.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciconsole_la-SetConsolePrompt.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciconsole_la-gw_console.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciconsole_la-sci_clc.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciconsole_la-sci_tohome.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciconsole_la-sci_lines.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciconsole_la-sci_prompt.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciconsole_la-sci_iswaitingforinput.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 
 libsciconsole.la: $(libsciconsole_la_OBJECTS) $(libsciconsole_la_DEPENDENCIES) $(EXTRA_libsciconsole_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libsciconsole_la_rpath) $(libsciconsole_la_OBJECTS) $(libsciconsole_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f sci_gateway/c/*.$(OBJEXT)
+	-rm -f sci_gateway/c/*.lo
+	-rm -f src/c/*.$(OBJEXT)
+	-rm -f src/c/*.lo
+	-rm -f src/c/cmdLine/*.$(OBJEXT)
+	-rm -f src/c/cmdLine/*.lo
+	-rm -f src/c/others/*.$(OBJEXT)
+	-rm -f src/c/others/*.lo
+	-rm -f src/cpp/*.$(OBJEXT)
+	-rm -f src/cpp/*.lo
+	-rm -f src/jni/*.$(OBJEXT)
+	-rm -f src/jni/*.lo
+	-rm -f src/noconsole/*.$(OBJEXT)
+	-rm -f src/noconsole/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-CallScilabBridge.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ClearConsole.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ClearConsolePart.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ConsoleIsWaitingForInput.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ConsolePrintf.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ConsoleRead.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-DropFiles_wrap.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GetCharWithoutOutput.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GuiManagement.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-PromptToHome.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ScilabLinesUpdate.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-SetConsolePrompt.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-dropFiles.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-gw_console.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-initMacOSXEnv.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-sci_clc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-sci_iswaitingforinput.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-sci_lines.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-sci_prompt.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-sci_tohome.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-GetCommandLine.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-autoCompletionCli.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-charactersManagement.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-clc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-cliDisplayManagement.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-cliHistory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-cliPrompt.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-clrscr_nw.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-getKey.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-getNbrLine.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-gotoFunctions.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-gotoxy_nw.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-gw_console.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-initConsoleMode.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-initMacOSXEnv.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-more.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-noconsole.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-prompt.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-promptecho.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-sci_clc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-sci_iswaitingforinput.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-sci_lines.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-sci_prompt.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-sci_tohome.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-scilines.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-termcapManagement.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_minimal_la-tohome.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciconsole_la-gw_console.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciconsole_la-sci_clc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciconsole_la-sci_iswaitingforinput.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciconsole_la-sci_lines.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciconsole_la-sci_prompt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciconsole_la-sci_tohome.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-gw_console.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-sci_clc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-sci_iswaitingforinput.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-sci_lines.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-sci_prompt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-sci_tohome.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_la-GuiManagement.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_la-dropFiles.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_minimal_la-GetCommandLine.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_minimal_la-clc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_minimal_la-more.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_minimal_la-prompt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_minimal_la-promptecho.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_minimal_la-scilines.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_minimal_la-tohome.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-autoCompletionCli.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-charactersManagement.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-cliDisplayManagement.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-cliHistory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-cliPrompt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-getKey.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-getNbrLine.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-gotoFunctions.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-initConsoleMode.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-termcapManagement.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/others/$(DEPDIR)/libsciconsole_la-initMacOSXEnv.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/others/$(DEPDIR)/libsciconsole_minimal_la-clrscr_nw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/others/$(DEPDIR)/libsciconsole_minimal_la-gotoxy_nw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/others/$(DEPDIR)/libsciconsole_minimal_la-initMacOSXEnv.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciconsole_la-ClearConsole.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciconsole_la-ClearConsolePart.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciconsole_la-ConsoleIsWaitingForInput.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciconsole_la-ConsolePrintf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciconsole_la-ConsoleRead.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciconsole_la-GetCharWithoutOutput.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciconsole_la-PromptToHome.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciconsole_la-ScilabLinesUpdate.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciconsole_la-SetConsolePrompt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libsciconsole_la-CallScilabBridge.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libsciconsole_la-DropFiles_wrap.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/noconsole/$(DEPDIR)/libsciconsole_minimal_la-noconsole.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libsciconsole_minimal_la-noconsole.lo: src/noconsole/noconsole.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-noconsole.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-noconsole.Tpo -c -o libsciconsole_minimal_la-noconsole.lo `test -f 'src/noconsole/noconsole.c' || echo '$(srcdir)/'`src/noconsole/noconsole.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-noconsole.Tpo $(DEPDIR)/libsciconsole_minimal_la-noconsole.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/noconsole/noconsole.c' object='libsciconsole_minimal_la-noconsole.lo' libtool=yes @AMDEPBACKSLASH@
+src/noconsole/libsciconsole_minimal_la-noconsole.lo: src/noconsole/noconsole.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/noconsole/libsciconsole_minimal_la-noconsole.lo -MD -MP -MF src/noconsole/$(DEPDIR)/libsciconsole_minimal_la-noconsole.Tpo -c -o src/noconsole/libsciconsole_minimal_la-noconsole.lo `test -f 'src/noconsole/noconsole.c' || echo '$(srcdir)/'`src/noconsole/noconsole.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/noconsole/$(DEPDIR)/libsciconsole_minimal_la-noconsole.Tpo src/noconsole/$(DEPDIR)/libsciconsole_minimal_la-noconsole.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/noconsole/noconsole.c' object='src/noconsole/libsciconsole_minimal_la-noconsole.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-noconsole.lo `test -f 'src/noconsole/noconsole.c' || echo '$(srcdir)/'`src/noconsole/noconsole.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/noconsole/libsciconsole_minimal_la-noconsole.lo `test -f 'src/noconsole/noconsole.c' || echo '$(srcdir)/'`src/noconsole/noconsole.c
 
-libsciconsole_minimal_la-gw_console.lo: sci_gateway/c/gw_console.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-gw_console.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-gw_console.Tpo -c -o libsciconsole_minimal_la-gw_console.lo `test -f 'sci_gateway/c/gw_console.c' || echo '$(srcdir)/'`sci_gateway/c/gw_console.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-gw_console.Tpo $(DEPDIR)/libsciconsole_minimal_la-gw_console.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_console.c' object='libsciconsole_minimal_la-gw_console.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciconsole_minimal_la-gw_console.lo: sci_gateway/c/gw_console.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciconsole_minimal_la-gw_console.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-gw_console.Tpo -c -o sci_gateway/c/libsciconsole_minimal_la-gw_console.lo `test -f 'sci_gateway/c/gw_console.c' || echo '$(srcdir)/'`sci_gateway/c/gw_console.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-gw_console.Tpo sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-gw_console.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_console.c' object='sci_gateway/c/libsciconsole_minimal_la-gw_console.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-gw_console.lo `test -f 'sci_gateway/c/gw_console.c' || echo '$(srcdir)/'`sci_gateway/c/gw_console.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciconsole_minimal_la-gw_console.lo `test -f 'sci_gateway/c/gw_console.c' || echo '$(srcdir)/'`sci_gateway/c/gw_console.c
 
-libsciconsole_minimal_la-sci_clc.lo: sci_gateway/c/sci_clc.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-sci_clc.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-sci_clc.Tpo -c -o libsciconsole_minimal_la-sci_clc.lo `test -f 'sci_gateway/c/sci_clc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_clc.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-sci_clc.Tpo $(DEPDIR)/libsciconsole_minimal_la-sci_clc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_clc.c' object='libsciconsole_minimal_la-sci_clc.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciconsole_minimal_la-sci_clc.lo: sci_gateway/c/sci_clc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciconsole_minimal_la-sci_clc.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-sci_clc.Tpo -c -o sci_gateway/c/libsciconsole_minimal_la-sci_clc.lo `test -f 'sci_gateway/c/sci_clc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_clc.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-sci_clc.Tpo sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-sci_clc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_clc.c' object='sci_gateway/c/libsciconsole_minimal_la-sci_clc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-sci_clc.lo `test -f 'sci_gateway/c/sci_clc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_clc.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciconsole_minimal_la-sci_clc.lo `test -f 'sci_gateway/c/sci_clc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_clc.c
 
-libsciconsole_minimal_la-sci_tohome.lo: sci_gateway/c/sci_tohome.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-sci_tohome.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-sci_tohome.Tpo -c -o libsciconsole_minimal_la-sci_tohome.lo `test -f 'sci_gateway/c/sci_tohome.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tohome.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-sci_tohome.Tpo $(DEPDIR)/libsciconsole_minimal_la-sci_tohome.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_tohome.c' object='libsciconsole_minimal_la-sci_tohome.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciconsole_minimal_la-sci_tohome.lo: sci_gateway/c/sci_tohome.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciconsole_minimal_la-sci_tohome.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-sci_tohome.Tpo -c -o sci_gateway/c/libsciconsole_minimal_la-sci_tohome.lo `test -f 'sci_gateway/c/sci_tohome.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tohome.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-sci_tohome.Tpo sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-sci_tohome.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_tohome.c' object='sci_gateway/c/libsciconsole_minimal_la-sci_tohome.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-sci_tohome.lo `test -f 'sci_gateway/c/sci_tohome.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tohome.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciconsole_minimal_la-sci_tohome.lo `test -f 'sci_gateway/c/sci_tohome.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tohome.c
 
-libsciconsole_minimal_la-sci_lines.lo: sci_gateway/c/sci_lines.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-sci_lines.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-sci_lines.Tpo -c -o libsciconsole_minimal_la-sci_lines.lo `test -f 'sci_gateway/c/sci_lines.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lines.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-sci_lines.Tpo $(DEPDIR)/libsciconsole_minimal_la-sci_lines.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_lines.c' object='libsciconsole_minimal_la-sci_lines.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciconsole_minimal_la-sci_lines.lo: sci_gateway/c/sci_lines.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciconsole_minimal_la-sci_lines.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-sci_lines.Tpo -c -o sci_gateway/c/libsciconsole_minimal_la-sci_lines.lo `test -f 'sci_gateway/c/sci_lines.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lines.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-sci_lines.Tpo sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-sci_lines.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_lines.c' object='sci_gateway/c/libsciconsole_minimal_la-sci_lines.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-sci_lines.lo `test -f 'sci_gateway/c/sci_lines.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lines.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciconsole_minimal_la-sci_lines.lo `test -f 'sci_gateway/c/sci_lines.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lines.c
 
-libsciconsole_minimal_la-sci_prompt.lo: sci_gateway/c/sci_prompt.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-sci_prompt.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-sci_prompt.Tpo -c -o libsciconsole_minimal_la-sci_prompt.lo `test -f 'sci_gateway/c/sci_prompt.c' || echo '$(srcdir)/'`sci_gateway/c/sci_prompt.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-sci_prompt.Tpo $(DEPDIR)/libsciconsole_minimal_la-sci_prompt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_prompt.c' object='libsciconsole_minimal_la-sci_prompt.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciconsole_minimal_la-sci_prompt.lo: sci_gateway/c/sci_prompt.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciconsole_minimal_la-sci_prompt.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-sci_prompt.Tpo -c -o sci_gateway/c/libsciconsole_minimal_la-sci_prompt.lo `test -f 'sci_gateway/c/sci_prompt.c' || echo '$(srcdir)/'`sci_gateway/c/sci_prompt.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-sci_prompt.Tpo sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-sci_prompt.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_prompt.c' object='sci_gateway/c/libsciconsole_minimal_la-sci_prompt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-sci_prompt.lo `test -f 'sci_gateway/c/sci_prompt.c' || echo '$(srcdir)/'`sci_gateway/c/sci_prompt.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciconsole_minimal_la-sci_prompt.lo `test -f 'sci_gateway/c/sci_prompt.c' || echo '$(srcdir)/'`sci_gateway/c/sci_prompt.c
 
-libsciconsole_minimal_la-sci_iswaitingforinput.lo: sci_gateway/c/sci_iswaitingforinput.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-sci_iswaitingforinput.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-sci_iswaitingforinput.Tpo -c -o libsciconsole_minimal_la-sci_iswaitingforinput.lo `test -f 'sci_gateway/c/sci_iswaitingforinput.c' || echo '$(srcdir)/'`sci_gateway/c/sci_iswaitingforinput.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-sci_iswaitingforinput.Tpo $(DEPDIR)/libsciconsole_minimal_la-sci_iswaitingforinput.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_iswaitingforinput.c' object='libsciconsole_minimal_la-sci_iswaitingforinput.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciconsole_minimal_la-sci_iswaitingforinput.lo: sci_gateway/c/sci_iswaitingforinput.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciconsole_minimal_la-sci_iswaitingforinput.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-sci_iswaitingforinput.Tpo -c -o sci_gateway/c/libsciconsole_minimal_la-sci_iswaitingforinput.lo `test -f 'sci_gateway/c/sci_iswaitingforinput.c' || echo '$(srcdir)/'`sci_gateway/c/sci_iswaitingforinput.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-sci_iswaitingforinput.Tpo sci_gateway/c/$(DEPDIR)/libsciconsole_minimal_la-sci_iswaitingforinput.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_iswaitingforinput.c' object='sci_gateway/c/libsciconsole_minimal_la-sci_iswaitingforinput.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-sci_iswaitingforinput.lo `test -f 'sci_gateway/c/sci_iswaitingforinput.c' || echo '$(srcdir)/'`sci_gateway/c/sci_iswaitingforinput.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciconsole_minimal_la-sci_iswaitingforinput.lo `test -f 'sci_gateway/c/sci_iswaitingforinput.c' || echo '$(srcdir)/'`sci_gateway/c/sci_iswaitingforinput.c
 
-libsciconsole_minimal_la-clc.lo: src/c/clc.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-clc.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-clc.Tpo -c -o libsciconsole_minimal_la-clc.lo `test -f 'src/c/clc.c' || echo '$(srcdir)/'`src/c/clc.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-clc.Tpo $(DEPDIR)/libsciconsole_minimal_la-clc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/clc.c' object='libsciconsole_minimal_la-clc.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libsciconsole_minimal_la-clc.lo: src/c/clc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciconsole_minimal_la-clc.lo -MD -MP -MF src/c/$(DEPDIR)/libsciconsole_minimal_la-clc.Tpo -c -o src/c/libsciconsole_minimal_la-clc.lo `test -f 'src/c/clc.c' || echo '$(srcdir)/'`src/c/clc.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciconsole_minimal_la-clc.Tpo src/c/$(DEPDIR)/libsciconsole_minimal_la-clc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/clc.c' object='src/c/libsciconsole_minimal_la-clc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-clc.lo `test -f 'src/c/clc.c' || echo '$(srcdir)/'`src/c/clc.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciconsole_minimal_la-clc.lo `test -f 'src/c/clc.c' || echo '$(srcdir)/'`src/c/clc.c
 
-libsciconsole_minimal_la-tohome.lo: src/c/tohome.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-tohome.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-tohome.Tpo -c -o libsciconsole_minimal_la-tohome.lo `test -f 'src/c/tohome.c' || echo '$(srcdir)/'`src/c/tohome.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-tohome.Tpo $(DEPDIR)/libsciconsole_minimal_la-tohome.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/tohome.c' object='libsciconsole_minimal_la-tohome.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libsciconsole_minimal_la-tohome.lo: src/c/tohome.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciconsole_minimal_la-tohome.lo -MD -MP -MF src/c/$(DEPDIR)/libsciconsole_minimal_la-tohome.Tpo -c -o src/c/libsciconsole_minimal_la-tohome.lo `test -f 'src/c/tohome.c' || echo '$(srcdir)/'`src/c/tohome.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciconsole_minimal_la-tohome.Tpo src/c/$(DEPDIR)/libsciconsole_minimal_la-tohome.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/tohome.c' object='src/c/libsciconsole_minimal_la-tohome.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-tohome.lo `test -f 'src/c/tohome.c' || echo '$(srcdir)/'`src/c/tohome.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciconsole_minimal_la-tohome.lo `test -f 'src/c/tohome.c' || echo '$(srcdir)/'`src/c/tohome.c
 
-libsciconsole_minimal_la-more.lo: src/c/more.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-more.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-more.Tpo -c -o libsciconsole_minimal_la-more.lo `test -f 'src/c/more.c' || echo '$(srcdir)/'`src/c/more.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-more.Tpo $(DEPDIR)/libsciconsole_minimal_la-more.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/more.c' object='libsciconsole_minimal_la-more.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libsciconsole_minimal_la-more.lo: src/c/more.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciconsole_minimal_la-more.lo -MD -MP -MF src/c/$(DEPDIR)/libsciconsole_minimal_la-more.Tpo -c -o src/c/libsciconsole_minimal_la-more.lo `test -f 'src/c/more.c' || echo '$(srcdir)/'`src/c/more.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciconsole_minimal_la-more.Tpo src/c/$(DEPDIR)/libsciconsole_minimal_la-more.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/more.c' object='src/c/libsciconsole_minimal_la-more.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-more.lo `test -f 'src/c/more.c' || echo '$(srcdir)/'`src/c/more.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciconsole_minimal_la-more.lo `test -f 'src/c/more.c' || echo '$(srcdir)/'`src/c/more.c
 
-libsciconsole_minimal_la-scilines.lo: src/c/scilines.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-scilines.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-scilines.Tpo -c -o libsciconsole_minimal_la-scilines.lo `test -f 'src/c/scilines.c' || echo '$(srcdir)/'`src/c/scilines.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-scilines.Tpo $(DEPDIR)/libsciconsole_minimal_la-scilines.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/scilines.c' object='libsciconsole_minimal_la-scilines.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libsciconsole_minimal_la-scilines.lo: src/c/scilines.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciconsole_minimal_la-scilines.lo -MD -MP -MF src/c/$(DEPDIR)/libsciconsole_minimal_la-scilines.Tpo -c -o src/c/libsciconsole_minimal_la-scilines.lo `test -f 'src/c/scilines.c' || echo '$(srcdir)/'`src/c/scilines.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciconsole_minimal_la-scilines.Tpo src/c/$(DEPDIR)/libsciconsole_minimal_la-scilines.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/scilines.c' object='src/c/libsciconsole_minimal_la-scilines.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-scilines.lo `test -f 'src/c/scilines.c' || echo '$(srcdir)/'`src/c/scilines.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciconsole_minimal_la-scilines.lo `test -f 'src/c/scilines.c' || echo '$(srcdir)/'`src/c/scilines.c
 
-libsciconsole_minimal_la-GetCommandLine.lo: src/c/GetCommandLine.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-GetCommandLine.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-GetCommandLine.Tpo -c -o libsciconsole_minimal_la-GetCommandLine.lo `test -f 'src/c/GetCommandLine.c' || echo '$(srcdir)/'`src/c/GetCommandLine.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-GetCommandLine.Tpo $(DEPDIR)/libsciconsole_minimal_la-GetCommandLine.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/GetCommandLine.c' object='libsciconsole_minimal_la-GetCommandLine.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libsciconsole_minimal_la-GetCommandLine.lo: src/c/GetCommandLine.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciconsole_minimal_la-GetCommandLine.lo -MD -MP -MF src/c/$(DEPDIR)/libsciconsole_minimal_la-GetCommandLine.Tpo -c -o src/c/libsciconsole_minimal_la-GetCommandLine.lo `test -f 'src/c/GetCommandLine.c' || echo '$(srcdir)/'`src/c/GetCommandLine.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciconsole_minimal_la-GetCommandLine.Tpo src/c/$(DEPDIR)/libsciconsole_minimal_la-GetCommandLine.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/GetCommandLine.c' object='src/c/libsciconsole_minimal_la-GetCommandLine.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-GetCommandLine.lo `test -f 'src/c/GetCommandLine.c' || echo '$(srcdir)/'`src/c/GetCommandLine.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciconsole_minimal_la-GetCommandLine.lo `test -f 'src/c/GetCommandLine.c' || echo '$(srcdir)/'`src/c/GetCommandLine.c
 
-libsciconsole_minimal_la-gotoxy_nw.lo: src/c/others/gotoxy_nw.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-gotoxy_nw.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-gotoxy_nw.Tpo -c -o libsciconsole_minimal_la-gotoxy_nw.lo `test -f 'src/c/others/gotoxy_nw.c' || echo '$(srcdir)/'`src/c/others/gotoxy_nw.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-gotoxy_nw.Tpo $(DEPDIR)/libsciconsole_minimal_la-gotoxy_nw.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/others/gotoxy_nw.c' object='libsciconsole_minimal_la-gotoxy_nw.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/others/libsciconsole_minimal_la-gotoxy_nw.lo: src/c/others/gotoxy_nw.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/others/libsciconsole_minimal_la-gotoxy_nw.lo -MD -MP -MF src/c/others/$(DEPDIR)/libsciconsole_minimal_la-gotoxy_nw.Tpo -c -o src/c/others/libsciconsole_minimal_la-gotoxy_nw.lo `test -f 'src/c/others/gotoxy_nw.c' || echo '$(srcdir)/'`src/c/others/gotoxy_nw.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/others/$(DEPDIR)/libsciconsole_minimal_la-gotoxy_nw.Tpo src/c/others/$(DEPDIR)/libsciconsole_minimal_la-gotoxy_nw.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/others/gotoxy_nw.c' object='src/c/others/libsciconsole_minimal_la-gotoxy_nw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-gotoxy_nw.lo `test -f 'src/c/others/gotoxy_nw.c' || echo '$(srcdir)/'`src/c/others/gotoxy_nw.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/others/libsciconsole_minimal_la-gotoxy_nw.lo `test -f 'src/c/others/gotoxy_nw.c' || echo '$(srcdir)/'`src/c/others/gotoxy_nw.c
 
-libsciconsole_minimal_la-clrscr_nw.lo: src/c/others/clrscr_nw.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-clrscr_nw.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-clrscr_nw.Tpo -c -o libsciconsole_minimal_la-clrscr_nw.lo `test -f 'src/c/others/clrscr_nw.c' || echo '$(srcdir)/'`src/c/others/clrscr_nw.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-clrscr_nw.Tpo $(DEPDIR)/libsciconsole_minimal_la-clrscr_nw.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/others/clrscr_nw.c' object='libsciconsole_minimal_la-clrscr_nw.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/others/libsciconsole_minimal_la-clrscr_nw.lo: src/c/others/clrscr_nw.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/others/libsciconsole_minimal_la-clrscr_nw.lo -MD -MP -MF src/c/others/$(DEPDIR)/libsciconsole_minimal_la-clrscr_nw.Tpo -c -o src/c/others/libsciconsole_minimal_la-clrscr_nw.lo `test -f 'src/c/others/clrscr_nw.c' || echo '$(srcdir)/'`src/c/others/clrscr_nw.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/others/$(DEPDIR)/libsciconsole_minimal_la-clrscr_nw.Tpo src/c/others/$(DEPDIR)/libsciconsole_minimal_la-clrscr_nw.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/others/clrscr_nw.c' object='src/c/others/libsciconsole_minimal_la-clrscr_nw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-clrscr_nw.lo `test -f 'src/c/others/clrscr_nw.c' || echo '$(srcdir)/'`src/c/others/clrscr_nw.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/others/libsciconsole_minimal_la-clrscr_nw.lo `test -f 'src/c/others/clrscr_nw.c' || echo '$(srcdir)/'`src/c/others/clrscr_nw.c
 
-libsciconsole_minimal_la-prompt.lo: src/c/prompt.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-prompt.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-prompt.Tpo -c -o libsciconsole_minimal_la-prompt.lo `test -f 'src/c/prompt.c' || echo '$(srcdir)/'`src/c/prompt.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-prompt.Tpo $(DEPDIR)/libsciconsole_minimal_la-prompt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/prompt.c' object='libsciconsole_minimal_la-prompt.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libsciconsole_minimal_la-prompt.lo: src/c/prompt.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciconsole_minimal_la-prompt.lo -MD -MP -MF src/c/$(DEPDIR)/libsciconsole_minimal_la-prompt.Tpo -c -o src/c/libsciconsole_minimal_la-prompt.lo `test -f 'src/c/prompt.c' || echo '$(srcdir)/'`src/c/prompt.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciconsole_minimal_la-prompt.Tpo src/c/$(DEPDIR)/libsciconsole_minimal_la-prompt.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/prompt.c' object='src/c/libsciconsole_minimal_la-prompt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-prompt.lo `test -f 'src/c/prompt.c' || echo '$(srcdir)/'`src/c/prompt.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciconsole_minimal_la-prompt.lo `test -f 'src/c/prompt.c' || echo '$(srcdir)/'`src/c/prompt.c
 
-libsciconsole_minimal_la-promptecho.lo: src/c/promptecho.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-promptecho.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-promptecho.Tpo -c -o libsciconsole_minimal_la-promptecho.lo `test -f 'src/c/promptecho.c' || echo '$(srcdir)/'`src/c/promptecho.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-promptecho.Tpo $(DEPDIR)/libsciconsole_minimal_la-promptecho.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/promptecho.c' object='libsciconsole_minimal_la-promptecho.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libsciconsole_minimal_la-promptecho.lo: src/c/promptecho.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciconsole_minimal_la-promptecho.lo -MD -MP -MF src/c/$(DEPDIR)/libsciconsole_minimal_la-promptecho.Tpo -c -o src/c/libsciconsole_minimal_la-promptecho.lo `test -f 'src/c/promptecho.c' || echo '$(srcdir)/'`src/c/promptecho.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciconsole_minimal_la-promptecho.Tpo src/c/$(DEPDIR)/libsciconsole_minimal_la-promptecho.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/promptecho.c' object='src/c/libsciconsole_minimal_la-promptecho.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-promptecho.lo `test -f 'src/c/promptecho.c' || echo '$(srcdir)/'`src/c/promptecho.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciconsole_minimal_la-promptecho.lo `test -f 'src/c/promptecho.c' || echo '$(srcdir)/'`src/c/promptecho.c
 
-libsciconsole_minimal_la-autoCompletionCli.lo: src/c/cmdLine/autoCompletionCli.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-autoCompletionCli.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-autoCompletionCli.Tpo -c -o libsciconsole_minimal_la-autoCompletionCli.lo `test -f 'src/c/cmdLine/autoCompletionCli.c' || echo '$(srcdir)/'`src/c/cmdLine/autoCompletionCli.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-autoCompletionCli.Tpo $(DEPDIR)/libsciconsole_minimal_la-autoCompletionCli.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmdLine/autoCompletionCli.c' object='libsciconsole_minimal_la-autoCompletionCli.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/cmdLine/libsciconsole_minimal_la-autoCompletionCli.lo: src/c/cmdLine/autoCompletionCli.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/cmdLine/libsciconsole_minimal_la-autoCompletionCli.lo -MD -MP -MF src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-autoCompletionCli.Tpo -c -o src/c/cmdLine/libsciconsole_minimal_la-autoCompletionCli.lo `test -f 'src/c/cmdLine/autoCompletionCli.c' || echo '$(srcdir)/'`src/c/cmdLine/autoCompletionCli.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-autoCompletionCli.Tpo src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-autoCompletionCli.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmdLine/autoCompletionCli.c' object='src/c/cmdLine/libsciconsole_minimal_la-autoCompletionCli.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-autoCompletionCli.lo `test -f 'src/c/cmdLine/autoCompletionCli.c' || echo '$(srcdir)/'`src/c/cmdLine/autoCompletionCli.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/cmdLine/libsciconsole_minimal_la-autoCompletionCli.lo `test -f 'src/c/cmdLine/autoCompletionCli.c' || echo '$(srcdir)/'`src/c/cmdLine/autoCompletionCli.c
 
-libsciconsole_minimal_la-charactersManagement.lo: src/c/cmdLine/charactersManagement.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-charactersManagement.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-charactersManagement.Tpo -c -o libsciconsole_minimal_la-charactersManagement.lo `test -f 'src/c/cmdLine/charactersManagement.c' || echo '$(srcdir)/'`src/c/cmdLine/charactersManagement.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-charactersManagement.Tpo $(DEPDIR)/libsciconsole_minimal_la-charactersManagement.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmdLine/charactersManagement.c' object='libsciconsole_minimal_la-charactersManagement.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/cmdLine/libsciconsole_minimal_la-charactersManagement.lo: src/c/cmdLine/charactersManagement.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/cmdLine/libsciconsole_minimal_la-charactersManagement.lo -MD -MP -MF src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-charactersManagement.Tpo -c -o src/c/cmdLine/libsciconsole_minimal_la-charactersManagement.lo `test -f 'src/c/cmdLine/charactersManagement.c' || echo '$(srcdir)/'`src/c/cmdLine/charactersManagement.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-charactersManagement.Tpo src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-charactersManagement.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmdLine/charactersManagement.c' object='src/c/cmdLine/libsciconsole_minimal_la-charactersManagement.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-charactersManagement.lo `test -f 'src/c/cmdLine/charactersManagement.c' || echo '$(srcdir)/'`src/c/cmdLine/charactersManagement.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/cmdLine/libsciconsole_minimal_la-charactersManagement.lo `test -f 'src/c/cmdLine/charactersManagement.c' || echo '$(srcdir)/'`src/c/cmdLine/charactersManagement.c
 
-libsciconsole_minimal_la-cliDisplayManagement.lo: src/c/cmdLine/cliDisplayManagement.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-cliDisplayManagement.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-cliDisplayManagement.Tpo -c -o libsciconsole_minimal_la-cliDisplayManagement.lo `test -f 'src/c/cmdLine/cliDisplayManagement.c' || echo '$(srcdir)/'`src/c/cmdLine/cliDisplayManagement.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-cliDisplayManagement.Tpo $(DEPDIR)/libsciconsole_minimal_la-cliDisplayManagement.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmdLine/cliDisplayManagement.c' object='libsciconsole_minimal_la-cliDisplayManagement.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/cmdLine/libsciconsole_minimal_la-cliDisplayManagement.lo: src/c/cmdLine/cliDisplayManagement.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/cmdLine/libsciconsole_minimal_la-cliDisplayManagement.lo -MD -MP -MF src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-cliDisplayManagement.Tpo -c -o src/c/cmdLine/libsciconsole_minimal_la-cliDisplayManagement.lo `test -f 'src/c/cmdLine/cliDisplayManagement.c' || echo '$(srcdir)/'`src/c/cmdLine/cliDisplayManagement.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-cliDisplayManagement.Tpo src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-cliDisplayManagement.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmdLine/cliDisplayManagement.c' object='src/c/cmdLine/libsciconsole_minimal_la-cliDisplayManagement.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-cliDisplayManagement.lo `test -f 'src/c/cmdLine/cliDisplayManagement.c' || echo '$(srcdir)/'`src/c/cmdLine/cliDisplayManagement.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/cmdLine/libsciconsole_minimal_la-cliDisplayManagement.lo `test -f 'src/c/cmdLine/cliDisplayManagement.c' || echo '$(srcdir)/'`src/c/cmdLine/cliDisplayManagement.c
 
-libsciconsole_minimal_la-cliHistory.lo: src/c/cmdLine/cliHistory.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-cliHistory.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-cliHistory.Tpo -c -o libsciconsole_minimal_la-cliHistory.lo `test -f 'src/c/cmdLine/cliHistory.c' || echo '$(srcdir)/'`src/c/cmdLine/cliHistory.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-cliHistory.Tpo $(DEPDIR)/libsciconsole_minimal_la-cliHistory.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmdLine/cliHistory.c' object='libsciconsole_minimal_la-cliHistory.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/cmdLine/libsciconsole_minimal_la-cliHistory.lo: src/c/cmdLine/cliHistory.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/cmdLine/libsciconsole_minimal_la-cliHistory.lo -MD -MP -MF src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-cliHistory.Tpo -c -o src/c/cmdLine/libsciconsole_minimal_la-cliHistory.lo `test -f 'src/c/cmdLine/cliHistory.c' || echo '$(srcdir)/'`src/c/cmdLine/cliHistory.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-cliHistory.Tpo src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-cliHistory.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmdLine/cliHistory.c' object='src/c/cmdLine/libsciconsole_minimal_la-cliHistory.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-cliHistory.lo `test -f 'src/c/cmdLine/cliHistory.c' || echo '$(srcdir)/'`src/c/cmdLine/cliHistory.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/cmdLine/libsciconsole_minimal_la-cliHistory.lo `test -f 'src/c/cmdLine/cliHistory.c' || echo '$(srcdir)/'`src/c/cmdLine/cliHistory.c
 
-libsciconsole_minimal_la-cliPrompt.lo: src/c/cmdLine/cliPrompt.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-cliPrompt.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-cliPrompt.Tpo -c -o libsciconsole_minimal_la-cliPrompt.lo `test -f 'src/c/cmdLine/cliPrompt.c' || echo '$(srcdir)/'`src/c/cmdLine/cliPrompt.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-cliPrompt.Tpo $(DEPDIR)/libsciconsole_minimal_la-cliPrompt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmdLine/cliPrompt.c' object='libsciconsole_minimal_la-cliPrompt.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/cmdLine/libsciconsole_minimal_la-cliPrompt.lo: src/c/cmdLine/cliPrompt.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/cmdLine/libsciconsole_minimal_la-cliPrompt.lo -MD -MP -MF src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-cliPrompt.Tpo -c -o src/c/cmdLine/libsciconsole_minimal_la-cliPrompt.lo `test -f 'src/c/cmdLine/cliPrompt.c' || echo '$(srcdir)/'`src/c/cmdLine/cliPrompt.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-cliPrompt.Tpo src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-cliPrompt.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmdLine/cliPrompt.c' object='src/c/cmdLine/libsciconsole_minimal_la-cliPrompt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-cliPrompt.lo `test -f 'src/c/cmdLine/cliPrompt.c' || echo '$(srcdir)/'`src/c/cmdLine/cliPrompt.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/cmdLine/libsciconsole_minimal_la-cliPrompt.lo `test -f 'src/c/cmdLine/cliPrompt.c' || echo '$(srcdir)/'`src/c/cmdLine/cliPrompt.c
 
-libsciconsole_minimal_la-getKey.lo: src/c/cmdLine/getKey.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-getKey.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-getKey.Tpo -c -o libsciconsole_minimal_la-getKey.lo `test -f 'src/c/cmdLine/getKey.c' || echo '$(srcdir)/'`src/c/cmdLine/getKey.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-getKey.Tpo $(DEPDIR)/libsciconsole_minimal_la-getKey.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmdLine/getKey.c' object='libsciconsole_minimal_la-getKey.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/cmdLine/libsciconsole_minimal_la-getKey.lo: src/c/cmdLine/getKey.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/cmdLine/libsciconsole_minimal_la-getKey.lo -MD -MP -MF src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-getKey.Tpo -c -o src/c/cmdLine/libsciconsole_minimal_la-getKey.lo `test -f 'src/c/cmdLine/getKey.c' || echo '$(srcdir)/'`src/c/cmdLine/getKey.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-getKey.Tpo src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-getKey.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmdLine/getKey.c' object='src/c/cmdLine/libsciconsole_minimal_la-getKey.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-getKey.lo `test -f 'src/c/cmdLine/getKey.c' || echo '$(srcdir)/'`src/c/cmdLine/getKey.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/cmdLine/libsciconsole_minimal_la-getKey.lo `test -f 'src/c/cmdLine/getKey.c' || echo '$(srcdir)/'`src/c/cmdLine/getKey.c
 
-libsciconsole_minimal_la-getNbrLine.lo: src/c/cmdLine/getNbrLine.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-getNbrLine.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-getNbrLine.Tpo -c -o libsciconsole_minimal_la-getNbrLine.lo `test -f 'src/c/cmdLine/getNbrLine.c' || echo '$(srcdir)/'`src/c/cmdLine/getNbrLine.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-getNbrLine.Tpo $(DEPDIR)/libsciconsole_minimal_la-getNbrLine.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmdLine/getNbrLine.c' object='libsciconsole_minimal_la-getNbrLine.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/cmdLine/libsciconsole_minimal_la-getNbrLine.lo: src/c/cmdLine/getNbrLine.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/cmdLine/libsciconsole_minimal_la-getNbrLine.lo -MD -MP -MF src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-getNbrLine.Tpo -c -o src/c/cmdLine/libsciconsole_minimal_la-getNbrLine.lo `test -f 'src/c/cmdLine/getNbrLine.c' || echo '$(srcdir)/'`src/c/cmdLine/getNbrLine.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-getNbrLine.Tpo src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-getNbrLine.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmdLine/getNbrLine.c' object='src/c/cmdLine/libsciconsole_minimal_la-getNbrLine.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-getNbrLine.lo `test -f 'src/c/cmdLine/getNbrLine.c' || echo '$(srcdir)/'`src/c/cmdLine/getNbrLine.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/cmdLine/libsciconsole_minimal_la-getNbrLine.lo `test -f 'src/c/cmdLine/getNbrLine.c' || echo '$(srcdir)/'`src/c/cmdLine/getNbrLine.c
 
-libsciconsole_minimal_la-gotoFunctions.lo: src/c/cmdLine/gotoFunctions.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-gotoFunctions.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-gotoFunctions.Tpo -c -o libsciconsole_minimal_la-gotoFunctions.lo `test -f 'src/c/cmdLine/gotoFunctions.c' || echo '$(srcdir)/'`src/c/cmdLine/gotoFunctions.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-gotoFunctions.Tpo $(DEPDIR)/libsciconsole_minimal_la-gotoFunctions.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmdLine/gotoFunctions.c' object='libsciconsole_minimal_la-gotoFunctions.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/cmdLine/libsciconsole_minimal_la-gotoFunctions.lo: src/c/cmdLine/gotoFunctions.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/cmdLine/libsciconsole_minimal_la-gotoFunctions.lo -MD -MP -MF src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-gotoFunctions.Tpo -c -o src/c/cmdLine/libsciconsole_minimal_la-gotoFunctions.lo `test -f 'src/c/cmdLine/gotoFunctions.c' || echo '$(srcdir)/'`src/c/cmdLine/gotoFunctions.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-gotoFunctions.Tpo src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-gotoFunctions.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmdLine/gotoFunctions.c' object='src/c/cmdLine/libsciconsole_minimal_la-gotoFunctions.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-gotoFunctions.lo `test -f 'src/c/cmdLine/gotoFunctions.c' || echo '$(srcdir)/'`src/c/cmdLine/gotoFunctions.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/cmdLine/libsciconsole_minimal_la-gotoFunctions.lo `test -f 'src/c/cmdLine/gotoFunctions.c' || echo '$(srcdir)/'`src/c/cmdLine/gotoFunctions.c
 
-libsciconsole_minimal_la-initConsoleMode.lo: src/c/cmdLine/initConsoleMode.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-initConsoleMode.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-initConsoleMode.Tpo -c -o libsciconsole_minimal_la-initConsoleMode.lo `test -f 'src/c/cmdLine/initConsoleMode.c' || echo '$(srcdir)/'`src/c/cmdLine/initConsoleMode.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-initConsoleMode.Tpo $(DEPDIR)/libsciconsole_minimal_la-initConsoleMode.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmdLine/initConsoleMode.c' object='libsciconsole_minimal_la-initConsoleMode.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/cmdLine/libsciconsole_minimal_la-initConsoleMode.lo: src/c/cmdLine/initConsoleMode.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/cmdLine/libsciconsole_minimal_la-initConsoleMode.lo -MD -MP -MF src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-initConsoleMode.Tpo -c -o src/c/cmdLine/libsciconsole_minimal_la-initConsoleMode.lo `test -f 'src/c/cmdLine/initConsoleMode.c' || echo '$(srcdir)/'`src/c/cmdLine/initConsoleMode.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-initConsoleMode.Tpo src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-initConsoleMode.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmdLine/initConsoleMode.c' object='src/c/cmdLine/libsciconsole_minimal_la-initConsoleMode.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-initConsoleMode.lo `test -f 'src/c/cmdLine/initConsoleMode.c' || echo '$(srcdir)/'`src/c/cmdLine/initConsoleMode.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/cmdLine/libsciconsole_minimal_la-initConsoleMode.lo `test -f 'src/c/cmdLine/initConsoleMode.c' || echo '$(srcdir)/'`src/c/cmdLine/initConsoleMode.c
 
-libsciconsole_minimal_la-termcapManagement.lo: src/c/cmdLine/termcapManagement.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-termcapManagement.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-termcapManagement.Tpo -c -o libsciconsole_minimal_la-termcapManagement.lo `test -f 'src/c/cmdLine/termcapManagement.c' || echo '$(srcdir)/'`src/c/cmdLine/termcapManagement.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-termcapManagement.Tpo $(DEPDIR)/libsciconsole_minimal_la-termcapManagement.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmdLine/termcapManagement.c' object='libsciconsole_minimal_la-termcapManagement.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/cmdLine/libsciconsole_minimal_la-termcapManagement.lo: src/c/cmdLine/termcapManagement.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/cmdLine/libsciconsole_minimal_la-termcapManagement.lo -MD -MP -MF src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-termcapManagement.Tpo -c -o src/c/cmdLine/libsciconsole_minimal_la-termcapManagement.lo `test -f 'src/c/cmdLine/termcapManagement.c' || echo '$(srcdir)/'`src/c/cmdLine/termcapManagement.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-termcapManagement.Tpo src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-termcapManagement.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmdLine/termcapManagement.c' object='src/c/cmdLine/libsciconsole_minimal_la-termcapManagement.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-termcapManagement.lo `test -f 'src/c/cmdLine/termcapManagement.c' || echo '$(srcdir)/'`src/c/cmdLine/termcapManagement.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/cmdLine/libsciconsole_minimal_la-termcapManagement.lo `test -f 'src/c/cmdLine/termcapManagement.c' || echo '$(srcdir)/'`src/c/cmdLine/termcapManagement.c
 
-libsciconsole_minimal_la-initMacOSXEnv.lo: src/c/others/initMacOSXEnv.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_minimal_la-initMacOSXEnv.lo -MD -MP -MF $(DEPDIR)/libsciconsole_minimal_la-initMacOSXEnv.Tpo -c -o libsciconsole_minimal_la-initMacOSXEnv.lo `test -f 'src/c/others/initMacOSXEnv.c' || echo '$(srcdir)/'`src/c/others/initMacOSXEnv.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_minimal_la-initMacOSXEnv.Tpo $(DEPDIR)/libsciconsole_minimal_la-initMacOSXEnv.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/others/initMacOSXEnv.c' object='libsciconsole_minimal_la-initMacOSXEnv.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/others/libsciconsole_minimal_la-initMacOSXEnv.lo: src/c/others/initMacOSXEnv.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/others/libsciconsole_minimal_la-initMacOSXEnv.lo -MD -MP -MF src/c/others/$(DEPDIR)/libsciconsole_minimal_la-initMacOSXEnv.Tpo -c -o src/c/others/libsciconsole_minimal_la-initMacOSXEnv.lo `test -f 'src/c/others/initMacOSXEnv.c' || echo '$(srcdir)/'`src/c/others/initMacOSXEnv.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/others/$(DEPDIR)/libsciconsole_minimal_la-initMacOSXEnv.Tpo src/c/others/$(DEPDIR)/libsciconsole_minimal_la-initMacOSXEnv.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/others/initMacOSXEnv.c' object='src/c/others/libsciconsole_minimal_la-initMacOSXEnv.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_minimal_la-initMacOSXEnv.lo `test -f 'src/c/others/initMacOSXEnv.c' || echo '$(srcdir)/'`src/c/others/initMacOSXEnv.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/others/libsciconsole_minimal_la-initMacOSXEnv.lo `test -f 'src/c/others/initMacOSXEnv.c' || echo '$(srcdir)/'`src/c/others/initMacOSXEnv.c
 
-libsciconsole_la-GuiManagement_wrap.lo: src/jni/GuiManagement_wrap.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_la-GuiManagement_wrap.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Tpo -c -o libsciconsole_la-GuiManagement_wrap.lo `test -f 'src/jni/GuiManagement_wrap.c' || echo '$(srcdir)/'`src/jni/GuiManagement_wrap.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Tpo $(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/jni/GuiManagement_wrap.c' object='libsciconsole_la-GuiManagement_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+src/jni/libsciconsole_la-GuiManagement_wrap.lo: src/jni/GuiManagement_wrap.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/jni/libsciconsole_la-GuiManagement_wrap.lo -MD -MP -MF src/jni/$(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Tpo -c -o src/jni/libsciconsole_la-GuiManagement_wrap.lo `test -f 'src/jni/GuiManagement_wrap.c' || echo '$(srcdir)/'`src/jni/GuiManagement_wrap.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Tpo src/jni/$(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/jni/GuiManagement_wrap.c' object='src/jni/libsciconsole_la-GuiManagement_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-GuiManagement_wrap.lo `test -f 'src/jni/GuiManagement_wrap.c' || echo '$(srcdir)/'`src/jni/GuiManagement_wrap.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/jni/libsciconsole_la-GuiManagement_wrap.lo `test -f 'src/jni/GuiManagement_wrap.c' || echo '$(srcdir)/'`src/jni/GuiManagement_wrap.c
 
-libsciconsole_la-DropFiles_wrap.lo: src/jni/DropFiles_wrap.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_la-DropFiles_wrap.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-DropFiles_wrap.Tpo -c -o libsciconsole_la-DropFiles_wrap.lo `test -f 'src/jni/DropFiles_wrap.c' || echo '$(srcdir)/'`src/jni/DropFiles_wrap.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-DropFiles_wrap.Tpo $(DEPDIR)/libsciconsole_la-DropFiles_wrap.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/jni/DropFiles_wrap.c' object='libsciconsole_la-DropFiles_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+src/jni/libsciconsole_la-DropFiles_wrap.lo: src/jni/DropFiles_wrap.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/jni/libsciconsole_la-DropFiles_wrap.lo -MD -MP -MF src/jni/$(DEPDIR)/libsciconsole_la-DropFiles_wrap.Tpo -c -o src/jni/libsciconsole_la-DropFiles_wrap.lo `test -f 'src/jni/DropFiles_wrap.c' || echo '$(srcdir)/'`src/jni/DropFiles_wrap.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libsciconsole_la-DropFiles_wrap.Tpo src/jni/$(DEPDIR)/libsciconsole_la-DropFiles_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/jni/DropFiles_wrap.c' object='src/jni/libsciconsole_la-DropFiles_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-DropFiles_wrap.lo `test -f 'src/jni/DropFiles_wrap.c' || echo '$(srcdir)/'`src/jni/DropFiles_wrap.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/jni/libsciconsole_la-DropFiles_wrap.lo `test -f 'src/jni/DropFiles_wrap.c' || echo '$(srcdir)/'`src/jni/DropFiles_wrap.c
 
-libsciconsole_la-GuiManagement.lo: src/c/GuiManagement.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_la-GuiManagement.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-GuiManagement.Tpo -c -o libsciconsole_la-GuiManagement.lo `test -f 'src/c/GuiManagement.c' || echo '$(srcdir)/'`src/c/GuiManagement.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-GuiManagement.Tpo $(DEPDIR)/libsciconsole_la-GuiManagement.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/GuiManagement.c' object='libsciconsole_la-GuiManagement.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libsciconsole_la-GuiManagement.lo: src/c/GuiManagement.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciconsole_la-GuiManagement.lo -MD -MP -MF src/c/$(DEPDIR)/libsciconsole_la-GuiManagement.Tpo -c -o src/c/libsciconsole_la-GuiManagement.lo `test -f 'src/c/GuiManagement.c' || echo '$(srcdir)/'`src/c/GuiManagement.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciconsole_la-GuiManagement.Tpo src/c/$(DEPDIR)/libsciconsole_la-GuiManagement.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/GuiManagement.c' object='src/c/libsciconsole_la-GuiManagement.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-GuiManagement.lo `test -f 'src/c/GuiManagement.c' || echo '$(srcdir)/'`src/c/GuiManagement.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciconsole_la-GuiManagement.lo `test -f 'src/c/GuiManagement.c' || echo '$(srcdir)/'`src/c/GuiManagement.c
 
-libsciconsole_la-dropFiles.lo: src/c/dropFiles.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_la-dropFiles.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-dropFiles.Tpo -c -o libsciconsole_la-dropFiles.lo `test -f 'src/c/dropFiles.c' || echo '$(srcdir)/'`src/c/dropFiles.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-dropFiles.Tpo $(DEPDIR)/libsciconsole_la-dropFiles.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/dropFiles.c' object='libsciconsole_la-dropFiles.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libsciconsole_la-dropFiles.lo: src/c/dropFiles.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciconsole_la-dropFiles.lo -MD -MP -MF src/c/$(DEPDIR)/libsciconsole_la-dropFiles.Tpo -c -o src/c/libsciconsole_la-dropFiles.lo `test -f 'src/c/dropFiles.c' || echo '$(srcdir)/'`src/c/dropFiles.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciconsole_la-dropFiles.Tpo src/c/$(DEPDIR)/libsciconsole_la-dropFiles.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/dropFiles.c' object='src/c/libsciconsole_la-dropFiles.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-dropFiles.lo `test -f 'src/c/dropFiles.c' || echo '$(srcdir)/'`src/c/dropFiles.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciconsole_la-dropFiles.lo `test -f 'src/c/dropFiles.c' || echo '$(srcdir)/'`src/c/dropFiles.c
 
-libsciconsole_la-initMacOSXEnv.lo: src/c/others/initMacOSXEnv.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_la-initMacOSXEnv.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-initMacOSXEnv.Tpo -c -o libsciconsole_la-initMacOSXEnv.lo `test -f 'src/c/others/initMacOSXEnv.c' || echo '$(srcdir)/'`src/c/others/initMacOSXEnv.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-initMacOSXEnv.Tpo $(DEPDIR)/libsciconsole_la-initMacOSXEnv.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/others/initMacOSXEnv.c' object='libsciconsole_la-initMacOSXEnv.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/others/libsciconsole_la-initMacOSXEnv.lo: src/c/others/initMacOSXEnv.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/others/libsciconsole_la-initMacOSXEnv.lo -MD -MP -MF src/c/others/$(DEPDIR)/libsciconsole_la-initMacOSXEnv.Tpo -c -o src/c/others/libsciconsole_la-initMacOSXEnv.lo `test -f 'src/c/others/initMacOSXEnv.c' || echo '$(srcdir)/'`src/c/others/initMacOSXEnv.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/others/$(DEPDIR)/libsciconsole_la-initMacOSXEnv.Tpo src/c/others/$(DEPDIR)/libsciconsole_la-initMacOSXEnv.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/others/initMacOSXEnv.c' object='src/c/others/libsciconsole_la-initMacOSXEnv.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-initMacOSXEnv.lo `test -f 'src/c/others/initMacOSXEnv.c' || echo '$(srcdir)/'`src/c/others/initMacOSXEnv.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/others/libsciconsole_la-initMacOSXEnv.lo `test -f 'src/c/others/initMacOSXEnv.c' || echo '$(srcdir)/'`src/c/others/initMacOSXEnv.c
 
-libsciconsole_la-gw_console.lo: sci_gateway/c/gw_console.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_la-gw_console.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-gw_console.Tpo -c -o libsciconsole_la-gw_console.lo `test -f 'sci_gateway/c/gw_console.c' || echo '$(srcdir)/'`sci_gateway/c/gw_console.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-gw_console.Tpo $(DEPDIR)/libsciconsole_la-gw_console.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_console.c' object='libsciconsole_la-gw_console.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciconsole_la-gw_console.lo: sci_gateway/c/gw_console.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciconsole_la-gw_console.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciconsole_la-gw_console.Tpo -c -o sci_gateway/c/libsciconsole_la-gw_console.lo `test -f 'sci_gateway/c/gw_console.c' || echo '$(srcdir)/'`sci_gateway/c/gw_console.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciconsole_la-gw_console.Tpo sci_gateway/c/$(DEPDIR)/libsciconsole_la-gw_console.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_console.c' object='sci_gateway/c/libsciconsole_la-gw_console.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-gw_console.lo `test -f 'sci_gateway/c/gw_console.c' || echo '$(srcdir)/'`sci_gateway/c/gw_console.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciconsole_la-gw_console.lo `test -f 'sci_gateway/c/gw_console.c' || echo '$(srcdir)/'`sci_gateway/c/gw_console.c
 
-libsciconsole_la-sci_clc.lo: sci_gateway/c/sci_clc.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_la-sci_clc.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-sci_clc.Tpo -c -o libsciconsole_la-sci_clc.lo `test -f 'sci_gateway/c/sci_clc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_clc.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-sci_clc.Tpo $(DEPDIR)/libsciconsole_la-sci_clc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_clc.c' object='libsciconsole_la-sci_clc.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciconsole_la-sci_clc.lo: sci_gateway/c/sci_clc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciconsole_la-sci_clc.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciconsole_la-sci_clc.Tpo -c -o sci_gateway/c/libsciconsole_la-sci_clc.lo `test -f 'sci_gateway/c/sci_clc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_clc.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciconsole_la-sci_clc.Tpo sci_gateway/c/$(DEPDIR)/libsciconsole_la-sci_clc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_clc.c' object='sci_gateway/c/libsciconsole_la-sci_clc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-sci_clc.lo `test -f 'sci_gateway/c/sci_clc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_clc.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciconsole_la-sci_clc.lo `test -f 'sci_gateway/c/sci_clc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_clc.c
 
-libsciconsole_la-sci_tohome.lo: sci_gateway/c/sci_tohome.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_la-sci_tohome.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-sci_tohome.Tpo -c -o libsciconsole_la-sci_tohome.lo `test -f 'sci_gateway/c/sci_tohome.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tohome.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-sci_tohome.Tpo $(DEPDIR)/libsciconsole_la-sci_tohome.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_tohome.c' object='libsciconsole_la-sci_tohome.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciconsole_la-sci_tohome.lo: sci_gateway/c/sci_tohome.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciconsole_la-sci_tohome.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciconsole_la-sci_tohome.Tpo -c -o sci_gateway/c/libsciconsole_la-sci_tohome.lo `test -f 'sci_gateway/c/sci_tohome.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tohome.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciconsole_la-sci_tohome.Tpo sci_gateway/c/$(DEPDIR)/libsciconsole_la-sci_tohome.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_tohome.c' object='sci_gateway/c/libsciconsole_la-sci_tohome.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-sci_tohome.lo `test -f 'sci_gateway/c/sci_tohome.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tohome.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciconsole_la-sci_tohome.lo `test -f 'sci_gateway/c/sci_tohome.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tohome.c
 
-libsciconsole_la-sci_lines.lo: sci_gateway/c/sci_lines.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_la-sci_lines.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-sci_lines.Tpo -c -o libsciconsole_la-sci_lines.lo `test -f 'sci_gateway/c/sci_lines.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lines.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-sci_lines.Tpo $(DEPDIR)/libsciconsole_la-sci_lines.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_lines.c' object='libsciconsole_la-sci_lines.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciconsole_la-sci_lines.lo: sci_gateway/c/sci_lines.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciconsole_la-sci_lines.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciconsole_la-sci_lines.Tpo -c -o sci_gateway/c/libsciconsole_la-sci_lines.lo `test -f 'sci_gateway/c/sci_lines.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lines.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciconsole_la-sci_lines.Tpo sci_gateway/c/$(DEPDIR)/libsciconsole_la-sci_lines.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_lines.c' object='sci_gateway/c/libsciconsole_la-sci_lines.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-sci_lines.lo `test -f 'sci_gateway/c/sci_lines.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lines.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciconsole_la-sci_lines.lo `test -f 'sci_gateway/c/sci_lines.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lines.c
 
-libsciconsole_la-sci_prompt.lo: sci_gateway/c/sci_prompt.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_la-sci_prompt.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-sci_prompt.Tpo -c -o libsciconsole_la-sci_prompt.lo `test -f 'sci_gateway/c/sci_prompt.c' || echo '$(srcdir)/'`sci_gateway/c/sci_prompt.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-sci_prompt.Tpo $(DEPDIR)/libsciconsole_la-sci_prompt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_prompt.c' object='libsciconsole_la-sci_prompt.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciconsole_la-sci_prompt.lo: sci_gateway/c/sci_prompt.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciconsole_la-sci_prompt.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciconsole_la-sci_prompt.Tpo -c -o sci_gateway/c/libsciconsole_la-sci_prompt.lo `test -f 'sci_gateway/c/sci_prompt.c' || echo '$(srcdir)/'`sci_gateway/c/sci_prompt.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciconsole_la-sci_prompt.Tpo sci_gateway/c/$(DEPDIR)/libsciconsole_la-sci_prompt.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_prompt.c' object='sci_gateway/c/libsciconsole_la-sci_prompt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-sci_prompt.lo `test -f 'sci_gateway/c/sci_prompt.c' || echo '$(srcdir)/'`sci_gateway/c/sci_prompt.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciconsole_la-sci_prompt.lo `test -f 'sci_gateway/c/sci_prompt.c' || echo '$(srcdir)/'`sci_gateway/c/sci_prompt.c
 
-libsciconsole_la-sci_iswaitingforinput.lo: sci_gateway/c/sci_iswaitingforinput.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciconsole_la-sci_iswaitingforinput.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-sci_iswaitingforinput.Tpo -c -o libsciconsole_la-sci_iswaitingforinput.lo `test -f 'sci_gateway/c/sci_iswaitingforinput.c' || echo '$(srcdir)/'`sci_gateway/c/sci_iswaitingforinput.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-sci_iswaitingforinput.Tpo $(DEPDIR)/libsciconsole_la-sci_iswaitingforinput.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_iswaitingforinput.c' object='libsciconsole_la-sci_iswaitingforinput.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciconsole_la-sci_iswaitingforinput.lo: sci_gateway/c/sci_iswaitingforinput.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciconsole_la-sci_iswaitingforinput.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciconsole_la-sci_iswaitingforinput.Tpo -c -o sci_gateway/c/libsciconsole_la-sci_iswaitingforinput.lo `test -f 'sci_gateway/c/sci_iswaitingforinput.c' || echo '$(srcdir)/'`sci_gateway/c/sci_iswaitingforinput.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciconsole_la-sci_iswaitingforinput.Tpo sci_gateway/c/$(DEPDIR)/libsciconsole_la-sci_iswaitingforinput.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_iswaitingforinput.c' object='sci_gateway/c/libsciconsole_la-sci_iswaitingforinput.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-sci_iswaitingforinput.lo `test -f 'sci_gateway/c/sci_iswaitingforinput.c' || echo '$(srcdir)/'`sci_gateway/c/sci_iswaitingforinput.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciconsole_la-sci_iswaitingforinput.lo `test -f 'sci_gateway/c/sci_iswaitingforinput.c' || echo '$(srcdir)/'`sci_gateway/c/sci_iswaitingforinput.c
 
 .cpp.o:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .cpp.lo:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
-libsciconsole_la-CallScilabBridge.lo: src/jni/CallScilabBridge.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-CallScilabBridge.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-CallScilabBridge.Tpo -c -o libsciconsole_la-CallScilabBridge.lo `test -f 'src/jni/CallScilabBridge.cpp' || echo '$(srcdir)/'`src/jni/CallScilabBridge.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-CallScilabBridge.Tpo $(DEPDIR)/libsciconsole_la-CallScilabBridge.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/CallScilabBridge.cpp' object='libsciconsole_la-CallScilabBridge.lo' libtool=yes @AMDEPBACKSLASH@
+src/jni/libsciconsole_la-CallScilabBridge.lo: src/jni/CallScilabBridge.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libsciconsole_la-CallScilabBridge.lo -MD -MP -MF src/jni/$(DEPDIR)/libsciconsole_la-CallScilabBridge.Tpo -c -o src/jni/libsciconsole_la-CallScilabBridge.lo `test -f 'src/jni/CallScilabBridge.cpp' || echo '$(srcdir)/'`src/jni/CallScilabBridge.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libsciconsole_la-CallScilabBridge.Tpo src/jni/$(DEPDIR)/libsciconsole_la-CallScilabBridge.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/CallScilabBridge.cpp' object='src/jni/libsciconsole_la-CallScilabBridge.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-CallScilabBridge.lo `test -f 'src/jni/CallScilabBridge.cpp' || echo '$(srcdir)/'`src/jni/CallScilabBridge.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libsciconsole_la-CallScilabBridge.lo `test -f 'src/jni/CallScilabBridge.cpp' || echo '$(srcdir)/'`src/jni/CallScilabBridge.cpp
 
-libsciconsole_la-ClearConsole.lo: src/cpp/ClearConsole.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-ClearConsole.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ClearConsole.Tpo -c -o libsciconsole_la-ClearConsole.lo `test -f 'src/cpp/ClearConsole.cpp' || echo '$(srcdir)/'`src/cpp/ClearConsole.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-ClearConsole.Tpo $(DEPDIR)/libsciconsole_la-ClearConsole.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ClearConsole.cpp' object='libsciconsole_la-ClearConsole.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libsciconsole_la-ClearConsole.lo: src/cpp/ClearConsole.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciconsole_la-ClearConsole.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciconsole_la-ClearConsole.Tpo -c -o src/cpp/libsciconsole_la-ClearConsole.lo `test -f 'src/cpp/ClearConsole.cpp' || echo '$(srcdir)/'`src/cpp/ClearConsole.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciconsole_la-ClearConsole.Tpo src/cpp/$(DEPDIR)/libsciconsole_la-ClearConsole.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ClearConsole.cpp' object='src/cpp/libsciconsole_la-ClearConsole.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-ClearConsole.lo `test -f 'src/cpp/ClearConsole.cpp' || echo '$(srcdir)/'`src/cpp/ClearConsole.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciconsole_la-ClearConsole.lo `test -f 'src/cpp/ClearConsole.cpp' || echo '$(srcdir)/'`src/cpp/ClearConsole.cpp
 
-libsciconsole_la-ClearConsolePart.lo: src/cpp/ClearConsolePart.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-ClearConsolePart.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ClearConsolePart.Tpo -c -o libsciconsole_la-ClearConsolePart.lo `test -f 'src/cpp/ClearConsolePart.cpp' || echo '$(srcdir)/'`src/cpp/ClearConsolePart.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-ClearConsolePart.Tpo $(DEPDIR)/libsciconsole_la-ClearConsolePart.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ClearConsolePart.cpp' object='libsciconsole_la-ClearConsolePart.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libsciconsole_la-ClearConsolePart.lo: src/cpp/ClearConsolePart.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciconsole_la-ClearConsolePart.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciconsole_la-ClearConsolePart.Tpo -c -o src/cpp/libsciconsole_la-ClearConsolePart.lo `test -f 'src/cpp/ClearConsolePart.cpp' || echo '$(srcdir)/'`src/cpp/ClearConsolePart.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciconsole_la-ClearConsolePart.Tpo src/cpp/$(DEPDIR)/libsciconsole_la-ClearConsolePart.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ClearConsolePart.cpp' object='src/cpp/libsciconsole_la-ClearConsolePart.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-ClearConsolePart.lo `test -f 'src/cpp/ClearConsolePart.cpp' || echo '$(srcdir)/'`src/cpp/ClearConsolePart.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciconsole_la-ClearConsolePart.lo `test -f 'src/cpp/ClearConsolePart.cpp' || echo '$(srcdir)/'`src/cpp/ClearConsolePart.cpp
 
-libsciconsole_la-ConsolePrintf.lo: src/cpp/ConsolePrintf.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-ConsolePrintf.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ConsolePrintf.Tpo -c -o libsciconsole_la-ConsolePrintf.lo `test -f 'src/cpp/ConsolePrintf.cpp' || echo '$(srcdir)/'`src/cpp/ConsolePrintf.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-ConsolePrintf.Tpo $(DEPDIR)/libsciconsole_la-ConsolePrintf.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ConsolePrintf.cpp' object='libsciconsole_la-ConsolePrintf.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libsciconsole_la-ConsolePrintf.lo: src/cpp/ConsolePrintf.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciconsole_la-ConsolePrintf.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciconsole_la-ConsolePrintf.Tpo -c -o src/cpp/libsciconsole_la-ConsolePrintf.lo `test -f 'src/cpp/ConsolePrintf.cpp' || echo '$(srcdir)/'`src/cpp/ConsolePrintf.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciconsole_la-ConsolePrintf.Tpo src/cpp/$(DEPDIR)/libsciconsole_la-ConsolePrintf.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ConsolePrintf.cpp' object='src/cpp/libsciconsole_la-ConsolePrintf.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-ConsolePrintf.lo `test -f 'src/cpp/ConsolePrintf.cpp' || echo '$(srcdir)/'`src/cpp/ConsolePrintf.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciconsole_la-ConsolePrintf.lo `test -f 'src/cpp/ConsolePrintf.cpp' || echo '$(srcdir)/'`src/cpp/ConsolePrintf.cpp
 
-libsciconsole_la-ConsoleRead.lo: src/cpp/ConsoleRead.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-ConsoleRead.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ConsoleRead.Tpo -c -o libsciconsole_la-ConsoleRead.lo `test -f 'src/cpp/ConsoleRead.cpp' || echo '$(srcdir)/'`src/cpp/ConsoleRead.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-ConsoleRead.Tpo $(DEPDIR)/libsciconsole_la-ConsoleRead.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ConsoleRead.cpp' object='libsciconsole_la-ConsoleRead.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libsciconsole_la-ConsoleRead.lo: src/cpp/ConsoleRead.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciconsole_la-ConsoleRead.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciconsole_la-ConsoleRead.Tpo -c -o src/cpp/libsciconsole_la-ConsoleRead.lo `test -f 'src/cpp/ConsoleRead.cpp' || echo '$(srcdir)/'`src/cpp/ConsoleRead.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciconsole_la-ConsoleRead.Tpo src/cpp/$(DEPDIR)/libsciconsole_la-ConsoleRead.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ConsoleRead.cpp' object='src/cpp/libsciconsole_la-ConsoleRead.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-ConsoleRead.lo `test -f 'src/cpp/ConsoleRead.cpp' || echo '$(srcdir)/'`src/cpp/ConsoleRead.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciconsole_la-ConsoleRead.lo `test -f 'src/cpp/ConsoleRead.cpp' || echo '$(srcdir)/'`src/cpp/ConsoleRead.cpp
 
-libsciconsole_la-ConsoleIsWaitingForInput.lo: src/cpp/ConsoleIsWaitingForInput.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-ConsoleIsWaitingForInput.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ConsoleIsWaitingForInput.Tpo -c -o libsciconsole_la-ConsoleIsWaitingForInput.lo `test -f 'src/cpp/ConsoleIsWaitingForInput.cpp' || echo '$(srcdir)/'`src/cpp/ConsoleIsWaitingForInput.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-ConsoleIsWaitingForInput.Tpo $(DEPDIR)/libsciconsole_la-ConsoleIsWaitingForInput.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ConsoleIsWaitingForInput.cpp' object='libsciconsole_la-ConsoleIsWaitingForInput.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libsciconsole_la-ConsoleIsWaitingForInput.lo: src/cpp/ConsoleIsWaitingForInput.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciconsole_la-ConsoleIsWaitingForInput.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciconsole_la-ConsoleIsWaitingForInput.Tpo -c -o src/cpp/libsciconsole_la-ConsoleIsWaitingForInput.lo `test -f 'src/cpp/ConsoleIsWaitingForInput.cpp' || echo '$(srcdir)/'`src/cpp/ConsoleIsWaitingForInput.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciconsole_la-ConsoleIsWaitingForInput.Tpo src/cpp/$(DEPDIR)/libsciconsole_la-ConsoleIsWaitingForInput.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ConsoleIsWaitingForInput.cpp' object='src/cpp/libsciconsole_la-ConsoleIsWaitingForInput.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-ConsoleIsWaitingForInput.lo `test -f 'src/cpp/ConsoleIsWaitingForInput.cpp' || echo '$(srcdir)/'`src/cpp/ConsoleIsWaitingForInput.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciconsole_la-ConsoleIsWaitingForInput.lo `test -f 'src/cpp/ConsoleIsWaitingForInput.cpp' || echo '$(srcdir)/'`src/cpp/ConsoleIsWaitingForInput.cpp
 
-libsciconsole_la-GetCharWithoutOutput.lo: src/cpp/GetCharWithoutOutput.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-GetCharWithoutOutput.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-GetCharWithoutOutput.Tpo -c -o libsciconsole_la-GetCharWithoutOutput.lo `test -f 'src/cpp/GetCharWithoutOutput.cpp' || echo '$(srcdir)/'`src/cpp/GetCharWithoutOutput.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-GetCharWithoutOutput.Tpo $(DEPDIR)/libsciconsole_la-GetCharWithoutOutput.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/GetCharWithoutOutput.cpp' object='libsciconsole_la-GetCharWithoutOutput.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libsciconsole_la-GetCharWithoutOutput.lo: src/cpp/GetCharWithoutOutput.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciconsole_la-GetCharWithoutOutput.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciconsole_la-GetCharWithoutOutput.Tpo -c -o src/cpp/libsciconsole_la-GetCharWithoutOutput.lo `test -f 'src/cpp/GetCharWithoutOutput.cpp' || echo '$(srcdir)/'`src/cpp/GetCharWithoutOutput.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciconsole_la-GetCharWithoutOutput.Tpo src/cpp/$(DEPDIR)/libsciconsole_la-GetCharWithoutOutput.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/GetCharWithoutOutput.cpp' object='src/cpp/libsciconsole_la-GetCharWithoutOutput.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-GetCharWithoutOutput.lo `test -f 'src/cpp/GetCharWithoutOutput.cpp' || echo '$(srcdir)/'`src/cpp/GetCharWithoutOutput.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciconsole_la-GetCharWithoutOutput.lo `test -f 'src/cpp/GetCharWithoutOutput.cpp' || echo '$(srcdir)/'`src/cpp/GetCharWithoutOutput.cpp
 
-libsciconsole_la-PromptToHome.lo: src/cpp/PromptToHome.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-PromptToHome.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-PromptToHome.Tpo -c -o libsciconsole_la-PromptToHome.lo `test -f 'src/cpp/PromptToHome.cpp' || echo '$(srcdir)/'`src/cpp/PromptToHome.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-PromptToHome.Tpo $(DEPDIR)/libsciconsole_la-PromptToHome.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/PromptToHome.cpp' object='libsciconsole_la-PromptToHome.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libsciconsole_la-PromptToHome.lo: src/cpp/PromptToHome.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciconsole_la-PromptToHome.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciconsole_la-PromptToHome.Tpo -c -o src/cpp/libsciconsole_la-PromptToHome.lo `test -f 'src/cpp/PromptToHome.cpp' || echo '$(srcdir)/'`src/cpp/PromptToHome.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciconsole_la-PromptToHome.Tpo src/cpp/$(DEPDIR)/libsciconsole_la-PromptToHome.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/PromptToHome.cpp' object='src/cpp/libsciconsole_la-PromptToHome.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-PromptToHome.lo `test -f 'src/cpp/PromptToHome.cpp' || echo '$(srcdir)/'`src/cpp/PromptToHome.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciconsole_la-PromptToHome.lo `test -f 'src/cpp/PromptToHome.cpp' || echo '$(srcdir)/'`src/cpp/PromptToHome.cpp
 
-libsciconsole_la-ScilabLinesUpdate.lo: src/cpp/ScilabLinesUpdate.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-ScilabLinesUpdate.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ScilabLinesUpdate.Tpo -c -o libsciconsole_la-ScilabLinesUpdate.lo `test -f 'src/cpp/ScilabLinesUpdate.cpp' || echo '$(srcdir)/'`src/cpp/ScilabLinesUpdate.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-ScilabLinesUpdate.Tpo $(DEPDIR)/libsciconsole_la-ScilabLinesUpdate.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ScilabLinesUpdate.cpp' object='libsciconsole_la-ScilabLinesUpdate.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libsciconsole_la-ScilabLinesUpdate.lo: src/cpp/ScilabLinesUpdate.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciconsole_la-ScilabLinesUpdate.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciconsole_la-ScilabLinesUpdate.Tpo -c -o src/cpp/libsciconsole_la-ScilabLinesUpdate.lo `test -f 'src/cpp/ScilabLinesUpdate.cpp' || echo '$(srcdir)/'`src/cpp/ScilabLinesUpdate.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciconsole_la-ScilabLinesUpdate.Tpo src/cpp/$(DEPDIR)/libsciconsole_la-ScilabLinesUpdate.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ScilabLinesUpdate.cpp' object='src/cpp/libsciconsole_la-ScilabLinesUpdate.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-ScilabLinesUpdate.lo `test -f 'src/cpp/ScilabLinesUpdate.cpp' || echo '$(srcdir)/'`src/cpp/ScilabLinesUpdate.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciconsole_la-ScilabLinesUpdate.lo `test -f 'src/cpp/ScilabLinesUpdate.cpp' || echo '$(srcdir)/'`src/cpp/ScilabLinesUpdate.cpp
 
-libsciconsole_la-SetConsolePrompt.lo: src/cpp/SetConsolePrompt.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-SetConsolePrompt.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-SetConsolePrompt.Tpo -c -o libsciconsole_la-SetConsolePrompt.lo `test -f 'src/cpp/SetConsolePrompt.cpp' || echo '$(srcdir)/'`src/cpp/SetConsolePrompt.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciconsole_la-SetConsolePrompt.Tpo $(DEPDIR)/libsciconsole_la-SetConsolePrompt.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/SetConsolePrompt.cpp' object='libsciconsole_la-SetConsolePrompt.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libsciconsole_la-SetConsolePrompt.lo: src/cpp/SetConsolePrompt.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciconsole_la-SetConsolePrompt.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciconsole_la-SetConsolePrompt.Tpo -c -o src/cpp/libsciconsole_la-SetConsolePrompt.lo `test -f 'src/cpp/SetConsolePrompt.cpp' || echo '$(srcdir)/'`src/cpp/SetConsolePrompt.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciconsole_la-SetConsolePrompt.Tpo src/cpp/$(DEPDIR)/libsciconsole_la-SetConsolePrompt.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/SetConsolePrompt.cpp' object='src/cpp/libsciconsole_la-SetConsolePrompt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-SetConsolePrompt.lo `test -f 'src/cpp/SetConsolePrompt.cpp' || echo '$(srcdir)/'`src/cpp/SetConsolePrompt.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciconsole_la-SetConsolePrompt.lo `test -f 'src/cpp/SetConsolePrompt.cpp' || echo '$(srcdir)/'`src/cpp/SetConsolePrompt.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
+	-rm -rf src/c/.libs src/c/_libs
+	-rm -rf src/c/cmdLine/.libs src/c/cmdLine/_libs
+	-rm -rf src/c/others/.libs src/c/others/_libs
+	-rm -rf src/cpp/.libs src/cpp/_libs
+	-rm -rf src/jni/.libs src/jni/_libs
+	-rm -rf src/noconsole/.libs src/noconsole/_libs
 install-libsciconsole_la_etcDATA: $(libsciconsole_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libsciconsole_la_etc_DATA)'; test -n "$(libsciconsole_la_etcdir)" || list=; \
@@ -1517,6 +1712,20 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/c/$(am__dirstamp)
+	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/c/$(am__dirstamp)
+	-rm -f src/c/cmdLine/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/c/cmdLine/$(am__dirstamp)
+	-rm -f src/c/others/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/c/others/$(am__dirstamp)
+	-rm -f src/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/cpp/$(am__dirstamp)
+	-rm -f src/jni/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/jni/$(am__dirstamp)
+	-rm -f src/noconsole/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/noconsole/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1528,7 +1737,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR) src/c/cmdLine/$(DEPDIR) src/c/others/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR) src/noconsole/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1576,7 +1785,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR) src/c/cmdLine/$(DEPDIR) src/c/others/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR) src/noconsole/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

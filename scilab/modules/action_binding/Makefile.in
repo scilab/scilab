@@ -173,9 +173,11 @@ libsciaction_binding_algo_la_LIBADD =
 am__libsciaction_binding_algo_la_SOURCES_DIST =  \
 	src/c/InterpreterManagement.c src/jni/Signal.cpp \
 	src/jni/InterpreterManagement_wrap.c
-@GUI_TRUE@am__objects_1 = libsciaction_binding_algo_la-InterpreterManagement.lo
-@GUI_TRUE@am__objects_2 = libsciaction_binding_algo_la-Signal.lo
-@GUI_TRUE@am__objects_3 = libsciaction_binding_algo_la-InterpreterManagement_wrap.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+@GUI_TRUE@am__objects_1 = src/c/libsciaction_binding_algo_la-InterpreterManagement.lo
+@GUI_TRUE@am__objects_2 =  \
+@GUI_TRUE@	src/jni/libsciaction_binding_algo_la-Signal.lo
+@GUI_TRUE@am__objects_3 = src/jni/libsciaction_binding_algo_la-InterpreterManagement_wrap.lo
 am_libsciaction_binding_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3)
 libsciaction_binding_algo_la_OBJECTS =  \
@@ -186,17 +188,15 @@ am__v_lt_0 = --silent
 am__v_lt_1 = 
 @GUI_TRUE@am_libsciaction_binding_algo_la_rpath =
 libsciaction_binding_disable_la_LIBADD =
-am_libsciaction_binding_disable_la_OBJECTS =  \
-	libsciaction_binding_disable_la-noaction_binding.lo
+am_libsciaction_binding_disable_la_OBJECTS = src/noaction_binding/libsciaction_binding_disable_la-noaction_binding.lo
 libsciaction_binding_disable_la_OBJECTS =  \
 	$(am_libsciaction_binding_disable_la_OBJECTS)
 libsciaction_binding_la_DEPENDENCIES = libsciaction_binding-algo.la
 am__libsciaction_binding_la_SOURCES_DIST =  \
 	sci_gateway/c/gw_action_binding.c \
 	sci_gateway/cpp/sci_notify.cpp
-@GUI_TRUE@am__objects_4 =  \
-@GUI_TRUE@	libsciaction_binding_la-gw_action_binding.lo
-@GUI_TRUE@am__objects_5 = libsciaction_binding_la-sci_notify.lo
+@GUI_TRUE@am__objects_4 = sci_gateway/c/libsciaction_binding_la-gw_action_binding.lo
+@GUI_TRUE@am__objects_5 = sci_gateway/cpp/libsciaction_binding_la-sci_notify.lo
 am_libsciaction_binding_la_OBJECTS = $(am__objects_4) $(am__objects_5)
 libsciaction_binding_la_OBJECTS =  \
 	$(am_libsciaction_binding_la_OBJECTS)
@@ -775,118 +775,184 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/c/$(am__dirstamp):
+	@$(MKDIR_P) src/c
+	@: > src/c/$(am__dirstamp)
+src/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/c/$(DEPDIR)
+	@: > src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciaction_binding_algo_la-InterpreterManagement.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/jni/$(am__dirstamp):
+	@$(MKDIR_P) src/jni
+	@: > src/jni/$(am__dirstamp)
+src/jni/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/jni/$(DEPDIR)
+	@: > src/jni/$(DEPDIR)/$(am__dirstamp)
+src/jni/libsciaction_binding_algo_la-Signal.lo:  \
+	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
+src/jni/libsciaction_binding_algo_la-InterpreterManagement_wrap.lo:  \
+	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
 
 libsciaction_binding-algo.la: $(libsciaction_binding_algo_la_OBJECTS) $(libsciaction_binding_algo_la_DEPENDENCIES) $(EXTRA_libsciaction_binding_algo_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libsciaction_binding_algo_la_rpath) $(libsciaction_binding_algo_la_OBJECTS) $(libsciaction_binding_algo_la_LIBADD) $(LIBS)
+src/noaction_binding/$(am__dirstamp):
+	@$(MKDIR_P) src/noaction_binding
+	@: > src/noaction_binding/$(am__dirstamp)
+src/noaction_binding/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/noaction_binding/$(DEPDIR)
+	@: > src/noaction_binding/$(DEPDIR)/$(am__dirstamp)
+src/noaction_binding/libsciaction_binding_disable_la-noaction_binding.lo:  \
+	src/noaction_binding/$(am__dirstamp) \
+	src/noaction_binding/$(DEPDIR)/$(am__dirstamp)
 
 libsciaction_binding-disable.la: $(libsciaction_binding_disable_la_OBJECTS) $(libsciaction_binding_disable_la_DEPENDENCIES) $(EXTRA_libsciaction_binding_disable_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) -rpath $(pkglibdir) $(libsciaction_binding_disable_la_OBJECTS) $(libsciaction_binding_disable_la_LIBADD) $(LIBS)
+sci_gateway/c/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c
+	@: > sci_gateway/c/$(am__dirstamp)
+sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
+	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciaction_binding_la-gw_action_binding.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/cpp
+	@: > sci_gateway/cpp/$(am__dirstamp)
+sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/cpp/$(DEPDIR)
+	@: > sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libsciaction_binding_la-sci_notify.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libsciaction_binding.la: $(libsciaction_binding_la_OBJECTS) $(libsciaction_binding_la_DEPENDENCIES) $(EXTRA_libsciaction_binding_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libsciaction_binding_la_rpath) $(libsciaction_binding_la_OBJECTS) $(libsciaction_binding_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f sci_gateway/c/*.$(OBJEXT)
+	-rm -f sci_gateway/c/*.lo
+	-rm -f sci_gateway/cpp/*.$(OBJEXT)
+	-rm -f sci_gateway/cpp/*.lo
+	-rm -f src/c/*.$(OBJEXT)
+	-rm -f src/c/*.lo
+	-rm -f src/jni/*.$(OBJEXT)
+	-rm -f src/jni/*.lo
+	-rm -f src/noaction_binding/*.$(OBJEXT)
+	-rm -f src/noaction_binding/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciaction_binding_algo_la-InterpreterManagement.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciaction_binding_algo_la-InterpreterManagement_wrap.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciaction_binding_algo_la-Signal.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciaction_binding_disable_la-noaction_binding.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciaction_binding_la-gw_action_binding.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciaction_binding_la-sci_notify.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciaction_binding_la-gw_action_binding.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciaction_binding_la-sci_notify.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciaction_binding_algo_la-InterpreterManagement.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libsciaction_binding_algo_la-InterpreterManagement_wrap.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libsciaction_binding_algo_la-Signal.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/noaction_binding/$(DEPDIR)/libsciaction_binding_disable_la-noaction_binding.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libsciaction_binding_algo_la-InterpreterManagement.lo: src/c/InterpreterManagement.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciaction_binding_algo_la-InterpreterManagement.lo -MD -MP -MF $(DEPDIR)/libsciaction_binding_algo_la-InterpreterManagement.Tpo -c -o libsciaction_binding_algo_la-InterpreterManagement.lo `test -f 'src/c/InterpreterManagement.c' || echo '$(srcdir)/'`src/c/InterpreterManagement.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciaction_binding_algo_la-InterpreterManagement.Tpo $(DEPDIR)/libsciaction_binding_algo_la-InterpreterManagement.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/InterpreterManagement.c' object='libsciaction_binding_algo_la-InterpreterManagement.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libsciaction_binding_algo_la-InterpreterManagement.lo: src/c/InterpreterManagement.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciaction_binding_algo_la-InterpreterManagement.lo -MD -MP -MF src/c/$(DEPDIR)/libsciaction_binding_algo_la-InterpreterManagement.Tpo -c -o src/c/libsciaction_binding_algo_la-InterpreterManagement.lo `test -f 'src/c/InterpreterManagement.c' || echo '$(srcdir)/'`src/c/InterpreterManagement.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciaction_binding_algo_la-InterpreterManagement.Tpo src/c/$(DEPDIR)/libsciaction_binding_algo_la-InterpreterManagement.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/InterpreterManagement.c' object='src/c/libsciaction_binding_algo_la-InterpreterManagement.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciaction_binding_algo_la-InterpreterManagement.lo `test -f 'src/c/InterpreterManagement.c' || echo '$(srcdir)/'`src/c/InterpreterManagement.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciaction_binding_algo_la-InterpreterManagement.lo `test -f 'src/c/InterpreterManagement.c' || echo '$(srcdir)/'`src/c/InterpreterManagement.c
 
-libsciaction_binding_algo_la-InterpreterManagement_wrap.lo: src/jni/InterpreterManagement_wrap.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciaction_binding_algo_la-InterpreterManagement_wrap.lo -MD -MP -MF $(DEPDIR)/libsciaction_binding_algo_la-InterpreterManagement_wrap.Tpo -c -o libsciaction_binding_algo_la-InterpreterManagement_wrap.lo `test -f 'src/jni/InterpreterManagement_wrap.c' || echo '$(srcdir)/'`src/jni/InterpreterManagement_wrap.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciaction_binding_algo_la-InterpreterManagement_wrap.Tpo $(DEPDIR)/libsciaction_binding_algo_la-InterpreterManagement_wrap.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/jni/InterpreterManagement_wrap.c' object='libsciaction_binding_algo_la-InterpreterManagement_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+src/jni/libsciaction_binding_algo_la-InterpreterManagement_wrap.lo: src/jni/InterpreterManagement_wrap.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/jni/libsciaction_binding_algo_la-InterpreterManagement_wrap.lo -MD -MP -MF src/jni/$(DEPDIR)/libsciaction_binding_algo_la-InterpreterManagement_wrap.Tpo -c -o src/jni/libsciaction_binding_algo_la-InterpreterManagement_wrap.lo `test -f 'src/jni/InterpreterManagement_wrap.c' || echo '$(srcdir)/'`src/jni/InterpreterManagement_wrap.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libsciaction_binding_algo_la-InterpreterManagement_wrap.Tpo src/jni/$(DEPDIR)/libsciaction_binding_algo_la-InterpreterManagement_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/jni/InterpreterManagement_wrap.c' object='src/jni/libsciaction_binding_algo_la-InterpreterManagement_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciaction_binding_algo_la-InterpreterManagement_wrap.lo `test -f 'src/jni/InterpreterManagement_wrap.c' || echo '$(srcdir)/'`src/jni/InterpreterManagement_wrap.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/jni/libsciaction_binding_algo_la-InterpreterManagement_wrap.lo `test -f 'src/jni/InterpreterManagement_wrap.c' || echo '$(srcdir)/'`src/jni/InterpreterManagement_wrap.c
 
-libsciaction_binding_disable_la-noaction_binding.lo: src/noaction_binding/noaction_binding.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciaction_binding_disable_la-noaction_binding.lo -MD -MP -MF $(DEPDIR)/libsciaction_binding_disable_la-noaction_binding.Tpo -c -o libsciaction_binding_disable_la-noaction_binding.lo `test -f 'src/noaction_binding/noaction_binding.c' || echo '$(srcdir)/'`src/noaction_binding/noaction_binding.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciaction_binding_disable_la-noaction_binding.Tpo $(DEPDIR)/libsciaction_binding_disable_la-noaction_binding.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/noaction_binding/noaction_binding.c' object='libsciaction_binding_disable_la-noaction_binding.lo' libtool=yes @AMDEPBACKSLASH@
+src/noaction_binding/libsciaction_binding_disable_la-noaction_binding.lo: src/noaction_binding/noaction_binding.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/noaction_binding/libsciaction_binding_disable_la-noaction_binding.lo -MD -MP -MF src/noaction_binding/$(DEPDIR)/libsciaction_binding_disable_la-noaction_binding.Tpo -c -o src/noaction_binding/libsciaction_binding_disable_la-noaction_binding.lo `test -f 'src/noaction_binding/noaction_binding.c' || echo '$(srcdir)/'`src/noaction_binding/noaction_binding.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/noaction_binding/$(DEPDIR)/libsciaction_binding_disable_la-noaction_binding.Tpo src/noaction_binding/$(DEPDIR)/libsciaction_binding_disable_la-noaction_binding.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/noaction_binding/noaction_binding.c' object='src/noaction_binding/libsciaction_binding_disable_la-noaction_binding.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciaction_binding_disable_la-noaction_binding.lo `test -f 'src/noaction_binding/noaction_binding.c' || echo '$(srcdir)/'`src/noaction_binding/noaction_binding.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/noaction_binding/libsciaction_binding_disable_la-noaction_binding.lo `test -f 'src/noaction_binding/noaction_binding.c' || echo '$(srcdir)/'`src/noaction_binding/noaction_binding.c
 
-libsciaction_binding_la-gw_action_binding.lo: sci_gateway/c/gw_action_binding.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciaction_binding_la-gw_action_binding.lo -MD -MP -MF $(DEPDIR)/libsciaction_binding_la-gw_action_binding.Tpo -c -o libsciaction_binding_la-gw_action_binding.lo `test -f 'sci_gateway/c/gw_action_binding.c' || echo '$(srcdir)/'`sci_gateway/c/gw_action_binding.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciaction_binding_la-gw_action_binding.Tpo $(DEPDIR)/libsciaction_binding_la-gw_action_binding.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_action_binding.c' object='libsciaction_binding_la-gw_action_binding.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciaction_binding_la-gw_action_binding.lo: sci_gateway/c/gw_action_binding.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciaction_binding_la-gw_action_binding.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciaction_binding_la-gw_action_binding.Tpo -c -o sci_gateway/c/libsciaction_binding_la-gw_action_binding.lo `test -f 'sci_gateway/c/gw_action_binding.c' || echo '$(srcdir)/'`sci_gateway/c/gw_action_binding.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciaction_binding_la-gw_action_binding.Tpo sci_gateway/c/$(DEPDIR)/libsciaction_binding_la-gw_action_binding.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_action_binding.c' object='sci_gateway/c/libsciaction_binding_la-gw_action_binding.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciaction_binding_la-gw_action_binding.lo `test -f 'sci_gateway/c/gw_action_binding.c' || echo '$(srcdir)/'`sci_gateway/c/gw_action_binding.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciaction_binding_la-gw_action_binding.lo `test -f 'sci_gateway/c/gw_action_binding.c' || echo '$(srcdir)/'`sci_gateway/c/gw_action_binding.c
 
 .cpp.o:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .cpp.lo:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
-libsciaction_binding_algo_la-Signal.lo: src/jni/Signal.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciaction_binding_algo_la-Signal.lo -MD -MP -MF $(DEPDIR)/libsciaction_binding_algo_la-Signal.Tpo -c -o libsciaction_binding_algo_la-Signal.lo `test -f 'src/jni/Signal.cpp' || echo '$(srcdir)/'`src/jni/Signal.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciaction_binding_algo_la-Signal.Tpo $(DEPDIR)/libsciaction_binding_algo_la-Signal.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/Signal.cpp' object='libsciaction_binding_algo_la-Signal.lo' libtool=yes @AMDEPBACKSLASH@
+src/jni/libsciaction_binding_algo_la-Signal.lo: src/jni/Signal.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libsciaction_binding_algo_la-Signal.lo -MD -MP -MF src/jni/$(DEPDIR)/libsciaction_binding_algo_la-Signal.Tpo -c -o src/jni/libsciaction_binding_algo_la-Signal.lo `test -f 'src/jni/Signal.cpp' || echo '$(srcdir)/'`src/jni/Signal.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libsciaction_binding_algo_la-Signal.Tpo src/jni/$(DEPDIR)/libsciaction_binding_algo_la-Signal.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/Signal.cpp' object='src/jni/libsciaction_binding_algo_la-Signal.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciaction_binding_algo_la-Signal.lo `test -f 'src/jni/Signal.cpp' || echo '$(srcdir)/'`src/jni/Signal.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libsciaction_binding_algo_la-Signal.lo `test -f 'src/jni/Signal.cpp' || echo '$(srcdir)/'`src/jni/Signal.cpp
 
-libsciaction_binding_la-sci_notify.lo: sci_gateway/cpp/sci_notify.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciaction_binding_la-sci_notify.lo -MD -MP -MF $(DEPDIR)/libsciaction_binding_la-sci_notify.Tpo -c -o libsciaction_binding_la-sci_notify.lo `test -f 'sci_gateway/cpp/sci_notify.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_notify.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciaction_binding_la-sci_notify.Tpo $(DEPDIR)/libsciaction_binding_la-sci_notify.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_notify.cpp' object='libsciaction_binding_la-sci_notify.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libsciaction_binding_la-sci_notify.lo: sci_gateway/cpp/sci_notify.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libsciaction_binding_la-sci_notify.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libsciaction_binding_la-sci_notify.Tpo -c -o sci_gateway/cpp/libsciaction_binding_la-sci_notify.lo `test -f 'sci_gateway/cpp/sci_notify.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_notify.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libsciaction_binding_la-sci_notify.Tpo sci_gateway/cpp/$(DEPDIR)/libsciaction_binding_la-sci_notify.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_notify.cpp' object='sci_gateway/cpp/libsciaction_binding_la-sci_notify.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciaction_binding_la-sci_notify.lo `test -f 'sci_gateway/cpp/sci_notify.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_notify.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciaction_binding_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciaction_binding_la-sci_notify.lo `test -f 'sci_gateway/cpp/sci_notify.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_notify.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
+	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
+	-rm -rf src/c/.libs src/c/_libs
+	-rm -rf src/jni/.libs src/jni/_libs
+	-rm -rf src/noaction_binding/.libs src/noaction_binding/_libs
 install-libsciaction_binding_la_etcDATA: $(libsciaction_binding_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libsciaction_binding_la_etc_DATA)'; test -n "$(libsciaction_binding_la_etcdir)" || list=; \
@@ -1069,6 +1135,16 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/c/$(am__dirstamp)
+	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/cpp/$(am__dirstamp)
+	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/c/$(am__dirstamp)
+	-rm -f src/jni/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/jni/$(am__dirstamp)
+	-rm -f src/noaction_binding/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/noaction_binding/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1080,7 +1156,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/jni/$(DEPDIR) src/noaction_binding/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1129,7 +1205,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/jni/$(DEPDIR) src/noaction_binding/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
