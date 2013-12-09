@@ -12,6 +12,7 @@
  */
 package org.scilab.modules.gui;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
@@ -625,6 +626,14 @@ public final class SwingView implements GraphicView {
     @Override
     public void updateObject(final Integer id, final int property) {
         final TypedObject registeredObject = allObjects.get(id);
+
+        if (property == __GO_SIZE__ && (headless || GraphicsEnvironment.isHeadless())) {
+            int objectType = (Integer) GraphicController.getController().getProperty(id, __GO_TYPE__);
+            if (objectType == __GO_FIGURE__) {
+                Integer[] dims = (Integer[]) GraphicController.getController().getProperty(id, __GO_SIZE__);
+                GraphicController.getController().setProperty(id, __GO_AXES_SIZE__, dims);
+            }
+        }
 
         if (registeredObject != null &&
                 property == __GO_VALID__ &&
