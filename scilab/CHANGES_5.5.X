@@ -302,6 +302,8 @@ Scilab Bug Fixes
 
 * Bug #13132 fixed - There were missing graduations when data_bounds interval was too small.
 
+* Bug #13134 fixed - User defined ticks in log scale were invisible.
+
 * Bug #13139 fixed - fft help page fixed.
 
 * Bug #13140 fixed - Various typos fixed.
