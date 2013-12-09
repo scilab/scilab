@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-12-06 11:40+0100\n"
+"Revision-Date: 2013-12-09 09:47+0100\n"
 
 # File: src/c/convert.c, line: 1214
 # File: src/c/convert.c, line: 1239
@@ -69,22 +69,22 @@ msgstr ""
 # File: src/c/matmul2_e.c, line: 169
 # File: src/c/matmul_i16e.c, line: 61
 # File: src/c/matmul_i32e.c, line: 62
-# File: src/c/matmul_i8e.c, line: 64
-# File: src/c/matmul_ui16e.c, line: 64
-# File: src/c/matmul_ui32e.c, line: 64
+# File: src/c/matmul_i8e.c, line: 62
+# File: src/c/matmul_ui16e.c, line: 62
+# File: src/c/matmul_ui32e.c, line: 62
 # File: src/c/matmul_ui8e.c, line: 60
 # File: src/c/summation_i16e.c, line: 54
 # File: src/c/summation_i16e.c, line: 82
-# File: src/c/summation_i32e.c, line: 61
-# File: src/c/summation_i32e.c, line: 89
-# File: src/c/summation_i8e.c, line: 60
-# File: src/c/summation_i8e.c, line: 88
-# File: src/c/summation_ui16e.c, line: 61
-# File: src/c/summation_ui16e.c, line: 89
-# File: src/c/summation_ui32e.c, line: 61
-# File: src/c/summation_ui32e.c, line: 89
-# File: src/c/summation_ui8e.c, line: 61
-# File: src/c/summation_ui8e.c, line: 89
+# File: src/c/summation_i32e.c, line: 59
+# File: src/c/summation_i32e.c, line: 87
+# File: src/c/summation_i8e.c, line: 58
+# File: src/c/summation_i8e.c, line: 86
+# File: src/c/summation_ui16e.c, line: 59
+# File: src/c/summation_ui16e.c, line: 87
+# File: src/c/summation_ui32e.c, line: 59
+# File: src/c/summation_ui32e.c, line: 87
+# File: src/c/summation_ui8e.c, line: 59
+# File: src/c/summation_ui8e.c, line: 87
 msgid "overflow error"
 msgstr ""
 
@@ -94,20 +94,20 @@ msgid "Trigger block must have discrete time input."
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 169
+# File: src/c/fromws_c.c, line: 170
 #, c-format
 msgid "The '%s' variable does not exist.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 180
-# File: src/c/fromws_c.c, line: 188
-# File: src/c/fromws_c.c, line: 206
+# File: src/c/fromws_c.c, line: 181
+# File: src/c/fromws_c.c, line: 189
+# File: src/c/fromws_c.c, line: 207
 msgid "Invalid variable type.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 216
+# File: src/c/fromws_c.c, line: 217
 #, c-format
 msgid ""
 "Data dimensions are inconsistent:\n"
@@ -116,75 +116,75 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 231
+# File: src/c/fromws_c.c, line: 232
 msgid "Output should be of Real type.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 241
+# File: src/c/fromws_c.c, line: 242
 msgid "Output should be of complex type.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 257
+# File: src/c/fromws_c.c, line: 258
 msgid "Output should be of int8 type.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 267
+# File: src/c/fromws_c.c, line: 268
 msgid "Output should be of int16 type.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 277
+# File: src/c/fromws_c.c, line: 278
 msgid "Output should be of int32 type.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 287
+# File: src/c/fromws_c.c, line: 288
 msgid "Output should be of uint8 type.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 297
+# File: src/c/fromws_c.c, line: 298
 msgid "Output should be of uint16 type.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 307
+# File: src/c/fromws_c.c, line: 308
 msgid "Output should be of uint32 type.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 456
+# File: src/c/fromws_c.c, line: 457
 #, c-format
 msgid ""
 "The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 467
+# File: src/c/fromws_c.c, line: 468
 msgid "The Time vector type is not double.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 497
+# File: src/c/fromws_c.c, line: 498
 msgid "The time vector should be an increasing vector.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 538
+# File: src/c/fromws_c.c, line: 539
 msgid "Allocation problem in spline.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 1531
-# File: src/c/fromws_c.c, line: 1543
+# File: src/c/fromws_c.c, line: 1532
+# File: src/c/fromws_c.c, line: 1544
 msgid "Invalid variable type : error in hypermat scilab coding.\n"
 msgstr ""
 
 #
-# File: src/c/mat_inv.c, line: 107
+# File: src/c/mat_inv.c, line: 110
 #, c-format
 msgid ""
 "The LU factorization has been completed, but the factor U is exactly "
@@ -224,19 +224,19 @@ msgid "Consider increasing the length of buffer in delay block \n"
 msgstr ""
 
 #
-# File: src/c/tows_c.c, line: 1598
-# File: src/c/tows_c.c, line: 1607
+# File: src/c/tows_c.c, line: 1599
+# File: src/c/tows_c.c, line: 1608
 msgid "Size of buffer or input size have changed!\n"
 msgstr ""
 
 #
-# File: src/c/variable_delay.c, line: 78
+# File: src/c/variable_delay.c, line: 79
 #, c-format
 msgid "delayed time=%f but last stored time=%f\n"
 msgstr ""
 
 #
-# File: src/c/variable_delay.c, line: 79
+# File: src/c/variable_delay.c, line: 80
 msgid "Consider increasing the length of buffer in variable delay block\n"
 msgstr ""
 

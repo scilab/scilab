@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-12-06 11:40+0100\n"
+"Revision-Date: 2013-12-09 09:47+0100\n"
 
 # File: sci_gateway/c/sci_base2dec.c, line: 41
 # File: sci_gateway/c/sci_base2dec.c, line: 54
@@ -451,6 +451,8 @@ msgstr ""
 # File: macros/tanm.sci, line: 16
 # File: macros/toeplitz.sci, line: 21
 # File: macros/union.sci, line: 17
+# File: modulo_pmodulo_13002/modulo_pmodulo/modulo.sci, line: 17
+# File: modulo_pmodulo_13002/modulo_pmodulo/pmodulo.sci, line: 19
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
@@ -560,6 +562,8 @@ msgstr ""
 # File: macros/cat.sci, line: 73
 # File: macros/modulo.sci, line: 48
 # File: macros/pmodulo.sci, line: 54
+# File: modulo_pmodulo_13002/modulo_pmodulo/modulo.sci, line: 48
+# File: modulo_pmodulo_13002/modulo_pmodulo/pmodulo.sci, line: 54
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
 msgstr ""
@@ -918,6 +922,7 @@ msgstr ""
 
 #
 # File: macros/modulo.sci, line: 36
+# File: modulo_pmodulo_13002/modulo_pmodulo/modulo.sci, line: 36
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
 msgstr ""
@@ -984,6 +989,7 @@ msgstr ""
 
 #
 # File: macros/pmodulo.sci, line: 39
+# File: modulo_pmodulo_13002/modulo_pmodulo/pmodulo.sci, line: 39
 #, c-format
 msgid "%s: Incompatible input arguments: Same types expected.\n"
 msgstr ""
@@ -1130,8 +1136,8 @@ msgstr ""
 # File: macros/toeplitz.sci, line: 39
 #, c-format
 msgid ""
-"%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to r"
-"(1).\n"
+"%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to "
+"r(1).\n"
 msgstr ""
 
 #
@@ -1151,4 +1157,15 @@ msgstr ""
 # File: macros/vectorfind.sci, line: 47
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr ""
+
+#
+# File: modulo_pmodulo_13002/modulo_pmodulo/modulo.sci, line: 26
+# File: modulo_pmodulo_13002/modulo_pmodulo/modulo.sci, line: 31
+# File: modulo_pmodulo_13002/modulo_pmodulo/pmodulo.sci, line: 29
+# File: modulo_pmodulo_13002/modulo_pmodulo/pmodulo.sci, line: 34
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Reals, encoded integers or "
+"polynomials expected.\n"
 msgstr ""

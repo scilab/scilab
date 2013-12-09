@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-12-06 11:40+0100\n"
+"Revision-Date: 2013-12-09 09:47+0100\n"
 
 # File: sci_gateway/c/sci_cdfbet.c, line: 45
 msgid "X,Y,A and B"
@@ -401,7 +401,7 @@ msgstr ""
 # File: macros/tabul.sci, line: 58
 # File: macros/trimmean.sci, line: 74
 # File: macros/variance.sci, line: 36
-# File: macros/variancef.sci, line: 40
+# File: macros/variancef.sci, line: 42
 # File: macros/wcenter.sci, line: 40
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -413,6 +413,7 @@ msgstr ""
 # File: macros/harmean.sci, line: 47
 # File: macros/msd.sci, line: 46
 # File: macros/nanmedian.sci, line: 51
+# File: macros/variance.sci, line: 79
 # File: macros/wcenter.sci, line: 57
 #, c-format
 msgid ""
@@ -674,7 +675,7 @@ msgstr ""
 # File: macros/sample.sci, line: 49
 # File: macros/samplef.sci, line: 71
 # File: macros/st_deviation.sci, line: 40
-# File: macros/variancef.sci, line: 115
+# File: macros/variancef.sci, line: 132
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', %d or %d "
@@ -881,18 +882,12 @@ msgstr ""
 # File: macros/variance.sci, line: 55
 # File: macros/variance.sci, line: 60
 # File: macros/variance.sci, line: 65
-# File: macros/variancef.sci, line: 53
-# File: macros/variancef.sci, line: 57
-# File: macros/variancef.sci, line: 62
-# File: macros/variancef.sci, line: 67
+# File: macros/variancef.sci, line: 61
+# File: macros/variancef.sci, line: 65
+# File: macros/variancef.sci, line: 70
+# File: macros/variancef.sci, line: 75
 #, c-format
 msgid "%s: Wrong value of m : a priori mean expected.\n"
-msgstr ""
-
-#
-# File: macros/variance.sci, line: 79
-#, c-format
-msgid "%s: Wrong value for input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 
 #
@@ -904,10 +899,10 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/variancef.sci, line: 45
-# File: macros/variancef.sci, line: 77
-# File: macros/variancef.sci, line: 89
-# File: macros/variancef.sci, line: 103
+# File: macros/variancef.sci, line: 52
+# File: macros/variancef.sci, line: 86
+# File: macros/variancef.sci, line: 100
+# File: macros/variancef.sci, line: 117
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
