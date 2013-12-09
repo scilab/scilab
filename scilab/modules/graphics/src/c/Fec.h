@@ -35,8 +35,8 @@
  *  Nnode : number of nodes
  *  Ntr   : number of triangles
  *  strflag,legend,brect,aint : see plot2d
- *  zminmax   : to set (optionnaly) the min and max level
- *  colminmax : to set (optionnaly) the first and last color to use
+ *  zminmax   : to set (optionaly) the min and max level
+ *  colminmax : to set (optionaly) the first and last color to use
  *
  *  modified by Bruno Pincon 01/02/2001 for gain in speed and added
  *  possibilities to set zmin, zmax by the user and also to set the

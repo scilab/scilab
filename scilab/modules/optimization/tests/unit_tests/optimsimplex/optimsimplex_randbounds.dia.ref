@@ -54,7 +54,7 @@ function [ y , myobj ] = mycostf ( x , myobj )
   myobj.nb = myobj.nb + 1
 endfunction
 //
-// Test randbounds with additionnal object
+// Test randbounds with additional object
 //
 mydude = tlist(["T_MYSTUFF","nb"]);
 mydude.nb = 0;

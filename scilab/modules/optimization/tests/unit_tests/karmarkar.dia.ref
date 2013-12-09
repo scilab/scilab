@@ -101,7 +101,7 @@ assert_checkalmostequal ( fopt , fexpected , 1.e-3 );
 assert_checkequal ( exitflag , -4 );
 assert_checkequal ( iter , 7 );
 //
-// Check output function with additionnal arguments
+// Check output function with additional arguments
 function stop = myoutputfunction2 ( xopt , optimValues , state , myAeq , mybeq , myc )
     localmsg = gettext("Iteration #%3.0f, fopt=%10.3e, state=%s, ||Ax-beq||=%.3e\n")
     teststring = sprintf(localmsg,optimValues.iteration,optimValues.fval,state,norm(myAeq*xopt-mybeq))

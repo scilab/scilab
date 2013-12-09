@@ -86,7 +86,7 @@ endfunction
 // Arguments
 //   x : the array to sort
 //   compfun : the comparison function
-//   data : an optionnal data to pass to the comparison function
+//   data : an optional data to pass to the comparison function
 // Bruno Pincon
 // "quelques tests de rapidité entre différents logiciels matriciels"
 // Modified by Michael Baudin to manage a comparison function

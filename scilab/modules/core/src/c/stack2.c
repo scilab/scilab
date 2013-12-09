@@ -181,7 +181,7 @@ int C2F(isoptlw) (int *topk, int *lw, char *namex, unsigned long name_len)
 
 /*---------------------------------------
 * firstopt :
-* return the position of the first optionnal argument
+* return the position of the first optional argument
 * given as xx=val in the calling sequence.
 * If no such argument it returns Rhs+1.
 *--------------------------------------- */

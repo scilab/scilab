@@ -41,7 +41,7 @@ int sci_legendre(char *fname, unsigned long fname_len)
     *
     *      n and m may not be both vectors
     *
-    *      norm_flag : optionnal. When it is present and equal to "norm"
+    *      norm_flag : optional. When it is present and equal to "norm"
     *                  it is a normalized version which is computed
     *    AUTHOR
     *       Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>

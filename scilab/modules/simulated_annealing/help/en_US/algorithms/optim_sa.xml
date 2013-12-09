@@ -262,10 +262,10 @@
 function y = f ( x )
  ]]></programlisting>
         <para>
-            In the case where the objective function needs additionnal parameters,
+            In the case where the objective function needs additional parameters,
             the objective function can be defined as a list, where the first 
             argument is the cost function, and the second argument is the 
-            additionnal parameter. See below for an example.
+            additional parameter. See below for an example.
         </para>
     </refsection>
     <refsection>

@@ -26,7 +26,7 @@ function []=fplot2d(xr,f,style,strf,leg,rect,nax,void)
     elseif rhs < 2 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "fplot2d", 2));
     end
-    //handling optionnal arguments
+    //handling optional arguments
 
     opts=[]
 

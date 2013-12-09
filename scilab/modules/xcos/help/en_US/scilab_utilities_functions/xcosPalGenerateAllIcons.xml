@@ -30,7 +30,7 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>This functionnality updates the image file used on the palette accordingly to the Scilab interface function. It can be used to update the representation of a block at any time after the first generation.
+        <para>This functionality updates the image file used on the palette accordingly to the Scilab interface function. It can be used to update the representation of a block at any time after the first generation.
         </para>
     </refsection>
     <refsection>

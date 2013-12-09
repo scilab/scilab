@@ -11,7 +11,7 @@
 // <-- CLI SHELL MODE -->
 
 function [ y , index ] = squarefun ( x , index )
-y = x(1)^2+x(2)^2;
+    y = x(1)^2+x(2)^2;
 endfunction
 
 nm = neldermead_new ();
@@ -64,7 +64,7 @@ assert_checkalmostequal ( fopt , 0.0, 1e-6 );
 nm = neldermead_destroy(nm);
 
 function [ y , index ] = rosenbrock ( x , index )
-  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+    y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
 nm = neldermead_new ();
@@ -79,7 +79,7 @@ nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","fixed");
 nm = neldermead_search(nm, "off");
-// With fixed-size simplices, one cannot lead the 
+// With fixed-size simplices, one cannot lead the
 // simplex to the optimum.
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
@@ -93,7 +93,7 @@ assert_checkequal ( status , "maxfuneval" );
 // Cleanup
 nm = neldermead_destroy(nm);
 
-// Check that the verbose mode is functionnal
+// Check that the verbose mode is functional
 // Few iterations are necessary to check this
 // Many iterations costs a lot more in time.
 nm = neldermead_new ();

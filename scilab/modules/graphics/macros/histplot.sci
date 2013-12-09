@@ -22,7 +22,7 @@ function [y, ind] = histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,ax
     // [xi(1),xi(2)], (xi(k) xi(k+1)], k=2,..,n.
     // xi's are assumed st. increasing (this point is verified now).
     //
-    // optionnal args:
+    // optional args:
     //     1/ the same than for a plot2d:
     //        style,strf,leg,rect,nax,logflag,frameflag,axesflag
     //     2/ normalization flag (default value %t). When true the
@@ -37,7 +37,7 @@ function [y, ind] = histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,ax
     //
     // modifs to use dsearch (Bruno Pincon 10/12/2001)
     // others modifs from Bruno (feb 2005):
-    //    - may be a cleaner and shorter way to deal with optionnal arg ?
+    //    - may be a cleaner and shorter way to deal with optional arg ?
     //    - now the histgram is drawn using only one polyline
     //      (so properties (color, thickness,...) are easier
     //       to change with new graphics).
@@ -78,7 +78,7 @@ function [y, ind] = histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,ax
     if ~exists("normalization","local") then, normalization=%t,end
     if ~exists("polygon","local") then, polygon=%f,end
 
-    // Now parse optionnal arguments to be sent to plot2d
+    // Now parse optional arguments to be sent to plot2d
     opt_arg_seq = []
     opt_arg_list = ["style","strf","leg","rect","nax","logflag","frameflag","axesflag"]
     for opt_arg = opt_arg_list

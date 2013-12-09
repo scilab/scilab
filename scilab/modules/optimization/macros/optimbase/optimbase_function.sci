@@ -53,12 +53,12 @@
 //   [ this , f , g , c , gc ] = optimbase_function ( this , x , index )
 //
 // Calling sequences of the cost function:
-//   > Without additionnal data
+//   > Without additional data
 //   [ f , index ] = costf ( x , index )
 //   [ f , g , index ] = costf ( x , index )
 //   [ f , c , index ] = costf ( x , index )
 //   [ f , g , c , gc , index ] = costf ( x , index )
-//   > With additionnal data
+//   > With additional data
 //   [ f , index ] = costf ( x , index , a1, a2, ... )
 //   [ f , g , index ] = costf ( x , index , a1, a2, ... )
 //   [ f , c , index ] = costf ( x , index , a1, a2, ... )

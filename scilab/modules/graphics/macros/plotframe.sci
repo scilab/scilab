@@ -55,7 +55,7 @@ function plotframe(rect,axisdata,options,legs,subwindow)
     end
 
     if rhs >= 2 & ~f_subwin & ~f_captions & ~f_flags & ~f_tics then
-        // no optionnal argument specified we use the old syntax
+        // no optional argument specified we use the old syntax
         // with 2,3,4 or five parameters
 
         f_tics = %t ;

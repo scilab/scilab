@@ -37,7 +37,7 @@
             <varlistentry>
                 <term>libs</term>
                 <listitem>
-                    <para>a vector of character string. additionnal libraries paths or [].</para>
+                    <para>a vector of character string. additional libraries paths or [].</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

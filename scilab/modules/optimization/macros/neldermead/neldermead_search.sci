@@ -1408,7 +1408,7 @@ function [ this , status , xr , fr ] = _boxlinesearch ( this , n , xbar , xhigh 
     // 2. scale for nonlinear constraints (may fail)
     // 3. scale for function improvement (may fail)
     //
-    // 1. Project xr into bounds, with an additionnal alpha inside the bounds.
+    // 1. Project xr into bounds, with an additional alpha inside the bounds.
     // This algo is always succesful.
     // Note:
     //   If the alpha coefficient was not used, the

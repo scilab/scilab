@@ -81,7 +81,7 @@
         <para>
             The nmplot component is built on top of the <link linkend="neldermead">neldermead</link> component. The -outputcommand option
             (of the neldermead class) is not available since the nmplot class uses its
-            own output function. Additionnal options -simplexfn, -fbarfn, -foptfn and
+            own output function. Additional options -simplexfn, -fbarfn, -foptfn and
             -sigmafn are provided, which allows to configure the file names where the
             data is stored.
         </para>

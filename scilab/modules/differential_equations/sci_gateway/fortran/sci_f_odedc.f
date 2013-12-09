@@ -507,7 +507,7 @@ c     number of output points
 c     pointer on  output time vector
       lt1=sadr(il+4)
 c
-c     optionnal parameters rtol et atol
+c     optional parameters rtol et atol
       top2=top2+1
 c     default values
       if(meth.eq.6.or.meth.eq.7) then

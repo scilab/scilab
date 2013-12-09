@@ -12,7 +12,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=11452
 //
 // <-- Short Description -->
-// diag optionnal argument in lsqrsolve cannot be used
+// diag optional argument in lsqrsolve cannot be used
 //
 a=[1,7;
    2,8

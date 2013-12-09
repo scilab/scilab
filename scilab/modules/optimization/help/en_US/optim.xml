@@ -747,7 +747,7 @@
             // on the improvement on the parameters x_opt (1e-6;1e-6;1e-6)
             [fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc", "ar", 3, 100, 1e-6, 1e-6, [1e-3; 1e-3; 1e-3])
             
-            // Additionnal messages are printed in the console.
+            // Additional messages are printed in the console.
             [fopt, xopt] = optim(cost, x0, imp = 3)
         </programlisting>
     </refsection>
@@ -962,10 +962,10 @@ mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
         </para>
         <para>In the following example, the cost function uses 4 parameters
             <literal>a, b, c</literal> and <literal>d</literal>. We define the cost
-            function with additionnal input arguments, which are declared after the
+            function with additional input arguments, which are declared after the
             index argument. Then we pass a list as the first input argument of the
             <literal>optim</literal> solver. The first element of the list is the cost
-            function. The additionnal variables are directly passed to the cost
+            function. The additional variables are directly passed to the cost
             function.
         </para>
         <programlisting role="example">function [ f , g , ind ] = costfunction ( x , ind , a , b , c , d )
@@ -1316,7 +1316,7 @@ mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
         </para>
         <para>The following example is a re-writing of the previous example, with
             special attention for the Windows operating system with Intel Fortran
-            compiler as example. In that case, we introduce additionnal compiling
+            compiler as example. In that case, we introduce additional compiling
             instructions, which allows the compiler to import the "nird"
             symbol.
         </para>

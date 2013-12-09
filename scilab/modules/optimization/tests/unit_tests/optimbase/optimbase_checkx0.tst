@@ -13,17 +13,17 @@
 
 //
 // gould.nonconvex --
-//   The Gould test case with additionnal inequality constraints.
+//   The Gould test case with additional inequality constraints.
 // Arguments
 //    x : the point where to compute the cost
 //    index : a flag which states what is to compute
-//    * if index=1, or no index, returns the value of the cost 
+//    * if index=1, or no index, returns the value of the cost
 //      function (default case)
-//    * if index=2, returns the value of the nonlinear inequality 
+//    * if index=2, returns the value of the nonlinear inequality
 //      constraints, as a row array
 //    * if index=3, returns an array which contains
-//      at index #0, the value of the cost function  
-//      at index #1 to the end is the list of the values of the nonlinear 
+//      at index #0, the value of the cost function
+//      at index #1 to the end is the list of the values of the nonlinear
 //      constraints
 //  Discussion:
 //    The problem is to minimize a cost function with 4 non linear constraints.
@@ -45,18 +45,18 @@
 //    Edited by F.A. Lootsma, pp 349-366, 1972
 //
 function [ f , c , index ] = gouldnonconvex ( x , index )
-  f = []
-  c = []
-  if ( index==2 | index==6 ) then
-    f = (x(1) - 10.0 )^3 + ( x(2) - 20.0 ) ^ 3
-  end
-  if ( index==5 | index==6 ) then
-    c1 = x(1) - 13.0
-    c2 = ( x(1) - 5.0 )^2  + (x(2) - 5.0 )^2 - 100.0
-    c3 = -( x(1) - 6.0 )^2 - (x(2) - 5.0 )^2 + 82.81
-    c4 = x(2)
-    c = [c1 c2 c3 c4]
-  end
+    f = []
+    c = []
+    if ( index==2 | index==6 ) then
+        f = (x(1) - 10.0 )^3 + ( x(2) - 20.0 ) ^ 3
+    end
+    if ( index==5 | index==6 ) then
+        c1 = x(1) - 13.0
+        c2 = ( x(1) - 5.0 )^2  + (x(2) - 5.0 )^2 - 100.0
+        c3 = -( x(1) - 6.0 )^2 - (x(2) - 5.0 )^2 + 82.81
+        c4 = x(2)
+        c = [c1 c2 c3 c4]
+    end
 endfunction
 //
 // Test optimbase_checkx0 method

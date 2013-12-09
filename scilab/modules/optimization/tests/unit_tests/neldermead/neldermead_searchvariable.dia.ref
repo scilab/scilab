@@ -62,7 +62,7 @@ status = neldermead_get(nm,"-status");
 assert_checkequal ( status , "tolsize" );
 // Cleanup
 nm = neldermead_destroy(nm);
-// Check that the verbose mode is functionnal
+// Check that the verbose mode is functional
 // Few iterations are necessary to check this
 // Many iterations costs a lot more in time.
 nm = neldermead_new ();

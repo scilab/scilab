@@ -11,20 +11,20 @@
 // <-- ENGLISH IMPOSED -->
 
 function flag = MY_assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
+    if computed==expected then
+        flag = 1;
+    else
+        flag = 0;
+    end
+    if flag <> 1 then pause,end
 endfunction
 
 function checkassert ( flag , errmsg , ctype )
-  if ( ctype == "success" ) then
-    MY_assert_equal ( (flag==%t) & (errmsg==""), %t )
-  else
-    MY_assert_equal ( (flag==%f) & (errmsg<>""), %t )
-  end
+    if ( ctype == "success" ) then
+        MY_assert_equal ( (flag==%t) & (errmsg==""), %t )
+    else
+        MY_assert_equal ( (flag==%f) & (errmsg<>""), %t )
+    end
 endfunction
 
 format("v",10);
@@ -74,18 +74,18 @@ MY_assert_equal ( ierr , 10000 );
 // fileref1 : three lines of text.
 // filecomp1 : == fileref1
 // filecomp2 : <> fileref1
-// 
+//
 // fileref1
 fileref1 = fullfile(TMPDIR,"fileref.txt");
 txt1 = [
-  "Line #1"
-  "Line #2"
-  "Line #3"
+"Line #1"
+"Line #2"
+"Line #3"
 ];
 fd = mopen(fileref1,"w");
 mputl(txt1,fd);
 mclose(fd);
-// 
+//
 // filecomp1
 filecomp1 = fullfile(TMPDIR,"filecomp1.txt");
 fd = mopen(filecomp1,"w");
@@ -94,9 +94,9 @@ mclose(fd);
 //
 filecomp2 = fullfile(TMPDIR,"filecomp2.txt");
 txt2 = [
-  "Line #1"
-  "Line #4"
-  "Line #3"
+"Line #1"
+"Line #4"
+"Line #3"
 ];
 fd = mopen(filecomp2,"w");
 mputl(txt2,fd);
@@ -136,40 +136,40 @@ checkassert ( flag , errmsg , "failure" );
 //
 // Define the filter
 function otxt = myfilter ( itxt )
-  nr = size(itxt,"r")
-  // This is the pattern for a comment line of the form "// blabla"
-  pattern = "/\/\/.*/"
-  k = 1
-  for i = 1 : nr
-    start = regexp(itxt(i),pattern)
-    if ( start == [] ) then
-      otxt(k) = itxt(i)
-      k = k + 1
+    nr = size(itxt,"r")
+    // This is the pattern for a comment line of the form "// blabla"
+    pattern = "/\/\/.*/"
+    k = 1
+    for i = 1 : nr
+        start = regexp(itxt(i),pattern)
+        if ( start == [] ) then
+            otxt(k) = itxt(i)
+            k = k + 1
+        end
     end
-  end
 endfunction
 //
 // Check that the filter works as expected.
 itxt = [
-  "bla 1"
-  "// bla 2"
-  "bla 3"
-  "// bla 4"
-  "bla 5"
-  ];
+"bla 1"
+"// bla 2"
+"bla 3"
+"// bla 4"
+"bla 5"
+];
 otxt = myfilter ( itxt );
 etxt = [
-  "bla 1"
-  "bla 3"
-  "bla 5"
-  ];
+"bla 1"
+"bla 3"
+"bla 5"
+];
 MY_assert_equal ( otxt , etxt );
 //
 // Define the comparison function
 function areequal = mycompfun ( ctxt , etxt )
-  ctxt = myfilter ( ctxt )
-  etxt = myfilter ( etxt )
-  areequal = ( ctxt == etxt )
+    ctxt = myfilter ( ctxt )
+    etxt = myfilter ( etxt )
+    areequal = ( ctxt == etxt )
 endfunction
 
 //
@@ -178,44 +178,44 @@ endfunction
 // fileref2 <> filecomp4, given that comment lines are ignored.
 // Notice that the comments are inserted at different positions in the files:
 // sometimes at the begining, sometimes in the middle.
-// 
+//
 // Prepare data files
 //
 // fileref2
 fileref2 = fullfile(TMPDIR,"fileref2.txt");
 txt = [
-  "// bla 2"
-  "Line #1"
-  "// bla 2"
-  "Line #2"
-  "Line #3"
+"// bla 2"
+"Line #1"
+"// bla 2"
+"Line #2"
+"Line #3"
 ];
 fd = mopen(fileref2,"w");
 mputl(txt,fd);
 mclose(fd);
-// 
+//
 // filecomp3
 filecomp3 = fullfile(TMPDIR,"filecomp3.txt");
 txt = [
-  "Line #1"
-  "// bla 5168"
-  "Line #2"
-  "Line #3"
-  "// bla oups"
+"Line #1"
+"// bla 5168"
+"Line #2"
+"Line #3"
+"// bla oups"
 ];
 fd = mopen(filecomp3,"w");
 mputl(txt,fd);
 mclose(fd);
-// 
+//
 // filecomp4
 filecomp4 = fullfile(TMPDIR,"filecomp4.txt");
 txt = [
-  "// bla 3"
-  "Line #1"
-  "Line #4"
-  "// bla 5168"
-  "Line #3"
-  "// bla oups"
+"// bla 3"
+"Line #1"
+"Line #4"
+"// bla 5168"
+"Line #3"
+"// bla oups"
 ];
 fd = mopen(filecomp4,"w");
 mputl(txt,fd);
@@ -230,47 +230,47 @@ checkassert ( flag , errmsg , "success" );
 checkassert ( flag , errmsg , "failure" );
 //
 ///////////////////////////////////////////////////////////////////
-// 
-// A comparison function with an additionnal argument
+//
+// A comparison function with an additional argument
 //
 // A test with a comparison function which ignores comment lines.
 //
 // Define the filter
 function otxt = myfilter2 ( itxt , pattern )
-  nr = size(itxt,"r")
-  k = 1
-  for i = 1 : nr
-    start = regexp(itxt(i),pattern)
-    if ( start == [] ) then
-      otxt(k) = itxt(i)
-      k = k + 1
+    nr = size(itxt,"r")
+    k = 1
+    for i = 1 : nr
+        start = regexp(itxt(i),pattern)
+        if ( start == [] ) then
+            otxt(k) = itxt(i)
+            k = k + 1
+        end
     end
-  end
 endfunction
 //
 // Check that the filter works as expected.
 // This is the pattern for a comment line of the form "// blabla"
 pattern = "/\/\/.*/"
 itxt = [
-  "bla 1"
-  "// bla 2"
-  "bla 3"
-  "// bla 4"
-  "bla 5"
-  ];
+"bla 1"
+"// bla 2"
+"bla 3"
+"// bla 4"
+"bla 5"
+];
 otxt = myfilter2 ( itxt , pattern );
 etxt = [
-  "bla 1"
-  "bla 3"
-  "bla 5"
-  ];
+"bla 1"
+"bla 3"
+"bla 5"
+];
 MY_assert_equal ( otxt , etxt );
 //
 // Define the comparison function
 function areequal = mycompfun2 ( ctxt , etxt , pattern )
-  ctxt = myfilter2 ( ctxt , pattern )
-  etxt = myfilter2 ( etxt , pattern )
-  areequal = ( ctxt == etxt )
+    ctxt = myfilter2 ( ctxt , pattern )
+    etxt = myfilter2 ( etxt , pattern )
+    areequal = ( ctxt == etxt )
 endfunction
 //
 // A test which pass
