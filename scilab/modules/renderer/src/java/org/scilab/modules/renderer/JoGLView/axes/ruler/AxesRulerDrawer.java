@@ -143,6 +143,9 @@ public class AxesRulerDrawer {
 
         if (!axes.getXAxis().getAutoTicks()) {
             rulerModel.setUserGraduation(new UserDefineGraduation(axes.getXAxis(), bounds[0], bounds[1]));
+            if (axes.getAutoSubticks()) {
+                rulerModel.setSubticksNumber(axes.getXAxisSubticks());
+            }
             rulerModel.setAutoTicks(false);
         } else {
             rulerModel.setAutoTicks(true);
@@ -192,6 +195,9 @@ public class AxesRulerDrawer {
 
         if (!axes.getYAxis().getAutoTicks()) {
             rulerModel.setUserGraduation(new UserDefineGraduation(axes.getYAxis(), bounds[2], bounds[3]));
+            if (axes.getAutoSubticks()) {
+                rulerModel.setSubticksNumber(axes.getYAxisSubticks());
+            }
             rulerModel.setAutoTicks(false);
         } else {
             rulerModel.setAutoTicks(true);
@@ -254,6 +260,9 @@ public class AxesRulerDrawer {
 
             if (!axes.getZAxis().getAutoTicks()) {
                 rulerModel.setUserGraduation(new UserDefineGraduation(axes.getZAxis(), bounds[4], bounds[5]));
+                if (axes.getAutoSubticks()) {
+                    rulerModel.setSubticksNumber(axes.getZAxisSubticks());
+                }
                 rulerModel.setAutoTicks(false);
             } else {
                 rulerModel.setAutoTicks(true);

@@ -300,6 +300,8 @@ Scilab Bug Fixes
 
 * Bug #13121 fixed - ode "rk" option crashed Scilab when the user derivative function failed.
 
+* Bug #13127 fixed - There were no subticks with user defined ticks.
+
 * Bug #13132 fixed - There were missing graduations when data_bounds interval was too small.
 
 * Bug #13134 fixed - User defined ticks in log scale were invisible.
