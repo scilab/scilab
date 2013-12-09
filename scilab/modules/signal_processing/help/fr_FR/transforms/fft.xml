@@ -193,8 +193,9 @@
                                 </para>
                                 <variablelist>
                                     <varlistentry>
+                                        <term>mono-variable</term>
+                                        
                                         <listitem>
-                                            <term>mono-variable</term>
                                             <para>
                                                 Si <literal>A</literal> est un vecteur
                                                 <literal>X=fft(A,+1)</literal> ou

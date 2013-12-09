@@ -302,6 +302,8 @@ Scilab Bug Fixes
 
 * Bug #13132 fixed - There were missing graduations when data_bounds interval was too small.
 
+* Bug #13139 fixed - fft help page fixed.
+
 
 Xcos Bug Fixes
 ==============
