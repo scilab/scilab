@@ -25,20 +25,20 @@
         <title>Function definition</title>
         <para>Usually, they are defined in files with an editor and loaded into
             Scilab using the  <link linkend="exec">exec</link> function or through a library (see
-            <link linkend="lib">lib</link> or <link linkend="genlib">genlib</link>). But They can also be
+            <link linkend="lib">lib</link> or <link linkend="genlib">genlib</link>). But they can also be
             defined on-line (see  <link linkend="deff">deff</link> or <link linkend="function">function</link>.
-            A function is defined by two components: 
+            A function is defined by two components:
         </para>
         <itemizedlist>
             <listitem>
                 <para>a "syntax definition" part  as follows:</para>
-                <programlisting><![CDATA[ 
+                <programlisting role='no-scilab-exec'><![CDATA[
 function [y1,...,yn]=foo(x1,...,xm)
 function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
  ]]></programlisting>
             </listitem>
             <listitem>
-                <para>a sequence of scilab instructions.</para>
+                <para>a sequence of Scilab instructions.</para>
             </listitem>
         </itemizedlist>
         <para>The "syntax definition" line gives the "full" calling syntax of
@@ -72,35 +72,39 @@ function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
             </listitem>
             <listitem>
                 <para>It is also possible to use "named argument" to specify input
-                    arguments: suppose function <literal>fun1</literal> defined as
-                    <literal>function y1=fun1(x1,x2,x3)</literal> then it can be
-                    called with a syntax like <literal>y=fun1(x1=33,x3=[1 2
-                        3])
-                    </literal>
-                    within <literal>fun1</literal> x2 will be
-                    undefined,
+                    arguments: suppose function <function>fun1</function> defined as
+                    <code>function y1 = fun1(x1, x2, x3)</code> then it can be
+                    called with a syntax like
+                    <code>y = fun1(x1=33, x3=[1 2 3])</code>
+                    within <function>fun1</function> <varname>x2</varname> will be
+                    undefined.
                 </para>
-                <para> it can also be called with a syntax like
-                    <literal>y=fun1(x1=33,y='foo')</literal>. In such a case the
-                    <literal>y</literal> variable will be available in the context
-                    of the function <literal>fun1</literal>. Note that the maximum
-                    number of argument must be less or equal to the number of
-                    formal input argument used in the function syntax part.
+                <para> It can also be called with a syntax like
+                    <code>y = fun1(x1=33, y='foo')</code>. In such a case the
+                    <varname>y</varname> variable will be available in the context
+                    of the function <function>fun1</function>.
+                    <note>
+                        Note that the maximum number of argument must be
+                        less or equal to the number of formal input
+                        argument used in the function syntax part.
+                    </note>
                 </para>
-                <para> It is possible to check for defined variables with the
-                    <link linkend="exists">exists</link> function.
+                <para>
+                    It is possible to check for defined variables with
+                    the <link linkend="exists">exists</link> function.
                 </para>
             </listitem>
             <listitem>
-                <para>When a function has no left hand side argument and is called only
-                    with character string arguments, the calling syntax may be
-                    simplified:
+                <para>
+                    When a function has no left hand side argument and
+                    is called only with character string arguments, the
+                    calling syntax may be simplified:
                 </para>
-                <programlisting><![CDATA[ 
-fun('a','toto','a string') 
+                <programlisting role='no-scilab-exec'><![CDATA[
+fun('a','toto','a string')
  ]]></programlisting>
                 <para>is equivalent to: </para>
-                <programlisting><![CDATA[ 
+                <programlisting role='no-scilab-exec'><![CDATA[
 fun a toto 'a string'
  ]]></programlisting>
             </listitem>
@@ -109,14 +113,12 @@ fun a toto 'a string'
     <refsection>
         <title>Miscellaneous</title>
         <para>
-            Functions are Scilab objects (with type numbers 13 or 11). They
-            and can be manipulated (built, saved, loaded, passed as
-            arguments,..) as other variable types.
+            Functions are Scilab objects (with type numbers 13 or 11). And they can be manipulated (built, saved, loaded, passed as
+            arguments,...) as other variable types.
         </para>
         <para>Collections of functions can be collected in libraries.  Functions
             which begin with <literal>%</literal> sign
-            (e.g. <literal>%foo</literal>) are often used to overload (see <link linkend="overloading">overloading</link>
-            ) operations or functions for new data type.
+            (e.g. <literal>%foo</literal>) are often used to overload (see <link linkend="overloading">overloading</link>) operations or functions for new data type.
         </para>
         <para>
             Note that a function name must respect some syntax rules (see <link linkend="names">names</link>).
@@ -124,7 +126,7 @@ fun a toto 'a string'
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //inline definition (see function)
 function [x,y]=myfct(a,b)
   x=a+b

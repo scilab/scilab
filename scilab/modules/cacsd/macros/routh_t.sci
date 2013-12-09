@@ -3,12 +3,12 @@
 // Copyright (C) 1999 - Lucien.Povy@eudil.fr (to get a good table)
 // Copyright (C) 2013 - Charlotte HECQUET (new option)
 // Copyright (C) 2013 - A. Khorshidi (to define a new optional output argument)
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as par of this distribution.  The terms
-// are also available at    
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [r,num]=routh_t(h,k,normalized)
     //r=routh_t(h,k) computes routh table of denominator of the
@@ -26,7 +26,7 @@ function [r,num]=routh_t(h,k,normalized)
     //see http://www.jdotec.net/s3i/TD_Info/Routh/Routh.pdf for degenerated
     //cases
 
-    //see also 
+    //see also
     //Comments on the Routh-Hurwitz criterion, Shamash, Y.,Automatic Control, IEEE T.A.C
     //Volume 25, Issue 1, Feb 1980 Page(s): 132 - 133
 
@@ -43,11 +43,11 @@ function [r,num]=routh_t(h,k,normalized)
         rhs=2;
     end
     if rhs==2 then
-        if typeof(h)<>'rational' then
+        if typeof(h)<>"rational" then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: rational fraction array expected.\n"),"routh_t",1));
         end
         [n,d]=h(2:3)
-        if size(n,'*')<>1 then
+        if size(n,"*")<>1 then
             error(msprintf(gettext("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"routh_t",1))
         end
         nd=max([degree(d) degree(n)])+1;
@@ -55,10 +55,10 @@ function [r,num]=routh_t(h,k,normalized)
         con=coeff(n,0:nd-1);//coeff du numerateur
         cobf=cod+k*con //coeff de la boucle fermee
     else
-        if type(h)>2 then 
+        if type(h)>2 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: Polynomial array expected.\n"),"routh_t",1));
         end
-        if size(h,'*')<>1 then
+        if size(h,"*")<>1 then
             error(msprintf(gettext("%s: Wrong size for input argument #%d: A polynomial expected.\n"),"routh_t",1))
         end
 
@@ -68,42 +68,42 @@ function [r,num]=routh_t(h,k,normalized)
     //
     r1=cobf(nd:-2:1);
     r2=cobf(nd-1:-2:1);
-    ncol=size(r1,'*');
-    if size(r2,'*')<>ncol then r2=[r2,0],end
+    ncol=size(r1,"*");
+    if size(r2,"*")<>ncol then r2=[r2,0],end
     r=[r1;r2]
     if ncol<2 then r=[],return,end;
     if rhs==2 then
 
         for i=3:nd,
             if flag==0 then // for a non-normalized table
-                r(i,1:ncol-1)=[r(i-1,1),-r(i-2,1)]*[r(i-2,2:ncol);r(i-1,2:ncol)] 
+                r(i,1:ncol-1)=[r(i-1,1),-r(i-2,1)]*[r(i-2,2:ncol);r(i-1,2:ncol)]
             else // for a normalized table
                 if r(i-1,1)==0 then
                     if type(k)<>1 then
                         error(msprintf(gettext("%s: Wrong type for input argument #%d: A scalar expected.\n"),"routh_t",2));
                     end
-                    r(i-1,1)=poly(0,'eps') 
+                    r(i-1,1)=poly(0,"eps")
                 end
-                r(i,1:ncol-1)=[1.,-r(i-2,1)/r(i-1,1)]*[r(i-2,2:ncol);r(i-1,2:ncol)]    
+                r(i,1:ncol-1)=[1.,-r(i-2,1)/r(i-1,1)]*[r(i-2,2:ncol);r(i-1,2:ncol)]
             end
         end;
     else
         for i=3:nd,
-            // Special Case: Row of zeros detected: 
+            // Special Case: Row of zeros detected:
             if and(r(i-1,:)==0) then
                 naux=nd-i+2 //order of previous polynomial
                 exponents=naux:-2:0
-                ncoeff=size(exponents,'*')
+                ncoeff=size(exponents,"*")
                 r(i-1,1:ncoeff)=r(i-2,1:ncoeff).*exponents //derivative of previous polynomial
             end
             // Special Case: First element of the 2nd row or upper is zero and is replaced with %eps:
-            if r(i-1,1)==0 then 
+            if r(i-1,1)==0 then
                 if rhs==1 then
-                    if typeof(r)=='rational' then 
+                    if typeof(r)=="rational" then
                         //scilab is not able to handle multivariable polynomials
-                        r=horner(r,%eps^2); 
+                        r=horner(r,%eps^2);
                     end
-                    r(i-1,1)=poly(0,'eps')
+                    r(i-1,1)=poly(0,"eps")
                 else
                     r(i-1,1)=%eps^2,
                 end
@@ -117,7 +117,7 @@ function [r,num]=routh_t(h,k,normalized)
         if rhs==2 & type(k)<>1 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: A scalar expected.\n"),"routh_t",2));
         end
-        nrow=size(r,'r')
+        nrow=size(r,"r")
         num = 0;
         c = 0;
         for i = 1:nrow

@@ -30,7 +30,7 @@ public class Driver {
      */
     public static boolean setDriver(String driver) {
         String d = driver.toLowerCase();
-        if (!d.equals("x11") && !d.equals("rec") && Export.getType(d) == -1) {
+        if (!d.equals("x11") && !d.equals("rec") && !d.equals("null") && Export.getType(d) == -1) {
             return false;
         }
         Driver.driver = driver;
@@ -55,7 +55,7 @@ public class Driver {
     }
 
     public static boolean isImageRendering() {
-        return !driver.equalsIgnoreCase("X11") && !driver.equalsIgnoreCase("Rec");
+        return !driver.equalsIgnoreCase("X11") && !driver.equalsIgnoreCase("Rec") && !driver.equals("null");
     }
 
     public static void setDefaultVisitor(int uid) {

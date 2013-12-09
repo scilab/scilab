@@ -4,7 +4,7 @@
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 function toolbox_skeletonlib = startModule()
-   
+
     TOOLBOX_NAME  = "toolbox_skeleton";
     TOOLBOX_TITLE = "Toolbox Skeleton";
 
@@ -24,17 +24,19 @@ function toolbox_skeletonlib = startModule()
   mprintf("\tLoad macros\n");
   pathmacros = pathconvert( root_tlbx ) + "macros" + filesep();
   toolbox_skeletonlib = lib(pathmacros);
-  
-// load gateways
+
+// load gateways and Java libraries
 // =============================================================================
-  mprintf("\tLoad gateways\n");
   verboseMode = ilib_verbose();
   ilib_verbose(0);
+  mprintf("\tLoad gateways\n");
   exec(pathconvert(root_tlbx+"/sci_gateway/loader_gateway.sce",%f));
+  mprintf("\tLoad Java libraries\n");
+  exec(pathconvert(root_tlbx+"/src/java/loader.sce",%f));
   ilib_verbose(verboseMode);
 
 // load localization
-    addlocalizationdomain(TOOLBOX_NAME, root_tlbx + "/locales");
+  addlocalizationdomain(TOOLBOX_NAME, root_tlbx + "/locales");
 
 // Load and add help chapter
 // =============================================================================

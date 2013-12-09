@@ -637,7 +637,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
         load_user_data(fd) // user_data
 
     case "Datatip"
-        if is_higher_than([5 5 0 1]) then
+        if is_higher_than([5 4 0 1]) then
             visible=toggle(mget(1,characterFormat,fd)) // visible
             sz = mget(2,characterFormat,fd)
             tip_data = matrix(mget(prod(sz),"dl",fd),sz(1),-1) // tip_data
@@ -1407,7 +1407,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
             end
             h.labels_font_size = labelfontsize // label_font_size
             h.labels_font_color= mget(1,"il",fd); // labels_font_color
-            if is_higher_than([5 5 0 1]) then
+            if is_higher_than([5 4 0 1]) then
                 h.labels_font_style = mget(1,"il",fd);
             end
             if is_higher_than( [4 1 2 0] ) then

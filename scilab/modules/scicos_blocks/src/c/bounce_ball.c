@@ -26,7 +26,7 @@
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void bounce_ball(scicos_block *block, int flag)
 {
-    int nevprt = 0, nx = 0, *ipar = NULL;
+    int nevprt = 0, *ipar = NULL;
     int *outsz = NULL;
     double *x = NULL, *xd = NULL, *rpar = NULL;
     double *g = NULL;
@@ -51,7 +51,6 @@ SCICOS_BLOCKS_IMPEXP void bounce_ball(scicos_block *block, int flag)
     /*     y2: y-coord des balles */
     /*     ipar: storage de taille [nx(n-1)/2=ng]*2 */
     nevprt = block->nevprt;
-    nx = block->nx;
     ipar = block->ipar;
     outsz = block->outsz;
     x = block->x;

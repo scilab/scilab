@@ -26,7 +26,7 @@
             Si <literal>expression</literal> est une liste, <literal>variable</literal> prend comme valeurs successives les termes de la liste.
         </para>
         <para>
-            En accord avec les conventions de codage pour le langage de porgrammation Scilab, il est recommandé de :
+            En accord avec les conventions de codage pour le langage de programmation Scilab, il est recommandé de :
         </para>
         <itemizedlist>
             <listitem>
@@ -49,7 +49,7 @@
             Par exemple, utiliser :
         </para>
         <programlisting role=""><![CDATA[
-      for i = 1:5 
+      for i = 1:5
           disp(i);
       end
 ]]></programlisting>
@@ -67,7 +67,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // "traditional" for loops
 n=5;
 for i = 1:n
@@ -76,20 +76,20 @@ for i = 1:n
     end;
 end
 for j = 2:n-1
-    a(j,j) = j; 
-end; 
+    a(j,j) = j;
+end;
 a
 for j= 4:-1:1
     disp(j);
 end // decreasing loop
 
 //loop on matrix columns
-for  e=eye(3,3), e, end  
+for  e=eye(3,3), e, end
 for v=a, write(6,v), end
-for j=1:n, v=a(:,j), write(6,v), end 
+for j=1:n, v=a(:,j), write(6,v), end
 
 //loop on list entries
-for l=list(1,2,'example'); l, end 
+for l=list(1,2,'example'); l, end
 
  ]]></programlisting>
     </refsection>

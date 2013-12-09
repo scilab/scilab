@@ -30,14 +30,21 @@
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(zlacpy)();
-extern int C2F(zgetrf)();
-extern int C2F(mtran)();
-extern double C2F(dlamch)();
-extern double C2F(zlange)();
-extern int C2F(zgecon)();
-extern int C2F(zgetrs)();
-extern int C2F(zgelsy1)();
+extern int C2F(zlacpy)(char *uplo, int *m, int *n,
+                       double *a, int *lda, double *b, int *ldb);
+extern int C2F(zgetrf)(int *m, int *n, double *a,
+                       int *lda, int *ipiv, int *info);
+extern int C2F(mtran)(double* a, int* na, double* b, int* nb, int* m, int* n);
+extern double C2F(dlamch)(char *cmach);
+extern double C2F(zlange)(char *norm, int *m, int *n, double *a,
+                          int *lda, double *work);
+extern int C2F(zgecon)(char *norm, int *n, double *a,
+                       int *lda, double *anorm, double *rcond, double *
+                       work, double *rwork, int *info);
+extern int C2F(zgetrs)(char *trans, int *n, int *nrhs,
+                       double *a, int *lda, int *ipiv, double *b,
+                       int *ldb, int *info);
+extern int C2F(zgelsy1)(int* M, int* N, int* NRHS, double* A, int* LDA, double* B, int* LDB, int* JPVT, double* RCOND, int* RANK, double* WORK, int* LWORK, double* RWORK, int* INFO);
 /*--------------------------------------------------------------------------*/
 typedef struct
 {
@@ -64,7 +71,8 @@ SCICOS_BLOCKS_IMPEXP void matz_div(scicos_block *block, int flag)
     int nu = 0;
     int mu2 = 0;
     int info = 0;
-    int i = 0, l = 0, lw = 0, lu = 0, rw = 0;
+    int i = 0, l = 0, lw = 0, lu = 0;
+    mat_bksl_struct** work = (mat_bksl_struct**) block->work;
     mat_bksl_struct *ptr = NULL;
     double rcond = 0., ANORM = 0., EPS = 0.;
 
@@ -81,16 +89,16 @@ SCICOS_BLOCKS_IMPEXP void matz_div(scicos_block *block, int flag)
     lw = Max(2 * Min(mu1, nu), mu1 + 1);
     lu = Max(lw, Min(mu1, nu) + mu2);
     lw = Max(2 * nu, Min(mu1, nu) + lu);
-    rw = 2 * nu;
+
     /*init : initialization*/
     if (flag == 4)
     {
-        if ((*(block->work) = (mat_bksl_struct*) scicos_malloc(sizeof(mat_bksl_struct))) == NULL)
+        if ((*work = (mat_bksl_struct*) scicos_malloc(sizeof(mat_bksl_struct))) == NULL)
         {
             set_block_error(-16);
             return;
         }
-        ptr = *(block->work);
+        ptr = *work;
         if ((ptr->ipiv = (int*) scicos_malloc(sizeof(int) * nu)) == NULL)
         {
             set_block_error(-16);
@@ -291,7 +299,7 @@ SCICOS_BLOCKS_IMPEXP void matz_div(scicos_block *block, int flag)
     /* Terminaison */
     else if (flag == 5)
     {
-        ptr = *(block->work);
+        ptr = *work;
         if ((ptr->yrT) != NULL)
         {
             scicos_free(ptr->ipiv);
@@ -316,7 +324,7 @@ SCICOS_BLOCKS_IMPEXP void matz_div(scicos_block *block, int flag)
 
     else
     {
-        ptr = *(block->work);
+        ptr = *work;
         C2F(mtran)(u1r, &mu1, ptr->urT1, &nu, &mu1, &nu);
         C2F(mtran)(u1i, &mu1, ptr->uiT1, &nu, &mu1, &nu);
         C2F(mtran)(u2r, &mu2, ptr->urT2, &nu, &mu2, &nu);
@@ -332,7 +340,7 @@ SCICOS_BLOCKS_IMPEXP void matz_div(scicos_block *block, int flag)
             ptr->IN2[2 * i] = ptr->urT2[i];
             ptr->IN2[2 * i + 1] = -ptr->uiT2[i];
         }
-        EPS = C2F(dlamch)("e", 1L);
+        EPS = C2F(dlamch)("e");
         ANORM = C2F(zlange)("1", &nu, &mu1, ptr->IN1, &nu, ptr->dwork);
         if (mu1 == nu)
         {

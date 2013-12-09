@@ -173,7 +173,7 @@ SCICOS_BLOCKS_IMPEXP void cscopxy(scicos_block * block, scicos_flag flag)
                 break;
             }
 
-            appendData(block, block->inptr[0], block->inptr[1]);
+            appendData(block, GetRealInPortPtrs(block, 1), GetRealInPortPtrs(block, 2));
             for (j = 0; j < block->insz[0]; j++)
             {
                 result = pushData(block, j);
@@ -558,7 +558,6 @@ static int getAxe(int iFigureUID, scicos_block * block)
 static int getPolyline(int iAxeUID, scicos_block * block, int row)
 {
     int iPolyline;
-    double d__0 = 0.0;
     BOOL b__true = TRUE;
 
     int color;

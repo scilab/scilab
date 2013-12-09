@@ -33,6 +33,7 @@ int C2F(scimem) (int *newsize, int *ptr)
     return scimem64(ptr, *newsize, FALSE);
 #else
     register char *p1 = NULL;
+    double coef = 1.0;
 
     if (*newsize > 0)
     {
@@ -40,16 +41,28 @@ int C2F(scimem) (int *newsize, int *ptr)
         /* the last +2 is to overcome a problem with adjuststack. */
         /* Which appears on OpenSolaris and on mandriva + EEEPC. */
         /* To be corrected. Thanks Jonathan */
-        p1 = (char *)SCISTACKMALLOC(((unsigned long)sizeof(double)) * (*newsize + 1 + 2));
-
-        if (p1 != NULL)
+        while (coef > 0)
         {
-            the_ps = the_p;
-            the_p = p1;
-            /* add 1 for alignment problems */
-            *ptr = ((int)(the_p - (char *)C2F(stack).Stk)) / sizeof(double) + 1;
+            int size = (int)(*newsize * coef);
+            p1 = (char *)SCISTACKMALLOC((size + 1 + 2) * sizeof(double));
+            if (p1 != NULL)
+            {
+                the_ps = the_p;
+                the_p = p1;
+                /* add 1 for alignment problems */
+                *ptr = ((int)(the_p - (char *)C2F(stack).Stk)) / sizeof(double) + 1;
+                *newsize = size;
+                //sciprint("SUCCEED to alloc %0.0f MB ( %0.0f%% )\n", (double)(size + 1 + 2) * sizeof(double) / (1024*1024), coef * 100);
+                break;
+            }
+            else
+            {
+                //sciprint("FAILED to alloc %0.0f MB\n", (double)(size + 1 + 2) * sizeof(double) / (1024*1024));
+                coef -= 0.01; //remove 1%
+            }
         }
-        else
+
+        if (p1 == NULL)
         {
             /* We could not create a new stack, so, we are using the previous one */
             if (the_p == NULL)
@@ -58,13 +71,14 @@ int C2F(scimem) (int *newsize, int *ptr)
                 sciprint(_("No space to allocate Scilab stack.\n"));
                 exit(1);
             }
+
             *ptr = 0;
         }
+
     }
     return (0);
 #endif
 }
-
 /*--------------------------------------------------------------------------*/
 int C2F(scigmem) (int *n, int *ptr)
 {

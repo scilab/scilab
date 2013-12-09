@@ -165,10 +165,11 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscicall_scilab_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscicall_scilab_algo_la_LIBADD =
-am__objects_1 = libscicall_scilab_algo_la-call_scilab.lo \
-	libscicall_scilab_algo_la-fromc.lo \
-	libscicall_scilab_algo_la-fromjava.lo \
-	libscicall_scilab_algo_la-SendScilabJobs.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+am__objects_1 = src/c/libscicall_scilab_algo_la-call_scilab.lo \
+	src/c/libscicall_scilab_algo_la-fromc.lo \
+	src/c/libscicall_scilab_algo_la-fromjava.lo \
+	src/c/libscicall_scilab_algo_la-SendScilabJobs.lo
 am_libscicall_scilab_algo_la_OBJECTS = $(am__objects_1)
 libscicall_scilab_algo_la_OBJECTS =  \
 	$(am_libscicall_scilab_algo_la_OBJECTS)
@@ -177,9 +178,9 @@ am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
 libscicall_scilab_la_DEPENDENCIES = libscicall_scilab-algo.la
-am__objects_2 = libscicall_scilab_la-sci_fromjava.lo \
-	libscicall_scilab_la-sci_fromc.lo \
-	libscicall_scilab_la-gw_call_scilab.lo
+am__objects_2 = sci_gateway/c/libscicall_scilab_la-sci_fromjava.lo \
+	sci_gateway/c/libscicall_scilab_la-sci_fromc.lo \
+	sci_gateway/c/libscicall_scilab_la-gw_call_scilab.lo
 am_libscicall_scilab_la_OBJECTS = $(am__objects_2)
 libscicall_scilab_la_OBJECTS = $(am_libscicall_scilab_la_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -724,102 +725,140 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/c/$(am__dirstamp):
+	@$(MKDIR_P) src/c
+	@: > src/c/$(am__dirstamp)
+src/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/c/$(DEPDIR)
+	@: > src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscicall_scilab_algo_la-call_scilab.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscicall_scilab_algo_la-fromc.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscicall_scilab_algo_la-fromjava.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscicall_scilab_algo_la-SendScilabJobs.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 
 libscicall_scilab-algo.la: $(libscicall_scilab_algo_la_OBJECTS) $(libscicall_scilab_algo_la_DEPENDENCIES) $(EXTRA_libscicall_scilab_algo_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK)  $(libscicall_scilab_algo_la_OBJECTS) $(libscicall_scilab_algo_la_LIBADD) $(LIBS)
+sci_gateway/c/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c
+	@: > sci_gateway/c/$(am__dirstamp)
+sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
+	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscicall_scilab_la-sci_fromjava.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscicall_scilab_la-sci_fromc.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscicall_scilab_la-gw_call_scilab.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 
 libscicall_scilab.la: $(libscicall_scilab_la_OBJECTS) $(libscicall_scilab_la_DEPENDENCIES) $(EXTRA_libscicall_scilab_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) -rpath $(pkglibdir) $(libscicall_scilab_la_OBJECTS) $(libscicall_scilab_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f sci_gateway/c/*.$(OBJEXT)
+	-rm -f sci_gateway/c/*.lo
+	-rm -f src/c/*.$(OBJEXT)
+	-rm -f src/c/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicall_scilab_algo_la-SendScilabJobs.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicall_scilab_algo_la-call_scilab.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicall_scilab_algo_la-fromc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicall_scilab_algo_la-fromjava.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicall_scilab_la-gw_call_scilab.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicall_scilab_la-sci_fromc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicall_scilab_la-sci_fromjava.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscicall_scilab_la-gw_call_scilab.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscicall_scilab_la-sci_fromc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscicall_scilab_la-sci_fromjava.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicall_scilab_algo_la-SendScilabJobs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicall_scilab_algo_la-call_scilab.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicall_scilab_algo_la-fromc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicall_scilab_algo_la-fromjava.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libscicall_scilab_algo_la-call_scilab.lo: src/c/call_scilab.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicall_scilab_algo_la-call_scilab.lo -MD -MP -MF $(DEPDIR)/libscicall_scilab_algo_la-call_scilab.Tpo -c -o libscicall_scilab_algo_la-call_scilab.lo `test -f 'src/c/call_scilab.c' || echo '$(srcdir)/'`src/c/call_scilab.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicall_scilab_algo_la-call_scilab.Tpo $(DEPDIR)/libscicall_scilab_algo_la-call_scilab.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/call_scilab.c' object='libscicall_scilab_algo_la-call_scilab.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscicall_scilab_algo_la-call_scilab.lo: src/c/call_scilab.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicall_scilab_algo_la-call_scilab.lo -MD -MP -MF src/c/$(DEPDIR)/libscicall_scilab_algo_la-call_scilab.Tpo -c -o src/c/libscicall_scilab_algo_la-call_scilab.lo `test -f 'src/c/call_scilab.c' || echo '$(srcdir)/'`src/c/call_scilab.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicall_scilab_algo_la-call_scilab.Tpo src/c/$(DEPDIR)/libscicall_scilab_algo_la-call_scilab.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/call_scilab.c' object='src/c/libscicall_scilab_algo_la-call_scilab.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicall_scilab_algo_la-call_scilab.lo `test -f 'src/c/call_scilab.c' || echo '$(srcdir)/'`src/c/call_scilab.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicall_scilab_algo_la-call_scilab.lo `test -f 'src/c/call_scilab.c' || echo '$(srcdir)/'`src/c/call_scilab.c
 
-libscicall_scilab_algo_la-fromc.lo: src/c/fromc.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicall_scilab_algo_la-fromc.lo -MD -MP -MF $(DEPDIR)/libscicall_scilab_algo_la-fromc.Tpo -c -o libscicall_scilab_algo_la-fromc.lo `test -f 'src/c/fromc.c' || echo '$(srcdir)/'`src/c/fromc.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicall_scilab_algo_la-fromc.Tpo $(DEPDIR)/libscicall_scilab_algo_la-fromc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/fromc.c' object='libscicall_scilab_algo_la-fromc.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscicall_scilab_algo_la-fromc.lo: src/c/fromc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicall_scilab_algo_la-fromc.lo -MD -MP -MF src/c/$(DEPDIR)/libscicall_scilab_algo_la-fromc.Tpo -c -o src/c/libscicall_scilab_algo_la-fromc.lo `test -f 'src/c/fromc.c' || echo '$(srcdir)/'`src/c/fromc.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicall_scilab_algo_la-fromc.Tpo src/c/$(DEPDIR)/libscicall_scilab_algo_la-fromc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/fromc.c' object='src/c/libscicall_scilab_algo_la-fromc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicall_scilab_algo_la-fromc.lo `test -f 'src/c/fromc.c' || echo '$(srcdir)/'`src/c/fromc.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicall_scilab_algo_la-fromc.lo `test -f 'src/c/fromc.c' || echo '$(srcdir)/'`src/c/fromc.c
 
-libscicall_scilab_algo_la-fromjava.lo: src/c/fromjava.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicall_scilab_algo_la-fromjava.lo -MD -MP -MF $(DEPDIR)/libscicall_scilab_algo_la-fromjava.Tpo -c -o libscicall_scilab_algo_la-fromjava.lo `test -f 'src/c/fromjava.c' || echo '$(srcdir)/'`src/c/fromjava.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicall_scilab_algo_la-fromjava.Tpo $(DEPDIR)/libscicall_scilab_algo_la-fromjava.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/fromjava.c' object='libscicall_scilab_algo_la-fromjava.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscicall_scilab_algo_la-fromjava.lo: src/c/fromjava.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicall_scilab_algo_la-fromjava.lo -MD -MP -MF src/c/$(DEPDIR)/libscicall_scilab_algo_la-fromjava.Tpo -c -o src/c/libscicall_scilab_algo_la-fromjava.lo `test -f 'src/c/fromjava.c' || echo '$(srcdir)/'`src/c/fromjava.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicall_scilab_algo_la-fromjava.Tpo src/c/$(DEPDIR)/libscicall_scilab_algo_la-fromjava.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/fromjava.c' object='src/c/libscicall_scilab_algo_la-fromjava.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicall_scilab_algo_la-fromjava.lo `test -f 'src/c/fromjava.c' || echo '$(srcdir)/'`src/c/fromjava.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicall_scilab_algo_la-fromjava.lo `test -f 'src/c/fromjava.c' || echo '$(srcdir)/'`src/c/fromjava.c
 
-libscicall_scilab_algo_la-SendScilabJobs.lo: src/c/SendScilabJobs.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicall_scilab_algo_la-SendScilabJobs.lo -MD -MP -MF $(DEPDIR)/libscicall_scilab_algo_la-SendScilabJobs.Tpo -c -o libscicall_scilab_algo_la-SendScilabJobs.lo `test -f 'src/c/SendScilabJobs.c' || echo '$(srcdir)/'`src/c/SendScilabJobs.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicall_scilab_algo_la-SendScilabJobs.Tpo $(DEPDIR)/libscicall_scilab_algo_la-SendScilabJobs.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/SendScilabJobs.c' object='libscicall_scilab_algo_la-SendScilabJobs.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscicall_scilab_algo_la-SendScilabJobs.lo: src/c/SendScilabJobs.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicall_scilab_algo_la-SendScilabJobs.lo -MD -MP -MF src/c/$(DEPDIR)/libscicall_scilab_algo_la-SendScilabJobs.Tpo -c -o src/c/libscicall_scilab_algo_la-SendScilabJobs.lo `test -f 'src/c/SendScilabJobs.c' || echo '$(srcdir)/'`src/c/SendScilabJobs.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicall_scilab_algo_la-SendScilabJobs.Tpo src/c/$(DEPDIR)/libscicall_scilab_algo_la-SendScilabJobs.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/SendScilabJobs.c' object='src/c/libscicall_scilab_algo_la-SendScilabJobs.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicall_scilab_algo_la-SendScilabJobs.lo `test -f 'src/c/SendScilabJobs.c' || echo '$(srcdir)/'`src/c/SendScilabJobs.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicall_scilab_algo_la-SendScilabJobs.lo `test -f 'src/c/SendScilabJobs.c' || echo '$(srcdir)/'`src/c/SendScilabJobs.c
 
-libscicall_scilab_la-sci_fromjava.lo: sci_gateway/c/sci_fromjava.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicall_scilab_la-sci_fromjava.lo -MD -MP -MF $(DEPDIR)/libscicall_scilab_la-sci_fromjava.Tpo -c -o libscicall_scilab_la-sci_fromjava.lo `test -f 'sci_gateway/c/sci_fromjava.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fromjava.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicall_scilab_la-sci_fromjava.Tpo $(DEPDIR)/libscicall_scilab_la-sci_fromjava.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_fromjava.c' object='libscicall_scilab_la-sci_fromjava.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscicall_scilab_la-sci_fromjava.lo: sci_gateway/c/sci_fromjava.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscicall_scilab_la-sci_fromjava.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscicall_scilab_la-sci_fromjava.Tpo -c -o sci_gateway/c/libscicall_scilab_la-sci_fromjava.lo `test -f 'sci_gateway/c/sci_fromjava.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fromjava.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscicall_scilab_la-sci_fromjava.Tpo sci_gateway/c/$(DEPDIR)/libscicall_scilab_la-sci_fromjava.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_fromjava.c' object='sci_gateway/c/libscicall_scilab_la-sci_fromjava.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicall_scilab_la-sci_fromjava.lo `test -f 'sci_gateway/c/sci_fromjava.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fromjava.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscicall_scilab_la-sci_fromjava.lo `test -f 'sci_gateway/c/sci_fromjava.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fromjava.c
 
-libscicall_scilab_la-sci_fromc.lo: sci_gateway/c/sci_fromc.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicall_scilab_la-sci_fromc.lo -MD -MP -MF $(DEPDIR)/libscicall_scilab_la-sci_fromc.Tpo -c -o libscicall_scilab_la-sci_fromc.lo `test -f 'sci_gateway/c/sci_fromc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fromc.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicall_scilab_la-sci_fromc.Tpo $(DEPDIR)/libscicall_scilab_la-sci_fromc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_fromc.c' object='libscicall_scilab_la-sci_fromc.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscicall_scilab_la-sci_fromc.lo: sci_gateway/c/sci_fromc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscicall_scilab_la-sci_fromc.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscicall_scilab_la-sci_fromc.Tpo -c -o sci_gateway/c/libscicall_scilab_la-sci_fromc.lo `test -f 'sci_gateway/c/sci_fromc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fromc.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscicall_scilab_la-sci_fromc.Tpo sci_gateway/c/$(DEPDIR)/libscicall_scilab_la-sci_fromc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_fromc.c' object='sci_gateway/c/libscicall_scilab_la-sci_fromc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicall_scilab_la-sci_fromc.lo `test -f 'sci_gateway/c/sci_fromc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fromc.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscicall_scilab_la-sci_fromc.lo `test -f 'sci_gateway/c/sci_fromc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fromc.c
 
-libscicall_scilab_la-gw_call_scilab.lo: sci_gateway/c/gw_call_scilab.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicall_scilab_la-gw_call_scilab.lo -MD -MP -MF $(DEPDIR)/libscicall_scilab_la-gw_call_scilab.Tpo -c -o libscicall_scilab_la-gw_call_scilab.lo `test -f 'sci_gateway/c/gw_call_scilab.c' || echo '$(srcdir)/'`sci_gateway/c/gw_call_scilab.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicall_scilab_la-gw_call_scilab.Tpo $(DEPDIR)/libscicall_scilab_la-gw_call_scilab.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_call_scilab.c' object='libscicall_scilab_la-gw_call_scilab.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscicall_scilab_la-gw_call_scilab.lo: sci_gateway/c/gw_call_scilab.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscicall_scilab_la-gw_call_scilab.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscicall_scilab_la-gw_call_scilab.Tpo -c -o sci_gateway/c/libscicall_scilab_la-gw_call_scilab.lo `test -f 'sci_gateway/c/gw_call_scilab.c' || echo '$(srcdir)/'`sci_gateway/c/gw_call_scilab.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscicall_scilab_la-gw_call_scilab.Tpo sci_gateway/c/$(DEPDIR)/libscicall_scilab_la-gw_call_scilab.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_call_scilab.c' object='sci_gateway/c/libscicall_scilab_la-gw_call_scilab.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicall_scilab_la-gw_call_scilab.lo `test -f 'sci_gateway/c/gw_call_scilab.c' || echo '$(srcdir)/'`sci_gateway/c/gw_call_scilab.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicall_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscicall_scilab_la-gw_call_scilab.lo `test -f 'sci_gateway/c/gw_call_scilab.c' || echo '$(srcdir)/'`sci_gateway/c/gw_call_scilab.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
+	-rm -rf src/c/.libs src/c/_libs
 install-libscicall_scilab_la_etcDATA: $(libscicall_scilab_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libscicall_scilab_la_etc_DATA)'; test -n "$(libscicall_scilab_la_etcdir)" || list=; \
@@ -1021,6 +1060,10 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/c/$(am__dirstamp)
+	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/c/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1031,7 +1074,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1081,7 +1124,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

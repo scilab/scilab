@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2000 - INRIA - Carlos Klimann
  * Copyright (C) 2013 - Samuel GOUGEON
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,16 +14,22 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="variance">
     <refnamediv>
         <refname>variance</refname>
-        <refpurpose>variance des éléments d'un vecteur, matrice (voire hypermatrice) réel ou complexe</refpurpose>
+        <refpurpose>variance d'un vecteur, matrice (voire hypermatrice) de nombres réels ou complexes</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>s = variance(x [,orien [,m]])
-            s = variance(x, 'r') or s = variance(x, 1)
-            s = variance(x, 'c') or s = variance(x, 2)
-            s = variance(x, '*', m)
-            s = variance(x, 'r', m)
-            s = variance(x, 'c', m)
+        <synopsis>
+            [s, [mc]] = variance(x [,orien [,m]])
+            
+            [s, mc] = variance(x)
+            [s, mc] = variance(x, "r"|1 )
+            [s, mc] = variance(x, "c"|2 )
+            [s, mc] = variance(x, "*"  , %nan)
+            [s, mc] = variance(x, "r"|1, %nan)
+            [s, mc] = variance(x, "c"|2, %nan)
+            s = variance(x, "*", m)
+            s = variance(x, "r", m)
+            s = variance(x, "c", m)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -33,7 +39,7 @@
                 <term>x</term>
                 <listitem>
                     <para>
-                        vecteur ou matrice de nombres réels ou complexes. Une hypermatrice est acceptable uniquement sans les options "r" ou "c": <literal>variance(x)</literal> or <literal>variance(x,"*",1)</literal>
+                        vecteur ou matrice de nombres réels ou complexes. Une hypermatrice est acceptable uniquement sans les options "r" ou "c" : <literal>variance(x)</literal> or <literal>variance(x,"*",m)</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -41,16 +47,16 @@
                 <term>orien</term>
                 <listitem>
                     <para>
-                        variance selon les lignes ou les colonnes de <literal>x</literal>. Les valeurs possibles sont
+                        variance selon les lignes ou les colonnes de <varname>x</varname>. Les valeurs possibles sont
                         <itemizedlist>
                             <listitem>
-                                1 or "r" : calcul par colonne. Le résultat est un vecteur <literal>r</literal>angée (ligne)
+                                1 or "r" : calcul par colonne. Le résultat est un vecteur <varname>r</varname>angée (ligne)
                             </listitem>
                             <listitem>
-                                2 or "c" : calcul par ligne. Le résultat est une <literal>c</literal>olonne
+                                2 or "c" : calcul par ligne. Le résultat est une <varname>c</varname>olonne
                             </listitem>
                             <listitem>
-                                "*" : calcul tous éléments de <literal>x</literal> confondus (mode utilisé a priori); utile si le 3ème paramètre <literal>w</literal> doit par ailleurs être indiqué.
+                                "*" : calcul tous les éléments de <varname>x</varname> confondus (mode utilisé par défaut); requis si le 3ème paramètre <varname>m</varname> doit être utilisé.
                             </listitem>
                         </itemizedlist>
                     </para>
@@ -60,10 +66,46 @@
                 <term>m</term>
                 <listitem>
                     <para>
-                        m: la moyenne a priori. Si cet argument est présent, alors la somme est normalisée par
-                        <literal>n</literal>.
-                        Sinon, elle est normalisée par <literal>n-1</literal> et <literal>variance</literal> retourne le mielleur estimateur non-biaisé de la variance.
+                        Espérance mathématique de la loi de distribution de probabilité sous-jacente (supposée connue).
+                        <itemizedlist>
+                            <listitem>
+                                mode "*" (par défaut) : <varname>m</varname> doit être scalaire
+                            </listitem>
+                            <listitem>
+                                mode "r" or 1 : <varname>m</varname> un vecteur ligne à <literal>size(x,2)</literal> éléments. La variance des éléments de la colonne #j de <varname>x</varname> est calculée en utilisant <literal>m(j)</literal> comme moyenne pour la colonne. Si <varname>m</varname> est la même pour toutes les colonnes, sa valeur scalaire peut être fournie au lieu d'une ligne.
+                            </listitem>
+                            <listitem>
+                                mode "c" ou 2 : <varname>m</varname> un vecteur colonne à <literal>size(x,1)</literal> éléments. La variance des éléments de la ligne #i de <varname>x</varname> est calculée en utilisant <literal>m(i)</literal> comme moyenne pour la ligne. Si <varname>m</varname> est la même pour toutes les lignes, sa valeur scalaire peut être fournie au lieu d'une colonne.
+                            </listitem>
+                        </itemizedlist>
                     </para>
+                    <para>
+                        Lorsque <varname>m</varname> n'est pas indiquée, la <literal>variance</literal> est estimée en divisant par (n-1) (non n) la distance quadratique totale des n valeurs à la moyenne calculée <literal>mean(x)</literal>(ou <literal>mean(x,"c")</literal> ou <literal>mean(x,"r")</literal>) (n vaut length(x) ou size(x,1) ou size(x,2)). Si les éléments de <varname>x</varname> sont indépendants entre eux, l'estimation de la variance retournée est non biaisée.
+                    </para>
+                    <para>
+                        Sinon, la <literal>variance</literal> est estimée en divisant par <literal>n</literal> (au lieu de <literal>n-1</literal>) la distance quadratique totale des valeurs <literal>x(k)</literal> à <varname>m</varname> (<literal>n</literal> valant toujours <literal>length(x)</literal> ou <literal>size(x,1)</literal> ou <literal>size(x,2)</literal>). Alors :
+                        <itemizedlist>
+                            <listitem>
+                                Si une véritable valeur <varname>m</varname> indépendante des éléments de x est fournie, elle est utilisée comme moyenne de référence dans le calcul de la variance. La valeur obtenue et retournée pour celle-ci est alors réputée non biaisée.
+                            </listitem>
+                            <listitem>
+                                Si la valeur spéciale <literal>m=%nan</literal> est fournie, la variance est toujours "normalisée" par n (non n-1) mais est estimée en utilisant l'estimation "empirique"
+                                <literal>m=mean(x)</literal> de la moyenne de référence (ou <literal>m = mean(x,"c")</literal> ou <literal>m = mean(x,"r")</literal>). Comme <varname>m=%nan</varname> n'apporte aucune information nouvelle à "l'équation", celle-ci retourne une estimation biaisée de la variance.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    Estimation de la variance des valeurs de <varname>x</varname> (non pondérées). <varname>s</varname> est un scalaire ou un vecteur ligne ou colonne selon l'option <varname>orien</varname> utilisée.
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mc</term>
+                <listitem>
+                    Moyenne calculée à partir de <varname>x</varname> (<literal>= mean(x,..)</literal>) et utilisée comme référence dans le calcul de la variance. Valeur scalaire ou en vecteur colonne ou ligne, selon l'option <varname>orien</varname> utilisée.
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -74,56 +116,75 @@
             Cette fonction calcule la variance d'un ensemble de nombres réels ou complexes d'un vecteur, d'une matrice (voire d'une hypermatrice) <literal>x</literal>. Pour <literal>x</literal> à valeurs complexes, <literal>variance(x,..) = variance(real(x),..) + variance(imag(x),..)</literal> est retournée.
         </para>
         <para>
-            Pour un vecteur, une matrice ou une hypermatrice <literal>x</literal>, <literal>s = variance(x)</literal> ou <literal>s = variance(x, "*", 1)</literal>
-            retourne  dans le scalaire <literal>s</literal> la variance de tous les éléments de <literal>x</literal>.
+            Pour un vecteur, une matrice ou une hypermatrice <varname>x</varname>, <literal>s = variance(x)</literal> ou <literal>s = variance(x, "*")</literal>
+            retourne  dans le scalaire <varname>s</varname> la variance de tous les éléments de <varname>x</varname>.
         </para>
         <para>
-            <literal>s = variance(x,'c')</literal> (ou indifféremment <literal>s = variance(x, 2)</literal>) calcule la variance de chaque ligne.
-            Le vecteur colonne <literal>s</literal> est retourné, avec <literal>s(j) = variance(x(j,:),..)</literal>.
+            <literal>s = variance(x,"c")</literal> (ou indifféremment <literal>s = variance(x, 2)</literal>) calcule la variance de chaque ligne.
+            Le vecteur colonne <varname>s</varname> est retourné, avec <literal>s(j) = variance(x(j,:),..)</literal>.
         </para>
         <para>
-            <literal>s = variance(x,'r')</literal> (ou indifféremment <literal>s = variance(x,1)</literal>) calcule la variance de chaque colonne.
-            Le vecteur ligne <literal>s</literal> est retourné, avec <literal>s(i) = variance(x(:,i),..)</literal>.
+            <literal>s = variance(x,"r")</literal> (ou indifféremment <literal>s = variance(x,1)</literal>) calcule la variance de chaque colonne.
+            Le vecteur ligne <varname>s</varname> est retourné, avec <literal>s(i) = variance(x(:,i),..)</literal>.
         </para>
         <para>
-            <note>
-                Si <code>m=%nan</code>, alors la variance biaisée est retournée;
-                c'est-à-dire que la moyenne a priori choisie est celle de <varname>x</varname> et le dénominateur est <code>n</code>.
-            </note>
+            <warning>
+                La syntaxe <literal>variance(x, "*"|"c"|"r", 1)</literal> utilisable uniquement en Scilab 5.4.1 doit être remplacée par
+                <literal>variance(x,"*"|"c"|"r", %nan)</literal>. <literal>variance(x, "*"|"c"|"r", 1)</literal> émettra une alerte
+                jusqu'en Scilab 6.0. En effet, <literal>1</literal> est désormais compris comme <literal>m=1</literal>.
+                Si <literal>1</literal> est la valeur de l'espérance <varname>m</varname>à fournir, l'alerte peut être évitée
+                en indiquant<literal>1+%eps</literal> au lieu de <literal>1</literal>.
+            </warning>
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-x = [ 0.2113249 0.0002211 0.6653811;0.7560439 0.4453586 0.6283918 ]
+x = [ 0.2113249 0.0002211 0.6653811; 0.7560439 0.4453586 0.6283918 ]
 s = variance(x)
 s = variance(x, "r")
 s = variance(x, "c")
 
-// Si la moyenne est connue a priori
-m_r = mean(x, "r");
-m_c = mean(x, "c");
-s = variance(x, "r", m_r)
-s = variance(x, "c", m_c)
+// La loi de distribution de probabilité sous-jacente et son espérance (moyenne) sont connues :
+x = grand(100,5,"unf",0,7);	  // Distribution uniforme sur [0, 7]
+// => espérance = (0+7)/2 = 3.5  et variance = (7-0)^2/12
+(7-0)^2/12  				// Variance asymptotique vraie
+s = variance(x)             // Estimation non biaisée (division par n-1).
+s = variance(x, "*", 3.5)   // Estimation non biaisée (division par n). Toujours >= variance(x)
+s = variance(x, "*", %nan)	// Estimation biaisée     (division par n). Toujours <= variance(x)
+// A travers les colonnes (le long des lignes) => résultat en colonne :
+s = variance(x, "c")
+s = variance(x, "c", 3.5)
+s = variance(x, "c", %nan)
 
-// avec des nombres complexes
-x = rand(4,3) + rand(4,3)*%i
+// Nombres complexes uniformément distribués sur [0,1] + [0,1].i :
+x = rand(4, 3) + rand(4, 3)*%i
 s = variance(x)
+s = variance(x, "*", 0.5 + 0.5*%i)
+s = variance(x, "*", %nan)
 s = variance(x, "r")
 s = variance(x, "c")
 
-// avec une hypermatrice
-x = rand(3, 2, 2)
+// Nombres fournis en hypermatrice :
+x = rand(3, 2, 2)	// Distribution uniforme sur [0, 1]
 s = variance(x)
-// s = variance(x, "r")  // utilisation non admise pour une hypermatrice
-// s = variance(x, "c")  // utilisation non admise pour une hypermatrice
+s = variance(x, "*", 0.5)
+s = variance(x, "*", %nan)
+// s = variance(x, "r")  //  Utilisation non admise pour une hypermatrice
+// s = variance(x, "c")  //  Utilisation non admise pour une hypermatrice
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
+                <link linkend="variancef">variancef</link>
+            </member>
+            <member>
                 <link linkend="mtlb_var">mtlb_var</link>
+            </member>
+            <member>
+                <link linkend="stdev">stdev</link>
             </member>
         </simplelist>
     </refsection>
@@ -137,10 +198,34 @@ s = variance(x)
         <title>Historique</title>
         <revhistory>
             <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            <para>variance(x, orien, 0|1) supprimée (utilisable uniquement avec Scilab 5.4.1)</para>
+                        </listitem>
+                        <listitem>
+                            <para>variance(x, orien, m) introduite : l'espérance mathématique m connue de la distribution de probabilité sous-jacente peut être spécifiée et utilisée</para>
+                        </listitem>
+                        <listitem>
+                            <para>variance(x, orien, %nan) introduite : mean(x,..) est utilisée, mais la distance quadratique totale est divisée par la taille n de l'échantillon (au lieu de n-1)</para>
+                        </listitem>
+                        <listitem>
+                            <para>[s, mc] = variance(x,..) introduite : la moyenne mc calculée sur l'échantillon x peut être obtenue en second résultat</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
                 <revnumber>5.4.1</revnumber>
-                <revdescription>variance(complexes) corrigée. variance(x,"*",1) introduite. Vectorisation du calcul pour variance(x,"r"|"c"). Révision complète de la page d'aide</revdescription>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            <para>variance(complexes) corrigée. variance(x, "*", 1) introduite. Vectorisation du calcul pour variance(x, "r"|"c"). Révision complète de la page d'aide</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
             </revision>
         </revhistory>
     </refsection>
-    
 </refentry>

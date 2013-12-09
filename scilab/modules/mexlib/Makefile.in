@@ -163,7 +163,9 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libmex_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libmat_la_DEPENDENCIES =
-am__objects_1 = libmat_la-mexlib.lo libmat_la-sci_gateway.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+am__objects_1 = src/c/libmat_la-mexlib.lo \
+	src/c/libmat_la-sci_gateway.lo
 am_libmat_la_OBJECTS = $(am__objects_1)
 libmat_la_OBJECTS = $(am_libmat_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -173,13 +175,14 @@ am__v_lt_1 =
 @MAINTAINER_MODE_FALSE@am_libmat_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libmat_la_rpath = -rpath $(pkglibdir)
 libmex_la_DEPENDENCIES =
-am__objects_2 = libmex_la-mexlib.lo libmex_la-sci_gateway.lo
+am__objects_2 = src/c/libmex_la-mexlib.lo \
+	src/c/libmex_la-sci_gateway.lo
 am_libmex_la_OBJECTS = $(am__objects_2)
 libmex_la_OBJECTS = $(am_libmex_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libmex_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libmex_la_rpath = -rpath $(pkglibdir)
 libmx_la_DEPENDENCIES =
-am__objects_3 = libmx_la-mexlib.lo libmx_la-sci_gateway.lo
+am__objects_3 = src/c/libmx_la-mexlib.lo src/c/libmx_la-sci_gateway.lo
 am_libmx_la_OBJECTS = $(am__objects_3)
 libmx_la_OBJECTS = $(am_libmx_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libmx_la_rpath =
@@ -714,97 +717,121 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/c/$(am__dirstamp):
+	@$(MKDIR_P) src/c
+	@: > src/c/$(am__dirstamp)
+src/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/c/$(DEPDIR)
+	@: > src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libmat_la-mexlib.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libmat_la-sci_gateway.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
 
 libmat.la: $(libmat_la_OBJECTS) $(libmat_la_DEPENDENCIES) $(EXTRA_libmat_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) $(am_libmat_la_rpath) $(libmat_la_OBJECTS) $(libmat_la_LIBADD) $(LIBS)
+src/c/libmex_la-mexlib.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libmex_la-sci_gateway.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
 
 libmex.la: $(libmex_la_OBJECTS) $(libmex_la_DEPENDENCIES) $(EXTRA_libmex_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) $(am_libmex_la_rpath) $(libmex_la_OBJECTS) $(libmex_la_LIBADD) $(LIBS)
+src/c/libmx_la-mexlib.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libmx_la-sci_gateway.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
 
 libmx.la: $(libmx_la_OBJECTS) $(libmx_la_DEPENDENCIES) $(EXTRA_libmx_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) $(am_libmx_la_rpath) $(libmx_la_OBJECTS) $(libmx_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f src/c/*.$(OBJEXT)
+	-rm -f src/c/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmat_la-mexlib.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmat_la-sci_gateway.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmex_la-mexlib.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmex_la-sci_gateway.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmx_la-mexlib.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmx_la-sci_gateway.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libmat_la-mexlib.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libmat_la-sci_gateway.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libmex_la-mexlib.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libmex_la-sci_gateway.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libmx_la-mexlib.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libmx_la-sci_gateway.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libmat_la-mexlib.lo: src/c/mexlib.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmat_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libmat_la-mexlib.lo -MD -MP -MF $(DEPDIR)/libmat_la-mexlib.Tpo -c -o libmat_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmat_la-mexlib.Tpo $(DEPDIR)/libmat_la-mexlib.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/mexlib.c' object='libmat_la-mexlib.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libmat_la-mexlib.lo: src/c/mexlib.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmat_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libmat_la-mexlib.lo -MD -MP -MF src/c/$(DEPDIR)/libmat_la-mexlib.Tpo -c -o src/c/libmat_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libmat_la-mexlib.Tpo src/c/$(DEPDIR)/libmat_la-mexlib.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/mexlib.c' object='src/c/libmat_la-mexlib.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmat_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libmat_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmat_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libmat_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
 
-libmat_la-sci_gateway.lo: src/c/sci_gateway.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmat_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libmat_la-sci_gateway.lo -MD -MP -MF $(DEPDIR)/libmat_la-sci_gateway.Tpo -c -o libmat_la-sci_gateway.lo `test -f 'src/c/sci_gateway.c' || echo '$(srcdir)/'`src/c/sci_gateway.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmat_la-sci_gateway.Tpo $(DEPDIR)/libmat_la-sci_gateway.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sci_gateway.c' object='libmat_la-sci_gateway.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libmat_la-sci_gateway.lo: src/c/sci_gateway.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmat_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libmat_la-sci_gateway.lo -MD -MP -MF src/c/$(DEPDIR)/libmat_la-sci_gateway.Tpo -c -o src/c/libmat_la-sci_gateway.lo `test -f 'src/c/sci_gateway.c' || echo '$(srcdir)/'`src/c/sci_gateway.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libmat_la-sci_gateway.Tpo src/c/$(DEPDIR)/libmat_la-sci_gateway.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sci_gateway.c' object='src/c/libmat_la-sci_gateway.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmat_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libmat_la-sci_gateway.lo `test -f 'src/c/sci_gateway.c' || echo '$(srcdir)/'`src/c/sci_gateway.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmat_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libmat_la-sci_gateway.lo `test -f 'src/c/sci_gateway.c' || echo '$(srcdir)/'`src/c/sci_gateway.c
 
-libmex_la-mexlib.lo: src/c/mexlib.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmex_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libmex_la-mexlib.lo -MD -MP -MF $(DEPDIR)/libmex_la-mexlib.Tpo -c -o libmex_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmex_la-mexlib.Tpo $(DEPDIR)/libmex_la-mexlib.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/mexlib.c' object='libmex_la-mexlib.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libmex_la-mexlib.lo: src/c/mexlib.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmex_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libmex_la-mexlib.lo -MD -MP -MF src/c/$(DEPDIR)/libmex_la-mexlib.Tpo -c -o src/c/libmex_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libmex_la-mexlib.Tpo src/c/$(DEPDIR)/libmex_la-mexlib.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/mexlib.c' object='src/c/libmex_la-mexlib.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmex_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libmex_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmex_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libmex_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
 
-libmex_la-sci_gateway.lo: src/c/sci_gateway.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmex_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libmex_la-sci_gateway.lo -MD -MP -MF $(DEPDIR)/libmex_la-sci_gateway.Tpo -c -o libmex_la-sci_gateway.lo `test -f 'src/c/sci_gateway.c' || echo '$(srcdir)/'`src/c/sci_gateway.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmex_la-sci_gateway.Tpo $(DEPDIR)/libmex_la-sci_gateway.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sci_gateway.c' object='libmex_la-sci_gateway.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libmex_la-sci_gateway.lo: src/c/sci_gateway.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmex_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libmex_la-sci_gateway.lo -MD -MP -MF src/c/$(DEPDIR)/libmex_la-sci_gateway.Tpo -c -o src/c/libmex_la-sci_gateway.lo `test -f 'src/c/sci_gateway.c' || echo '$(srcdir)/'`src/c/sci_gateway.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libmex_la-sci_gateway.Tpo src/c/$(DEPDIR)/libmex_la-sci_gateway.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sci_gateway.c' object='src/c/libmex_la-sci_gateway.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmex_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libmex_la-sci_gateway.lo `test -f 'src/c/sci_gateway.c' || echo '$(srcdir)/'`src/c/sci_gateway.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmex_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libmex_la-sci_gateway.lo `test -f 'src/c/sci_gateway.c' || echo '$(srcdir)/'`src/c/sci_gateway.c
 
-libmx_la-mexlib.lo: src/c/mexlib.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmx_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libmx_la-mexlib.lo -MD -MP -MF $(DEPDIR)/libmx_la-mexlib.Tpo -c -o libmx_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmx_la-mexlib.Tpo $(DEPDIR)/libmx_la-mexlib.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/mexlib.c' object='libmx_la-mexlib.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libmx_la-mexlib.lo: src/c/mexlib.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmx_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libmx_la-mexlib.lo -MD -MP -MF src/c/$(DEPDIR)/libmx_la-mexlib.Tpo -c -o src/c/libmx_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libmx_la-mexlib.Tpo src/c/$(DEPDIR)/libmx_la-mexlib.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/mexlib.c' object='src/c/libmx_la-mexlib.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmx_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libmx_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmx_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libmx_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
 
-libmx_la-sci_gateway.lo: src/c/sci_gateway.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmx_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libmx_la-sci_gateway.lo -MD -MP -MF $(DEPDIR)/libmx_la-sci_gateway.Tpo -c -o libmx_la-sci_gateway.lo `test -f 'src/c/sci_gateway.c' || echo '$(srcdir)/'`src/c/sci_gateway.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmx_la-sci_gateway.Tpo $(DEPDIR)/libmx_la-sci_gateway.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sci_gateway.c' object='libmx_la-sci_gateway.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libmx_la-sci_gateway.lo: src/c/sci_gateway.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmx_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libmx_la-sci_gateway.lo -MD -MP -MF src/c/$(DEPDIR)/libmx_la-sci_gateway.Tpo -c -o src/c/libmx_la-sci_gateway.lo `test -f 'src/c/sci_gateway.c' || echo '$(srcdir)/'`src/c/sci_gateway.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libmx_la-sci_gateway.Tpo src/c/$(DEPDIR)/libmx_la-sci_gateway.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sci_gateway.c' object='src/c/libmx_la-sci_gateway.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmx_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libmx_la-sci_gateway.lo `test -f 'src/c/sci_gateway.c' || echo '$(srcdir)/'`src/c/sci_gateway.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmx_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libmx_la-sci_gateway.lo `test -f 'src/c/sci_gateway.c' || echo '$(srcdir)/'`src/c/sci_gateway.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf src/c/.libs src/c/_libs
 install-libmex_la_etcDATA: $(libmex_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libmex_la_etc_DATA)'; test -n "$(libmex_la_etcdir)" || list=; \
@@ -985,6 +1012,8 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/c/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -995,7 +1024,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf src/c/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1042,7 +1071,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf src/c/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -49,13 +49,15 @@ public class ColorTriplet {
 
     /** returns the ambient color */
     public Double[] getAmbientColor() {
-        Double[] ret = new Double[]{ambient[0], ambient[1], ambient[2]};
+        Double[] ret = new Double[] {ambient[0], ambient[1], ambient[2]};
         return ret;
     }
 
     /** Sets the ambient color */
     public UpdateStatus setAmbientColor(Double[] color) {
-        if (color.length != 3 || !isColorValid(color)) return UpdateStatus.Fail;
+        if (color.length != 3 || !isColorValid(color)) {
+            return UpdateStatus.Fail;
+        }
 
         if (ambient[0] != color[0] || ambient[1] != color[1] || ambient[2] != color[2]) {
             ambient[0] = color[0];
@@ -68,13 +70,15 @@ public class ColorTriplet {
 
     /** returns the dffuse color */
     public Double[] getDiffuseColor() {
-        Double[] ret = new Double[]{diffuse[0], diffuse[1], diffuse[2]};
+        Double[] ret = new Double[] {diffuse[0], diffuse[1], diffuse[2]};
         return ret;
     }
 
     /** Sets the diffuse color */
     public UpdateStatus setDiffuseColor(Double[] color) {
-        if (color.length != 3 || !isColorValid(color)) return UpdateStatus.Fail;
+        if (color.length != 3 || !isColorValid(color)) {
+            return UpdateStatus.Fail;
+        }
 
         if (diffuse[0] != color[0] || diffuse[1] != color[1] || diffuse[2] != color[2]) {
             diffuse[0] = color[0];
@@ -87,13 +91,15 @@ public class ColorTriplet {
 
     /** returns the specular color */
     public Double[] getSpecularColor() {
-        Double[] ret = new Double[]{specular[0], specular[1], specular[2]};
+        Double[] ret = new Double[] {specular[0], specular[1], specular[2]};
         return ret;
     }
 
     /** Sets the specular color */
     public UpdateStatus setSpecularColor(Double[] color) {
-        if (color.length != 3 || !isColorValid(color)) return UpdateStatus.Fail;
+        if (color.length != 3 || !isColorValid(color)) {
+            return UpdateStatus.Fail;
+        }
 
         if (specular[0] != color[0] || specular[1] != specular[1] || specular[2] != color[2]) {
             specular[0] = color[0];

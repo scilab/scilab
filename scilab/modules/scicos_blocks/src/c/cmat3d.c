@@ -493,8 +493,16 @@ static BOOL setBounds(scicos_block * block, int iAxeUID, int iPlot3dUID)
     rotationAngle[1] = 280;     // theta
 
     result = setGraphicObjectProperty(iPlot3dUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
-    result &= setGraphicObjectProperty(iAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
-    result &= setGraphicObjectProperty(iAxeUID, __GO_ROTATION_ANGLES__, rotationAngle, jni_double_vector, 2);
+    if (result == FALSE)
+    {
+        return result;
+    }
+    result = setGraphicObjectProperty(iAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+    if (result == FALSE)
+    {
+        return result;
+    }
+    result = setGraphicObjectProperty(iAxeUID, __GO_ROTATION_ANGLES__, rotationAngle, jni_double_vector, 2);
 
     return result;
 }
@@ -506,16 +514,36 @@ static BOOL setPlot3dSettings(int iPlot3dUID)
     int i__2 = 2;
     int i__4 = 4;
 
-    BOOL result = TRUE;
+    BOOL result;
 
-    result &= setGraphicObjectProperty(iPlot3dUID, __GO_SURFACE_MODE__, &i__1, jni_bool, 1);
-    result &= setGraphicObjectProperty(iPlot3dUID, __GO_LINE_THICKNESS__, &d__1, jni_double, 1);
+    result = setGraphicObjectProperty(iPlot3dUID, __GO_SURFACE_MODE__, &i__1, jni_bool, 1);
+    if (result == FALSE)
+    {
+        return result;
+    }
+    result = setGraphicObjectProperty(iPlot3dUID, __GO_LINE_THICKNESS__, &d__1, jni_double, 1);
+    if (result == FALSE)
+    {
+        return result;
+    }
 
-    result &= setGraphicObjectProperty(iPlot3dUID, __GO_COLOR_MODE__, &i__2, jni_int, 1);
-    result &= setGraphicObjectProperty(iPlot3dUID, __GO_COLOR_FLAG__, &i__1, jni_int, 1);
-    result &= setGraphicObjectProperty(iPlot3dUID, __GO_HIDDEN_COLOR__, &i__4, jni_int, 1);
+    result = setGraphicObjectProperty(iPlot3dUID, __GO_COLOR_MODE__, &i__2, jni_int, 1);
+    if (result == FALSE)
+    {
+        return result;
+    }
+    result = setGraphicObjectProperty(iPlot3dUID, __GO_COLOR_FLAG__, &i__1, jni_int, 1);
+    if (result == FALSE)
+    {
+        return result;
+    }
+    result = setGraphicObjectProperty(iPlot3dUID, __GO_HIDDEN_COLOR__, &i__4, jni_int, 1);
+    if (result == FALSE)
+    {
+        return result;
+    }
 
-    setGraphicObjectProperty(iPlot3dUID, __GO_CLIP_STATE__, &i__1, jni_int, 1);
+    result = setGraphicObjectProperty(iPlot3dUID, __GO_CLIP_STATE__, &i__1, jni_int, 1);
 
     return result;
 }
@@ -540,6 +568,10 @@ static BOOL setDefaultValues(scicos_block * block, int iPlot3dUID)
         return FALSE;
     }
     result = setGraphicObjectProperty(iPlot3dUID, __GO_DATA_MODEL_Z__, values, jni_double_vector, m * n);
+    if (result == FALSE)
+    {
+        goto local_return;
+    }
 
     len = Max(m, n);
     for (i = 1; i <= len; i++)
@@ -547,9 +579,15 @@ static BOOL setDefaultValues(scicos_block * block, int iPlot3dUID)
         values[i] = (double) i;
     }
 
-    result &= setGraphicObjectProperty(iPlot3dUID, __GO_DATA_MODEL_X__, values, jni_double_vector, m);
-    result &= setGraphicObjectProperty(iPlot3dUID, __GO_DATA_MODEL_Y__, values, jni_double_vector, n);
+    result = setGraphicObjectProperty(iPlot3dUID, __GO_DATA_MODEL_X__, values, jni_double_vector, m);
+    if (result == FALSE)
+    {
+        goto local_return;
+    }
+    result = setGraphicObjectProperty(iPlot3dUID, __GO_DATA_MODEL_Y__, values, jni_double_vector, n);
 
+local_return:
     FREE(values);
     return result;
 }
+

@@ -41,6 +41,7 @@ SCICOS_BLOCKS_IMPEXP void dollar4_m(scicos_block *block, int flag)
 
     int m = 0, n = 0;
     double *y = NULL, *u = NULL, *oz = NULL;
+    dol_struct** work = (dol_struct**) block->work;
     dol_struct *ptr = NULL;
     m = GetInPortRows(block, 1);
     n = GetInPortCols(block, 1);
@@ -50,24 +51,24 @@ SCICOS_BLOCKS_IMPEXP void dollar4_m(scicos_block *block, int flag)
 
     if (flag == 4)
     {
-        *(block->work) = (dol_struct*) scicos_malloc(sizeof(dol_struct));
-        ptr = *(block->work);
+        *work = (dol_struct*) scicos_malloc(sizeof(dol_struct));
+        ptr = *work;
         /*	ptr->s=(int) scicos_malloc(sizeof(int));*/
         ptr->s = GetSizeOfOz(block, 1);
     }
     if (flag == 1 || flag == 6)
     {
-        ptr = *(block->work);
+        ptr = *work;
         memcpy(y, oz, m * n * (ptr->s));
     }
     if (flag == 2)
     {
-        ptr = *(block->work);
+        ptr = *work;
         memcpy(oz, u, m * n * ptr->s);
     }
     if (flag == 5)
     {
-        ptr = *(block->work);
+        ptr = *work;
         if (ptr != NULL)
         {
             scicos_free(ptr);

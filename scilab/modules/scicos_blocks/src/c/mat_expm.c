@@ -29,7 +29,7 @@
 #include "scicos_free.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(dexpm1)();
+extern int C2F(dexpm1)(int* ia, int* n, double* a, double* ea, int* iea, double* w, int* iw, int* ierr);
 /*--------------------------------------------------------------------------*/
 typedef struct
 {
@@ -43,6 +43,7 @@ SCICOS_BLOCKS_IMPEXP void mat_expm(scicos_block *block, int flag)
     double *y = NULL;
     int nu = 0;
     int ierr = 0;
+    mat_exp_struct** work = (mat_exp_struct**) block->work;
     mat_exp_struct *ptr = NULL;
 
     nu = GetInPortCols(block, 1);
@@ -52,12 +53,12 @@ SCICOS_BLOCKS_IMPEXP void mat_expm(scicos_block *block, int flag)
     /*init : initialization*/
     if (flag == 4)
     {
-        if ((*(block->work) = (mat_exp_struct*) scicos_malloc(sizeof(mat_exp_struct))) == NULL)
+        if ((*work = (mat_exp_struct*) scicos_malloc(sizeof(mat_exp_struct))) == NULL)
         {
             set_block_error(-16);
             return;
         }
-        ptr = *(block->work);
+        ptr = *work;
         if ((ptr->iwork = (int*) scicos_malloc(sizeof(int) * (2 * nu))) == NULL)
         {
             set_block_error(-16);
@@ -76,7 +77,7 @@ SCICOS_BLOCKS_IMPEXP void mat_expm(scicos_block *block, int flag)
     /* Terminaison */
     else if (flag == 5)
     {
-        ptr = *(block->work);
+        ptr = *work;
         if (ptr->dwork != NULL)
         {
             scicos_free(ptr->iwork);
@@ -88,7 +89,7 @@ SCICOS_BLOCKS_IMPEXP void mat_expm(scicos_block *block, int flag)
 
     else
     {
-        ptr = *(block->work);
+        ptr = *work;
         C2F(dexpm1)(&nu, &nu, u, y, &nu, ptr->dwork, ptr->iwork, &ierr);
         if (ierr != 0)
         {

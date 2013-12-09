@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-09-27 17:14+0100\n"
+"Revision-Date: 2013-12-09 09:48+0100\n"
 
 # File: sci_gateway/c/sci_buildouttb.c, line: 95
 #, c-format
@@ -28,37 +28,43 @@ msgid "%s : lnktyp argument must be double or integer.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_buildouttb.c, line: 143
-# File: sci_gateway/c/sci_buildouttb.c, line: 166
+# File: sci_gateway/c/sci_buildouttb.c, line: 139
+# File: sci_gateway/c/sci_buildouttb.c, line: 162
 #, c-format
 msgid "%s : inconsistent dimension between lnksz and lnktyp.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_buildouttb.c, line: 149
+# File: sci_gateway/c/sci_buildouttb.c, line: 145
 #, c-format
 msgid "%s : bad dimension for lnksz argument.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_buildouttb.c, line: 172
+# File: sci_gateway/c/sci_buildouttb.c, line: 168
 #, c-format
 msgid "%s : bad dimension for lnktyp argument.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_buildouttb.c, line: 179
+# File: sci_gateway/c/sci_buildouttb.c, line: 175
 #, c-format
 msgid "%s : lnksz and lnktyp argument must have the same length.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_buildouttb.c, line: 186
-# File: sci_gateway/c/sci_buildouttb.c, line: 193
+# File: sci_gateway/c/sci_buildouttb.c, line: 182
+# File: sci_gateway/c/sci_buildouttb.c, line: 189
 # File: sci_gateway/c/sci_buildouttb.c, line: 562
-# File: sci_gateway/c/sci_scicosim.c, line: 2370
+# File: sci_gateway/c/sci_scicosim.c, line: 2380
 #, c-format
 msgid "%s : No more free memory.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_buildouttb.c, line: 380
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #
@@ -79,48 +85,48 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_callblk.c, line: 95
 # File: sci_gateway/c/sci_callblk.c, line: 121
-# File: sci_gateway/c/sci_scicosim.c, line: 439
-# File: sci_gateway/c/sci_scicosim.c, line: 457
-# File: sci_gateway/c/sci_scicosim.c, line: 560
-# File: sci_gateway/c/sci_scicosim.c, line: 586
-# File: sci_gateway/c/sci_scicosim.c, line: 613
-# File: sci_gateway/c/sci_scicosim.c, line: 641
-# File: sci_gateway/c/sci_scicosim.c, line: 670
-# File: sci_gateway/c/sci_scicosim.c, line: 700
-# File: sci_gateway/c/sci_scicosim.c, line: 731
-# File: sci_gateway/c/sci_scicosim.c, line: 763
-# File: sci_gateway/c/sci_scicosim.c, line: 809
-# File: sci_gateway/c/sci_scicosim.c, line: 843
-# File: sci_gateway/c/sci_scicosim.c, line: 878
-# File: sci_gateway/c/sci_scicosim.c, line: 937
-# File: sci_gateway/c/sci_scicosim.c, line: 974
-# File: sci_gateway/c/sci_scicosim.c, line: 1007
-# File: sci_gateway/c/sci_scicosim.c, line: 1045
-# File: sci_gateway/c/sci_scicosim.c, line: 1085
-# File: sci_gateway/c/sci_scicosim.c, line: 1126
-# File: sci_gateway/c/sci_scicosim.c, line: 1168
-# File: sci_gateway/c/sci_scicosim.c, line: 1211
-# File: sci_gateway/c/sci_scicosim.c, line: 1255
-# File: sci_gateway/c/sci_scicosim.c, line: 1294
-# File: sci_gateway/c/sci_scicosim.c, line: 1338
-# File: sci_gateway/c/sci_scicosim.c, line: 1378
-# File: sci_gateway/c/sci_scicosim.c, line: 1419
-# File: sci_gateway/c/sci_scicosim.c, line: 1467
-# File: sci_gateway/c/sci_scicosim.c, line: 1511
-# File: sci_gateway/c/sci_scicosim.c, line: 1561
-# File: sci_gateway/c/sci_scicosim.c, line: 1614
-# File: sci_gateway/c/sci_scicosim.c, line: 1845
-# File: sci_gateway/c/sci_scicosim.c, line: 1918
+# File: sci_gateway/c/sci_scicosim.c, line: 447
+# File: sci_gateway/c/sci_scicosim.c, line: 465
+# File: sci_gateway/c/sci_scicosim.c, line: 568
+# File: sci_gateway/c/sci_scicosim.c, line: 594
+# File: sci_gateway/c/sci_scicosim.c, line: 621
+# File: sci_gateway/c/sci_scicosim.c, line: 649
+# File: sci_gateway/c/sci_scicosim.c, line: 678
+# File: sci_gateway/c/sci_scicosim.c, line: 708
+# File: sci_gateway/c/sci_scicosim.c, line: 739
+# File: sci_gateway/c/sci_scicosim.c, line: 771
+# File: sci_gateway/c/sci_scicosim.c, line: 817
+# File: sci_gateway/c/sci_scicosim.c, line: 851
+# File: sci_gateway/c/sci_scicosim.c, line: 886
+# File: sci_gateway/c/sci_scicosim.c, line: 945
+# File: sci_gateway/c/sci_scicosim.c, line: 982
+# File: sci_gateway/c/sci_scicosim.c, line: 1015
+# File: sci_gateway/c/sci_scicosim.c, line: 1053
+# File: sci_gateway/c/sci_scicosim.c, line: 1093
+# File: sci_gateway/c/sci_scicosim.c, line: 1134
+# File: sci_gateway/c/sci_scicosim.c, line: 1176
+# File: sci_gateway/c/sci_scicosim.c, line: 1219
+# File: sci_gateway/c/sci_scicosim.c, line: 1263
+# File: sci_gateway/c/sci_scicosim.c, line: 1302
+# File: sci_gateway/c/sci_scicosim.c, line: 1346
+# File: sci_gateway/c/sci_scicosim.c, line: 1386
+# File: sci_gateway/c/sci_scicosim.c, line: 1427
+# File: sci_gateway/c/sci_scicosim.c, line: 1475
+# File: sci_gateway/c/sci_scicosim.c, line: 1519
+# File: sci_gateway/c/sci_scicosim.c, line: 1569
+# File: sci_gateway/c/sci_scicosim.c, line: 1622
+# File: sci_gateway/c/sci_scicosim.c, line: 1853
 # File: sci_gateway/c/sci_scicosim.c, line: 1926
-# File: sci_gateway/c/sci_scicosim.c, line: 1935
-# File: sci_gateway/c/sci_scicosim.c, line: 2056
-# File: sci_gateway/c/sci_scicosim.c, line: 2067
-# File: sci_gateway/c/sci_scicosim.c, line: 2079
-# File: sci_gateway/c/sci_scicosim.c, line: 2205
-# File: sci_gateway/c/sci_scicosim.c, line: 2219
-# File: sci_gateway/c/sci_scicosim.c, line: 2234
-# File: sci_gateway/c/sci_scicosim.c, line: 2401
-# File: sci_gateway/c/sci_scicosim.c, line: 2419
+# File: sci_gateway/c/sci_scicosim.c, line: 1934
+# File: sci_gateway/c/sci_scicosim.c, line: 1943
+# File: sci_gateway/c/sci_scicosim.c, line: 2064
+# File: sci_gateway/c/sci_scicosim.c, line: 2075
+# File: sci_gateway/c/sci_scicosim.c, line: 2087
+# File: sci_gateway/c/sci_scicosim.c, line: 2213
+# File: sci_gateway/c/sci_scicosim.c, line: 2227
+# File: sci_gateway/c/sci_scicosim.c, line: 2242
+# File: sci_gateway/c/sci_scicosim.c, line: 2411
+# File: sci_gateway/c/sci_scicosim.c, line: 2429
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -173,7 +179,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_data2sig.c, line: 152
-# File: sci_gateway/c/sci_scicosim.c, line: 487
+# File: sci_gateway/c/sci_scicosim.c, line: 495
 #, c-format
 msgid "%s : Second argument must be a scalar.\n"
 msgstr ""
@@ -247,80 +253,80 @@ msgid "%s : Error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 134
+# File: sci_gateway/c/sci_model2blk.c, line: 135
 #, c-format
 msgid "%s : First argument must be a Typed list.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 148
+# File: sci_gateway/c/sci_model2blk.c, line: 149
 #, c-format
 msgid "%s : First argument must be a scicos model.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 204
-# File: sci_gateway/c/sci_scicosim.c, line: 1886
+# File: sci_gateway/c/sci_model2blk.c, line: 205
+# File: sci_gateway/c/sci_scicosim.c, line: 1894
 #, c-format
 msgid "%s : unknown block : %s\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 221
+# File: sci_gateway/c/sci_model2blk.c, line: 222
 #, c-format
 msgid "%s : type 1 function not allowed for scilab blocks\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 224
+# File: sci_gateway/c/sci_model2blk.c, line: 225
 #, c-format
 msgid "%s : type 2 function not allowed for scilab blocks\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 243
+# File: sci_gateway/c/sci_model2blk.c, line: 244
 #, c-format
 msgid "%s : Undefined Function type\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 259
+# File: sci_gateway/c/sci_model2blk.c, line: 260
 #, c-format
 msgid "%s : Function not found\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 281
+# File: sci_gateway/c/sci_model2blk.c, line: 282
 #, c-format
 msgid "%s : Undetermined Size. in(%d)=%d. Please adjust your model.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 289
-# File: sci_gateway/c/sci_model2blk.c, line: 296
-# File: sci_gateway/c/sci_model2blk.c, line: 401
-# File: sci_gateway/c/sci_model2blk.c, line: 420
-# File: sci_gateway/c/sci_model2blk.c, line: 439
-# File: sci_gateway/c/sci_model2blk.c, line: 458
-# File: sci_gateway/c/sci_model2blk.c, line: 477
-# File: sci_gateway/c/sci_model2blk.c, line: 496
-# File: sci_gateway/c/sci_model2blk.c, line: 515
-# File: sci_gateway/c/sci_model2blk.c, line: 534
-# File: sci_gateway/c/sci_model2blk.c, line: 577
-# File: sci_gateway/c/sci_model2blk.c, line: 596
-# File: sci_gateway/c/sci_model2blk.c, line: 715
-# File: sci_gateway/c/sci_model2blk.c, line: 740
-# File: sci_gateway/c/sci_model2blk.c, line: 765
-# File: sci_gateway/c/sci_model2blk.c, line: 790
-# File: sci_gateway/c/sci_model2blk.c, line: 815
-# File: sci_gateway/c/sci_model2blk.c, line: 840
-# File: sci_gateway/c/sci_model2blk.c, line: 865
-# File: sci_gateway/c/sci_model2blk.c, line: 890
-# File: sci_gateway/c/sci_model2blk.c, line: 930
-# File: sci_gateway/c/sci_model2blk.c, line: 982
-# File: sci_gateway/c/sci_model2blk.c, line: 1008
-# File: sci_gateway/c/sci_model2blk.c, line: 1034
-# File: sci_gateway/c/sci_model2blk.c, line: 1062
+# File: sci_gateway/c/sci_model2blk.c, line: 290
+# File: sci_gateway/c/sci_model2blk.c, line: 297
+# File: sci_gateway/c/sci_model2blk.c, line: 402
+# File: sci_gateway/c/sci_model2blk.c, line: 421
+# File: sci_gateway/c/sci_model2blk.c, line: 440
+# File: sci_gateway/c/sci_model2blk.c, line: 459
+# File: sci_gateway/c/sci_model2blk.c, line: 478
+# File: sci_gateway/c/sci_model2blk.c, line: 497
+# File: sci_gateway/c/sci_model2blk.c, line: 516
+# File: sci_gateway/c/sci_model2blk.c, line: 535
+# File: sci_gateway/c/sci_model2blk.c, line: 578
+# File: sci_gateway/c/sci_model2blk.c, line: 597
+# File: sci_gateway/c/sci_model2blk.c, line: 716
+# File: sci_gateway/c/sci_model2blk.c, line: 741
+# File: sci_gateway/c/sci_model2blk.c, line: 766
+# File: sci_gateway/c/sci_model2blk.c, line: 791
+# File: sci_gateway/c/sci_model2blk.c, line: 816
+# File: sci_gateway/c/sci_model2blk.c, line: 841
+# File: sci_gateway/c/sci_model2blk.c, line: 866
+# File: sci_gateway/c/sci_model2blk.c, line: 891
+# File: sci_gateway/c/sci_model2blk.c, line: 931
+# File: sci_gateway/c/sci_model2blk.c, line: 983
+# File: sci_gateway/c/sci_model2blk.c, line: 1009
+# File: sci_gateway/c/sci_model2blk.c, line: 1035
+# File: sci_gateway/c/sci_model2blk.c, line: 1063
 # File: sci_gateway/c/sci_model2blk.c, line: 1103
 # File: sci_gateway/c/sci_model2blk.c, line: 1145
 # File: sci_gateway/c/sci_model2blk.c, line: 1170
@@ -346,195 +352,198 @@ msgstr ""
 # File: sci_gateway/c/sci_model2blk.c, line: 2003
 # File: sci_gateway/c/sci_model2blk.c, line: 2049
 # File: sci_gateway/c/sci_model2blk.c, line: 2095
-# File: sci_gateway/c/sci_model2blk.c, line: 2154
-# File: sci_gateway/c/sci_model2blk.c, line: 2208
-# File: sci_gateway/c/sci_model2blk.c, line: 2252
-# File: sci_gateway/c/sci_model2blk.c, line: 2309
-# File: sci_gateway/c/sci_model2blk.c, line: 2368
-# File: sci_gateway/c/sci_model2blk.c, line: 2415
+# File: sci_gateway/c/sci_model2blk.c, line: 2160
+# File: sci_gateway/c/sci_model2blk.c, line: 2216
+# File: sci_gateway/c/sci_model2blk.c, line: 2260
+# File: sci_gateway/c/sci_model2blk.c, line: 2317
+# File: sci_gateway/c/sci_model2blk.c, line: 2376
+# File: sci_gateway/c/sci_model2blk.c, line: 2423
 #, c-format
 msgid "%s : Allocation error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 309
+# File: sci_gateway/c/sci_model2blk.c, line: 310
 #, c-format
 msgid "%s : Undetermined Size. in2(%d)=%d. Please adjust your model.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 326
+# File: sci_gateway/c/sci_model2blk.c, line: 327
 #, c-format
 msgid "%s : Undetermined Type. intyp(%d)=%d. Please adjust your model.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 563
+# File: sci_gateway/c/sci_model2blk.c, line: 564
 #, c-format
 msgid "%s : Undetermined Size. out(%d)=%d. Please adjust your model.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 609
+# File: sci_gateway/c/sci_model2blk.c, line: 610
 #, c-format
 msgid "%s : Undetermined Size. out2(%d)=%d. Please adjust your model.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 632
+# File: sci_gateway/c/sci_model2blk.c, line: 633
 #, c-format
 msgid "%s : Undetermined Type. outtyp(%d)=%d. Please adjust your model.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 409
+# File: sci_gateway/c/sci_scicosim.c, line: 417
 #, c-format
 msgid "%s : oz element of state must be a list.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 473
+# File: sci_gateway/c/sci_scicosim.c, line: 481
 #, c-format
 msgid "%s : outtb element of state must be a list.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 505
+# File: sci_gateway/c/sci_scicosim.c, line: 513
 #, c-format
 msgid "%s : Third argument must be a scalar.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 527
+# File: sci_gateway/c/sci_scicosim.c, line: 535
 #, c-format
 msgid "%s : Fourth argument must be a Tlist.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 540
+# File: sci_gateway/c/sci_scicosim.c, line: 548
 #, c-format
 msgid "%s : Second element of sim must be a list.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 906
+# File: sci_gateway/c/sci_scicosim.c, line: 914
 #, c-format
 msgid "%s : sim.opar must be a list.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 1328
+# File: sci_gateway/c/sci_scicosim.c, line: 1336
 #, c-format
 msgid "%s : Incompatible sim.nb RHS parameter.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 1712
+# File: sci_gateway/c/sci_scicosim.c, line: 1720
 #, c-format
 msgid "%s : Sixth argument must have at least four elements.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 1719
+# File: sci_gateway/c/sci_scicosim.c, line: 1727
 #, c-format
 msgid "%s : Sixth argument must have a maximum of seven elements.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 1828
+# File: sci_gateway/c/sci_scicosim.c, line: 1836
 #, c-format
 msgid "%s : error in cross variable size checking : %d\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 1896
+# File: sci_gateway/c/sci_scicosim.c, line: 1904
 #, c-format
 msgid "%s : error\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2275
+# File: sci_gateway/c/sci_scicosim.c, line: 2283
 #, c-format
 msgid ""
 "%s : error. Type %d of double scalar matrix not yet supported for outtb.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2329
+# File: sci_gateway/c/sci_scicosim.c, line: 2338
 #, c-format
 msgid "%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2348
+# File: sci_gateway/c/sci_scicosim.c, line: 2358
 #, c-format
 msgid "%s : error. Type %d not yet supported for outtb.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2537
+# File: sci_gateway/c/sci_scicosim.c, line: 2547
 msgid "scheduling problem"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2542
+# File: sci_gateway/c/sci_scicosim.c, line: 2552
 msgid "input to zero-crossing stuck on zero"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2547
+# File: sci_gateway/c/sci_scicosim.c, line: 2557
 msgid "event conflict"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2552
+# File: sci_gateway/c/sci_scicosim.c, line: 2562
 msgid "algebraic loop detected"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2557
+# File: sci_gateway/c/sci_scicosim.c, line: 2567
+# File: sci_gateway/c/sci_scicosim.c, line: 2580
+# File: sci_gateway/c/sci_scicosim.c, line: 2609
+# File: sci_gateway/c/sci_scicosim.c, line: 2652
 msgid "cannot allocate memory"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2562
+# File: sci_gateway/c/sci_scicosim.c, line: 2576
 #, c-format
 msgid "the block %d has been called with input out of its domain"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2566
+# File: sci_gateway/c/sci_scicosim.c, line: 2585
 msgid "singularity in a block"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2570
+# File: sci_gateway/c/sci_scicosim.c, line: 2589
 msgid "block produces an internal error"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2578
+# File: sci_gateway/c/sci_scicosim.c, line: 2597
 msgid "initial conditions not converging"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2582
+# File: sci_gateway/c/sci_scicosim.c, line: 2605
 #, c-format
 msgid "cannot allocate memory in block=%d"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2586
+# File: sci_gateway/c/sci_scicosim.c, line: 2614
 msgid "sliding mode condition, cannot integrate"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2590
+# File: sci_gateway/c/sci_scicosim.c, line: 2618
 msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2593
+# File: sci_gateway/c/sci_scicosim.c, line: 2621
 msgid ""
 "You have changed a parameter in your model, but the model has been compiled "
 "to use an XML file containing initial values and parameters. So you should "
@@ -543,12 +552,12 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2597
+# File: sci_gateway/c/sci_scicosim.c, line: 2625
 msgid "Undefined data type."
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2600
+# File: sci_gateway/c/sci_scicosim.c, line: 2628
 msgid ""
 "The number of parameter provided by Scicos blocks is different from what "
 "expected by the code generated by the Modelica compiler. You might have "
@@ -557,18 +566,18 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2607
+# File: sci_gateway/c/sci_scicosim.c, line: 2635
 msgid "unknown or erroneous block"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2616
+# File: sci_gateway/c/sci_scicosim.c, line: 2648
 #, c-format
 msgid "integration problem istate=%d"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 2621
+# File: sci_gateway/c/sci_scicosim.c, line: 2658
 msgid "scicos unexpected error, please report..."
 msgstr ""
 
@@ -640,7 +649,7 @@ msgstr ""
 
 #
 # File: src/c/scicos.c, line: 562
-# File: src/c/scicos.c, line: 3964
+# File: src/c/scicos.c, line: 3978
 msgid "Undefined Function type\n"
 msgstr ""
 
@@ -677,19 +686,19 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 1811
+# File: src/c/scicos.c, line: 1825
 #, c-format
 msgid "****SUNDIALS.Cvode from: %f to %f hot= %d  \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 1877
+# File: src/c/scicos.c, line: 1891
 #, c-format
 msgid "****SUNDIALS.Cvode reached: %f\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 1886
+# File: src/c/scicos.c, line: 1900
 #, c-format
 msgid ""
 "****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and "
@@ -697,60 +706,60 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 1929
-# File: src/c/scicos.c, line: 3305
+# File: src/c/scicos.c, line: 1943
+# File: src/c/scicos.c, line: 3319
 #, c-format
 msgid "root found at t=: %f\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2051
-# File: src/c/scicos.c, line: 3471
+# File: src/c/scicos.c, line: 2065
+# File: src/c/scicos.c, line: 3485
 #, c-format
 msgid "Event: %d activated at t=%f\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2056
+# File: src/c/scicos.c, line: 2070
 #, c-format
 msgid "mode of block %d=%d, "
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2059
+# File: src/c/scicos.c, line: 2073
 msgid "**mod**\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2065
-# File: src/c/scicos.c, line: 3477
+# File: src/c/scicos.c, line: 2079
+# File: src/c/scicos.c, line: 3491
 msgid "End of activation\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3106
+# File: src/c/scicos.c, line: 3120
 msgid "**** SUNDIALS.IDA successfully initialized *****\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3110
+# File: src/c/scicos.c, line: 3124
 msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3193
+# File: src/c/scicos.c, line: 3207
 #, c-format
 msgid "****daskr from: %f to %f hot= %d  \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3246
+# File: src/c/scicos.c, line: 3260
 #, c-format
 msgid "****SUNDIALS.Ida reached: %f\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3255
+# File: src/c/scicos.c, line: 3269
 #, c-format
 msgid ""
 "**** SUNDIALS.Ida: too much work at time=%g (stiff region, change RTOL and "
@@ -758,42 +767,42 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3578
+# File: src/c/scicos.c, line: 3592
 #, c-format
 msgid "block %d is called "
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3579
+# File: src/c/scicos.c, line: 3593
 #, c-format
 msgid "with flag %d "
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3580
+# File: src/c/scicos.c, line: 3594
 #, c-format
 msgid "at time %f \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3586
+# File: src/c/scicos.c, line: 3600
 msgid "Entering the block \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4002
+# File: src/c/scicos.c, line: 4016
 #, c-format
 msgid "Leaving block %d \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4056
+# File: src/c/scicos.c, line: 4070
 msgid "Error in the Debug block \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4086
-# File: src/c/scicos.c, line: 4158
+# File: src/c/scicos.c, line: 4100
+# File: src/c/scicos.c, line: 4172
 #, c-format
 msgid ""
 "\n"
@@ -801,8 +810,8 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4121
-# File: src/c/scicos.c, line: 4183
+# File: src/c/scicos.c, line: 4135
+# File: src/c/scicos.c, line: 4197
 #, c-format
 msgid ""
 "\n"
@@ -810,8 +819,8 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4292
-# File: src/c/scicos.c, line: 4371
+# File: src/c/scicos.c, line: 4306
+# File: src/c/scicos.c, line: 4385
 #, c-format
 msgid ""
 "\n"
@@ -819,7 +828,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4337
+# File: src/c/scicos.c, line: 4351
 #, c-format
 msgid ""
 "\n"
@@ -827,14 +836,14 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4378
+# File: src/c/scicos.c, line: 4392
 msgid ""
 "\n"
 "Error: Problem in the evaluation of a root function"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4423
+# File: src/c/scicos.c, line: 4437
 #, c-format
 msgid ""
 "\n"
@@ -842,21 +851,21 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4433
+# File: src/c/scicos.c, line: 4447
 msgid ""
 "\n"
 "Error: The preconditioner evaluation function failed."
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4444
+# File: src/c/scicos.c, line: 4458
 msgid ""
 "\n"
 "Error: Failed to factor the preconditioner."
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4467
+# File: src/c/scicos.c, line: 4481
 #, c-format
 msgid ""
 "\n"
@@ -864,7 +873,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4506
+# File: src/c/scicos.c, line: 4520
 #, c-format
 msgid ""
 "\n"
@@ -872,41 +881,35 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4507
+# File: src/c/scicos.c, line: 4521
 msgid ""
 "\n"
 "         (already programmed) event. There may be an error in"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4508
+# File: src/c/scicos.c, line: 4522
 msgid ""
 "\n"
 "         your model. Please check your model\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 6477
+# File: src/c/scicos.c, line: 6484
 msgid ""
 "\n"
 " error in Jacobian"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 6578
-# File: src/c/scicos.c, line: 6704
+# File: src/c/scicos.c, line: 6585
+# File: src/c/scicos.c, line: 6711
 #, c-format
 msgid "Error: Cannot find file '%s'.\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 6736
-#, c-format
-msgid "Error: cannot write to  '%s'  \n"
-msgstr ""
-
-#
-# File: src/c/scicos.c, line: 6889
+# File: src/c/scicos.c, line: 6895
 #, c-format
 msgid ""
 "\n"
@@ -914,7 +917,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 7025
+# File: src/c/scicos.c, line: 7031
 #, c-format
 msgid ""
 "\n"
@@ -922,7 +925,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 7026
+# File: src/c/scicos.c, line: 7032
 msgid ""
 "\n"
 " The residual function returns NAN/Inf. \n"
@@ -1481,6 +1484,14 @@ msgid "Evaluation problem: Unknown block"
 msgstr ""
 
 #
+# File: macros/scicos_scicos/do_eval.sci, line: 195
+#, c-format
+msgid ""
+"%s: Error while calling block %s [uid='%s']: invalid parameter (ier=%f, \\"
+"%scicos_prob=%f).\n"
+msgstr ""
+
+#
 # File: macros/scicos_scicos/link_olibs.sci, line: 64
 msgid "Cannot load dynamic library: "
 msgstr ""
@@ -1552,7 +1563,8 @@ msgid "%s: Empty diagram"
 msgstr ""
 
 #
-# File: macros/scicos_scicos/script2var.sci, line: 72
+# File: macros/scicos_scicos/script2var.sci, line: 69
+# File: macros/scicos_scicos/script2var.sci, line: 79
 #, c-format
 msgid "The variable name %s cannot be used as block parameter: ignored"
 msgstr ""

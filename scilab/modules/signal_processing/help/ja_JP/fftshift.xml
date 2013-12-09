@@ -47,7 +47,7 @@
             <literal>y</literal> は行列
             <literal>x([m/2+1:n,1:m/2],[n/2+1:n,1:n/2])</literal>となります.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
   [x11 x12]                  [x22 x21]
 x=[       ]        gives   y=[       ]
   [x21 x22]                  [x12 x11]
@@ -59,7 +59,7 @@ x=[       ]        gives   y=[       ]
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //信号を作成
 t=0:0.1:1000;
 x=3*sin(t)+8*sin(3*t)+0.5*sin(5*t)+3*rand(t);
@@ -90,6 +90,9 @@ subplot(2,1,2);Matplot(fftshift(abs(y)))
         <simplelist type="inline">
             <member>
                 <link linkend="fft">fft</link>
+            </member>
+            <member>
+                <link linkend="ifftshift">ifftshift</link>
             </member>
         </simplelist>
     </refsection>

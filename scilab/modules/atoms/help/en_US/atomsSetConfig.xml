@@ -58,7 +58,7 @@
                     <td>useProxy</td>
                     <td>Use/Don't use proxies</td>
                     <td>
-                        <emphasis role="strong">True</emphasis>/False
+                        <emphasis role="strong">"True"</emphasis>/"False"
                     </td>
                 </tr>
                 <tr>
@@ -102,7 +102,7 @@
                         called offLine.
                     </td>
                     <td>
-                        True/<emphasis role="strong">False</emphasis>
+                        "True"/<emphasis role="strong">"False"</emphasis>
                     </td>
                 </tr>
             </informaltable>
@@ -121,7 +121,7 @@
                     <td>autoload</td>
                     <td>Enable/Disable autoload system</td>
                     <td>
-                        <emphasis role="strong">True</emphasis>/False
+                        <emphasis role="strong">"True"</emphasis>/"False"
                     </td>
                 </tr>
                 <tr>
@@ -130,7 +130,7 @@
                         Scilab start
                     </td>
                     <td>
-                        <emphasis role="strong">True</emphasis>/False
+                        <emphasis role="strong">"True"</emphasis>/"False"
                     </td>
                 </tr>
             </informaltable>
@@ -149,7 +149,7 @@
                     <td>Verbose</td>
                     <td>Display or not extra-information</td>
                     <td>
-                        True/<emphasis role="strong">False</emphasis>
+                        "True"/<emphasis role="strong">"False"</emphasis>
                     </td>
                 </tr>
                 <tr>
@@ -159,8 +159,13 @@
                 </tr>
                 <tr>
                     <td>downloadTimeout</td>
-                    <td>Set timeout for download</td>
+                    <td>Set timeout for download (seconds)</td>
                     <td>"5" by default</td>
+                </tr>
+                <tr>
+                    <td>updateTime</td>
+                    <td>Set time between updates (days)</td>
+                    <td>one month by default</td>
                 </tr>
             </informaltable>
         </para>
@@ -175,10 +180,10 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example">// Display extra-information
-            atomsSetConfig('Verbose','True')
+            atomsSetConfig("Verbose","True")
             
             // Disable autoload system
-            atomsSetConfig('autoload','False')
+            atomsSetConfig("autoload","False")
         </programlisting>
     </refsection>
     <refsection role="see also">

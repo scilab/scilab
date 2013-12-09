@@ -97,27 +97,77 @@ public final class LinearGraduations extends AbstractGraduations implements Grad
         }
     }
 
+
+    private static final double mypow10(int e) {
+        double p = 10;
+        double r = 1;
+        final boolean signed = e < 0;
+        if (signed) {
+            e = -e;
+        }
+        while (e != 0) {
+            if ((e & 1) != 0) {
+                r *= p;
+            }
+            p *= p;
+            e >>= 1;
+        }
+
+        return signed ? 1 / r : r;
+    }
+
+    private static final long myceil(double x) {
+        if (x == 0) {
+            return 0L;
+        }
+
+        double r = Math.round(x);
+        if (Math.abs(1 - r / x) <= PRECISION) {
+            return (long) r;
+        }
+
+        return (long) Math.ceil(x);
+    }
+
     private Double getStepValue() {
         if (stepValue == null) {
-            stepValue = stepMantissa * Math.pow(10, stepExponent);
+            if (stepMantissa == 1) {
+                stepValue = mypow10(stepExponent);
+            } else {
+                stepValue = stepMantissa * mypow10(stepExponent);
+            }
         }
         return stepValue;
     }
 
-    private boolean isNewIndex(long index) {
+    private final long getIndex(double x) {
+        switch (stepMantissa) {
+            case 1:
+                return myceil(mypow10(-stepExponent) * x);
+            case 2:
+                return myceil(5 * mypow10(-stepExponent - 1) * x);
+            case 5:
+                return myceil(mypow10(-stepExponent - 1) * x * 2);
+            default:
+                return myceil(mypow10(-stepExponent) * x / stepMantissa);
+        }
+    }
+
+    private boolean isNewIndex(final long index) {
         /* We are now searching for value look like
          * index * (stepMantissa * 10^n) and we don't want (previousStrepMantissa * 10^k) value.
          */
 
-        if (stepMantissa == 1) {
-            // (5 * index * stepMantissa) % 10 != 0
-            return (index % 2 != 0);
-        } else if (stepMantissa == 2) {
-            // (2 * index * stepMantissa) % 10 != 0
-            return (index % 5 != 0);
-        } else {
-            // (5 * index * stepMantissa) % 10 != 0
-            return ((index * stepMantissa) % 2 != 0);
+        switch (stepMantissa) {
+            case 1:
+                // (5 * index * stepMantissa) % 10 != 0
+                return (index % 2) != 0;
+            case 2:
+                // (2 * index * stepMantissa) % 10 != 0
+                return (index % 5) != 0;
+            default:
+                // (5 * index * stepMantissa) % 10 != 0
+                return ((index * stepMantissa) % 2) != 0;
         }
     }
 
@@ -131,11 +181,11 @@ public final class LinearGraduations extends AbstractGraduations implements Grad
             newValues = new LinkedList<Double>();
             final double lb = getLowerBound();
 
-            long currentIndex = (long) Math.ceil(lb / getStepValue());
+            long currentIndex = getIndex(lb);
             double currentValue = getStepValue() * currentIndex;
             double value = currentValue - lb;
 
-            if (value == 0 && (!containRelative(value))) {
+            if (value == 0 && !containRelative(value)) {
                 value += getStepValue();
                 currentIndex++;
             }
@@ -157,7 +207,7 @@ public final class LinearGraduations extends AbstractGraduations implements Grad
         if (allValues == null) {
             final double lb = getLowerBound();
             allValues = new LinkedList<Double>();
-            double currentValue = getStepValue() * Math.ceil(lb / getStepValue());
+            double currentValue = getStepValue() * getIndex(lb);
             double value = currentValue - lb;
 
             if (value == 0 && !containRelative(value)) {
@@ -232,5 +282,13 @@ public final class LinearGraduations extends AbstractGraduations implements Grad
         } else {
             return 2;
         }
+    }
+
+    @Override
+    public String toString() {
+        String s = super.toString();
+        s += "; stepMantissa=" + stepMantissa + "; stepExponent=" + stepExponent + "; parent=" + getParentGraduations();
+
+        return s;
     }
 }

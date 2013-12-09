@@ -33,7 +33,7 @@ public class HTMLMathMLHandler extends ExternalXMLHandler {
     private StringBuilder buffer = new StringBuilder(8192);
     private String baseDir;
     private String outputDir;
-    private boolean isLocalized;
+    private Boolean isLocalized;
     private int line;
 
     /**
@@ -57,8 +57,7 @@ public class HTMLMathMLHandler extends ExternalXMLHandler {
      */
     public StringBuilder startExternalXML(String localName, Attributes attributes, Locator locator) {
         if (MATH.equals(localName)) {
-            String v = attributes.getValue(getScilabURI(), "localized");
-            isLocalized = "true".equalsIgnoreCase(v);
+            isLocalized = getLocalized(getScilabURI(), attributes);
             line = locator.getLineNumber();
         }
 
@@ -78,7 +77,7 @@ public class HTMLMathMLHandler extends ExternalXMLHandler {
             recreateTag(buffer, localName, null);
             File f;
             String language = ((HTMLDocbookTagConverter) getConverter()).getLanguage();
-            if (isLocalized) {
+            if (isLocalized != null && isLocalized.booleanValue()) {
                 f = new File(outputDir, BASENAME + getConverter().getCurrentBaseName() + "_" + language + "_" + (compt++) + ".png");
             } else {
                 if ("ru_RU".equals(language) && HTMLDocbookTagConverter.containsCyrillic(buffer)) {

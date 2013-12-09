@@ -10,6 +10,11 @@
 function x=bytecode(f)
     //returns the function f bytecode array in x
     //should be hard-coded
+
+    if argn(2) < 1 then
+        error(sprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "bytecode", 1));
+    end
+
     nsiz=6
     if type(f)==8 then //bytecode to function
         u=mopen(TMPDIR+"/%fun.bin","wb");

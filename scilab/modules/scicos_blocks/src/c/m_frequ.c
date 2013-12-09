@@ -33,7 +33,8 @@ SCICOS_BLOCKS_IMPEXP void m_frequ(scicos_block *block, int flag)
     double *off = NULL;
     SCSINT32_COP *icount = NULL;
     double t = 0.0;
-    long long *counter = NULL;
+    time_counter_t** work = (time_counter_t**) block->work;
+    time_counter_t *counter = NULL;
     int m = 0;
     mat = GetRealOparPtrs(block, 1);
     Dt = GetRealOparPtrs(block, 2);
@@ -46,12 +47,12 @@ SCICOS_BLOCKS_IMPEXP void m_frequ(scicos_block *block, int flag)
 
         case 4 :   /* the workspace is used to store discrete counter value */
         {
-            if ((*block->work = scicos_malloc(sizeof(long long int) * 2)) == NULL)
+            if ((*work = (time_counter_t*) scicos_malloc(sizeof(time_counter_t) * 2)) == NULL)
             {
                 set_block_error(-16);
                 return;
             }
-            counter = *block->work;
+            counter = *work;
             *counter = *icount;
             (*(counter + 1)) = 0;
             break;
@@ -60,7 +61,7 @@ SCICOS_BLOCKS_IMPEXP void m_frequ(scicos_block *block, int flag)
         /* event date computation */
         case 3  :
         {
-            counter = *block->work;
+            counter = *work;
             t = get_scicos_time();
             *counter += (int)mat[*(counter + 1)]; /*increase counter*/
             block->evout[(int)mat[*(counter + 1) + m] - 1] = *off + ((double) * counter / (*Dt)) - t;
@@ -72,7 +73,7 @@ SCICOS_BLOCKS_IMPEXP void m_frequ(scicos_block *block, int flag)
         /* finish */
         case 5  :
         {
-            scicos_free(*block->work); /*free the workspace*/
+            scicos_free(*work); /*free the workspace*/
             break;
         }
 

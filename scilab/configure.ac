@@ -81,7 +81,7 @@ AC_LIB_RPATH
 # if the version is different
 AM_MAINTAINER_MODE
 
-AM_INIT_AUTOMAKE([-Wall foreign serial-tests]) # Not using -Werror because we override {C,F}FLAGS in order to disable optimisation
+AM_INIT_AUTOMAKE([-Wall foreign serial-tests subdir-objects]) # Not using -Werror because we override {C,F}FLAGS in order to disable optimisation
 
 AC_CANONICAL_HOST
 
@@ -1817,6 +1817,26 @@ AH_BOTTOM([
 
 # Define the standard extension of a dynamic library
 AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared library])
+
+
+
+#################
+## Update the years in the various part of the code.
+#################
+
+if test ! -f modules/core/src/c/banier.c; then
+   AC_MSG_ERROR([Could not find the Scilab banier file.])
+fi
+
+CURRENT_YEAR=`date "+%Y"`
+DETECTED_YEAR=`grep "Copyright (c) 2011-" modules/core/src/c/banier.c|sed -e "s/.*Copyright (c) 2011-\([[0-9]]*\).*/\1/g"`
+
+if test "$CURRENT_YEAR" != "$DETECTED_YEAR"; then
+   sed -i -e "s| 2011-$DETECTED_YEAR | 2011-$CURRENT_YEAR |g" modules/core/src/c/banier.c modules/windows_tools/src/c/scilab_windows/console.c
+   sed -i -e "s| 2011-$DETECTED_YEAR Scilab Enterprises| 2011-$CURRENT_YEAR Scilab Enterprises|g" etc/Info.plist.in
+   sed -i -e "s|VALUE \"LegalCopyright\", \"Copyright (C) $DETECTED_YEAR|VALUE \"LegalCopyright\", \"Copyright (C) $CURRENT_YEAR|" $(find . -iname '*.rc')
+   AC_MSG_WARN([New year ($CURRENT_YEAR) detected. Copyright files updated. Please commit them ASAP.])
+fi
 
 
 #########

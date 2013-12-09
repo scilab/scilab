@@ -99,19 +99,19 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Premier exemple : dessine une barre, avec les paramètres width=0.5
 // et color='yellow' et par défaut x=1:length(y), style = 'grouped'.
 scf(0);
 y=[1 -3 5];
 bar(y,0.5,'yellow');
  ]]></programlisting>
-        
+
         <scilab:image>
             y=[1 -3 5];
             bar(y,0.5,'yellow');
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Deuxième exemple : par défaut style='grouped'
 scf(1);
 x=[1 2 5]; y=[1  -5 6;3 -2 7;4  -3 8];
@@ -122,21 +122,21 @@ bar(x,y);
             y=[1  -5 6;3 -2 7;4  -3 8];
             bar(x,y);
         </scilab:image>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 // Troisième exemple : dessine 3 bars (nombre de colonnes de y) style='stacked'.
 scf(2);
 x=[1 2 5]; y=[1 4 7;2 5 8;3 6  9];
 bar(x,y,'stacked');
  ]]></programlisting>
-        
-        
+
+
         <scilab:image>
             x=[1 2 5];
             y=[1 4 7;2 5 8;3 6  9];
             bar(x,y,'stacked');
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Quatrième exemple; width=0.2;color='green'; par défaut style='grouped'
 scf(3);
 x=[1 2 5]; y=[1 4 7;2 5 8;3 6 9];
@@ -159,6 +159,9 @@ bar(x,y,0.2,'green');
             </member>
             <member>
                 <link linkend="plot">plot</link>
+            </member>
+            <member>
+                <link linkend="histplot">histplot</link>
             </member>
             <member>
                 <link linkend="polyline_properties">polyline_properties</link>

@@ -35,7 +35,7 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
     private StringBuilder buffer = new StringBuilder(8192);
     private String baseDir;
     private String outputDir;
-    private boolean isLocalized;
+    private Boolean isLocalized;
     private int line;
 
     /**
@@ -59,8 +59,7 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
      */
     public StringBuilder startExternalXML(String localName, Attributes attributes, Locator locator) {
         if (localName.equals("image")) {
-            String v = attributes.getValue("localized");
-            isLocalized = "true".equalsIgnoreCase(v);
+            isLocalized = getLocalized(null, attributes);
             line = locator.getLineNumber();
         }
 
@@ -86,7 +85,7 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
             }
             String language = ((HTMLDocbookTagConverter) getConverter()).getLanguage();
             String fileName;
-            if (isLocalized) {
+            if (isLocalized != null && isLocalized.booleanValue()) {
                 fileName = baseName + BASENAME + language + BASENAME + (compt++) + ".png";
             } else {
                 fileName = baseName + BASENAME + (compt++) + ".png";
@@ -101,7 +100,7 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
             if (getConverter() instanceof HTMLDocbookTagConverter) {
                 baseImagePath = ((HTMLDocbookTagConverter) getConverter()).getBaseImagePath();
             }
-            if (isLocalized || (existing = getExistingFile(outputDir, fileName)) == null) {
+            if ((isLocalized != null && isLocalized.booleanValue()) || (existing = getExistingFile(outputDir, fileName)) == null) {
                 ret = getConverter().getImageConverter().getImageByCode(currentFileName, buffer.toString(), attributes, "image/scilab", f, baseDir + f.getName(), baseImagePath, line, language, isLocalized);
             } else {
                 ret = getConverter().getImageConverter().getImageByFile(attributes, null, existing.getAbsolutePath(), outputDir, ".", baseImagePath);

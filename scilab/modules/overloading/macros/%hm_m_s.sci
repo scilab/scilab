@@ -8,9 +8,24 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function M1=%hm_m_s(M1,M2)
+
+    siz1 = size(M1);
+    siz2 = size(M2);
+
     if size(M2,"*")<>1 then
-        M1=M1*mlist(["hm","dims","entries"],size(M2),matrix(M2,-1,1))
+        if length(siz1)<>3 then
+            error(msprintf(_("%s: Wrong size for input argument #%d: 3D maximum expected.\n"),"%hm_m_s",2));
+        end
+        if siz1(2)<>siz2(1) then
+            error(msprintf(_("%s: Wrong size for argument: Incompatible dimensions.\n"),"hm_m_s"));
+        end
+        res = zeros(siz1(1), siz2(2), siz1(3));
+        for i=1:siz1(3)
+            res(:, :, i) = M1(:, :, i)*M2;
+        end
+        M1 = res;
     else
-        M1.entries=M1.entries*M2
+        M1.entries = M1.entries*M2
     end
+
 endfunction

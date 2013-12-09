@@ -122,6 +122,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
     SCSUINT32_COP *y_ul = NULL, *ptr_ul = NULL;
 
     /* the struct ptr of that block */
+    fromwork_struct** work = (fromwork_struct**) block->work;
     fromwork_struct *ptr = NULL;
 
     /* for path of TMPDIR/workspace */
@@ -141,7 +142,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
         str[Fnlength] = '\0';
 
         /* retrieve path of TMPDIR/workspace */
-        env = scicos_malloc(sizeof(filePrefix) + Fnlength);
+        env = (char*) scicos_malloc(sizeof(filePrefix) + Fnlength);
         if (env == NULL)
         {
             set_block_error(-16);
@@ -314,13 +315,13 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
         }
 
         /* allocation of the work structure of that block */
-        if ((*(block->work) = (fromwork_struct*) scicos_malloc(sizeof(fromwork_struct))) == NULL)
+        if ((*work = (fromwork_struct*) scicos_malloc(sizeof(fromwork_struct))) == NULL)
         {
             set_block_error(-16);
             C2F(mclose)(&fd, &res);
             return;
         }
-        ptr = *(block->work);
+        ptr = *work;
         ptr->D = NULL;
         ptr->workt = NULL;
         ptr->work = NULL;
@@ -455,7 +456,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
         {
             Coserror(_("The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"), nPoints, 1, Ydim[7], Ydim[8]);
             /*set_block_error(-3);*/
-            *(block->work) = NULL;
+            *work = NULL;
             scicos_free(ptr->work);
             scicos_free(ptr);
             C2F(mclose)(&fd, &res);
@@ -466,7 +467,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
         {
             sciprint(_("The Time vector type is not ""double"".\n"));
             set_block_error(-3);
-            *(block->work) = NULL;
+            *work = NULL;
             scicos_free(ptr->work);
             scicos_free(ptr);
             C2F(mclose)(&fd, &res);
@@ -476,7 +477,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
         if ((ptr->workt = (double *) scicos_malloc(nPoints * sizeof(double))) == NULL)
         {
             set_block_error(-16);
-            *(block->work) = NULL;
+            *work = NULL;
             scicos_free(ptr->work);
             scicos_free(ptr);
             C2F(mclose)(&fd, &res);
@@ -496,7 +497,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
             {
                 Coserror(_("The time vector should be an increasing vector.\n"));
                 /*set_block_error(-3);*/
-                *(block->work) = NULL;
+                *work = NULL;
                 scicos_free(ptr->workt);
                 scicos_free(ptr->work);
                 scicos_free(ptr);
@@ -512,7 +513,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
                 if ((ptr->D = (double *) scicos_malloc(nPoints * mY * sizeof(double))) == NULL)
                 {
                     set_block_error(-16);
-                    *(block->work) = NULL;
+                    *work = NULL;
                     scicos_free(ptr->workt);
                     scicos_free(ptr->work);
                     scicos_free(ptr);
@@ -525,7 +526,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
                 if ((ptr->D = (double *) scicos_malloc(2 * nPoints * mY * sizeof(double))) == NULL)
                 {
                     set_block_error(-16);
-                    *(block->work) = NULL;
+                    *work = NULL;
                     scicos_free(ptr->workt);
                     scicos_free(ptr->work);
                     scicos_free(ptr);
@@ -537,7 +538,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
             {
                 Coserror(_("Allocation problem in spline.\n"));
                 /*set_block_error(-16);*/
-                *(block->work) = NULL;
+                *work = NULL;
                 scicos_free(ptr->D);
                 scicos_free(ptr->workt);
                 scicos_free(ptr->work);
@@ -664,7 +665,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
 
 
         /* retrieve ptr of the structure of that block */
-        ptr = *(block->work);
+        ptr = *work;
         nPoints = ptr->nPoints;
         cnt1 = ptr->cnt1;
         cnt2 = ptr->cnt2;
@@ -1360,7 +1361,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
     {
         /* event date computation */
         /* retrieve ptr of the structure of that block */
-        ptr = *(block->work);
+        ptr = *work;
         nPoints = ptr->nPoints;
         cnt1 = ptr->cnt1;
         cnt2 = ptr->cnt2;
@@ -1453,7 +1454,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
     else if (flag == 5)
     {
         /* finish */
-        ptr = *(block->work);
+        ptr = *work;
         if (ptr != NULL)
         {
             if (ptr->D != NULL)

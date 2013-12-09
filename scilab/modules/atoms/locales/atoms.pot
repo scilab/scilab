@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-09-27 17:13+0100\n"
+"Revision-Date: 2013-12-09 09:48+0100\n"
 
 # File: macros/atomsAutoload.sci, line: 47
 # File: macros/atomsLoad.sci, line: 38
@@ -884,7 +884,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/atomsSetConfig.sci, line: 84
+# File: macros/atomsSetConfig.sci, line: 85
 #, c-format
 msgid "%s: Wrong key for input configuration argument.\n"
 msgstr ""
@@ -1030,73 +1030,73 @@ msgid "ATOMS"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 138
+# File: macros/atoms_gui/atomsGui.sci, line: 139
 msgid "&File"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 139
+# File: macros/atoms_gui/atomsGui.sci, line: 140
 msgid "&Tools"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 140
+# File: macros/atoms_gui/atomsGui.sci, line: 141
 msgid "&Edit"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 141
+# File: macros/atoms_gui/atomsGui.sci, line: 142
 msgid "&?"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 150
+# File: macros/atoms_gui/atomsGui.sci, line: 151
 msgid "File"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 155
+# File: macros/atoms_gui/atomsGui.sci, line: 156
 msgid "Installed modules"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 162
+# File: macros/atoms_gui/atomsGui.sci, line: 163
 msgid "Update List of Packages"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 171
+# File: macros/atoms_gui/atomsGui.sci, line: 172
 msgid "Close"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 178
+# File: macros/atoms_gui/atomsGui.sci, line: 179
 msgid "?"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 183
+# File: macros/atoms_gui/atomsGui.sci, line: 184
 msgid "Atoms Help..."
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 261
-# File: macros/atoms_gui/atomsGui.sci, line: 335
+# File: macros/atoms_gui/atomsGui.sci, line: 262
+# File: macros/atoms_gui/atomsGui.sci, line: 336
 msgid "List of installed modules"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 288
+# File: macros/atoms_gui/atomsGui.sci, line: 289
 msgid "Remove"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 298
+# File: macros/atoms_gui/atomsGui.sci, line: 299
 msgid "Install"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 308
+# File: macros/atoms_gui/atomsGui.sci, line: 309
 msgid "Update"
 msgstr ""
 
@@ -1289,25 +1289,25 @@ msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 176
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 179
 #, c-format
 msgid "%s: DESCRIPTION file ('%s') does not exist.\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 186
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 189
 #, c-format
 msgid "%s: gzip not found.\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 195
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 198
 #, c-format
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 264
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 267
 #, c-format
 msgid "%s: save ('%s') has failed.\n"
 msgstr ""
@@ -1396,8 +1396,8 @@ msgstr ""
 # File: macros/atoms_internals/atomsDownload.sci, line: 60
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: String that starts with 'http"
-"(s)?://','ftp://' or 'file://' expected.\n"
+"%s: Wrong value for input argument #%d: String that starts with "
+"'http(s)?://','ftp://' or 'file://' expected.\n"
 msgstr ""
 
 #

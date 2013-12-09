@@ -162,18 +162,26 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscidouble_la_rootdir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libdummy_double_la_LIBADD =
-am_libdummy_double_la_OBJECTS = vecimpl.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+am_libdummy_double_la_OBJECTS = sci_gateway/fortran/vecimpl.lo
 libdummy_double_la_OBJECTS = $(am_libdummy_double_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
 libscidouble_la_DEPENDENCIES = libdummy-double.la
-am__objects_1 = libscidouble_la-gw_double.lo
-am__objects_2 = vecldiv.lo vecmul.lo matxpow.lo matldiv.lo matsubt.lo \
-	vecrdiv.lo matchsgn.lo matrdiv.lo matrc.lo matpow.lo \
-	matins1.lo matins2.lo matcmp.lo matmult.lo matext1.lo \
-	matext2.lo mattr.lo matcc.lo mattrc.lo matadd.lo
+am__objects_1 = sci_gateway/c/libscidouble_la-gw_double.lo
+am__objects_2 = sci_gateway/fortran/vecldiv.lo \
+	sci_gateway/fortran/vecmul.lo sci_gateway/fortran/matxpow.lo \
+	sci_gateway/fortran/matldiv.lo sci_gateway/fortran/matsubt.lo \
+	sci_gateway/fortran/vecrdiv.lo sci_gateway/fortran/matchsgn.lo \
+	sci_gateway/fortran/matrdiv.lo sci_gateway/fortran/matrc.lo \
+	sci_gateway/fortran/matpow.lo sci_gateway/fortran/matins1.lo \
+	sci_gateway/fortran/matins2.lo sci_gateway/fortran/matcmp.lo \
+	sci_gateway/fortran/matmult.lo sci_gateway/fortran/matext1.lo \
+	sci_gateway/fortran/matext2.lo sci_gateway/fortran/mattr.lo \
+	sci_gateway/fortran/matcc.lo sci_gateway/fortran/mattrc.lo \
+	sci_gateway/fortran/matadd.lo
 am_libscidouble_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscidouble_la_OBJECTS = $(am_libscidouble_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscidouble_la_rpath =
@@ -725,48 +733,112 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+sci_gateway/fortran/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/fortran
+	@: > sci_gateway/fortran/$(am__dirstamp)
+sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/fortran/$(DEPDIR)
+	@: > sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/vecimpl.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
 
 libdummy-double.la: $(libdummy_double_la_OBJECTS) $(libdummy_double_la_DEPENDENCIES) $(EXTRA_libdummy_double_la_DEPENDENCIES) 
 	$(AM_V_F77LD)$(F77LINK)  $(libdummy_double_la_OBJECTS) $(libdummy_double_la_LIBADD) $(LIBS)
+sci_gateway/c/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c
+	@: > sci_gateway/c/$(am__dirstamp)
+sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
+	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscidouble_la-gw_double.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/vecldiv.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/vecmul.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/matxpow.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/matldiv.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/matsubt.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/vecrdiv.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/matchsgn.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/matrdiv.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/matrc.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/matpow.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/matins1.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/matins2.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/matcmp.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/matmult.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/matext1.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/matext2.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/mattr.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/matcc.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/mattrc.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/matadd.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
 
 libscidouble.la: $(libscidouble_la_OBJECTS) $(libscidouble_la_DEPENDENCIES) $(EXTRA_libscidouble_la_DEPENDENCIES) 
 	$(AM_V_F77LD)$(F77LINK) $(am_libscidouble_la_rpath) $(libscidouble_la_OBJECTS) $(libscidouble_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f sci_gateway/c/*.$(OBJEXT)
+	-rm -f sci_gateway/c/*.lo
+	-rm -f sci_gateway/fortran/*.$(OBJEXT)
+	-rm -f sci_gateway/fortran/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidouble_la-gw_double.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscidouble_la-gw_double.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libscidouble_la-gw_double.lo: sci_gateway/c/gw_double.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidouble_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscidouble_la-gw_double.lo -MD -MP -MF $(DEPDIR)/libscidouble_la-gw_double.Tpo -c -o libscidouble_la-gw_double.lo `test -f 'sci_gateway/c/gw_double.c' || echo '$(srcdir)/'`sci_gateway/c/gw_double.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscidouble_la-gw_double.Tpo $(DEPDIR)/libscidouble_la-gw_double.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_double.c' object='libscidouble_la-gw_double.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscidouble_la-gw_double.lo: sci_gateway/c/gw_double.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidouble_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscidouble_la-gw_double.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscidouble_la-gw_double.Tpo -c -o sci_gateway/c/libscidouble_la-gw_double.lo `test -f 'sci_gateway/c/gw_double.c' || echo '$(srcdir)/'`sci_gateway/c/gw_double.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscidouble_la-gw_double.Tpo sci_gateway/c/$(DEPDIR)/libscidouble_la-gw_double.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_double.c' object='sci_gateway/c/libscidouble_la-gw_double.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidouble_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscidouble_la-gw_double.lo `test -f 'sci_gateway/c/gw_double.c' || echo '$(srcdir)/'`sci_gateway/c/gw_double.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidouble_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscidouble_la-gw_double.lo `test -f 'sci_gateway/c/gw_double.c' || echo '$(srcdir)/'`sci_gateway/c/gw_double.c
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<
@@ -777,71 +849,13 @@ libscidouble_la-gw_double.lo: sci_gateway/c/gw_double.c
 .f.lo:
 	$(AM_V_F77)$(LTF77COMPILE) -c -o $@ $<
 
-vecldiv.lo: sci_gateway/fortran/vecldiv.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o vecldiv.lo `test -f 'sci_gateway/fortran/vecldiv.f' || echo '$(srcdir)/'`sci_gateway/fortran/vecldiv.f
-
-vecmul.lo: sci_gateway/fortran/vecmul.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o vecmul.lo `test -f 'sci_gateway/fortran/vecmul.f' || echo '$(srcdir)/'`sci_gateway/fortran/vecmul.f
-
-matxpow.lo: sci_gateway/fortran/matxpow.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matxpow.lo `test -f 'sci_gateway/fortran/matxpow.f' || echo '$(srcdir)/'`sci_gateway/fortran/matxpow.f
-
-matldiv.lo: sci_gateway/fortran/matldiv.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matldiv.lo `test -f 'sci_gateway/fortran/matldiv.f' || echo '$(srcdir)/'`sci_gateway/fortran/matldiv.f
-
-matsubt.lo: sci_gateway/fortran/matsubt.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matsubt.lo `test -f 'sci_gateway/fortran/matsubt.f' || echo '$(srcdir)/'`sci_gateway/fortran/matsubt.f
-
-vecrdiv.lo: sci_gateway/fortran/vecrdiv.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o vecrdiv.lo `test -f 'sci_gateway/fortran/vecrdiv.f' || echo '$(srcdir)/'`sci_gateway/fortran/vecrdiv.f
-
-matchsgn.lo: sci_gateway/fortran/matchsgn.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matchsgn.lo `test -f 'sci_gateway/fortran/matchsgn.f' || echo '$(srcdir)/'`sci_gateway/fortran/matchsgn.f
-
-matrdiv.lo: sci_gateway/fortran/matrdiv.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matrdiv.lo `test -f 'sci_gateway/fortran/matrdiv.f' || echo '$(srcdir)/'`sci_gateway/fortran/matrdiv.f
-
-matrc.lo: sci_gateway/fortran/matrc.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matrc.lo `test -f 'sci_gateway/fortran/matrc.f' || echo '$(srcdir)/'`sci_gateway/fortran/matrc.f
-
-matpow.lo: sci_gateway/fortran/matpow.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matpow.lo `test -f 'sci_gateway/fortran/matpow.f' || echo '$(srcdir)/'`sci_gateway/fortran/matpow.f
-
-matins1.lo: sci_gateway/fortran/matins1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matins1.lo `test -f 'sci_gateway/fortran/matins1.f' || echo '$(srcdir)/'`sci_gateway/fortran/matins1.f
-
-matins2.lo: sci_gateway/fortran/matins2.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matins2.lo `test -f 'sci_gateway/fortran/matins2.f' || echo '$(srcdir)/'`sci_gateway/fortran/matins2.f
-
-matcmp.lo: sci_gateway/fortran/matcmp.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matcmp.lo `test -f 'sci_gateway/fortran/matcmp.f' || echo '$(srcdir)/'`sci_gateway/fortran/matcmp.f
-
-matmult.lo: sci_gateway/fortran/matmult.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matmult.lo `test -f 'sci_gateway/fortran/matmult.f' || echo '$(srcdir)/'`sci_gateway/fortran/matmult.f
-
-matext1.lo: sci_gateway/fortran/matext1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matext1.lo `test -f 'sci_gateway/fortran/matext1.f' || echo '$(srcdir)/'`sci_gateway/fortran/matext1.f
-
-matext2.lo: sci_gateway/fortran/matext2.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matext2.lo `test -f 'sci_gateway/fortran/matext2.f' || echo '$(srcdir)/'`sci_gateway/fortran/matext2.f
-
-mattr.lo: sci_gateway/fortran/mattr.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mattr.lo `test -f 'sci_gateway/fortran/mattr.f' || echo '$(srcdir)/'`sci_gateway/fortran/mattr.f
-
-matcc.lo: sci_gateway/fortran/matcc.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matcc.lo `test -f 'sci_gateway/fortran/matcc.f' || echo '$(srcdir)/'`sci_gateway/fortran/matcc.f
-
-mattrc.lo: sci_gateway/fortran/mattrc.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mattrc.lo `test -f 'sci_gateway/fortran/mattrc.f' || echo '$(srcdir)/'`sci_gateway/fortran/mattrc.f
-
-matadd.lo: sci_gateway/fortran/matadd.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matadd.lo `test -f 'sci_gateway/fortran/matadd.f' || echo '$(srcdir)/'`sci_gateway/fortran/matadd.f
-
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
+	-rm -rf sci_gateway/fortran/.libs sci_gateway/fortran/_libs
 install-libscidouble_la_etcDATA: $(libscidouble_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libscidouble_la_etc_DATA)'; test -n "$(libscidouble_la_etcdir)" || list=; \
@@ -1001,6 +1015,10 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/c/$(am__dirstamp)
+	-rm -f sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/fortran/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1011,7 +1029,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1058,7 +1076,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

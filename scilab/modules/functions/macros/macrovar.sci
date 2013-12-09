@@ -17,6 +17,9 @@ function vars=macrovar(macro)
     //           called : macros called
     //           locals : local variables
     //!
+    if argn(2) < 1 then
+        error(sprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "macrovar", 1));
+    end
     if type(macro)==11 then comp(macro),end
     if type(macro)<>13 then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Scilab function expected.\n"),"macrovar",1)),

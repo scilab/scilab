@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-09-27 17:14+0100\n"
+"Revision-Date: 2013-12-09 09:47+0100\n"
 
 # File: sci_gateway/c/sci_res_with_prec.c, line: 169
 #, c-format
@@ -40,7 +40,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_taucs_chfact.c, line: 147
 # File: sci_gateway/c/sci_taucs_chget.c, line: 103
-# File: sci_gateway/c/sci_umf_luget.c, line: 320
+# File: sci_gateway/c/sci_umf_luget.c, line: 330
 # File: src/c/taucs_scilab.c, line: 279
 # File: src/c/taucs_scilab.c, line: 2532
 #, c-format
@@ -49,7 +49,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_taucs_chfact.c, line: 165
-# File: sci_gateway/c/sci_umf_lufact.c, line: 210
+# File: sci_gateway/c/sci_umf_lufact.c, line: 220
 #, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr ""
@@ -71,13 +71,13 @@ msgstr ""
 # File: sci_gateway/c/sci_taucs_chinfo.c, line: 116
 # File: sci_gateway/c/sci_taucs_chinfo.c, line: 123
 # File: sci_gateway/c/sci_taucs_chinfo.c, line: 130
-# File: sci_gateway/c/sci_umf_luinfo.c, line: 116
-# File: sci_gateway/c/sci_umf_luinfo.c, line: 123
-# File: sci_gateway/c/sci_umf_luinfo.c, line: 130
-# File: sci_gateway/c/sci_umf_luinfo.c, line: 137
-# File: sci_gateway/c/sci_umf_luinfo.c, line: 144
-# File: sci_gateway/c/sci_umf_luinfo.c, line: 151
-# File: sci_gateway/c/sci_umf_luinfo.c, line: 174
+# File: sci_gateway/c/sci_umf_luinfo.c, line: 126
+# File: sci_gateway/c/sci_umf_luinfo.c, line: 133
+# File: sci_gateway/c/sci_umf_luinfo.c, line: 140
+# File: sci_gateway/c/sci_umf_luinfo.c, line: 147
+# File: sci_gateway/c/sci_umf_luinfo.c, line: 154
+# File: sci_gateway/c/sci_umf_luinfo.c, line: 161
+# File: sci_gateway/c/sci_umf_luinfo.c, line: 184
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -92,10 +92,10 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_taucs_chsolve.c, line: 146
-# File: sci_gateway/c/sci_umf_lufact.c, line: 138
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 187
-# File: sci_gateway/c/sci_umfpack.c, line: 191
-# File: sci_gateway/c/sci_umfpack.c, line: 221
+# File: sci_gateway/c/sci_umf_lufact.c, line: 148
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 208
+# File: sci_gateway/c/sci_umfpack.c, line: 210
+# File: sci_gateway/c/sci_umfpack.c, line: 248
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
@@ -123,9 +123,18 @@ msgid "%s: not enough memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_ludel.c, line: 124
-# File: sci_gateway/c/sci_umf_luget.c, line: 113
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 134
+# File: sci_gateway/c/sci_umf_ludel.c, line: 108
+# File: sci_gateway/c/sci_umf_luget.c, line: 98
+# File: sci_gateway/c/sci_umf_luinfo.c, line: 98
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 132
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A pointer expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_umf_ludel.c, line: 134
+# File: sci_gateway/c/sci_umf_luget.c, line: 123
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 146
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
@@ -133,73 +142,101 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lufact.c, line: 157
-# File: sci_gateway/c/sci_umf_lufact.c, line: 183
-# File: sci_gateway/c/sci_umfpack.c, line: 278
-# File: sci_gateway/c/sci_umfpack.c, line: 311
+# File: sci_gateway/c/sci_umf_lufact.c, line: 116
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 276
+# File: sci_gateway/c/sci_umfpack.c, line: 177
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A sparse matrix expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_umf_lufact.c, line: 167
+# File: sci_gateway/c/sci_umf_lufact.c, line: 193
+# File: sci_gateway/c/sci_umfpack.c, line: 305
+# File: sci_gateway/c/sci_umfpack.c, line: 338
 #, c-format
 msgid "%s: An error occurred: %s: %s\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lufact.c, line: 157
-# File: sci_gateway/c/sci_umf_lufact.c, line: 183
-# File: sci_gateway/c/sci_umfpack.c, line: 278
+# File: sci_gateway/c/sci_umf_lufact.c, line: 167
+# File: sci_gateway/c/sci_umf_lufact.c, line: 193
+# File: sci_gateway/c/sci_umfpack.c, line: 305
 msgid "symbolic factorization"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lufact.c, line: 191
+# File: sci_gateway/c/sci_umf_lufact.c, line: 201
 msgid "The (square) matrix appears to be singular."
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lufact.c, line: 191
+# File: sci_gateway/c/sci_umf_lufact.c, line: 201
 msgid "Warning"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lufact.c, line: 210
+# File: sci_gateway/c/sci_umf_lufact.c, line: 220
 msgid "no place to store the LU pointer in ListNumeric."
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 151
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 157
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 163
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 169
 #, c-format
 msgid "%s: An error occurred: %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 151
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 163
 msgid "This is not a factorization of a square matrix"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 157
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 169
 msgid "This is a factorization of a singular matrix"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 238
-# File: sci_gateway/c/sci_umfpack.c, line: 150
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 186
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or complex column vector or "
+"matrix expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 259
+# File: sci_gateway/c/sci_umfpack.c, line: 161
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 280
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 310
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 280
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 310
 msgid "Matrix is not compatible with the given LU factors"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umfpack.c, line: 311
+# File: sci_gateway/c/sci_umfpack.c, line: 140
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_umfpack.c, line: 226
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_umfpack.c, line: 338
 msgid "numeric factorization"
 msgstr ""
 

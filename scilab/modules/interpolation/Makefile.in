@@ -166,9 +166,11 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciinterpolation_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libsciinterpolation_algo_la_LIBADD =
-am__objects_1 = libsciinterpolation_algo_la-interpolation.lo \
-	libsciinterpolation_algo_la-someinterp.lo
-am__objects_2 = somespline.lo dspfit.lo cshep2d.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+am__objects_1 = src/c/libsciinterpolation_algo_la-interpolation.lo \
+	src/c/libsciinterpolation_algo_la-someinterp.lo
+am__objects_2 = src/fortran/somespline.lo src/fortran/dspfit.lo \
+	src/fortran/cshep2d.lo
 am_libsciinterpolation_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2)
 libsciinterpolation_algo_la_OBJECTS =  \
@@ -178,18 +180,18 @@ am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
 libsciinterpolation_la_DEPENDENCIES = libsciinterpolation-algo.la
-am__objects_3 = libsciinterpolation_la-sci_lsq_splin.lo \
-	libsciinterpolation_la-sci_interp.lo \
-	libsciinterpolation_la-sci_interp2d.lo \
-	libsciinterpolation_la-sci_splin.lo \
-	libsciinterpolation_la-gw_interpolation.lo \
-	libsciinterpolation_la-sci_cshep2d.lo \
-	libsciinterpolation_la-sci_interp3d.lo \
-	libsciinterpolation_la-sci_linear_interpn.lo \
-	libsciinterpolation_la-sci_splin2d.lo \
-	libsciinterpolation_la-sci_splin3d.lo \
-	libsciinterpolation_la-sci_bsplin3val.lo \
-	libsciinterpolation_la-sci_eval_cshep2d.lo
+am__objects_3 = sci_gateway/c/libsciinterpolation_la-sci_lsq_splin.lo \
+	sci_gateway/c/libsciinterpolation_la-sci_interp.lo \
+	sci_gateway/c/libsciinterpolation_la-sci_interp2d.lo \
+	sci_gateway/c/libsciinterpolation_la-sci_splin.lo \
+	sci_gateway/c/libsciinterpolation_la-gw_interpolation.lo \
+	sci_gateway/c/libsciinterpolation_la-sci_cshep2d.lo \
+	sci_gateway/c/libsciinterpolation_la-sci_interp3d.lo \
+	sci_gateway/c/libsciinterpolation_la-sci_linear_interpn.lo \
+	sci_gateway/c/libsciinterpolation_la-sci_splin2d.lo \
+	sci_gateway/c/libsciinterpolation_la-sci_splin3d.lo \
+	sci_gateway/c/libsciinterpolation_la-sci_bsplin3val.lo \
+	sci_gateway/c/libsciinterpolation_la-sci_eval_cshep2d.lo
 am_libsciinterpolation_la_OBJECTS = $(am__objects_3)
 libsciinterpolation_la_OBJECTS = $(am_libsciinterpolation_la_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -751,152 +753,225 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/c/$(am__dirstamp):
+	@$(MKDIR_P) src/c
+	@: > src/c/$(am__dirstamp)
+src/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/c/$(DEPDIR)
+	@: > src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciinterpolation_algo_la-interpolation.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciinterpolation_algo_la-someinterp.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/fortran/$(am__dirstamp):
+	@$(MKDIR_P) src/fortran
+	@: > src/fortran/$(am__dirstamp)
+src/fortran/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/fortran/$(DEPDIR)
+	@: > src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/somespline.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/dspfit.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/cshep2d.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
 
 libsciinterpolation-algo.la: $(libsciinterpolation_algo_la_OBJECTS) $(libsciinterpolation_algo_la_DEPENDENCIES) $(EXTRA_libsciinterpolation_algo_la_DEPENDENCIES) 
 	$(AM_V_F77LD)$(F77LINK)  $(libsciinterpolation_algo_la_OBJECTS) $(libsciinterpolation_algo_la_LIBADD) $(LIBS)
+sci_gateway/c/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c
+	@: > sci_gateway/c/$(am__dirstamp)
+sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
+	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciinterpolation_la-sci_lsq_splin.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciinterpolation_la-sci_interp.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciinterpolation_la-sci_interp2d.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciinterpolation_la-sci_splin.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciinterpolation_la-gw_interpolation.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciinterpolation_la-sci_cshep2d.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciinterpolation_la-sci_interp3d.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciinterpolation_la-sci_linear_interpn.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciinterpolation_la-sci_splin2d.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciinterpolation_la-sci_splin3d.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciinterpolation_la-sci_bsplin3val.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciinterpolation_la-sci_eval_cshep2d.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 
 libsciinterpolation.la: $(libsciinterpolation_la_OBJECTS) $(libsciinterpolation_la_DEPENDENCIES) $(EXTRA_libsciinterpolation_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) -rpath $(pkglibdir) $(libsciinterpolation_la_OBJECTS) $(libsciinterpolation_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f sci_gateway/c/*.$(OBJEXT)
+	-rm -f sci_gateway/c/*.lo
+	-rm -f src/c/*.$(OBJEXT)
+	-rm -f src/c/*.lo
+	-rm -f src/fortran/*.$(OBJEXT)
+	-rm -f src/fortran/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinterpolation_algo_la-interpolation.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinterpolation_algo_la-someinterp.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinterpolation_la-gw_interpolation.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinterpolation_la-sci_bsplin3val.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinterpolation_la-sci_cshep2d.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinterpolation_la-sci_eval_cshep2d.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinterpolation_la-sci_interp.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinterpolation_la-sci_interp2d.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinterpolation_la-sci_interp3d.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinterpolation_la-sci_linear_interpn.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinterpolation_la-sci_lsq_splin.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinterpolation_la-sci_splin.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinterpolation_la-sci_splin2d.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinterpolation_la-sci_splin3d.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-gw_interpolation.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_bsplin3val.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_cshep2d.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_eval_cshep2d.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_interp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_interp2d.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_interp3d.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_linear_interpn.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_lsq_splin.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_splin.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_splin2d.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_splin3d.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciinterpolation_algo_la-interpolation.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciinterpolation_algo_la-someinterp.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libsciinterpolation_algo_la-interpolation.lo: src/c/interpolation.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinterpolation_algo_la-interpolation.lo -MD -MP -MF $(DEPDIR)/libsciinterpolation_algo_la-interpolation.Tpo -c -o libsciinterpolation_algo_la-interpolation.lo `test -f 'src/c/interpolation.c' || echo '$(srcdir)/'`src/c/interpolation.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciinterpolation_algo_la-interpolation.Tpo $(DEPDIR)/libsciinterpolation_algo_la-interpolation.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/interpolation.c' object='libsciinterpolation_algo_la-interpolation.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libsciinterpolation_algo_la-interpolation.lo: src/c/interpolation.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciinterpolation_algo_la-interpolation.lo -MD -MP -MF src/c/$(DEPDIR)/libsciinterpolation_algo_la-interpolation.Tpo -c -o src/c/libsciinterpolation_algo_la-interpolation.lo `test -f 'src/c/interpolation.c' || echo '$(srcdir)/'`src/c/interpolation.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciinterpolation_algo_la-interpolation.Tpo src/c/$(DEPDIR)/libsciinterpolation_algo_la-interpolation.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/interpolation.c' object='src/c/libsciinterpolation_algo_la-interpolation.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinterpolation_algo_la-interpolation.lo `test -f 'src/c/interpolation.c' || echo '$(srcdir)/'`src/c/interpolation.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciinterpolation_algo_la-interpolation.lo `test -f 'src/c/interpolation.c' || echo '$(srcdir)/'`src/c/interpolation.c
 
-libsciinterpolation_algo_la-someinterp.lo: src/c/someinterp.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinterpolation_algo_la-someinterp.lo -MD -MP -MF $(DEPDIR)/libsciinterpolation_algo_la-someinterp.Tpo -c -o libsciinterpolation_algo_la-someinterp.lo `test -f 'src/c/someinterp.c' || echo '$(srcdir)/'`src/c/someinterp.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciinterpolation_algo_la-someinterp.Tpo $(DEPDIR)/libsciinterpolation_algo_la-someinterp.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/someinterp.c' object='libsciinterpolation_algo_la-someinterp.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libsciinterpolation_algo_la-someinterp.lo: src/c/someinterp.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciinterpolation_algo_la-someinterp.lo -MD -MP -MF src/c/$(DEPDIR)/libsciinterpolation_algo_la-someinterp.Tpo -c -o src/c/libsciinterpolation_algo_la-someinterp.lo `test -f 'src/c/someinterp.c' || echo '$(srcdir)/'`src/c/someinterp.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciinterpolation_algo_la-someinterp.Tpo src/c/$(DEPDIR)/libsciinterpolation_algo_la-someinterp.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/someinterp.c' object='src/c/libsciinterpolation_algo_la-someinterp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinterpolation_algo_la-someinterp.lo `test -f 'src/c/someinterp.c' || echo '$(srcdir)/'`src/c/someinterp.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciinterpolation_algo_la-someinterp.lo `test -f 'src/c/someinterp.c' || echo '$(srcdir)/'`src/c/someinterp.c
 
-libsciinterpolation_la-sci_lsq_splin.lo: sci_gateway/c/sci_lsq_splin.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinterpolation_la-sci_lsq_splin.lo -MD -MP -MF $(DEPDIR)/libsciinterpolation_la-sci_lsq_splin.Tpo -c -o libsciinterpolation_la-sci_lsq_splin.lo `test -f 'sci_gateway/c/sci_lsq_splin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lsq_splin.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciinterpolation_la-sci_lsq_splin.Tpo $(DEPDIR)/libsciinterpolation_la-sci_lsq_splin.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_lsq_splin.c' object='libsciinterpolation_la-sci_lsq_splin.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciinterpolation_la-sci_lsq_splin.lo: sci_gateway/c/sci_lsq_splin.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciinterpolation_la-sci_lsq_splin.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_lsq_splin.Tpo -c -o sci_gateway/c/libsciinterpolation_la-sci_lsq_splin.lo `test -f 'sci_gateway/c/sci_lsq_splin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lsq_splin.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_lsq_splin.Tpo sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_lsq_splin.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_lsq_splin.c' object='sci_gateway/c/libsciinterpolation_la-sci_lsq_splin.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinterpolation_la-sci_lsq_splin.lo `test -f 'sci_gateway/c/sci_lsq_splin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lsq_splin.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciinterpolation_la-sci_lsq_splin.lo `test -f 'sci_gateway/c/sci_lsq_splin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lsq_splin.c
 
-libsciinterpolation_la-sci_interp.lo: sci_gateway/c/sci_interp.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinterpolation_la-sci_interp.lo -MD -MP -MF $(DEPDIR)/libsciinterpolation_la-sci_interp.Tpo -c -o libsciinterpolation_la-sci_interp.lo `test -f 'sci_gateway/c/sci_interp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_interp.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciinterpolation_la-sci_interp.Tpo $(DEPDIR)/libsciinterpolation_la-sci_interp.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_interp.c' object='libsciinterpolation_la-sci_interp.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciinterpolation_la-sci_interp.lo: sci_gateway/c/sci_interp.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciinterpolation_la-sci_interp.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_interp.Tpo -c -o sci_gateway/c/libsciinterpolation_la-sci_interp.lo `test -f 'sci_gateway/c/sci_interp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_interp.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_interp.Tpo sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_interp.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_interp.c' object='sci_gateway/c/libsciinterpolation_la-sci_interp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinterpolation_la-sci_interp.lo `test -f 'sci_gateway/c/sci_interp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_interp.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciinterpolation_la-sci_interp.lo `test -f 'sci_gateway/c/sci_interp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_interp.c
 
-libsciinterpolation_la-sci_interp2d.lo: sci_gateway/c/sci_interp2d.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinterpolation_la-sci_interp2d.lo -MD -MP -MF $(DEPDIR)/libsciinterpolation_la-sci_interp2d.Tpo -c -o libsciinterpolation_la-sci_interp2d.lo `test -f 'sci_gateway/c/sci_interp2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_interp2d.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciinterpolation_la-sci_interp2d.Tpo $(DEPDIR)/libsciinterpolation_la-sci_interp2d.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_interp2d.c' object='libsciinterpolation_la-sci_interp2d.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciinterpolation_la-sci_interp2d.lo: sci_gateway/c/sci_interp2d.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciinterpolation_la-sci_interp2d.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_interp2d.Tpo -c -o sci_gateway/c/libsciinterpolation_la-sci_interp2d.lo `test -f 'sci_gateway/c/sci_interp2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_interp2d.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_interp2d.Tpo sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_interp2d.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_interp2d.c' object='sci_gateway/c/libsciinterpolation_la-sci_interp2d.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinterpolation_la-sci_interp2d.lo `test -f 'sci_gateway/c/sci_interp2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_interp2d.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciinterpolation_la-sci_interp2d.lo `test -f 'sci_gateway/c/sci_interp2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_interp2d.c
 
-libsciinterpolation_la-sci_splin.lo: sci_gateway/c/sci_splin.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinterpolation_la-sci_splin.lo -MD -MP -MF $(DEPDIR)/libsciinterpolation_la-sci_splin.Tpo -c -o libsciinterpolation_la-sci_splin.lo `test -f 'sci_gateway/c/sci_splin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_splin.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciinterpolation_la-sci_splin.Tpo $(DEPDIR)/libsciinterpolation_la-sci_splin.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_splin.c' object='libsciinterpolation_la-sci_splin.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciinterpolation_la-sci_splin.lo: sci_gateway/c/sci_splin.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciinterpolation_la-sci_splin.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_splin.Tpo -c -o sci_gateway/c/libsciinterpolation_la-sci_splin.lo `test -f 'sci_gateway/c/sci_splin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_splin.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_splin.Tpo sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_splin.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_splin.c' object='sci_gateway/c/libsciinterpolation_la-sci_splin.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinterpolation_la-sci_splin.lo `test -f 'sci_gateway/c/sci_splin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_splin.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciinterpolation_la-sci_splin.lo `test -f 'sci_gateway/c/sci_splin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_splin.c
 
-libsciinterpolation_la-gw_interpolation.lo: sci_gateway/c/gw_interpolation.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinterpolation_la-gw_interpolation.lo -MD -MP -MF $(DEPDIR)/libsciinterpolation_la-gw_interpolation.Tpo -c -o libsciinterpolation_la-gw_interpolation.lo `test -f 'sci_gateway/c/gw_interpolation.c' || echo '$(srcdir)/'`sci_gateway/c/gw_interpolation.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciinterpolation_la-gw_interpolation.Tpo $(DEPDIR)/libsciinterpolation_la-gw_interpolation.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_interpolation.c' object='libsciinterpolation_la-gw_interpolation.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciinterpolation_la-gw_interpolation.lo: sci_gateway/c/gw_interpolation.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciinterpolation_la-gw_interpolation.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-gw_interpolation.Tpo -c -o sci_gateway/c/libsciinterpolation_la-gw_interpolation.lo `test -f 'sci_gateway/c/gw_interpolation.c' || echo '$(srcdir)/'`sci_gateway/c/gw_interpolation.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-gw_interpolation.Tpo sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-gw_interpolation.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_interpolation.c' object='sci_gateway/c/libsciinterpolation_la-gw_interpolation.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinterpolation_la-gw_interpolation.lo `test -f 'sci_gateway/c/gw_interpolation.c' || echo '$(srcdir)/'`sci_gateway/c/gw_interpolation.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciinterpolation_la-gw_interpolation.lo `test -f 'sci_gateway/c/gw_interpolation.c' || echo '$(srcdir)/'`sci_gateway/c/gw_interpolation.c
 
-libsciinterpolation_la-sci_cshep2d.lo: sci_gateway/c/sci_cshep2d.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinterpolation_la-sci_cshep2d.lo -MD -MP -MF $(DEPDIR)/libsciinterpolation_la-sci_cshep2d.Tpo -c -o libsciinterpolation_la-sci_cshep2d.lo `test -f 'sci_gateway/c/sci_cshep2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cshep2d.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciinterpolation_la-sci_cshep2d.Tpo $(DEPDIR)/libsciinterpolation_la-sci_cshep2d.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cshep2d.c' object='libsciinterpolation_la-sci_cshep2d.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciinterpolation_la-sci_cshep2d.lo: sci_gateway/c/sci_cshep2d.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciinterpolation_la-sci_cshep2d.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_cshep2d.Tpo -c -o sci_gateway/c/libsciinterpolation_la-sci_cshep2d.lo `test -f 'sci_gateway/c/sci_cshep2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cshep2d.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_cshep2d.Tpo sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_cshep2d.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cshep2d.c' object='sci_gateway/c/libsciinterpolation_la-sci_cshep2d.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinterpolation_la-sci_cshep2d.lo `test -f 'sci_gateway/c/sci_cshep2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cshep2d.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciinterpolation_la-sci_cshep2d.lo `test -f 'sci_gateway/c/sci_cshep2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cshep2d.c
 
-libsciinterpolation_la-sci_interp3d.lo: sci_gateway/c/sci_interp3d.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinterpolation_la-sci_interp3d.lo -MD -MP -MF $(DEPDIR)/libsciinterpolation_la-sci_interp3d.Tpo -c -o libsciinterpolation_la-sci_interp3d.lo `test -f 'sci_gateway/c/sci_interp3d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_interp3d.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciinterpolation_la-sci_interp3d.Tpo $(DEPDIR)/libsciinterpolation_la-sci_interp3d.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_interp3d.c' object='libsciinterpolation_la-sci_interp3d.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciinterpolation_la-sci_interp3d.lo: sci_gateway/c/sci_interp3d.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciinterpolation_la-sci_interp3d.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_interp3d.Tpo -c -o sci_gateway/c/libsciinterpolation_la-sci_interp3d.lo `test -f 'sci_gateway/c/sci_interp3d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_interp3d.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_interp3d.Tpo sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_interp3d.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_interp3d.c' object='sci_gateway/c/libsciinterpolation_la-sci_interp3d.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinterpolation_la-sci_interp3d.lo `test -f 'sci_gateway/c/sci_interp3d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_interp3d.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciinterpolation_la-sci_interp3d.lo `test -f 'sci_gateway/c/sci_interp3d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_interp3d.c
 
-libsciinterpolation_la-sci_linear_interpn.lo: sci_gateway/c/sci_linear_interpn.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinterpolation_la-sci_linear_interpn.lo -MD -MP -MF $(DEPDIR)/libsciinterpolation_la-sci_linear_interpn.Tpo -c -o libsciinterpolation_la-sci_linear_interpn.lo `test -f 'sci_gateway/c/sci_linear_interpn.c' || echo '$(srcdir)/'`sci_gateway/c/sci_linear_interpn.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciinterpolation_la-sci_linear_interpn.Tpo $(DEPDIR)/libsciinterpolation_la-sci_linear_interpn.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_linear_interpn.c' object='libsciinterpolation_la-sci_linear_interpn.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciinterpolation_la-sci_linear_interpn.lo: sci_gateway/c/sci_linear_interpn.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciinterpolation_la-sci_linear_interpn.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_linear_interpn.Tpo -c -o sci_gateway/c/libsciinterpolation_la-sci_linear_interpn.lo `test -f 'sci_gateway/c/sci_linear_interpn.c' || echo '$(srcdir)/'`sci_gateway/c/sci_linear_interpn.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_linear_interpn.Tpo sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_linear_interpn.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_linear_interpn.c' object='sci_gateway/c/libsciinterpolation_la-sci_linear_interpn.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinterpolation_la-sci_linear_interpn.lo `test -f 'sci_gateway/c/sci_linear_interpn.c' || echo '$(srcdir)/'`sci_gateway/c/sci_linear_interpn.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciinterpolation_la-sci_linear_interpn.lo `test -f 'sci_gateway/c/sci_linear_interpn.c' || echo '$(srcdir)/'`sci_gateway/c/sci_linear_interpn.c
 
-libsciinterpolation_la-sci_splin2d.lo: sci_gateway/c/sci_splin2d.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinterpolation_la-sci_splin2d.lo -MD -MP -MF $(DEPDIR)/libsciinterpolation_la-sci_splin2d.Tpo -c -o libsciinterpolation_la-sci_splin2d.lo `test -f 'sci_gateway/c/sci_splin2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_splin2d.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciinterpolation_la-sci_splin2d.Tpo $(DEPDIR)/libsciinterpolation_la-sci_splin2d.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_splin2d.c' object='libsciinterpolation_la-sci_splin2d.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciinterpolation_la-sci_splin2d.lo: sci_gateway/c/sci_splin2d.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciinterpolation_la-sci_splin2d.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_splin2d.Tpo -c -o sci_gateway/c/libsciinterpolation_la-sci_splin2d.lo `test -f 'sci_gateway/c/sci_splin2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_splin2d.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_splin2d.Tpo sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_splin2d.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_splin2d.c' object='sci_gateway/c/libsciinterpolation_la-sci_splin2d.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinterpolation_la-sci_splin2d.lo `test -f 'sci_gateway/c/sci_splin2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_splin2d.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciinterpolation_la-sci_splin2d.lo `test -f 'sci_gateway/c/sci_splin2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_splin2d.c
 
-libsciinterpolation_la-sci_splin3d.lo: sci_gateway/c/sci_splin3d.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinterpolation_la-sci_splin3d.lo -MD -MP -MF $(DEPDIR)/libsciinterpolation_la-sci_splin3d.Tpo -c -o libsciinterpolation_la-sci_splin3d.lo `test -f 'sci_gateway/c/sci_splin3d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_splin3d.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciinterpolation_la-sci_splin3d.Tpo $(DEPDIR)/libsciinterpolation_la-sci_splin3d.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_splin3d.c' object='libsciinterpolation_la-sci_splin3d.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciinterpolation_la-sci_splin3d.lo: sci_gateway/c/sci_splin3d.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciinterpolation_la-sci_splin3d.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_splin3d.Tpo -c -o sci_gateway/c/libsciinterpolation_la-sci_splin3d.lo `test -f 'sci_gateway/c/sci_splin3d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_splin3d.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_splin3d.Tpo sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_splin3d.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_splin3d.c' object='sci_gateway/c/libsciinterpolation_la-sci_splin3d.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinterpolation_la-sci_splin3d.lo `test -f 'sci_gateway/c/sci_splin3d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_splin3d.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciinterpolation_la-sci_splin3d.lo `test -f 'sci_gateway/c/sci_splin3d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_splin3d.c
 
-libsciinterpolation_la-sci_bsplin3val.lo: sci_gateway/c/sci_bsplin3val.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinterpolation_la-sci_bsplin3val.lo -MD -MP -MF $(DEPDIR)/libsciinterpolation_la-sci_bsplin3val.Tpo -c -o libsciinterpolation_la-sci_bsplin3val.lo `test -f 'sci_gateway/c/sci_bsplin3val.c' || echo '$(srcdir)/'`sci_gateway/c/sci_bsplin3val.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciinterpolation_la-sci_bsplin3val.Tpo $(DEPDIR)/libsciinterpolation_la-sci_bsplin3val.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_bsplin3val.c' object='libsciinterpolation_la-sci_bsplin3val.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciinterpolation_la-sci_bsplin3val.lo: sci_gateway/c/sci_bsplin3val.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciinterpolation_la-sci_bsplin3val.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_bsplin3val.Tpo -c -o sci_gateway/c/libsciinterpolation_la-sci_bsplin3val.lo `test -f 'sci_gateway/c/sci_bsplin3val.c' || echo '$(srcdir)/'`sci_gateway/c/sci_bsplin3val.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_bsplin3val.Tpo sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_bsplin3val.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_bsplin3val.c' object='sci_gateway/c/libsciinterpolation_la-sci_bsplin3val.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinterpolation_la-sci_bsplin3val.lo `test -f 'sci_gateway/c/sci_bsplin3val.c' || echo '$(srcdir)/'`sci_gateway/c/sci_bsplin3val.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciinterpolation_la-sci_bsplin3val.lo `test -f 'sci_gateway/c/sci_bsplin3val.c' || echo '$(srcdir)/'`sci_gateway/c/sci_bsplin3val.c
 
-libsciinterpolation_la-sci_eval_cshep2d.lo: sci_gateway/c/sci_eval_cshep2d.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinterpolation_la-sci_eval_cshep2d.lo -MD -MP -MF $(DEPDIR)/libsciinterpolation_la-sci_eval_cshep2d.Tpo -c -o libsciinterpolation_la-sci_eval_cshep2d.lo `test -f 'sci_gateway/c/sci_eval_cshep2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_eval_cshep2d.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciinterpolation_la-sci_eval_cshep2d.Tpo $(DEPDIR)/libsciinterpolation_la-sci_eval_cshep2d.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_eval_cshep2d.c' object='libsciinterpolation_la-sci_eval_cshep2d.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciinterpolation_la-sci_eval_cshep2d.lo: sci_gateway/c/sci_eval_cshep2d.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciinterpolation_la-sci_eval_cshep2d.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_eval_cshep2d.Tpo -c -o sci_gateway/c/libsciinterpolation_la-sci_eval_cshep2d.lo `test -f 'sci_gateway/c/sci_eval_cshep2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_eval_cshep2d.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_eval_cshep2d.Tpo sci_gateway/c/$(DEPDIR)/libsciinterpolation_la-sci_eval_cshep2d.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_eval_cshep2d.c' object='sci_gateway/c/libsciinterpolation_la-sci_eval_cshep2d.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinterpolation_la-sci_eval_cshep2d.lo `test -f 'sci_gateway/c/sci_eval_cshep2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_eval_cshep2d.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinterpolation_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciinterpolation_la-sci_eval_cshep2d.lo `test -f 'sci_gateway/c/sci_eval_cshep2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_eval_cshep2d.c
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<
@@ -907,20 +982,14 @@ libsciinterpolation_la-sci_eval_cshep2d.lo: sci_gateway/c/sci_eval_cshep2d.c
 .f.lo:
 	$(AM_V_F77)$(LTF77COMPILE) -c -o $@ $<
 
-somespline.lo: src/fortran/somespline.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o somespline.lo `test -f 'src/fortran/somespline.f' || echo '$(srcdir)/'`src/fortran/somespline.f
-
-dspfit.lo: src/fortran/dspfit.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dspfit.lo `test -f 'src/fortran/dspfit.f' || echo '$(srcdir)/'`src/fortran/dspfit.f
-
-cshep2d.lo: src/fortran/cshep2d.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cshep2d.lo `test -f 'src/fortran/cshep2d.f' || echo '$(srcdir)/'`src/fortran/cshep2d.f
-
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
+	-rm -rf src/c/.libs src/c/_libs
+	-rm -rf src/fortran/.libs src/fortran/_libs
 install-libsciinterpolation_la_etcDATA: $(libsciinterpolation_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libsciinterpolation_la_etc_DATA)'; test -n "$(libsciinterpolation_la_etcdir)" || list=; \
@@ -1101,6 +1170,12 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/c/$(am__dirstamp)
+	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/c/$(am__dirstamp)
+	-rm -f src/fortran/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/fortran/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1111,7 +1186,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1160,7 +1235,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

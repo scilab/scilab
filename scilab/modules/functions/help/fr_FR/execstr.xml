@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -18,22 +18,22 @@
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
         <synopsis>execstr(instr)
-            ierr=execstr(instr,'errcatch' [,msg])
+            ierr = execstr(instr, 'errcatch' [,msg])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>instr  </term>
+                <term>instr</term>
                 <listitem>
-                    <para>vecteur de chaînes de caractères</para>
+                    <para>vecteur de chaînes de caractères.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>ierr  </term>
+                <term>ierr</term>
                 <listitem>
-                    <para>entier, 0 ou numéro de l'erreur</para>
+                    <para>entier, 0 ou numéro de l'erreur.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -41,7 +41,7 @@
                 <listitem>
                     <para>
                         chaîne de caractères (<literal>'m'</literal> ou <literal>'n'</literal>). La valeur
-                        par défaut est <literal>'n'</literal>. 
+                        par défaut est <literal>'n'</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -50,18 +50,22 @@
     <refsection>
         <title>Description</title>
         <para>Exécute les instructions Scilab données dans l'argument
-            <literal>instr</literal>. 
+            <varname>instr</varname>.
         </para>
-        <para>Note : les instructions ne doivent pas comporter de marques de suite (..). </para>
-        <para> </para>
-        <para>Si 'errcatch' n'est pas présent dans les arguments, les erreurs sont contrôlées comme d'habitude.</para>
-        <para>Si 'errcatch' est présent dans les arguments, et qu'une erreur est
-            rencontrée lors de l'évaluation d'un élément de <literal>instr</literal>,
-            <literal>execstr</literal> ne produit aucun message d'erreur, mais stoppe
-            l'exécution des instructions stockées dans <literal>instr</literal> (au point
-            où l'erreur s'est produite), et renvoie dans <literal>ierr</literal> le numéro
+        <note>
+            Note : les instructions <varname>instr</varname> ne doivent pas comporter de marques de suite (..).
+        </note>
+        <para>
+            Si <literal>'errcatch'</literal> n'est pas présent dans les arguments, les erreurs sont contrôlées comme d'habitude.
+        </para>
+        <para>
+            Si <literal>'errcatch'</literal> est présent dans les arguments, et qu'une erreur est
+            rencontrée lors de l'évaluation d'un élément de <varname>instr</varname>,
+            <function>execstr</function> ne produit aucun message d'erreur, mais stoppe
+            l'exécution des instructions stockées dans <varname>instr</varname> (au point
+            où l'erreur s'est produite), et renvoie dans <varname>ierr</varname> le numéro
             de l'erreur. Dans ce cas l'affichage du message d'erreur est contrôlé par
-            l'option <literal>msg</literal> : 
+            l'option <varname>msg</varname> :
         </para>
         <variablelist>
             <varlistentry>
@@ -74,20 +78,21 @@
                 <term>"n"</term>
                 <listitem>
                     <para>le message d'erreur n'est pas affiché mais il est enregistré
-                        (voir <literal>lasterror</literal>). Il s'agit du comportement par
-                        défaut. 
+                        (voir <link linkend="lasterror">lasterror</link>). Il s'agit du comportement par
+                        défaut.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
-        <para> ierr=execstr(instr,'errcatch') peut gérer les erreurs de syntaxes. Ceci
+        <para>
+            <code>ierr = execstr(instr, 'errcatch')</code> peut gérer les erreurs de syntaxes. Ceci
             peut être utile pour évaluer les instructions obtenues par une requète à
             l'utilisateur (interface homme-machine).
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 execstr('a=1') // affecte a=1.
 
 execstr('1+1') // ne fait rien de particulier (alors que evstr('1+1') renvoie 2)
@@ -111,11 +116,15 @@ execstr('a=[1 2 3)','errcatch')
 lasterror(%t)
 
 // variable1 n'existe pas
-if execstr('variable1;','errcatch')<>0 then disp("Declenche une erreur"),end
+if execstr('variable1;','errcatch')<>0 then
+   disp("Declenche une erreur");
+else
+   disp("execstr est content");
+end
 
 // variable2 existe ... Pas d'erreur dans execstr
-variable2=[2,3]; 
-if execstr('variable2;','errcatch')<>0 then 
+variable2=[2,3];
+if execstr('variable2;','errcatch')<>0 then
    disp("Declenche une erreur");
 else
    disp("execstr est content");

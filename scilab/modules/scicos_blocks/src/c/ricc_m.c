@@ -28,10 +28,10 @@
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(riccsl)();
-extern int C2F(riccms)();
-extern int C2F(ricdsl)();
-extern int C2F(ricdmf)();
+extern int C2F(riccsl)(char* TRANA, int* N, double* A, int* LDA, char* UPLO, double* C, int* LDC, double* D, int* LDD, double* X, int* LDX, double* WR, double* WI, double* RCOND, double* FERR, double* WORK, int* LWORK, int* IWORK, int* BWORK, int* INFO);
+extern int C2F(riccms)(char* TRANA, int* N, double* A, int* LDA, char* UPLO, double* C, int* LDC, double* D, int* LDD, double* X, int* LDX, double* WR, double* WI, double* RCOND, double* FERR, double* WORK, int* LWORK, int* IWORK, int* INFO);
+extern int C2F(ricdsl)(char* TRANA, int* N, double* A, int* LDA, char* UPLO, double* C, int* LDC, double* D, int* LDD, double* X, int* LDX, double* WR, double* WI, double* RCOND, double* FERR, double* WORK, int* LWORK, int* IWORK, int* BWORK, int* INFO);
+extern int C2F(ricdmf)(char* TRANA, int* N, double* A, int* LDA, char* UPLO, double* C, int* LDC, double* D, int* LDD, double* X, int* LDX, double* WR, double* WI, double* RCOND, double* FERR, double* WORK, int* LWORK, int* IWORK, int* INFO);
 /*--------------------------------------------------------------------------*/
 typedef struct
 {
@@ -55,6 +55,7 @@ SCICOS_BLOCKS_IMPEXP void ricc_m(scicos_block *block, int flag)
     int nu = 0;
     int info = 0, i = 0;
     int lw = 0;
+    ricc_struct** work = (ricc_struct**) block->work;
     ricc_struct *ptr = NULL;
 
     nu = GetInPortCols(block, 1);
@@ -90,12 +91,12 @@ SCICOS_BLOCKS_IMPEXP void ricc_m(scicos_block *block, int flag)
     /*init : initialization*/
     if (flag == 4)
     {
-        if ((*(block->work) = (ricc_struct*) scicos_malloc(sizeof(ricc_struct))) == NULL)
+        if ((*work = (ricc_struct*) scicos_malloc(sizeof(ricc_struct))) == NULL)
         {
             set_block_error(-16);
             return;
         }
-        ptr = *(block->work);
+        ptr = *work;
         if ((ptr->bwork = (int*) scicos_malloc(sizeof(int) * 2 * nu)) == NULL)
         {
             set_block_error(-16);
@@ -177,7 +178,7 @@ SCICOS_BLOCKS_IMPEXP void ricc_m(scicos_block *block, int flag)
     /* Terminaison */
     else if (flag == 5)
     {
-        ptr = *(block->work);
+        ptr = *work;
         if ((ptr->LX) != NULL)
         {
             scicos_free(ptr->bwork);
@@ -195,7 +196,7 @@ SCICOS_BLOCKS_IMPEXP void ricc_m(scicos_block *block, int flag)
 
     else
     {
-        ptr = *(block->work);
+        ptr = *work;
         if (ipar[0] == 1)
         {
             if (ipar[1] == 1)

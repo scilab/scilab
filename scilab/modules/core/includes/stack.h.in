@@ -1,18 +1,18 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 c*------------------------------------------------------------------
-c vsiz  size of internal scilab stack 
+c vsiz  size of internal scilab stack
 c
-c bsiz  size of internal chain buf 
+c bsiz  size of internal chain buf
 c
-c isizt  maximum number of scilab variables global and local 
+c isizt  maximum number of scilab variables global and local
 c isiz maximum number of scilab local variables
 c psiz  defines recursion size
 c lsiz  dim. of vector containing the command line
@@ -20,7 +20,7 @@ c nlgh  length of variable names
 c csiz  used for character coding
 c intersiz used in interfaces
 c*-------------------------------------------------------------------
-Cc (DLL Digital Visual Fortran)     
+Cc (DLL Digital Visual Fortran)
 cDEC$ IF DEFINED (FORDLL)
 cDEC$ ATTRIBUTES DLLIMPORT:: /stack/, /vstk/, /recu/, /iop/
 cDEC$ ATTRIBUTES DLLIMPORT:: /errgst/, /com/, /adre/
@@ -79,5 +79,7 @@ c
      $  ladc(intersiz),lhsvar(intersiz)
       common/intersci/nbvars,iwhere,nbrows,nbcols,
      $ itflag,ntypes,lad,ladc,lhsvar
+      integer ierror
+      common/ierode/ierror
 c*------------------------------------------------------------------
 

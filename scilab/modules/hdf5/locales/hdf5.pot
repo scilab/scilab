@@ -14,39 +14,39 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-09-27 17:13+0100\n"
+"Revision-Date: 2013-12-09 09:47+0100\n"
 
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 101
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 103
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 131
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 132
 #, c-format
 msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 135
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 136
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 148
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 152
 #, c-format
 msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 168
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 175
 #, c-format
 msgid "%s: Unable to delete existing variable \"%s\"."
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 175
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 185
 #, c-format
 msgid ""
 "%s: Variable '%s' already exists in file '%s'\n"
@@ -55,19 +55,19 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 193
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 206
 #, c-format
 msgid "%s: Unable to update Scilab version in \"%s\"."
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 200
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 216
 #, c-format
 msgid "%s: Unable to update HDF5 format version in \"%s\"."
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 917
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 852
 # File: sci_gateway/cpp/sci_h5attr.cpp, line: 94
 # File: sci_gateway/cpp/sci_h5attr.cpp, line: 117
 # File: sci_gateway/cpp/sci_h5cp.cpp, line: 80
@@ -307,13 +307,13 @@ msgstr ""
 #
 # File: sci_gateway/cpp/sci_h5attr.cpp, line: 142
 # File: sci_gateway/cpp/sci_h5write.cpp, line: 156
-# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 70
-# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 124
-# File: sci_gateway/cpp/sci_is_hdf5_file.cpp, line: 48
-# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 85
-# File: src/cpp/import_from_hdf5_v1.cpp, line: 77
-# File: src/cpp/import_from_hdf5_v1.cpp, line: 110
-# File: src/cpp/listvar_in_hdf5_v1.cpp, line: 78
+# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 76
+# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 135
+# File: sci_gateway/cpp/sci_is_hdf5_file.cpp, line: 49
+# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 91
+# File: src/cpp/import_from_hdf5_v1.cpp, line: 83
+# File: src/cpp/import_from_hdf5_v1.cpp, line: 121
+# File: src/cpp/listvar_in_hdf5_v1.cpp, line: 84
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
@@ -570,26 +570,26 @@ msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 79
-# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 93
-# File: src/cpp/import_from_hdf5_v1.cpp, line: 88
-# File: src/cpp/listvar_in_hdf5_v1.cpp, line: 88
+# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 85
+# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 99
+# File: src/cpp/import_from_hdf5_v1.cpp, line: 93
+# File: src/cpp/listvar_in_hdf5_v1.cpp, line: 93
 #, c-format
 msgid "%s: Unable to open file: %s\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 95
-# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 110
+# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 101
+# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 116
 #, c-format
 msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 261
-# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 312
-# File: src/cpp/import_from_hdf5_v1.cpp, line: 247
-# File: src/cpp/listvar_in_hdf5_v1.cpp, line: 281
+# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 276
+# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 319
+# File: src/cpp/import_from_hdf5_v1.cpp, line: 262
+# File: src/cpp/listvar_in_hdf5_v1.cpp, line: 290
 #, c-format
 msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr ""
@@ -634,7 +634,7 @@ msgstr ""
 
 #
 # File: src/cpp/H5ArrayData.cpp, line: 65
-# File: src/cpp/H5CompoundData.cpp, line: 99
+# File: src/cpp/H5CompoundData.cpp, line: 100
 # File: src/cpp/H5ReferenceData.cpp, line: 77
 # File: src/cpp/H5VlenData.cpp, line: 54
 msgid "Invalid index."
@@ -642,7 +642,7 @@ msgstr ""
 
 #
 # File: src/cpp/H5ArrayData.cpp, line: 77
-# File: src/cpp/H5CompoundData.cpp, line: 126
+# File: src/cpp/H5CompoundData.cpp, line: 127
 # File: src/cpp/H5Dataspace.cpp, line: 251
 # File: src/cpp/H5ReferenceData.cpp, line: 149
 # File: src/cpp/H5VlenData.cpp, line: 70
@@ -720,10 +720,10 @@ msgstr ""
 
 #
 # File: src/cpp/H5AttributesList.cpp, line: 120
-# File: src/cpp/H5ExternalLink.cpp, line: 141
-# File: src/cpp/H5HardLink.cpp, line: 99
+# File: src/cpp/H5ExternalLink.cpp, line: 142
+# File: src/cpp/H5HardLink.cpp, line: 100
 # File: src/cpp/H5NamedObjectsList.hxx, line: 230
-# File: src/cpp/H5SoftLink.cpp, line: 113
+# File: src/cpp/H5SoftLink.cpp, line: 115
 msgid "Filename"
 msgstr ""
 
@@ -744,13 +744,13 @@ msgid "Wrong dimensions."
 msgstr ""
 
 #
-# File: src/cpp/H5CompoundData.cpp, line: 83
+# File: src/cpp/H5CompoundData.cpp, line: 84
 #, c-format
 msgid "Invalid field name: %s"
 msgstr ""
 
 #
-# File: src/cpp/H5CompoundData.cpp, line: 145
+# File: src/cpp/H5CompoundData.cpp, line: 146
 msgid "Fields Names"
 msgstr ""
 
@@ -908,14 +908,14 @@ msgstr ""
 
 #
 # File: src/cpp/H5Dataspace.cpp, line: 136
-# File: src/cpp/H5ExternalLink.cpp, line: 76
-# File: src/cpp/H5ExternalLink.cpp, line: 92
+# File: src/cpp/H5ExternalLink.cpp, line: 77
+# File: src/cpp/H5ExternalLink.cpp, line: 93
 # File: src/cpp/H5File.cpp, line: 361
-# File: src/cpp/H5HardLink.cpp, line: 65
-# File: src/cpp/H5Object.cpp, line: 121
-# File: src/cpp/H5Object.cpp, line: 132
-# File: src/cpp/H5SoftLink.cpp, line: 61
-# File: src/cpp/H5SoftLink.cpp, line: 72
+# File: src/cpp/H5HardLink.cpp, line: 66
+# File: src/cpp/H5Object.cpp, line: 122
+# File: src/cpp/H5Object.cpp, line: 134
+# File: src/cpp/H5SoftLink.cpp, line: 62
+# File: src/cpp/H5SoftLink.cpp, line: 74
 # File: src/cpp/H5Type.cpp, line: 801
 # File: src/cpp/H5Type.cpp, line: 813
 # File: src/cpp/H5Type.cpp, line: 836
@@ -981,33 +981,33 @@ msgid "Cannot get the link target"
 msgstr ""
 
 #
-# File: src/cpp/H5ExternalLink.cpp, line: 142
-# File: src/cpp/H5HardLink.cpp, line: 100
-# File: src/cpp/H5SoftLink.cpp, line: 114
-msgid "Link type"
-msgstr ""
-
-#
 # File: src/cpp/H5ExternalLink.cpp, line: 143
 # File: src/cpp/H5HardLink.cpp, line: 101
-# File: src/cpp/H5SoftLink.cpp, line: 115
-msgid "Link name"
+# File: src/cpp/H5SoftLink.cpp, line: 116
+msgid "Link type"
 msgstr ""
 
 #
 # File: src/cpp/H5ExternalLink.cpp, line: 144
 # File: src/cpp/H5HardLink.cpp, line: 102
-# File: src/cpp/H5SoftLink.cpp, line: 116
-msgid "Link path"
+# File: src/cpp/H5SoftLink.cpp, line: 117
+msgid "Link name"
 msgstr ""
 
 #
 # File: src/cpp/H5ExternalLink.cpp, line: 145
-msgid "Link target file"
+# File: src/cpp/H5HardLink.cpp, line: 103
+# File: src/cpp/H5SoftLink.cpp, line: 118
+msgid "Link path"
 msgstr ""
 
 #
 # File: src/cpp/H5ExternalLink.cpp, line: 146
+msgid "Link target file"
+msgstr ""
+
+#
+# File: src/cpp/H5ExternalLink.cpp, line: 147
 msgid "Link target path"
 msgstr ""
 
@@ -1139,7 +1139,7 @@ msgstr ""
 
 #
 # File: src/cpp/H5Group.cpp, line: 320
-# File: src/cpp/H5Object.cpp, line: 492
+# File: src/cpp/H5Object.cpp, line: 494
 msgid "Cannot list group contents"
 msgstr ""
 
@@ -1167,7 +1167,7 @@ msgid "Cannot get linked object"
 msgstr ""
 
 #
-# File: src/cpp/H5HardLink.cpp, line: 103
+# File: src/cpp/H5HardLink.cpp, line: 104
 msgid "Link target name"
 msgstr ""
 
@@ -1242,51 +1242,51 @@ msgstr ""
 #
 # File: src/cpp/H5NamedObjectsList.hxx, line: 301
 # File: src/cpp/H5NamedObjectsList.hxx, line: 307
-# File: src/cpp/H5Object.cpp, line: 277
-# File: src/cpp/H5Object.cpp, line: 287
-# File: src/cpp/H5Object.cpp, line: 320
-# File: src/cpp/H5Object.cpp, line: 333
-# File: src/cpp/H5Object.cpp, line: 340
-# File: src/cpp/H5Object.cpp, line: 346
+# File: src/cpp/H5Object.cpp, line: 279
+# File: src/cpp/H5Object.cpp, line: 289
+# File: src/cpp/H5Object.cpp, line: 322
+# File: src/cpp/H5Object.cpp, line: 335
+# File: src/cpp/H5Object.cpp, line: 342
+# File: src/cpp/H5Object.cpp, line: 348
 #, c-format
 msgid "Invalid name: %s."
 msgstr ""
 
 #
 # File: src/cpp/H5NamedObjectsList.hxx, line: 315
-# File: src/cpp/H5Object.cpp, line: 302
-# File: src/cpp/H5Object.cpp, line: 361
+# File: src/cpp/H5Object.cpp, line: 304
+# File: src/cpp/H5Object.cpp, line: 363
 msgid "Invalid HDF5 object"
 msgstr ""
 
 #
-# File: src/cpp/H5Object.cpp, line: 138
+# File: src/cpp/H5Object.cpp, line: 140
 #, c-format
 msgid "Invalid field: %s"
 msgstr ""
 
 #
-# File: src/cpp/H5Object.cpp, line: 157
-# File: src/cpp/H5Object.cpp, line: 163
-# File: src/cpp/H5Object.cpp, line: 169
-# File: src/cpp/H5Object.cpp, line: 184
-# File: src/cpp/H5Object.cpp, line: 190
-# File: src/cpp/H5Object.cpp, line: 196
+# File: src/cpp/H5Object.cpp, line: 159
+# File: src/cpp/H5Object.cpp, line: 165
+# File: src/cpp/H5Object.cpp, line: 171
+# File: src/cpp/H5Object.cpp, line: 186
+# File: src/cpp/H5Object.cpp, line: 192
+# File: src/cpp/H5Object.cpp, line: 198
 msgid "Cannot create a mlist on the stack."
 msgstr ""
 
 #
-# File: src/cpp/H5Object.cpp, line: 222
+# File: src/cpp/H5Object.cpp, line: 224
 msgid "Cannot list names."
 msgstr ""
 
 #
-# File: src/cpp/H5Object.cpp, line: 237
+# File: src/cpp/H5Object.cpp, line: 239
 msgid "Cannot retrieve information about the object"
 msgstr ""
 
 #
-# File: src/cpp/H5Object.cpp, line: 256
+# File: src/cpp/H5Object.cpp, line: 258
 # File: src/cpp/H5ReferenceData.cpp, line: 111
 # File: src/cpp/H5ReferenceData.cpp, line: 219
 msgid "Unknown HDF5 object"
@@ -1309,7 +1309,7 @@ msgid "Cannot open object at the given position."
 msgstr ""
 
 #
-# File: src/cpp/H5SoftLink.cpp, line: 117
+# File: src/cpp/H5SoftLink.cpp, line: 119
 msgid "Link target"
 msgstr ""
 
@@ -1523,4 +1523,38 @@ msgstr ""
 # File: src/cpp/HDF5Scilab.hxx, line: 391
 #, c-format
 msgid "Invalid path: %s."
+msgstr ""
+
+# File: demos/hdf5.dem.gateway.sce, line: 10
+msgid "HDF5"
+msgstr ""
+
+#
+# File: demos/hdf5.dem.gateway.sce, line: 12
+msgid "Ring resonator (HDF5 data source)"
+msgstr ""
+
+#
+# File: demos/resonator.dem.sce, line: 12
+msgid "Ring Resonator from a HDF5 file"
+msgstr ""
+
+#
+# File: demos/resonator.dem.sce, line: 26
+msgid "X position [a]"
+msgstr ""
+
+#
+# File: demos/resonator.dem.sce, line: 27
+msgid "Y position [a]"
+msgstr ""
+
+#
+# File: demos/resonator.dem.sce, line: 28
+msgid "Permittivity"
+msgstr ""
+
+#
+# File: demos/resonator.dem.sce, line: 32
+msgid "Ring Resonator"
 msgstr ""

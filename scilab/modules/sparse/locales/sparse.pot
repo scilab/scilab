@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-09-27 17:14+0100\n"
+"Revision-Date: 2013-12-09 09:48+0100\n"
 
 # File: includes/spDefs.h, line: 379
 #, c-format
@@ -239,10 +239,113 @@ msgid ""
 "\n"
 msgstr ""
 
+# File: macros/%bicg.sci, line: 52
+# File: macros/%bicgstab.sci, line: 52
+# File: macros/%cgs.sci, line: 52
+# File: macros/%pcg.sci, line: 63
+# File: macros/pcg.sci, line: 210
+#, c-format
+msgid "Norm of right-hand side : %s\n"
+msgstr ""
+
+#
+# File: macros/%bicg.sci, line: 56
+# File: macros/%bicgstab.sci, line: 56
+# File: macros/%cgs.sci, line: 56
+# File: macros/%pcg.sci, line: 67
+# File: macros/pcg.sci, line: 214
+#, c-format
+msgid "Special processing where the right-hand side is zero.\n"
+msgstr ""
+
+#
+# File: macros/%bicg.sci, line: 76
+# File: macros/%bicgstab.sci, line: 76
+# File: macros/%cgs.sci, line: 76
+# File: macros/%pcg.sci, line: 85
+# File: macros/pcg.sci, line: 232
+#, c-format
+msgid "  Type of preconditionning #1 : %d\n"
+msgstr ""
+
+#
+# File: macros/%bicg.sci, line: 77
+# File: macros/%bicgstab.sci, line: 77
+# File: macros/%cgs.sci, line: 77
+# File: macros/%pcg.sci, line: 86
+# File: macros/pcg.sci, line: 233
+#, c-format
+msgid "  Type of preconditionning #2 : %d\n"
+msgstr ""
+
+#
+# File: macros/%bicg.sci, line: 85
+# File: macros/%bicgstab.sci, line: 85
+# File: macros/%bicgstab.sci, line: 142
+# File: macros/%cgs.sci, line: 85
+# File: macros/%pcg.sci, line: 94
+# File: macros/pcg.sci, line: 241
+#, c-format
+msgid "  New residual = %s < tol = %s => break\n"
+msgstr ""
+
+#
+# File: macros/%bicg.sci, line: 91
+# File: macros/%bicgstab.sci, line: 91
+# File: macros/%cgs.sci, line: 91
+# File: macros/%pcg.sci, line: 100
+# File: macros/pcg.sci, line: 247
+#, c-format
+msgid "  Iteration #%s/%s residual : %s\n"
+msgstr ""
+
+#
+# File: macros/%bicg.sci, line: 175
+# File: macros/%bicgstab.sci, line: 188
+# File: macros/%cgs.sci, line: 180
+# File: macros/conjgrad.sci, line: 266
+# File: macros/pcg.sci, line: 298
+#, c-format
+msgid "Final residual = %s > tol =%s\n"
+msgstr ""
+
+#
+# File: macros/%bicg.sci, line: 176
+# File: macros/%bicgstab.sci, line: 189
+# File: macros/%cgs.sci, line: 181
+# File: macros/conjgrad.sci, line: 267
+# File: macros/pcg.sci, line: 299
+#, c-format
+msgid "Algorithm fails\n"
+msgstr ""
+
+#
+# File: macros/%bicg.sci, line: 180
+# File: macros/%bicgstab.sci, line: 193
+# File: macros/%cgs.sci, line: 185
+# File: macros/conjgrad.sci, line: 271
+# File: macros/pcg.sci, line: 303
+#, c-format
+msgid "%s: Convergence error.\n"
+msgstr ""
+
+#
+# File: macros/%bicg.sci, line: 185
+# File: macros/%bicgstab.sci, line: 198
+# File: macros/%cgs.sci, line: 190
+# File: macros/conjgrad.sci, line: 276
+# File: macros/pcg.sci, line: 308
+#, c-format
+msgid "Algorithm pass\n"
+msgstr ""
+
+#
 # File: macros/adj2sp.sci, line: 19
+# File: macros/conjgrad.sci, line: 92
+# File: macros/conjgrad.sci, line: 95
 # File: macros/gmres.sci, line: 148
-# File: macros/pcg.sci, line: 62
 # File: macros/pcg.sci, line: 65
+# File: macros/pcg.sci, line: 68
 # File: macros/qmr.sci, line: 296
 # File: macros/sp2adj.sci, line: 19
 #, c-format
@@ -260,9 +363,12 @@ msgstr ""
 # File: macros/adj2sp.sci, line: 43
 # File: macros/adj2sp.sci, line: 47
 # File: macros/adj2sp.sci, line: 51
-# File: macros/pcg.sci, line: 112
-# File: macros/pcg.sci, line: 155
-# File: macros/pcg.sci, line: 184
+# File: macros/conjgrad.sci, line: 145
+# File: macros/conjgrad.sci, line: 202
+# File: macros/conjgrad.sci, line: 231
+# File: macros/pcg.sci, line: 115
+# File: macros/pcg.sci, line: 158
+# File: macros/pcg.sci, line: 187
 # File: macros/sp2adj.sci, line: 29
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -349,6 +455,89 @@ msgid " Insufficient working storage in sfinit"
 msgstr ""
 
 #
+# File: macros/conjgrad.sci, line: 119
+# File: macros/pcg.sci, line: 89
+#, c-format
+msgid "Arguments:\n"
+msgstr ""
+
+#
+# File: macros/conjgrad.sci, line: 150
+# File: macros/conjgrad.sci, line: 206
+# File: macros/conjgrad.sci, line: 235
+# File: macros/pcg.sci, line: 120
+# File: macros/pcg.sci, line: 162
+# File: macros/pcg.sci, line: 191
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
+msgstr ""
+
+#
+# File: macros/conjgrad.sci, line: 155
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
+msgstr ""
+
+#
+# File: macros/conjgrad.sci, line: 158
+# File: macros/pcg.sci, line: 125
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
+msgstr ""
+
+#
+# File: macros/conjgrad.sci, line: 162
+# File: macros/conjgrad.sci, line: 167
+# File: macros/conjgrad.sci, line: 209
+# File: macros/conjgrad.sci, line: 238
+# File: macros/conjgrad.sci, line: 246
+# File: macros/gmres.sci, line: 75
+# File: macros/gmres.sci, line: 127
+# File: macros/gmres.sci, line: 141
+# File: macros/pcg.sci, line: 129
+# File: macros/pcg.sci, line: 165
+# File: macros/pcg.sci, line: 194
+# File: macros/pcg.sci, line: 202
+# File: macros/qmr.sci, line: 133
+# File: macros/qmr.sci, line: 162
+# File: macros/qmr.sci, line: 216
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same size as input argument #%d "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/conjgrad.sci, line: 172
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single String expected.\n"
+msgstr ""
+
+#
+# File: macros/conjgrad.sci, line: 174
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s, %s, %s or %s expected.\n"
+msgstr ""
+
+#
+# File: macros/conjgrad.sci, line: 178
+# File: macros/conjgrad.sci, line: 182
+# File: macros/pcg.sci, line: 134
+# File: macros/pcg.sci, line: 138
+# File: macros/qmr.sci, line: 255
+# File: macros/qmr.sci, line: 277
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr ""
+
+#
+# File: macros/conjgrad.sci, line: 243
+# File: macros/pcg.sci, line: 199
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
+msgstr ""
+
+#
 # File: macros/gmres.sci, line: 51
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
@@ -374,23 +563,6 @@ msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
 
 #
-# File: macros/gmres.sci, line: 75
-# File: macros/gmres.sci, line: 127
-# File: macros/gmres.sci, line: 141
-# File: macros/pcg.sci, line: 126
-# File: macros/pcg.sci, line: 162
-# File: macros/pcg.sci, line: 191
-# File: macros/pcg.sci, line: 199
-# File: macros/qmr.sci, line: 133
-# File: macros/qmr.sci, line: 162
-# File: macros/qmr.sci, line: 216
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Same size as input argument #%d "
-"expected.\n"
-msgstr ""
-
-#
 # File: macros/gmres.sci, line: 83
 # File: macros/gmres.sci, line: 93
 # File: macros/gmres.sci, line: 103
@@ -404,101 +576,6 @@ msgstr ""
 # File: macros/gmres.sci, line: 286
 #, c-format
 msgid "%s: Did not converge.\n"
-msgstr ""
-
-#
-# File: macros/pcg.sci, line: 86
-#, c-format
-msgid "Arguments:\n"
-msgstr ""
-
-#
-# File: macros/pcg.sci, line: 117
-# File: macros/pcg.sci, line: 159
-# File: macros/pcg.sci, line: 188
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
-msgstr ""
-
-#
-# File: macros/pcg.sci, line: 122
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
-msgstr ""
-
-#
-# File: macros/pcg.sci, line: 131
-# File: macros/pcg.sci, line: 135
-# File: macros/qmr.sci, line: 255
-# File: macros/qmr.sci, line: 277
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
-msgstr ""
-
-#
-# File: macros/pcg.sci, line: 196
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
-msgstr ""
-
-#
-# File: macros/pcg.sci, line: 207
-#, c-format
-msgid "Norm of right-hand side : %s\n"
-msgstr ""
-
-#
-# File: macros/pcg.sci, line: 211
-#, c-format
-msgid "Special processing where the right-hand side is zero.\n"
-msgstr ""
-
-#
-# File: macros/pcg.sci, line: 229
-#, c-format
-msgid "  Type of preconditionning #1 : %d\n"
-msgstr ""
-
-#
-# File: macros/pcg.sci, line: 230
-#, c-format
-msgid "  Type of preconditionning #2 : %d\n"
-msgstr ""
-
-#
-# File: macros/pcg.sci, line: 238
-#, c-format
-msgid "  New residual = %s < tol = %s => break\n"
-msgstr ""
-
-#
-# File: macros/pcg.sci, line: 244
-#, c-format
-msgid "  Iteration #%s/%s residual : %s\n"
-msgstr ""
-
-#
-# File: macros/pcg.sci, line: 295
-#, c-format
-msgid "Final residual = %s > tol =%s\n"
-msgstr ""
-
-#
-# File: macros/pcg.sci, line: 296
-#, c-format
-msgid "Algorithm fails\n"
-msgstr ""
-
-#
-# File: macros/pcg.sci, line: 300
-#, c-format
-msgid "%s: Convergence error.\n"
-msgstr ""
-
-#
-# File: macros/pcg.sci, line: 305
-#, c-format
-msgid "Algorithm pass\n"
 msgstr ""
 
 #

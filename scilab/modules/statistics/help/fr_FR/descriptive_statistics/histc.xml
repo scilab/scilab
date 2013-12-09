@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ --><!-- This document was created with Syntext Serna Free. -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="histc">
+    <refnamediv>
+        <refname>histc</refname>
+        <refpurpose>calcule un histogramme</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>
+            [cf, ind] = histc(n, data [,normalization])
+            [cf, ind] = histc(x, data [,normalization])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>entier positif (nombre de classes)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        vecteur croissant définissant les classes (<literal>x</literal> doit avoir au moins 2 éléments)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>data</term>
+                <listitem>
+                    <para>
+                        vecteur (données à analyser)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cf</term>
+                <listitem>
+                    <para>
+                        vecteur représentant le nombre de valeurs de <varname>data</varname>
+                        tombant dans les classes définies par <varname>n</varname> ou <varname>x</varname>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ind</term>
+                <listitem>
+                    <para>
+                        vecteur ou matrice de même taille que <varname>data</varname>,
+                        représentant l'appartenance respective de chaque élément de <varname>data</varname>
+                        aux classes définies par <varname>n</varname> ou <varname>x</varname>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>normalization</term>
+                <listitem>
+                    <para>
+                        scalaire booléen.
+                        <varname>normalization=%f (par défaut)</varname>: <varname>cf</varname> représente le nombre total de points dans chaque classe,
+                        <varname>normalization=%t</varname>: <varname>cf</varname> représente le nombre de points dans chaque classe, relativement au nombre total de points
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Cette fonction calcule un histogramme du vecteur <literal>data</literal> d'après les classes
+            <literal>x</literal>. Quand le nombre de classes <literal>n</literal> est fourni
+            au lieu de <literal>x</literal>, les classes sont choisies également espacées et
+            <emphasis>x(1) = min(data) &lt; x(2) = x(1) + dx &lt; ... &lt; x(n+1) = max(data)</emphasis>
+            avec <emphasis>dx = (x(n+1)-x(1))/n</emphasis>.
+        </para>
+        <para>
+            Les classes sont définies par <literal>C1 = [x(1), x(2)]</literal> et <literal>Ci = ( x(i), x(i+1)]</literal> pour i &gt;= 2.
+            Si l'on note <literal>Nmax</literal> le nombre total de <literal>data</literal> (Nmax = length(data))
+            et <literal>Ni</literal> le nombre d'éléments de <literal>data</literal> tombant dans
+            <literal>Ci</literal>, la valeur de l'histogramme pour <literal>x</literal> dans
+            <literal>Ci</literal> est égal à <emphasis>Ni/(Nmax (x(i+1)-x(i)))</emphasis> quand
+            <literal>"normalized"</literal> est séléctionné et sinon, simplement égal à <emphasis>Ni</emphasis>.
+            Quand la normalisation a lieu, l'histogramme vérifie:
+        </para>
+        <para>
+            <latex style="display"><![CDATA[ \int_{x(1)}^{x(n+1)}h(x)\,\mathrm{d}x=1 ]]></latex>
+        </para>
+        <para>
+            quand <emphasis>x(1)&lt;=min(data)</emphasis> et <emphasis>max(data) &lt;= x(n+1)</emphasis>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <simplelist>
+            <member> Exemple #1: variations sur l'histogramme d'un échantillon gaussien N(0,1)
+                <programlisting role="example"><![CDATA[
+// L'échantillon aléatoire gaussien
+d = rand(1, 10000, 'normal');
+
+[cf, ind] = histc(20, d, normalization=%f)
+// On utilise histplot pour avoir une représentation graphique
+clf(); histplot(20, d, normalization=%f);
+
+[cf, ind] = histc(20, d)
+clf(); histplot(20, d);
+]]></programlisting>
+                <scilab:image>
+                    d = rand(1, 10000, 'normal');
+                    [cf, ind] = histc(20, d)
+                    clf(); histplot(20, d);
+                </scilab:image>
+            </member>
+            <member>
+                Exemple #2: histogramme d'un échantillon de loi binomiale B(6,0.5)
+                <programlisting role="example"><![CDATA[
+d = grand(1000,1,"bin", 6, 0.5);
+c = linspace(-0.5,6.5,8);
+clf()
+subplot(2,1,1)
+[cf, ind] = histc(c, d)
+histplot(c, d, style=2);
+xtitle("Normalized histogram")
+subplot(2,1,2)
+[cf, ind] = histc(c, d, normalization=%f)
+histplot(c, d, normalization=%f, style=5);
+xtitle("Non normalized histogram")
+]]></programlisting>
+                <scilab:image localized="true">
+                    d = grand(1000,1,"bin", 6, 0.5);
+                    c = linspace(-0.5,6.5,8);
+                    clf()
+                    subplot(2,1,1)
+                    [cf, ind] = histc(c, d)
+                    histplot(c, d, style=2);
+                    xtitle("Normalized histogram")
+                    subplot(2,1,2)
+                    [cf, ind] = histc(c, d, normalization=%f)
+                    histplot(c, d, normalization=%f, style=5);
+                    xtitle("Non normalized histogram")
+                </scilab:image>
+            </member>
+            <member>
+                Exemple #3: histogramme d'un échantillon de loi exponentielle E(lambda)
+                <programlisting role="example"><![CDATA[
+lambda = 2;
+X = grand(100000,1,"exp", 1/lambda);
+Xmax = max(X);
+[cf, ind] = histc(40, X)
+clf()
+histplot(40, X, style=2);
+x = linspace(0, max(Xmax), 100)';
+plot2d(x, lambda*exp(-lambda*x), strf="000", style=5)
+legend(["exponential random sample histogram" "exact density curve"]);
+]]></programlisting>
+                <scilab:image localized="true">
+                    lambda = 2;
+                    X = grand(100000,1,"exp", 1/lambda);
+                    Xmax = max(X);
+                    [cf, ind] = histc(40, X)
+                    clf()
+                    histplot(40, X, style=2);
+                    x = linspace(0, max(Xmax), 100)';
+                    plot2d(x, lambda*exp(-lambda*x), strf="000", style=5)
+                    legend(["exponential random sample histogram" "exact density curve"]);
+                </scilab:image>
+            </member>
+            <member>
+                Exemple #4: la fréquence polygonale et l'histogramme d'un échantillon gaussien
+                <programlisting role="example"><![CDATA[
+n = 10;
+data = rand(1, 1000, "normal");
+[cf, ind] = histc(n, data)
+clf(); histplot(n, data, style=12, polygon=%t);
+legend(["normalized histogram" "frequency polygon chart"]);
+]]></programlisting>
+                <scilab:image localized="true">
+                    n = 10;
+                    data = rand(1, 1000, "normal");
+                    [cf, ind] = histc(n, data)
+                    clf(); histplot(n, data, style=12, polygon=%t);
+                    legend(["normalized histogram" "frequency polygon chart"]);
+                </scilab:image>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="histplot">histplot</link>
+            </member>
+            <member>
+                <link linkend="hist3d">hist3d</link>
+            </member>
+            <member>
+                <link linkend="plot2d">plot2d</link>
+            </member>
+            <member>
+                <link linkend="dsearch">dsearch</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    Introduction
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

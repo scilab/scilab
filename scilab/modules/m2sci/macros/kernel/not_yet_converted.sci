@@ -534,7 +534,6 @@ function allnames=not_yet_converted()
     "icondisp";
     "ifft2";
     "ifftn";
-    "ifftshift";
     "ihb1dae";
     "im2frame";
     "im2java";

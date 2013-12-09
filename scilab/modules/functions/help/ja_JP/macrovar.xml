@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>vars=macrovar(function)</synopsis>
+        <synopsis>vars = macrovar(function)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -26,14 +26,14 @@
                 <term>vars</term>
                 <listitem>
                     <para>
-                        リスト  <literal>list(in,out,nolocal,called,locals)</literal>
+                        リスト  <literal>list(in,out,nolocal,called,locals)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>function</term>
                 <listitem>
-                    <para>関数名</para>
+                    <para>関数名.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -42,30 +42,32 @@
         <title>説明</title>
         <para>
             関数で使用される変数の集合のリストを返します.
-            <literal>vars</literal> は5つの文字列の列ベクトルからなる
-            リストです.
+            <varname>vars</varname> は5つの文字列の列ベクトルからなる
+            リストです:
         </para>
-        <para>
-            <literal>in</literal> 入力変数 (<literal>vars(1)</literal>)
-        </para>
-        <para>
-            <literal>out</literal> 出力変数 (<literal>vars(2)</literal>)
-        </para>
-        <para>
-            <literal>nolocal</literal>referenced variables which 
-            関数内で定義されていない関数でない変数を参照 
-            (<literal>vars(3)</literal>)
-        </para>
-        <para>
-            <literal>called</literal> コールされた関数の名前 (<literal>vars(4)</literal>)
-        </para>
-        <para>
-            <literal>locals</literal> ローカル変数 (<literal>vars(5)</literal>)
-        </para>
+        <simplelist type="inline">
+            <member>
+                <varname>in</varname> 入力変数 (<code>vars(1)</code>);
+            </member>
+            <member>
+                <varname>out</varname>: 出力変数 (<code>vars(2)</code>);
+            </member>
+            <member>
+                <varname>nolocal</varname>:
+                関数内で定義されていない関数でない変数を参照
+                (<code>vars(3)</code>);
+            </member>
+            <member>
+                <varname>called</varname>: コールされた関数の名前 (<code>vars(4)</code>);
+            </member>
+            <member>
+                <varname>locals</varname>: ローカル変数 (<code>vars(5)</code>).
+            </member>
+        </simplelist>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 deff('y=f(x1,x2)','loc=1;y=a*x1+x2-loc')
 vars=macrovar(f)
  ]]></programlisting>

@@ -9,6 +9,9 @@
 
 function reset_profiling(funname)
     //reset profiling data in bytecode
+    if argn(2) < 1 then
+        error(sprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "reset_profiling", 1));
+    end
     nsiz=6
     execstr("code=bytecode("+funname+")")
     lc=1

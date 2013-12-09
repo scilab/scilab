@@ -183,11 +183,13 @@ libscicommons_la_LIBADD =
 am__libscicommons_la_SOURCES_DIST = src/jni/ScilabCommons_wrap.c \
 	src/jni/CommonFileUtils_wrap.c src/c/fileutils.c \
 	src/fortran/empty.f src/jni/GiwsException.cpp
-am__objects_1 = libscicommons_la-ScilabCommons_wrap.lo \
-	libscicommons_la-CommonFileUtils_wrap.lo \
-	libscicommons_la-fileutils.lo
-am__objects_2 = empty.lo
-@NEED_JAVA_TRUE@am__objects_3 = libscicommons_la-GiwsException.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+am__objects_1 = src/jni/libscicommons_la-ScilabCommons_wrap.lo \
+	src/jni/libscicommons_la-CommonFileUtils_wrap.lo \
+	src/c/libscicommons_la-fileutils.lo
+am__objects_2 = src/fortran/empty.lo
+@NEED_JAVA_TRUE@am__objects_3 =  \
+@NEED_JAVA_TRUE@	src/jni/libscicommons_la-GiwsException.lo
 am__objects_4 = $(am__objects_3)
 am_libscicommons_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_4)
@@ -752,90 +754,130 @@ clean-pkglibLTLIBRARIES:
 
 libscicommons-disable.la: $(libscicommons_disable_la_OBJECTS) $(libscicommons_disable_la_DEPENDENCIES) $(EXTRA_libscicommons_disable_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) -rpath $(pkglibdir) $(libscicommons_disable_la_OBJECTS) $(libscicommons_disable_la_LIBADD) $(LIBS)
+src/jni/$(am__dirstamp):
+	@$(MKDIR_P) src/jni
+	@: > src/jni/$(am__dirstamp)
+src/jni/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/jni/$(DEPDIR)
+	@: > src/jni/$(DEPDIR)/$(am__dirstamp)
+src/jni/libscicommons_la-ScilabCommons_wrap.lo:  \
+	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
+src/jni/libscicommons_la-CommonFileUtils_wrap.lo:  \
+	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
+src/c/$(am__dirstamp):
+	@$(MKDIR_P) src/c
+	@: > src/c/$(am__dirstamp)
+src/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/c/$(DEPDIR)
+	@: > src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscicommons_la-fileutils.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/fortran/$(am__dirstamp):
+	@$(MKDIR_P) src/fortran
+	@: > src/fortran/$(am__dirstamp)
+src/fortran/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/fortran/$(DEPDIR)
+	@: > src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/empty.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/jni/libscicommons_la-GiwsException.lo: src/jni/$(am__dirstamp) \
+	src/jni/$(DEPDIR)/$(am__dirstamp)
 
 libscicommons.la: $(libscicommons_la_OBJECTS) $(libscicommons_la_DEPENDENCIES) $(EXTRA_libscicommons_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libscicommons_la_rpath) $(libscicommons_la_OBJECTS) $(libscicommons_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f src/c/*.$(OBJEXT)
+	-rm -f src/c/*.lo
+	-rm -f src/fortran/*.$(OBJEXT)
+	-rm -f src/fortran/*.lo
+	-rm -f src/jni/*.$(OBJEXT)
+	-rm -f src/jni/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicommons_la-CommonFileUtils_wrap.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicommons_la-GiwsException.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicommons_la-ScilabCommons_wrap.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicommons_la-fileutils.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicommons_la-fileutils.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscicommons_la-CommonFileUtils_wrap.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscicommons_la-GiwsException.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscicommons_la-ScilabCommons_wrap.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libscicommons_la-ScilabCommons_wrap.lo: src/jni/ScilabCommons_wrap.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicommons_la-ScilabCommons_wrap.lo -MD -MP -MF $(DEPDIR)/libscicommons_la-ScilabCommons_wrap.Tpo -c -o libscicommons_la-ScilabCommons_wrap.lo `test -f 'src/jni/ScilabCommons_wrap.c' || echo '$(srcdir)/'`src/jni/ScilabCommons_wrap.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicommons_la-ScilabCommons_wrap.Tpo $(DEPDIR)/libscicommons_la-ScilabCommons_wrap.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/jni/ScilabCommons_wrap.c' object='libscicommons_la-ScilabCommons_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+src/jni/libscicommons_la-ScilabCommons_wrap.lo: src/jni/ScilabCommons_wrap.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/jni/libscicommons_la-ScilabCommons_wrap.lo -MD -MP -MF src/jni/$(DEPDIR)/libscicommons_la-ScilabCommons_wrap.Tpo -c -o src/jni/libscicommons_la-ScilabCommons_wrap.lo `test -f 'src/jni/ScilabCommons_wrap.c' || echo '$(srcdir)/'`src/jni/ScilabCommons_wrap.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscicommons_la-ScilabCommons_wrap.Tpo src/jni/$(DEPDIR)/libscicommons_la-ScilabCommons_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/jni/ScilabCommons_wrap.c' object='src/jni/libscicommons_la-ScilabCommons_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicommons_la-ScilabCommons_wrap.lo `test -f 'src/jni/ScilabCommons_wrap.c' || echo '$(srcdir)/'`src/jni/ScilabCommons_wrap.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/jni/libscicommons_la-ScilabCommons_wrap.lo `test -f 'src/jni/ScilabCommons_wrap.c' || echo '$(srcdir)/'`src/jni/ScilabCommons_wrap.c
 
-libscicommons_la-CommonFileUtils_wrap.lo: src/jni/CommonFileUtils_wrap.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicommons_la-CommonFileUtils_wrap.lo -MD -MP -MF $(DEPDIR)/libscicommons_la-CommonFileUtils_wrap.Tpo -c -o libscicommons_la-CommonFileUtils_wrap.lo `test -f 'src/jni/CommonFileUtils_wrap.c' || echo '$(srcdir)/'`src/jni/CommonFileUtils_wrap.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicommons_la-CommonFileUtils_wrap.Tpo $(DEPDIR)/libscicommons_la-CommonFileUtils_wrap.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/jni/CommonFileUtils_wrap.c' object='libscicommons_la-CommonFileUtils_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+src/jni/libscicommons_la-CommonFileUtils_wrap.lo: src/jni/CommonFileUtils_wrap.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/jni/libscicommons_la-CommonFileUtils_wrap.lo -MD -MP -MF src/jni/$(DEPDIR)/libscicommons_la-CommonFileUtils_wrap.Tpo -c -o src/jni/libscicommons_la-CommonFileUtils_wrap.lo `test -f 'src/jni/CommonFileUtils_wrap.c' || echo '$(srcdir)/'`src/jni/CommonFileUtils_wrap.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscicommons_la-CommonFileUtils_wrap.Tpo src/jni/$(DEPDIR)/libscicommons_la-CommonFileUtils_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/jni/CommonFileUtils_wrap.c' object='src/jni/libscicommons_la-CommonFileUtils_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicommons_la-CommonFileUtils_wrap.lo `test -f 'src/jni/CommonFileUtils_wrap.c' || echo '$(srcdir)/'`src/jni/CommonFileUtils_wrap.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/jni/libscicommons_la-CommonFileUtils_wrap.lo `test -f 'src/jni/CommonFileUtils_wrap.c' || echo '$(srcdir)/'`src/jni/CommonFileUtils_wrap.c
 
-libscicommons_la-fileutils.lo: src/c/fileutils.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicommons_la-fileutils.lo -MD -MP -MF $(DEPDIR)/libscicommons_la-fileutils.Tpo -c -o libscicommons_la-fileutils.lo `test -f 'src/c/fileutils.c' || echo '$(srcdir)/'`src/c/fileutils.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicommons_la-fileutils.Tpo $(DEPDIR)/libscicommons_la-fileutils.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/fileutils.c' object='libscicommons_la-fileutils.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscicommons_la-fileutils.lo: src/c/fileutils.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicommons_la-fileutils.lo -MD -MP -MF src/c/$(DEPDIR)/libscicommons_la-fileutils.Tpo -c -o src/c/libscicommons_la-fileutils.lo `test -f 'src/c/fileutils.c' || echo '$(srcdir)/'`src/c/fileutils.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicommons_la-fileutils.Tpo src/c/$(DEPDIR)/libscicommons_la-fileutils.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/fileutils.c' object='src/c/libscicommons_la-fileutils.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicommons_la-fileutils.lo `test -f 'src/c/fileutils.c' || echo '$(srcdir)/'`src/c/fileutils.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicommons_la-fileutils.lo `test -f 'src/c/fileutils.c' || echo '$(srcdir)/'`src/c/fileutils.c
 
 .cpp.o:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .cpp.lo:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
-libscicommons_la-GiwsException.lo: src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicommons_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libscicommons_la-GiwsException.Tpo -c -o libscicommons_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicommons_la-GiwsException.Tpo $(DEPDIR)/libscicommons_la-GiwsException.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/GiwsException.cpp' object='libscicommons_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
+src/jni/libscicommons_la-GiwsException.lo: src/jni/GiwsException.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscicommons_la-GiwsException.lo -MD -MP -MF src/jni/$(DEPDIR)/libscicommons_la-GiwsException.Tpo -c -o src/jni/libscicommons_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscicommons_la-GiwsException.Tpo src/jni/$(DEPDIR)/libscicommons_la-GiwsException.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/GiwsException.cpp' object='src/jni/libscicommons_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicommons_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscicommons_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<
@@ -846,14 +888,14 @@ libscicommons_la-GiwsException.lo: src/jni/GiwsException.cpp
 .f.lo:
 	$(AM_V_F77)$(LTF77COMPILE) -c -o $@ $<
 
-empty.lo: src/fortran/empty.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o empty.lo `test -f 'src/fortran/empty.f' || echo '$(srcdir)/'`src/fortran/empty.f
-
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf src/c/.libs src/c/_libs
+	-rm -rf src/fortran/.libs src/fortran/_libs
+	-rm -rf src/jni/.libs src/jni/_libs
 install-libscicommons_la_etcDATA: $(libscicommons_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libscicommons_la_etc_DATA)'; test -n "$(libscicommons_la_etcdir)" || list=; \
@@ -1036,6 +1078,12 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/c/$(am__dirstamp)
+	-rm -f src/fortran/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/fortran/$(am__dirstamp)
+	-rm -f src/jni/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/jni/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1047,7 +1095,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf src/c/$(DEPDIR) src/jni/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1095,7 +1143,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf src/c/$(DEPDIR) src/jni/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

@@ -28,15 +28,15 @@ function [dif]=nand2mean(sample1,sample2,conf)
     //Statistics, J.Wiley & Sons, 1990.
     //
     //
-    if (sample1==[]|sample2==[]) then
-        dif=%nan
-        return,
-    end
     [lhs,rhs]=argn(0)
     if rhs<2|rhs>3  then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"nand2mean",2,3)),
     elseif rhs==2 then
         conf=.975
+    end
+    if (sample1==[]|sample2==[]) then
+        dif=%nan
+        return,
     end
     isn1=isnan(sample1)
     isn2=isnan(sample2)

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.implementation.g2d.motor;
@@ -31,8 +31,12 @@ public class LightHelper {
      * @return an array of Vector3f from the given float buffer.
      */
     public static Vector3f[] getVector3f(FloatBuffer buffer, int stride) {
-        if (buffer == null) return null;
-        if (stride < 3) return null;
+        if (buffer == null) {
+            return null;
+        }
+        if (stride < 3) {
+            return null;
+        }
 
         float[] floats;
         buffer.rewind();
@@ -58,8 +62,12 @@ public class LightHelper {
      * @return an array of Vector3f from the given float buffer.
      */
     public static Vector3f[] getIndexedVector3f(FloatBuffer buffer, IntBuffer index, int stride, float[] transf) {
-        if (buffer == null || index == null) return null;
-        if (stride < 3) return null;
+        if (buffer == null || index == null) {
+            return null;
+        }
+        if (stride < 3) {
+            return null;
+        }
 
         float[] floats;
         buffer.rewind();
@@ -92,7 +100,7 @@ public class LightHelper {
         }
         return ret;
     }
-    
+
     static Vector3f transform(float x, float y, float z, float[] transf) {
         float xx = transf[0] * x + transf[4] * y + transf[8] * z + transf[12];
         float yy = transf[1] * x + transf[5] * y + transf[9] * z + transf[13];
@@ -133,7 +141,7 @@ public class LightHelper {
      * @param additive if true the ambient color is added to output.
      * @return the resulting color vector.
      */
-    public static Color[] applyAmbient(Color ambient,Color[] input, Color[] output, boolean additive) {
+    public static Color[] applyAmbient(Color ambient, Color[] input, Color[] output, boolean additive) {
         for (int i = 0; i < output.length; ++i) {
             if (additive) {
                 output[i] = getColorSum(getColorProduct(ambient, input[i]), output[i]);

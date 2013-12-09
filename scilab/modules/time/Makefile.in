@@ -164,8 +164,10 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscitime_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscitime_algo_la_LIBADD =
-am__objects_1 = libscitime_algo_la-realtime.lo \
-	libscitime_algo_la-timer.lo libscitime_algo_la-getdate.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+am__objects_1 = src/c/libscitime_algo_la-realtime.lo \
+	src/c/libscitime_algo_la-timer.lo \
+	src/c/libscitime_algo_la-getdate.lo
 am_libscitime_algo_la_OBJECTS = $(am__objects_1)
 libscitime_algo_la_OBJECTS = $(am_libscitime_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -175,10 +177,13 @@ am__v_lt_1 =
 @MAINTAINER_MODE_FALSE@am_libscitime_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscitime_algo_la_rpath =
 libscitime_la_DEPENDENCIES = libscitime-algo.la
-am__objects_2 = libscitime_la-sci_realtime.lo \
-	libscitime_la-sci_timer.lo libscitime_la-sci_calendar.lo \
-	libscitime_la-sci_xpause.lo libscitime_la-sci_sleep.lo \
-	libscitime_la-sci_getdate.lo libscitime_la-gw_time.lo
+am__objects_2 = sci_gateway/c/libscitime_la-sci_realtime.lo \
+	sci_gateway/c/libscitime_la-sci_timer.lo \
+	sci_gateway/c/libscitime_la-sci_calendar.lo \
+	sci_gateway/c/libscitime_la-sci_xpause.lo \
+	sci_gateway/c/libscitime_la-sci_sleep.lo \
+	sci_gateway/c/libscitime_la-sci_getdate.lo \
+	sci_gateway/c/libscitime_la-gw_time.lo
 am_libscitime_la_OBJECTS = $(am__objects_2)
 libscitime_la_OBJECTS = $(am_libscitime_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscitime_la_rpath =
@@ -723,126 +728,173 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/c/$(am__dirstamp):
+	@$(MKDIR_P) src/c
+	@: > src/c/$(am__dirstamp)
+src/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/c/$(DEPDIR)
+	@: > src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscitime_algo_la-realtime.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscitime_algo_la-timer.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscitime_algo_la-getdate.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
 
 libscitime-algo.la: $(libscitime_algo_la_OBJECTS) $(libscitime_algo_la_DEPENDENCIES) $(EXTRA_libscitime_algo_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) $(am_libscitime_algo_la_rpath) $(libscitime_algo_la_OBJECTS) $(libscitime_algo_la_LIBADD) $(LIBS)
+sci_gateway/c/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c
+	@: > sci_gateway/c/$(am__dirstamp)
+sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
+	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscitime_la-sci_realtime.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscitime_la-sci_timer.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscitime_la-sci_calendar.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscitime_la-sci_xpause.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscitime_la-sci_sleep.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscitime_la-sci_getdate.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscitime_la-gw_time.lo: sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 
 libscitime.la: $(libscitime_la_OBJECTS) $(libscitime_la_DEPENDENCIES) $(EXTRA_libscitime_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) $(am_libscitime_la_rpath) $(libscitime_la_OBJECTS) $(libscitime_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f sci_gateway/c/*.$(OBJEXT)
+	-rm -f sci_gateway/c/*.lo
+	-rm -f src/c/*.$(OBJEXT)
+	-rm -f src/c/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_algo_la-getdate.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_algo_la-realtime.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_algo_la-timer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-gw_time.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-sci_calendar.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-sci_getdate.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-sci_realtime.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-sci_sleep.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-sci_timer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-sci_xpause.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitime_la-gw_time.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitime_la-sci_calendar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitime_la-sci_getdate.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitime_la-sci_realtime.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitime_la-sci_sleep.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitime_la-sci_timer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitime_la-sci_xpause.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscitime_algo_la-getdate.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscitime_algo_la-realtime.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscitime_algo_la-timer.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libscitime_algo_la-realtime.lo: src/c/realtime.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscitime_algo_la-realtime.lo -MD -MP -MF $(DEPDIR)/libscitime_algo_la-realtime.Tpo -c -o libscitime_algo_la-realtime.lo `test -f 'src/c/realtime.c' || echo '$(srcdir)/'`src/c/realtime.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscitime_algo_la-realtime.Tpo $(DEPDIR)/libscitime_algo_la-realtime.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/realtime.c' object='libscitime_algo_la-realtime.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscitime_algo_la-realtime.lo: src/c/realtime.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscitime_algo_la-realtime.lo -MD -MP -MF src/c/$(DEPDIR)/libscitime_algo_la-realtime.Tpo -c -o src/c/libscitime_algo_la-realtime.lo `test -f 'src/c/realtime.c' || echo '$(srcdir)/'`src/c/realtime.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscitime_algo_la-realtime.Tpo src/c/$(DEPDIR)/libscitime_algo_la-realtime.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/realtime.c' object='src/c/libscitime_algo_la-realtime.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscitime_algo_la-realtime.lo `test -f 'src/c/realtime.c' || echo '$(srcdir)/'`src/c/realtime.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscitime_algo_la-realtime.lo `test -f 'src/c/realtime.c' || echo '$(srcdir)/'`src/c/realtime.c
 
-libscitime_algo_la-timer.lo: src/c/timer.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscitime_algo_la-timer.lo -MD -MP -MF $(DEPDIR)/libscitime_algo_la-timer.Tpo -c -o libscitime_algo_la-timer.lo `test -f 'src/c/timer.c' || echo '$(srcdir)/'`src/c/timer.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscitime_algo_la-timer.Tpo $(DEPDIR)/libscitime_algo_la-timer.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/timer.c' object='libscitime_algo_la-timer.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscitime_algo_la-timer.lo: src/c/timer.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscitime_algo_la-timer.lo -MD -MP -MF src/c/$(DEPDIR)/libscitime_algo_la-timer.Tpo -c -o src/c/libscitime_algo_la-timer.lo `test -f 'src/c/timer.c' || echo '$(srcdir)/'`src/c/timer.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscitime_algo_la-timer.Tpo src/c/$(DEPDIR)/libscitime_algo_la-timer.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/timer.c' object='src/c/libscitime_algo_la-timer.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscitime_algo_la-timer.lo `test -f 'src/c/timer.c' || echo '$(srcdir)/'`src/c/timer.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscitime_algo_la-timer.lo `test -f 'src/c/timer.c' || echo '$(srcdir)/'`src/c/timer.c
 
-libscitime_algo_la-getdate.lo: src/c/getdate.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscitime_algo_la-getdate.lo -MD -MP -MF $(DEPDIR)/libscitime_algo_la-getdate.Tpo -c -o libscitime_algo_la-getdate.lo `test -f 'src/c/getdate.c' || echo '$(srcdir)/'`src/c/getdate.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscitime_algo_la-getdate.Tpo $(DEPDIR)/libscitime_algo_la-getdate.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getdate.c' object='libscitime_algo_la-getdate.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscitime_algo_la-getdate.lo: src/c/getdate.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscitime_algo_la-getdate.lo -MD -MP -MF src/c/$(DEPDIR)/libscitime_algo_la-getdate.Tpo -c -o src/c/libscitime_algo_la-getdate.lo `test -f 'src/c/getdate.c' || echo '$(srcdir)/'`src/c/getdate.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscitime_algo_la-getdate.Tpo src/c/$(DEPDIR)/libscitime_algo_la-getdate.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getdate.c' object='src/c/libscitime_algo_la-getdate.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscitime_algo_la-getdate.lo `test -f 'src/c/getdate.c' || echo '$(srcdir)/'`src/c/getdate.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscitime_algo_la-getdate.lo `test -f 'src/c/getdate.c' || echo '$(srcdir)/'`src/c/getdate.c
 
-libscitime_la-sci_realtime.lo: sci_gateway/c/sci_realtime.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscitime_la-sci_realtime.lo -MD -MP -MF $(DEPDIR)/libscitime_la-sci_realtime.Tpo -c -o libscitime_la-sci_realtime.lo `test -f 'sci_gateway/c/sci_realtime.c' || echo '$(srcdir)/'`sci_gateway/c/sci_realtime.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscitime_la-sci_realtime.Tpo $(DEPDIR)/libscitime_la-sci_realtime.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_realtime.c' object='libscitime_la-sci_realtime.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscitime_la-sci_realtime.lo: sci_gateway/c/sci_realtime.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscitime_la-sci_realtime.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscitime_la-sci_realtime.Tpo -c -o sci_gateway/c/libscitime_la-sci_realtime.lo `test -f 'sci_gateway/c/sci_realtime.c' || echo '$(srcdir)/'`sci_gateway/c/sci_realtime.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscitime_la-sci_realtime.Tpo sci_gateway/c/$(DEPDIR)/libscitime_la-sci_realtime.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_realtime.c' object='sci_gateway/c/libscitime_la-sci_realtime.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscitime_la-sci_realtime.lo `test -f 'sci_gateway/c/sci_realtime.c' || echo '$(srcdir)/'`sci_gateway/c/sci_realtime.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscitime_la-sci_realtime.lo `test -f 'sci_gateway/c/sci_realtime.c' || echo '$(srcdir)/'`sci_gateway/c/sci_realtime.c
 
-libscitime_la-sci_timer.lo: sci_gateway/c/sci_timer.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscitime_la-sci_timer.lo -MD -MP -MF $(DEPDIR)/libscitime_la-sci_timer.Tpo -c -o libscitime_la-sci_timer.lo `test -f 'sci_gateway/c/sci_timer.c' || echo '$(srcdir)/'`sci_gateway/c/sci_timer.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscitime_la-sci_timer.Tpo $(DEPDIR)/libscitime_la-sci_timer.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_timer.c' object='libscitime_la-sci_timer.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscitime_la-sci_timer.lo: sci_gateway/c/sci_timer.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscitime_la-sci_timer.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscitime_la-sci_timer.Tpo -c -o sci_gateway/c/libscitime_la-sci_timer.lo `test -f 'sci_gateway/c/sci_timer.c' || echo '$(srcdir)/'`sci_gateway/c/sci_timer.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscitime_la-sci_timer.Tpo sci_gateway/c/$(DEPDIR)/libscitime_la-sci_timer.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_timer.c' object='sci_gateway/c/libscitime_la-sci_timer.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscitime_la-sci_timer.lo `test -f 'sci_gateway/c/sci_timer.c' || echo '$(srcdir)/'`sci_gateway/c/sci_timer.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscitime_la-sci_timer.lo `test -f 'sci_gateway/c/sci_timer.c' || echo '$(srcdir)/'`sci_gateway/c/sci_timer.c
 
-libscitime_la-sci_calendar.lo: sci_gateway/c/sci_calendar.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscitime_la-sci_calendar.lo -MD -MP -MF $(DEPDIR)/libscitime_la-sci_calendar.Tpo -c -o libscitime_la-sci_calendar.lo `test -f 'sci_gateway/c/sci_calendar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_calendar.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscitime_la-sci_calendar.Tpo $(DEPDIR)/libscitime_la-sci_calendar.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_calendar.c' object='libscitime_la-sci_calendar.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscitime_la-sci_calendar.lo: sci_gateway/c/sci_calendar.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscitime_la-sci_calendar.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscitime_la-sci_calendar.Tpo -c -o sci_gateway/c/libscitime_la-sci_calendar.lo `test -f 'sci_gateway/c/sci_calendar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_calendar.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscitime_la-sci_calendar.Tpo sci_gateway/c/$(DEPDIR)/libscitime_la-sci_calendar.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_calendar.c' object='sci_gateway/c/libscitime_la-sci_calendar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscitime_la-sci_calendar.lo `test -f 'sci_gateway/c/sci_calendar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_calendar.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscitime_la-sci_calendar.lo `test -f 'sci_gateway/c/sci_calendar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_calendar.c
 
-libscitime_la-sci_xpause.lo: sci_gateway/c/sci_xpause.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscitime_la-sci_xpause.lo -MD -MP -MF $(DEPDIR)/libscitime_la-sci_xpause.Tpo -c -o libscitime_la-sci_xpause.lo `test -f 'sci_gateway/c/sci_xpause.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xpause.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscitime_la-sci_xpause.Tpo $(DEPDIR)/libscitime_la-sci_xpause.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_xpause.c' object='libscitime_la-sci_xpause.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscitime_la-sci_xpause.lo: sci_gateway/c/sci_xpause.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscitime_la-sci_xpause.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscitime_la-sci_xpause.Tpo -c -o sci_gateway/c/libscitime_la-sci_xpause.lo `test -f 'sci_gateway/c/sci_xpause.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xpause.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscitime_la-sci_xpause.Tpo sci_gateway/c/$(DEPDIR)/libscitime_la-sci_xpause.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_xpause.c' object='sci_gateway/c/libscitime_la-sci_xpause.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscitime_la-sci_xpause.lo `test -f 'sci_gateway/c/sci_xpause.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xpause.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscitime_la-sci_xpause.lo `test -f 'sci_gateway/c/sci_xpause.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xpause.c
 
-libscitime_la-sci_sleep.lo: sci_gateway/c/sci_sleep.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscitime_la-sci_sleep.lo -MD -MP -MF $(DEPDIR)/libscitime_la-sci_sleep.Tpo -c -o libscitime_la-sci_sleep.lo `test -f 'sci_gateway/c/sci_sleep.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sleep.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscitime_la-sci_sleep.Tpo $(DEPDIR)/libscitime_la-sci_sleep.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_sleep.c' object='libscitime_la-sci_sleep.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscitime_la-sci_sleep.lo: sci_gateway/c/sci_sleep.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscitime_la-sci_sleep.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscitime_la-sci_sleep.Tpo -c -o sci_gateway/c/libscitime_la-sci_sleep.lo `test -f 'sci_gateway/c/sci_sleep.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sleep.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscitime_la-sci_sleep.Tpo sci_gateway/c/$(DEPDIR)/libscitime_la-sci_sleep.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_sleep.c' object='sci_gateway/c/libscitime_la-sci_sleep.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscitime_la-sci_sleep.lo `test -f 'sci_gateway/c/sci_sleep.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sleep.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscitime_la-sci_sleep.lo `test -f 'sci_gateway/c/sci_sleep.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sleep.c
 
-libscitime_la-sci_getdate.lo: sci_gateway/c/sci_getdate.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscitime_la-sci_getdate.lo -MD -MP -MF $(DEPDIR)/libscitime_la-sci_getdate.Tpo -c -o libscitime_la-sci_getdate.lo `test -f 'sci_gateway/c/sci_getdate.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getdate.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscitime_la-sci_getdate.Tpo $(DEPDIR)/libscitime_la-sci_getdate.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_getdate.c' object='libscitime_la-sci_getdate.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscitime_la-sci_getdate.lo: sci_gateway/c/sci_getdate.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscitime_la-sci_getdate.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscitime_la-sci_getdate.Tpo -c -o sci_gateway/c/libscitime_la-sci_getdate.lo `test -f 'sci_gateway/c/sci_getdate.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getdate.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscitime_la-sci_getdate.Tpo sci_gateway/c/$(DEPDIR)/libscitime_la-sci_getdate.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_getdate.c' object='sci_gateway/c/libscitime_la-sci_getdate.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscitime_la-sci_getdate.lo `test -f 'sci_gateway/c/sci_getdate.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getdate.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscitime_la-sci_getdate.lo `test -f 'sci_gateway/c/sci_getdate.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getdate.c
 
-libscitime_la-gw_time.lo: sci_gateway/c/gw_time.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscitime_la-gw_time.lo -MD -MP -MF $(DEPDIR)/libscitime_la-gw_time.Tpo -c -o libscitime_la-gw_time.lo `test -f 'sci_gateway/c/gw_time.c' || echo '$(srcdir)/'`sci_gateway/c/gw_time.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscitime_la-gw_time.Tpo $(DEPDIR)/libscitime_la-gw_time.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_time.c' object='libscitime_la-gw_time.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscitime_la-gw_time.lo: sci_gateway/c/gw_time.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscitime_la-gw_time.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscitime_la-gw_time.Tpo -c -o sci_gateway/c/libscitime_la-gw_time.lo `test -f 'sci_gateway/c/gw_time.c' || echo '$(srcdir)/'`sci_gateway/c/gw_time.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscitime_la-gw_time.Tpo sci_gateway/c/$(DEPDIR)/libscitime_la-gw_time.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_time.c' object='sci_gateway/c/libscitime_la-gw_time.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscitime_la-gw_time.lo `test -f 'sci_gateway/c/gw_time.c' || echo '$(srcdir)/'`sci_gateway/c/gw_time.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscitime_la-gw_time.lo `test -f 'sci_gateway/c/gw_time.c' || echo '$(srcdir)/'`sci_gateway/c/gw_time.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
+	-rm -rf src/c/.libs src/c/_libs
 install-libscitime_la_etcDATA: $(libscitime_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libscitime_la_etc_DATA)'; test -n "$(libscitime_la_etcdir)" || list=; \
@@ -1044,6 +1096,10 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/c/$(am__dirstamp)
+	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/c/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1054,7 +1110,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1103,7 +1159,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

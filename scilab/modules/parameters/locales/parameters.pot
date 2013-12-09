@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-09-27 17:14+0100\n"
+"Revision-Date: 2013-12-09 09:48+0100\n"
 
 # File: src/c/parameters.c, line: 144
 # File: src/c/parameters.c, line: 571
@@ -237,56 +237,31 @@ msgid ""
 msgstr ""
 
 #
-# File: demos/params_demo.sce, line: 56
-msgid "Show that parameters operators only apply to the plist type"
-msgstr ""
-
-#
-# File: demos/params_demo.sce, line: 61
-#, c-format
-msgid ""
-"\n"
-"Add a parameter to 'A' when 'A' is not a plist.\n"
-msgstr ""
-
-#
-# File: demos/params_demo.sce, line: 62
-#, c-format
-msgid ""
-"\n"
-"Before add_param: \n"
-msgstr ""
-
-#
-# File: demos/params_demo.sce, line: 72
-#, c-format
-msgid ""
-"\n"
-"After add_param: \n"
-msgstr ""
-
-#
-# File: demos/params_demo.sce, line: 74
-#, c-format
-msgid ""
-"\n"
-"Error = %f. If error<>0, an error occurred.\n"
-msgstr ""
-
-#
 # File: macros/add_param.sci, line: 15
+#, c-format
+msgid "Second output argument of %s is obsolete.\n"
+msgstr ""
+
+#
+# File: macros/add_param.sci, line: 16
+#, c-format
+msgid "This argument will be permanently removed in Scilab %s"
+msgstr ""
+
+#
+# File: macros/add_param.sci, line: 20
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: macros/add_param.sci, line: 28
+# File: macros/add_param.sci, line: 33
 #, c-format
 msgid "%s: Wrong value for input argument #%d: key %s already defined.\n"
 msgstr ""
 
 #
-# File: macros/add_param.sci, line: 34
+# File: macros/add_param.sci, line: 39
 # File: macros/get_param.sci, line: 51
 # File: macros/is_param.sci, line: 27
 # File: macros/is_param.sci, line: 33

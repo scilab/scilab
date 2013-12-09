@@ -67,6 +67,9 @@
         <para>
             To display graphic into a new window instead of off-screen format. This is the default behavior of Scilab.
         </para>
+	<para>
+	    It is possible to use the "null" format to direct graphics to nothing.
+	</para>
         <variablelist>
             <varlistentry>
                 <term>X11 or Rec</term>

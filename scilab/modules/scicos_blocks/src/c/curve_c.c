@@ -42,6 +42,7 @@
 SCICOS_BLOCKS_IMPEXP void curve_c(scicos_block *block, int flag)
 {
     double t = 0., a = 0., b = 0., c = 0., y1 = 0., y2 = 0., t1 = 0., t2 = 0.;
+    int** work = (int**) block->work;
     int *ind = NULL, i = 0, inow = 0;
     double *y = NULL;
     double  d1 = 0., d2 = 0., h = 0., dh = 0., ddh = 0., dddh = 0.;
@@ -51,12 +52,12 @@ SCICOS_BLOCKS_IMPEXP void curve_c(scicos_block *block, int flag)
             /* init */
         case 4  :  /* the workspace is used to store discrete counter value */
         {
-            if ((*block->work = scicos_malloc(4 * sizeof(int))) == NULL)
+            if ((*work = (int*) scicos_malloc(4 * sizeof(int))) == NULL)
             {
                 set_block_error(-16);
                 return;
             }
-            ind = *block->work;
+            ind = *work;
             ind[0] = nPoints - 1;
             ind[1] = nPoints;
             for (i = 0; i < nPoints; i++)
@@ -80,7 +81,7 @@ SCICOS_BLOCKS_IMPEXP void curve_c(scicos_block *block, int flag)
         case 1  :
         {
             y = GetRealOutPortPtrs(block, 1);
-            ind = *block->work;
+            ind = *work;
             t = get_scicos_time();
             if (Periodic == 1)
             {
@@ -167,7 +168,7 @@ SCICOS_BLOCKS_IMPEXP void curve_c(scicos_block *block, int flag)
         /* event date computation */
         case 3  :
         {
-            ind = *block->work;
+            ind = *work;
 
             /*---------*/
             if ((Order == 1) || (Order == 0))
@@ -218,7 +219,7 @@ SCICOS_BLOCKS_IMPEXP void curve_c(scicos_block *block, int flag)
         /* finish */
         case 5  :
         {
-            scicos_free(*block->work); /*free the workspace*/
+            scicos_free(*work); /*free the workspace*/
             break;
         }
 

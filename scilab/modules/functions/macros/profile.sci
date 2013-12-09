@@ -8,6 +8,9 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function count=profile(fun)
+    if argn(2) < 1 then
+        error(sprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "profile", 1));
+    end
     if type(fun)==13 then
         lst=macr2lst(fun)
     else

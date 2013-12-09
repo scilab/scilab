@@ -10,7 +10,7 @@
 
 
 function %h_save(h,fd)
-    version=[5 4 0 1]
+    version=[5 5 0 0]
     mput(version,"uc",fd)
 
     // There are issues when saving characters with 'c' format

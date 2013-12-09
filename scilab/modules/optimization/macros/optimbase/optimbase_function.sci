@@ -34,7 +34,7 @@
 //    for example, when an derivative-based optimizer with
 //    non linear constraints is required.
 //   index, output :
-//     if index > 0, everything went find
+//     if index > 0, everything went fine
 //     if index == 0, interrupts the optimization
 //     if index < 0, f cannot be evaluated
 // Calling sequences :

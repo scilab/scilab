@@ -9,10 +9,14 @@ New Features
 
 * New functions introduced:
  - jcreatejar - Creates a Java archive (JAR) from a set of files / directories
+ - ilib_build_jar - Builds Java packages from sources into a JAR file
+ - ifftshift - inverse FFT shift
 
 * modulo() and pmodulo() now support integers & hypermatrices (See bug #13002).
 
 * test_run() can now separate 32bits systems from 64bits ones.
+
+* pol2str(): support to polynomials with complex coefficients and hypermatrices (See bug #13109).
 
 
 Obsolete & Removed Functions
@@ -26,6 +30,8 @@ Obsolete & Removed Functions
 
 * milk_drop tagged as obsolete. Will be removed in Scilab 5.5.1.
 
+* clear_pixmap removed, please use drawlater/drawnow instead.
+
 
 Scilab Bug Fixes
 ================
@@ -36,11 +42,20 @@ Scilab Bug Fixes
 
 * Bug #4649 fixed - License issue in the xs2ppm help page fixed.
 
+* Bug #4677 fixed - xclick did not return correct mouse position on keyboard event.
+
 * Bug #4965 fixed - Setting links property for a handle of type legend did not work.
 
 * Bug #5016 fixed - condestsp could return different results when repeated calls were performed.
 
 * Bug #5886 fixed - There was no property labels_font_style on axis.
+
+* Bug #6305 fixed - dsearch function did not work with integers, strings and hypermatrices.
+
+* Bug #6306 fixed - It is now possible to compute an histogram instead of plotting it
+                    with new function histc(). Besides, histplot can now return the computed data.
+
+* Bug #6404 fixed - xrects help page was not clear about argument specification.
 
 * Bug #6615 fixed - ui(get|put)file did not center the file dialog on the last focused window.
 
@@ -105,7 +120,11 @@ Scilab Bug Fixes
 
 * Bug #10012 fixed - lmisolver and lmitool called with no input now produce errors.
 
+* Bug #10083 fixed - plot3d could not be used with only one input argument.
+
 * Bug #10175 fixed - Clearer example added for sp2adj to adj2sp conversion (and backwards conversion).
+
+* Bug #10221 fixed - ifftshift function did not exist in Scilab.
 
 * Bug #10234 fixed - reglin function moved from CACSD to Statistics module.
 
@@ -116,7 +135,11 @@ Scilab Bug Fixes
 
 * Bug #10273 fixed - spchol help page now displays an example showing how to use its output arguments.
 
+* Bug #10645 fixed - File encoding could not be given as argument in xmlRead.
+
 * Bug #10936 fixed - Scilab hung with invalid strf in plot2d.
+
+* Bug #10998 fixed - matrix*hypermatrix and hypermatrix*matrix operations failed.
 
 * Bug #11007, #11008 & #11009 fixed - New function conjgrad (Conjugate Gradient methods "pcg", "cgs", "bicg" and "bicgstab").
 
@@ -130,16 +153,34 @@ Scilab Bug Fixes
 
 * Bug #11680 fixed - GUI functions in Scilab 5.4.X were much slower than in Scilab 5.3.3.
 
+* Bug #11996 fixed - eye extended to hypermatrix.
+
+* Bug #12121 fixed - inv function did not work for complex sparse matrices.
+
+* Bug #12334 fixed - Mark color in legend was invalid.
+
+* Bug #12481 fixed - xlabel could not be used with Scilab property names.
+
+* Bug #12485 fixed - xchange returned bad values with log scale.
+
 * Bug #12492 fixed - Exported EPS files were invalid when dash patterns were too long.
+
+* Bug #12496 fixed - zoom_rect could lead to a crash in log scale.
+
+* Bug #12535 fixed - In french version, comma was used as decimal separator when zooming (rather than point).
 
 * Bug #12673 fixed - Ticks were drawn outside of axes area.
 
 * Bug #12682 fixed - Key events were disabled after zooming.
 
+* Bug #12733 fixed - There was no way to direct graphs to nothing with driver function.
+
 * Bug #12769 fixed - xset("window", 1) did not set the current axes.
 
-* Bug #12784 fixed - Misleading error message in many functions when passing an integer 
+* Bug #12784 fixed - Misleading error message in many functions when passing an integer
                      argument instead of double argument fixed.
+
+* Bug #12785 fixed - plot did not allow int data as first argument.
 
 * Bug #12882 fixed - Some help pages were not clear.
 
@@ -246,6 +287,22 @@ Scilab Bug Fixes
 * Bug #13093 fixed - Removed trailing "\n" in the head_comments error message.
 
 * Bug #13101 fixed - When x-axis was in reverse position x_location='origin' failed.
+
+* Bug #13108 fixed - Time between ATOMS database updates is now a month (was a day) and is configurable.
+
+* Bug #13109 fixed - pll2str now supports polynomials with complex coefficients and hypermatrices.
+
+* Bug #13111 fixed - sqrt returned different results when imaginary part was -0 versus 0.
+
+* Bug #13114 fixed - clear_pixmap should have been removed in Scilab 5.4.1.
+
+* Bug #13116 fixed - qpsolve now respects upper-bounds constraints.
+
+* Bug #13121 fixed - ode "rk" option crashed Scilab when the user derivative function failed.
+
+* Bug #13132 fixed - There were missing graduations when data_bounds interval was too small.
+
+* Bug #13139 fixed - fft help page fixed.
 
 
 Xcos Bug Fixes
@@ -740,6 +797,8 @@ Scilab Bug Fixes
 * Bug #10995 fixed - Typo fixed in grand help page for Gamma law argument.
 
 * Bug #11065 fixed - The second output argument of unique function contained a wrong result.
+
+* Bug #11067 fixed - Display of ticks labels with closed associated values was wrong.
 
 * Bug #11139 fixed - conj was not defined for sparse matrices (+ unit test added).
 

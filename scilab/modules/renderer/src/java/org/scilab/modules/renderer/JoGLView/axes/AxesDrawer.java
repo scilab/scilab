@@ -801,9 +801,11 @@ public class AxesDrawer {
         double[] coords2dView = new double[] {0.0, 0.0, 0.0};
 
         if (currentVisitor != null) {
+            boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
             Integer[] size = currentVisitor.getFigure().getAxesSize();
             double height = (double) size[1];
             double[][] factors = axes.getScaleTranslateFactors();
+            ScaleUtils.applyLogScale(coordinates, logFlags);
 
             axesDrawer = currentVisitor.getAxesDrawer();
             coords2dView[0] = coordinates[0] * factors[0][0] + factors[1][0];
@@ -931,12 +933,12 @@ public class AxesDrawer {
 
         DrawerVisitor currentVisitor;
         AxesDrawer axesDrawer;
-
         double[] coords2dView = new double[] {0.0, 0.0, 0.0};
 
         currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
 
         if (currentVisitor != null) {
+            boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
             Integer[] size = currentVisitor.getFigure().getAxesSize();
             double height = (double) size[1];
             double[][] factors = axes.getScaleTranslateFactors();
@@ -958,6 +960,8 @@ public class AxesDrawer {
             coords2dView[0] = (coords2dView[0] - factors[1][0]) / factors[0][0];
             coords2dView[1] = (coords2dView[1] - factors[1][1]) / factors[0][1];
             coords2dView[2] = (coords2dView[2] - factors[1][2]) / factors[0][2];
+
+            ScaleUtils.applyInverseLogScale(coords2dView, logFlags);
         }
 
         return coords2dView;

@@ -43,6 +43,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
 
     int izcol = 0,  isfac = 0;
     double *zcol = NULL;
+    int mustFree = 0;
 
     static rhs_opts opts[] =
     {
@@ -77,7 +78,13 @@ int sci_plot3d(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    CheckInputArgument(pvApiCtx, 3, 8);
+    if (nbInputArgument(pvApiCtx) == 2)
+    {
+        Scierror(77, _("%s: Wrong number of input argument(s).\n"), fname);
+        return -1;
+    }
+
+    CheckInputArgument(pvApiCtx, 1, 8);
 
     if (getOptionals(pvApiCtx, fname, opts) == 0)
     {
@@ -85,7 +92,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (FirstOpt() < 4)
+    if (nbInputArgument(pvApiCtx) != 1 && FirstOpt() < 4)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 4);
         return -1;
@@ -108,32 +115,58 @@ int sci_plot3d(char * fname, unsigned long fname_len)
         return 1;
     }
 
-    //get variable address
-    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
-    if (sciErr.iErr)
+    if (nbInputArgument(pvApiCtx) == 1)
     {
-        printError(&sciErr, 0);
-        return 1;
-    }
+        int i;
 
-    // Retrieve a matrix of double at position 2.
-    sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &m2, &n2, &l2);
-    if (sciErr.iErr)
-    {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
-        printError(&sciErr, 0);
-        return 1;
-    }
+        if (m1 * n1 == 0)
+        {
+            AssignOutputVariable(pvApiCtx, 1) = 0;
+            ReturnArguments(pvApiCtx);
+            return 0;
+        }
 
-    if (m1 * n1 == 0)
-    {
-        AssignOutputVariable(pvApiCtx, 1) = 0;
-        ReturnArguments(pvApiCtx);
-        return 0;
+        l3 = l1;
+        m3 = m1;
+        n3 = n1;
+        m1 = 1;
+        n1 = m3;
+        m2 = 1;
+        n2 = n3;
+        l1 = (double *)MALLOC(sizeof(double) * n1);
+        for (i = 0; i < n1; l1[i] = (++i));
+        l2 = (double *)MALLOC(sizeof(double) * n2);
+        for (i = 0; i < n2; l2[i] = (++i));
+
+        mustFree = 1;
     }
 
     if (nbInputArgument(pvApiCtx) >= 3)
     {
+        //get variable address
+        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of double at position 2.
+        sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &m2, &n2, &l2);
+        if (sciErr.iErr)
+        {
+            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        if (m1 * n1 == 0)
+        {
+            AssignOutputVariable(pvApiCtx, 1) = 0;
+            ReturnArguments(pvApiCtx);
+            return 0;
+        }
+
         /*     third argument can be a matrix z or a list list(z,zcol) */
         sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
         if (sciErr.iErr)
@@ -219,12 +252,12 @@ int sci_plot3d(char * fname, unsigned long fname_len)
                     return 1;
                 }
                 /*
-                *   Added by E Segre 4/5/2000. In the case where zcol is a
-                *   matrix of the same size as z, we set izcol to 2. This
-                *   value is later transmitted to the C2F(fac3dg) routine,
-                *   which has been modified to do the interpolated shading
-                *    (see the file SCI/modules/graphics/src/c/Plo3d.c
-                */
+                 *   Added by E Segre 4/5/2000. In the case where zcol is a
+                 *   matrix of the same size as z, we set izcol to 2. This
+                 *   value is later transmitted to the C2F(fac3dg) routine,
+                 *   which has been modified to do the interpolated shading
+                 *    (see the file SCI/modules/graphics/src/c/Plo3d.c
+                 */
                 if (m3n * n3n == m3 * n3)
                 {
                     izcol = 2 ;
@@ -235,6 +268,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
                 return 0;
         }
     }
+
     iflag_def[1] = 8;
 
     GetOptionalDoubleArg(pvApiCtx, fname, 4, "theta", &theta, 1, opts);
@@ -293,6 +327,12 @@ int sci_plot3d(char * fname, unsigned long fname_len)
 
 
     Objplot3d (fname, &isfac, &izcol, (l1), (l2), (l3), zcol, &m3, &n3, theta, alpha, legend, iflag, ebox, &m1, &n1, &m2, &n2, &m3, &n3, &m3n, &n3n); /*Adding F.Leray 12.03.04 and 19.03.04*/
+
+    if (mustFree)
+    {
+        FREE(l1);
+        FREE(l2);
+    }
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

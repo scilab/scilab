@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Farid Belahcene
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -118,15 +118,15 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 最初の例: 棒を描画 (すなわち,polyline_style type =6のポリライン) ただし,
 // width=0.5 , color='yellow' で default style='grouped', x=1:length(y).
 scf(0);
 y=[1 -3 5];
 bar(y,0.5,'yellow');
  ]]></programlisting>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 
 // 2番目の例: 棒を 3 つ描画 (すなわち,polyline_style type =6の3個のポリライン),default style='grouped'
 scf(1);
@@ -138,7 +138,7 @@ bar(x,y);
             y=[1  -5 6;3 -2 7;4  -3 8];
             bar(x,y);
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 
 // 3番目の例 : style='stacked'.
 scf(2);
@@ -150,7 +150,7 @@ bar(x,y,'stacked');
             y=[1 4 7;2 5 8;3 6  9];
             bar(x,y,'stacked');
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 4番目の例: width=0.2;color='green'; default style='grouped'
 scf(3);
 x=[1 2 5]; y=[1 4 7;2 5 8;3 6 9];
@@ -173,6 +173,9 @@ bar(x,y,0.2,'green');
             </member>
             <member>
                 <link linkend="plot">plot</link>
+            </member>
+            <member>
+                <link linkend="histplot">histplot</link>
             </member>
             <member>
                 <link linkend="polyline_properties">polyline_properties</link>

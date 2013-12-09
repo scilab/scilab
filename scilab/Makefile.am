@@ -69,21 +69,21 @@ scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/io/includes/ \
 # (causing issues on some platform)
 COMMON_LIBS = $(LTLIBINTL)
 
-scilab_bin_SOURCES		= $(top_srcdir)/modules/console/src/c/others/mainscic.cpp
+scilab_bin_SOURCES		= modules/console/src/c/others/mainscic.cpp
 
 scilab_bin_LDADD 		= $(COMMON_LIBS) $(top_builddir)/modules/libscilab.la $(FLIBS)
 
 # Match scilab -nwni (ie command line without graphics)
-scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/console/src/c/others/mainscic.cpp
+scilab_cli_bin_SOURCES	= modules/console/src/c/others/mainscic.cpp
 
 scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS)
 scilab_cli_bin_LDADD 	= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(FLIBS)
 
 if MPI
 CXX = $(OPENMPI_CXX)
-scilab_bin_SOURCES += $(top_srcdir)/modules/console/src/c/others/initMPI.c
+scilab_bin_SOURCES += modules/console/src/c/others/initMPI.c
 scilab_bin_CPPFLAGS += $(OPENMPI_CXXFLAGS)
-scilab_cli_bin_SOURCES += $(top_srcdir)/modules/console/src/c/others/initMPI.c
+scilab_cli_bin_SOURCES += modules/console/src/c/others/initMPI.c
 scilab_cli_bin_CPPFLAGS += $(OPENMPI_CXXFLAGS)
 endif
 

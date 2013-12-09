@@ -36,12 +36,12 @@
                 <para>
                     La construction optionnelle <literal>,else instructions</literal> permet de spécifier
                     des <literal>instructions</literal> à exécuter si l'expression <literal>expr</literal>
-                    est fausse. 
+                    est fausse.
                 </para>
             </listitem>
         </itemizedlist>
         <para>
-            En accord avec les conventions de codage pour le langage de porgrammation Scilab, il est recommandé de :
+            En accord avec les conventions de codage pour le langage de programmation Scilab, il est recommandé de :
         </para>
         <itemizedlist>
             <listitem>
@@ -65,9 +65,9 @@
         </para>
         <programlisting role=""><![CDATA[
       i = 0
-      while i<5 
+      while i<5
           disp("i");
-          i = i + 1; 
+          i = i + 1;
       end
 ]]></programlisting>
         <para>
@@ -84,11 +84,11 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 e=1; a=1; k=1;
-while norm(a-(a+e),1) > %eps, 
-    e=e/2; 
-    k=k+1; 
+while norm(a-(a+e),1) > %eps,
+    e=e/2;
+    k=k+1;
 end
 e,k
 

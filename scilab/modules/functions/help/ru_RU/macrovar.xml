@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="macrovar">
+    <refnamediv>
+        <refname>macrovar</refname>
+        <refpurpose>переменные в функции</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>vars = macrovar(function)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>vars</term>
+                <listitem>
+                    <para>
+                        список,  <literal>list(in, out, nolocal, called, locals)</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>function</term>
+                <listitem>
+                    <para>имя функции.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Возвращает в списке набор переменных, используемых функцией.
+            <varname>vars</varname> - это список, сделанный из пяти вектор-столбцов символьных строк:
+        </para>
+        <simplelist type="inline">
+            <member>
+                <varname>in</varname>: входные переменные (<code>vars(1)</code>);
+            </member>
+            <member>
+                <varname>out</varname>: выходные переменные (<code>vars(2)</code>);
+            </member>
+            <member>
+                <varname>nolocal</varname>: переменные, к которым обращаются, но которые не определены внутри функции и не являются функциями (<code>vars(3)</code>);
+            </member>
+            <member>
+                <varname>called</varname>: имена вызываемых функций (<code>vars(4)</code>);
+            </member>
+            <member>
+                <varname>locals</varname>: локальные переменные (<code>vars(5)</code>);
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+deff('y = f(x1, x2)', 'loc = 1; y = a*x1+x2-loc');
+vars = macrovar(f)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="string">string</link>
+            </member>
+            <member>
+                <link linkend="macr2lst">macr2lst</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

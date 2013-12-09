@@ -162,17 +162,27 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscirandlib_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscirandlib_algo_la_LIBADD =
-am__objects_1 = libscirandlib_algo_la-fsultra.lo \
-	libscirandlib_algo_la-mt.lo libscirandlib_algo_la-igngeom.lo \
-	libscirandlib_algo_la-kiss.lo libscirandlib_algo_la-urand.lo \
-	libscirandlib_algo_la-clcg2.lo libscirandlib_algo_la-clcg4.lo \
-	libscirandlib_algo_la-sexpo.lo libscirandlib_algo_la-ignbin.lo \
-	libscirandlib_algo_la-ignpoi.lo \
-	libscirandlib_algo_la-sgamma.lo \
-	libscirandlib_algo_la-genbet.lo
-am__objects_2 = gennf.lo genchi.lo setgmn.lo gengam.lo snorm.lo \
-	gennch.lo genmn.lo phrtsd.lo ignnbn.lo genf.lo genunf.lo \
-	genexp.lo genmul.lo genprm.lo gennor.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+am__objects_1 = src/c/libscirandlib_algo_la-fsultra.lo \
+	src/c/libscirandlib_algo_la-mt.lo \
+	src/c/libscirandlib_algo_la-igngeom.lo \
+	src/c/libscirandlib_algo_la-kiss.lo \
+	src/c/libscirandlib_algo_la-urand.lo \
+	src/c/libscirandlib_algo_la-clcg2.lo \
+	src/c/libscirandlib_algo_la-clcg4.lo \
+	src/c/libscirandlib_algo_la-sexpo.lo \
+	src/c/libscirandlib_algo_la-ignbin.lo \
+	src/c/libscirandlib_algo_la-ignpoi.lo \
+	src/c/libscirandlib_algo_la-sgamma.lo \
+	src/c/libscirandlib_algo_la-genbet.lo
+am__objects_2 = src/fortran/gennf.lo src/fortran/genchi.lo \
+	src/fortran/setgmn.lo src/fortran/gengam.lo \
+	src/fortran/snorm.lo src/fortran/gennch.lo \
+	src/fortran/genmn.lo src/fortran/phrtsd.lo \
+	src/fortran/ignnbn.lo src/fortran/genf.lo \
+	src/fortran/genunf.lo src/fortran/genexp.lo \
+	src/fortran/genmul.lo src/fortran/genprm.lo \
+	src/fortran/gennor.lo
 am_libscirandlib_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscirandlib_algo_la_OBJECTS = $(am_libscirandlib_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -180,8 +190,8 @@ am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
 libscirandlib_la_DEPENDENCIES = libscirandlib-algo.la
-am__objects_3 = libscirandlib_la-gw_randlib.lo \
-	libscirandlib_la-sci_grand.lo
+am__objects_3 = sci_gateway/c/libscirandlib_la-gw_randlib.lo \
+	sci_gateway/c/libscirandlib_la-sci_grand.lo
 am_libscirandlib_la_OBJECTS = $(am__objects_3)
 libscirandlib_la_OBJECTS = $(am_libscirandlib_la_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -755,152 +765,239 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/c/$(am__dirstamp):
+	@$(MKDIR_P) src/c
+	@: > src/c/$(am__dirstamp)
+src/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/c/$(DEPDIR)
+	@: > src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscirandlib_algo_la-fsultra.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscirandlib_algo_la-mt.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscirandlib_algo_la-igngeom.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscirandlib_algo_la-kiss.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscirandlib_algo_la-urand.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscirandlib_algo_la-clcg2.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscirandlib_algo_la-clcg4.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscirandlib_algo_la-sexpo.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscirandlib_algo_la-ignbin.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscirandlib_algo_la-ignpoi.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscirandlib_algo_la-sgamma.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscirandlib_algo_la-genbet.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/fortran/$(am__dirstamp):
+	@$(MKDIR_P) src/fortran
+	@: > src/fortran/$(am__dirstamp)
+src/fortran/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/fortran/$(DEPDIR)
+	@: > src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/gennf.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/genchi.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/setgmn.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/gengam.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/snorm.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/gennch.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/genmn.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/phrtsd.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/ignnbn.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/genf.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/genunf.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/genexp.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/genmul.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/genprm.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/gennor.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
 
 libscirandlib-algo.la: $(libscirandlib_algo_la_OBJECTS) $(libscirandlib_algo_la_DEPENDENCIES) $(EXTRA_libscirandlib_algo_la_DEPENDENCIES) 
 	$(AM_V_F77LD)$(F77LINK)  $(libscirandlib_algo_la_OBJECTS) $(libscirandlib_algo_la_LIBADD) $(LIBS)
+sci_gateway/c/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c
+	@: > sci_gateway/c/$(am__dirstamp)
+sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
+	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscirandlib_la-gw_randlib.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscirandlib_la-sci_grand.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 
 libscirandlib.la: $(libscirandlib_la_OBJECTS) $(libscirandlib_la_DEPENDENCIES) $(EXTRA_libscirandlib_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) -rpath $(pkglibdir) $(libscirandlib_la_OBJECTS) $(libscirandlib_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f sci_gateway/c/*.$(OBJEXT)
+	-rm -f sci_gateway/c/*.lo
+	-rm -f src/c/*.$(OBJEXT)
+	-rm -f src/c/*.lo
+	-rm -f src/fortran/*.$(OBJEXT)
+	-rm -f src/fortran/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_algo_la-clcg2.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_algo_la-clcg4.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_algo_la-fsultra.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_algo_la-genbet.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_algo_la-ignbin.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_algo_la-igngeom.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_algo_la-ignpoi.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_algo_la-kiss.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_algo_la-mt.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_algo_la-sexpo.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_algo_la-sgamma.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_algo_la-urand.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_la-gw_randlib.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_la-sci_grand.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscirandlib_la-gw_randlib.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscirandlib_la-sci_grand.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscirandlib_algo_la-clcg2.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscirandlib_algo_la-clcg4.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscirandlib_algo_la-fsultra.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscirandlib_algo_la-genbet.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscirandlib_algo_la-ignbin.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscirandlib_algo_la-igngeom.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscirandlib_algo_la-ignpoi.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscirandlib_algo_la-kiss.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscirandlib_algo_la-mt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscirandlib_algo_la-sexpo.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscirandlib_algo_la-sgamma.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscirandlib_algo_la-urand.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libscirandlib_algo_la-fsultra.lo: src/c/fsultra.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscirandlib_algo_la-fsultra.lo -MD -MP -MF $(DEPDIR)/libscirandlib_algo_la-fsultra.Tpo -c -o libscirandlib_algo_la-fsultra.lo `test -f 'src/c/fsultra.c' || echo '$(srcdir)/'`src/c/fsultra.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscirandlib_algo_la-fsultra.Tpo $(DEPDIR)/libscirandlib_algo_la-fsultra.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/fsultra.c' object='libscirandlib_algo_la-fsultra.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscirandlib_algo_la-fsultra.lo: src/c/fsultra.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscirandlib_algo_la-fsultra.lo -MD -MP -MF src/c/$(DEPDIR)/libscirandlib_algo_la-fsultra.Tpo -c -o src/c/libscirandlib_algo_la-fsultra.lo `test -f 'src/c/fsultra.c' || echo '$(srcdir)/'`src/c/fsultra.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscirandlib_algo_la-fsultra.Tpo src/c/$(DEPDIR)/libscirandlib_algo_la-fsultra.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/fsultra.c' object='src/c/libscirandlib_algo_la-fsultra.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscirandlib_algo_la-fsultra.lo `test -f 'src/c/fsultra.c' || echo '$(srcdir)/'`src/c/fsultra.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscirandlib_algo_la-fsultra.lo `test -f 'src/c/fsultra.c' || echo '$(srcdir)/'`src/c/fsultra.c
 
-libscirandlib_algo_la-mt.lo: src/c/mt.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscirandlib_algo_la-mt.lo -MD -MP -MF $(DEPDIR)/libscirandlib_algo_la-mt.Tpo -c -o libscirandlib_algo_la-mt.lo `test -f 'src/c/mt.c' || echo '$(srcdir)/'`src/c/mt.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscirandlib_algo_la-mt.Tpo $(DEPDIR)/libscirandlib_algo_la-mt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/mt.c' object='libscirandlib_algo_la-mt.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscirandlib_algo_la-mt.lo: src/c/mt.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscirandlib_algo_la-mt.lo -MD -MP -MF src/c/$(DEPDIR)/libscirandlib_algo_la-mt.Tpo -c -o src/c/libscirandlib_algo_la-mt.lo `test -f 'src/c/mt.c' || echo '$(srcdir)/'`src/c/mt.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscirandlib_algo_la-mt.Tpo src/c/$(DEPDIR)/libscirandlib_algo_la-mt.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/mt.c' object='src/c/libscirandlib_algo_la-mt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscirandlib_algo_la-mt.lo `test -f 'src/c/mt.c' || echo '$(srcdir)/'`src/c/mt.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscirandlib_algo_la-mt.lo `test -f 'src/c/mt.c' || echo '$(srcdir)/'`src/c/mt.c
 
-libscirandlib_algo_la-igngeom.lo: src/c/igngeom.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscirandlib_algo_la-igngeom.lo -MD -MP -MF $(DEPDIR)/libscirandlib_algo_la-igngeom.Tpo -c -o libscirandlib_algo_la-igngeom.lo `test -f 'src/c/igngeom.c' || echo '$(srcdir)/'`src/c/igngeom.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscirandlib_algo_la-igngeom.Tpo $(DEPDIR)/libscirandlib_algo_la-igngeom.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/igngeom.c' object='libscirandlib_algo_la-igngeom.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscirandlib_algo_la-igngeom.lo: src/c/igngeom.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscirandlib_algo_la-igngeom.lo -MD -MP -MF src/c/$(DEPDIR)/libscirandlib_algo_la-igngeom.Tpo -c -o src/c/libscirandlib_algo_la-igngeom.lo `test -f 'src/c/igngeom.c' || echo '$(srcdir)/'`src/c/igngeom.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscirandlib_algo_la-igngeom.Tpo src/c/$(DEPDIR)/libscirandlib_algo_la-igngeom.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/igngeom.c' object='src/c/libscirandlib_algo_la-igngeom.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscirandlib_algo_la-igngeom.lo `test -f 'src/c/igngeom.c' || echo '$(srcdir)/'`src/c/igngeom.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscirandlib_algo_la-igngeom.lo `test -f 'src/c/igngeom.c' || echo '$(srcdir)/'`src/c/igngeom.c
 
-libscirandlib_algo_la-kiss.lo: src/c/kiss.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscirandlib_algo_la-kiss.lo -MD -MP -MF $(DEPDIR)/libscirandlib_algo_la-kiss.Tpo -c -o libscirandlib_algo_la-kiss.lo `test -f 'src/c/kiss.c' || echo '$(srcdir)/'`src/c/kiss.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscirandlib_algo_la-kiss.Tpo $(DEPDIR)/libscirandlib_algo_la-kiss.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/kiss.c' object='libscirandlib_algo_la-kiss.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscirandlib_algo_la-kiss.lo: src/c/kiss.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscirandlib_algo_la-kiss.lo -MD -MP -MF src/c/$(DEPDIR)/libscirandlib_algo_la-kiss.Tpo -c -o src/c/libscirandlib_algo_la-kiss.lo `test -f 'src/c/kiss.c' || echo '$(srcdir)/'`src/c/kiss.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscirandlib_algo_la-kiss.Tpo src/c/$(DEPDIR)/libscirandlib_algo_la-kiss.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/kiss.c' object='src/c/libscirandlib_algo_la-kiss.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscirandlib_algo_la-kiss.lo `test -f 'src/c/kiss.c' || echo '$(srcdir)/'`src/c/kiss.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscirandlib_algo_la-kiss.lo `test -f 'src/c/kiss.c' || echo '$(srcdir)/'`src/c/kiss.c
 
-libscirandlib_algo_la-urand.lo: src/c/urand.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscirandlib_algo_la-urand.lo -MD -MP -MF $(DEPDIR)/libscirandlib_algo_la-urand.Tpo -c -o libscirandlib_algo_la-urand.lo `test -f 'src/c/urand.c' || echo '$(srcdir)/'`src/c/urand.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscirandlib_algo_la-urand.Tpo $(DEPDIR)/libscirandlib_algo_la-urand.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/urand.c' object='libscirandlib_algo_la-urand.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscirandlib_algo_la-urand.lo: src/c/urand.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscirandlib_algo_la-urand.lo -MD -MP -MF src/c/$(DEPDIR)/libscirandlib_algo_la-urand.Tpo -c -o src/c/libscirandlib_algo_la-urand.lo `test -f 'src/c/urand.c' || echo '$(srcdir)/'`src/c/urand.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscirandlib_algo_la-urand.Tpo src/c/$(DEPDIR)/libscirandlib_algo_la-urand.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/urand.c' object='src/c/libscirandlib_algo_la-urand.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscirandlib_algo_la-urand.lo `test -f 'src/c/urand.c' || echo '$(srcdir)/'`src/c/urand.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscirandlib_algo_la-urand.lo `test -f 'src/c/urand.c' || echo '$(srcdir)/'`src/c/urand.c
 
-libscirandlib_algo_la-clcg2.lo: src/c/clcg2.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscirandlib_algo_la-clcg2.lo -MD -MP -MF $(DEPDIR)/libscirandlib_algo_la-clcg2.Tpo -c -o libscirandlib_algo_la-clcg2.lo `test -f 'src/c/clcg2.c' || echo '$(srcdir)/'`src/c/clcg2.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscirandlib_algo_la-clcg2.Tpo $(DEPDIR)/libscirandlib_algo_la-clcg2.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/clcg2.c' object='libscirandlib_algo_la-clcg2.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscirandlib_algo_la-clcg2.lo: src/c/clcg2.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscirandlib_algo_la-clcg2.lo -MD -MP -MF src/c/$(DEPDIR)/libscirandlib_algo_la-clcg2.Tpo -c -o src/c/libscirandlib_algo_la-clcg2.lo `test -f 'src/c/clcg2.c' || echo '$(srcdir)/'`src/c/clcg2.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscirandlib_algo_la-clcg2.Tpo src/c/$(DEPDIR)/libscirandlib_algo_la-clcg2.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/clcg2.c' object='src/c/libscirandlib_algo_la-clcg2.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscirandlib_algo_la-clcg2.lo `test -f 'src/c/clcg2.c' || echo '$(srcdir)/'`src/c/clcg2.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscirandlib_algo_la-clcg2.lo `test -f 'src/c/clcg2.c' || echo '$(srcdir)/'`src/c/clcg2.c
 
-libscirandlib_algo_la-clcg4.lo: src/c/clcg4.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscirandlib_algo_la-clcg4.lo -MD -MP -MF $(DEPDIR)/libscirandlib_algo_la-clcg4.Tpo -c -o libscirandlib_algo_la-clcg4.lo `test -f 'src/c/clcg4.c' || echo '$(srcdir)/'`src/c/clcg4.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscirandlib_algo_la-clcg4.Tpo $(DEPDIR)/libscirandlib_algo_la-clcg4.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/clcg4.c' object='libscirandlib_algo_la-clcg4.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscirandlib_algo_la-clcg4.lo: src/c/clcg4.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscirandlib_algo_la-clcg4.lo -MD -MP -MF src/c/$(DEPDIR)/libscirandlib_algo_la-clcg4.Tpo -c -o src/c/libscirandlib_algo_la-clcg4.lo `test -f 'src/c/clcg4.c' || echo '$(srcdir)/'`src/c/clcg4.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscirandlib_algo_la-clcg4.Tpo src/c/$(DEPDIR)/libscirandlib_algo_la-clcg4.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/clcg4.c' object='src/c/libscirandlib_algo_la-clcg4.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscirandlib_algo_la-clcg4.lo `test -f 'src/c/clcg4.c' || echo '$(srcdir)/'`src/c/clcg4.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscirandlib_algo_la-clcg4.lo `test -f 'src/c/clcg4.c' || echo '$(srcdir)/'`src/c/clcg4.c
 
-libscirandlib_algo_la-sexpo.lo: src/c/sexpo.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscirandlib_algo_la-sexpo.lo -MD -MP -MF $(DEPDIR)/libscirandlib_algo_la-sexpo.Tpo -c -o libscirandlib_algo_la-sexpo.lo `test -f 'src/c/sexpo.c' || echo '$(srcdir)/'`src/c/sexpo.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscirandlib_algo_la-sexpo.Tpo $(DEPDIR)/libscirandlib_algo_la-sexpo.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sexpo.c' object='libscirandlib_algo_la-sexpo.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscirandlib_algo_la-sexpo.lo: src/c/sexpo.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscirandlib_algo_la-sexpo.lo -MD -MP -MF src/c/$(DEPDIR)/libscirandlib_algo_la-sexpo.Tpo -c -o src/c/libscirandlib_algo_la-sexpo.lo `test -f 'src/c/sexpo.c' || echo '$(srcdir)/'`src/c/sexpo.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscirandlib_algo_la-sexpo.Tpo src/c/$(DEPDIR)/libscirandlib_algo_la-sexpo.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sexpo.c' object='src/c/libscirandlib_algo_la-sexpo.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscirandlib_algo_la-sexpo.lo `test -f 'src/c/sexpo.c' || echo '$(srcdir)/'`src/c/sexpo.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscirandlib_algo_la-sexpo.lo `test -f 'src/c/sexpo.c' || echo '$(srcdir)/'`src/c/sexpo.c
 
-libscirandlib_algo_la-ignbin.lo: src/c/ignbin.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscirandlib_algo_la-ignbin.lo -MD -MP -MF $(DEPDIR)/libscirandlib_algo_la-ignbin.Tpo -c -o libscirandlib_algo_la-ignbin.lo `test -f 'src/c/ignbin.c' || echo '$(srcdir)/'`src/c/ignbin.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscirandlib_algo_la-ignbin.Tpo $(DEPDIR)/libscirandlib_algo_la-ignbin.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/ignbin.c' object='libscirandlib_algo_la-ignbin.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscirandlib_algo_la-ignbin.lo: src/c/ignbin.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscirandlib_algo_la-ignbin.lo -MD -MP -MF src/c/$(DEPDIR)/libscirandlib_algo_la-ignbin.Tpo -c -o src/c/libscirandlib_algo_la-ignbin.lo `test -f 'src/c/ignbin.c' || echo '$(srcdir)/'`src/c/ignbin.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscirandlib_algo_la-ignbin.Tpo src/c/$(DEPDIR)/libscirandlib_algo_la-ignbin.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/ignbin.c' object='src/c/libscirandlib_algo_la-ignbin.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscirandlib_algo_la-ignbin.lo `test -f 'src/c/ignbin.c' || echo '$(srcdir)/'`src/c/ignbin.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscirandlib_algo_la-ignbin.lo `test -f 'src/c/ignbin.c' || echo '$(srcdir)/'`src/c/ignbin.c
 
-libscirandlib_algo_la-ignpoi.lo: src/c/ignpoi.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscirandlib_algo_la-ignpoi.lo -MD -MP -MF $(DEPDIR)/libscirandlib_algo_la-ignpoi.Tpo -c -o libscirandlib_algo_la-ignpoi.lo `test -f 'src/c/ignpoi.c' || echo '$(srcdir)/'`src/c/ignpoi.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscirandlib_algo_la-ignpoi.Tpo $(DEPDIR)/libscirandlib_algo_la-ignpoi.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/ignpoi.c' object='libscirandlib_algo_la-ignpoi.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscirandlib_algo_la-ignpoi.lo: src/c/ignpoi.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscirandlib_algo_la-ignpoi.lo -MD -MP -MF src/c/$(DEPDIR)/libscirandlib_algo_la-ignpoi.Tpo -c -o src/c/libscirandlib_algo_la-ignpoi.lo `test -f 'src/c/ignpoi.c' || echo '$(srcdir)/'`src/c/ignpoi.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscirandlib_algo_la-ignpoi.Tpo src/c/$(DEPDIR)/libscirandlib_algo_la-ignpoi.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/ignpoi.c' object='src/c/libscirandlib_algo_la-ignpoi.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscirandlib_algo_la-ignpoi.lo `test -f 'src/c/ignpoi.c' || echo '$(srcdir)/'`src/c/ignpoi.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscirandlib_algo_la-ignpoi.lo `test -f 'src/c/ignpoi.c' || echo '$(srcdir)/'`src/c/ignpoi.c
 
-libscirandlib_algo_la-sgamma.lo: src/c/sgamma.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscirandlib_algo_la-sgamma.lo -MD -MP -MF $(DEPDIR)/libscirandlib_algo_la-sgamma.Tpo -c -o libscirandlib_algo_la-sgamma.lo `test -f 'src/c/sgamma.c' || echo '$(srcdir)/'`src/c/sgamma.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscirandlib_algo_la-sgamma.Tpo $(DEPDIR)/libscirandlib_algo_la-sgamma.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sgamma.c' object='libscirandlib_algo_la-sgamma.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscirandlib_algo_la-sgamma.lo: src/c/sgamma.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscirandlib_algo_la-sgamma.lo -MD -MP -MF src/c/$(DEPDIR)/libscirandlib_algo_la-sgamma.Tpo -c -o src/c/libscirandlib_algo_la-sgamma.lo `test -f 'src/c/sgamma.c' || echo '$(srcdir)/'`src/c/sgamma.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscirandlib_algo_la-sgamma.Tpo src/c/$(DEPDIR)/libscirandlib_algo_la-sgamma.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sgamma.c' object='src/c/libscirandlib_algo_la-sgamma.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscirandlib_algo_la-sgamma.lo `test -f 'src/c/sgamma.c' || echo '$(srcdir)/'`src/c/sgamma.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscirandlib_algo_la-sgamma.lo `test -f 'src/c/sgamma.c' || echo '$(srcdir)/'`src/c/sgamma.c
 
-libscirandlib_algo_la-genbet.lo: src/c/genbet.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscirandlib_algo_la-genbet.lo -MD -MP -MF $(DEPDIR)/libscirandlib_algo_la-genbet.Tpo -c -o libscirandlib_algo_la-genbet.lo `test -f 'src/c/genbet.c' || echo '$(srcdir)/'`src/c/genbet.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscirandlib_algo_la-genbet.Tpo $(DEPDIR)/libscirandlib_algo_la-genbet.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/genbet.c' object='libscirandlib_algo_la-genbet.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscirandlib_algo_la-genbet.lo: src/c/genbet.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscirandlib_algo_la-genbet.lo -MD -MP -MF src/c/$(DEPDIR)/libscirandlib_algo_la-genbet.Tpo -c -o src/c/libscirandlib_algo_la-genbet.lo `test -f 'src/c/genbet.c' || echo '$(srcdir)/'`src/c/genbet.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscirandlib_algo_la-genbet.Tpo src/c/$(DEPDIR)/libscirandlib_algo_la-genbet.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/genbet.c' object='src/c/libscirandlib_algo_la-genbet.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscirandlib_algo_la-genbet.lo `test -f 'src/c/genbet.c' || echo '$(srcdir)/'`src/c/genbet.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscirandlib_algo_la-genbet.lo `test -f 'src/c/genbet.c' || echo '$(srcdir)/'`src/c/genbet.c
 
-libscirandlib_la-gw_randlib.lo: sci_gateway/c/gw_randlib.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscirandlib_la-gw_randlib.lo -MD -MP -MF $(DEPDIR)/libscirandlib_la-gw_randlib.Tpo -c -o libscirandlib_la-gw_randlib.lo `test -f 'sci_gateway/c/gw_randlib.c' || echo '$(srcdir)/'`sci_gateway/c/gw_randlib.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscirandlib_la-gw_randlib.Tpo $(DEPDIR)/libscirandlib_la-gw_randlib.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_randlib.c' object='libscirandlib_la-gw_randlib.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscirandlib_la-gw_randlib.lo: sci_gateway/c/gw_randlib.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscirandlib_la-gw_randlib.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscirandlib_la-gw_randlib.Tpo -c -o sci_gateway/c/libscirandlib_la-gw_randlib.lo `test -f 'sci_gateway/c/gw_randlib.c' || echo '$(srcdir)/'`sci_gateway/c/gw_randlib.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscirandlib_la-gw_randlib.Tpo sci_gateway/c/$(DEPDIR)/libscirandlib_la-gw_randlib.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_randlib.c' object='sci_gateway/c/libscirandlib_la-gw_randlib.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscirandlib_la-gw_randlib.lo `test -f 'sci_gateway/c/gw_randlib.c' || echo '$(srcdir)/'`sci_gateway/c/gw_randlib.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscirandlib_la-gw_randlib.lo `test -f 'sci_gateway/c/gw_randlib.c' || echo '$(srcdir)/'`sci_gateway/c/gw_randlib.c
 
-libscirandlib_la-sci_grand.lo: sci_gateway/c/sci_grand.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscirandlib_la-sci_grand.lo -MD -MP -MF $(DEPDIR)/libscirandlib_la-sci_grand.Tpo -c -o libscirandlib_la-sci_grand.lo `test -f 'sci_gateway/c/sci_grand.c' || echo '$(srcdir)/'`sci_gateway/c/sci_grand.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscirandlib_la-sci_grand.Tpo $(DEPDIR)/libscirandlib_la-sci_grand.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_grand.c' object='libscirandlib_la-sci_grand.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscirandlib_la-sci_grand.lo: sci_gateway/c/sci_grand.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscirandlib_la-sci_grand.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscirandlib_la-sci_grand.Tpo -c -o sci_gateway/c/libscirandlib_la-sci_grand.lo `test -f 'sci_gateway/c/sci_grand.c' || echo '$(srcdir)/'`sci_gateway/c/sci_grand.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscirandlib_la-sci_grand.Tpo sci_gateway/c/$(DEPDIR)/libscirandlib_la-sci_grand.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_grand.c' object='sci_gateway/c/libscirandlib_la-sci_grand.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscirandlib_la-sci_grand.lo `test -f 'sci_gateway/c/sci_grand.c' || echo '$(srcdir)/'`sci_gateway/c/sci_grand.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscirandlib_la-sci_grand.lo `test -f 'sci_gateway/c/sci_grand.c' || echo '$(srcdir)/'`sci_gateway/c/sci_grand.c
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<
@@ -911,56 +1008,14 @@ libscirandlib_la-sci_grand.lo: sci_gateway/c/sci_grand.c
 .f.lo:
 	$(AM_V_F77)$(LTF77COMPILE) -c -o $@ $<
 
-gennf.lo: src/fortran/gennf.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gennf.lo `test -f 'src/fortran/gennf.f' || echo '$(srcdir)/'`src/fortran/gennf.f
-
-genchi.lo: src/fortran/genchi.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o genchi.lo `test -f 'src/fortran/genchi.f' || echo '$(srcdir)/'`src/fortran/genchi.f
-
-setgmn.lo: src/fortran/setgmn.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o setgmn.lo `test -f 'src/fortran/setgmn.f' || echo '$(srcdir)/'`src/fortran/setgmn.f
-
-gengam.lo: src/fortran/gengam.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gengam.lo `test -f 'src/fortran/gengam.f' || echo '$(srcdir)/'`src/fortran/gengam.f
-
-snorm.lo: src/fortran/snorm.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o snorm.lo `test -f 'src/fortran/snorm.f' || echo '$(srcdir)/'`src/fortran/snorm.f
-
-gennch.lo: src/fortran/gennch.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gennch.lo `test -f 'src/fortran/gennch.f' || echo '$(srcdir)/'`src/fortran/gennch.f
-
-genmn.lo: src/fortran/genmn.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o genmn.lo `test -f 'src/fortran/genmn.f' || echo '$(srcdir)/'`src/fortran/genmn.f
-
-phrtsd.lo: src/fortran/phrtsd.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o phrtsd.lo `test -f 'src/fortran/phrtsd.f' || echo '$(srcdir)/'`src/fortran/phrtsd.f
-
-ignnbn.lo: src/fortran/ignnbn.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ignnbn.lo `test -f 'src/fortran/ignnbn.f' || echo '$(srcdir)/'`src/fortran/ignnbn.f
-
-genf.lo: src/fortran/genf.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o genf.lo `test -f 'src/fortran/genf.f' || echo '$(srcdir)/'`src/fortran/genf.f
-
-genunf.lo: src/fortran/genunf.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o genunf.lo `test -f 'src/fortran/genunf.f' || echo '$(srcdir)/'`src/fortran/genunf.f
-
-genexp.lo: src/fortran/genexp.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o genexp.lo `test -f 'src/fortran/genexp.f' || echo '$(srcdir)/'`src/fortran/genexp.f
-
-genmul.lo: src/fortran/genmul.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o genmul.lo `test -f 'src/fortran/genmul.f' || echo '$(srcdir)/'`src/fortran/genmul.f
-
-genprm.lo: src/fortran/genprm.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o genprm.lo `test -f 'src/fortran/genprm.f' || echo '$(srcdir)/'`src/fortran/genprm.f
-
-gennor.lo: src/fortran/gennor.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gennor.lo `test -f 'src/fortran/gennor.f' || echo '$(srcdir)/'`src/fortran/gennor.f
-
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
+	-rm -rf src/c/.libs src/c/_libs
+	-rm -rf src/fortran/.libs src/fortran/_libs
 install-libscirandlib_la_etcDATA: $(libscirandlib_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libscirandlib_la_etc_DATA)'; test -n "$(libscirandlib_la_etcdir)" || list=; \
@@ -1141,6 +1196,12 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/c/$(am__dirstamp)
+	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/c/$(am__dirstamp)
+	-rm -f src/fortran/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/fortran/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1151,7 +1212,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1199,7 +1260,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

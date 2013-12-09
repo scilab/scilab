@@ -27,8 +27,10 @@
 #include "scicos_free.h"
 #include "scicos_malloc.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(dmmul)();
-extern int C2F(dmmul1)();
+extern int C2F(dmmul)(double *a, int *na, double *b, int *nb, double *c__,
+                      int *nc, int *l, int *m, int *n);
+extern int C2F(dmmul1)(double *a, int *na, double *b, int *nb, double *c__,
+                       int *nc, int *l, int *m, int *n);
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void dsslti4(scicos_block *block, int flag)
 {
@@ -99,7 +101,7 @@ SCICOS_BLOCKS_IMPEXP void dsslti4(scicos_block *block, int flag)
         /* x+=a*x+b*u */
         if (nz > 0)
         {
-            w = *block->work;
+            w = (double*) *block->work;
             memcpy(w, z, nz * sizeof(double));
             C2F(dmmul)(&rpar[0], &nz, w, &nz, z, &nz, &nz, &nz, &un);
             if (nin > 0)

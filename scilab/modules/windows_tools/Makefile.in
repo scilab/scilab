@@ -162,7 +162,9 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciwindows_tools_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libsciwindows_tools_la_LIBADD =
-am__objects_1 = libsciwindows_tools_la-nowindows_tools.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+am__objects_1 =  \
+	src/nowindows_tools/libsciwindows_tools_la-nowindows_tools.lo
 am_libsciwindows_tools_la_OBJECTS = $(am__objects_1)
 libsciwindows_tools_la_OBJECTS = $(am_libsciwindows_tools_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -693,51 +695,66 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/nowindows_tools/$(am__dirstamp):
+	@$(MKDIR_P) src/nowindows_tools
+	@: > src/nowindows_tools/$(am__dirstamp)
+src/nowindows_tools/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/nowindows_tools/$(DEPDIR)
+	@: > src/nowindows_tools/$(DEPDIR)/$(am__dirstamp)
+src/nowindows_tools/libsciwindows_tools_la-nowindows_tools.lo:  \
+	src/nowindows_tools/$(am__dirstamp) \
+	src/nowindows_tools/$(DEPDIR)/$(am__dirstamp)
 
 libsciwindows_tools.la: $(libsciwindows_tools_la_OBJECTS) $(libsciwindows_tools_la_DEPENDENCIES) $(EXTRA_libsciwindows_tools_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) $(am_libsciwindows_tools_la_rpath) $(libsciwindows_tools_la_OBJECTS) $(libsciwindows_tools_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f src/nowindows_tools/*.$(OBJEXT)
+	-rm -f src/nowindows_tools/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwindows_tools_la-nowindows_tools.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/nowindows_tools/$(DEPDIR)/libsciwindows_tools_la-nowindows_tools.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libsciwindows_tools_la-nowindows_tools.lo: src/nowindows_tools/nowindows_tools.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwindows_tools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciwindows_tools_la-nowindows_tools.lo -MD -MP -MF $(DEPDIR)/libsciwindows_tools_la-nowindows_tools.Tpo -c -o libsciwindows_tools_la-nowindows_tools.lo `test -f 'src/nowindows_tools/nowindows_tools.c' || echo '$(srcdir)/'`src/nowindows_tools/nowindows_tools.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciwindows_tools_la-nowindows_tools.Tpo $(DEPDIR)/libsciwindows_tools_la-nowindows_tools.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/nowindows_tools/nowindows_tools.c' object='libsciwindows_tools_la-nowindows_tools.lo' libtool=yes @AMDEPBACKSLASH@
+src/nowindows_tools/libsciwindows_tools_la-nowindows_tools.lo: src/nowindows_tools/nowindows_tools.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwindows_tools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/nowindows_tools/libsciwindows_tools_la-nowindows_tools.lo -MD -MP -MF src/nowindows_tools/$(DEPDIR)/libsciwindows_tools_la-nowindows_tools.Tpo -c -o src/nowindows_tools/libsciwindows_tools_la-nowindows_tools.lo `test -f 'src/nowindows_tools/nowindows_tools.c' || echo '$(srcdir)/'`src/nowindows_tools/nowindows_tools.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/nowindows_tools/$(DEPDIR)/libsciwindows_tools_la-nowindows_tools.Tpo src/nowindows_tools/$(DEPDIR)/libsciwindows_tools_la-nowindows_tools.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/nowindows_tools/nowindows_tools.c' object='src/nowindows_tools/libsciwindows_tools_la-nowindows_tools.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwindows_tools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciwindows_tools_la-nowindows_tools.lo `test -f 'src/nowindows_tools/nowindows_tools.c' || echo '$(srcdir)/'`src/nowindows_tools/nowindows_tools.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciwindows_tools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/nowindows_tools/libsciwindows_tools_la-nowindows_tools.lo `test -f 'src/nowindows_tools/nowindows_tools.c' || echo '$(srcdir)/'`src/nowindows_tools/nowindows_tools.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf src/nowindows_tools/.libs src/nowindows_tools/_libs
 install-libsciwindows_tools_la_etcDATA: $(libsciwindows_tools_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libsciwindows_tools_la_etc_DATA)'; test -n "$(libsciwindows_tools_la_etcdir)" || list=; \
@@ -918,6 +935,8 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f src/nowindows_tools/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/nowindows_tools/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -928,7 +947,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf src/nowindows_tools/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -977,7 +996,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf src/nowindows_tools/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

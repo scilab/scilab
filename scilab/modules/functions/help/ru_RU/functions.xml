@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="functions">
+    <refnamediv>
+        <refname>функции</refname>
+        <refpurpose>
+            Scilab-процедуры и Scilab-объекты
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функции являются процедурами Scilab ("макрос", "функция" и
+            "процедура" имеют одно и то же значение).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Определение функции</title>
+        <para>
+            Обычно они определяются в файлах с помощью редактора и загружаются в Scilab, используя функцию <link linkend="exec">exec</link> или через библиотеку (см.
+            <link linkend="lib">lib</link> либо <link linkend="genlib">genlib</link>). Однако, они также могут быть определены во время исполнения программы (см. <link linkend="deff">deff</link> либо <link linkend="function">function</link>).
+            Функция определяется двумя составляющими:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>часть "синтаксис определения", как например:</para>
+                <programlisting role='no-scilab-exec'><![CDATA[
+function [y1,...,yn]=foo(x1,...,xm)
+function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
+ ]]></programlisting>
+            </listitem>
+            <listitem>
+                <para>ряд Scilab-инструкций.</para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Строка "синтаксиса определения" указывает "полный" синтаксис
+            вызова этой функции. <literal>yi</literal> - выходные
+            переменные, вычисленные в зависимости от входных переменных
+            <literal>xi</literal> и переменные, существующие в Scilab'е
+            в момент исполнения функции.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Вызов функции</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Обычно синтаксис вызова функции следующий:
+                    <literal>[y1,...,yn]=foo(x1,...,xm)</literal>. Можно
+                    использовать более короткий список входных или
+                    выходных аргументов, чем определённый. В таких
+                    случаях используются или устанавливаются только
+                    самые первые переменные, начиная слева.
+                </para>
+                <para>
+                    Функция <link linkend="argn">argn</link> может быть
+                    использована для получения фактического количества
+                    аргументов при вызове.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Можно определять функцию с неопределённым
+                    максимальным количеством входных или выходных
+                    аргументов. Это можно сделать, используя ключевые
+                    слова <link linkend="varargin">varargin</link> и
+                    <link linkend="varargout">varargout</link>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Также можно использовать "именованный аргумент" для определения входных аргументов: предположим, что функция <function>fun1</function>, определённая как
+                    <code>function y1 = fun1(x1, x2, x3)</code>, тогда её можно вызвать следующим синтаксисом:
+                    <code>y = fun1(x1=33, x3=[1 2 3])</code>; внутри
+                    <function>fun1</function> переменная <varname>x2</varname> не будет определена.
+                </para>
+                <para>
+                    Её можно также вызвать следующим синтаксисом:
+                    <code>y = fun1(x1=33, y='foo')</code>. В таком
+                    случае переменная <varname>y</varname> будет
+                    доступна в контексте функции
+                    <function>fun1</function>.
+                    <note>
+                        Обратите внимание, что максимальное количество
+                        аргументов должно быть меньше или равно числу
+                        формальных входных аргументов, используемых в
+                        части синтаксиса функции.
+                    </note>
+                </para>
+                <para>
+                    Проверить определены ли переменные можно с помощью
+                    функции <link linkend="exists">exists</link>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Когда у функции нет аргументов слева и она вызывается только с аргументами символьных строк, синтаксис вызова может быть упрощён:
+                </para>
+                <programlisting role='no-scilab-exec'><![CDATA[
+fun('a','toto','a string')
+ ]]></programlisting>
+                <para>что эквивалентно: </para>
+                <programlisting role='no-scilab-exec'><![CDATA[
+fun a toto 'a string'
+ ]]></programlisting>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>Прочие вопросы</title>
+        <para>
+            Функции являются Scilab-объектами (с номерами типа 13 или
+            11). И ими можно управлять (создавать, сохранять, загружать,
+            передавать в качестве аргументов, и т. д.) как и другими
+            типами переменных.
+        </para>
+        <para>
+            Коллекции функций можно собирать в библиотеки. Функции,
+            которые начинаются со знака <literal>%</literal> (например,
+            <literal>%foo</literal>) часто используются чтобы
+            перегрузить (см. <link linkend="overloading">перегрузку</link>) операции или
+            функции для нового типа данных.
+        </para>
+        <note>
+            Заметьте, что имя функции должно удовлетворять некоторым правилам синтаксиса (см. <link linkend="names">имена</link>).
+        </note>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+//определение встраиваемой функции (см. function)
+function [x,y]=myfct(a,b)
+  x=a+b
+  y=a-b
+endfunction
+[x,y]=myfct(3,2)
+
+//определение встраиваемой функции (см. deff)
+deff('[x,y]=myfct(a,b)',['x=a+b';
+                         'y=a-b'])
+
+// определение в ASCII-файле (см. exec)
+exec SCI/modules/elementary_functions/macros/asinh.sci;
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="function">function</link>
+            </member>
+            <member>
+                <link linkend="deff">deff</link>
+            </member>
+            <member>
+                <link linkend="exec">exec</link>
+            </member>
+            <member>
+                <link linkend="comp">comp</link>
+            </member>
+            <member>
+                <link linkend="lib">lib</link>
+            </member>
+            <member>
+                <link linkend="getd">getd</link>
+            </member>
+            <member>
+                <link linkend="genlib">genlib</link>
+            </member>
+            <member>
+                <link linkend="exists">exists</link>
+            </member>
+            <member>
+                <link linkend="varargin">varargin</link>
+            </member>
+            <member>
+                <link linkend="varargout">varargout</link>
+            </member>
+            <member>
+                <link linkend="names">имена</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

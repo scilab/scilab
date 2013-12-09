@@ -20,6 +20,12 @@ function [coefs]=regress(x,y)
     //Introductory Statistics, J.Wiley & Sons, 1990.
     //
     //
+
+    [lhs, rhs] = argn(0);
+    if rhs < 2 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"regress",2))
+    end
+
     coefs=[]
     if (type(x) <> 1)|(type(y)<>1) then error(msprintf(gettext("%s: Wrong type for input arguments: Numerical expected.\n"),"regress")), end
     lx=length(x)

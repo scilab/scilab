@@ -27,15 +27,23 @@ function [PName] = getTitleLabelPropertyNam(PropertyName,current_figure,cur_draw
     //         'visible' 'fill_mode' 'auto_position' 'auto_rotation']; // equivalent Table
 
     opt1=[];
-
     k=find(part(Table,1:length(str))==str);
+
+    if (isempty(k)) then
+        // Scilab names are allowed too...
+        k=find(part(TableEQ,1:length(str))==str);
+        if ~isempty(k) then
+            PName = TableEQ(k(1))
+            return;
+        end
+    end
 
     if (k == [])
         warning("Error in Property specification : bad argument specified");
         PName=[];
         ResetFigureDDM(current_figure, cur_draw_mode);
         return;
-    elseif ( size(k,"*") > 1)
+    elseif (size(k,"*") > 1)
         warning("Ambiguous text property");
         PName=[];
         ResetFigureDDM(current_figure, cur_draw_mode);

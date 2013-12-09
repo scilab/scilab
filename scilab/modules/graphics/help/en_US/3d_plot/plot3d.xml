@@ -25,6 +25,8 @@
             
             plot3d(xf,yf,list(zf,colors),[theta,alpha,leg,flag,ebox])
             plot3d(xf,yf,list(zf,colors),&lt;opt_args&gt;)
+
+	    plot3d(z)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -285,7 +287,11 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>
+	<para>
+            <literal>plot3d(z)</literal> draws the parametric surface <literal>z=f(x,y)</literal> where
+	    <literal>x=1:m</literal>, <literal>y=1:n</literal> and <literal>[m,n]=size(z)</literal>.
+        </para>
+	<para>
             <literal>plot3d(x,y,z,[theta,alpha,leg,flag,ebox])</literal> draws
             the parametric surface <literal>z=f(x,y)</literal>.
         </para>

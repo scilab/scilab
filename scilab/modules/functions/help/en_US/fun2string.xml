@@ -13,11 +13,11 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="fun2string">
     <refnamediv>
         <refname>fun2string</refname>
-        <refpurpose>generates ascii definition of a scilab function</refpurpose>
+        <refpurpose>generates ASCII definition of a Scilab function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>txt=fun2string(fun,name)</synopsis>
+        <synopsis>txt = fun2string(fun, name)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,19 +25,21 @@
             <varlistentry>
                 <term>fun</term>
                 <listitem>
-                    <para>a function type variable</para>
+                    <para>
+                        a <literal>function</literal> type variable.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>name</term>
                 <listitem>
-                    <para>a character string, the generated function name</para>
+                    <para>a character string, the generated function name.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>txt</term>
                 <listitem>
-                    <para>a column vector of strings, the text giving the scilab instructions</para>
+                    <para>a column vector of strings, the text giving the Scilab instructions.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -45,19 +47,19 @@
     <refsection>
         <title>Description</title>
         <para>
-            Given a loaded Scilab function pseudo-code fun2string allows to
+            Given a loaded Scilab function pseudo-code <function>fun2string</function> allows to
             re-generate the code. The generated
             code is indented and beautified.
         </para>
         <para>
-            The mechanism is similar, but simpler than the mfile2sci one. It may
+            The mechanism is similar, but simpler than the <function>mfile2sci</function> one. It may
             be adapted for syntax translations.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-txt=fun2string(asinh,'foo');
+        <programlisting role="example"><![CDATA[
+txt = fun2string(asinh,'foo');
 write(%io(2),txt,'(a)')
  ]]></programlisting>
     </refsection>

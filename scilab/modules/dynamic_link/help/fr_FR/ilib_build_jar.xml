@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*
+*  ======================================================================
+*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2013 - Scilab Enterprises - Simon MARCHETTO
+*
+*  This file is distributed under the same license as the Scilab package.
+* =======================================================================
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="ilib_build_jar">
+    <refnamediv>
+        <refname>ilib_build_jar</refname>
+        <refpurpose>Construit une archive JAR de packages Java</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>
+            ilib_build_jar(jarFilePath, packageNames[, sourcePath[, classPath, [, manifestFilePath]]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>jarFilePath</term>
+                <listitem>
+                    <para>Une chaine de caractères, contenant le chemin d'accès complet du fichier JAR destination.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>packageNames</term>
+                <listitem>
+                    <para>Une matrice de chaines de caractères, définissant les noms des packages Java à construire et à stocker dans le fichier JAR.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sourcePaths</term>
+                <listitem>
+                    <para>Une matrice de chaines de caractères, contenant les chemins d'accès des répertoires contenant les sources Java.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>classPaths</term>
+                <listitem>
+                    <para>Une matrice de chaines de caractères (optionelle), qui contient les chemins d'accès des dépendences de compilation.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>manifestFilePath</term>
+                <listitem>
+                    <para>Une chaine de caractères, (optionelle), contenant le chemin d'accès complet d'un fichier manifeste à inclure dans le fichier JAR.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>ilib_build_jar</literal> étend au language Java la fonction <link linkend="ilib_build">ilib_build</link>, qui sert à construire des libraries C/C++/Fortran. En d'autres termes, <literal>ilib_build_jar</literal> permet de construire des librairies Java à partir de sources Java. En Java, une librairie est un fichier JAR (archive Java, dont l'extension est <literal>.jar</literal>), qui contient des packages Java compilés (un package Java regroupe un ensemble de classes) et un fichier manifeste, qui décrit le contenu du fichier JAR.
+        </para>
+        <para>
+            <literal>ilib_build_jar</literal> fonctionne comme suit. Tous les fichiers sources Java trouvés dans les chemins de répertoires donnés par l'argument <literal>sourcePaths</literal> sont compilés. Ensuite le fichier JAR cible dont le chemin est donné par l'argument <literal>jarFilePath</literal> est créé à partir de toutes les classes compilées correspondant aux packages déclarés dans l'argument <literal>packageNames</literal>. <literal>ilib_build_jar</literal> se base sur la fonction <link linkend="jcompile">jcompile</link> pour la compilation et sur <link linkend="jcreatejar">jcreatejar</link> pour la création d'archive JAR. Aucun autre outil externe supplémentaire n'est requis.
+        </para>
+        <para>
+            Rappelons quelques informations à propos des packages Java, essentielles pour utiliser <literal>ilib_build_jar</literal>.
+            Les pakages Java sont structurés de façon hiérarchique, et Java impose que l'emplacement des fichiers sources correspond à la hiérarchie des packages, par exemple un package portant le nom monpackage doit être stocké dans un répertoire du même nom.
+            La convention est qu'un fichier JAR contient habituellement une seule hiérarchie de packages Java, et son nom de fichier correspond au nom de package racine, qui sera de type <literal>org.company.software.package</literal>.
+            <literal>ilib_build_jar</literal> peut être utilisée pour créer un fichier JAR contenant plusieurs hiérarchies de packages Java, avec un nom de fichier arbitraire. Les seules obligations sont qu'un nom de package au moins doit être déclaré à <literal>ilib_build_jar</literal>, et que chacune des classes Java doit appartenir à un package.
+        </para>
+        <para>
+            Les dépendances nécessaires pour la compilation peuvent être déclarées dans l'argument <literal>classPaths</literal>. Cela peut être des chemins complets à des fichiers JAR contenant des packages Java, ou à des répertoires contenant des classes Java compilées.
+        </para>
+        <para>
+            On peut aussi spécifier un chemin d'accès à un fichier manifeste, via l'argument <literal>manifestFilePath</literal>, dont les données seront stockées dans le fichier JAR, dans le fichier <literal>MANIFEST.MF</literal>, dans le sous-répertoire <literal>META-INF</literal>. Si le fichier manifeste n'est pas spécifié ou n'existe pas, un manifeste sera créé par défaut. Note: si on spécifie un manifeste, celui doit contenir un attribut de version, autrement le manifeste dans le fichier JAR risque d'être vide.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+// Exemple pour ilib_build_jar
+
+// Crée les sources du package org.scilab.test.mypackage package dans TMPDIR
+packageName = 'org.scilab.test.mypackage';
+packageSrcPath = fullfile(TMPDIR, packageName);
+
+// Crée un fichier source du package (dans le répertoire org/scilab/test/mypackage)
+function addJavaSourceToPackage(className, packageName)
+    packagePath = strsubst(packageName, '.', filesep());
+    packagePath = fullfile(packageSrcPath, packagePath);
+    mkdir(packagePath);
+    filePath = fullfile(packagePath, className + '.java');
+
+    sourceCode = [msprintf('package %s;', packageName); ..
+        msprintf('public class %s {}\n', className);
+        ];
+    fd = mopen(filePath, 'wt');
+    mputl(sourceCode, fd);
+    mclose(fd);
+endfunction
+
+// Ajoute les classes 'Foo' and 'bar.Bar' au package
+addJavaSourceToPackage('Foo', packageName);
+addJavaSourceToPackage('Bar', packageName + '.bar');
+
+// Construit le package
+jarFilePath = fullfile(TMPDIR, packageName + '.jar');
+ilib_build_jar(jarFilePath, packageName, packageSrcPath);
+
+// Import et teste la package
+javaclasspath(jarFilePath);
+jimport org.scilab.test.mypackage.Foo;
+foo = Foo.new();
+jimport org.scilab.test.mypackage.bar.Bar;
+bar = Bar.new();
+      ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="jcompile">jcompile</link>
+            </member>
+            <member>
+                <link linkend="jcreatejar">jcreatejar</link>
+            </member>
+            <member>
+                <link linkend="javaclasspath">javaclasspath</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Fonction introduite.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
+

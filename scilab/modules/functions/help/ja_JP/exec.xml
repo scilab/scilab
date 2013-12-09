@@ -8,8 +8,8 @@
         <title>呼び出し手順</title>
         <synopsis>exec(path [,mode])
             exec(fun [,mode])
-            ierr=exec(path,'errcatch' [,mode])
-            ierr=exec(fun,'errcatch' [,mode])
+            ierr = exec(path, 'errcatch' [,mode])
+            ierr = exec(fun, 'errcatch' [,mode])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -44,70 +44,99 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>exec(path [,mode])</literal> は,
-            <literal>path</literal>で指定したファイルの中のオプションの
-            実行モード<literal>mode</literal> でscilab命令を逐次実行します.
+            <code>exec(path [,mode])</code> は,
+            <varname>path</varname>で指定したファイルの中のオプションの
+            実行モード<varname>mode</varname> でscilab命令を逐次実行します.
         </para>
         <para>
-            以下の <literal>mode</literal> を指定できます :
+            以下の <varname>mode</varname> を指定できます :
         </para>
+        <variablelist>
+            <varlistentry>
+                <term>0</term>
+                <listitem>
+                    <para>
+                        デフォルト値.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-1</term>
+                <listitem>
+                    <para>
+                        何も出力しない.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>1</term>
+                <listitem>
+                    <para>
+                        各コマンド行を出力(エコーバック)する.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>2</term>
+                <listitem>
+                    <para>
+                        プロンプト <literal>--&gt;</literal> を出力する.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>3</term>
+                <listitem>
+                    <para>
+                        エコー + プロンプト.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>4</term>
+                <listitem>
+                    <para>
+                        各プロンプト出力の前に停止します. キャレッジリターンを入力すると実行が再開します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>7</term>
+                <listitem>
+                    <para>
+                        停止 + プロンプト + エコー : デモを行う際に有用なモード.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
         <para>
-            0 
-            : デフォルト値
-        </para>
-        <para>
-            -1 
-            : 何も出力しない
-        </para>
-        <para>
-            1 
-            : 各コマンド行を出力(エコーバック)する
-        </para>
-        <para>
-            2 
-            : プロンプト <literal>--&gt;</literal> を出力する
-        </para>
-        <para>
-            3 
-            : エコー + プロンプト
-        </para>
-        <para>
-            4 
-            : 各プロンプト出力の前に停止します. キャレッジリターンを入力すると
-            実行が再開します.
-        </para>
-        <para>
-            7 
-            : 停止 + プロンプト + エコー : デモを行う際に有用なモード.
-        </para>
-        <para>
-            <literal>exec(fun [,mode])</literal> は関数
-            <literal>fun</literal> をスクリプトとして実行します: 
+            <code>exec(fun [,mode])</code> は関数
+            <varname>fun</varname> をスクリプトとして実行します:
             入出力の引数も特定の変数環境もありません.
-            スクリプトコードはプリコンパイル(comp参照)されるため,
+            スクリプトコードはプリコンパイル(<link linkend="comp">comp</link>参照)されるため,
             この形式は最も効率的です.
             スクリプト評価のこの方法により,スクリプトをライブラリの
             関数として保持することが可能になります.
         </para>
         <para>実行時にエラーが発生し,
-            'errcatch'フラグが指定されている場合,
-            <literal>exec</literal>はエラーメッセージを出力せずに
-            命令を実行を破棄し,エラー番号を<literal>ierr</literal>に
+            <literal>'errcatch'</literal>フラグが指定されている場合,
+            <function>exec</function>はエラーメッセージを出力せずに
+            命令を実行を破棄し,エラー番号を<varname>ierr</varname>に
             代入して復帰します.
-            'errcatch' フラグが存在しない場合,標準のエラー処理が
+            <literal>'errcatch'</literal> フラグが存在しない場合,標準のエラー処理が
             機能します.
         </para>
     </refsection>
     <refsection>
         <title>注意k</title>
         <para>
-            <literal>exec</literal> ファイルは,
+            <function>exec</function> ファイルは,
             インライン関数定義構文(関数の項参照)により関数を定義する際に使用されます.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // スクリプトファイルを作成
 mputl('a=1;b=2',TMPDIR+'/myscript')
 
@@ -129,6 +158,7 @@ exec(foo)
 
 // カレントの環境にa と y が作成されました
 whos -name "a "
+whos -name "y "
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

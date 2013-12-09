@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: ajout de la sortie
+ * Copyright (C) INRIA - Serge Steer
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ --><!-- This document was created with Syntext Serna Free. -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="histplot">
     <refnamediv>
         <refname>histplot</refname>
@@ -6,8 +18,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>histplot(n, data, &lt;opt_args&gt;)
-            histplot(x, data, &lt;opt_args&gt;)
+        <synopsis>
+            [cf, ind] = histplot(n, data, &lt;opt_args&gt;)
+            [cf, ind] = histplot(x, data, &lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -39,9 +52,9 @@
                             clé2=valeur2
                         </literal>
                         ,... où <literal>clé1</literal>,
-                        <literal>clé2,...</literal> peut être n'importe quel paramètre optionnel de <link linkend="plot2d">plot2d</link> 
-                        (<literal>style,strf,leg, rect,nax, logflag,frameflag, axesflag</literal>) ou encore <literal>normalization</literal>. 
-                        Pour ce dernier la valeur correspondante est un scalaire booléen 
+                        <literal>clé2,...</literal> peut être n'importe quel paramètre optionnel de <link linkend="plot2d">plot2d</link>
+                        (<literal>style,strf,leg, rect,nax, logflag,frameflag, axesflag</literal>) ou encore <literal>normalization</literal>.
+                        Pour ce dernier la valeur correspondante est un scalaire booléen
                         (la valeur par défaut étant %t).
                     </para>
                 </listitem>
@@ -58,8 +71,8 @@
             avec <emphasis>dx = (x(n+1)-x(1))/n</emphasis>.
         </para>
         <para> Les classes sont définies par C1 = [x(1), x(2)] puis  Ci = ] x(i), x(i+1)] pour i = 2,3,...,n.
-            En notant Nmax le nombre total de données (Nmax = length(data)) et Ni le nombre de données 
-            se situant dans Ci, la valeur de l'histogramme pour x appartenant à  Ci 
+            En notant Nmax le nombre total de données (Nmax = length(data)) et Ni le nombre de données
+            se situant dans Ci, la valeur de l'histogramme pour x appartenant à  Ci
             est égale à  <emphasis>Ni/(Nmax (x(i+1)-x(i)))</emphasis> quand <literal>normalization</literal> est vrai
             (comportement par défaut) et sinon elle vaut simplement <emphasis>Ni</emphasis>. Quand l'histogramme
             est normalisé il vérifie la propriété suivante :
@@ -87,18 +100,17 @@
         <simplelist>
             <member>
                 Exemple #1: variations sur l'histogramme d'un échantillon gaussien N(0,1)
-                <programlisting role="example"><![CDATA[ 
+                <programlisting role="example"><![CDATA[
 d=rand(1,10000,'normal');
 clf();histplot(20,d)
 clf();histplot(20,d,normalization=%f)
 clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=5)
-clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=16, rect=[-3,0,3,0.5]); 
+clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=16, rect=[-3,0,3,0.5]);
 ]]></programlisting>
                 <scilab:image>
-                    d=rand(1,10000,'normal'); 
+                    d=rand(1,10000,'normal');
                     clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=16, rect=[-3,0,3,0.5]);
                 </scilab:image>
-                
             </member>
             <member>
                 Exemple #2: histogramme d'un échantillon de loi binomiale B(6,0.5)
@@ -107,10 +119,10 @@ d = grand(1000,1,"bin", 6, 0.5);
 c = linspace(-0.5,6.5,8);
 clf()
 subplot(2,1,1)
-histplot(c, d, style=2)
+[cf, ind] = histplot(c, d, style=2)
 xtitle("l''histogramme normalisé")
 subplot(2,1,2)
-histplot(c, d, normalization=%f, style=5)
+[cf, ind] = histplot(c, d, normalization=%f, style=5)
 xtitle("l''histogramme non normalisé")
 ]]></programlisting>
                 <scilab:image localized="true">
@@ -124,7 +136,6 @@ xtitle("l''histogramme non normalisé")
                     histplot(c, d, normalization=%f, style=5)
                     xtitle("l''histogramme non normalisé")
                 </scilab:image>
-                
             </member>
             <member>
                 Exemple #3: histogramme d'un échantillon de loi exponentielle E(lambda)
@@ -155,10 +166,16 @@ legend(["histogramme d''un échantillon E(lambda)" "densité exacte"]);
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
+                <link linkend="histc">histc</link>
+            </member>
+            <member>
                 <link linkend="hist3d">hist3d</link>
             </member>
             <member>
                 <link linkend="plot2d">plot2d</link>
+            </member>
+            <member>
+                <link linkend="bar">bar</link>
             </member>
             <member>
                 <link linkend="dsearch">dsearch</link>

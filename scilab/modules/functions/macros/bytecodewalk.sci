@@ -10,6 +10,9 @@
 function c1=bytecodewalk(code,query,job)
     //walk along bytecode looking for a particular opcode (query) and
     //applying a function (job) at this point
+    if argn(2) < 3 then
+        error(sprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "bytecodewalk", 3));
+    end
     c1=[];
     lc0=1;
     lc=lc0;
@@ -43,13 +46,13 @@ function c1=bytecodewalk(code,query,job)
                 lc=lc+1
                 long=double(code(lc))
                 lc=lc+1
-                cv=bytecodewalk(code(lc:lc+long-1))
+                cv=bytecodewalk(code(lc:lc+long-1),query,job)
                 lc=lc+long
                 long=double(code(lc))
                 lc=lc+1
                 id=code(lc:lc-1+nsiz)
                 lc=lc+nsiz
-                cc=bytecodewalk(code(lc:lc+long-1))
+                cc=bytecodewalk(code(lc:lc+long-1),query,job)
                 c1=[c1 int32(7) int32(size(cv,"*")) cv int32(size(cc,"*")) id cc]
                 lc=lc+long
                 lc0=lc
@@ -67,19 +70,19 @@ function c1=bytecodewalk(code,query,job)
 
                 long_case_expr=double(code(lc))
                 lc=lc+1
-                c_case_expr=bytecodewalk(code(lc:lc+long_case_expr-1))
+                c_case_expr=bytecodewalk(code(lc:lc+long_case_expr-1),query,job)
                 lc=lc+long_case_expr
                 long_case_expr=size(c_case_expr,"*")
                 ctemp=[ctemp int32(long_case_expr) c_case_expr]
                 for k=1:ncase+1
                     long_case_expr=double(code(lc));
                     lc=lc+1;
-                    c_case_expr=bytecodewalk(code(lc:lc+long_case_expr-1))
+                    c_case_expr=bytecodewalk(code(lc:lc+long_case_expr-1),query,job)
                     lc=lc+long_case_expr;
                     long_case_expr=size(c_case_expr,"*");
                     long_case_then=double(code(lc))
                     lc=lc+1
-                    c_case_then=bytecodewalk(code(lc:lc+long_case_then-1))
+                    c_case_then=bytecodewalk(code(lc:lc+long_case_then-1),query,job)
                     lc=lc+long_case_then
                     long_case_then=size(c_case_then,"*")
                     ctemp=[ctemp int32(long_case_expr) c_case_expr int32(long_case_then) ...
@@ -97,11 +100,11 @@ function c1=bytecodewalk(code,query,job)
                 long_try=double(code(lc+1))
                 long_catch=double(code(lc+2))
                 lc=lc+3
-                c_try=bytecodewalk(code(lc:lc+long_try-1))
+                c_try=bytecodewalk(code(lc:lc+long_try-1),query,job)
                 lc=lc+long_try
                 long_try=size(c_try,"*")
 
-                c_catch=bytecodewalk(code(lc:lc+long_catch-1))
+                c_catch=bytecodewalk(code(lc:lc+long_catch-1),query,job)
                 lc=lc+long_catch
                 long_catch=size(c_catch,"*")
                 c1=[c1 int32([11 long_try long_catch]) c_try c_catch]
@@ -174,12 +177,12 @@ function walkclause
     for k=1:ncase+1
         long_if_expr=double(code(lc))
         lc=lc+1
-        c_if_expr=bytecodewalk(code(lc:lc+long_if_expr-1))
+        c_if_expr=bytecodewalk(code(lc:lc+long_if_expr-1),query,job)
         lc=lc+long_if_expr
         long_if_expr=size(c_if_expr,"*")
         long_if_then=double(code(lc))
         lc=lc+1
-        c_if_then=bytecodewalk(code(lc:lc+long_if_then-1))
+        c_if_then=bytecodewalk(code(lc:lc+long_if_then-1),query,job)
         lc=lc+long_if_then
         long_if_then=size(c_if_then,"*")
         ctemp=[ctemp int32(long_if_expr) c_if_expr int32(long_if_then) ...

@@ -28,6 +28,7 @@
 #include "localization.h"
 #include "stackinfo.h"
 #include "Scierror.h"
+#include "sciprint.h"
 #include "dynamic_parallel.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(adjuststacksize) ();
@@ -252,51 +253,29 @@ static int setStacksizeMax(char *fname)
     unsigned long maxmemfree = (GetLargestFreeMemoryRegion()) / sizeof(double);
 
     long long freePhysicalMem = 0;
-#ifdef _MSC_VER
-    MEMORYSTATUSEX statex;
-    statex.dwLength = sizeof (statex);
-    GlobalMemoryStatusEx (&statex);
-    //do not exceed available free memory
 
-    //use min value between max memory available and max "allocable" memory by Scilab
-
-    freePhysicalMem =  (long long)(statex.ullAvailPageFile / sizeof(double));
-    //if free memory is used, keep 10% to OS
-#else
+#ifndef _MSC_VER
     freePhysicalMem = (long long)((get_avphys_pages() * get_phys_pages()) / sizeof(double));
 #endif
-
-    if (freePhysicalMem > 0 && freePhysicalMem < maxmemfree)
-    {
-        maxmemfree = (unsigned long)(freePhysicalMem * 0.9);
-    }
 
     /* We have already max */
     if (maxmemfree <= backupSize)
     {
         LhsVar(1) = 0;
-        C2F(putlhsvar) ();
+        PutLhsVar();
         return 0;
     }
 
     /* we do a stacksize('min') */
     if (setStacksizeMin(fname) == 0)
     {
-        unsigned long memmaxavailablebyscilab = get_max_memory_for_scilab_stack();
-        unsigned long newMemSizeMax = maxmemfree;
-        int errCode;
-
-        if (memmaxavailablebyscilab < newMemSizeMax)
+        int errCode = 0;
+        if (maxmemfree < MIN_STACKSIZE)
         {
-            newMemSizeMax = memmaxavailablebyscilab;
+            maxmemfree = MIN_STACKSIZE;
         }
 
-        if (newMemSizeMax < MIN_STACKSIZE)
-        {
-            newMemSizeMax = MIN_STACKSIZE;
-        }
-
-        errCode = setStacksize(newMemSizeMax);
+        errCode = setStacksize(maxmemfree);
         if (errCode != 0)
         {
             setStacksize(backupSize);
@@ -341,15 +320,19 @@ static int setStacksize(unsigned long newsize)
                     C2F(adjuststacksize) (&newsize, &ptr);
                     return 0;
                 }
+                //sciprint("  malloc error\n");
                 return -3;      /* We haven't been able to create (or resize) the stack (probably a malloc error */
             }
             /* Not possible to assign that amount of memory */
+            //sciprint("  Not Enough Minerals !\n");
             return -1;
         }
         /* Trying to create a too small stack */
+        //sciprint("  < MIN_STACKSIZE\n");
         return -2;
     }
     /* Set the stacksize to the same size... No need to do anything */
+    //sciprint("  same size\n");
     return 0;
 }
 

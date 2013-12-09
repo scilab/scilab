@@ -51,7 +51,7 @@
                     <td>useProxy</td>
                     <td>Use/Don't use proxies</td>
                     <td>
-                        <emphasis role="strong">True</emphasis>/False
+                        <emphasis role="strong">"True"</emphasis>/"False"
                     </td>
                 </tr>
                 <tr>
@@ -95,7 +95,7 @@
                         called offLine.
                     </td>
                     <td>
-                        True/<emphasis role="strong">False</emphasis>
+                        "True"/<emphasis role="strong">"False"</emphasis>
                     </td>
                 </tr>
             </informaltable>
@@ -114,7 +114,7 @@
                     <td>autoload</td>
                     <td>Enable/Disable autoload system</td>
                     <td>
-                        <emphasis role="strong">True</emphasis>/False
+                        <emphasis role="strong">"True"</emphasis>/"False"
                     </td>
                 </tr>
                 <tr>
@@ -123,7 +123,7 @@
                         Scilab start
                     </td>
                     <td>
-                        <emphasis role="strong">True</emphasis>/False
+                        <emphasis role="strong">"True"</emphasis>/"False"
                     </td>
                 </tr>
             </informaltable>
@@ -142,7 +142,7 @@
                     <td>verbose</td>
                     <td>Display or not extra-information</td>
                     <td>
-                        True/<emphasis role="strong">False</emphasis>
+                        "True"/<emphasis role="strong">"False"</emphasis>
                     </td>
                 </tr>
                 <tr>
@@ -152,8 +152,13 @@
                 </tr>
                 <tr>
                     <td>downloadTimeout</td>
-                    <td> Get timeout used for download</td>
+                    <td> Get timeout used for download (seconds)</td>
                     <td> "5" is the default value</td>
+                </tr>
+                <tr>
+                    <td>updateTime</td>
+                    <td> Get time between updates (days)</td>
+                    <td> one month is the default value</td>
                 </tr>
             </informaltable>
         </para>
@@ -176,7 +181,7 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example">// Get value of verbose parameter
-            atomsGetConfig('Verbose')
+            atomsGetConfig("Verbose")
         </programlisting>
     </refsection>
     <refsection>

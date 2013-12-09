@@ -162,19 +162,36 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscistatistics_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscistatistics_algo_la_LIBADD =
-am__objects_1 = libscistatistics_algo_la-CdfBase.lo \
-	libscistatistics_algo_la-ipmpar1.lo
-am__objects_2 = psi.lo alngam.lo erfc1.lo cdff.lo spmpar.lo cumnor.lo \
-	cdfpoi.lo bcorr.lo cumchi.lo apser.lo gamln1.lo cdft.lo \
-	gaminv.lo cumnbn.lo cdffnc.lo rlog1.lo cdfchn.lo dt1.lo \
-	bgrat.lo dinvnr.lo rlog.lo basym.lo bfrac.lo cumbin.lo \
-	cumbet.lo rcomp.lo cdfgam.lo gratio.lo gam1.lo exparg.lo \
-	ipmpar.lo cumf.lo cumpoi.lo gamln.lo betaln.lo stvaln.lo \
-	cumt.lo esum.lo bpser.lo cdfnor.lo cumfnc.lo erf.lo alnrel.lo \
-	cumchn.lo rexp.lo fpser.lo bratio.lo cdfchi.lo gamma.lo \
-	dinvr.lo brcomp.lo devlpl.lo cdfnbn.lo dzror.lo gsumln.lo \
-	algdiv.lo cumgam.lo grat1.lo brcmp1.lo cdfbin.lo bup.lo \
-	cdfbet.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+am__objects_1 = src/c/libscistatistics_algo_la-CdfBase.lo \
+	src/c/libscistatistics_algo_la-ipmpar1.lo
+am__objects_2 = src/dcdflib/psi.lo src/dcdflib/alngam.lo \
+	src/dcdflib/erfc1.lo src/dcdflib/cdff.lo src/dcdflib/spmpar.lo \
+	src/dcdflib/cumnor.lo src/dcdflib/cdfpoi.lo \
+	src/dcdflib/bcorr.lo src/dcdflib/cumchi.lo \
+	src/dcdflib/apser.lo src/dcdflib/gamln1.lo src/dcdflib/cdft.lo \
+	src/dcdflib/gaminv.lo src/dcdflib/cumnbn.lo \
+	src/dcdflib/cdffnc.lo src/dcdflib/rlog1.lo \
+	src/dcdflib/cdfchn.lo src/dcdflib/dt1.lo src/dcdflib/bgrat.lo \
+	src/dcdflib/dinvnr.lo src/dcdflib/rlog.lo src/dcdflib/basym.lo \
+	src/dcdflib/bfrac.lo src/dcdflib/cumbin.lo \
+	src/dcdflib/cumbet.lo src/dcdflib/rcomp.lo \
+	src/dcdflib/cdfgam.lo src/dcdflib/gratio.lo \
+	src/dcdflib/gam1.lo src/dcdflib/exparg.lo \
+	src/dcdflib/ipmpar.lo src/dcdflib/cumf.lo \
+	src/dcdflib/cumpoi.lo src/dcdflib/gamln.lo \
+	src/dcdflib/betaln.lo src/dcdflib/stvaln.lo \
+	src/dcdflib/cumt.lo src/dcdflib/esum.lo src/dcdflib/bpser.lo \
+	src/dcdflib/cdfnor.lo src/dcdflib/cumfnc.lo src/dcdflib/erf.lo \
+	src/dcdflib/alnrel.lo src/dcdflib/cumchn.lo \
+	src/dcdflib/rexp.lo src/dcdflib/fpser.lo src/dcdflib/bratio.lo \
+	src/dcdflib/cdfchi.lo src/dcdflib/gamma.lo \
+	src/dcdflib/dinvr.lo src/dcdflib/brcomp.lo \
+	src/dcdflib/devlpl.lo src/dcdflib/cdfnbn.lo \
+	src/dcdflib/dzror.lo src/dcdflib/gsumln.lo \
+	src/dcdflib/algdiv.lo src/dcdflib/cumgam.lo \
+	src/dcdflib/grat1.lo src/dcdflib/brcmp1.lo \
+	src/dcdflib/cdfbin.lo src/dcdflib/bup.lo src/dcdflib/cdfbet.lo
 am_libscistatistics_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2)
 libscistatistics_algo_la_OBJECTS =  \
@@ -184,18 +201,18 @@ am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
 libscistatistics_la_DEPENDENCIES = libscistatistics-algo.la
-am__objects_3 = libscistatistics_la-gw_statistics.lo \
-	libscistatistics_la-sci_cdfchi.lo \
-	libscistatistics_la-sci_cdft.lo \
-	libscistatistics_la-sci_cdfgam.lo \
-	libscistatistics_la-sci_cdff.lo \
-	libscistatistics_la-sci_cdffnc.lo \
-	libscistatistics_la-sci_cdfpoi.lo \
-	libscistatistics_la-sci_cdfbin.lo \
-	libscistatistics_la-sci_cdfchn.lo \
-	libscistatistics_la-sci_cdfbet.lo \
-	libscistatistics_la-sci_cdfnbn.lo \
-	libscistatistics_la-sci_cdfnor.lo
+am__objects_3 = sci_gateway/c/libscistatistics_la-gw_statistics.lo \
+	sci_gateway/c/libscistatistics_la-sci_cdfchi.lo \
+	sci_gateway/c/libscistatistics_la-sci_cdft.lo \
+	sci_gateway/c/libscistatistics_la-sci_cdfgam.lo \
+	sci_gateway/c/libscistatistics_la-sci_cdff.lo \
+	sci_gateway/c/libscistatistics_la-sci_cdffnc.lo \
+	sci_gateway/c/libscistatistics_la-sci_cdfpoi.lo \
+	sci_gateway/c/libscistatistics_la-sci_cdfbin.lo \
+	sci_gateway/c/libscistatistics_la-sci_cdfchn.lo \
+	sci_gateway/c/libscistatistics_la-sci_cdfbet.lo \
+	sci_gateway/c/libscistatistics_la-sci_cdfnbn.lo \
+	sci_gateway/c/libscistatistics_la-sci_cdfnor.lo
 am_libscistatistics_la_OBJECTS = $(am__objects_3)
 libscistatistics_la_OBJECTS = $(am_libscistatistics_la_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -813,152 +830,343 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/c/$(am__dirstamp):
+	@$(MKDIR_P) src/c
+	@: > src/c/$(am__dirstamp)
+src/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/c/$(DEPDIR)
+	@: > src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscistatistics_algo_la-CdfBase.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscistatistics_algo_la-ipmpar1.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/$(am__dirstamp):
+	@$(MKDIR_P) src/dcdflib
+	@: > src/dcdflib/$(am__dirstamp)
+src/dcdflib/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/dcdflib/$(DEPDIR)
+	@: > src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/psi.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/alngam.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/erfc1.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cdff.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/spmpar.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cumnor.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cdfpoi.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/bcorr.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cumchi.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/apser.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/gamln1.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cdft.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/gaminv.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cumnbn.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cdffnc.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/rlog1.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cdfchn.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/dt1.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/bgrat.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/dinvnr.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/rlog.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/basym.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/bfrac.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cumbin.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cumbet.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/rcomp.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cdfgam.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/gratio.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/gam1.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/exparg.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/ipmpar.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cumf.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cumpoi.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/gamln.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/betaln.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/stvaln.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cumt.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/esum.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/bpser.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cdfnor.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cumfnc.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/erf.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/alnrel.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cumchn.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/rexp.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/fpser.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/bratio.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cdfchi.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/gamma.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/dinvr.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/brcomp.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/devlpl.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cdfnbn.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/dzror.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/gsumln.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/algdiv.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cumgam.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/grat1.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/brcmp1.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cdfbin.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/bup.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+src/dcdflib/cdfbet.lo: src/dcdflib/$(am__dirstamp) \
+	src/dcdflib/$(DEPDIR)/$(am__dirstamp)
 
 libscistatistics-algo.la: $(libscistatistics_algo_la_OBJECTS) $(libscistatistics_algo_la_DEPENDENCIES) $(EXTRA_libscistatistics_algo_la_DEPENDENCIES) 
 	$(AM_V_F77LD)$(F77LINK)  $(libscistatistics_algo_la_OBJECTS) $(libscistatistics_algo_la_LIBADD) $(LIBS)
+sci_gateway/c/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c
+	@: > sci_gateway/c/$(am__dirstamp)
+sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
+	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscistatistics_la-gw_statistics.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscistatistics_la-sci_cdfchi.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscistatistics_la-sci_cdft.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscistatistics_la-sci_cdfgam.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscistatistics_la-sci_cdff.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscistatistics_la-sci_cdffnc.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscistatistics_la-sci_cdfpoi.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscistatistics_la-sci_cdfbin.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscistatistics_la-sci_cdfchn.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscistatistics_la-sci_cdfbet.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscistatistics_la-sci_cdfnbn.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscistatistics_la-sci_cdfnor.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 
 libscistatistics.la: $(libscistatistics_la_OBJECTS) $(libscistatistics_la_DEPENDENCIES) $(EXTRA_libscistatistics_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) -rpath $(pkglibdir) $(libscistatistics_la_OBJECTS) $(libscistatistics_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f sci_gateway/c/*.$(OBJEXT)
+	-rm -f sci_gateway/c/*.lo
+	-rm -f src/c/*.$(OBJEXT)
+	-rm -f src/c/*.lo
+	-rm -f src/dcdflib/*.$(OBJEXT)
+	-rm -f src/dcdflib/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_algo_la-CdfBase.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_algo_la-ipmpar1.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-gw_statistics.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-sci_cdfbet.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-sci_cdfbin.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-sci_cdfchi.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-sci_cdfchn.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-sci_cdff.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-sci_cdffnc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-sci_cdfgam.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-sci_cdfnbn.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-sci_cdfnor.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-sci_cdfpoi.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-sci_cdft.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscistatistics_la-gw_statistics.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfbet.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfbin.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfchi.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfchn.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdff.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdffnc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfgam.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfnbn.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfnor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfpoi.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdft.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistatistics_algo_la-CdfBase.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistatistics_algo_la-ipmpar1.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libscistatistics_algo_la-CdfBase.lo: src/c/CdfBase.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscistatistics_algo_la-CdfBase.lo -MD -MP -MF $(DEPDIR)/libscistatistics_algo_la-CdfBase.Tpo -c -o libscistatistics_algo_la-CdfBase.lo `test -f 'src/c/CdfBase.c' || echo '$(srcdir)/'`src/c/CdfBase.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscistatistics_algo_la-CdfBase.Tpo $(DEPDIR)/libscistatistics_algo_la-CdfBase.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/CdfBase.c' object='libscistatistics_algo_la-CdfBase.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscistatistics_algo_la-CdfBase.lo: src/c/CdfBase.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscistatistics_algo_la-CdfBase.lo -MD -MP -MF src/c/$(DEPDIR)/libscistatistics_algo_la-CdfBase.Tpo -c -o src/c/libscistatistics_algo_la-CdfBase.lo `test -f 'src/c/CdfBase.c' || echo '$(srcdir)/'`src/c/CdfBase.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscistatistics_algo_la-CdfBase.Tpo src/c/$(DEPDIR)/libscistatistics_algo_la-CdfBase.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/CdfBase.c' object='src/c/libscistatistics_algo_la-CdfBase.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscistatistics_algo_la-CdfBase.lo `test -f 'src/c/CdfBase.c' || echo '$(srcdir)/'`src/c/CdfBase.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscistatistics_algo_la-CdfBase.lo `test -f 'src/c/CdfBase.c' || echo '$(srcdir)/'`src/c/CdfBase.c
 
-libscistatistics_algo_la-ipmpar1.lo: src/c/ipmpar1.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscistatistics_algo_la-ipmpar1.lo -MD -MP -MF $(DEPDIR)/libscistatistics_algo_la-ipmpar1.Tpo -c -o libscistatistics_algo_la-ipmpar1.lo `test -f 'src/c/ipmpar1.c' || echo '$(srcdir)/'`src/c/ipmpar1.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscistatistics_algo_la-ipmpar1.Tpo $(DEPDIR)/libscistatistics_algo_la-ipmpar1.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/ipmpar1.c' object='libscistatistics_algo_la-ipmpar1.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscistatistics_algo_la-ipmpar1.lo: src/c/ipmpar1.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscistatistics_algo_la-ipmpar1.lo -MD -MP -MF src/c/$(DEPDIR)/libscistatistics_algo_la-ipmpar1.Tpo -c -o src/c/libscistatistics_algo_la-ipmpar1.lo `test -f 'src/c/ipmpar1.c' || echo '$(srcdir)/'`src/c/ipmpar1.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscistatistics_algo_la-ipmpar1.Tpo src/c/$(DEPDIR)/libscistatistics_algo_la-ipmpar1.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/ipmpar1.c' object='src/c/libscistatistics_algo_la-ipmpar1.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscistatistics_algo_la-ipmpar1.lo `test -f 'src/c/ipmpar1.c' || echo '$(srcdir)/'`src/c/ipmpar1.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscistatistics_algo_la-ipmpar1.lo `test -f 'src/c/ipmpar1.c' || echo '$(srcdir)/'`src/c/ipmpar1.c
 
-libscistatistics_la-gw_statistics.lo: sci_gateway/c/gw_statistics.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscistatistics_la-gw_statistics.lo -MD -MP -MF $(DEPDIR)/libscistatistics_la-gw_statistics.Tpo -c -o libscistatistics_la-gw_statistics.lo `test -f 'sci_gateway/c/gw_statistics.c' || echo '$(srcdir)/'`sci_gateway/c/gw_statistics.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscistatistics_la-gw_statistics.Tpo $(DEPDIR)/libscistatistics_la-gw_statistics.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_statistics.c' object='libscistatistics_la-gw_statistics.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscistatistics_la-gw_statistics.lo: sci_gateway/c/gw_statistics.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscistatistics_la-gw_statistics.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscistatistics_la-gw_statistics.Tpo -c -o sci_gateway/c/libscistatistics_la-gw_statistics.lo `test -f 'sci_gateway/c/gw_statistics.c' || echo '$(srcdir)/'`sci_gateway/c/gw_statistics.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscistatistics_la-gw_statistics.Tpo sci_gateway/c/$(DEPDIR)/libscistatistics_la-gw_statistics.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_statistics.c' object='sci_gateway/c/libscistatistics_la-gw_statistics.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscistatistics_la-gw_statistics.lo `test -f 'sci_gateway/c/gw_statistics.c' || echo '$(srcdir)/'`sci_gateway/c/gw_statistics.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscistatistics_la-gw_statistics.lo `test -f 'sci_gateway/c/gw_statistics.c' || echo '$(srcdir)/'`sci_gateway/c/gw_statistics.c
 
-libscistatistics_la-sci_cdfchi.lo: sci_gateway/c/sci_cdfchi.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscistatistics_la-sci_cdfchi.lo -MD -MP -MF $(DEPDIR)/libscistatistics_la-sci_cdfchi.Tpo -c -o libscistatistics_la-sci_cdfchi.lo `test -f 'sci_gateway/c/sci_cdfchi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfchi.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscistatistics_la-sci_cdfchi.Tpo $(DEPDIR)/libscistatistics_la-sci_cdfchi.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdfchi.c' object='libscistatistics_la-sci_cdfchi.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscistatistics_la-sci_cdfchi.lo: sci_gateway/c/sci_cdfchi.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscistatistics_la-sci_cdfchi.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfchi.Tpo -c -o sci_gateway/c/libscistatistics_la-sci_cdfchi.lo `test -f 'sci_gateway/c/sci_cdfchi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfchi.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfchi.Tpo sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfchi.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdfchi.c' object='sci_gateway/c/libscistatistics_la-sci_cdfchi.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscistatistics_la-sci_cdfchi.lo `test -f 'sci_gateway/c/sci_cdfchi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfchi.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscistatistics_la-sci_cdfchi.lo `test -f 'sci_gateway/c/sci_cdfchi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfchi.c
 
-libscistatistics_la-sci_cdft.lo: sci_gateway/c/sci_cdft.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscistatistics_la-sci_cdft.lo -MD -MP -MF $(DEPDIR)/libscistatistics_la-sci_cdft.Tpo -c -o libscistatistics_la-sci_cdft.lo `test -f 'sci_gateway/c/sci_cdft.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdft.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscistatistics_la-sci_cdft.Tpo $(DEPDIR)/libscistatistics_la-sci_cdft.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdft.c' object='libscistatistics_la-sci_cdft.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscistatistics_la-sci_cdft.lo: sci_gateway/c/sci_cdft.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscistatistics_la-sci_cdft.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdft.Tpo -c -o sci_gateway/c/libscistatistics_la-sci_cdft.lo `test -f 'sci_gateway/c/sci_cdft.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdft.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdft.Tpo sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdft.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdft.c' object='sci_gateway/c/libscistatistics_la-sci_cdft.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscistatistics_la-sci_cdft.lo `test -f 'sci_gateway/c/sci_cdft.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdft.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscistatistics_la-sci_cdft.lo `test -f 'sci_gateway/c/sci_cdft.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdft.c
 
-libscistatistics_la-sci_cdfgam.lo: sci_gateway/c/sci_cdfgam.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscistatistics_la-sci_cdfgam.lo -MD -MP -MF $(DEPDIR)/libscistatistics_la-sci_cdfgam.Tpo -c -o libscistatistics_la-sci_cdfgam.lo `test -f 'sci_gateway/c/sci_cdfgam.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfgam.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscistatistics_la-sci_cdfgam.Tpo $(DEPDIR)/libscistatistics_la-sci_cdfgam.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdfgam.c' object='libscistatistics_la-sci_cdfgam.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscistatistics_la-sci_cdfgam.lo: sci_gateway/c/sci_cdfgam.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscistatistics_la-sci_cdfgam.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfgam.Tpo -c -o sci_gateway/c/libscistatistics_la-sci_cdfgam.lo `test -f 'sci_gateway/c/sci_cdfgam.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfgam.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfgam.Tpo sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfgam.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdfgam.c' object='sci_gateway/c/libscistatistics_la-sci_cdfgam.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscistatistics_la-sci_cdfgam.lo `test -f 'sci_gateway/c/sci_cdfgam.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfgam.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscistatistics_la-sci_cdfgam.lo `test -f 'sci_gateway/c/sci_cdfgam.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfgam.c
 
-libscistatistics_la-sci_cdff.lo: sci_gateway/c/sci_cdff.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscistatistics_la-sci_cdff.lo -MD -MP -MF $(DEPDIR)/libscistatistics_la-sci_cdff.Tpo -c -o libscistatistics_la-sci_cdff.lo `test -f 'sci_gateway/c/sci_cdff.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdff.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscistatistics_la-sci_cdff.Tpo $(DEPDIR)/libscistatistics_la-sci_cdff.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdff.c' object='libscistatistics_la-sci_cdff.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscistatistics_la-sci_cdff.lo: sci_gateway/c/sci_cdff.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscistatistics_la-sci_cdff.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdff.Tpo -c -o sci_gateway/c/libscistatistics_la-sci_cdff.lo `test -f 'sci_gateway/c/sci_cdff.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdff.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdff.Tpo sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdff.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdff.c' object='sci_gateway/c/libscistatistics_la-sci_cdff.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscistatistics_la-sci_cdff.lo `test -f 'sci_gateway/c/sci_cdff.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdff.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscistatistics_la-sci_cdff.lo `test -f 'sci_gateway/c/sci_cdff.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdff.c
 
-libscistatistics_la-sci_cdffnc.lo: sci_gateway/c/sci_cdffnc.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscistatistics_la-sci_cdffnc.lo -MD -MP -MF $(DEPDIR)/libscistatistics_la-sci_cdffnc.Tpo -c -o libscistatistics_la-sci_cdffnc.lo `test -f 'sci_gateway/c/sci_cdffnc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdffnc.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscistatistics_la-sci_cdffnc.Tpo $(DEPDIR)/libscistatistics_la-sci_cdffnc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdffnc.c' object='libscistatistics_la-sci_cdffnc.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscistatistics_la-sci_cdffnc.lo: sci_gateway/c/sci_cdffnc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscistatistics_la-sci_cdffnc.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdffnc.Tpo -c -o sci_gateway/c/libscistatistics_la-sci_cdffnc.lo `test -f 'sci_gateway/c/sci_cdffnc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdffnc.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdffnc.Tpo sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdffnc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdffnc.c' object='sci_gateway/c/libscistatistics_la-sci_cdffnc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscistatistics_la-sci_cdffnc.lo `test -f 'sci_gateway/c/sci_cdffnc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdffnc.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscistatistics_la-sci_cdffnc.lo `test -f 'sci_gateway/c/sci_cdffnc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdffnc.c
 
-libscistatistics_la-sci_cdfpoi.lo: sci_gateway/c/sci_cdfpoi.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscistatistics_la-sci_cdfpoi.lo -MD -MP -MF $(DEPDIR)/libscistatistics_la-sci_cdfpoi.Tpo -c -o libscistatistics_la-sci_cdfpoi.lo `test -f 'sci_gateway/c/sci_cdfpoi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfpoi.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscistatistics_la-sci_cdfpoi.Tpo $(DEPDIR)/libscistatistics_la-sci_cdfpoi.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdfpoi.c' object='libscistatistics_la-sci_cdfpoi.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscistatistics_la-sci_cdfpoi.lo: sci_gateway/c/sci_cdfpoi.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscistatistics_la-sci_cdfpoi.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfpoi.Tpo -c -o sci_gateway/c/libscistatistics_la-sci_cdfpoi.lo `test -f 'sci_gateway/c/sci_cdfpoi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfpoi.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfpoi.Tpo sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfpoi.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdfpoi.c' object='sci_gateway/c/libscistatistics_la-sci_cdfpoi.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscistatistics_la-sci_cdfpoi.lo `test -f 'sci_gateway/c/sci_cdfpoi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfpoi.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscistatistics_la-sci_cdfpoi.lo `test -f 'sci_gateway/c/sci_cdfpoi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfpoi.c
 
-libscistatistics_la-sci_cdfbin.lo: sci_gateway/c/sci_cdfbin.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscistatistics_la-sci_cdfbin.lo -MD -MP -MF $(DEPDIR)/libscistatistics_la-sci_cdfbin.Tpo -c -o libscistatistics_la-sci_cdfbin.lo `test -f 'sci_gateway/c/sci_cdfbin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfbin.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscistatistics_la-sci_cdfbin.Tpo $(DEPDIR)/libscistatistics_la-sci_cdfbin.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdfbin.c' object='libscistatistics_la-sci_cdfbin.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscistatistics_la-sci_cdfbin.lo: sci_gateway/c/sci_cdfbin.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscistatistics_la-sci_cdfbin.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfbin.Tpo -c -o sci_gateway/c/libscistatistics_la-sci_cdfbin.lo `test -f 'sci_gateway/c/sci_cdfbin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfbin.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfbin.Tpo sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfbin.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdfbin.c' object='sci_gateway/c/libscistatistics_la-sci_cdfbin.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscistatistics_la-sci_cdfbin.lo `test -f 'sci_gateway/c/sci_cdfbin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfbin.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscistatistics_la-sci_cdfbin.lo `test -f 'sci_gateway/c/sci_cdfbin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfbin.c
 
-libscistatistics_la-sci_cdfchn.lo: sci_gateway/c/sci_cdfchn.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscistatistics_la-sci_cdfchn.lo -MD -MP -MF $(DEPDIR)/libscistatistics_la-sci_cdfchn.Tpo -c -o libscistatistics_la-sci_cdfchn.lo `test -f 'sci_gateway/c/sci_cdfchn.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfchn.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscistatistics_la-sci_cdfchn.Tpo $(DEPDIR)/libscistatistics_la-sci_cdfchn.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdfchn.c' object='libscistatistics_la-sci_cdfchn.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscistatistics_la-sci_cdfchn.lo: sci_gateway/c/sci_cdfchn.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscistatistics_la-sci_cdfchn.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfchn.Tpo -c -o sci_gateway/c/libscistatistics_la-sci_cdfchn.lo `test -f 'sci_gateway/c/sci_cdfchn.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfchn.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfchn.Tpo sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfchn.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdfchn.c' object='sci_gateway/c/libscistatistics_la-sci_cdfchn.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscistatistics_la-sci_cdfchn.lo `test -f 'sci_gateway/c/sci_cdfchn.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfchn.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscistatistics_la-sci_cdfchn.lo `test -f 'sci_gateway/c/sci_cdfchn.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfchn.c
 
-libscistatistics_la-sci_cdfbet.lo: sci_gateway/c/sci_cdfbet.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscistatistics_la-sci_cdfbet.lo -MD -MP -MF $(DEPDIR)/libscistatistics_la-sci_cdfbet.Tpo -c -o libscistatistics_la-sci_cdfbet.lo `test -f 'sci_gateway/c/sci_cdfbet.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfbet.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscistatistics_la-sci_cdfbet.Tpo $(DEPDIR)/libscistatistics_la-sci_cdfbet.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdfbet.c' object='libscistatistics_la-sci_cdfbet.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscistatistics_la-sci_cdfbet.lo: sci_gateway/c/sci_cdfbet.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscistatistics_la-sci_cdfbet.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfbet.Tpo -c -o sci_gateway/c/libscistatistics_la-sci_cdfbet.lo `test -f 'sci_gateway/c/sci_cdfbet.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfbet.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfbet.Tpo sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfbet.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdfbet.c' object='sci_gateway/c/libscistatistics_la-sci_cdfbet.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscistatistics_la-sci_cdfbet.lo `test -f 'sci_gateway/c/sci_cdfbet.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfbet.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscistatistics_la-sci_cdfbet.lo `test -f 'sci_gateway/c/sci_cdfbet.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfbet.c
 
-libscistatistics_la-sci_cdfnbn.lo: sci_gateway/c/sci_cdfnbn.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscistatistics_la-sci_cdfnbn.lo -MD -MP -MF $(DEPDIR)/libscistatistics_la-sci_cdfnbn.Tpo -c -o libscistatistics_la-sci_cdfnbn.lo `test -f 'sci_gateway/c/sci_cdfnbn.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfnbn.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscistatistics_la-sci_cdfnbn.Tpo $(DEPDIR)/libscistatistics_la-sci_cdfnbn.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdfnbn.c' object='libscistatistics_la-sci_cdfnbn.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscistatistics_la-sci_cdfnbn.lo: sci_gateway/c/sci_cdfnbn.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscistatistics_la-sci_cdfnbn.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfnbn.Tpo -c -o sci_gateway/c/libscistatistics_la-sci_cdfnbn.lo `test -f 'sci_gateway/c/sci_cdfnbn.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfnbn.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfnbn.Tpo sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfnbn.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdfnbn.c' object='sci_gateway/c/libscistatistics_la-sci_cdfnbn.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscistatistics_la-sci_cdfnbn.lo `test -f 'sci_gateway/c/sci_cdfnbn.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfnbn.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscistatistics_la-sci_cdfnbn.lo `test -f 'sci_gateway/c/sci_cdfnbn.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfnbn.c
 
-libscistatistics_la-sci_cdfnor.lo: sci_gateway/c/sci_cdfnor.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscistatistics_la-sci_cdfnor.lo -MD -MP -MF $(DEPDIR)/libscistatistics_la-sci_cdfnor.Tpo -c -o libscistatistics_la-sci_cdfnor.lo `test -f 'sci_gateway/c/sci_cdfnor.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfnor.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscistatistics_la-sci_cdfnor.Tpo $(DEPDIR)/libscistatistics_la-sci_cdfnor.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdfnor.c' object='libscistatistics_la-sci_cdfnor.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscistatistics_la-sci_cdfnor.lo: sci_gateway/c/sci_cdfnor.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscistatistics_la-sci_cdfnor.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfnor.Tpo -c -o sci_gateway/c/libscistatistics_la-sci_cdfnor.lo `test -f 'sci_gateway/c/sci_cdfnor.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfnor.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfnor.Tpo sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfnor.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_cdfnor.c' object='sci_gateway/c/libscistatistics_la-sci_cdfnor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscistatistics_la-sci_cdfnor.lo `test -f 'sci_gateway/c/sci_cdfnor.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfnor.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscistatistics_la-sci_cdfnor.lo `test -f 'sci_gateway/c/sci_cdfnor.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfnor.c
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<
@@ -969,197 +1177,14 @@ libscistatistics_la-sci_cdfnor.lo: sci_gateway/c/sci_cdfnor.c
 .f.lo:
 	$(AM_V_F77)$(LTF77COMPILE) -c -o $@ $<
 
-psi.lo: src/dcdflib/psi.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o psi.lo `test -f 'src/dcdflib/psi.f' || echo '$(srcdir)/'`src/dcdflib/psi.f
-
-alngam.lo: src/dcdflib/alngam.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o alngam.lo `test -f 'src/dcdflib/alngam.f' || echo '$(srcdir)/'`src/dcdflib/alngam.f
-
-erfc1.lo: src/dcdflib/erfc1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o erfc1.lo `test -f 'src/dcdflib/erfc1.f' || echo '$(srcdir)/'`src/dcdflib/erfc1.f
-
-cdff.lo: src/dcdflib/cdff.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdff.lo `test -f 'src/dcdflib/cdff.f' || echo '$(srcdir)/'`src/dcdflib/cdff.f
-
-spmpar.lo: src/dcdflib/spmpar.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o spmpar.lo `test -f 'src/dcdflib/spmpar.f' || echo '$(srcdir)/'`src/dcdflib/spmpar.f
-
-cumnor.lo: src/dcdflib/cumnor.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumnor.lo `test -f 'src/dcdflib/cumnor.f' || echo '$(srcdir)/'`src/dcdflib/cumnor.f
-
-cdfpoi.lo: src/dcdflib/cdfpoi.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfpoi.lo `test -f 'src/dcdflib/cdfpoi.f' || echo '$(srcdir)/'`src/dcdflib/cdfpoi.f
-
-bcorr.lo: src/dcdflib/bcorr.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bcorr.lo `test -f 'src/dcdflib/bcorr.f' || echo '$(srcdir)/'`src/dcdflib/bcorr.f
-
-cumchi.lo: src/dcdflib/cumchi.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumchi.lo `test -f 'src/dcdflib/cumchi.f' || echo '$(srcdir)/'`src/dcdflib/cumchi.f
-
-apser.lo: src/dcdflib/apser.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o apser.lo `test -f 'src/dcdflib/apser.f' || echo '$(srcdir)/'`src/dcdflib/apser.f
-
-gamln1.lo: src/dcdflib/gamln1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gamln1.lo `test -f 'src/dcdflib/gamln1.f' || echo '$(srcdir)/'`src/dcdflib/gamln1.f
-
-cdft.lo: src/dcdflib/cdft.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdft.lo `test -f 'src/dcdflib/cdft.f' || echo '$(srcdir)/'`src/dcdflib/cdft.f
-
-gaminv.lo: src/dcdflib/gaminv.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gaminv.lo `test -f 'src/dcdflib/gaminv.f' || echo '$(srcdir)/'`src/dcdflib/gaminv.f
-
-cumnbn.lo: src/dcdflib/cumnbn.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumnbn.lo `test -f 'src/dcdflib/cumnbn.f' || echo '$(srcdir)/'`src/dcdflib/cumnbn.f
-
-cdffnc.lo: src/dcdflib/cdffnc.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdffnc.lo `test -f 'src/dcdflib/cdffnc.f' || echo '$(srcdir)/'`src/dcdflib/cdffnc.f
-
-rlog1.lo: src/dcdflib/rlog1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rlog1.lo `test -f 'src/dcdflib/rlog1.f' || echo '$(srcdir)/'`src/dcdflib/rlog1.f
-
-cdfchn.lo: src/dcdflib/cdfchn.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfchn.lo `test -f 'src/dcdflib/cdfchn.f' || echo '$(srcdir)/'`src/dcdflib/cdfchn.f
-
-dt1.lo: src/dcdflib/dt1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dt1.lo `test -f 'src/dcdflib/dt1.f' || echo '$(srcdir)/'`src/dcdflib/dt1.f
-
-bgrat.lo: src/dcdflib/bgrat.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bgrat.lo `test -f 'src/dcdflib/bgrat.f' || echo '$(srcdir)/'`src/dcdflib/bgrat.f
-
-dinvnr.lo: src/dcdflib/dinvnr.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dinvnr.lo `test -f 'src/dcdflib/dinvnr.f' || echo '$(srcdir)/'`src/dcdflib/dinvnr.f
-
-rlog.lo: src/dcdflib/rlog.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rlog.lo `test -f 'src/dcdflib/rlog.f' || echo '$(srcdir)/'`src/dcdflib/rlog.f
-
-basym.lo: src/dcdflib/basym.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o basym.lo `test -f 'src/dcdflib/basym.f' || echo '$(srcdir)/'`src/dcdflib/basym.f
-
-bfrac.lo: src/dcdflib/bfrac.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bfrac.lo `test -f 'src/dcdflib/bfrac.f' || echo '$(srcdir)/'`src/dcdflib/bfrac.f
-
-cumbin.lo: src/dcdflib/cumbin.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumbin.lo `test -f 'src/dcdflib/cumbin.f' || echo '$(srcdir)/'`src/dcdflib/cumbin.f
-
-cumbet.lo: src/dcdflib/cumbet.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumbet.lo `test -f 'src/dcdflib/cumbet.f' || echo '$(srcdir)/'`src/dcdflib/cumbet.f
-
-rcomp.lo: src/dcdflib/rcomp.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rcomp.lo `test -f 'src/dcdflib/rcomp.f' || echo '$(srcdir)/'`src/dcdflib/rcomp.f
-
-cdfgam.lo: src/dcdflib/cdfgam.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfgam.lo `test -f 'src/dcdflib/cdfgam.f' || echo '$(srcdir)/'`src/dcdflib/cdfgam.f
-
-gratio.lo: src/dcdflib/gratio.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gratio.lo `test -f 'src/dcdflib/gratio.f' || echo '$(srcdir)/'`src/dcdflib/gratio.f
-
-gam1.lo: src/dcdflib/gam1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gam1.lo `test -f 'src/dcdflib/gam1.f' || echo '$(srcdir)/'`src/dcdflib/gam1.f
-
-exparg.lo: src/dcdflib/exparg.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o exparg.lo `test -f 'src/dcdflib/exparg.f' || echo '$(srcdir)/'`src/dcdflib/exparg.f
-
-ipmpar.lo: src/dcdflib/ipmpar.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ipmpar.lo `test -f 'src/dcdflib/ipmpar.f' || echo '$(srcdir)/'`src/dcdflib/ipmpar.f
-
-cumf.lo: src/dcdflib/cumf.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumf.lo `test -f 'src/dcdflib/cumf.f' || echo '$(srcdir)/'`src/dcdflib/cumf.f
-
-cumpoi.lo: src/dcdflib/cumpoi.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumpoi.lo `test -f 'src/dcdflib/cumpoi.f' || echo '$(srcdir)/'`src/dcdflib/cumpoi.f
-
-gamln.lo: src/dcdflib/gamln.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gamln.lo `test -f 'src/dcdflib/gamln.f' || echo '$(srcdir)/'`src/dcdflib/gamln.f
-
-betaln.lo: src/dcdflib/betaln.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o betaln.lo `test -f 'src/dcdflib/betaln.f' || echo '$(srcdir)/'`src/dcdflib/betaln.f
-
-stvaln.lo: src/dcdflib/stvaln.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o stvaln.lo `test -f 'src/dcdflib/stvaln.f' || echo '$(srcdir)/'`src/dcdflib/stvaln.f
-
-cumt.lo: src/dcdflib/cumt.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumt.lo `test -f 'src/dcdflib/cumt.f' || echo '$(srcdir)/'`src/dcdflib/cumt.f
-
-esum.lo: src/dcdflib/esum.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o esum.lo `test -f 'src/dcdflib/esum.f' || echo '$(srcdir)/'`src/dcdflib/esum.f
-
-bpser.lo: src/dcdflib/bpser.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bpser.lo `test -f 'src/dcdflib/bpser.f' || echo '$(srcdir)/'`src/dcdflib/bpser.f
-
-cdfnor.lo: src/dcdflib/cdfnor.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfnor.lo `test -f 'src/dcdflib/cdfnor.f' || echo '$(srcdir)/'`src/dcdflib/cdfnor.f
-
-cumfnc.lo: src/dcdflib/cumfnc.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumfnc.lo `test -f 'src/dcdflib/cumfnc.f' || echo '$(srcdir)/'`src/dcdflib/cumfnc.f
-
-erf.lo: src/dcdflib/erf.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o erf.lo `test -f 'src/dcdflib/erf.f' || echo '$(srcdir)/'`src/dcdflib/erf.f
-
-alnrel.lo: src/dcdflib/alnrel.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o alnrel.lo `test -f 'src/dcdflib/alnrel.f' || echo '$(srcdir)/'`src/dcdflib/alnrel.f
-
-cumchn.lo: src/dcdflib/cumchn.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumchn.lo `test -f 'src/dcdflib/cumchn.f' || echo '$(srcdir)/'`src/dcdflib/cumchn.f
-
-rexp.lo: src/dcdflib/rexp.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rexp.lo `test -f 'src/dcdflib/rexp.f' || echo '$(srcdir)/'`src/dcdflib/rexp.f
-
-fpser.lo: src/dcdflib/fpser.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fpser.lo `test -f 'src/dcdflib/fpser.f' || echo '$(srcdir)/'`src/dcdflib/fpser.f
-
-bratio.lo: src/dcdflib/bratio.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bratio.lo `test -f 'src/dcdflib/bratio.f' || echo '$(srcdir)/'`src/dcdflib/bratio.f
-
-cdfchi.lo: src/dcdflib/cdfchi.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfchi.lo `test -f 'src/dcdflib/cdfchi.f' || echo '$(srcdir)/'`src/dcdflib/cdfchi.f
-
-gamma.lo: src/dcdflib/gamma.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gamma.lo `test -f 'src/dcdflib/gamma.f' || echo '$(srcdir)/'`src/dcdflib/gamma.f
-
-dinvr.lo: src/dcdflib/dinvr.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dinvr.lo `test -f 'src/dcdflib/dinvr.f' || echo '$(srcdir)/'`src/dcdflib/dinvr.f
-
-brcomp.lo: src/dcdflib/brcomp.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o brcomp.lo `test -f 'src/dcdflib/brcomp.f' || echo '$(srcdir)/'`src/dcdflib/brcomp.f
-
-devlpl.lo: src/dcdflib/devlpl.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o devlpl.lo `test -f 'src/dcdflib/devlpl.f' || echo '$(srcdir)/'`src/dcdflib/devlpl.f
-
-cdfnbn.lo: src/dcdflib/cdfnbn.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfnbn.lo `test -f 'src/dcdflib/cdfnbn.f' || echo '$(srcdir)/'`src/dcdflib/cdfnbn.f
-
-dzror.lo: src/dcdflib/dzror.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dzror.lo `test -f 'src/dcdflib/dzror.f' || echo '$(srcdir)/'`src/dcdflib/dzror.f
-
-gsumln.lo: src/dcdflib/gsumln.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gsumln.lo `test -f 'src/dcdflib/gsumln.f' || echo '$(srcdir)/'`src/dcdflib/gsumln.f
-
-algdiv.lo: src/dcdflib/algdiv.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o algdiv.lo `test -f 'src/dcdflib/algdiv.f' || echo '$(srcdir)/'`src/dcdflib/algdiv.f
-
-cumgam.lo: src/dcdflib/cumgam.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumgam.lo `test -f 'src/dcdflib/cumgam.f' || echo '$(srcdir)/'`src/dcdflib/cumgam.f
-
-grat1.lo: src/dcdflib/grat1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o grat1.lo `test -f 'src/dcdflib/grat1.f' || echo '$(srcdir)/'`src/dcdflib/grat1.f
-
-brcmp1.lo: src/dcdflib/brcmp1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o brcmp1.lo `test -f 'src/dcdflib/brcmp1.f' || echo '$(srcdir)/'`src/dcdflib/brcmp1.f
-
-cdfbin.lo: src/dcdflib/cdfbin.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfbin.lo `test -f 'src/dcdflib/cdfbin.f' || echo '$(srcdir)/'`src/dcdflib/cdfbin.f
-
-bup.lo: src/dcdflib/bup.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bup.lo `test -f 'src/dcdflib/bup.f' || echo '$(srcdir)/'`src/dcdflib/bup.f
-
-cdfbet.lo: src/dcdflib/cdfbet.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfbet.lo `test -f 'src/dcdflib/cdfbet.f' || echo '$(srcdir)/'`src/dcdflib/cdfbet.f
-
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
+	-rm -rf src/c/.libs src/c/_libs
+	-rm -rf src/dcdflib/.libs src/dcdflib/_libs
 install-libscistatistics_la_etcDATA: $(libscistatistics_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libscistatistics_la_etc_DATA)'; test -n "$(libscistatistics_la_etcdir)" || list=; \
@@ -1340,6 +1365,12 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/c/$(am__dirstamp)
+	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/c/$(am__dirstamp)
+	-rm -f src/dcdflib/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/dcdflib/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1350,7 +1381,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1399,7 +1430,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

@@ -22,12 +22,17 @@ assert_checkerror("h5readattr(""42"",""42"",""42"")",msgerr,999);
 
 x = int8(matrix(1:80, 10, 8));
 save(TMPDIR + "/x.sod", "x");
-version = string(getversion('scilab'));
-version = getversion()+" "+strcat([version(1),version(2),version(3)],'.');
 
 a = h5open(TMPDIR + "/x.sod");
-
 scilab_version = h5readattr(a, "/", "SCILAB_scilab_version");
+
+version = getversion();
+if ~isempty(strindex(version, "branch")) then // compiled by user
+    version = string(getversion("scilab"));
+    version = getversion()+" "+strcat([version(1),version(2),version(3)],".");
+else // compiled by compilation chain
+    version = getversion();
+end
 assert_checkequal(scilab_version,version);
 
 scilab_class = h5readattr(a.root.x, "SCILAB_Class");

@@ -37,7 +37,7 @@ function result = atomsGetConfig(field)
         supported_field = ["useProxy", "proxyHost", "proxyPort", ..
         "proxyUser", "proxyPassword", "offline", ..
         "autoload", "autoloadAddAfterInstall", ..
-        "verbose", "downloadTool", "downloadTimeout"];
+        "verbose", "downloadTool", "downloadTimeout", "updateTime"];
 
         if ~or(convstr(supported_field) == convstr(field)) then
             error(msprintf(gettext("%s: Wrong value for input argument #%d.\n"),"atomsGetConfig", 1));

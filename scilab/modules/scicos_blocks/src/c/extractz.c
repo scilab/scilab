@@ -30,10 +30,9 @@ SCICOS_BLOCKS_IMPEXP void extractz(scicos_block *block, int flag)
     double *yr = NULL;
     double *yi = NULL;
     int *r = NULL;
-    int nu = 0, mu = 0, nr = 0, i = 0, j = 0, ij = 0, k = 0, nc = 0, nl = 0;
+    int mu = 0, nr = 0, i = 0, j = 0, ij = 0, k = 0, nc = 0, nl = 0;
 
     mu = GetInPortRows(block, 1);
-    nu = GetInPortCols(block, 1);
     nr = GetNipar(block);
     r = GetIparPtrs(block);
     ur = GetRealInPortPtrs(block, 1);

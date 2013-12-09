@@ -29,8 +29,12 @@
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(zgesvd)();
-extern int C2F(dlaset)();
+extern int C2F(zgesvd)(char *jobu, char *jobvt, int *m, int *n,
+                       double *a, int *lda, double *s, double *u,
+                       int *ldu, double *vt, int *ldvt, double *work,
+                       int *lwork, double *rwork, int *info);
+extern int C2F(dlaset)(char *uplo, int *m, int *n, double *
+                       alpha, double *beta, double *a, int *lda);
 /*--------------------------------------------------------------------------*/
 typedef struct
 {
@@ -51,6 +55,7 @@ SCICOS_BLOCKS_IMPEXP void matz_svd(scicos_block *block, int flag)
     int nu = 0, mu = 0;
     int info = 0;
     int i = 0, j = 0, ij = 0, ji = 0, ii = 0, lwork = 0, rw = 0;
+    mat_sdv_struct** work = (mat_sdv_struct**) block->work;
     mat_sdv_struct *ptr = NULL;
 
     mu = GetInPortRows(block, 1);
@@ -69,12 +74,12 @@ SCICOS_BLOCKS_IMPEXP void matz_svd(scicos_block *block, int flag)
     /*init : initialization*/
     if (flag == 4)
     {
-        if ((*(block->work) = (mat_sdv_struct*) scicos_malloc(sizeof(mat_sdv_struct))) == NULL)
+        if ((*work = (mat_sdv_struct*) scicos_malloc(sizeof(mat_sdv_struct))) == NULL)
         {
             set_block_error(-16);
             return;
         }
-        ptr = *(block->work);
+        ptr = *work;
         if ((ptr->l0 = (double*) scicos_malloc(sizeof(double))) == NULL)
         {
             set_block_error(-16);
@@ -143,7 +148,7 @@ SCICOS_BLOCKS_IMPEXP void matz_svd(scicos_block *block, int flag)
     /* Terminaison */
     else if (flag == 5)
     {
-        ptr = *(block->work);
+        ptr = *work;
         if ((ptr->rwork) != NULL)
         {
             scicos_free(ptr->l0);
@@ -159,7 +164,7 @@ SCICOS_BLOCKS_IMPEXP void matz_svd(scicos_block *block, int flag)
 
     else
     {
-        ptr = *(block->work);
+        ptr = *work;
         for (i = 0; i < (mu * nu); i++)
         {
             ptr->LA[2 * i] = ur[i];

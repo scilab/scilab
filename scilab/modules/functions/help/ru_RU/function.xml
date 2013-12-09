@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="function">
+    <refnamediv>
+        <refname>function</refname>
+        <refpurpose>
+            открывает определение функции
+        </refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="endfunction">
+        <refname>endfunction</refname>
+        <refpurpose>
+            закрывает определение функции
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <programlisting role='no-scilab-exec'><![CDATA[
+function <выходные_аргументы>=<имя_функции><входные_аргументы>
+  <операторы>
+endfunction
+ ]]></programlisting>
+        <para>
+            Где:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>&lt;имя_функции&gt;</term>
+                <listitem>
+                    <para>
+                        указывает имя функции
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;входные_аргументы&gt;</term>
+                <listitem>
+                    <para>
+                        указывает список входных аргументов. Он может быть
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                рядом имён переменных, разделённых
+                                запятой и заключённым в круглые скобки,
+                                например <literal>(x1,...,xm)</literal>.
+                                Последнее имя переменной может быть
+                                ключевым словом
+                                <literal>varargin</literal> (см. <link linkend="varargin">varargin</link>);
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                последовательностью <literal>()</literal>
+                                или ничего, если у функции нет входных
+                                аргументов.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;выходные_аргументы&gt;</term>
+                <listitem>
+                    <para>
+                        указывает список выходных аргументов. Он может быть
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                рядом имён переменных, заключённым в
+                                квадратные скобки, например <literal>[y1,...,yn]</literal>. Последнее имя переменной может быть ключевым словом <literal>varargout</literal> (см. <link linkend="varargout">varargout</link>);
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                последовательностью <literal>[]</literal>, если у функции нет выходных аргументов. В этом случае синтаксис может быть таким:  <literal>function &lt;имя_функции&gt;&lt;входные_аргументы&gt;</literal>
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;операторы&gt;</term>
+                <listitem>
+                    <para>
+                        указывает набор Scilab-инструкций (операторов).
+                        Этот синтаксис можно использовать для
+                        определения функции (см. <link linkend="functions">functions</link>) как встраиваемую, либо в файле-сценарии (см. <link linkend="exec">exec</link>). Для совместимости
+                        со старыми версиями Scilab'а функции,
+                        определённые в файле-сценарии, содержащем только
+                        определения функций, могут быть "загружены" в
+                        Scilab используя функцию <function>exec</function>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            Последовательность <literal>function &lt;выходные_аргументы&gt;=&lt;имя_функции&gt;&lt;входные_аргументы&gt;</literal>
+            нельзя разделять на несколько строк. После этой последовательности можно ставить в этой же строке операторы, если в конце добавить запятую или точку с запятой.
+        </para>
+        <note>
+            Заметьте, что <literal>&lt;имя_функции&gt;</literal> должно удовлетворять некоторым правилам синтаксиса (см. <link linkend="names">имена</link>).
+        </note>
+        <para>
+            Определения функций могут быть вложенными.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+//определение встраиваемой функции
+function [x,y]=myfct(a,b)
+x=a+b
+y=a-b
+endfunction
+
+[x,y]=myfct(3,2)
+
+//определение функции в одну строку
+function y=sq(x),y=x^2,endfunction
+
+sq(3)
+
+//определение вложенных функций
+function y=foo(x)
+a=sin(x)
+function y=sq(x), y=x^2,endfunction
+y=sq(a)+1
+endfunction
+
+foo(%pi/3)
+
+// определение функции в файле-сценарии (см. exec)
+exec SCI/modules/elementary_functions/macros/asinh.sci;
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="functions">functions</link>
+            </member>
+            <member>
+                <link linkend="exec">exec</link>
+            </member>
+            <member>
+                <link linkend="names">имена</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

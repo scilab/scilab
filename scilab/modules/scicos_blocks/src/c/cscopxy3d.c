@@ -160,7 +160,7 @@ SCICOS_BLOCKS_IMPEXP void cscopxy3d(scicos_block * block, scicos_flag flag)
                 set_block_error(-5);
             }
             iFigureUID = getFigure(block);
-            if (iFigureUID == 0)
+            if (iFigureUID == NULL)
             {
                 // allocation error
                 set_block_error(-5);
@@ -169,14 +169,14 @@ SCICOS_BLOCKS_IMPEXP void cscopxy3d(scicos_block * block, scicos_flag flag)
 
         case StateUpdate:
             iFigureUID = getFigure(block);
-            if (iFigureUID == 0)
+            if (iFigureUID == NULL)
             {
                 // allocation error
                 set_block_error(-5);
                 break;
             }
 
-            appendData(block, block->inptr[0], block->inptr[1], block->inptr[2]);
+            appendData(block, GetRealInPortPtrs(block, 1), GetRealInPortPtrs(block, 2), GetRealInPortPtrs(block, 3));
             for (j = 0; j < block->insz[0]; j++)
             {
                 result = pushData(block, j);
@@ -465,7 +465,7 @@ static int getFigure(scicos_block * block)
     // assert the sco is not NULL
     if (sco == NULL)
     {
-        return 0;
+        return NULL;
     }
 
     // fast path for an existing object
@@ -681,7 +681,11 @@ static BOOL setPolylinesBounds(scicos_block * block)
     iAxeUID = getAxe(iFigureUID, block);
 
     result = setGraphicObjectProperty(iAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
-    result &= setGraphicObjectProperty(iAxeUID, __GO_ROTATION_ANGLES__, rotationAngle, jni_double_vector, 2);
+    if (result == FALSE)
+    {
+        return result;
+    }
+    result = setGraphicObjectProperty(iAxeUID, __GO_ROTATION_ANGLES__, rotationAngle, jni_double_vector, 2);
 
     return result;
 }

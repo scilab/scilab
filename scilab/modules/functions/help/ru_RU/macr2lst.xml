@@ -6,21 +6,40 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>[txt]=macr2lst(function_name)</synopsis>
+        <synopsis>lst = macr2lst(function_name)</synopsis>
     </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>function_name</term>
+                <listitem>
+                    <para>
+                        функция, которую требуется преобразовать.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>lst</term>
+                <listitem>
+                    <para>список.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
     <refsection>
         <title>Описание</title>
         <para>
-            Этот примитив преобразует компилированную функцию Scilab с именем
-            <literal>function_name</literal> в список, который кодирует внутреннее
+            Этот примитив преобразует компилированную функцию Scilab
+            <varname>function_name</varname> в список, который кодирует внутреннее
             представление функции (обратная бесскобочная запись).
         </para>
         <para>
-            Первый элемент списка является именем функции, второй и третий являются, соответственно, именами выходных переменных и входных переменных. Следующие элементы являются или записями основных операций или списками, содержащими иерархическими управляющими структурами, такими, как 
-            <literal>if</literal> , <literal>for</literal>, ... 
+            Первый элемент списка является именем функции, второй и третий являются, соответственно, именами выходных переменных и входных переменных. Следующие элементы являются или записями основных операций или списками, содержащими иерархические управляющие структуры, такие, как
+            <literal>if</literal>, <literal>for</literal>, ...
         </para>
         <para>
-            Записи основных операций описываются вектором символьных строк, чей первый элемент представляет собой код операции. 
+            Записи основных операций описываются вектором символьных строк, чей первый элемент представляет собой код операции.
         </para>
         <informaltable border="1">
             <tr>
@@ -90,13 +109,13 @@
             </tr>
             <tr>
                 <td>"18"</td>
-                <td>поименованная переменная</td>
+                <td>именованная переменная</td>
                 <td>имя переменной</td>
             </tr>
             <tr>
                 <td>"19"</td>
-                <td>создать рекурсивную структуру индексов create recursive index structure</td>
-                <td>длина пути, количество конечных индексов path length, number of final indices</td>
+                <td>создать рекурсивную структуру индексов</td>
+                <td>длина пути, количество конечных индексов</td>
             </tr>
             <tr>
                 <td>"20"</td>
@@ -140,8 +159,8 @@
             </tr>
             <tr>
                 <td>"30"</td>
-                <td>логическое выражение logical expression short circuit</td>
-                <td>type, jump size</td>
+                <td>сокращённое вычисление логического выражения</td>
+                <td>тип, размер скачка</td>
             </tr>
             <tr>
                 <td>"31"</td>
@@ -155,7 +174,7 @@
             </tr>
             <tr>
                 <td> &gt; "100"</td>
-                <td>встроенный вызов builtin call (устарело)</td>
+                <td>встроенный вызов (устарело)</td>
                 <td>100*fun, #rhs, #lhs, fin</td>
             </tr>
         </informaltable>
@@ -165,10 +184,10 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // ОТОБРАЖЕНИЕ
 function y=foo(x,flag)
-  if flag then 
+  if flag then
     y=sin(x)
   else
     y=cos(x)

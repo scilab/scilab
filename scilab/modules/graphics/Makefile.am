@@ -365,7 +365,6 @@ sci_gateway/c/sci_geom3d.c \
 sci_gateway/c/sci_xset.c \
 sci_gateway/c/sci_unzoom.c \
 sci_gateway/c/sci_xsegs.c \
-sci_gateway/c/sci_clear_pixmap.c \
 sci_gateway/c/sci_glue.c \
 sci_gateway/c/sci_xarc.c \
 sci_gateway/c/sci_xpolys.c \

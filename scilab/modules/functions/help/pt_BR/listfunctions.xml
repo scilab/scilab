@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="listfunctions" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="listfunctions" xml:lang="pt">
     <refnamediv>
         <refname>listfunctions</refname>
         <refpurpose>propriedades de todas as funções no espaço de
@@ -16,7 +16,9 @@
             <varlistentry>
                 <term>scope</term>
                 <listitem>
-                    <para>string, "local" (padrão) ou "global"</para>
+                    <para>
+                        string, <literal>"local"</literal> (padrão) ou <literal>"global"</literal>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -31,7 +33,7 @@
                 <term>compiled</term>
                 <listitem>
                     <para>array de booleanos, verdadeiro se o elemento correspondente de
-                        flist for do tipo 13
+                        <varname>flist</varname> for do tipo 13
                     </para>
                 </listitem>
             </varlistentry>
@@ -39,7 +41,7 @@
                 <term>profilable</term>
                 <listitem>
                     <para>array de booleanos, verdadeiro se o elemento correspondente de
-                        flist for do tipo 13, e adicionalmente informações sobre profiling
+                        <varname>flist</varname> for do tipo 13, e adicionalmente informações sobre profiling
                         forem encontradas no pseudo-código da função.
                     </para>
                 </listitem>
@@ -48,7 +50,7 @@
                 <term>called</term>
                 <listitem>
                     <para>array uint32, número de vezes que o elemento correspondente de
-                        flist foi chamado (não-zero apenas se a função possuir
+                        <varname>flist</varname> foi chamado (não-zero apenas se a função possuir
                         profiling)
                     </para>
                 </listitem>
@@ -61,16 +63,16 @@
             <listitem>
                 <para>Esta função verifica todas as variáveis do espaço de trabalho
                     (dadas por <link linkend="who">who</link>) e coleta aquelas de tipo 11
-                    ou 13; para as últimas, lst=<link linkend="macr2lst">macr2lst</link>(fun) é chamada, de modo a verificar
+                    ou 13; para as últimas, <code>lst = macr2lst(fun)</code> é chamada, de modo a verificar
                     a entrada para magic profiling ao fim da primeira linha de código,
-                    i.e. lst(5)(1)=="25".
+                    i.e. <code>lst(5)(1)=="25"</code>.
                 </para>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 recompilefunction("asinh","p")
 [flist,compiled,profilable,called] = listfunctions();
 flist(profilable)
@@ -95,10 +97,16 @@ flist(profilable)
                 <link linkend="fun2string">fun2string</link>
             </member>
             <member>
+                <link linkend="macr2lst">macr2lst</link>
+            </member>
+            <member>
                 <link linkend="profile">profile</link>
             </member>
             <member>
                 <link linkend="recompilefunction">recompilefunction</link>
+            </member>
+            <member>
+                <link linkend="who">who</link>
             </member>
         </simplelist>
     </refsection>

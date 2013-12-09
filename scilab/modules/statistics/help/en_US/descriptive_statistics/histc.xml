@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ --><!-- This document was created with Syntext Serna Free. -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="histc">
+    <refnamediv>
+        <refname>histc</refname>
+        <refpurpose>computes an histogram</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            [cf, ind] = histc(n, data [,normalization])
+            [cf, ind] = histc(x, data [,normalization])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>positive integer (number of classes)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        increasing vector defining the classes (<literal>x</literal> may have at least 2 components)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>data</term>
+                <listitem>
+                    <para>
+                        vector (data to be analysed)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cf</term>
+                <listitem>
+                    <para>
+                        vector representing the number of values of <varname>data</varname>
+                        falling in the classes defined by <varname>n</varname> or <varname>x</varname>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ind</term>
+                <listitem>
+                    <para>
+                        vector or matrix of same size as <varname>data</varname>,
+                        representing the repective belonging of each element of data <varname>data</varname>
+                        to the classes defined by <varname>n</varname> or <varname>x</varname>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>normalization</term>
+                <listitem>
+                    <para>
+                        scalar boolean.
+                        <varname>normalization=%f (default)</varname>: <varname>cf</varname> represents the total number of points in each class,
+                        <varname>normalization=%t</varname>: <varname>cf</varname> represents the number of points in each class, relatively to the total number of points
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function computes a histogram of the <literal>data</literal> vector using the
+            classes <literal>x</literal>. When the number <literal>n</literal> of classes is provided
+            instead of <literal>x</literal>, the classes are chosen equally spaced and
+            <emphasis>x(1) = min(data) &lt; x(2) = x(1) + dx &lt; ... &lt; x(n+1) = max(data)</emphasis>
+            with <emphasis>dx = (x(n+1)-x(1))/n</emphasis>.
+        </para>
+        <para>
+            The classes are defined by <literal>C1 = [x(1), x(2)]</literal> and <literal>Ci = ( x(i), x(i+1)]</literal> for i &gt;= 2.
+            Noting <literal>Nmax</literal> the total number of <literal>data</literal> (Nmax = length(data))
+            and <literal>Ni</literal> the number of <literal>data</literal> components falling in
+            <literal>Ci</literal>, the value of the histogram for <literal>x</literal> in
+            <literal>Ci</literal> is equal to <emphasis>Ni/(Nmax (x(i+1)-x(i)))</emphasis> when
+            <literal>"normalized"</literal> is selected and else, simply equal to <emphasis>Ni</emphasis>.
+            When normalization occurs the histogram verifies:
+        </para>
+        <para>
+            <latex style="display"><![CDATA[ \int_{x(1)}^{x(n+1)}h(x)\,\mathrm{d}x=1 ]]></latex>
+        </para>
+        <para>
+            when <emphasis>x(1)&lt;=min(data)</emphasis> and <emphasis>max(data) &lt;= x(n+1)</emphasis>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <simplelist>
+            <member> Example #1: variations around a histogram of a gaussian random sample
+                <programlisting role="example"><![CDATA[
+// The gaussian random sample
+d = rand(1, 10000, 'normal');
+
+[cf, ind] = histc(20, d, normalization=%f)
+// We use histplot to show a graphic representation
+clf(); histplot(20, d, normalization=%f);
+
+[cf, ind] = histc(20, d)
+clf(); histplot(20, d);
+]]></programlisting>
+                <scilab:image>
+                    d = rand(1, 10000, 'normal');
+                    [cf, ind] = histc(20, d)
+                    clf(); histplot(20, d);
+                </scilab:image>
+            </member>
+            <member>
+                Example #2: histogram of a binomial (B(6,0.5)) random sample
+                <programlisting role="example"><![CDATA[
+d = grand(1000,1,"bin", 6, 0.5);
+c = linspace(-0.5,6.5,8);
+clf()
+subplot(2,1,1)
+[cf, ind] = histc(c, d)
+histplot(c, d, style=2);
+xtitle("Normalized histogram")
+subplot(2,1,2)
+[cf, ind] = histc(c, d, normalization=%f)
+histplot(c, d, normalization=%f, style=5);
+xtitle("Non normalized histogram")
+]]></programlisting>
+                <scilab:image localized="true">
+                    d = grand(1000,1,"bin", 6, 0.5);
+                    c = linspace(-0.5,6.5,8);
+                    clf()
+                    subplot(2,1,1)
+                    [cf, ind] = histc(c, d)
+                    histplot(c, d, style=2);
+                    xtitle("Normalized histogram")
+                    subplot(2,1,2)
+                    [cf, ind] = histc(c, d, normalization=%f)
+                    histplot(c, d, normalization=%f, style=5);
+                    xtitle("Non normalized histogram")
+                </scilab:image>
+            </member>
+            <member>
+                Example #3: histogram of an exponential random sample
+                <programlisting role="example"><![CDATA[
+lambda = 2;
+X = grand(100000,1,"exp", 1/lambda);
+Xmax = max(X);
+[cf, ind] = histc(40, X)
+clf()
+histplot(40, X, style=2);
+x = linspace(0, max(Xmax), 100)';
+plot2d(x, lambda*exp(-lambda*x), strf="000", style=5)
+legend(["exponential random sample histogram" "exact density curve"]);
+]]></programlisting>
+                <scilab:image localized="true">
+                    lambda = 2;
+                    X = grand(100000,1,"exp", 1/lambda);
+                    Xmax = max(X);
+                    [cf, ind] = histc(40, X)
+                    clf()
+                    histplot(40, X, style=2);
+                    x = linspace(0, max(Xmax), 100)';
+                    plot2d(x, lambda*exp(-lambda*x), strf="000", style=5)
+                    legend(["exponential random sample histogram" "exact density curve"]);
+                </scilab:image>
+            </member>
+            <member>
+                Example #4: the frequency polygon chart and the histogram of a gaussian random sample
+                <programlisting role="example"><![CDATA[
+n = 10;
+data = rand(1, 1000, "normal");
+[cf, ind] = histc(n, data)
+clf(); histplot(n, data, style=12, polygon=%t);
+legend(["normalized histogram" "frequency polygon chart"]);
+]]></programlisting>
+                <scilab:image localized="true">
+                    n = 10;
+                    data = rand(1, 1000, "normal");
+                    [cf, ind] = histc(n, data)
+                    clf(); histplot(n, data, style=12, polygon=%t);
+                    legend(["normalized histogram" "frequency polygon chart"]);
+                </scilab:image>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="histplot">histplot</link>
+            </member>
+            <member>
+                <link linkend="hist3d">hist3d</link>
+            </member>
+            <member>
+                <link linkend="plot2d">plot2d</link>
+            </member>
+            <member>
+                <link linkend="dsearch">dsearch</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    Introduction
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

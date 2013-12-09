@@ -21,7 +21,7 @@
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <programlisting><![CDATA[ 
+        <programlisting role='no-scilab-exec'><![CDATA[
 function <arguments_sortie>=<nom_de_la_fonction><arguments_entrée>
   <instructions>
 endfunction
@@ -41,7 +41,7 @@ endfunction
                     <itemizedlist>
                         <listitem>
                             <para>
-                                une liste de noms de variables séparés par des virgules, entourée de parenthèses, comme  <literal>(x1,...,xm)</literal>. Le dernier nom de variable peut être <literal>varargin</literal> (voir varargin)
+                                une liste de noms de variables séparés par des virgules, entourée de parenthèses, comme  <literal>(x1,...,xm)</literal>. Le dernier nom de variable peut être <literal>varargin</literal> (voir <link linkend="varargin">varargin</link>)
                             </para>
                         </listitem>
                         <listitem>
@@ -59,7 +59,7 @@ endfunction
                     <itemizedlist>
                         <listitem>
                             <para>
-                                une liste de noms de variables séparés par des virgules, entourée de crochets, comme  <literal>[y1,...,ym]</literal>. Le dernier nom de variable peut être <literal>varargout</literal> (voir varargout)
+                                une liste de noms de variables séparés par des virgules, entourée de crochets, comme  <literal>[y1,...,ym]</literal>. Le dernier nom de variable peut être <literal>varargout</literal> (voir <link linkend="varargout">varargout</link>)
                             </para>
                         </listitem>
                         <listitem>
@@ -74,7 +74,7 @@ endfunction
                 <term>&lt;instructions&gt;</term>
                 <listitem>
                     <para>
-                        une suite d'instructions Scilab.  Cette syntaxe peut être utilisée pour définir des fonctions (voir <link linkend="functions">functions</link>) en ligne ou dans un script (voir <link linkend="exec">exec</link>). Pour raisons de compatibilité avec les anciennes versions de Scilab, les fonctions définies dans un script ne contenant que des déclarations de fonctions peuvent être chargées dans Scilab avec la fonction <literal>exec</literal>.
+                        une suite d'instructions Scilab.  Cette syntaxe peut être utilisée pour définir des fonctions (voir <link linkend="functions">functions</link>) en ligne ou dans un script (voir <link linkend="exec">exec</link>). Pour raisons de compatibilité avec les anciennes versions de Scilab, les fonctions définies dans un script ne contenant que des déclarations de fonctions peuvent être chargées dans Scilab avec la fonction <function>exec</function>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -83,15 +83,15 @@ endfunction
             La séquence <literal>function &lt;arguments_sortie&gt;=&lt;nom_de_la_fonction&gt;&lt;arguments_entrée&gt;</literal>
             doit apparaître sur une seule ligne. Cette suite peut être suivie d'instructions Scilab si une virgule ou un point-virgule est ajouté à la fin.
         </para>
-        <para>
+        <note>
             Certaines règles ont été établies quant à la syntaxe des noms de fonctions dans Scilab (voir <link linkend="names">names</link>).
-        </para>
+        </note>
         
         <para>Les définitions de fonctions peuvent être imbriquées.</para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // définition en ligne
 function [x,y]=myfct(a,b)
 x=a+b

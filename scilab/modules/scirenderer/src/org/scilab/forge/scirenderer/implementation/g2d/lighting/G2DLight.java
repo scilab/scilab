@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.implementation.g2d.lighting;
@@ -34,7 +34,7 @@ public class G2DLight implements Light {
 
 
     public G2DLight(int index) {
-	    this.index = index;
+        this.index = index;
     }
 
     @Override
@@ -137,7 +137,7 @@ public class G2DLight implements Light {
     public int getIndex() {
         return index;
     }
-    
+
     public boolean isPoint() {
         return !isDirectional;
     }

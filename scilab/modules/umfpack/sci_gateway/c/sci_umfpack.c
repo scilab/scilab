@@ -117,6 +117,9 @@ int sci_umfpack(char* fname, unsigned long l)
     int* Wi         = NULL;
     double* W       = NULL;
     char* pStr      = NULL;
+    int iType2      = 0;
+    int iTypeA      = 0;
+    int iTypeB      = 0;
 
     /* Check numbers of input/output arguments */
     CheckInputArgument(pvApiCtx, 3, 3);
@@ -127,6 +130,14 @@ int sci_umfpack(char* fname, unsigned long l)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        return 1;
+    }
+
+    sciErr = getVarType(pvApiCtx, piAddr2, &iType2);
+    if (sciErr.iErr || iType2 != sci_strings)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
         return 1;
     }
 
@@ -156,6 +167,14 @@ int sci_umfpack(char* fname, unsigned long l)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        return 1;
+    }
+
+    sciErr = getVarType(pvApiCtx, piAddrA, &iTypeA);
+    if (sciErr.iErr || iTypeA != sci_sparse)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A sparse matrix expected.\n"), fname, 1);
         return 1;
     }
 
@@ -197,6 +216,14 @@ int sci_umfpack(char* fname, unsigned long l)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        return 1;
+    }
+
+    sciErr = getVarType(pvApiCtx, piAddrB, &iTypeB);
+    if (sciErr.iErr || iTypeB != sci_matrix)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), fname, 3);
         return 1;
     }
 
