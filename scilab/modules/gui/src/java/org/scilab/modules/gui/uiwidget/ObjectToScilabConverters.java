@@ -208,7 +208,9 @@ public final class ObjectToScilabConverters {
         converters.put(Color.class, new ObjectConverter() {
             public void convert(Object o, int stackPos) {
                 Color c = (Color) o;
-                ScilabStackPutter.put(stackPos, new double[] {(double) c.getRed(), (double) c.getGreen(), (double) c.getBlue(), (double) c.getAlpha()} , false);
+                float[] cc = new float[4];
+                c.getRGBComponents(cc);
+                ScilabStackPutter.put(stackPos, new double[] {(double) cc[0], (double) cc[1], (double) cc[2], (double) cc[3]} , false);
             }
         });
         converters.put(Icon.class, new ObjectConverter() {
