@@ -25,7 +25,6 @@ c
       external setfresd,setfjacd
 
       common /dassln/ namer,namej,names
-      common/ierode/iero
       common/cjac/namjac
 c     
       data atol/1.d-7/,rtol/1.d-9/
@@ -37,7 +36,7 @@ c     SCILAB function : dassl
 c     --------------------------
 c     [y0 [,hotdata]]=dassl(y0,t0,t1 [,atol,rtol],res [,jac],info..
 c     [,hotdata])
-      iero=0
+      ierror=0
       maxord=5
       lbuf = 1
       topk=top

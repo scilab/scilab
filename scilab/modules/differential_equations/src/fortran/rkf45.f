@@ -180,10 +180,11 @@ c    required for subsequent integration. accordingly, work and iwork
 c    should not be altered.
 c
 c
+      include 'stack.h'
+      
       integer neqn,iflag,iwork(5)
       double precision y(neqn),t,tout,rerr,aerr,work(1)
 c
-      common/ierode/iero
       external fydot
 c
       integer k1,k2,k3,k4,k5,k6,k1m
@@ -232,13 +233,13 @@ c         h  - an appropriate stepsize to be used for the next step
 c         nfe- counter on the number of derivative function evaluations
 c
 c
+      
       logical hfaild,output
 c
       integer  neqn,iflag,nfe,kop,init,jflag,kflag
       double precision  y(neqn),t,tout,rerr,aerr,h,yp(neqn),
      1  f1(neqn),f2(neqn),f3(neqn),f4(neqn),f5(neqn),savre,
      2  savae,savey(*)
-      common/ierode/iero
 c
       external fydot
 c
@@ -359,7 +360,7 @@ c
 c
       a=t
       call fydot(neqn,a,y,yp)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nfe=1
       if (t .ne. tout) go to 65
       iflag=2
@@ -404,7 +405,7 @@ c
    90   y(k)=y(k)+dt*yp(k)
       a=tout
       call fydot(neqn,a,y,yp)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nfe=nfe+1
       go to 300
 c
@@ -539,7 +540,7 @@ c
   270   y(k)=f1(k)
       a=t
       call fydot(neqn,a,y,yp)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nfe=nfe+1
 c
 c
@@ -599,43 +600,45 @@ c
       double precision  y(neqn),t,h,yp(neqn),f1(neqn),f2(neqn),
      1  f3(neqn),f4(neqn),f5(neqn),s(neqn),savey(neqn)
 c
+      
+      include 'stack.h'
+      
       double precision  ch
       integer  k
       external fydot
-      common/ierode/iero
 c
       ch=h/4.0d0
       do 221 k=1,neqn
   221   y(k)=savey(k)+ch*yp(k)
       call fydot(neqn,t+ch,y,f1)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
 c
       ch=3.0d0*h/32.0d0
       do 222 k=1,neqn
   222   y(k)=savey(k)+ch*(yp(k)+3.0d0*f1(k))
       call fydot(neqn,t+3.0d0*h/8.0d0,y,f2)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
 c
       ch=h/2197.0d0
       do 223 k=1,neqn
   223 y(k)=savey(k)+ch*(1932.0d0*yp(k)+
      1    (7296.0d0*f2(k)-7200.0d0*f1(k)))
       call fydot(neqn,t+12.0d0*h/13.0d0,y,f3)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
 c
       ch=h/4104.0d0
       do 224 k=1,neqn
   224   y(k)=savey(k)+ch*((8341.0d0*yp(k)-845.0d0*f3(k))+
      1                            (29440.0d0*f2(k)-32832.0d0*f1(k)))
       call fydot(neqn,t+h,y,f4)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
 c
       ch=h/20520.0d0
       do 225 k=1,neqn
   225   y(k)=savey(k)+ch*((-6080.0d0*yp(k)+(9295.0d0*f3(k)-
      1         5643.0d0*f4(k)))+(41040.0d0*f1(k)-28352.0d0*f2(k)))
       call fydot(neqn,t+h/2.0d0,y,f5)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
 c
 c     compute approximate solution at t+h
 c

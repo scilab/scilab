@@ -59,8 +59,6 @@ c-----------------------------------------------------------------------
       include 'stack.h'
       integer num, imess, imode
       common /eh0001/ mesflg, lunit
-      integer         iero
-      common /ierode/ iero
       character*80 str
 c-----------------------------------------------------------------------
       if (mesflg .eq. 0) go to 100
@@ -111,5 +109,5 @@ cstd         write (lun, 50) r1,r2
       endif
 c abort the run if iert = 2. -------------------------------------------
  100  if (iert .ne. 2) return
-      iero = 1
+      ierror = 1
       end

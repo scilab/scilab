@@ -29,7 +29,6 @@ c
       character*1 strf
       common/cjac/namjac
       external setfres,setfadda,setfj2
-      common/ierode/iero
 c     
       data atol/1.d-7/,rtol/1.d-9/
 c     
@@ -39,7 +38,7 @@ c
 C     XXXXXX : pour l'instant 
       if (.not.checklhs(fname,1,3)) return
 c     ---------------------------------
-      iero=0
+      ierror=0
       topk=top
       topw=top+1
       iskip=1

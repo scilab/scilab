@@ -18,7 +18,6 @@ c
       integer iadr,sadr
 c     
       double precision y(ny),p(nrowp,ny),t(*)
-      common/ierode/iero
       logical allowptr
 c     
       integer vol,tops,nordre
@@ -30,16 +29,16 @@ c
 c     nordre=external number
 c     mlhs (mrhs) = number ot output (input) parameters of the 
 c     external 
-      iero=0
+      ierror=0
       mrhs=3
 c     
       ilp=iadr(lstk(top))
       il=istk(ilp+nordre)
 
 c     external is a Scilab function
-c     on return iero=1 is used to notify to the ode solver that
+c     on return ierror=1 is used to notify to the ode solver that
 c     scilab was not able to evaluate the external
-      iero=1
+      ierror=1
 
 c     
 c     transfer of input parameters
@@ -138,7 +137,7 @@ c     transfer of output parameters of external to fortran
       if(err.gt.0.or.err1.gt.0) return
 c+    
 c     normal return
-      iero=0
+      ierror=0
       return
 c     
  9999 continue

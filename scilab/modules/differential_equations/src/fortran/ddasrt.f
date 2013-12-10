@@ -859,7 +859,12 @@ C***END PROLOGUE  DDASRT
 C
 C**End
 C
+      
+      
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+
+      include 'stack.h'
+      
       LOGICAL DONE
       EXTERNAL RES, JAC, G
       DIMENSION Y(*),YPRIME(*)
@@ -884,7 +889,6 @@ C     SET POINTERS INTO RWORK
      *  LALPHA=11, LBETA=17, LGAMMA=23,
      *  LPSI=29, LSIGMA=35, LT0=41, LTLAST=42, LALPHR=43, LX2=44,
      *  LDELTA=51)
-      common/ierode/iero
 C
 C***FIRST EXECUTABLE STATEMENT  DDASRT
      
@@ -1029,7 +1033,7 @@ C
 C
 C     SET ERROR WEIGHT VECTOR WT
       CALL DDAWTS(NEQ,INFO(2),RTOL,ATOL,Y,RWORK(LWT),RPAR,IPAR)
-c      if(iero.gt.0) return
+c      if(ierror.gt.0) return
       DO 305 I = 1,NEQ
          IF(RWORK(LWT+I-1).LE.0.0D0) GO TO 713
 305      CONTINUE
@@ -1075,7 +1079,7 @@ C     COMPUTE INITIAL DERIVATIVE, UPDATING TN AND Y, IF APPLICABLE
      *  RWORK(LPHI),RWORK(LDELTA),RWORK(LE),
      *  RWORK(LWM),IWORK(LIWM),HMIN,RWORK(LROUND),
      *  INFO(10),NTEMP)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       IF (IDID .LT. 0) GO TO 390
 C
 C     LOAD H WITH H0.  STORE H IN RWORK(LH)
@@ -1101,7 +1105,7 @@ C
      *  RWORK(LPSI),IWORK(LKOLD),RWORK(LG0),RWORK(LG1),
      *  RWORK(LGX),JROOT,IRT,RWORK(LROUND),INFO(3),
      *  RWORK,IWORK,RPAR,IPAR)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       IF(IRT .NE. 0) GO TO 732
 C
 C     Check for a root in the interval (T0,TN], unless DDASRT
@@ -1112,7 +1116,7 @@ C
      *  RWORK(LPSI),IWORK(LKOLD),RWORK(LG0),RWORK(LG1),
      *  RWORK(LGX),JROOT,IRT,RWORK(LROUND),INFO(3),
      *  RWORK,IWORK,RPAR,IPAR)
-      if (iero.gt.0) return
+      if (ierror.gt.0) return
       IF(IRT .NE. 1) GO TO 390
       IWORK(LIRFND) = 1
       IDID = 4
@@ -1143,7 +1147,7 @@ C
      *  RWORK(LPSI),IWORK(LKOLD),RWORK(LG0),RWORK(LG1),
      *  RWORK(LGX),JROOT,IRT,RWORK(LROUND),INFO(3),
      *  RWORK,IWORK,RPAR,IPAR)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       IF(IRT .NE. 1) GO TO 405
       IWORK(LIRFND) = 1
       IDID = 4
@@ -1165,7 +1169,7 @@ C
       IF((TN-TOUT)*H.LT.0.0D0)GO TO 490
       CALL DDATRP(TN,TOUT,Y,YPRIME,NEQ,IWORK(LKOLD),
      *  RWORK(LPHI),RWORK(LPSI))
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       T=TOUT
       IDID = 3
       DONE = .TRUE.
@@ -1174,7 +1178,7 @@ C
       IF((TN - TOUT)*H .GT. 0.0D0) GO TO 425
       CALL DDATRP(TN,TN,Y,YPRIME,NEQ,IWORK(LKOLD),
      *  RWORK(LPHI),RWORK(LPSI))
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       T = TN
       IDID = 1
       DONE = .TRUE.
@@ -1182,7 +1186,7 @@ C
 425   CONTINUE
       CALL DDATRP(TN,TOUT,Y,YPRIME,NEQ,IWORK(LKOLD),
      *  RWORK(LPHI),RWORK(LPSI))
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       T = TOUT
       IDID = 3
       DONE = .TRUE.
@@ -1194,7 +1198,7 @@ C
       IF((TN-TOUT)*H.LT.0.0D0)GO TO 450
       CALL DDATRP(TN,TOUT,Y,YPRIME,NEQ,IWORK(LKOLD),
      *   RWORK(LPHI),RWORK(LPSI))
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       T=TOUT
       IDID = 3
       DONE = .TRUE.
@@ -1206,7 +1210,7 @@ C
       IF((TN - TOUT)*H .GT. 0.0D0) GO TO 445
       CALL DDATRP(TN,TN,Y,YPRIME,NEQ,IWORK(LKOLD),
      *  RWORK(LPHI),RWORK(LPSI))
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       T = TN
       IDID = 1
       DONE = .TRUE.
@@ -1214,7 +1218,7 @@ C
 445   CONTINUE
       CALL DDATRP(TN,TOUT,Y,YPRIME,NEQ,IWORK(LKOLD),
      *  RWORK(LPHI),RWORK(LPSI))
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       T = TOUT
       IDID = 3
       DONE = .TRUE.
@@ -1225,7 +1229,7 @@ C     CHECK WHETHER WE ARE WITH IN ROUNDOFF OF TSTOP
      *   (DABS(TN)+DABS(H)))GO TO 460
       CALL DDATRP(TN,TSTOP,Y,YPRIME,NEQ,IWORK(LKOLD),
      *  RWORK(LPHI),RWORK(LPSI))
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       IDID=2
       T=TSTOP
       DONE = .TRUE.
@@ -1260,7 +1264,7 @@ C
 C     UPDATE WT
 510   CALL DDAWTS(NEQ,INFO(2),RTOL,ATOL,RWORK(LPHI),
      *  RWORK(LWT),RPAR,IPAR)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       DO 520 I=1,NEQ
          IF(RWORK(I+LWT-1).GT.0.0D0)GO TO 520
            IDID=-3
@@ -1303,7 +1307,7 @@ C
      *   RWORK(LS),HMIN,RWORK(LROUND),
      *   IWORK(LPHASE),IWORK(LJCALC),IWORK(LK),
      *   IWORK(LKOLD),IWORK(LNS),INFO(10),NTEMP)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
 527   IF(IDID.LT.0)GO TO 600
 C
 C--------------------------------------------------------
@@ -1319,7 +1323,7 @@ C
      *  RWORK(LPSI),IWORK(LKOLD),RWORK(LG0),RWORK(LG1),
      *  RWORK(LGX),JROOT,IRT,RWORK(LROUND),INFO(3),
      *  RWORK,IWORK,RPAR,IPAR)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       IF(IRT .NE. 1) GO TO 529
       IWORK(LIRFND) = 1
       IDID = 4
@@ -1334,7 +1338,7 @@ C
              IF((TN-TOUT)*H.LT.0.0D0)GO TO 500
              CALL DDATRP(TN,TOUT,Y,YPRIME,NEQ,
      *         IWORK(LKOLD),RWORK(LPHI),RWORK(LPSI))
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
              IDID=3
              T=TOUT
              GO TO 580
@@ -1344,7 +1348,7 @@ C
              GO TO 580
 535          CALL DDATRP(TN,TOUT,Y,YPRIME,NEQ,
      *         IWORK(LKOLD),RWORK(LPHI),RWORK(LPSI))
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
              IDID=3
              T=TOUT
              GO TO 580
@@ -1352,7 +1356,7 @@ C
       IF((TN-TOUT)*H.LT.0.0D0)GO TO 542
          CALL DDATRP(TN,TOUT,Y,YPRIME,NEQ,
      *     IWORK(LKOLD),RWORK(LPHI),RWORK(LPSI))
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
          T=TOUT
          IDID=3
          GO TO 580
@@ -1364,7 +1368,7 @@ C
       GO TO 500
 545   CALL DDATRP(TN,TSTOP,Y,YPRIME,NEQ,
      *  IWORK(LKOLD),RWORK(LPHI),RWORK(LPSI))
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       IDID=2
       T=TSTOP
       GO TO 580
@@ -1375,13 +1379,13 @@ C
       GO TO 580
 552   CALL DDATRP(TN,TSTOP,Y,YPRIME,NEQ,
      *  IWORK(LKOLD),RWORK(LPHI),RWORK(LPSI))
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       IDID=2
       T=TSTOP
       GO TO 580
 555   CALL DDATRP(TN,TOUT,Y,YPRIME,NEQ,
      *   IWORK(LKOLD),RWORK(LPHI),RWORK(LPSI))
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       T=TOUT
       IDID=3
 580   CONTINUE
@@ -1582,7 +1586,11 @@ C***DATE WRITTEN   821001   (YYMMDD)
 C***REVISION DATE  900926   (YYMMDD)
 C***END PROLOGUE  DRCHEK
 C
+      
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+
+      include 'stack.h'
+
       PARAMETER (LNGE=16, LIRFND=18, LLAST=19, LIMAX=20,
      *           LT0=41, LTLAST=42, LALPHR=43, LX2=44)
       EXTERNAL G
@@ -1634,7 +1642,6 @@ C          STORED IN THE GLOBAL ARRAY IWORK.
 C INFO3  = COPY OF INFO(3) (INPUT ONLY).
 C-----------------------------------------------------------------------
 C     
-      common/ierode/iero
       H = PSI(1)
       IRT = 0
       DO 10 I = 1,NG
@@ -1647,9 +1654,9 @@ C EVALUATE G AT INITIAL T (STORED IN RWORK(LT0)), AND CHECK FOR
 C ZERO VALUES.----------------------------------------------------------
  100  CONTINUE
       CALL DDATRP(TN,RWORK(LT0),Y,YP,NEQ,KOLD,PHI,PSI)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       CALL G (NEQ, RWORK(LT0), Y, NG, G0, RPAR, IPAR)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       IWORK(LNGE) = 1
       ZROOT = .FALSE.
       DO 110 I = 1,NG
@@ -1662,7 +1669,7 @@ C G HAS A ZERO AT T.  LOOK AT G AT T + (SMALL INCREMENT). --------------
       DO 120 I = 1,NEQ
  120    Y(I) = Y(I) + TEMP2*PHI(I,2)
       CALL G (NEQ, RWORK(LT0), Y, NG, G0, RPAR, IPAR)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       IWORK(LNGE) = IWORK(LNGE) + 1
       ZROOT = .FALSE.
       DO 130 I = 1,NG
@@ -1680,9 +1687,9 @@ C
       IF (IWORK(LIRFND) .EQ. 0) GO TO 260
 C IF A ROOT WAS FOUND ON THE PREVIOUS STEP, EVALUATE G0 = G(T0). -------
       CALL DDATRP (TN, RWORK(LT0), Y, YP, NEQ, KOLD, PHI, PSI)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       CALL G (NEQ, RWORK(LT0), Y, NG, G0, RPAR, IPAR)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       IWORK(LNGE) = IWORK(LNGE) + 1
       ZROOT = .FALSE.
       DO 210 I = 1,NG
@@ -1697,9 +1704,9 @@ C G HAS A ZERO AT T0.  LOOK AT G AT T + (SMALL INCREMENT). -------------
  220    Y(I) = Y(I) + TEMP2*PHI(I,2)
       GO TO 240
  230  CALL DDATRP (TN, RWORK(LT0), Y, YP, NEQ, KOLD, PHI, PSI)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
  240  CALL G (NEQ, RWORK(LT0), Y, NG, G0, RPAR, IPAR)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       IWORK(LNGE) = IWORK(LNGE) + 1
       ZROOT = .FALSE.
       DO 250 I = 1,NG
@@ -1722,13 +1729,13 @@ C SET T1 TO TN OR TOUT, WHICHEVER COMES FIRST, AND GET G AT T1. --------
       T1 = TOUT
       IF ((T1 - RWORK(LT0))*H .LE. 0.0D0) GO TO 390
       CALL DDATRP (TN, T1, Y, YP, NEQ, KOLD, PHI, PSI)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       GO TO 330
  310  T1 = TN
       DO 320 I = 1,NEQ
  320    Y(I) = PHI(I,1)
  330  CALL G (NEQ, T1, Y, NG, G1, RPAR, IPAR)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       IWORK(LNGE) = IWORK(LNGE) + 1
 C CALL DROOTS TO SEARCH FOR ROOT IN INTERVAL FROM T0 TO T1. ------------
       JFLAG = 0
@@ -1736,12 +1743,12 @@ C CALL DROOTS TO SEARCH FOR ROOT IN INTERVAL FROM T0 TO T1. ------------
       CALL DROOTS (NG, HMING, JFLAG, RWORK(LT0), T1, G0, G1, GX, X,
      *             JROOT, IWORK(LIMAX), IWORK(LLAST), RWORK(LALPHR),
      *             RWORK(LX2))
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       IF (JFLAG .GT. 1) GO TO 360
       CALL DDATRP (TN, X, Y, YP, NEQ, KOLD, PHI, PSI)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       CALL G (NEQ, X, Y, NG, GX, RPAR, IPAR)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       IWORK(LNGE) = IWORK(LNGE) + 1
       GO TO 350
  360  RWORK(LT0) = X
@@ -1749,7 +1756,7 @@ C CALL DROOTS TO SEARCH FOR ROOT IN INTERVAL FROM T0 TO T1. ------------
       IF (JFLAG .EQ. 4) GO TO 390
 C FOUND A ROOT.  INTERPOLATE TO X AND RETURN. --------------------------
       CALL DDATRP (TN, X, Y, YP, NEQ, KOLD, PHI, PSI)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       IRT = 1
       RETURN
 C
@@ -1769,6 +1776,9 @@ C***REVISION DATE  900926   (YYMMDD)
 C***END PROLOGUE  DROOTS
 C
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+
+      include 'stack.h'
+      
       INTEGER NG, JFLAG, JROOT, IMAX, LAST
       DOUBLE PRECISION HMIN, X0, X1, G0, G1, GX, X, ALPHA, X2
       DIMENSION G0(NG), G1(NG), GX(NG), JROOT(NG)
@@ -1853,7 +1863,6 @@ C-----------------------------------------------------------------------
       INTEGER I, IMXOLD, NXLAST
       DOUBLE PRECISION T2, TMAX, ZERO
       LOGICAL ZROOT, SGNCHG, XROOT
-      common/ierode/iero
       DATA ZERO/0.0D0/
 C
       IF (JFLAG .EQ. 1) GO TO 200

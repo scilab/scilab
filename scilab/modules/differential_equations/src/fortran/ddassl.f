@@ -1,7 +1,7 @@
       SUBROUTINE DDAINI (X, Y, YPRIME, NEQ, RES, JAC, H, WT, IDID, RPAR,
      +   IPAR, PHI, DELTA, E, WM, IWM, HMIN, UROUND, NONNEG, NTEMP)
-      common/ierode/iero
 
+      include 'stack.h'
 C***BEGIN PROLOGUE  DDAINI
 C***SUBSIDIARY
 C***PURPOSE  Initialization routine for DDASSL.
@@ -66,7 +66,7 @@ C
       INTEGER  I, IER, IRES, JCALC, LNJE, LNRE, M, MAXIT, MJAC, NCF,
      *   NEF, NSF
       DOUBLE PRECISION
-     *   CJ, DAMP, DELNRM, ERR, OLDNRM, R, RATE, S, XOLD, YNORM
+     *   CJ, DAMP, DELNRM, IERR, OLDNRM, R, RATE, S, XOLD, YNORM
       LOGICAL  CONVGD
 C
       PARAMETER (LNRE=12)
@@ -212,9 +212,9 @@ C-----------------------------------------------------
 C
       DO 510 I=1,NEQ
 510      E(I)=Y(I)-PHI(I,1)
-      ERR=DDANRM(NEQ,E,WT,RPAR,IPAR)
+      IERR=DDANRM(NEQ,E,WT,RPAR,IPAR)
 C
-      IF (ERR.LE.1.0D0) RETURN
+      IF (IERR.LE.1.0D0) RETURN
 C
 C
 C
@@ -249,7 +249,7 @@ C
          RETURN
 C
 640   NEF=NEF+1
-      R=0.90D0/(2.0D0*ERR+0.0001D0)
+      R=0.90D0/(2.0D0*IERR+0.0001D0)
       R=MAX(0.1D0,MIN(0.5D0,R))
       H=H*R
       IF (ABS(H).GE.HMIN.AND.NEF.LT.10) GO TO 690
@@ -262,7 +262,7 @@ C-------------END OF SUBROUTINE DDAINI----------------------
       SUBROUTINE DDAJAC (NEQ, X, Y, YPRIME, DELTA, CJ, H,
      +   IER, WT, E, WM, IWM, RES, IRES, UROUND, JAC, RPAR,
      +   IPAR, NTEMP)
-      common/ierode/iero
+      include 'stack.h'
 
 C***BEGIN PROLOGUE  DDAJAC
 C***SUBSIDIARY
@@ -549,7 +549,7 @@ C------END OF SUBROUTINE DDASLV------
       END
       SUBROUTINE DDASSL (RES, NEQ, T, Y, YPRIME, TOUT, INFO, RTOL, ATOL,
      +   IDID, RWORK, LRW, IWORK, LIW, RPAR, IPAR, JAC)
-      common/ierode/iero
+      include 'stack.h'
 C***BEGIN PROLOGUE  DDASSL
 C***PURPOSE  This code solves a system of differential/algebraic
 C            equations of the form G(T,Y,YPRIME) = 0.
@@ -2159,7 +2159,8 @@ C-----------END OF SUBROUTINE DDASSL------------------------------------
      +   IDID, RPAR, IPAR, PHI, DELTA, E, WM, IWM, ALPHA, BETA, GAMMA,
      +   PSI, SIGMA, CJ, CJOLD, HOLD, S, HMIN, UROUND, IPHASE, JCALC,
      +   K, KOLD, NS, NONNEG, NTEMP)
-      common/ierode/iero
+      
+      include 'stack.h'
 
 C***BEGIN PROLOGUE  DDASTP
 C***SUBSIDIARY
@@ -2265,7 +2266,7 @@ C
      *   LETF, LMXORD, LNJE, LNRE, LNST, M, MAXIT, NCF, NEF, NSF, NSP1
       DOUBLE PRECISION
      *   ALPHA0, ALPHAS, CJLAST, CK, DELNRM, ENORM, ERK, ERKM1,
-     *   ERKM2, ERKP1, ERR, EST, HNEW, OLDNRM, PNORM, R, RATE, TEMP1,
+     *   ERKM2, ERKP1, IERR, EST, HNEW, OLDNRM, PNORM, R, RATE, TEMP1,
      *   TEMP2, TERK, TERKM1, TERKM2, TERKP1, XOLD, XRATE
       LOGICAL  CONVGD
 C
@@ -2565,8 +2566,8 @@ C
 C     CALCULATE THE LOCAL ERROR FOR THE CURRENT STEP
 C     TO SEE IF THE STEP WAS SUCCESSFUL
 430   CONTINUE
-      ERR = CK * ENORM
-      IF(ERR .GT. 1.0D0)GO TO 600
+      IERR = CK * ENORM
+      IF(IERR .GT. 1.0D0)GO TO 600
 C
 C
 C

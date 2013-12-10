@@ -20,7 +20,6 @@ c
 c     
       logical allowptr
       double precision y(ny),gout(ng),t(*)
-      common/ierode/iero
 c     
       character tmpbuf * (bsiz) 
       integer vol,tops,nordre
@@ -39,7 +38,7 @@ c
          call basout(io,wte,' bsurf   top:'//tmpbuf(1:4))
       endif
 c
-      iero=0
+      ierror=0
       mrhs=2
 c     
       ilp=iadr(lstk(top))
@@ -55,9 +54,9 @@ c     cas d'un simulateur en fortran
       endif
 c     external is a Scilab function
 
-c     on return iero=1 is used to notify to the ode solver that
+c     on return ierror=1 is used to notify to the ode solver that
 c     scilab was not able to evaluate the external
-      iero=1
+      ierror=1
 
 c     Putting Fortran arguments on Scilab stack 
 c+    
@@ -134,8 +133,8 @@ c     transfert des variables  de sortie vers fortran
       call btof(gout,ng)
       if(err.gt.0.or.err1.gt.0) return
 c+    
-c     normal return iero set to 0
-      iero=0 
+c     normal return ierror set to 0
+      ierror=0 
       return
 c     
  9999 continue
