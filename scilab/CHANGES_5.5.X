@@ -157,6 +157,8 @@ Scilab Bug Fixes
 
 * Bug #12121 fixed - inv function did not work for complex sparse matrices.
 
+* Bug #12156 fixed - Closing a Scilab session in Javasci could lead to a HDF5 error message.
+
 * Bug #12334 fixed - Mark color in legend was invalid.
 
 * Bug #12481 fixed - xlabel could not be used with Scilab property names.
