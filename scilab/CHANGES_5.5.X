@@ -11,6 +11,7 @@ New Features
  - jcreatejar - Creates a Java archive (JAR) from a set of files / directories
  - ilib_build_jar - Builds Java packages from sources into a JAR file
  - ifftshift - inverse FFT shift
+ - unwrap - unwraps/unfolds a Y(x) profile
 
 * modulo() and pmodulo() now support integers & hypermatrices (See bug #13002).
 
@@ -155,6 +156,8 @@ Scilab Bug Fixes
 * Bug #9697 fixed - Printed information for optim "qn" and "gc" with bounds and imp=1 fixed.
 
 * Bug #9701 fixed - optim with "qn" option was failing for large problems.
+
+* Bug #9819 fixed - unwrap function did not exist in Scilab.
 
 * Bug #9840 fixed - Default G tolerance in lsqrsolve was too large.
 

@@ -66,7 +66,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // examples with the second form
 x=[1,%i,-1,%i]
 phase_x=atan(imag(x),real(x))
@@ -90,6 +90,9 @@ atan(-%i)
         <simplelist type="inline">
             <member>
                 <link linkend="tan">tan</link>
+            </member>
+            <member>
+                <link linkend="unwrap">unwrap</link>
             </member>
             <member>
                 <link linkend="ieee">ieee</link>
