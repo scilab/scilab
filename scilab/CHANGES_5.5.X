@@ -207,6 +207,8 @@ Scilab Bug Fixes
 
 * Bug #12963 fixed - drawaxis did not place the axis correctly.
 
+* Bug #12968 fixed - Cannot save variable named 'temp'.
+
 * Bug #12971 fixed - getURL downloaded file name was wrong.
 
 * Bug #12973 fixed - Exception occuring when clicking on a figure at creation fixed.
