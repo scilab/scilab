@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-07-16 15:49+0000\n"
+"PO-Revision-Date: 2013-12-06 18:18+0000\n"
 "Last-Translator: Roberto Coelho de Berredo <rcberredo@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: pt_BR\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -30,6 +30,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument %d: A real expected.\n"
 msgstr ""
+"%s: Tipo incorreto para o argumento #%d: esperava-se um número real.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -40,6 +41,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument %d: Handle matrix expected.\n"
 msgstr ""
+"%s: Tipo incorreto para o argumento #%d: esperava-se uma matriz de "
+"manipuladores.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
@@ -49,20 +52,26 @@ msgstr ""
 
 #, c-format
 msgid "%s: Input argument #%d must be a valid handle.\n"
-msgstr ""
+msgstr "%s: O argumento de entrada #%d deve ser um manipulador válido.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
 msgstr ""
+"%s: Tipo incorreto para  argumento de entrada #%d: esperava-se um "
+"manipulador \"%s\".\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A scalar or figure handle expected.\n"
 msgstr ""
+"%s: Tipo incorreto para  argumento de entrada #%d: esperava-se um "
+"manipulador de figura ou um escalar.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
 msgstr ""
+"%s: Tipo incorreto para  argumento de entrada #%d: esperava-se uma matriz de "
+"textos.\n"
 
 #, c-format
 msgid ""
@@ -133,10 +142,19 @@ msgid ""
 "Unable to create export file, not enough memory. Decreasing the number of "
 "elements or the size of the figure should fix this error."
 msgstr ""
+"Impossível criar arquivo de exportação; memória esgotada. Reduzir a "
+"quantidade de elementos ou o tamanho da figura pode corrigir este erro."
 
 msgid ""
 "Unable to create export file, please fill a bug report at "
 "http://bugzilla.scilab.org."
+msgstr ""
+"Impossível criar arquivo de exportação; por favor, relate o erro em "
+"http://bugzilla.scilab.org."
+
+msgid ""
+"Unable to create export file, the file cannot be created or is locked by an "
+"other process."
 msgstr ""
 
 msgid "Scilab Graphic export module not installed.\n"

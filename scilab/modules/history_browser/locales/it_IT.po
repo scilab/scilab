@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: it\n"
 
 msgid "History loading in progress..."
@@ -61,3 +61,6 @@ msgstr "Errore"
 
 msgid "Cannot delete current session beginning line."
 msgstr "Impossile eliminare l'attuale linea di inizio sessione."
+
+msgid "History preferences"
+msgstr ""

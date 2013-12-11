@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-07-29 09:09+0000\n"
+"PO-Revision-Date: 2013-12-08 11:56+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -46,6 +46,10 @@ msgstr "%s : lnkszとlnktyp引数は、同じ長さを持っていなくては�
 #, c-format
 msgid "%s : No more free memory.\n"
 msgstr "%s : これ以上空きメモリはありません。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定してください.\n"
 
 #, c-format
 msgid "%s : First argument must be a scicos_block typed list.\n"
@@ -580,10 +584,6 @@ msgid "Error: Cannot find file '%s'.\n"
 msgstr "エラー: ファイルが見つかりません '%s'.\n"
 
 #, c-format
-msgid "Error: cannot write to  '%s'  \n"
-msgstr "エラー: '%s' に書き込めません  \n"
-
-#, c-format
 msgid ""
 "\n"
 "Warning: The initialization system #%d returns a NaN/Inf"
@@ -784,6 +784,10 @@ msgid ""
 "to include a block with continuous-time state in your diagram.\n"
 "   You can for example include DUMMY CLSS block (linear palette)."
 msgstr ""
+"連続時間状態量がありません. 閾値が無視されました; \n"
+"これにより外部イベントを生成しない場合には問題はないでしょう.\n"
+"閾値を再度有効にする場合, ダイアグラムに連続時間状態量を有するブロックを含める必要があります. 例にDUMMY CLSS ブロック "
+"(線形パレット)を含めることができる."
 
 msgid "Diagram contains implicit blocks, compiling for implicit Solver."
 msgstr "ダイアグラムには陰的ブロックが含まれています. 陰解法でコンパイル中."
@@ -941,13 +945,21 @@ msgid "Superblock should not contains any Scilab function block."
 msgstr "スーパーブロックにScilab関数ブロックを含めてはいけません."
 
 msgid "Generated block cannot be linked with Scilab."
-msgstr ""
+msgstr "生成されたブロックをScilabにリンクできませんでした."
 
 msgid "Evaluation problem: value not updated from context."
 msgstr "評価時の問題: 値をコンテキストから更新できません."
 
 msgid "Evaluation problem: Unknown block"
 msgstr "評価時の問題: 未知のブロック"
+
+#, c-format
+msgid ""
+"%s: Error while calling block %s [uid='%s']: invalid parameter (ier=%f, \\"
+"%scicos_prob=%f).\n"
+msgstr ""
+"%s: ブロック %s [uid='%s'] をコール中にエラーが発生しました: パラメータが無効です (ier=%f, \\"
+"%scicos_prob=%f).\n"
 
 msgid "Cannot load dynamic library: "
 msgstr "動的ライブラリを読み込めませんでした: "
@@ -977,16 +989,16 @@ msgid "This Super block input port is not connected."
 msgstr "このスーパーブロックの入力ポートが接続されていません."
 
 msgid "Input ports are not numbered properly."
-msgstr ""
+msgstr "入力ポートが適切に番号付けられていません."
 
 msgid "Output ports are not numbered properly."
-msgstr ""
+msgstr "出力ポートが適切に番号付けられていません."
 
 msgid "Event input ports are not numbered properly."
-msgstr ""
+msgstr "イベント入力ポートが適切に番号付けられていません."
 
 msgid "Event output ports are not numbered properly."
-msgstr ""
+msgstr "イベント出力ポートが適切に番号付けられていません."
 
 #, c-format
 msgid "%s: Empty diagram"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-02 14:56+0000\n"
-"Last-Translator: Wesh <Unknown>\n"
+"PO-Revision-Date: 2013-12-06 18:06+0000\n"
+"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: \n"
 
 #, c-format
@@ -95,12 +95,21 @@ msgid ""
 msgstr "%s：输入参数#%d的类型错误：应该为一个实数标量或者一个Figure句柄。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A valid figure identifier expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
@@ -317,6 +326,10 @@ msgstr ""
 "%s"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s：不能读取第%d个输入参数。\n"
+
+#, c-format
 msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr ""
 
@@ -355,7 +368,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A handle expected.\n"
+msgid "%s: Can not create output argument #%d.\n"
 msgstr ""
 
 #, c-format
@@ -406,10 +419,6 @@ msgid ""
 "%s: A Java exception arised:\n"
 "%s"
 msgstr ""
-
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s：不能读取第%d个输入参数。\n"
 
 #, c-format
 msgid ""
@@ -1144,6 +1153,32 @@ msgstr "计算并显示所选表达式"
 msgid "Evaluate selection with no echo"
 msgstr "计算但不显示所选表达"
 
+#, c-format
+msgid "Option for %s format"
+msgstr ""
+
+msgid "Portrait"
+msgstr ""
+
+msgid "Landscape"
+msgstr ""
+
+msgid "Confirm"
+msgstr ""
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Orientation"
+msgstr ""
+
+#, c-format
+msgid "An error occurred during export: %s"
+msgstr ""
+
+msgid "Export error"
+msgstr ""
+
 msgid "Windows BMP image"
 msgstr "Windows BMP图像"
 
@@ -1165,6 +1200,9 @@ msgstr ""
 msgid "Encapsulated PostScript image (EPS)"
 msgstr ""
 
+msgid "PostScript image (PS)"
+msgstr ""
+
 msgid "FIG image"
 msgstr "FIG图像"
 
@@ -1177,11 +1215,11 @@ msgstr "SVG图像"
 msgid "All files"
 msgstr "全部文件"
 
-msgid "Export"
-msgstr "导出"
-
 msgid "Untitled-export"
 msgstr "未命名的导出"
+
+msgid "Export"
+msgstr "导出"
 
 msgid "Preview"
 msgstr "预览"
@@ -1198,13 +1236,11 @@ msgstr "请指定一个文件格式"
 msgid "Error on export"
 msgstr "导出时发生错误"
 
-msgid "Unrecognized extension '"
-msgstr "不可识别的扩展名'"
-
+#, c-format
 msgid ""
-"'.\n"
+"Unrecognized extension '%s'.\n"
 " Please specify a valid file format."
-msgstr "'。"
+msgstr ""
 
 msgid "Font Chooser"
 msgstr "字体选择器"
@@ -1229,9 +1265,6 @@ msgstr ""
 
 msgid "Ok"
 msgstr "确定"
-
-msgid "Cancel"
-msgstr "取消"
 
 msgid "Loading help browser..."
 msgstr "加载帮助浏览器..."
@@ -1382,7 +1415,7 @@ msgstr ""
 msgid "Paste style"
 msgstr ""
 
-msgid "Paste the copied style on this axes"
+msgid "Paste the copied style on these axes"
 msgstr ""
 
 msgid "Enter the text"
@@ -1451,6 +1484,15 @@ msgstr ""
 msgid "Matplot"
 msgstr ""
 
+msgid "Arc Drawing Method"
+msgstr ""
+
+msgid "Auto Rotation"
+msgstr ""
+
+msgid "Auto Position"
+msgstr ""
+
 msgid "Auto Ticks"
 msgstr ""
 
@@ -1506,9 +1548,6 @@ msgid "Line Mode"
 msgstr ""
 
 msgid "Mark Mode"
-msgstr ""
-
-msgid "Orientation"
 msgstr ""
 
 msgid "Visible"
@@ -1777,6 +1816,12 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+msgid "Start Angle"
+msgstr ""
+
+msgid "End Angle"
+msgstr ""
+
 msgid "Number of current figure."
 msgstr ""
 
@@ -1895,6 +1940,9 @@ msgid "Title Page"
 msgstr ""
 
 msgid "Axis Title"
+msgstr ""
+
+msgid "Font Angle"
 msgstr ""
 
 msgid "Font Color"
@@ -2250,6 +2298,10 @@ msgid ""
 msgstr "%s：输入参数#%d的大小错误：应该为一个Figure句柄或者一个实数。\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Type %s is not implemented.\n"
 msgstr "%s：类型%s尚未实现。\n"
 
@@ -2275,6 +2327,10 @@ msgstr ""
 msgid ""
 "Answer given for %s \n"
 " is incorrect: %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format

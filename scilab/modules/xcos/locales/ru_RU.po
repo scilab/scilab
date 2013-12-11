@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-22 11:18+0000\n"
+"PO-Revision-Date: 2013-10-15 15:59+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: ru\n"
 
 #, c-format
@@ -244,8 +244,8 @@ msgstr "Формировать матрицу Якоби"
 msgid "Error"
 msgstr "Ошибка"
 
-msgid "Unknowns not equals to Equations"
-msgstr "Количество неизвестных не равняется количеству уравнений"
+msgid "Unknowns not equal to Equations"
+msgstr ""
 
 msgid "Unknowns"
 msgstr "Неизвестные"
@@ -898,7 +898,7 @@ msgid "Inverted pendulum"
 msgstr "Перевёрнутый маятник"
 
 msgid "Lorenz butterfly"
-msgstr ""
+msgstr "Бабочка Лоренца"
 
 msgid "RLC Circuit"
 msgstr "RLC-контур"
@@ -1242,6 +1242,100 @@ msgstr "%s: Неверный тип аргумента №%d: Ожидался �
 #, c-format
 msgid "Field %s has different values."
 msgstr "Поле %s имеет разные значения."
+
+msgid "Stopped before block:"
+msgstr ""
+
+msgid "Stopped after block:"
+msgstr ""
+
+msgid "State derivative computation"
+msgstr ""
+
+msgid "Regular outputs update"
+msgstr ""
+
+msgid "States update on discrete event"
+msgstr ""
+
+msgid "Output activation dates"
+msgstr ""
+
+msgid "Initialization"
+msgstr ""
+
+msgid "Ending"
+msgstr ""
+
+msgid "ReInitialization"
+msgstr ""
+
+msgid "Continous states properties update"
+msgstr ""
+
+msgid "Zero crossing surfaces computation"
+msgstr ""
+
+msgid "Residual computation"
+msgstr ""
+
+msgid "&File"
+msgstr ""
+
+msgid "&Tools"
+msgstr ""
+
+msgid "&Edit"
+msgstr ""
+
+msgid "&?"
+msgstr ""
+
+msgid "Xcos debug"
+msgstr ""
+
+msgid "Break point conditions"
+msgstr ""
+
+msgid "Break on selected flags"
+msgstr ""
+
+msgid "After call"
+msgstr ""
+
+msgid "Before call"
+msgstr ""
+
+msgid "After date"
+msgstr ""
+
+msgid "On the Scilab condition above"
+msgstr ""
+
+msgid "Current simulation state"
+msgstr ""
+
+msgid "scs_m block path:"
+msgstr ""
+
+msgid "Time:"
+msgstr ""
+
+msgid "Flag:"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "End debug"
+msgstr ""
+
+msgid "Pause"
+msgstr ""
+
+#, c-format
+msgid "Use the %s button to end the debugging"
+msgstr ""
 
 msgid "The Scicos libraries are not loaded"
 msgstr "Библиотеки Scicos не загружены"

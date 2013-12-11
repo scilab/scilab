@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-04 14:14+0000\n"
+"PO-Revision-Date: 2013-12-06 19:57+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: uk\n"
 
 #, c-format
@@ -247,10 +247,13 @@ msgid "Missing vect for random permutation\n"
 msgstr "Не вказано значення vect для випадкової перестановки\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: Column vector expected.\n"
+msgid ""
+"%s: Wrong type for input argument: Matrix (full or sparse) or Hypermatrix of "
+"Reals, Complexes, Integers, Booleans, Strings or Polynomials expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра: слід використовувати тип вектора-"
-"стовпчика.\n"
+"%s: помилковий тип вхідного параметра: мало бути використано матрицю "
+"(заповнену або розріджену) або гіперматрицю з дійсних, комплексних, цілих, "
+"булевих, рядкових або поліноміальних значень.\n"
 
 msgid "Missing N and P for Negative Binomial law\n"
 msgstr "Не вказано N і P для від’ємного біноміального розподілу\n"
@@ -272,6 +275,12 @@ msgstr ""
 msgid "Missing Mean and Cov for Multivariate Normal law\n"
 msgstr ""
 "Не вказано Mean і Cov для багатовимірного нормального закону розподілу\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Column vector expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра: слід використовувати тип вектора-"
+"стовпчика.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Square matrix expected.\n"

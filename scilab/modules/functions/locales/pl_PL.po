@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: pl\n"
 
 #, c-format
@@ -99,6 +99,10 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: Nieprawidłowy typ dla argumentu wejściowego nr %d.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: obsolete op-code %d.\n"
 msgstr "%s: zdezaktualizowany op-code %d.\n"
 
@@ -113,6 +117,10 @@ msgstr "%s: Proszę sprawdzić: %s\n"
 #, c-format
 msgid "%s: File %s doesn't exist.\n"
 msgstr "%s: Plik %s nie istnieje.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -206,8 +214,8 @@ msgstr ""
 "%s: Nieprawidłowa wartość dla argumentu wejściowego nr %d: oczekiwana nazwa "
 "funkcji Scilab.\n"
 
-msgid "No comment available.\n"
-msgstr "Komentarz niedostępny.\n"
+msgid "No comment available."
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"

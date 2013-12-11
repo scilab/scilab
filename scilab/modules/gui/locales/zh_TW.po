@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: \n"
 
 #, c-format
@@ -95,12 +95,21 @@ msgid ""
 msgstr "%s:  第 %d 輸入參數之型態錯誤 : 應為一實數純量或一 'Figure'  代碼 (handle).\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一字串.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A valid figure identifier expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一字串.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
@@ -313,6 +322,10 @@ msgid ""
 msgstr ""
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr ""
 
@@ -351,7 +364,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A handle expected.\n"
+msgid "%s: Can not create output argument #%d.\n"
 msgstr ""
 
 #, c-format
@@ -401,10 +414,6 @@ msgstr "無法取得目前之 look and feel"
 msgid ""
 "%s: A Java exception arised:\n"
 "%s"
-msgstr ""
-
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
@@ -1140,6 +1149,32 @@ msgstr ""
 msgid "Evaluate selection with no echo"
 msgstr ""
 
+#, c-format
+msgid "Option for %s format"
+msgstr ""
+
+msgid "Portrait"
+msgstr ""
+
+msgid "Landscape"
+msgstr ""
+
+msgid "Confirm"
+msgstr ""
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Orientation"
+msgstr ""
+
+#, c-format
+msgid "An error occurred during export: %s"
+msgstr ""
+
+msgid "Export error"
+msgstr ""
+
 msgid "Windows BMP image"
 msgstr "Windows 格式點陣圖"
 
@@ -1161,6 +1196,9 @@ msgstr "增強中繼檔型(EMF) 影像"
 msgid "Encapsulated PostScript image (EPS)"
 msgstr "封裝 PostScript(EPS) 影像"
 
+msgid "PostScript image (PS)"
+msgstr ""
+
 msgid "FIG image"
 msgstr "FIG 影像"
 
@@ -1173,11 +1211,11 @@ msgstr "SVG 影像"
 msgid "All files"
 msgstr "所有檔案"
 
-msgid "Export"
-msgstr "匯出"
-
 msgid "Untitled-export"
 msgstr "無標題匯出"
+
+msgid "Export"
+msgstr "匯出"
 
 msgid "Preview"
 msgstr "預覽"
@@ -1194,13 +1232,11 @@ msgstr "請指定檔案格式"
 msgid "Error on export"
 msgstr "匯出時發生錯誤"
 
-msgid "Unrecognized extension '"
-msgstr "副檔名無法識別 '"
-
+#, c-format
 msgid ""
-"'.\n"
+"Unrecognized extension '%s'.\n"
 " Please specify a valid file format."
-msgstr "'."
+msgstr ""
 
 msgid "Font Chooser"
 msgstr "字型選擇"
@@ -1225,9 +1261,6 @@ msgstr ""
 
 msgid "Ok"
 msgstr "確定"
-
-msgid "Cancel"
-msgstr "取消"
 
 msgid "Loading help browser..."
 msgstr "載入線上手冊瀏覽器..."
@@ -1378,7 +1411,7 @@ msgstr ""
 msgid "Paste style"
 msgstr ""
 
-msgid "Paste the copied style on this axes"
+msgid "Paste the copied style on these axes"
 msgstr ""
 
 msgid "Enter the text"
@@ -1447,6 +1480,15 @@ msgstr ""
 msgid "Matplot"
 msgstr ""
 
+msgid "Arc Drawing Method"
+msgstr ""
+
+msgid "Auto Rotation"
+msgstr ""
+
+msgid "Auto Position"
+msgstr ""
+
 msgid "Auto Ticks"
 msgstr ""
 
@@ -1502,9 +1544,6 @@ msgid "Line Mode"
 msgstr ""
 
 msgid "Mark Mode"
-msgstr ""
-
-msgid "Orientation"
 msgstr ""
 
 msgid "Visible"
@@ -1773,6 +1812,12 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+msgid "Start Angle"
+msgstr ""
+
+msgid "End Angle"
+msgstr ""
+
 msgid "Number of current figure."
 msgstr ""
 
@@ -1891,6 +1936,9 @@ msgid "Title Page"
 msgstr ""
 
 msgid "Axis Title"
+msgstr ""
+
+msgid "Font Angle"
 msgstr ""
 
 msgid "Font Color"
@@ -2246,6 +2294,10 @@ msgid ""
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一圖形代碼 (handle) 或實數.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Type %s is not implemented.\n"
 msgstr "%s: 型態 %s 未實作.\n"
 
@@ -2274,6 +2326,10 @@ msgid ""
 msgstr ""
 "求得解 %s \n"
 " 是不正確: %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-27 14:47+0000\n"
+"PO-Revision-Date: 2013-12-10 15:38+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: ru\n"
 
 #, c-format
@@ -25,11 +25,6 @@ msgstr "%s: Не могу прочитать входной аргумент №
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалось логическое значение.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -44,10 +39,6 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
 msgid "%s: Can not read named argument %s.\n"
 msgstr "%s: Не могу прочитать именованный аргумент %s.\n"
 
@@ -58,10 +49,6 @@ msgstr "%s: Не удалось перейти в каталог %s\n"
 #, c-format
 msgid "%s: Cannot go to directory.\n"
 msgstr "%s: Не удалось перейти в каталог.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A string expected.\n"
-msgstr "%s: Неверное значение входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid ""
@@ -121,8 +108,11 @@ msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr "%s: Неверный тип входных параметров: ожидались строки.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: Неверный размер входного параметра №%d.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидался массив размерности (1 x "
+"n) или (m x 1).\n"
 
 #, c-format
 msgid ""
@@ -133,9 +123,8 @@ msgstr ""
 "точкой.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real values expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидались вещественные значения.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: can not open file %s.\n"
@@ -284,6 +273,13 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась строка или логический "
+"блок.\n"
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: String or logical unit expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась строка или логический "
@@ -310,13 +306,6 @@ msgid "%s: No input file associated to logical unit %d.\n"
 msgstr "%s: Нет входного файла, который связан с логическим блоком %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалась строка или логический "
-"блок.\n"
-
-#, c-format
 msgid "%s: invalid filename.\n"
 msgstr "%s: недопустимое имя файла.\n"
 
@@ -329,13 +318,6 @@ msgid ""
 "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалась строка или целое число.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидался массив размерности (1 x "
-"n) или (m x 1).\n"
 
 #, c-format
 msgid "%s: Specified format cannot include any '\\n'\n"
@@ -353,6 +335,11 @@ msgid "%s: Wrong value for input argument #%d: 'w' or 'u' string expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось строковое значение "
 "'w' либо 'u'.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалось логическое значение.\n"
 
 #, c-format
 msgid "%s: An error occurred.\n"
@@ -378,6 +365,10 @@ msgid "Could not parse the URL.\n"
 msgstr "Не удалось проанализировать URL.\n"
 
 #, c-format
+msgid "Could not read the configuration file '%s'.\n"
+msgstr "Не удалось прочитать файл конфигурации '%s'.\n"
+
+#, c-format
 msgid "Failed to read the scicurl_config file '%s'.\n"
 msgstr "Не удалось прочитать scicurl_config-файл '%s'.\n"
 
@@ -399,8 +390,8 @@ msgstr ""
 "'='\n"
 
 #, c-format
-msgid "Failed opening '%s' for writing.\n"
-msgstr "Не удалось открыть '%s' на запись.\n"
+msgid "Failed getting current dir, error code: %d\n"
+msgstr "Не удалось получить текущую директорию, код ошибки: %d\n"
 
 #, c-format
 msgid "Failed to set URL [%s]\n"
@@ -431,8 +422,16 @@ msgid "Failed to set write data [%s]\n"
 msgstr "Не удалось установить данные для записи [%s]\n"
 
 #, c-format
+msgid "Failed to set 'Follow Location' [%s]\n"
+msgstr ""
+
+#, c-format
 msgid "Transfer did not complete successfully: %s\n"
 msgstr "Передача завершилась неудачно: %s\n"
+
+#, c-format
+msgid "Failed opening '%s' for writing.\n"
+msgstr "Не удалось открыть '%s' на запись.\n"
 
 msgid "unclosed [ directive."
 msgstr "незакрытое указание «[»."

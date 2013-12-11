@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-07-28 15:18+0000\n"
+"PO-Revision-Date: 2013-12-08 11:36+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -104,12 +104,21 @@ msgid ""
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数スカラーまたは'Figure'のハンドルを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A valid figure identifier expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 有効な図IDを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
@@ -338,8 +347,12 @@ msgstr ""
 "%s"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: 入力引数 #%d を読み込めません.\n"
+
+#, c-format
 msgid "%s: Wrong number for input argument: %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています:  %d を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -347,15 +360,15 @@ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の次元が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: %d または %d を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -363,29 +376,29 @@ msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引�
 
 #, c-format
 msgid "%s: Wrong number for input argument: %d or %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています: %d または %d を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: 1-by-%d or %d-by-1 vector expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 1行 %d 列または %d行1列のベクトル を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています:  スカラーまたはベクトルを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A handle expected.\n"
-msgstr ""
+msgid "%s: Can not create output argument #%d.\n"
+msgstr "%s: 出力引数 #%d を作成できませんでした.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A handle expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: ハンドルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
 
 #, c-format
 msgid ""
@@ -431,10 +444,8 @@ msgid ""
 "%s: A Java exception arised:\n"
 "%s"
 msgstr ""
-
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: 入力引数 #%d を読み込めません.\n"
+"%s: Java例外が発生しました:\n"
+"%s"
 
 #, c-format
 msgid ""
@@ -653,19 +664,19 @@ msgid "Stop datatip manager"
 msgstr "データティップマネージャを停止"
 
 msgid "Start curve data modification"
-msgstr ""
+msgstr "曲線データの修正を開始"
 
 msgid "Stop curve data modification"
-msgstr ""
+msgstr "曲線データの修正を終了"
 
 msgid "Plot Browser"
-msgstr ""
+msgstr "プロットブラウザ"
 
 msgid "Scilab Graphic Editor - GED"
-msgstr ""
+msgstr "Scilabグラフィックエディタ - GED"
 
 msgid "&Quick Editor"
-msgstr ""
+msgstr "クイックエディタ (&Q)"
 
 msgid "&MVC"
 msgstr "&MVC"
@@ -883,13 +894,13 @@ msgid "Original View"
 msgstr "デフォルトビュー"
 
 msgid "Toggle datatip mode"
-msgstr ""
+msgstr "データティップモードをトグル"
 
 msgid "Open the graphics editor"
-msgstr ""
+msgstr "グラフィックエディタを開く"
 
 msgid "Toggle curve data modification"
-msgstr ""
+msgstr "曲線データ修正をトグル"
 
 #
 # File: scilab_fake_localization_file.c, line: 85
@@ -1326,6 +1337,32 @@ msgstr "選択部分をecho有りで評価"
 msgid "Evaluate selection with no echo"
 msgstr "選択部分をecho無しで評価"
 
+#, c-format
+msgid "Option for %s format"
+msgstr "%s 形式用オプション"
+
+msgid "Portrait"
+msgstr "縦"
+
+msgid "Landscape"
+msgstr "横"
+
+msgid "Confirm"
+msgstr "確認"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "Orientation"
+msgstr "向き"
+
+#, c-format
+msgid "An error occurred during export: %s"
+msgstr "エクスポート中にエラーが発生しました: %s"
+
+msgid "Export error"
+msgstr "エクスポートエラー"
+
 msgid "Windows BMP image"
 msgstr "Windows BMP イメージ"
 
@@ -1347,6 +1384,9 @@ msgstr "拡張メタファイルイメージ (EMF)"
 msgid "Encapsulated PostScript image (EPS)"
 msgstr "カプセル化されたポストスクリプトイメージ (EPS)"
 
+msgid "PostScript image (PS)"
+msgstr "PostScriptイメージ (PS)"
+
 msgid "FIG image"
 msgstr "FIG イメージ"
 
@@ -1359,13 +1399,13 @@ msgstr "SVG イメージ"
 msgid "All files"
 msgstr "全てのファイル"
 
+msgid "Untitled-export"
+msgstr "無題-エクスポート"
+
 #
 # File: scilab_fake_localization_file.c, line: 5
 msgid "Export"
 msgstr "エクスポート"
-
-msgid "Untitled-export"
-msgstr "無題-エクスポート"
 
 msgid "Preview"
 msgstr "プレビュー"
@@ -1382,15 +1422,13 @@ msgstr "ファイル形式を指定してください"
 msgid "Error on export"
 msgstr "エクスポートエラー"
 
-msgid "Unrecognized extension '"
-msgstr "不明な拡張子 '"
-
+#, c-format
 msgid ""
-"'.\n"
+"Unrecognized extension '%s'.\n"
 " Please specify a valid file format."
 msgstr ""
-"'.\n"
-"有効なファイル形式を指定してください."
+"拡張子 '%s' を認識できません.\n"
+" 有効なファイル形式を指定指定してください."
 
 msgid "Font Chooser"
 msgstr "フォントセレクタ"
@@ -1417,9 +1455,6 @@ msgstr "SciNotes互換"
 # File: macros/about.sci, line: 20
 msgid "Ok"
 msgstr "OK"
-
-msgid "Cancel"
-msgstr "キャンセル"
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowser.java, line: 62
@@ -1450,139 +1485,139 @@ msgstr "ツリー概要"
 msgid ""
 "Left click on the curve creates a datatip and right click on the datatip "
 "removes it."
-msgstr ""
+msgstr "曲線上で左クリックするとデータティップが生成され, データティップ上で右クリックすると削除されます."
 
 msgid "Insert"
-msgstr ""
+msgstr "挿入"
 
 msgid "Insert a new point here"
-msgstr ""
+msgstr "新しい点を挿入"
 
 msgid "Remove"
-msgstr ""
+msgstr "削除"
 
 msgid "Remove this point"
-msgstr ""
+msgstr "この点を削除"
 
 msgid "Exit"
 msgstr "終了"
 
 msgid "Leave data editor mode"
-msgstr ""
+msgstr "データエディタモードを終了"
 
 msgid "Label"
-msgstr ""
+msgstr "ラベル"
 
 msgid "Legend"
-msgstr ""
+msgstr "凡例"
 
 msgid "Copy selected object"
-msgstr ""
+msgstr "選択されたオブジェクトをコピー"
 
 msgid "Cut selected object"
-msgstr ""
+msgstr "選択されたオブジェクトを切り取り"
 
 msgid "Paste copied object on this figure"
-msgstr ""
+msgstr "コピーされたオブジェクトをこの図に貼り付け"
 
 msgid "Delete"
-msgstr ""
+msgstr "削除"
 
 msgid "Delete selected object"
-msgstr ""
+msgstr "選択したオブジェクトを削除"
 
 msgid "Clear"
-msgstr ""
+msgstr "消去"
 
 msgid "Clears the figure"
-msgstr ""
+msgstr "図をクリア"
 
 msgid "Hide"
-msgstr ""
+msgstr "非表示"
 
 msgid "Hide selected object"
-msgstr ""
+msgstr "選択されたオブジェクトを非表示にする"
 
 msgid "Unhide all"
-msgstr ""
+msgstr "すべて再表示"
 
 msgid "Unhide all objects"
-msgstr ""
+msgstr "全オブジェクトを再表示"
 
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "クリップボードへコピー"
 
 msgid "Copy figure to system clipboard"
-msgstr ""
+msgstr "図をシステムクリップボードにコピー"
 
 msgid "Label X"
-msgstr ""
+msgstr "ラベルX"
 
 msgid "Insert a label in X axis"
-msgstr ""
+msgstr "X軸にラベルを挿入"
 
 msgid "Label Y"
-msgstr ""
+msgstr "ラベルY"
 
 msgid "Insert a label in Y axis"
-msgstr ""
+msgstr "Y軸にラベルを挿入"
 
 msgid "Label Z"
-msgstr ""
+msgstr "ラベルZ"
 
 msgid "Insert a label in Z axis"
-msgstr ""
+msgstr "Z軸にラベルを挿入"
 
 msgid "Insert a legend into the selected curve"
-msgstr ""
+msgstr "選択された曲線に判例を挿入"
 
 msgid "Remove the legend from the selected curve"
-msgstr ""
+msgstr "選択された曲線から判例を削除"
 
 msgid "Open Quick Editor"
-msgstr ""
+msgstr "クイックエディタを開く"
 
 msgid "Initialize the graphics editor"
-msgstr ""
+msgstr "グラフィックエディタを初期化"
 
 msgid "Edit curve data"
-msgstr ""
+msgstr "曲線データを編集"
 
 msgid "Enables curve data modification"
-msgstr ""
+msgstr "曲線データの修正を有効にする"
 
 msgid "Undo"
-msgstr ""
+msgstr "取消"
 
 msgid "Undo last action"
-msgstr ""
+msgstr "最後の操作を元に戻す"
 
 msgid "Redo"
-msgstr ""
+msgstr "やり直す"
 
 msgid "Redo last undo action"
-msgstr ""
+msgstr "最後に取り消された操作をやり直す"
 
 msgid "Copy style"
-msgstr ""
+msgstr "スタイルをコピー"
 
 msgid "Copy the style of the axes"
-msgstr ""
+msgstr "軸のスタイルをコピー"
 
 msgid "Paste style"
-msgstr ""
+msgstr "スタイルを貼り付け"
 
-msgid "Paste the copied style on this axes"
-msgstr ""
+msgid "Paste the copied style on these axes"
+msgstr "コピーしたスタイルをこれらの軸に貼り付けてください"
 
 msgid "Enter the text"
-msgstr ""
+msgstr "テキストを入力"
 
 msgid "Set label text"
-msgstr ""
+msgstr "ラベルテキストを設定"
 
 msgid "Set legend text"
-msgstr ""
+msgstr "凡例テキストを設定"
 
 #
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 76
@@ -1595,564 +1630,579 @@ msgid "File"
 msgstr "ファイル"
 
 msgid "Quick GED"
-msgstr ""
+msgstr "クイックGED"
 
 msgid "Property List"
-msgstr ""
+msgstr "プロパティリスト"
 
 msgid "Show"
-msgstr ""
+msgstr "表示"
 
 msgid "Arc"
-msgstr ""
+msgstr "弧"
 
 msgid "Axes"
-msgstr ""
+msgstr "軸"
 
 msgid "Champ"
-msgstr ""
+msgstr "チャンプ"
 
 msgid "Datatip"
-msgstr ""
+msgstr "データティップ"
 
 msgid "Polyline"
-msgstr ""
+msgstr "ポリライン"
 
 msgid "Fec"
-msgstr ""
+msgstr "Fec"
 
 msgid "Figure"
-msgstr ""
+msgstr "図"
 
 msgid "Segs"
-msgstr ""
+msgstr "線分"
 
 msgid "Surface"
-msgstr ""
+msgstr "面"
 
 msgid "Plot3D"
-msgstr ""
+msgstr "plot3d"
 
 msgid "Rectangle"
-msgstr ""
+msgstr "長方形"
 
 msgid "Fac3D"
-msgstr ""
+msgstr "fac3d"
 
 msgid "Grayplot"
-msgstr ""
+msgstr "grayplot"
 
 msgid "Matplot"
-msgstr ""
+msgstr "Matplot"
+
+msgid "Arc Drawing Method"
+msgstr "弧の描画方法"
+
+msgid "Auto Rotation"
+msgstr "自動回転"
+
+msgid "Auto Position"
+msgstr "自動位置調整"
 
 msgid "Auto Ticks"
-msgstr ""
+msgstr "自動目盛"
 
 msgid "Tick"
-msgstr ""
+msgstr "目盛"
 
 msgid "Lines"
-msgstr ""
+msgstr "直線"
 
 msgid "Nurbs"
-msgstr ""
+msgstr "nurbs"
 
 msgid "Anti-alising"
-msgstr ""
+msgstr "アンチエイリアス"
 
 msgid "Auto Clear"
-msgstr ""
+msgstr "自動消去"
 
 msgid "Auto Orientation"
-msgstr ""
+msgstr "自動配置"
 
 msgid "Auto Scale"
-msgstr ""
+msgstr "自動スケール"
 
 msgid "Auto Resize"
-msgstr ""
+msgstr "自動リサイズ"
 
 msgid "Axes Visible"
-msgstr ""
+msgstr "可視の軸"
 
 msgid "Axes Reverse"
-msgstr ""
+msgstr "軸を反転"
 
 msgid "Closed"
-msgstr ""
+msgstr "閉じた"
 
 msgid "Cube Scaling"
-msgstr ""
+msgstr "立方体のスケーリング"
 
 msgid "Fill Mode"
-msgstr ""
+msgstr "塗りつぶしモード"
 
 msgid "Immediate Drawing"
-msgstr ""
+msgstr "直ちに描画"
 
 msgid "Isometric View"
-msgstr ""
+msgstr "等方視野"
 
 msgid "Label Mode"
-msgstr ""
+msgstr "ラベルモード"
 
 msgid "Line Mode"
-msgstr ""
+msgstr "線モード"
 
 msgid "Mark Mode"
-msgstr ""
-
-msgid "Orientation"
-msgstr ""
+msgstr "マークモード"
 
 msgid "Visible"
-msgstr ""
+msgstr "可視にする"
 
 msgid "Base Properties"
-msgstr ""
+msgstr "基本プロパティ"
 
 msgid "On"
-msgstr ""
+msgstr "オン"
 
 msgid "Off"
-msgstr ""
+msgstr "オフ"
 
 msgid "Pixmap"
-msgstr ""
+msgstr "ピクセルマップ"
 
 msgid "Tag"
-msgstr ""
+msgstr "タグ"
 
 msgid "Text"
-msgstr ""
+msgstr "テキスト"
 
 msgid "Surface Mode"
-msgstr ""
+msgstr "局面モード"
 
 msgid "Box"
-msgstr ""
+msgstr "ボックス"
 
 msgid "Hidden Axis Color"
-msgstr ""
+msgstr "影の軸色"
 
 msgid "Camera"
-msgstr ""
+msgstr "カメラ"
 
 msgid "Alpha"
-msgstr ""
+msgstr "アルファ"
 
 msgid "Theta"
-msgstr ""
+msgstr "シータ"
 
 msgid "Ticks"
-msgstr ""
+msgstr "目盛"
 
 msgid ""
 "The data bounds from the axis must be strictly positive to be changed to "
 "logarithmic scale."
-msgstr ""
+msgstr "対数スケールに変更するには, 軸のデータ範囲が厳密に正である必要があります."
 
 msgid "Choose Background Color"
-msgstr ""
+msgstr "背景色を選択"
 
 msgid "Choose Foreground Color"
-msgstr ""
+msgstr "表面色を選択"
 
 msgid "Choose Font Color"
-msgstr ""
+msgstr "フォントの色を選択"
 
 msgid "Choose a Color"
-msgstr ""
+msgstr "色を選択"
 
 msgid "Arrow Size"
-msgstr ""
+msgstr "矢印の大きさ"
 
 msgid "Colored"
-msgstr ""
+msgstr "色付き"
 
 msgid "Background"
-msgstr ""
+msgstr "背景"
 
 msgid "Foreground"
-msgstr ""
+msgstr "描画色"
 
 msgid "Grid Position"
-msgstr ""
+msgstr "グリッド位置"
 
 msgid "X Grid Color"
-msgstr ""
+msgstr "Xグリッド色"
 
 msgid "Y Grid Color"
-msgstr ""
+msgstr "Yグリッド色"
 
 msgid "Back Half"
-msgstr ""
+msgstr "逆ハーフ"
 
 msgid "Hidden Axes"
-msgstr ""
+msgstr "隠れ軸"
 
 msgid "Style/Appearance"
-msgstr ""
+msgstr "スタイル/外観"
 
 msgid "Background Color"
-msgstr ""
+msgstr "背景色"
 
 msgid "Foreground Color"
-msgstr ""
+msgstr "前景色"
 
 msgid "Line Style"
-msgstr ""
+msgstr "線のスタイル"
 
 msgid "solid"
-msgstr ""
+msgstr "実線"
 
 msgid "dash"
-msgstr ""
+msgstr "破線"
 
 msgid "dash dot"
-msgstr ""
+msgstr "一点鎖線"
 
 msgid "longdash dot"
-msgstr ""
+msgstr "長い一点鎖線"
 
 msgid "bigdash dot"
-msgstr ""
+msgstr "大きな一点鎖線"
 
 msgid "bigdash longdash"
-msgstr ""
+msgstr "大きく長い一点鎖線"
 
 msgid "dot"
-msgstr ""
+msgstr "ドット"
 
 msgid "double dot"
-msgstr ""
+msgstr "ドット2つ"
 
 msgid "Polyline Style"
-msgstr ""
+msgstr "ポリラインスタイル"
 
 msgid "interpolated"
-msgstr ""
+msgstr "補間"
 
 msgid "staircase"
-msgstr ""
+msgstr "階段"
 
 msgid "barplot"
-msgstr ""
+msgstr "棒グラフ"
 
 msgid "bar"
-msgstr ""
+msgstr "棒グラフ"
 
 msgid "arrowed"
-msgstr ""
+msgstr "矢印"
 
 msgid "filled"
-msgstr ""
+msgstr "塗りつぶし"
 
 msgid "Min"
-msgstr ""
+msgstr "最小"
 
 msgid "Max"
-msgstr ""
+msgstr "最大"
 
 msgid "Color Range"
-msgstr ""
+msgstr "色の範囲"
 
 msgid "Outside Color"
-msgstr ""
+msgstr "外形色"
 
 msgid "Z Bounds"
-msgstr ""
+msgstr "Zの範囲"
 
 msgid "Pixel Drawing Mode"
-msgstr ""
+msgstr "ピクセル描画モード"
 
 msgid "Rotation Style"
-msgstr ""
+msgstr "回転スタイル"
 
 msgid "unary"
-msgstr ""
+msgstr "単一"
 
 msgid "multiple"
-msgstr ""
+msgstr "複数"
 
 msgid "Arrow Size Factor"
-msgstr ""
+msgstr "矢印サイズ倍数"
 
 msgid "Bar Width"
-msgstr ""
+msgstr "棒グラフの幅"
 
 msgid "Color Mode"
-msgstr ""
+msgstr "色モード"
 
 msgid "Color Flag"
-msgstr ""
+msgstr "色フラグ"
 
 msgid "Hidden Color"
-msgstr ""
+msgstr "隠された要素の色"
 
 msgid "Thickness"
-msgstr ""
+msgstr "厚さ"
 
 msgid "Mark"
-msgstr ""
+msgstr "マーク"
 
 msgid "Mark Background"
-msgstr ""
+msgstr "マーク背景"
 
 msgid "Mark Foreground"
-msgstr ""
+msgstr "マークの背景"
 
 msgid "Mark Size"
-msgstr ""
+msgstr "マークの大きさ"
 
 msgid "Mark Style"
-msgstr ""
+msgstr "マークのスタイル"
 
 msgid "3 Components"
-msgstr ""
+msgstr "3要素"
 
 msgid "Data Properties"
-msgstr ""
+msgstr "データプロパティ"
 
 msgid "Data Mapping"
-msgstr ""
+msgstr "データマッピング"
 
 msgid "Direct"
-msgstr ""
+msgstr "直接"
 
 msgid "Clip Box"
-msgstr ""
+msgstr "クリップボックス"
 
 msgid "Upper-left"
-msgstr ""
+msgstr "左上"
 
 msgid "Point"
-msgstr ""
+msgstr "点"
 
 msgid "Clip State"
-msgstr ""
+msgstr "クリップの状態"
 
 msgid "clipgrf"
-msgstr ""
+msgstr "clipgrf"
 
 msgid "Data"
-msgstr ""
+msgstr "データ"
 
 msgid "Figure ID"
-msgstr ""
+msgstr "図のID"
 
 msgid "Figure Name"
-msgstr ""
+msgstr "図の名前"
 
 msgid "Info Message"
-msgstr ""
+msgstr "情報メッセージ"
 
 msgid "Units"
-msgstr ""
+msgstr "単位"
 
 msgid "Upper Left Point"
-msgstr ""
+msgstr "左上の点"
 
 msgid "User Data"
-msgstr ""
+msgstr "ユーザデータ"
 
 msgid "X Label"
-msgstr ""
+msgstr "Xラベル"
 
 msgid "Y Label"
-msgstr ""
+msgstr "Yラベル"
 
 msgid "Z Label"
-msgstr ""
+msgstr "Zラベル"
 
 msgid "Scaled"
-msgstr ""
+msgstr "サイズ変更"
 
 msgid "Title"
-msgstr ""
+msgstr "タイトル"
+
+msgid "Start Angle"
+msgstr "開始角度"
+
+msgid "End Angle"
+msgstr "終了角度"
 
 msgid "Number of current figure."
-msgstr ""
+msgstr "カレントの図の数"
 
 msgid "Enter a figure name."
-msgstr ""
+msgstr "図の名前を入力"
 
 msgid "Refresh"
-msgstr ""
+msgstr "更新"
 
 msgid "Submit and close"
-msgstr ""
+msgstr "投稿して閉じる"
 
 msgid "Append"
-msgstr ""
+msgstr "追加"
 
 msgid "Data Editor"
-msgstr ""
+msgstr "データエディタ"
 
 msgid "2D"
-msgstr ""
+msgstr "2次元"
 
 msgid "3D"
-msgstr ""
+msgstr "3次元"
 
 msgid "Control"
-msgstr ""
+msgstr "操作"
 
 msgid "Axes Size"
-msgstr ""
+msgstr "軸の大きさ"
 
 msgid "CloseRequestFcn"
-msgstr ""
+msgstr "CloseRequestFcn"
 
 msgid "ResizeFcn"
-msgstr ""
+msgstr "ResizeFcn"
 
 msgid "Figure Position"
-msgstr ""
+msgstr "図の位置"
 
 msgid "Figure Size"
-msgstr ""
+msgstr "図の大きさ"
 
 msgid "Event Handler"
-msgstr ""
+msgstr "イベントハンドラ"
 
 msgid "Function"
-msgstr ""
+msgstr "関数"
 
 msgid "View"
-msgstr ""
+msgstr "表示"
 
 msgid "Viewport"
-msgstr ""
+msgstr "ビューポート"
 
 msgid "X Left"
-msgstr ""
+msgstr "X左"
 
 msgid "Y Up"
-msgstr ""
+msgstr "Y上"
 
 msgid "Log Flags"
-msgstr ""
+msgstr "対数フラグ"
 
 msgid "Tight Limits"
-msgstr ""
+msgstr "制限を狭くする"
 
 msgid "Enter a x position."
-msgstr ""
+msgstr "x位置を入力"
 
 msgid "Enter a y position."
-msgstr ""
+msgstr "y位置を入力"
 
 msgid "Enter a x size."
-msgstr ""
+msgstr "xの大きさを入力"
 
 msgid "Enter a y size."
-msgstr ""
+msgstr "yの大きさを入力"
 
 msgid "Axis Rulers"
-msgstr ""
+msgstr "軸定規"
 
 msgid "X Location"
-msgstr ""
+msgstr "X位置"
 
 msgid "Y Location"
-msgstr ""
+msgstr "Y位置"
 
 msgid "Location"
-msgstr ""
+msgstr "位置"
 
 msgid "bottom"
-msgstr ""
+msgstr "下端"
 
 msgid "middle"
-msgstr ""
+msgstr "中間"
 
 msgid "origin"
-msgstr ""
+msgstr "原点"
 
 msgid "top"
-msgstr ""
+msgstr "上面"
 
 msgid "left"
-msgstr ""
+msgstr "左"
 
 msgid "right"
-msgstr ""
+msgstr "右"
 
 msgid "Reverse"
-msgstr ""
+msgstr "逆"
 
 msgid "Box Mode"
-msgstr ""
+msgstr "ボックスモード"
 
 msgid "Title Page"
-msgstr ""
+msgstr "タイトルページ"
 
 msgid "Axis Title"
-msgstr ""
+msgstr "軸タイトル"
+
+msgid "Font Angle"
+msgstr "フォントの角度"
 
 msgid "Font Color"
-msgstr ""
+msgstr "フォントの色"
 
 msgid "Font Size"
-msgstr ""
+msgstr "フォントサイズ"
 
 msgid "Font Style"
-msgstr ""
+msgstr "フォントスタイル"
 
 msgid "Fractional Font"
-msgstr ""
+msgstr "分数フォント"
 
 msgid "Sub Ticks"
-msgstr ""
+msgstr "副目盛"
 
 msgid "Coordinates"
-msgstr ""
+msgstr "座標"
 
 msgid "X Coordinate"
-msgstr ""
+msgstr "X座標"
 
 msgid "Y Coordinate"
-msgstr ""
+msgstr "Y 座標"
 
 msgid "Position"
-msgstr ""
+msgstr "位置"
 
 msgid "Axes Bounds"
-msgstr ""
+msgstr "軸範囲"
 
 msgid "Mark Size Unit"
-msgstr ""
+msgstr "マークサイズ単位"
 
 msgid "Shift"
-msgstr ""
+msgstr "シフト"
 
 msgid "Up"
-msgstr ""
+msgstr "上"
 
 msgid "Width"
-msgstr ""
+msgstr "幅"
 
 msgid "Height"
-msgstr ""
+msgstr "高さ"
 
 msgid "Margins"
-msgstr ""
+msgstr "余白"
 
 msgid "Rotation Angles"
-msgstr ""
+msgstr "回転角"
 
 msgid "Tabulated"
-msgstr ""
+msgstr "表"
 
 msgid "X Shift"
-msgstr ""
+msgstr "Xシフト"
 
 msgid "Y Shift"
-msgstr ""
+msgstr "Yシフト"
 
 msgid "Z Shift"
-msgstr ""
+msgstr "Zシフト"
 
 msgid "OK"
 msgstr "OK"
@@ -2169,7 +2219,7 @@ msgid "Save and execute"
 msgstr "保存して実行"
 
 msgid "Axis"
-msgstr ""
+msgstr "軸"
 
 msgid "Empty tab"
 msgstr "空のタブ"
@@ -2492,6 +2542,10 @@ msgid ""
 msgstr "%s: 入力引数 #%d で不正なサイズです: '図形' ハンドル、または 実数を想定します。\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#, c-format
 msgid "%s: Type %s is not implemented.\n"
 msgstr "%s: %s 型は実装されていません.\n"
 
@@ -2522,6 +2576,10 @@ msgid ""
 "Answer given for %s \n"
 " is incorrect: %s.\n"
 msgstr "%s に指定された回答は間違っています: %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-21 05:46+0000\n"
+"PO-Revision-Date: 2013-10-02 14:18+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -27,7 +27,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: スカラー整数�
 
 #, c-format
 msgid "%s: Could not get communicator rank of the node %d: %s\n"
-msgstr ""
+msgstr "%s: ノード %d のコミュニケーターランクを取得できませんでした: %s\n"
 
 msgid "Unable to serialize data\n"
 msgstr "データをシリアル化できませんでした\n"
@@ -38,7 +38,7 @@ msgstr "%s: 変数をノード %d にブロードキャストできませんで�
 
 #, c-format
 msgid "%s: Unable to deserialize data.\n"
-msgstr ""
+msgstr "%s: データをデシリアライズできませんでした.\n"
 
 #, c-format
 msgid "%s: Unable to create variable.\n"
@@ -90,4 +90,4 @@ msgstr "%s: データをデシリアライズできませんでした!\n"
 
 #, c-format
 msgid "%s: MPI_Wait failed while waiting %d: %s\n"
-msgstr ""
+msgstr "%s: %d を待つ間に MPI_Wait が失敗しました: %s\n"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-08-30 15:31+0000\n"
+"PO-Revision-Date: 2013-10-04 15:21+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: ru\n"
 
 #, c-format
@@ -1098,6 +1098,10 @@ msgstr ""
 "%s: История отключена; для включения используйте параметр -storehistory."
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: %s, %s, %d or %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: The -withderivatives option is true but all algorithms in neldermead are "
 "derivative-free."
@@ -1266,7 +1270,7 @@ msgstr "%s: Начальное предположение нереализуем
 
 #, c-format
 msgid "%s: Wrong size for x0 argument: A vector expected."
-msgstr ""
+msgstr "%s: Неверный размер аргумента x0: ожидался вектор."
 
 #, c-format
 msgid "%s: Unknown value %s for %s option"
@@ -1288,6 +1292,11 @@ msgstr ""
 #, c-format
 msgid "%s: Empty function (use -function option)."
 msgstr "%s: Пустая функция (используйте параметр -function)."
+
+#, c-format
+msgid ""
+"%s: Wrong type for user function output argument #%d: A real matrix expected."
+msgstr ""
 
 #, c-format
 msgid "%s: History disabled ; enable -storehistory option."
@@ -1319,6 +1328,10 @@ msgid "%s: No output command is defined."
 msgstr "%s: Не указана команда вывода."
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Number of rows of x is %d, which is different from number of vertices = "
 "%d."
@@ -1341,6 +1354,14 @@ msgstr ""
 #, c-format
 msgid "%s: Number of columns of fv is %d, which is different from 1."
 msgstr "%s: Количество столбцов fv равно %d, что отличается от 1."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -1415,12 +1436,20 @@ msgstr ""
 "%s: Неверное количество входных параметров: задано %d, а ожидалось от 1 до 3."
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: The number of vertices (i.e. the number of rows) is %d which is smaller "
 "than the number of columns %d (i.e. n+1)."
 msgstr ""
 "%s: Количество вершин (т.е. количество строк) - %d, что меньше количества "
 "столбцов %d (т.е. n+1)."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -1451,6 +1480,11 @@ msgid "%s: The exclusion index vector has %d rows instead of 1."
 msgstr "%s: Вектор индекса исключений имеет %d строк вместо 1."
 
 #, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Real matrix or sparse matrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: Неверный тип аргумента %d: Ожидалась матрица вещественных чисел.\n"
@@ -1471,3 +1505,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: Ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""

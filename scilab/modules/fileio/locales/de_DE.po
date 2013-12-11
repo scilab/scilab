@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: de\n"
 
 #, c-format
@@ -25,11 +25,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: ein boolscher Wert erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: falsche Größe für Eingangsargument #%d: ein boolscher Wert erwartet.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -47,11 +42,6 @@ msgstr ""
 "%s: falscher Typ für Eingangsargument '%d: eine Zeichenkette erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
-
-#, c-format
 msgid "%s: Can not read named argument %s.\n"
 msgstr ""
 
@@ -62,12 +52,6 @@ msgstr "%s: kann nicht in Verzeichnis wechseln %s\n"
 #, c-format
 msgid "%s: Cannot go to directory.\n"
 msgstr "%s: kann nach Verzeichnis nicht gehen.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Falscher Wert für Eingabeargument #%d: Es wird eine Zeichenkette "
-"erwartet.\n"
 
 #, c-format
 msgid ""
@@ -126,8 +110,11 @@ msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr "%s: Falscher Typ für Eingangsargumente: Zeichenketten erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: Falsche Größe des Eingangsarguments #%d.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: eine 1-durch-n oder m-durch-1 "
+"Zeichenkette erwartet.\n"
 
 #, c-format
 msgid ""
@@ -138,8 +125,9 @@ msgstr ""
 "erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real values expected.\n"
-msgstr "%s: Falscher Typ für Eingangsargument #%d: Reelle Werte erwartet.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: can not open file %s.\n"
@@ -290,6 +278,13 @@ msgstr "%s: falscher Typ für Eingabewert #%d: Integer erwartet.\n"
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
+msgstr ""
+"%s: Falscher Typ des Eingabewertes #%d: Zeichenkette oder boolescher Wert "
+"erwartet.\n"
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: String or logical unit expected.\n"
 msgstr ""
 "%s: Falsche Größe des Eingabewertes #%d: Zeichenkette oder boolescher Wert "
@@ -317,13 +312,6 @@ msgstr ""
 "%s: keine Eingangsdatei steht im Zusammenhang mit der logischen Einheit %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
-msgstr ""
-"%s: Falscher Typ des Eingabewertes #%d: Zeichenkette oder boolescher Wert "
-"erwartet.\n"
-
-#, c-format
 msgid "%s: invalid filename.\n"
 msgstr "%s: ungültiger Dateiname.\n"
 
@@ -336,13 +324,6 @@ msgid ""
 "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 "%s:Falscher Typ des Eingabewertes #%d: Zeichenkette oder Integer erwartet.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr ""
-"%s: falsche Größe für Eingangsargument #%d: eine 1-durch-n oder m-durch-1 "
-"Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: Specified format cannot include any '\\n'\n"
@@ -358,6 +339,11 @@ msgstr "Nicht genügend Einträge"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'w' or 'u' string expected.\n"
 msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: ein boolscher Wert erwartet.\n"
 
 #, c-format
 msgid "%s: An error occurred.\n"
@@ -381,6 +367,10 @@ msgid "Could not parse the URL.\n"
 msgstr ""
 
 #, c-format
+msgid "Could not read the configuration file '%s'.\n"
+msgstr ""
+
+#, c-format
 msgid "Failed to read the scicurl_config file '%s'.\n"
 msgstr ""
 
@@ -399,7 +389,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "Failed opening '%s' for writing.\n"
+msgid "Failed getting current dir, error code: %d\n"
 msgstr ""
 
 #, c-format
@@ -431,7 +421,15 @@ msgid "Failed to set write data [%s]\n"
 msgstr ""
 
 #, c-format
+msgid "Failed to set 'Follow Location' [%s]\n"
+msgstr ""
+
+#, c-format
 msgid "Transfer did not complete successfully: %s\n"
+msgstr ""
+
+#, c-format
+msgid "Failed opening '%s' for writing.\n"
 msgstr ""
 
 msgid "unclosed [ directive."

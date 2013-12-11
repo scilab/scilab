@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-16 18:12+0000\n"
+"PO-Revision-Date: 2013-12-06 19:34+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: uk\n"
 
 #, c-format
@@ -37,6 +37,23 @@ msgstr ""
 "%s: цю функцію буде назавжди вилучено у Scilab %s\n"
 "\n"
 
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати рядок з одного "
+"символу.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
+"значень типу «string».\n"
+
+#, c-format
+msgid "Invalid dimension for argument #%d: A row or a column expected."
+msgstr ""
+"Помилкова розмірність параметра №%d: мало бути вказано рядок або стовпчик."
+
 msgid "Invalid operation"
 msgstr "Некоректна дія"
 
@@ -46,6 +63,22 @@ msgstr "Некоректна назва поля"
 #, c-format
 msgid "Cannot set the field: %s"
 msgstr "Не вдалося встановити поле: %s"
+
+#, c-format
+msgid ""
+"Cannot compile the code:\n"
+"%s"
+msgstr ""
+"Не вдалося виконати компіляцію коду:\n"
+"%s"
+
+#, c-format
+msgid ""
+"Cannot create jar:\n"
+"%s"
+msgstr ""
+"Не вдалося створити jar:\n"
+"%s"
 
 msgid "Invalid operator: '"
 msgstr "Некоректний оператор: '"

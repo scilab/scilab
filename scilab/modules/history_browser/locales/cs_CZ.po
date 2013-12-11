@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 
 msgid "History loading in progress..."
 msgstr "Probíhá načítání hostorie..."
@@ -60,3 +60,6 @@ msgstr "Chyba"
 
 msgid "Cannot delete current session beginning line."
 msgstr "Nelze smazat počáteční řádek současné relace."
+
+msgid "History preferences"
+msgstr ""

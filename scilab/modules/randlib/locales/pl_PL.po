@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: pl\n"
 
 #, c-format
@@ -223,9 +223,10 @@ msgid "Missing vect for random permutation\n"
 msgstr "Brak vect dla przypadkowej permutacji\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: Column vector expected.\n"
+msgid ""
+"%s: Wrong type for input argument: Matrix (full or sparse) or Hypermatrix of "
+"Reals, Complexes, Integers, Booleans, Strings or Polynomials expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego: oczekiwany wektor kolumnowy.\n"
 
 msgid "Missing N and P for Negative Binomial law\n"
 msgstr "Brak N i P dla prawa Negative Binomial\n"
@@ -244,6 +245,11 @@ msgstr ""
 
 msgid "Missing Mean and Cov for Multivariate Normal law\n"
 msgstr "Brak średniej i Cov dla prawa Multivariate\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Column vector expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego: oczekiwany wektor kolumnowy.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Square matrix expected.\n"

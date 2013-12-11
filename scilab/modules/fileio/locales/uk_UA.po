@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-04 13:46+0000\n"
+"PO-Revision-Date: 2013-12-07 08:17+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: uk\n"
 
 #, c-format
@@ -26,12 +26,6 @@ msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«boolean».\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
-"булівське значення.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -50,11 +44,6 @@ msgstr ""
 "«string».\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
-
-#, c-format
 msgid "%s: Can not read named argument %s.\n"
 msgstr "%s: не вдалося прочитати іменований параметр %s.\n"
 
@@ -65,11 +54,6 @@ msgstr "%s: не вдалося перейти до каталогу %s\n"
 #, c-format
 msgid "%s: Cannot go to directory.\n"
 msgstr "%s: не вдалося перейти до каталогу.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
 msgid ""
@@ -136,8 +120,11 @@ msgstr ""
 "%s: помилковий тип вхідних параметрів: слід використовувати «string».\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"масиви 1xn або mx1.\n"
 
 #, c-format
 msgid ""
@@ -148,10 +135,9 @@ msgstr ""
 "значень з плаваючою комою.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real values expected.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип дійсних "
-"значень.\n"
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
 msgid "%s: can not open file %s.\n"
@@ -313,6 +299,13 @@ msgstr "%s: помилковий тип вхідного параметра №%
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати рядок або "
+"логічне значення.\n"
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: String or logical unit expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути вказано рядок "
@@ -340,13 +333,6 @@ msgstr ""
 "%s: не виявлено вхідного файла, пов’язаного з логічною одиницею %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати рядок або "
-"логічне значення.\n"
-
-#, c-format
 msgid "%s: invalid filename.\n"
 msgstr "%s: некоректна назва файла.\n"
 
@@ -361,13 +347,6 @@ msgid ""
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати рядок або "
 "ціле число.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
-"масиви 1xn або mx1.\n"
 
 #, c-format
 msgid "%s: Specified format cannot include any '\\n'\n"
@@ -386,6 +365,12 @@ msgid "%s: Wrong value for input argument #%d: 'w' or 'u' string expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути використано рядок "
 "'w' або 'u'.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"булівське значення.\n"
 
 #, c-format
 msgid "%s: An error occurred.\n"
@@ -413,6 +398,10 @@ msgid "Could not parse the URL.\n"
 msgstr "Не вдалося обробити адресу.\n"
 
 #, c-format
+msgid "Could not read the configuration file '%s'.\n"
+msgstr "Не вдалося прочитати файл налаштувань «%s».\n"
+
+#, c-format
 msgid "Failed to read the scicurl_config file '%s'.\n"
 msgstr "Не вдалося прочитати дані з файла scicurl_config «%s».\n"
 
@@ -436,8 +425,8 @@ msgstr ""
 "після «=» мають бути пробіли\n"
 
 #, c-format
-msgid "Failed opening '%s' for writing.\n"
-msgstr "Не вдалося відкрити «%s» для запису даних.\n"
+msgid "Failed getting current dir, error code: %d\n"
+msgstr "Не вдалося отримати дані щодо поточного каталогу, код помилки: %d\n"
 
 #, c-format
 msgid "Failed to set URL [%s]\n"
@@ -469,8 +458,16 @@ msgid "Failed to set write data [%s]\n"
 msgstr "Не вдалося встановити дані для запису [%s]\n"
 
 #, c-format
+msgid "Failed to set 'Follow Location' [%s]\n"
+msgstr "Не вдалося встановити перехід за адресами [%s]\n"
+
+#, c-format
 msgid "Transfer did not complete successfully: %s\n"
 msgstr "Спроба передавання даних завершилася помилкою: %s\n"
+
+#, c-format
+msgid "Failed opening '%s' for writing.\n"
+msgstr "Не вдалося відкрити «%s» для запису даних.\n"
 
 msgid "unclosed [ directive."
 msgstr "незавершена вказівка [."
