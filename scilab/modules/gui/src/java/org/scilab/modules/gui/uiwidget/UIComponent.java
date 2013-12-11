@@ -1603,7 +1603,7 @@ public abstract class UIComponent {
             }
         } else if (component instanceof JComponent && b) {
             JComponent c = (JComponent) component;
-            JScrollPane scroll = new JScrollPane();
+            JScrollPane scroll = new MyScrollPane();
             replaceBy(scroll);
             scroll.getViewport().setView(c);
             modifiableComponent = c;
@@ -1743,11 +1743,16 @@ public abstract class UIComponent {
      * @param value the value
      */
     public void setHorizontalScrollValue(int value) {
-        if (component instanceof JScrollPane) {
-            JScrollPane scroll = (JScrollPane) component;
+        if (component instanceof MyScrollPane) {
+            MyScrollPane scroll = (MyScrollPane) component;
             JScrollBar bar = scroll.getHorizontalScrollBar();
             if (bar != null) {
-                bar.setValue(value);
+                final int width = scroll.getViewport().getView().getPreferredSize().width;
+                if (width != bar.getMaximum()) {
+                    scroll.hvalue = value;
+                } else {
+                    bar.setValue(value);
+                }
             }
         }
     }
@@ -1773,11 +1778,16 @@ public abstract class UIComponent {
      * @param value the value
      */
     public void setVerticalScrollValue(int value) {
-        if (component instanceof JScrollPane) {
-            JScrollPane scroll = (JScrollPane) component;
+        if (component instanceof MyScrollPane) {
+            MyScrollPane scroll = (MyScrollPane) component;;
             JScrollBar bar = scroll.getVerticalScrollBar();
             if (bar != null) {
-                bar.setValue(value);
+                final int height = scroll.getViewport().getView().getPreferredSize().height;
+                if (height != bar.getMaximum()) {
+                    scroll.vvalue = value;
+                } else {
+                    bar.setValue(value);
+                }
             }
         }
     }
@@ -2586,13 +2596,13 @@ public abstract class UIComponent {
             if (scrollable && component instanceof JComponent) {
                 modifiableComponent = component;
                 if (SwingUtilities.isEventDispatchThread()) {
-                    component = new JScrollPane((JComponent) modifiableComponent);
+                    component = new MyScrollPane((JComponent) modifiableComponent);
                 } else {
                     try {
                         SwingUtilities.invokeAndWait(new Runnable() {
                             public void run() {
                                 try {
-                                    component = new JScrollPane((JComponent) modifiableComponent);
+                                    component = new MyScrollPane((JComponent) modifiableComponent);
                                 } catch (Exception e) {
                                     System.err.println(e);
                                     e.printStackTrace();
@@ -2711,5 +2721,62 @@ public abstract class UIComponent {
     protected void finalize() throws Throwable {
         UserData.removeUIWidgetUserData(uid);
         super.finalize();
+    }
+
+    /**
+     * Convenient class to handle the case where the view dimensions are modified
+     * and a setValue on a bar is made just after.
+     * The ScrollBar model is warned of the view dimensions changes in a ComponentEvent
+     */
+    protected static class MyScrollPane extends JScrollPane {
+
+        protected int hvalue = -1;
+        protected int vvalue = -1;
+
+        /**
+         * {@inheritdoc}
+         */
+        public MyScrollPane() {
+            super();
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public MyScrollPane(Component c) {
+            super(c);
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public JScrollBar createVerticalScrollBar() {
+            return new ScrollBar(JScrollBar.VERTICAL) {
+                public void setValues(int newValue, int newExtent, int newMin, int newMax) {
+                    if (vvalue != -1) {
+                        super.setValues(vvalue, newExtent, newMin, newMax);
+                        vvalue = -1;
+                    } else {
+                        super.setValues(newValue, newExtent, newMin, newMax);
+                    }
+                }
+            };
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public JScrollBar createHorizontalScrollBar() {
+            return new ScrollBar(JScrollBar.HORIZONTAL) {
+                public void setValues(int newValue, int newExtent, int newMin, int newMax) {
+                    if (hvalue != -1) {
+                        super.setValues(hvalue, newExtent, newMin, newMax);
+                        hvalue = -1;
+                    } else {
+                        super.setValues(newValue, newExtent, newMin, newMax);
+                    }
+                }
+            };
+        }
     }
 }
