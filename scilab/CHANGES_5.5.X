@@ -257,6 +257,8 @@ Scilab Bug Fixes
 
 * Bug #13027 fixed - There was no autowrap into array in JIMS.
 
+* Bug #13031 fixed - Lorentz Butterfly demonstration fixed.
+
 * Bug #13032 fixed - Fixed CMATVIEW help example and created one for CMAT3D.
 
 * Bug #13033 fixed - -1 could not be used as nax argument in plot2d.
