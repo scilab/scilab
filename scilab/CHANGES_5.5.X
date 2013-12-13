@@ -318,6 +318,8 @@ Scilab Bug Fixes
 
 * Bug #13140 fixed - Various typos fixed.
 
+* Bug #13146 fixed - profile failed when a comment was on the same line as a function declaration.
+
 * Bug #13152 fixed - Typo fixed in syslin french help page.
 
 
