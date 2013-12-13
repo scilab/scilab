@@ -246,9 +246,13 @@ function plot(varargin)
             [X,Y] = checkXYPair(typeOfPlot,ListArg(xyIndexLineSpec(i,1)),ListArg(xyIndexLineSpec(i,2)),current_figure,cur_draw_mode)
         else
             if or(size(ListArg(xyIndexLineSpec(1,2)))==1)  // If this is a vector
-                X=(1:length(ListArg(xyIndexLineSpec(1,2))))'; // insert an abcsissa vector of same length,
+                if size(ListArg(xyIndexLineSpec(1,2)), "r") == 1 then
+                    X=1:length(ListArg(xyIndexLineSpec(1,2))); // insert a column abcsissa vector of same length,
+                else
+                    X=(1:length(ListArg(xyIndexLineSpec(1,2))))'; // insert a row abcsissa vector of same length,
+                end
             else                                  // if this is a matrix,
-                X=(1:size(ListArg(xyIndexLineSpec(1,2)),1))'; // insert an abcsissa vector with same size
+                X=(1:size(ListArg(xyIndexLineSpec(1,2)),1))'; // insert a row abcsissa vector with same size
             end
             // In both cases (matrix/vector), transpose it now so no warning is issued in checkXYPair().
             [X,Y] = checkXYPair(typeOfPlot,X,ListArg(xyIndexLineSpec(1,2)),current_figure,cur_draw_mode)
