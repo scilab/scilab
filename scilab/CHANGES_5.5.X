@@ -318,6 +318,8 @@ Scilab Bug Fixes
 
 * Bug #13140 fixed - Various typos fixed.
 
+* Bug #13152 fixed - Typo fixed in syslin french help page.
+
 
 Xcos Bug Fixes
 ==============
