@@ -61,7 +61,7 @@ public class Label extends TextObject {
         String[] textStrings = {""};
 
         setTextArrayDimensions(textDimensions);
-        setTextStrings(textStrings);
+        setTextWithoutResize(textStrings);
     }
 
     /**

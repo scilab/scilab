@@ -208,7 +208,7 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param arrowSizeFactor the arrowSizeFactor to set
      */
-    public UpdateStatus setArrowSizeFactor(Double arrowSizeFactor) {
+    public UpdateStatus setArrowSizeFactor(double arrowSizeFactor) {
         if (this.arrowSizeFactor == arrowSizeFactor) {
             return UpdateStatus.NoChange;
         }
@@ -226,7 +226,7 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param barWidth the barWidth to set
      */
-    public UpdateStatus setBarWidth(Double barWidth) {
+    public UpdateStatus setBarWidth(double barWidth) {
         this.barWidth = barWidth;
         return UpdateStatus.Success;
     }
@@ -241,7 +241,7 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param closed the closed to set
      */
-    public UpdateStatus setClosed(Boolean closed) {
+    public UpdateStatus setClosed(boolean closed) {
         this.closed = closed;
         return UpdateStatus.Success;
     }
@@ -256,7 +256,7 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param interpColorMode the interpColorMode to set
      */
-    public UpdateStatus setInterpColorMode(Boolean interpColorMode) {
+    public UpdateStatus setInterpColorMode(boolean interpColorMode) {
         if (this.interpColorMode == interpColorMode) {
             return UpdateStatus.NoChange;
         }
@@ -304,7 +304,7 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param polylineStyle the polylineStyle to set
      */
-    public UpdateStatus setPolylineStyle(Integer polylineStyle) {
+    public UpdateStatus setPolylineStyle(int polylineStyle) {
         if (this.polylineStyle == polylineStyle) {
             return UpdateStatus.NoChange;
         }

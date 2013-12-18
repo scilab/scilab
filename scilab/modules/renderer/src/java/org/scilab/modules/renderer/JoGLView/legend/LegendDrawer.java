@@ -11,6 +11,14 @@
 
 package org.scilab.modules.renderer.JoGLView.legend;
 
+import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
@@ -31,20 +39,12 @@ import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.legend.Legend;
-import org.scilab.modules.graphic_objects.legend.Legend.LegendLocation;
 import org.scilab.modules.graphic_objects.polyline.Polyline;
 import org.scilab.modules.graphic_objects.utils.AxisLocation;
+import org.scilab.modules.graphic_objects.utils.LegendLocation;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.mark.MarkSpriteManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
-
-import java.awt.Dimension;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -257,7 +257,7 @@ public class LegendDrawer {
         double [] llBoxCorner = new double[2];
         double [] urBoxCorner = new double[2];
 
-        LegendLocation legendLocation = legend.getLegendLocationAsEnum();
+        LegendLocation legendLocation = legend.getLegendLocation();
 
         llBoxCorner[0] = axesPos[0] + margins[0] * axesDims[0];
         llBoxCorner[1] = axesPos[1] + margins[3] * axesDims[1];
@@ -676,7 +676,7 @@ public class LegendDrawer {
         }
 
         Integer[] links = legend.getLinks();
-        String[] strings = legend.getTextStrings();
+        String[] strings = legend.getTextArray();
 
         for (int i = 0; i < links.length; i++) {
             Polyline currentLine = (Polyline) GraphicController.getController().getObjectFromId(links[i]);
@@ -694,6 +694,6 @@ public class LegendDrawer {
         legend.setLinks(newLinks);
 
         legend.setTextArrayDimensions(newDims);
-        legend.setTextStrings(newStrings);
+        legend.setTextWithoutResize(newStrings);
     }
 }

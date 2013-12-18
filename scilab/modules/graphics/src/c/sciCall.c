@@ -84,10 +84,10 @@ void Objrect (double* x         ,
     /*newObjUID = ConstructRectangle(iSubwinUID , *x, *y, *height, *width,
       foreground, background, isfilled, isline);*/
 
-    iNewObjUID = buildRect(iSubwinUID, *x, *y, *height, *width,
-                           foreground == NULL ? -1 : *foreground,
-                           background == NULL ? -1 : *background,
-                           (int)isfilled, (int)isline);
+    iNewObjUID = createRect(iSubwinUID, *x, *y, *height, *width,
+                            foreground == NULL ? -1 : *foreground,
+                            background == NULL ? -1 : *background,
+                            (int)isfilled, (int)isline);
 
     if (iNewObjUID == 0)
     {

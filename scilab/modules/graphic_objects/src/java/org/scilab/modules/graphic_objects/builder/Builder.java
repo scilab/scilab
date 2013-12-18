@@ -13,6 +13,8 @@
 
 package org.scilab.modules.graphic_objects.builder;
 
+import java.util.ArrayList;
+
 import org.scilab.modules.graphic_objects.ScilabNativeView;
 import org.scilab.modules.graphic_objects.arc.Arc;
 import org.scilab.modules.graphic_objects.axes.Axes;
@@ -25,15 +27,23 @@ import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.imageplot.Imageplot;
+import org.scilab.modules.graphic_objects.legend.Legend;
+import org.scilab.modules.graphic_objects.polyline.Polyline;
 import org.scilab.modules.graphic_objects.textObject.Font;
 import org.scilab.modules.graphic_objects.textObject.Text;
+import org.scilab.modules.graphic_objects.utils.Alignment;
+import org.scilab.modules.graphic_objects.utils.ClipStateType;
+import org.scilab.modules.graphic_objects.utils.LineType;
+import org.scilab.modules.graphic_objects.utils.TextBoxMode;
 import org.scilab.modules.graphic_objects.utils.TicksDirection;
 import org.scilab.modules.graphic_objects.utils.TicksStyle;
+import org.scilab.modules.graphic_objects.vectfield.Champ;
+import org.scilab.modules.graphic_objects.vectfield.Segs;
 
 public final class Builder {
-    public final static int buildRect(int parentSubwin, double x, double y,
-                                      double height, double width, int foreground,
-                                      int background, int isfilled, int isline) {
+    public final static int createRect(int parentSubwin, double x, double y,
+                                       double height, double width, int foreground,
+                                       int background, int isfilled, int isline) {
         GraphicController controller = GraphicController.getController();
 
         Double[] clipRegion;
@@ -356,11 +366,11 @@ public final class Builder {
         return cloneAxesModel(parentFigure);
     }
 
-    public final static int allocateText(int iParentsubwinUID, String[] text, int nbRow, int nbCol,
-                                         double x, double y, boolean autoSize, double[] userSize, int centerPos,
-                                         int foreground, boolean isForeground, int background, boolean isBackground,
-                                         boolean isBoxed, boolean isLine,
-                                         boolean isFilled, int align) {
+    public final static int createText(int iParentsubwinUID, String[] text, int nbRow, int nbCol,
+                                       double x, double y, boolean autoSize, double[] userSize, int centerPos,
+                                       int foreground, boolean isForeground, int background, boolean isBackground,
+                                       boolean isBoxed, boolean isLine,
+                                       boolean isFilled, int align) {
 
         GraphicController controller = GraphicController.getController();
         int iObj = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_TEXT__));
@@ -381,7 +391,7 @@ public final class Builder {
         dimensions[0] = nbRow;
         dimensions[1] = nbCol;
         objText.setTextArrayDimensions(dimensions);
-        objText.setTextStrings(text);
+        objText.setTextWithoutResize(text);
 
         //position
         Double[] position = new Double[3];
@@ -392,8 +402,8 @@ public final class Builder {
 
         //test box
         Double[] setUserSize = new Double[2];
-        objText.setTextBoxMode(centerPos);
-        objText.setAutoDimensioning(autoSize);
+        objText.setTextBoxMode(TextBoxMode.intToEnum(centerPos));
+        objText.setAutoDimensionning(autoSize);
 
         if (autoSize == false || centerPos != 0) {
             setUserSize[0] = userSize[0];
@@ -409,7 +419,7 @@ public final class Builder {
             alignment = 0;
         }
 
-        objText.setAlignment(alignment);
+        objText.setAlignment(Alignment.intToEnum(alignment));
 
         cloneGraphicContext(iParentsubwinUID, iObj);
         cloneFontContext(iParentsubwinUID, iObj);
@@ -627,6 +637,218 @@ public final class Builder {
         cloneGraphicContext(parent, iPlot);
 
         return iPlot;
+    }
+
+
+    public static int createPolyline(int parent, boolean closed, int plot,
+                                     int foreground, boolean isForeground, int[] background, int mark_style, boolean isMarkStyle,
+                                     int mark_foreground, boolean isMarkForeground,
+                                     int mark_background, boolean isMarkBackground,
+                                     boolean isline, boolean isfilled, boolean ismark, boolean isinterp) {
+
+        GraphicController controller = GraphicController.getController();
+        int iPoly = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_POLYLINE__));
+        Axes axes = (Axes) controller.getObjectFromId(parent);
+        Polyline poly = (Polyline) controller.getObjectFromId(iPoly);
+
+        poly.setVisible(false);
+
+        //clip box
+        poly.setClipBox(axes.getClipBox());
+        poly.setClipBoxSet(axes.getClipBoxSet());
+        poly.setClipState(axes.getClipState());
+
+        poly.setClosed(closed);
+        poly.setLineStyle(LineType.intToEnum(plot));
+
+        cloneGraphicContext(parent, iPoly);
+
+        poly.setMarkMode(ismark);
+        poly.setLineMode(isline);
+        poly.setFillMode(isfilled);
+        poly.setInterpColorMode(isinterp);
+
+        if (isForeground) {
+            poly.setLineColor(foreground);
+        }
+
+        if (background.length != 0) {
+            if (isinterp) {
+                /* 3 or 4 values to store */
+                Integer[] color = new Integer[background.length];
+                for (int i = 0 ; i < background.length ; i++) {
+                    color[i] = background[i];
+                }
+
+                poly.setInterpColorVector(color);
+            } else {
+                poly.setBackground(background[0]);
+            }
+        }
+
+        if (isMarkStyle) {
+            poly.setMarkStyle(mark_style);
+        }
+
+        if (isMarkForeground) {
+            poly.setMarkForeground(mark_foreground);
+        }
+
+        if (isMarkBackground) {
+            poly.setMarkBackground(mark_background);
+        }
+
+        poly.setVisible(true);
+        return iPoly;
+    }
+
+    public static int createLegend(int parent, String[] text, int[] handles) {
+        GraphicController controller = GraphicController.getController();
+        Axes axes = (Axes) controller.getObjectFromId(parent);
+
+        if (axes.getHaslegendchild()) {
+            controller.deleteObject(axes.getLegendchild());
+        }
+
+
+        int iLeg = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_LEGEND__));
+        Legend leg = (Legend)controller.getObjectFromId(iLeg);
+
+        leg.setParent(parent);
+        leg.setVisible(axes.getVisible());
+
+        int count = handles.length;
+        Integer[] textDims = new Integer[2];
+        textDims[0] = count;
+        textDims[1] = 1;
+
+        leg.setTextArrayDimensions(textDims);
+        leg.setTextWithoutResize(text);
+
+        /*
+         * Links are ordered from most recent to least recent,
+         * as their referred-to Polylines in the latter's parent Compound object.
+         */
+
+        ArrayList<Integer> links = new ArrayList<Integer>();
+        for (int i = 0 ; i < count ; i++) {
+            links.add(count - i - 1, handles[i]);
+        }
+
+        leg.setLinks(links);
+
+        leg.setClipBoxSet(false);
+        leg.setClipState(ClipStateType.OFF);
+        leg.setClipBox(axes.getClipBox());
+
+        cloneGraphicContext(parent,  iLeg);
+        cloneFontContext(parent, iLeg);
+
+        leg.setFillMode(true);
+
+        controller.setGraphicObjectRelationship(parent, iLeg);
+        return iLeg;
+    }
+
+    public static int createSegs(int parent, double[] vx, double[] vy, double[] vz, boolean isVZ,
+                                 int[] style, double arsize) {
+        GraphicController controller = GraphicController.getController();
+        Axes axes = (Axes) controller.getObjectFromId(parent);
+        int iSegs = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_SEGS__));
+        Segs segs = (Segs)controller.getObjectFromId(iSegs);
+
+        segs.setVisible(axes.getVisible());
+
+        //clip box
+        segs.setClipBox(axes.getClipBox());
+        segs.setClipBoxSet(axes.getClipBoxSet());
+        segs.setClipState(axes.getClipState());
+
+        /* Segs: Nbr1/2 arrows, Nbr1 is the number of endpoints */
+        int numberArrows = vx.length / 2;
+
+        segs.setNumberArrows(numberArrows);
+        segs.setArrowSize(arsize);
+
+        Double[] arrowCoords = new Double[3 * numberArrows];
+        for (int i = 0 ; i < numberArrows ; i++) {
+            arrowCoords[3 * i] = vx[2 * i];
+            arrowCoords[3 * i + 1] = vy[2 * i];
+            if (isVZ) {
+                arrowCoords[3 * i + 2] = vz[2 * i];
+            } else {
+                arrowCoords[3 * i + 2] = 0.0;
+            }
+        }
+
+        segs.setDirection(arrowCoords);
+        //flag at 0 or 1, manage style like a array
+        Integer[] temp = new Integer[style.length];
+        for (int i = 0 ; i < style.length ; i++) {
+            temp[i] = style[i];
+        }
+        segs.setColors(temp);
+
+        cloneGraphicContext(parent, iSegs);
+        controller.setGraphicObjectRelationship(parent, iSegs);
+        return iSegs;
+    }
+
+    public static int createChamp(int parent, double[] vx, double[] vy,
+                                  double[] vfx, double[] vfy, double arsize, boolean typeofchamp) {
+
+        GraphicController controller = GraphicController.getController();
+        Axes axes = (Axes) controller.getObjectFromId(parent);
+
+        int iChamp = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_CHAMP__), false);
+        Champ champ = (Champ)controller.getObjectFromId(iChamp);
+
+        champ.setVisible(axes.getVisible());
+
+        //clip box
+        champ.setClipBox(axes.getClipBox());
+        champ.setClipBoxSet(axes.getClipBoxSet());
+        champ.setClipState(axes.getClipState());
+
+        int numberArrows = vx.length * vy.length;
+        champ.setNumberArrows(numberArrows);
+
+        Integer[] dimensions = new Integer[] {vx.length, vy.length};
+        champ.setDimensions(dimensions);
+
+        champ.setArrowSize(arsize);
+
+        Double[] arrowCoords = new Double[3 * numberArrows];
+
+        //convert vx Double
+        Double[] temp = new Double[vx.length];
+        for (int i =  0 ; i < vx.length ; i++) {
+            temp[i] = vx[i];
+        }
+        champ.setBaseX(temp);
+
+        //convert vy Double
+        temp = new Double[vy.length];
+        for (int i =  0 ; i < vy.length ; i++) {
+            temp[i] = vy[i];
+        }
+        champ.setBaseY(temp);
+
+        for (int i = 0 ; i < numberArrows ; i++) {
+            arrowCoords[3 * i] = vfx[i];
+            arrowCoords[3 * i + 1] = vfy[i];
+            arrowCoords[3 * i + 2] = 0.0;
+        }
+
+        champ.setDirection(arrowCoords);
+        champ.setColored(typeofchamp);
+
+        cloneGraphicContext(parent, iChamp);
+
+        //controller.objectCreated(iChamp);
+        controller.setGraphicObjectRelationship(parent, iChamp);
+
+        return iChamp;
     }
 }
 

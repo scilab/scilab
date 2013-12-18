@@ -39,6 +39,7 @@ import org.scilab.modules.types.ScilabType;
 
 /**
  * GraphicController class
+ *
  * @author Bruno JOFRET
  */
 public class GraphicController {
@@ -49,15 +50,14 @@ public class GraphicController {
     private static boolean infoEnable = false;
     private static Integer lastId = 0;
 
-    /*error management*/
+    /* error management */
     private static String lastError;
     private static String lastProp;
     private String lastPropName;
 
-
     private static void INFO(String message) {
         if (infoEnable == true) {
-            System.err.println("[CONTROLLER - INFO] : " + message);
+            // System.err.println("[CONTROLLER - INFO] : " + message);
         }
     }
 
@@ -70,7 +70,8 @@ public class GraphicController {
     /**
      * Set of all views attached to this controller.
      */
-    private volatile static Set<GraphicView> allViews =  Collections.synchronizedSet(new HashSet<GraphicView>());
+    private volatile static Set<GraphicView> allViews = Collections
+            .synchronizedSet(new HashSet<GraphicView>());
 
     /**
      * Graphic controller singleton.
@@ -95,6 +96,7 @@ public class GraphicController {
 
     /**
      * Get the handler id to use to send Scilab data
+     *
      * @return the handler id
      */
     public static int getPropertyHandler() {
@@ -107,6 +109,7 @@ public class GraphicController {
 
     /**
      * Returns the controller
+     *
      * @return the controller
      */
     public static GraphicController getController() {
@@ -118,9 +121,10 @@ public class GraphicController {
     }
 
     /**
-     * Register a view that will receive notification
-     * of any model changes.
-     * @param view The view to register.
+     * Register a view that will receive notification of any model changes.
+     *
+     * @param view
+     *            The view to register.
      */
     public void register(GraphicView view) {
         INFO("Register view : " + view.toString());
@@ -129,7 +133,9 @@ public class GraphicController {
 
     /**
      * Unregister a view.
-     * @param view The view to unregister.
+     *
+     * @param view
+     *            The view to unregister.
      */
     public void unregister(GraphicView view) {
         INFO("Unregister view : " + view.toString());
@@ -138,6 +144,7 @@ public class GraphicController {
 
     /**
      * Creates a UID
+     *
      * @return the created UID
      */
     public Integer createUID() {
@@ -146,7 +153,9 @@ public class GraphicController {
 
     /**
      * Returns the object associated to an id
-     * @param id the object id
+     *
+     * @param id
+     *            the object id
      * @return the object
      */
     public GraphicObject getObjectFromId(Integer id) {
@@ -155,20 +164,24 @@ public class GraphicController {
 
     /**
      * Fast property set method
-     * @param id the object id
-     * @param prop the property name
-     * @param value the property value
+     *
+     * @param id
+     *            the object id
+     * @param prop
+     *            the property name
+     * @param value
+     *            the property value
      * @return true if the property has been set, false otherwise
      */
     public boolean setProperty(Integer id, int prop, Object value) {
         try {
             switch (GraphicModel.getModel().setProperty(id, prop, value)) {
-                case Success : // BroadCast Message + return true
+                case Success: // BroadCast Message + return true
                     objectUpdate(id, prop);
                     return true;
-                case NoChange : // Do not broadcast message
+                case NoChange: // Do not broadcast message
                     return true;
-                case Fail :
+                case Fail:
                     return false;
             }
             return false;
@@ -183,8 +196,11 @@ public class GraphicController {
 
     /**
      * Fast property get method
-     * @param id the object id
-     * @param prop the property name
+     *
+     * @param id
+     *            the object id
+     * @param prop
+     *            the property name
      * @return the property value
      */
     public Object getProperty(Integer id, int prop) {
@@ -201,8 +217,11 @@ public class GraphicController {
 
     /**
      * Returns a null property
-     * @param id the object id
-     * @param prop the property name
+     *
+     * @param id
+     *            the object id
+     * @param prop
+     *            the property name
      * @return the null property
      */
     public Object getNullProperty(Integer id, String prop) {
@@ -211,15 +230,23 @@ public class GraphicController {
 
     /**
      * Asks the model to create a new object
-     * @param type the object type
+     *
+     * @param type
+     *            the object type
      * @return the created object's id
      */
     public Integer askObject(Type type) {
+        return askObject(type, true);
+    }
+
+    public Integer askObject(Type type, boolean updateView) {
 
         try {
             Integer id = createUID();
             GraphicModel.getModel().createObject(id, type);
-            objectCreated(id);
+            if (updateView) {
+                objectCreated(id);
+            }
 
             return id;
         } catch (Exception e) {
@@ -234,7 +261,9 @@ public class GraphicController {
 
     /**
      * Ask the model to clone an object
-     * @param id : the ID of the object to clone.
+     *
+     * @param id
+     *            : the ID of the object to clone.
      * @return the id of the clone.
      */
     public Integer cloneObject(Integer id) {
@@ -255,7 +284,9 @@ public class GraphicController {
 
     /**
      * Deletes an object
-     * @param id the deleted object's id
+     *
+     * @param id
+     *            the deleted object's id
      */
     public void deleteObject(Integer id) {
         try {
@@ -271,11 +302,14 @@ public class GraphicController {
 
     /**
      * Notifies the existing views that an object has been created
-     * @param id the created object's id
+     *
+     * @param id
+     *            the created object's id
      */
     public void objectCreated(final Integer id) {
-        //INFO("### Create object : "+id);
-        //INFO("### type is : " + getProperty(id, GraphicObjectProperties.__GO_TYPE__));
+        // INFO("### Create object : "+id);
+        // INFO("### type is : " + getProperty(id,
+        // GraphicObjectProperties.__GO_TYPE__));
         Vector<Runnable> broadCastVector = new Vector<Runnable>();
 
         try {
@@ -296,13 +330,17 @@ public class GraphicController {
 
     /**
      * Notified the existing views that an object has been updated
-     * @param id the updated object's id
-     * @param prop the property that has been updated
+     *
+     * @param id
+     *            the updated object's id
+     * @param prop
+     *            the property that has been updated
      */
     public void objectUpdate(final Integer id, final int prop) {
-        //INFO("### Update object : "+id);
-        //INFO("### type is : " + getProperty(id, GraphicObjectProperties.__GO_TYPE__));
-        //INFO("### prop is : " + prop);
+        // INFO("### Update object : "+id);
+        // INFO("### type is : " + getProperty(id,
+        // GraphicObjectProperties.__GO_TYPE__));
+        // INFO("### prop is : " + prop);
 
         Vector<Runnable> broadCastVector = new Vector<Runnable>();
         try {
@@ -323,11 +361,14 @@ public class GraphicController {
 
     /**
      * Notified the existing views that an object has been deleted
-     * @param id the deleted object's id
+     *
+     * @param id
+     *            the deleted object's id
      */
     public void objectDeleted(final Integer id) {
-        //INFO("### Delete object : "+id);
-        //INFO("### type is : " + getProperty(id, GraphicObjectProperties.__GO_TYPE__));
+        // INFO("### Delete object : "+id);
+        // INFO("### type is : " + getProperty(id,
+        // GraphicObjectProperties.__GO_TYPE__));
         Vector<Runnable> broadCastVector = new Vector<Runnable>();
 
         try {
@@ -348,20 +389,25 @@ public class GraphicController {
 
     /**
      * Set relationship between two object and remove old relationship.
-     * @param parentId id of the parent object.
-     * @param childId id of the child object.
+     *
+     * @param parentId
+     *            id of the parent object.
+     * @param childId
+     *            id of the child object.
      */
     public void setGraphicObjectRelationship(Integer parentId, Integer childId) {
         setGraphicObjectRelationship(parentId, childId, true);
     }
 
-    public void setGraphicObjectRelationship(Integer parentId, Integer childId, boolean callModel) {
+    public void setGraphicObjectRelationship(Integer parentId, Integer childId,
+            boolean callModel) {
         /*
          * All the parent and children get/set calls must be performed first,
          * and only then the corresponding object updates.
          */
 
-        Object oldParent = getProperty(childId, GraphicObjectProperties.__GO_PARENT__);
+        Object oldParent = getProperty(childId,
+                                       GraphicObjectProperties.__GO_PARENT__);
 
         if (oldParent != null && oldParent instanceof Integer) {
             Integer oldParentId = (Integer) oldParent;
@@ -384,27 +430,32 @@ public class GraphicController {
         }
 
         if (callModel) {
-            setProperty(childId, GraphicObjectProperties.__GO_PARENT__, parentId);
+            setProperty(childId, GraphicObjectProperties.__GO_PARENT__,
+                        parentId);
         }
 
         /* Object updates can now be performed. */
-        if (oldParent != null && oldParent instanceof Integer && ((Integer)oldParent) != 0) {
-            objectUpdate((Integer)oldParent, GraphicObjectProperties.__GO_CHILDREN__);
+        if (oldParent != null && oldParent instanceof Integer
+                && ((Integer) oldParent) != 0) {
+            objectUpdate((Integer) oldParent,
+                         GraphicObjectProperties.__GO_CHILDREN__);
         }
 
         if (parentId != null && parentId != 0) {
             objectUpdate(parentId, GraphicObjectProperties.__GO_CHILDREN__);
         }
 
-        // Useless (already done in setProperty(childId, GraphicObjectProperties.__GO_PARENT__, parentId);)
-        //objectUpdate(childId, GraphicObjectProperties.__GO_PARENT__);
+        // Useless (already done in setProperty(childId,
+        // GraphicObjectProperties.__GO_PARENT__, parentId);)
+        // objectUpdate(childId, GraphicObjectProperties.__GO_PARENT__);
     }
 
     /**
-     * Remove relationship between given object and is parent.
-     * Then delete it.
+     * Remove relationship between given object and is parent. Then delete it.
      * TODO : Manage children of deleted object.
-     * @param id deleted object identifier.
+     *
+     * @param id
+     *            deleted object identifier.
      */
     public void removeRelationShipAndDelete(Integer id) {
         final GraphicObject killMe = getObjectFromId(id);
@@ -415,15 +466,14 @@ public class GraphicController {
 
         Integer parentUID = killMe.getParent();
 
-
         /* Remove object from Parent's Children list */
         if (parentUID != null && parentUID != 0) {
             getObjectFromId(parentUID).removeChild(id);
-            //setProperty(id, GraphicObjectProperties.__GO_PARENT__, "");
+            // setProperty(id, GraphicObjectProperties.__GO_PARENT__, "");
 
             objectUpdate(parentUID, GraphicObjectProperties.__GO_CHILDREN__);
             objectUpdate(parentUID, GraphicObjectProperties.__GO_DATATIPS__);
-            //objectUpdate(id, GraphicObjectProperties.__GO_PARENT__);
+            // objectUpdate(id, GraphicObjectProperties.__GO_PARENT__);
         }
 
         killMe.setValid(false);
@@ -435,7 +485,7 @@ public class GraphicController {
     private void recursiveDeleteChildren(GraphicObject killMe) {
         Integer children[] = killMe.getChildren();
 
-        for (int i = 0 ; i < children.length ; ++i) {
+        for (int i = 0; i < children.length; ++i) {
             GraphicObject killMeThisChild = getObjectFromId(children[i]);
             killMeThisChild.setValid(false);
             recursiveDeleteChildren(killMeThisChild);
@@ -444,7 +494,7 @@ public class GraphicController {
     }
 
     public boolean runSetProperty(int id) {
-        //getArgumentList reset list content
+        // getArgumentList reset list content
         final List<ScilabType> args = handler.getArgumentList();
         GraphicObject obj = getObjectFromId(id);
 
@@ -465,24 +515,27 @@ public class GraphicController {
         return true;
     }
 
-    public boolean setProperty(GraphicObject obj, String propName, ScilabType value) {
+    public boolean setProperty(GraphicObject obj, String propName,
+                               ScilabType value) {
         final Class <? extends GraphicObject > clazzThis = obj.getClass();
 
         try {
-            String methodName = GraphicObjectAccessTools.getSetterName(propName);
-            Method method = GraphicObjectMethodFinder.findSetter(methodName, clazzThis, value);
+            String methodName = GraphicObjectAccessTools
+                                .getSetterName(propName);
+            Method method = GraphicObjectMethodFinder.findSetter(methodName,
+                            clazzThis, value);
             if (method == null) {
                 lastError = Messages.gettext("%s: Unknown property: %s.\n");
                 lastProp = propName;
                 return false;
             }
 
-
-
             switch (GraphicObjectAccessTools.invokeSetter(method, obj, value)) {
-                case Success :
-                    propName = GraphicController.getController().getRealPropName(propName);
-                    GraphicController.getController().objectUpdate(obj.getIdentifier(), propName);
+                case Success:
+                    propName = GraphicController.getController().getRealPropName(
+                                   propName);
+                    GraphicController.getController().objectUpdate(
+                        obj.getIdentifier(), propName);
                     return true;
                 case Fail:
                     return false;

@@ -101,7 +101,6 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
     int iCurFigureUID = 0;
     int closeflag = 0;
     int jj = 0;
-    long long *tabofhandles = NULL;
     long hdl = 0;
     int *pObj = NULL;
     int cmpt = 0;
@@ -401,16 +400,6 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
             Scierror(999, _("%s: No more memory.\n"), "plot2d");
             return -1;
         }
-        if (with_leg)
-        {
-            /* tabofhandles allocated for legends */
-            if ((tabofhandles = (long long*)MALLOC((*n1) * sizeof(long long))) == NULL)
-            {
-                Scierror(999, _("%s: No more memory.\n"), "plot2d");
-                FREE(pObj);
-                return -1;
-            }
-        }
 
         /*A.Djalel 3D axes */
         for (jj = 0; jj < *n1; jj++)
@@ -447,12 +436,6 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
                 setCurrentObject(iObjUID);
 
                 pObj[cmpt] = iObjUID;
-                hdl = getHandle(iObjUID);
-                if (with_leg)
-                {
-                    tabofhandles[cmpt] = hdl;
-                }
-
                 cmpt++;
             }
 
@@ -467,13 +450,12 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
 
             if (scitokenize(legend, &Str, &nleg))
             {
-                FREE(tabofhandles);
                 FREE(pObj);
                 Scierror(999, _("%s: No more memory.\n"), "plot2d");
                 return 0;
             }
 
-            iLegUID = ConstructLegend(getCurrentSubWin(), Str, tabofhandles, Min(nleg, cmpt));
+            iLegUID = ConstructLegend(getCurrentSubWin(), Str, pObj, Min(nleg, cmpt));
 
             if (iLegUID != 0)
             {
@@ -491,8 +473,6 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
             }
 
             freeArrayOfString(Str, nleg);
-
-            FREE(tabofhandles);
         }
 
         /*---- construct Compound ----*/

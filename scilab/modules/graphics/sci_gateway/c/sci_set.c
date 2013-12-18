@@ -38,6 +38,8 @@
 #include "localization.h"
 #include "stricmp.h"
 #include "api_scilab.h"
+#include "setHandleProperty.h"
+
 /*--------------------------------------------------------------------------
  * sciset(choice-name,x1,x2,x3,x4,x5)
  * or   xset()
@@ -282,6 +284,7 @@ int sci_set(char *fname, unsigned long fname_len)
         int* piAddr3 = NULL;
 
         int iPos = i + 1;
+        int isData = 0;
 
         sciErr = getVarAddressFromPosition(pvApiCtx, iPos, &piAddr2);
         if (sciErr.iErr)
@@ -309,7 +312,23 @@ int sci_set(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        if (iType == __GO_UICONTROL__ || iType == __GO_FIGURE__ || iType == __GO_AXES__)
+        if ((pstProperty[0] == 'd' || pstProperty[0] == 'D') && stricmp("data", pstProperty) == 0)
+        {
+            //send to datamodel
+            isData = 1;
+        }
+
+        if (isData == 0 && (iType == __GO_ARC__ ||
+                            iType == __GO_AXIS__ ||
+                            iType == __GO_AXES__ ||
+                            iType == __GO_FEC__ ||
+                            iType == __GO_GRAYPLOT__ ||
+                            iType == __GO_MATPLOT__ ||
+                            iType == __GO_TEXT__ ||
+                            iType == __GO_POLYLINE__ ||
+                            iType == __GO_LEGEND__ ||
+                            iType == __GO_RECTANGLE__ ||
+                            iType == __GO_CHAMP__))
         {
             if (setGraphicObjectVariable(pvApiCtx, pstProperty, piAddr3) == FALSE)
             {
@@ -417,7 +436,17 @@ int sci_set(char *fname, unsigned long fname_len)
         freeAllocatedSingleString(pstProperty);
     }
 
-    if (iType == __GO_UICONTROL__ || iType == __GO_FIGURE__ || iType == __GO_AXES__)
+    if (iType == __GO_ARC__ ||
+            iType == __GO_AXIS__ ||
+            iType == __GO_AXES__ ||
+            iType == __GO_FEC__ ||
+            iType == __GO_GRAYPLOT__ ||
+            iType == __GO_MATPLOT__ ||
+            iType == __GO_TEXT__ ||
+            iType == __GO_POLYLINE__ ||
+            iType == __GO_LEGEND__ ||
+            iType == __GO_RECTANGLE__ ||
+            iType == __GO_CHAMP__)
     {
         if (runSetProperty(iObjUID) == FALSE)
         {

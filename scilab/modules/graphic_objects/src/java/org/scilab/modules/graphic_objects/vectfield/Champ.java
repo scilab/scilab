@@ -23,6 +23,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.utils.ClipStateType;
 import org.scilab.modules.graphic_objects.utils.Utils;
 
 /**
@@ -48,6 +49,7 @@ public class Champ extends VectField {
         dimensions = new int[2];
         dimensions[0] = 0;
         dimensions[1] = 0;
+        setClipState(ClipStateType.CLIPGRF);
     }
 
     @Override
@@ -228,7 +230,7 @@ public class Champ extends VectField {
     /**
      * @param colored the colored to set
      */
-    public UpdateStatus setColored(Boolean colored) {
+    public UpdateStatus setColored(boolean colored) {
         this.colored = colored;
         return UpdateStatus.Success;
     }

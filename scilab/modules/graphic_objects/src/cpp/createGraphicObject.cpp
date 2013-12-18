@@ -43,9 +43,9 @@ void buildFigureMenuBar(int _sFigureId)
     CallGraphicController::buildFigureMenuBar(getScilabJavaVM(), _sFigureId);
 }
 
-int buildRect(int iParentsubwinUID, double x, double y, double height, double width, int foreground, int background, int isfilled, int isline)
+int createRect(int iParentsubwinUID, double x, double y, double height, double width, int foreground, int background, int isfilled, int isline)
 {
-    return Builder::buildRect(getScilabJavaVM(), iParentsubwinUID, x, y, height, width, foreground, background, isfilled, isline);
+    return Builder::createRect(getScilabJavaVM(), iParentsubwinUID, x, y, height, width, foreground, background, isfilled, isline);
 }
 
 int cloneGraphicContext(int sourceIdentifier, int destIdentifier)
@@ -93,14 +93,14 @@ int createSubWin(int parent)
     return Builder::createSubWin(getScilabJavaVM(), parent);
 }
 
-int allocateText(int iParentsubwinUID, char** text, int nbRow, int nbCol, double x, double y, BOOL autoSize, double* userSize, int  centerPos, int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, int align)
+int createText(int iParentsubwinUID, char** text, int nbRow, int nbCol, double x, double y, BOOL autoSize, double* userSize, int  centerPos, int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, int align)
 {
-    return Builder::allocateText(getScilabJavaVM(), iParentsubwinUID, text, nbRow * nbCol, nbRow, nbCol, x, y, autoSize == TRUE,
-                                 userSize, userSize == NULL ? 0 : 2,
-                                 centerPos,
-                                 foreground != NULL ? *foreground : 0, foreground != NULL,
-                                 background != NULL ? *background : 0, background != NULL,
-                                 isboxed == TRUE, isline == TRUE, isfilled == TRUE, align);
+    return Builder::createText(getScilabJavaVM(), iParentsubwinUID, text, nbRow * nbCol, nbRow, nbCol, x, y, autoSize == TRUE,
+                               userSize, userSize == NULL ? 0 : 2,
+                               centerPos,
+                               foreground != NULL ? *foreground : 0, foreground != NULL,
+                               background != NULL ? *background : 0, background != NULL,
+                               isboxed == TRUE, isline == TRUE, isfilled == TRUE, align);
 }
 
 int createArc(int parent, double x, double y, double h, double w, double start, double end, int* foreground, int* background, BOOL filled, BOOL line)
@@ -134,4 +134,36 @@ int createFec(int parent, double* zminmax, int zminmaxsize, int* colminmax, int 
 int createGrayplot(int parent, int type, double* pvecx, int pvecxSize, int n1, int n2)
 {
     return Builder::createGrayplot(getScilabJavaVM(), parent, type, pvecx, pvecxSize, n1, n2);
+}
+
+int createPolyline(int parent, BOOL closed, int plot, int* foreground, int* background, int backgroundSize,
+                   int* mark_style, int* mark_foreground, int* mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterp)
+{
+    bool isForeground       = foreground != NULL;
+    bool isMarkStyle        = mark_style != NULL;
+    bool isMarkForeground   = mark_foreground != NULL;
+    bool isMarkBackground   = mark_background != NULL;
+
+    return Builder::createPolyline(getScilabJavaVM(), parent, closed == TRUE, plot,
+                                   isForeground ? *foreground : 0, isForeground,
+                                   background, backgroundSize,
+                                   isMarkStyle ? *mark_style : 0, isMarkStyle,
+                                   isMarkForeground ? *mark_foreground : 0, isMarkForeground,
+                                   isMarkBackground ? *mark_background : 0, isMarkBackground,
+                                   isline == TRUE, isfilled == TRUE, ismark == TRUE, isinterp == TRUE);
+}
+
+int createLegend(int parent, char** text, int iTextSize, int* handles, int iHandlesSize)
+{
+    return Builder::createLegend(getScilabJavaVM(), parent, text, iTextSize, handles, iHandlesSize);
+}
+
+int createSegs(int parent, double* vx, int vxSize, double* vy, int vySize, double* vz, int vzSize, int* style, int styleSize, double arsize)
+{
+    return Builder::createSegs(getScilabJavaVM(), parent, vx, vxSize, vy, vySize, vz, vzSize, vzSize != 0, style, styleSize, arsize);
+}
+
+int createChamp(int parent, double* vx, int vxSize, double* vy, int vySize, double* vfx, int vfxSize, double* vfy, int vfySize, double arsize, BOOL typeofchamp)
+{
+    return Builder::createChamp(getScilabJavaVM(), parent, vx, vxSize, vy, vySize, vfx, vfxSize, vfy, vfySize, arsize, typeofchamp == TRUE);
 }

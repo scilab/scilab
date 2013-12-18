@@ -25,6 +25,7 @@ import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.textObject.Text;
+import org.scilab.modules.graphic_objects.utils.TextBoxMode;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
 
@@ -101,7 +102,7 @@ public class TextManager {
         double[] ratios = computeRatios(projection, text, textBoxVectors, texture.getDataProvider().getTextureSize(), spriteDims);
 
         /* If text box mode is equal to filled, the texture must be updated */
-        if (text.getTextBoxMode() == 2 && ratios[0] != 1.0) {
+        if (text.getTextBoxMode() == TextBoxMode.FILLED && ratios[0] != 1.0) {
             texture = updateSprite(colorMap, text, ratios[0], ratios[1]);
         }
 
@@ -118,7 +119,7 @@ public class TextManager {
 
         /* Compute the corners of the text's bounding box in window coordinates */
         Vector3d[] projCorners;
-        if (text.getTextBoxMode() == 2) {
+        if (text.getTextBoxMode() == TextBoxMode.FILLED) {
             projCorners = computeProjTextBoxCorners(cornerPositions[1], text.getFontAngle(), textBoxVectors);
         } else {
             projCorners = computeProjCorners(cornerPositions[0], text.getFontAngle(), texture.getDataProvider().getTextureSize());
@@ -182,7 +183,7 @@ public class TextManager {
         textWidth = textWidth.minus(textPosition);
         textHeight = textHeight.minus(textPosition);
 
-        if (text.getTextBoxMode() >= 1) {
+        if (TextBoxMode.enumToInt(text.getTextBoxMode()) >= 1) {
             textWidth = textWidth.getNormalized().times(textBox[0] * factors[0][0]);
             textHeight = textHeight.getNormalized().times(textBox[1] * factors[0][1]);
         }
@@ -250,7 +251,7 @@ public class TextManager {
         double[] ratios = new double[] {1.0, 1.0};
 
         /* Ratios are relevant only to the filled text box mode */
-        if (text.getTextBoxMode() == 2) {
+        if (text.getTextBoxMode() == TextBoxMode.FILLED) {
             Vector3d textBoxWidth = textBoxVectors[0];
             Vector3d textBoxHeight = textBoxVectors[1];
 
@@ -297,7 +298,7 @@ public class TextManager {
         cornerPositions[0] = new Vector3d(textPosition);
         cornerPositions[1] = new Vector3d(textPosition);
 
-        if (text.getTextBoxMode() >= 1) {
+        if (TextBoxMode.enumToInt(text.getTextBoxMode()) >= 1) {
             Vector3d textBoxWidth = new Vector3d(textBoxVectors[0]);
             Vector3d textBoxHeight = new Vector3d(textBoxVectors[1]);
 
@@ -496,7 +497,7 @@ public class TextManager {
     protected Texture getTexture(final ColorMap colorMap, final Text text) {
         Texture texture = spriteMap.get(text.getIdentifier());
         if (texture == null) {
-            if (text.getTextBoxMode() == 2) {
+            if (text.getTextBoxMode() == TextBoxMode.FILLED) {
                 /* Create an unscaled texture (scale factor equal to 1) */
                 texture = createSprite(colorMap, text, 1.0);
             } else {
@@ -538,7 +539,7 @@ public class TextManager {
     protected Dimension getSpriteDims(final ColorMap colorMap, final Text text) {
         TextSpriteDrawer spriteDrawer;
 
-        if (text.getTextBoxMode() == 2) {
+        if (text.getTextBoxMode() == TextBoxMode.FILLED) {
             /* Set the scale factor to 1 in order to return the dimensions of an unscaled texture. */
             spriteDrawer = new TextSpriteDrawer(colorMap, text, 1.0);
         } else {
@@ -618,7 +619,7 @@ public class TextManager {
             Vector3d[] textBoxVectors = currentVisitor.getTextManager().computeTextBoxVectors(currentProj, text, spriteDim, parentAxes);
             Vector3d[] cornerPositions = currentVisitor.getTextManager().computeTextPosition(currentProj, text, textBoxVectors, spriteDim);
 
-            if (text.getTextBoxMode() == 2) {
+            if (text.getTextBoxMode() == TextBoxMode.FILLED) {
                 projCorners = currentVisitor.getTextManager().computeProjTextBoxCorners(cornerPositions[1], text.getFontAngle(), textBoxVectors);
             } else {
                 projCorners = currentVisitor.getTextManager().computeProjCorners(cornerPositions[0], text.getFontAngle(), spriteDim);

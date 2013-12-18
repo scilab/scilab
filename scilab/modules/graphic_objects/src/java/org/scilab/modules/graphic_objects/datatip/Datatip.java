@@ -289,7 +289,7 @@ public class Datatip extends Text {
         dim[1] = 1;
 
         setTextArrayDimensions(dim);
-        setTextStrings(textArray);
+        setTextWithoutResize(textArray);
     }
 
     /**

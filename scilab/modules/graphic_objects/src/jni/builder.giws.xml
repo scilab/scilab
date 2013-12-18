@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package name="org.scilab.modules.graphic_objects.builder">
     <object name="Builder">
-        <method name="buildRect" returnType="int" modifier="static">
+        <method name="createRect" returnType="int" modifier="static">
             <parameter name="pparentsubwinUID" type="int"/>
             <parameter name="x" type="double"/>
             <parameter name="y" type="double"/>
@@ -41,7 +41,7 @@
         <method name="createSubWin" returnType="int" modifier="static">
             <parameter name="parent" type="int"/>
         </method>
-        <method name="allocateText" returnType="int" modifier="static">
+        <method name="createText" returnType="int" modifier="static">
             <parameter name="parent" type="int"/>
             <parameter name="text" type="String[]"/>
             <parameter name="rows" type="int"/>
@@ -109,6 +109,47 @@
             <parameter name="pvecx" type="double[]"/>
             <parameter name="n1" type="int"/>
             <parameter name="n2" type="int"/>
+        </method>
+        <method name="createPolyline" returnType="int" modifier="static">
+            <parameter name="parent" type="int"/>
+            <parameter name="closed" type="boolean"/>
+            <parameter name="plot" type="int"/>
+            <parameter name="foreground" type="int"/>
+            <parameter name="isForeground" type="boolean"/>
+            <parameter name="background" type="int[]"/>
+            <parameter name="mark_style" type="int"/>
+            <parameter name="isMarkStyle" type="boolean"/>
+            <parameter name="mark_foreground" type="int"/>
+            <parameter name="isMarkForeground" type="boolean"/>
+            <parameter name="mark_background" type="int"/>
+            <parameter name="isMarkBackground" type="boolean"/>
+            <parameter name="isline" type="boolean"/>
+            <parameter name="isfilled" type="boolean"/>
+            <parameter name="ismark" type="boolean"/>
+            <parameter name="isinterp" type="boolean"/>
+        </method>
+        <method name="createLegend" returnType="int" modifier="static">
+            <parameter name="parent" type="int"/>
+            <parameter name="text" type="String[]"/>
+            <parameter name="handles" type="int[]"/>
+        </method>
+        <method name="createSegs" returnType="int" modifier="static">
+            <parameter name="parent" type="int"/>
+            <parameter name="vx" type="double[]"/>
+            <parameter name="vy" type="double[]"/>
+            <parameter name="vz" type="double[]"/>
+            <parameter name="isVZ" type="boolean"/>
+            <parameter name="style" type="int[]"/>
+            <parameter name="arsize" type="double"/>
+        </method>
+        <method name="createChamp" returnType="int" modifier="static">
+            <parameter name="parent" type="int"/>
+            <parameter name="vx" type="double[]"/>
+            <parameter name="vy" type="double[]"/>
+            <parameter name="vfx" type="double[]"/>
+            <parameter name="vfy" type="double[]"/>
+            <parameter name="arsize" type="double"/>
+            <parameter name="typeofchamp" type="boolean"/>
         </method>
     </object>
 </package>

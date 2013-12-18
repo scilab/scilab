@@ -386,7 +386,12 @@ int sci_get(char *fname, unsigned long fname_len)
                     iType != __GO_COMPOUND__ &&
                     iType != __GO_FEC__ &&
                     iType != __GO_GRAYPLOT__ &&
-                    iType != __GO_MATPLOT__)
+                    iType != __GO_MATPLOT__ &&
+                    iType != __GO_TEXT__ &&
+                    iType != __GO_POLYLINE__ &&
+                    iType != __GO_LEGEND__ &&
+                    iType != __GO_RECTANGLE__ &&
+                    iType != __GO_CHAMP__)
             {
                 if (sciGet(pvApiCtx, iObjUID, (l2)) != 0)
                 {
@@ -403,7 +408,13 @@ int sci_get(char *fname, unsigned long fname_len)
                 int ret = 0;
 
                 //some data are in C so don't call java
-                if (iType == __GO_FEC__ || iType == __GO_GRAYPLOT__ || iType == __GO_MATPLOT__)
+                if (iType == __GO_FEC__ ||
+                        iType == __GO_GRAYPLOT__ ||
+                        iType == __GO_MATPLOT__ ||
+                        iType == __GO_TEXT__ ||
+                        iType == __GO_POLYLINE__ ||
+                        iType == __GO_RECTANGLE__ ||
+                        iType == __GO_CHAMP__)
                 {
                     if (first == 'd')
                     {
@@ -472,11 +483,65 @@ int sci_get(char *fname, unsigned long fname_len)
                     case 'c' :
                         if (stricmp(l2, "children") == 0)
                         {
+                            //we get all children, hidden and not hidden.
+                            //now hide hidden ones.
+
+                            //TODO : take care of __GO_SHOWHIDDENHANDLES__
+
+                            //get address of new created var.
+                            int i = 0;
+                            int iAddr = iadr(*Lstk(nbArgumentOnStack(pvApiCtx) + 1));
+                            int* piAddress = istk(iAddr);
+                            int* piAddress2 = NULL;
+                            double* pAll = (double*)(piAddress + 4);
+                            int iSize = piAddress[1] * piAddress[2];
+                            char* pstState = NULL;
+
+                            piAddress[2] = 0; //reinit output col size
+
+                            for (i = 0 ; i < iSize ; i++)
+                            {
+                                if ((ret = getProperty((int)pAll[i], "hidden", nbInputArgument(pvApiCtx) + 2)) != 0)
+                                {
+                                    continue;
+                                }
+
+                                iAddr = iadr(*Lstk(nbArgumentOnStack(pvApiCtx) + 2));
+                                piAddress2 = istk(iAddr);
+
+                                if (getAllocatedSingleString(pvApiCtx, piAddress2, &pstState))
+                                {
+                                    if (pstState)
+                                    {
+                                        freeAllocatedSingleString(pstState);
+                                    }
+
+                                    Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
+                                    freeAllocatedSingleString(l2);
+                                    return 0;
+                                }
+
+                                if (strcmp(pstState, "on") != 0)
+                                {
+                                    pAll[piAddress[2]] = pAll[i];
+                                    //update output col size
+                                    piAddress[2]++;
+                                }
+
+                                freeAllocatedSingleString(pstState);
+                            }
+
                             convertDoubleToHandle(pvApiCtx, 1);
                         }
                         break;
                     case 'p' :
                         if (stricmp(l2, "parent") == 0)
+                        {
+                            convertDoubleToHandle(pvApiCtx, 1);
+                        }
+                        break;
+                    case 'l' :
+                        if (stricmp(l2, "links") == 0)
                         {
                             convertDoubleToHandle(pvApiCtx, 1);
                         }
@@ -799,7 +864,12 @@ int sci_get(char *fname, unsigned long fname_len)
                         iType == __GO_AXES__ ||
                         iType == __GO_FEC__ ||
                         iType == __GO_GRAYPLOT__ ||
-                        iType == __GO_MATPLOT__)
+                        iType == __GO_MATPLOT__ ||
+                        iType == __GO_TEXT__ ||
+                        iType == __GO_POLYLINE__ ||
+                        iType == __GO_LEGEND__ ||
+                        iType == __GO_RECTANGLE__ ||
+                        iType == __GO_CHAMP__)
                 {
                     switch (first)
                     {
@@ -837,6 +907,8 @@ int sci_get(char *fname, unsigned long fname_len)
                                     //if clip_state is disable, returns []
                                     createEmptyMatrix(pvApiCtx, nbInputArgument(pvApiCtx) + 1);
                                 }
+
+                                freeAllocatedSingleString(pstState);
                             }
                             break;
                     }
@@ -884,10 +956,15 @@ void convertDoubleToHandle(void* _pvCtx, int _iPos)
         pllH = (long long*)MALLOC(sizeof(long long) * iRows * iCols);
         for (i = 0 ; i < iRows * iCols ; i++)
         {
-            pllH[i] = (long long)getHandle((int)pDbl[i]);
+            int iCol = i / iRows;
+            int iRow = i % iRows;
+            int iNewIdx = iRow * iCols + iCol;
+
+
+            pllH[iNewIdx] = (long long)getHandle((int)pDbl[i]);
         }
 
-        createMatrixOfHandle(pvApiCtx, nbInputArgument(pvApiCtx) + _iPos, iRows, iCols, pllH);
+        createMatrixOfHandle(pvApiCtx, nbInputArgument(pvApiCtx) + _iPos, iCols, iRows, pllH);
         FREE(pllH);
     }
 }

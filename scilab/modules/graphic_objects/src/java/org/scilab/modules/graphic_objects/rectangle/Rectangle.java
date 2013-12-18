@@ -115,7 +115,7 @@ public class Rectangle extends ClippableContouredObject {
     /**
      * @param height the height to set
      */
-    public UpdateStatus setHeight(Double height) {
+    public UpdateStatus setHeight(double height) {
         this.height = height;
         return UpdateStatus.Success;
     }
@@ -153,7 +153,7 @@ public class Rectangle extends ClippableContouredObject {
     /**
      * @param width the width to set
      */
-    public UpdateStatus setWidth(Double width) {
+    public UpdateStatus setWidth(double width) {
         this.width = width;
         return UpdateStatus.Success;
     }

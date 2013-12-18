@@ -822,14 +822,14 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         segmentAppearance.setLineColor(ColorFactory.createColor(colorMap, champ.getLineColor()));
                     }
 
-                    segmentAppearance.setLineWidth(champ.getLineThickness().floatValue());
-                    segmentAppearance.setLinePattern(champ.getLineStyleAsEnum().asPattern());
+                    segmentAppearance.setLineWidth(champ.getThickness().floatValue());
+                    segmentAppearance.setLinePattern(champ.getLineStyle().asPattern());
                     drawingTools.draw(segments, segmentAppearance);
                 }
 
                 /* Draw the arrows */
                 if (champ.getArrowSize() != 0.0) {
-                    arrowDrawer.drawArrows(champ.getParentAxes(), champ.getIdentifier(), champ.getArrowSize(), champ.getLineThickness(), false,
+                    arrowDrawer.drawArrows(champ.getParentAxes(), champ.getIdentifier(), champ.getArrowSize(), champ.getThickness(), false,
                                            champ.getColored(), champ.getLineColor(), false);
                 }
             } catch (OutOfMemoryException e) {
@@ -859,8 +859,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 if (segs.getLineMode()) {
                     Appearance segmentAppearance = new Appearance();
                     segmentAppearance.setLineColor(null);
-                    segmentAppearance.setLineWidth(segs.getLineThickness().floatValue());
-                    segmentAppearance.setLinePattern(segs.getLineStyleAsEnum().asPattern());
+                    segmentAppearance.setLineWidth(segs.getThickness().floatValue());
+                    segmentAppearance.setLinePattern(segs.getLineStyle().asPattern());
                     drawingTools.draw(segments, segmentAppearance);
                 }
 
@@ -879,7 +879,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                 /* Draw the arrows */
                 if (segs.getArrowSize() != 0.0) {
-                    arrowDrawer.drawArrows(segs.getParentAxes(), segs.getIdentifier(), segs.getArrowSize(), segs.getLineThickness(), true,
+                    arrowDrawer.drawArrows(segs.getParentAxes(), segs.getIdentifier(), segs.getArrowSize(), segs.getThickness(), true,
                                            true, segs.getLineColor(), false);
                 }
             } catch (OutOfMemoryException e) {

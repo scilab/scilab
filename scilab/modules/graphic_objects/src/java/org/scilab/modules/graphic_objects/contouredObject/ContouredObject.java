@@ -244,7 +244,7 @@ public abstract class ContouredObject extends GraphicObject {
      * @return the color
      */
     public Integer getForeground() {
-        return line.getColor();
+        return getLineColor();
     }
 
     public Integer getLineColor() {
@@ -255,6 +255,11 @@ public abstract class ContouredObject extends GraphicObject {
      * Set the line color
      * @param color the color to set
      */
+
+    public UpdateStatus setForeground(int color) {
+        return setLineColor(color);
+    }
+
     public UpdateStatus setLineColor(int color) {
         return line.setColor(color);
     }
@@ -420,7 +425,16 @@ public abstract class ContouredObject extends GraphicObject {
      * @param style the style to set
      */
     public UpdateStatus setMarkStyle(int style) {
-        return mark.setStyle(style);
+        UpdateStatus status = mark.setStyle(style);
+
+        //switch MarkMode to "on"
+        if (status == UpdateStatus.Success) {
+            setMarkMode(true);
+            return UpdateStatus.Success;
+        } else {
+            return status;
+        }
+
     }
 
 }

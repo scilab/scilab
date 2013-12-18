@@ -854,6 +854,14 @@ public class Uicontrol extends GraphicObject {
         return UpdateStatus.Success;
     }
 
+    public boolean getHandleVisible() {
+        return !isHidden();
+    }
+
+    public UpdateStatus setHandleVisible(boolean visible) {
+        return setHidden(!visible);
+    }
+
     public void accept(Visitor visitor) {
 
     }

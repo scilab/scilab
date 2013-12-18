@@ -23,6 +23,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.utils.Alignment;
+import org.scilab.modules.graphic_objects.utils.TextBoxMode;
 
 /**
  * Text class
@@ -32,51 +34,6 @@ public class Text extends ClippableTextObject {
     /** Text properties names */
     private enum TextProperty { FONTANGLE, POSITION, CORNERS, ALIGNMENT, BOX, TEXTBOX, TEXTBOXMODE, AUTODIMENSIONING };
 
-    /** Alignment */
-    public enum Alignment { LEFT, CENTER, RIGHT;
-
-                            /**
-                             * Converts an integer to the corresponding enum
-                             * @param intValue the integer value
-                             * @return the alignment enum
-                             */
-    public static Alignment intToEnum(Integer intValue) {
-        switch (intValue) {
-            case 0:
-                return Alignment.LEFT;
-            case 1:
-                return Alignment.CENTER;
-            case 2:
-                return Alignment.RIGHT;
-            default:
-                return null;
-        }
-    }
-
-                          };
-
-    /** Text box mode */
-    private enum TextBoxMode { OFF, CENTERED, FILLED;
-
-                               /**
-                                * Converts an integer to the corresponding enum
-                                * @param intValue the integer value
-                                * @return the text box mode enum
-                                */
-    public static TextBoxMode intToEnum(Integer intValue) {
-        switch (intValue) {
-            case 0:
-                return TextBoxMode.OFF;
-            case 1:
-                return TextBoxMode.CENTERED;
-            case 2:
-                return TextBoxMode.FILLED;
-            default:
-                return null;
-        }
-    }
-
-                             };
 
     /** Text angle */
     private double fontAngle;
@@ -173,7 +130,7 @@ public class Text extends ClippableTextObject {
         } else if (property == TextProperty.TEXTBOXMODE) {
             return getTextBoxMode();
         } else if (property == TextProperty.AUTODIMENSIONING) {
-            return getAutoDimensioning();
+            return getAutoDimensionning();
         } else {
             return super.getProperty(property);
         }
@@ -193,15 +150,15 @@ public class Text extends ClippableTextObject {
         } else if (property == TextProperty.CORNERS) {
             setCorners((Double[]) value);
         } else if (property == TextProperty.ALIGNMENT) {
-            setAlignment((Integer) value);
+            setAlignment(Alignment.intToEnum((Integer) value));
         } else if (property == TextProperty.BOX) {
             setBox((Boolean) value);
         } else if (property == TextProperty.TEXTBOX) {
             setTextBox((Double[]) value);
         } else if (property == TextProperty.TEXTBOXMODE) {
-            setTextBoxMode((Integer) value);
+            setTextBoxMode(TextBoxMode.intToEnum((Integer) value));
         } else if (property == TextProperty.AUTODIMENSIONING) {
-            setAutoDimensioning((Boolean) value);
+            setAutoDimensionning((Boolean) value);
         } else {
             return super.setProperty(property, value);
         }
@@ -212,28 +169,14 @@ public class Text extends ClippableTextObject {
     /**
      * @return the alignment
      */
-    public Integer getAlignment() {
-        return getAlignmentAsEnum().ordinal();
-    }
-
-    /**
-     * @return the alignment
-     */
-    public Alignment getAlignmentAsEnum() {
+    public Alignment getAlignment() {
         return alignment;
     }
 
     /**
      * @param alignment the alignment to set
      */
-    public UpdateStatus setAlignment(Integer alignment) {
-        return setAlignmentAsEnum(Alignment.intToEnum(alignment));
-    }
-
-    /**
-     * @param alignment the alignment to set
-     */
-    public UpdateStatus setAlignmentAsEnum(Alignment alignment) {
+    public UpdateStatus setAlignment(Alignment alignment) {
         this.alignment = alignment;
         return UpdateStatus.Success;
     }
@@ -241,14 +184,14 @@ public class Text extends ClippableTextObject {
     /**
      * @return the autoDimensioning
      */
-    public Boolean getAutoDimensioning() {
+    public Boolean getAutoDimensionning() {
         return autoDimensioning;
     }
 
     /**
      * @param autoDimensioning the autoDimensioning to set
      */
-    public UpdateStatus setAutoDimensioning(Boolean autoDimensioning) {
+    public UpdateStatus setAutoDimensionning(boolean autoDimensioning) {
         this.autoDimensioning = autoDimensioning;
         return UpdateStatus.Success;
     }
@@ -263,7 +206,7 @@ public class Text extends ClippableTextObject {
     /**
      * @param box the box to set
      */
-    public UpdateStatus setBox(Boolean box) {
+    public UpdateStatus setBox(boolean box) {
         this.box = box;
         return UpdateStatus.Success;
     }
@@ -278,7 +221,7 @@ public class Text extends ClippableTextObject {
     /**
      * @param fontAngle the fontAngle to set
      */
-    public UpdateStatus setFontAngle(Double fontAngle) {
+    public UpdateStatus setFontAngle(double fontAngle) {
         this.fontAngle = fontAngle;
         return UpdateStatus.Success;
     }
@@ -378,28 +321,14 @@ public class Text extends ClippableTextObject {
     /**
      * @return the textBoxMode
      */
-    public Integer getTextBoxMode() {
-        return getTextBoxModeAsEnum().ordinal();
-    }
-
-    /**
-     * @return the textBoxMode
-     */
-    public TextBoxMode getTextBoxModeAsEnum() {
+    public TextBoxMode getTextBoxMode() {
         return textBoxMode;
     }
 
     /**
      * @param textBoxMode the textBoxMode to set
      */
-    public UpdateStatus setTextBoxMode(Integer textBoxMode) {
-        return setTextBoxModeAsEnum(TextBoxMode.intToEnum(textBoxMode));
-    }
-
-    /**
-     * @param textBoxMode the textBoxMode to set
-     */
-    public UpdateStatus setTextBoxModeAsEnum(TextBoxMode textBoxMode) {
+    public UpdateStatus setTextBoxMode(TextBoxMode textBoxMode) {
         this.textBoxMode = textBoxMode;
         return UpdateStatus.Success;
     }

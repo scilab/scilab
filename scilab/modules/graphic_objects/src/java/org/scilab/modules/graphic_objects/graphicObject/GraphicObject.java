@@ -757,7 +757,7 @@ public abstract class GraphicObject implements Cloneable {
      * Set hidden method
      * @param hidden the value to set
      */
-    public UpdateStatus setHidden(Boolean hidden) {
+    public UpdateStatus setHidden(boolean hidden) {
         this.hidden = hidden;
         return UpdateStatus.Success;
     }
@@ -766,7 +766,7 @@ public abstract class GraphicObject implements Cloneable {
      * isHidden method
      * @return hidden
      */
-    public Boolean isHidden() {
+    public boolean isHidden() {
         return hidden;
     }
 

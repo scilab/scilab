@@ -33,6 +33,8 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.graphic_objects.axes.TicksProperty;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.textObject.FormattedText;
+import org.scilab.modules.graphic_objects.utils.Alignment;
 import org.scilab.modules.graphic_objects.utils.Antialiasing;
 import org.scilab.modules.graphic_objects.utils.ArcDrawingMethod;
 import org.scilab.modules.graphic_objects.utils.AxisLocation;
@@ -40,10 +42,12 @@ import org.scilab.modules.graphic_objects.utils.BoxType;
 import org.scilab.modules.graphic_objects.utils.ClipStateType;
 import org.scilab.modules.graphic_objects.utils.DataMapping;
 import org.scilab.modules.graphic_objects.utils.GridPosition;
+import org.scilab.modules.graphic_objects.utils.LegendLocation;
 import org.scilab.modules.graphic_objects.utils.LineType;
 import org.scilab.modules.graphic_objects.utils.MarkSizeUnitType;
 import org.scilab.modules.graphic_objects.utils.PixelDrawingMode;
 import org.scilab.modules.graphic_objects.utils.RotationType;
+import org.scilab.modules.graphic_objects.utils.TextBoxMode;
 import org.scilab.modules.graphic_objects.utils.TicksDirection;
 import org.scilab.modules.graphic_objects.utils.TicksStyle;
 import org.scilab.modules.graphic_objects.utils.ViewType;
@@ -468,6 +472,21 @@ public final class ObjectToScilabConverters {
         converters.put(DataMapping.class, new ObjectConverter() {
             public void convert(Object o, int stackPos) {
                 ScilabStackPutter.put(stackPos, DataMapping.enumToString((DataMapping)o));
+            }
+        });
+        converters.put(Alignment.class, new ObjectConverter() {
+            public void convert(Object o, int stackPos) {
+                ScilabStackPutter.put(stackPos, Alignment.enumToString((Alignment)o));
+            }
+        });
+        converters.put(TextBoxMode.class, new ObjectConverter() {
+            public void convert(Object o, int stackPos) {
+                ScilabStackPutter.put(stackPos, TextBoxMode.enumToString((TextBoxMode)o));
+            }
+        });
+        converters.put(LegendLocation.class, new ObjectConverter() {
+            public void convert(Object o, int stackPos) {
+                ScilabStackPutter.put(stackPos, LegendLocation.enumToString((LegendLocation)o));
             }
         });
     }

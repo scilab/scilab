@@ -65,7 +65,7 @@ public abstract class TextObject extends ContouredObject {
         copy.text = new FormattedText[dimensions[0] * dimensions[1]];
 
         /* Actually copies the FormattedText objects */
-        copy.setText(text);
+        copy.setFormattedText(text);
 
         return copy;
     }
@@ -117,11 +117,11 @@ public abstract class TextObject extends ContouredObject {
      */
     public Object getProperty(Object property) {
         if (property == TextObjectProperty.TEXT) {
-            return getText();
+            return getFormattedText();
         } else if (property == TextObjectProperty.TEXT_ARRAY_DIMENSIONS) {
             return getTextArrayDimensions();
         } else if (property == FormattedText.FormattedTextProperty.TEXT) {
-            return getTextStrings();
+            return getText();
         } else if (property == Font.FontProperty.STYLE) {
             return getFontStyle();
         } else if (property == Font.FontProperty.SIZE) {
@@ -129,7 +129,7 @@ public abstract class TextObject extends ContouredObject {
         } else if (property == Font.FontProperty.COLOR) {
             return getFontColor();
         } else if (property == Font.FontProperty.FRACTIONAL) {
-            return getFontFractional();
+            return getFractionalFont();
         } else {
             return super.getProperty(property);
         }
@@ -143,11 +143,11 @@ public abstract class TextObject extends ContouredObject {
      */
     public UpdateStatus setProperty(Object property, Object value) {
         if (property == TextObjectProperty.TEXT) {
-            setText((FormattedText[]) value);
+            setFormattedText((FormattedText[]) value);
         } else if (property == TextObjectProperty.TEXT_ARRAY_DIMENSIONS) {
             setTextArrayDimensions((Integer[]) value);
         } else if (property == FormattedText.FormattedTextProperty.TEXT) {
-            setTextStrings((String[]) value);
+            setTextWithoutResize((String[]) value);
         } else if (property == Font.FontProperty.STYLE) {
             setFontStyle((Integer) value);
         } else if (property == Font.FontProperty.SIZE) {
@@ -155,7 +155,7 @@ public abstract class TextObject extends ContouredObject {
         } else if (property == Font.FontProperty.COLOR) {
             setFontColor((Integer) value);
         } else if (property == Font.FontProperty.FRACTIONAL) {
-            setFontFractional((Boolean) value);
+            setFractionalFont((Boolean) value);
         } else {
             return super.setProperty(property, value);
         }
@@ -208,7 +208,7 @@ public abstract class TextObject extends ContouredObject {
     /**
      * @return the text
      */
-    public FormattedText[] getText() {
+    public FormattedText[] getFormattedText() {
         FormattedText[] retText = new FormattedText[dimensions[0] * dimensions[1]];
 
         for (int i = 0; i < dimensions[0] * dimensions[1]; i++) {
@@ -221,7 +221,7 @@ public abstract class TextObject extends ContouredObject {
     /**
      * @param textArray the textArray to set
      */
-    public UpdateStatus setText(FormattedText[] textArray) {
+    public UpdateStatus setFormattedText(FormattedText[] textArray) {
         for (int i = 0; i < dimensions[0] * dimensions[1]; i++) {
             text[i] = new FormattedText(textArray[i]);
         }
@@ -231,11 +231,24 @@ public abstract class TextObject extends ContouredObject {
     /**
      * @return the text strings
      */
-    public String[] getTextStrings() {
+
+    public String[] getTextArray() {
         String[] textStrings = new String[dimensions[0] * dimensions[1]];
 
-        for (int i = 0; i < dimensions[0] * dimensions[1]; i++) {
-            textStrings[i] = new String(text[i].getText());
+        for (int i = 0 ; i < dimensions[0] * dimensions[1] ; i++) {
+            textStrings[i] = text[i].getText();
+        }
+
+        return textStrings;
+    }
+
+    public String[][] getText() {
+        String[][] textStrings = new String[dimensions[0]][dimensions[1]];
+
+        for (int i = 0; i < dimensions[0] ; i++) {
+            for (int j = 0 ; j < dimensions[1] ; j++) {
+                textStrings[i][j] = text[j * dimensions[0] + i].getText();
+            }
         }
 
         return textStrings;
@@ -244,7 +257,28 @@ public abstract class TextObject extends ContouredObject {
     /**
      * @param textStrings the text strings array to set
      */
-    public UpdateStatus setTextStrings(String[] textStrings) {
+
+    public UpdateStatus setText(String[][] textStrings) {
+        Integer[] dims = new Integer[2];
+        dims[0] = textStrings.length;
+        dims[1] = textStrings[0].length;
+
+        //set new dimension
+        setTextArrayDimensions(dims);
+
+        int k = 0;
+        String[] str = new String[dims[0] * dims[1]];
+        for (int i = 0 ; i < dims[0] ; i++) {
+            for (int j = 0 ; j < dims[1] ; j++) {
+                str[k++] = textStrings[i][j];
+            }
+        }
+
+        //set new string values
+        return setTextWithoutResize(str);
+    }
+
+    public UpdateStatus setTextWithoutResize(String[] textStrings) {
         for (int i = 0; i < dimensions[0] * dimensions[1]; i++) {
             text[i].setText(textStrings[i]);
         }
@@ -278,7 +312,7 @@ public abstract class TextObject extends ContouredObject {
     /**
      * @param style the font style to set
      */
-    public UpdateStatus setFontStyle(Integer style) {
+    public UpdateStatus setFontStyle(int style) {
         for (int i = 0; i < dimensions[0] * dimensions[1]; i++) {
             text[i].getFont().setStyle(style);
         }
@@ -288,6 +322,10 @@ public abstract class TextObject extends ContouredObject {
     /**
      * @return the font color
      */
+    public Integer getFontForeground() {
+        return getFontColor();
+    }
+
     public Integer getFontColor() {
         return text[0].getFont().getColor();
     }
@@ -295,12 +333,17 @@ public abstract class TextObject extends ContouredObject {
     /**
      * @param color the font color to set
      */
-    public UpdateStatus setFontColor(Integer color) {
+    public UpdateStatus setFontForeground(int color) {
+        return setFontColor(color);
+    }
+
+    public UpdateStatus setFontColor(int color) {
         for (int i = 0; i < dimensions[0] * dimensions[1]; i++) {
             text[i].getFont().setColor(color);
         }
         return UpdateStatus.Success;
     }
+
 
     /**
      * @return the font size
@@ -312,7 +355,7 @@ public abstract class TextObject extends ContouredObject {
     /**
      * @param size the font size to set
      */
-    public UpdateStatus setFontSize(Double size) {
+    public UpdateStatus setFontSize(double size) {
         for (int i = 0; i < dimensions[0] * dimensions[1]; i++) {
             text[i].getFont().setSize(size);
         }
@@ -322,14 +365,14 @@ public abstract class TextObject extends ContouredObject {
     /**
      * @return the font fractional
      */
-    public Boolean getFontFractional() {
+    public Boolean getFractionalFont() {
         return text[0].getFont().getFractional();
     }
 
     /**
      * @param fractional the font fractional to set
      */
-    public UpdateStatus setFontFractional(Boolean fractional) {
+    public UpdateStatus setFractionalFont(boolean fractional) {
         for (int i = 0; i < dimensions[0] * dimensions[1]; i++) {
             text[i].getFont().setFractional(fractional);
         }

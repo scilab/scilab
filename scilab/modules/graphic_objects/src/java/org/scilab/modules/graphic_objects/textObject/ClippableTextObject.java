@@ -151,7 +151,7 @@ public abstract class ClippableTextObject extends TextObject {
     /**
      * @param clipBoxSet the clipBoxSet to set
      */
-    public UpdateStatus setClipBoxSet(Boolean clipBoxSet) {
+    public UpdateStatus setClipBoxSet(boolean clipBoxSet) {
         return clipProperty.setClipBoxSet(clipBoxSet);
     }
 

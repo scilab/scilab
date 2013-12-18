@@ -26,6 +26,7 @@ import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.utils.MarkSizeUnitType;
+import org.scilab.modules.graphic_objects.utils.TextBoxMode;
 import org.scilab.modules.graphic_objects.datatip.Datatip;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
@@ -68,7 +69,7 @@ public class DatatipTextDrawer extends TextManager {
         double[] ratios = computeRatios(projection, datatip, textBoxVectors, texture.getDataProvider().getTextureSize(), spriteDims);
 
         /* If text box mode is equal to filled, the texture must be updated */
-        if (datatip.getTextBoxMode() == 2 && ratios[0] != 1.0) {
+        if (datatip.getTextBoxMode() == TextBoxMode.FILLED && ratios[0] != 1.0) {
             texture = updateSprite(colorMap, datatip, ratios[0], ratios[1]);
         }
 
@@ -131,7 +132,7 @@ public class DatatipTextDrawer extends TextManager {
 
         /* Compute the corners of the text's bounding box in window coordinates */
         Vector3d[] projCorners;
-        if (datatip.getTextBoxMode() == 2) {
+        if (datatip.getTextBoxMode() == TextBoxMode.FILLED) {
             projCorners = computeProjTextBoxCorners(cornerPositions[1], datatip.getFontAngle(), textBoxVectors);
         } else {
             projCorners = computeProjCorners(cornerPositions[0], datatip.getFontAngle(), texture.getDataProvider().getTextureSize());
@@ -188,7 +189,7 @@ public class DatatipTextDrawer extends TextManager {
             cornerPositions[1] = cornerPositions[1].plus(delta);
 
 
-            if (datatip.getTextBoxMode() == 2) {
+            if (datatip.getTextBoxMode() == TextBoxMode.FILLED) {
                 projCorners = currentVisitor.getDatatipTextDrawer().computeProjTextBoxCorners(cornerPositions[1], datatip.getFontAngle(), textBoxVectors);
             } else {
                 projCorners = currentVisitor.getDatatipTextDrawer().computeProjCorners(cornerPositions[0], datatip.getFontAngle(), spriteDim);

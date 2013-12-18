@@ -41,6 +41,7 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
+import org.scilab.modules.graphic_objects.utils.Alignment;
 import org.scilab.modules.graphic_objects.utils.Antialiasing;
 import org.scilab.modules.graphic_objects.utils.ArcDrawingMethod;
 import org.scilab.modules.graphic_objects.utils.AxisLocation;
@@ -48,9 +49,11 @@ import org.scilab.modules.graphic_objects.utils.BoxType;
 import org.scilab.modules.graphic_objects.utils.ClipStateType;
 import org.scilab.modules.graphic_objects.utils.DataMapping;
 import org.scilab.modules.graphic_objects.utils.GridPosition;
+import org.scilab.modules.graphic_objects.utils.LegendLocation;
 import org.scilab.modules.graphic_objects.utils.MarkSizeUnitType;
 import org.scilab.modules.graphic_objects.utils.PixelDrawingMode;
 import org.scilab.modules.graphic_objects.utils.RotationType;
+import org.scilab.modules.graphic_objects.utils.TextBoxMode;
 import org.scilab.modules.graphic_objects.utils.TicksDirection;
 import org.scilab.modules.graphic_objects.utils.TicksStyle;
 import org.scilab.modules.graphic_objects.utils.ViewType;
@@ -766,6 +769,21 @@ public final class StringConverters {
         converters.put(DataMapping.class, new StringConverter() {
             public DataMapping convert(String str) {
                 return DataMapping.stringToEnum(str);
+            }
+        });
+        converters.put(Alignment.class, new StringConverter() {
+            public Alignment convert(String str) {
+                return Alignment.stringToEnum(str);
+            }
+        });
+        converters.put(TextBoxMode.class, new StringConverter() {
+            public TextBoxMode convert(String str) {
+                return TextBoxMode.stringToEnum(str);
+            }
+        });
+        converters.put(LegendLocation.class, new StringConverter() {
+            public LegendLocation convert(String str) {
+                return LegendLocation.stringToEnum(str);
             }
         });
     }

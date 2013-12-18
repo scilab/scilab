@@ -23,6 +23,7 @@ import java.util.Map;
 
 import org.scilab.modules.graphic_objects.ScilabNativeView;
 import org.scilab.modules.graphic_objects.axes.TicksProperty;
+import org.scilab.modules.graphic_objects.textObject.FormattedText;
 import org.scilab.modules.graphic_objects.utils.LineType;
 import org.scilab.modules.types.ScilabBoolean;
 import org.scilab.modules.types.ScilabDouble;

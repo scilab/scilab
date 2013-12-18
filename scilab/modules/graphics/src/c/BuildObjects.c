@@ -105,8 +105,8 @@ int ConstructText(int iParentsubwinUID, char **text, int nbRow, int nbCol, doubl
         return 0;
     }
 
-    iObj = allocateText(iParentsubwinUID, text, nbRow, nbCol, x, y,
-                        autoSize, (double*)userSize, centerPos, foreground, background, isboxed, isline, isfilled, align);
+    iObj = createText(iParentsubwinUID, text, nbRow, nbCol, x, y,
+                      autoSize, (double*)userSize, centerPos, foreground, background, isboxed, isline, isfilled, align);
 
     setGraphicObjectRelationship(iParentsubwinUID, iObj);
     setCurrentObject(iObj);
@@ -121,126 +121,13 @@ int ConstructText(int iParentsubwinUID, char **text, int nbRow, int nbCol, doubl
  * @param int nblegends : the number of legend items
  * @return : object UID if ok , NULL if not
  */
-int ConstructLegend(int iParentsubwinUID, char **text, long long tabofhandles[], int nblegends)
+int ConstructLegend(int iParentsubwinUID, char **text, int* tabofhandles, int nblegends)
 {
     int iObj = 0;
-
-    int i = 0;
-    int iLegendPresent = 0;
-    int *piLegendPresent = &iLegendPresent;
-    int iVisible = 0;
-    int *piVisible = &iVisible;
-    int textDimensions[2];
-    int fillMode = 0;
-    int legendLocation = 0;
-
-    int clipRegionSet = 0;
-    int clipState = 0;
-
-    double *clipRegion = NULL;
-    double position[2];
-
-    int* piLineIDS = NULL;
-    int parentType = -1;
-    int *piParentType = &parentType;
-
-    /* Check beforehand whether a Legend object is already present */
-    getGraphicObjectProperty(iParentsubwinUID, __GO_HAS_LEGEND_CHILD__, jni_bool, (void **)&piLegendPresent);
-
-    if (iLegendPresent)
-    {
-        /* Delete it (one Legend object allowed at most) */
-        int iLegendChildID;
-        int* piLegend = &iLegendChildID;
-
-        getGraphicObjectProperty(iParentsubwinUID, __GO_LEGEND_CHILD__, jni_int, (void **)&piLegend);
-
-        deleteGraphicObject(iLegendChildID);
-    }
-
-    getGraphicObjectProperty(iParentsubwinUID, __GO_TYPE__, jni_int, (void **)&piParentType);
-
-    if (parentType != __GO_AXES__)
-    {
-        Scierror(999, _("The parent has to be a SUBWIN\n"));
-        return 0;
-    }
-
-    iObj = createGraphicObject(__GO_LEGEND__);
-
-    /* Required to initialize the default contour and font properties */
-    setGraphicObjectProperty(iObj, __GO_PARENT__, &iParentsubwinUID, jni_int, 1);
-
-    getGraphicObjectProperty(iParentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
-
-    setGraphicObjectProperty(iObj, __GO_VISIBLE__, &iVisible, jni_bool, 1);
-
-    piLineIDS = (int*)MALLOC(nblegends * sizeof(int));
-    if (piLineIDS == NULL)
-    {
-        Scierror(999, _("%s: No more memory.\n"), "ConstructLegend");
-        deleteGraphicObject(iObj);
-        return 0;
-    }
-
-    textDimensions[0] = nblegends;
-    textDimensions[1] = 1;
-
-    setGraphicObjectProperty(iObj, __GO_TEXT_ARRAY_DIMENSIONS__, textDimensions, jni_int_vector, 2);
-    setGraphicObjectProperty(iObj, __GO_TEXT_STRINGS__, text, jni_string_vector, nblegends);
-
-    for (i = 0; i < nblegends; i++)
-    {
-        int iObjUID = getObjectFromHandle((long)tabofhandles[i]);
-
-        /*
-         * Links are ordered from most recent to least recent,
-         * as their referred-to Polylines in the latter's parent Compound object.
-         */
-        piLineIDS[nblegends - i - 1] = iObjUID;
-    }
-
-    setGraphicObjectProperty(iObj, __GO_LINKS__, piLineIDS, jni_int_vector, nblegends);
-
-    /*
-     * Do not release tmpObjUIDs (eg lineIDS content) as getObjectFromHandle pass data by reference.
-     */
-    FREE(piLineIDS);
-
-    position[0] = 0.0;
-    position[1] = 0.0;
-    setGraphicObjectProperty(iObj, __GO_POSITION__, position, jni_double_vector, 2);
-
-    /* 9: LOWER_CAPTION */
-    legendLocation = 9;
-    setGraphicObjectProperty(iObj, __GO_LEGEND_LOCATION__, &legendLocation, jni_int, 1);
-
-    /* Clipping: to be checked for consistency */
-    clipRegionSet = 0;
-    setGraphicObjectProperty(iObj, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
-
-    /* 0: OFF */
-    clipState = 0;
-    setGraphicObjectProperty(iObj, __GO_CLIP_STATE__, &clipState, jni_int, 1);
-
-    getGraphicObjectProperty(iParentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipRegion);
-    setGraphicObjectProperty(iObj, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
-    releaseGraphicObjectProperty(__GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
-
-    /* NEW :  used to draw the line and marks of the curve F.Leray 21.01.05 */
-    cloneGraphicContext(iParentsubwinUID, iObj);
-
-    cloneFontContext(iParentsubwinUID, iObj);
-
-    fillMode = TRUE;
-    setGraphicObjectProperty(iObj, __GO_FILL_MODE__, &fillMode, jni_bool, 1);
-
-    setParentObject(iObj, 0);
-
-    setGraphicObjectRelationship(iParentsubwinUID, iObj);
+    iObj = createLegend(iParentsubwinUID, text, nblegends, tabofhandles, nblegends);
     setCurrentObject(iObj);
 
-    return getCurrentObject();
+    return iObj;
 }
 
 /*---------------------------------------------------------------------------------*/
@@ -254,23 +141,27 @@ int allocatePolyline(int iParentsubwinUID, double *pvecx, double *pvecy, double 
     int iObj = 0;
     int i = 0;
     BOOL result = FALSE;
-    char *type = NULL;
     int iPolyline = 0;
-    double barWidth = 0.;
-    double arrowSizeFactor = 0.;
-    double *clipRegion = NULL;
     double *dataVector = NULL;
-    int clipState = 0;
-    int *piClipState = &clipState;
-    int lineClosed = 0;
     int numElementsArray[2];
-    int visible = 0;
-    int *piVisible = &visible;
     int zCoordinatesSet = 0;
-    int clipRegionSet = 0;
-    int *piClipRegionSet = &clipRegionSet;
+    int iBackgroundSize = 1;
 
-    iObj = createGraphicObject(__GO_POLYLINE__);
+    if (background != NULL)
+    {
+        if (isinterpshaded == TRUE)
+        {
+            iBackgroundSize = n1;
+        }
+    }
+    else
+    {
+        iBackgroundSize = 0;
+    }
+
+    iObj = createPolyline(iParentsubwinUID, closed > 1 ? TRUE : FALSE, plot, foreground, background, iBackgroundSize,
+                          mark_style, mark_foreground, mark_background, isline, isfilled, ismark, isinterpshaded);
+
     iPolyline = createDataObject(iObj, __GO_POLYLINE__);
 
     if (iPolyline == 0)
@@ -279,32 +170,6 @@ int allocatePolyline(int iParentsubwinUID, double *pvecx, double *pvecy, double 
         return 0;
     }
 
-    barWidth = 0.0;
-    setGraphicObjectProperty(iObj, __GO_BAR_WIDTH__, &barWidth, jni_double, 1);
-
-    getGraphicObjectProperty(iParentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
-
-    setGraphicObjectProperty(iObj, __GO_VISIBLE__, &visible, jni_bool, 1);
-
-    /* Clip state and region */
-    /* To be checked for consistency */
-
-    /*
-     * releaseGraphicObjectProperty for any property passed by reference only
-     */
-
-    getGraphicObjectProperty(iParentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipRegion);
-    setGraphicObjectProperty(iObj, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
-    releaseGraphicObjectProperty(__GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
-
-    getGraphicObjectProperty(iParentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, (void **)&piClipRegionSet);
-    setGraphicObjectProperty(iObj, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
-
-    getGraphicObjectProperty(iParentsubwinUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
-    setGraphicObjectProperty(iObj, __GO_CLIP_STATE__, &clipState, jni_int, 1);
-
-    arrowSizeFactor = 1.0;
-    setGraphicObjectProperty(iObj, __GO_ARROW_SIZE_FACTOR__, &arrowSizeFactor, jni_double, 1);
 
     /*
      * First element: number of gons (always 1 for a Polyline)
@@ -398,70 +263,6 @@ int allocatePolyline(int iParentsubwinUID, double *pvecx, double *pvecy, double 
             return 0;
         }
     }
-
-    if (closed > 0)
-    {
-        lineClosed = 1;
-    }
-    else
-    {
-        lineClosed = 0;
-    }
-
-    setGraphicObjectProperty(iObj, __GO_CLOSED__, &lineClosed, jni_bool, 1);
-    setGraphicObjectProperty(iObj, __GO_POLYLINE_STYLE__, &plot, jni_int, 1);
-
-    /*
-     * Initializes the contour properties (background, foreground, etc)
-     * to the default values (those of the parent Axes).
-     */
-    cloneGraphicContext(iParentsubwinUID, iObj);
-
-    /* colors and marks setting */
-    setGraphicObjectProperty(iObj, __GO_MARK_MODE__, &ismark, jni_bool, 1);
-    setGraphicObjectProperty(iObj, __GO_LINE_MODE__, &isline, jni_bool, 1);
-    setGraphicObjectProperty(iObj, __GO_FILL_MODE__, &isfilled, jni_bool, 1);
-
-    /* shading interpolation vector and mode */
-    setGraphicObjectProperty(iObj, __GO_INTERP_COLOR_MODE__, &isinterpshaded, jni_bool, 1);
-
-    if (foreground != NULL)
-    {
-        setGraphicObjectProperty(iObj, __GO_LINE_COLOR__, foreground, jni_int, 1);
-    }
-
-    if (background != NULL)
-    {
-        if (isinterpshaded == TRUE)
-        {
-            /* 3 or 4 values to store */
-
-            setGraphicObjectProperty(iObj, __GO_INTERP_COLOR_VECTOR__, background, jni_int_vector, n1);
-        }
-        else
-        {
-            setGraphicObjectProperty(iObj, __GO_BACKGROUND__, background, jni_int, 1);
-        }
-    }
-
-    if (mark_style != NULL)
-    {
-        /* This does use the MVC */
-        setGraphicObjectProperty(iObj, __GO_MARK_STYLE__, mark_style, jni_int, 1);
-    }
-
-    if (mark_foreground != NULL)
-    {
-        setGraphicObjectProperty(iObj, __GO_MARK_FOREGROUND__, mark_foreground, jni_int, 1);
-    }
-
-    if (mark_background != NULL)
-    {
-        setGraphicObjectProperty(iObj, __GO_MARK_BACKGROUND__, mark_background, jni_int, 1);
-    }
-
-    visible = 1;
-    setGraphicObjectProperty(iObj, __GO_VISIBLE__, &visible, jni_bool, 1);
 
     return iObj;
 }
@@ -979,185 +780,6 @@ int ConstructImplot(int iParentsubwinUID, double *pvecx, unsigned char *pvecz, i
 
     /* Initializes the default Contour values */
     cloneGraphicContext(iParentsubwinUID, iObj);
-
-    return iObj;
-}
-
-/**ConstructAxis
- * This function creates an Axis object
- * @author Djalel ABDEMOUCHE
- * @see sciSetCurrentObj
- *
- */
-int ConstructAxis(int iParentsubwinUID, char dir, char tics, double *vx,
-                  int nx, double *vy, int ny, char **str, int subint, char *format,
-                  int fontsize, int textcolor, int ticscolor, char logscale, int seg, int nb_tics_labels)
-{
-    int parentType = -1;
-    int *piParentType = &parentType;
-    int iObj = 0;
-    int i = 0;
-    int clipRegionSet = 0;
-    int clipState = 0;
-    int ticksDirection = 0;
-    int ticksStyle = 0;
-    double *clipRegion = NULL;
-    double doubleFontSize = 0.;
-
-    getGraphicObjectProperty(iParentsubwinUID, __GO_TYPE__, jni_int, (void **)&piParentType);
-
-    if (parentType != __GO_AXES__)
-    {
-        Scierror(999, _("The parent has to be a SUBWIN\n"));
-        return 0;
-    }
-
-    iObj = createGraphicObject(__GO_AXIS__);
-
-    /* Required to initialize the default contour properties */
-    setGraphicObjectProperty(iObj, __GO_PARENT__, &iParentsubwinUID, jni_int, 1);
-
-    /* Clipping: to be checked for consistency */
-    clipRegionSet = 0;
-    setGraphicObjectProperty(iObj, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
-
-    getGraphicObjectProperty(iParentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipRegion);
-    setGraphicObjectProperty(iObj, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
-    releaseGraphicObjectProperty(__GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
-
-    /* 0: OFF */
-    clipState = 0;
-    setGraphicObjectProperty(iObj, __GO_CLIP_STATE__, &clipState, jni_int, 1);
-
-    /* The ticks style and direction MVC properties are Integers */
-    if (dir == 'u')
-    {
-        ticksDirection = 0;
-    }
-    else if (dir == 'd')
-    {
-        ticksDirection = 1;
-    }
-    else if (dir == 'l')
-    {
-        ticksDirection = 2;
-    }
-    else if (dir == 'r')
-    {
-        ticksDirection = 3;
-    }
-    else
-    {
-        ticksDirection = 0;
-    }
-
-    if (tics == 'v')
-    {
-        ticksStyle = 0;
-    }
-    else if (tics == 'r')
-    {
-        ticksStyle = 1;
-    }
-    else if (tics == 'i')
-    {
-        ticksStyle = 2;
-    }
-    else
-    {
-        ticksStyle = 0;
-    }
-
-    setGraphicObjectProperty(iObj, __GO_TICKS_DIRECTION__, &ticksDirection, jni_int, 1);
-    setGraphicObjectProperty(iObj, __GO_TICKS_STYLE__, &ticksStyle, jni_int, 1);
-
-    setGraphicObjectProperty(iObj, __GO_X_TICKS_COORDS__, vx, jni_double_vector, nx);
-    setGraphicObjectProperty(iObj, __GO_Y_TICKS_COORDS__, vy, jni_double_vector, ny);
-
-    /* FORMATN must be set before Labels are computed. */
-    if (format != NULL)
-    {
-        setGraphicObjectProperty(iObj, __GO_FORMATN__, format, jni_string, 1);
-    }
-
-    /*
-     * Labels are computed automatically depending on the ticks coordinates.
-     * The computation is performed by a C function which has been adapted
-     * to the MVC (property get calls) and was previously done in the
-     * tics labels property get C function.
-     * It should be done (or called) directly in the Java part of the model
-     * for the sake of efficiency.
-     * To be modified
-     */
-    if (str == NULL)
-    {
-        char **matData;
-        StringMatrix *tics_labels;
-
-        tics_labels = computeDefaultTicsLabels(iObj);
-
-        if (tics_labels == NULL)
-        {
-            deleteGraphicObject(iObj);
-            return 0;
-        }
-
-        matData = getStrMatData(tics_labels);
-
-        /*
-         * The labels vector size must be computed using the matrix's dimensions.
-         * To be modified when the labels computation is moved to the Model.
-         */
-        setGraphicObjectProperty(iObj, __GO_TICKS_LABELS__, matData, jni_string_vector, tics_labels->nbCol * tics_labels->nbRow);
-
-        deleteMatrix(tics_labels);
-    }
-    else
-    {
-        /*
-         * Labels are set using the str argument; the previous code tested whether each element of the
-         * str array was null and set the corresponding Axis' element to NULL, though there was no
-         * apparent reason to do so. This is still checked, but now aborts building the Axis.
-         */
-
-        if (nb_tics_labels == -1)
-        {
-            Scierror(999, _("Impossible case when building axis\n"));
-            deleteGraphicObject(iObj);
-            return 0;
-        }
-
-        for (i = 0; i < nb_tics_labels; i++)
-        {
-            if (str[i] == NULL)
-            {
-                deleteGraphicObject(iObj);
-                return 0;
-            }
-        }
-
-        setGraphicObjectProperty(iObj, __GO_TICKS_LABELS__, str, jni_string_vector, nb_tics_labels);
-    }
-
-    setGraphicObjectProperty(iObj, __GO_SUBTICKS__, &subint, jni_int, 1);
-    setGraphicObjectProperty(iObj, __GO_TICKS_SEGMENT__, &seg, jni_bool, 1);
-
-    /* Initializes the default Contour values */
-    cloneGraphicContext(iParentsubwinUID, iObj);
-
-    /* Initializes the default Font values */
-    cloneFontContext(iParentsubwinUID, iObj);
-
-    /* Parent reset to the null object */
-    setParentObject(iObj, 0);
-
-    setGraphicObjectRelationship(iParentsubwinUID, iObj);
-
-    doubleFontSize = (double)fontsize;
-
-    setGraphicObjectProperty(iObj, __GO_FONT_SIZE__, &doubleFontSize, jni_double, 1);
-    setGraphicObjectProperty(iObj, __GO_FONT_COLOR__, &textcolor, jni_int, 1);
-    setGraphicObjectProperty(iObj, __GO_TICKS_COLOR__, &ticscolor, jni_int, 1);
 
     return iObj;
 }
