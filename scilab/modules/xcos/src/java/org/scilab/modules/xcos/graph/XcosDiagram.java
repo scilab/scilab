@@ -1144,6 +1144,11 @@ public class XcosDiagram extends ScilabGraph {
         final Object newLink1 = createEdge(null, null, null, src, trg, null);
         addCell(newLink1, null, null, src, trg);
         geometry = getModel().getGeometry(newLink1);
+        if (getModel().getParent(newLink1) instanceof BasicBlock) {
+            // on a loop link, translate the points as the cell has been moved to the parent
+            orig.setX(orig.getX() + geometry.getX());
+            orig.setY(orig.getY() + geometry.getY());
+        }
         geometry.setPoints(points);
         getModel().setGeometry(newLink1, geometry);
 

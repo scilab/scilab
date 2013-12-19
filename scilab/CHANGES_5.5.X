@@ -283,6 +283,9 @@ Scilab Bug Fixes
 
 * Bug #13063 fixed - Color selection in SciNotes preferences threw exceptions.
 
+* Bug #13064 fixed - Deleting a link connected to a split lead to a translated
+                     link.
+
 * Bug #13069 fixed - Documentation for %MODELICA_USER_LIBS updated.
 
 * Bug #13066 fixed - data_bounds was not fully documented in axes_properties.
