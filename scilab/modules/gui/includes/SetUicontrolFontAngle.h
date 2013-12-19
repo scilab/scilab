@@ -11,7 +11,7 @@
  *
  */
 
-#ifndef __SET_UICONTROL_FOTNANGLE_H__
+#ifndef __SET_UICONTROL_FONTANGLE_H__
 #define __SET_UICONTROL_FONTANGLE_H__
 #include "dynlib_gui.h"
 
