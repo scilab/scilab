@@ -209,6 +209,9 @@ Scilab Bug Fixes
 
 * Bug #12963 fixed - drawaxis did not place the axis correctly.
 
+* Bug #12966 fixed - Rotation, tool tip and other Xcos plot actions were
+                     disabled by default.
+
 * Bug #12968 fixed - Cannot save variable named 'temp'.
 
 * Bug #12971 fixed - getURL downloaded file name was wrong.

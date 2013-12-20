@@ -639,10 +639,21 @@ public final class SwingView implements GraphicView {
                 property == __GO_VALID__ &&
                 ((Boolean) GraphicController.getController().getProperty(id, __GO_VALID__))) {
             if (registeredObject.getValue() instanceof SwingScilabTab) {
-                ((SwingScilabTab) registeredObject.getValue()).getParentWindow().setVisible(true);
-                ((SwingScilabTab) registeredObject.getValue()).setVisible(true);
-                Integer[] figureSize = (Integer[]) GraphicController.getController().getProperty(id, __GO_SIZE__);
-                ((SwingScilabTab) registeredObject.getValue()).getParentWindow().setDims(new Size(figureSize[0], figureSize[1]));
+                final Runnable r = new Runnable() {
+                    @Override
+                    public void run() {
+                        ((SwingScilabTab) registeredObject.getValue()).getParentWindow().setVisible(true);
+                        ((SwingScilabTab) registeredObject.getValue()).setVisible(true);
+                        Integer[] figureSize = (Integer[]) GraphicController.getController().getProperty(id, __GO_SIZE__);
+                        ((SwingScilabTab) registeredObject.getValue()).getParentWindow().setDims(new Size(figureSize[0], figureSize[1]));
+                    }
+                };
+
+                if (SwingUtilities.isEventDispatchThread()) {
+                    r.run();
+                } else {
+                    SwingUtilities.invokeLater(r);
+                }
             }
         }
 
