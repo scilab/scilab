@@ -258,9 +258,7 @@ void Objsegs (int * style,
     checkRedrawing();
     iSubwinUID = getCurrentSubWin();
 
-    iObjUID = ConstructSegs(iSubwinUID, type,
-                            x, y, z, n1, n1, (z == NULL ? 0 : n1), // x, y and z have the same size n1
-                            fx, fy, flag, style, arsize, colored, typeofchamp);
+    iObjUID = createSegs(iSubwinUID, x, n1, y, n1, z, (z == NULL ? 0 : n1), style, flag == 0 ? 1 : n1, arsize);
 
     if (iObjUID == NULL)
     {

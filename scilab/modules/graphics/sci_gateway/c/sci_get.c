@@ -391,7 +391,8 @@ int sci_get(char *fname, unsigned long fname_len)
                     iType != __GO_POLYLINE__ &&
                     iType != __GO_LEGEND__ &&
                     iType != __GO_RECTANGLE__ &&
-                    iType != __GO_CHAMP__)
+                    iType != __GO_CHAMP__ &&
+                    iType != __GO_SEGS__)
             {
                 if (sciGet(pvApiCtx, iObjUID, (l2)) != 0)
                 {
@@ -414,7 +415,8 @@ int sci_get(char *fname, unsigned long fname_len)
                         iType == __GO_TEXT__ ||
                         iType == __GO_POLYLINE__ ||
                         iType == __GO_RECTANGLE__ ||
-                        iType == __GO_CHAMP__)
+                        iType == __GO_CHAMP__ ||
+                        iType == __GO_SEGS__)
                 {
                     if (first == 'd')
                     {
@@ -869,7 +871,8 @@ int sci_get(char *fname, unsigned long fname_len)
                         iType == __GO_POLYLINE__ ||
                         iType == __GO_LEGEND__ ||
                         iType == __GO_RECTANGLE__ ||
-                        iType == __GO_CHAMP__)
+                        iType == __GO_CHAMP__ ||
+                        iType == __GO_SEGS__)
                 {
                     switch (first)
                     {

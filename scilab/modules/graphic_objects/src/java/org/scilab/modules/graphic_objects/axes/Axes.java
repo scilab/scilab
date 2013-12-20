@@ -1867,6 +1867,10 @@ public class Axes extends GraphicObject {
     /**
      * @return the line color
      */
+    public UpdateStatus setForeground(int color) {
+        return line.setColor(color);
+    }
+
     public Integer getForeground() {
         return line.getColor();
     }

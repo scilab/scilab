@@ -69,10 +69,6 @@ GRAPHICS_IMPEXP int ConstructLegend(int iParentsubwinUID, char *text[], int* tab
 
 GRAPHICS_IMPEXP int ConstructPolyline(int iParentsubwinUID, double *pvecx, double *pvecy, double *pvecz, int closed, int n1, int plot, int *foreground, int *background, int *mark_style, int *mark_foreground, int *mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded);    /* BUILD */
 
-GRAPHICS_IMPEXP int ConstructArc(int iParentsubwinUID, double x, double y,
-                                 double height, double width, double alphabegin, double alphaend,
-                                 int *foreground, int *background, BOOL isfilled, BOOL isline);
-
 GRAPHICS_IMPEXP int ConstructSurface(int iParentsubwinUID, sciTypeOf3D typeof3d, double *pvecx, double *pvecy, double *pvecz, double *zcol, int izcol, int dimzx, int dimzy, int *flag, double *ebox, int flagcolor, int *isfac, int *m1, int *n1, int *m2, int *n2, int *m3, int *n3, int *m3n, int *n3n); /* BUILD */
 
 GRAPHICS_IMPEXP int ConstructGrayplot(int iParentsubwinUID, double *vx, double *vy, double *vz, int nx, int ny, int type);  /* BUILD */
@@ -80,11 +76,6 @@ GRAPHICS_IMPEXP int ConstructGrayplot(int iParentsubwinUID, double *vx, double *
 GRAPHICS_IMPEXP int ConstructImplot(int iParentsubwinUID, double * rect, unsigned char *vz, int nx, int ny, int plottype);  /* BUILD */
 
 GRAPHICS_IMPEXP int ConstructFec(int iParentsubwinUID, double *pvecx, double *pvecy, double *pnoeud, double *pfun, int Nnode, int Ntr, double *zminmax, int *colminmax, int *colout, BOOL with_mesh);   /* BUILD */
-
-GRAPHICS_IMPEXP int ConstructSegs(int iParentsubwinUID, int type, double *vx, double *vy, double *vz, int Nbr1, int Nbr2, int Nbr3, double *vfx, double *vfy, int flag, int *style, double arsize, int colored, int typeofchamp);   /* BUILD */
-
-//GRAPHICS_IMPEXP int ConstructCompound(long *tabpointobj, int number); /* BUILD */
-//GRAPHICS_IMPEXP int ConstructCompoundSeq(int number); /* BUILD */
 
 /**
  * Create a polyline but does not add it to Scilab hierarchy

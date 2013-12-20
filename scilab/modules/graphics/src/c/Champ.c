@@ -116,9 +116,6 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
         style[i] = i;
     }
 
-    //iNewSegsUID = createChamp(iSubwinUID, type, x, y, NULL, *n1, *n2, 0, fx, fy, flag,
-    //                            style, arsize1, colored, typeofchamp);
-
     iNewSegsUID = createChamp(iSubwinUID, x, *n1, y, *n2, fx, *n1 * *n2, fy, *n1 * *n2, arsize1, typeofchamp != 0);
 
     if (iNewSegsUID == 0)

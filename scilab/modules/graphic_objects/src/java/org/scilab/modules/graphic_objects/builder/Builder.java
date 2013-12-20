@@ -765,13 +765,25 @@ public final class Builder {
             }
         }
 
+        segs.setBase(arrowCoords);
+
+        for (int i = 0 ; i < numberArrows ; i++) {
+            arrowCoords[3 * i] = vx[2 * i + 1];
+            arrowCoords[3 * i + 1] = vy[2 * i + 1];
+            if (isVZ) {
+                arrowCoords[3 * i + 2] = vz[2 * i + 1];
+            } else {
+                arrowCoords[3 * i + 2] = 0.0;
+            }
+        }
+
         segs.setDirection(arrowCoords);
         //flag at 0 or 1, manage style like a array
         Integer[] temp = new Integer[style.length];
         for (int i = 0 ; i < style.length ; i++) {
             temp[i] = style[i];
         }
-        segs.setColors(temp);
+        segs.setSegsColor(temp);
 
         cloneGraphicContext(parent, iSegs);
         controller.objectCreated(iSegs);

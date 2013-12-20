@@ -328,7 +328,8 @@ int sci_set(char *fname, unsigned long fname_len)
                             iType == __GO_POLYLINE__ ||
                             iType == __GO_LEGEND__ ||
                             iType == __GO_RECTANGLE__ ||
-                            iType == __GO_CHAMP__))
+                            iType == __GO_CHAMP__ ||
+                            iType == __GO_SEGS__))
         {
             if (setGraphicObjectVariable(pvApiCtx, pstProperty, piAddr3) == FALSE)
             {
@@ -446,7 +447,8 @@ int sci_set(char *fname, unsigned long fname_len)
             iType == __GO_POLYLINE__ ||
             iType == __GO_LEGEND__ ||
             iType == __GO_RECTANGLE__ ||
-            iType == __GO_CHAMP__)
+            iType == __GO_CHAMP__ ||
+            iType == __GO_SEGS__)
     {
         if (runSetProperty(iObjUID) == FALSE)
         {
