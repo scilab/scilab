@@ -31,21 +31,12 @@ public enum ClipStateType {
     }
 
     public static ClipStateType stringToEnum(String val) {
-        char[] chars = val.toCharArray();
 
-        if (chars[0] == 'o') {
-            if (chars.length == 2 && chars[1] == 'n') {
-                return ON;
-            }
-
-            if (chars.length > 2 && chars[1] == 'f') {
-                return OFF;
-            }
-
-            return null;
-        }
-
-        if (chars[0] == 'c') {
+        if (val.equalsIgnoreCase("on")) {
+            return ON;
+        } else if (val.equalsIgnoreCase("off")) {
+            return OFF;
+        } else if (val.equalsIgnoreCase("clipgrf")) {
             return CLIPGRF;
         }
 
