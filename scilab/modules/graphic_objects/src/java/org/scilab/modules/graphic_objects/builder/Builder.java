@@ -19,7 +19,6 @@ import org.scilab.modules.graphic_objects.ScilabNativeView;
 import org.scilab.modules.graphic_objects.arc.Arc;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axis.Axis;
-import org.scilab.modules.graphic_objects.compound.Compound;
 import org.scilab.modules.graphic_objects.fec.Fec;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -27,8 +26,10 @@ import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.imageplot.Imageplot;
+import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.legend.Legend;
 import org.scilab.modules.graphic_objects.polyline.Polyline;
+import org.scilab.modules.graphic_objects.rectangle.Rectangle;
 import org.scilab.modules.graphic_objects.textObject.Font;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.utils.Alignment;
@@ -45,65 +46,53 @@ public final class Builder {
                                        double height, double width, int foreground,
                                        int background, int isfilled, int isline) {
         GraphicController controller = GraphicController.getController();
-
-        Double[] clipRegion;
-        Boolean visible = false;
-        Boolean clipRegionSet = false;
-        Integer clipState = 0;
-        Boolean iMarkMode = false;
+        Axes axes = (Axes)controller.getObjectFromId(parentSubwin);
 
         if (height < 0 || width < 0) {
             return 0;
         }
 
-        Integer pobjUID = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_RECTANGLE__));
+        Integer iRect = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_RECTANGLE__));
 
         /*
          * Sets the rectangle's parent in order to initialize the former's Contoured properties
          * with the latter's values (cloneGraphicContext call below)
          */
-        controller.setProperty(pobjUID, GraphicObjectProperties.__GO_UPPER_LEFT_POINT__, new Double[] {x, y, 0.0});
-        controller.setProperty(pobjUID, GraphicObjectProperties.__GO_HEIGHT__, height);
-        controller.setProperty(pobjUID, GraphicObjectProperties.__GO_WIDTH__, width);
 
-        visible = (Boolean) controller.getProperty(parentSubwin, GraphicObjectProperties.__GO_VISIBLE__);
-        controller.setProperty(pobjUID, GraphicObjectProperties.__GO_VISIBLE__, visible);
+        Rectangle rect = (Rectangle) controller.getObjectFromId(iRect);
+        rect.setUpperLeftPoint(new Double[] {x, y, 0.0});
+        rect.setHeight(height);
+        rect.setWidth(width);
+
+        rect.setVisible(axes.getVisible());
 
         /* Clip state and region */
         /* To be checked for consistency */
 
-        clipRegion = (Double[]) controller.getProperty(parentSubwin, GraphicObjectProperties.__GO_CLIP_BOX__);
-        controller.setProperty(pobjUID, GraphicObjectProperties.__GO_CLIP_BOX__, clipRegion);
-
-        clipRegionSet = (Boolean) controller.getProperty(parentSubwin, GraphicObjectProperties.__GO_CLIP_BOX_SET__);
-        controller.setProperty(pobjUID, GraphicObjectProperties.__GO_CLIP_BOX_SET__,  clipRegionSet);
-
-        clipState = (Integer) controller.getProperty(parentSubwin, GraphicObjectProperties.__GO_CLIP_STATE__);
-        controller.setProperty(pobjUID, GraphicObjectProperties.__GO_CLIP_STATE__, clipState);
-
-        iMarkMode = (Boolean) controller.getProperty(parentSubwin, GraphicObjectProperties.__GO_MARK_MODE__);
-        controller.setProperty(pobjUID, GraphicObjectProperties.__GO_MARK_MODE__, iMarkMode);
+        rect.setClipBox(axes.getClipBox());
+        rect.setClipBoxSet(axes.getClipBoxSet());
+        rect.setClipState(axes.getClipState());
+        rect.setMarkMode(axes.getMarkMode());
 
         /*
          * Initializes the contour properties (background, foreground, etc)
          * to the default values (those of the parent Axes).
          */
-        cloneGraphicContext(parentSubwin, pobjUID);
+        cloneGraphicContext(parentSubwin, iRect);
 
         /* Contour settings */
-        controller.setProperty(pobjUID, GraphicObjectProperties.__GO_LINE_MODE__, isline == 1);
-        controller.setProperty(pobjUID, GraphicObjectProperties.__GO_FILL_MODE__, isfilled == 1);
+        rect.setLineMode(isline == 1);
+        rect.setFillMode(isfilled == 1);
 
         if (foreground != -1) {
-            controller.setProperty(pobjUID, GraphicObjectProperties.__GO_LINE_COLOR__, foreground);
+            rect.setLineColor(foreground);
         }
 
         if (background != -1) {
-            controller.setProperty(pobjUID, GraphicObjectProperties.__GO_BACKGROUND__, background);
+            rect.setBackground(background);
         }
 
-        /* Parent reset to the null object */
-        //setGraphicObjectProperty(pobjUID, GraphicObjectProperties.__GO_PARENT__, "", jni_string, 1);
+        controller.objectCreated(iRect);
 
         /*
          * Sets the Axes as the rectangle's parent and adds the rectangle to
@@ -111,7 +100,7 @@ public final class Builder {
          */
         //setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
 
-        return pobjUID;
+        return iRect;
     }
 
     public static int cloneGraphicContext(int sourceIdentifier, int destIdentifier) {
@@ -185,20 +174,22 @@ public final class Builder {
 
         GraphicController controller = GraphicController.getController();
 
-        Integer newLabel = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_LABEL__));
+        Integer iLabel = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_LABEL__));
+        Label label = (Label) controller.getObjectFromId(iLabel);
 
         //Hide Label as they are non explicit children
-        controller.setProperty(newLabel, GraphicObjectProperties.__GO_HIDDEN__, true);
-        controller.setProperty(newLabel, GraphicObjectProperties.__GO_AUTO_POSITION__, true);
-        controller.setProperty(newLabel, GraphicObjectProperties.__GO_AUTO_ROTATION__, true);
+        label.setHidden(true);
+        label.setAutoPosition(true);
+        label.setAutoRotation(true);
+
+        cloneGraphicContext(parent, iLabel);
+        cloneFontContext(parent, iLabel);
+        controller.objectCreated(iLabel);
 
         // Sets the label's parent
-        controller.setGraphicObjectRelationship(parent, newLabel);
+        controller.setGraphicObjectRelationship(parent, iLabel);
 
-        cloneGraphicContext(parent, newLabel);
-        cloneFontContext(parent, newLabel);
-
-        return newLabel;
+        return iLabel;
     }
 
     public static void initSubWinBounds(int subWin) {
@@ -235,23 +226,18 @@ public final class Builder {
         controller.setProperty(subWin, GraphicObjectProperties.__GO_FIRST_PLOT__, true);
 
         Integer axesModel = GraphicModel.getAxesModel().getIdentifier();
+        Axes axes = (Axes) controller.getObjectFromId(axesModel);
 
-        Integer view = (Integer) controller.getProperty(axesModel, GraphicObjectProperties.__GO_VIEW__);
-        Double[] angles = (Double[]) controller.getProperty(axesModel, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
-        Double[] angles3d = (Double[]) controller.getProperty(axesModel, GraphicObjectProperties.__GO_ROTATION_ANGLES_3D__);
-
-        controller.setProperty(subWin, GraphicObjectProperties.__GO_VIEW__, view);
-        controller.setProperty(subWin, GraphicObjectProperties.__GO_ROTATION_ANGLES__, angles);
-        controller.setProperty(subWin, GraphicObjectProperties.__GO_ROTATION_ANGLES_3D__, angles3d);
-
+        controller.setProperty(subWin, GraphicObjectProperties.__GO_VIEW__, axes.getView());
+        controller.setProperty(subWin, GraphicObjectProperties.__GO_ROTATION_ANGLES__, axes.getRotationAngles());
+        controller.setProperty(subWin, GraphicObjectProperties.__GO_ROTATION_ANGLES_3D__, axes.getRotationAngles3d());
     }
 
     public static boolean isAxesRedrawing(int subWin) {
         GraphicController controller = GraphicController.getController();
+        Axes axes = (Axes)controller.getObjectFromId(subWin);
 
-        Boolean autoClear = (Boolean) controller.getProperty(subWin, GraphicObjectProperties.__GO_AUTO_CLEAR__);
-
-        if (autoClear) {
+        if (axes.getAutoClear()) {
             reinitSubWin(subWin);
             return true;
         }
@@ -312,16 +298,19 @@ public final class Builder {
         return newAxes;
     }
 
-    public final static void cloneMenus(int model, int newParent) {
+    public final static void cloneMenus(int iModel, int iParent) {
         GraphicController controller = GraphicController.getController();
+        GraphicObject model = controller.getObjectFromId(iModel);
 
-        for (Integer childId : (Integer []) controller.getProperty(model, GraphicObjectProperties.__GO_CHILDREN__)) {
+        Integer[] children = model.getChildren();
 
-            Integer childType = (Integer) controller.getProperty(childId, GraphicObjectProperties.__GO_TYPE__);
-            if (childType == GraphicObjectProperties.__GO_UIMENU__) {
-                Integer newMenu = controller.cloneObject(childId);
-                controller.setGraphicObjectRelationship(newParent, newMenu);
-                cloneMenus(childId, newMenu);
+        for (int i = children.length - 1 ; i >= 0 ; i--) {
+            GraphicObject child = controller.getObjectFromId(children[i]);
+            if (child.getType() == GraphicObjectProperties.__GO_UIMENU__) {
+                Integer newMenu = controller.cloneObject(children[i]);
+                controller.setGraphicObjectRelationship(iParent, newMenu);
+
+                cloneMenus(children[i], newMenu);
             }
         }
     }
@@ -357,53 +346,49 @@ public final class Builder {
 
     public final static int createSubWin(int parentFigure) {
         GraphicController controller = GraphicController.getController();
-
-        Integer parentType = (Integer) controller.getProperty(parentFigure, GraphicObjectProperties.__GO_TYPE__);
-        if (parentType != GraphicObjectProperties.__GO_FIGURE__) {
+        GraphicObject parent = controller.getObjectFromId(parentFigure);
+        if (parent.getType() != GraphicObjectProperties.__GO_FIGURE__) {
             return 0;
         }
 
         return cloneAxesModel(parentFigure);
     }
 
-    public final static int createText(int iParentsubwinUID, String[] text, int nbRow, int nbCol,
+    public final static int createText(int iParentsubwinUID, String[] str, int nbRow, int nbCol,
                                        double x, double y, boolean autoSize, double[] userSize, int centerPos,
                                        int foreground, boolean isForeground, int background, boolean isBackground,
                                        boolean isBoxed, boolean isLine,
                                        boolean isFilled, int align) {
 
         GraphicController controller = GraphicController.getController();
-        int iObj = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_TEXT__));
+        int iText = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_TEXT__));
 
-        Axes objAxes = (Axes) controller.getObjectFromId(iParentsubwinUID);
-        Text objText = (Text) controller.getObjectFromId(iObj);
-
-        //set visible false during construction
-        objText.setVisible(false);
+        Axes axes = (Axes) controller.getObjectFromId(iParentsubwinUID);
+        Text text = (Text) controller.getObjectFromId(iText);
 
         //clip
-        objText.setClipBox(objAxes.getClipBox());
-        objText.setClipBoxSet(objAxes.getClipBoxSet());
-        objText.setClipState(objAxes.getClipState());
+        text.setClipBox(axes.getClipBox());
+        text.setClipBoxSet(axes.getClipBoxSet());
+        text.setClipState(axes.getClipState());
 
         //text
         Integer[] dimensions = new Integer[2];
         dimensions[0] = nbRow;
         dimensions[1] = nbCol;
-        objText.setTextArrayDimensions(dimensions);
-        objText.setTextWithoutResize(text);
+        text.setTextArrayDimensions(dimensions);
+        text.setTextWithoutResize(str);
 
         //position
         Double[] position = new Double[3];
         position[0] = x;
         position[1] = y;
         position[2] = 0.0;
-        objText.setPosition(position);
+        text.setPosition(position);
 
         //test box
         Double[] setUserSize = new Double[2];
-        objText.setTextBoxMode(TextBoxMode.intToEnum(centerPos));
-        objText.setAutoDimensionning(autoSize);
+        text.setTextBoxMode(TextBoxMode.intToEnum(centerPos));
+        text.setAutoDimensionning(autoSize);
 
         if (autoSize == false || centerPos != 0) {
             setUserSize[0] = userSize[0];
@@ -412,33 +397,33 @@ public final class Builder {
             setUserSize[0] = 0.0;
             setUserSize[1] = 0.0;
         }
-        objText.setTextBox(setUserSize);
+        text.setTextBox(setUserSize);
 
         int alignment = align - 1;
         if (alignment < 0 || alignment > 2) {
             alignment = 0;
         }
 
-        objText.setAlignment(Alignment.intToEnum(alignment));
+        text.setAlignment(Alignment.intToEnum(alignment));
 
-        cloneGraphicContext(iParentsubwinUID, iObj);
-        cloneFontContext(iParentsubwinUID, iObj);
+        cloneGraphicContext(iParentsubwinUID, iText);
+        cloneFontContext(iParentsubwinUID, iText);
 
-        objText.setBox(isBoxed);
-        objText.setLineMode(isLine);
-        objText.setFillMode(isFilled);
+        text.setBox(isBoxed);
+        text.setLineMode(isLine);
+        text.setFillMode(isFilled);
 
         if (isForeground) {
-            objText.setLineColor(foreground);
+            text.setLineColor(foreground);
         }
 
         if (isBackground) {
-            objText.setBackground(background);
+            text.setBackground(background);
         }
 
-        objText.setParent(0);
-        objText.setVisible(objAxes.getVisible());
-        return iObj;
+        text.setVisible(axes.getVisible());
+        controller.objectCreated(iText);
+        return iText;
     }
 
     public final static int createArc(int parent, double x, double y, double h, double w,
@@ -486,6 +471,7 @@ public final class Builder {
         }
 
         arc.setVisible(axes.getVisible());
+        controller.objectCreated(iArc);
         controller.setGraphicObjectRelationship(parent, iArc);
         return iArc;
     }
@@ -522,6 +508,7 @@ public final class Builder {
         font.setColor(textColor);
         axis.setTicsColor(ticsColor);
 
+        controller.objectCreated(iAxis);
         controller.setGraphicObjectRelationship(parent, iAxis);
         return iAxis;
     }
@@ -529,24 +516,23 @@ public final class Builder {
     public static int createCompound(int parent, int[] children) {
         GraphicController controller = GraphicController.getController();
         int iCompound = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_COMPOUND__));
+        controller.objectCreated(iCompound);
 
-        Axes axes = (Axes) controller.getObjectFromId(parent);
-        Compound compound = (Compound) controller.getObjectFromId(iCompound);
+        GraphicObject obj = controller.getObjectFromId(parent);
         for (int i = 0 ; i < children.length ; i++) {
             controller.setGraphicObjectRelationship(iCompound, children[i]);
         }
 
         controller.setGraphicObjectRelationship(parent, iCompound);
-        compound.setVisible(axes.getVisible());
-
+        controller.setProperty(iCompound, GraphicObjectProperties.__GO_VISIBLE__, obj.getVisible());
         return iCompound;
     }
 
     public static int createCompoundSeq(int parent, int childrenCount) {
         GraphicController controller = GraphicController.getController();
         int iCompound = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_COMPOUND__));
-        Axes axes = (Axes) controller.getObjectFromId(parent);
-        Compound compound = (Compound) controller.getObjectFromId(iCompound);
+        controller.objectCreated(iCompound);
+        GraphicObject axes = controller.getObjectFromId(parent);
 
         Integer[] children = axes.getChildren();
 
@@ -571,7 +557,7 @@ public final class Builder {
          * To be made consistent.
          */
         Figure fig = (Figure)controller.getObjectFromId(axes.getParentFigure());
-        compound.setVisible(fig.getVisible());
+        controller.setProperty(iCompound, GraphicObjectProperties.__GO_VISIBLE__, fig.getVisible());
         return iCompound;
     }
 
@@ -597,11 +583,7 @@ public final class Builder {
 
         fec.setLineMode(with_mesh);
 
-        //setGraphicObjectRelationship stay in C code to do it the latest possible
-        //after set on DATA_MODEL.
-
-        //controller.setGraphicObjectRelationship(parent, iFec);
-
+        controller.objectCreated(iFec);
         return iFec;
     }
 
@@ -635,7 +617,7 @@ public final class Builder {
         plot.setClipState(axes.getClipState());
 
         cloneGraphicContext(parent, iPlot);
-
+        controller.objectCreated(iPlot);
         return iPlot;
     }
 
@@ -699,6 +681,7 @@ public final class Builder {
         }
 
         poly.setVisible(true);
+        controller.objectCreated(iPoly);
         return iPoly;
     }
 
@@ -746,6 +729,7 @@ public final class Builder {
 
         leg.setFillMode(true);
 
+        controller.objectCreated(iLeg);
         controller.setGraphicObjectRelationship(parent, iLeg);
         return iLeg;
     }
@@ -790,6 +774,7 @@ public final class Builder {
         segs.setColors(temp);
 
         cloneGraphicContext(parent, iSegs);
+        controller.objectCreated(iSegs);
         controller.setGraphicObjectRelationship(parent, iSegs);
         return iSegs;
     }
@@ -800,7 +785,7 @@ public final class Builder {
         GraphicController controller = GraphicController.getController();
         Axes axes = (Axes) controller.getObjectFromId(parent);
 
-        int iChamp = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_CHAMP__), false);
+        int iChamp = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_CHAMP__));
         Champ champ = (Champ)controller.getObjectFromId(iChamp);
 
         champ.setVisible(axes.getVisible());
@@ -845,7 +830,7 @@ public final class Builder {
 
         cloneGraphicContext(parent, iChamp);
 
-        //controller.objectCreated(iChamp);
+        controller.objectCreated(iChamp);
         controller.setGraphicObjectRelationship(parent, iChamp);
 
         return iChamp;

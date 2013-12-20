@@ -19,6 +19,7 @@ import org.scilab.modules.graphic_objects.SurfaceData;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 
@@ -154,21 +155,24 @@ public class CommonHandler {
     /**
      * Inserts the given object in the given axes.
      *
-     * @param axes Axes unique identifier.
+     * @param iAxes Axes unique identifier.
      * @param uid object unique identifier.
      */
-    public static void insert(Integer axes, Integer uid) {
+    public static void insert(Integer iAxes, Integer uid) {
+        GraphicController controller = GraphicController.getController();
+        GraphicObject obj = controller.getObjectFromId(uid);
 
-        Integer typeName = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_TYPE__);
+        Integer typeName = obj.getType();
 
         if (typeName == GraphicObjectProperties.__GO_POLYLINE__) {
-            Integer newCompound = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_COMPOUND__));
-            GraphicController.getController().setGraphicObjectRelationship(axes, newCompound);
-            GraphicController.getController().setGraphicObjectRelationship(newCompound, uid);
+            Integer iCompound = controller.askObject(Type.COMPOUND);
+            controller.objectCreated(iCompound);
+            controller.setGraphicObjectRelationship(iAxes, iCompound);
+            controller.setGraphicObjectRelationship(iCompound, uid);
         } else if (typeName == GraphicObjectProperties.__GO_PLOT3D__ ||
                    typeName == GraphicObjectProperties.__GO_FAC3D__  ||
                    typeName == GraphicObjectProperties.__GO_GRAYPLOT__) {
-            GraphicController.getController().setGraphicObjectRelationship(axes, uid);
+            controller.setGraphicObjectRelationship(iAxes, uid);
         }
     }
 

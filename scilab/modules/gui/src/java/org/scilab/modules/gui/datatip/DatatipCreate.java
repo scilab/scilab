@@ -15,9 +15,14 @@ package org.scilab.modules.gui.datatip;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VIEW__;
 
 import org.scilab.modules.graphic_objects.PolylineData;
+import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.datatip.Datatip;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.graphic_objects.polyline.Polyline;
+import org.scilab.modules.graphic_objects.utils.ClipStateType;
+import org.scilab.modules.graphic_objects.utils.ViewType;
 import org.scilab.modules.gui.editor.CommonHandler;
 import org.scilab.modules.gui.editor.EntityPicker;
 import org.scilab.modules.renderer.CallRenderer;
@@ -158,22 +163,26 @@ public class DatatipCreate {
     * @param polyline the polyline uid string.
     * @return Datatip uid string.
     */
-    private static int datatipProperties(double[] coord, Integer polyline) {
+    private static int datatipProperties(double[] coord, Integer iPolyline) {
+        GraphicController controller = GraphicController.getController();
+        Integer iDatatip = controller.askObject(Type.DATATIP);
+        Datatip datatip = (Datatip) controller.getObjectFromId(iDatatip);
+        Polyline poly = (Polyline) controller.getObjectFromId(iPolyline);
 
-        Integer newDatatip = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_DATATIP__));
         Double[] datatipPosition = new Double[] {coord[0], coord[1], coord[2]};
 
-        GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_DATATIP_DATA__, datatipPosition);
+        datatip.setTipData(datatipPosition);
+        Axes axes = (Axes) controller.getObjectFromId(poly.getParentAxes());
 
-        Integer axesUid = (Integer)GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_PARENT_AXES__);
-        Integer viewInfo = (Integer) GraphicController.getController().getProperty(axesUid, __GO_VIEW__);
-        if (viewInfo == 1 && PolylineData.isZCoordSet(polyline) == 1) {
-            GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_DATATIP_3COMPONENT__, true);
-            GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_CLIP_STATE__, 0);
+        ViewType view = axes.getView();
+        if (view == ViewType.VIEW_3D && PolylineData.isZCoordSet(iPolyline) == 1) {
+            datatip.setUse3Component(true);
+            datatip.setClipState(ClipStateType.OFF);
         }
 
-        GraphicController.getController().setGraphicObjectRelationship(polyline, newDatatip);
-        return newDatatip;
+        controller.objectCreated(iDatatip);
+        GraphicController.getController().setGraphicObjectRelationship(iPolyline, iDatatip);
+        return iDatatip;
     }
 
     /**

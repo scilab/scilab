@@ -45,8 +45,10 @@ public final class CallGraphicController {
     }
 
     public static int askGraphicObject(int typeName) {
-        return GraphicController.getController().askObject(
-                   GraphicObject.getTypeFromName(typeName));
+        GraphicController controller = GraphicController.getController();
+        int obj = controller.askObject(GraphicObject.getTypeFromName(typeName));
+        controller.objectCreated(obj);
+        return obj;
     }
 
     public static void deleteGraphicObject(int id) {

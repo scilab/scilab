@@ -236,17 +236,10 @@ public class GraphicController {
      * @return the created object's id
      */
     public Integer askObject(Type type) {
-        return askObject(type, true);
-    }
-
-    public Integer askObject(Type type, boolean updateView) {
-
         try {
             Integer id = createUID();
             GraphicModel.getModel().createObject(id, type);
-            if (updateView) {
-                objectCreated(id);
-            }
+            //objectCreated(id);
 
             return id;
         } catch (Exception e) {
@@ -396,11 +389,6 @@ public class GraphicController {
      *            id of the child object.
      */
     public void setGraphicObjectRelationship(Integer parentId, Integer childId) {
-        setGraphicObjectRelationship(parentId, childId, true);
-    }
-
-    public void setGraphicObjectRelationship(Integer parentId, Integer childId,
-            boolean callModel) {
         /*
          * All the parent and children get/set calls must be performed first,
          * and only then the corresponding object updates.
@@ -429,16 +417,12 @@ public class GraphicController {
             }
         }
 
-        if (callModel) {
-            setProperty(childId, GraphicObjectProperties.__GO_PARENT__,
-                        parentId);
-        }
+        setProperty(childId, GraphicObjectProperties.__GO_PARENT__, parentId);
 
         /* Object updates can now be performed. */
         if (oldParent != null && oldParent instanceof Integer
                 && ((Integer) oldParent) != 0) {
-            objectUpdate((Integer) oldParent,
-                         GraphicObjectProperties.__GO_CHILDREN__);
+            objectUpdate((Integer) oldParent, GraphicObjectProperties.__GO_CHILDREN__);
         }
 
         if (parentId != null && parentId != 0) {

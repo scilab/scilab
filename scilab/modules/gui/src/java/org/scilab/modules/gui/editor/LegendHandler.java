@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.graphic_objects.legend.Legend;
+import org.scilab.modules.graphic_objects.utils.LegendLocation;
 
 
 /**
@@ -55,18 +57,19 @@ public class LegendHandler {
     */
 
     public static void setLegend(Integer axes, Integer polyline, String text) {
-
+        GraphicController controller = GraphicController.getController();
         if (text == null || text == "" || polyline == null || axes == null) {
             return;
         }
-        Integer legend = searchLegend(axes);
+        Integer iLegend = searchLegend(axes);
+        Legend legend = (Legend) controller.getObjectFromId(iLegend);
         Integer[] dimension = { 0, 0 };
         ArrayList<String> texts = new ArrayList<String>();
         ArrayList<Integer> links = new ArrayList<Integer>();
         texts.add(text);
-        if (legend != null) {
-            String[] textOld = (String[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_TEXT_STRINGS__);
-            Integer[] linksOld = (Integer[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_LINKS__);
+        if (iLegend != null) {
+            String[] textOld = legend.getTextArray();
+            Integer[] linksOld = legend.getLinks();
             Integer length = linksOld.length;
             for (Integer i = 0; i < length; i++) {
                 if (polyline != linksOld[i]) {
@@ -78,25 +81,25 @@ public class LegendHandler {
                     return;
                 }
             }
-            CommonHandler.delete(legend);
+            CommonHandler.delete(iLegend);
         }
-        legend = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_LEGEND__));
-        GraphicController.getController().setGraphicObjectRelationship(axes, legend);
+        iLegend = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_LEGEND__));
+        legend = (Legend) controller.getObjectFromId(iLegend);
 
         links.add(polyline);
         String[] textToSet = new String[texts.size()];
         texts.toArray(textToSet);
-        String[] linksToSet = new String[links.size()];
-        links.toArray(linksToSet);
-        dimension[0] = linksToSet.length;
+        dimension[0] = links.size();
         dimension[1] = 1;
         if (dimension[0] != 0) {
-            GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__, dimension);
-            GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_LINE_MODE__, true);
-            GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_TEXT_STRINGS__, textToSet);
-            GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_LINKS__, linksToSet);
-            GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_LEGEND_LOCATION__, 0);
+            legend.setTextArrayDimensions(dimension);
+            legend.setLineMode(true);
+            legend.setTextWithoutResize(textToSet);
+            legend.setLinks(links);
+            legend.setLegendLocation(LegendLocation.IN_UPPER_RIGHT);
         }
+
+        controller.setGraphicObjectRelationship(axes, iLegend);
     }
 
     /**
