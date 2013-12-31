@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "parallel module"
             VALUE "FileVersion", "1, 0, 0, 0"
             VALUE "InternalName", "parallel module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "parallel.dll"
             VALUE "ProductName", " parallel"
             VALUE "ProductVersion", "1, 0, 0, 0"
