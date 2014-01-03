@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -37,15 +37,15 @@
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>a positive scalar: the number of items to be read.</para>
+                    <para>a positive integer scalar: the number of items to be read.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>fd</term>
                 <listitem>
                     <para>
-                        a scalar: a file descriptor returned by the function <function>mopen</function>. <literal>-1</literal> 
-                        stands for last opened file. Default value is 
+                        a scalar: a file descriptor returned by the function <function>mopen</function>. <literal>-1</literal>
+                        stands for last opened file. Default value is
                         <literal>-1</literal>.
                     </para>
                 </listitem>
@@ -54,7 +54,7 @@
                 <term>type</term>
                 <listitem>
                     <para>
-                        a string: the binary format used to write all the entries of 
+                        a string: the binary format used to write all the entries of
                         <varname>x</varname>.
                     </para>
                 </listitem>
@@ -72,12 +72,12 @@
         <para>
             The <function>mget</function> function reads data in the input
             specified by the stream parameter <varname>fd</varname> and returns a
-            vector of floating point data. 
+            vector of floating point data.
         </para>
         
         <para>
-            The <function>mgeti</function> function reads data in the input 
-            specified by the stream parameter <varname>fd</varname> and returns a 
+            The <function>mgeti</function> function reads data in the input
+            specified by the stream parameter <varname>fd</varname> and returns a
             vector of integer data.
         </para>
         <para>
@@ -86,15 +86,15 @@
         </para>
         <para>
             The <varname>type</varname> parameter is a conversion specifier
-            which may be set to any of the following flag characters (with default 
+            which may be set to any of the following flag characters (with default
             value <literal>"l"</literal>):
         </para>
         <para>
             <note>
-                On Windows, default behavior is to skip byte 13 (<literal>0x0D</literal>). 
-                <function>mopen</function> should be called with the 
-                <literal>'b'</literal> option, e.g. 
-                <code>fd1 = mopen(file1,'rb')</code>, so that all bytes will be read 
+                On Windows, default behavior is to skip byte 13 (<literal>0x0D</literal>).
+                <function>mopen</function> should be called with the
+                <literal>'b'</literal> option, e.g.
+                <code>fd1 = mopen(file1,'rb')</code>, so that all bytes will be read
                 without exception.
             </note>
         </para>
@@ -163,22 +163,22 @@
             </varlistentry>
         </variablelist>
         <para>
-            Bytes read is automatically swapped if necessary (by checking 
+            Bytes read is automatically swapped if necessary (by checking
             <literal>little=endian</literal> status).
         </para>
         <para>
-            This default swapping behavior can be suprressed by adding a flag in      
+            This default swapping behavior can be suprressed by adding a flag in
             the <function>mopen</function> function.
         </para>
         <para>
-            Formats <literal>"l"</literal>, <literal>"d"</literal> and 
-            <literal>"f"</literal> are only valid with the 
+            Formats <literal>"l"</literal>, <literal>"d"</literal> and
+            <literal>"f"</literal> are only valid with the
             <function>mget</function> function.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 file1 = fullfile(TMPDIR,'test1.bin');
 file2 = fullfile(TMPDIR,'test2.bin');
 fd1=mopen(file1,'wb');

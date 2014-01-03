@@ -12,6 +12,7 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+#include <stdio.h>
 #include "stack-c.h"
 #include "gw_fileio.h"
 #include "MALLOC.h"
@@ -25,36 +26,42 @@ int sci_mget(char *fname, unsigned long fname_len)
 {
     int m1 = 0, n1 = 0, l1 = 0;
     int m2 = 0, n2 = 0, l2 = 0;
-    int	m3 = 0, n3 = 0, l3 = 0;
+    int m3 = 0, n3 = 0, l3 = 0;
     int l4 = 0;
     int err = 0;
     char *type = NULL;
     int fd = ALL_FILES_DESCRIPTOR;
     int n = 1;
     int one = 1;
+    SciIntMat varTwo;
 
     Nbvars = 0;
     CheckRhs(1, 3);
     CheckLhs(1, 1);
 
-    if ( Rhs >= 1)
+    if (Rhs >= 1)
     {
         if (GetType(1) == sci_matrix)
         {
-            GetRhsVar(1, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1);
-            if (m1*n1 == 1)
+            GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+            if (*stk(l1) != (int) *stk(l1) || *stk(l1) < 0)
             {
-                n  = *istk(l1);
+                Scierror(999, _("%s: Wrong value for input argument #%d: A positive integer value expected.\n"), fname, 1);
+                return 0;
+            }
+            if (m1 * n1 == 1)
+            {
+                n  = (int) * stk(l1);
             }
             else
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: An integer expected.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A positive integer value expected.\n"), fname, 1);
                 return 0;
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: An integer expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A positive integer value expected.\n"), fname, 1);
             return 0;
         }
     }
@@ -82,7 +89,7 @@ int sci_mget(char *fname, unsigned long fname_len)
         if (GetType(3) == sci_matrix)
         {
             GetRhsVar(3, MATRIX_OF_INTEGER_DATATYPE, &m3, &n3, &l3);
-            if (m3*n3 == 1)
+            if (m3 * n3 == 1)
             {
                 fd = *istk(l3);
             }

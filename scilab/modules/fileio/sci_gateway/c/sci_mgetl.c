@@ -58,13 +58,19 @@ int sci_mgetl(char *fname, unsigned long fname_len)
             double dValue = 0.;
             if (!isScalar(pvApiCtx, piAddressVarTwo))
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: Integer expected.\n"), fname, 2);
+                Scierror(999, _("%s: Wrong size for input argument #%d: An integer value expected.\n"), fname, 2);
                 return 0;
             }
 
             if ( getScalarDouble(pvApiCtx, piAddressVarTwo, &dValue) == 0)
             {
-                numberOfLinesToRead = (int)dValue;
+                if (dValue != (int) dValue)
+                {
+                    Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 2);
+                    return 0;
+                }
+
+                numberOfLinesToRead = (int) dValue;
             }
             else
             {
@@ -74,7 +80,7 @@ int sci_mgetl(char *fname, unsigned long fname_len)
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Integer expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), fname, 2);
             return 0;
         }
     }

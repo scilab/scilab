@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 3427 -->
 //
 // <-- Short Description -->
-//-->mgetl(TMPDIR+"/"+myFile,'r')                                           
+//-->mgetl(TMPDIR+"/"+myFile,'r')
 //mgetl: Wrong type for argument 2: Real or complex matrix expected.
 //=> Wrong error report.
 //The second input argument should be an integer scalar.
@@ -18,16 +18,16 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3427
 //
 
-ierr = execstr('mgetl(''SCI/etc/scilab.start'',''r'');','errcatch');
+ierr = execstr("mgetl(''SCI/etc/scilab.start'',''r'');","errcatch");
 if ierr <> 999 then pause,end
 err_msg = lasterror();
-ref_msg = msprintf(gettext("%s: Wrong type for input argument #%d: Integer expected.\n"),'mgetl',2);
+ref_msg = msprintf(gettext("%s: Wrong type for input argument #%d: An integer value expected.\n"),"mgetl",2);
 
 if err_msg <> ref_msg then pause,end
 
-ierr = execstr('mgetl(''SCI/etc/scilab.start'',[5 5]);','errcatch');
+ierr = execstr("mgetl(''SCI/etc/scilab.start'',[5 5]);","errcatch");
 if ierr <> 999 then pause,end
 err_msg = lasterror();
-ref_msg = msprintf(gettext("%s: Wrong size for input argument #%d: Integer expected.\n"),'mgetl',2);
+ref_msg = msprintf(gettext("%s: Wrong size for input argument #%d: An integer value expected.\n"),"mgetl",2);
 
 if err_msg <> ref_msg then pause,end
