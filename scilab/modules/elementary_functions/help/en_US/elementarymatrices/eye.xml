@@ -17,9 +17,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>X=eye(m,n)
-            X=eye(A)
-            X=eye()
+        <synopsis>X = eye(m,n)
+            X = eye(A)
+            X = eye()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -36,7 +36,9 @@
             <varlistentry>
                 <term>m,n</term>
                 <listitem>
-                    <para>integers</para>
+                    <para>
+                        integer values: numbers of rows and columns for <varname>X</varname>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -47,14 +49,14 @@
             <literal>m</literal>x<literal>n</literal> matrix with 1 along the main
             diagonal or an identity matrix of the same dimension as
             <literal>A</literal> . In case <varname>A</varname> is an hypermatrix, 
-            <varname>X</varname> will be defined as:
-            <literal>X(i,i,...,i)=1</literal> (with <literal>i=min(size(A)</literal>).
+            <varname>X</varname> will be defined as
+            <literal>X(i,i,...,i) = 1</literal> for all <literal>i</literal> from 1 to <literal>min(size(A))</literal>.
         </para>
-        <para>
-            Caution: <literal>eye(10)</literal> is interpreted as
+        <warning>
+            <literal>eye(10)</literal> is interpreted as
             <literal>eye(A)</literal> with <literal>A=10</literal> i.e.
             <literal>1</literal>. (It is NOT a ten by ten identity matrix!).
-        </para>
+        </warning>
         <para>
             If <literal>A</literal> is a linear system represented by a
             <literal>syslin</literal> list, <literal>eye(A)</literal> returns an
@@ -89,5 +91,16 @@ eye(zeros(4,4,4,4))
                 <link linkend="zeros">zeros</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    <para>Generalization to N-D hypermatrix</para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
