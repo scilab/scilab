@@ -74,7 +74,6 @@
             datatipCreate(p,50);
             datatipCreate(p,20);
             datatips_struct=datatipGetStruct(p)
-            datatips_struct.formatfunction
         </scilab:image>
     </refsection>
     <refsection>

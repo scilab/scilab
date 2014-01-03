@@ -46,7 +46,7 @@
 /* F.Leray 29.04.05 */
 /* the champ data is now set as a tlist (like for surface objects) */
 /* setchampdata(pobj,cstk(l2), &l3, &numrow3, &numcol3, fname) */
-int setchampdata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
+int setchampdata(void* _pvCtx, int iObjUID, AssignedList * tlist)
 {
     int nbRow[4];
     int nbCol[4];
@@ -88,13 +88,13 @@ int setchampdata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
     }
 
     /* Update the champ's number of arrows and dimensions then set the coordinates */
-    setGraphicObjectProperty(pobjUID, __GO_NUMBER_ARROWS__, &numberArrows, jni_int, 1);
-    setGraphicObjectProperty(pobjUID, __GO_CHAMP_DIMENSIONS__, dimensions, jni_int_vector, 2);
+    setGraphicObjectProperty(iObjUID, __GO_NUMBER_ARROWS__, &numberArrows, jni_int, 1);
+    setGraphicObjectProperty(iObjUID, __GO_CHAMP_DIMENSIONS__, dimensions, jni_int_vector, 2);
 
-    setGraphicObjectProperty(pobjUID, __GO_BASE_X__, vx, jni_double_vector, dimensions[0]);
-    setGraphicObjectProperty(pobjUID, __GO_BASE_Y__, vy, jni_double_vector, dimensions[1]);
-    setGraphicObjectProperty(pobjUID, __GO_DIRECTION_X__, vfx, jni_double_vector, dimensions[0]*dimensions[1]);
-    setGraphicObjectProperty(pobjUID, __GO_DIRECTION_Y__, vfy, jni_double_vector, dimensions[0]*dimensions[1]);
+    setGraphicObjectProperty(iObjUID, __GO_BASE_X__, vx, jni_double_vector, dimensions[0]);
+    setGraphicObjectProperty(iObjUID, __GO_BASE_Y__, vy, jni_double_vector, dimensions[1]);
+    setGraphicObjectProperty(iObjUID, __GO_DIRECTION_X__, vfx, jni_double_vector, dimensions[0]*dimensions[1]);
+    setGraphicObjectProperty(iObjUID, __GO_DIRECTION_Y__, vfy, jni_double_vector, dimensions[0]*dimensions[1]);
 
     return SET_PROPERTY_SUCCEED;
 }
@@ -103,7 +103,7 @@ int setchampdata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
 /* F.Leray 29.04.05 */
 /* the grayplot data is now set as a tlist (like for surface and champ objects) */
 /* setgrayplot(pobj,cstk(l2), &l3, &numrow3, &numcol3, fname) */
-int setgrayplotdata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
+int setgrayplotdata(void* _pvCtx, int iObjUID, AssignedList * tlist)
 {
     BOOL result;
 
@@ -150,7 +150,7 @@ int setgrayplotdata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
     gridSize[3] = 1;
 
     /* Resizes the coordinates arrays if required */
-    result = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+    result = setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
 
     if (result == FALSE)
     {
@@ -158,15 +158,15 @@ int setgrayplotdata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
         return SET_PROPERTY_ERROR;
     }
 
-    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, nbRow[0]);
-    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, nbRow[1]);
-    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, nbRow[2]*nbCol[2]);
+    setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, nbRow[0]);
+    setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, nbRow[1]);
+    setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, nbRow[2]*nbCol[2]);
 
     return SET_PROPERTY_SUCCEED;
 }
 /*--------------------------------------------------------------------------*/
 /* set3ddata(pobj,cstk(l2), &l3, &numrow3, &numcol3) */
-int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
+int set3ddata(void* _pvCtx, int iObjUID, AssignedList * tlist)
 {
     int type = -1;
     int *piType = &type;
@@ -253,7 +253,7 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
         izcol = 0;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     if (type == __GO_FAC3D__)
     {
@@ -367,7 +367,7 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
         numElementsArray[1] = m1;
         numElementsArray[2] = m3n * n3n;
 
-        result = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 3);
+        result = setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 3);
 
         if (result == 0)
         {
@@ -385,7 +385,7 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
         gridSize[2] = m2;
         gridSize[3] = n2;
 
-        result = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+        result = setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
 
         if (result == 0)
         {
@@ -394,20 +394,8 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
         }
     }
 
-    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, m1 * n1);
-    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, m2 * n2);
-    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, m3 * n3);
-
-    if (getAssignedListNbElement(tlist) == 4) /* F.Leray There is a color matrix */
-    {
-        inputColors = getCurrentDoubleMatrixFromList(_pvCtx, tlist, &m3n, &n3n);
-        nbInputColors = m3n * n3n;
-    }
-    else
-    {
-        inputColors = NULL;
-        nbInputColors = 0;
-    }
+    setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, m1 * n1);
+    setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, m2 * n2);
 
     /*
      * Plot 3d case not treated for now
@@ -415,7 +403,23 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
      */
     if (isFac3d == 1)
     {
-        setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_COLORS__, inputColors, jni_double_vector, nbInputColors);
+        if (getAssignedListNbElement(tlist) == 4) /* F.Leray There is a color matrix */
+        {
+            inputColors = getCurrentDoubleMatrixFromList(_pvCtx, tlist, &m3n, &n3n);
+            nbInputColors = m3n * n3n;
+        }
+        else
+        {
+            inputColors = NULL;
+            nbInputColors = 0;
+        }
+
+        setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, m3 * n3);
+        setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_COLORS__, inputColors, jni_double_vector, nbInputColors);
+    }
+    else
+    {
+        setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, m3 * n3);
     }
 
     /* Color vector/matrix dimensions: to be checked for MVC implementation */
@@ -427,12 +431,12 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
     return SET_PROPERTY_SUCCEED;
 }
 /*--------------------------------------------------------------------------*/
-int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_data_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int type = -1;
     int *piType = &type;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     if (type == __GO_CHAMP__)
     {
@@ -452,7 +456,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
             return SET_PROPERTY_ERROR;
         }
 
-        status = setchampdata(_pvCtx, pobjUID, tlist);
+        status = setchampdata(_pvCtx, iObjUID, tlist);
         destroyAssignedList(tlist);
         return status;
     }
@@ -474,7 +478,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
             return SET_PROPERTY_ERROR;
         }
 
-        status = setgrayplotdata(_pvCtx, pobjUID, tlist);
+        status = setgrayplotdata(_pvCtx, iObjUID, tlist);
         destroyAssignedList(tlist);
         return status;
     }
@@ -511,7 +515,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
             return SET_PROPERTY_ERROR;
         }
 
-        status = set3ddata(_pvCtx, pobjUID, tlist);
+        status = set3ddata(_pvCtx, iObjUID, tlist);
         destroyAssignedList(tlist);
         return status;
 
@@ -530,11 +534,11 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
         int *piNumX = &numX;
         int numY = 0;
         int *piNumY = &numY;
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, (void **)&piNumX);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, (void **)&piNumY);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_DATA_TYPE__, jni_int, (void **)&piDataType);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_TYPE__, jni_int, (void **)&piImageType);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_DATA_ORDER__, jni_int, (void **)&piDataOrder);
+        getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_X__, jni_int, (void **)&piNumX);
+        getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, (void **)&piNumY);
+        getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_MATPLOT_DATA_TYPE__, jni_int, (void **)&piDataType);
+        getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_TYPE__, jni_int, (void **)&piImageType);
+        getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_MATPLOT_DATA_ORDER__, jni_int, (void **)&piDataOrder);
 
         gridSize[1] = 1;
         gridSize[3] = 1;
@@ -654,14 +658,14 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
                 {
                     gridSize[0] = dims[1] + 1;
                     gridSize[2] = dims[0] + 1;
-                    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+                    setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
                 }
 
                 if (plottype != -1)
                 {
-                    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_DATA_INFOS__, &plottype, jni_int, 1);
+                    setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_MATPLOT_DATA_INFOS__, &plottype, jni_int, 1);
                 }
-                setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__, l1, jni_double_vector, dims[0] * dims[1]);
+                setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__, l1, jni_double_vector, dims[0] * dims[1]);
             }
         }
         else if (valueType == sci_ints)
@@ -799,15 +803,15 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
             {
                 gridSize[0] = n + 1;
                 gridSize[2] = m + 1;
-                setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+                setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
             }
 
             if (plottype != -1)
             {
-                setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_DATA_INFOS__, &plottype, jni_int, 1);
+                setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_MATPLOT_DATA_INFOS__, &plottype, jni_int, 1);
             }
 
-            setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__, l, jni_double_vector, m * n);
+            setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__, l, jni_double_vector, m * n);
         }
         else if (valueType == sci_matrix)
         {
@@ -815,16 +819,16 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
             {
                 gridSize[0] = nbCol + 1;
                 gridSize[2] = nbRow + 1;
-                setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+                setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
             }
 
             if ((DataType)datatype != MATPLOT_Double)
             {
                 plottype = buildMatplotType(MATPLOT_Double, (DataOrder)dataorder, (ImageType)imagetype);
-                setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_DATA_INFOS__, &plottype, jni_int, 1);
+                setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_MATPLOT_DATA_INFOS__, &plottype, jni_int, 1);
             }
 
-            setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__, _pvData, jni_double_vector, nbRow * nbCol);
+            setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__, _pvData, jni_double_vector, nbRow * nbCol);
         }
     }
     else  /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
@@ -835,7 +839,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
             return SET_PROPERTY_ERROR;
         }
 
-        return sciSetPoint(pobjUID, (double*)_pvData, &nbRow, &nbCol);
+        return sciSetPoint(iObjUID, (double*)_pvData, &nbRow, &nbCol);
     }
     return SET_PROPERTY_ERROR;
 }

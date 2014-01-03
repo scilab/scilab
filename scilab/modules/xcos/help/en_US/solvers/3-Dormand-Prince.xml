@@ -38,7 +38,7 @@
             As of now, this method is explicit, so it is not concerned with Newton or Functional iterations, and not advised for stiff problems.
         </para>
         <para>
-            It is an enhancement of the Euler method, which approximates 
+            It is an enhancement of the Euler method, which approximates
             <emphasis>
                 y<subscript>n+1</subscript>
             </emphasis>
@@ -51,14 +51,14 @@
             An important difference of <emphasis>Dormand-Prince</emphasis> with the previous methods is that it computes up to the seventh derivative of <emphasis>y</emphasis>, while the others only use linear combinations of <emphasis>y</emphasis> and <emphasis>y'</emphasis>.
         </para>
         <para>
-            Here, the next value is determined by the present value 
+            Here, the next value is determined by the present value
             <emphasis>
                 y<subscript>n</subscript>
             </emphasis>
             plus the weighted average of six increments, where each increment is the product of the size of the interval, <emphasis>h</emphasis>, and an estimated slope specified by the function <emphasis>f(t,y)</emphasis>:
             <itemizedlist>
                 <listitem>
-                    <emphasis>k1</emphasis> is the increment based on the slope at the beginning of the interval, using 
+                    <emphasis>k1</emphasis> is the increment based on the slope at the beginning of the interval, using
                     <emphasis>
                         y<subscript>n</subscript>
                     </emphasis>
@@ -73,44 +73,44 @@
             </itemizedlist>
         </para>
         <para>
-            We can see that with the <emphasis>ki</emphasis>, we progress in the derivatives of 
+            We can see that with the <emphasis>ki</emphasis>, we progress in the derivatives of
             <emphasis>
                 y<subscript>n</subscript>
             </emphasis>
-            . In the computation of the <emphasis>ki</emphasis>, we deliberately use coefficients that yield an error in 
+            . In the computation of the <emphasis>ki</emphasis>, we deliberately use coefficients that yield an error in
             <emphasis>
                 O(h<superscript>5</superscript>)
             </emphasis>
             at every step.
         </para>
         <para>
-            So the total error is 
+            So the total error is
             <emphasis>
                 number of steps * O(h<superscript>5</superscript>)
             </emphasis>
-            . And since <emphasis>number of steps = interval size / h</emphasis> by definition, the total error is in 
+            . And since <emphasis>number of steps = interval size / h</emphasis> by definition, the total error is in
             <emphasis>
                 O(h<superscript>4</superscript>)
             </emphasis>
             .
         </para>
         <para>
-            That error analysis baptized the method <emphasis>Dormand-Prince 4(5)</emphasis>: 
+            That error analysis baptized the method <emphasis>Dormand-Prince 4(5)</emphasis>:
             <emphasis>
                 O(h<superscript>5</superscript>)
             </emphasis>
-            per step, 
+            per step,
             <emphasis>
                 O(h<superscript>4</superscript>)
             </emphasis>
             in total.
         </para>
         <para>
-            Althought the solver works fine for <link linkend="Simulatemenu_Menu_entries">max step size</link> up to 
+            Althought the solver works fine for <link linkend="Simulatemenu_Menu_entries">max step size</link> up to
             <emphasis>
                 10<superscript>-3</superscript>
             </emphasis>
-            , rounding errors sometimes come into play as it approaches 
+            , rounding errors sometimes come into play as it approaches
             <emphasis>
                 4*10<superscript>-4</superscript>
             </emphasis>

@@ -15,7 +15,7 @@ function [s]=covar(x,y,fre)
     //and  y where x  is a numerical vector of  length n, y is a
     //numerical   vector  of length m and    fre is an  array of
     //dimensions  nxm.   In fre  the  element  of indices  (i,j)
-    //corresponds to the number or frequences of x_i&y_j.
+    //corresponds to the number or frequencies of x_i&y_j.
     //
     //References: Wonacott,  T.H. & Wonacott, R.J.; Introductory Statistics,
     //J.Wiley & Sons, 1990.
@@ -23,9 +23,9 @@ function [s]=covar(x,y,fre)
     //
     //small correction (bug number 1072) date : 8 nov 2004
     //
-    if x==[] | y==[] then s=%nan; return, end
     [lhs,rhs]=argn(0)
     if rhs <> 3 then error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"covar",3)), end
+    if x==[] | y==[] then s=%nan; return, end
     [lfre cfre]=size(fre);
     [lx cx]=size(x)
     [ly cy]=size(y)

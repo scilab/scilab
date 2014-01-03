@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "mexlib module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "mexlib module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "libmx.dll"
             VALUE "ProductName", "mexlib module"
             VALUE "ProductVersion", "6, 0, 0, 0"

@@ -27,6 +27,7 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
 %char
 %type int
 %switch
+%pack
 
 %{
     public int start;
@@ -196,7 +197,7 @@ openCloseStructureKwds = "if" | "for" | "while" | "try" | "select" | "end"
 
 controlKwds = "abort" | "break" | "quit" | "return" | "resume" | "pause" | "continue" | "exit"
 
-authors = "Calixte Denizet" | "Calixte DENIZET" | "Sylvestre Ledru" | "Sylvestre LEDRU" | "Yann Collette" | "Yann COLLETTE" | "Allan Cornet" | "Allan CORNET" | "Antoine Elias" | "Antoine ELIAS" | "Bruno Jofret" | "Bruno JOFRET" | "Claude Gomez" | "Claude GOMEZ" | "Clement David" | "Clement DAVID" | "Manuel Juliachs" | "Manuel JULIACHS" | "Michael Baudin" | "Michael BAUDIN" | "Pierre Lando" | "Pierre LANDO" | "Pierre Marechal" | "Pierre MARECHAL" | "Sheldon Cooper" | "Leonard Hofstadter" | "Serge Steer" | "Serge STEER" | "Vincent Couvert" | "Vincent COUVERT" | "Vincent Liard" | "Vincent LIARD" | "Adeline Carnis" | "Adeline CARNIS" | "Simon Gareste" | "Simon GARESTE" | "Cedric Delamarre" | "Cedric DELAMARRE" | "Inria" | "INRIA" | "DIGITEO" | "Digiteo" | "Scilab Enterprises" | "ENPC"
+authors = "Calixte Denizet" | "Calixte DENIZET" | "Sylvestre Ledru" | "Sylvestre LEDRU" | "Antoine Elias" | "Antoine ELIAS" | "Bruno Jofret" | "Bruno JOFRET" | "Claude Gomez" | "Claude GOMEZ" | "Clement David" | "Clement DAVID" | "Manuel Juliachs" | "Manuel JULIACHS" | "Sheldon Cooper" | "Leonard Hofstadter" | "Serge Steer" | "Serge STEER" | "Vincent Couvert" | "Vincent COUVERT" | "Adeline Carnis" | "Adeline CARNIS" | "Charlotte Hecquet" | "Charlotte HECQUET" | "Paul Bignier" | "Paul BIGNIER" | "Alexandre Herisse" | "Alexandre HERISSE" | "Simon Marchetto" | "Simon MARCHETTO" | "Vladislav Trubkin" | "Vladislav TRUBKIN" | "Cedric Delamarre" | "Cedric DELAMARRE" | "Inria" | "INRIA" | "DIGITEO" | "Digiteo" | "Scilab Enterprises" | "ENPC"
 
 error = "Scilab Entreprises" | "Scilab Entreprise" | "Scilab Enterprise"
 todo = ("TODO" | "todo" | "Todo")[ \t:]+[^\n]*
@@ -216,8 +217,9 @@ badop = [+-]([\*\/\\\^] | "."[\*\+\-\/\\\^]) | ":=" | "->" | " !=" | "&&" | "||"
 
 dot = "."
 
-url = "http://"[^ \t\f\n\r\'\"]+
-mail = "<"[ \t]*[a-zA-Z0-9_\.\-]+"@"([a-zA-Z0-9\-]+".")+[a-zA-Z]{2,5}[ \t]*">"
+url = ("http://"|"https://"|"ftp://"|"dav://"|"davs://"|"sftp://"|"ftps://"|"smb:///"|"file://")[^ \t\f\n\r\'\"]+
+mailaddr = [ \t]*[a-zA-Z0-9_\.\-]+"@"([a-zA-Z0-9\-]+".")+[a-zA-Z]{2,5}[ \t]*
+mail = ("<" {mailaddr} ">") | ("mailto:" {mailaddr})
 
 latex = "$$"(([^$]*|"\\$")+)"$$"
 latexinstring = (\"|\')"$"(([^$\'\"]*|"\\$"|([\'\"]{2}))+)"$"(\"|\')

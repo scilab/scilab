@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_arrow_size_factor_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_arrow_size_factor_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     double arrowSizeFactor = 0.;
@@ -45,7 +45,7 @@ int set_arrow_size_factor_property(void* _pvCtx, char* pobjUID, void* _pvData, i
 
     arrowSizeFactor = ((double*)_pvData)[0];
 
-    status = setGraphicObjectProperty(pobjUID, __GO_ARROW_SIZE_FACTOR__, &arrowSizeFactor, jni_double, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_ARROW_SIZE_FACTOR__, &arrowSizeFactor, jni_double, 1);
 
     if (status == TRUE)
     {

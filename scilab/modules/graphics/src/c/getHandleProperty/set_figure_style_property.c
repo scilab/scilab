@@ -28,7 +28,7 @@
 #include "SetPropertyStatus.h"
 #include "MALLOC.h"
 /*------------------------------------------------------------------------*/
-int set_figure_style_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_figure_style_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
 
     if (valueType != sci_strings)

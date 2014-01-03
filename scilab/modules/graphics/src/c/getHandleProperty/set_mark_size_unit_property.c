@@ -32,7 +32,7 @@
 #include "MALLOC.h"
 
 /*------------------------------------------------------------------------*/
-int set_mark_size_unit_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_mark_size_unit_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int markSizeUnit = 0;
@@ -58,7 +58,7 @@ int set_mark_size_unit_property(void* _pvCtx, char* pobjUID, void* _pvData, int 
 
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
 
     if (status == TRUE)
     {

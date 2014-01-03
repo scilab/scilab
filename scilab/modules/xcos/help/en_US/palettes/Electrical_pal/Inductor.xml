@@ -98,21 +98,14 @@
             the ports of an inductor of inductance  and the current  passing
             through it is given by:
         </para>
-        <para>
-        </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/Inductor_img5_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <latex><![CDATA[$$
+        v = L \times \frac{\mathrm d I}{\mathrm d t}
+        $$]]></latex>
         <para>
             Inductors can also be used to differentiate between high-frequency and
             low-frequency signals and this makes them useful in electronic
             filters. An inductor shows a high impedance for high frequency
             signals.
-            
         </para>
     </refsection>
     <refsection id="Dialogbox_Inductor">

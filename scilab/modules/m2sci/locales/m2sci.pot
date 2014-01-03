@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-09-27 17:14+0100\n"
+"Revision-Date: 2013-12-09 09:47+0100\n"
 
 # File: macros/buildmacros.sce, line: 18
 #, c-format
@@ -623,124 +623,124 @@ msgid "About M2SCI tools..."
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 53
+# File: macros/m2sci_gui.sci, line: 52
 msgid "Convert"
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 64
+# File: macros/m2sci_gui.sci, line: 63
 msgid "Cancel"
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 87
+# File: macros/m2sci_gui.sci, line: 86
 msgid "Options"
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 97
+# File: macros/m2sci_gui.sci, line: 96
 msgid "Generate pretty printed code: "
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 104
-# File: macros/m2sci_gui.sci, line: 196
-# File: macros/m2sci_gui.sci, line: 230
+# File: macros/m2sci_gui.sci, line: 103
+# File: macros/m2sci_gui.sci, line: 195
+# File: macros/m2sci_gui.sci, line: 229
 msgid "Yes"
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 116
-# File: macros/m2sci_gui.sci, line: 208
-# File: macros/m2sci_gui.sci, line: 242
+# File: macros/m2sci_gui.sci, line: 115
+# File: macros/m2sci_gui.sci, line: 207
+# File: macros/m2sci_gui.sci, line: 241
 msgid "No"
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 131
+# File: macros/m2sci_gui.sci, line: 130
 msgid "Verbose mode: "
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 138
+# File: macros/m2sci_gui.sci, line: 137
 msgid "0"
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 150
+# File: macros/m2sci_gui.sci, line: 149
 msgid "1"
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 162
+# File: macros/m2sci_gui.sci, line: 161
 msgid "2"
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 174
+# File: macros/m2sci_gui.sci, line: 173
 msgid "3"
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 189
+# File: macros/m2sci_gui.sci, line: 188
 msgid "Only double values used: "
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 223
+# File: macros/m2sci_gui.sci, line: 222
 msgid "Recursive conversion: "
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 270
+# File: macros/m2sci_gui.sci, line: 269
 msgid "Output directory"
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 278
-# File: macros/m2sci_gui.sci, line: 339
+# File: macros/m2sci_gui.sci, line: 277
+# File: macros/m2sci_gui.sci, line: 338
 msgid "Directory name: "
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 294
-# File: macros/m2sci_gui.sci, line: 358
-# File: macros/m2sci_gui.sci, line: 387
+# File: macros/m2sci_gui.sci, line: 293
+# File: macros/m2sci_gui.sci, line: 357
+# File: macros/m2sci_gui.sci, line: 386
 msgid "Browse"
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 318
+# File: macros/m2sci_gui.sci, line: 317
 msgid "Input directory"
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 328
+# File: macros/m2sci_gui.sci, line: 327
 msgid "Input file"
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 369
+# File: macros/m2sci_gui.sci, line: 368
 msgid "File name: "
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 378
+# File: macros/m2sci_gui.sci, line: 377
 msgid "<enter a file name>"
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 411
+# File: macros/m2sci_gui.sci, line: 410
 msgid "Conversion mode"
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 421
+# File: macros/m2sci_gui.sci, line: 420
 msgid "Convert a single file"
 msgstr ""
 
 #
-# File: macros/m2sci_gui.sci, line: 433
+# File: macros/m2sci_gui.sci, line: 432
 msgid "Convert a whole directory"
 msgstr ""
 

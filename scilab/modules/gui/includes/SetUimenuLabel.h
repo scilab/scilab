@@ -28,6 +28,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true is the set has been correcty done
  */
-GUI_IMPEXP int SetUimenuLabel(void* _pvCtx, char *pobjUID, void* _pvData, int valueType, int nbRow, int nbCol);
+GUI_IMPEXP int SetUimenuLabel(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
 
 #endif

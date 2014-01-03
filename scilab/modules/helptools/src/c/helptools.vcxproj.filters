@@ -32,7 +32,7 @@
     <ClCompile Include="..\..\sci_gateway\c\gw_helptools.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_buildDocv2.cpp">
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_buildDoc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\jni\SciDocMain.cpp">

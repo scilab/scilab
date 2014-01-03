@@ -25,6 +25,7 @@ import org.scilab.modules.graphic_objects.axis.Axis;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 import org.scilab.modules.renderer.JoGLView.util.FormattedTextSpriteDrawer;
+import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
 
 import java.text.DecimalFormat;
 import java.util.Collections;
@@ -60,6 +61,7 @@ public class AxisDrawer {
         rulerModel.setSpriteDistance(SPRITE_DISTANCE);
         rulerModel.setSubTicksLength(SUB_TICKS_LENGTH);
         rulerModel.setTicksLength(TICKS_LENGTH);
+        boolean[] logFlags = new boolean[] {axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
 
         Double[] xTicksValues;
         Double[] yTicksValues;
@@ -85,10 +87,13 @@ public class AxisDrawer {
             rulerModel.setUserGraduation(new AxisGraduation(axis, xTicksValues, xMinAndMax));
         }
 
-        xMinAndMax[0] = xMinAndMax[0] * factors[0][0] + factors[1][0];
-        xMinAndMax[1] = xMinAndMax[1] * factors[0][0] + factors[1][0];
-        yMinAndMax[0] = yMinAndMax[0] * factors[0][1] + factors[1][1];
-        yMinAndMax[1] = yMinAndMax[1] * factors[0][1] + factors[1][1];
+        Vector3d start = new Vector3d(xMinAndMax[0], yMinAndMax[0], 0);
+        Vector3d end = new Vector3d(xMinAndMax[1], yMinAndMax[1], 0);
+        start = ScaleUtils.applyLogScale(start, logFlags);
+        end = ScaleUtils.applyLogScale(end, logFlags);
+
+        start = new Vector3d(start.getX() * factors[0][0] + factors[1][0], start.getY() * factors[0][1] + factors[1][1], start.getZ() * factors[0][2] + factors[1][2]);
+        end = new Vector3d(end.getX() * factors[0][0] + factors[1][0], end.getY() * factors[0][1] + factors[1][1], end.getZ() * factors[0][2] + factors[1][2]);
 
         // TODO : RulerModel should be an interface.
         rulerModel.setAutoTicks(false);
@@ -97,10 +102,8 @@ public class AxisDrawer {
         rulerModel.setLineVisible(axis.getTicksSegment());
         rulerModel.setColor(ColorFactory.createColor(drawerVisitor.getColorMap(), axis.getTicksColor()));
 
-
-        rulerModel.setPoints(new Vector3d(xMinAndMax[0], yMinAndMax[0], 0), new Vector3d(xMinAndMax[1], yMinAndMax[1], 0));
+        rulerModel.setPoints(start, end);
         rulerModel.setTicksDirection(computeTicksDirection(axis.getTicksDirectionAsEnum()));
-
 
         DrawingTools drawingTools = drawerVisitor.getDrawingTools();
 

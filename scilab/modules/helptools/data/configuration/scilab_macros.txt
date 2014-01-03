@@ -1217,7 +1217,6 @@ ghdl_fields
 givens
 glever
 gmres
-gr_menu
 graduate
 graycolormap
 graypolarplot

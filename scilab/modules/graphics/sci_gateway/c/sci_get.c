@@ -52,7 +52,7 @@ int sci_get(char *fname, void *pvApiCtx)
     long hdl = 0;
 
     int lw = 0;
-    char *pobjUID = NULL;
+    int iObjUID = 0;
 
     /* Root properties */
     char **stkAdr = NULL;
@@ -250,7 +250,7 @@ int sci_get(char *fname, void *pvApiCtx)
     if (hdl == 0)
     {
         /* No handle specified */
-        if (callGetProperty(pvApiCtx, NULL, (l2)) != 0)
+        if (callGetProperty(pvApiCtx, 0, (l2)) != 0)
         {
             /* An error has occurred */
             freeAllocatedSingleString(l2);
@@ -260,11 +260,11 @@ int sci_get(char *fname, void *pvApiCtx)
     }
     else
     {
-        pobjUID = (char*)getObjectFromHandle(hdl);
-        if (pobjUID != NULL)
+        iObjUID = getObjectFromHandle(hdl);
+        if (iObjUID != 0)
         {
 
-            if (callGetProperty(pvApiCtx, pobjUID, (l2)) != 0)
+            if (callGetProperty(pvApiCtx, iObjUID, (l2)) != 0)
             {
                 /* An error has occurred */
                 freeAllocatedSingleString(l2);

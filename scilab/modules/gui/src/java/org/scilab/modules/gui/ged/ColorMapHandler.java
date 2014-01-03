@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.ged;
@@ -31,7 +31,7 @@ public class ColorMapHandler {
     * @param figureID Enters the identification of Figure.
     * @return Index of the color map corresponding to the color selected by the user.
     */
-    public static Integer getScilabColor(double red, double green, double blue, String figureID) {
+    public static Integer getScilabColor(double red, double green, double blue, Integer figureID) {
         Double[] selectedColor = rgbTOscilab(red, green, blue);
         Integer scilabColor = searchScilabColor(figureID, selectedColor);
         return scilabColor;
@@ -44,7 +44,7 @@ public class ColorMapHandler {
     * @param figureID Enters the identification of Figure.
     * @return Code RGB.
     */
-    public static Double[] getRGBcolor(String figureID, Integer scilabColor) {
+    public static Double[] getRGBcolor(Integer figureID, Integer scilabColor) {
         Double[] scilabRGBcolor = searchRGBcolor(figureID, scilabColor);
         Double[] rgbColor = scilabTOrgb(scilabRGBcolor[0], scilabRGBcolor[1], scilabRGBcolor[2]);
         return rgbColor;
@@ -114,7 +114,7 @@ public class ColorMapHandler {
     * @param selectedColor Selected color by user.
     * @return Index of the color map corresponding to the color selected by the user.
     */
-    private static Integer searchScilabColor(String figureID, Double[] selectedColor) {
+    private static Integer searchScilabColor(Integer figureID, Double[] selectedColor) {
         int size = (Integer) GraphicController.getController()
                    .getProperty(figureID, GraphicObjectProperties.__GO_COLORMAP_SIZE__);
 
@@ -154,7 +154,7 @@ public class ColorMapHandler {
     * @param scilabColor Index of the color map corresponding to the color current.
     * @return Color in RGB format converted to the color map of the scilab.
     */
-    private static Double[] searchRGBcolor(String figureID, Integer scilabColor) {
+    private static Double[] searchRGBcolor(Integer figureID, Integer scilabColor) {
         int size = (Integer) GraphicController.getController()
                    .getProperty(figureID, GraphicObjectProperties.__GO_COLORMAP_SIZE__);
 

@@ -42,6 +42,7 @@ src/c/getHandleProperty/get_font_foreground_property.c \
 src/c/getHandleProperty/get_bar_layout_property.c \
 src/c/getHandleProperty/get_current_axes_property.c \
 src/c/getHandleProperty/get_bar_width_property.c \
+src/c/getHandleProperty/get_datatips_property.c \
 src/c/getHandleProperty/get_font_color_property.c \
 src/c/getHandleProperty/get_default_axes_property.c \
 src/c/getHandleProperty/get_y_shift_property.c \
@@ -202,6 +203,7 @@ src/c/getHandleProperty/set_font_foreground_property.c \
 src/c/getHandleProperty/set_text_box_mode_property.c \
 src/c/getHandleProperty/set_bar_layout_property.c \
 src/c/getHandleProperty/set_bar_width_property.c \
+src/c/getHandleProperty/set_datatips_property.c \
 src/c/getHandleProperty/SetPropertyStatus.c \
 src/c/getHandleProperty/set_font_style_property.c \
 src/c/getHandleProperty/set_surface_mode_property.c \

@@ -44,7 +44,7 @@ int sci_toolbar(char *fname, void* pvApiCtx)
     char **param = NULL;
     int figNum = -2;
 
-    char *pParentUID = NULL;
+    int iParentUID = 0;
     int iParentType = -1;
     int *piParentType = &iParentType;
 
@@ -94,11 +94,11 @@ int sci_toolbar(char *fname, void* pvApiCtx)
 
         if (figNum == -1)
         {
-            pParentUID = getConsoleIdentifier();
+            iParentUID = getConsoleIdentifier();
         }
         else
         {
-            pParentUID = (char*)getFigureFromIndex(figNum);
+            iParentUID = getFigureFromIndex(figNum);
         }
     }
     else if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
@@ -124,15 +124,16 @@ int sci_toolbar(char *fname, void* pvApiCtx)
             Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
             return FALSE;
         }
-        pParentUID = (char*)getObjectFromHandle((long) * stkAdr);
 
-        if (pParentUID == NULL)
+        iParentUID = getObjectFromHandle((long) * stkAdr);
+
+        if (iParentUID == 0)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: this handle does not exist.\n"), fname, 1);
             return FALSE;
         }
 
-        getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
+        getGraphicObjectProperty(iParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
         if (iParentType == __GO_FIGURE__)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"), fname, 1);
@@ -172,7 +173,7 @@ int sci_toolbar(char *fname, void* pvApiCtx)
 
             if ((strcmp(param[0], "off") == 0) || (strcmp(param[0], "on") == 0))
             {
-                setToolbarVisible(pParentUID, strcmp(param[0], "on") == 0);
+                setToolbarVisible(iParentUID, strcmp(param[0], "on") == 0);
                 freeAllocatedMatrixOfString(nbRow, nbCol, param);
             }
             else
@@ -190,7 +191,7 @@ int sci_toolbar(char *fname, void* pvApiCtx)
     }
 
     /* Returned value */
-    if (isToolbarVisible(pParentUID))
+    if (isToolbarVisible(iParentUID))
     {
         Output = os_strdup("on");
     }

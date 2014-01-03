@@ -64,7 +64,7 @@ public final class GraphicModel {
     private static GraphicObject figureModel;
     private static GraphicObject axesModel;
 
-    private Map<String, GraphicObject> allObjects = new HashMap<String, GraphicObject>();
+    private Map<Integer, GraphicObject> allObjects = new HashMap<Integer, GraphicObject>();
 
     /**
      * Default constructor
@@ -95,7 +95,7 @@ public final class GraphicModel {
      * @param id the id of the object to get
      * @return the object
      */
-    public GraphicObject getObjectFromId(String id) {
+    public GraphicObject getObjectFromId(Integer id) {
         return allObjects.get(id);
     }
 
@@ -105,7 +105,7 @@ public final class GraphicModel {
      * @param property the property name
      * @return the property
      */
-    public Object getNullProperty(String id, String property) {
+    public Object getNullProperty(Integer id, String property) {
         GraphicObject object = allObjects.get(id);
         return object.getNullProperty(property);
     }
@@ -116,7 +116,7 @@ public final class GraphicModel {
      * @param property property name
      * @return property value
      */
-    public Object getProperty(String id, int property) {
+    public Object getProperty(Integer id, int property) {
         GraphicObject object = allObjects.get(id);
 
         if (object != null) {
@@ -133,7 +133,7 @@ public final class GraphicModel {
      * @param value property value
      * @return true if the property has been set, false otherwise
      */
-    public UpdateStatus setProperty(String id, int property, Object value) {
+    public UpdateStatus setProperty(Integer id, int property, Object value) {
         GraphicObject object = allObjects.get(id);
         if (object != null) {
             synchronized (object) {
@@ -150,7 +150,7 @@ public final class GraphicModel {
      * @param type object type
      * @return the created object's id
      */
-    public String createObject(String id, GraphicObject.Type type) {
+    public Integer createObject(Integer id, GraphicObject.Type type) {
         GraphicObject object = createTypedObject(type);
 
         if (object != null) {
@@ -159,7 +159,7 @@ public final class GraphicModel {
 
             return id;
         } else {
-            return null;
+            return 0;
         }
     }
 
@@ -169,7 +169,7 @@ public final class GraphicModel {
      * @param newId : id of the clone
      * @return newId
      */
-    public String cloneObject(String id, String newId) {
+    public Integer cloneObject(Integer id, Integer newId) {
         GraphicObject object = allObjects.get(id);
         GraphicObject objectClone = object.clone();
         objectClone.setIdentifier(newId);
@@ -329,7 +329,7 @@ public final class GraphicModel {
      * Deletes an object
      * @param id object id
      */
-    public void deleteObject(String id) {
+    public void deleteObject(Integer id) {
         GraphicObject object = allObjects.get(id);
         synchronized (object) {
             allObjects.remove(id);

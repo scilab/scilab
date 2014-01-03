@@ -71,11 +71,6 @@
                             <xref linkend="Interfacingfunction_freq_div">Interfacing function</xref>
                         </para>
                     </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="freq_div">Compiled Super Block content</link>
-                        </para>
-                    </listitem>
                 </itemizedlist>
             </listitem>
         </itemizedlist>
@@ -191,20 +186,10 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="CompiledSuperBlockcontent_freq_div">
-        <title>Compiled Super Block content</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/freq_div_img3_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-    </refsection>
     <refsection id="Examples_freq_div">
         <title>Examples</title>
         <para>
-            The following example divides a frequence per three.
+            The following example divides a frequency per three.
             <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/en_US/freq_div_en_US.zcos">
                 Open this example in Xcos
             </link>

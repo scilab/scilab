@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -34,7 +34,7 @@ import java.lang.Math;
 public class LabelHandler {
 
     static AxesHandler.axisTo axis;
-    static String axes;
+    static Integer axes;
 
     /**
      * Set the text of label x, y or z.
@@ -45,22 +45,22 @@ public class LabelHandler {
      * @return The Label that was setted
      */
 
-    public static String setLabel(String axes, String[] text, AxesHandler.axisTo axis) {
+    public static Integer setLabel(Integer axes, String[] text, AxesHandler.axisTo axis) {
 
-        String label = null;
+        Integer label = null;
 
         switch (axis) {
             case __X__:
-                label = (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
+                label = (Integer)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
                 break;
             case __Y__:
-                label = (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
+                label = (Integer)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
                 break;
             case __Z__:
-                label = (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
+                label = (Integer)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
                 break;
             case __TITLE__:
-                label = (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_TITLE__);
+                label = (Integer)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_TITLE__);
                 break;
             default:
                 return null;
@@ -79,21 +79,21 @@ public class LabelHandler {
      * @return The text of the label.
      */
 
-    public static String getLabelText(String axes, AxesHandler.axisTo axis) {
+    public static String getLabelText(Integer axes, AxesHandler.axisTo axis) {
 
-        String label = null;
+        Integer label = null;
         switch (axis) {
             case __X__:
-                label = (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
+                label = (Integer)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
                 break;
             case __Y__:
-                label = (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
+                label = (Integer)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
                 break;
             case __Z__:
-                label = (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
+                label = (Integer)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
                 break;
             case __TITLE__:
-                label = (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_TITLE__);
+                label = (Integer)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_TITLE__);
                 break;
             default:
                 return null;
@@ -114,17 +114,18 @@ public class LabelHandler {
     * @param nextPos The final click position
     * @param update Control if need update the label / Axes, false if the mouse still pressed/dragging, true otherwise
     */
-    public static void dragLabel(String figure, Integer[] pos, Integer[] nextPos, boolean update) {
+    public static void dragLabel(Integer figure, Integer[] pos, Integer[] nextPos, boolean update) {
 
 
         if (update) {
             axis = EntityPicker.pickLabel(figure, pos);
             axes = AxesHandler.clickedAxes(figure, pos);
         }
-        if (axes == null || axis == null)
+        if (axes == null || axis == null) {
             return;
+        }
 
-        String label = null;
+        Integer label = null;
         Axes ax = AxesHandler.getAxesFromUid(axes);
         boolean scale;
         Double[] labelPos;

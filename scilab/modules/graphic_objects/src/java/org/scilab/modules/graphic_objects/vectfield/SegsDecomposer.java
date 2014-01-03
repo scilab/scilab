@@ -36,7 +36,7 @@ public class SegsDecomposer extends VectFieldDecomposer {
      * @param id the id of the given object.
      * @return the number of data elements.
      */
-    public static int getDataSize(String id) {
+    public static int getDataSize(Integer id) {
         int numberArrows = (Integer) GraphicController.getController().getProperty(id, __GO_NUMBER_ARROWS__);
 
         /* 2 vertices per segment plus 3 vertices for the arrow tip */
@@ -49,23 +49,23 @@ public class SegsDecomposer extends VectFieldDecomposer {
      * @param id the id of the given object.
      * @param elementsSize the number of components taken by one element in the buffer (3 or 4).
      */
-    public static void fillColors(FloatBuffer buffer, String id, int elementsSize) {
+    public static void fillColors(FloatBuffer buffer, Integer id, int elementsSize) {
         int bufferOffset = 0;
         int numberArrows = (Integer) GraphicController.getController().getProperty(id, __GO_NUMBER_ARROWS__);
 
         Integer[] segmentColors = (Integer[]) GraphicController.getController().getProperty(id, __GO_SEGS_COLORS__);
 
-        String parentFigureId = (String) GraphicController.getController().getProperty(id, __GO_PARENT_FIGURE__);
+        Integer parentFigureId = (Integer) GraphicController.getController().getProperty(id, __GO_PARENT_FIGURE__);
 
         /* To be sure that the object has a parent Figure, though it should not occur. */
-        if (parentFigureId.equals("")) {
+        if (parentFigureId == 0) {
             return;
         }
 
         Figure parentFigure = (Figure) GraphicController.getController().getObjectFromId(parentFigureId);
         ColorMap colorMap = parentFigure.getColorMap();
 
-        double arrowSize = (Double) GraphicController.getController().getProperty(id, __GO_ARROW_SIZE__);
+        GraphicController.getController().getProperty(id, __GO_ARROW_SIZE__);
 
         /* Colors are output in the following order: first the base's color and then the tip's */
         for (int i = 0; i < numberArrows; i++) {
@@ -92,7 +92,7 @@ public class SegsDecomposer extends VectFieldDecomposer {
      * @param id the object id.
      * @return the number of triangle indices.
      */
-    public static int getIndicesSize(String id) {
+    public static int getIndicesSize(Integer id) {
         int numberArrows = (Integer) GraphicController.getController().getProperty(id, __GO_NUMBER_ARROWS__);
 
         /* 3 indices per arrow */
@@ -107,7 +107,7 @@ public class SegsDecomposer extends VectFieldDecomposer {
      * @param logMask the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
-    public static int fillIndices(IntBuffer buffer, String id, int logMask) {
+    public static int fillIndices(IntBuffer buffer, Integer id, int logMask) {
         boolean valid;
         int bufferOffset = 0;
         int segmentOffset;

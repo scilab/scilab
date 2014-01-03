@@ -32,7 +32,7 @@
 #define MAX_MARK_STYLE 14
 
 /*------------------------------------------------------------------------*/
-int set_mark_style_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_mark_style_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int status1 = 0;
 
@@ -56,8 +56,8 @@ int set_mark_style_property(void* _pvCtx, char* pobjUID, void* _pvData, int valu
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
-    status2 = setGraphicObjectProperty(pobjUID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
+    status2 = setGraphicObjectProperty(iObjUID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
 
     if (status == TRUE && status2 == TRUE)
     {

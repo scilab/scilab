@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-09-27 17:14+0100\n"
+"Revision-Date: 2013-12-09 09:48+0100\n"
 
 # File: sci_gateway/c/sci_addinter.c, line: 46
 # File: sci_gateway/c/sci_addinter.c, line: 58
@@ -120,13 +120,13 @@ msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
 
 #
-# File: src/c/addinter.c, line: 223
+# File: src/c/addinter.c, line: 222
 #, c-format
 msgid "Error: Not a valid internal routine number %d.\n"
 msgstr ""
 
 #
-# File: src/c/addinter.c, line: 252
+# File: src/c/addinter.c, line: 251
 #, c-format
 msgid "Interface %s not linked.\n"
 msgstr ""
@@ -408,6 +408,7 @@ msgstr ""
 
 #
 # File: macros/ilib_build.sci, line: 38
+# File: macros/ilib_build_jar.sci, line: 144
 # File: macros/ilib_gen_loader.sci, line: 86
 # File: macros/ilib_gen_loader.sci, line: 94
 # File: macros/ilib_gen_loader.sci, line: 102
@@ -417,6 +418,10 @@ msgstr ""
 
 #
 # File: macros/ilib_build.sci, line: 42
+# File: macros/ilib_build_jar.sci, line: 151
+# File: macros/ilib_build_jar.sci, line: 158
+# File: macros/ilib_build_jar.sci, line: 165
+# File: macros/ilib_build_jar.sci, line: 175
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
@@ -495,6 +500,109 @@ msgid "   Generate a cleaner file\n"
 msgstr ""
 
 #
+# File: macros/ilib_build_jar.sci, line: 128
+#, c-format
+msgid "%s: function not available in NWNI mode.\n"
+msgstr ""
+
+#
+# File: macros/ilib_build_jar.sci, line: 135
+#, c-format
+msgid "%s: Wrong number of input argument(s): 3 to 5 expected.\n"
+msgstr ""
+
+#
+# File: macros/ilib_build_jar.sci, line: 185
+#, c-format
+msgid "   Building JAR library %s\n"
+msgstr ""
+
+#
+# File: macros/ilib_build_jar.sci, line: 191
+#, c-format
+msgid "Cannot create jar build dir %s"
+msgstr ""
+
+#
+# File: macros/ilib_build_jar.sci, line: 198
+#, c-format
+msgid ""
+"   Add dependency class paths:\n"
+"%s\n"
+msgstr ""
+
+#
+# File: macros/ilib_build_jar.sci, line: 207
+#, c-format
+msgid "   Build package %s\n"
+msgstr ""
+
+#
+# File: macros/ilib_build_jar.sci, line: 221
+msgid "   Compiling source files:\n"
+msgstr ""
+
+#
+# File: macros/ilib_build_jar.sci, line: 224
+#, c-format
+msgid "   Compiling Java sources in %s\n"
+msgstr ""
+
+#
+# File: macros/ilib_build_jar.sci, line: 229
+#, c-format
+msgid "No Java sources in %s to compile for package %s"
+msgstr ""
+
+#
+# File: macros/ilib_build_jar.sci, line: 239
+#, c-format
+msgid "Cannot create jar package directory %s"
+msgstr ""
+
+#
+# File: macros/ilib_build_jar.sci, line: 243
+#, c-format
+msgid "   Copying compiled package from %s to %s\n"
+msgstr ""
+
+#
+# File: macros/ilib_build_jar.sci, line: 248
+#, c-format
+msgid "Cannot find compilation directory %s for package %s"
+msgstr ""
+
+#
+# File: macros/ilib_build_jar.sci, line: 260
+#, c-format
+msgid "   Creating JAR archive %s\n"
+msgstr ""
+
+#
+# File: macros/ilib_build_jar.sci, line: 264
+#, c-format
+msgid "Cannot create JAR file %s"
+msgstr ""
+
+#
+# File: macros/ilib_build_jar.sci, line: 270
+#, c-format
+msgid "   Creating scripts for JAR relative path %s\n"
+msgstr ""
+
+#
+# File: macros/ilib_build_jar.sci, line: 276
+#, c-format
+msgid "   Create loader script for Java %s\n"
+msgstr ""
+
+#
+# File: macros/ilib_build_jar.sci, line: 283
+#, c-format
+msgid "   Create cleaner script for Java %s\n"
+msgstr ""
+
+#
 # File: macros/ilib_compile.sci, line: 33
 msgid "A Fortran or C compiler is required."
 msgstr ""
@@ -508,39 +616,39 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 136
+# File: macros/ilib_compile.sci, line: 137
 #, c-format
 msgid "%s: Build command: %s\n"
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 137
+# File: macros/ilib_compile.sci, line: 138
 # File: macros/ilib_gen_Make_unix.sci, line: 236
 #, c-format
 msgid "Output: %s\n"
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 138
+# File: macros/ilib_compile.sci, line: 139
 # File: macros/ilib_gen_Make_unix.sci, line: 238
 #, c-format
 msgid "stderr: %s\n"
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 142
+# File: macros/ilib_compile.sci, line: 143
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 144
+# File: macros/ilib_compile.sci, line: 145
 #, c-format
 msgid "%s: The command was:\n"
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 153
+# File: macros/ilib_compile.sci, line: 154
 #, c-format
 msgid ""
 "%s: Warning: No error code returned by the compilation but the error output "
@@ -548,7 +656,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 162
+# File: macros/ilib_compile.sci, line: 163
 #, c-format
 msgid "%s: Could not find the built library '%s'.\n"
 msgstr ""

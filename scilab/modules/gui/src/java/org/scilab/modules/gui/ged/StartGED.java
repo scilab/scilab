@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -23,11 +23,11 @@ import org.scilab.modules.gui.editor.EditorManager;
 public class StartGED {
 
     public static boolean enableNewGed = false;
-    
+
     /**
     * Initializes the lightGED.
     */
-    public static void quickGED(String uid) {
+    public static void quickGED(Integer uid) {
         if (enableNewGed) {
             Editor instanceEditor = EditorManager.getFromUid(uid);
             instanceEditor.onClickGED();

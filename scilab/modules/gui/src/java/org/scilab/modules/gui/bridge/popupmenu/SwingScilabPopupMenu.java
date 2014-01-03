@@ -44,7 +44,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
 
     private static final long serialVersionUID = -4366581303317502544L;
 
-    private String uid;
+    private Integer uid;
 
     private CommonCallBack callback;
 
@@ -370,7 +370,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
      * Set the UID
      * @param id the UID
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         uid = id;
     }
 
@@ -378,7 +378,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
      * Get the UID
      * @return the UID
      */
-    public String getId() {
+    public Integer getId() {
         return uid;
     }
 

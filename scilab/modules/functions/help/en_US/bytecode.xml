@@ -9,7 +9,7 @@
  * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *-->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="bytecode">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="bytecode">
     <refnamediv>
         <refname>bytecode</refname>
         <refpurpose>given a function returns the "bytecode" of a function in a Scilab array and conversely. </refpurpose>
@@ -18,7 +18,7 @@
         <title>Calling Sequence</title>
         <synopsis>
             x = bytecode(f)
-            f= bytecode(X)
+            f = bytecode(x)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -28,7 +28,7 @@
                 <term>f</term>
                 <listitem>
                     <para>
-                        A scilab function.
+                        A Scilab function.
                     </para>
                 </listitem>
             </varlistentry>
@@ -45,29 +45,31 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>x= bytecode(f) </literal> returns the "bytecode" of
-            the function <literal>f</literal> in the Scilab integer array
-            <literal>x</literal>.
+            <code>x = bytecode(f)</code> returns the "bytecode" of
+            the function <varname>f</varname> in the Scilab integer array
+            <varname>x</varname>.
         </para>
         <para>
-            <literal>f= bytecode(x) </literal> returns in
-            <literal>f</literal> the function associated with the
+            <code>f= bytecode(x)</code> returns in
+            <varname>f</varname> the function associated with the
             "bytecode" given in the Scilab integer array
-            <literal>x</literal>. Warning the validity of
-            <literal>x</literal> is not checked.
+            <varname>x</varname>.
+            <warning>
+                Warning: the validity of <varname>x</varname> is not checked.
+            </warning>
         </para>
     </refsection>
     <refsection>
         <title>Remark</title>
         <para>
             The bytecode of Scilab function will evolve drastically in the
-            future, So the use of this function should be restricted to the
+            future, so the use of this function should be restricted to the
             profiling instruction handling.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function a=foo(),a=sin(3),endfunction
 bytecode(foo)
  ]]></programlisting>

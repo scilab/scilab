@@ -30,7 +30,7 @@ public class FlattenTreeView extends TreeView {
         return me;
     }
 
-    public void createObject(String id) {
+    public void createObject(Integer id) {
         try {
             GraphicObject graphiObject = GraphicController.getController().getObjectFromId(id);
             //if (!(graphiObject instanceof Uimenu)) {
@@ -45,7 +45,7 @@ public class FlattenTreeView extends TreeView {
         }
     }
 
-    public void deleteObject(String id) {
+    public void deleteObject(Integer id) {
         try {
             DefaultMutableTreeNode objectNode = allObjects.get(id);
             if (objectNode != null) {
@@ -59,7 +59,7 @@ public class FlattenTreeView extends TreeView {
         }
     }
 
-    public void updateObject(String id, int property) {
+    public void updateObject(Integer id, int property) {
 
     }
 }

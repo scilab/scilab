@@ -58,7 +58,8 @@ src/c/InitializePreferences.c \
 src/c/getmaxMALLOC.c \
 src/c/sci_mem_alloc.c \
 src/c/hashtable/hashtable.c \
-src/c/hashtable/hashtable_utility.c
+src/c/hashtable/hashtable_utility.c \
+src/c/scimem64.c
 
 CORE_CPP_SOURCES = \
 src/cpp/namstr.cpp \
@@ -74,12 +75,8 @@ src/cpp/getmacrosname.cpp \
 src/cpp/getfunctionsname.cpp \
 src/cpp/InitScilab.cpp
 
-
-if USE_DYNAMIC_STACK
-CORE_C_SOURCES += src/c/scimem64.c
-endif
-
-CORE_FORTRAN_SOURCES = src/fortran/clunit.f \
+CORE_FORTRAN_SOURCES = \
+src/fortran/clunit.f \
 src/fortran/getlin.f \
 src/fortran/allowptr.f \
 src/fortran/isany.f \
@@ -125,11 +122,8 @@ src/fortran/stackc2i.f \
 src/fortran/isinstring.f \
 src/fortran/readinter.f \
 src/fortran/rewindinter.f \
-src/fortran/backspaceinter.f
-
-if USE_DYNAMIC_STACK
-CORE_FORTRAN_SOURCES += src/fortran/relocstack.f
-endif
+src/fortran/backspaceinter.f \
+src/fortran/relocstack.f
 
 GATEWAY_C_SOURCES = \
 	sci_gateway/c/gw_core.c \
@@ -139,7 +133,7 @@ GATEWAY_C_SOURCES = \
 	sci_gateway/c/sci_getdebuginfo.c \
 	sci_gateway/c/sci_readgateway.c
 
-GATEWAY_CPP_SOURCES = 	\
+GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/core_gw.cpp \
 	sci_gateway/cpp/sci_getmodules.cpp \
 	sci_gateway/cpp/sci_clear.cpp \
@@ -171,7 +165,6 @@ GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_typename.cpp \
 	sci_gateway/cpp/sci_where.cpp \
 	sci_gateway/cpp/sci_getmemory.cpp
-
 
 libscicore_la_CPPFLAGS = \
 -I$(srcdir)/includes/ \
@@ -206,6 +199,7 @@ libscicore_la_CPPFLAGS = \
 -I$(top_srcdir)/modules/gui/includes/ \
 -I$(top_srcdir)/modules/graphics/includes/ \
 -I$(top_srcdir)/modules/system_env/includes/ \
+-I$(top_srcdir)/modules/hdf5/includes/ \
 $(EIGEN_CPPFLAGS) \
 $(XML_FLAGS) \
 $(AM_CPPFLAGS)

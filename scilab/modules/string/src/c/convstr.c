@@ -24,7 +24,8 @@ void convstr(char **Input_Matrix, char **Output_Matrix, char typ, int mn)
     for (x = 0 ; x < mn; x++)
     {
         int y = 0;
-        for (y = 0; y < (int)strlen(Input_Matrix[x]); y++)
+        int len_Input_Matrix = (int)strlen(Input_Matrix[x]);
+        for (y = 0; y < len_Input_Matrix; y++)
         {
             /*To traverse every string in the string matrix */
             if ( (typ == UPPER) || (typ == UPPER_B) )

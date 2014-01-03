@@ -56,9 +56,9 @@ typedef struct
     {
         int periodCounter;
 
-        char const* cachedFigureUID;
-        char *cachedAxeUID;
-        char **cachedPolylinesUIDs;
+        int cachedFigureUID;
+        int cachedAxeUID;
+        int* cachedPolylinesUIDs;
     } scope;
 } sco_data;
 
@@ -92,7 +92,7 @@ static void appendData(scicos_block * block, int input, double t, double *data);
  * \param block the block
  * \param input the selected input
  * \param row the selected row
- * \param pPolylineUID the polyline uid
+ * \param iPolylineUID the polyline uid
  *
  */
 static BOOL pushData(scicos_block * block, int input, int row);
@@ -106,27 +106,27 @@ static BOOL pushData(scicos_block * block, int input, int row);
  * \param block the block
  * \return a valid figure UID or NULL on error
  */
-static char const* getFigure(scicos_block * block);
+static int getFigure(scicos_block * block);
 
 /**
  * Get (and allocate on demand) the axe associated with the input
  *
- * \param pFigureUID the parent figure UID
+ * \param iFigureUID the parent figure UID
  * \param block the block
  * \param input the current input index (0-indexed)
  * \return a valid axe UID or NULL on error
  */
-static char *getAxe(char const* pFigureUID, scicos_block * block, int input);
+static int getAxe(int iFigureUID, scicos_block * block, int input);
 
 /**
  * Get (and allocate on demand) the polyline associated with the row
  *
- * \param pAxeUID the parent axe UID
+ * \param iAxeUID the parent axe UID
  * \param block the block
  * \param row the current row index (0-indexed)
  * \return a valid polyline UID or NULL on error
  */
-static char *getPolyline(char *pAxeUID, scicos_block * block, int row);
+static int getPolyline(int iAxeUID, scicos_block * block, int row);
 
 /**
  * Set the polylines bounds
@@ -148,7 +148,7 @@ static BOOL setPolylinesBounds(scicos_block * block, int input, int periodCounte
 */
 SCICOS_BLOCKS_IMPEXP void cfscope(scicos_block * block, scicos_flag flag)
 {
-    char const* pFigureUID;
+    int iFigureUID;
 
     double t;
     int links_count;
@@ -169,8 +169,8 @@ SCICOS_BLOCKS_IMPEXP void cfscope(scicos_block * block, scicos_flag flag)
                 set_block_error(-5);
                 break;
             }
-            pFigureUID = getFigure(block);
-            if (pFigureUID == NULL)
+            iFigureUID = getFigure(block);
+            if (iFigureUID == 0)
             {
                 // allocation error
                 set_block_error(-5);
@@ -179,8 +179,8 @@ SCICOS_BLOCKS_IMPEXP void cfscope(scicos_block * block, scicos_flag flag)
             break;
 
         case StateUpdate:
-            pFigureUID = getFigure(block);
-            if (pFigureUID == NULL)
+            iFigureUID = getFigure(block);
+            if (iFigureUID == 0)
             {
                 // allocation error
                 set_block_error(-5);
@@ -286,9 +286,9 @@ static sco_data *getScoData(scicos_block * block)
         }
 
         sco->scope.periodCounter = 0;
-        sco->scope.cachedFigureUID = NULL;
-        sco->scope.cachedAxeUID = NULL;
-        sco->scope.cachedPolylinesUIDs = (char **)CALLOC(links_count, sizeof(char *));
+        sco->scope.cachedFigureUID = 0;
+        sco->scope.cachedAxeUID = 0;
+        sco->scope.cachedPolylinesUIDs = (int*)CALLOC(links_count, sizeof(int));
 
         *(block->work) = sco;
     }
@@ -338,14 +338,9 @@ static void freeScoData(scicos_block * block)
             }
             FREE(sco->internal.coordinates[i]);
         }
+
         FREE(sco->internal.coordinates);
-
-        for (i = 0; i < links_count; i++)
-        {
-            FREE(sco->scope.cachedPolylinesUIDs[i]);
-        }
-        FREE(sco->scope.cachedAxeUID);
-
+        FREE(sco->scope.cachedPolylinesUIDs);
         FREE(sco);
         *(block->work) = NULL;
     }
@@ -468,16 +463,16 @@ static void appendData(scicos_block * block, int input, double t, double *data)
 
 static BOOL pushData(scicos_block * block, int input, int row)
 {
-    char const* pFigureUID;
-    char *pAxeUID;
-    char *pPolylineUID;
+    int iFigureUID;
+    int iAxeUID;
+    int iPolylineUID;
 
     double *data;
     sco_data *sco;
 
-    pFigureUID = getFigure(block);
-    pAxeUID = getAxe(pFigureUID, block, input);
-    pPolylineUID = getPolyline(pAxeUID, block, row);
+    iFigureUID = getFigure(block);
+    iAxeUID = getAxe(iFigureUID, block, input);
+    iPolylineUID = getPolyline(iAxeUID, block, row);
 
     sco = getScoData(block);
     if (sco == NULL)
@@ -488,7 +483,7 @@ static BOOL pushData(scicos_block * block, int input, int row)
     // select the right input and row
     data = sco->internal.coordinates[input][row];
 
-    return setGraphicObjectProperty(pPolylineUID, __GO_DATA_MODEL_COORDINATES__, data, jni_double_vector, sco->internal.maxNumberOfPoints);
+    return setGraphicObjectProperty(iPolylineUID, __GO_DATA_MODEL_COORDINATES__, data, jni_double_vector, sco->internal.maxNumberOfPoints);
 }
 
 /*****************************************************************************
@@ -500,10 +495,10 @@ static BOOL pushData(scicos_block * block, int input, int row)
 /**
  * Set properties on the figure.
  *
- * \param pFigureUID the figure uid
+ * \param iFigureUID the figure uid
  * \param block the current block
  */
-static void setFigureSettings(char const* pFigureUID, scicos_block * block)
+static void setFigureSettings(int iFigureUID, scicos_block * block)
 {
     int *ipar = GetIparPtrs(block);
 
@@ -517,12 +512,12 @@ static void setFigureSettings(char const* pFigureUID, scicos_block * block)
 
     if (win_pos[0] > 0 && win_pos[1] > 0)
     {
-        setGraphicObjectProperty(pFigureUID, __GO_POSITION__, &win_pos, jni_int_vector, 2);
+        setGraphicObjectProperty(iFigureUID, __GO_POSITION__, &win_pos, jni_int_vector, 2);
     }
 
     if (win_dim[0] > 0 && win_dim[1] > 0)
     {
-        setGraphicObjectProperty(pFigureUID, __GO_SIZE__, &win_dim, jni_int_vector, 2);
+        setGraphicObjectProperty(iFigureUID, __GO_SIZE__, &win_dim, jni_int_vector, 2);
     }
 };
 
@@ -532,11 +527,11 @@ static void setFigureSettings(char const* pFigureUID, scicos_block * block)
  *
  ****************************************************************************/
 
-static char const* getFigure(scicos_block * block)
+static int getFigure(scicos_block * block)
 {
     signed int figNum;
-    char const* pFigureUID = NULL;
-    char *pAxe = NULL;
+    int iFigureUID = 0;
+    int iAxe = 0;
     int i__1 = 1;
     sco_data *sco = (sco_data *) * (block->work);
 
@@ -545,11 +540,11 @@ static char const* getFigure(scicos_block * block)
     // assert the sco is not NULL
     if (sco == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedFigureUID != NULL)
+    if (sco->scope.cachedFigureUID)
     {
         return sco->scope.cachedFigureUID;
     }
@@ -562,48 +557,48 @@ static char const* getFigure(scicos_block * block)
         figNum = 20000 + get_block_number();
     }
 
-    pFigureUID = getFigureFromIndex(figNum);
+    iFigureUID = getFigureFromIndex(figNum);
     // create on demand
-    if (pFigureUID == NULL)
+    if (iFigureUID == 0)
     {
-        pFigureUID = createNewFigureWithAxes();
-        setGraphicObjectProperty(pFigureUID, __GO_ID__, &figNum, jni_int, 1);
+        iFigureUID = createNewFigureWithAxes();
+        setGraphicObjectProperty(iFigureUID, __GO_ID__, &figNum, jni_int, 1);
 
         // the stored uid is a reference to the figure map, not to the current figure
-        pFigureUID = getFigureFromIndex(figNum);
-        sco->scope.cachedFigureUID = pFigureUID;
+        iFigureUID = getFigureFromIndex(figNum);
+        sco->scope.cachedFigureUID = iFigureUID;
 
         // set configured parameters
-        setFigureSettings(pFigureUID, block);
+        setFigureSettings(iFigureUID, block);
 
         // allocate the axes through the getter
         for (i = 0; i < 1; i++)
         {
-            pAxe = getAxe(pFigureUID, block, i);
+            iAxe = getAxe(iFigureUID, block, i);
 
             /*
              * Setup according to block settings
              */
-            setLabel(pAxe, __GO_X_AXIS_LABEL__, "t");
-            setLabel(pAxe, __GO_Y_AXIS_LABEL__, "y");
+            setLabel(iAxe, __GO_X_AXIS_LABEL__, "t");
+            setLabel(iAxe, __GO_Y_AXIS_LABEL__, "y");
 
-            setGraphicObjectProperty(pAxe, __GO_X_AXIS_VISIBLE__, &i__1, jni_bool, 1);
-            setGraphicObjectProperty(pAxe, __GO_Y_AXIS_VISIBLE__, &i__1, jni_bool, 1);
+            setGraphicObjectProperty(iAxe, __GO_X_AXIS_VISIBLE__, &i__1, jni_bool, 1);
+            setGraphicObjectProperty(iAxe, __GO_Y_AXIS_VISIBLE__, &i__1, jni_bool, 1);
 
             setPolylinesBounds(block, i, 0);
         }
     }
 
-    if (sco->scope.cachedFigureUID == NULL)
+    if (sco->scope.cachedFigureUID == 0)
     {
-        sco->scope.cachedFigureUID = pFigureUID;
+        sco->scope.cachedFigureUID = iFigureUID;
     }
-    return pFigureUID;
+    return iFigureUID;
 }
 
-static char *getAxe(char const* pFigureUID, scicos_block * block, int input)
+static int getAxe(int iFigureUID, scicos_block * block, int input)
 {
-    char *pAxe;
+    int iAxe;
     int i;
     sco_data *sco = (sco_data *) * (block->work);
     int links_count = block->ipar[15];
@@ -611,53 +606,52 @@ static char *getAxe(char const* pFigureUID, scicos_block * block, int input)
     // assert the sco is not NULL
     if (sco == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedAxeUID != NULL)
+    if (sco->scope.cachedAxeUID)
     {
         return sco->scope.cachedAxeUID;
     }
 
-    pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, input);
+    iAxe = findChildWithKindAt(iFigureUID, __GO_AXES__, input);
 
     /*
      * Allocate if necessary
      */
-    if (pAxe == NULL)
+    if (iAxe == 0)
     {
-        cloneAxesModel(pFigureUID);
-        pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, input);
+        cloneAxesModel(iFigureUID);
+        iAxe = findChildWithKindAt(iFigureUID, __GO_AXES__, input);
     }
 
     /*
      * Setup on first access
      */
-    if (pAxe != NULL)
+    if (iAxe != 0)
     {
         // allocate the polylines through the getter
         for (i = 0; i < links_count; i++)
         {
-            getPolyline(pAxe, block, i);
+            getPolyline(iAxe, block, i);
         }
     }
     else
     {
-        return NULL;
+        return 0;
     }
 
     /*
      * then cache with local storage
      */
-    sco->scope.cachedAxeUID = os_strdup(pAxe);
-    releaseGraphicObjectProperty(__GO_PARENT__, pAxe, jni_string, 1);
+    sco->scope.cachedAxeUID = iAxe;
     return sco->scope.cachedAxeUID;
 }
 
-static char *getPolyline(char *pAxeUID, scicos_block * block, int row)
+static int getPolyline(int iAxeUID, scicos_block * block, int row)
 {
-    char *pPolyline;
+    int iPolyline;
     BOOL b__true = TRUE;
 
     int color;
@@ -667,32 +661,32 @@ static char *getPolyline(char *pAxeUID, scicos_block * block, int row)
     // assert the sco is not NULL
     if (sco == NULL || sco->scope.cachedPolylinesUIDs == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     // fast path for an existing object
-    if (sco->scope.cachedPolylinesUIDs[row] != NULL)
+    if (sco->scope.cachedPolylinesUIDs[row])
     {
         return sco->scope.cachedPolylinesUIDs[row];
     }
 
-    pPolyline = findChildWithKindAt(pAxeUID, __GO_POLYLINE__, row);
+    iPolyline = findChildWithKindAt(iAxeUID, __GO_POLYLINE__, row);
 
     /*
      * Allocate if necessary
      */
-    if (pPolyline == NULL)
+    if (iPolyline == 0)
     {
-        pPolyline = createGraphicObject(__GO_POLYLINE__);
+        iPolyline = createGraphicObject(__GO_POLYLINE__);
 
-        if (pPolyline != NULL)
+        if (iPolyline != 0)
         {
-            createDataObject(pPolyline, __GO_POLYLINE__);
-            setGraphicObjectRelationship(pAxeUID, pPolyline);
+            createDataObject(iPolyline, __GO_POLYLINE__);
+            setGraphicObjectRelationship(iAxeUID, iPolyline);
         }
         else
         {
-            return NULL;
+            return 0;
         }
     }
 
@@ -705,41 +699,40 @@ static char *getPolyline(char *pAxeUID, scicos_block * block, int row)
      */
     {
         int nGons = 1;
-        setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_NUM_GONS__, &nGons, jni_int, 1);
+        setGraphicObjectProperty(iPolyline, __GO_DATA_MODEL_NUM_GONS__, &nGons, jni_int, 1);
     }
 
     color = block->ipar[3 + row];
     if (color > 0)
     {
-        setGraphicObjectProperty(pPolyline, __GO_LINE_MODE__, &b__true, jni_bool, 1);
-        setGraphicObjectProperty(pPolyline, __GO_LINE_COLOR__, &color, jni_int, 1);
+        setGraphicObjectProperty(iPolyline, __GO_LINE_MODE__, &b__true, jni_bool, 1);
+        setGraphicObjectProperty(iPolyline, __GO_LINE_COLOR__, &color, jni_int, 1);
     }
     else
     {
         int iMarkSize = 4;
         color = -color;
-        setGraphicObjectProperty(pPolyline, __GO_MARK_MODE__, &b__true, jni_bool, 1);
-        setGraphicObjectProperty(pPolyline, __GO_MARK_STYLE__, &color, jni_int, 1);
-        setGraphicObjectProperty(pPolyline, __GO_MARK_SIZE__, &iMarkSize, jni_int, 1);
+        setGraphicObjectProperty(iPolyline, __GO_MARK_MODE__, &b__true, jni_bool, 1);
+        setGraphicObjectProperty(iPolyline, __GO_MARK_STYLE__, &color, jni_int, 1);
+        setGraphicObjectProperty(iPolyline, __GO_MARK_SIZE__, &iMarkSize, jni_int, 1);
     }
 
     {
         int iClipState = 1; //on
-        setGraphicObjectProperty(pPolyline, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
+        setGraphicObjectProperty(iPolyline, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
     }
 
     /*
      * then cache with local storage
      */
-    sco->scope.cachedPolylinesUIDs[row] = os_strdup(pPolyline);
-    releaseGraphicObjectProperty(__GO_PARENT__, pPolyline, jni_string, 1);
+    sco->scope.cachedPolylinesUIDs[row] = iPolyline;
     return sco->scope.cachedPolylinesUIDs[row];
 }
 
 static BOOL setPolylinesBounds(scicos_block * block, int input, int periodCounter)
 {
-    char const* pFigureUID;
-    char *pAxeUID;
+    int iFigureUID;
+    int iAxeUID;
 
     double dataBounds[6];
     double period = block->rpar[3];
@@ -751,7 +744,7 @@ static BOOL setPolylinesBounds(scicos_block * block, int input, int periodCounte
     dataBounds[4] = -1.0;       // zMin
     dataBounds[5] = 1.0;        // zMax
 
-    pFigureUID = getFigure(block);
-    pAxeUID = getAxe(pFigureUID, block, input);
-    return setGraphicObjectProperty(pAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+    iFigureUID = getFigure(block);
+    iAxeUID = getAxe(iFigureUID, block, input);
+    return setGraphicObjectProperty(iAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 }

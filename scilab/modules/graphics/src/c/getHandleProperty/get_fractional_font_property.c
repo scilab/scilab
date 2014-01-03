@@ -28,12 +28,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_fractional_font_property(void* _pvCtx, char* pobjUID)
+void* get_fractional_font_property(void* _pvCtx, int iObjUID)
 {
     int iFractionalFont = 0;
     int* fractionalFont = &iFractionalFont;
 
-    getGraphicObjectProperty(pobjUID, __GO_FONT_FRACTIONAL__, jni_bool, (void **)&fractionalFont);
+    getGraphicObjectProperty(iObjUID, __GO_FONT_FRACTIONAL__, jni_bool, (void **)&fractionalFont);
 
     if (fractionalFont == NULL)
     {

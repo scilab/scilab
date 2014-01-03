@@ -42,7 +42,7 @@
             <literal>xrects</literal> draws or fills a set of rectangles. 
             Each column of <literal>rects</literal> describes 
             a rectangle (upper-left point, width, height) in user coordinates:
-            <literal>rects=[x1 y1 w1 h1;x2 y2 w2 h2;...]'</literal>.
+            <literal>rects=[x1 x2... ; y1 y2... ; w1 w2... ; h1 h2...]</literal>.
         </para>
         <para>
             <literal>fill(i)</literal> gives the pattern to use for filling or drawing rectangle i:
@@ -59,7 +59,8 @@
             if <literal>fill(i)=0</literal>, rectangle <literal>i</literal> is drawn using the current
             line style (or color).
         </para>
-        <para>WARNING: please note that height is positive downwards.</para>
+        <warning>Please note that height is positive downwards.</warning>
+        <warning>Created rectangles inherits the clip property from the current axes.</warning>
     </refsection>
     <refsection>
         <title>Examples</title>

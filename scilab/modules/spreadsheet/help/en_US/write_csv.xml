@@ -23,10 +23,9 @@
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>
-                    <link linkend="csvRead">csvWrite</link> provide a better replacement of write_csv.
+                    <link linkend="csvWrite">csvWrite</link> provide a better replacement of write_csv.
                 </revremark>
             </revision>
         </revhistory>
     </refsection>
 </refentry>
-

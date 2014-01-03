@@ -1,15 +1,194 @@
                  Changes between version 5.5.0-beta-1 and 5.5.0
                  ==============================================
 
+New Features
+=============
+
+* The figures "visible" property now also applies to uicontrols.
+  In previous releases, only axes were managed by this property setting.
+
+* New functions introduced:
+ - jcreatejar - Creates a Java archive (JAR) from a set of files / directories
+ - ilib_build_jar - Builds Java packages from sources into a JAR file
+ - ifftshift - inverse FFT shift
+
+* modulo() and pmodulo() now support integers & hypermatrices (See bug #13002).
+
+* test_run() can now separate 32bits systems from 64bits ones.
+
+* pol2str(): support to polynomials with complex coefficients and hypermatrices (See bug #13109).
+
+
+Obsolete & Removed Functions
+============================
+
+* msd and st_deviation tagged as obsolete (See bug #7593). Will be removed in Scilab 5.5.1.
+  Please use stdev instead.
+
+* pcg tagged as obsolete. Will be removed in Scilab 5.5.1.
+  Please use conjgrad instead.
+
+* milk_drop tagged as obsolete. Will be removed in Scilab 5.5.1.
+
+* clear_pixmap removed, please use drawlater/drawnow instead.
+
+
 Scilab Bug Fixes
 ================
 
+* Bug #2067 fixed - Scilab crashed when plot was called with a large numerical value.
+
+* Bug #4401 fixed - isnum did not recognize all constants or some complex numbers.
+
+* Bug #4649 fixed - License issue in the xs2ppm help page fixed.
+
+* Bug #4677 fixed - xclick did not return correct mouse position on keyboard event.
+
+* Bug #4965 fixed - Setting links property for a handle of type legend did not work.
+
+* Bug #5016 fixed - condestsp could return different results when repeated calls were performed.
+
+* Bug #5886 fixed - There was no property labels_font_style on axis.
+
+* Bug #6305 fixed - dsearch function did not work with integers, strings and hypermatrices.
+
+* Bug #6306 fixed - It is now possible to compute an histogram instead of plotting it
+                    with new function histc(). Besides, histplot can now return the computed data.
+
+* Bug #6404 fixed - xrects help page was not clear about argument specification.
+
+* Bug #6615 fixed - ui(get|put)file did not center the file dialog on the last focused window.
+
+* Bug #6689 & #6690 fixed - grand now works with complexes, polynomials, booleans, integers, sparses and strings,
+                            and can take row vectors, matrices and hypermatrices of thoses types.
+
+* Bug #6824 fixed - resize_matrix did not manage hypermatrices.
+
+* Bug #6832 fixed - Matrices of rationals can now be transposed via the " .' " operator.
+
+* Bug #7038 fixed - Toolbar button managing datatip mode did not toggle.
+
+* Bug #7047 fixed - milk_drop is now obsolete. It will be removed in Scilab 5.5.1, but will be kept as a demo.
+
+* Bug #7084 fixed - Old, not documented and deprecated gr_menu function removed.
+
+* Bug #7133 fixed - help_from_sci with no input argument now launches a full demonstration.
+
 * Bug #7570 fixed - The switch criterion on x and y is now explicited in beta() help page.
+
+* Bug #7593 fixed - stdev now encompasses msd and st_deviation thanks to a new optional input argument.
 
 * Bug #7705 fixed - In the Genetic algorithms help pages, documented the
                     "dimension", "minbounds" and "maxbounds" fields.
 
+* Bug #7739 fixed - Axis position was invalid in log modes.
+
+* Bug #7858 fixed - variance and variancef can now return the mean of the input
+                    in a new output argument and take the a priori mean as input.
+
+* Bug #7879 fixed - string now accepts plist type, and printing a plist displays that string.
+
+* Bug #8031 fixed - cdfgam error message fixed.
+
+* Bug #8060 fixed - Display of a list improved in the variable browser.
+
+* Bug #8133 fixed - Ticks disappeared in planar 3D view.
+
+* Bug #8196 fixed - Wrong error message with negative thickness.
+
+* Bug #8231 fixed - xrect help page did not say that clipping property was inherited.
+
+* Bug #8337 fixed - mtlb_rand now uses the "uniform" rule, whatever the random rule set is.
+
+* Bug #8745 fixed - Extracting from an empty matrix automatically returned an empty matrix.
+
+* Bug #9031 fixed - Misalignment of text when using xstring with a matrix fixed.
+
+* Bug #9033 fixed - auto_dimensionning property for text handles was not documented.
+
+* Bug #9110 fixed - Examples and references to other functions added in the Statistics help pages.
+
+* Bug #9319 fixed - Big polylines could not be exported in PS/EPS.
+
+* Bug #9627 fixed - Arguments checking added in optimsimplex_* functions.
+
+* Bug #9697 fixed - Printed information for optim "qn" and "gc" with bounds and imp=1 fixed.
+
+* Bug #9701 fixed - optim with "qn" option was failing for large problems.
+
+* Bug #9840 fixed - Default G tolerance in lsqrsolve was too large.
+
+* Bug #10012 fixed - lmisolver and lmitool called with no input now produce errors.
+
+* Bug #10083 fixed - plot3d could not be used with only one input argument.
+
+* Bug #10175 fixed - Clearer example added for sp2adj to adj2sp conversion (and backwards conversion).
+
+* Bug #10221 fixed - ifftshift function did not exist in Scilab.
+
+* Bug #10234 fixed - reglin function moved from CACSD to Statistics module.
+
+* Bug #10243 fixed - fun2string(X) called X before returning its code.
+
+* Bug #10271 fixed - ordmmd now checks the consistency of the third input argument with the
+                     input matrix defined by the two first input arguments.
+
+* Bug #10273 fixed - spchol help page now displays an example showing how to use its output arguments.
+
+* Bug #10645 fixed - File encoding could not be given as argument in xmlRead.
+
+* Bug #10936 fixed - Scilab hung with invalid strf in plot2d.
+
+* Bug #10998 fixed - matrix*hypermatrix and hypermatrix*matrix operations failed.
+
+* Bug #11007, #11008 & #11009 fixed - New function conjgrad (Conjugate Gradient methods "pcg", "cgs", "bicg" and "bicgstab").
+
+* Bug #11305 fixed - Performances improved with a better way to update data.
+
+* Bug #11571 fixed - x_mdialog did not let the Look&Feel select the window size.
+
+* Bug #11575 fixed - There was no preview of GIF files in exportUI dialog.
+
+* Bug #11576 fixed - exportUI did not propose gcf().figure_name as default file name.
+
+* Bug #11680 fixed - GUI functions in Scilab 5.4.X were much slower than in Scilab 5.3.3.
+
+* Bug #11996 fixed - eye extended to hypermatrix.
+
+* Bug #12121 fixed - inv function did not work for complex sparse matrices.
+
+* Bug #12156 fixed - Closing a Scilab session in Javasci could lead to a HDF5 error message.
+
+* Bug #12334 fixed - Mark color in legend was invalid.
+
+* Bug #12481 fixed - xlabel could not be used with Scilab property names.
+
+* Bug #12485 fixed - xchange returned bad values with log scale.
+
+* Bug #12492 fixed - Exported EPS files were invalid when dash patterns were too long.
+
+* Bug #12496 fixed - zoom_rect could lead to a crash in log scale.
+
+* Bug #12535 fixed - In french version, comma was used as decimal separator when zooming (rather than point).
+
+* Bug #12673 fixed - Ticks were drawn outside of axes area.
+
+* Bug #12682 fixed - Key events were disabled after zooming.
+
+* Bug #12733 fixed - There was no way to direct graphs to nothing with driver function.
+
 * Bug #12769 fixed - xset("window", 1) did not set the current axes.
+
+* Bug #12784 fixed - Misleading error message in many functions when passing an integer
+                     argument instead of double argument fixed.
+
+* Bug #12785 fixed - plot did not allow int data as first argument.
+
+* Bug #12880 fixed - A warning is displayed when transposing arguments of plot.
+
+* Bug #12882 fixed - Some help pages were not clear.
+
+* Bug #12910 fixed - Some typos fixed.
 
 * Bug #12938 fixed - No java compiler was available in Linux binary version.
 
@@ -30,17 +209,140 @@ Scilab Bug Fixes
 
 * Bug #12963 fixed - drawaxis did not place the axis correctly.
 
+* Bug #12966 fixed - Rotation, tool tip and other Xcos plot actions were
+                     disabled by default.
+
+* Bug #12968 fixed - Cannot save variable named 'temp'.
+
 * Bug #12971 fixed - getURL downloaded file name was wrong.
+
+* Bug #12973 fixed - Exception occuring when clicking on a figure at creation fixed.
+
+* Bug #12976 fixed - getURL returns a file name instead of a file path.
 
 * Bug #12978 fixed - exportUI returned an error when input argument was a figure handle.
 
 * Bug #12979 fixed - exportUI did not work with vectorial export.
 
+* Bug #12990 fixed - GED features conflicted with figure events.
+
+* Bug #12992 fixed - The sigma value was always equals to "LM" in eigs.
+
+* Bug #12993 fixed - stdev returned value depended on 'x' being defined in the environment.
+
+* Bug #13000 fixed - []./int8(3) and on int8(3)./[] led to an endless recursive.
+
+* Bug #13002 fixed - modulo and pmodulo did not support integers & hypermatrices.
+
+* Bug #13003 fixed - String to enum converter added to Java external objects.
+
+* Bug #13004 fixed - Debug infos were printed on an error with eoj.
+
+* Bug #13005 fixed - jcompile did not use the classpath to compile.
+
+* Bug #13007 fixed - Compilation errors were not returned by jcompile.
+
+* Bug #13008 fixed - 'help $' now opens the 'Symbols' help page.
+
+* Bug #13010 fixed - Wrong class was returned by jcompile (with ecj).
+
+* Bug #13011 fixed - ilib_compile failed under MacOS X 10.9.
+
+* Bug #13012 fixed - Vectorial export of rotated strings was wrong.
+
+* Bug #13014 fixed - Update of the Efficiency inner variable improved in optim_ga.
+
+* Bug #13015 fixed - Computation of Efficiency inner variable improved in optim_ga.
+
+* Bug #13022 fixed - Vectorial export did not clip large segments.
+
+* Bug #13023 fixed - xs2pdf crashed under Windows when the target file was already open.
+
+* Bug #13027 fixed - There was no autowrap into array in JIMS.
+
+* Bug #13031 fixed - Lorentz Butterfly demonstration fixed.
+
+* Bug #13032 fixed - Fixed CMATVIEW help example and created one for CMAT3D.
+
+* Bug #13033 fixed - -1 could not be used as nax argument in plot2d.
+
+* Bug #13036 fixed - Help page associated to history browser was wrong.
+
+* Bug #13041 fixed - Wrong result was returned for "integer scalar" minus "integer vector".
+
+* Bug #13042 fixed - Texts in graphics were not correctly centered.
+
+* Bug #13047 fixed - jcompile did not allow class reloading.
+
+* Bug #13049 fixed - New handled protocols added in links in SciNotes.
+
+* Bug #13050 fixed - The result of mvvacov was not symmetric.
+
+* Bug #13053 fixed - datatipCreate did not return datatip handle.
+
+* Bug #13055 fixed - Array indexing did not follow Scilab convention in JIMS.
+
+* Bug #13061 fixed - hdf5 demo failed with a read only file.
+
+* Bug #13063 fixed - Color selection in SciNotes preferences threw exceptions.
+
+* Bug #13064 fixed - Deleting a link connected to a split lead to a translated
+                     link.
+
+* Bug #13069 fixed - Documentation for %MODELICA_USER_LIBS updated.
+
+* Bug #13066 fixed - data_bounds was not fully documented in axes_properties.
+
+* Bug #13071 fixed - Three unused functions in Xcos macros now specified as not mandatory
+                     to write new blocks.
+
+* Bug #13092 fixed - Optimizations now check the user function output (must be a real).
+
+* Bug #13093 fixed - Removed trailing "\n" in the head_comments error message.
+
+* Bug #13101 fixed - When x-axis was in reverse position x_location='origin' failed.
+
+* Bug #13108 fixed - Time between ATOMS database updates is now a month (was a day) and is configurable.
+
+* Bug #13109 fixed - pll2str now supports polynomials with complex coefficients and hypermatrices.
+
+* Bug #13111 fixed - sqrt returned different results when imaginary part was -0 versus 0.
+
+* Bug #13114 fixed - clear_pixmap should have been removed in Scilab 5.4.1.
+
+* Bug #13116 fixed - qpsolve now respects upper-bounds constraints.
+
+* Bug #13121 fixed - ode "rk" option crashed Scilab when the user derivative function failed.
+
+* Bug #13127 fixed - There were no subticks with user defined ticks.
+
+* Bug #13132 fixed - There were missing graduations when data_bounds interval was too small.
+
+* Bug #13134 fixed - User defined ticks in log scale were invisible.
+
+* Bug #13139 fixed - fft help page fixed.
+
+* Bug #13140 fixed - Various typos fixed.
+
+* Bug #13146 fixed - profile failed when a comment was on the same line as a function declaration.
+
+* Bug #13152 fixed - Typo fixed in syslin french help page.
+
 
 Xcos Bug Fixes
 ==============
 
+* xcos_debug_gui function added  for a simple use of the Debug block.
+
 * Bug #12423 fixed - Data types of SWITCH2_m were not documented.
+
+* Bug #12998 fixed - 'ans' was not ignored in the context results.
+
+* Bug #13006 fixed - Selection to superblock (in_f and out_f) was failing.
+
+* Bug #13030 fixed - Selection to superblock did not reset the origin.
+
+* Bug #13059 fixed - Nan propagated at startup made the simulation fail.
 
 
                  Changes between version 5.4.1 and 5.5.0-beta-1
@@ -113,8 +415,6 @@ BDF methods with direct and preconditioned Krylov linear solvers, based on ODEPA
   Calling Scilab with this option will leave the console box window opened at startup.
 
 * License update: switch to the CeCILL 2.1.
-
-* test_run() can now separate 32bits systems from 64bits ones.
 
 
 Improvements
@@ -520,6 +820,8 @@ Scilab Bug Fixes
 
 * Bug #11065 fixed - The second output argument of unique function contained a wrong result.
 
+* Bug #11067 fixed - Display of ticks labels with closed associated values was wrong.
+
 * Bug #11139 fixed - conj was not defined for sparse matrices (+ unit test added).
 
 * Bug #11308 fixed - Calling sequences in dsearch help page were wrong.
@@ -730,6 +1032,9 @@ Scilab Bug Fixes
 
 * Bug #12791 fixed - More information is now given in case of failure during the ATOMS
                     autoload step.
+
+* Bug #12793 fixed - Improved the bode() plots with a new option "rad" to convert plot into rad/s
+                     and a new function bode_asymp() to draw the system asymptotes.
 
 * Bug #12794 fixed - calfrq.sci code did not follow Scilab standard.
 

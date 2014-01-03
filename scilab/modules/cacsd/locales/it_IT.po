@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: it\n"
 
 #, c-format
@@ -506,6 +506,23 @@ msgid "Phase (degree)"
 msgstr "Fase (gradi)"
 
 #, c-format
+msgid ""
+"Wrong type for argument #%d: Rational or State-space matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Problem evaluating the first argument.\n"
+"n"
+msgstr ""
+
+#, c-format
+msgid ""
+"ERROR: %s: bode() or gainplot() must be called before bode_asymp() and "
+"graphic window must still be running.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
@@ -824,6 +841,10 @@ msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un sistema "
 "lineare.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -1187,10 +1208,6 @@ msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "polinomio.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An scalar expected.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"

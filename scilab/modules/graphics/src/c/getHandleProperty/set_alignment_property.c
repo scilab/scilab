@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_alignment_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_alignment_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int alignment = 0;
@@ -60,7 +60,7 @@ int set_alignment_property(void* _pvCtx, char* pobjUID, void* _pvData, int value
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_ALIGNMENT__, &alignment, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_ALIGNMENT__, &alignment, jni_int, 1);
 
     if (status == TRUE)
     {

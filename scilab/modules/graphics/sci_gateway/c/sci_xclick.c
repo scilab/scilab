@@ -45,7 +45,7 @@ int sci_xclick(char *fname, void *pvApiCtx)
 
     int mouseButtonNumber = 0;
     char * menuCallback = NULL;
-    char *pstWindowUID = NULL;
+    int iWindowUID = 0;
     int pixelCoords[2];
     double userCoords2D[2];
 
@@ -67,15 +67,15 @@ int sci_xclick(char *fname, void *pvApiCtx)
     mouseButtonNumber = getJxclickMouseButtonNumber();
     pixelCoords[0] = (int) getJxclickXCoordinate();
     pixelCoords[1] = (int) getJxclickYCoordinate();
-    pstWindowUID = getJxclickWindowID();
+    iWindowUID = getJxclickWindowID();
     menuCallback = getJxclickMenuCallback();
 
     // Convert pixel coordinates to user coordinates
     // Conversion is not done if the user clicked on a menu (pixelCoords[*] == -1)
     if (pixelCoords[0] != -1 && pixelCoords[1] != -1)
     {
-        char* clickedSubwinUID = (char*)getCurrentSubWin();
-        sciGet2dViewCoordFromPixel(clickedSubwinUID, pixelCoords, userCoords2D);
+        int iClickedSubwinUID = getCurrentSubWin();
+        sciGet2dViewCoordFromPixel(iClickedSubwinUID, pixelCoords, userCoords2D);
     }
     else
     {
@@ -156,7 +156,7 @@ int sci_xclick(char *fname, void *pvApiCtx)
             return 1;
         }
 
-        getGraphicObjectProperty(pstWindowUID, __GO_ID__, jni_int, (void**)&piFigureId);
+        getGraphicObjectProperty(iWindowUID, __GO_ID__, jni_int, (void**)&piFigureId);
         rep[0] = (double) iFigureId;
     }
 
@@ -176,7 +176,6 @@ int sci_xclick(char *fname, void *pvApiCtx)
     }
 
     deleteJxclickString(menuCallback);
-    deleteJxclickString(pstWindowUID);
 
     ReturnArguments(pvApiCtx);
 

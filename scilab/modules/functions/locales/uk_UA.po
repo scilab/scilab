@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-04-18 04:43+0000\n"
+"PO-Revision-Date: 2013-12-06 19:35+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: uk\n"
 
 #, c-format
@@ -100,6 +100,10 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: помилковий тип вхідного параметра №%d.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
 msgid "%s: obsolete op-code %d.\n"
 msgstr "%s: застарілий код операції %d.\n"
 
@@ -114,6 +118,12 @@ msgstr "%s: будь ласка, перевірте: %s\n"
 #, c-format
 msgid "%s: File %s doesn't exist.\n"
 msgstr "%s: файла з назвою %s не існує.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d параметрів.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -207,8 +217,8 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати назву "
 "функції Scilab.\n"
 
-msgid "No comment available.\n"
-msgstr "Немає жодного коментаря.\n"
+msgid "No comment available."
+msgstr "Немає коментаря."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"

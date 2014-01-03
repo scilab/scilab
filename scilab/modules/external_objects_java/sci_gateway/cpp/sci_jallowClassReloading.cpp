@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -27,7 +27,15 @@ int sci_jallowClassReloading(char * fname, void* pvApiCtx)
     try
     {
         const int envId = ScilabJavaEnvironment::start();
-        JavaOptionsSetter setter = ScilabJavaEnvironment::getInstance().getOptionsHelper().getSetter(JavaOptionsSetter::ALLOWRELOAD);
+
+        ScilabJavaEnvironment *javaEnvironment = ScilabJavaEnvironment::getInstance();
+        if (!javaEnvironment)
+        {
+            Scierror(999, "%s: No Java environment available (instance is null).", fname);
+            return 0;
+        }
+
+        JavaOptionsSetter setter = javaEnvironment->getOptionsHelper().getSetter(JavaOptionsSetter::ALLOWRELOAD);
         return ScilabGateway::getsetOptions(fname, envId, setter, pvApiCtx);
     }
     catch (std::exception & e)

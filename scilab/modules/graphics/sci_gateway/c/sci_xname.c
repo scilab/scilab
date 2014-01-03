@@ -36,7 +36,7 @@ int sci_xname(char *fname, void *pvApiCtx)
     int* piAddrl1 = NULL;
     char* l1 = NULL;
 
-    char *pstCurrentFigure = NULL;
+    int iCurrentFigure = 0;
 
     CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 1, 1);
@@ -55,14 +55,14 @@ int sci_xname(char *fname, void *pvApiCtx)
         return 1;
     }
 
-    pstCurrentFigure = (char*)getCurrentFigure();
+    iCurrentFigure = getCurrentFigure();
 
-    if (pstCurrentFigure == NULL)
+    if (iCurrentFigure == 0)
     {
-        pstCurrentFigure = createNewFigureWithAxes();
+        iCurrentFigure = createNewFigureWithAxes();
     }
 
-    setGraphicObjectProperty(pstCurrentFigure, __GO_NAME__, l1, jni_string, 1);
+    setGraphicObjectProperty(iCurrentFigure, __GO_NAME__, l1, jni_string, 1);
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

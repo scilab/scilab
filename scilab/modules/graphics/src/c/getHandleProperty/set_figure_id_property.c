@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_figure_id_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_figure_id_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int id = 0;
     BOOL status = FALSE;
@@ -45,7 +45,7 @@ int set_figure_id_property(void* _pvCtx, char* pobjUID, void* _pvData, int value
 
     id = (int) ((double*)_pvData)[0];
 
-    status = setGraphicObjectProperty(pobjUID, __GO_ID__, &id, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_ID__, &id, jni_int, 1);
 
     if (status == TRUE)
     {

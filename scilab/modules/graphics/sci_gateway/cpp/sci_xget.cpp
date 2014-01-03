@@ -134,25 +134,25 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 8 : // colormap
         {
-            char *pobjUID = NULL;
+            int iObjUID = 0;
             // Force figure creation if none exists.
             getOrCreateDefaultSubwin();
-            pobjUID = (char*)getCurrentFigure();
+            iObjUID = getCurrentFigure();
 
-            out.push_back((types::InternalType*)get_color_map_property(pvApiCtx, pobjUID));
+            out.push_back((types::InternalType*)get_color_map_property(pvApiCtx, iObjUID));
         }
         break;
         case 20 : // mark
         {
-            char *pobjUID = (char*)getOrCreateDefaultSubwin();
+            int iObjUID = getOrCreateDefaultSubwin();
             int iMarkStyle = 0;
             int* piMarkStyle = &iMarkStyle;
             int iMarkSize = 0;
             int* piMarkSize = &iMarkSize;
             types::Double* pDbl = new types::Double(1, 2);
 
-            getGraphicObjectProperty(pobjUID, __GO_MARK_STYLE__, jni_int, (void**)&piMarkStyle);
-            getGraphicObjectProperty(pobjUID, __GO_MARK_SIZE__, jni_int, (void**)&piMarkSize);
+            getGraphicObjectProperty(iObjUID, __GO_MARK_STYLE__, jni_int, (void**)&piMarkStyle);
+            getGraphicObjectProperty(iObjUID, __GO_MARK_SIZE__, jni_int, (void**)&piMarkSize);
 
             pDbl->set(0, (double)iMarkStyle);
             pDbl->set(1, (double)iMarkSize);
@@ -161,36 +161,36 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 21 : // mark size
         {
-            char *pobjUID = (char*)getOrCreateDefaultSubwin();
-            out.push_back((types::InternalType*)get_mark_size_property(pvApiCtx, pobjUID));
+            int iObjUID = getOrCreateDefaultSubwin();
+            out.push_back((types::InternalType*)get_mark_size_property(pvApiCtx, iObjUID));
         }
         break;
         case 19 : // line style
         {
-            out.push_back((types::InternalType*)get_line_style_property(pvApiCtx, (char*)getOrCreateDefaultSubwin()));
+            out.push_back((types::InternalType*)get_line_style_property(pvApiCtx, getOrCreateDefaultSubwin()));
         }
         break;
         case 5 : // clipping
         {
             types::Double* pDblClipBox = new types::Double(1, 4);
             double *clipBox = NULL;
-            char* pobjUID = (char*)getOrCreateDefaultSubwin();
-            getGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipBox);
+            int iObjUID = getOrCreateDefaultSubwin();
+            getGraphicObjectProperty(iObjUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipBox);
             memcpy(pDblClipBox->get(), clipBox, 4 * sizeof(double));
             out.push_back(pDblClipBox);
         }
         break;
         case 12 : // font
         {
-            char *pobjUID = (char*)getOrCreateDefaultSubwin();
+            int iObjUID = getOrCreateDefaultSubwin();
             double dblFontSize = 0;
             double* pdblFontSize = &dblFontSize;
             int iFontStyle = 0;
             int* piFontStyle = &iFontStyle;
             types::Double* pDbl = new types::Double(1, 2);
 
-            getGraphicObjectProperty(pobjUID, __GO_FONT_SIZE__, jni_double, (void **)&pdblFontSize);
-            getGraphicObjectProperty(pobjUID, __GO_FONT_STYLE__, jni_int, (void**)&piFontStyle);
+            getGraphicObjectProperty(iObjUID, __GO_FONT_SIZE__, jni_double, (void **)&pdblFontSize);
+            getGraphicObjectProperty(iObjUID, __GO_FONT_STYLE__, jni_int, (void**)&piFontStyle);
 
             pDbl->set(0, (double)iFontStyle);
             pDbl->set(1, dblFontSize);
@@ -218,7 +218,7 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 16 : // hidden3d
         {
-            out.push_back((types::InternalType*)get_hidden_color_property(pvApiCtx, (char*)getOrCreateDefaultSubwin()));
+            out.push_back((types::InternalType*)get_hidden_color_property(pvApiCtx, getOrCreateDefaultSubwin()));
         }
         break;
         case 30 : // window
@@ -235,7 +235,7 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 25 : // thickness
         {
-            out.push_back((types::InternalType*)get_thickness_property(pvApiCtx, (char*)getOrCreateDefaultSubwin()));
+            out.push_back((types::InternalType*)get_thickness_property(pvApiCtx, getOrCreateDefaultSubwin()));
         }
         break;
         case 28 : // wdim
@@ -280,14 +280,14 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 3 : // background
         {
-            out.push_back((types::InternalType*)get_background_property(pvApiCtx, (char*)getOrCreateDefaultSubwin()));
+            out.push_back((types::InternalType*)get_background_property(pvApiCtx, getOrCreateDefaultSubwin()));
         }
         break;
         case 7 : // color
         case 14 : // foreground
         case 23 : // pattern
         {
-            out.push_back((types::InternalType*)get_foreground_property(pvApiCtx, (char*)getOrCreateDefaultSubwin()));
+            out.push_back((types::InternalType*)get_foreground_property(pvApiCtx, getOrCreateDefaultSubwin()));
         }
         break;
         case 17 : // lastpattern

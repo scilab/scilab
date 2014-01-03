@@ -33,7 +33,7 @@
             function <varname>macroname</varname>.
         </para>
         <para>
-            <varname>linenumb</varname> can be a line or column vector of line
+            <varname>linenumb</varname> can be a row or column vector of line
             numbers, or a single scalar line number.
         </para>
         <para>

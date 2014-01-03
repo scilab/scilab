@@ -6,13 +6,14 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.external_objects_java;
 
 import java.beans.MethodDescriptor;
+import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -57,6 +58,19 @@ public final class FunctionArguments {
             }
         });
 
+        // Converter to convert a double[] to an int[]
+        registerConverter(new Converter() {
+            @Override
+            public Object convert(Object original, Class<?> to) {
+                return ScilabJavaArray.toIntArray((double[]) original);
+            }
+
+            @Override
+            public boolean canConvert(Class<?> from, Class<?> to) {
+                return (to == int[].class) && (from == double[].class);
+            }
+        });
+
         // Converter to convert a double[] to a Double[] (or an other primitive type)
         registerConverter(new Converter() {
             @Override
@@ -85,6 +99,58 @@ public final class FunctionArguments {
             @Override
             public boolean canConvert(Class<?> from, Class<?> to) {
                 return from.isArray() && to.isAssignableFrom(ArrayList.class);
+            }
+        });
+
+        // Converter to convert a String to a Enum
+        registerConverter(new Converter() {
+            @Override
+            public Object convert(Object original, Class<?> to) {
+                return Enum.valueOf((Class) to, (String) original);
+            }
+
+            @Override
+            public boolean canConvert(Class<?> from, Class<?> to) {
+                return String.class.isAssignableFrom(from) && to.isEnum();
+            }
+        });
+
+        // Converter to convert double[][] to double[]
+        registerConverter(new Converter() {
+            @Override
+            public Object convert(Object original, Class<?> to) {
+                return ScilabJavaArray.toOneDim(original);
+            }
+
+            @Override
+            public boolean canConvert(Class<?> from, Class<?> to) {
+                return to.isArray() && from.isArray() && from.getComponentType().isArray() && to.getComponentType() == from.getComponentType().getComponentType();
+            }
+        });
+
+        // Converter to convert double[] to double[][]
+        registerConverter(new Converter() {
+            @Override
+            public Object convert(Object original, Class<?> to) {
+                return ScilabJavaArray.toBiDim(original);
+            }
+
+            @Override
+            public boolean canConvert(Class<?> from, Class<?> to) {
+                return to.isArray() && from.isArray() && to.getComponentType().isArray() && from.getComponentType() == to.getComponentType().getComponentType();
+            }
+        });
+
+        // Converter to convert double to double[]
+        registerConverter(new Converter() {
+            @Override
+            public Object convert(Object original, Class<?> to) {
+                return ScilabJavaArray.singleToOneDim(to.getComponentType(), original);
+            }
+
+            @Override
+            public boolean canConvert(Class<?> from, Class<?> to) {
+                return to.isArray() && from == to.getComponentType();
             }
         });
     }
@@ -122,7 +188,7 @@ public final class FunctionArguments {
      *    So the square of the distance between two Class array is defined as the sum of the square of the distance between
      *    Class elements.
      *    In the particular case where a int.class is required and the argument is double.class, if the double value is an integer
-     *    the argument is converted into an int. In this case, dist(int.class, double.class) is equals to 2048. This value has been
+     *    the argument is converted into an int. In this case, dist(int.class, double.class) is equal to 2048. This value has been
      *    choosed to be "sure" that another method with double.class will be considered better than the previous one.
      *    If the method has variable arguments foo(A a, B b, Object...), the Java reflection only shows that Class arguments are
      *    A.class, B.class and Object[].class. So such a method will give a very high distance (more than 2^40).
@@ -177,18 +243,29 @@ public final class FunctionArguments {
             if (toConvert != null && !toConvert.isEmpty()) {
                 // Contains int.class arguments and we passed double.class args
                 Class[] types = better.getParameterTypes();
+                Class base = types[types.length - 1].getComponentType();
                 for (Map.Entry<Integer, Converter> entry : toConvert.entrySet()) {
                     int i = entry.getKey();
-                    argsClass[i] = types[i];
-                    args[i] = entry.getValue().convert(args[i], types[i]);
+                    if (i >= 0) {
+                        argsClass[i] = types[i];
+                        args[i] = entry.getValue().convert(args[i], types[i]);
+                    } else {
+                        i = -i - 1;
+                        args[i] = entry.getValue().convert(args[i], base);
+                    }
                 }
             }
 
             if (isVarArgs) {
                 // Variable arguments
                 Class[] types = better.getParameterTypes();
-                Object[] o = new Object[args.length - types.length + 1];
-                System.arraycopy(args, types.length - 1, o, 0, args.length - types.length + 1);
+                Class base = types[types.length - 1].getComponentType();
+                Object o = Array.newInstance(base, args.length - types.length + 1);
+
+                // Don't use System.arraycopy since it does not handle unboxing
+                for (int i = 0; i < args.length - types.length + 1; i++) {
+                    Array.set(o, i, args[i + types.length - 1]);
+                }
 
                 Object[] newArgs = new Object[types.length];
                 System.arraycopy(args, 0, newArgs, 0, types.length - 1);
@@ -245,17 +322,28 @@ public final class FunctionArguments {
             if (toConvert != null && !toConvert.isEmpty()) {
                 // Contains int.class arguments and we passed double.class args
                 Class[] types = better.getParameterTypes();
+                Class base = types[types.length - 1].getComponentType();
                 for (Map.Entry<Integer, Converter> entry : toConvert.entrySet()) {
                     int i = entry.getKey();
-                    argsClass[i] = types[i];
-                    args[i] = entry.getValue().convert(args[i], types[i]);
+                    if (i >= 0) {
+                        argsClass[i] = types[i];
+                        args[i] = entry.getValue().convert(args[i], types[i]);
+                    } else {
+                        i = -i - 1;
+                        args[i] = entry.getValue().convert(args[i], base);
+                    }
                 }
             }
             if (isVarArgs) {
                 // Variable arguments
                 Class[] types = better.getParameterTypes();
-                Object[] o = new Object[args.length - types.length + 1];
-                System.arraycopy(args, types.length - 1, o, 0, args.length - types.length + 1);
+                Class base = types[types.length - 1].getComponentType();
+                Object o = Array.newInstance(base, args.length - types.length + 1);
+
+                // Don't use System.arraycopy since it does not handle unboxing
+                for (int i = 0; i < args.length - types.length + 1; i++) {
+                    Array.set(o, i, args[i + types.length - 1]);
+                }
 
                 Object[] newArgs = new Object[types.length];
                 System.arraycopy(args, 0, newArgs, 0, types.length - 1);
@@ -285,11 +373,31 @@ public final class FunctionArguments {
 
         long s = 0;
         int end = A.length;
-        if (A.length > 0 && ((A.length < B.length && A[A.length - 1] == Object[].class) || (A.length == B.length && A.length == 1 && A[0] == Object[].class && B[0] != Object[].class))) {
+        if (A.length > 0 && A[A.length - 1].isArray() && (A.length < B.length || (A.length == 1 && B.length == 1 && !B[0].isArray()))) {
+            Class base = A[A.length - 1].getComponentType();
             // this is a variable arguments method
             bools[0] = true;
             end--;
             s = 1 << 40;
+
+            for (int i = A.length - 1; i < B.length; i++) {
+                long d = dist(base, B[i]);
+                if (d == -1) {
+                    for (Converter converter : converters) {
+                        if (converter.canConvert(B[i], base)) {
+                            d = 2048;
+                            toConvert.put(-i - 1, converter);
+                            break;
+                        }
+                    }
+
+                    if (d != 2048) {
+                        return Long.MIN_VALUE;
+                    }
+                }
+                // s is the sum of the square of the distance
+                s += d * d;
+            }
         } else if (A.length < B.length) {
             return Long.MIN_VALUE;
         }

@@ -20,33 +20,34 @@
 //
 
 function [x,y,typ]=SUMMATION(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        sgn=arg1.model.ipar
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
         graphics=arg1.graphics
         model=arg1.model
         exprs=graphics.exprs
-        if size(exprs,1)==1 then exprs=[sci2exp(1);exprs;sci2exp(0)];
-        elseif size(exprs,1)==2 then exprs=[exprs;sci2exp(0)]; end
+        if size(exprs,1)==1 then
+            exprs=[sci2exp(1);exprs;sci2exp(0)];
+        elseif size(exprs,1)==2 then
+            exprs=[exprs;sci2exp(0)];
+        end
         while %t do
             [ok,Datatype,sgn,satur,exprs]=scicos_getvalue("Set sum block parameters",..
             ["Datatype (1=real double  2=complex 3=int32 ...)";..
             "Number of inputs or sign vector (of +1, -1)";..
             "Do on Overflow(0=Nothing 1=Saturate 2=Error)"],..
             list("vec",1,"vec",-1,"vec",1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             sgn=sgn(:);
-            if (satur~=0&satur~=1&satur~=2) then message("Do on overflow must be 0,1,2");ok=%f;end
+            if (satur~=0&satur~=1&satur~=2) then
+                message("Do on overflow must be 0,1,2");
+                ok=%f;
+            end
             if size(sgn,1)==1 then
                 if sgn<1 then
                     message("Number of inputs must be > 0")
@@ -56,7 +57,8 @@ function [x,y,typ]=SUMMATION(job,arg1,arg2)
                     sgn=[]
                     nout=1;nout2=1
                 else
-                    in=-ones(sgn,1);in2=2*in
+                    in=-ones(sgn,1);
+                    in2=2*in
                     sgn=ones(sgn,1)
                     nout=-1;nout2=-2
                 end
@@ -65,7 +67,8 @@ function [x,y,typ]=SUMMATION(job,arg1,arg2)
                     message("Signs can only be +1 or -1")
                     ok=%f
                 else
-                    in=-ones(size(sgn,1),1);in2=2*in
+                    in=-ones(size(sgn,1),1);
+                    in2=2*in
                     nout=-1;nout2=-2
                 end
             end
@@ -131,7 +134,8 @@ function [x,y,typ]=SUMMATION(job,arg1,arg2)
                 model.rpar=satur;
                 model.ipar=sgn
                 graphics.exprs=exprs
-                x.graphics=graphics;x.model=model
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
@@ -149,21 +153,7 @@ function [x,y,typ]=SUMMATION(job,arg1,arg2)
 
 
         exprs=sci2exp(sgn)
-        gr_i=["[x,y,typ]=standard_inputs(o) ";
-        "dd=sz(1)/8,de=0,"
-        "if ~arg1.graphics.flip then dd=6*sz(1)/8,de=-sz(1)/8,end"
-        "for k=1:size(x,''*'')";
-        "if size(sgn,1)>1 then"
-        "  if sgn(k)>0 then";
-        "    xstring(orig(1)+dd,y(k)-4,''+'')";
-        "  else";
-        "    xstring(orig(1)+dd,y(k)-4,''-'')";
-        "  end";
-        "end";
-        "end";
-        "xx=sz(1)*[.8 .4 0.75 .4 .8]+orig(1)+de";
-        "yy=sz(2)*[.8 .8 .5 .2 .2]+orig(2)";
-        "xpoly(xx,yy,''lines'')"]
+        gr_i=[]
         x=standard_define([2 3],model, exprs,gr_i)
     end
 endfunction

@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_hidden_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_hidden_color_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int hiddenColor = 0;
@@ -43,7 +43,7 @@ int set_hidden_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int va
 
     hiddenColor = (int)((double*)_pvData)[0];
 
-    status = setGraphicObjectProperty(pobjUID, __GO_HIDDEN_COLOR__, &hiddenColor, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_HIDDEN_COLOR__, &hiddenColor, jni_int, 1);
 
     if (status == TRUE)
     {

@@ -47,7 +47,13 @@ function [A,B1,B2,C1,C2,C3,F3]=coef_FEM1d(oper,nelem,kind,nint,nodes,x,xi,w,..
     //    - vbc (String) : vecteur des conditions aux limites en a et b       //
     //------------------------------------------------------------------------//
 
-    A=[];B1=[];B2=[];C1=[];C2=[];C3=[];F3=[];
+    A=[];
+    B1=[];
+    B2=[];
+    C1=[];
+    C2=[];
+    C3=[];
+    F3=[];
 
     for i=1:size(oper,"*")
         select oper(i)

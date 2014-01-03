@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_figure_size_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_figure_size_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     double* values = (double*)_pvData;
     BOOL status = FALSE;
@@ -52,7 +52,7 @@ int set_figure_size_property(void* _pvCtx, char* pobjUID, void* _pvData, int val
     intValues[0] = (int)values[0];
     intValues[1] = (int)values[1];
 
-    status = setGraphicObjectProperty(pobjUID, __GO_SIZE__, intValues, jni_int_vector, 2);
+    status = setGraphicObjectProperty(iObjUID, __GO_SIZE__, intValues, jni_int_vector, 2);
 
     if (status == TRUE)
     {

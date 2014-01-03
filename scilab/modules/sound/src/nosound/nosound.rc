@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "nosound module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "nosound module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "nosound.dll"
             VALUE "ProductName", " nosound"
             VALUE "ProductVersion", "6, 0, 0, 0"

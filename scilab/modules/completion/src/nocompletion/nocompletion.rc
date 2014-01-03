@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "nocompletion module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "nocompletion module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "nocompletion.dll"
             VALUE "ProductName", " nocompletion"
             VALUE "ProductVersion", "6, 0, 0, 0"

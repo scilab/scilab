@@ -2,18 +2,18 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="cdff">
     <refnamediv>
         <refname>cdff</refname>
-        <refpurpose>cumulative distribution function F distribution</refpurpose>
+        <refpurpose>cumulative distribution function Fisher distribution</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -90,5 +90,54 @@
             Barry W. Brown, James Lovato and Kathy Russell. The University of
             Texas.
         </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>
+            In the following example, we compute the probability of the event <literal>f=0.1</literal>
+            for the Fisher distribution function with <literal>Dfn=2</literal> and <literal>Dfd=2</literal>.
+        </para>
+        <programlisting role="example"><![CDATA[
+    Dfn = 2;
+    Dfd = 2;
+    f = 0.1;
+    // Expected : P = 0.0909091 and Q = 1-P
+    [P, Q] = cdff("PQ", f, Dfd, Dfd)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cdfbet">cdfbet</link>
+            </member>
+            <member>
+                <link linkend="cdfbin">cdfbin</link>
+            </member>
+            <member>
+                <link linkend="cdfchi">cdfchi</link>
+            </member>
+            <member>
+                <link linkend="cdfchn">cdfchn</link>
+            </member>
+            <member>
+                <link linkend="cdffnc">cdffnc</link>
+            </member>
+            <member>
+                <link linkend="cdfgam">cdfgam</link>
+            </member>
+            <member>
+                <link linkend="cdfnbn">cdfnbn</link>
+            </member>
+            <member>
+                <link linkend="cdfnor">cdfnor</link>
+            </member>
+            <member>
+                <link linkend="cdfpoi">cdfpoi</link>
+            </member>
+            <member>
+                <link linkend="cdft">cdft</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

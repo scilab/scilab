@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-17 22:18+0000\n"
+"PO-Revision-Date: 2013-12-06 17:53+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -54,10 +54,12 @@ msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to a "
 "Cholesky factorization"
 msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: deve ser uma referência "
+"válida a uma fatoração de Cholesky"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
+msgstr "%s: Erro de alocação de memória.\n"
 
 #, c-format
 msgid ""
@@ -76,16 +78,24 @@ msgid ""
 "%s: Wrong type for input argument #%d: not compatible with the Cholesky "
 "factorization.\n"
 msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: não é compatível com a "
+"fatoração de Cholesky.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: not compatible with the Cholesky "
 "factorization.\n"
 msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: não é compatível com "
+"a fatoração de Cholesky.\n"
 
 #, c-format
 msgid "%s: not enough memory.\n"
 msgstr "%s: Memória insuficiente.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A pointer expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -94,6 +104,10 @@ msgid ""
 msgstr ""
 "%s: Valor errado para o argumento de entrada #%d: Deve ser uma referência "
 "válida a fatores LU (umf).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A sparse matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: An error occurred: %s: %s\n"
@@ -116,9 +130,15 @@ msgid "%s: An error occurred: %s.\n"
 msgstr "%s: Ocorreu um erro: %s.\n"
 
 msgid "This is not a factorization of a square matrix"
-msgstr ""
+msgstr "Isto não é uma fatoração de uma matriz quadrada"
 
 msgid "This is a factorization of a singular matrix"
+msgstr "Isto é uma fatoração de uma matriz singular"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or complex column vector or "
+"matrix expected.\n"
 msgstr ""
 
 #, c-format
@@ -131,6 +151,14 @@ msgstr "%s: Tamanho errado para o argumento de entrada #%d: %s.\n"
 
 msgid "Matrix is not compatible with the given LU factors"
 msgstr "A matriz não é compatível com os fatores LU fornecidos"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
+msgstr ""
 
 msgid "numeric factorization"
 msgstr "Fatoração numérica"

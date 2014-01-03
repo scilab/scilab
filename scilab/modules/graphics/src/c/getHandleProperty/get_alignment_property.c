@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_alignment_property(void* _pvCtx, char* pobjUID)
+void* get_alignment_property(void* _pvCtx, int iObjUID)
 {
     int iAlignment = 0;
     int* piAlignment = &iAlignment;
 
-    getGraphicObjectProperty(pobjUID, __GO_ALIGNMENT__, jni_int, (void **)&piAlignment);
+    getGraphicObjectProperty(iObjUID, __GO_ALIGNMENT__, jni_int, (void **)&piAlignment);
 
     if (piAlignment == NULL)
     {

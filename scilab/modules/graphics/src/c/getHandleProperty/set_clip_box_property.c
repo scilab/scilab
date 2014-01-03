@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_clip_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_clip_box_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status[2];
     int status1 = 0;
@@ -54,8 +54,8 @@ int set_clip_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
         return SET_PROPERTY_ERROR;
     }
 
-    status[0] = setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, _pvData, jni_double_vector, 4);
-    status[1] = setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+    status[0] = setGraphicObjectProperty(iObjUID, __GO_CLIP_BOX__, _pvData, jni_double_vector, 4);
+    status[1] = setGraphicObjectProperty(iObjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     if (status[0] == TRUE)
     {

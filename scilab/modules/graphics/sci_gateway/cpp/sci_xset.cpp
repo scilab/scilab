@@ -52,7 +52,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
 {
     wchar_t* pwcsWhat = NULL;
     std::list<types::Double*> lpDblInputs;
-    char * subwinUID = NULL;
+    int iSubwinUID = 0;
 
     if (in.size() == 0)
     {
@@ -194,9 +194,9 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
                 }
             }
 
-            subwinUID = (char*)getOrCreateDefaultSubwin();
-            setGraphicObjectProperty(subwinUID, __GO_CLIP_BOX__, dvalues, jni_double_vector, 4);
-            setGraphicObjectProperty(subwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+            iSubwinUID = getOrCreateDefaultSubwin();
+            setGraphicObjectProperty(iSubwinUID, __GO_CLIP_BOX__, dvalues, jni_double_vector, 4);
+            setGraphicObjectProperty(iSubwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
         }
         break;
         case 8 : // colormap
@@ -209,7 +209,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
 
             types::Double* pDblArg = in[1]->getAs<types::Double>();
             getOrCreateDefaultSubwin();
-            setGraphicObjectProperty((char*)getCurrentFigure(), __GO_COLORMAP__, pDblArg->get(), jni_double_vector, pDblArg->getSize());
+            setGraphicObjectProperty(getCurrentFigure(), __GO_COLORMAP__, pDblArg->get(), jni_double_vector, pDblArg->getSize());
         }
         break;
         case 21 : // mark size
@@ -223,9 +223,9 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             int markSize = (int)in[1]->getAs<types::Double>()->get(0);
             int markSizeUnit = 1; /* force switch to tabulated mode : old syntax / 0 : point, 1 : tabulated */
 
-            subwinUID = (char*)getOrCreateDefaultSubwin();
-            setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
-            setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
+            iSubwinUID = getOrCreateDefaultSubwin();
+            setGraphicObjectProperty(iSubwinUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
+            setGraphicObjectProperty(iSubwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
         }
         break;
         case 20 : // mark
@@ -241,11 +241,11 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             int markSizeUnit = 1; /* force switch to tabulated mode : old syntax / 0 : point, 1 : tabulated */
             int markMode = 1;
 
-            subwinUID = (char*)getOrCreateDefaultSubwin();
-            setGraphicObjectProperty(subwinUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
-            setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1); /* force switch to tabulated mode : old syntax */
-            setGraphicObjectProperty(subwinUID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
-            setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
+            iSubwinUID = getOrCreateDefaultSubwin();
+            setGraphicObjectProperty(iSubwinUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
+            setGraphicObjectProperty(iSubwinUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1); /* force switch to tabulated mode : old syntax */
+            setGraphicObjectProperty(iSubwinUID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
+            setGraphicObjectProperty(iSubwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
         }
         break;
         case 13 : // font size
@@ -295,26 +295,26 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             }
 
             // Create figure if it not exist.
-            char* pFigureUID = (char*)getCurrentFigure();
-            if (pFigureUID == NULL)
+            int iFigureUID = getCurrentFigure();
+            if (iFigureUID == 0)
             {
-                pFigureUID = createNewFigureWithAxes();
-                setCurrentFigure(pFigureUID);
+                iFigureUID = createNewFigureWithAxes();
+                setCurrentFigure(iFigureUID);
                 return types::Function::OK;
             }
 
             // Create new axes and set it in current figure
-            char* pSubWinUID = (char*)getCurrentSubWin();
-            if (pSubWinUID != NULL)
+            int iSubWinUID = getCurrentSubWin();
+            if (iSubWinUID != 0)
             {
                 int iChildrenCount  = 0;
                 int* childrencount  = &iChildrenCount;
-                char** childrenUID  = NULL;
+                int* childrenUID    = 0;
                 int iHidden         = 0;
                 int *piHidden       = &iHidden;
 
-                getGraphicObjectProperty(pFigureUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&childrencount);
-                getGraphicObjectProperty(pFigureUID, __GO_CHILDREN__, jni_string_vector, (void **)&childrenUID);
+                getGraphicObjectProperty(iFigureUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&childrencount);
+                getGraphicObjectProperty(iFigureUID, __GO_CHILDREN__, jni_string_vector, (void **)&childrenUID);
 
                 for (i = 0; i < childrencount[0]; ++i)
                 {
@@ -326,28 +326,28 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
                 }
             }
 
-            cloneAxesModel(pFigureUID);
+            cloneAxesModel(iFigureUID);
 
             // Set default figure properties
-            setGraphicObjectProperty(pFigureUID, __GO_POSITION__, piFigurePosition, jni_int_vector, 2);
-            setGraphicObjectProperty(pFigureUID, __GO_SIZE__, piFigureSize, jni_int_vector, 2);
-            setGraphicObjectProperty(pFigureUID, __GO_AXES_SIZE__, piAxesSize, jni_int_vector, 2);
-            setGraphicObjectProperty(pFigureUID, __GO_AUTORESIZE__, &bTrue, jni_bool, 1);
-            setGraphicObjectProperty(pFigureUID, __GO_VIEWPORT__, piViewPort, jni_int_vector, 2);
-            setGraphicObjectProperty(pFigureUID, __GO_NAME__, _("Figure n°%d"), jni_string, 1);
-            setGraphicObjectProperty(pFigureUID, __GO_INFO_MESSAGE__, "", jni_string, 1);
-            setGraphicObjectProperty(pFigureUID, __GO_PIXMAP__, &bFalse, jni_bool, 1);
-            setGraphicObjectProperty(pFigureUID, __GO_PIXEL_DRAWING_MODE__, &iCopy, jni_int, 1);
-            setGraphicObjectProperty(pFigureUID, __GO_ANTIALIASING__, &iZero, jni_int, 1);
-            setGraphicObjectProperty(pFigureUID, __GO_IMMEDIATE_DRAWING__, &bTrue, jni_bool, 1);
-            setGraphicObjectProperty(pFigureUID, __GO_BACKGROUND__, &defaultBackground, jni_int, 1);
-            setGraphicObjectProperty(pFigureUID, __GO_VISIBLE__, &bTrue, jni_bool, 1);
-            setGraphicObjectProperty(pFigureUID, __GO_ROTATION_TYPE__, &iZero, jni_int, 1);
-            setGraphicObjectProperty(pFigureUID, __GO_EVENTHANDLER__, "", jni_string, 1);
-            setGraphicObjectProperty(pFigureUID, __GO_EVENTHANDLER_ENABLE__, &bFalse, jni_bool, 1);
-            setGraphicObjectProperty(pFigureUID, __GO_USER_DATA__, piEmptyMatrix, jni_int_vector, 4);
-            setGraphicObjectProperty(pFigureUID, __GO_RESIZEFCN__, "", jni_string, 1);
-            setGraphicObjectProperty(pFigureUID, __GO_TAG__, "", jni_string, 1);
+            setGraphicObjectProperty(iFigureUID, __GO_POSITION__, piFigurePosition, jni_int_vector, 2);
+            setGraphicObjectProperty(iFigureUID, __GO_SIZE__, piFigureSize, jni_int_vector, 2);
+            setGraphicObjectProperty(iFigureUID, __GO_AXES_SIZE__, piAxesSize, jni_int_vector, 2);
+            setGraphicObjectProperty(iFigureUID, __GO_AUTORESIZE__, &bTrue, jni_bool, 1);
+            setGraphicObjectProperty(iFigureUID, __GO_VIEWPORT__, piViewPort, jni_int_vector, 2);
+            setGraphicObjectProperty(iFigureUID, __GO_NAME__, _("Figure n°%d"), jni_string, 1);
+            setGraphicObjectProperty(iFigureUID, __GO_INFO_MESSAGE__, "", jni_string, 1);
+            setGraphicObjectProperty(iFigureUID, __GO_PIXMAP__, &bFalse, jni_bool, 1);
+            setGraphicObjectProperty(iFigureUID, __GO_PIXEL_DRAWING_MODE__, &iCopy, jni_int, 1);
+            setGraphicObjectProperty(iFigureUID, __GO_ANTIALIASING__, &iZero, jni_int, 1);
+            setGraphicObjectProperty(iFigureUID, __GO_IMMEDIATE_DRAWING__, &bTrue, jni_bool, 1);
+            setGraphicObjectProperty(iFigureUID, __GO_BACKGROUND__, &defaultBackground, jni_int, 1);
+            setGraphicObjectProperty(iFigureUID, __GO_VISIBLE__, &bTrue, jni_bool, 1);
+            setGraphicObjectProperty(iFigureUID, __GO_ROTATION_TYPE__, &iZero, jni_int, 1);
+            setGraphicObjectProperty(iFigureUID, __GO_EVENTHANDLER__, "", jni_string, 1);
+            setGraphicObjectProperty(iFigureUID, __GO_EVENTHANDLER_ENABLE__, &bFalse, jni_bool, 1);
+            setGraphicObjectProperty(iFigureUID, __GO_USER_DATA__, piEmptyMatrix, jni_int_vector, 4);
+            setGraphicObjectProperty(iFigureUID, __GO_RESIZEFCN__, "", jni_string, 1);
+            setGraphicObjectProperty(iFigureUID, __GO_TAG__, "", jni_string, 1);
 
             for (i = 0; i < m; i++)
             {
@@ -356,8 +356,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
                 pdblColorMap[i + 2 * m] = (double)(defcolors[3 * i + 2] / 255.0);
             }
 
-            setGraphicObjectProperty(pFigureUID, __GO_COLORMAP__, pdblColorMap, jni_double_vector, 3 * m);
-            setGraphicObjectProperty(pFigureUID, __GO_PARENT__, "", jni_string, 1);
+            setGraphicObjectProperty(iFigureUID, __GO_COLORMAP__, pdblColorMap, jni_double_vector, 3 * m);
+            setGraphicObjectProperty(iFigureUID, __GO_PARENT__, "", jni_string, 1);
         }
         break;
         case 6 : // clipgrf
@@ -412,18 +412,18 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
 
             // Find if window already exists, if not create a new one
             int iID = (int)in[1]->getAs<types::Double>()->get(0);
-            char *pFigureUID = (char*)getFigureFromIndex(iID);
-            char* pstrAxesUID = NULL;
+            int iFigureUID = getFigureFromIndex(iID);
+            int iAxesUID = 0;
 
-            if (pFigureUID == NULL)
+            if (iFigureUID == 0)
             {
-                pFigureUID = createNewFigureWithAxes();
-                setGraphicObjectProperty(pFigureUID, __GO_ID__, &iID, jni_int, 1);
+                iFigureUID = createNewFigureWithAxes();
+                setGraphicObjectProperty(iFigureUID, __GO_ID__, &iID, jni_int, 1);
             }
 
-            setCurrentFigure(pFigureUID);
-            getGraphicObjectProperty(pFigureUID, __GO_SELECTED_CHILD__, jni_string,  (void**)&pstrAxesUID);
-            setCurrentSubWin(pstrAxesUID);
+            setCurrentFigure(iFigureUID);
+            getGraphicObjectProperty(iFigureUID, __GO_SELECTED_CHILD__, jni_string,  (void**)&iAxesUID);
+            setCurrentSubWin(iAxesUID);
         }
         break;
         case 14 : // foreground
@@ -460,7 +460,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            sciSetLineWidth((char*)getOrCreateDefaultSubwin(), (int)in[1]->getAs<types::Double>()->get(0));
+            sciSetLineWidth(getOrCreateDefaultSubwin(), (int)in[1]->getAs<types::Double>()->get(0));
         }
         break;
         case 19 : // line style
@@ -583,17 +583,17 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            char *pstSubwinUID = (char*)getOrCreateDefaultSubwin();
+            int iSubwinUID = getOrCreateDefaultSubwin();
             int iZero = 0;
             int iOne = 1;
 
             if (in[1]->getAs<types::Double>()->get(0) == 0)
             {
-                setGraphicObjectProperty(pstSubwinUID, __GO_LINE_MODE__, &iZero, jni_bool, 1);
+                setGraphicObjectProperty(iSubwinUID, __GO_LINE_MODE__, &iZero, jni_bool, 1);
             }
             else
             {
-                setGraphicObjectProperty(pstSubwinUID, __GO_LINE_MODE__, &iOne, jni_bool, 1);
+                setGraphicObjectProperty(iSubwinUID, __GO_LINE_MODE__, &iOne, jni_bool, 1);
             }
         }
         break;

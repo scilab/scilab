@@ -9,7 +9,7 @@
  * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *-->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bytecode" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bytecode" xml:lang="pt">
     <refnamediv>
         <refname>bytecode</refname>
         <refpurpose>dada uma função, retorna "bytecode" (código de bytes) da
@@ -20,7 +20,7 @@
         <title>Seqüência de Chamamento</title>
         <synopsis>
             x = bytecode(f)
-            f= bytecode(X)
+            f = bytecode(x)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -43,15 +43,18 @@
     <refsection>
         <title>Descrição</title>
         <para>
-            <literal>x= bytecode(f) </literal>retorna o "bytecode" da função
-            <literal>f</literal> no array Scilab de inteiros
-            <literal>x</literal>.
+            <code>x = bytecode(f)</code> retorna o "bytecode" da função
+            <varname>f</varname> no array Scilab de inteiros
+            <varname>x</varname>.
         </para>
         <para>
-            <literal>f= bytecode(x) </literal>retorna em <literal>f</literal> a
+            <code>f= bytecode(x)</code> retorna em <varname>f</varname> a
             função associada ao "bytecode" dado no array Scilab de inteiros
-            <literal>x</literal>. AVISO: a validade de <literal>x</literal> não é
-            verificada.
+            <varname>x</varname>.
+            <warning>
+                AVISO: a validade de <varname>x</varname> não é
+                verificada.
+            </warning>
         </para>
     </refsection>
     <refsection>
@@ -63,7 +66,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function a=foo(),a=sin(3),endfunction
 bytecode(foo)
  ]]></programlisting>

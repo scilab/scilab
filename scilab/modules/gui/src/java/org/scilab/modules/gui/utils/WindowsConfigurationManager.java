@@ -478,13 +478,14 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                                     }
                                 }
 
-                                window.setVisible(true);
-                                window.requestFocus();
-                                window.toFront();
-                                window.setIsRestoring(false);
                                 SwingUtilities.invokeLater(new Runnable() {
                                     @Override
                                     public void run() {
+                                        window.setVisible(true);
+                                        window.requestFocus();
+                                        window.toFront();
+                                        window.setIsRestoring(false);
+
                                         ActiveDockableTracker.requestDockableActivation(mainTab);
                                     }
                                 });
@@ -494,8 +495,13 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                     }
                 });
             } else {
-                window.setIsRestoring(false);
-                window.setVisible(true);
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        window.setIsRestoring(false);
+                        window.setVisible(true);
+                    }
+                });
             }
         }
 
@@ -756,7 +762,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
     }
 
     /**
-     * Check if there is a window which has a dockableID equals to the given uuid
+     * Check if there is a window which has a dockableID equal to the given uuid
      * @param winuuid the uuid of the window
      * @param uuid the uuid to test
      * @return true if a dockableId exists

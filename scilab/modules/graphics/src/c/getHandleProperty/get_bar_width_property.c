@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_bar_width_property(void* _pvCtx, char* pobjUID)
+void* get_bar_width_property(void* _pvCtx, int iObjUID)
 {
     double dblBarWidth = 0.0;
     double *pdblBarWidth = &dblBarWidth;
 
-    getGraphicObjectProperty(pobjUID, __GO_BAR_WIDTH__, jni_double, (void **)&pdblBarWidth);
+    getGraphicObjectProperty(iObjUID, __GO_BAR_WIDTH__, jni_double, (void **)&pdblBarWidth);
 
     if (pdblBarWidth == NULL)
     {

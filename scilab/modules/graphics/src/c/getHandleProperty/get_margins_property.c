@@ -29,11 +29,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_margins_property(void* _pvCtx, char* pobjUID)
+void* get_margins_property(void* _pvCtx, int iObjUID)
 {
     double* margins = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_MARGINS__, jni_double_vector, (void **)&margins);
+    getGraphicObjectProperty(iObjUID, __GO_MARGINS__, jni_double_vector, (void **)&margins);
 
     if (margins == NULL)
     {

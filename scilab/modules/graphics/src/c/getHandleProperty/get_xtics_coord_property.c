@@ -29,13 +29,13 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_xtics_coord_property(void* _pvCtx, char* pobjUID)
+void* get_xtics_coord_property(void* _pvCtx, int iObjUID)
 {
     int iXNumberTicks = 0;
     int* xNumberTicks = &iXNumberTicks;
     double* xTicksCoords = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_X_TICKS_COORDS__, jni_double_vector, (void **)&xTicksCoords);
+    getGraphicObjectProperty(iObjUID, __GO_X_TICKS_COORDS__, jni_double_vector, (void **)&xTicksCoords);
 
     if (xTicksCoords == NULL)
     {
@@ -43,7 +43,7 @@ void* get_xtics_coord_property(void* _pvCtx, char* pobjUID)
         return NULL;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_X_NUMBER_TICKS__, jni_int, (void**)&xNumberTicks);
+    getGraphicObjectProperty(iObjUID, __GO_X_NUMBER_TICKS__, jni_int, (void**)&xNumberTicks);
     if (xNumberTicks == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "xtics_coord");

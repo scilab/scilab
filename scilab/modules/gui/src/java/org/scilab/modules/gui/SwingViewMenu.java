@@ -57,7 +57,7 @@ public final class SwingViewMenu {
      * @param value the property value
      */
     public static void update(Widget uimenu, int property, Object value) {
-        String uid = ((SwingViewObject) uimenu).getId();
+        Integer uid = ((SwingViewObject) uimenu).getId();
         switch (property) {
             case __GO_CALLBACK__ :
                 int cbType = (Integer) GraphicController.getController().getProperty(uid, __GO_CALLBACKTYPE__);

@@ -32,11 +32,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_figure_position_property(void* _pvCtx, char* pobjUID)
+void* get_figure_position_property(void* _pvCtx, int iObjUID)
 {
     double figurePos[2];
     int* position = NULL;
-    getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_int_vector, (void **)&position);
+    getGraphicObjectProperty(iObjUID, __GO_POSITION__, jni_int_vector, (void **)&position);
 
     if (position == NULL)
     {

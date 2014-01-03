@@ -35,7 +35,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            This Scilab function is used to get the origin position (<varname>x</varname>,<varname>y</varname>) of a Xcos block.
+            This Scilab function was used by the Scicos blocks interfacing functions
+            to get the origin position (<varname>x</varname>, <varname>y</varname>) of a Xcos block.
+        </para>
+        <para>
+            <warning>
+                This function is not useful for Xcos block interfacing functions anymore.
+                The Xcos interfacing functions are not called with <literal>job="getinputs"</literal> anymore.
+            </warning>
         </para>
     </refsection>
     <refsection>

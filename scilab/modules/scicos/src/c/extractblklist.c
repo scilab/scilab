@@ -1,6 +1,7 @@
 /*  Scicos
 *
 *  Copyright (C) INRIA - Alan LAYEC
+*  Copyright (C) 2013 - Scilab Enterprises - Clement DAVID
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -127,6 +128,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     nh            = ilh[2];
     Block->z      = NULL;
     assert(Block->nz == mh * nh);
+    assert(mh * nh >= 0);
     if (mh * nh > 0)
     {
         if ((Block->z = (double *) MALLOC(Block->nz * sizeof(double))) == NULL)
@@ -166,6 +168,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     nh            = ilh[2];
     Block->ozsz   = NULL;
     assert(2 * Block->noz == mh * nh);
+    assert(mh * nh >= 0);
     if (mh * nh > 0)
     {
         if ((Block->ozsz = (int *) MALLOC(2 * Block->noz * sizeof(int))) == NULL)
@@ -195,6 +198,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     nh            = ilh[2];
     Block->oztyp  = NULL;
     assert(Block->noz == mh * nh);
+    assert(mh * nh >= 0);
     if (mh * nh > 0)
     {
         if ((Block->oztyp = (int *) MALLOC(Block->noz * sizeof(int))) == NULL)
@@ -242,6 +246,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
             mh2  = ilh2[1];
             nh2  = ilh2[2];
             Block->ozptr[i] = NULL;
+            assert(mh2 * nh2 >= 0);
             switch (Block->oztyp[i])
             {
                 case 10  :
@@ -431,6 +436,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     nh            = ilh[2];
     Block->x      = NULL;
     assert(Block->nx == mh * nh);
+    assert(mh * nh >= 0);
     if (mh * nh > 0)
     {
         if ((Block->x = (double *) MALLOC(Block->nx * sizeof(double))) == NULL)
@@ -473,6 +479,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     nh            = ilh[2];
     Block->xd     = NULL;
     assert(Block->nx == mh * nh);
+    assert(mh * nh >= 0);
     if (mh * nh > 0)
     {
         if ((Block->xd = (double *) MALLOC(Block->nx * sizeof(double))) == NULL)
@@ -517,6 +524,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     nh            = ilh[2];
     Block->res    = NULL;
     assert(Block->nx == mh * nh);
+    assert(mh * nh >= 0);
     if (mh * nh > 0)
     {
         if ((Block->res = (double *) MALLOC(Block->nx * sizeof(double))) == NULL)
@@ -587,6 +595,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     nh            = ilh[2];
     Block->insz   = NULL;
     assert(3 * Block->nin == mh * nh);
+    assert(mh * nh >= 0);
     if (mh * nh > 0)
     {
         if ((Block->insz = (int *) MALLOC(3 * Block->nin * sizeof(int))) == NULL)
@@ -635,6 +644,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     nh            = ilh[2];
     Block->inptr  = NULL;
     assert(Block->nin == mh);
+    assert(mh >= 0);
     if (Block->nin > 0)
     {
         if ((Block->inptr = (void **) MALLOC(Block->nin * sizeof(void *))) == NULL)
@@ -660,6 +670,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
             mh2  = ilh2[1];
             nh2  = ilh2[2];
             Block->inptr[i] = NULL;
+            assert(mh2 * nh2 >= 0);
             switch (Block->insz[2 * Block->nin + i])
             {
                 case 10  :
@@ -940,6 +951,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     nh            = ilh[2];
     Block->outsz   = NULL;
     assert(3 * Block->nout == mh * nh);
+    assert(mh * nh >= 0);
     if (mh * nh > 0)
     {
         if ((Block->outsz = (int *) MALLOC(3 * Block->nout * sizeof(int))) == NULL)
@@ -1001,6 +1013,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     nh            = ilh[2];
     Block->outptr = NULL;
     assert(Block->nout == mh);
+    assert(mh >= 0);
     if (Block->nout > 0)
     {
         if ((Block->outptr = (void **) MALLOC(Block->nout * sizeof(void *))) == NULL)
@@ -1032,6 +1045,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
             mh2  = ilh2[1];
             nh2  = ilh2[2];
             Block->outptr[i] = NULL;
+            assert(mh2 * nh2 >= 0);
             switch (Block->outsz[2 * Block->nout + i])
             {
                 case 10  :
@@ -1371,6 +1385,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     nh            = ilh[2];
     Block->evout  = NULL;
     assert(Block->nevout == mh * nh);
+    assert(mh * nh >= 0);
     if (mh * nh > 0)
     {
         if ((Block->evout = (double *) MALLOC(Block->nevout * sizeof(double))) == NULL)
@@ -1480,6 +1495,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     nh            = ilh[2];
     Block->rpar   = NULL;
     assert(Block->nrpar == mh * nh);
+    assert(mh * nh >= 0);
     if (mh * nh > 0)
     {
         if ((Block->rpar = (double *) MALLOC(Block->nrpar * sizeof(double))) == NULL)
@@ -1592,6 +1608,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     nh            = ilh[2];
     Block->ipar   = NULL;
     assert(Block->nipar == mh * nh);
+    assert(mh * nh >= 0);
     if (mh * nh > 0)
     {
         if ((Block->ipar = (int *) MALLOC(Block->nipar * sizeof(int))) == NULL)
@@ -1706,6 +1723,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     nh            = ilh[2];
     Block->oparsz = NULL;
     assert(2 * Block->nopar == mh * nh);
+    assert(mh * nh >= 0);
     if (mh * nh > 0)
     {
         if ((Block->oparsz = (int *) MALLOC(2 * Block->nopar * sizeof(int))) == NULL)
@@ -1785,6 +1803,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     nh            = ilh[2];
     Block->opartyp = NULL;
     assert(Block->nopar == mh * nh);
+    assert(mh * nh >= 0);
     if (mh * nh > 0)
     {
         if ((Block->opartyp = (int *) MALLOC(Block->nopar * sizeof(int))) == NULL)
@@ -1866,6 +1885,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     nh             = ilh[2];
     Block->oparptr = NULL;
     assert(Block->nopar == mh);
+    assert(mh >= 0);
     if (Block->nopar > 0)
     {
         if ((Block->oparptr = (void **) MALLOC(Block->nopar * sizeof(void *))) == NULL)
@@ -1908,6 +1928,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
             mh2  = ilh2[1];
             nh2  = ilh2[2];
             Block->oparptr[i] = NULL;
+            assert(mh2 * nh2 >= 0);
             switch (Block->opartyp[i])
             {
                 case 10  :
@@ -2347,6 +2368,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     nh            = ilh[2];
     Block->g      = NULL;
     assert(Block->ng == mh * nh);
+    assert(mh * nh >= 0);
     if (mh * nh > 0)
     {
         if ((Block->g = (double *) MALLOC(Block->ng * sizeof(double))) == NULL)
@@ -2485,6 +2507,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     mh            = ilh[1];
     nh            = ilh[2];
     Block->jroot  = NULL;
+    assert(mh * nh >= 0);
     if (mh * nh > 0)
     {
         if ((Block->jroot = (int *) MALLOC((mh * nh) * sizeof(int))) == NULL)
@@ -2578,55 +2601,63 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     ilh           = (int *) (listentry(il, n));
     mh            = ilh[1];
     nh            = ilh[2];
-    Block->label  = "";
-    if (mh * nh > 0)
+    Block->label  = NULL;
+    if (mh * nh != 0)
     {
-        len_str  = ilh[4 + mh * nh] + 1;
-        if (len_str > 0)
+        len_str  = ilh[5] - 1;
+        if (len_str < 0)
         {
-            if ((Block->label = (char *) MALLOC((len_str + 1) * sizeof(char))) == NULL)
-            {
-                FREE(Block->z);
-                FREE(Block->ozsz);
-                FREE(Block->oztyp);
-                for (j = 0; j < Block->noz; j++)
-                {
-                    FREE(Block->ozptr[j]);
-                }
-                FREE(Block->ozptr);
-                FREE(Block->x);
-                FREE(Block->xd);
-                FREE(Block->res);
-                FREE(Block->insz);
-                for (j = 0; j < Block->nin; j++)
-                {
-                    FREE(Block->inptr[j]);
-                }
-                FREE(Block->inptr);
-                FREE(Block->outsz);
-                for (j = 0; j < Block->nout; j++)
-                {
-                    FREE(Block->outptr[j]);
-                }
-                FREE(Block->outptr);
-                FREE(Block->evout);
-                FREE(Block->rpar);
-                FREE(Block->ipar);
-                FREE(Block->oparsz);
-                FREE(Block->opartyp);
-                for (j = 0; j < Block->nopar; j++)
-                {
-                    FREE(Block->oparptr[j]);
-                }
-                FREE(Block->oparptr);
-                FREE(Block->g);
-                FREE(Block->jroot);
-                *ierr = -39;
-                return 0;
-            }
-            Block->label[len_str] = '\0';
-            C2F(cvstr)(&len_str, &ilh[4 + mh * nh + 1], Block->label, (j = 1, &j), len_str);
+            len_str = 0;
         }
+    }
+    else
+    {
+        len_str = 0;
+    }
+    if ((Block->label = (char *) MALLOC((len_str + 1) * sizeof(char))) == NULL)
+    {
+        FREE(Block->z);
+        FREE(Block->ozsz);
+        FREE(Block->oztyp);
+        for (j = 0; j < Block->noz; j++)
+        {
+            FREE(Block->ozptr[j]);
+        }
+        FREE(Block->ozptr);
+        FREE(Block->x);
+        FREE(Block->xd);
+        FREE(Block->res);
+        FREE(Block->insz);
+        for (j = 0; j < Block->nin; j++)
+        {
+            FREE(Block->inptr[j]);
+        }
+        FREE(Block->inptr);
+        FREE(Block->outsz);
+        for (j = 0; j < Block->nout; j++)
+        {
+            FREE(Block->outptr[j]);
+        }
+        FREE(Block->outptr);
+        FREE(Block->evout);
+        FREE(Block->rpar);
+        FREE(Block->ipar);
+        FREE(Block->oparsz);
+        FREE(Block->opartyp);
+        for (j = 0; j < Block->nopar; j++)
+        {
+            FREE(Block->oparptr[j]);
+        }
+        FREE(Block->oparptr);
+        FREE(Block->g);
+        FREE(Block->jroot);
+        *ierr = -39;
+        return 0;
+    }
+    Block->label[len_str] = '\0';
+    if (len_str > 0)
+    {
+        C2F(cvstr)(&len_str, &ilh[4 + mh * nh + 1], Block->label, (j = 1, &j), len_str);
     }
 
     /* 37 - work*/
@@ -2668,10 +2699,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
         FREE(Block->oparptr);
         FREE(Block->g);
         FREE(Block->jroot);
-        if (len_str != 0)
-        {
-            FREE(Block->label);
-        }
+        FREE(Block->label);
         *ierr = 98;
         return 0;
     }
@@ -2719,10 +2747,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
         FREE(Block->oparptr);
         FREE(Block->g);
         FREE(Block->jroot);
-        if (len_str != 0)
-        {
-            FREE(Block->label);
-        }
+        FREE(Block->label);
         *ierr = 98;
         return 0;
     }
@@ -2770,10 +2795,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
         FREE(Block->oparptr);
         FREE(Block->g);
         FREE(Block->jroot);
-        if (len_str != 0)
-        {
-            FREE(Block->label);
-        }
+        FREE(Block->label);
         *ierr = 98;
         return 0;
     }
@@ -2782,6 +2804,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     nh            = ilh[2];
     Block->mode   = NULL;
     assert(Block->nmode == mh * nh);
+    assert(mh * nh >= 0);
     if (Block->nmode > 0)
     {
         if ((Block->mode = (int *) MALLOC(Block->nmode * sizeof(int))) == NULL)
@@ -2821,10 +2844,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
             FREE(Block->oparptr);
             FREE(Block->g);
             FREE(Block->jroot);
-            if (len_str != 0)
-            {
-                FREE(Block->label);
-            }
+            FREE(Block->label);
             *ierr = -39;
             return 0;
         }
@@ -2874,10 +2894,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
         FREE(Block->oparptr);
         FREE(Block->g);
         FREE(Block->jroot);
-        if (len_str != 0)
-        {
-            FREE(Block->label);
-        }
+        FREE(Block->label);
         FREE(Block->mode);
         *ierr = 98;
         return 0;
@@ -2886,6 +2903,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
     mh            = ilh[1];
     nh            = ilh[2];
     Block->xprop  = NULL;
+    assert(mh * nh >= 0);
     if (mh * nh > 0)
     {
         if ((Block->xprop = (int *) MALLOC((mh * nh) * sizeof(int))) == NULL)
@@ -2925,10 +2943,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
             FREE(Block->oparptr);
             FREE(Block->g);
             FREE(Block->jroot);
-            if (len_str != 0)
-            {
-                FREE(Block->label);
-            }
+            FREE(Block->label);
             FREE(Block->mode);
             *ierr = -39;
             return 0;

@@ -46,6 +46,7 @@ int sci_fec(char *fname, void *pvApiCtx)
     };
 
     char* strf      = NULL;
+    char strfl[4];
     char* legend    = NULL;
     double* rect    = NULL;
     double* zminmax = NULL;
@@ -188,8 +189,6 @@ int sci_fec(char *fname, void *pvApiCtx)
 
     if (isDefStrf (strf))
     {
-        char strfl[4];
-
         strcpy(strfl, DEFSTRFN);
 
         strf = strfl;

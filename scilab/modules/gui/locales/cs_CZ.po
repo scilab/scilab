@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -103,12 +103,21 @@ msgstr ""
 "rutina 'Figure'.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A valid figure identifier expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
@@ -367,6 +376,10 @@ msgstr ""
 "%s"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
+
+#, c-format
 msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr ""
 
@@ -405,7 +418,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A handle expected.\n"
+msgid "%s: Can not create output argument #%d.\n"
 msgstr ""
 
 #, c-format
@@ -459,10 +472,6 @@ msgid ""
 "%s: A Java exception arised:\n"
 "%s"
 msgstr ""
-
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
 #, c-format
 msgid ""
@@ -1247,6 +1256,32 @@ msgstr "Vyhodnotit výběr s ozvěnou"
 msgid "Evaluate selection with no echo"
 msgstr "Vyhodnotit výběr bez ozvěny"
 
+#, c-format
+msgid "Option for %s format"
+msgstr ""
+
+msgid "Portrait"
+msgstr ""
+
+msgid "Landscape"
+msgstr ""
+
+msgid "Confirm"
+msgstr ""
+
+msgid "Cancel"
+msgstr "Zrušit"
+
+msgid "Orientation"
+msgstr ""
+
+#, c-format
+msgid "An error occurred during export: %s"
+msgstr ""
+
+msgid "Export error"
+msgstr ""
+
 msgid "Windows BMP image"
 msgstr "Obrázek Windows BMP"
 
@@ -1268,6 +1303,9 @@ msgstr "Vylepšený obrázek Metasouboru (EMF)"
 msgid "Encapsulated PostScript image (EPS)"
 msgstr "Zapouzdřený obrázek PostScript (EPS)"
 
+msgid "PostScript image (PS)"
+msgstr ""
+
 msgid "FIG image"
 msgstr "Obrázek FIG"
 
@@ -1280,11 +1318,11 @@ msgstr "Obrázek SVG"
 msgid "All files"
 msgstr "Všechny soubory"
 
-msgid "Export"
-msgstr "Exportovat"
-
 msgid "Untitled-export"
 msgstr "Bez názvu-export"
+
+msgid "Export"
+msgstr "Exportovat"
 
 msgid "Preview"
 msgstr "Náhled"
@@ -1301,15 +1339,11 @@ msgstr "Zadejte prosím formát souboru"
 msgid "Error on export"
 msgstr "Chyba při exportu"
 
-msgid "Unrecognized extension '"
-msgstr "Nerozpoznaná přípona '"
-
+#, c-format
 msgid ""
-"'.\n"
+"Unrecognized extension '%s'.\n"
 " Please specify a valid file format."
 msgstr ""
-"'.\n"
-" Určete, prosím, platný formát."
 
 msgid "Font Chooser"
 msgstr "Výběr Písma"
@@ -1334,9 +1368,6 @@ msgstr "Kompatibilní se SciNotes"
 
 msgid "Ok"
 msgstr "Ok"
-
-msgid "Cancel"
-msgstr "Zrušit"
 
 msgid "Loading help browser..."
 msgstr "Načítám průzkumníka nápovědy"
@@ -1487,7 +1518,7 @@ msgstr ""
 msgid "Paste style"
 msgstr ""
 
-msgid "Paste the copied style on this axes"
+msgid "Paste the copied style on these axes"
 msgstr ""
 
 msgid "Enter the text"
@@ -1556,6 +1587,15 @@ msgstr ""
 msgid "Matplot"
 msgstr ""
 
+msgid "Arc Drawing Method"
+msgstr ""
+
+msgid "Auto Rotation"
+msgstr ""
+
+msgid "Auto Position"
+msgstr ""
+
 msgid "Auto Ticks"
 msgstr ""
 
@@ -1611,9 +1651,6 @@ msgid "Line Mode"
 msgstr ""
 
 msgid "Mark Mode"
-msgstr ""
-
-msgid "Orientation"
 msgstr ""
 
 msgid "Visible"
@@ -1882,6 +1919,12 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+msgid "Start Angle"
+msgstr ""
+
+msgid "End Angle"
+msgstr ""
+
 msgid "Number of current figure."
 msgstr ""
 
@@ -2000,6 +2043,9 @@ msgid "Title Page"
 msgstr ""
 
 msgid "Axis Title"
+msgstr ""
+
+msgid "Font Angle"
 msgstr ""
 
 msgid "Font Color"
@@ -2362,6 +2408,10 @@ msgstr ""
 "'Čísla' nebo reálné číslo.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Type %s is not implemented.\n"
 msgstr "%s: Typ %s není zaveden.\n"
 
@@ -2390,6 +2440,10 @@ msgid ""
 msgstr ""
 "Předaná odpověď pro %s \n"
 " je nesprávná: %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"

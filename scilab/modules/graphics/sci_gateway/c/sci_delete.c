@@ -58,15 +58,16 @@ int sci_delete(char *fname, void* pvApiCtx)
     int m1 = 0, n1 = 0;
     unsigned long hdl = 0;
     int nb_handles = 0, i = 0, dont_overload = 0;
-    char *pobjUID = NULL;
-    char* pFigureUID = NULL;
-    char** childrenUID = NULL;
+    int iObjUID = 0;
+    int iFigureUID = 0;
+    int* piChildrenUID = NULL;
     int iChildrenCount = 0;
     int* childrencount = &iChildrenCount;
     int iHidden = 0;
     int *piHidden = &iHidden;
 
-    char *pstParentUID = NULL;
+    int iParentUID = 0;
+    int* piParentUID = &iParentUID;
     int iParentType = -1;
     int *piParentType = &iParentType;
     int iObjType = -1;
@@ -77,8 +78,8 @@ int sci_delete(char *fname, void* pvApiCtx)
 
     if (nbInputArgument(pvApiCtx) == 0)               /* Delete current object */
     {
-        pobjUID = (char*)getCurrentObject();
-        if (pobjUID == NULL)
+        iObjUID = getCurrentObject();
+        if (iObjUID == 0)
         {
             //No current object, we can leave
             AssignOutputVariable(pvApiCtx, 1) = 0;
@@ -86,7 +87,7 @@ int sci_delete(char *fname, void* pvApiCtx)
             return 0;
         }
 
-        hdl = (unsigned long)getHandle(pobjUID);
+        hdl = (unsigned long)getHandle(iObjUID);
         dont_overload = 1;
         nb_handles = 1;
     }
@@ -161,25 +162,25 @@ int sci_delete(char *fname, void* pvApiCtx)
                         return 0;
                     }
 
-                    pFigureUID = (char*)getCurrentFigure();
+                    iFigureUID = getCurrentFigure();
 
-                    getGraphicObjectProperty(pFigureUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&childrencount);
+                    getGraphicObjectProperty(iFigureUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&childrencount);
 
-                    getGraphicObjectProperty(pFigureUID, __GO_CHILDREN__, jni_string_vector, (void **)&childrenUID);
+                    getGraphicObjectProperty(iFigureUID, __GO_CHILDREN__, jni_int_vector, (void **)&piChildrenUID);
 
                     for (i = 0; i < childrencount[0]; ++i)
                     {
-                        getGraphicObjectProperty(childrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
+                        getGraphicObjectProperty(piChildrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
                         if (iHidden == 0)
                         {
-                            deleteGraphicObject(childrenUID[i]);
+                            deleteGraphicObject(piChildrenUID[i]);
                         }
                     }
                     /*
                      * Clone a new Axes object using the Axes model which is then
                      * attached to the 'cleaned' Figure.
                      */
-                    cloneAxesModel(pFigureUID);
+                    cloneAxesModel(iFigureUID);
 
                     AssignOutputVariable(pvApiCtx, 1) = 0;
                     ReturnArguments(pvApiCtx);
@@ -201,34 +202,34 @@ int sci_delete(char *fname, void* pvApiCtx)
 
     for (i = 0; i < nb_handles; i++)
     {
-        char* pstTemp = NULL;
+        int iTemp = 0;
         if (nbInputArgument(pvApiCtx) != 0)
         {
             hdl = (unsigned long) * (l1 + i); /* Puts the value of the Handle to hdl */
         }
 
-        pobjUID = (char*)getObjectFromHandle(hdl);
+        iObjUID = getObjectFromHandle(hdl);
 
-        if (pobjUID == NULL)
+        if (iObjUID == 0)
         {
             Scierror(999, _("%s: The handle is not valid.\n"), fname);
             return 0;
         }
 
-        if (isFigureModel(pobjUID) || isAxesModel(pobjUID))
+        if (isFigureModel(iObjUID) || isAxesModel(iObjUID))
         {
             Scierror(999, _("This object cannot be deleted.\n"));
             return 0;
         }
 
         /* Object type */
-        getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piObjType);
+        getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piObjType);
         if (iObjType == __GO_AXES__)
         {
             /* Parent object */
-            getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, (void **)&pstParentUID);
+            iParentUID = getParentObject(iObjUID);
             /* Parent type */
-            getGraphicObjectProperty(pstParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
+            getGraphicObjectProperty(iParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
         }
 
         if (iObjType == __GO_LABEL__)
@@ -237,9 +238,8 @@ int sci_delete(char *fname, void* pvApiCtx)
             return 0;
         }
 
-        //bug #11485 : duplicate pobjUID before delete it.
-        pstTemp = os_strdup(pobjUID);
-        deleteGraphicObject(pobjUID);
+        iTemp = iObjUID;
+        deleteGraphicObject(iObjUID);
 
         /*
          ** All figure must have at least one axe child.
@@ -255,16 +255,16 @@ int sci_delete(char *fname, void* pvApiCtx)
             int *piChildType = &iChildType;
             int iAxesFound = 0;
 
-            getGraphicObjectProperty(pstParentUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&piChildCount);
-            getGraphicObjectProperty(pstParentUID, __GO_CHILDREN__, jni_string_vector, (void **)&pstChildren);
+            getGraphicObjectProperty(iParentUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&piChildCount);
+            getGraphicObjectProperty(iParentUID, __GO_CHILDREN__, jni_int_vector, (void **)&piChildrenUID);
             for (iChild = 0; iChild < iChildCount; iChild++)
             {
-                getGraphicObjectProperty(pstChildren[iChild], __GO_TYPE__, jni_int, (void **)&piChildType);
+                getGraphicObjectProperty(piChildrenUID[iChild], __GO_TYPE__, jni_int, (void **)&piChildType);
                 if (iChildType == __GO_AXES__)
                 {
-                    if (strcmp(getCurrentSubWin(), pstTemp) == 0) // Current axes has been deleted
+                    if (getCurrentSubWin() == iTemp) // Current axes has been deleted
                     {
-                        setCurrentSubWin(pstChildren[iChild]);
+                        setCurrentSubWin(piChildrenUID[iChild]);
                     }
                     iAxesFound = 1;
                     break;
@@ -276,11 +276,9 @@ int sci_delete(char *fname, void* pvApiCtx)
                  * Clone a new Axes object using the Axes model which is then
                  * attached to the newly created Figure.
                  */
-                cloneAxesModel(pstParentUID);
+                cloneAxesModel(iParentUID);
             }
         }
-
-        FREE(pstTemp);
     }
 
     if (!dont_overload)

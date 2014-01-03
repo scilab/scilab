@@ -183,7 +183,7 @@ public class Scilab {
             // Create a user config file if not already exists
             ConfigManager.createUserCopy();
 
-            String consoleId = GraphicController.getController().askObject(Type.JAVACONSOLE);
+            Integer consoleId = GraphicController.getController().askObject(Type.JAVACONSOLE);
             MenuBarBuilder.buildConsoleMenuBar(consoleId);
 
             SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());

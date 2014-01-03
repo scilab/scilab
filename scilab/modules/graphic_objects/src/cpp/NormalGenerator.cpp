@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -28,7 +28,10 @@ inline void normalize3(float* v)
 
 bool CalculateGridNormalFlat(float* position, float* buffer, int bufferLength, int elementSize)
 {
-    if (elementSize < 3) return false;
+    if (elementSize < 3)
+    {
+        return false;
+    }
     for (int i = 0; i < bufferLength; i += 4 * elementSize)
     {
         float *p1 = &position[i],
@@ -66,7 +69,10 @@ bool CalculateGridNormalFlat(float* position, float* buffer, int bufferLength, i
 
 bool CalculateGridNormalSmooth(float* position, float* buffer, int bufferLength, int elementSize, int numX, int numY)
 {
-    if (elementSize < 3) return false;
+    if (elementSize < 3)
+    {
+        return false;
+    }
     for (int i = 0; i < bufferLength; i += 4 * elementSize)
     {
         float *p1 = &position[i],

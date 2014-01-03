@@ -302,7 +302,7 @@
             It may happen that the output of a test depends on the platform on which it is
             executed. In this case, the <literal>.ref</literal> file cannot be correct for
             all platforms and unit tests may fail for some platform. In this case, we can
-            create a default <literal>.ref</literal> and create additionnal <literal>.ref</literal>
+            create a default <literal>.ref</literal> and create additional <literal>.ref</literal>
             file for each platform.
         </para>
         <para>

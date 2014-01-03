@@ -96,13 +96,9 @@
             That block computes the sine of the elements of the input vector.
         </para>
         <para>
-        </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../help/images/SINBLK_f_img2_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
+            <link linkend="sin">
+                <latex>$y = \sin(u)$</latex>
+            </link>
         </para>
     </refsection>
     <refsection id="Defaultproperties_SINBLK_f">

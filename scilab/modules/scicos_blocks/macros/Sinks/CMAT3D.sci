@@ -20,16 +20,10 @@
 //
 
 function [x,y,typ]=CMAT3D(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        x=[];y=[];typ=[];
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
         graphics=arg1.graphics;
@@ -44,7 +38,9 @@ function [x,y,typ]=CMAT3D(job,arg1,arg2)
             "Zmin";
             "Zmax"],..
             list("vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs)
-            if ~ok then break,end //user cancel modification
+            if ~ok then
+                break,
+            end //user cancel modification
             mess=[]
             if size(vec_x,"*")<>size(vec_y,"*") then
                 mess=[mess;"Vector X and Vector Y must have the same size";" "]
@@ -96,7 +92,7 @@ function [x,y,typ]=CMAT3D(job,arg1,arg2)
         string("jetcolormap(25)");
         string(cmin);
         string(cmax)];
-        gr_i="xstringb(orig(1),orig(2),''Mat. 3D'',sz(1),sz(2),''fill'')"
+        gr_i=[]
         x=standard_define([2 2],model,exprs,gr_i)
     end
 endfunction

@@ -139,6 +139,10 @@ public class Motor3D {
      */
     public void draw() {
         Scene.drawRoot(g2d);
+        clean();
+    }
+
+    public void clean() {
         Scene.clearAll();
         G2DTextureManager.clear();
     }
@@ -375,7 +379,7 @@ public class Motor3D {
                         v = new Vector3d[] {verticesArray[i], verticesArray[i + 1]};
                         c = new Color[] {colorsArray[i], colorsArray[i + 1]};
                         try {
-                            add(new Segment(v, c, G2DStroke.getStroke(appearance, cumLength)));
+                            add(new Segment(v, c, G2DStroke.getStroke(appearance, cumLength), false));
                             cumLength += Segment.getLength(v);
                         } catch (InvalidPolygonException e) {
                             cumLength = 0;
@@ -394,7 +398,7 @@ public class Motor3D {
                         v = new Vector3d[] {verticesArray[i], verticesArray[i + 1]};
                         c = new Color[] {colorsArray[i], colorsArray[i + 1]};
                         try {
-                            add(new Segment(v, c, G2DStroke.getStroke(appearance, cumLength)));
+                            add(new Segment(v, c, G2DStroke.getStroke(appearance, cumLength), false));
                             cumLength += Segment.getLength(v);
                         } catch (InvalidPolygonException e) {
                             cumLength = 0;
@@ -404,7 +408,7 @@ public class Motor3D {
                     v = new Vector3d[] {verticesArray[n], verticesArray[0]};
                     c = new Color[] {colorsArray[n], colorsArray[0]};
                     try {
-                        add(new Segment(v, c, G2DStroke.getStroke(appearance, cumLength)));
+                        add(new Segment(v, c, G2DStroke.getStroke(appearance, cumLength), false));
                     } catch (InvalidPolygonException e) { }
                 }
                 break;
@@ -414,7 +418,7 @@ public class Motor3D {
                     v = new Vector3d[] {verticesArray[i], verticesArray[i + 1]};
                     c = new Color[] {colorsArray[i], colorsArray[i + 1]};
                     try {
-                        add(new Segment(v, c, G2DStroke.getStroke(appearance, 0)));
+                        add(new Segment(v, c, G2DStroke.getStroke(appearance, 0), is2DView()));
                     } catch (InvalidPolygonException e) { }
                 }
                 break;
@@ -580,7 +584,7 @@ public class Motor3D {
         float[] vertexTransf = lightManager.getVertexTransform();
         float[] normalTransf = lightManager.getNormalTransform();
         //for transformed vertices camera is at origin.
-        Vector3f camera = new Vector3f(0.f, 0.f ,0.f);
+        Vector3f camera = new Vector3f(0.f, 0.f , 0.f);
         Vector3f[] vertexArray = LightHelper.getIndexedVector3f(vertices, index, G2DElementsBuffer.ELEMENT_SIZE, vertexTransf);
         Vector3f[] normalArray = LightHelper.getIndexedVector3f(normals, index, G2DElementsBuffer.ELEMENT_SIZE, normalTransf);
 
@@ -594,7 +598,9 @@ public class Motor3D {
         for (int i = 0; i < lightManager.getLightNumber(); ++i) {
             G2DLight l = (G2DLight)lightManager.getLight(i);
 
-            if (l == null || !l.isEnable()) continue;
+            if (l == null || !l.isEnable()) {
+                continue;
+            }
 
             outColors = LightHelper.applyLight(l, mat, camera, vertexArray, normalArray, colors, outColors, vertexTransf, !first);
             first = false;

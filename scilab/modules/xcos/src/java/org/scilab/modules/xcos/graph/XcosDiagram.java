@@ -105,6 +105,7 @@ import com.mxgraph.model.mxGraphModel.Filter;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
 import com.mxgraph.model.mxGraphModel.mxStyleChange;
 import com.mxgraph.model.mxICell;
+import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.model.mxIGraphModel.mxAtomicGraphModelChange;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
@@ -112,6 +113,7 @@ import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
+import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxGraphSelectionModel;
 import com.mxgraph.view.mxMultiplicity;
 import com.mxgraph.view.mxStylesheet;
@@ -457,11 +459,25 @@ public class XcosDiagram extends ScilabGraph {
                     @Override
                     public boolean filter(Object cell) {
                         if (cell instanceof BasicBlock) {
+                            final BasicBlock blk = (BasicBlock) cell;
+
                             // Update parent on cell addition
-                            ((BasicBlock) cell).setParentDiagram(diagram);
+                            blk.setParentDiagram(diagram);
 
                             // update port numbering
-                            diagram.updateIOBlocks((BasicBlock) cell);
+                            diagram.updateIOBlocks(blk);
+
+                            // Fire an identifier update to let the I/O ports update their labels
+                            mxCell identifier = diagram.getCellIdentifier(blk);
+                            if (identifier != null) {
+                                final Object current = diagram.getModel().getValue(identifier);
+                                if (current != null) {
+                                    final String text = mxUtils.getBodyMarkup(current.toString(), false);
+                                    diagram.fireEvent(new mxEventObject(mxEvent.LABEL_CHANGED, "cell", identifier, "value", text, "parent", blk));
+                                }
+                            }
+
+                            diagram.getView().invalidate();
                         }
                         return false;
                     }
@@ -715,6 +731,7 @@ public class XcosDiagram extends ScilabGraph {
                 for (final Object object : changedCells) {
                     if (object instanceof BasicBlock) {
                         final BasicBlock current = (BasicBlock) object;
+                        final XcosDiagram graph = current.getParentDiagram();
 
                         // When we change the style property we have to update
                         // some BasiBlock fields
@@ -724,7 +741,7 @@ public class XcosDiagram extends ScilabGraph {
 
                         // update the superblock container ports if the block is
                         // inside a superblock diagram
-                        if (current.getParentDiagram() instanceof SuperBlockDiagram) {
+                        if (graph instanceof SuperBlockDiagram) {
                             SuperBlockDiagram superdiagram = (SuperBlockDiagram) current.getParentDiagram();
                             SuperBlock superblock = superdiagram.getContainer();
                             superblock.updateExportedPort();
@@ -735,21 +752,21 @@ public class XcosDiagram extends ScilabGraph {
 
                         // force a refresh of the block ports and links
                         // connected to these ports
-                        final int childCount = current.getParentDiagram().getModel().getChildCount(current);
+                        final int childCount = model.getChildCount(current);
                         for (int i = 0; i < childCount; i++) {
-                            final Object port = current.getParentDiagram().getModel().getChildAt(current, i);
-                            current.getParentDiagram().getView().clear(port, true, true);
-                            final int edgeCount = current.getParentDiagram().getModel().getEdgeCount(port);
+                            final Object port = model.getChildAt(current, i);
+                            graph.getView().clear(port, true, true);
+                            final int edgeCount = model.getEdgeCount(port);
                             for (int j = 0; j < edgeCount; j++) {
-                                final Object edge = current.getParentDiagram().getModel().getEdgeAt(port, j);
-                                current.getParentDiagram().getView().clear(edge, true, true);
+                                final Object edge = model.getEdgeAt(port, j);
+                                graph.getView().clear(edge, true, true);
                             }
                         }
                         // force a refresh of the block
-                        current.getParentDiagram().getView().clear(current, true, true);
+                        graph.getView().clear(current, true, true);
 
-                        current.getParentDiagram().getView().validate();
-                        current.getParentDiagram().repaint();
+                        graph.getView().validate();
+                        graph.repaint();
                     }
                 }
             } finally {
@@ -801,7 +818,10 @@ public class XcosDiagram extends ScilabGraph {
 
                 diagram.getView().clear(updatedBlock, true, true);
 
+                // validate display errors
+                diagram.getAsComponent().clearCellOverlays();
                 diagram.getAsComponent().validateGraph();
+
                 diagram.getView().validate();
             } finally {
                 diagram.getModel().endUpdate();
@@ -1124,6 +1144,11 @@ public class XcosDiagram extends ScilabGraph {
         final Object newLink1 = createEdge(null, null, null, src, trg, null);
         addCell(newLink1, null, null, src, trg);
         geometry = getModel().getGeometry(newLink1);
+        if (getModel().getParent(newLink1) instanceof BasicBlock) {
+            // on a loop link, translate the points as the cell has been moved to the parent
+            orig.setX(orig.getX() + geometry.getX());
+            orig.setY(orig.getY() + geometry.getY());
+        }
         geometry.setPoints(points);
         getModel().setGeometry(newLink1, geometry);
 

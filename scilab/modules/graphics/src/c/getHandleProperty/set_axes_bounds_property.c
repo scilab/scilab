@@ -34,7 +34,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_axes_bounds_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_axes_bounds_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
 
@@ -50,7 +50,7 @@ int set_axes_bounds_property(void* _pvCtx, char* pobjUID, void* _pvData, int val
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_AXES_BOUNDS__, _pvData, jni_double_vector, 4);
+    status = setGraphicObjectProperty(iObjUID, __GO_AXES_BOUNDS__, _pvData, jni_double_vector, 4);
 
     if (status == TRUE)
     {

@@ -36,7 +36,11 @@ function [s,index] = nanmax(x,orient)
     //
     // correction of bug 1239 (Bruno)
 
-    if argn(2)==1 then  orient="*",end
+    [lhs, rhs] = argn(0)
+    if rhs == 0 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"nanmax",1,2))
+    end
+    if rhs==1 then  orient="*",end
     if orient==1 then orient="r",end
     if orient==2 then orient="c",end
     if x==[]|(size(x,"*")==1&isnan(x)) then s=[],index=[],return,end

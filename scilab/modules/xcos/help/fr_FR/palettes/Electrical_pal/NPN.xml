@@ -199,7 +199,7 @@
             <tr>
                 <td align="left">EMax</td>
                 <td align="left">40</td>
-                <td align="left">if x &gt; EMax, the exp(x) function is linearized</td>
+                <td align="left">if x > EMax, the exp(x) function is linearized</td>
             </tr>
         </informaltable>
     </refsection>

@@ -73,7 +73,7 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
         ExportOrientation orientation = EXPORT_PORTRAIT; /* default orientation */
         int m1 = 0, n1 = 0;
         int figurenum = -1;
-        char* figureUID = NULL;
+        int figureUID = 0;
         char *status = NULL;
 
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
@@ -108,7 +108,7 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
                 Scierror(999, "%s: Input argument #%d must be a valid figure_id.\n", fname, 1);
                 return 1;
             }
-            figureUID = (char*)getFigureFromIndex(figurenum);
+            figureUID = getFigureFromIndex(figurenum);
         }
         /* check given handle */
         else if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
@@ -132,8 +132,8 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
                 return 1;
             }
 
-            figureUID = (char*)getObjectFromHandle((unsigned long) * l1);
-            if (figureUID == NULL)
+            figureUID = getObjectFromHandle((unsigned long) * l1);
+            if (figureUID == 0)
             {
                 Scierror(999, _("%s: Input argument #%d must be a valid handle.\n"), fname, 1);
                 return 1;

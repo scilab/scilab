@@ -34,12 +34,12 @@
 #include <string.h>
 
 /*------------------------------------------------------------------------*/
-void* get_text_property(void* _pvCtx, char* pobjUID)
+void* get_text_property(void* _pvCtx, int iObjUID)
 {
     int* dimensions;
     char** textMatrix;
 
-    getGraphicObjectProperty(pobjUID, __GO_TEXT_ARRAY_DIMENSIONS__, jni_int_vector, (void **) &dimensions);
+    getGraphicObjectProperty(iObjUID, __GO_TEXT_ARRAY_DIMENSIONS__, jni_int_vector, (void **) &dimensions);
 
     if (dimensions == NULL)
     {
@@ -47,7 +47,7 @@ void* get_text_property(void* _pvCtx, char* pobjUID)
         return NULL;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TEXT_STRINGS__, jni_string_vector, (void **) &textMatrix);
+    getGraphicObjectProperty(iObjUID, __GO_TEXT_STRINGS__, jni_string_vector, (void **) &textMatrix);
 
     if (textMatrix == NULL)
     {

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.plotbrowser;
@@ -29,14 +29,14 @@ import org.scilab.modules.gui.window.ScilabWindow;
 public class PlotBrowser {
     private static PlotBrowser instance;
     public static SwingPlotBrowser plotBrowserTab;
-    public static String currentObjectID;
+    public static Integer currentObjectID;
 
     /**
     * Constructor.
     *
     * @param objectID Enters the identification of object.
     */
-    public PlotBrowser(String objectID) {
+    public PlotBrowser(Integer objectID) {
         TextBox infobar = ScilabTextBox.createTextBox();
         plotBrowserTab = new SwingPlotBrowser(objectID);
         plotBrowserTab.addInfoBar(infobar);
@@ -48,7 +48,7 @@ public class PlotBrowser {
      * @param objectID Enters the identification of object.
      * @return the instance.
      */
-    public static SwingPlotBrowser createPlotBrowserTab(String objectID) {
+    public static SwingPlotBrowser createPlotBrowserTab(Integer objectID) {
         if (instance == null) {
             instance = new PlotBrowser(objectID);
         }
@@ -79,7 +79,7 @@ public class PlotBrowser {
     * @param objectID Enters the identification of object.
     * @return Shows the PlotBrowser was generated.
     */
-    public static PlotBrowser getPlotBrowser(String objectID) {
+    public static PlotBrowser getPlotBrowser(Integer objectID) {
         currentObjectID = objectID;
         if (instance == null) {
             boolean success = WindowsConfigurationManager.restoreUUID(SwingPlotBrowser.PLOTBROWSERUUID);
@@ -93,7 +93,7 @@ public class PlotBrowser {
             }
         } else {
             SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass
-                                       (SwingScilabWindow.class, (SwingPlotBrowser) plotBrowserTab);
+                                       (SwingScilabWindow.class, plotBrowserTab);
             window.setVisible(true);
             window.toFront();
             new SwapFigure(objectID);

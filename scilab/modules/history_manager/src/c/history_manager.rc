@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "history_manager module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "history_manager module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "history_manager.dll"
             VALUE "ProductName", " history_manager"
             VALUE "ProductVersion", "6, 0, 0, 0"

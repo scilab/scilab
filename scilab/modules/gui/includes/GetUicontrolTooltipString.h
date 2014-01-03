@@ -21,6 +21,6 @@
  * @param pobjUID Scilab object corresponding to the uicontrol
  * @return the string
  */
-GUI_IMPEXP void* GetUicontrolTooltipString(void* _pvCtx, char *pobjUID);
+GUI_IMPEXP void* GetUicontrolTooltipString(void* _pvCtx, int iObjUID);
 
 #endif /* __GET_UICONTROL_TOOLTIPSTRING_H__ */

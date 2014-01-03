@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -90,5 +90,91 @@
             Barry W. Brown, James Lovato and Kathy Russell. The University of
             Texas.
         </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <para>
+            Dans l'exemple suivant, on calcule la probabilité de l'événement <literal>x=0.1</literal>
+            pour la fonction de distribution Gamma avec <literal>Shape=1.0</literal> et
+            <literal>Rate=1.0</literal>.
+        </para>
+        <programlisting role="example"><![CDATA[
+    Shape = 0.1
+    Rate = 1.0
+    x = 0.1
+    // Attendu : P = 0.8275518
+    [P,Q]=cdfgam("PQ",x,Shape,Rate)
+ ]]></programlisting>
+        <para>
+            Dans l'exemple suivant, on calcule la probabilité de l'événement <literal>x=0.1</literal>
+            et vérifié que les algorithmes de recherche permettent d'inverser la fonction.
+        </para>
+        <programlisting role="example"><![CDATA[
+    Shape = 0.1
+    Rate = 2.0
+    x = 0.3
+    [P,Q]    = cdfgam("PQ",x,Shape,Rate)
+    [X1]     = cdfgam("X",Shape,Rate,P,Q)
+    [Shape1] = cdfgam("Shape",Rate,P,Q,x)
+    [Rate1]  = cdfgam("Rate",P,Q,x,Shape)
+ ]]></programlisting>
+        <para>
+            Dans l'exemple suivant, on dessine la fonction de distribution Gamma
+            pour différentes valeurs de Shape et Rate.
+        </para>
+        <programlisting role="example"><![CDATA[
+    N = 1000;
+    x = linspace(0,20,N)';
+    Shape = [1 2 3 5 9];
+    Rate = 1 ./ [2 2 2 1 0.5];
+    C = ["red" "green" "blue" "cyan" "orange"];
+    lstr = [];
+    drawlater();
+    h = gcf();
+    for i = 1 : 5
+      P = cdfgam("PQ",x,Shape(i)*ones(N,1),Rate(i)*ones(N,1));
+      lstr(i) = msprintf("Shape=%s, Rate=%s",string(Shape(i)),string(Rate(i)));
+      plot(x,P);
+      h.children.children(1).children.foreground = color(C(i));
+    end
+    legend(lstr);
+    xtitle("CDF de la fonction de distribution Gamma","X","P");
+    drawnow();
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cdfbet">cdfbet</link>
+            </member>
+            <member>
+                <link linkend="cdfbin">cdfbin</link>
+            </member>
+            <member>
+                <link linkend="cdfchi">cdfchi</link>
+            </member>
+            <member>
+                <link linkend="cdfchn">cdfchn</link>
+            </member>
+            <member>
+                <link linkend="cdff">cdff</link>
+            </member>
+            <member>
+                <link linkend="cdffnc">cdffnc</link>
+            </member>
+            <member>
+                <link linkend="cdfnbn">cdfnbn</link>
+            </member>
+            <member>
+                <link linkend="cdfnor">cdfnor</link>
+            </member>
+            <member>
+                <link linkend="cdfpoi">cdfpoi</link>
+            </member>
+            <member>
+                <link linkend="cdft">cdft</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

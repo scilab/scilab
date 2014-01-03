@@ -20,20 +20,14 @@
 //
 
 function [x, y, typ] = TOWS_c(job, arg1, arg2)
-    x = []; y = []; typ = [];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        varnam = string(arg1.graphics.exprs(2));
-        standard_draw(arg1);
-    case "getinputs" then
-        [x, y, typ] = standard_inputs(arg1);
-    case "getoutputs" then
-        [x, y, typ] = standard_outputs(arg1);
-    case "getorigin" then
-        [x, y] = standard_origin(arg1);
     case "set" then
         x = arg1;
-        graphics = arg1.graphics; model = arg1.model;
+        graphics = arg1.graphics;
+        model = arg1.model;
         exprs = graphics.exprs;
 
         while %t do
@@ -43,7 +37,9 @@ function [x, y, typ] = TOWS_c(job, arg1, arg2)
             "Inherit (no:0, yes:1)"], ...
             list("vec", 1, "str", 1, "vec", 1), exprs);
 
-            if ~ok then break, end;
+            if ~ok then
+                break,
+            end;
 
             if (nz <= 0) then
                 message("Size of buffer must be positive");
@@ -100,16 +96,7 @@ function [x, y, typ] = TOWS_c(job, arg1, arg2)
         model.blocktype = "d";
         model.firing    = [];
         model.dep_ut    = [%f %f];
-        gr_i = ["xstringb(orig(1), orig(2), ''To workspace'', sz(1), sz(2), ''fill'')"
-        "txt = varnam;"
-        "style = 5;"
-        "rectstr = stringbox(txt, orig(1), orig(2), 0, style, 1);"
-        "if ~exists(''%zoom'') then %zoom = 1, end;"
-        "w = (rectstr(1, 3)-rectstr(1, 2))*%zoom;"
-        "h = (rectstr(2, 2)-rectstr(2, 4))*%zoom;"
-        "xstringb(orig(1)+sz(1)/2-w/2, orig(2)-h-4, txt, w, h, ''fill'');"
-        "e = gce();"
-        "e.font_style = style;"];
+        gr_i = [];
         exprs = [string(nz); string(varnam); string(herit)];
         x = standard_define([4 2], model, exprs, gr_i);
     end

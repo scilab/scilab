@@ -24,7 +24,7 @@ extern "C"
 
 Plot3DDecomposer* Plot3DDecomposer::decomposer = NULL;
 
-void Plot3DDecomposer::fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
+void Plot3DDecomposer::fillVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
 {
     double* x = NULL;
     double* y = NULL;
@@ -86,10 +86,12 @@ void Plot3DDecomposer::getFacetTriangles(double* x, double* y, double* z, int nu
  * To do: compute and return color indices instead of directly looking
  * up colors from the colormap.
  */
-void Plot3DDecomposer::fillColors(char* id, float* buffer, int bufferLength, int elementsSize)
+void Plot3DDecomposer::fillColors(int id, float* buffer, int bufferLength, int elementsSize)
 {
-    char* parentFigure = NULL;
-    char* parent = NULL;
+    int parentFigure = 0;
+    int* pparentFigure = &parentFigure;
+    int parent = 0;
+    int* pparent = &parent;
 
     double* z = NULL;
     double* colormap = NULL;
@@ -109,17 +111,17 @@ void Plot3DDecomposer::fillColors(char* id, float* buffer, int bufferLength, int
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &z);
 
-    getGraphicObjectProperty(id, __GO_PARENT__, jni_string, (void**) &parent);
+    parent = getParentObject(id);
 
     /* Temporary: to avoid getting a null parent_figure property when the object is built */
-    if (strcmp(parent, "") == 0)
+    if (parent == 0)
     {
         return;
     }
 
-    getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_string, (void**) &parentFigure);
+    getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_int, (void**) &pparentFigure);
 
-    if (parentFigure == NULL)
+    if (parentFigure == 0)
     {
         return;
     }
@@ -132,7 +134,7 @@ void Plot3DDecomposer::fillColors(char* id, float* buffer, int bufferLength, int
     releaseGraphicObjectProperty(__GO_COLORMAP__, colormap, jni_double_vector, colormapSize);
 }
 
-int Plot3DDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)
+int Plot3DDecomposer::fillIndices(int id, int* buffer, int bufferLength, int logMask)
 {
     double* x = NULL;
     double* y = NULL;
@@ -166,7 +168,7 @@ int Plot3DDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int l
     return numberIndices;
 }
 
-int Plot3DDecomposer::getWireIndicesSize(char* id)
+int Plot3DDecomposer::getWireIndicesSize(int id)
 {
     int numX = 0;
     int* piNumX = &numX;
@@ -189,7 +191,7 @@ int Plot3DDecomposer::getWireIndicesSize(char* id)
  * -a lot of work performed redundantly with NgonGridDataDecomposer::fillIndices, ought to be merged
  *  with it.
  */
-int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, int logMask)
+int Plot3DDecomposer::fillWireIndices(int id, int* buffer, int bufferLength, int logMask)
 {
     double* x = NULL;
     double* y = NULL;

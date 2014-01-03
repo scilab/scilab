@@ -22,26 +22,26 @@
 #include "BOOL.h"
 
 /*------------------------------------------------------------------------------*/
-GRAPHICS_IMPEXP int sciZoom2D(char * subwinUID, const double zoomRect[4]);
-GRAPHICS_IMPEXP int sciZoom3D(char * subwinUID, const double zoomBox[6]);
-GRAPHICS_IMPEXP int sciZoomRect(char* objUID, const double zoomRect[4]);
-GRAPHICS_IMPEXP int sciFigureZoom2D(char* figureUID, const double zoomRect[4]);
-GRAPHICS_IMPEXP void sciUnzoomSubwin(char* subwinUID);
-GRAPHICS_IMPEXP void sciUnzoomFigure(char* figureUID);
-GRAPHICS_IMPEXP void sciUnzoomArray(char* objectsUID[], int nbSubwin);
+GRAPHICS_IMPEXP int sciZoom2D(int iSubwinUID, const double zoomRect[4]);
+GRAPHICS_IMPEXP int sciZoom3D(int iSubwinUID, const double zoomBox[6]);
+GRAPHICS_IMPEXP int sciZoomRect(int iObjUID, const double zoomRect[4]);
+GRAPHICS_IMPEXP int sciFigureZoom2D(int iFigureUID, const double zoomRect[4]);
+GRAPHICS_IMPEXP void sciUnzoomSubwin(int iSubwinUID);
+GRAPHICS_IMPEXP void sciUnzoomFigure(int iFigureUID);
+GRAPHICS_IMPEXP void sciUnzoomArray(int iObjUID[], int nbSubwin);
 
 /**
  * Update subwin size and scale if needed
  */
-GRAPHICS_IMPEXP void updateSubwinScale(char * pSubwinUID);
+GRAPHICS_IMPEXP void updateSubwinScale(int iSubwinUID);
 
 /**
  * Update text bounds if needed
  */
-GRAPHICS_IMPEXP void updateTextBounds(char * pTextUID);
+GRAPHICS_IMPEXP void updateTextBounds(int iSubwinUID);
 
 /*------------------------------------------------------------------------------*/
-GRAPHICS_IMPEXP BOOL checkDataBounds(char * subwinUID, double xMin, double xMax,
+GRAPHICS_IMPEXP BOOL checkDataBounds(int iSubwinUID, double xMin, double xMax,
                                      double yMin, double yMax, double zMin, double zMax);
 /*------------------------------------------------------------------------------*/
 

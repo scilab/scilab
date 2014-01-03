@@ -42,7 +42,9 @@ function [equations,impl_type,Nfictif]=gen_code_FDM(a1,b1,a2,b2,a3,b3,a4,b4,..
     //    - h (Double) : le pas de discretisation h=(b-a)/N (i.e x(i)= i* h)  //
     //------------------------------------------------------------------------//
 
-    coef4=[];coef2=[];coef5=[];
+    coef4=[];
+    coef2=[];
+    coef5=[];
     impl_type=1; // 1 pour l'�tat diff�rentiel, -1 pour l'�tat alg�brique
     sep=[",","*","/"];
 

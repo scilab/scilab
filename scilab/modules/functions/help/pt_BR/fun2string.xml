@@ -10,14 +10,14 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fun2string" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fun2string" xml:lang="pt">
     <refnamediv>
         <refname>fun2string</refname>
         <refpurpose>gera definição ASCII de uma função Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>txt=fun2string(fun,name)</synopsis>
+        <synopsis>txt = fun2string(fun, name)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -46,17 +46,19 @@
     </refsection>
     <refsection>
         <title>Descrição</title>
-        <para>Dado um pseudo-código de função Scilab carregada fun2string permite
+        <para>
+            Dado um pseudo-código de função Scilab carregada <function>fun2string</function> permite
             gerar novamente o código. O código gerado é identado e embelezado.
         </para>
-        <para>O mecanismo é similar, mas mais simples que o de mfile2sci. Também
+        <para>
+            O mecanismo é similar, mas mais simples que o de <function>mfile2sci</function>. Também
             pode ser adaptado para traduções de sintaxe.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
-txt=fun2string(asinh,'foo');
+        <programlisting role="example"><![CDATA[
+txt = fun2string(asinh,'foo');
 write(%io(2),txt,'(a)')
  ]]></programlisting>
     </refsection>

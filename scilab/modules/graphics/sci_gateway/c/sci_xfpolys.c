@@ -53,9 +53,9 @@ int sci_xfpolys(char *fname, void *pvApiCtx)
     int i = 0;
     long hdl = 0;
 
-    char *pstSubWinUID = NULL;
-    char *pstFigureUID = NULL;
-    char *pstCompoundUID = NULL;
+    int iSubWinUID = 0;
+    int iFigureUID = 0;
+    int iCompoundUID = 0;
     int iSubWinForeground = 0;
 
     int iImmediateDrawing = 0;
@@ -193,22 +193,22 @@ int sci_xfpolys(char *fname, void *pvApiCtx)
         m3 = n3 = 1;
     }
 
-    pstSubWinUID = (char*)getOrCreateDefaultSubwin();
-    getGraphicObjectProperty(pstSubWinUID, __GO_PARENT__, jni_string, (void**)&pstFigureUID);
-    getGraphicObjectProperty(pstFigureUID, __GO_IMMEDIATE_DRAWING__, jni_bool, (void **)&piImmediateDrawing);
-    setGraphicObjectProperty(pstFigureUID, __GO_IMMEDIATE_DRAWING__, &iFalse, jni_bool, 1);
+    iSubWinUID = getOrCreateDefaultSubwin();
+    iFigureUID = getParentObject(iSubWinUID);
+    getGraphicObjectProperty(iFigureUID, __GO_IMMEDIATE_DRAWING__, jni_bool, (void **)&piImmediateDrawing);
+    setGraphicObjectProperty(iFigureUID, __GO_IMMEDIATE_DRAWING__, &iFalse, jni_bool, 1);
 
     //get color map size
-    getGraphicObjectProperty(pstFigureUID, __GO_COLORMAP_SIZE__, jni_int, (void**)&piColorMapSize);
+    getGraphicObjectProperty(iFigureUID, __GO_COLORMAP_SIZE__, jni_int, (void**)&piColorMapSize);
 
     //get current foreground color
-    getGraphicObjectProperty(pstSubWinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeGround);
+    getGraphicObjectProperty(iSubWinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeGround);
 
     // Create compound.
-    pstCompoundUID = createGraphicObject(__GO_COMPOUND__);
-    setGraphicObjectProperty(pstCompoundUID, __GO_VISIBLE__, &iFalse, jni_bool, 1);
+    iCompoundUID = createGraphicObject(__GO_COMPOUND__);
+    setGraphicObjectProperty(iCompoundUID, __GO_VISIBLE__, &iFalse, jni_bool, 1);
     /* Sets the parent-child relationship for the Compound */
-    setGraphicObjectRelationship(pstSubWinUID, pstCompoundUID);
+    setGraphicObjectRelationship(iSubWinUID, iCompoundUID);
 
     for (i = 0; i < n1; ++i)
     {
@@ -242,15 +242,15 @@ int sci_xfpolys(char *fname, void *pvApiCtx)
         }
 
         // Add newly created object to Compound
-        setGraphicObjectRelationship(pstCompoundUID, getObjectFromHandle(hdl));
+        setGraphicObjectRelationship(iCompoundUID, getObjectFromHandle(hdl));
     }
 
-    setCurrentObject(pstCompoundUID);
+    setCurrentObject(iCompoundUID);
 
-    setGraphicObjectProperty(pstFigureUID, __GO_IMMEDIATE_DRAWING__, piImmediateDrawing, jni_bool, 1);
-    getGraphicObjectProperty(pstFigureUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
+    setGraphicObjectProperty(iFigureUID, __GO_IMMEDIATE_DRAWING__, piImmediateDrawing, jni_bool, 1);
+    getGraphicObjectProperty(iFigureUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
 
-    setGraphicObjectProperty(pstCompoundUID, __GO_VISIBLE__, &iVisible, jni_bool, 1);
+    setGraphicObjectProperty(iCompoundUID, __GO_VISIBLE__, &iVisible, jni_bool, 1);
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

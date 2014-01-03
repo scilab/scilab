@@ -356,6 +356,8 @@ function %_sodload(%__filename__, varargin)
                 set(h, "mark_mode", mark_mode);
             elseif fields(i) == "children" then
                 createMatrixHandle(polylineProperties(fields(i)));
+            elseif fields(i) == "datatips" then
+                createMatrixHandle(polylineProperties(fields(i)));
             else
                 h(fields(i)) = polylineProperties(fields(i));
             end
@@ -695,13 +697,6 @@ function %_sodload(%__filename__, varargin)
         fields(1) = [];
 
         h = datatipCreate(%POLYLINE, 0);
-
-        if datatipProperties.clip_state=="on" then
-            set(h, "clip_box", datatipProperties.clip_box)
-        end
-        set(h, "clip_state", datatipProperties.clip_state);
-        fields(fields=="clip_box") = [];
-        fields(fields=="clip_state") = [];
 
         for i = 1:size(fields, "*")
             set(h, fields(i), datatipProperties(fields(i)));

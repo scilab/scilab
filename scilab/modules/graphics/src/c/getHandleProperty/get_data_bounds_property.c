@@ -29,13 +29,13 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_data_bounds_property(void* _pvCtx, char* pobjUID)
+void* get_data_bounds_property(void* _pvCtx, int iObjUID)
 {
     double* dataBounds = NULL;
     int iView = 0;
     int* piView = &iView;
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
 
     if (dataBounds == NULL)
     {
@@ -43,7 +43,7 @@ void* get_data_bounds_property(void* _pvCtx, char* pobjUID)
         return NULL;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, (void **)&piView);
+    getGraphicObjectProperty(iObjUID, __GO_VIEW__, jni_int, (void **)&piView);
     if (piView == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "view");

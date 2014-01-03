@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.ged.graphic_objects.datatip;
@@ -35,7 +35,7 @@ public class Label extends SimpleSection {
     * Initializes the properties and the icons of the buttons.
     * @param objectID Enters the identification of datatip.
     */
-    public Label(String objectID) {
+    public Label(Integer objectID) {
         super(MessagesGED.label, "datatip");
         instance = this;
         sectionPanel = getSectionPanel();
@@ -55,12 +55,12 @@ public class Label extends SimpleSection {
     * @param objectID uid
     */
     @Override
-    public final void initComponents(String objectID) {
+    public final void initComponents(Integer objectID) {
         int row = 0;
         final int leftmargin = 16; //to inner components
         int column = 0; //first column
-        String parentFigure = (String) GraphicController.getController()
-                .getProperty(objectID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        Integer parentFigure = (Integer) GraphicController.getController()
+                               .getProperty(objectID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
 
         //Components of the property: Tip Box Mode.
         datatip.tipBoxMode(sectionPanel, row++, column, leftmargin, objectID);
@@ -81,8 +81,8 @@ public class Label extends SimpleSection {
     * @param scilabColor index of the color map.
     * @param UID objectID.
     */
-    public void setForegroundColor(int scilabColor, String UID) {
+    public void setForegroundColor(int scilabColor, Integer UID) {
         GraphicController.getController().setProperty(
-                UID, GraphicObjectProperties.__GO_LINE_COLOR__, scilabColor);
+            UID, GraphicObjectProperties.__GO_LINE_COLOR__, scilabColor);
     }
 }

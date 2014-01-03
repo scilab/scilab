@@ -25,6 +25,7 @@
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 /*    Copyright INRIA
  *    Scicos block simulator
@@ -33,19 +34,20 @@
 SCICOS_BLOCKS_IMPEXP void evtdly4(scicos_block *block, int flag)
 {
     double t = 0.;
-    long long int *i = NULL;
+    time_counter_t** work = (time_counter_t**) block->work;
+    time_counter_t* i = NULL;
 
     switch (flag)
     {
             /* init */
         case 4  :  /* the workspace is used to store discrete counter value */
         {
-            if ((*block->work = scicos_malloc(sizeof(long long int))) == NULL)
+            if ((*work = (time_counter_t*) scicos_malloc(sizeof(time_counter_t))) == NULL)
             {
                 set_block_error(-16);
                 return;
             }
-            i = *block->work;
+            i = *work;
             (*i) = 0;
             break;
         }
@@ -55,7 +57,7 @@ SCICOS_BLOCKS_IMPEXP void evtdly4(scicos_block *block, int flag)
         {
             double dt;
 
-            i = *block->work;
+            i = *work;
             t = get_scicos_time();
             (*i)++; /*increase counter*/
             dt = block->rpar[1] + (*i) * block->rpar[0] - t;
@@ -71,7 +73,7 @@ SCICOS_BLOCKS_IMPEXP void evtdly4(scicos_block *block, int flag)
         /* finish */
         case 5  :
         {
-            scicos_free(*block->work); /*free the workspace*/
+            scicos_free(*work); /*free the workspace*/
             break;
         }
 

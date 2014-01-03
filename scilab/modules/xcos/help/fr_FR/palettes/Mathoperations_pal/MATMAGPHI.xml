@@ -146,7 +146,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">decomposition type (1=Complex2MAG&amp;amp;PHI 2=MAG&amp;amp;PHI2Complex)</emphasis>
+                    <emphasis role="bold">decomposition type (1=Complex2MAG&amp;PHI 2=MAG&amp;PHI2Complex)</emphasis>
                 </para>
                 <para>Il indique la règle de conversion.</para>
                 <para>Propriétés : Type 'vec' de taille 1.</para>

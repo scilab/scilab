@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-09-27 17:13+0100\n"
+"Revision-Date: 2013-12-09 09:48+0100\n"
 
 # File: sci_gateway/c/gw_gui.c, line: 85
 #, c-format
@@ -32,12 +32,12 @@ msgstr ""
 # File: sci_gateway/c/sci_setmenu.c, line: 119
 # File: sci_gateway/c/sci_setmenu.c, line: 139
 # File: sci_gateway/c/sci_setmenu.c, line: 221
-# File: sci_gateway/c/sci_uicontrol.c, line: 358
-# File: sci_gateway/c/sci_uicontrol.c, line: 402
-# File: sci_gateway/c/sci_uicontrol.c, line: 495
+# File: sci_gateway/c/sci_uicontrol.c, line: 359
+# File: sci_gateway/c/sci_uicontrol.c, line: 403
+# File: sci_gateway/c/sci_uicontrol.c, line: 496
 # File: sci_gateway/c/sci_uigetcolor.c, line: 89
-# File: sci_gateway/c/sci_uigetcolor.c, line: 122
-# File: sci_gateway/c/sci_uigetcolor.c, line: 194
+# File: sci_gateway/c/sci_uigetcolor.c, line: 116
+# File: sci_gateway/c/sci_uigetcolor.c, line: 182
 # File: sci_gateway/c/sci_uimenu.c, line: 164
 # File: sci_gateway/c/sci_uimenu.c, line: 213
 # File: sci_gateway/c/sci_unsetmenu.c, line: 68
@@ -53,21 +53,21 @@ msgstr ""
 # File: sci_gateway/c/sci_ClipBoard.c, line: 195
 # File: sci_gateway/c/sci_ClipBoard.c, line: 302
 # File: sci_gateway/c/sci_ClipBoard.c, line: 393
-# File: sci_gateway/c/sci_getcallbackobject.c, line: 78
-# File: sci_gateway/c/sci_getcallbackobject.c, line: 92
+# File: sci_gateway/c/sci_getcallbackobject.c, line: 66
+# File: sci_gateway/c/sci_getcallbackobject.c, line: 75
 # File: sci_gateway/c/sci_messagebox.c, line: 290
 # File: sci_gateway/c/sci_progressionbar.c, line: 165
-# File: sci_gateway/c/sci_toolbar.c, line: 208
+# File: sci_gateway/c/sci_toolbar.c, line: 209
 # File: sci_gateway/c/sci_uicontextmenu.c, line: 51
-# File: sci_gateway/c/sci_uicontrol.c, line: 571
-# File: sci_gateway/c/sci_uigetcolor.c, line: 349
-# File: sci_gateway/c/sci_uigetcolor.c, line: 364
-# File: sci_gateway/c/sci_uigetcolor.c, line: 374
-# File: sci_gateway/c/sci_uigetcolor.c, line: 384
-# File: sci_gateway/c/sci_uigetcolor.c, line: 406
-# File: sci_gateway/c/sci_uigetcolor.c, line: 420
-# File: sci_gateway/c/sci_uigetcolor.c, line: 428
-# File: sci_gateway/c/sci_uigetcolor.c, line: 436
+# File: sci_gateway/c/sci_uicontrol.c, line: 574
+# File: sci_gateway/c/sci_uigetcolor.c, line: 331
+# File: sci_gateway/c/sci_uigetcolor.c, line: 346
+# File: sci_gateway/c/sci_uigetcolor.c, line: 356
+# File: sci_gateway/c/sci_uigetcolor.c, line: 366
+# File: sci_gateway/c/sci_uigetcolor.c, line: 388
+# File: sci_gateway/c/sci_uigetcolor.c, line: 402
+# File: sci_gateway/c/sci_uigetcolor.c, line: 410
+# File: sci_gateway/c/sci_uigetcolor.c, line: 418
 # File: sci_gateway/c/sci_uigetfont.c, line: 243
 # File: sci_gateway/c/sci_uigetfont.c, line: 255
 # File: sci_gateway/c/sci_uigetfont.c, line: 268
@@ -116,7 +116,9 @@ msgstr ""
 # File: sci_gateway/c/sci_ClipBoard.c, line: 102
 # File: sci_gateway/c/sci_ClipBoard.c, line: 134
 # File: sci_gateway/c/sci_ClipBoard.c, line: 411
-# File: sci_gateway/c/sci_toolbar.c, line: 183
+# File: sci_gateway/c/sci_toolbar.c, line: 184
+# File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 128
+# File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 238
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
@@ -127,7 +129,7 @@ msgstr ""
 # File: sci_gateway/c/sci_ClipBoard.c, line: 418
 # File: sci_gateway/c/sci_delmenu.c, line: 59
 # File: sci_gateway/c/sci_delmenu.c, line: 100
-# File: sci_gateway/c/sci_getcallbackobject.c, line: 60
+# File: sci_gateway/c/sci_getcallbackobject.c, line: 54
 # File: sci_gateway/c/sci_helpbrowser.c, line: 125
 # File: sci_gateway/c/sci_helpbrowser.c, line: 182
 # File: sci_gateway/c/sci_helpbrowser.c, line: 232
@@ -136,10 +138,10 @@ msgstr ""
 # File: sci_gateway/c/sci_messagebox.c, line: 227
 # File: sci_gateway/c/sci_setmenu.c, line: 53
 # File: sci_gateway/c/sci_setmenu.c, line: 228
-# File: sci_gateway/c/sci_toolbar.c, line: 189
-# File: sci_gateway/c/sci_uicontrol.c, line: 343
-# File: sci_gateway/c/sci_uicontrol.c, line: 408
-# File: sci_gateway/c/sci_uigetcolor.c, line: 134
+# File: sci_gateway/c/sci_toolbar.c, line: 190
+# File: sci_gateway/c/sci_uicontrol.c, line: 344
+# File: sci_gateway/c/sci_uicontrol.c, line: 409
+# File: sci_gateway/c/sci_uigetcolor.c, line: 122
 # File: sci_gateway/c/sci_uigetfont.c, line: 78
 # File: sci_gateway/c/sci_uimenu.c, line: 150
 # File: sci_gateway/c/sci_unsetmenu.c, line: 54
@@ -147,8 +149,8 @@ msgstr ""
 # File: sci_gateway/c/sci_waitbar.c, line: 327
 # File: sci_gateway/c/sci_x_choose.c, line: 131
 # File: sci_gateway/c/sci_x_choose_modeless.c, line: 134
-# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 102
-# File: sci_gateway/cpp/sci_datatip_set_orient.cpp, line: 150
+# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 107
+# File: sci_gateway/cpp/sci_datatip_set_orient.cpp, line: 153
 # File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 124
 # File: sci_gateway/cpp/sci_uigetdir.cpp, line: 73
 # File: sci_gateway/cpp/sci_uigetdir.cpp, line: 100
@@ -169,7 +171,6 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_ClipBoard.c, line: 226
-# File: sci_gateway/c/sci_getcallbackobject.c, line: 48
 # File: sci_gateway/c/sci_helpbrowser.c, line: 67
 # File: sci_gateway/c/sci_helpbrowser.c, line: 104
 # File: sci_gateway/c/sci_helpbrowser.c, line: 161
@@ -181,8 +182,8 @@ msgstr ""
 # File: sci_gateway/c/sci_messagebox.c, line: 215
 # File: sci_gateway/c/sci_progressionbar.c, line: 85
 # File: sci_gateway/c/sci_progressionbar.c, line: 138
-# File: sci_gateway/c/sci_toolbar.c, line: 164
-# File: sci_gateway/c/sci_uicontrol.c, line: 483
+# File: sci_gateway/c/sci_toolbar.c, line: 165
+# File: sci_gateway/c/sci_uicontrol.c, line: 484
 # File: sci_gateway/c/sci_uigetfont.c, line: 64
 # File: sci_gateway/c/sci_waitbar.c, line: 90
 # File: sci_gateway/c/sci_waitbar.c, line: 151
@@ -210,19 +211,15 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_ClipBoard.c, line: 246
 # File: sci_gateway/c/sci_ClipBoard.c, line: 263
-# File: sci_gateway/c/sci_uicontrol.c, line: 203
-# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 169
+# File: sci_gateway/c/sci_uicontrol.c, line: 204
 # File: sci_gateway/cpp/sci_getinstalledlookandfeels.cpp, line: 82
 # File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 76
-# File: sci_gateway/cpp/sci_openged.cpp, line: 80
-# File: sci_gateway/cpp/sci_plotbrowser.cpp, line: 80
 # File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 65
 # File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 118
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 243
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 265
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 280
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 303
-# File: sci_gateway/cpp/sci_useeditor.cpp, line: 100
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -235,13 +232,13 @@ msgstr ""
 # File: sci_gateway/c/sci_setmenu.c, line: 156
 # File: sci_gateway/c/sci_setmenu.c, line: 192
 # File: sci_gateway/c/sci_setmenu.c, line: 246
-# File: sci_gateway/c/sci_uicontrol.c, line: 243
-# File: sci_gateway/c/sci_uicontrol.c, line: 469
+# File: sci_gateway/c/sci_uicontrol.c, line: 244
+# File: sci_gateway/c/sci_uicontrol.c, line: 470
 # File: sci_gateway/c/sci_uigetcolor.c, line: 67
-# File: sci_gateway/c/sci_uigetcolor.c, line: 153
-# File: sci_gateway/c/sci_uigetcolor.c, line: 229
-# File: sci_gateway/c/sci_uigetcolor.c, line: 260
-# File: sci_gateway/c/sci_uigetcolor.c, line: 291
+# File: sci_gateway/c/sci_uigetcolor.c, line: 141
+# File: sci_gateway/c/sci_uigetcolor.c, line: 211
+# File: sci_gateway/c/sci_uigetcolor.c, line: 242
+# File: sci_gateway/c/sci_uigetcolor.c, line: 273
 # File: sci_gateway/c/sci_uigetfont.c, line: 100
 # File: sci_gateway/c/sci_uimenu.c, line: 201
 # File: sci_gateway/c/sci_unsetmenu.c, line: 92
@@ -267,9 +264,9 @@ msgstr ""
 # File: sci_gateway/c/sci_setmenu.c, line: 199
 # File: sci_gateway/c/sci_setmenu.c, line: 253
 # File: sci_gateway/c/sci_toolbar.c, line: 77
-# File: sci_gateway/c/sci_uigetcolor.c, line: 235
-# File: sci_gateway/c/sci_uigetcolor.c, line: 266
-# File: sci_gateway/c/sci_uigetcolor.c, line: 297
+# File: sci_gateway/c/sci_uigetcolor.c, line: 217
+# File: sci_gateway/c/sci_uigetcolor.c, line: 248
+# File: sci_gateway/c/sci_uigetcolor.c, line: 279
 # File: sci_gateway/c/sci_uigetfont.c, line: 107
 # File: sci_gateway/c/sci_unsetmenu.c, line: 99
 # File: sci_gateway/c/sci_unsetmenu.c, line: 162
@@ -318,9 +315,9 @@ msgstr ""
 # File: sci_gateway/c/sci_setmenu.c, line: 205
 # File: sci_gateway/c/sci_setmenu.c, line: 259
 # File: sci_gateway/c/sci_toolbar.c, line: 71
-# File: sci_gateway/c/sci_uigetcolor.c, line: 241
-# File: sci_gateway/c/sci_uigetcolor.c, line: 272
-# File: sci_gateway/c/sci_uigetcolor.c, line: 303
+# File: sci_gateway/c/sci_uigetcolor.c, line: 223
+# File: sci_gateway/c/sci_uigetcolor.c, line: 254
+# File: sci_gateway/c/sci_uigetcolor.c, line: 285
 # File: sci_gateway/c/sci_uigetfont.c, line: 114
 # File: sci_gateway/c/sci_unsetmenu.c, line: 204
 # File: sci_gateway/c/sci_unsetmenu.c, line: 256
@@ -331,13 +328,13 @@ msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_exportUI.c, line: 58
+# File: sci_gateway/c/sci_exportUI.c, line: 57
 # File: sci_gateway/c/sci_progressionbar.c, line: 63
 # File: sci_gateway/c/sci_progressionbar.c, line: 119
 # File: sci_gateway/c/sci_toolbar.c, line: 120
-# File: sci_gateway/c/sci_uicontrol.c, line: 149
-# File: sci_gateway/c/sci_uicontrol.c, line: 297
-# File: sci_gateway/c/sci_uicontrol.c, line: 512
+# File: sci_gateway/c/sci_uicontrol.c, line: 150
+# File: sci_gateway/c/sci_uicontrol.c, line: 298
+# File: sci_gateway/c/sci_uicontrol.c, line: 513
 # File: sci_gateway/c/sci_uimenu.c, line: 230
 # File: sci_gateway/c/sci_uiwait.c, line: 55
 # File: sci_gateway/c/sci_waitbar.c, line: 201
@@ -348,7 +345,7 @@ msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_exportUI.c, line: 64
+# File: sci_gateway/c/sci_exportUI.c, line: 63
 # File: sci_gateway/c/sci_exportUI.c, line: 93
 #, c-format
 msgid ""
@@ -366,23 +363,16 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getcallbackobject.c, line: 54
-# File: sci_gateway/c/sci_helpbrowser.c, line: 115
-# File: sci_gateway/c/sci_helpbrowser.c, line: 172
-# File: sci_gateway/c/sci_helpbrowser.c, line: 221
-# File: sci_gateway/c/sci_messagebox.c, line: 97
-# File: sci_gateway/c/sci_messagebox.c, line: 221
-# File: sci_gateway/c/sci_setmenu.c, line: 66
-# File: sci_gateway/c/sci_toolbar.c, line: 171
-# File: sci_gateway/c/sci_uigetcolor.c, line: 95
-# File: sci_gateway/c/sci_uigetcolor.c, line: 128
-# File: sci_gateway/c/sci_uigetcolor.c, line: 200
-# File: sci_gateway/c/sci_uigetfont.c, line: 72
-# File: sci_gateway/c/sci_x_choose.c, line: 125
-# File: sci_gateway/c/sci_x_choose_modeless.c, line: 128
-# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 94
+# File: sci_gateway/c/sci_exportUI.c, line: 107
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A valid figure identifier expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_getcallbackobject.c, line: 48
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr ""
 
 #
@@ -390,6 +380,22 @@ msgstr ""
 # File: sci_gateway/c/sci_x_mdialog.c, line: 211
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_helpbrowser.c, line: 115
+# File: sci_gateway/c/sci_helpbrowser.c, line: 172
+# File: sci_gateway/c/sci_helpbrowser.c, line: 221
+# File: sci_gateway/c/sci_messagebox.c, line: 97
+# File: sci_gateway/c/sci_messagebox.c, line: 221
+# File: sci_gateway/c/sci_setmenu.c, line: 66
+# File: sci_gateway/c/sci_toolbar.c, line: 172
+# File: sci_gateway/c/sci_uigetfont.c, line: 72
+# File: sci_gateway/c/sci_x_choose.c, line: 125
+# File: sci_gateway/c/sci_x_choose_modeless.c, line: 128
+# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 101
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
@@ -404,10 +410,11 @@ msgstr ""
 # File: sci_gateway/c/sci_helpbrowser.c, line: 274
 # File: sci_gateway/c/sci_uigetfont.c, line: 143
 # File: sci_gateway/c/sci_uigetfont.c, line: 180
-# File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 69
-# File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 119
-# File: sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 66
-# File: sci_gateway/cpp/sci_useeditor.cpp, line: 76
+# File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 84
+# File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 99
+# File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 194
+# File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 209
+# File: sci_gateway/cpp/sci_useeditor.cpp, line: 93
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
@@ -416,19 +423,20 @@ msgstr ""
 # File: sci_gateway/c/sci_helpbrowser.c, line: 286
 # File: sci_gateway/c/sci_uigetfont.c, line: 151
 # File: sci_gateway/c/sci_uigetfont.c, line: 188
-# File: sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 79
-# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 186
-# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 266
-# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 273
+# File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 147
+# File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 244
+# File: sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 88
+# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 193
+# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 265
+# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 271
 # File: sci_gateway/cpp/sci_usecanvas.cpp, line: 45
-# File: sci_gateway/cpp/sci_useeditor.cpp, line: 70
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_helpbrowser.c, line: 302
-# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 111
+# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 114
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
@@ -461,7 +469,7 @@ msgstr ""
 # File: sci_gateway/c/sci_mpopup.c, line: 51
 # File: src/java/org/scilab/modules/gui/editor/Editor.java, line: 599
 # File: src/java/org/scilab/modules/gui/editor/Editor.java, line: 809
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 85
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 88
 msgid "Warning"
 msgstr ""
 
@@ -495,11 +503,9 @@ msgstr ""
 # File: sci_gateway/c/sci_progressionbar.c, line: 69
 # File: sci_gateway/c/sci_progressionbar.c, line: 125
 # File: sci_gateway/c/sci_toolbar.c, line: 126
-# File: sci_gateway/c/sci_uicontrol.c, line: 143
-# File: sci_gateway/c/sci_uicontrol.c, line: 237
+# File: sci_gateway/c/sci_uicontrol.c, line: 144
+# File: sci_gateway/c/sci_uicontrol.c, line: 238
 # File: sci_gateway/c/sci_uiwait.c, line: 61
-# File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 84
-# File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 100
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
 msgstr ""
@@ -540,36 +546,36 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_toolbar.c, line: 133
+# File: sci_gateway/c/sci_toolbar.c, line: 134
 #, c-format
 msgid "%s: Wrong value for input argument #%d: this handle does not exist.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_toolbar.c, line: 140
+# File: sci_gateway/c/sci_toolbar.c, line: 141
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_toolbar.c, line: 146
+# File: sci_gateway/c/sci_toolbar.c, line: 147
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 172
-# File: sci_gateway/c/sci_uicontrol.c, line: 526
+# File: sci_gateway/c/sci_uicontrol.c, line: 173
+# File: sci_gateway/c/sci_uicontrol.c, line: 527
 # File: sci_gateway/c/sci_uimenu.c, line: 253
 #, c-format
 msgid "%s: Could not set property '%s'.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 178
-# File: sci_gateway/c/sci_uicontrol.c, line: 185
+# File: sci_gateway/c/sci_uicontrol.c, line: 179
+# File: sci_gateway/c/sci_uicontrol.c, line: 186
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s', '%s' or '%s' handle "
@@ -577,31 +583,31 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 251
-# File: sci_gateway/c/sci_uicontrol.c, line: 262
-# File: sci_gateway/c/sci_uicontrol.c, line: 272
-# File: sci_gateway/c/sci_uicontrol.c, line: 304
-# File: sci_gateway/c/sci_uicontrol.c, line: 314
+# File: sci_gateway/c/sci_uicontrol.c, line: 252
+# File: sci_gateway/c/sci_uicontrol.c, line: 263
+# File: sci_gateway/c/sci_uicontrol.c, line: 273
+# File: sci_gateway/c/sci_uicontrol.c, line: 305
+# File: sci_gateway/c/sci_uicontrol.c, line: 315
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 290
+# File: sci_gateway/c/sci_uicontrol.c, line: 291
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A '%s' or a '%s' handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 382
+# File: sci_gateway/c/sci_uicontrol.c, line: 383
 #, c-format
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 418
+# File: sci_gateway/c/sci_uicontrol.c, line: 419
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
 msgstr ""
@@ -614,22 +620,22 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_uigetcolor.c, line: 73
-# File: sci_gateway/c/sci_uigetcolor.c, line: 159
+# File: sci_gateway/c/sci_uigetcolor.c, line: 147
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uigetcolor.c, line: 101
-# File: sci_gateway/c/sci_uigetcolor.c, line: 206
+# File: sci_gateway/c/sci_uigetcolor.c, line: 95
+# File: sci_gateway/c/sci_uigetcolor.c, line: 188
 # File: sci_gateway/c/sci_waitbar.c, line: 97
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uigetcolor.c, line: 165
+# File: sci_gateway/c/sci_uigetcolor.c, line: 153
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
@@ -659,20 +665,20 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_uiwait.c, line: 74
 # File: sci_gateway/c/sci_waitbar.c, line: 359
-# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 120
-# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 129
-# File: sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 88
-# File: sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 97
+# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 121
+# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 127
+# File: sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 94
+# File: sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 100
 # File: sci_gateway/cpp/sci_datatip_set_orient.cpp, line: 159
-# File: sci_gateway/cpp/sci_datatip_set_orient.cpp, line: 168
-# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 302
-# File: sci_gateway/cpp/sci_datatip_toggle.cpp, line: 64
-# File: sci_gateway/cpp/sci_datatipcreate.cpp, line: 107
-# File: sci_gateway/cpp/sci_datatipcreate.cpp, line: 113
-# File: sci_gateway/cpp/sci_datatipmove.cpp, line: 63
-# File: sci_gateway/cpp/sci_datatipmove.cpp, line: 69
-# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 78
-# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 149
+# File: sci_gateway/cpp/sci_datatip_set_orient.cpp, line: 165
+# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 295
+# File: sci_gateway/cpp/sci_datatip_toggle.cpp, line: 74
+# File: sci_gateway/cpp/sci_datatipcreate.cpp, line: 124
+# File: sci_gateway/cpp/sci_datatipcreate.cpp, line: 130
+# File: sci_gateway/cpp/sci_datatipmove.cpp, line: 79
+# File: sci_gateway/cpp/sci_datatipmove.cpp, line: 85
+# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 82
+# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 140
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
@@ -681,7 +687,6 @@ msgstr ""
 # File: sci_gateway/c/sci_waitbar.c, line: 207
 # File: sci_gateway/c/sci_waitbar.c, line: 256
 # File: sci_gateway/c/sci_waitbar.c, line: 352
-# File: sci_gateway/cpp/sci_datatip_toggle.cpp, line: 52
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
@@ -783,7 +788,7 @@ msgstr ""
 # File: sci_gateway/cpp/sci_uiputfile.cpp, line: 234
 # File: sci_gateway/cpp/sci_usecanvas.cpp, line: 68
 # File: sci_gateway/cpp/sci_usecanvas.cpp, line: 80
-# File: sci_gateway/cpp/sci_useeditor.cpp, line: 93
+# File: sci_gateway/cpp/sci_useeditor.cpp, line: 110
 # File: src/cpp/CallHelpBrowser.cpp, line: 26
 # File: src/cpp/CallHelpBrowser.cpp, line: 41
 #, c-format
@@ -793,91 +798,116 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 126
+# File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 137
+# File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 163
+# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 53
+# File: sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 57
+# File: sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 80
+# File: sci_gateway/cpp/sci_datatip_set_orient.cpp, line: 58
+# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 61
+# File: sci_gateway/cpp/sci_datatip_toggle.cpp, line: 62
+# File: sci_gateway/cpp/sci_datatipcreate.cpp, line: 61
+# File: sci_gateway/cpp/sci_datatipcreate.cpp, line: 68
+# File: sci_gateway/cpp/sci_datatipmove.cpp, line: 58
+# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 57
+# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 64
+# File: sci_gateway/cpp/sci_openged.cpp, line: 55
+# File: sci_gateway/cpp/sci_plotbrowser.cpp, line: 55
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 78
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 197
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 205
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 228
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 251
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 295
+# File: sci_gateway/cpp/sci_useeditor.cpp, line: 57
+# File: sci_gateway/cpp/sci_useeditor.cpp, line: 87
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 250
 #, c-format
 msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 106
-# File: sci_gateway/cpp/sci_datatip_set_orient.cpp, line: 177
-# File: sci_gateway/cpp/sci_datatipcreate.cpp, line: 121
-# File: sci_gateway/cpp/sci_datatipmove.cpp, line: 75
+# File: sci_gateway/cpp/sci_datatip_set_orient.cpp, line: 171
+# File: sci_gateway/cpp/sci_datatipcreate.cpp, line: 136
+# File: sci_gateway/cpp/sci_datatipmove.cpp, line: 91
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_datatip_set_orient.cpp, line: 141
+# File: sci_gateway/cpp/sci_datatip_set_orient.cpp, line: 147
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 130
-# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 192
-# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 279
+# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 140
+# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 199
+# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 277
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 137
-# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 199
-# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 286
-# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 143
-# File: sci_gateway/cpp/sci_openged.cpp, line: 46
-# File: sci_gateway/cpp/sci_plotbrowser.cpp, line: 46
-# File: sci_gateway/cpp/sci_useeditor.cpp, line: 46
+# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 146
+# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 205
+# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 283
+# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 134
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 295
+# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 289
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_datatip_toggle.cpp, line: 70
-# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 163
+# File: sci_gateway/cpp/sci_datatip_toggle.cpp, line: 80
+# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 152
 #, c-format
 msgid "%s: Wrong number for input argument: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_datatipcreate.cpp, line: 95
+# File: sci_gateway/cpp/sci_datatipcreate.cpp, line: 110
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: 1-by-%d or %d-by-1 vector expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_datatipcreate.cpp, line: 101
+# File: sci_gateway/cpp/sci_datatipcreate.cpp, line: 118
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 63
-# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 96
+# File: sci_gateway/cpp/sci_datatipcreate.cpp, line: 143
+# File: sci_gateway/cpp/sci_useeditor.cpp, line: 120
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A handle expected.\n"
+msgid "%s: Can not create output argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 84
-# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 155
+# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 88
+# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 146
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 136
-# File: sci_gateway/cpp/sci_openged.cpp, line: 54
-# File: sci_gateway/cpp/sci_plotbrowser.cpp, line: 54
-# File: sci_gateway/cpp/sci_useeditor.cpp, line: 54
+# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 127
+# File: sci_gateway/cpp/sci_openged.cpp, line: 61
+# File: sci_gateway/cpp/sci_plotbrowser.cpp, line: 61
+# File: sci_gateway/cpp/sci_useeditor.cpp, line: 63
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
@@ -935,23 +965,12 @@ msgid "Impossible to get current look and feel"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_openged.cpp, line: 74
-# File: sci_gateway/cpp/sci_plotbrowser.cpp, line: 74
+# File: sci_gateway/cpp/sci_openged.cpp, line: 79
+# File: sci_gateway/cpp/sci_plotbrowser.cpp, line: 79
 #, c-format
 msgid ""
 "%s: A Java exception arised:\n"
 "%s"
-msgstr ""
-
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 78
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 197
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 205
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 228
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 251
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 295
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
@@ -1651,7 +1670,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 817
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 97
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 100
 msgid "Colors"
 msgstr ""
 
@@ -2159,17 +2178,17 @@ msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2519
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 793
 msgid "Console Font..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2538
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 812
 msgid "Console Background..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2672
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 946
 msgid "No print service found."
 msgstr ""
 
@@ -2257,110 +2276,158 @@ msgid "Evaluate selection with no echo"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 44
-msgid "Windows BMP image"
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/ExportOptionWindow.java, line: 75
+#, c-format
+msgid "Option for %s format"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 45
-msgid "GIF image"
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/ExportOptionWindow.java, line: 83
+msgid "Portrait"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 46
-msgid "JPEG image"
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/ExportOptionWindow.java, line: 84
+msgid "Landscape"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 47
-msgid "PNG image"
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/ExportOptionWindow.java, line: 90
+msgid "Confirm"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/ExportOptionWindow.java, line: 91
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 219
+# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 260
+# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 270
+# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 274
+msgid "Cancel"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/ExportOptionWindow.java, line: 99
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 69
+msgid "Orientation"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/ExportOptionWindow.java, line: 174
+#, c-format
+msgid "An error occurred during export: %s"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/ExportOptionWindow.java, line: 174
+msgid "Export error"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 48
-msgid "PPM image"
+msgid "Windows BMP image"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 49
-msgid "Enhanced Metafile image (EMF)"
+msgid "GIF image"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 50
-msgid "Encapsulated PostScript image (EPS)"
+msgid "JPEG image"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 51
-msgid "FIG image"
+msgid "PNG image"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 52
-msgid "PDF image"
+msgid "PPM image"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 53
-msgid "SVG image"
+msgid "Enhanced Metafile image (EMF)"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 54
+msgid "Encapsulated PostScript image (EPS)"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 55
+msgid "PostScript image (PS)"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 56
+msgid "FIG image"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 57
+msgid "PDF image"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 58
+msgid "SVG image"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 59
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 80
 msgid "All files"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 101
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 102
-msgid "Export"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 103
 msgid "Untitled-export"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 122
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 119
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 120
+msgid "Export"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 140
 # File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 192
 msgid "Preview"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 147
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabFileChooser.java, line: 177
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 164
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabFileChooser.java, line: 185
 msgid "Replace existing file?"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 148
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabFileChooser.java, line: 178
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 165
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabFileChooser.java, line: 186
 msgid "File already exists"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 216
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 229
 msgid "Please specify a file format"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 217
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 254
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 230
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 265
 msgid "Error on export"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 252
-msgid "Unrecognized extension '"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 253
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 265
+#, c-format
 msgid ""
-"'.\n"
+"Unrecognized extension '%s'.\n"
 " Please specify a valid file format."
 msgstr ""
 
@@ -2371,7 +2438,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 115
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 225
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 230
 msgid "Font"
 msgstr ""
 
@@ -2403,14 +2470,6 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 207
 msgid "Ok"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 219
-# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 260
-# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 270
-# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 274
-msgid "Cancel"
 msgstr ""
 
 #
@@ -2464,41 +2523,41 @@ msgid ""
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 149
+# File: src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 150
 # File: src/java/org/scilab/modules/gui/editor/Editor.java, line: 320
 msgid "Insert"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 150
+# File: src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 151
 msgid "Insert a new point here"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 151
+# File: src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 152
 # File: src/java/org/scilab/modules/gui/editor/Editor.java, line: 322
 msgid "Remove"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 152
+# File: src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 153
 msgid "Remove this point"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 153
+# File: src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 154
 # File: src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 58
 msgid "Exit"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 154
+# File: src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 155
 msgid "Leave data editor mode"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/editor/Editor.java, line: 295
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 220
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 225
 msgid "Label"
 msgstr ""
 
@@ -2525,7 +2584,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/editor/Editor.java, line: 304
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 179
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 184
 msgid "Delete"
 msgstr ""
 
@@ -2672,7 +2731,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/editor/Editor.java, line: 335
-msgid "Paste the copied style on this axes"
+msgid "Paste the copied style on these axes"
 msgstr ""
 
 #
@@ -2793,849 +2852,874 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 47
-msgid "Auto Ticks"
+msgid "Arc Drawing Method"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 48
-msgid "Tick"
+msgid "Auto Rotation"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 49
-msgid "Lines"
+msgid "Auto Position"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 50
-msgid "Nurbs"
+msgid "Auto Ticks"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 51
-msgid "Anti-alising"
+msgid "Tick"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 52
-msgid "Auto Clear"
+msgid "Lines"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 53
-msgid "Auto Orientation"
+msgid "Nurbs"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 54
-msgid "Auto Scale"
+msgid "Anti-alising"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 55
-msgid "Auto Resize"
+msgid "Auto Clear"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 56
-msgid "Axes Visible"
+msgid "Auto Orientation"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 57
-msgid "Axes Reverse"
+msgid "Auto Scale"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 58
-msgid "Closed"
+msgid "Auto Resize"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 59
-msgid "Cube Scaling"
+msgid "Axes Visible"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 60
-msgid "Fill Mode"
+msgid "Axes Reverse"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 61
-msgid "Immediate Drawing"
+msgid "Closed"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 62
-msgid "Isometric View"
+msgid "Cube Scaling"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 63
-msgid "Label Mode"
+msgid "Fill Mode"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 64
-msgid "Line Mode"
+msgid "Immediate Drawing"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 65
-msgid "Mark Mode"
+msgid "Isometric View"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 66
-msgid "Orientation"
+msgid "Label Mode"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 67
-msgid "Visible"
+msgid "Line Mode"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 68
-msgid "Base Properties"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 69
-msgid "On"
+msgid "Mark Mode"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 70
-msgid "Off"
+msgid "Visible"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 71
-msgid "Pixmap"
+msgid "Base Properties"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 72
-msgid "Tag"
+msgid "On"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 73
-msgid "Text"
+msgid "Off"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 74
-msgid "Surface Mode"
+msgid "Pixmap"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 75
+msgid "Tag"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 76
-msgid "Box"
+msgid "Text"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 77
-msgid "Hidden Axis Color"
+msgid "Surface Mode"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 79
-msgid "Camera"
+msgid "Box"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 80
-msgid "Alpha"
+msgid "Hidden Axis Color"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 81
-msgid "Theta"
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 82
+msgid "Camera"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 83
-msgid "Ticks"
+msgid "Alpha"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 84
+msgid "Theta"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 86
+msgid "Ticks"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 89
 msgid ""
 "The data bounds from the axis must be strictly positive to be changed to "
 "logarithmic scale."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 89
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 92
 msgid "Choose Background Color"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 90
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 93
 msgid "Choose Foreground Color"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 91
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 94
 msgid "Choose Font Color"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 92
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 95
 msgid "Choose a Color"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 95
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 98
 msgid "Arrow Size"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 96
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 99
 msgid "Colored"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 98
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 101
 msgid "Background"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 99
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 102
 msgid "Foreground"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 100
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 103
 msgid "Grid Position"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 101
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 104
 msgid "X Grid Color"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 102
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 105
 msgid "Y Grid Color"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 103
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 106
 msgid "Back Half"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 104
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 107
 msgid "Hidden Axes"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 105
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 108
 msgid "Style/Appearance"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 106
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 109
 msgid "Background Color"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 107
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 110
 msgid "Foreground Color"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 108
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 111
 msgid "Line Style"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 109
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 112
 msgid "solid"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 110
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 113
 msgid "dash"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 111
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 114
 msgid "dash dot"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 112
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 115
 msgid "longdash dot"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 113
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 116
 msgid "bigdash dot"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 114
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 117
 msgid "bigdash longdash"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 115
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 118
 msgid "dot"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 116
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 119
 msgid "double dot"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 117
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 120
 msgid "Polyline Style"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 118
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 121
 msgid "interpolated"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 119
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 122
 msgid "staircase"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 120
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 123
 msgid "barplot"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 121
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 124
 msgid "bar"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 122
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 125
 msgid "arrowed"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 123
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 126
 msgid "filled"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 124
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 127
 msgid "Min"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 125
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 128
 msgid "Max"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 126
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 129
 msgid "Color Range"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 127
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 130
 msgid "Outside Color"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 128
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 131
 msgid "Z Bounds"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 130
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 133
 msgid "Pixel Drawing Mode"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 131
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 134
 msgid "Rotation Style"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 132
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 135
 msgid "unary"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 133
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 136
 msgid "multiple"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 135
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 138
 msgid "Arrow Size Factor"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 136
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 139
 msgid "Bar Width"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 137
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 140
 msgid "Color Mode"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 138
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 141
 msgid "Color Flag"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 139
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 142
 msgid "Hidden Color"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 140
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 143
 msgid "Thickness"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 141
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 144
 msgid "Mark"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 142
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 145
 msgid "Mark Background"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 143
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 146
 msgid "Mark Foreground"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 144
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 147
 msgid "Mark Size"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 145
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 148
 msgid "Mark Style"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 148
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 151
 msgid "3 Components"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 149
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 152
 msgid "Data Properties"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 150
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 153
 msgid "Data Mapping"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 151
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 154
 msgid "Direct"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 152
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 155
 msgid "Clip Box"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 153
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 156
 msgid "Upper-left"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 154
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 157
 msgid "Point"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 155
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 158
 msgid "Clip State"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 156
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 159
 msgid "clipgrf"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 157
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 160
 msgid "Data"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 158
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 161
 msgid "Figure ID"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 159
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 162
 msgid "Figure Name"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 160
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 163
 msgid "Info Message"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 161
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 164
 msgid "Units"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 162
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 165
 msgid "Upper Left Point"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 163
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 166
 msgid "User Data"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 164
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 167
 msgid "X Label"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 165
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 168
 msgid "Y Label"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 166
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 169
 msgid "Z Label"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 167
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 170
 msgid "Scaled"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 168
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 171
 msgid "Title"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 171
-msgid "Number of current figure."
-msgstr ""
-
-#
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 172
-msgid "Enter a figure name."
+msgid "Start Angle"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 173
+msgid "End Angle"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 176
+msgid "Number of current figure."
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 177
+msgid "Enter a figure name."
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 178
 # File: src/java/org/scilab/modules/gui/plotbrowser/MessagesPlotBrowser.java, line: 27
 msgid "Refresh"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 174
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 179
 msgid "Submit and close"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 177
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 182
 msgid "Append"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 178
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 183
 msgid "Data Editor"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 182
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 187
 msgid "2D"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 183
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 188
 msgid "3D"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 184
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 189
 msgid "Control"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 185
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 190
 msgid "Axes Size"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 186
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 191
 msgid "CloseRequestFcn"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 187
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 192
 msgid "ResizeFcn"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 188
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 193
 msgid "Figure Position"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 189
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 194
 msgid "Figure Size"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 190
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 195
 msgid "Event Handler"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 191
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 196
 msgid "Function"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 192
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 197
 msgid "View"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 193
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 198
 msgid "Viewport"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 194
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 199
 msgid "X Left"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 195
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 200
 msgid "Y Up"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 196
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 201
 msgid "Log Flags"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 197
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 202
 msgid "Tight Limits"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 200
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 205
 msgid "Enter a x position."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 201
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 206
 msgid "Enter a y position."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 202
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 207
 msgid "Enter a x size."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 203
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 208
 msgid "Enter a y size."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 206
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 211
 msgid "Axis Rulers"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 207
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 212
 msgid "X Location"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 208
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 213
 msgid "Y Location"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 209
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 214
 msgid "Location"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 210
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 215
 msgid "bottom"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 211
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 216
 msgid "middle"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 212
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 217
 msgid "origin"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 213
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 218
 msgid "top"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 214
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 219
 msgid "left"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 215
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 220
 msgid "right"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 216
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 221
 msgid "Reverse"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 219
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 224
 msgid "Box Mode"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 221
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 226
 msgid "Title Page"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 222
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 227
 msgid "Axis Title"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 226
-msgid "Font Color"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 227
-msgid "Font Size"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 228
-msgid "Font Style"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 229
-msgid "Fractional Font"
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 231
+msgid "Font Angle"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 232
-msgid "Sub Ticks"
+msgid "Font Color"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 233
-msgid "Coordinates"
+msgid "Font Size"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 234
-msgid "X Coordinate"
+msgid "Font Style"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 235
-msgid "Y Coordinate"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 236
-msgid "Position"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 237
-msgid "Axes Bounds"
+msgid "Fractional Font"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 238
-msgid "Mark Size Unit"
+msgid "Sub Ticks"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 239
-msgid "Shift"
+msgid "Coordinates"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 240
-msgid "Up"
+msgid "X Coordinate"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 241
-msgid "Width"
+msgid "Y Coordinate"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 242
-msgid "Height"
+msgid "Position"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 243
-msgid "Margins"
+msgid "Axes Bounds"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 244
-msgid "Rotation Angles"
+msgid "Mark Size Unit"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 245
-msgid "Tabulated"
+msgid "Shift"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 246
-msgid "X Shift"
+msgid "Up"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 247
-msgid "Y Shift"
+msgid "Width"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 248
+msgid "Height"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 249
+msgid "Margins"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 250
+msgid "Rotation Angles"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 251
+msgid "Tabulated"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 252
+msgid "X Shift"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 253
+msgid "Y Shift"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 254
 msgid "Z Shift"
 msgstr ""
 
@@ -4121,13 +4205,20 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/getvalue.sci, line: 228
+# File: macros/getvalue.sci, line: 75
+# File: macros/tree_show.sci, line: 25
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#
+# File: macros/getvalue.sci, line: 231
 #, c-format
 msgid "%s: Type %s is not implemented.\n"
 msgstr ""
 
 #
-# File: macros/getvalue.sci, line: 233
+# File: macros/getvalue.sci, line: 236
 #, c-format
 msgid ""
 "Answer given for %s \n"
@@ -4136,7 +4227,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/getvalue.sci, line: 237
+# File: macros/getvalue.sci, line: 240
 #, c-format
 msgid ""
 "Answer given for %s \n"
@@ -4144,11 +4235,18 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/getvalue.sci, line: 239
+# File: macros/getvalue.sci, line: 242
 #, c-format
 msgid ""
 "Answer given for %s \n"
 " is incorrect: %s.\n"
+msgstr ""
+
+#
+# File: macros/menubar.sci, line: 11
+# File: macros/x_matrix.sci, line: 12
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #

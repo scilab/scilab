@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "external_objects module"
             VALUE "FileVersion", "5, 4, 0, 0"
             VALUE "InternalName", "external_objects module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "external_objects.dll"
             VALUE "ProductName", " external_objects"
             VALUE "ProductVersion", "5, 4, 0, 0"

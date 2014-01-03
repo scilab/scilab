@@ -21,8 +21,8 @@
 #include "setHandleProperty.h"
 
 /*------------------------------------------------------------------------*/
-int set_figure_position_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_figure_position_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    return set_screen_position_property(_pvCtx, pobjUID, _pvData, valueType, nbRow, nbCol);
+    return set_screen_position_property(_pvCtx, iObjUID, _pvData, valueType, nbRow, nbCol);
 }
 /*------------------------------------------------------------------------*/

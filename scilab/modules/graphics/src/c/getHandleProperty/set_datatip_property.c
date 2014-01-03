@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -24,7 +24,7 @@
 /**
  * Sets the datatip data.
  */
-int set_tip_data_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_tip_data_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     double *tip_data;
@@ -45,7 +45,7 @@ int set_tip_data_property(void* _pvCtx, char* pobj, void* _pvData, int valueType
     tip_data = (double*)_pvData;
 
 
-    status = setGraphicObjectProperty(pobj, __GO_DATATIP_DATA__, tip_data, jni_double_vector, 3);
+    status = setGraphicObjectProperty(iObj, __GO_DATATIP_DATA__, tip_data, jni_double_vector, 3);
 
     if (status == TRUE)
     {
@@ -63,7 +63,7 @@ int set_tip_data_property(void* _pvCtx, char* pobj, void* _pvData, int valueType
 /**
  * Sets the datatip oriantation.
  */
-int set_tip_orientation_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_tip_orientation_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int tip_orientation;
@@ -76,7 +76,7 @@ int set_tip_orientation_property(void* _pvCtx, char* pobj, void* _pvData, int va
 
     tip_orientation = (int)((double*)_pvData)[0];
 
-    status = setGraphicObjectProperty(pobj, __GO_DATATIP_ORIENTATION__, &tip_orientation, jni_int, 1);
+    status = setGraphicObjectProperty(iObj, __GO_DATATIP_ORIENTATION__, &tip_orientation, jni_int, 1);
 
     if (status == TRUE)
     {
@@ -92,7 +92,7 @@ int set_tip_orientation_property(void* _pvCtx, char* pobj, void* _pvData, int va
 /**
  * Enable/disable the datatip Z component to be displayed.
  */
-int set_tip_3component_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_tip_3component_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int use_z = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "tip_3component");
@@ -100,7 +100,7 @@ int set_tip_3component_property(void* _pvCtx, char* pobj, void* _pvData, int val
     {
         return SET_PROPERTY_ERROR;
     }
-    status = setGraphicObjectProperty(pobj, __GO_DATATIP_3COMPONENT__, &use_z, jni_bool, 1);
+    status = setGraphicObjectProperty(iObj, __GO_DATATIP_3COMPONENT__, &use_z, jni_bool, 1);
 
     if (status == TRUE)
     {
@@ -117,7 +117,7 @@ int set_tip_3component_property(void* _pvCtx, char* pobj, void* _pvData, int val
 /**
  * Enable/disable the datatip auto-orientation.
  */
-int set_tip_auto_orientation_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_tip_auto_orientation_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int auto_orientation = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "tip_auto_orientation");
@@ -125,7 +125,7 @@ int set_tip_auto_orientation_property(void* _pvCtx, char* pobj, void* _pvData, i
     {
         return SET_PROPERTY_ERROR;
     }
-    status = setGraphicObjectProperty(pobj, __GO_DATATIP_AUTOORIENTATION__, &auto_orientation, jni_bool, 1);
+    status = setGraphicObjectProperty(iObj, __GO_DATATIP_AUTOORIENTATION__, &auto_orientation, jni_bool, 1);
 
     if (status == TRUE)
     {
@@ -142,7 +142,7 @@ int set_tip_auto_orientation_property(void* _pvCtx, char* pobj, void* _pvData, i
 /**
  * Set the datatip interpolation mode (on/off).
  */
-int set_tip_interp_mode_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_tip_interp_mode_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int interp_mode = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "tip_interp_mode");
@@ -150,7 +150,7 @@ int set_tip_interp_mode_property(void* _pvCtx, char* pobj, void* _pvData, int va
     {
         return SET_PROPERTY_ERROR;
     }
-    status = setGraphicObjectProperty(pobj, __GO_DATATIP_INTERP_MODE__, &interp_mode, jni_bool, 1);
+    status = setGraphicObjectProperty(iObj, __GO_DATATIP_INTERP_MODE__, &interp_mode, jni_bool, 1);
 
     if (status == TRUE)
     {
@@ -166,7 +166,7 @@ int set_tip_interp_mode_property(void* _pvCtx, char* pobj, void* _pvData, int va
 /**
  * Set the datatip box mode (true or false).
  */
-int set_tip_box_mode_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_tip_box_mode_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int box_mode = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "tip_box_mode");
@@ -174,7 +174,7 @@ int set_tip_box_mode_property(void* _pvCtx, char* pobj, void* _pvData, int value
     {
         return SET_PROPERTY_ERROR;
     }
-    status = setGraphicObjectProperty(pobj, __GO_DATATIP_BOX_MODE__, &box_mode, jni_bool, 1);
+    status = setGraphicObjectProperty(iObj, __GO_DATATIP_BOX_MODE__, &box_mode, jni_bool, 1);
 
     if (status == TRUE)
     {
@@ -190,7 +190,7 @@ int set_tip_box_mode_property(void* _pvCtx, char* pobj, void* _pvData, int value
 /**
  * Set the datatip label mode (true or false).
  */
-int set_tip_label_mode_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_tip_label_mode_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int label_mode = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "tip_label_mode");
@@ -198,7 +198,7 @@ int set_tip_label_mode_property(void* _pvCtx, char* pobj, void* _pvData, int val
     {
         return SET_PROPERTY_ERROR;
     }
-    status = setGraphicObjectProperty(pobj, __GO_DATATIP_LABEL_MODE__, &label_mode, jni_bool, 1);
+    status = setGraphicObjectProperty(iObj, __GO_DATATIP_LABEL_MODE__, &label_mode, jni_bool, 1);
 
     if (status == TRUE)
     {
@@ -212,7 +212,7 @@ int set_tip_label_mode_property(void* _pvCtx, char* pobj, void* _pvData, int val
 }
 
 
-int set_tip_disp_function_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_tip_disp_function_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     if (valueType != sci_strings)
@@ -221,7 +221,7 @@ int set_tip_disp_function_property(void* _pvCtx, char* pobj, void* _pvData, int 
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobj, __GO_DATATIP_DISPLAY_FNC__, _pvData, jni_string, 1);
+    status = setGraphicObjectProperty(iObj, __GO_DATATIP_DISPLAY_FNC__, _pvData, jni_string, 1);
 
     if (status == TRUE)
     {

@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_color_mode_property(void* _pvCtx, char* pobjUID)
+void* get_color_mode_property(void* _pvCtx, int iObjUID)
 {
     int iColorMode = 0;
     int* piColorMode = &iColorMode;
 
-    getGraphicObjectProperty(pobjUID, __GO_COLOR_MODE__, jni_int, (void **)&piColorMode);
+    getGraphicObjectProperty(iObjUID, __GO_COLOR_MODE__, jni_int, (void **)&piColorMode);
 
     if (piColorMode == NULL)
     {

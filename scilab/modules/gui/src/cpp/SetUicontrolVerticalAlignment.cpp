@@ -14,7 +14,7 @@
 
 #include "SetUicontrolVerticalAlignment.hxx"
 
-int SetUicontrolVerticalAlignment(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUicontrolVerticalAlignment(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* VerticalAlignment can be top, middle or bottom */
 
@@ -44,7 +44,7 @@ int SetUicontrolVerticalAlignment(void* _pvCtx, char* sciObjUID, void* _pvData, 
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_VERTICALALIGNMENT__, alignment, jni_string, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_VERTICALALIGNMENT__, alignment, jni_string, 1);
 
     if (status == TRUE)
     {

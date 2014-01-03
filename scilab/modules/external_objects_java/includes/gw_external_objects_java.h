@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -43,6 +43,8 @@ EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jinvoke(char *fname, void* pvApiCtx)
 EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jconvMatrixMethod(char *fname, void* pvApiCtx);
 EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jgetinfo(char *fname, void* pvApiCtx);
 EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jinvoke_db(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jcreatejar(char *fname, void* pvApiCtx);
+
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_EXTERNAL_OBJECTS_H__ */
 /*--------------------------------------------------------------------------*/

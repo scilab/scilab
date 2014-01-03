@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-09-27 17:14+0100\n"
+"Revision-Date: 2013-12-09 09:48+0100\n"
 
 # File: sci_gateway/c/sci_exec.c, line: 52
 # File: sci_gateway/c/sci_exec.c, line: 60
@@ -164,8 +164,22 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
 
+# File: macros/add_profiling.sci, line: 13
+# File: macros/bytecode.sci, line: 15
+# File: macros/bytecodewalk.sci, line: 14
+# File: macros/createfun.sci, line: 16
+# File: macros/macrovar.sci, line: 21
+# File: macros/plotprofile.sci, line: 13
+# File: macros/profile.sci, line: 12
+# File: macros/remove_profiling.sci, line: 13
+# File: macros/reset_profiling.sci, line: 13
+# File: macros/showprofile.sci, line: 13
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
 #
-# File: macros/bytecodewalk.sci, line: 164
+# File: macros/bytecodewalk.sci, line: 167
 #, c-format
 msgid "%s: obsolete op-code %d.\n"
 msgstr ""
@@ -189,63 +203,72 @@ msgid "%s: File %s doesn't exist.\n"
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 28
-# File: macros/genlib.sci, line: 40
+# File: macros/fun2string.sci, line: 20
+# File: macros/genlib.sci, line: 17
+# File: macros/head_comments.sci, line: 14
+# File: macros/recompilefunction.sci, line: 12
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
 # File: macros/genlib.sci, line: 32
 # File: macros/genlib.sci, line: 44
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#
+# File: macros/genlib.sci, line: 36
+# File: macros/genlib.sci, line: 48
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 58
+# File: macros/genlib.sci, line: 62
 #, c-format
 msgid "-- Creation of [%s] (Macros) --\n"
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 119
+# File: macros/genlib.sci, line: 123
 #, c-format
 msgid "%s: No files with extension %s found in %s\n"
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 127
+# File: macros/genlib.sci, line: 131
 #, c-format
 msgid "%s: Wrong type for input argument #%d:  A matrix of string expected.\n"
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 147
+# File: macros/genlib.sci, line: 151
 #, c-format
 msgid "%s: %s file compilation forced\n"
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 171
+# File: macros/genlib.sci, line: 175
 #, c-format
 msgid "%s: Processing file: %s\n"
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 191
+# File: macros/genlib.sci, line: 195
 #, c-format
 msgid "%s: Regenerate names and lib\n"
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 207
+# File: macros/genlib.sci, line: 211
 #, c-format
 msgid "%s: %s file cannot be created\n"
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 218
+# File: macros/genlib.sci, line: 222
 #, c-format
 msgid ""
 "Library file %s has been updated,\n"
@@ -253,19 +276,19 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 238
+# File: macros/genlib.sci, line: 242
 #, c-format
 msgid "%s: Error in file %s : %s.\n"
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 261
+# File: macros/genlib.sci, line: 265
 #, c-format
 msgid "%s: Impossible to open file %s for writing\n"
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 273
+# File: macros/genlib.sci, line: 277
 #, c-format
 msgid "%s: File %s does not contain any function.\n"
 msgstr ""
@@ -289,116 +312,116 @@ msgid "%s: Incorrect function in file %s.\n"
 msgstr ""
 
 #
-# File: macros/head_comments.sci, line: 13
+# File: macros/head_comments.sci, line: 18
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr ""
 
 #
-# File: macros/head_comments.sci, line: 17
+# File: macros/head_comments.sci, line: 22
 #, c-format
 msgid "%s: Undefined variable %s.\n"
 msgstr ""
 
 #
-# File: macros/head_comments.sci, line: 22
+# File: macros/head_comments.sci, line: 27
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
 msgstr ""
 
 #
-# File: macros/head_comments.sci, line: 34
-msgid "No comment available.\n"
+# File: macros/head_comments.sci, line: 39
+msgid "No comment available."
 msgstr ""
 
 #
-# File: macros/macrovar.sci, line: 22
+# File: macros/macrovar.sci, line: 25
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
 msgstr ""
 
 #
-# File: macros/plotprofile.sci, line: 44
+# File: macros/plotprofile.sci, line: 48
 #, c-format
 msgid "%s: Wrong values for input argument: No profile data in the function\n"
 msgstr ""
 
 #
-# File: macros/plotprofile.sci, line: 75
+# File: macros/plotprofile.sci, line: 79
 msgid "Complexity"
 msgstr ""
 
 #
-# File: macros/plotprofile.sci, line: 90
+# File: macros/plotprofile.sci, line: 94
 msgid "Tools"
 msgstr ""
 
 #
-# File: macros/plotprofile.sci, line: 91
+# File: macros/plotprofile.sci, line: 95
 msgid "Edit"
 msgstr ""
 
 #
-# File: macros/plotprofile.sci, line: 92
+# File: macros/plotprofile.sci, line: 96
 msgid "?"
 msgstr ""
 
 #
-# File: macros/plotprofile.sci, line: 94
+# File: macros/plotprofile.sci, line: 98
 msgid "Exit"
 msgstr ""
 
 #
-# File: macros/plotprofile.sci, line: 97
+# File: macros/plotprofile.sci, line: 101
 msgid "Click to get corresponding line, move with a-z."
 msgstr ""
 
 #
-# File: macros/plotprofile.sci, line: 152
+# File: macros/plotprofile.sci, line: 156
 #, c-format
 msgid "line %s [%s call, %s sec] :: "
 msgstr ""
 
 #
-# File: macros/plotprofile.sci, line: 154
+# File: macros/plotprofile.sci, line: 158
 #, c-format
 msgid "line %s [%s calls, %s sec] :: "
 msgstr ""
 
 #
-# File: macros/profile.sci, line: 17
+# File: macros/profile.sci, line: 20
 #, c-format
 msgid "%s: The function has not been built for profiling"
 msgstr ""
 
 #
-# File: macros/recompilefunction.sci, line: 14
+# File: macros/recompilefunction.sci, line: 17
 #, c-format
 msgid "No variable named: %s.\n"
 msgstr ""
 
 #
-# File: macros/recompilefunction.sci, line: 19
+# File: macros/recompilefunction.sci, line: 22
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
 msgstr ""
 
 #
-# File: macros/recompilefunction.sci, line: 24
+# File: macros/recompilefunction.sci, line: 27
 #, c-format
 msgid "%s is already noncompiled.\n"
 msgstr ""
 
 #
-# File: macros/recompilefunction.sci, line: 40
+# File: macros/recompilefunction.sci, line: 43
 #, c-format
 msgid "%s is already compiled.\n"
 msgstr ""
 
 #
-# File: macros/recompilefunction.sci, line: 44
+# File: macros/recompilefunction.sci, line: 47
 #, c-format
 msgid "%s is already compiled for profiling.\n"
 msgstr ""

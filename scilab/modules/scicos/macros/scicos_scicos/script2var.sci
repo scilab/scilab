@@ -65,16 +65,25 @@ function [%ll,%ierr]=getvardef(%txt,%ll)
     %mm=%mm(1:size(%mm,"*")-%nww)
     //%mm contains the list of the variables defined by execstr(%txt,'errcatch')
     for %mi=%mm(:)'
+        if %mi=="scs_m" then
+            mprintf(_("The variable name %s cannot be used as block parameter: ignored"),"scs_m");
+            continue
+        elseif %mi=="ans" then
+            continue
+        end
+
         clear %v
         %v=evstr(%mi);
 
-        if %mi=="scs_m" | typeof(%v)=="scs_m" then
+        if typeof(%v)=="scs_m" then
             mprintf(_("The variable name %s cannot be used as block parameter: ignored"),"scs_m")
+            continue
         elseif or(type(%v)==[11 13 14]) then
             continue
-        else
-            %ll(%mi)=%v;
         end
+
+        %ll(%mi)=%v;
+        clear %v
     end
 endfunction
 

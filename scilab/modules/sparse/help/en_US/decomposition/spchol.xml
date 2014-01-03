@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -25,7 +25,7 @@
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>symmetric positive definite real  sparse matrix</para>
+                    <para>symmetric positive definite real sparse matrix</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -45,27 +45,47 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>[R,P] = spchol(X)</literal> produces a 
+            <literal>[R,P] = spchol(X)</literal> produces a
             lower triangular matrix <literal>R</literal> such that <literal>P*R*R'*P' = X</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-X=[
-3.,  0.,  0.,  2.,  0.,  0.,  2.,  0.,  2.,  0.,  0. ;
-0.,  5.,  4.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0. ;
-0.,  4.,  5.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0. ;
-2.,  0.,  0.,  3.,  0.,  0.,  2.,  0.,  2.,  0.,  0. ;
-0.,  0.,  0.,  0. , 5.,  0.,  0.,  0.,  0.,  0.,  4. ;
-0.,  0.,  0.,  0.,  0.,  4.,  0.,  3.,  0.,  3.,  0. ;
-2.,  0.,  0.,  2.,  0.,  0.,  3.,  0.,  2.,  0.,  0. ;
-0.,  0.,  0.,  0.,  0.,  3.,  0.,  4.,  0.,  3.,  0. ;
-2.,  0.,  0.,  2.,  0.,  0.,  2.,  0.,  3.,  0.,  0. ;
-0.,  0.,  0.,  0.,  0.,  3.,  0.,  3.,  0.,  4.,  0. ;
+        <programlisting role="example"><![CDATA[
+// Factorization:
+Xfull = [
+3.,  0.,  0.,  2.,  0.,  0.,  2.,  0.,  2.,  0.,  0.
+0.,  5.,  4.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.
+0.,  4.,  5.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.
+2.,  0.,  0.,  3.,  0.,  0.,  2.,  0.,  2.,  0.,  0.
+0.,  0.,  0.,  0. , 5.,  0.,  0.,  0.,  0.,  0.,  4.
+0.,  0.,  0.,  0.,  0.,  4.,  0.,  3.,  0.,  3.,  0.
+2.,  0.,  0.,  2.,  0.,  0.,  3.,  0.,  2.,  0.,  0.
+0.,  0.,  0.,  0.,  0.,  3.,  0.,  4.,  0.,  3.,  0.
+2.,  0.,  0.,  2.,  0.,  0.,  2.,  0.,  3.,  0.,  0.
+0.,  0.,  0.,  0.,  0.,  3.,  0.,  3.,  0.,  4.,  0.
 0.,  0.,  0.,  0.,  4.,  0.,  0.,  0.,  0.,  0.,  5.];
-X=sparse(X);[R,P] = spchol(X);
+X = sparse(Xfull);
+
+[R, P] = spchol(X);
 max(P*R*R'*P'-X)
+
+// Factorization and solve with backslash operator:
+Afull = [
+2 -1  0  0  0;
+-1  2 -1  0  0;
+0 -1  2 -1  0;
+0  0 -1  2 -1;
+0  0  0 -1  2
+];
+A = sparse(Afull);
+
+[L, P] = spchol(A);
+max(P*L*L'*P'-A)
+
+n = size(A, "r"); e = (1:n)'; b = A * e;
+x = P*(L'\(L\(P'*b)));
+A*x-b
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

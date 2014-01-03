@@ -23,12 +23,12 @@ public interface MenuBarConfiguration {
      * Add menus to a menubar
      * @param parentId the parent figure UID
      */
-    void addMenus(String parentId);
+    void addMenus(Integer parentId);
 
     /**
      * Read submenus data in the XML file
      * @param parentId the parent figure UID
      * @param index the index of the parent in menu list
      */
-    void addSubMenus(String parentId, int index);
+    void addSubMenus(Integer parentId, int index);
 }

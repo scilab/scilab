@@ -15,17 +15,17 @@
 
 //
 // gould.nonconvex --
-//   The Gould test case with additionnal inequality constraints.
+//   The Gould test case with additional inequality constraints.
 // Arguments
 //    x : the point where to compute the cost
 //    index : a flag which states what is to compute
-//    * if index=1, or no index, returns the value of the cost 
+//    * if index=1, or no index, returns the value of the cost
 //      function (default case)
-//    * if index=2, returns the value of the nonlinear inequality 
+//    * if index=2, returns the value of the nonlinear inequality
 //      constraints, as a row array
 //    * if index=3, returns an array which contains
-//      at index #1, the value of the cost function  
-//      at index #2 to the end is the list of the values of the nonlinear 
+//      at index #1, the value of the cost function
+//      at index #2 to the end is the list of the values of the nonlinear
 //      inequality constraints
 //  Discussion:
 //    The problem is to minimize a cost function with 4 non linear constraints.
@@ -47,36 +47,36 @@
 //    Edited by F.A. Lootsma, pp 349-366, 1972
 //
 function result = gouldnonconvex ( x , index )
-  if (~isdef('index','local')) then
-    index = 1
-  end
-  if ( index==1 | index==3 ) then
-    f = (x(1) - 10.0 )^3 + ( x(2) - 20.0 ) ^ 3
-  end
-  if ( index==2 | index==3 ) then
-    c1 = x(1) - 13.0
-    c2 = ( x(1) - 5.0 )^2  + (x(2) - 5.0 )^2 - 100.0
-    c3 = -( x(1) - 6.0 )^2 - (x(2) - 5.0 )^2 + 82.81
-    c4 = x(2)
-  end
-  select index
-  case 1 then
-      result = f
-      mprintf( "Computed f = %e\n", f);
-  case 2
-      result = [c1 c2 c3 c4]
-      mprintf( "Computed constraints = %e %e %e %e\n", c1 , c2 , c3 , c4);
-  case 3
-      result = [f c1 c2 c3 c4]
-      mprintf( "Computed f = %e and constraints = %e %e %e %e\n", f , c1 , c2 , c3 , c4);
-  else
-    errmsg = sprintf("Unknown index %d", index )
-    error(errmsg)
-  end
+    if (~isdef("index","local")) then
+        index = 1
+    end
+    if ( index==1 | index==3 ) then
+        f = (x(1) - 10.0 )^3 + ( x(2) - 20.0 ) ^ 3
+    end
+    if ( index==2 | index==3 ) then
+        c1 = x(1) - 13.0
+        c2 = ( x(1) - 5.0 )^2  + (x(2) - 5.0 )^2 - 100.0
+        c3 = -( x(1) - 6.0 )^2 - (x(2) - 5.0 )^2 + 82.81
+        c4 = x(2)
+    end
+    select index
+    case 1 then
+        result = f
+        mprintf( "Computed f = %e\n", f);
+    case 2
+        result = [c1 c2 c3 c4]
+        mprintf( "Computed constraints = %e %e %e %e\n", c1 , c2 , c3 , c4);
+    case 3
+        result = [f c1 c2 c3 c4]
+        mprintf( "Computed f = %e and constraints = %e %e %e %e\n", f , c1 , c2 , c3 , c4);
+    else
+        errmsg = sprintf("Unknown index %d", index )
+        error(errmsg)
+    end
 endfunction
 //
-// The same cost function as before, with an 
-// additionnal argument, which contains parameters of the 
+// The same cost function as before, with an
+// additional argument, which contains parameters of the
 // cost function and constraints.
 // In this case, the mydata variable is passed
 // explicitely by the optimization class.
@@ -84,32 +84,32 @@ endfunction
 // and whatever variable name can be used.
 //
 function result = gouldnonconvex2 ( x , index , mydata )
-  if (~isdef('index','local')) then
-    index = 1
-  end
-  if ( index==1 | index==3 ) then
-    f = (x(1) - mydata.f1 )^3 + ( x(2) - mydata.f2 ) ^ 3
-  end
-  if ( index==2 | index==3 ) then
-    c1 = x(1) - mydata.a1
-    c2 = ( x(1) - 5.0 )^2  + (x(2) - 5.0 )^2 - mydata.a2
-    c3 = -( x(1) - 6.0 )^2 - (x(2) - 5.0 )^2 + mydata.a3
-    c4 = x(2)
-  end
-  select index
-  case 1 then
-      result = f
-      mprintf( "Computed f = %e\n", f);
-  case 2
-      result = [c1 c2 c3 c4]
-      mprintf( "Computed constraints = %e %e %e %e\n", c1 , c2 , c3 , c4);
-  case 3
-      result = [f c1 c2 c3 c4]
-      mprintf( "Computed f = %e and constraints = %e %e %e %e\n", f , c1 , c2 , c3 , c4);
-  else
-    errmsg = sprintf("Unknown index %d", index )
-    error(errmsg)
-  end
+    if (~isdef("index","local")) then
+        index = 1
+    end
+    if ( index==1 | index==3 ) then
+        f = (x(1) - mydata.f1 )^3 + ( x(2) - mydata.f2 ) ^ 3
+    end
+    if ( index==2 | index==3 ) then
+        c1 = x(1) - mydata.a1
+        c2 = ( x(1) - 5.0 )^2  + (x(2) - 5.0 )^2 - mydata.a2
+        c3 = -( x(1) - 6.0 )^2 - (x(2) - 5.0 )^2 + mydata.a3
+        c4 = x(2)
+    end
+    select index
+    case 1 then
+        result = f
+        mprintf( "Computed f = %e\n", f);
+    case 2
+        result = [c1 c2 c3 c4]
+        mprintf( "Computed constraints = %e %e %e %e\n", c1 , c2 , c3 , c4);
+    case 3
+        result = [f c1 c2 c3 c4]
+        mprintf( "Computed f = %e and constraints = %e %e %e %e\n", f , c1 , c2 , c3 , c4);
+    else
+        errmsg = sprintf("Unknown index %d", index )
+        error(errmsg)
+    end
 endfunction
 //
 // Test optimbase_isfeasible method
@@ -140,7 +140,7 @@ assert_checkequal ( isfeasible , %t );
 assert_checkequal ( isfeasible , %t );
 opt = optimbase_destroy(opt);
 //
-// Test with nonlinear inequality constraints and additionnal argument in cost function
+// Test with nonlinear inequality constraints and additional argument in cost function
 mystuff = struct();
 mystuff.f1 = 10.0;
 mystuff.f2 = 20.0;

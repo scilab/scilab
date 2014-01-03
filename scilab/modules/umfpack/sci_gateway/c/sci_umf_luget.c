@@ -1,50 +1,50 @@
 /*
- *   Copyright Bruno Pinçon, ESIAL-IECN, Inria CORIDA project
- *   <bruno.pincon@iecn.u-nancy.fr>
- *   contributor:  Antonio Manoel Ferreria Frasson, Universidade Federal do
- *                 Espírito Santo, Brazil. <frasson@ele.ufes.br>.
- *
- *  Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
- *
- * PURPOSE: Scilab interfaces routines onto the UMFPACK sparse solver
- * (Tim Davis) and onto the TAUCS snmf choleski solver (Sivan Teledo)
- *
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- *
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- *
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- *
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
+*   Copyright Bruno Pinçon, ESIAL-IECN, Inria CORIDA project
+*   <bruno.pincon@iecn.u-nancy.fr>
+*   contributor:  Antonio Manoel Ferreria Frasson, Universidade Federal do
+*                 Espírito Santo, Brazil. <frasson@ele.ufes.br>.
+*
+*  Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
+*
+* PURPOSE: Scilab interfaces routines onto the UMFPACK sparse solver
+* (Tim Davis) and onto the TAUCS snmf choleski solver (Sivan Teledo)
+*
+* This software is governed by the CeCILL license under French law and
+* abiding by the rules of distribution of free software.  You can  use,
+* modify and/or redistribute the software under the terms of the CeCILL
+* license as circulated by CEA, CNRS and INRIA at the following URL
+* "http://www.cecill.info".
+*
+* As a counterpart to the access to the source code and  rights to copy,
+* modify and redistribute granted by the license, users are provided only
+* with a limited warranty  and the software's author,  the holder of the
+* economic rights,  and the successive licensors  have only  limited
+* liability.
+*
+* In this respect, the user's attention is drawn to the risks associated
+* with loading,  using,  modifying and/or developing or reproducing the
+* software by the user in light of its specific status of free software,
+* that may mean  that it is complicated to manipulate,  and  that  also
+* therefore means  that it is reserved for developers  and  experienced
+* professionals having in-depth computer knowledge. Users are therefore
+* encouraged to load and test the software's suitability as regards their
+* requirements in conditions enabling the security of their systems and/or
+* data to be ensured and,  more generally, to use and operate it in the
+* same conditions as regards security.
+*
+* The fact that you are presently reading this means that you have had
+* knowledge of the CeCILL license and that you accept its terms.
+*
+*/
 
 /*------------------------------------------------------------+
-  |   6) Interface code for getting the LU factors              |
-  |                                                             |
-  |   Scilab call                                               |
-  |   -----------                                               |
-  |   [L,U,p,q,R] = umf_luget(LU_ptr)                           |
-  |                                                             |
-  +------------------------------------------------------------*/
+|   6) Interface code for getting the LU factors              |
+|                                                             |
+|   Scilab call                                               |
+|   -----------                                               |
+|   [L,U,p,q,R] = umf_luget(LU_ptr)                           |
+|                                                             |
++------------------------------------------------------------*/
 #include "api_scilab.h"
 #include "sciumfpack.h"
 #include "gw_umfpack.h"
@@ -59,14 +59,14 @@ extern CellAdr *ListNumeric;
 int sci_umf_luget(char* fname, void* pvApiCtx)
 {
     /*
-     *  LU_ptr is (a pointer to) a factorization of A, we have:
-     *             -1
-     *          P R  A Q = L U
-     *
-     *      A is n_row x n_col
-     *      L is n_row x n
-     *      U is n     x n_col     n = min(n_row, n_col)
-     */
+    *  LU_ptr is (a pointer to) a factorization of A, we have:
+    *             -1
+    *          P R  A Q = L U
+    *
+    *      A is n_row x n_col
+    *      L is n_row x n
+    *      U is n     x n_col     n = min(n_row, n_col)
+    */
 
     SciErr sciErr;
     void* Numeric = NULL;
@@ -76,6 +76,7 @@ int sci_umf_luget(char* fname, void* pvApiCtx)
     int *p = NULL, *q = NULL, pl_miss = 0, error_flag = 0 ;
 
     int* piAddr1 = NULL;
+    int iType1   = 0;
 
     /* Check numbers of input/output arguments */
     CheckInputArgument(pvApiCtx, 1, 1);
@@ -86,6 +87,15 @@ int sci_umf_luget(char* fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        return 1;
+    }
+
+    /* Check if the first argument is a pointer */
+    sciErr = getVarType(pvApiCtx, piAddr1, &iType1);
+    if (sciErr.iErr || iType1 != sci_pointer)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A pointer expected.\n"), fname, 1);
         return 1;
     }
 

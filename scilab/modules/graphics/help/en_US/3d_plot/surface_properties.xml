@@ -213,7 +213,7 @@
                         colors.
                     </para>
                     <para>
-                        Not that the rules on <literal>color_mode</literal>,
+                        Note that the rules on <literal>color_mode</literal>,
                         <literal>foreground</literal> and <literal>hiddencolor</literal> are still applied
                         to this case.
                     </para>
@@ -240,7 +240,7 @@
                                         proportional to <literal>z</literal>. The minimum <literal>z</literal>
                                         value is painted using the index 1 color while the maximum
                                         <literal>z</literal> value is painted using highest color index. The
-                                        edges of the facets can be additionnaly drawn depending on the
+                                        edges of the facets can be additionaly drawn depending on the
                                         value of <literal>color_mode</literal> (see above).
                                     </para>
                                 </listitem>
@@ -444,10 +444,10 @@
                 <term>material_shininess: </term>
                 <listitem>
                     <para>This field defines the shininess level of the surface. This parameter
-                    controls the shinines color spreading in the surface. Any positive value can
-                    be used. Good values to use are in the [0 10] range, where low values generates 
-                    strong highlight and high values generates barely perceptible highlights.
-                    The default value is <literal>"2"</literal>.
+                        controls the shinines color spreading in the surface. Any positive value can
+                        be used. Good values to use are in the [0 10] range, where low values generates 
+                        strong highlight and high values generates barely perceptible highlights.
+                        The default value is <literal>"2"</literal>.
                     </para>
                 </listitem>
             </varlistentry>

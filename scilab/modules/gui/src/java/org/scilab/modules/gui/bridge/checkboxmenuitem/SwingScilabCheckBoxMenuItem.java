@@ -51,7 +51,7 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Sw
     private boolean autoCheckedMode = true;
     private String text = "";
 
-    private String uid;
+    private Integer uid;
 
     /**
      * Constructor
@@ -363,7 +363,7 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Sw
      * Set the UID
      * @param id the UID
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         uid = id;
     }
 
@@ -371,7 +371,7 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Sw
      * Get the UID
      * @return the UID
      */
-    public String getId() {
+    public Integer getId() {
         return uid;
     }
 

@@ -223,39 +223,35 @@ public final class InputPortElement extends AbstractElement<InputPort> {
      */
     private void decodeGraphics(InputPort port) {
         // protection against previously stored blocks
-        if (graphics.size() <= GRAPHICS_INSTYLE_INDEX || isEmptyField(graphics.get(GRAPHICS_INSTYLE_INDEX))) {
-            return;
-        }
+        if (graphics.size() > GRAPHICS_INSTYLE_INDEX && !isEmptyField(graphics.get(GRAPHICS_INSTYLE_INDEX))) {
+            final ScilabString styles = (ScilabString) graphics.get(GRAPHICS_INSTYLE_INDEX);
 
-        final ScilabString styles = (ScilabString) graphics.get(GRAPHICS_INSTYLE_INDEX);
+            boolean isColumnDominant = styles.getHeight() >= styles.getWidth();
+            int[] indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
 
-        boolean isColumnDominant = styles.getHeight() >= styles.getWidth();
-        int[] indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
+            if (canGet(styles, indexes)) {
+                final String style;
 
-        if (canGet(styles, indexes)) {
-            final String style;
-
-            style = styles.getData()[indexes[0]][indexes[1]];
-            port.setStyle(new StyleMap(port.getStyle()).putAll(style).toString());
+                style = styles.getData()[indexes[0]][indexes[1]];
+                port.setStyle(new StyleMap(port.getStyle()).putAll(style).toString());
+            }
         }
 
         // protection against previously stored blocks
-        if (graphics.size() <= GRAPHICS_INLABEL_INDEX || isEmptyField(graphics.get(GRAPHICS_INLABEL_INDEX))) {
-            return;
-        }
+        if (graphics.size() > GRAPHICS_INLABEL_INDEX && !isEmptyField(graphics.get(GRAPHICS_INLABEL_INDEX))) {
+            final ScilabString labels = (ScilabString) graphics.get(GRAPHICS_INLABEL_INDEX);
 
-        final ScilabString labels = (ScilabString) graphics.get(GRAPHICS_INLABEL_INDEX);
+            boolean isColumnDominant = labels.getHeight() >= labels.getWidth();
+            int[] indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
 
-        isColumnDominant = labels.getHeight() >= labels.getWidth();
-        indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
+            if (canGet(labels, indexes)) {
+                final String label = labels.getData()[indexes[0]][indexes[1]];
 
-        if (canGet(labels, indexes)) {
-            final String label = labels.getData()[indexes[0]][indexes[1]];
-
-            if (label != null) {
-                port.setValue(label);
-            } else {
-                port.setValue("");
+                if (label != null) {
+                    port.setValue(label);
+                } else {
+                    port.setValue("");
+                }
             }
         }
     }

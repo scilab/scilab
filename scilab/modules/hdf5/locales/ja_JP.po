@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-21 05:39+0000\n"
+"PO-Revision-Date: 2013-12-08 11:38+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: ja\n"
 
 #, c-format
@@ -741,3 +741,24 @@ msgstr "リファレンスは文字列で指定してください"
 #, c-format
 msgid "Invalid path: %s."
 msgstr "パスが無効です: %s."
+
+msgid "HDF5"
+msgstr "HDF5"
+
+msgid "Ring resonator (HDF5 data source)"
+msgstr "リング共振子 (HDF5データソース)"
+
+msgid "Ring Resonator from a HDF5 file"
+msgstr "HDF5ファイルからリング共振子"
+
+msgid "X position [a]"
+msgstr "X位置 [a]"
+
+msgid "Y position [a]"
+msgstr "Y位置 [a]"
+
+msgid "Permittivity"
+msgstr "誘導率"
+
+msgid "Ring Resonator"
+msgstr "リング共振子"

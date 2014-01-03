@@ -58,8 +58,8 @@
 void champg(char *name, int colored, double *x, double *y, double *fx, double *fy, int *n1,
             int *n2, char *strflag, double *brect, double *arfact, int lstr)
 {
-    char* psubwinUID = NULL;
-    char* newSegsUID = NULL;
+    int iSubwinUID = 0;
+    int iNewSegsUID = 0;
 
     int clipState = 0;
     char textLogFlags[3];
@@ -92,7 +92,7 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
 
     /* First create champ object */
     /* F.Leray Allocation de style[dim = Nbr1] */
-    if ((style = MALLOC ((*n1) * sizeof (int))) == NULL)
+    if ((style = (int*)MALLOC ((*n1) * sizeof (int))) == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), "champg");
         return;
@@ -101,24 +101,24 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     flag = 1; /* je le mets � 1 pour voir F.Leray 19.02.04*/
     arsize1 = *arfact;
 
-    psubwinUID = (char*)getCurrentSubWin();
+    iSubwinUID = getCurrentSubWin();
 
     /* then modify subwindow if needed */
     checkRedrawing();
 
     /* Force clipping to CLIPGRF (1) */
     clipState = 1;
-    setGraphicObjectProperty(psubwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+    setGraphicObjectProperty(iSubwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     for (i = 0; i < (*n1); i++)
     {
         style[i] = i;
     }
 
-    newSegsUID = ConstructSegs(psubwinUID, type, x, y, NULL, *n1, *n2, 0, fx, fy, flag,
-                               style, arsize1, colored, typeofchamp);
+    iNewSegsUID = ConstructSegs(iSubwinUID, type, x, y, NULL, *n1, *n2, 0, fx, fy, flag,
+                                style, arsize1, colored, typeofchamp);
 
-    if (newSegsUID == NULL)
+    if (iNewSegsUID == 0)
     {
         Scierror(999, _("%s: No more memory.\n"), "champg");
         if (style != NULL)
@@ -129,7 +129,7 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
         return;
     }
 
-    setCurrentObject(newSegsUID);
+    setCurrentObject(iNewSegsUID);
 
     if (style != NULL)
     {
@@ -139,10 +139,10 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
 
     /* Force clipping to CLIPGRF (1) */
     clipState = 1;
-    setGraphicObjectProperty(newSegsUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+    setGraphicObjectProperty(iNewSegsUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     /* Get segs bounding box */
-    getGraphicObjectProperty(newSegsUID, __GO_BOUNDING_BOX__, jni_double_vector, (void **)&boundingBox);
+    getGraphicObjectProperty(iNewSegsUID, __GO_BOUNDING_BOX__, jni_double_vector, (void **)&boundingBox);
 
     xx[0] = boundingBox[0];
     xx[1] = boundingBox[1];
@@ -150,16 +150,15 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     yy[1] = boundingBox[3];
 
     releaseGraphicObjectProperty(__GO_BOUNDING_BOX__, boundingBox, jni_double_vector, 4);
-    releaseGraphicObjectProperty(__GO_PARENT__, newSegsUID, jni_string, 1);
 
     rotationAngles[0] = 0.0;
     rotationAngles[1] = 270.0;
 
-    setGraphicObjectProperty(psubwinUID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
+    setGraphicObjectProperty(iSubwinUID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
 
-    getGraphicObjectProperty(psubwinUID, __GO_AUTO_SCALE__, jni_bool, (void **)&piAutoScale);
+    getGraphicObjectProperty(iSubwinUID, __GO_AUTO_SCALE__, jni_bool, (void **)&piAutoScale);
 
-    getGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, jni_bool, (void **)&piFirstPlot);
+    getGraphicObjectProperty(iSubwinUID, __GO_FIRST_PLOT__, jni_bool, (void **)&piFirstPlot);
 
     if (autoScale)
     {
@@ -182,11 +181,11 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
             case '8':
             case '9':
 
-                getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
+                getGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
                 logFlags[0] = iTmp;
-                getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
+                getGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
                 logFlags[1] = iTmp;
-                getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
+                getGraphicObjectProperty(iSubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
                 logFlags[2] = iTmp;
 
                 /* Conversion required by compute_data_bounds2 */
@@ -205,7 +204,7 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
         {
             double* dataBounds;
 
-            getGraphicObjectProperty(psubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
+            getGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
 
             drect[0] = Min(dataBounds[0], drect[0]); /*xmin*/
             drect[2] = Min(dataBounds[2], drect[2]); /*ymin*/
@@ -215,7 +214,7 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
 
         if (strflag[1] != '0')
         {
-            bounds_changed = update_specification_bounds(psubwinUID, drect, 2);
+            bounds_changed = update_specification_bounds(iSubwinUID, drect, 2);
         }
 
     }
@@ -225,11 +224,11 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
         bounds_changed = TRUE;
     }
 
-    axes_properties_changed = strflag2axes_properties(psubwinUID, strflag);
+    axes_properties_changed = strflag2axes_properties(iSubwinUID, strflag);
 
     /* just after strflag2axes_properties */
     firstPlot = 0;
-    setGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
+    setGraphicObjectProperty(iSubwinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 }
 
 int C2F(champ)(double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr)

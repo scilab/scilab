@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.editor.action;
@@ -26,8 +26,8 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 */
 public abstract class BaseAction implements Action {
 
-    String objectUID;
-    String parentUID;
+    Integer objectUID;
+    Integer parentUID;
 
     /**
     * Constructor
@@ -35,7 +35,7 @@ public abstract class BaseAction implements Action {
     * @param objectUID The object of the action
     * @param parentUID The parent from the object
     */
-    public BaseAction(String objectUID, String parentUID) {
+    public BaseAction(Integer objectUID, Integer parentUID) {
 
         this.objectUID = objectUID;
         this.parentUID = parentUID;
@@ -56,7 +56,7 @@ public abstract class BaseAction implements Action {
     /**
     * Set a relation between two objects
     */
-    public void setRelation(String object, String parent) {
+    public void setRelation(Integer object, Integer parent) {
 
         if (exists()) {
             GraphicController.getController().setGraphicObjectRelationship(parent, object);
@@ -70,8 +70,8 @@ public abstract class BaseAction implements Action {
     /**
     * Removes the relation of an object
     */
-    public void removeRelation(String object) {
+    public void removeRelation(Integer object) {
 
-        GraphicController.getController().setGraphicObjectRelationship("", object);
+        GraphicController.getController().setGraphicObjectRelationship(0, object);
     }
 }

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-07-30 13:03+0000\n"
+"PO-Revision-Date: 2013-10-03 23:46+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: ru\n"
 
 #, c-format
@@ -32,6 +32,14 @@ msgstr "%s: Неверный тип входного аргумента №%d.\n
 #, c-format
 msgid "%s: Multidimensional sparse matrices are not handled.\n"
 msgstr "%s: Нельзя работать с многомерными разрежёнными матрицами.\n"
+
+#, c-format
+msgid "%c: input argument #%d has duplicates\n"
+msgstr ""
+
+#, c-format
+msgid "%c: input argument #%d must be sorted in lexicographic order\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -102,7 +110,7 @@ msgstr "%s: Несовместимые размеры.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -111,6 +119,7 @@ msgstr "%s: Неверный размер входного параметра �
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось целое число >= %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -125,10 +134,12 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалось строковое значение или "
+"скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
@@ -143,6 +154,14 @@ msgid "%s: Too many subscripts.\n"
 msgstr "%s: Слишком много подындексов.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Hypermatrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Operand is not a boolean hypermatrix.\n"
 msgstr "%s: Операнд не является гиперматрицей логических значений.\n"
 
@@ -153,6 +172,14 @@ msgstr "%s: Несовместимые размерности операндов
 #, c-format
 msgid "%s: Wrong type for input argument(s): hypermatrix expected.\n"
 msgstr "%s: Неверный тип входных аргументов: ожидалась гиперматрица.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: 3D maximum expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
@@ -189,6 +216,10 @@ msgid ""
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось положительное целое "
 "число либо символьная строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: integer values expected.\n"

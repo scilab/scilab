@@ -37,7 +37,7 @@ SCICOS_BLOCKS_IMPEXP void automat(scicos_block *block, int flag)
     double* x = block->x;
     double* xd = block->xd;
     double* res = block->res;
-    void**   work = block->work;
+    int**   work = (int**) block->work;
     double* rpar = block->rpar;
     double* evout = block->evout;
 
@@ -64,7 +64,7 @@ SCICOS_BLOCKS_IMPEXP void automat(scicos_block *block, int flag)
 
     if (flag == 4) /*----------------------------------------------------------*/
     {
-        if ((*work = scicos_malloc(sizeof(int) * (2))) == NULL )
+        if ((*work = (int*) scicos_malloc(sizeof(int) * (2))) == NULL )
         {
             set_block_error(-16);
             return;

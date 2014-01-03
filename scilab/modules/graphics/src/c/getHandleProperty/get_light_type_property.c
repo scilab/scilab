@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -23,12 +23,12 @@
 /**
  * Gets the type of the light.
  */
-void* get_light_type_property(void* _pvCtx, char* pobjUID)
+void* get_light_type_property(void* _pvCtx, int iObjUID)
 {
     int type = 0;
     int* piType = &type;
 
-    getGraphicObjectProperty(pobjUID, __GO_LIGHT_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_LIGHT_TYPE__, jni_int, (void **)&piType);
 
     if (piType == NULL)
     {

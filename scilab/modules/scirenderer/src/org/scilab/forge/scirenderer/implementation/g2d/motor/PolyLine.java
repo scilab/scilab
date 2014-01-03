@@ -12,6 +12,7 @@
 package org.scilab.forge.scirenderer.implementation.g2d.motor;
 
 import java.awt.Color;
+import java.awt.Shape;
 import java.awt.Stroke;
 import java.awt.geom.Line2D;
 import java.awt.geom.Path2D;
@@ -99,29 +100,36 @@ public class PolyLine extends ConvexObject {
      */
     public List<ConvexObject> breakObject(Vector4d v) {
         final double[] vv = v.getData();
-        final Vector3d np = new Vector3d(vv);
         final List<ConvexObject> list = new ArrayList<ConvexObject>(1);
 
-        int pos = 0;
-        boolean prev = false;
+        // Since PolyLine are only used in 2D it is useless to check when z != 0
+        if (vv[2] == 0) {
+            final Vector3d np = new Vector3d(vv);
+            makeClip(vv);
 
-        for (int i = 0; i < vertices.length; i++) {
-            final boolean b = isBehind(vertices[i], np, vv[3]);
-            if (b && !prev) {
-                pos = i;
-                prev = true;
-            } else if (!b && prev) {
-                prev = false;
+            int pos = 0;
+            boolean prev = false;
+
+            for (int i = 0; i < vertices.length; i++) {
+                final boolean b = isBehind(vertices[i], np, vv[3]);
+                if (b && !prev) {
+                    pos = i;
+                    prev = true;
+                } else if (!b && prev) {
+                    prev = false;
+                    try {
+                        list.add(cut(pos, i, np, vv[3]));
+                    } catch (InvalidPolygonException e) { }
+                }
+            }
+
+            if (prev) {
                 try {
-                    list.add(cut(pos, i, np, vv[3]));
+                    list.add(cut(pos, vertices.length, np, vv[3]));
                 } catch (InvalidPolygonException e) { }
             }
-        }
-
-        if (prev) {
-            try {
-                list.add(cut(pos, vertices.length, np, vv[3]));
-            } catch (InvalidPolygonException e) { }
+        } else {
+            list.add(this);
         }
 
         return list;
@@ -236,22 +244,15 @@ public class PolyLine extends ConvexObject {
         }
     }
 
-
-    @Override
-    protected Path2D getProjectedPolyLine() {
-        Path2D.Double path = new Path2D.Double();
-
-        path.moveTo(vertices[0].getX(), vertices[0].getY());
-        for (int i = 1; i < vertices.length; i++) {
-            path.lineTo(vertices[i].getX(), vertices[i].getY());
-        }
-
-        return path;
-    }
-
     @Override
     public void draw(Graphics2D g2d) {
         Stroke oldStroke = g2d.getStroke();
+        Shape oldClip = g2d.getClip();
+
+        Shape newClip = getClip();
+        if (newClip != null) {
+            g2d.clip(newClip);
+        }
 
         if (monochromatic) {
             g2d.setColor(colors[0]);
@@ -272,6 +273,10 @@ public class PolyLine extends ConvexObject {
                 g2d.draw(new Line2D.Double(start.getX(), start.getY(), vertices[i].getX(), vertices[i].getY()));
                 cumLen += Math.hypot(start.getX() - vertices[i].getX(), start.getY() - vertices[i].getY());
             }
+        }
+
+        if (newClip != null) {
+            g2d.setClip(oldClip);
         }
 
         g2d.setStroke(oldStroke);

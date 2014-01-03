@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="functions" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="functions" xml:lang="pt">
     <refnamediv>
         <refname>functions</refname>
         <refpurpose>procedimentos Scilab e objetos Scilab</refpurpose>
@@ -32,9 +32,9 @@
         <itemizedlist>
             <listitem>
                 <para>uma parte "definição de sintaxe" como segue:</para>
-                <programlisting role=""><![CDATA[ 
+                <programlisting  role='no-scilab-exec'><![CDATA[
 function [y1,...,yn]=foo(x1,...,xm)
-function [y1,...,yn,varargout]=foo(x1,...,xm,varargin) 
+function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
  ]]></programlisting>
             </listitem>
             <listitem>
@@ -72,22 +72,20 @@ function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
             </listitem>
             <listitem>
                 <para>Também é possível utilizar "argumentos nomeados" para
-                    especificar argumentos de entrada: suponha que a função <literal>fun1
-                        seja
-                    </literal>
-                    definida como <literal>function
-                        y1=fun1(x1,x2,x3)
-                    </literal>
-                    ,então pode ser chamada com uma sintaxe
-                    como <literal>y=fun1(x1=33,x3=[1 2 3])</literal>. Dentro de
-                    <literal>fun1</literal> x2 será indefinida.
+                    especificar argumentos de entrada: suponha que a função <function>fun1</function> seja
+                    definida como <code>function y1 = fun1(x1, x2, x3)</code>, então pode ser chamada com uma sintaxe
+                    como <code>y = fun1(x1=33, x3=[1 2 3])</code>. Dentro de
+                    <function>fun1</function> <varname>x2</varname> será indefinida.
                 </para>
                 <para>Também pode ser chamada com sintaxe como
-                    <literal>y=fun1(x1=33,y='foo')</literal>. Em tal caso, a variável
-                    <literal>y</literal> estará disponível no contexto da função
-                    <literal>fun1</literal>. Note que o número máximo de argumentos deve
-                    ser menor que ou igual ao número de argumentos de entrada fornais
-                    utilizados na parte de sintaxe da função.
+                    <code>y = fun1(x1=33, y='foo')</code>. Em tal caso, a variável
+                    <varname>y</varname> estará disponível no contexto da função
+                    <function>fun1</function>.
+                    <note>
+                        Note que o número máximo de argumentos deve
+                        ser menor que ou igual ao número de argumentos de entrada fornais
+                        utilizados na parte de sintaxe da função.
+                    </note>
                 </para>
                 <para>É possível buscar por variáveis definidas através da função
                     <link linkend="exists">exists</link>.
@@ -98,11 +96,11 @@ function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
                     chamada apenas com argumentos strings, a sintaxe de chamamento pode
                     ser simplificada:
                 </para>
-                <programlisting role=""><![CDATA[ 
-fun('a','toto','a string') 
+                <programlisting  role='no-scilab-exec'><![CDATA[
+fun('a','toto','a string')
  ]]></programlisting>
                 <para>is equivalent to:</para>
-                <programlisting role=""><![CDATA[ 
+                <programlisting  role='no-scilab-exec'><![CDATA[
 fun a toto 'a string'
  ]]></programlisting>
             </listitem>
@@ -112,17 +110,17 @@ fun a toto 'a string'
         <title>Miscelânea</title>
         <para>Funções Scilab são objetos (com números de tipo 13 ou 11). Elas
             podem ser manipuladas (construídas, salvas, carregadas, passadas como
-            argumentos,..) como outros tipos de variáveis.
+            argumentos,...) como outros tipos de variáveis.
         </para>
         <para>Coleções de funções podem ser reunidas em bibliotecas. Funções que
             começam pelo sinal <literal>%</literal> (ex: <literal>%foo</literal>) são
-            geralmente utilizadas para operações de sobrecarga (ver <link linkend="overloading">overloading</link> ) ou são funções para novos tipos
+            geralmente utilizadas para operações de sobrecarga (ver <link linkend="overloading">overloading</link>) ou são funções para novos tipos
             de dados.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //definição inline (ver function)
 function [x,y]=myfct(a,b)
   x=a+b

@@ -120,18 +120,31 @@
     
     <refsection id="Description_WFILE_f">
         <title>Description</title>
-        
         <para>
-            Ce bloc permet à l'utilisateur de sauver des données dans un fichier dont le nom est défini avec le paramètre <emphasis role="bold">Output file name</emphasis>, en mode texte
-            formatté ou binaire.
+            Ce bloc est <emphasis role="bold">obsolète</emphasis>, utilisez <link linkend="WRITEC_f">WRITEC_f</link> à la place.
+        </para>
+        <para>
+            Ce bloc permet à l'utilisateur de sauver des données dans un fichier dont le nom est défini avec le paramètre <emphasis role="bold">Output file name</emphasis>, en mode texte formatté ou binaire.
         </para>
         <para>
             Le fichier est une séquence d'enregistrements. Chaque enregistrement a une longueur <emphasis role="bold">Output Size</emphasis> <literal> + 1 </literal> et la structure ci-dessous:
         </para>
         <para />
-        <mediaobject><imageobject>
-                <imagedata fileref="../../../images/sinks_pal/fr_FR/wfile_f_record_fr_FR.png" align="center" />
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="../../../images/palettes/sinks_pal/fr_FR/wfile_f_record_fr_FR.gif"/>
             </imageobject>
+            <textobject>
+                <programlisting role="pic"><![CDATA[
+.PS
+box "Date";
+box "Champ 1";
+box "...";
+box "Champ (N-1)";
+box "Champ N";
+.PE
+                ]]></programlisting>
+            </textobject>
         </mediaobject>
         <para>
             où le premier champ est la date de l'événement reçu sur l'entrée d'activationdu bloc pendant la simulation et les autres champs les données de l'entrée régulière. Chaque appel du bloc

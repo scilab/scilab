@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-17 15:59+0000\n"
+"PO-Revision-Date: 2013-10-02 14:47+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: ru\n"
 
 #, c-format
@@ -165,44 +165,22 @@ msgstr ""
 "\n"
 "Проверьте тип: \n"
 
-msgid "Show that parameters operators only apply to the plist type"
+#, c-format
+msgid "Second output argument of %s is obsolete.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"\n"
-"Add a parameter to 'A' when 'A' is not a plist.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"\n"
-"Before add_param: \n"
-msgstr ""
-"\n"
-"Перед add_param: \n"
-
-#, c-format
-msgid ""
-"\n"
-"After add_param: \n"
-msgstr ""
-"\n"
-"После add_param: \n"
-
-#, c-format
-msgid ""
-"\n"
-"Error = %f. If error<>0, an error occurred.\n"
+msgid "This argument will be permanently removed in Scilab %s"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: key %s already defined.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: ключ %s уже определён.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
@@ -223,7 +201,7 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: parameter doesn't exist"

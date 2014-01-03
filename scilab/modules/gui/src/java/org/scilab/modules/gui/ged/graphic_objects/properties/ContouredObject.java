@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.ged.graphic_objects.properties;
@@ -49,10 +49,10 @@ public class ContouredObject extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
-    public void backgroundColor(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID, final String parentFigure) {
+    public void backgroundColor(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID, final Integer parentFigure) {
         JLabel lBackground = new JLabel();
         JPanel pBackground = new JPanel();
         JButton bBackground = new JButton();
@@ -70,7 +70,7 @@ public class ContouredObject extends ContentLayout {
 
         // Get the current status of the property: Background Color
         Integer scilabBackgroundColor = (Integer) GraphicController.getController()
-                  .getProperty(UID, GraphicObjectProperties.__GO_BACKGROUND__);
+                                        .getProperty(UID, GraphicObjectProperties.__GO_BACKGROUND__);
         Double[] rgbBackgroundColor = ColorMapHandler.getRGBcolor(parentFigure, scilabBackgroundColor);
         cBackground.setBackground(new Color(rgbBackgroundColor[0].intValue(),
                                             rgbBackgroundColor[1].intValue(),
@@ -82,9 +82,9 @@ public class ContouredObject extends ContentLayout {
     * @param scilabColor index of the color map.
     * @param UID objectID.
     */
-    public void setBackgroundColor(int scilabColor, java.lang.String UID) {
+    public void setBackgroundColor(int scilabColor, Integer UID) {
         GraphicController.getController()
-                .setProperty(UID, GraphicObjectProperties.__GO_BACKGROUND__, scilabColor);
+        .setProperty(UID, GraphicObjectProperties.__GO_BACKGROUND__, scilabColor);
     }
 
     /**
@@ -95,12 +95,12 @@ public class ContouredObject extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID
      */
-    public void fillMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void fillMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lFillMode = new JLabel();
         final JComboBox cFillMode = new JComboBox();
         addLabelComboBox(panel, lFillMode, MessagesGED.fill_mode,
-                                cFillMode, new String[] {MessagesGED.off , MessagesGED.on},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cFillMode, new String[] {MessagesGED.off , MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW++);
         cFillMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -111,8 +111,8 @@ public class ContouredObject extends ContentLayout {
         });
         // Get the current status of the property: Fill Mode
         boolean enable = (Boolean) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_FILL_MODE__);
-        cFillMode.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_FILL_MODE__);
+        cFillMode.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**
@@ -121,11 +121,11 @@ public class ContouredObject extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
     public void lineColor(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN,
-                           final String UID, final String parentFigure, String packClass, Object methobj) {
+                          final Integer UID, final Integer parentFigure, String packClass, Object methobj) {
         JLabel lForeground = new JLabel();
         JPanel pForeground = new JPanel();
         JButton bForeground = new JButton();
@@ -143,7 +143,7 @@ public class ContouredObject extends ContentLayout {
 
         // Get the current status of the property: Line Color
         Integer scilabForegroundColor = (Integer) GraphicController.getController()
-                  .getProperty(UID, GraphicObjectProperties.__GO_LINE_COLOR__);
+                                        .getProperty(UID, GraphicObjectProperties.__GO_LINE_COLOR__);
         Double[] rgbForegroundColor = ColorMapHandler.getRGBcolor(parentFigure, scilabForegroundColor);
         cForeground.setBackground(new Color(rgbForegroundColor[0].intValue(),
                                             rgbForegroundColor[1].intValue(),
@@ -156,11 +156,11 @@ public class ContouredObject extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
     public void foregroundColor(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN,
-                                  final String UID, final String parentFigure) {
+                                final Integer UID, final Integer parentFigure) {
         JLabel lForeground = new JLabel();
         JPanel pForeground = new JPanel();
         JButton bForeground = new JButton();
@@ -180,7 +180,7 @@ public class ContouredObject extends ContentLayout {
         Integer scilabForegroundColor;
         if ((Boolean) GraphicController.getController().getProperty(UID, GraphicObjectProperties.__GO_MARK_MODE__)) {
             scilabForegroundColor = (Integer) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_LINE_COLOR__);
+                                    .getProperty(UID, GraphicObjectProperties.__GO_LINE_COLOR__);
         } else {
             scilabForegroundColor = EditorManager.getFromUid(parentFigure).getOriColor();
         }
@@ -195,17 +195,16 @@ public class ContouredObject extends ContentLayout {
     * Change the color of the object.
     * @param scilabColor index of the color map.
     */
-    public void setForegroundColor(int scilabColor, String UID) {
-        String parentFigure = (String) GraphicController.getController()
-                .getProperty(UID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+    public void setForegroundColor(int scilabColor, Integer UID) {
+        Integer parentFigure = (Integer) GraphicController.getController()
+                               .getProperty(UID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
         if ((Boolean) GraphicController.getController()
-                .getProperty(UID, GraphicObjectProperties.__GO_MARK_MODE__))
-        {
+                .getProperty(UID, GraphicObjectProperties.__GO_MARK_MODE__)) {
             GraphicController.getController().setProperty(
-                    UID, GraphicObjectProperties.__GO_LINE_COLOR__, scilabColor);
-    	} else {
+                UID, GraphicObjectProperties.__GO_LINE_COLOR__, scilabColor);
+        } else {
             EditorManager.getFromUid(parentFigure).setOriColor(scilabColor);
-    	}
+        }
     }
 
     /**
@@ -216,12 +215,12 @@ public class ContouredObject extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID
      */
-    public void lineMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void lineMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lLineMode = new JLabel();
         final JComboBox cLineMode = new JComboBox();
         addLabelComboBox(panel, lLineMode, MessagesGED.line_mode,
-                                cLineMode, new String[] {MessagesGED.off , MessagesGED.on},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cLineMode, new String[] {MessagesGED.off , MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW++);
         cLineMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -232,8 +231,8 @@ public class ContouredObject extends ContentLayout {
         });
         // Get the current status of the property: Line Mode
         boolean enable = (Boolean) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_LINE_MODE__);
-        cLineMode.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_LINE_MODE__);
+        cLineMode.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**
@@ -244,11 +243,12 @@ public class ContouredObject extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID
      */
-    public void lineStyle(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void lineStyle(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lLine = new JLabel();
         final JComboBox cLine = new JComboBox();
         String[] options = new String[] {MessagesGED.dash, MessagesGED.dash_dot, MessagesGED.longdash_dot,
-            MessagesGED.bigdash_dot, MessagesGED.bigdash_longdash, MessagesGED.dot, MessagesGED.double_dot};
+                                         MessagesGED.bigdash_dot, MessagesGED.bigdash_longdash, MessagesGED.dot, MessagesGED.double_dot
+                                        };
         addLabelComboBox(panel, lLine, MessagesGED.line_style,
                          cLine, options,
                          LEFTMARGIN, COLUMN, ROW++);
@@ -262,7 +262,7 @@ public class ContouredObject extends ContentLayout {
         });
         // Get the current status of the property: Line Style
         int currentLineStyle = (Integer) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_LINE_STYLE__);
+                               .getProperty(UID, GraphicObjectProperties.__GO_LINE_STYLE__);
         cLine.setSelectedIndex(currentLineStyle - 1);
     }
 
@@ -272,12 +272,12 @@ public class ContouredObject extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
     public void markBackgroundColor(JPanel panel, MarkStyleRenderer markStyleRenderer, JColorChooser chooserMarkBackground,
-                                       int ROW, int COLUMN, int LEFTMARGIN,
-                                       final String UID, final String parentFigure, String packClass, Object methobj) {
+                                    int ROW, int COLUMN, int LEFTMARGIN,
+                                    final Integer UID, final Integer parentFigure, String packClass, Object methobj) {
         JLabel lMarkBackground = new JLabel();
         JPanel pMarkBackground = new JPanel();
         JButton bMarkBackground = new JButton();
@@ -299,7 +299,7 @@ public class ContouredObject extends ContentLayout {
             scilabMarkBackground = DatatipManagerMode.getInstance().getMarkColor();
         } else {
             scilabMarkBackground = (Integer) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_MARK_BACKGROUND__);
+                                   .getProperty(UID, GraphicObjectProperties.__GO_MARK_BACKGROUND__);
         }
         Double[] rgbMarkBackground = ColorMapHandler.getRGBcolor(parentFigure, scilabMarkBackground);
         Color markBackgroundCOLOR = new Color(rgbMarkBackground[0].intValue(),
@@ -315,12 +315,12 @@ public class ContouredObject extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
     public void markForegroundColor(JPanel panel, MarkStyleRenderer markStyleRenderer, JColorChooser chooserMarkForeground,
-                                       int ROW, int COLUMN, int LEFTMARGIN,
-                                       final String UID, final String parentFigure, String packClass, Object methobj) {
+                                    int ROW, int COLUMN, int LEFTMARGIN,
+                                    final Integer UID, final Integer parentFigure, String packClass, Object methobj) {
         JLabel lMarkForeground = new JLabel();
         JPanel pMarkForeground = new JPanel();
         JButton bMarkForeground = new JButton();
@@ -344,11 +344,11 @@ public class ContouredObject extends ContentLayout {
                 scilabMarkForeground = EditorManager.getFromUid(parentFigure).getOriColor();
             } else {
                 scilabMarkForeground = (Integer) GraphicController.getController()
-                        .getProperty(UID, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
+                                       .getProperty(UID, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
             }
         } else {
             scilabMarkForeground = (Integer) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
+                                   .getProperty(UID, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
         }
         Double[] rgbMarkForeground = ColorMapHandler.getRGBcolor(parentFigure, scilabMarkForeground);
         Color markForegroundCOLOR = new Color(rgbMarkForeground[0].intValue(),
@@ -366,12 +366,12 @@ public class ContouredObject extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID
      */
-    public void markMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void markMode(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lMarkMode = new JLabel();
         cMarkMode = new JComboBox();
         addLabelComboBox(panel, lMarkMode, MessagesGED.mark_mode,
-                cMarkMode, new String[] {MessagesGED.off , MessagesGED.on},
-                LEFTMARGIN, COLUMN, ROW);
+                         cMarkMode, new String[] {MessagesGED.off , MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW);
         cMarkMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -382,8 +382,8 @@ public class ContouredObject extends ContentLayout {
         });
         // Get the current status of the property: Mark Mode
         boolean enable = (Boolean) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_MARK_MODE__);
-        cMarkMode.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_MARK_MODE__);
+        cMarkMode.setSelectedIndex(enable ? 1 : 0);
     }
 
     public JComboBox getMarkMode() {
@@ -398,11 +398,11 @@ public class ContouredObject extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID
      */
-    public void markSize(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void markSize(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lMarkSize = new JLabel();
         final JTextField cMarkSize = new JTextField();
         addLabelTextField(panel, lMarkSize, MessagesGED.mark_size,
-                                 cMarkSize, true, LEFTMARGIN, COLUMN, ROW);
+                          cMarkSize, true, LEFTMARGIN, COLUMN, ROW);
         cMarkSize.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -417,14 +417,14 @@ public class ContouredObject extends ContentLayout {
         });
         // Get the current status of the property: Mark Size
         cMarkSize.setText(Integer.toString((Integer) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_MARK_SIZE__)));
+                                           .getProperty(UID, GraphicObjectProperties.__GO_MARK_SIZE__)));
     }
 
     /**
     * Set Mark Size.
     * @param size mark size.
     */
-    private void setMarkSize(JTextField cMarkSize, String size, String UID) {
+    private void setMarkSize(JTextField cMarkSize, String size, Integer UID) {
         try {
             GraphicController.getController().setProperty(
                 UID,
@@ -432,7 +432,7 @@ public class ContouredObject extends ContentLayout {
                 Integer.parseInt(size));
         } catch (NumberFormatException e) {
             cMarkSize.setText(Integer.toString((Integer) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_MARK_SIZE__)));
+                                               .getProperty(UID, GraphicObjectProperties.__GO_MARK_SIZE__)));
         }
     }
 
@@ -444,12 +444,12 @@ public class ContouredObject extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID
      */
-    public void markSizeUnit(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void markSizeUnit(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lMarkSizeUnit = new JLabel();
         final JComboBox cMarkSizeUnit = new JComboBox();
         addLabelComboBox(panel, lMarkSizeUnit, MessagesGED.mark_size_unit,
-                cMarkSizeUnit, new String[] {MessagesGED.point , MessagesGED.tabulated},
-                LEFTMARGIN, COLUMN, ROW);
+                         cMarkSizeUnit, new String[] {MessagesGED.point , MessagesGED.tabulated},
+                         LEFTMARGIN, COLUMN, ROW);
         cMarkSizeUnit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -460,7 +460,7 @@ public class ContouredObject extends ContentLayout {
         });
         // Get the current status of the property: Mark Size Unit
         cMarkSizeUnit.setSelectedIndex((Integer) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_MARK_SIZE_UNIT__));
+                                       .getProperty(UID, GraphicObjectProperties.__GO_MARK_SIZE_UNIT__));
     }
 
     /**
@@ -472,20 +472,21 @@ public class ContouredObject extends ContentLayout {
      * @param UID
      */
     public void markStyle(JPanel panel, MarkStyleRenderer markStyleRenderer,
-                           int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+                          int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lMarkStyle = new JLabel();
         final JComboBox cMarkStyle = new JComboBox(MarkStyle.values());
         addLabelComboBox(panel, lMarkStyle, MessagesGED.mark_style,
-                                 cMarkStyle, null,
-                                 LEFTMARGIN, COLUMN, ROW);
+                         cMarkStyle, null,
+                         LEFTMARGIN, COLUMN, ROW);
         cMarkStyle.setRenderer(markStyleRenderer);
         cMarkStyle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 try {
-                    if (cMarkMode.getSelectedIndex() == 0) //If mark_mode is off
-                        cMarkMode.setSelectedIndex(1); //turn on
-                } catch(NullPointerException e) { }
+                    if (cMarkMode.getSelectedIndex() == 0) { //If mark_mode is off
+                        cMarkMode.setSelectedIndex(1);    //turn on
+                    }
+                } catch (NullPointerException e) { }
 
                 GraphicController.getController().setProperty(
                     UID, GraphicObjectProperties.__GO_MARK_STYLE__, cMarkStyle.getSelectedIndex());
@@ -493,9 +494,10 @@ public class ContouredObject extends ContentLayout {
         });
         // Get the current status of the property: Mark Style
         int currentMarkStyle = (Integer) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_MARK_STYLE__);
-        if (cMarkMode.getSelectedIndex() == 1)
+                               .getProperty(UID, GraphicObjectProperties.__GO_MARK_STYLE__);
+        if (cMarkMode.getSelectedIndex() == 1) {
             cMarkStyle.setSelectedIndex(currentMarkStyle);
+        }
     }
 
     /**
@@ -504,13 +506,13 @@ public class ContouredObject extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void thickness(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void thickness(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lThickness = new JLabel();
         final JTextField cThickness = new JTextField();
         addLabelTextField(panel, lThickness, MessagesGED.thickness,
-                                 cThickness, true, LEFTMARGIN, COLUMN, ROW++);
+                          cThickness, true, LEFTMARGIN, COLUMN, ROW++);
         cThickness.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -525,22 +527,22 @@ public class ContouredObject extends ContentLayout {
         });
         // Get the current status of the property: Color Flag
         cThickness.setText(Double.toString((Double) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_LINE_THICKNESS__)));
+                                           .getProperty(UID, GraphicObjectProperties.__GO_LINE_THICKNESS__)));
     }
 
     /**
     * Set Thickness.
     * @param thickness.
     */
-    public void setThickness(JTextField cThickness, String UID) {
+    public void setThickness(JTextField cThickness, Integer UID) {
         try {
             GraphicController.getController().setProperty(
-                    UID,
-                    GraphicObjectProperties.__GO_LINE_THICKNESS__,
-                    Double.parseDouble(cThickness.getText()));
+                UID,
+                GraphicObjectProperties.__GO_LINE_THICKNESS__,
+                Double.parseDouble(cThickness.getText()));
         } catch (NumberFormatException e) {
             cThickness.setText(Double.toString((Double) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_LINE_THICKNESS__)));
+                                               .getProperty(UID, GraphicObjectProperties.__GO_LINE_THICKNESS__)));
         }
     }
 }

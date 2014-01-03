@@ -6,12 +6,13 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.external_objects_java;
 
+import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.security.CodeSource;
@@ -79,7 +80,8 @@ public class ScilabClassLoader {
                     retId = clone.id;
                 }
             } else {
-                ScilabJavaClass sjc = new ScilabJavaClass(ClassLoader.getSystemClassLoader().loadClass(name));
+                Class cl = ClassLoader.getSystemClassLoader().loadClass(name);
+                ScilabJavaClass sjc = new ScilabJavaClass(cl);
                 sjc.setURL(getLocation(sjc.clazz));
                 clazz.put(name, sjc.id);
                 zzalc.put(sjc.id, name);
@@ -94,6 +96,29 @@ public class ScilabClassLoader {
         }
 
         return retId;
+    }
+
+    public static int loadJavaClass(String binPath, String name) throws ScilabJavaException {
+        if (ScilabJavaObject.debug) {
+            ScilabJavaObject.logger.log(Level.INFO, "Load Java class \'" + name + "\' in " + binPath);
+        }
+
+        try {
+            URL binURL = new File(binPath).toURI().toURL();
+            Class cl = new URLClassLoader(new URL[] {binURL}, null).loadClass(name);
+            ScilabJavaClass sjc = new ScilabJavaClass(cl);
+            sjc.setURL(getLocation(sjc.clazz));
+            clazz.put(name, sjc.id);
+            zzalc.put(sjc.id, name);
+
+            if (ScilabJavaObject.debug) {
+                ScilabJavaObject.logger.log(Level.INFO, "The loaded Java class has id=" + sjc.id + " and URL=" + sjc.getURL());
+            }
+
+            return sjc.id;
+        } catch (Exception e) {
+            throw new ScilabJavaException("Cannot find the class " + name + " in " + binPath + ".");
+        }
     }
 
     /**

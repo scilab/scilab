@@ -21,38 +21,37 @@
 //
 
 function [x,y,typ] = DSUPER(job,arg1,arg2)
-    x=[];y=[],typ=[]
+    x=[];
+    y=[];
+    typ=[];
 
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         y=needcompile // in case leaving with Exit x=arg1
         typ=list()
         graphics=arg1.graphics;
         if (length(graphics.exprs) == 0) then
             warnBlockByUID(arg1.model.label, gettext("Invalid masked block."));
-            x=arg1, return;
+            x=arg1,
+            return;
         end
 
         exprs=graphics.exprs(1)
         exprs0=graphics.exprs(2)(1)
         btitre=graphics.exprs(2)(2)(1)
         bitems=graphics.exprs(2)(2)(2:$)
-        if exprs0==[] then x=arg1,return,end
+        if exprs0==[] then
+            x=arg1,
+            return,
+        end
 
         // First evaluate the diagram context
         context = [arg1.model.rpar.props.context];
         [%scicos_context,ierr] = script2var(context,%scicos_context);
 
         if ierr <> 0 then
-            x=arg1, return;
+            x=arg1,
+            return;
         end
 
         // then update the context with the mask parameters

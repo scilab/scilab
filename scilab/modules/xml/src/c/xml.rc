@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "xml module"
             VALUE "FileVersion", "5, 4, 0, 0"
             VALUE "InternalName", "xml module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "xml.dll"
             VALUE "ProductName", " xml module"
             VALUE "ProductVersion", "5, 4, 0, 0"

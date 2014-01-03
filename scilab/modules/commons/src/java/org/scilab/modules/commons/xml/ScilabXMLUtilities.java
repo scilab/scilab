@@ -367,7 +367,7 @@ public class ScilabXMLUtilities {
     }
 
     /**
-     * Retrieve the list of the elements which have an attribute equals to the given value.
+     * Retrieve the list of the elements which have an attribute equal to the given value.
      * @param root the root element
      * @param attribute the attribute name
      * @param value the value
@@ -381,7 +381,7 @@ public class ScilabXMLUtilities {
     }
 
     /**
-     * Retrieve the list of the elements which have an attribute equals to the given value (recursive function).
+     * Retrieve the list of the elements which have an attribute equal to the given value (recursive function).
      * @param root the root element
      * @param attribute the attribute name
      * @param value the value

@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
@@ -30,7 +30,7 @@ int sci_datatip_set_display(char *fname, void* pvApiCtx)
     CheckInputArgument(pvApiCtx, 1, 2);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
-    char* datatipUID    = NULL;
+    int iDatatipUID     = 0;
     int* piAddr         = NULL;
     char* pstData       = NULL;
     int iRet            = 0;
@@ -54,16 +54,16 @@ int sci_datatip_set_display(char *fname, void* pvApiCtx)
         return 1;
     }
 
-    datatipUID = (char *)getObjectFromHandle((unsigned long) llHandle);
+    iDatatipUID = getObjectFromHandle((unsigned long) llHandle);
 
     if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
     {
-        getGraphicObjectProperty(datatipUID, __GO_TYPE__, jni_int, (void**) &piType);
+        getGraphicObjectProperty(iDatatipUID, __GO_TYPE__, jni_int, (void**) &piType);
         if (iType == __GO_DATATIP__)
         {
             if (nbInputArgument(pvApiCtx) == 1)
             {
-                setGraphicObjectProperty(datatipUID, __GO_DATATIP_DISPLAY_FNC__, "", jni_string, 1);
+                setGraphicObjectProperty(iDatatipUID, __GO_DATATIP_DISPLAY_FNC__, "", jni_string, 1);
                 AssignOutputVariable(pvApiCtx, 1) = 0;
                 ReturnArguments(pvApiCtx);
                 return 0;
@@ -89,7 +89,7 @@ int sci_datatip_set_display(char *fname, void* pvApiCtx)
                             return iRet;
                         }
 
-                        setGraphicObjectProperty(datatipUID, __GO_DATATIP_DISPLAY_FNC__, pstData, jni_string, 1);
+                        setGraphicObjectProperty(iDatatipUID, __GO_DATATIP_DISPLAY_FNC__, pstData, jni_string, 1);
 
                         freeAllocatedSingleString(pstData);
                         AssignOutputVariable(pvApiCtx, 1) = 0;

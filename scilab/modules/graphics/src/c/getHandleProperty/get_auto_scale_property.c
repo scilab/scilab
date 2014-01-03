@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_auto_scale_property(void* _pvCtx, char* pobjUID)
+void* get_auto_scale_property(void* _pvCtx, int iObjUID)
 {
     int iAutoScale = 0;
     int* piAutoScale = &iAutoScale;
 
-    getGraphicObjectProperty(pobjUID, __GO_AUTO_SCALE__, jni_bool, (void **)&piAutoScale);
+    getGraphicObjectProperty(iObjUID, __GO_AUTO_SCALE__, jni_bool, (void **)&piAutoScale);
 
     if (piAutoScale == NULL)
     {

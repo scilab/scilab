@@ -19,5 +19,5 @@
  Don't touch if you do not know what you are doing
 -->
 <module name="helptools">
-    <gateway name="sci_buildDocv2"  function="buildDocv2"   type="0" />
+    <gateway name="sci_buildDoc"  function="buildDoc"   type="0" />
 </module>

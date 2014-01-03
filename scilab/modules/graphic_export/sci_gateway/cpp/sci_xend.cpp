@@ -31,18 +31,17 @@ int sci_xend(char * fname, void *pvApiCtx)
 {
     CheckInputArgument(pvApiCtx, 0, 0);
 
-    const char* pstCurrentFigureReference = ScilabView::getCurrentFigure();
+    int iCurrentFigureReference = ScilabView::getCurrentFigure();
 
-    if (pstCurrentFigureReference != NULL)
+    if (iCurrentFigureReference != 0)
     {
-        char* uid = os_strdup(pstCurrentFigureReference);
+        int uid = iCurrentFigureReference;
 
         if (uid)
         {
             char * ret = org_scilab_modules_graphic_export::Driver::end(getScilabJavaVM(), uid);
 
             deleteGraphicObject(uid);
-            free(uid);
 
             if (*ret != '\0')
             {

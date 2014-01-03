@@ -114,7 +114,7 @@ int sci_delmenu(char *fname, void* pvApiCtx)
             return 1;
         }
 
-        DeleteMenuWithName((char*)getFigureFromIndex((int)(*pdblAdr)), strAdr);
+        DeleteMenuWithName(getFigureFromIndex((int)(*pdblAdr)), strAdr);
         freeAllocatedSingleString(strAdr);
     }
 

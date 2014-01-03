@@ -1,10 +1,10 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) Bruno Pincon
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
       subroutine wsqrt(xr,xi,yr,yi)
@@ -23,7 +23,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 *     ALGORITHM
 *        essentially the classic one which consists in
-*        choosing the good formula such as avoid cancellation ; 
+*        choosing the good formula such as avoid cancellation ;
 *        Also rare spurious overflow are treated with a
 *        "manual" method. For some more "automated" methods
 *        (but currently difficult to implement in a portable
@@ -33,20 +33,20 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *          "Implementing Complex Elementary Functions Using
 *          Exception Handling", ACM TOMS, Vol. 20 (1994), pp 215-244
 *
-*        for xr > 0 :                            
+*        for xr > 0 :
 *          yr = sqrt(2( xr + sqrt( xr^2 + xi^2)) )/ 2
 *          yi = xi / sqrt(2(xr + sqrt(xr^2 + xi^2)))
 *
-*        and for xr < 0 :                           
+*        and for xr < 0 :
 *          yr = |xi| / sqrt( 2( -xr + sqrt( xr^2 + xi^2 )) )
 *          yi = sign(xi) sqrt(2(-xr + sqrt( xr^2 + xi^2))) / 2
-*     
-*        for xr = 0 use          
+*
+*        for xr = 0 use
 *          yr = sqrt(0.5)*sqrt(|xi|)  when |xi| is such that 0.5*|xi| may underflow
 *             = sqrt(0.5*|xi|)        else
 *          yi = sign(xi) yr
 *
-*        Noting t = sqrt( 2( |xr| + sqrt( xr^2 + yr^2)) ) 
+*        Noting t = sqrt( 2( |xr| + sqrt( xr^2 + yr^2)) )
 *                 = sqrt( 2( |xr| + pythag(xr,xi) ) )
 *        it comes :
 *
@@ -54,9 +54,9 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *         --------------+---------------------
 *           yr = 0.5*t  |  yr =  |xi| / t
 *           yi = xi / t |  yi = sign(xi)*0.5* t
-*    
-*        as the function pythag must not underflow (and overflow only 
-*        if sqrt(x^2+y^2) > rmax) only spurious (rare) case of overflow 
+*
+*        as the function pythag must not underflow (and overflow only
+*        if sqrt(x^2+y^2) > rmax) only spurious (rare) case of overflow
 *        occurs in which case a scaling is done.
 *
 *     AUTHOR
@@ -71,7 +71,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       double precision a, b, t
 *     EXTERNAL
       double precision pythag, dlamch
-      external         pythag, dlamch 
+      external         pythag, dlamch
       integer          isanan
       external         isanan
 
@@ -81,7 +81,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       save    first
       data    first /.true./
       save             RMAX, BRMIN
-      
+
 
       if (first) then
          RMAX = dlamch('O')
@@ -112,10 +112,14 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
             yi = b/t
          else
             yr = abs(b)/t
-            yi = sign(0.5d0,b)*t
+            if ( b .ge. 0 ) then
+               yi = 0.5d0*t
+            else
+               yi = -0.5d0*t
+            endif
          endif
       else
-*        Here we treat the special cases where a and b are +- 00 or NaN. 
+*        Here we treat the special cases where a and b are +- 00 or NaN.
 *        The following is the treatment recommended by the C99 standard
 *        with the simplification of returning NaN + i NaN if the
 *        the real part or the imaginary part is NaN (C99 recommends
@@ -131,7 +135,11 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
          elseif ( a .lt. -RMAX ) then
 *           here a is -Inf and b is finite
             yr = 0.d0
-            yi = sign(1.d0,b)*abs(a)
+            if ( b .ge. 0 ) then
+               yi = 1.d0*abs(a)
+            else
+               yi = -1.d0*abs(a)
+            endif
          else
 *           here a is +Inf and b is finite
             yr = a
@@ -151,7 +159,11 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
          yi = 4.d0*b/t
       else
          yr = 4.d0*abs(b)/t
-         yi = sign(2.d0,b)*t
+         if ( b .ge. 0 ) then
+            yi = 2.d0*t
+         else
+            yi = -2.d0*t
+         endif
       endif
 
       end

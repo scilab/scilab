@@ -91,15 +91,22 @@ class TextSpriteDrawer extends TextObjectSpriteDrawer implements TextureDrawer {
     /**
      * Returns the margin modified by the scale factor.
      */
-    public int getMargin() {
-        return (int)(scaleFactor * (double)super.getMargin());
+    public int getHMargin() {
+        return (int)(scaleFactor * (double) super.getHMargin());
+    }
+
+    /**
+     * Returns the margin modified by the scale factor.
+     */
+    public int getVMargin() {
+        return (int)(scaleFactor * (double) super.getVMargin());
     }
 
     /**
      * Returns the space width modified by the scale factor.
      */
     public int getSpaceWidth() {
-        return (int)(scaleFactor * (double)super.getSpaceWidth());
+        return (int)(scaleFactor * (double) super.getSpaceWidth());
     }
 
 }

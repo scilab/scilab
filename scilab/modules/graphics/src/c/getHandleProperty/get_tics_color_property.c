@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_tics_color_property(void* _pvCtx, char* pobjUID)
+void* get_tics_color_property(void* _pvCtx, int iObjUID)
 {
     int iTicksColor = 0;
     int* piTicksColor = &iTicksColor;
 
-    getGraphicObjectProperty(pobjUID, __GO_TICKS_COLOR__, jni_int, (void**)&piTicksColor);
+    getGraphicObjectProperty(iObjUID, __GO_TICKS_COLOR__, jni_int, (void**)&piTicksColor);
 
     if (piTicksColor == NULL)
     {

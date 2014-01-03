@@ -46,7 +46,7 @@ GRAPHICS_IMPEXP int C2F(graduate)(double *xmi, double *xma, double *xi, double *
  * @param c_format
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP int ComputeC_format(char * pobjUID, char * c_format);
+GRAPHICS_IMPEXP int ComputeC_format(int iObjUID, char * c_format);
 
 /**
  * @TODO add comment
@@ -58,7 +58,7 @@ GRAPHICS_IMPEXP int ComputeC_format(char * pobjUID, char * c_format);
  * @param checkdim
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP int ComputeXIntervals(char * pobjUID, char xy_type, double ** vector, int * N, int checkdim);
+GRAPHICS_IMPEXP int ComputeXIntervals(int iObj, char xy_type, double ** vector, int * N, int checkdim);
 
 /**
  * @TODO add comment
@@ -66,7 +66,7 @@ GRAPHICS_IMPEXP int ComputeXIntervals(char * pobjUID, char xy_type, double ** ve
  * @param pobjUID
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP StringMatrix * computeDefaultTicsLabels(char * pobjUID);
+GRAPHICS_IMPEXP StringMatrix * computeDefaultTicsLabels(int iObj);
 
 /**
  * same as ChoixFormatE when numbers are given through an

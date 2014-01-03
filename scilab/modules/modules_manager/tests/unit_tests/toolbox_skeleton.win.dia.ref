@@ -34,6 +34,11 @@ Building sources...
    Compilation of multiplybypi.c
    Building shared library (be patient)
    Generate a cleaner file
+   Building JAR library org.scilab.contrib.toolboxskeleton.jar
+   Compiling Java sources in TMPDIR\toolbox_skeleton\src\java\
+   Creating JAR archive TMPDIR\toolbox_skeleton\jar\org.scilab.contrib.toolboxskeleton.jar
+   Create loader script for Java loader.sce
+   Create cleaner script for Java cleaner.sce
 Building gateway...
    Generate a gateway file
    Generate a loader file
@@ -96,16 +101,18 @@ exec("TMPDIR/toolbox_skeleton/loader.sce");
 Start Toolbox Skeleton
 	Load macros
 	Load gateways
+	Load Java libraries
 	Load help
 	Load demos
 test_run("TMPDIR/toolbox_skeleton/", [], "short_summary");
    001/001 - [TMPDIR/toolbox_skeleton/] : 
 
-   001/003 - [TMPDIR/toolbox_skeleton/] c_sum...................passed
-   002/003 - [TMPDIR/toolbox_skeleton/] fortran_sum.............passed
-   003/003 - [TMPDIR/toolbox_skeleton/] scilab_sum..............passed
+   001/004 - [TMPDIR/toolbox_skeleton/] c_sum...................passed
+   002/004 - [TMPDIR/toolbox_skeleton/] fortran_sum.............passed
+   003/004 - [TMPDIR/toolbox_skeleton/] java_sum................passed
+   004/004 - [TMPDIR/toolbox_skeleton/] scilab_sum..............passed
 
 
    --------------------------------------------------------------------------
-   Tests:    3,    Passed:    3,    Failed:    0,    Skipped:    0
+   Tests:    4,    Passed:    4,    Failed:    0,    Skipped:    0
    --------------------------------------------------------------------------

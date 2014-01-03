@@ -2,6 +2,7 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2010 - DIGITEO - Allan CORNET
 *  Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
+*  Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
 *
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
@@ -24,6 +25,21 @@
 /*--------------------------------------------------------------------------*/
 static char *getPathFilename(char *fullfilename);
 static char *getFilenameWithExtension(char *fullfilename);
+/*--------------------------------------------------------------------------*/
+extern void H5_term_library(void);
+void HDF5cleanup(void)
+{
+    /* H5_term_library is not public but it is useful to cleanup hdf5 by ourselves
+       rather than let atexit do it.
+       HDF5cleanup is called in TerminateCore::TerminateCorePart2 and that avoids
+       to have the message:
+       HDF5: infinite loop closing library
+             D,T,F,FD,P,FD,P,FD,P,E,E,E,...
+       when exiting a javasci code.
+    */
+
+    H5_term_library();
+}
 /*--------------------------------------------------------------------------*/
 int createHDF5File(char *name)
 {

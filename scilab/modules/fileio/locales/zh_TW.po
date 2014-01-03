@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -20,10 +20,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為布林數(boolean).\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為布林數(boolean).\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -41,10 +37,6 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一字串.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
-
-#, c-format
 msgid "%s: Can not read named argument %s.\n"
 msgstr ""
 
@@ -57,10 +49,6 @@ msgstr "%s: 無法進入到目錄 %s\n"
 #, c-format
 msgid "%s: Cannot go to directory.\n"
 msgstr "%s: 無法進入該目錄.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A string expected.\n"
-msgstr "%s:輸入參數#%d的型別錯誤: 必需是字串.\n"
 
 #, c-format
 msgid ""
@@ -154,8 +142,9 @@ msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr "%s: 輸入參數型態錯誤: 應為字串.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
+msgstr "%s: 第#%d個參數長度有誤:  1-by-n or m-by-1 陣列才對.\n"
 
 #
 # File: sci_gateway/c/sci_fprintfMat.c, line: 55
@@ -165,11 +154,9 @@ msgid ""
 "expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數矩陣.\n"
 
-#
-# File: sci_gateway/c/sci_fprintfMat.c, line: 49
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real values expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一實數.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
 
 #, c-format
 msgid "%s: can not open file %s.\n"
@@ -332,6 +319,11 @@ msgstr "%s:輸入參數長度有誤#%d: Integer 才對.\n"
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
+msgstr "%s: 第 #%d個參數長度有誤: String or logical unit 才對.\n"
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: String or logical unit expected.\n"
 msgstr "%s: 第 #%d個參數長度有誤: String or logical unit 才對.\n"
 
@@ -364,11 +356,6 @@ msgid "%s: No input file associated to logical unit %d.\n"
 msgstr "%s: 並無對應到邏輯編號為 %d 之輸入檔.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
-msgstr "%s: 第 #%d個參數長度有誤: String or logical unit 才對.\n"
-
-#, c-format
 msgid "%s: invalid filename.\n"
 msgstr "%s: 無效的檔名.\n"
 
@@ -380,11 +367,6 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
 msgid ""
 "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr "%s:輸入參數#%d的型別錯誤: 必需是字串或整數值.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr "%s: 第#%d個參數長度有誤:  1-by-n or m-by-1 陣列才對.\n"
 
 #
 # File: sci_gateway/c/sci_mscanf.c, line: 57
@@ -425,6 +407,10 @@ msgid "%s: Wrong value for input argument #%d: 'w' or 'u' string expected.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為布林數(boolean).\n"
+
+#, c-format
 msgid "%s: An error occurred.\n"
 msgstr "%s: 產生錯誤.\n"
 
@@ -446,6 +432,10 @@ msgid "Could not parse the URL.\n"
 msgstr ""
 
 #, c-format
+msgid "Could not read the configuration file '%s'.\n"
+msgstr ""
+
+#, c-format
 msgid "Failed to read the scicurl_config file '%s'.\n"
 msgstr ""
 
@@ -464,7 +454,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "Failed opening '%s' for writing.\n"
+msgid "Failed getting current dir, error code: %d\n"
 msgstr ""
 
 #, c-format
@@ -496,7 +486,15 @@ msgid "Failed to set write data [%s]\n"
 msgstr ""
 
 #, c-format
+msgid "Failed to set 'Follow Location' [%s]\n"
+msgstr ""
+
+#, c-format
 msgid "Transfer did not complete successfully: %s\n"
+msgstr ""
+
+#, c-format
+msgid "Failed opening '%s' for writing.\n"
 msgstr ""
 
 #

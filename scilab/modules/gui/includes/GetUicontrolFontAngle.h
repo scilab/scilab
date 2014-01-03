@@ -22,6 +22,6 @@
  * @param pobjUID Scilab object corresponding to the uicontrol
  * @return true if the font angle property has been correcty got
  */
-GUI_IMPEXP void* GetUicontrolFontAngle(void* _pvCtx, char *pobjUID);
+GUI_IMPEXP void* GetUicontrolFontAngle(void* _pvCtx, int iObjUID);
 
 #endif /* __GET_UICONTROL_FONTANGLE_H__ */

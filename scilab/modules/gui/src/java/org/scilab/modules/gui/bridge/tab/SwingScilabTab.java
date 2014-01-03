@@ -32,6 +32,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHILDMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIPARENTMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -121,23 +122,6 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTORESIZE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_ENABLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ID__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_NAME__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFO_MESSAGE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_NAME__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHECKEDMENU__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHILDMENU__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIPARENTMENU__;
-
 import org.scilab.modules.gui.editor.EditorEventListener;
 
 /**
@@ -159,7 +143,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     private static final String UNDOCK = "undock";
     private static final String HELP = "help";
 
-    private String id;
+    private Integer id;
 
     private boolean eventEnabled = false;
 
@@ -315,7 +299,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
 
             public void ancestorMoved(HierarchyEvent e) {
                 if (e.getChanged() instanceof SwingScilabWindow) {
-                    Position parentPosition =  SwingScilabWindow.allScilabWindows.get(parentWindowId).getPosition();
+                    Position parentPosition = SwingScilabWindow.allScilabWindows.get(parentWindowId).getPosition();
                     Integer[] newPosition = new Integer[] {parentPosition.getX(), parentPosition.getY()};
                     GraphicController.getController().setProperty(id, __GO_POSITION__, newPosition);
                 }
@@ -333,6 +317,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
                 /* Update the figure_size property */
                 Size parentSize =  SwingScilabWindow.allScilabWindows.get(parentWindowId).getDims();
                 Integer[] newSize = new Integer[] {parentSize.getWidth(), parentSize.getHeight()};
+
                 GraphicController.getController().setProperty(id, __GO_SIZE__, newSize);
 
                 Boolean autoreSize = (Boolean) GraphicController.getController().getProperty(id, __GO_AUTORESIZE__);
@@ -358,7 +343,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
                 String closeRequestFcn = (String) GraphicController.getController().getProperty(getId(), __GO_CLOSEREQUESTFCN__);
                 if (!closeRequestFcn.equals("")) {
                     String closeCommand = "if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
-                                          + "gcbo = getcallbackobject(\"" + getId() + "\");"
+                                          + "gcbo = getcallbackobject(" + getId() + ");"
                                           + closeRequestFcn + ";fire_closing_finished();"
                                           + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;";
                     InterpreterManagement.requestScilabExec(closeCommand);
@@ -1338,6 +1323,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         disableEventHandler();
         eventHandler = new ScilabEventListener(funName, getId());
         if (eventEnabled) {
+            editorEventHandler.setEnable(false);
             enableEventHandler();
         }
     }
@@ -1352,9 +1338,11 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         }
 
         if (status) {
+            editorEventHandler.setEnable(false);
             enableEventHandler();
             eventEnabled = true;
         } else {
+            editorEventHandler.setEnable(true);
             disableEventHandler();
             eventEnabled = false;
         }
@@ -1436,64 +1424,91 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @see org.scilab.modules.gui.SwingViewObject#update(java.lang.String, java.lang.Object)
      */
     public void update(int property, Object value) {
-        if (property == __GO_NAME__) {
-            String name = ((String) value);
-            Integer figureId = (Integer) GraphicController.getController().getProperty(getId(), __GO_ID__);
-            updateTitle(name, figureId);
-        } else if (property == __GO_ID__) {
-            /* Update title */
-            Integer figureId = ((Integer) value);
-            String name = (String) GraphicController.getController().getProperty(getId(), __GO_NAME__);
-            updateTitle(name, figureId);
+        String name;
+        Integer figureId;
+        switch (property) {
+            case  __GO_NAME__ :
+                name = ((String) value);
+                figureId = (Integer) GraphicController.getController().getProperty(getId(), __GO_ID__);
+                updateTitle(name, figureId);
+                break;
+            case __GO_ID__ :
+                /* Update title */
+                figureId = ((Integer) value);
+                name = (String) GraphicController.getController().getProperty(getId(), __GO_NAME__);
+                updateTitle(name, figureId);
 
-            /** Update tool bar */
-            setToolBar(ToolBarBuilder.buildToolBar(GRAPHICS_TOOLBAR_DESCRIPTOR, figureId));
-            SwingScilabWindow parentWindow = SwingScilabWindow.allScilabWindows.get(getParentWindowId());
-            parentWindow.addToolBar(getToolBar());
+                /** Update tool bar */
+                setToolBar(ToolBarBuilder.buildToolBar(GRAPHICS_TOOLBAR_DESCRIPTOR, figureId));
+                SwingScilabWindow parentWindow = SwingScilabWindow.allScilabWindows.get(getParentWindowId());
 
-            /* Update callback */
-            String closingCommand =
-                "if (get_figure_handle(" + figureId + ") <> []) then"
-                +      "  if (get(get_figure_handle(" + figureId + "), 'event_handler_enable') == 'on') then"
-                +      "    execstr(get(get_figure_handle(" + figureId + "), 'event_handler')+'(" + figureId + ", -1, -1, -1000)', 'errcatch', 'm');"
-                +      "  end;"
-                +      "  delete(get_figure_handle(" + figureId + "));"
-                +      "end;";
-            setCallback(null);
-            setCallback(ScilabCloseCallBack.create(getId(), closingCommand));
-            /* Update menus callbacks */
-            String[] children = (String[]) GraphicController.getController().getProperty(getId(), __GO_CHILDREN__);
-            updateChildrenCallbacks(children, figureId);
-        } else if (property == __GO_SIZE__) {
-            Integer[] size = (Integer[]) value;
-            SwingScilabWindow.allScilabWindows.get(parentWindowId).setDims(new Size(size[0], size[1]));
-        } else if (property == __GO_POSITION__) {
-            Integer[] position = (Integer[]) value;
-            SwingScilabWindow.allScilabWindows.get(parentWindowId).setPosition(new Position(position[0], position[1]));
-        } else if (property == __GO_AXES_SIZE__) {
-            Integer[] axesSize = (Integer[]) value;
-            Dimension oldAxesSize = getContentPane().getSize();
-            if (
-                ((oldAxesSize.getWidth() != axesSize[0]) || (oldAxesSize.getHeight() != axesSize[1]))
-                && ((Boolean) GraphicController.getController().getProperty(getId(), __GO_AUTORESIZE__))
-            ) {
-                // TODO manage tabs when there are docked (do not change the window size if more than one tab docked)
-                int deltaX = axesSize[0] - (int) oldAxesSize.getWidth();
-                int deltaY = axesSize[1] - (int) oldAxesSize.getHeight();
-                Size parentWindowSize = SwingScilabWindow.allScilabWindows.get(parentWindowId).getDims();
-                SwingScilabWindow.allScilabWindows.get(parentWindowId).setDims(
-                    new Size(parentWindowSize.getWidth() + deltaX, parentWindowSize.getHeight() + deltaY));
-            }
-        } else if (property == __GO_INFO_MESSAGE__) {
-            if (getInfoBar() != null) {
-                getInfoBar().setText((String) value);
-            }
-        } else if (property == __GO_EVENTHANDLER_ENABLE__) {
-            Boolean enabled = (Boolean) GraphicController.getController().getProperty(getId(), __GO_EVENTHANDLER_ENABLE__);
-            setEventHandlerEnabled(enabled);
-        } else if (property == __GO_EVENTHANDLER_NAME__) {
-            String eventHandlerName = (String) GraphicController.getController().getProperty(getId(), __GO_EVENTHANDLER_NAME__);
-            setEventHandler(eventHandlerName);
+                /* Update callback */
+                String closingCommand =
+                    "if (get_figure_handle(" + figureId + ") <> []) then"
+                    +      "  if (get(get_figure_handle(" + figureId + "), 'event_handler_enable') == 'on') then"
+                    +      "    execstr(get(get_figure_handle(" + figureId + "), 'event_handler')+'(" + figureId + ", -1, -1, -1000)', 'errcatch', 'm');"
+                    +      "  end;"
+                    +      "  delete(get_figure_handle(" + figureId + "));"
+                    +      "end;";
+                setCallback(null);
+                setCallback(ScilabCloseCallBack.create(getId(), closingCommand));
+                /* Update menus callback */
+                Integer[] children = (Integer[]) GraphicController.getController().getProperty(getId(), __GO_CHILDREN__);
+                updateChildrenCallbacks(children, figureId);
+                break;
+            case __GO_SIZE__ :
+                Integer[] size = (Integer[]) value;
+                SwingScilabWindow figure = SwingScilabWindow.allScilabWindows.get(parentWindowId);
+                Size oldFigureSize = figure.getDims();
+                figure.setDims(new Size(size[0], size[1]));
+                int deltaFigureX = size[0] - oldFigureSize.getWidth();
+                int deltaFigureY = size[1] - oldFigureSize.getHeight();
+                if ( oldFigureSize.getWidth() != 0 && oldFigureSize.getHeight() != 0
+                        && ((oldFigureSize.getWidth() != size[0]) || (oldFigureSize.getHeight() != size[1]))
+                        && ((Boolean) GraphicController.getController().getProperty(getId(), __GO_AUTORESIZE__))
+                   ) {
+                    Integer[] axesSize = (Integer[]) GraphicController.getController().getProperty(getId(), __GO_AXES_SIZE__);
+                    Integer[] newAxesSize = {axesSize[0] + deltaFigureX, axesSize[1] + deltaFigureY};
+                    GraphicController.getController().setProperty(getId(), __GO_AXES_SIZE__, newAxesSize);
+                }
+                break;
+            case __GO_POSITION__ :
+                Integer[] position = (Integer[]) value;
+                SwingScilabWindow.allScilabWindows.get(parentWindowId).setPosition(new Position(position[0], position[1]));
+                break;
+            case __GO_AXES_SIZE__ :
+                Integer[] axesSize = (Integer[]) value;
+                Dimension oldAxesSize = getContentPane().getSize();
+                if ( oldAxesSize.getWidth() != 0 && oldAxesSize.getHeight() != 0
+                        && ((oldAxesSize.getWidth() != axesSize[0]) || (oldAxesSize.getHeight() != axesSize[1]))
+                        && ((Boolean) GraphicController.getController().getProperty(getId(), __GO_AUTORESIZE__))
+                   ) {
+                    // TODO manage tabs when there are docked (do not change the window size if more than one tab docked)
+                    int deltaX = axesSize[0] - (int) oldAxesSize.getWidth();
+                    int deltaY = axesSize[1] - (int) oldAxesSize.getHeight();
+                    Size parentWindowSize = SwingScilabWindow.allScilabWindows.get(parentWindowId).getDims();
+                    SwingScilabWindow.allScilabWindows.get(parentWindowId).setDims(
+                        new Size(parentWindowSize.getWidth() + deltaX, parentWindowSize.getHeight() + deltaY));
+                    Integer figureSize[] = {parentWindowSize.getWidth() + deltaX, parentWindowSize.getHeight() + deltaY};
+                    GraphicController.getController().setProperty(getId(), __GO_SIZE__, figureSize);
+                }
+                break;
+            case __GO_INFO_MESSAGE__ :
+                if (getInfoBar() != null) {
+                    getInfoBar().setText((String) value);
+                }
+                break;
+            case __GO_EVENTHANDLER_ENABLE__ :
+                Boolean enabled = (Boolean) GraphicController.getController().getProperty(getId(), __GO_EVENTHANDLER_ENABLE__);
+                setEventHandlerEnabled(enabled);
+                break;
+            case __GO_EVENTHANDLER_NAME__ :
+                String eventHandlerName = (String) GraphicController.getController().getProperty(getId(), __GO_EVENTHANDLER_NAME__);
+                setEventHandler(eventHandlerName);
+                break;
+            case __GO_VISIBLE__ :
+                layerdPane.setVisible((Boolean) value);
+                break;
         }
     }
 
@@ -1502,16 +1517,17 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param children the children UID
      * @param parentFigureId the figure ID
      */
-    private void updateChildrenCallbacks(String[] children, int parentFigureId) {
+    private void updateChildrenCallbacks(Integer[] children, int parentFigureId) {
         for (int kChild = 0; kChild < children.length; kChild++) {
-            int childType = (Integer) GraphicController.getController().getProperty(children[kChild], __GO_TYPE__);
-            if (childType == __GO_UIMENU__
-                    || childType == __GO_UIPARENTMENU__
-                    || childType == __GO_UICHILDMENU__
-                    || childType == __GO_UICHECKEDMENU__) {
+            Integer childType = (Integer) GraphicController.getController().getProperty(children[kChild], __GO_TYPE__);
+            if (childType != null && (
+                        childType == __GO_UIMENU__
+                        || childType == __GO_UIPARENTMENU__
+                        || childType == __GO_UICHILDMENU__
+                        || childType == __GO_UICHECKEDMENU__)) {
                 String cb = (String) GraphicController.getController().getProperty(children[kChild], __GO_CALLBACK__);
                 SwingView.getFromId(children[kChild]).update(__GO_CALLBACK__, replaceFigureID(cb, parentFigureId));
-                String[] menuChildren = (String[]) GraphicController.getController().getProperty(children[kChild], __GO_CHILDREN__);
+                Integer[] menuChildren = (Integer[]) GraphicController.getController().getProperty(children[kChild], __GO_CHILDREN__);
                 updateChildrenCallbacks(menuChildren, parentFigureId);
             }
         }
@@ -1544,7 +1560,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @return the UID
      * @see org.scilab.modules.gui.SwingViewObject#getId()
      */
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -1553,7 +1569,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param id the UID
      * @see org.scilab.modules.gui.SwingViewObject#setId(java.lang.String)
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

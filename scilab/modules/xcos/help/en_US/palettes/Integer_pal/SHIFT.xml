@@ -112,8 +112,8 @@
         <title>Description</title>
         <para>
             This block shifts the bits of the input signal. In this operation the digits are moved to the
-            right or to the left.The user can choose the rule to shifts the bits that can be normal or cycle
-            by setting the <emphasis role="bold">Shift Type</emphasis> parameter to 0 or 1. The number and
+            right or to the left. The user can choose the rule to shifts the bits that can be normal or cycle
+            by setting the <emphasis role="bold">Shift Type</emphasis> parameter to <literal>0</literal> or <literal>1</literal>. The number and
             the direction of the shifts are set with the <emphasis role="bold">Number of Bits to Shift Left</emphasis>.
             If this number is positive the input is shifted to the left, otherwise it is shifted to the right.
         </para>
@@ -132,17 +132,68 @@
                     By example, the one bit shift right gives: 
                     <inlinemediaobject>
                         <imageobject>
-                            <imagedata fileref="../../../images/integer_pal/en_US/shift_arithmetic_right_en_US.png"/>
+                            <imagedata fileref="../../../images/palettes/integer_pal/shift_arithmetic_right.gif"/>
                         </imageobject>
+                        <textobject>
+                            <programlisting role="pic"><![CDATA[
+.PS
+First: box width 0.25 height 0.25 "1";
+box width 0.25 height 0.25 "0";
+box height 0.25 "...";
+box width 0.25 height 0.25 "1";
+box width 0.25 height 0.25 "0";
+Last: box width 0.25 height 0.25 "1";
+
+move 0.5; arrow 0.5 dashed; move 0.5;
+
+box width 0.25 height 0.25 "1";
+box width 0.25 height 0.25 "1";
+box width 0.25 height 0.25 "0";
+box height 0.25 "...";
+box width 0.25 height 0.25 "1";
+box width 0.25 height 0.25 "0";
+
+spline at First.w left 0.375 then up 0.5 then right 0.5 then down 0.375 ->;
+
+up;
+arrow at Last.n;
+.PE
+                ]]></programlisting>
+                        </textobject>
                     </inlinemediaobject>
-                    and the one bit shift left gives: 
+                    and the one bit shift left gives:
                     <inlinemediaobject>
                         <imageobject>
-                            <imagedata fileref="../../../images/integer_pal/en_US/shift_arithmetic_left_en_US.png"/>
+                            <imagedata fileref="../../../images/palettes/integer_pal/shift_arithmetic_left.gif"/>
                         </imageobject>
+                        <textobject>
+                            <programlisting role="pic"><![CDATA[
+.PS
+First: box width 0.25 height 0.25 "1";
+box width 0.25 height 0.25 "0";
+box height 0.25 "...";
+box width 0.25 height 0.25 "1";
+box width 0.25 height 0.25 "0";
+Last: box width 0.25 height 0.25 "1";
+
+move 0.5; arrow 0.5 dashed; move 0.5;
+
+box width 0.25 height 0.25 "0";
+box height 0.25 "...";
+box width 0.25 height 0.25 "0";
+box width 0.25 height 0.25 "1";
+box width 0.25 height 0.25 "0";
+
+up;
+arrow at First.n;
+move;
+down;
+arrow at Last.n+(0,0.5) "  0";
+.PE
+                ]]></programlisting>
+                        </textobject>
                     </inlinemediaobject>
                 </para>
-                <para/>
             </listitem>
             <listitem>
                 <para>
@@ -155,14 +206,62 @@
                     By example, the one bit rotation right gives: 
                     <inlinemediaobject>
                         <imageobject>
-                            <imagedata fileref="../../../images/integer_pal/en_US/shift_rotate_right_en_US.png" valign="middle"/>
+                            <imagedata fileref="../../../images/palettes/integer_pal/shift_rotate_right.gif"/>
                         </imageobject>
+                        <textobject>
+                            <programlisting role="pic"><![CDATA[
+.PS
+First: box width 0.25 height 0.25 "1";
+box width 0.25 height 0.25 "0";
+box height 0.25 "...";
+box width 0.25 height 0.25 "1";
+box width 0.25 height 0.25 "0";
+Last: box width 0.25 height 0.25 "1";
+
+move 0.5; arrow 0.5 dashed; move 0.5;
+
+box width 0.25 height 0.25 "0";
+box height 0.25 "...";
+box width 0.25 height 0.25 "1";
+box width 0.25 height 0.25 "0";
+box width 0.25 height 0.25 "1";
+box width 0.25 height 0.25 "1";
+
+spline at First.s down 0.25 then right then right 1.125 then right then up 0.375 then left 0.25 ->;
+
+.PE
+                ]]></programlisting>
+                        </textobject>
                     </inlinemediaobject>
                     and the one bit rotation left gives: 
                     <inlinemediaobject>
                         <imageobject>
-                            <imagedata fileref="../../../images/integer_pal/en_US/shift_rotate_left_en_US.png" valign="middle"/>
+                            <imagedata fileref="../../../images/palettes/integer_pal/shift_rotate_left.gif" valign="middle"/>
                         </imageobject>
+                        <textobject>
+                            <programlisting role="pic"><![CDATA[
+.PS
+First: box width 0.25 height 0.25 "1";
+box width 0.25 height 0.25 "0";
+box height 0.25 "...";
+box width 0.25 height 0.25 "1";
+box width 0.25 height 0.25 "0";
+Last: box width 0.25 height 0.25 "1";
+
+move 0.5; arrow 0.5 dashed; move 0.5;
+
+box width 0.25 height 0.25 "1";
+box width 0.25 height 0.25 "1";
+box width 0.25 height 0.25 "0";
+box height 0.25 "...";
+box width 0.25 height 0.25 "1";
+box width 0.25 height 0.25 "0";
+
+spline at Last.s down 0.25 then left then left 1.125 then left then up 0.375 then right 0.25 ->;
+
+.PE
+                ]]></programlisting>
+                        </textobject>
                     </inlinemediaobject>
                     .
                 </para>

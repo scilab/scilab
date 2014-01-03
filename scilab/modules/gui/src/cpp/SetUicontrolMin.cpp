@@ -15,7 +15,7 @@
 #include "GetUicontrolStyle.hxx"
 #include "SetUicontrolMin.hxx"
 
-int SetUicontrolMin(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUicontrolMin(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     double minValue = 0.0;
     BOOL status = FALSE;
@@ -29,7 +29,7 @@ int SetUicontrolMin(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType,
     int *piType = &type;
 
     // Check type
-    getGraphicObjectProperty(sciObjUID, __GO_TYPE__, jni_int, (void**) &piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void**) &piType);
     if (type != __GO_UICONTROL__)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Min");
@@ -55,11 +55,11 @@ int SetUicontrolMin(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType,
     /*
      * For Checkboxes and Radiobuttons: display a warning if the value is neither equal to Min nor Max
      */
-    getGraphicObjectProperty(sciObjUID, __GO_STYLE__, jni_int, (void**) &piObjectStyle);
+    getGraphicObjectProperty(iObjUID, __GO_STYLE__, jni_int, (void**) &piObjectStyle);
     if (objectStyle == __GO_UI_CHECKBOX__ || objectStyle == __GO_UI_RADIOBUTTON__)
     {
-        getGraphicObjectProperty(sciObjUID, __GO_UI_VALUE__, jni_double, (void**) &pdblValue);
-        getGraphicObjectProperty(sciObjUID, __GO_UI_MAX__, jni_double, (void**) &pdblMaxValue);
+        getGraphicObjectProperty(iObjUID, __GO_UI_VALUE__, jni_double, (void**) &pdblValue);
+        getGraphicObjectProperty(iObjUID, __GO_UI_MAX__, jni_double, (void**) &pdblMaxValue);
 
         if ((value != minValue) && (value != maxValue))
         {
@@ -68,7 +68,7 @@ int SetUicontrolMin(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType,
 
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_MIN__, &minValue, jni_double, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_MIN__, &minValue, jni_double, 1);
 
     if (status == TRUE)
     {

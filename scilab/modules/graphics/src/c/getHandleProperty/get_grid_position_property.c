@@ -27,12 +27,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_grid_position_property(void* _pvCtx, char* pobjUID)
+void* get_grid_position_property(void* _pvCtx, int iObjUID)
 {
     int iGridPosition = 0;
     int* piGridPosition = &iGridPosition;
 
-    getGraphicObjectProperty(pobjUID, __GO_GRID_POSITION__, jni_int, (void **)&piGridPosition);
+    getGraphicObjectProperty(iObjUID, __GO_GRID_POSITION__, jni_int, (void **)&piGridPosition);
 
     if (piGridPosition == NULL)
     {

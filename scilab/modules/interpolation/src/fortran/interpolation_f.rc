@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "interpolation_f module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "interpolation_f module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "interpolation_f.dll"
             VALUE "ProductName", "interpolation_f module"
             VALUE "ProductVersion", "6, 0, 0, 0"

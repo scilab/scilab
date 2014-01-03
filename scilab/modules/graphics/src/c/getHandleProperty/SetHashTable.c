@@ -50,7 +50,7 @@ typedef struct
 * don't forget to modify it each time the propertyTable
 * is modified.
 */
-#define NB_PROPERTIES 173
+#define NB_PROPERTIES 174
 
 /**
 * list of all property names and associated functions in scilab
@@ -230,7 +230,8 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
     {"material_shininess", set_material_shininess_property},
     {"light_type", set_light_type_property},
     {"direction", set_direction_property},
-    {"image_type", set_image_type_property}
+    {"image_type", set_image_type_property},
+    {"datatips", set_datatips_property}
 };
 
 /*--------------------------------------------------------------------------*/
@@ -264,7 +265,7 @@ SetPropertyHashTable *createScilabSetHashTable(void)
 }
 
 /*--------------------------------------------------------------------------*/
-int callSetProperty(void* _pvCtx, char *pObjUID, void* _pvData, int valueType, int nbRow, int nbCol, char *propertyName)
+int callSetProperty(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol, char *propertyName)
 {
     setPropertyFunc accessor = searchSetHashtable(setHashTable, propertyName);
 
@@ -273,7 +274,7 @@ int callSetProperty(void* _pvCtx, char *pObjUID, void* _pvData, int valueType, i
         Scierror(999, _("Unknown property: %s.\n"), propertyName);
         return -1;
     }
-    return accessor(_pvCtx, pObjUID, _pvData, valueType, nbRow, nbCol);
+    return accessor(_pvCtx, iObjUID, _pvData, valueType, nbRow, nbCol);
 }
 
 /*--------------------------------------------------------------------------*/

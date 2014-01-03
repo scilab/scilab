@@ -85,16 +85,15 @@ int sci_driver(char * fname, void *pvApiCtx)
         else if (org_scilab_modules_gui::SwingView::isHeadless(getScilabJavaVM()))
         {
             org_scilab_modules_gui::SwingView::setHeadless(getScilabJavaVM(), false);
-            const char* pstCurrentFigureReference = ScilabView::getCurrentFigure();
-            if (pstCurrentFigureReference != NULL)
+            int CurrentFigureReference = ScilabView::getCurrentFigure();
+            if (CurrentFigureReference != 0)
             {
-                char* uid = strdup(pstCurrentFigureReference);
+                int uid = CurrentFigureReference;
 
                 if (uid)
                 {
                     deleteGraphicObject(uid);
                 }
-                free(uid);
             }
         }
 

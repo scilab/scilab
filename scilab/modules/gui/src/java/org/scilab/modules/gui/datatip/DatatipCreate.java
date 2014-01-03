@@ -6,28 +6,21 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.gui.datatip;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VIEW__;
+
+import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
-
-import org.scilab.modules.renderer.CallRenderer;
-import org.scilab.modules.graphic_objects.PolylineData;
-
-import java.lang.String;
-import java.lang.Math;
-import java.text.DecimalFormat;
-
-import org.scilab.modules.gui.editor.AxesHandler;
-import org.scilab.modules.gui.editor.EntityPicker;
 import org.scilab.modules.gui.editor.CommonHandler;
-import org.scilab.modules.gui.datatip.DatatipDrag;
+import org.scilab.modules.gui.editor.EntityPicker;
+import org.scilab.modules.renderer.CallRenderer;
 
 /**
  * Create a datatip and set its properties
@@ -46,13 +39,13 @@ public class DatatipCreate {
     * @param coordIntY Integer with pixel mouse position y.
     * @return Datatip handler string.
     */
-    public static String createDatatip(String figureUid, Integer coordIntX, Integer coordIntY) {
+    public static Integer createDatatip(int figureUid, Integer coordIntX, Integer coordIntY) {
 
-        String polylineUid = ep.pick(figureUid, coordIntX, coordIntY);
+        Integer polylineUid = ep.pick(figureUid, coordIntX, coordIntY);
         double[] graphicCoord = DatatipCommon.getTransformedPosition(figureUid, new Integer[] {coordIntX, coordIntY});
         EntityPicker.PickedPoint picked = ep.pickPoint(polylineUid, coordIntX, coordIntY);
         double[] point = CommonHandler.computeIntersection(polylineUid, picked.point, graphicCoord);
-        String newDatatip = datatipProperties(point, polylineUid);
+        Integer newDatatip = datatipProperties(point, polylineUid);
         return newDatatip;
     }
 
@@ -64,9 +57,9 @@ public class DatatipCreate {
     * @param coordDoubleXY double array with graphic position x and y.
     * @return Datatip handler string.
     */
-    public static String createDatatipProgramCoord(String polylineUid, double[] coordDoubleXY) {
+    public static int createDatatipProgramCoord(int polylineUid, double[] coordDoubleXY) {
 
-        if (polylineUid != null) {
+        if (polylineUid != 0) {
 
             if (PolylineData.isZCoordSet(polylineUid) == 0) {
 
@@ -76,7 +69,7 @@ public class DatatipCreate {
                 Double[] pos = DatatipCommon.Interpolate(coordDoubleXY[0], seg);
                 double[] position = new double[] {pos[0], pos[1], 0.0};
 
-                String newDatatip = datatipProperties(position, polylineUid);
+                Integer newDatatip = datatipProperties(position, polylineUid);
                 return newDatatip;
 
             } else {
@@ -86,14 +79,14 @@ public class DatatipCreate {
                 Double[] pos = DatatipCommon.Interpolate3dViewProgCoord(coordDoubleXY[0], coordDoubleXY[1], seg3d, polylineUid);
                 double[] position = new double[] {pos[0], pos[1], pos[2]};
 
-                String newDatatip = datatipProperties(position, polylineUid);
+                Integer newDatatip = datatipProperties(position, polylineUid);
                 return newDatatip;
 
             }
 
         }
 
-        return null;
+        return 0;
     }
 
 
@@ -104,7 +97,7 @@ public class DatatipCreate {
     * @param indexPoint integer related to one of the indexed points of the polyline
     * @return Datatip handler string.
     */
-    public static String createDatatipProgramIndex(String polylineUid, int indexPoint) {
+    public static int createDatatipProgramIndex(int polylineUid, int indexPoint) {
 
         double[] DataX = (double[]) PolylineData.getDataX(polylineUid);
         double[] DataY = (double[]) PolylineData.getDataY(polylineUid);
@@ -126,7 +119,7 @@ public class DatatipCreate {
             coordDoubleXY[1] = DataY[indexPoint - 1];
         }
 
-        String newDatatip = datatipProperties(coordDoubleXY, polylineUid);
+        Integer newDatatip = datatipProperties(coordDoubleXY, polylineUid);
         return newDatatip;
     }
 
@@ -137,7 +130,7 @@ public class DatatipCreate {
     * @param axesUid Axes unique identifier
     * @return datatip position in pixels
     */
-    public static Integer[] getDatatipPositionInteger(double[] coordinates, String axesUid) {
+    public static int[] getDatatipPositionInteger(double[] coordinates, int axesUid) {
 
         double[] graphCoordDouble = new double[] {0.0, 0.0, 0.0};
         graphCoordDouble[0] = coordinates[0];
@@ -150,9 +143,9 @@ public class DatatipCreate {
         int xInt = (int) pixelCoordinates[0];
         int yInt = (int) pixelCoordinates[1];
 
-        Integer[] coordInteger = new Integer[2];
-        coordInteger[0] = (Integer) xInt;
-        coordInteger[1] = (Integer) yInt;
+        int[] coordInteger = new int[2];
+        coordInteger[0] = xInt;
+        coordInteger[1] = yInt;
 
         return coordInteger;
     }
@@ -165,14 +158,14 @@ public class DatatipCreate {
     * @param polyline the polyline uid string.
     * @return Datatip uid string.
     */
-    private static String datatipProperties(double[] coord, String polyline) {
+    private static int datatipProperties(double[] coord, Integer polyline) {
 
-        String newDatatip = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_DATATIP__));
+        Integer newDatatip = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_DATATIP__));
         Double[] datatipPosition = new Double[] {coord[0], coord[1], coord[2]};
 
         GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_DATATIP_DATA__, datatipPosition);
 
-        String axesUid = (String)GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_PARENT_AXES__);
+        Integer axesUid = (Integer)GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_PARENT_AXES__);
         Integer viewInfo = (Integer) GraphicController.getController().getProperty(axesUid, __GO_VIEW__);
         if (viewInfo == 1 && PolylineData.isZCoordSet(polyline) == 1) {
             GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_DATATIP_3COMPONENT__, true);
@@ -189,10 +182,8 @@ public class DatatipCreate {
     * @param datatipUid datatip unique identifier.
     * @param interpMode boolean for the interpolation mode.
     */
-    private static void datatipSetInterp(String datatipUid, boolean interpMode) {
-
+    private static void datatipSetInterp(int datatipUid, boolean interpMode) {
         GraphicController.getController().setProperty(datatipUid, GraphicObjectProperties.__GO_DATATIP_INTERP_MODE__, interpMode);
-
     }
 
 }

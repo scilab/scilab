@@ -21,7 +21,7 @@
 
 GRAPHICS_IMPEXP int re_index_brect(double* brect, double* drect);
 
-GRAPHICS_IMPEXP BOOL strflag2axes_properties(char * psubwinUID, char * strflag);
+GRAPHICS_IMPEXP BOOL strflag2axes_properties(int iSubwinUID, char * strflag);
 
 GRAPHICS_IMPEXP int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, int *style, char *strflag, char *legend, double *brect, int *aaint, BOOL flagNax, int lstr1, int lstr2);
 

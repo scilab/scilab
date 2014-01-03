@@ -34,7 +34,7 @@
 //    for example, when an derivative-based optimizer with
 //    non linear constraints is required.
 //   index, output :
-//     if index > 0, everything went find
+//     if index > 0, everything went fine
 //     if index == 0, interrupts the optimization
 //     if index < 0, f cannot be evaluated
 // Calling sequences :
@@ -53,12 +53,12 @@
 //   [ this , f , g , c , gc ] = optimbase_function ( this , x , index )
 //
 // Calling sequences of the cost function:
-//   > Without additionnal data
+//   > Without additional data
 //   [ f , index ] = costf ( x , index )
 //   [ f , g , index ] = costf ( x , index )
 //   [ f , c , index ] = costf ( x , index )
 //   [ f , g , c , gc , index ] = costf ( x , index )
-//   > With additionnal data
+//   > With additional data
 //   [ f , index ] = costf ( x , index , a1, a2, ... )
 //   [ f , g , index ] = costf ( x , index , a1, a2, ... )
 //   [ f , c , index ] = costf ( x , index , a1, a2, ... )
@@ -123,6 +123,18 @@ function varargout = optimbase_function ( this , x , index )
             // [ f , g , index ] = costf ( x , index , a1, a2, ... )
             // [ this , f , g , index ] = optimbase_function ( this , x , index )
             [ f , g , index ] = __optimbase_f__ ( x , index , __optimbase_args__(1:$) );
+            if type(f) <> 1 | ~isreal(f) then
+                errmsg = msprintf(_("%s: Wrong type for user function output argument #%d: A real matrix expected."), "optimbase_function", 1);
+                error(errmsg)
+            end
+            if type(g) <> 1 | ~isreal(g) then
+                errmsg = msprintf(_("%s: Wrong type for user function output argument #%d: A real matrix expected."), "optimbase_function", 2);
+                error(errmsg)
+            end
+            if type(index) <> 1 | ~isreal(index) then
+                errmsg = msprintf(_("%s: Wrong type for user function output argument #%d: A real matrix expected."), "optimbase_function", 3);
+                error(errmsg)
+            end
             varargout(1) = this
             varargout(2) = f
             varargout(3) = g
@@ -132,6 +144,26 @@ function varargout = optimbase_function ( this , x , index )
             // [ f , g , c , gc , index ] = costf ( x , index , a1, a2, ... )
             // [ this , f , g , c , gc , index ] = optimbase_function ( this , x , index )
             [ f , g , c , gc , index ] = __optimbase_f__ ( x , index , __optimbase_args__(1:$) );
+            if type(f) <> 1 | ~isreal(f) then
+                errmsg = msprintf(_("%s: Wrong type for user function output argument #%d: A real matrix expected."), "optimbase_function", 1);
+                error(errmsg)
+            end
+            if type(g) <> 1 | ~isreal(g) then
+                errmsg = msprintf(_("%s: Wrong type for user function output argument #%d: A real matrix expected."), "optimbase_function", 2);
+                error(errmsg)
+            end
+            if type(c) <> 1 | ~isreal(c) then
+                errmsg = msprintf(_("%s: Wrong type for user function output argument #%d: A real matrix expected."), "optimbase_function", 3);
+                error(errmsg)
+            end
+            if type(gc) <> 1 | ~isreal(gc) then
+                errmsg = msprintf(_("%s: Wrong type for user function output argument #%d: A real matrix expected."), "optimbase_function", 4);
+                error(errmsg)
+            end
+            if type(index) <> 1 | ~isreal(index) then
+                errmsg = msprintf(_("%s: Wrong type for user function output argument #%d: A real matrix expected."), "optimbase_function", 5);
+                error(errmsg)
+            end
             varargout(1) = this
             varargout(2) = f
             varargout(3) = g
@@ -145,6 +177,14 @@ function varargout = optimbase_function ( this , x , index )
             // [ f , index ] = costf ( x , index , a1, a2, ... )
             // [ this , f , index ] = optimbase_function ( this , x , index )
             [ f , index ] = __optimbase_f__ ( x , index , __optimbase_args__(1:$) );
+            if type(f) <> 1 | ~isreal(f) then
+                errmsg = msprintf(_("%s: Wrong type for user function output argument #%d: A real matrix expected."), "optimbase_function", 1);
+                error(errmsg)
+            end
+            if type(index) <> 1 | ~isreal(index) then
+                errmsg = msprintf(_("%s: Wrong type for user function output argument #%d: A real matrix expected."), "optimbase_function", 2);
+                error(errmsg)
+            end
             varargout(1) = this
             varargout(2) = f
             varargout(3) = index
@@ -153,6 +193,18 @@ function varargout = optimbase_function ( this , x , index )
             // [ f , c , index ] = costf ( x , index , a1, a2, ... )
             // [ this , f , c , index ] = optimbase_function ( this , x , index )
             [ f , c , index ] = __optimbase_f__ ( x , index , __optimbase_args__(1:$) );
+            if type(f) <> 1 | ~isreal(f) then
+                errmsg = msprintf(_("%s: Wrong type for user function output argument #%d: A real matrix expected."), "optimbase_function", 1);
+                error(errmsg)
+            end
+            if type(c) <> 1 | ~isreal(c) then
+                errmsg = msprintf(_("%s: Wrong type for user function output argument #%d: A real matrix expected."), "optimbase_function", 2);
+                error(errmsg)
+            end
+            if type(index) <> 1 | ~isreal(index) then
+                errmsg = msprintf(_("%s: Wrong type for user function output argument #%d: A real matrix expected."), "optimbase_function", 3);
+                error(errmsg)
+            end
             varargout(1) = this
             varargout(2) = f
             varargout(3) = c

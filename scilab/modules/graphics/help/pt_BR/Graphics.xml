@@ -640,12 +640,6 @@
                     <para>editor interativo de curvas gráficas</para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>gr_menu</term>
-                <listitem>
-                    <para>editor gráfico interativo simples</para>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>

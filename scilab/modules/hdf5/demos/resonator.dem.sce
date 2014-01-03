@@ -14,7 +14,7 @@ function resonator_demo()
     filename = "resonator.dem.sce";
     demo_viewCode(filename);
 
-    h5=h5open(SCI+"/modules/hdf5/demos/eps.h5");
+    h5=h5open(SCI+"/modules/hdf5/demos/eps.h5","r");
     eps=h5.root.eps.data;
 
     surf(eps);

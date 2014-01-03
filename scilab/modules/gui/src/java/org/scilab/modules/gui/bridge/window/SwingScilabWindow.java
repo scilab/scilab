@@ -344,6 +344,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     @Override
     public Size getDims() {
         return new Size(getSize().width, getSize().height);
+        
     }
 
     /**

@@ -105,3 +105,13 @@ SEP #106: Error control in function intc.
 SEP #107: Add an xcosAddToolsMenu and xcosUpdateBlock to ease external tools integration.
 SEP #108: 3-D arrows with xarrows
 SEP #109: New input argument for neldermead_search(), to control warnings.
+SEP #110: New function histc and new output to histplot.
+SEP #111: New input argument to stdev. st_deviation and msd tagged as obsolete.
+SEP #112: variance and variancef can now return the mean of the input in a new output argument and take the a priori mean as input.
+SEP #113: resize_matrix hypermatrices support.
+SEP #114: New function jcreatejar.
+SEP #115: New function bode_asymp.
+SEP #116: conjgrad function, to regroup the Conjugate Gradient solvers. pcg obsolete as it is.
+SEP #117: New function ilib_build_jar
+SEP #118: New function ifftshift
+SEP #119: Management of encoding in xmlRead

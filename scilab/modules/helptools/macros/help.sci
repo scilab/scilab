@@ -39,6 +39,11 @@ function help(varargin)
                 key="symbols";
             end
 
+            // Treat "$" apart because contrarily to the previous symbols, "$" is an existing variable in Scilab
+            if part(key,1)=="$" & (exists(key)==0 | length(key)==1) then
+                key="symbols";
+            end
+
             global %helps
             helpbrowser(%helps(:,1), key, getlanguage(), %f);
 

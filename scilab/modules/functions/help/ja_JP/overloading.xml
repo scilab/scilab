@@ -51,10 +51,10 @@
             <literal>%&lt;operand_type&gt;_&lt;op_code&gt;</literal>
         </para>
         <para>n項演算子の展開および挿入は以下のように記述されます.</para>
-        <para>
-            <literal>typename</literal>関数に登録された型のみが
+        <warning>
+            <function>typename</function>関数に登録された型のみが
             オーバーロードマクロの中で使用できることに注意してください.
-        </para>
+        </warning>
         <para>
             <literal>&lt;operand_type&gt;</literal>,
             <literal>&lt;first_operand_type&gt;</literal>,
@@ -134,7 +134,7 @@
                     <literal>i</literal>
                 </td>
                 <td>
-                    <literal>int8, int16,int32, uint8, uint16, uint32</literal>
+                    <literal>int8, int16, int32, uint8, uint16, uint32</literal>
                 </td>
                 <td/>
             </tr>
@@ -516,10 +516,10 @@
         </para>
         <para>
             文字コード<literal>6</literal> を
-            <literal>x.b(2)=33</literal>のような複雑な挿入アルゴリズム で使用することができます.
+            <code>x.b(2) = 33</code>のような複雑な挿入アルゴリズム で使用することができます.
             ただし,<literal>b</literal>フィールドは構造体<literal>x</literal>で 定義されません.
-            挿入は自動的に<literal>temp=x.b;</literal> <literal>temp(2)=33;</literal>
-            <literal>x.b=temp</literal>に分解されます. 文字コード<literal>6</literal>
+            挿入は自動的に<literal>temp=x.b;</literal> <code>temp(2) = 33</code>;
+            <code>x.b = temp</code>に分解されます. 文字コード<literal>6</literal>
             がこのアルゴリズムの最初の手順で 使用されます.オーバーロード関数<literal>6</literal> は,
             <literal>e</literal>のものに非常によく似ています.
         </para>
@@ -527,8 +527,8 @@
             <varlistentry>
                 <term>関数 :</term>
                 <listitem>
-                    <para>いくつかの基本プリミティブ関数</para>
-                    <para>新規データ型に関してオーバーロードができます. 特定のデータ型に関してこのような関数が未定義の場合,
+                    <para>
+                        いくつかの基本プリミティブ関数新規データ型に関してオーバーロードができます. 特定のデータ型に関してこのような関数が未定義の場合,
                         関数<literal>%&lt;type_of_an_argument&gt;_&lt;function_name&gt;</literal>
                         がコールされます. ユーザはこのコールされた関数に入力データ型に関する 定義を追加することができます.
                     </para>
@@ -541,29 +541,37 @@
     </refsection>
     <refsection>
         <programlisting role="example">//表示
+            var = tlist('tab', ['a', 'b'], ['x'; 'y'], rand(2, 2)) // the type of var is 'tab'
+            
+            typeof(var)
+            
             function [] = %tab_p(l)
             disp([[' '; l(3)] [l(2); string(l(4))]])
             endfunction
             
-            tlist('tab', ['a', 'b'], ['x'; 'y'], rand(2, 2))
+            var // after overloading
         </programlisting>
     </refsection>
     <refsection>
         <programlisting role="example">//演算子
+            's' + 1 // it is impossible to add a number to a string
+            
             function x = %c_a_s(a, b)
             x = a + string(b);
             endfunction
             
-            's' + 1
+            's' + 1 // after overloading
         </programlisting>
     </refsection>
     <refsection>
         <programlisting role="example">//関数
+            sin('2 * x') // the sin function does not work with a string
+            
             function x = %c_sin(a)
             x = 'sin(' + a + ')'
             endfunction
             
-            sin('2 * x')
+            sin('2 * x') // after overloading
         </programlisting>
     </refsection>
     <refsection role="see also">
@@ -585,7 +593,7 @@
                 <link linkend="type">type</link>
             </member>
             <member>
-                <link linkend="typename">type</link>
+                <link linkend="typename">typename</link>
             </member>
         </simplelist>
     </refsection>

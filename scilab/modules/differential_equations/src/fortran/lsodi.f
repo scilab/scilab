@@ -1136,6 +1136,8 @@ c-----------------------------------------------------------------------
 c the following card is for optimized compilation on llnl compilers.
 clll. optimize
 c-----------------------------------------------------------------------
+      include 'stack.h'
+
       external prepji, solsy
       integer illin, init, lyh, lewt, lacor, lsavr, lwm, liwm,
      1   mxstep, mxhnil, nhnil, ntrep, nslast, nyh, iowns
@@ -1165,8 +1167,6 @@ c lsodi, intdy, stodi, prepji, and solsy.  groups of variables are
 c replaced by dummy arrays in the common declarations in routines
 c where those variables are not used.
 c-----------------------------------------------------------------------
-      integer         iero
-      common /ierode/ iero
 cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
       common /ls0001/ tret, rowns(209),
      1   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround,
@@ -1185,7 +1185,7 @@ c not yet been done, an error return occurs.
 c if istate = 0 or 1 and tout = t, jump to block g and return
 c immediately.
 c-----------------------------------------------------------------------
-      iero=0
+      ierror=0
       if (istate .lt. 0 .or. istate .gt. 3) go to 601
       if (itask .lt. 1 .or. itask .gt. 5) go to 602
       if (istate .le. 1) go to 10
@@ -1339,7 +1339,7 @@ c lsodi must compute initial dy/dt (lyd0 points to yh(*,2)). -----------
             goto 565
          endif
  110     continue
-         if(iero.gt.0) return
+         if(ierror.gt.0) return
          do 115  i = 1, n
  115        rwork(i+lyh-1) = y(i)
          go to 130
@@ -1480,7 +1480,7 @@ c-----------------------------------------------------------------------
       call stodi (neq, y, rwork(lyh), nyh, rwork(lyh), rwork(lewt),
      1   ydoti, rwork(lsavr), rwork(lacor), rwork(lwm),
      2   iwork(liwm), res, adda, jac, prepji, solsy )
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       kgo = 1 - kflag
       go to (300, 530, 540, 400, 550), kgo
 c
@@ -1638,7 +1638,7 @@ c compute residual if relevant. ----------------------------------------
  585     y(i) = rwork( i+lyh-1 )
       ires = 1
       call res ( neq, tn, y, rwork(lsavr), ydoti, ires )
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nre = nre + 1
       if (ires .le. 1) go to 595
       call xerrwv('lsodi--  routine for evaluation od residue returns',

@@ -79,6 +79,7 @@ function nbChanges = atomsSetConfig(field, value)
             | element == "proxyPassword" ..
             | element == "downloadTool" ..
             | element == "downloadTimeout" ..
+            | element == "updateTime" ..
             then continue;
         else
             error(msprintf(gettext("%s: Wrong key for input configuration argument.\n"), element));

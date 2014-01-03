@@ -38,7 +38,7 @@ public final class ImageExporter {
      * @param figureIndex index of the figure to export
      * @return copy of the OpenGL canvas of the figure or null if an error occurred
      */
-    public static Image imageExport(String uid) {
+    public static Image imageExport(Integer uid) {
         DrawerVisitor visitor = DrawerVisitor.getVisitor(uid);
         Canvas canvas = visitor.getCanvas();
         if (canvas instanceof JoGLCanvas) {

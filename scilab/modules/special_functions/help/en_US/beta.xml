@@ -52,7 +52,7 @@
             </mediaobject>
         </informalequation>
         <para>
-            For small <literal>x</literal> and <literal>y</literal> (<literal>x+y&le;2</literal> elementwise),
+            For small <literal>x</literal> and <literal>y</literal> (<literal>x+y&#8804;2</literal> elementwise),
             the algorithm uses the expression in function of the gamma function, else it
             applies the exponential function onto the result of the
             <literal>betaln</literal> function provided with the DCDFLIB: Library of
@@ -65,12 +65,10 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 // example 1 :
-beta(5,2) - beta(2,5)   // symetry (must be exactly 0)
+beta(5,2) - beta(2,5)   // symmetry (must be exactly 0)
 beta(0.5,0.5)           // exact value is pi
  ]]></programlisting>
-        
         <programlisting role="example"><![CDATA[
-
 // example 2 : an error study based on the relation  B(1,x) = 1/x
 // (computing 1/x must lead to only a relative error of eps_m, so
 //  it may be used near as a reference to evaluate the error in B(1,x))
@@ -84,7 +82,6 @@ plot2d(x(ind),[er(ind) eps 2*eps],style=[1 2 3],logflag="ll",leg="er@eps_m@2 eps
 xtitle("approximate relative error in computing beta(1,x)")
 show_window()
  ]]></programlisting>
-        
         <scilab:image>
             x = logspace(-8,8,20000)';
             e = beta(ones(x),x) - (1)./x;
@@ -94,7 +91,6 @@ show_window()
             plot2d(x(ind),[er(ind) eps 2*eps],style=[1 2 3],logflag="ll",leg="er@eps_m@2 eps_m")
             xtitle("approximate relative error in computing beta(1,x)")
         </scilab:image>
-        
         <programlisting role="example"><![CDATA[
 // example 3 : plotting the beta function
 t = linspace(0.2,10,60);

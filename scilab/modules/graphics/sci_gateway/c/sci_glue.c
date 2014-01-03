@@ -49,10 +49,11 @@ int sci_glue(char * fname, void *pvApiCtx)
     long *handelsvalue = NULL;
     int i = 0;
 
-    char *pstCompoundUID = NULL;
-    char *pstParentUID = NULL;
-    char *pstCurrentParentUID = NULL;
-    char *pobjUID = NULL;
+    int iCompoundUID = 0;
+    int iParentUID = 0;
+    int iCurrentParentUID = 0;
+    int* piCurrentParentUID = &iCurrentParentUID;
+    int iObjUID = 0;
 
     CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 0, 1);
@@ -113,21 +114,22 @@ int sci_glue(char * fname, void *pvApiCtx)
     for (i = 0 ; i < n ; i++)
     {
         handelsvalue[i] = (unsigned long) l1[i];
-        pobjUID = (char*)getObjectFromHandle(handelsvalue[i]);
-        if (pobjUID == NULL)
+        iObjUID = getObjectFromHandle(handelsvalue[i]);
+        if (iObjUID == 0)
         {
             FREE(handelsvalue);
             Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
             return 0;
         }
 
-        getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, (void **)&pstCurrentParentUID);
+        iCurrentParentUID = getParentObject(iObjUID);
+        //getGraphicObjectProperty(iObjUID, __GO_PARENT__, jni_string, (void **)&piCurrentParentUID);
         if (i == 0)
         {
-            pstParentUID = pstCurrentParentUID;
+            iParentUID = iCurrentParentUID;
         }
 
-        if  (strcmp(pstParentUID, pstCurrentParentUID) != 0)
+        if (iParentUID != iCurrentParentUID)
         {
             FREE(handelsvalue);
             Scierror(999, _("%s: Objects must have the same parent.\n"), fname);
@@ -151,8 +153,8 @@ int sci_glue(char * fname, void *pvApiCtx)
     //    return 0;
     //}
 
-    pstCompoundUID = ConstructCompound(handelsvalue, n);
-    setCurrentObject(pstCompoundUID);
+    iCompoundUID = ConstructCompound(handelsvalue, n);
+    setCurrentObject(iCompoundUID);
 
     numrow = 1;
     numcol = 1;
@@ -165,8 +167,7 @@ int sci_glue(char * fname, void *pvApiCtx)
         return 1;
     }
 
-    outindex[0] = getHandle(pstCompoundUID);
-    releaseGraphicObjectProperty(__GO_PARENT__, pstCompoundUID, jni_string, 1);
+    outindex[0] = getHandle(iCompoundUID);
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 3;
     ReturnArguments(pvApiCtx);
     FREE(handelsvalue);

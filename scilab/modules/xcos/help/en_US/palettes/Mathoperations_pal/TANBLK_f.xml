@@ -96,13 +96,9 @@
             That block computes the tangent of the elements of the input vector.
         </para>
         <para>
-        </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../help/images/TANBLK_f_img2_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
+            <link linkend="tan">
+                <latex>$y = \tan(u)$</latex>
+            </link>
         </para>
     </refsection>
     <refsection id="Defaultproperties_TANBLK_f">

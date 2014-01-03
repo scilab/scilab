@@ -32,12 +32,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_text_box_mode_property(void* _pvCtx, char* pobjUID)
+void* get_text_box_mode_property(void* _pvCtx, int iObjUID)
 {
     int iTextBoxMode = 0;
     int* piTextBoxMode = &iTextBoxMode;
 
-    getGraphicObjectProperty(pobjUID, __GO_TEXT_BOX_MODE__, jni_int, (void**)&piTextBoxMode);
+    getGraphicObjectProperty(iObjUID, __GO_TEXT_BOX_MODE__, jni_int, (void**)&piTextBoxMode);
 
     if (piTextBoxMode == NULL)
     {

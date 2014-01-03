@@ -26,14 +26,14 @@
                 <term>vars</term>
                 <listitem>
                     <para>
-                        liste,  <literal>list(in, out, nolocal, called, locals)</literal>
+                        liste,  <literal>list(in, out, nolocal, called, locals)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>fonction</term>
                 <listitem>
-                    <para>nom de la fonction</para>
+                    <para>nom de la fonction.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -42,23 +42,23 @@
         <title>Description</title>
         <para>
             Retourne dans une liste l'ensemble des variables utilisées par une fonction.
-            <literal>vars</literal> est une liste de cinq vecteurs colonnes de chaînes de caractères:
+            <varname>vars</varname> est une liste de cinq vecteurs colonnes de chaînes de caractères:
         </para>
         <simplelist type="inline">
             <member>
-                <literal>in</literal>: paramètres d'entrée (<literal>vars(1)</literal>)
+                <varname>in</varname>: paramètres d'entrée (<code>vars(1)</code>);
             </member>
             <member>
-                <literal>out</literal>: paramètres de sortie (<literal>vars(2)</literal>)
+                <varname>out</varname>: paramètres de sortie (<code>vars(2)</code>);
             </member>
             <member>
-                <literal>nolocal</literal>: variables référencées qui ne sont pas définies dans la fonction et qui ne sont pas des fonctions (<literal>vars(3)</literal>)
+                <varname>nolocal</varname>: variables référencées qui ne sont pas définies dans la fonction et qui ne sont pas des fonctions (<code>vars(3)</code>);
             </member>
             <member>
-                <literal>called</literal>: noms des fonctions appelées (<literal>vars(4)</literal>)
+                <varname>called</varname>: noms des fonctions appelées (<code>vars(4)</code>);
             </member>
             <member>
-                <literal>locals</literal>: variables locales (<literal>vars(5)</literal>)
+                <varname>locals</varname>: variables locales (<code>vars(5)</code>).
             </member>
         </simplelist>
     </refsection>

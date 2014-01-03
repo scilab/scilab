@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.implementation.g2d.lighting;
@@ -82,8 +82,8 @@ public class G2DLightManager implements LightManager {
     public void setMaterial(Material material) {
         this.material = material;
     }
-	
-	public Material getMaterial() {
+
+    public Material getMaterial() {
         return material;
     }
 
@@ -118,10 +118,22 @@ public class G2DLightManager implements LightManager {
         double[] m = drawingTools.getTransformationManager().getTransformation().getInverseTransformation().getMatrix();
 
         //only the top 3x3 matrix is used.
-        ret[0] = (float)m[0];  ret[4] = (float)m[1];  ret[8] =  (float)m[2];  ret[12] = 0.f;
-        ret[1] = (float)m[4];  ret[5] = (float)m[5];  ret[9] =  (float)m[6];  ret[13] = 0.f;
-        ret[2] = (float)m[8];  ret[6] = (float)m[9];  ret[10] = (float)m[10]; ret[14] = 0.f;
-        ret[3] = 0.f;          ret[7] = 0.f;          ret[11] = 0.f;          ret[15] = 1.f;
+        ret[0] = (float)m[0];
+        ret[4] = (float)m[1];
+        ret[8] =  (float)m[2];
+        ret[12] = 0.f;
+        ret[1] = (float)m[4];
+        ret[5] = (float)m[5];
+        ret[9] =  (float)m[6];
+        ret[13] = 0.f;
+        ret[2] = (float)m[8];
+        ret[6] = (float)m[9];
+        ret[10] = (float)m[10];
+        ret[14] = 0.f;
+        ret[3] = 0.f;
+        ret[7] = 0.f;
+        ret[11] = 0.f;
+        ret[15] = 1.f;
 
         return ret;
     }

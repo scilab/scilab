@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-02-21 17:06+0000\n"
+"PO-Revision-Date: 2013-10-01 10:16+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -24,6 +24,7 @@ msgstr "%s: не вдалося прочитати вхідний парамет
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -31,7 +32,7 @@ msgstr "%s: помилка під час спроби виділення пам�
 
 #, c-format
 msgid "%s: Unable to add new domain %s.\n"
-msgstr ""
+msgstr "%s: не вдалося додати новий домен %s.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"

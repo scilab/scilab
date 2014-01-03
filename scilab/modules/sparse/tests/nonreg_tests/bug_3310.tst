@@ -7,6 +7,8 @@
 
 // <-- CLI SHELL MODE -->
 
+// <-- ENGLISH IMPOSED -->
+
 // <-- Non-regression test for bug 3310 -->
 //
 // <-- Bugzilla URL -->
@@ -19,5 +21,6 @@ A=[10,1;1,10];
 myrhs=[11;11];
 [xcomputed, flag, err, iter, res]=pcg(A,myrhs);
 xexpected=[1;1];
-if norm(xcomputed-xexpected)>%eps then pause,end
+assert_checkequal(xcomputed, xexpected);
+
 

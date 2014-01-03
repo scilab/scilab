@@ -32,9 +32,9 @@ function mom= cmoment(x,ord,orien)
     //Statistics, J.Wiley & Sons, 1990.
     //
     //
-    if x==[]|ord==[] then mom=%nan, return, end
     [lhs,rhs]=argn(0)
     if rhs<2 then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"cmoment",2,3)), end
+    if x==[]|ord==[] then mom=%nan, return, end
     if rhs==2 then
         if ord==1 then mom=0, return, end
         le=length(x)

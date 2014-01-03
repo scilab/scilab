@@ -10,7 +10,7 @@
 
 
 function %h_save(h,fd)
-    version=[5 4 0 1]
+    version=[5 5 0 0]
     mput(version,"uc",fd)
 
     // There are issues when saving characters with 'c' format
@@ -296,6 +296,34 @@ function save_graphichandle(h,fd)
             mput(h.clip_box,"dl",fd) // clip_box
         end
         user_data=h.user_data;save(fd,user_data) // user_data
+
+    case "Datatip"
+        mput(length(h.type),characterFormat,fd); // type
+        mput(ascii(h.type),characterFormat,fd);
+        mput(bool2s(h.visible=="on"),characterFormat,fd) // visible
+        mput(size(h.tip_data),characterFormat,fd); // tip_data
+        mput(h.tip_data,"dl",fd);
+        mput(length(h.tip_box_mode),characterFormat,fd); // tip_box_mode
+        mput(ascii(h.tip_box_mode),characterFormat,fd);
+        mput(length(h.tip_label_mode),characterFormat,fd); // tip_label_mode
+        mput(ascii(h.tip_label_mode),characterFormat,fd);
+        mput(h.tip_orientation,characterFormat,fd) // tip_orientation
+        mput(bool2s(h.tip_3component=="on"),characterFormat,fd) // tip_3component
+        mput(bool2s(h.tip_auto_orientation=="on"),characterFormat,fd) // tip_auto_orientation
+        mput(bool2s(h.tip_interp_mode=="on"),characterFormat,fd) // tip_interp_mode
+        mput(length(ascii(h.tip_disp_function)),stringFormat,fd); // tip_disp_function
+        mput(h.font_foreground, "il", fd) ; // font_foreground
+        mput(h.foreground,"il",fd) // foreground
+        mput(h.background, "il", fd) ; // background
+        mput(bool2s(h.mark_mode=="on"),characterFormat,fd) // mark_mode
+        mput(h.mark_style,characterFormat,fd) // mark_style
+        mput(ascii(part(h.mark_size_unit,1)),characterFormat,fd) // mark_size_unit
+        mput(h.mark_size,characterFormat,fd) // mark_size
+        mput(h.mark_foreground,"il",fd) // mark_foreground
+        mput(h.mark_background,"il",fd) // mark_background
+        user_data=h.user_data;save(fd,user_data) // user_data
+        mput(length(h.tag),"c",fd); // tag
+        mput(ascii(h.tag),"c",fd);
 
     case "Plot3d";
         mput(length(h.type),characterFormat,fd);mput(ascii(h.type),characterFormat,fd); // type
@@ -611,6 +639,7 @@ function save_graphichandle(h,fd)
         save_text_vector(h.tics_labels,fd) // tics_labels
         mput(h.labels_font_size,"il",fd) // label_font_size
         mput(h.labels_font_color,"il",fd) // labels_font_color
+        mput(h.labels_font_style,"il",fd) // labels_font_style
         mput(bool2s(h.fractional_font=="on"),characterFormat,fd) // fractional_font
         mput(length(h.clip_state),characterFormat,fd); // clip_state
         mput(ascii(h.clip_state),characterFormat,fd);

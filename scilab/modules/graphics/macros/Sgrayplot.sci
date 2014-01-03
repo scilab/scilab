@@ -23,7 +23,7 @@ function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
     // Copyright INRIA
     // Modified by Bruno Pincon (14 oct 04) to have named argument working
     // Some new modifs (Bruno Pincon, Feb 2005, demo + some checking + cleaning + add
-    // mesh and colout optionnal args)
+    // mesh and colout optional args)
 
     [lhs,rhs] = argn();
 
@@ -55,7 +55,7 @@ function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
         error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d: The number of columns of argument #%d must be equal to the size of argument #%d.\n"),"Sgrayplot", 2, 3, 3, 2));
     end
 
-    // parsing the optionnal args
+    // parsing the optional args
     opt_arg_list = ["strf", "rect","nax","zminmax", "colminmax", "mesh", "colout"]
     opt_arg_seq = []
     for opt_arg = opt_arg_list

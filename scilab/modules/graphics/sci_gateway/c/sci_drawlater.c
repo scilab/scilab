@@ -22,6 +22,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "BuildObjects.h"
+#include "CurrentObject.h"
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -29,21 +30,22 @@
 int sci_drawlater(char * fname, void* pvApiCtx)
 {
     int iFalse =  (int)FALSE;
-    char* pFigureUID = NULL;
-    char* pSubwinUID = NULL;
+    int iFigureUID = 0;
+    int* piFigureUID = &iFigureUID;
+    int iSubwinUID = 0;
 
     CheckInputArgument(pvApiCtx, 0, 0);
     CheckOutputArgument(pvApiCtx, 0, 1);
 
     if (nbInputArgument(pvApiCtx) <= 0)
     {
-        pSubwinUID = (char*)getOrCreateDefaultSubwin();
-        if (pSubwinUID != NULL)
+        iSubwinUID = getOrCreateDefaultSubwin();
+        if (iSubwinUID != 0)
         {
-            getGraphicObjectProperty(pSubwinUID, __GO_PARENT__, jni_string, (void **)&pFigureUID);
-            if (pFigureUID != NULL)
+            iFigureUID = getParentObject(iSubwinUID);
+            if (iFigureUID != 0)
             {
-                setGraphicObjectProperty(pFigureUID, __GO_IMMEDIATE_DRAWING__, &iFalse, jni_bool, 1);
+                setGraphicObjectProperty(iFigureUID, __GO_IMMEDIATE_DRAWING__, &iFalse, jni_bool, 1);
             }
         }
     }

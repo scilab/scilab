@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -118,8 +118,8 @@ public enum MarkStyle {
     UP {
         @Override
         public Graphics2D getMarkStyle() {
-            int[] xPoints = {5,12,19};
-            int[] yPoints = {14,3,14};
+            int[] xPoints = {5, 12, 19};
+            int[] yPoints = {14, 3, 14};
             int numPoints = xPoints.length;
 
             g2d.setPaint(background);
@@ -136,8 +136,8 @@ public enum MarkStyle {
     DOWN {
         @Override
         public Graphics2D getMarkStyle() {
-            int[] xPoints = {5,12,19};
-            int[] yPoints = {3,14,3};
+            int[] xPoints = {5, 12, 19};
+            int[] yPoints = {3, 14, 3};
             int numPoints = xPoints.length;
 
             g2d.setPaint(background);
@@ -260,10 +260,11 @@ public enum MarkStyle {
             for (int i = 0; i < 2 * arms; i++) {
                 double r = (i & 1) == 0 ? rOuter : rInner;
                 Point2D.Double p = new Point2D.Double(center.x + Math.cos(i * angle) * r, center.y + Math.sin(i * angle) * r);
-                if (i == 0)
+                if (i == 0) {
                     path.moveTo(p.getX(), p.getY());
-                else
+                } else {
                     path.lineTo(p.getX(), p.getY());
+                }
             }
             path.closePath();
 

@@ -7,7 +7,7 @@
 //
 // <-- Non-regression test for bug 11326 -->
 //
-// <-- TEST WITH GRAPHICS -->
+// <-- TEST WITH GRAPHIC -->
 // <-- INTERACTIVE TEST -->
 //
 // <-- Bugzilla URL -->

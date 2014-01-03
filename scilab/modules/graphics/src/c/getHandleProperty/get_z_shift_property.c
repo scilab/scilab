@@ -31,13 +31,13 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_z_shift_property(void* _pvCtx, char* pobjUID)
+void* get_z_shift_property(void* _pvCtx, int iObjUID)
 {
     double* shiftCoordinates = NULL;
     int iValue = 0;
     int* piValue = &iValue;
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT_SET__, jni_int, (void**)&piValue);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT_SET__, jni_int, (void**)&piValue);
 
     if (piValue == NULL)
     {
@@ -51,8 +51,8 @@ void* get_z_shift_property(void* _pvCtx, char* pobjUID)
     }
     else
     {
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, jni_double_vector, (void **)&shiftCoordinates);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**)&piValue);
+        getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, jni_double_vector, (void **)&shiftCoordinates);
+        getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**)&piValue);
 
         return sciReturnRowVector(shiftCoordinates, iValue);
     }

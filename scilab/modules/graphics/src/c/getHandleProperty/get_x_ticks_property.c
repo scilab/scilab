@@ -32,14 +32,14 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_x_ticks_property(void* _pvCtx, char* pobjUID)
+void* get_x_ticks_property(void* _pvCtx, int iObjUID)
 {
     int iNbTicks = 0;
     int *piNbTicks = &iNbTicks;
     void* tList = NULL;
 
     /* retrieve number of ticks */
-    getGraphicObjectProperty(pobjUID, __GO_X_AXIS_NUMBER_TICKS__, jni_int, (void **) &piNbTicks);
+    getGraphicObjectProperty(iObjUID, __GO_X_AXIS_NUMBER_TICKS__, jni_int, (void **) &piNbTicks);
 
     if (piNbTicks == NULL)
     {
@@ -57,9 +57,9 @@ void* get_x_ticks_property(void* _pvCtx, char* pobjUID)
         char ** labels;
         double* positions;
 
-        getGraphicObjectProperty(pobjUID, __GO_X_AXIS_TICKS_LOCATIONS__, jni_double_vector, (void **) &positions);
+        getGraphicObjectProperty(iObjUID, __GO_X_AXIS_TICKS_LOCATIONS__, jni_double_vector, (void **) &positions);
 
-        getGraphicObjectProperty(pobjUID, __GO_X_AXIS_TICKS_LABELS__, jni_string_vector, (void **) &labels);
+        getGraphicObjectProperty(iObjUID, __GO_X_AXIS_TICKS_LABELS__, jni_string_vector, (void **) &labels);
 
         if (positions == NULL || labels == NULL)
         {

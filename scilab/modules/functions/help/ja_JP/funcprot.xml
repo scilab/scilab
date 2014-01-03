@@ -28,20 +28,24 @@
         <title>説明</title>
         <para>
             Scilab 関数が変数の場合,
-            funcprot によりこのような変数が再定義された場合の
+            <function>funcprot</function> によりこのような変数が再定義された場合の
             Scilabの動作をユーザが指定することができます.
         </para>
         <itemizedlist>
             <listitem>
-                <para> prot==0 の場合, 何も特別なことは行われません</para>
+                <para>
+                     <code>prot==0</code> の場合, 何も特別なことは行われません
+                </para>
             </listitem>
             <listitem>
-                <para>prot==1  の場合, 関数が再定義された時に
+                <para>
+                    <code>prot==1</code>  の場合, 関数が再定義された時に
                     警告メッセージを出力します (デフォルトのモード).
                 </para>
             </listitem>
             <listitem>
-                <para> prot==2 の場合,関数が再定義された時に
+                <para>
+                     <code>prot==2</code> の場合,関数が再定義された時に
                     Scilabはエラーを発生します.
                 </para>
             </listitem>
@@ -49,7 +53,8 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[previousprot = funcprot(1)
+        <programlisting role="example"><![CDATA[
+previousprot = funcprot(1)
 deff('x = foo(a)','x = a;')
 deff('x = foo(a)','x = a + 1;')
 foo = 33
@@ -57,6 +62,16 @@ funcprot(0)
 deff('x = foo(a)', 'x = a;')
 deff('x = foo(a)', 'x = a + 1;')
 foo = 33
-funcprot(previousprot)]]></programlisting>
+funcprot(previousprot)
+]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Previous value is returned as output argument when setting a new value.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

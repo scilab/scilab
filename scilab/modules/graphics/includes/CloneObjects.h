@@ -38,7 +38,7 @@
  * @param destIdentifier the destination object's MVC identifier
  * @return always 0, the copy is considered to be always correct
  */
-GRAPHICS_IMPEXP int cloneGraphicContext(char* sourceIdentifier, char* destIdentifier);
+GRAPHICS_IMPEXP int cloneGraphicContext(int iSource, int iDest);
 /*--------------------------------------------------------------------------*/
 /**
  * copy the fontContext of an object to another.
@@ -46,13 +46,13 @@ GRAPHICS_IMPEXP int cloneGraphicContext(char* sourceIdentifier, char* destIdenti
  * @param destIdentifier the destination object's MVC identifier
  * @return always 0, the copy is considered to be always correct
  */
-GRAPHICS_IMPEXP int cloneFontContext(char* sourceIdentifier, char* destIdentifier);
+GRAPHICS_IMPEXP int cloneFontContext(int iSource, int iDest);
 /*--------------------------------------------------------------------------*/
 /**
  * Clones a polyline
  * @param sourceIdentifier the source polyline's identifier
  * @return the identifier of the cloned polyline.
  */
-GRAPHICS_IMPEXP char* clonePolyline(char* sourceIdentifier);
+GRAPHICS_IMPEXP int clonePolyline(int iSource);
 
 #endif /* __SCI_CLONE__ */

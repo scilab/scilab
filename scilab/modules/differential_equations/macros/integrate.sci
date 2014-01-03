@@ -58,9 +58,9 @@ function %x=integrate(%expr,%var,%x0,%x1,%ea,%er)
 
     try
         if %expr==%var then
-            execstr("function "+%var+"=%func("+%var+"),"+%expr+",endfunction");
+            deff(%var+"=%func("+%var+")",%expr)
         else
-            execstr("function ans=%func("+%var+"),"+%expr+",endfunction");
+            deff("ans=%func("+%var+")",%expr)
         end
     catch
         error(msprintf(gettext("%s: Wrong value for input argument #%d: syntax error in given expression\n"),"integrate",1));

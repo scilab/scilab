@@ -23,6 +23,6 @@
  * @param pobjUID Scilab object corresponding to the uicontrol
  * @return true if the listbox top property has been correcty got
  */
-GUI_IMPEXP void* GetUicontrolListboxTop(void* _pvCtx, char *pobjUID);
+GUI_IMPEXP void* GetUicontrolListboxTop(void* _pvCtx, int iObjUID);
 
 #endif /* __GET_UICONTROL_LISTBOXTOP_H__ */

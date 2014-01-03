@@ -16,7 +16,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.ImageIcon;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.gui.bridge.CallScilabBridge;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -100,6 +100,6 @@ public final class HelpAction extends CommonCallBack {
      */
     @Override
     public void callBack() {
-        InterpreterManagement.putCommandInScilabQueue("help();");
+        CallScilabBridge.openHelp("browsehistory");
     }
 }

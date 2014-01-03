@@ -102,7 +102,7 @@ public class Axes extends GraphicObject {
     private GridPosition gridPosition;
 
     /** Title label known by its UID. */
-    private String title;
+    private Integer title;
 
     /** Specifies whether the Axes subwindow is cleared when a new plot command is performed */
     private boolean autoClear;
@@ -152,7 +152,7 @@ public class Axes extends GraphicObject {
         axes[1] = new AxisProperty();
         axes[2] = new AxisProperty();
         gridPosition = GridPosition.FOREGROUND;
-        title = "";
+        title = 0;
         autoClear = false;
         filled = false;
         camera = new Camera();
@@ -176,7 +176,7 @@ public class Axes extends GraphicObject {
         }
 
         copy.axes = newAxes;
-        copy.title = "";
+        copy.title = 0;
         copy.camera = new Camera(this.camera);
         copy.box = new Box(this.box);
 
@@ -578,7 +578,7 @@ public class Axes extends GraphicObject {
                 case XAXISGRIDCOLOR:
                     return setXAxisGridColor((Integer) value);
                 case XAXISLABEL:
-                    return setXAxisLabel((String) value);
+                    return setXAxisLabel((Integer) value);
                 case XAXISLOCATION:
                     return setXAxisLocation((Integer) value);
                 case XAXISLOGFLAG:
@@ -600,7 +600,7 @@ public class Axes extends GraphicObject {
                 case YAXISGRIDCOLOR:
                     return setYAxisGridColor((Integer) value);
                 case YAXISLABEL:
-                    return setYAxisLabel((String) value);
+                    return setYAxisLabel((Integer) value);
                 case YAXISLOCATION:
                     return setYAxisLocation((Integer) value);
                 case YAXISLOGFLAG:
@@ -622,7 +622,7 @@ public class Axes extends GraphicObject {
                 case ZAXISGRIDCOLOR:
                     return setZAxisGridColor((Integer) value);
                 case ZAXISLABEL:
-                    return setZAxisLabel((String) value);
+                    return setZAxisLabel((Integer) value);
                 case ZAXISLOCATION:
                     return setZAxisLocation((Integer) value);
                 case ZAXISLOGFLAG:
@@ -650,7 +650,7 @@ public class Axes extends GraphicObject {
                 case GRIDPOSITION:
                     return setGridPosition((Integer) value);
                 case TITLE:
-                    return setTitle((String) value);
+                    return setTitle((Integer) value);
                 case AUTOCLEAR:
                     return setAutoClear((Boolean) value);
                 case FILLED:
@@ -841,14 +841,14 @@ public class Axes extends GraphicObject {
     /**
      * @return the x axis label UID
      */
-    public String getXAxisLabel() {
+    public Integer getXAxisLabel() {
         return axes[0].getLabel();
     }
 
     /**
      * @param label the x axis label to set
      */
-    public UpdateStatus setXAxisLabel(String label) {
+    public UpdateStatus setXAxisLabel(Integer label) {
         return axes[0].setLabel(label);
     }
 
@@ -1046,14 +1046,14 @@ public class Axes extends GraphicObject {
     /**
      * @return the y axis label UID
      */
-    public String getYAxisLabel() {
+    public Integer getYAxisLabel() {
         return axes[1].getLabel();
     }
 
     /**
      * @param label the y axis label to set
      */
-    public UpdateStatus setYAxisLabel(String label) {
+    public UpdateStatus setYAxisLabel(Integer label) {
         return axes[1].setLabel(label);
     }
 
@@ -1251,14 +1251,14 @@ public class Axes extends GraphicObject {
     /**
      * @return the z axis label UID
      */
-    public String getZAxisLabel() {
+    public Integer getZAxisLabel() {
         return axes[2].getLabel();
     }
 
     /**
      * @param label the z axis label to set
      */
-    public UpdateStatus setZAxisLabel(String label) {
+    public UpdateStatus setZAxisLabel(Integer label) {
         return axes[2].setLabel(label);
     }
 
@@ -1920,7 +1920,7 @@ public class Axes extends GraphicObject {
 
     public Double[] getCorrectedBounds() {
         if (getZoomEnabled()) {
-            Double[] b = getZoomBox();
+            Double[] b = getCorrectZoomBox();
             double[][] factors = getScaleTranslateFactors();
 
             b[0] = b[0] * factors[0][0] + factors[1][0];
@@ -1942,7 +1942,7 @@ public class Axes extends GraphicObject {
      */
     public Double[] getDisplayedBounds() {
         if (getZoomEnabled()) {
-            return getZoomBox();
+            return getCorrectZoomBox();
         } else {
             return getMaximalDisplayedBounds();
         }
@@ -1956,13 +1956,18 @@ public class Axes extends GraphicObject {
         Double[] bounds = getDataBounds();
         boolean eq = bounds[0].doubleValue() == bounds[1].doubleValue();
         if (getXAxisLogFlag()) {
-            bounds[0] = Math.log10(bounds[0]);
-            bounds[1] = Math.log10(bounds[1]);
-        }
-        if (eq) {
+            if (eq) {
+                bounds[0] = Math.log10(bounds[0]) - 1;
+                bounds[1] = bounds[0] + 2;
+            } else {
+                bounds[0] = Math.log10(bounds[0]);
+                bounds[1] = Math.log10(bounds[1]);
+            }
+        } else if (eq) {
             // Avoid to have same bounds.
-            bounds[0]--;
-            bounds[1]++;
+            double inc = getIncrement(bounds[0]);
+            bounds[0] -= inc;
+            bounds[1] += inc;
         }
 
         if (getXAxisLocationAsEnum() == AxisProperty.AxisLocation.ORIGIN) {
@@ -1975,12 +1980,17 @@ public class Axes extends GraphicObject {
 
         eq = bounds[2].doubleValue() == bounds[3].doubleValue();
         if (getYAxisLogFlag()) {
-            bounds[2] = Math.log10(bounds[2]);
-            bounds[3] = Math.log10(bounds[3]);
-        }
-        if (eq) {
-            bounds[2]--;
-            bounds[3]++;
+            if (eq) {
+                bounds[2] = Math.log10(bounds[2]) - 1;
+                bounds[3] = bounds[2] + 2;
+            } else {
+                bounds[2] = Math.log10(bounds[2]);
+                bounds[3] = Math.log10(bounds[3]);
+            }
+        } else if (eq) {
+            double inc = getIncrement(bounds[2]);
+            bounds[2] -= inc;
+            bounds[3] += inc;
         }
 
         if (getYAxisLocationAsEnum() == AxisProperty.AxisLocation.ORIGIN) {
@@ -1993,12 +2003,17 @@ public class Axes extends GraphicObject {
 
         eq = bounds[4].doubleValue() == bounds[5].doubleValue();
         if (getZAxisLogFlag()) {
-            bounds[4] = Math.log10(bounds[4]);
-            bounds[5] = Math.log10(bounds[5]);
-        }
-        if (eq) {
-            bounds[4]--;
-            bounds[5]++;
+            if (eq) {
+                bounds[4] = Math.log10(bounds[4]) - 1;
+                bounds[5] = bounds[4] + 2;
+            } else {
+                bounds[4] = Math.log10(bounds[4]);
+                bounds[5] = Math.log10(bounds[5]);
+            }
+        } else if (eq) {
+            double inc = getIncrement(bounds[4]);
+            bounds[4] -= inc;
+            bounds[5] += inc;
         }
 
         if (getZAxisLocationAsEnum() == AxisProperty.AxisLocation.ORIGIN) {
@@ -2016,6 +2031,12 @@ public class Axes extends GraphicObject {
         }
 
         return bounds;
+    }
+
+    private final double getIncrement(final double x) {
+        final int exponent = (int) (((Double.doubleToLongBits(x) & 0x7FF0000000000000L) >> 52) - 1023);
+
+        return Math.pow(2, Math.max(0, exponent - 52));
     }
 
     /**
@@ -2064,6 +2085,26 @@ public class Axes extends GraphicObject {
      */
     public Double[] getZoomBox() {
         return box.getZoomBox();
+    }
+
+    public Double[] getCorrectZoomBox() {
+        Double[] b = getZoomBox();
+        if (getXAxisLogFlag()) {
+            b[0] = Math.log10(b[0]);
+            b[1] = Math.log10(b[1]);
+        }
+
+        if (getYAxisLogFlag()) {
+            b[2] = Math.log10(b[2]);
+            b[3] = Math.log10(b[3]);
+        }
+
+        if (getZAxisLogFlag()) {
+            b[4] = Math.log10(b[4]);
+            b[5] = Math.log10(b[5]);
+        }
+
+        return b;
     }
 
     /**
@@ -2193,7 +2234,7 @@ public class Axes extends GraphicObject {
                 GraphicController controller = GraphicController.getController();
                 Figure figure = (Figure) controller.getObjectFromId(getParentFigure());
                 if (figure.getRotationAsEnum().equals(Figure.RotationType.MULTIPLE)) {
-                    for (String child : figure.getChildren()) {
+                    for (Integer child : figure.getChildren()) {
                         if (child != null) {
                             if (GraphicObjectProperties.__GO_AXES__ == ((Integer) controller.getProperty(child, GraphicObjectProperties.__GO_TYPE__))) {
                                 controller.setProperty(
@@ -2330,15 +2371,15 @@ public class Axes extends GraphicObject {
     /**
      * @return the title UID
      */
-    public String getTitle() {
+    public Integer getTitle() {
         return title;
     }
 
     /**
      * @param title the title to set
      */
-    public UpdateStatus setTitle(String title) {
-        if (!this.title.equals(title)) {
+    public UpdateStatus setTitle(Integer title) {
+        if (this.title != title) {
             this.title = title;
             return UpdateStatus.Success;
         }

@@ -110,6 +110,9 @@ int sci_umf_lusolve(char* fname, void* pvApiCtx)
     int* piColPos       = NULL;
     double* pdblSpReal  = NULL;
     double* pdblSpImg   = NULL;
+    int iTypeVar1       = 0;
+    int iTypeVar2       = 0;
+    int iTypeVar4       = 0;
 
     /* Check numbers of input/output arguments */
     CheckInputArgument(pvApiCtx, 2, 4);
@@ -120,6 +123,15 @@ int sci_umf_lusolve(char* fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        return 1;
+    }
+
+    /* Check if the first argument is a pointer */
+    sciErr = getVarType(pvApiCtx, piAddr1, &iTypeVar1);
+    if (sciErr.iErr || iTypeVar1 != sci_pointer)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A pointer expected.\n"), "umf_lusolve", 1);
         return 1;
     }
 
@@ -165,6 +177,15 @@ int sci_umf_lusolve(char* fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        return 1;
+    }
+
+    /* Check if the second argument is a real or complex column vector or matrix */
+    sciErr = getVarType(pvApiCtx, piAddr2, &iTypeVar2);
+    if (sciErr.iErr || iTypeVar2 != sci_matrix)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real or complex column vector or matrix expected.\n"), "umf_lusolve", 2);
         return 1;
     }
 
@@ -249,6 +270,15 @@ int sci_umf_lusolve(char* fname, void* pvApiCtx)
                 printError(&sciErr, 0);
                 return 1;
             }
+
+            sciErr = getVarType(pvApiCtx, piAddr4, &iTypeVar4);
+            if (sciErr.iErr || iTypeVar4 != sci_sparse)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A sparse matrix expected.\n"), "umf_lusolve", 4);
+                return 1;
+            }
+
 
             if (isVarComplex(pvApiCtx, piAddr4))
             {

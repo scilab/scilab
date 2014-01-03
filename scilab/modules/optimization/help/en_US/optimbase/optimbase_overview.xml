@@ -59,7 +59,7 @@
                 <para>Manage cost function</para>
                 <itemizedlist>
                     <listitem>
-                        <para>optionnal additional argument,</para>
+                        <para>optional additional argument,</para>
                     </listitem>
                     <listitem>
                         <para>direct communication of the task to perform: cost function or inequality 

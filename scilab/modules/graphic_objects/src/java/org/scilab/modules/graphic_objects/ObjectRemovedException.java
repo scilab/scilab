@@ -14,13 +14,13 @@ package org.scilab.modules.graphic_objects;
 public class ObjectRemovedException extends Exception {
     private static final long serialVersionUID = -5447310699942928356L;
 
-    private String objectId;
+    private Integer objectId;
 
-    public ObjectRemovedException(String objectId) {
+    public ObjectRemovedException(Integer objectId) {
         this.objectId = objectId;
     }
 
     public String getMessage() {
-        return "ObjectRemoved Exception: Object " + objectId + "has been deleted from model";
+        return "ObjectRemoved Exception: Object " + objectId.toString() + "has been deleted from model";
     }
 }

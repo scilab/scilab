@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-09-27 17:14+0100\n"
+"Revision-Date: 2013-12-09 09:47+0100\n"
 
 # File: sci_gateway/c/sci_base2dec.c, line: 41
 # File: sci_gateway/c/sci_base2dec.c, line: 54
@@ -46,20 +46,19 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_base2dec.c, line: 67
 # File: sci_gateway/c/sci_dec2base.c, line: 97
-# File: sci_gateway/c/sci_size.c, line: 142
+# File: sci_gateway/c/sci_size.c, line: 150
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_base2dec.c, line: 73
-# File: sci_gateway/c/sci_base2dec.c, line: 92
-# File: sci_gateway/c/sci_base2dec.c, line: 102
+# File: sci_gateway/c/sci_base2dec.c, line: 97
+# File: sci_gateway/c/sci_base2dec.c, line: 107
 # File: sci_gateway/c/sci_dec2base.c, line: 66
 # File: sci_gateway/c/sci_dec2base.c, line: 103
 # File: sci_gateway/c/sci_dec2base.c, line: 132
-# File: sci_gateway/c/sci_dec2base.c, line: 166
-# File: sci_gateway/c/sci_dec2base.c, line: 187
+# File: sci_gateway/c/sci_dec2base.c, line: 180
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -81,7 +80,7 @@ msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_base2dec.c, line: 118
+# File: sci_gateway/c/sci_base2dec.c, line: 123
 #, c-format
 msgid ""
 "%s: Wrong value for input argument(s): Valid base %d representations "
@@ -89,8 +88,8 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_base2dec.c, line: 135
-# File: sci_gateway/c/sci_dec2base.c, line: 204
+# File: sci_gateway/c/sci_base2dec.c, line: 140
+# File: sci_gateway/c/sci_dec2base.c, line: 197
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -118,13 +117,13 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dec2base.c, line: 179
+# File: sci_gateway/c/sci_dec2base.c, line: 172
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between 0 and 2^52.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dec2base.c, line: 183
+# File: sci_gateway/c/sci_dec2base.c, line: 176
 #, c-format
 msgid ""
 "%s: Wrong value(s) for input argument #%d: A matrix of positive integer "
@@ -132,7 +131,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dec2base.c, line: 192
+# File: sci_gateway/c/sci_dec2base.c, line: 185
 #, c-format
 msgid "%s: Wrong value for input argument #%d: cannot convert value(s).\n"
 msgstr ""
@@ -152,16 +151,16 @@ msgstr ""
 # File: sci_gateway/c/sci_gsort.c, line: 139
 # File: sci_gateway/c/sci_gsort.c, line: 140
 # File: sci_gateway/c/sci_gsort.c, line: 141
-# File: sci_gateway/c/sci_gsort.c, line: 176
-# File: sci_gateway/c/sci_gsort.c, line: 177
-# File: sci_gateway/c/sci_gsort.c, line: 178
+# File: sci_gateway/c/sci_gsort.c, line: 182
+# File: sci_gateway/c/sci_gsort.c, line: 183
+# File: sci_gateway/c/sci_gsort.c, line: 184
 #, c-format
 msgid "WARNING: %s\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_gsort.c, line: 140
-# File: sci_gateway/c/sci_gsort.c, line: 177
+# File: sci_gateway/c/sci_gsort.c, line: 183
 msgid "It will no more be available in Scilab 6."
 msgstr ""
 
@@ -171,7 +170,7 @@ msgid "Please use 'd' or 'i' instead."
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_gsort.c, line: 168
+# File: sci_gateway/c/sci_gsort.c, line: 174
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
@@ -179,30 +178,32 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_gsort.c, line: 176
+# File: sci_gateway/c/sci_gsort.c, line: 182
 msgid "This usage of the second argument of gsort is obsolete."
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_gsort.c, line: 178
+# File: sci_gateway/c/sci_gsort.c, line: 184
 msgid "Please use 'r', 'c', 'g', 'lr' or 'lc' instead."
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_gsort.c, line: 208
+# File: sci_gateway/c/sci_gsort.c, line: 204
+# File: sci_gateway/c/sci_gsort.c, line: 218
+# File: sci_gateway/c/sci_gsort.c, line: 224
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_gsort.c, line: 381
+# File: sci_gateway/c/sci_gsort.c, line: 397
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Unknown type.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_gsort.c, line: 452
-# File: sci_gateway/c/sci_size.c, line: 148
+# File: sci_gateway/c/sci_gsort.c, line: 468
+# File: sci_gateway/c/sci_size.c, line: 156
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
@@ -221,7 +222,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_size.c, line: 132
+# File: sci_gateway/c/sci_size.c, line: 134
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
@@ -450,6 +451,8 @@ msgstr ""
 # File: macros/tanm.sci, line: 16
 # File: macros/toeplitz.sci, line: 21
 # File: macros/union.sci, line: 17
+# File: modulo_pmodulo_13002/modulo_pmodulo/modulo.sci, line: 17
+# File: modulo_pmodulo_13002/modulo_pmodulo/pmodulo.sci, line: 19
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
@@ -557,8 +560,10 @@ msgstr ""
 # File: macros/bitor.sci, line: 44
 # File: macros/bitxor.sci, line: 41
 # File: macros/cat.sci, line: 73
-# File: macros/modulo.sci, line: 44
-# File: macros/pmodulo.sci, line: 46
+# File: macros/modulo.sci, line: 48
+# File: macros/pmodulo.sci, line: 54
+# File: modulo_pmodulo_13002/modulo_pmodulo/modulo.sci, line: 48
+# File: modulo_pmodulo_13002/modulo_pmodulo/pmodulo.sci, line: 54
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
 msgstr ""
@@ -778,7 +783,7 @@ msgstr ""
 #
 # File: macros/intersect.sci, line: 136
 # File: macros/union.sci, line: 55
-# File: macros/unique.sci, line: 53
+# File: macros/unique.sci, line: 55
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d,'%s',%d or '%s' expected\n"
 msgstr ""
@@ -905,13 +910,21 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/modulo.sci, line: 21
-# File: macros/modulo.sci, line: 25
-# File: macros/pmodulo.sci, line: 23
-# File: macros/pmodulo.sci, line: 27
-# File: macros/primes.sci, line: 26
+# File: macros/modulo.sci, line: 26
+# File: macros/modulo.sci, line: 31
+# File: macros/pmodulo.sci, line: 29
+# File: macros/pmodulo.sci, line: 34
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Real, integer or polynomial matrix "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/modulo.sci, line: 36
+# File: modulo_pmodulo_13002/modulo_pmodulo/modulo.sci, line: 36
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
 msgstr ""
 
 #
@@ -975,6 +988,19 @@ msgid ""
 msgstr ""
 
 #
+# File: macros/pmodulo.sci, line: 39
+# File: modulo_pmodulo_13002/modulo_pmodulo/pmodulo.sci, line: 39
+#, c-format
+msgid "%s: Incompatible input arguments: Same types expected.\n"
+msgstr ""
+
+#
+# File: macros/primes.sci, line: 26
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+
+#
 # File: macros/primes.sci, line: 28
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
@@ -1027,9 +1053,77 @@ msgid "%s: Wrong size for input argument #%d: a vector expected.\n"
 msgstr ""
 
 #
-# File: macros/resize_matrix.sci, line: 21
+# File: macros/resize_matrix.sci, line: 30
+msgid "RESIZING a matrix of DECIMALS:"
+msgstr ""
+
+#
+# File: macros/resize_matrix.sci, line: 43
+msgid "TYPE <Enter> to see an example with POLYNOMIALS:"
+msgstr ""
+
+#
+# File: macros/resize_matrix.sci, line: 56
+msgid "The padding's unknown is forced to the P's one"
+msgstr ""
+
+#
+# File: macros/resize_matrix.sci, line: 57
+msgid "Polynomials can't be converted"
+msgstr ""
+
+#
+# File: macros/resize_matrix.sci, line: 59
+msgid "TYPE <Enter> to see an example with TEXT:"
+msgstr ""
+
+#
+# File: macros/resize_matrix.sci, line: 72
+msgid "NOTE: Hypermatrix of text can't be converted"
+msgstr ""
+
+#
+# File: macros/resize_matrix.sci, line: 91
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#
+# File: macros/resize_matrix.sci, line: 97
+#, c-format
+msgid "%s: Wrong type of input argument #%d: %s not supported.\n"
+msgstr ""
+
+#
+# File: macros/resize_matrix.sci, line: 110
+#, c-format
+msgid "%s: Wrong input argument #%d: scalar decimal integer expected.\n"
+msgstr ""
+
+#
+# File: macros/resize_matrix.sci, line: 121
+#, c-format
+msgid "%s: Wrong sizes requested, cannot convert list to matrix.\n"
+msgstr ""
+
+#
+# File: macros/resize_matrix.sci, line: 172
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: can't convert the padding to the "
+"input matrix type.\n"
+msgstr ""
+
+#
+# File: macros/resize_matrix.sci, line: 261
+#, c-format
+msgid "%s: conversion of polynomials is not supported\n"
+msgstr ""
+
+#
+# File: macros/resize_matrix.sci, line: 287
+#, c-format
+msgid "%s: conversion into %s is not supported\n"
 msgstr ""
 
 #
@@ -1042,8 +1136,8 @@ msgstr ""
 # File: macros/toeplitz.sci, line: 39
 #, c-format
 msgid ""
-"%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to r"
-"(1).\n"
+"%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to "
+"r(1).\n"
 msgstr ""
 
 #
@@ -1063,4 +1157,15 @@ msgstr ""
 # File: macros/vectorfind.sci, line: 47
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr ""
+
+#
+# File: modulo_pmodulo_13002/modulo_pmodulo/modulo.sci, line: 26
+# File: modulo_pmodulo_13002/modulo_pmodulo/modulo.sci, line: 31
+# File: modulo_pmodulo_13002/modulo_pmodulo/pmodulo.sci, line: 29
+# File: modulo_pmodulo_13002/modulo_pmodulo/pmodulo.sci, line: 34
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Reals, encoded integers or "
+"polynomials expected.\n"
 msgstr ""

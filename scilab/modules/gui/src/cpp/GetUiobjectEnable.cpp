@@ -14,12 +14,12 @@
 
 #include "GetUiobjectEnable.hxx"
 
-void* GetUiobjectEnable(void* _pvCtx, char *pObjUID)
+void* GetUiobjectEnable(void* _pvCtx, int iObjUID)
 {
     int enable = 0;
     int* piEnable = &enable;
 
-    getGraphicObjectProperty(pObjUID, __GO_UI_ENABLE__, jni_bool, (void**) &piEnable);
+    getGraphicObjectProperty(iObjUID, __GO_UI_ENABLE__, jni_bool, (void**) &piEnable);
 
     if (piEnable == NULL)
     {

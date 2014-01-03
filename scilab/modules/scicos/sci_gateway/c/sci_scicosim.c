@@ -32,6 +32,11 @@
 #include "import.h"
 #include "localization.h"
 #include "MALLOC.h"
+
+#ifdef _MSC_VER
+#define snprintf _snprintf
+#endif
+
 /*--------------------------------------------------------------------------*/
 /* intsicosimc scicosim interface routine.
 *
@@ -364,6 +369,9 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     int i = 0, j = 0, k = 0;      /*local counter variable*/
     int sz_str = 0;     /*local variable to store size of string*/
     int err_check = 0;  /*local variable for cross var. checking dimension*/
+    char* error = NULL;
+    BOOL allocatedError = FALSE;
+#define MAX_ERROR_LEN 512
 
     /*definition of min/max input/output argument*/
     static int minlhs = 1, maxlhs = 2;
@@ -2287,6 +2295,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
                             FREE(lfunpt);
                             freeparam;
                             FREE(outtb_elem);
+                            return 0;
                             break;
                     }
                     break;
@@ -2536,98 +2545,129 @@ int sci_scicosim(char *fname, unsigned long fname_len)
         switch (ierr)
         {
             case 1  :
-                strcpy(C2F(cha1).buf, _("scheduling problem"));
+                error = _("scheduling problem");
                 C2F(curblk).kfun = 0;
                 break;
 
             case 2  :
-                strcpy(C2F(cha1).buf, _("input to zero-crossing stuck on zero"));
+                error = _("input to zero-crossing stuck on zero");
                 C2F(curblk).kfun = 0;
                 break;
 
             case 3  :
-                strcpy(C2F(cha1).buf, _("event conflict"));
+                error = _("event conflict");
                 C2F(curblk).kfun = 0;
                 break;
 
             case 4  :
-                strcpy(C2F(cha1).buf, _("algebraic loop detected"));
+                error = _("algebraic loop detected");
                 C2F(curblk).kfun = 0;
                 break;
 
             case 5  :
-                strcpy(C2F(cha1).buf, _("cannot allocate memory"));
+                error = _("cannot allocate memory");
                 C2F(curblk).kfun = 0;
                 break;
 
             case 6  :
-                sprintf(C2F(cha1).buf, _("the block %d has been called with input out of its domain"), C2F(curblk).kfun);
+                error = MALLOC(MAX_ERROR_LEN);
+                if (error != NULL)
+                {
+                    allocatedError = TRUE;
+                    snprintf(error, MAX_ERROR_LEN, _("the block %d has been called with input out of its domain"), C2F(curblk).kfun);
+                }
+                else
+                {
+                    error = _("cannot allocate memory");
+                }
                 break;
 
             case 7  :
-                strcpy(C2F(cha1).buf, _("singularity in a block"));
+                error = _("singularity in a block");
                 break;
 
             case 8  :
-                strcpy(C2F(cha1).buf, _("block produces an internal error"));
+                error = _("block produces an internal error");
                 break;
 
             case 10  :
-                strcpy(C2F(cha1).buf, coserr.buf);
+                error = coserr.buf;
                 break;
 
             case 20  :
-                strcpy(C2F(cha1).buf, _("initial conditions not converging"));
+                error = _("initial conditions not converging");
                 break;
 
             case 21  :
-                sprintf(C2F(cha1).buf, _("cannot allocate memory in block=%d"), C2F(curblk).kfun);
+                error = MALLOC(MAX_ERROR_LEN);
+                if (error != NULL)
+                {
+                    allocatedError = TRUE;
+                    snprintf(error, MAX_ERROR_LEN, _("cannot allocate memory in block=%d"), C2F(curblk).kfun);
+                }
+                else
+                {
+                    error = _("cannot allocate memory");
+                }
                 break;
 
             case 22  :
-                strcpy(C2F(cha1).buf, _("sliding mode condition, cannot integrate"));
+                error = _("sliding mode condition, cannot integrate");
                 break;
 
             case 23  :
-                strcpy(C2F(cha1).buf, _("Cannot find the initial mode, maybe there is a sliding mode condition"));
+                error = _("Cannot find the initial mode, maybe there is a sliding mode condition");
                 break;
             case 24  :
-                strcpy(C2F(cha1).buf, _("You have changed a parameter in your model, but the model has been compiled to use an XML file containing initial values and parameters. So you should either recompile your Scicos diagram or [re]launch the initialization interface to regenerate the XML file  with new parameters."));
+                error = _("You have changed a parameter in your model, but the model has been compiled to use an XML file containing initial values and parameters. So you should either recompile your Scicos diagram or [re]launch the initialization interface to regenerate the XML file  with new parameters.");
                 break;
 
             case 25  :
-                strcpy(C2F(cha1).buf, _("Undefined data type."));
+                error = _("Undefined data type.");
                 break;
             case 26  :
-                strcpy(C2F(cha1).buf, _("The number of parameter provided by Scicos blocks is different from what expected by the code generated by the Modelica compiler. You might have relaxed a parameter using FIXED property (i.e., fixed=false) in a Modelica model. This will be corrected in the next version"));
+                error = _("The number of parameter provided by Scicos blocks is different from what expected by the code generated by the Modelica compiler. You might have relaxed a parameter using FIXED property (i.e., fixed=false) in a Modelica model. This will be corrected in the next version");
                 break;
                 /*In this case, you need to turn off the parameter embedded code generation mode by setting Modelica_ParEmb=%f in the Scilab command window, and  recompile the Scicos diagram*/
 
             default  :
                 if (ierr >= 1000)
                 {
-                    strcpy(C2F(cha1).buf, _("unknown or erroneous block"));
+                    error = _("unknown or erroneous block");
                 }
                 else if (ierr >= 201 && ierr <= 416) /* Sundials error messages, stocked in coserr.buf */
                 {
-                    strcpy(C2F(cha1).buf, coserr.buf);
+                    error = coserr.buf;
                 }
                 else if (ierr >= 100)
                 {
                     istate = -(ierr - 100);
-                    sprintf(C2F(cha1).buf, _("integration problem istate=%d"), istate);
+                    error = MALLOC(MAX_ERROR_LEN);
+                    if (error != NULL)
+                    {
+                        allocatedError = TRUE;
+                        snprintf(error, MAX_ERROR_LEN, _("integration problem istate=%d"), istate);
+                    }
+                    else
+                    {
+                        error = _("cannot allocate memory");
+                    }
                     C2F(curblk).kfun = 0;
                 }
                 else
                 {
-                    strcpy(C2F(cha1).buf, _("scicos unexpected error, please report..."));
+                    error = _("scicos unexpected error, please report...");
                     C2F(curblk).kfun = 0;
                 }
                 break;
         }
         if (! (C2F(errgst).err1 > 0 || C2F(iop).err > 0))
         {
-            Scierror(888, "%s\n", C2F(cha1).buf);
+            Scierror(888, "%s\n", error);
+            if (allocatedError)
+            {
+                FREE(error);
+            }
             /*C2F(curblk).kfun=0;*/
             C2F(com).fun = 0; /*set common fun=0 (this disable bug in debug mode)*/
             freeparam;

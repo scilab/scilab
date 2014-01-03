@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 #include "MALLOC.h"
 /*------------------------------------------------------------------------*/
-int set_clip_state_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_clip_state_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int clipState = 0;
@@ -62,7 +62,7 @@ int set_clip_state_property(void* _pvCtx, char* pobjUID, void* _pvData, int valu
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     if (status == TRUE)
     {

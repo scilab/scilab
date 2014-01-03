@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "graphic_export module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "graphic_export module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "scigraphic_export.dll"
             VALUE "ProductName", "graphic_export module"
             VALUE "ProductVersion", "6, 0, 0, 0"

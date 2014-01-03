@@ -764,58 +764,44 @@ static jdoubleArray SWIG_JavaArrayOutDouble (JNIEnv *jenv, double *result, jsize
 extern "C" {
 #endif
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getTextureWidth(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getTextureWidth(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (int)getTextureWidth(arg1);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getTextureHeight(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getTextureHeight(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (int)getTextureHeight(arg1);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillTextureData(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2, jint jarg3) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillTextureData(JNIEnv *jenv, jclass jcls, jint jarg1, jobject jarg2, jint jarg3) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   unsigned char *arg2 = (unsigned char *) 0 ;
   int arg3 ;
   int result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   {
     arg2 = (*jenv)->GetDirectBufferAddress(jenv, jarg2);
     if (arg2 == NULL) {
@@ -825,14 +811,13 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
   arg3 = (int)jarg3; 
   result = (int)fillTextureData(arg1,arg2,arg3);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillSubTextureData(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2, jint jarg3, jint jarg4, jint jarg5, jint jarg6, jint jarg7) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillSubTextureData(JNIEnv *jenv, jclass jcls, jint jarg1, jobject jarg2, jint jarg3, jint jarg4, jint jarg5, jint jarg6, jint jarg7) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   unsigned char *arg2 = (unsigned char *) 0 ;
   int arg3 ;
   int arg4 ;
@@ -843,11 +828,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   {
     arg2 = (*jenv)->GetDirectBufferAddress(jenv, jarg2);
     if (arg2 == NULL) {
@@ -861,32 +842,26 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
   arg7 = (int)jarg7; 
   result = (int)fillSubTextureData(arg1,arg2,arg3,arg4,arg5,arg6,arg7);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getDataSize(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getDataSize(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (int)getDataSize(arg1);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillVertices(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2, jint jarg3, jint jarg4, jint jarg5, jdoubleArray jarg6, jdoubleArray jarg7, jint jarg8) {
-  char *arg1 = (char *) 0 ;
+SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillVertices(JNIEnv *jenv, jclass jcls, jint jarg1, jobject jarg2, jint jarg3, jint jarg4, jint jarg5, jdoubleArray jarg6, jdoubleArray jarg7, jint jarg8) {
+  int arg1 ;
   float *arg2 = (float *) 0 ;
   int arg3 ;
   int arg4 ;
@@ -899,11 +874,7 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return ;
-  }
+  arg1 = (int)jarg1; 
   {
     arg2 = (*jenv)->GetDirectBufferAddress(jenv, jarg2);
     if (arg2 == NULL) {
@@ -919,14 +890,13 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
   fillVertices(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8);
   SWIG_JavaArrayArgoutDouble(jenv, jarr6, (double *)arg6, jarg6); 
   SWIG_JavaArrayArgoutDouble(jenv, jarr7, (double *)arg7, jarg7); 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   free(arg6); 
   free(arg7); 
 }
 
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillNormals(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2, jobject jarg3, jint jarg4, jint jarg5) {
-  char *arg1 = (char *) 0 ;
+SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillNormals(JNIEnv *jenv, jclass jcls, jint jarg1, jobject jarg2, jobject jarg3, jint jarg4, jint jarg5) {
+  int arg1 ;
   float *arg2 = (float *) 0 ;
   float *arg3 = (float *) 0 ;
   int arg4 ;
@@ -934,11 +904,7 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return ;
-  }
+  arg1 = (int)jarg1; 
   {
     arg2 = (*jenv)->GetDirectBufferAddress(jenv, jarg2);
     if (arg2 == NULL) {
@@ -954,23 +920,18 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
   arg4 = (int)jarg4; 
   arg5 = (int)jarg5; 
   fillNormals(arg1,arg2,arg3,arg4,arg5);
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
 }
 
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillColors(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2, jint jarg3, jint jarg4) {
-  char *arg1 = (char *) 0 ;
+SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillColors(JNIEnv *jenv, jclass jcls, jint jarg1, jobject jarg2, jint jarg3, jint jarg4) {
+  int arg1 ;
   float *arg2 = (float *) 0 ;
   int arg3 ;
   int arg4 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return ;
-  }
+  arg1 = (int)jarg1; 
   {
     arg2 = (*jenv)->GetDirectBufferAddress(jenv, jarg2);
     if (arg2 == NULL) {
@@ -980,22 +941,17 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
   arg3 = (int)jarg3; 
   arg4 = (int)jarg4; 
   fillColors(arg1,arg2,arg3,arg4);
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
 }
 
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillTextureCoordinates(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2, jint jarg3) {
-  char *arg1 = (char *) 0 ;
+SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillTextureCoordinates(JNIEnv *jenv, jclass jcls, jint jarg1, jobject jarg2, jint jarg3) {
+  int arg1 ;
   float *arg2 = (float *) 0 ;
   int arg3 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return ;
-  }
+  arg1 = (int)jarg1; 
   {
     arg2 = (*jenv)->GetDirectBufferAddress(jenv, jarg2);
     if (arg2 == NULL) {
@@ -1004,32 +960,26 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
   }
   arg3 = (int)jarg3; 
   fillTextureCoordinates(arg1,arg2,arg3);
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getIndicesSize(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getIndicesSize(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (int)getIndicesSize(arg1);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillIndices(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2, jint jarg3, jint jarg4) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillIndices(JNIEnv *jenv, jclass jcls, jint jarg1, jobject jarg2, jint jarg3, jint jarg4) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int *arg2 = (int *) 0 ;
   int arg3 ;
   int arg4 ;
@@ -1037,11 +987,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   {
     arg2 = (*jenv)->GetDirectBufferAddress(jenv, jarg2);
     if (arg2 == NULL) {
@@ -1052,33 +998,27 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
   arg4 = (int)jarg4; 
   result = (int)fillIndices(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getWireIndicesSize(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getWireIndicesSize(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (int)getWireIndicesSize(arg1);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillWireIndices(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2, jint jarg3, jint jarg4) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillWireIndices(JNIEnv *jenv, jclass jcls, jint jarg1, jobject jarg2, jint jarg3, jint jarg4) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int *arg2 = (int *) 0 ;
   int arg3 ;
   int arg4 ;
@@ -1086,11 +1026,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   {
     arg2 = (*jenv)->GetDirectBufferAddress(jenv, jarg2);
     if (arg2 == NULL) {
@@ -1101,44 +1037,34 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
   arg4 = (int)jarg4; 
   result = (int)fillWireIndices(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getMarkIndicesSize(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getMarkIndicesSize(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (int)getMarkIndicesSize(arg1);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillMarkIndices(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2, jint jarg3) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillMarkIndices(JNIEnv *jenv, jclass jcls, jint jarg1, jobject jarg2, jint jarg3) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int *arg2 = (int *) 0 ;
   int arg3 ;
   int result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   {
     arg2 = (*jenv)->GetDirectBufferAddress(jenv, jarg2);
     if (arg2 == NULL) {
@@ -1148,23 +1074,18 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
   arg3 = (int)jarg3; 
   result = (int)fillMarkIndices(arg1,arg2,arg3);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getTextureData(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getTextureData(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jobject jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   JavaDirectBuffer result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = getTextureData(arg1);
   {
     if ((&result)->address)
@@ -1172,79 +1093,59 @@ SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJN
       jresult = (*jenv)->NewDirectByteBuffer(jenv, (&result)->address, (&result)->size);
     }
   }
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getTextureImageType(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getTextureImageType(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (int)getTextureImageType(arg1);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getTextureDataType(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getTextureDataType(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (int)getTextureDataType(arg1);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getTextureGLType(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getTextureGLType(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (int)getTextureGLType(arg1);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_disposeTextureData(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2) {
-  char *arg1 = (char *) 0 ;
+SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_disposeTextureData(JNIEnv *jenv, jclass jcls, jint jarg1, jobject jarg2) {
+  int arg1 ;
   unsigned char *arg2 = (unsigned char *) 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return ;
-  }
+  arg1 = (int)jarg1; 
   {
     arg2 = (*jenv)->GetDirectBufferAddress(jenv, jarg2);
     if (arg2 == NULL) {
@@ -1252,25 +1153,19 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_d
     }
   }
   disposeTextureData(arg1,arg2);
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_isTextureRowOrder(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_isTextureRowOrder(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
+  int arg1 ;
   int result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
+  arg1 = (int)jarg1; 
   result = (int)isTextureRowOrder(arg1);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 

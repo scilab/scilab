@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_clip_state_property(void* _pvCtx, char* pobjUID)
+void* get_clip_state_property(void* _pvCtx, int iObjUID)
 {
     int iClipState = 0;
     int* piClipState = &iClipState;
 
-    getGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
+    getGraphicObjectProperty(iObjUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
 
     if (piClipState == NULL)
     {

@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "xcos module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "xcos module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "xcos.dll"
             VALUE "ProductName", "xcos module"
             VALUE "ProductVersion", "6, 0, 0, 0"

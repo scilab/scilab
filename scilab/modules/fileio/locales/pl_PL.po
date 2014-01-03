@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: pl\n"
 
 #, c-format
@@ -25,12 +25,6 @@ msgstr "%s: Brak możliwości odczytu argumentu wejściowego nr %d.\n"
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano wartości "
-"logicznej.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s:  Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano wartości "
 "logicznej.\n"
 
 #, c-format
@@ -49,12 +43,6 @@ msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
-"znaków.\n"
-
-#, c-format
 msgid "%s: Can not read named argument %s.\n"
 msgstr ""
 
@@ -65,10 +53,6 @@ msgstr "%s: Nie można przejść do katalogu %s\n"
 #, c-format
 msgid "%s: Cannot go to directory.\n"
 msgstr "%s: Nie można przejść do katalogu.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A string expected.\n"
-msgstr ""
 
 #, c-format
 msgid ""
@@ -130,8 +114,11 @@ msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr "%s: Zły typ parametrów wejściowych: oczekiwano ciągów znaków.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano tablicy o "
+"wymiarach 1-na-n lub m-na-1.\n"
 
 #, c-format
 msgid ""
@@ -142,10 +129,10 @@ msgstr ""
 "zmiennoprzecinkowych.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real values expected.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano wartości "
-"rzeczywistych.\n"
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
+"znaków.\n"
 
 #, c-format
 msgid "%s: can not open file %s.\n"
@@ -308,6 +295,13 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano łańcuch lub "
+"jednostkę logiczną (logical unit).\n"
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: String or logical unit expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano łańcuch lub "
@@ -334,13 +328,6 @@ msgid "%s: No input file associated to logical unit %d.\n"
 msgstr "%s: Nie ma pliku wejściowego związanego z jednostką logiczną %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano łańcuch lub "
-"jednostkę logiczną (logical unit).\n"
-
-#, c-format
 msgid "%s: invalid filename.\n"
 msgstr "%s: Niewłaściwa nazwa pliku.\n"
 
@@ -358,13 +345,6 @@ msgstr ""
 "łańcuch lub liczbę całkowitą.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano tablicy o "
-"wymiarach 1-na-n lub m-na-1.\n"
-
-#, c-format
 msgid "%s: Specified format cannot include any '\\n'\n"
 msgstr "%s: Określony format nie może zawierać żadnych '\\n'\n"
 
@@ -378,6 +358,12 @@ msgstr "Za mało wpisów."
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'w' or 'u' string expected.\n"
 msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s:  Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano wartości "
+"logicznej.\n"
 
 #, c-format
 msgid "%s: An error occurred.\n"
@@ -402,6 +388,10 @@ msgid "Could not parse the URL.\n"
 msgstr ""
 
 #, c-format
+msgid "Could not read the configuration file '%s'.\n"
+msgstr ""
+
+#, c-format
 msgid "Failed to read the scicurl_config file '%s'.\n"
 msgstr ""
 
@@ -420,7 +410,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "Failed opening '%s' for writing.\n"
+msgid "Failed getting current dir, error code: %d\n"
 msgstr ""
 
 #, c-format
@@ -452,7 +442,15 @@ msgid "Failed to set write data [%s]\n"
 msgstr ""
 
 #, c-format
+msgid "Failed to set 'Follow Location' [%s]\n"
+msgstr ""
+
+#, c-format
 msgid "Transfer did not complete successfully: %s\n"
+msgstr ""
+
+#, c-format
+msgid "Failed opening '%s' for writing.\n"
 msgstr ""
 
 msgid "unclosed [ directive."

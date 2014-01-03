@@ -34,12 +34,12 @@ std::string * XMLDocument::errorBuffer = 0;
 std::string * XMLDocument::errorXPathBuffer = 0;
 std::list < XMLDocument * >&XMLDocument::openDocs = *new std::list < XMLDocument * >();
 
-XMLDocument::XMLDocument(const char *path, bool validate, std::string * error): XMLObject()
+XMLDocument::XMLDocument(const char *path, bool validate, std::string * error, const char * encoding): XMLObject()
 {
     char *expandedPath = expandPathVariable(const_cast<char *>(path));
     if (expandedPath)
     {
-        document = readDocument(const_cast<const char *>(expandedPath), validate, error);
+        document = readDocument(const_cast<const char *>(expandedPath), encoding, validate, error);
         FREE(expandedPath);
         if (document)
         {
@@ -57,9 +57,9 @@ XMLDocument::XMLDocument(const char *path, bool validate, std::string * error): 
     scilabType = XMLDOCUMENT;
 }
 
-XMLDocument::XMLDocument(const std::string & xmlCode, bool validate, std::string * error): XMLObject()
+XMLDocument::XMLDocument(const std::string & xmlCode, bool validate, std::string * error, const char * encoding): XMLObject()
 {
-    document = readDocument(xmlCode, validate, error);
+    document = readDocument(xmlCode, encoding, validate, error);
     if (document)
     {
         openDocs.push_back(this);
@@ -296,7 +296,7 @@ void XMLDocument::closeAllDocuments()
     delete[]arr;
 }
 
-xmlDoc *XMLDocument::readDocument(const char *filename, bool validate, std::string * error)
+xmlDoc *XMLDocument::readDocument(const char *filename, const char * encoding, bool validate, std::string * error)
 {
     xmlParserCtxt *ctxt = initContext(error, validate);
     xmlDoc *doc = 0;
@@ -304,7 +304,7 @@ xmlDoc *XMLDocument::readDocument(const char *filename, bool validate, std::stri
 
     if (validate)
     {
-        options = options | XML_PARSE_DTDVALID;
+        options |= XML_PARSE_DTDVALID;
     }
 
     if (!ctxt)
@@ -313,7 +313,7 @@ xmlDoc *XMLDocument::readDocument(const char *filename, bool validate, std::stri
         return 0;
     }
 
-    doc = xmlCtxtReadFile(ctxt, filename, 0, options);
+    doc = xmlCtxtReadFile(ctxt, filename, encoding, options);
     if (!doc || !ctxt->valid)
     {
         *error = *errorBuffer;
@@ -325,7 +325,7 @@ xmlDoc *XMLDocument::readDocument(const char *filename, bool validate, std::stri
     return doc;
 }
 
-xmlDoc *XMLDocument::readDocument(const std::string & xmlCode, bool validate, std::string * error)
+xmlDoc *XMLDocument::readDocument(const std::string & xmlCode, const char * encoding, bool validate, std::string * error)
 {
     xmlParserCtxt *ctxt = initContext(error, validate);
     xmlDoc *doc = 0;
@@ -333,7 +333,7 @@ xmlDoc *XMLDocument::readDocument(const std::string & xmlCode, bool validate, st
 
     if (validate)
     {
-        options = options | XML_PARSE_DTDVALID;
+        options |= XML_PARSE_DTDVALID;
     }
 
     if (!ctxt)

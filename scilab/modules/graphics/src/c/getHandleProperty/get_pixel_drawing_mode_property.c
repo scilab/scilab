@@ -33,11 +33,11 @@
 
 /*------------------------------------------------------------------------*/
 
-void* get_pixel_drawing_mode_property(void* _pvCtx, char* pobjUID)
+void* get_pixel_drawing_mode_property(void* _pvCtx, int iObjUID)
 {
     int iPixelDrawingMode = 0;
     int* pixelDrawingMode = &iPixelDrawingMode;
-    getGraphicObjectProperty(pobjUID, __GO_PIXEL_DRAWING_MODE__, jni_int, (void**)&pixelDrawingMode);
+    getGraphicObjectProperty(iObjUID, __GO_PIXEL_DRAWING_MODE__, jni_int, (void**)&pixelDrawingMode);
 
     if (pixelDrawingMode == NULL)
     {

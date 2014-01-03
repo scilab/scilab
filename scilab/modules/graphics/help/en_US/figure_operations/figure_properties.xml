@@ -170,7 +170,7 @@
                                     If the property is set to "off", anti-aliasing is disable. To enable anti-aliasing
                                     the property must set to either "2x", "4x", "8x" or "16x". In this case, it stands for the anti-aliasing level.
                                     For example, "16x" is a higher quality level than "2x".
-                                    Specifying a higher anti-aliasing level improves image quality but also decreases graphic performances. 
+                                    Specifying a higher anti-aliasing level improves image quality but also decreases graphic performances.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -200,7 +200,7 @@
                             <term>event_handler</term>
                             <listitem>
                                 <para>A character string. The name of the Scilab function which is intended
-                                    to handle the events. Not that setting an empty string will disable
+                                    to handle the events. Note that setting an empty string will disable
                                     the event handler. For more information about event handler functions see the
                                     <link linkend="eventhandlerfunctions">event handler functions</link> help.
                                 </para>
@@ -253,7 +253,7 @@
                         <varlistentry>
                             <term>visible: </term>
                             <listitem>
-                                <para>This field ules if the contents of the figure as to be
+                                <para>This field sets if the contents of the figure (axes and uicontrols) has to be
                                     redrawn. Its value should be <literal>"on"</literal> or
                                     <literal>"off"</literal>.
                                 </para>
@@ -297,11 +297,11 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example">
-            <![CDATA[ 
-lines(0) // disables vertical paging 
+            <![CDATA[
+lines(0) // disables vertical paging
 
 //Example 1
-f=get("current_figure") //get the handle of the current figure : 
+f=get("current_figure") //get the handle of the current figure :
                         //if none exists, create a figure and return the corresponding handle
 f.figure_position
 f.figure_size=[200,200]
@@ -357,9 +357,6 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
             <member>
                 <link linkend="axes_properties">axes_properties</link>
             </member>
-            <member>
-                <link linkend="clear_pixmap">clear_pixmap</link>
-            </member>
             <member/>
             <member>
                 <link linkend="hotcolormap">hotcolormap</link>
@@ -372,6 +369,10 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
     <refsection>
         <title>History</title>
         <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>"visible" property also applies to uicontrols.</revremark>
+            </revision>
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>New resizefcn &amp; closerequestfcn properties introduced.</revremark>

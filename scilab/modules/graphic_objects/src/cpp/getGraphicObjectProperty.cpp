@@ -25,10 +25,10 @@ extern "C"
 
 using namespace org_scilab_modules_graphic_objects;
 
-void getGraphicObjectProperty(char const* _pstID, int _iName, _ReturnType_ _returnType, void **_pvData)
+void getGraphicObjectProperty(int iUID, int _iName, _ReturnType_ _returnType, void **_pvData)
 {
     // do not perform anything if the id is undefined
-    if (_pstID == NULL)
+    if (iUID == 0)
     {
         return;
     }
@@ -74,7 +74,7 @@ void getGraphicObjectProperty(char const* _pstID, int _iName, _ReturnType_ _retu
             || _iName == __GO_DATA_MODEL_MATPLOT_IMAGE_DATASIZE__
        )
     {
-        DataController::getGraphicObjectProperty(_pstID, _iName, _pvData);
+        DataController::getGraphicObjectProperty(iUID, _iName, _pvData);
         return;
     }
 
@@ -84,72 +84,72 @@ void getGraphicObjectProperty(char const* _pstID, int _iName, _ReturnType_ _retu
         {
             case jni_string:
             {
-                *(_pvData) = CallGraphicController::getGraphicObjectPropertyAsString(getScilabJavaVM(), _pstID, _iName);
+                *(_pvData) = CallGraphicController::getGraphicObjectPropertyAsString(getScilabJavaVM(), iUID, _iName);
                 return;
             }
             case jni_string_vector:
             {
-                *_pvData = CallGraphicController::getGraphicObjectPropertyAsStringVector(getScilabJavaVM(), _pstID, _iName);
+                *_pvData = CallGraphicController::getGraphicObjectPropertyAsStringVector(getScilabJavaVM(), iUID, _iName);
                 return;
             }
             case jni_double:
             {
-		double * ret = CallGraphicController::getGraphicObjectPropertyAsDoubleVector(getScilabJavaVM(), _pstID, _iName);
-		if (ret == NULL)
-		{
-		    *_pvData = NULL;
-		}
-		else
-		{
-		    ((double *)*_pvData)[0] = *ret;
-		    delete[] ret;
-		}
+                double * ret = CallGraphicController::getGraphicObjectPropertyAsDoubleVector(getScilabJavaVM(), iUID, _iName);
+                if (ret == NULL)
+                {
+                    *_pvData = NULL;
+                }
+                else
+                {
+                    ((double *)*_pvData)[0] = *ret;
+                    delete[] ret;
+                }
 
                 return;
             }
             case jni_double_vector:
             {
-                *_pvData = CallGraphicController::getGraphicObjectPropertyAsDoubleVector(getScilabJavaVM(), _pstID, _iName);
+                *_pvData = CallGraphicController::getGraphicObjectPropertyAsDoubleVector(getScilabJavaVM(), iUID, _iName);
                 return;
             }
             case jni_bool:
             {
-		int * ret = CallGraphicController::getGraphicObjectPropertyAsBooleanVector(getScilabJavaVM(), _pstID, _iName);
-		if (ret == NULL)
-		{
-		    *_pvData = NULL;
-		}
-		else
-		{
-		    ((int *)*_pvData)[0] = *ret;
-		    delete[] ret;
-		}
+                int * ret = CallGraphicController::getGraphicObjectPropertyAsBooleanVector(getScilabJavaVM(), iUID, _iName);
+                if (ret == NULL)
+                {
+                    *_pvData = NULL;
+                }
+                else
+                {
+                    ((int *)*_pvData)[0] = *ret;
+                    delete[] ret;
+                }
 
                 return;
             }
             case jni_bool_vector:
             {
-                *_pvData = CallGraphicController::getGraphicObjectPropertyAsBooleanVector(getScilabJavaVM(), _pstID, _iName);
+                *_pvData = CallGraphicController::getGraphicObjectPropertyAsBooleanVector(getScilabJavaVM(), iUID, _iName);
                 return;
             }
             case jni_int:
             {
-		int * ret = CallGraphicController::getGraphicObjectPropertyAsIntegerVector(getScilabJavaVM(), _pstID, _iName);
-		if (ret == NULL)
-		{
-		    *_pvData = NULL;
-		}
-		else
-		{
-		    ((int *)*_pvData)[0] = *ret;
-		    delete[] ret;
-		}
+                int * ret = CallGraphicController::getGraphicObjectPropertyAsIntegerVector(getScilabJavaVM(), iUID, _iName);
+                if (ret == NULL)
+                {
+                    *_pvData = NULL;
+                }
+                else
+                {
+                    ((int *)*_pvData)[0] = *ret;
+                    delete[] ret;
+                }
 
                 return;
             }
             case jni_int_vector:
             {
-                *_pvData = CallGraphicController::getGraphicObjectPropertyAsIntegerVector(getScilabJavaVM(), _pstID, _iName);
+                *_pvData = CallGraphicController::getGraphicObjectPropertyAsIntegerVector(getScilabJavaVM(), iUID, _iName);
                 return;
             }
             default:

@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" scilab:needs-examples="no" xml:id="lighting">
@@ -43,10 +43,10 @@
             of the surface and light colors. Following there is the light model equation:
         </para>
         <scilab:image>
-xset("font",1,4);
-xstring(0.0, 0.4, '$Color = Ambient_{term} + Diffuse_{term} + Specular_{term} \\ Ambient_{term} = L_{ambient}*S_{ambient} \\ Diffuse_{term} = L_{diffuse}*S_{diffuse}*(L_{direction} \cdot S_{normal}) \\ Specular_{term} = L_{specular}*S_{specular}*(S_{normal} \cdot (L_{direction}+View_{direction}) ))^{S_{shininess}}$');
-f=gcf();
-f.figure_size = [750,280];
+            xset("font",1,4);
+            xstring(0.0, 0.4, '$Color = Ambient_{term} + Diffuse_{term} + Specular_{term} \\ Ambient_{term} = L_{ambient}*S_{ambient} \\ Diffuse_{term} = L_{diffuse}*S_{diffuse}*(L_{direction} \cdot S_{normal}) \\ Specular_{term} = L_{specular}*S_{specular}*(S_{normal} \cdot (L_{direction}+View_{direction}) ))^{S_{shininess}}$');
+            f=gcf();
+            f.figure_size = [750,280];
         </scilab:image>
         <listitem>
             <para>
@@ -189,13 +189,13 @@ f.figure_size = [750,280];
                             <term>material_shininess: </term>
                             <listitem>
                                 <para>This field defines the shininess level of the surface. This parameter
-                                controls the shinines color spreading in the surface. Any positive value can
-                                be used.
+                                    controls the shinines color spreading in the surface. Any positive value can
+                                    be used.
                                 </para>
                                 <para>
-                                Good values to use are in the [0 10] range, where low values generates 
-                                strong highlight and high values generates barely perceptible highlights.
-                                The default value is <literal>"2"</literal>.
+                                    Good values to use are in the [0 10] range, where low values generates 
+                                    strong highlight and high values generates barely perceptible highlights.
+                                    The default value is <literal>"2"</literal>.
                                 </para>
                             </listitem>
                         </varlistentry>

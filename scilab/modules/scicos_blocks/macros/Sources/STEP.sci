@@ -33,7 +33,9 @@ function [x,y,typ]=STEP(job,arg1,arg2)
             gettext("Step Function");" "], ..
             [gettext("Step Time"); gettext("Initial Value"); gettext("Final Value")], ..
             list("vec",1,"vec",-1,"vec",-1), exprs);
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             in=in(:);fi=fi(:);
             if size(in,"*")<>size(fi,"*")  then
                 if size(in,"*")==1 then
@@ -46,9 +48,9 @@ function [x,y,typ]=STEP(job,arg1,arg2)
                 end
             end
             if ok then
-              model.out2=1;
-              model.outtyp=1;
-              [model,graphics,ok]=check_io(model,graphics,[],size(fi,"*"),1,1)
+                model.out2=1;
+                model.outtyp=1;
+                [model,graphics,ok]=check_io(model,graphics,[],size(fi,"*"),1,1)
             end
             if ok then
                 model.firing=temps

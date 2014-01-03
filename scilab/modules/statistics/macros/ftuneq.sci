@@ -20,7 +20,7 @@ function [f,p]=ftuneq(varargin)
     //still  is possible  to modify  the  ANOVA calculations."
     //Note  that  the  definition  of  xbarbar  is  no  longer
     //mean(xbar), but  rather a weighted  average with weights
-    //ni.  Additionnally  it gives (in  p) the p-value  of the
+    //ni.  Additionally  it gives (in  p) the p-value  of the
     //computed Fischer ratio.
     //
     //Given a number  a of samples each of  them composed of n_i
@@ -34,6 +34,9 @@ function [f,p]=ftuneq(varargin)
     //
     //
     [lhs,rhs]=argn(0)
+    if rhs == 0 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"ftuneq",1))
+    end
     data=[]
     total=0
     sse=0

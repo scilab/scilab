@@ -34,7 +34,7 @@ public class JavaObjectLoader {
      * @param the id of the given object.
      * @return the number of data elements.
      */
-    public static int getDataSize(String id) {
+    public static int getDataSize(Integer id) {
         int type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
         switch (type) {
             case GraphicObjectProperties.__GO_ARC__ :
@@ -60,7 +60,7 @@ public class JavaObjectLoader {
      * @param the conversion translation value to apply to data.
      * @param the bit mask specifying whether logarithmic coordinates are used.
      */
-    public static void fillVertices(String id, FloatBuffer buffer, int elementsSize,
+    public static void fillVertices(Integer id, FloatBuffer buffer, int elementsSize,
                                     int coordinateMask, double[] scale, double[] translation, int logMask) {
         int type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
@@ -87,7 +87,7 @@ public class JavaObjectLoader {
      * @param the buffer to fill.
      * @param the number of components taken by one element in the buffer (3 or 4).
      */
-    public static void fillColors(String id, FloatBuffer buffer, int elementsSize) {
+    public static void fillColors(Integer id, FloatBuffer buffer, int elementsSize) {
         int type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
         if (type == GraphicObjectProperties.__GO_CHAMP__) {
@@ -102,7 +102,7 @@ public class JavaObjectLoader {
      * @param the id of the given object.
      * @return the object's number of indices.
      */
-    public static int getIndicesSize(String id) {
+    public static int getIndicesSize(Integer id) {
         int type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
         switch (type) {
@@ -126,7 +126,7 @@ public class JavaObjectLoader {
      * @param the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
-    public static int fillIndices(String id, IntBuffer buffer, int logMask) {
+    public static int fillIndices(Integer id, IntBuffer buffer, int logMask) {
         int type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
         switch (type) {
@@ -148,7 +148,7 @@ public class JavaObjectLoader {
      * @param the id of the given object.
      * @return the object's number of indices.
      */
-    public static int getWireIndicesSize(String id) {
+    public static int getWireIndicesSize(Integer id) {
         int type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
         switch (type) {
@@ -172,7 +172,7 @@ public class JavaObjectLoader {
      * @param the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
-    public static int fillWireIndices(String id, IntBuffer buffer, int logMask) {
+    public static int fillWireIndices(Integer id, IntBuffer buffer, int logMask) {
         int type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
         switch (type) {

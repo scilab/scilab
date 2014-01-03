@@ -66,21 +66,21 @@ void convertUserCoordToPixelCoords(const double xCoords[], const double yCoords[
 {
     /* coordinates transformation */
     int i = 0;
-    char * selectedSubwinUID = (char*)getOrCreateDefaultSubwin();
-    updateSubwinScale(selectedSubwinUID);
+    int iSelectedSubwinUID = getOrCreateDefaultSubwin();
+    updateSubwinScale(iSelectedSubwinUID);
 
     for (i = 0; i < nbCoords; i++)
     {
         // specify a default value for Z
         double curCoords[3] = {xCoords[i], yCoords[i], 0.0};
         int curPixCoords[2];
-        sciGet2dViewPixelCoordinates(selectedSubwinUID, curCoords, curPixCoords);
+        sciGet2dViewPixelCoordinates(iSelectedSubwinUID, curCoords, curPixCoords);
         xPixCoords[i] = curPixCoords[0];
         yPixCoords[i] = curPixCoords[1];
     }
 
     /* get viewing area */
-    sciGetViewingArea(selectedSubwinUID, &rect[0], &rect[1], &rect[2], &rect[3]);
+    sciGetViewingArea(iSelectedSubwinUID, &rect[0], &rect[1], &rect[2], &rect[3]);
 
 }
 /*--------------------------------------------------------------------------*/
@@ -95,20 +95,20 @@ void convertPixelCoordsToUserCoords(const int xPixCoords[], const int yPixCoords
 {
     /* coordinates transformation */
     int i = 0;
-    char * selectedSubwinUID = (char*)getOrCreateDefaultSubwin();
-    updateSubwinScale(selectedSubwinUID);
+    int iSelectedSubwinUID = getOrCreateDefaultSubwin();
+    updateSubwinScale(iSelectedSubwinUID);
     for (i = 0; i < nbCoords; i++)
     {
         // specify a default value for Z
         int curPixCoords[2] = {xPixCoords[i], yPixCoords[i]};
         double curCoords[2];
-        sciGet2dViewCoordFromPixel(selectedSubwinUID, curPixCoords, curCoords);
+        sciGet2dViewCoordFromPixel(iSelectedSubwinUID, curPixCoords, curCoords);
         xUserCoords[i] = curCoords[0];
         yUserCoords[i] = curCoords[1];
     }
 
     /* get viewing area */
-    sciGetViewingArea(selectedSubwinUID, &rect[0], &rect[1], &rect[2], &rect[3]);
+    sciGetViewingArea(iSelectedSubwinUID, &rect[0], &rect[1], &rect[2], &rect[3]);
 
 }
 /*--------------------------------------------------------------------------*/

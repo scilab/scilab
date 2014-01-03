@@ -17,12 +17,13 @@
 
 #include "returnType.h"
 #include "dynlib_graphic_objects.h"
+#include "CurrentObject.h"
 
 /*
 ** Retrieve Graphic object property from Model.
 ** Specify type expected as parameter for JNI.
 */
-GRAPHIC_OBJECTS_IMPEXP void getGraphicObjectProperty(char const* _pstID, const int _iName, enum _ReturnType_ _returnType, void **_pvData);
+GRAPHIC_OBJECTS_IMPEXP void getGraphicObjectProperty(int iID, const int _iName, enum _ReturnType_ _returnType, void **_pvData);
 
 /**
  * @brief release a Graphic object property from the Model.

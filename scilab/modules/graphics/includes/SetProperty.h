@@ -34,25 +34,25 @@
 #include "dynlib_graphics.h"
 #include "BOOL.h"
 
-GRAPHICS_IMPEXP int sciSetLineWidth (char* pobj, double linewidth) ;  /* SET */
+GRAPHICS_IMPEXP int sciSetLineWidth (int iObj, double linewidth) ;  /* SET */
 
-GRAPHICS_IMPEXP int sciSetLineStyle (char* pobj, int linestyle) ; /* SET */
+GRAPHICS_IMPEXP int sciSetLineStyle (int iObj, int linestyle) ; /* SET */
 
-GRAPHICS_IMPEXP int sciSetMarkSize (char* pobj, int marksize); /* SET */
+GRAPHICS_IMPEXP int sciSetMarkSize (int iObj, int marksize); /* SET */
 
 /* Text Functions */
-GRAPHICS_IMPEXP int sciSetText (  char* pobj, char ** text, int nbRow, int nbCol) ; /* SET */
+GRAPHICS_IMPEXP int sciSetText (int iObj, char ** text, int nbRow, int nbCol) ; /* SET */
 
 /* GMODE */
 GRAPHICS_IMPEXP int sciSetDefaultValues (void); /* SET */
 
 
 /* Window Functions */
-GRAPHICS_IMPEXP int sciSetSelectedSubWin (char* psubwinobj); /* SET */
+GRAPHICS_IMPEXP int sciSetSelectedSubWin (int iSubwinobj); /* SET */
 
-GRAPHICS_IMPEXP int sciSetPoint(char* pthis, double *tab, int *numrow, int *numcol); /* SET */
+GRAPHICS_IMPEXP int sciSetPoint(int iObj, double *tab, int *numrow, int *numcol); /* SET */
 
-GRAPHICS_IMPEXP BOOL sciCheckColorIndex(char* pObj, int colorIndex);
+GRAPHICS_IMPEXP BOOL sciCheckColorIndex(int iObj, int colorIndex);
 
 /*---------------------------------------------------------------------------*/
 

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.ged.graphic_objects.properties;
@@ -61,7 +61,7 @@ public class Fec extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void colorRange(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void colorRange(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         int LEFTMARGINIP = 0; //left margin - inner panel
         int COLUMNIP = 0; //left column - inner panel
         JLabel lColorRange = new JLabel();
@@ -121,7 +121,7 @@ public class Fec extends ContentLayout {
     * Get the current status of the property: Color Range.
     * @param UID objectID
     */
-    public void getColorRange(String UID) {
+    public void getColorRange(Integer UID) {
         Integer[] value = (Integer[]) GraphicController.getController().getProperty(UID, GraphicObjectProperties.__GO_COLOR_RANGE__);
         cColorRangeMIN.setText(value[0].toString());
         cColorRangeMAX.setText(value[1].toString());
@@ -133,13 +133,13 @@ public class Fec extends ContentLayout {
     */
     public void titleColorRange() {
         cColorRange.setText(" [" + cColorRangeMIN.getText() + " , "
-                                   + cColorRangeMAX.getText() + "]");
+                            + cColorRangeMAX.getText() + "]");
     }
 
     /**
     * Updates the property: Color Range.
     */
-    private void updateColorRange(String UID) {
+    private void updateColorRange(Integer UID) {
         try {
             Integer[] value = {Integer.parseInt(cOutsideColorMIN.getText()), Integer.parseInt(cOutsideColorMAX.getText())};
             GraphicController.getController().setProperty(
@@ -160,7 +160,7 @@ public class Fec extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void outsideColor(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void outsideColor(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         int LEFTMARGINIP = 0; //left margin - inner panel
         int COLUMNIP = 0; //left column - inner panel
         JLabel lOutsideColor = new JLabel();
@@ -220,7 +220,7 @@ public class Fec extends ContentLayout {
     * Get the current status of the property: Outside Color.
     * @param UID objectID
     */
-    public void getOutsideColor(String UID) {
+    public void getOutsideColor(Integer UID) {
         Integer[] value = (Integer[]) GraphicController.getController().getProperty(UID, GraphicObjectProperties.__GO_OUTSIDE_COLOR__);
         cOutsideColorMIN.setText(value[0].toString());
         cOutsideColorMAX.setText(value[1].toString());
@@ -232,13 +232,13 @@ public class Fec extends ContentLayout {
     */
     public void titleOutsideColor() {
         cOutsideColor.setText(" [" + cOutsideColorMIN.getText() + " , "
-                                   + cOutsideColorMAX.getText() + "]");
+                              + cOutsideColorMAX.getText() + "]");
     }
 
     /**
     * Updates the property: Outside Color.
     */
-    private void updateOutsideColor(String UID) {
+    private void updateOutsideColor(Integer UID) {
         try {
             Integer[] value = {Integer.parseInt(cOutsideColorMIN.getText()), Integer.parseInt(cOutsideColorMAX.getText())};
             GraphicController.getController().setProperty(
@@ -259,7 +259,7 @@ public class Fec extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID objectID.
      */
-    public void zBounds(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void zBounds(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         int LEFTMARGINIP = 0; //left margin - inner panel
         int COLUMNIP = 0; //left column - inner panel
         JLabel lzBounds = new JLabel();
@@ -319,7 +319,7 @@ public class Fec extends ContentLayout {
     * Get the current status of the property: Z Bounds.
     * @param UID objectID
     */
-    public void getZBounds(String UID) {
+    public void getZBounds(Integer UID) {
         Double[] value = (Double[]) GraphicController.getController().getProperty(UID, GraphicObjectProperties.__GO_Z_BOUNDS__);
         czBoundsMIN.setText(value[0].toString());
         czBoundsMAX.setText(value[1].toString());
@@ -331,13 +331,13 @@ public class Fec extends ContentLayout {
     */
     public void titleZBounds() {
         czBounds.setText(" [" + czBoundsMIN.getText() + " , "
-                               + czBoundsMAX.getText() + "]");
+                         + czBoundsMAX.getText() + "]");
     }
 
     /**
     * Updates the property: Z Bounds.
     */
-    private void updateZBounds(String UID) {
+    private void updateZBounds(Integer UID) {
         try {
             Double[] value = {Double.parseDouble(czBoundsMIN.getText()), Double.parseDouble(czBoundsMAX.getText())};
             GraphicController.getController().setProperty(

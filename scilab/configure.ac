@@ -81,7 +81,7 @@ AC_LIB_RPATH
 # if the version is different
 AM_MAINTAINER_MODE
 
-AM_INIT_AUTOMAKE([-Wall foreign serial-tests]) # Not using -Werror because we override {C,F}FLAGS in order to disable optimisation
+AM_INIT_AUTOMAKE([-Wall foreign serial-tests subdir-objects]) # Not using -Werror because we override {C,F}FLAGS in order to disable optimisation
 
 AC_CANONICAL_HOST
 
@@ -138,8 +138,8 @@ AC_ARG_WITH(gui,
 AC_ARG_WITH(build-swig,
     AC_HELP_STRING([--enable-build-swig=path],[Regenerate Java => C and Scilab => C wrappers produces by Swig]),
     [with_build_swig=$withval],
-	[with_build_swig=no]
-	)
+    [with_build_swig=no]
+    )
 
 
 AC_ARG_ENABLE(build-giws,
@@ -165,7 +165,7 @@ AC_HELP_STRING([--with-fink-prefix],[Provide a fink prefix. Default: /sw/ ]))
 # Need MacosX Version to specify some path.
 case "$host_os" in
      *Darwin* | *darwin*)
-     	      AC_GET_MACOSX_VERSION
+               AC_GET_MACOSX_VERSION
      ;;
 esac
 
@@ -246,7 +246,7 @@ if test -z "$F77"; then
    AC_PROG_F77([gfortran ifc ifort])
    if test -z "$F77"; then
         # Best effort to find a compiler (might be g77)
-	AC_PROG_F77
+    AC_PROG_F77
    fi
 fi
 
@@ -706,11 +706,9 @@ if test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"; then
    if test $f90compatible = false; then
       AC_MSG_ERROR([64 bits support needs a fortran 90 compiler (try --with-gfortran).])
    fi
-   AC_DEFINE([USE_DYNAMIC_STACK], [], [If we are building a 64 bits version])
 fi
 
 AM_CONDITIONAL(IS_64_BITS_CPU, test $IS_64_BITS_CPU = true)
-AM_CONDITIONAL(USE_DYNAMIC_STACK, test $IS_64_BITS_CPU = true -o "$MACOSX" = "1")
 
 ################
 ## SSE
@@ -992,10 +990,10 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                 # Console API
                 AC_JAVA_CHECK_PACKAGE([jrosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab],"yes")
                 JROSETTA_API=$PACKAGE_JAR_FILE
-		if test -z "$JROSETTA_API"; then
-	                AC_JAVA_CHECK_PACKAGE([jrosetta-api],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
-        	        JROSETTA_API=$PACKAGE_JAR_FILE
-		fi
+        if test -z "$JROSETTA_API"; then
+                    AC_JAVA_CHECK_PACKAGE([jrosetta-api],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
+                    JROSETTA_API=$PACKAGE_JAR_FILE
+        fi
                 AC_SUBST(JROSETTA_API)
 
                 # Console Core
@@ -1113,6 +1111,13 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                 AC_JAVA_CHECK_PACKAGE([asm],[org.objectweb.asm.Type],[Java bytecode manipulation (dep of cobertura)],"yes")
                 ASM3=$PACKAGE_JAR_FILE
         fi
+
+        AC_JAVA_CHECK_PACKAGE([ecj],[org.eclipse.jdt.core.compiler.batch.BatchCompiler],[Eclipse Java compiler],"yes")
+        ECJ=$PACKAGE_JAR_FILE
+        if test -z "$ECJ"; then
+           ECJ='$SCILAB/thirdparty/ecj.jar'
+        fi
+        AC_SUBST(ECJ)
 
     else
         AC_MSG_WARN([Sun javac not found: I will not build the java interface])
@@ -1858,6 +1863,26 @@ AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared libr
 AC_DEFINE_UNQUOTED([SHARED_LIB_EXTW],[L"$shrext_cmds"],[Extension of a shared library ( wide string )])
 
 
+
+#################
+## Update the years in the various part of the code.
+#################
+
+if test ! -f modules/core/src/c/banier.c; then
+   AC_MSG_ERROR([Could not find the Scilab banier file.])
+fi
+
+CURRENT_YEAR=`date "+%Y"`
+DETECTED_YEAR=`grep "Copyright (c) 2011-" modules/core/src/c/banier.c|sed -e "s/.*Copyright (c) 2011-\([[0-9]]*\).*/\1/g"`
+
+if test "$CURRENT_YEAR" != "$DETECTED_YEAR"; then
+   sed -i -e "s| 2011-$DETECTED_YEAR | 2011-$CURRENT_YEAR |g" modules/core/src/c/banier.c modules/windows_tools/src/c/scilab_windows/console.c
+   sed -i -e "s| 2011-$DETECTED_YEAR Scilab Enterprises| 2011-$CURRENT_YEAR Scilab Enterprises|g" etc/Info.plist.in
+   sed -i -e "s|VALUE \"LegalCopyright\", \"Copyright (C) $DETECTED_YEAR|VALUE \"LegalCopyright\", \"Copyright (C) $CURRENT_YEAR|" $(find . -iname '*.rc')
+   AC_MSG_WARN([New year ($CURRENT_YEAR) detected. Copyright files updated. Please commit them ASAP.])
+fi
+
+
 #########
 ## Make sure that the libstdc++ and libgcc can be compiled as static
 #########
@@ -1985,6 +2010,7 @@ scilab-lib.properties
 scilab-lib-doc.properties
 modules/helptools/etc/SciDocConf.xml
 modules/core/includes/version.h
+modules/core/includes/stack.h
 ])
 
 # Detection of the module for the future version of Scilab 6
@@ -1998,23 +2024,6 @@ fi
 
 # This script is used by Xcos in order to regenerate the function/block list
 AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scripts/GenBlocks.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/scicompile.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/compilerDetection.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/configure])
-
-# Generate stack.h
-if test "$IS_64_BITS_CPU" = true -o "$MACOSX" = "1"; then
-   stack_h_cpp_flags=-DUSE_DYNAMIC_STACK
-else
-   stack_h_cpp_flags=
-fi
-
-AC_CONFIG_COMMANDS([modules/core/includes/stack.h],
-  [if ! $CPP $stack_h_cpp_flags - < $srcdir/modules/core/includes/stack.h.in |\
-              $GREP -v '^#' > $srcdir/modules/core/includes/stack.h ; then
-     AC_MSG_ERROR([stack.h generation failed])
-   fi],
-  [CPP="$CPP"
-   GREP="$GREP"
-   stack_h_cpp_flags="$stack_h_cpp_flags"
-  ])
 
 AC_OUTPUT
 
@@ -2230,6 +2239,7 @@ echo "  Commons Logging ..... = $COMMONS_LOGGING"
 echo "  JGraph X ............ = $JGRAPHX"
 echo "  SciRenderer ......... = $SCIRENDERER"
 echo "  JLaTeXMath .......... = $JLATEXMATH"
+echo "  ECJ ................. = $ECJ"
 fi
 
 echo ""

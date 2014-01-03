@@ -1015,6 +1015,9 @@ function totalSize = getSingleHandleInfo(fd, totalSize)
             totalSize = seekStringInt(fd, totalSize); // tics_label
             totalSize = seekInt(fd, totalSize); // label_font_size
             totalSize = seekInt(fd, totalSize); // labels_font_color
+            if is_higher_than([5 4 0 1]) then
+                totalSize = seekInt(fd, totalSize); // labels_font_style
+            end
 
             if is_higher_than( [4 1 2 0] ) then
                 totalSize = seekBool(fd, totalSize); // fractional_font

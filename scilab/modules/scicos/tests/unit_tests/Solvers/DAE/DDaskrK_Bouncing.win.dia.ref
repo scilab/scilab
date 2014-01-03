@@ -41,7 +41,7 @@ compa = abs(ddaskrval-idaval);
 // Extract mean, standard deviation, maximum
 mea = mean(compa);
 [maxi, indexMaxi] = max(compa);
-stdeviation = st_deviation(compa);
+stdeviation = stdev(compa);
 // Verifying closeness of the results
 assert_checktrue(maxi <= 5d-5);
 assert_checktrue(mea <= 5d-5);

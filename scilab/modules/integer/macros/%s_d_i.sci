@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
+// Copyright (C) 2013 - Samuel GOUGEON : http://bugzilla.scilab.org/13000
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,8 +9,10 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
-function r=%s_d_i(a,b)
-
-    if a==[] then r=[],end
-    r=iconvert(a,inttype(b))./b
+function r = %s_d_i(a,b)
+    if a==[] then
+        r = []
+    else
+        r = iconvert(a,inttype(b))./b
+    end
 endfunction

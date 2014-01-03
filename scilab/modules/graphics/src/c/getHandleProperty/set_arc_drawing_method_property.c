@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_arc_drawing_method_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_arc_drawing_method_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int arcDrawingMethod = 0;
@@ -56,7 +56,7 @@ int set_arc_drawing_method_property(void* _pvCtx, char* pobjUID, void* _pvData, 
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_ARC_DRAWING_METHOD__, &arcDrawingMethod, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_ARC_DRAWING_METHOD__, &arcDrawingMethod, jni_int, 1);
     if (status == TRUE)
     {
         return SET_PROPERTY_SUCCEED;

@@ -32,12 +32,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_line_mode_property(void* _pvCtx, char* pobjUID)
+void* get_line_mode_property(void* _pvCtx, int iObjUID)
 {
     int iLineMode = 0;
     int* lineMode = &iLineMode;
 
-    getGraphicObjectProperty(pobjUID, __GO_LINE_MODE__, jni_bool, (void **)&lineMode);
+    getGraphicObjectProperty(iObjUID, __GO_LINE_MODE__, jni_bool, (void **)&lineMode);
 
     if (lineMode == NULL)
     {

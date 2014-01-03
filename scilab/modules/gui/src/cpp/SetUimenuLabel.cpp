@@ -14,7 +14,7 @@
 #include "SetUimenuLabel.hxx"
 
 /* Set the label of an uimenu */
-int SetUimenuLabel(void* _pvCtx, char *pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUimenuLabel(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
 
@@ -30,7 +30,7 @@ int SetUimenuLabel(void* _pvCtx, char *pobjUID, void* _pvData, int valueType, in
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_UI_LABEL__, _pvData, jni_string, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_LABEL__, _pvData, jni_string, 1);
 
     if (status == TRUE)
     {

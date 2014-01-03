@@ -6,7 +6,7 @@
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution. The terms
 # are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 #
 
 #### Target ######
@@ -35,6 +35,7 @@ src/cpp/JavaOptionsSetter.cpp \
 src/cpp/ScilabJavaEnvironmentWrapper.cpp \
 src/jni/ScilabJavaArray.cpp \
 src/jni/ScilabJavaCompiler.cpp \
+src/jni/ScilabJarCreator.cpp \
 src/jni/ScilabJavaClass.cpp \
 src/jni/ScilabJavaObject.cpp \
 src/jni/ScilabClassLoader.cpp \
@@ -50,6 +51,7 @@ sci_gateway/cpp/sci_jgetmethods.cpp \
 sci_gateway/cpp/sci_jgetfields.cpp \
 sci_gateway/cpp/sci_jgetfield.cpp \
 sci_gateway/cpp/sci_jcompile.cpp \
+sci_gateway/cpp/sci_jcreatejar.cpp \
 sci_gateway/cpp/sci_jnewInstance.cpp \
 sci_gateway/cpp/sci_jremove.cpp \
 sci_gateway/cpp/sci_jexists.cpp \
@@ -73,6 +75,7 @@ sci_gateway/cpp/sci_jinvoke_db.cpp
 GIWS_WRAPPERS = src/jni/ScilabObjects.giws.xml
 
 if GIWS
+GIWS_OPTIONS=--enable-return-size-array
 BUILT_SOURCES=giws
 endif
 
@@ -137,3 +140,4 @@ tests/libintl.jar
 if GUI
 USEANT=1
 endif
+

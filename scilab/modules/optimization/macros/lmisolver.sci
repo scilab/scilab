@@ -11,6 +11,10 @@ function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
     %OPT=[];%Xlist=list();
     [LHS,RHS]=argn(0);
 
+    if RHS < 2 then
+        error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),"lmisolver",2,3))
+    end
+
     if RHS==2 then
         %Mb = 1e3;%ato = 1e-10;%nu = 10;%mite = 100;%rto = 1e-10;
     else

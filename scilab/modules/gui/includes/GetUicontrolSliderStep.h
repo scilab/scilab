@@ -23,6 +23,6 @@
  * @param pobjUID Scilab object corresponding to the uicontrol
  * @return true if the slider step property has been correcty got
  */
-GUI_IMPEXP void* GetUicontrolSliderStep(void* _pvCtx, char *pobjUID);
+GUI_IMPEXP void* GetUicontrolSliderStep(void* _pvCtx, int iObjUID);
 
 #endif /* __GET_UICONTROL_SLIDERSTEP_H__ */

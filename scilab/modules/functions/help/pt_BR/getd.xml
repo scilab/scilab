@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getd" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getd" xml:lang="pt">
     <refnamediv>
         <refname>getd</refname>
         <refpurpose>retorna todas as funções definidas em um
@@ -36,12 +36,12 @@
         <title>Descrição</title>
         <para>
             Carrega todos os arquivos <literal>.sci</literal> (contendo funções
-            Scilab) definidos no diretório <literal>path</literal>.
+            Scilab) definidos no diretório <varname>path</varname>.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 getd('SCI/modules/cacsd/macros')
  ]]></programlisting>
     </refsection>

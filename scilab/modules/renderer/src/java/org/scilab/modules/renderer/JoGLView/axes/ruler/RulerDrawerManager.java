@@ -51,7 +51,7 @@ class RulerDrawerManager {
      * Map of up to date {@see RulerSpriteManager}
      * The key are the {@see Axes} id.
      */
-    private final Map<String, RulerDrawer[]> rulerSpriteManagerMap = new HashMap<String, RulerDrawer[]>();
+    private final Map<Integer, RulerDrawer[]> rulerSpriteManagerMap = new HashMap<Integer, RulerDrawer[]>();
 
     /** The {@see TextureManager} of the current {@see Canvas}. */
     private final TextureManager textureManager;
@@ -88,7 +88,7 @@ class RulerDrawerManager {
      * @param property the changed property.
      * @return true if it is really updated
      */
-    public boolean update(String id, int property) {
+    public boolean update(Integer id, int property) {
 
         /**
          * If update affect {@see Axes} ruler sprites, we clear the corresponding {@see RulerSpriteManager}.
@@ -123,7 +123,7 @@ class RulerDrawerManager {
      * Dispose the {@see RulerSpriteManager} of the given axes.
      * @param id the {@see Axes} id.
      */
-    public void dispose(String id) {
+    public void dispose(Integer id) {
         RulerDrawer[] rulerDrawers = rulerSpriteManagerMap.get(id);
         if (rulerDrawers != null) {
             for (RulerDrawer rulerDrawer : rulerDrawers) {

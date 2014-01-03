@@ -61,7 +61,7 @@
                 \end{eqnarray}
             </latex>
             <para>
-                &#160; with, like in <link linkend="CVode">CVode</link>,
+                 with, like in <link linkend="CVode">CVode</link>,
                 <emphasis>
                     y<subscript>n</subscript>
                 </emphasis>
@@ -102,15 +102,15 @@
                     </latex>
                 </para>
                 <para>
-                    &#160; with <emphasis>J</emphasis> an approximation of the Jacobian:
+                     with <emphasis>J</emphasis> an approximation of the Jacobian:
                 </para>
                 <para>
-                    &#160; <latex>
+                     <latex>
                         J = \frac{\partial{G}}{\partial{y}} = \frac{\partial{F}}{\partial{y}}+\alpha\frac{\partial{F}}{\partial{\dot{y}}}, \hspace{4 mm} \alpha = \frac{\alpha_{n,0}}{h_n},
                     </latex>
                 </para>
                 <para>
-                    &#160; <emphasis>&#x3B1;</emphasis> changes whenever the step size or the method order varies.
+                     <emphasis>α</emphasis> changes whenever the step size or the method order varies.
                 </para>
                 <para>
                     Then, an implemented direct dense solver is used and we go on to the next step.

@@ -402,8 +402,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
             DeleteAction delete = new DeleteAction(SwingScilabVariableBrowser.this);
             menu.add(delete.createMenuItem());
 
-            ExportToCsvAction csvExport = new ExportToCsvAction((SwingScilabTab)SwingScilabVariableBrowser.this, UiDataMessages.EXPORTCSV);
-            menu.add(csvExport.createMenuItem(SwingScilabVariableBrowser.this, UiDataMessages.EXPORTCSV));
+            menu.add(ExportToCsvAction.createMenuItem(SwingScilabVariableBrowser.this, UiDataMessages.EXPORTCSV));
 
             Menu menuPlot = ScilabMenu.createMenu();
             menuPlot.setText(UiDataMessages.PLOTALL);

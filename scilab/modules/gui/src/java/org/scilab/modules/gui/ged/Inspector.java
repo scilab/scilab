@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.ged;
@@ -37,7 +37,7 @@ public class Inspector {
     * @param selected Indicates which property window will open.
     * @param objectID Enters the identification of object.
     */
-    public Inspector(String objectID) {
+    public Inspector(Integer objectID) {
         TextBox infobar = ScilabTextBox.createTextBox();
         inspectorTab = new SwingInspector(objectID);
         inspectorTab.addInfoBar(infobar);
@@ -50,7 +50,7 @@ public class Inspector {
      * @param objectID Enters the identification of object.
      * @return the instance.
      */
-    public static SwingInspector createInspectorTab(String objectID) {
+    public static SwingInspector createInspectorTab(Integer objectID) {
         if (instance == null) {
             instance = new Inspector(objectID);
         }
@@ -81,7 +81,7 @@ public class Inspector {
     * @param objectID Enters the identification of object.
     * @return Shows the lightGED was generated.
     */
-    public static Inspector getInspector(String objectID) {
+    public static Inspector getInspector(Integer objectID) {
         if (instance == null) {
             boolean success = WindowsConfigurationManager.restoreUUID(SwingInspector.INSPECTORUUID);
             if (!success) {
@@ -94,7 +94,7 @@ public class Inspector {
             }
         } else {
             SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass
-                                       (SwingScilabWindow.class, (SwingInspector) inspectorTab);
+                                       (SwingScilabWindow.class, inspectorTab);
             window.setVisible(true);
             window.toFront();
             new SwapObject(objectID);

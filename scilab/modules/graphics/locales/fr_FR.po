@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: fr\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -133,25 +133,6 @@ msgstr ""
 "%s : Dimension erronée des arguments d'entrée : Dimensions incompatibles.\n"
 
 #, c-format
-msgid "%s: Function %s is obsolete.\n"
-msgstr "%s : La fonction %s est obsolète.\n"
-
-msgid "Warning"
-msgstr "Avertissement"
-
-#, c-format
-msgid "%s: Please use %s instead.\n"
-msgstr "%s : Veuillez utiliser %s à la place.\n"
-
-#, c-format
-msgid ""
-"%s: This function will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-"%s : Cette fonction sera définitivement supprimée dans Scilab %s\n"
-"\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur attendu.\n"
@@ -180,8 +161,23 @@ msgid "A Label object cannot be deleted.\n"
 msgstr "Un objet Label ne peut pas être supprimé.\n"
 
 #, c-format
+msgid "%s: Function %s is obsolete.\n"
+msgstr "%s : La fonction %s est obsolète.\n"
+
+msgid "Warning"
+msgstr "Avertissement"
+
+#, c-format
 msgid "%s: Please see documentation for more details.\n"
 msgstr "%s : Veuillez consulter l'aide pour plus de détails.\n"
+
+#, c-format
+msgid ""
+"%s: This function will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+"%s : Cette fonction sera définitivement supprimée dans Scilab %s\n"
+"\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
@@ -302,6 +298,10 @@ msgid "%s: Wrong size for input arguments #%d and #%d.\n"
 msgstr "%s : Dimension erronée des arguments d'entrée n°%d et n°%d.\n"
 
 #, c-format
+msgid "%s: Wrong value for strf option: %s.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Impossible status min > max in x or y rect data.\n"
 msgstr "%s : Statut impossible min > max dans les données rect x ou y.\n"
 
@@ -334,6 +334,10 @@ msgid ""
 msgstr ""
 "%s : Au moins une donnée y doit être strictement positive pour le calcul des "
 "bornes et l'utilisation du mode logarithmique.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d or %d expected.\n"
@@ -569,8 +573,8 @@ msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : %d, %d ou %d attendu.\n"
 
 #, c-format
-msgid "%s: Unrecognized input argument '%s'.\n"
-msgstr "%s : Argument d'entrée non reconnu '%s'.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -582,10 +586,6 @@ msgid ""
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur de %d "
 "éléments attendu.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
 
 #, c-format
 msgid "Figure n%d"
@@ -756,16 +756,8 @@ msgid "This object can not be moved.\n"
 msgstr "Cet objet ne peut pas être déplacé.\n"
 
 #, c-format
-msgid "Line width must be greater than %d.\n"
-msgstr "L'épaisseur de la ligne doit être plus grande que %d.\n"
-
-#, c-format
-msgid "The line style must be greater than %d.\n"
-msgstr "Le style de la ligne doit être plus grand que %d.\n"
-
-#, c-format
-msgid "The mark size must be greater or equal than %d.\n"
-msgstr "La taille de la marque doit être plus grande ou égale à %d.\n"
+msgid "Wrong value for '%s' property: Must be greater or equal to %d.\n"
+msgstr ""
 
 msgid "Handle is not a SubWindow.\n"
 msgstr "Le handle n'est pas une sous-fenêtre.\n"
@@ -1047,6 +1039,9 @@ msgstr ""
 #, c-format
 msgid "Incompatible type for property ''%s''.\n"
 msgstr "Type incompatible pour la propriété \"%s\".\n"
+
+msgid "Datatips property can not be modified directly.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be '%s'.\n"
@@ -1481,13 +1476,12 @@ msgstr ""
 "type %s attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
+msgid "%s: Wrong type for input argument #%d: a real scalar expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: An integer value expected.\n"
+msgid "%s: Wrong size for input argument #%d: a real scalar expected.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Un entier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -2083,20 +2077,8 @@ msgid "Exact gaussian density"
 msgstr "Répartition Gaussienne exacte"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un réel attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in increasing "
-"order.\n"
+msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr ""
-"%s : Valeurs erronées de l'argument d'entrée n°%d : Les éléments doivent "
-"être en ordre croissant.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d."

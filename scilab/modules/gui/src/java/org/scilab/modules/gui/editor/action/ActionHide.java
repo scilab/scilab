@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.editor.action;
@@ -32,9 +32,9 @@ public class ActionHide extends BaseAction {
     *
     * @param object the hidden Object
     */
-    public ActionHide(String object) {
+    public ActionHide(Integer object) {
 
-        super(object, (String)GraphicController.getController().getProperty(object, GraphicObjectProperties.__GO_PARENT__));
+        super(object, (Integer)GraphicController.getController().getProperty(object, GraphicObjectProperties.__GO_PARENT__));
     }
 
     /**

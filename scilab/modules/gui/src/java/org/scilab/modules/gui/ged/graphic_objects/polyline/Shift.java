@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.ged.graphic_objects.polyline;
@@ -38,7 +38,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 public class Shift extends SimpleSection {
     private JPanel sectionPanel;
     private static Shift instance;
-    private String currentpolyline;
+    private Integer currentpolyline;
 
     private JLabel lShiftX = new JLabel();
     private JLabel cShiftX = new JLabel();
@@ -62,7 +62,7 @@ public class Shift extends SimpleSection {
     * Initializes the properties and the icons of the buttons.
     * @param objectID Enters the identification of object.
     */
-    public Shift(String objectID) {
+    public Shift(Integer objectID) {
         super(MessagesGED.shift, "polyline");
         instance = this;
         currentpolyline = objectID;
@@ -86,7 +86,7 @@ public class Shift extends SimpleSection {
     * @param objectID uid
     */
     @Override
-    public final void initComponents(String objectID) {
+    public final void initComponents(Integer objectID) {
         int row = 0;
         final int leftmargin = 16; //to inner components
         int column = 0; //first column
@@ -94,7 +94,7 @@ public class Shift extends SimpleSection {
         //Components of the property: X Shift.
         shiftDialog();
         addJLabel(sectionPanel, lShiftX, MessagesGED.x_shift, column, row, leftmargin);
-        addDataField(sectionPanel, pShiftX, bShiftX, cShiftX, column+1, row);
+        addDataField(sectionPanel, pShiftX, bShiftX, cShiftX, column + 1, row);
         bShiftX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -106,7 +106,7 @@ public class Shift extends SimpleSection {
 
         //Components of the property: Y Shift.
         addJLabel(sectionPanel, lShiftY, MessagesGED.y_shift, column, row, leftmargin);
-        addDataField(sectionPanel, pShiftY, bShiftY, cShiftY, column+1, row);
+        addDataField(sectionPanel, pShiftY, bShiftY, cShiftY, column + 1, row);
         bShiftY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -118,7 +118,7 @@ public class Shift extends SimpleSection {
 
         //Components of the property: Z Shift.
         addJLabel(sectionPanel, lShiftZ, MessagesGED.z_shift, column, row, leftmargin);
-        addDataField(sectionPanel, pShiftZ, bShiftZ, cShiftZ, column+1, row);
+        addDataField(sectionPanel, pShiftZ, bShiftZ, cShiftZ, column + 1, row);
         bShiftZ.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -164,7 +164,7 @@ public class Shift extends SimpleSection {
                 shiftDialog.dispose();
             }
         });
-        shiftTable.getModel().addTableModelListener(new TableModelListener() { 
+        shiftTable.getModel().addTableModelListener(new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent evt) {
                 shiftTableEvent(evt);
@@ -193,7 +193,7 @@ public class Shift extends SimpleSection {
     public final void updateShiftTable(int axis) {
         Object[][] data;
         DefaultTableModel tableModel = (DefaultTableModel) shiftTable.getModel();
-        switch(axis) {
+        switch (axis) {
             case 0:
                 if (PolylineData.isXShiftSet(currentpolyline) == 0) {
                     data = getShift(0, true);
@@ -236,7 +236,7 @@ public class Shift extends SimpleSection {
     public Object[][] getShift(int axis, boolean isNull) {
         double[] point = null;
         double[] shift = null;
-        switch(axis) {
+        switch (axis) {
             case 0:
                 point = (double[]) PolylineData.getDataX(currentpolyline);
                 break;
@@ -249,7 +249,7 @@ public class Shift extends SimpleSection {
         }
         Object[][] data = new Object[point.length][2];
         if (!isNull) {
-            switch(axis) {
+            switch (axis) {
                 case 0:
                     shift = (double[]) PolylineData.getShiftX(currentpolyline);
                     break;
@@ -260,12 +260,12 @@ public class Shift extends SimpleSection {
                     shift = (double[]) PolylineData.getShiftZ(currentpolyline);
                     break;
             }
-            for (int i=0; i<point.length; i++){
+            for (int i = 0; i < point.length; i++) {
                 data[i][0] = point[i];
                 data[i][1] = shift[i];
             }
         } else {
-            for (int i=0; i<point.length; i++){
+            for (int i = 0; i < point.length; i++) {
                 data[i][0] = point[i];
                 data[i][1] = 0;
             }

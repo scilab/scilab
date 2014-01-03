@@ -171,12 +171,13 @@ libscifftw_algo_la_LIBADD =
 am__libscifftw_algo_la_SOURCES_DIST = src/nofftw/nofftw.c \
 	src/c/callfftw.c src/c/fftwlibname.c src/c/fftw_utilities.c \
 	src/c/sci_data_utilities.c src/c/with_fftw.c
-@FFTW_FALSE@am__objects_1 = libscifftw_algo_la-nofftw.lo
-@FFTW_TRUE@am__objects_1 = libscifftw_algo_la-callfftw.lo \
-@FFTW_TRUE@	libscifftw_algo_la-fftwlibname.lo \
-@FFTW_TRUE@	libscifftw_algo_la-fftw_utilities.lo \
-@FFTW_TRUE@	libscifftw_algo_la-sci_data_utilities.lo \
-@FFTW_TRUE@	libscifftw_algo_la-with_fftw.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+@FFTW_FALSE@am__objects_1 = src/nofftw/libscifftw_algo_la-nofftw.lo
+@FFTW_TRUE@am__objects_1 = src/c/libscifftw_algo_la-callfftw.lo \
+@FFTW_TRUE@	src/c/libscifftw_algo_la-fftwlibname.lo \
+@FFTW_TRUE@	src/c/libscifftw_algo_la-fftw_utilities.lo \
+@FFTW_TRUE@	src/c/libscifftw_algo_la-sci_data_utilities.lo \
+@FFTW_TRUE@	src/c/libscifftw_algo_la-with_fftw.lo
 @FFTW_TRUE@am_libscifftw_algo_la_OBJECTS = $(am__objects_1)
 libscifftw_algo_la_OBJECTS = $(am_libscifftw_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -198,22 +199,23 @@ am__libscifftw_la_SOURCES_DIST = src/nofftw/nofftw.c src/c/callfftw.c \
 	sci_gateway/c/sci_set_fftw_wisdom.c \
 	sci_gateway/c/sci_fftw_forget_wisdom.c sci_gateway/c/sci_dct.c \
 	sci_gateway/c/sci_dst.c
-@FFTW_FALSE@am__objects_2 = libscifftw_la-nofftw.lo
-@FFTW_TRUE@am__objects_2 = libscifftw_la-callfftw.lo \
-@FFTW_TRUE@	libscifftw_la-fftwlibname.lo \
-@FFTW_TRUE@	libscifftw_la-fftw_utilities.lo \
-@FFTW_TRUE@	libscifftw_la-sci_data_utilities.lo \
-@FFTW_TRUE@	libscifftw_la-with_fftw.lo
-@FFTW_TRUE@am__objects_3 = libscifftw_la-gw_fftw.lo \
-@FFTW_TRUE@	libscifftw_la-sci_fftwlibraryisloaded.lo \
-@FFTW_TRUE@	libscifftw_la-sci_disposefftwlibrary.lo \
-@FFTW_TRUE@	libscifftw_la-sci_fftw.lo \
-@FFTW_TRUE@	libscifftw_la-sci_fftw_flags.lo \
-@FFTW_TRUE@	libscifftw_la-sci_loadfftwlibrary.lo \
-@FFTW_TRUE@	libscifftw_la-sci_get_fftw_wisdom.lo \
-@FFTW_TRUE@	libscifftw_la-sci_set_fftw_wisdom.lo \
-@FFTW_TRUE@	libscifftw_la-sci_fftw_forget_wisdom.lo \
-@FFTW_TRUE@	libscifftw_la-sci_dct.lo libscifftw_la-sci_dst.lo
+@FFTW_FALSE@am__objects_2 = src/nofftw/libscifftw_la-nofftw.lo
+@FFTW_TRUE@am__objects_2 = src/c/libscifftw_la-callfftw.lo \
+@FFTW_TRUE@	src/c/libscifftw_la-fftwlibname.lo \
+@FFTW_TRUE@	src/c/libscifftw_la-fftw_utilities.lo \
+@FFTW_TRUE@	src/c/libscifftw_la-sci_data_utilities.lo \
+@FFTW_TRUE@	src/c/libscifftw_la-with_fftw.lo
+@FFTW_TRUE@am__objects_3 = sci_gateway/c/libscifftw_la-gw_fftw.lo \
+@FFTW_TRUE@	sci_gateway/c/libscifftw_la-sci_fftwlibraryisloaded.lo \
+@FFTW_TRUE@	sci_gateway/c/libscifftw_la-sci_disposefftwlibrary.lo \
+@FFTW_TRUE@	sci_gateway/c/libscifftw_la-sci_fftw.lo \
+@FFTW_TRUE@	sci_gateway/c/libscifftw_la-sci_fftw_flags.lo \
+@FFTW_TRUE@	sci_gateway/c/libscifftw_la-sci_loadfftwlibrary.lo \
+@FFTW_TRUE@	sci_gateway/c/libscifftw_la-sci_get_fftw_wisdom.lo \
+@FFTW_TRUE@	sci_gateway/c/libscifftw_la-sci_set_fftw_wisdom.lo \
+@FFTW_TRUE@	sci_gateway/c/libscifftw_la-sci_fftw_forget_wisdom.lo \
+@FFTW_TRUE@	sci_gateway/c/libscifftw_la-sci_dct.lo \
+@FFTW_TRUE@	sci_gateway/c/libscifftw_la-sci_dst.lo
 @FFTW_FALSE@am_libscifftw_la_OBJECTS = $(am__objects_2)
 @FFTW_TRUE@am_libscifftw_la_OBJECTS = $(am__objects_3)
 libscifftw_la_OBJECTS = $(am_libscifftw_la_OBJECTS)
@@ -333,6 +335,7 @@ DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
+ECJ = @ECJ@
 EGREP = @EGREP@
 EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
@@ -783,230 +786,314 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/nofftw/$(am__dirstamp):
+	@$(MKDIR_P) src/nofftw
+	@: > src/nofftw/$(am__dirstamp)
+src/nofftw/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/nofftw/$(DEPDIR)
+	@: > src/nofftw/$(DEPDIR)/$(am__dirstamp)
+src/nofftw/libscifftw_algo_la-nofftw.lo: src/nofftw/$(am__dirstamp) \
+	src/nofftw/$(DEPDIR)/$(am__dirstamp)
+src/c/$(am__dirstamp):
+	@$(MKDIR_P) src/c
+	@: > src/c/$(am__dirstamp)
+src/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/c/$(DEPDIR)
+	@: > src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscifftw_algo_la-callfftw.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscifftw_algo_la-fftwlibname.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscifftw_algo_la-fftw_utilities.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscifftw_algo_la-sci_data_utilities.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscifftw_algo_la-with_fftw.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
 
 libscifftw-algo.la: $(libscifftw_algo_la_OBJECTS) $(libscifftw_algo_la_DEPENDENCIES) $(EXTRA_libscifftw_algo_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) $(am_libscifftw_algo_la_rpath) $(libscifftw_algo_la_OBJECTS) $(libscifftw_algo_la_LIBADD) $(LIBS)
+src/nofftw/libscifftw_la-nofftw.lo: src/nofftw/$(am__dirstamp) \
+	src/nofftw/$(DEPDIR)/$(am__dirstamp)
+src/c/libscifftw_la-callfftw.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscifftw_la-fftwlibname.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscifftw_la-fftw_utilities.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscifftw_la-sci_data_utilities.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscifftw_la-with_fftw.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c
+	@: > sci_gateway/c/$(am__dirstamp)
+sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
+	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscifftw_la-gw_fftw.lo: sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscifftw_la-sci_fftwlibraryisloaded.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscifftw_la-sci_disposefftwlibrary.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscifftw_la-sci_fftw.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscifftw_la-sci_fftw_flags.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscifftw_la-sci_loadfftwlibrary.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscifftw_la-sci_get_fftw_wisdom.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscifftw_la-sci_set_fftw_wisdom.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscifftw_la-sci_fftw_forget_wisdom.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscifftw_la-sci_dct.lo: sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscifftw_la-sci_dst.lo: sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 
 libscifftw.la: $(libscifftw_la_OBJECTS) $(libscifftw_la_DEPENDENCIES) $(EXTRA_libscifftw_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(libscifftw_la_LINK) $(am_libscifftw_la_rpath) $(libscifftw_la_OBJECTS) $(libscifftw_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f sci_gateway/c/*.$(OBJEXT)
+	-rm -f sci_gateway/c/*.lo
+	-rm -f src/c/*.$(OBJEXT)
+	-rm -f src/c/*.lo
+	-rm -f src/nofftw/*.$(OBJEXT)
+	-rm -f src/nofftw/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_algo_la-callfftw.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_algo_la-fftw_utilities.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_algo_la-fftwlibname.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_algo_la-nofftw.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_algo_la-sci_data_utilities.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_algo_la-with_fftw.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-callfftw.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-fftw_utilities.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-fftwlibname.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-gw_fftw.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-nofftw.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-sci_data_utilities.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-sci_dct.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-sci_disposefftwlibrary.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-sci_dst.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-sci_fftw.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-sci_fftw_flags.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-sci_fftw_forget_wisdom.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-sci_fftwlibraryisloaded.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-sci_get_fftw_wisdom.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-sci_loadfftwlibrary.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-sci_set_fftw_wisdom.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-with_fftw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifftw_la-gw_fftw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_dct.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_disposefftwlibrary.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_dst.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_fftw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_fftw_flags.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_fftw_forget_wisdom.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_fftwlibraryisloaded.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_get_fftw_wisdom.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_loadfftwlibrary.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_set_fftw_wisdom.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifftw_algo_la-callfftw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifftw_algo_la-fftw_utilities.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifftw_algo_la-fftwlibname.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifftw_algo_la-sci_data_utilities.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifftw_algo_la-with_fftw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifftw_la-callfftw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifftw_la-fftw_utilities.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifftw_la-fftwlibname.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifftw_la-sci_data_utilities.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifftw_la-with_fftw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/nofftw/$(DEPDIR)/libscifftw_algo_la-nofftw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/nofftw/$(DEPDIR)/libscifftw_la-nofftw.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libscifftw_algo_la-nofftw.lo: src/nofftw/nofftw.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_algo_la-nofftw.lo -MD -MP -MF $(DEPDIR)/libscifftw_algo_la-nofftw.Tpo -c -o libscifftw_algo_la-nofftw.lo `test -f 'src/nofftw/nofftw.c' || echo '$(srcdir)/'`src/nofftw/nofftw.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_algo_la-nofftw.Tpo $(DEPDIR)/libscifftw_algo_la-nofftw.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/nofftw/nofftw.c' object='libscifftw_algo_la-nofftw.lo' libtool=yes @AMDEPBACKSLASH@
+src/nofftw/libscifftw_algo_la-nofftw.lo: src/nofftw/nofftw.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/nofftw/libscifftw_algo_la-nofftw.lo -MD -MP -MF src/nofftw/$(DEPDIR)/libscifftw_algo_la-nofftw.Tpo -c -o src/nofftw/libscifftw_algo_la-nofftw.lo `test -f 'src/nofftw/nofftw.c' || echo '$(srcdir)/'`src/nofftw/nofftw.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/nofftw/$(DEPDIR)/libscifftw_algo_la-nofftw.Tpo src/nofftw/$(DEPDIR)/libscifftw_algo_la-nofftw.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/nofftw/nofftw.c' object='src/nofftw/libscifftw_algo_la-nofftw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_algo_la-nofftw.lo `test -f 'src/nofftw/nofftw.c' || echo '$(srcdir)/'`src/nofftw/nofftw.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/nofftw/libscifftw_algo_la-nofftw.lo `test -f 'src/nofftw/nofftw.c' || echo '$(srcdir)/'`src/nofftw/nofftw.c
 
-libscifftw_algo_la-callfftw.lo: src/c/callfftw.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_algo_la-callfftw.lo -MD -MP -MF $(DEPDIR)/libscifftw_algo_la-callfftw.Tpo -c -o libscifftw_algo_la-callfftw.lo `test -f 'src/c/callfftw.c' || echo '$(srcdir)/'`src/c/callfftw.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_algo_la-callfftw.Tpo $(DEPDIR)/libscifftw_algo_la-callfftw.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/callfftw.c' object='libscifftw_algo_la-callfftw.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscifftw_algo_la-callfftw.lo: src/c/callfftw.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscifftw_algo_la-callfftw.lo -MD -MP -MF src/c/$(DEPDIR)/libscifftw_algo_la-callfftw.Tpo -c -o src/c/libscifftw_algo_la-callfftw.lo `test -f 'src/c/callfftw.c' || echo '$(srcdir)/'`src/c/callfftw.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscifftw_algo_la-callfftw.Tpo src/c/$(DEPDIR)/libscifftw_algo_la-callfftw.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/callfftw.c' object='src/c/libscifftw_algo_la-callfftw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_algo_la-callfftw.lo `test -f 'src/c/callfftw.c' || echo '$(srcdir)/'`src/c/callfftw.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscifftw_algo_la-callfftw.lo `test -f 'src/c/callfftw.c' || echo '$(srcdir)/'`src/c/callfftw.c
 
-libscifftw_algo_la-fftwlibname.lo: src/c/fftwlibname.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_algo_la-fftwlibname.lo -MD -MP -MF $(DEPDIR)/libscifftw_algo_la-fftwlibname.Tpo -c -o libscifftw_algo_la-fftwlibname.lo `test -f 'src/c/fftwlibname.c' || echo '$(srcdir)/'`src/c/fftwlibname.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_algo_la-fftwlibname.Tpo $(DEPDIR)/libscifftw_algo_la-fftwlibname.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/fftwlibname.c' object='libscifftw_algo_la-fftwlibname.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscifftw_algo_la-fftwlibname.lo: src/c/fftwlibname.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscifftw_algo_la-fftwlibname.lo -MD -MP -MF src/c/$(DEPDIR)/libscifftw_algo_la-fftwlibname.Tpo -c -o src/c/libscifftw_algo_la-fftwlibname.lo `test -f 'src/c/fftwlibname.c' || echo '$(srcdir)/'`src/c/fftwlibname.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscifftw_algo_la-fftwlibname.Tpo src/c/$(DEPDIR)/libscifftw_algo_la-fftwlibname.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/fftwlibname.c' object='src/c/libscifftw_algo_la-fftwlibname.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_algo_la-fftwlibname.lo `test -f 'src/c/fftwlibname.c' || echo '$(srcdir)/'`src/c/fftwlibname.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscifftw_algo_la-fftwlibname.lo `test -f 'src/c/fftwlibname.c' || echo '$(srcdir)/'`src/c/fftwlibname.c
 
-libscifftw_algo_la-fftw_utilities.lo: src/c/fftw_utilities.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_algo_la-fftw_utilities.lo -MD -MP -MF $(DEPDIR)/libscifftw_algo_la-fftw_utilities.Tpo -c -o libscifftw_algo_la-fftw_utilities.lo `test -f 'src/c/fftw_utilities.c' || echo '$(srcdir)/'`src/c/fftw_utilities.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_algo_la-fftw_utilities.Tpo $(DEPDIR)/libscifftw_algo_la-fftw_utilities.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/fftw_utilities.c' object='libscifftw_algo_la-fftw_utilities.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscifftw_algo_la-fftw_utilities.lo: src/c/fftw_utilities.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscifftw_algo_la-fftw_utilities.lo -MD -MP -MF src/c/$(DEPDIR)/libscifftw_algo_la-fftw_utilities.Tpo -c -o src/c/libscifftw_algo_la-fftw_utilities.lo `test -f 'src/c/fftw_utilities.c' || echo '$(srcdir)/'`src/c/fftw_utilities.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscifftw_algo_la-fftw_utilities.Tpo src/c/$(DEPDIR)/libscifftw_algo_la-fftw_utilities.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/fftw_utilities.c' object='src/c/libscifftw_algo_la-fftw_utilities.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_algo_la-fftw_utilities.lo `test -f 'src/c/fftw_utilities.c' || echo '$(srcdir)/'`src/c/fftw_utilities.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscifftw_algo_la-fftw_utilities.lo `test -f 'src/c/fftw_utilities.c' || echo '$(srcdir)/'`src/c/fftw_utilities.c
 
-libscifftw_algo_la-sci_data_utilities.lo: src/c/sci_data_utilities.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_algo_la-sci_data_utilities.lo -MD -MP -MF $(DEPDIR)/libscifftw_algo_la-sci_data_utilities.Tpo -c -o libscifftw_algo_la-sci_data_utilities.lo `test -f 'src/c/sci_data_utilities.c' || echo '$(srcdir)/'`src/c/sci_data_utilities.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_algo_la-sci_data_utilities.Tpo $(DEPDIR)/libscifftw_algo_la-sci_data_utilities.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sci_data_utilities.c' object='libscifftw_algo_la-sci_data_utilities.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscifftw_algo_la-sci_data_utilities.lo: src/c/sci_data_utilities.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscifftw_algo_la-sci_data_utilities.lo -MD -MP -MF src/c/$(DEPDIR)/libscifftw_algo_la-sci_data_utilities.Tpo -c -o src/c/libscifftw_algo_la-sci_data_utilities.lo `test -f 'src/c/sci_data_utilities.c' || echo '$(srcdir)/'`src/c/sci_data_utilities.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscifftw_algo_la-sci_data_utilities.Tpo src/c/$(DEPDIR)/libscifftw_algo_la-sci_data_utilities.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sci_data_utilities.c' object='src/c/libscifftw_algo_la-sci_data_utilities.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_algo_la-sci_data_utilities.lo `test -f 'src/c/sci_data_utilities.c' || echo '$(srcdir)/'`src/c/sci_data_utilities.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscifftw_algo_la-sci_data_utilities.lo `test -f 'src/c/sci_data_utilities.c' || echo '$(srcdir)/'`src/c/sci_data_utilities.c
 
-libscifftw_algo_la-with_fftw.lo: src/c/with_fftw.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_algo_la-with_fftw.lo -MD -MP -MF $(DEPDIR)/libscifftw_algo_la-with_fftw.Tpo -c -o libscifftw_algo_la-with_fftw.lo `test -f 'src/c/with_fftw.c' || echo '$(srcdir)/'`src/c/with_fftw.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_algo_la-with_fftw.Tpo $(DEPDIR)/libscifftw_algo_la-with_fftw.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/with_fftw.c' object='libscifftw_algo_la-with_fftw.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscifftw_algo_la-with_fftw.lo: src/c/with_fftw.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscifftw_algo_la-with_fftw.lo -MD -MP -MF src/c/$(DEPDIR)/libscifftw_algo_la-with_fftw.Tpo -c -o src/c/libscifftw_algo_la-with_fftw.lo `test -f 'src/c/with_fftw.c' || echo '$(srcdir)/'`src/c/with_fftw.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscifftw_algo_la-with_fftw.Tpo src/c/$(DEPDIR)/libscifftw_algo_la-with_fftw.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/with_fftw.c' object='src/c/libscifftw_algo_la-with_fftw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_algo_la-with_fftw.lo `test -f 'src/c/with_fftw.c' || echo '$(srcdir)/'`src/c/with_fftw.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscifftw_algo_la-with_fftw.lo `test -f 'src/c/with_fftw.c' || echo '$(srcdir)/'`src/c/with_fftw.c
 
-libscifftw_la-nofftw.lo: src/nofftw/nofftw.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_la-nofftw.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-nofftw.Tpo -c -o libscifftw_la-nofftw.lo `test -f 'src/nofftw/nofftw.c' || echo '$(srcdir)/'`src/nofftw/nofftw.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_la-nofftw.Tpo $(DEPDIR)/libscifftw_la-nofftw.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/nofftw/nofftw.c' object='libscifftw_la-nofftw.lo' libtool=yes @AMDEPBACKSLASH@
+src/nofftw/libscifftw_la-nofftw.lo: src/nofftw/nofftw.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/nofftw/libscifftw_la-nofftw.lo -MD -MP -MF src/nofftw/$(DEPDIR)/libscifftw_la-nofftw.Tpo -c -o src/nofftw/libscifftw_la-nofftw.lo `test -f 'src/nofftw/nofftw.c' || echo '$(srcdir)/'`src/nofftw/nofftw.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/nofftw/$(DEPDIR)/libscifftw_la-nofftw.Tpo src/nofftw/$(DEPDIR)/libscifftw_la-nofftw.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/nofftw/nofftw.c' object='src/nofftw/libscifftw_la-nofftw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_la-nofftw.lo `test -f 'src/nofftw/nofftw.c' || echo '$(srcdir)/'`src/nofftw/nofftw.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/nofftw/libscifftw_la-nofftw.lo `test -f 'src/nofftw/nofftw.c' || echo '$(srcdir)/'`src/nofftw/nofftw.c
 
-libscifftw_la-callfftw.lo: src/c/callfftw.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_la-callfftw.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-callfftw.Tpo -c -o libscifftw_la-callfftw.lo `test -f 'src/c/callfftw.c' || echo '$(srcdir)/'`src/c/callfftw.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_la-callfftw.Tpo $(DEPDIR)/libscifftw_la-callfftw.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/callfftw.c' object='libscifftw_la-callfftw.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscifftw_la-callfftw.lo: src/c/callfftw.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscifftw_la-callfftw.lo -MD -MP -MF src/c/$(DEPDIR)/libscifftw_la-callfftw.Tpo -c -o src/c/libscifftw_la-callfftw.lo `test -f 'src/c/callfftw.c' || echo '$(srcdir)/'`src/c/callfftw.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscifftw_la-callfftw.Tpo src/c/$(DEPDIR)/libscifftw_la-callfftw.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/callfftw.c' object='src/c/libscifftw_la-callfftw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_la-callfftw.lo `test -f 'src/c/callfftw.c' || echo '$(srcdir)/'`src/c/callfftw.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscifftw_la-callfftw.lo `test -f 'src/c/callfftw.c' || echo '$(srcdir)/'`src/c/callfftw.c
 
-libscifftw_la-fftwlibname.lo: src/c/fftwlibname.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_la-fftwlibname.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-fftwlibname.Tpo -c -o libscifftw_la-fftwlibname.lo `test -f 'src/c/fftwlibname.c' || echo '$(srcdir)/'`src/c/fftwlibname.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_la-fftwlibname.Tpo $(DEPDIR)/libscifftw_la-fftwlibname.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/fftwlibname.c' object='libscifftw_la-fftwlibname.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscifftw_la-fftwlibname.lo: src/c/fftwlibname.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscifftw_la-fftwlibname.lo -MD -MP -MF src/c/$(DEPDIR)/libscifftw_la-fftwlibname.Tpo -c -o src/c/libscifftw_la-fftwlibname.lo `test -f 'src/c/fftwlibname.c' || echo '$(srcdir)/'`src/c/fftwlibname.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscifftw_la-fftwlibname.Tpo src/c/$(DEPDIR)/libscifftw_la-fftwlibname.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/fftwlibname.c' object='src/c/libscifftw_la-fftwlibname.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_la-fftwlibname.lo `test -f 'src/c/fftwlibname.c' || echo '$(srcdir)/'`src/c/fftwlibname.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscifftw_la-fftwlibname.lo `test -f 'src/c/fftwlibname.c' || echo '$(srcdir)/'`src/c/fftwlibname.c
 
-libscifftw_la-fftw_utilities.lo: src/c/fftw_utilities.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_la-fftw_utilities.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-fftw_utilities.Tpo -c -o libscifftw_la-fftw_utilities.lo `test -f 'src/c/fftw_utilities.c' || echo '$(srcdir)/'`src/c/fftw_utilities.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_la-fftw_utilities.Tpo $(DEPDIR)/libscifftw_la-fftw_utilities.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/fftw_utilities.c' object='libscifftw_la-fftw_utilities.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscifftw_la-fftw_utilities.lo: src/c/fftw_utilities.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscifftw_la-fftw_utilities.lo -MD -MP -MF src/c/$(DEPDIR)/libscifftw_la-fftw_utilities.Tpo -c -o src/c/libscifftw_la-fftw_utilities.lo `test -f 'src/c/fftw_utilities.c' || echo '$(srcdir)/'`src/c/fftw_utilities.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscifftw_la-fftw_utilities.Tpo src/c/$(DEPDIR)/libscifftw_la-fftw_utilities.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/fftw_utilities.c' object='src/c/libscifftw_la-fftw_utilities.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_la-fftw_utilities.lo `test -f 'src/c/fftw_utilities.c' || echo '$(srcdir)/'`src/c/fftw_utilities.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscifftw_la-fftw_utilities.lo `test -f 'src/c/fftw_utilities.c' || echo '$(srcdir)/'`src/c/fftw_utilities.c
 
-libscifftw_la-sci_data_utilities.lo: src/c/sci_data_utilities.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_la-sci_data_utilities.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-sci_data_utilities.Tpo -c -o libscifftw_la-sci_data_utilities.lo `test -f 'src/c/sci_data_utilities.c' || echo '$(srcdir)/'`src/c/sci_data_utilities.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_la-sci_data_utilities.Tpo $(DEPDIR)/libscifftw_la-sci_data_utilities.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sci_data_utilities.c' object='libscifftw_la-sci_data_utilities.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscifftw_la-sci_data_utilities.lo: src/c/sci_data_utilities.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscifftw_la-sci_data_utilities.lo -MD -MP -MF src/c/$(DEPDIR)/libscifftw_la-sci_data_utilities.Tpo -c -o src/c/libscifftw_la-sci_data_utilities.lo `test -f 'src/c/sci_data_utilities.c' || echo '$(srcdir)/'`src/c/sci_data_utilities.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscifftw_la-sci_data_utilities.Tpo src/c/$(DEPDIR)/libscifftw_la-sci_data_utilities.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sci_data_utilities.c' object='src/c/libscifftw_la-sci_data_utilities.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_la-sci_data_utilities.lo `test -f 'src/c/sci_data_utilities.c' || echo '$(srcdir)/'`src/c/sci_data_utilities.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscifftw_la-sci_data_utilities.lo `test -f 'src/c/sci_data_utilities.c' || echo '$(srcdir)/'`src/c/sci_data_utilities.c
 
-libscifftw_la-with_fftw.lo: src/c/with_fftw.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_la-with_fftw.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-with_fftw.Tpo -c -o libscifftw_la-with_fftw.lo `test -f 'src/c/with_fftw.c' || echo '$(srcdir)/'`src/c/with_fftw.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_la-with_fftw.Tpo $(DEPDIR)/libscifftw_la-with_fftw.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/with_fftw.c' object='libscifftw_la-with_fftw.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscifftw_la-with_fftw.lo: src/c/with_fftw.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscifftw_la-with_fftw.lo -MD -MP -MF src/c/$(DEPDIR)/libscifftw_la-with_fftw.Tpo -c -o src/c/libscifftw_la-with_fftw.lo `test -f 'src/c/with_fftw.c' || echo '$(srcdir)/'`src/c/with_fftw.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscifftw_la-with_fftw.Tpo src/c/$(DEPDIR)/libscifftw_la-with_fftw.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/with_fftw.c' object='src/c/libscifftw_la-with_fftw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_la-with_fftw.lo `test -f 'src/c/with_fftw.c' || echo '$(srcdir)/'`src/c/with_fftw.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscifftw_la-with_fftw.lo `test -f 'src/c/with_fftw.c' || echo '$(srcdir)/'`src/c/with_fftw.c
 
-libscifftw_la-gw_fftw.lo: sci_gateway/c/gw_fftw.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_la-gw_fftw.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-gw_fftw.Tpo -c -o libscifftw_la-gw_fftw.lo `test -f 'sci_gateway/c/gw_fftw.c' || echo '$(srcdir)/'`sci_gateway/c/gw_fftw.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_la-gw_fftw.Tpo $(DEPDIR)/libscifftw_la-gw_fftw.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_fftw.c' object='libscifftw_la-gw_fftw.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscifftw_la-gw_fftw.lo: sci_gateway/c/gw_fftw.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscifftw_la-gw_fftw.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscifftw_la-gw_fftw.Tpo -c -o sci_gateway/c/libscifftw_la-gw_fftw.lo `test -f 'sci_gateway/c/gw_fftw.c' || echo '$(srcdir)/'`sci_gateway/c/gw_fftw.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscifftw_la-gw_fftw.Tpo sci_gateway/c/$(DEPDIR)/libscifftw_la-gw_fftw.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_fftw.c' object='sci_gateway/c/libscifftw_la-gw_fftw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_la-gw_fftw.lo `test -f 'sci_gateway/c/gw_fftw.c' || echo '$(srcdir)/'`sci_gateway/c/gw_fftw.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscifftw_la-gw_fftw.lo `test -f 'sci_gateway/c/gw_fftw.c' || echo '$(srcdir)/'`sci_gateway/c/gw_fftw.c
 
-libscifftw_la-sci_fftwlibraryisloaded.lo: sci_gateway/c/sci_fftwlibraryisloaded.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_la-sci_fftwlibraryisloaded.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-sci_fftwlibraryisloaded.Tpo -c -o libscifftw_la-sci_fftwlibraryisloaded.lo `test -f 'sci_gateway/c/sci_fftwlibraryisloaded.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fftwlibraryisloaded.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_la-sci_fftwlibraryisloaded.Tpo $(DEPDIR)/libscifftw_la-sci_fftwlibraryisloaded.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_fftwlibraryisloaded.c' object='libscifftw_la-sci_fftwlibraryisloaded.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscifftw_la-sci_fftwlibraryisloaded.lo: sci_gateway/c/sci_fftwlibraryisloaded.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscifftw_la-sci_fftwlibraryisloaded.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_fftwlibraryisloaded.Tpo -c -o sci_gateway/c/libscifftw_la-sci_fftwlibraryisloaded.lo `test -f 'sci_gateway/c/sci_fftwlibraryisloaded.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fftwlibraryisloaded.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_fftwlibraryisloaded.Tpo sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_fftwlibraryisloaded.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_fftwlibraryisloaded.c' object='sci_gateway/c/libscifftw_la-sci_fftwlibraryisloaded.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_la-sci_fftwlibraryisloaded.lo `test -f 'sci_gateway/c/sci_fftwlibraryisloaded.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fftwlibraryisloaded.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscifftw_la-sci_fftwlibraryisloaded.lo `test -f 'sci_gateway/c/sci_fftwlibraryisloaded.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fftwlibraryisloaded.c
 
-libscifftw_la-sci_disposefftwlibrary.lo: sci_gateway/c/sci_disposefftwlibrary.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_la-sci_disposefftwlibrary.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-sci_disposefftwlibrary.Tpo -c -o libscifftw_la-sci_disposefftwlibrary.lo `test -f 'sci_gateway/c/sci_disposefftwlibrary.c' || echo '$(srcdir)/'`sci_gateway/c/sci_disposefftwlibrary.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_la-sci_disposefftwlibrary.Tpo $(DEPDIR)/libscifftw_la-sci_disposefftwlibrary.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_disposefftwlibrary.c' object='libscifftw_la-sci_disposefftwlibrary.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscifftw_la-sci_disposefftwlibrary.lo: sci_gateway/c/sci_disposefftwlibrary.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscifftw_la-sci_disposefftwlibrary.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_disposefftwlibrary.Tpo -c -o sci_gateway/c/libscifftw_la-sci_disposefftwlibrary.lo `test -f 'sci_gateway/c/sci_disposefftwlibrary.c' || echo '$(srcdir)/'`sci_gateway/c/sci_disposefftwlibrary.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_disposefftwlibrary.Tpo sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_disposefftwlibrary.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_disposefftwlibrary.c' object='sci_gateway/c/libscifftw_la-sci_disposefftwlibrary.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_la-sci_disposefftwlibrary.lo `test -f 'sci_gateway/c/sci_disposefftwlibrary.c' || echo '$(srcdir)/'`sci_gateway/c/sci_disposefftwlibrary.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscifftw_la-sci_disposefftwlibrary.lo `test -f 'sci_gateway/c/sci_disposefftwlibrary.c' || echo '$(srcdir)/'`sci_gateway/c/sci_disposefftwlibrary.c
 
-libscifftw_la-sci_fftw.lo: sci_gateway/c/sci_fftw.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_la-sci_fftw.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-sci_fftw.Tpo -c -o libscifftw_la-sci_fftw.lo `test -f 'sci_gateway/c/sci_fftw.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fftw.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_la-sci_fftw.Tpo $(DEPDIR)/libscifftw_la-sci_fftw.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_fftw.c' object='libscifftw_la-sci_fftw.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscifftw_la-sci_fftw.lo: sci_gateway/c/sci_fftw.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscifftw_la-sci_fftw.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_fftw.Tpo -c -o sci_gateway/c/libscifftw_la-sci_fftw.lo `test -f 'sci_gateway/c/sci_fftw.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fftw.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_fftw.Tpo sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_fftw.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_fftw.c' object='sci_gateway/c/libscifftw_la-sci_fftw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_la-sci_fftw.lo `test -f 'sci_gateway/c/sci_fftw.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fftw.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscifftw_la-sci_fftw.lo `test -f 'sci_gateway/c/sci_fftw.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fftw.c
 
-libscifftw_la-sci_fftw_flags.lo: sci_gateway/c/sci_fftw_flags.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_la-sci_fftw_flags.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-sci_fftw_flags.Tpo -c -o libscifftw_la-sci_fftw_flags.lo `test -f 'sci_gateway/c/sci_fftw_flags.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fftw_flags.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_la-sci_fftw_flags.Tpo $(DEPDIR)/libscifftw_la-sci_fftw_flags.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_fftw_flags.c' object='libscifftw_la-sci_fftw_flags.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscifftw_la-sci_fftw_flags.lo: sci_gateway/c/sci_fftw_flags.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscifftw_la-sci_fftw_flags.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_fftw_flags.Tpo -c -o sci_gateway/c/libscifftw_la-sci_fftw_flags.lo `test -f 'sci_gateway/c/sci_fftw_flags.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fftw_flags.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_fftw_flags.Tpo sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_fftw_flags.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_fftw_flags.c' object='sci_gateway/c/libscifftw_la-sci_fftw_flags.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_la-sci_fftw_flags.lo `test -f 'sci_gateway/c/sci_fftw_flags.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fftw_flags.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscifftw_la-sci_fftw_flags.lo `test -f 'sci_gateway/c/sci_fftw_flags.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fftw_flags.c
 
-libscifftw_la-sci_loadfftwlibrary.lo: sci_gateway/c/sci_loadfftwlibrary.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_la-sci_loadfftwlibrary.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-sci_loadfftwlibrary.Tpo -c -o libscifftw_la-sci_loadfftwlibrary.lo `test -f 'sci_gateway/c/sci_loadfftwlibrary.c' || echo '$(srcdir)/'`sci_gateway/c/sci_loadfftwlibrary.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_la-sci_loadfftwlibrary.Tpo $(DEPDIR)/libscifftw_la-sci_loadfftwlibrary.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_loadfftwlibrary.c' object='libscifftw_la-sci_loadfftwlibrary.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscifftw_la-sci_loadfftwlibrary.lo: sci_gateway/c/sci_loadfftwlibrary.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscifftw_la-sci_loadfftwlibrary.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_loadfftwlibrary.Tpo -c -o sci_gateway/c/libscifftw_la-sci_loadfftwlibrary.lo `test -f 'sci_gateway/c/sci_loadfftwlibrary.c' || echo '$(srcdir)/'`sci_gateway/c/sci_loadfftwlibrary.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_loadfftwlibrary.Tpo sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_loadfftwlibrary.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_loadfftwlibrary.c' object='sci_gateway/c/libscifftw_la-sci_loadfftwlibrary.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_la-sci_loadfftwlibrary.lo `test -f 'sci_gateway/c/sci_loadfftwlibrary.c' || echo '$(srcdir)/'`sci_gateway/c/sci_loadfftwlibrary.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscifftw_la-sci_loadfftwlibrary.lo `test -f 'sci_gateway/c/sci_loadfftwlibrary.c' || echo '$(srcdir)/'`sci_gateway/c/sci_loadfftwlibrary.c
 
-libscifftw_la-sci_get_fftw_wisdom.lo: sci_gateway/c/sci_get_fftw_wisdom.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_la-sci_get_fftw_wisdom.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-sci_get_fftw_wisdom.Tpo -c -o libscifftw_la-sci_get_fftw_wisdom.lo `test -f 'sci_gateway/c/sci_get_fftw_wisdom.c' || echo '$(srcdir)/'`sci_gateway/c/sci_get_fftw_wisdom.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_la-sci_get_fftw_wisdom.Tpo $(DEPDIR)/libscifftw_la-sci_get_fftw_wisdom.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_get_fftw_wisdom.c' object='libscifftw_la-sci_get_fftw_wisdom.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscifftw_la-sci_get_fftw_wisdom.lo: sci_gateway/c/sci_get_fftw_wisdom.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscifftw_la-sci_get_fftw_wisdom.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_get_fftw_wisdom.Tpo -c -o sci_gateway/c/libscifftw_la-sci_get_fftw_wisdom.lo `test -f 'sci_gateway/c/sci_get_fftw_wisdom.c' || echo '$(srcdir)/'`sci_gateway/c/sci_get_fftw_wisdom.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_get_fftw_wisdom.Tpo sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_get_fftw_wisdom.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_get_fftw_wisdom.c' object='sci_gateway/c/libscifftw_la-sci_get_fftw_wisdom.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_la-sci_get_fftw_wisdom.lo `test -f 'sci_gateway/c/sci_get_fftw_wisdom.c' || echo '$(srcdir)/'`sci_gateway/c/sci_get_fftw_wisdom.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscifftw_la-sci_get_fftw_wisdom.lo `test -f 'sci_gateway/c/sci_get_fftw_wisdom.c' || echo '$(srcdir)/'`sci_gateway/c/sci_get_fftw_wisdom.c
 
-libscifftw_la-sci_set_fftw_wisdom.lo: sci_gateway/c/sci_set_fftw_wisdom.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_la-sci_set_fftw_wisdom.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-sci_set_fftw_wisdom.Tpo -c -o libscifftw_la-sci_set_fftw_wisdom.lo `test -f 'sci_gateway/c/sci_set_fftw_wisdom.c' || echo '$(srcdir)/'`sci_gateway/c/sci_set_fftw_wisdom.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_la-sci_set_fftw_wisdom.Tpo $(DEPDIR)/libscifftw_la-sci_set_fftw_wisdom.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_set_fftw_wisdom.c' object='libscifftw_la-sci_set_fftw_wisdom.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscifftw_la-sci_set_fftw_wisdom.lo: sci_gateway/c/sci_set_fftw_wisdom.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscifftw_la-sci_set_fftw_wisdom.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_set_fftw_wisdom.Tpo -c -o sci_gateway/c/libscifftw_la-sci_set_fftw_wisdom.lo `test -f 'sci_gateway/c/sci_set_fftw_wisdom.c' || echo '$(srcdir)/'`sci_gateway/c/sci_set_fftw_wisdom.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_set_fftw_wisdom.Tpo sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_set_fftw_wisdom.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_set_fftw_wisdom.c' object='sci_gateway/c/libscifftw_la-sci_set_fftw_wisdom.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_la-sci_set_fftw_wisdom.lo `test -f 'sci_gateway/c/sci_set_fftw_wisdom.c' || echo '$(srcdir)/'`sci_gateway/c/sci_set_fftw_wisdom.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscifftw_la-sci_set_fftw_wisdom.lo `test -f 'sci_gateway/c/sci_set_fftw_wisdom.c' || echo '$(srcdir)/'`sci_gateway/c/sci_set_fftw_wisdom.c
 
-libscifftw_la-sci_fftw_forget_wisdom.lo: sci_gateway/c/sci_fftw_forget_wisdom.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_la-sci_fftw_forget_wisdom.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-sci_fftw_forget_wisdom.Tpo -c -o libscifftw_la-sci_fftw_forget_wisdom.lo `test -f 'sci_gateway/c/sci_fftw_forget_wisdom.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fftw_forget_wisdom.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_la-sci_fftw_forget_wisdom.Tpo $(DEPDIR)/libscifftw_la-sci_fftw_forget_wisdom.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_fftw_forget_wisdom.c' object='libscifftw_la-sci_fftw_forget_wisdom.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscifftw_la-sci_fftw_forget_wisdom.lo: sci_gateway/c/sci_fftw_forget_wisdom.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscifftw_la-sci_fftw_forget_wisdom.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_fftw_forget_wisdom.Tpo -c -o sci_gateway/c/libscifftw_la-sci_fftw_forget_wisdom.lo `test -f 'sci_gateway/c/sci_fftw_forget_wisdom.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fftw_forget_wisdom.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_fftw_forget_wisdom.Tpo sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_fftw_forget_wisdom.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_fftw_forget_wisdom.c' object='sci_gateway/c/libscifftw_la-sci_fftw_forget_wisdom.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_la-sci_fftw_forget_wisdom.lo `test -f 'sci_gateway/c/sci_fftw_forget_wisdom.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fftw_forget_wisdom.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscifftw_la-sci_fftw_forget_wisdom.lo `test -f 'sci_gateway/c/sci_fftw_forget_wisdom.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fftw_forget_wisdom.c
 
-libscifftw_la-sci_dct.lo: sci_gateway/c/sci_dct.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_la-sci_dct.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-sci_dct.Tpo -c -o libscifftw_la-sci_dct.lo `test -f 'sci_gateway/c/sci_dct.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dct.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_la-sci_dct.Tpo $(DEPDIR)/libscifftw_la-sci_dct.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_dct.c' object='libscifftw_la-sci_dct.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscifftw_la-sci_dct.lo: sci_gateway/c/sci_dct.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscifftw_la-sci_dct.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_dct.Tpo -c -o sci_gateway/c/libscifftw_la-sci_dct.lo `test -f 'sci_gateway/c/sci_dct.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dct.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_dct.Tpo sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_dct.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_dct.c' object='sci_gateway/c/libscifftw_la-sci_dct.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_la-sci_dct.lo `test -f 'sci_gateway/c/sci_dct.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dct.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscifftw_la-sci_dct.lo `test -f 'sci_gateway/c/sci_dct.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dct.c
 
-libscifftw_la-sci_dst.lo: sci_gateway/c/sci_dst.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifftw_la-sci_dst.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-sci_dst.Tpo -c -o libscifftw_la-sci_dst.lo `test -f 'sci_gateway/c/sci_dst.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dst.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifftw_la-sci_dst.Tpo $(DEPDIR)/libscifftw_la-sci_dst.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_dst.c' object='libscifftw_la-sci_dst.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscifftw_la-sci_dst.lo: sci_gateway/c/sci_dst.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscifftw_la-sci_dst.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_dst.Tpo -c -o sci_gateway/c/libscifftw_la-sci_dst.lo `test -f 'sci_gateway/c/sci_dst.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dst.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_dst.Tpo sci_gateway/c/$(DEPDIR)/libscifftw_la-sci_dst.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_dst.c' object='sci_gateway/c/libscifftw_la-sci_dst.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifftw_la-sci_dst.lo `test -f 'sci_gateway/c/sci_dst.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dst.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscifftw_la-sci_dst.lo `test -f 'sci_gateway/c/sci_dst.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dst.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
+	-rm -rf src/c/.libs src/c/_libs
+	-rm -rf src/nofftw/.libs src/nofftw/_libs
 install-libscifftw_la_etcDATA: $(libscifftw_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libscifftw_la_etc_DATA)'; test -n "$(libscifftw_la_etcdir)" || list=; \
@@ -1187,6 +1274,12 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/c/$(am__dirstamp)
+	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/c/$(am__dirstamp)
+	-rm -f src/nofftw/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/nofftw/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1197,7 +1290,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR) src/nofftw/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1245,7 +1338,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR) src/nofftw/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -1346,11 +1439,17 @@ check-code:
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
-@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/; \
+@GIWS_TRUE@	MANDATORY_OPTIONS="--throws-exception-on-error --description-file"; \
 @GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
+@GIWS_TRUE@			if test -z "$(GIWS_OPTIONS)"; then \
+@GIWS_TRUE@				$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR $$MANDATORY_OPTIONS $$file; \
+@GIWS_TRUE@			else \
+@GIWS_TRUE@				echo "Custom GIWS call with '$$GIWS_OPTIONS'"; \
+@GIWS_TRUE@				$(GIWS_BIN) $$GIWS_OPTIONS --output-dir $$GIWS_OUTPUTDIR $$MANDATORY_OPTIONS $$file; \
+@GIWS_TRUE@			fi \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 

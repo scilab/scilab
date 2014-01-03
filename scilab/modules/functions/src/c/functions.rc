@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "functions module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "functions module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "functions.dll"
             VALUE "ProductName", "functions module"
             VALUE "ProductVersion", "6, 0, 0, 0"

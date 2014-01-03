@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -34,15 +34,15 @@ public class DatatipDrag {
     * @param endX Integer with pixel mouse position x after mouse drag.
     * @param endY Integer with pixel mouse position y after mouse drag.
     */
-    public static void dragDatatip(String datatipUid, int endX, int endY) {
+    public static void dragDatatip(int datatipUid, int endX, int endY) {
 
-        String parentPolyline = DatatipCommon.getParentPolyline(datatipUid);
+        Integer parentPolyline = DatatipCommon.getParentPolyline(datatipUid);
 
         Integer pos[] = {endX, endY};
-        String figure = (String)GraphicController.getController().getProperty(datatipUid, __GO_PARENT_FIGURE__);
+        Integer figure = (Integer)GraphicController.getController().getProperty(datatipUid, __GO_PARENT_FIGURE__);
         double[] c2d = DatatipCommon.getTransformedPositionInViewScale(figure, pos);
 
-        String axesUid = (String)GraphicController.getController().getProperty(parentPolyline, __GO_PARENT_AXES__);
+        Integer axesUid = (Integer)GraphicController.getController().getProperty(parentPolyline, __GO_PARENT_AXES__);
         Integer viewInfo = (Integer) GraphicController.getController().getProperty(axesUid, __GO_VIEW__);
 
         if (parentPolyline != null) {
@@ -98,7 +98,7 @@ public class DatatipDrag {
         }
     }
 
-    private static boolean[] getLogFlags (String axes) {
+    private static boolean[] getLogFlags (Integer axes) {
         return new boolean[] {(Boolean)GraphicController.getController().getProperty(axes, __GO_X_AXIS_LOG_FLAG__),
                               (Boolean)GraphicController.getController().getProperty(axes, __GO_Y_AXIS_LOG_FLAG__),
                               (Boolean)GraphicController.getController().getProperty(axes, __GO_Z_AXIS_LOG_FLAG__)

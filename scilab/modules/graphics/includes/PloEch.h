@@ -29,7 +29,7 @@ GRAPHICS_IMPEXP void convertPixelCoordsToUserCoords(const int xPixCoords[], cons
 
 GRAPHICS_IMPEXP void compute_data_bounds2(int cflag, char dataflag, char * logflags, double *x, double  *y, int n1, int n2, double *drect);
 
-GRAPHICS_IMPEXP BOOL update_specification_bounds(char *psubwinUID, double rect[6], int flag);
+GRAPHICS_IMPEXP BOOL update_specification_bounds(int iSubwinUID, double rect[6], int flag);
 
 
 #endif  /* _SCI_ECH */

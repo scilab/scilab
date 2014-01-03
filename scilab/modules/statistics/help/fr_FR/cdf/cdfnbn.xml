@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -64,7 +64,7 @@
             <varlistentry>
                 <term>Ompr  </term>
                 <listitem>
-                    <para>  1-PR En entrée : [0,1]. En recherche : [0,1] PR + OMPR = 1.0 
+                    <para>  1-PR En entrée : [0,1]. En recherche : [0,1] PR + OMPR = 1.0
                     </para>
                 </listitem>
             </varlistentry>
@@ -97,5 +97,56 @@
             Barry W. Brown, James Lovato and Kathy Russell. The University of
             Texas.
         </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <para>
+            Dans l'exemple suivant, on calcule la probabilité de l'événement <literal>S=2</literal>
+            pour la fonction de distribution négative binomiale avec <literal>Xn=3</literal>,
+            <literal>Pr=0.7</literal> et <literal>Ompr=0.3</literal>.
+        </para>
+        <programlisting role="example"><![CDATA[
+    S = 2;
+    Xn = 3;
+    Pr = 0.7;
+    Ompr = 0.3;
+    // Expected : P = 0.83692 and Q = 1-P
+    [P, Q] = cdfnbn("PQ", S, Xn, Pr, Ompr)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cdfbet">cdfbet</link>
+            </member>
+            <member>
+                <link linkend="cdfbin">cdfbin</link>
+            </member>
+            <member>
+                <link linkend="cdfchi">cdfchi</link>
+            </member>
+            <member>
+                <link linkend="cdfchn">cdfchn</link>
+            </member>
+            <member>
+                <link linkend="cdff">cdff</link>
+            </member>
+            <member>
+                <link linkend="cdffnc">cdffnc</link>
+            </member>
+            <member>
+                <link linkend="cdfgam">cdfgam</link>
+            </member>
+            <member>
+                <link linkend="cdfnor">cdfnor</link>
+            </member>
+            <member>
+                <link linkend="cdfpoi">cdfpoi</link>
+            </member>
+            <member>
+                <link linkend="cdft">cdft</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

@@ -10,7 +10,7 @@
 // <-- CLI SHELL MODE -->
 //
 // gould.nonconvex --
-//   The Gould test case with additionnal inequality constraints.
+//   The Gould test case with additional inequality constraints.
 // Arguments
 //    x : the point where to compute the cost
 //    index : a flag which states what is to compute

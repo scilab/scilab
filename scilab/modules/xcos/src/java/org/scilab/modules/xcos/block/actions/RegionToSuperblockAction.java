@@ -8,6 +8,7 @@
 
 package org.scilab.modules.xcos.block.actions;
 
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,9 +42,11 @@ import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxICell;
+import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 
 /**
@@ -383,6 +386,13 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
             childGraph.installListeners();
             childGraph.installSuperBlockListeners();
             superBlock.invalidateRpar();
+            superBlock.updateExportedPort();
+
+            /*
+             * Clear the transaction log in the child.
+             * From the user point of view, the operation cannot be undo'ed.
+             */
+            childGraph.getUndoManager().clear();
 
             Xcos.getInstance().addDiagram(parentGraph.getSavedFile(), childGraph);
         } finally {
@@ -674,12 +684,35 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
                 cellsToCopy.add(b.getChildLink());
             }
 
+            // create the local array to use the JGraphX API
+            final Object[] cells = cellsToCopy.toArray();
+
             /*
              * Really copy the cells
              */
-            final Object[] cells = cellsToCopy.toArray();
             parentGraph.removeCells(cells, false);
             childGraph.addCells(cells);
+
+            /*
+             * Translate the cells to the origin
+             *
+             * In this algorithm only block position are handled to avoid any
+             * placement issue and a static margin is added to avoid
+             * misplacement.
+             */
+            final double margin = 10.0;
+            mxPoint orig = null;
+            for (int i = 0; i < cells.length; i++) {
+                if (cells[i] instanceof BasicBlock) {
+                    final mxGeometry geom = ((BasicBlock) cells[i]).getGeometry();
+                    if (orig == null) {
+                        orig = geom;
+                    } else {
+                        orig = new mxPoint(Math.min(geom.getX(), orig.getX()), Math.min(geom.getY(), orig.getY()));
+                    }
+                }
+            }
+            childGraph.moveCells(cells, -orig.getX() + margin, -orig.getY() + margin);
 
             childGraph.setChildrenParentDiagram();
             BlockPositioning.updateBlockView(superBlock);

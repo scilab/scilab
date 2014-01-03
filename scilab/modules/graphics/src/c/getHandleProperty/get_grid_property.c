@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_grid_property(void* _pvCtx, char* pobjUID)
+void* get_grid_property(void* _pvCtx, int iObjUID)
 {
     double grid[3];
     int iGridColor = 0;
@@ -39,7 +39,7 @@ void* get_grid_property(void* _pvCtx, char* pobjUID)
     int* piView = &iView;
 
     /* need conversion for display in double */
-    getGraphicObjectProperty(pobjUID, __GO_X_AXIS_GRID_COLOR__, jni_int, (void **)&piGridColor);
+    getGraphicObjectProperty(iObjUID, __GO_X_AXIS_GRID_COLOR__, jni_int, (void **)&piGridColor);
 
     if (piGridColor == NULL)
     {
@@ -49,7 +49,7 @@ void* get_grid_property(void* _pvCtx, char* pobjUID)
 
     grid[0] = (double) iGridColor;
 
-    getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_GRID_COLOR__, jni_int, (void **)&piGridColor);
+    getGraphicObjectProperty(iObjUID, __GO_Y_AXIS_GRID_COLOR__, jni_int, (void **)&piGridColor);
     if (piGridColor == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid");
@@ -58,7 +58,7 @@ void* get_grid_property(void* _pvCtx, char* pobjUID)
 
     grid[1] = (double) iGridColor;
 
-    getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_GRID_COLOR__, jni_int, (void **)&piGridColor);
+    getGraphicObjectProperty(iObjUID, __GO_Z_AXIS_GRID_COLOR__, jni_int, (void **)&piGridColor);
     if (piGridColor == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid");
@@ -67,7 +67,7 @@ void* get_grid_property(void* _pvCtx, char* pobjUID)
 
     grid[2] = (double) iGridColor;
 
-    getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, (void **)&piView);
+    getGraphicObjectProperty(iObjUID, __GO_VIEW__, jni_int, (void **)&piView);
 
     if (iView)
     {

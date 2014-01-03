@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "hdf5 module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "hdf5 module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "scihdf5.dll"
             VALUE "ProductName", " hdf5"
             VALUE "ProductVersion", "6, 0, 0, 0"

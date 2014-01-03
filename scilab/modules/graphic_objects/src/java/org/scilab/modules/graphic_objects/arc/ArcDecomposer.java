@@ -68,7 +68,7 @@ public class ArcDecomposer {
      * @param the conversion translation value to apply to data.
      * @param the bit mask specifying whether logarithmic coordinates are used.
      */
-    public static void fillVertices(FloatBuffer buffer, String id, int elementsSize,
+    public static void fillVertices(FloatBuffer buffer, Integer id, int elementsSize,
                                     int coordinateMask, double[] scale, double[] translation, int logMask) {
 
         double [] center;
@@ -201,7 +201,7 @@ public class ArcDecomposer {
      * @param the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
-    public static int fillIndices(IntBuffer buffer, String id, int logMask) {
+    public static int fillIndices(IntBuffer buffer, Integer id, int logMask) {
         boolean valid;
 
         valid = isValid(id, logMask);
@@ -226,7 +226,7 @@ public class ArcDecomposer {
      * @param the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
-    public static int fillWireIndices(IntBuffer buffer, String id, int logMask) {
+    public static int fillWireIndices(IntBuffer buffer, Integer id, int logMask) {
         boolean valid;
 
         valid = isValid(id, logMask);
@@ -249,7 +249,7 @@ public class ArcDecomposer {
      * @param the bit mask specifying whether logarithmic coordinates are used.
      * @return true if the Arc is valid, false if it is not.
      */
-    private static boolean isValid(String id, int logMask) {
+    private static boolean isValid(Integer id, int logMask) {
         boolean valid = false;
 
         Double [] leftUpperPoint = (Double []) GraphicController.getController().getProperty(id, __GO_UPPER_LEFT_POINT__);

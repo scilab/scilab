@@ -9,23 +9,23 @@
 package org.scilab.modules.graphic_objects;
 
 public class SurfaceData {
-    public static Object getSurfDataX(String uid) {
+    public static Object getSurfDataX(int uid) {
         return SurfaceDataJNI.getSurfDataX(uid);
     }
 
-    public static Object getSurfDataY(String uid) {
+    public static Object getSurfDataY(int uid) {
         return SurfaceDataJNI.getSurfDataY(uid);
     }
 
-    public static Object getSurfDataZ(String uid) {
+    public static Object getSurfDataZ(int uid) {
         return SurfaceDataJNI.getSurfDataZ(uid);
     }
 
-    public static String createObject3dData(String obj, String newObj, int type) {
+    public static int createObject3dData(int obj, int newObj, int type) {
         return SurfaceDataJNI.createObject3dData(obj, newObj, type);
     }
 
-    public static double pickSurface(String uid, double x, double y, double z, double dx, double dy, double dz, double mx, double my, double mz, double mw) {
+    public static double pickSurface(int uid, double x, double y, double z, double dx, double dy, double dz, double mx, double my, double mz, double mw) {
         return SurfaceDataJNI.pickSurface(uid, x, y, z, dx, dy, dz, mx, my, mz, mw);
     }
 

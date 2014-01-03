@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- NOT FIXED -->
+//
 // <-- TEST WITH GRAPHIC -->
 //
 // <-- NO CHECK ERROR OUTPUT -->
@@ -24,28 +24,19 @@ t=0:0.1:10;
 plot(t,sin(t));
 
 // eps
-xs2eps(0, 't.eps');
-if ~isfile('t.eps') then pause, end
-info = fileinfo('t.eps');
+xs2eps(0, "t.eps");
+if ~isfile("t.eps") then pause, end
+info = fileinfo("t.eps");
 if info(1) == 0 then pause, end
 
 // eps
-xs2eps(0, 't1.eps');
-if ~isfile('t1.eps') then pause, end
-info = fileinfo('t1.eps');
+xs2eps(0, "t1.eps");
+if ~isfile("t1.eps") then pause, end
+info = fileinfo("t1.eps");
 if info(1) == 0 then pause, end
 
 //pdf
-xs2pdf(0, 't1.pdf');
-if ~isfile('t1.pdf') then pause, end
-info = fileinfo('t1.pdf');
+xs2pdf(0, "t1.pdf");
+if ~isfile("t1.pdf") then pause, end
+info = fileinfo("t1.pdf");
 if info(1) == 0 then pause, end
-
-//emf
-// xs2emf requires ghostview not all platform by default
-if getos() == "Windows" then
-  xs2emf(0, 't1.emf');
-  if ~isfile('t1.emf') then pause, end
-  info = fileinfo('t1.emf');
-  if info(1) == 0 then pause, end
-end

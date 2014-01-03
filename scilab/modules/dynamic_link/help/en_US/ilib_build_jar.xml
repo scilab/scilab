@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*
+*  ======================================================================
+*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2013 - Scilab Enterprises - Simon MARCHETTO
+*
+*  This file is distributed under the same license as the Scilab package.
+* =======================================================================
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ilib_build_jar">
+    <refnamediv>
+        <refname>ilib_build_jar</refname>
+        <refpurpose>Build Java packages from sources into a JAR file</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            ilib_build_jar(jarFilePath, packageNames[, sourcePath[, classPath, [, manifestFilePath]]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>jarFilePath</term>
+                <listitem>
+                    <para>A string, sets the destination file path of the JAR.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>packageNames</term>
+                <listitem>
+                    <para>A string matrix, contains the names of packages that will be built and stored the JAR.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sourcePaths</term>
+                <listitem>
+                    <para>A string matrix, sets the paths to the packages Java source directories.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>classPaths</term>
+                <listitem>
+                    <para>A string matrix (optional), sets the class paths of the dependencies needed for the build.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>manifestFilePath</term>
+                <listitem>
+                    <para>A string (optional), sets the file path of the manifest data to include in the JAR.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>ilib_build_jar</literal> extends <link linkend="ilib_build">ilib_build</link>, which purpose is to build C/C++/Fortran libraries, to Java. In other words, <literal>ilib_build_jar</literal> allows to build Java libraries from a set of Java sources. A library in Java is a JAR file (Java archive, extension is <literal>.jar</literal>), which contains Java compiled packages (a Java package contains a set of classes sharing the same purpose), and a manifest file (to describe its content).
+        </para>
+        <para>
+            <literal>ilib_build_jar</literal> works like following. All the Java sources found in the given source directory paths <literal>sourcePaths</literal> are compiled. Then the JAR file specified in <literal>jarFilePath</literal> is created from all the compiled classes of all the packages declared in <literal>packageNames</literal>. <literal>ilib_build_jar</literal> relies on the <link linkend="jcompile">jcompile</link> function for compilation, and <link linkend="jcreatejar">jcreatejar</link> for JAR creation, no external tool is needed.
+        </para>
+        <para>
+            The following Java conventions should be followed when using <literal>ilib_build_jar</literal>.
+            A JAR file usually contains one package only, and its file name is often the same as the package. The Java package is usually organized in a class directory tree, and has a hierarchical naming pattern something like <literal>org.company.software.package</literal>, which the class directory tree follows. Each class location in the tree corresponds to its <literal>package</literal> declaration in the source.
+        </para>
+        <para>
+            <literal>ilib_build_jar</literal> can be used to create a JAR file with several packages, with any desired file name. The only requirement is that one package name at least must be declared, and each of the Java classes should belong to a package.
+        </para>
+        <para>
+            The build dependencies can be specified by setting the <literal>classPaths</literal> argument. It can be paths to JAR files or paths to directories containing Java compiled classes.
+        </para>
+        <para>
+            The file path to a manifest can be given, this one will be stored in the JAR, in the MANIFEST.MF file in META-INF folder. If the manifest file is not specified or does not exist, a default manifest will be created in the JAR. Note: if a manifest is given, it must contain a version attribute, otherwise the manifest in the JAR will be empty.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// Example of ilib_build_jar
+
+// Create org.scilab.test.mypackage package sources in TMPDIR
+packageName = 'org.scilab.test.mypackage';
+packageSrcPath = fullfile(TMPDIR, packageName);
+
+// Create a source file in the package (in org/scilab/test/mypackage folder)
+function addJavaSourceToPackage(className, packageName)
+    packagePath = strsubst(packageName, '.', filesep());
+    packagePath = fullfile(packageSrcPath, packagePath);
+    mkdir(packagePath);
+    filePath = fullfile(packagePath, className + '.java');
+
+    sourceCode = [msprintf('package %s;', packageName); ..
+        msprintf('public class %s {}\n', className);
+        ];
+    fd = mopen(filePath, 'wt');
+    mputl(sourceCode, fd);
+    mclose(fd);
+endfunction
+
+// Add 'Foo' and 'bar.Bar' classes to the package
+addJavaSourceToPackage('Foo', packageName);
+addJavaSourceToPackage('Bar', packageName + '.bar');
+
+// Build the package
+jarFilePath = fullfile(TMPDIR, packageName + '.jar');
+ilib_build_jar(jarFilePath, packageName, packageSrcPath);
+
+// Import and test the package
+javaclasspath(jarFilePath);
+jimport org.scilab.test.mypackage.Foo;
+foo = Foo.new();
+jimport org.scilab.test.mypackage.bar.Bar;
+bar = Bar.new();
+      ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="jcompile">jcompile</link>
+            </member>
+            <member>
+                <link linkend="jcreatejar">jcreatejar</link>
+            </member>
+            <member>
+                <link linkend="javaclasspath">javaclasspath</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Function introduced.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
+

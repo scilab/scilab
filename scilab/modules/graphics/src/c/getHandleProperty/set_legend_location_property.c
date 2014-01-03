@@ -34,7 +34,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_legend_location_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_legend_location_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     char* legendLocationsNames[11] = {"in_upper_right", "in_upper_left", "in_lower_right", "in_lower_left",
@@ -68,7 +68,7 @@ int set_legend_location_property(void* _pvCtx, char* pobjUID, void* _pvData, int
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_LEGEND_LOCATION__, &index, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_LEGEND_LOCATION__, &index, jni_int, 1);
 
     if (status == TRUE)
     {
@@ -79,6 +79,5 @@ int set_legend_location_property(void* _pvCtx, char* pobjUID, void* _pvData, int
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "legend_location");
         return SET_PROPERTY_ERROR;
     }
-
 }
 /*------------------------------------------------------------------------*/

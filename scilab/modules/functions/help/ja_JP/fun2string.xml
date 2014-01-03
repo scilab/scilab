@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>txt=fun2string(fun,name)</synopsis>
+        <synopsis>txt = fun2string(fun, name)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -37,7 +37,7 @@
             <varlistentry>
                 <term>txt</term>
                 <listitem>
-                    <para>文字列の列ベクトル, scilab関数を指定するテキスト</para>
+                    <para>文字列の列ベクトル, Scilab関数を指定するテキスト</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -45,19 +45,19 @@
     <refsection>
         <title>説明</title>
         <para>
-            ロード済みのScilab関数の擬似コードを指定すると,fun2string により,
+            ロード済みのScilab関数の擬似コードを指定すると,<function>fun2string</function> により,
             そのコードを再度生成することができます.
             生成したコードはインデントされ, 整形されます.
         </para>
         <para>
-            仕組みはmfile2sciに似ていますが, より簡単です.
+            仕組みは<function>mfile2sci</function>に似ていますが, より簡単です.
             構文の変換に使用することも可能です.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
-txt=fun2string(asinh,'foo');
+        <programlisting role="example"><![CDATA[
+txt = fun2string(asinh,'foo');
 write(%io(2),txt,'(a)')
  ]]></programlisting>
     </refsection>

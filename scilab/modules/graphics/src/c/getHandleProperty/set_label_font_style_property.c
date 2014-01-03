@@ -36,7 +36,7 @@
  */
 
 /*------------------------------------------------------------------------*/
-int set_labels_font_style_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_labels_font_style_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int fontStyle = 0;
@@ -49,7 +49,7 @@ int set_labels_font_style_property(void* _pvCtx, char* pobjUID, void* _pvData, i
 
     fontStyle = (int)((double*)_pvData)[0];
 
-    status = setGraphicObjectProperty(pobjUID, __GO_FONT_STYLE__, &fontStyle, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_FONT_STYLE__, &fontStyle, jni_int, 1);
 
     if (status == TRUE)
     {

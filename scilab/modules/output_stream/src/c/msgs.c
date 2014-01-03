@@ -1320,10 +1320,11 @@ static int msg_101(int *n, int *ierr)
     int one = 1;
     int i = 0;
     char line[bsiz];
-
+    int len_line = 0;
     C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], line, &one, (long int)nlgh);
 
-    for (i = 0; i < (int)strlen(line); i++)
+    len_line = (int)strlen(line);
+    for (i = 0; i < len_line; i++)
     {
         if (line[i] == ' ')
         {

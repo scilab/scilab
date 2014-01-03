@@ -48,7 +48,7 @@ int sci_xtitle(char * fname, void *pvApiCtx)
     int  nbLabels = 0; /* number of modified labels */
     int  box = 0;
     BOOL isBoxSpecified = FALSE;
-    char * psubwinUID = NULL;
+    int iSubwinUID = 0;
     static rhs_opts opts[] =
     {
         { -1, "boxed", -1, 0, 0, NULL},
@@ -124,13 +124,14 @@ int sci_xtitle(char * fname, void *pvApiCtx)
         nbLabels--; /* it is not a label text */
     }
 
-    psubwinUID = (char*)getOrCreateDefaultSubwin();
+    iSubwinUID = getOrCreateDefaultSubwin();
 
     for (narg = 1 ; narg <= nbLabels ; narg++)
     {
         int m = 0, n = 0;
         char **Str = NULL;
-        char * modifiedLabel = NULL;
+        int iModifiedLabel = 0;
+        int* piModifiedLabel = &iModifiedLabel;
 
         sciErr = getVarAddressFromPosition(pvApiCtx, narg, &piAddrStr);
         if (sciErr.iErr)
@@ -154,16 +155,16 @@ int sci_xtitle(char * fname, void *pvApiCtx)
         switch (narg)
         {
             case 1:
-                getGraphicObjectProperty(psubwinUID, __GO_TITLE__, jni_string, (void **)&modifiedLabel);
+                getGraphicObjectProperty(iSubwinUID, __GO_TITLE__, jni_int, (void **)&piModifiedLabel);
                 break;
             case 2:
-                getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, (void **)&modifiedLabel);
+                getGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_LABEL__, jni_int, (void **)&piModifiedLabel);
                 break;
             case 3:
-                getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, (void **)&modifiedLabel);
+                getGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_LABEL__, jni_int, (void **)&piModifiedLabel);
                 break;
             case 4:
-                getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, (void **)&modifiedLabel);
+                getGraphicObjectProperty(iSubwinUID, __GO_Z_AXIS_LABEL__, jni_int, (void **)&piModifiedLabel);
                 break;
             default:
                 break;
@@ -173,9 +174,9 @@ int sci_xtitle(char * fname, void *pvApiCtx)
         startFigureDataWriting(pFigure);
 #endif
 
-        sciSetText(modifiedLabel, Str, m, n);
+        sciSetText(iModifiedLabel, Str, m, n);
 
-        setGraphicObjectProperty(modifiedLabel, __GO_FILL_MODE__, &box, jni_bool, 1);
+        setGraphicObjectProperty(iModifiedLabel, __GO_FILL_MODE__, &box, jni_bool, 1);
 
 #if 0
         endFigureDataWriting(pFigure);
@@ -184,7 +185,7 @@ int sci_xtitle(char * fname, void *pvApiCtx)
         freeArrayOfString(Str, m * n);
     }
 
-    setCurrentObject(psubwinUID);
+    setCurrentObject(iSubwinUID);
 #if 0
     sciDrawObj(pFigure);
 #endif

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -29,7 +29,7 @@ using namespace org_scilab_modules_gui_datatip;
 
 int sci_datatip_set_interp(char *fname, void* pvApiCtx)
 {
-    char* datatipUID    = NULL;
+    int iDatatipUID     = 0;
     int* piAddr         = NULL;
     long long llHandle  = 0;
     int interpIntBool   = 0;
@@ -58,11 +58,11 @@ int sci_datatip_set_interp(char *fname, void* pvApiCtx)
             return 1;
         }
 
-        datatipUID = (char *)getObjectFromHandle((unsigned long) llHandle);
+        iDatatipUID = getObjectFromHandle((unsigned long) llHandle);
 
         if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
         {
-            getGraphicObjectProperty(datatipUID, __GO_TYPE__, jni_int, (void**) &piType);
+            getGraphicObjectProperty(iDatatipUID, __GO_TYPE__, jni_int, (void**) &piType);
             if (iType == __GO_DATATIP__)
             {
                 if (checkInputArgumentType(pvApiCtx, 2, sci_boolean))
@@ -81,7 +81,7 @@ int sci_datatip_set_interp(char *fname, void* pvApiCtx)
                         return 1;
                     }
 
-                    DatatipCreate::datatipSetInterp(getScilabJavaVM(), (char*)datatipUID, (bool)interpIntBool);
+                    DatatipCreate::datatipSetInterp(getScilabJavaVM(), iDatatipUID, interpIntBool != 0);
                 }
                 else
                 {

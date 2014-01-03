@@ -50,9 +50,38 @@ function [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,
     //    - mesures (Vecteur d'entiers) : renvoie la liste des points de mesures                         //
     //----------------------------------------------------------------------------------------------------//
 
-    ok=%f;a_domaine=[];b_domaine=[];choix=0;signe=1;discr=0;type_meth=1;degre=1;Nbr_maillage=10;
-    a1=[];b1=[];a2=[];b2=[];a3=[];b3=[];a4=[];b4=[];a5=[];b5=[];a6=[];b6=[];a7=[];b7=[];mesures=[];
-    CI=[];CI1=[];CLa_type=[];CLa_exp=[];CLb_type=[];CLb_exp=[];oper=[];k=[];
+    ok=%f;
+    a_domaine=[];
+    b_domaine=[];
+    choix=0;
+    signe=1;
+    discr=0;
+    type_meth=1;
+    degre=1;
+    Nbr_maillage=10;
+    a1=[];
+    b1=[];
+    a2=[];
+    b2=[];
+    a3=[];
+    b3=[];
+    a4=[];
+    b4=[];
+    a5=[];
+    b5=[];
+    a6=[];
+    b6=[];
+    a7=[];
+    b7=[];
+    mesures=[];
+    CI=[];
+    CI1=[];
+    CLa_type=[];
+    CLa_exp=[];
+    CLb_type=[];
+    CLb_exp=[];
+    oper=[];
+    k=[];
     // evaluation du context
     %mm=getfield(1,%scicos_context)
     for %mi=%mm(3:$)
@@ -77,17 +106,27 @@ function [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,
     type_meth=evstr(params_pde.methode);
     degre = evstr(params_pde.degre);
     Nbr_maillage=evstr(params_pde.nnode);
-    execstr("a1=params_pde.a1"); execstr("b1=params_pde.b1");
-    execstr("a2=params_pde.a2"); execstr("b2=params_pde.b2");
-    execstr("a3=params_pde.a3"); execstr("b3=params_pde.b3");
-    execstr("a4=params_pde.a4"); execstr("b4=params_pde.b4");
-    execstr("a5=params_pde.a5"); execstr("b5=params_pde.b5");
-    execstr("a6=params_pde.a6"); execstr("b6=params_pde.b6");
-    execstr("a7=params_pde.a7"); execstr("b7=params_pde.b7");
+    execstr("a1=params_pde.a1");
+    execstr("b1=params_pde.b1");
+    execstr("a2=params_pde.a2");
+    execstr("b2=params_pde.b2");
+    execstr("a3=params_pde.a3");
+    execstr("b3=params_pde.b3");
+    execstr("a4=params_pde.a4");
+    execstr("b4=params_pde.b4");
+    execstr("a5=params_pde.a5");
+    execstr("b5=params_pde.b5");
+    execstr("a6=params_pde.a6");
+    execstr("b6=params_pde.b6");
+    execstr("a7=params_pde.a7");
+    execstr("b7=params_pde.b7");
     mesures = evstr(params_pde.points);
-    execstr("CI=params_pde.CI"); execstr("CI1=params_pde.dCI");
-    CLa_type=evstr(params_pde.CLa); execstr("CLa_exp=params_pde.CLa_exp");
-    CLb_type=evstr(params_pde.CLb); execstr("CLb_exp=params_pde.CLb_exp");
+    execstr("CI=params_pde.CI");
+    execstr("CI1=params_pde.dCI");
+    CLa_type=evstr(params_pde.CLa);
+    execstr("CLa_exp=params_pde.CLa_exp");
+    CLb_type=evstr(params_pde.CLb);
+    execstr("CLb_exp=params_pde.CLb_exp");
     k=0;
     if (params_pde.check_op1 == "1") then
         oper=[oper;1];

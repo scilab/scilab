@@ -27,7 +27,7 @@
 #include "MALLOC.h"
 
 /*------------------------------------------------------------------------*/
-void* get_figure_style_property(void* _pvCtx, char* pobjUID)
+void* get_figure_style_property(void* _pvCtx, int iObjUID)
 {
     /* no more old style */
     sciReturnString("new");

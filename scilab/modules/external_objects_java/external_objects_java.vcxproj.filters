@@ -129,6 +129,12 @@
     <ClCompile Include="src\jni\ScilabOperations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_jcreatejar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\jni\ScilabJarCreator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\cpp\JavaOptionsHelper.hxx">
@@ -186,6 +192,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\jni\ScilabOperations.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\jni\ScilabJarCreator.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

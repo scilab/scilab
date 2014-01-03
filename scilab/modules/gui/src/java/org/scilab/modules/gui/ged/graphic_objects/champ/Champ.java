@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.ged.graphic_objects.champ;
@@ -25,7 +25,7 @@ public class Champ extends SimpleObject {
     * Initializes all sections (JPanel's) and Add in Main JPanel of Object.
     * @param objectID Enters the identification of object.
     */
-    public Champ(String objectID) {
+    public Champ(Integer objectID) {
         super(objectID);
         data = new DataProperties(objectID);
         style = new Style(objectID);

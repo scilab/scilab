@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="execstr">
+    <refnamediv>
+        <refname>execstr</refname>
+        <refpurpose>
+            исполняет Scilab-код, заданный в строках
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            execstr(instr)
+            ierr = execstr(instr,'errcatch' [,msg])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>instr</term>
+                <listitem>
+                    <para>
+                        вектор символьных строк, Scilab-инструкции, которые нужно исполнить.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ierr</term>
+                <listitem>
+                    <para>
+                        целое число, 0 или номер ошибки.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>msg</term>
+                <listitem>
+                    <para>
+                        символьная строка со значениями <literal>'m'</literal> или <literal>'n'</literal>.  Значение по умолчанию -  <literal>'n'</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Исполняет Scilab-инструкции, указанные в аргументе
+            <varname>instr</varname>.
+        </para>
+        <note>
+            Заметьте, что инструкции <varname>instr</varname> не должны использовать символы продолжения (..)
+        </note>
+        <para>
+            Если флаг <literal>'errcatch'</literal> не указан, то обработка ошибок ведётся как обычно.
+        </para>
+        <para>
+            Если указан флаг <literal>'errcatch'</literal>, и во время исполнения инструкций в <varname>instr</varname> произойдёт ошибка, то функция <function>execstr</function> не выдаст сообщения об ошибке, но прекратит исполнение инструкций <varname>instr</varname> (в том месте, где произошла ошибка), и вернёт номер ошибки <varname>ierr</varname>. В этом случае отображение ошибки управляется опцией <varname>msg</varname>:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>"m"</term>
+                <listitem>
+                    <para>
+                        сообщение об ошибке выводится на экран и записывается.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"n"</term>
+                <listitem>
+                    <para>
+                        сообщение об ошибке не отображается, однако записывается (see <link linkend="lasterror">lasterror</link>). Это значение по умолчанию.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            <code>ierr = execstr(instr, 'errcatch')</code> может
+            обрабатывать синтаксические ошибки. Это полезно для
+            выполнения инструкций, полученных по запросу пользователя.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+execstr('a=1') // устанавливает a=1.
+
+execstr('1+1') // ничего не делает (тогда как evstr('1+1') возвращает 2)
+
+execstr(['if %t then';
+         '  a=1';
+         '  b=a+1';
+         'else'
+         ' b=0'
+         'end'])
+
+execstr('a=zzzzzzz','errcatch')
+
+execstr('a=zzzzzzz','errcatch','m')
+
+//syntax errors
+execstr('a=1?02','errcatch')
+lasterror(%t)
+
+execstr('a=[1 2 3)','errcatch')
+lasterror(%t)
+
+// variable1 не существует
+if execstr('variable1;','errcatch')<>0 then
+   disp("Взведена ошибка");
+else
+   disp("execstr полна счастья");
+end
+
+// variable2 существует ... execstr не взводит ошибки
+variable2=[2,3];
+if execstr('variable2;','errcatch')<>0 then
+   disp("Взведена ошибка");
+else
+   disp("execstr полна счастья");
+end
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="evstr">evstr</link>
+            </member>
+            <member>
+                <link linkend="lasterror">lasterror</link>
+            </member>
+            <member>
+                <link linkend="error">error</link>
+            </member>
+            <member>
+                <link linkend="try">try</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

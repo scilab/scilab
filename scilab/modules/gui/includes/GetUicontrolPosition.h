@@ -23,6 +23,6 @@
  * @param pobjUID Scilab object corresponding to the uicontrol
  * @return the position (x, y, width, height)
  */
-GUI_IMPEXP void* GetUicontrolPosition(void* _pvCtx, char *pobjUID);
+GUI_IMPEXP void* GetUicontrolPosition(void* _pvCtx, int iObjUID);
 
 #endif

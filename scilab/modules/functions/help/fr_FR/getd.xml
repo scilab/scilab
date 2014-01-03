@@ -28,7 +28,7 @@
                     <para>chaîne de caractères, chemin du répertoire
                     </para>
                     <para>
-                        "." si <link linkend="getd">getd</link> est appelée sans argument ou si <literal>path</literal> est une chaîne de caractères vide.
+                        "." si <function>getd</function> est appelée sans argument ou si <varname>path</varname> est une chaîne de caractères vide.
                     </para>
                 </listitem>
             </varlistentry>
@@ -37,7 +37,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Charge tous les fichiers <literal>.sci</literal> (contenant des fonctions Scilab) présents dans le répertoire <literal>path</literal>.
+            Charge tous les fichiers <literal>.sci</literal> (contenant des fonctions Scilab) présents dans le répertoire <varname>path</varname>.
         </para>
         <para>
             Si le fichier ne contient pas de fonction, le script sera executé.

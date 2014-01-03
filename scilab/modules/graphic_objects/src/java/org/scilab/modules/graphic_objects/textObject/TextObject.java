@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.textObject;
 
 import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_COLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_FRACTIONAL__;
@@ -183,7 +184,7 @@ public abstract class TextObject extends ContouredObject {
      *
      * @param dimensions the text array dimensions to set
      */
-    public void setTextArrayDimensions(Integer[] dimensions) {
+    public UpdateStatus setTextArrayDimensions(Integer[] dimensions) {
         int currentSize = this.dimensions[0] * this.dimensions[1];
 
         if (dimensions[0] * dimensions[1] != currentSize) {
@@ -202,6 +203,7 @@ public abstract class TextObject extends ContouredObject {
 
         this.dimensions[0] = dimensions[0];
         this.dimensions[1] = dimensions[1];
+        return UpdateStatus.Success;
     }
 
     /**
@@ -220,10 +222,11 @@ public abstract class TextObject extends ContouredObject {
     /**
      * @param textArray the textArray to set
      */
-    public void setText(FormattedText[] textArray) {
+    public UpdateStatus setText(FormattedText[] textArray) {
         for (int i = 0; i < dimensions[0] * dimensions[1]; i++) {
             text[i] = new FormattedText(textArray[i]);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -242,10 +245,11 @@ public abstract class TextObject extends ContouredObject {
     /**
      * @param textStrings the text strings array to set
      */
-    public void setTextStrings(String[] textStrings) {
+    public UpdateStatus setTextStrings(String[] textStrings) {
         for (int i = 0; i < dimensions[0] * dimensions[1]; i++) {
             text[i].setText(textStrings[i]);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -258,10 +262,11 @@ public abstract class TextObject extends ContouredObject {
     /**
      * @param font the font to set
      */
-    public void setFont(Font font) {
+    public UpdateStatus setFont(Font font) {
         for (int i = 0; i < dimensions[0] * dimensions[1]; i++) {
             text[i].setFont(font);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -274,10 +279,11 @@ public abstract class TextObject extends ContouredObject {
     /**
      * @param style the font style to set
      */
-    public void setFontStyle(Integer style) {
+    public UpdateStatus setFontStyle(Integer style) {
         for (int i = 0; i < dimensions[0] * dimensions[1]; i++) {
             text[i].getFont().setStyle(style);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -290,10 +296,11 @@ public abstract class TextObject extends ContouredObject {
     /**
      * @param color the font color to set
      */
-    public void setFontColor(Integer color) {
+    public UpdateStatus setFontColor(Integer color) {
         for (int i = 0; i < dimensions[0] * dimensions[1]; i++) {
             text[i].getFont().setColor(color);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -306,10 +313,11 @@ public abstract class TextObject extends ContouredObject {
     /**
      * @param size the font size to set
      */
-    public void setFontSize(Double size) {
+    public UpdateStatus setFontSize(Double size) {
         for (int i = 0; i < dimensions[0] * dimensions[1]; i++) {
             text[i].getFont().setSize(size);
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -322,10 +330,11 @@ public abstract class TextObject extends ContouredObject {
     /**
      * @param fractional the font fractional to set
      */
-    public void setFontFractional(Boolean fractional) {
+    public UpdateStatus setFontFractional(Boolean fractional) {
         for (int i = 0; i < dimensions[0] * dimensions[1]; i++) {
             text[i].getFont().setFractional(fractional);
         }
+        return UpdateStatus.Success;
     }
 
 }

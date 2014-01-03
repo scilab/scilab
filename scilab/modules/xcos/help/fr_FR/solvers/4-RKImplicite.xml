@@ -38,11 +38,11 @@
             Cette méthode étant implicite, elle peut être utilisée sur des problèmes raides.
         </para>
         <para>
-            C'est une amélioration de la méthode d'Euler implicite, qui approxime 
+            C'est une amélioration de la méthode d'Euler implicite, qui approxime
             <emphasis>
                 y<subscript>n+1</subscript>
             </emphasis>
-            en calculant 
+            en calculant
             <emphasis>
                 f(t<subscript>n</subscript>+h, y<subscript>n+1</subscript>)
             </emphasis>
@@ -58,28 +58,28 @@
             Une différence notable de <emphasis>Runge-Kutta implicite</emphasis> par rapport à <emphasis>Sundials</emphasis> est qu'il calcule jusqu'à la dérivée quatrième de <emphasis>y</emphasis>, alors que les autres n'utilisent que des combinaisons linéaires de <emphasis>y</emphasis> et <emphasis>y'</emphasis>.
         </para>
         <para>
-            Ici, la valeur suivante est déterminée par la valeur actuelle 
+            Ici, la valeur suivante est déterminée par la valeur actuelle
             <emphasis>
                 y<subscript>n</subscript>
             </emphasis>
             plus la moyenne pondérée de trois increments, où chaque incrément est le produit du pas, <emphasis>h</emphasis>, et une estimation de la pente spécifiée par la fonction <emphasis>f(t,y)</emphasis>. Ils sont distribués de manière à peu près égale sur l'intervalle.
             <itemizedlist>
                 <listitem>
-                    <emphasis>k1</emphasis> est l'incrément basé sur la pente au début de l'intervalle, utilisant 
+                    <emphasis>k1</emphasis> est l'incrément basé sur la pente au début de l'intervalle, utilisant
                     <emphasis>
                         y<subscript>n</subscript>+ a11*h*k1,
                     </emphasis>
                     ,
                 </listitem>
                 <listitem>
-                    <emphasis>k2</emphasis> est l'incrément basé sur la pente près du milieu de l'intervalle, utilisant 
+                    <emphasis>k2</emphasis> est l'incrément basé sur la pente près du milieu de l'intervalle, utilisant
                     <emphasis>
                         y<subscript>n</subscript> + a21*h*k1 + a22*h*k2,
                     </emphasis>
                     ,
                 </listitem>
                 <listitem>
-                    <emphasis>k3</emphasis> est l'incrément basé sur la pente trois quarts de l'intervalle, utilisant 
+                    <emphasis>k3</emphasis> est l'incrément basé sur la pente trois quarts de l'intervalle, utilisant
                     <emphasis>
                         y<subscript>n</subscript> + a31*h*k1 + a32*h*k2 + a33*h*k3.
                     </emphasis>
@@ -90,25 +90,25 @@
             On peut voir que le calcul d'un <emphasis>ki</emphasis> requiert <emphasis>ki</emphasis>, nécéssitant ainsi l'utilisation d'un solveur non linéraire (ici, itérations point-fixes).
         </para>
         <para>
-            D'abord, on initialise 
+            D'abord, on initialise
             <emphasis>
                 k0 = h * f(t<subscript>n</subscript>, y<subscript>n</subscript>)
             </emphasis>
-            comme première estimation pour tous les <emphasis>ki</emphasis>, pour obtenir de nouveaux <emphasis>ki</emphasis> et une première valeur pour 
+            comme première estimation pour tous les <emphasis>ki</emphasis>, pour obtenir de nouveaux <emphasis>ki</emphasis> et une première valeur pour
             <emphasis>
                 y<subscript>n+1</subscript>
             </emphasis>
             .
         </para>
         <para>
-            Ensuite, on sauve les valeurs et on recalcule 
+            Ensuite, on sauve les valeurs et on recalcule
             <emphasis>
                 y<subscript>n+1</subscript>
             </emphasis>
             avec ces nouveaux <emphasis>ki</emphasis>.
         </para>
         <para>
-            Puis on compare les deux 
+            Puis on compare les deux
             <emphasis>
                 y<subscript>n+1</subscript>
             </emphasis>
@@ -118,56 +118,56 @@
             Ce processus ajoute un temps de calcul significatif à la méthode, mais améliore grandement la stabilité.
         </para>
         <para>
-            On peut voir qu'avec les <emphasis>ki</emphasis>, on progresse dans les dérivées de 
+            On peut voir qu'avec les <emphasis>ki</emphasis>, on progresse dans les dérivées de
             <emphasis>
                 y<subscript>n</subscript>
             </emphasis>
-            . Donc avec <emphasis>k3</emphasis>, on approxime 
+            . Donc avec <emphasis>k3</emphasis>, on approxime
             <emphasis>
                 y<superscript>(3)</superscript><subscript>n</subscript>
             </emphasis>
-            , faisant donc une erreur en 
+            , faisant donc une erreur en
             <emphasis>
                 O(h<superscript>4</superscript>)
             </emphasis>
-            . Mais un choix judicieux des coefficients du calcul des <emphasis>ki</emphasis> (notamment 
+            . Mais un choix judicieux des coefficients du calcul des <emphasis>ki</emphasis> (notamment
             <emphasis>
                 a<subscript>ij</subscript>
             </emphasis>
-            ) nous fait gagner un order, produisant ainsi une erreur par pas de temps en 
+            ) nous fait gagner un order, produisant ainsi une erreur par pas de temps en
             <emphasis>
                 O(h<superscript>5</superscript>)
             </emphasis>
             .
         </para>
         <para>
-            L'erreur totale est donc 
+            L'erreur totale est donc
             <emphasis>
                 nombre de pas * O(h<superscript>5</superscript>)
             </emphasis>
-            . Et puisque par définition <emphasis>nombre de pas = taille de l'intervalle / h</emphasis>, l'erreur totale est en 
+            . Et puisque par définition <emphasis>nombre de pas = taille de l'intervalle / h</emphasis>, l'erreur totale est en
             <emphasis>
                 O(h<superscript>4</superscript>)
             </emphasis>
             .
         </para>
         <para>
-            Cette analyse d'erreur a baptisé la méthode <emphasis>Runge-Kutta Implicite 4(5)</emphasis>: 
+            Cette analyse d'erreur a baptisé la méthode <emphasis>Runge-Kutta Implicite 4(5)</emphasis>:
             <emphasis>
                 O(h<superscript>5</superscript>)
             </emphasis>
-            par pas, 
+            par pas,
             <emphasis>
                 O(h<superscript>4</superscript>)
             </emphasis>
             au total.
         </para>
         <para>
-            Bien que le solveur fonctionne bien pour <link linkend="Simulatemenu_Menu_entries">max step size</link> jusqu'à 
+            Bien que le solveur fonctionne bien pour <link linkend="Simulatemenu_Menu_entries">max step size</link> jusqu'à
             <emphasis>
                 10<superscript>-3</superscript>
             </emphasis>
-            , es erreurs d'arrondi surviennent parfois quand l'on approche 
+            , es erreurs d'arrondi surviennent parfois quand l'on approche
             <emphasis>
                 4*10<superscript>-4</superscript>
             </emphasis>

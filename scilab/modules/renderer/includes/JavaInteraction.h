@@ -28,7 +28,7 @@ extern "C" {
     /**
      * Start interactive zoom on given figure
      */
-    RENDERER_IMPEXP void startInteractiveZoom(char *pstObjUID);
+    RENDERER_IMPEXP void startInteractiveZoom(int iObjUID);
 
     /**
      * Call rubber box on a figure
@@ -36,8 +36,8 @@ extern "C" {
      * @param intialRect if not null, specify the initial rectangle to use
      * @return [usedButton x y z l L h]
      */
-    RENDERER_IMPEXP double *javaClickRubberBox(char *pstObjUID, double *initialRect, int iRectSize);
-    RENDERER_IMPEXP double *javaDragRubberBox(char *pstObjUID);
+    RENDERER_IMPEXP double *javaClickRubberBox(int iObjUID, double *initialRect, int iRectSize);
+    RENDERER_IMPEXP double *javaDragRubberBox(int iObjUID);
 
 #ifdef __cplusplus
 }

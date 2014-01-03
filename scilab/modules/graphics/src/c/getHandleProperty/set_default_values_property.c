@@ -31,7 +31,7 @@
 #include "AxesModel.h"
 
 /*------------------------------------------------------------------------*/
-int set_default_values_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_default_values_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     if (valueType != sci_matrix)
     {
@@ -45,16 +45,16 @@ int set_default_values_property(void* _pvCtx, char* pobjUID, void* _pvData, int 
         return SET_PROPERTY_ERROR;
     }
 
-    if ((pobjUID != NULL) && isFigureModel(pobjUID))
+    if ((iObjUID != 0) && isFigureModel(iObjUID))
     {
-        InitFigureModel(pobjUID);
+        InitFigureModel(iObjUID);
         return SET_PROPERTY_SUCCEED;
     }
-    else if ((pobjUID != NULL) && isAxesModel(pobjUID))
+    else if ((iObjUID != 0) && isAxesModel(iObjUID))
     {
         return InitAxesModel();
     }
-    else if (pobjUID == NULL)
+    else if (iObjUID == 0)
     {
         /* set default values for current figure */
         return sciSetDefaultValues();

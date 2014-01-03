@@ -10,6 +10,13 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
+#ifdef _MSC_VER
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
+#include <stdio.h>
+
 #include "gw_core.h"
 #include "stack-c.h"
 #include "MALLOC.h"
@@ -18,6 +25,7 @@
 #include "localization.h"
 #include "stackinfo.h"
 #include "Scierror.h"
+#include "sciprint.h"
 #include "dynamic_parallel.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(adjuststacksize) ();
@@ -245,28 +253,20 @@ static int setStacksizeMax(char *fname)
     if (maxmemfree <= backupSize)
     {
         LhsVar(1) = 0;
-        C2F(putlhsvar) ();
+        PutLhsVar();
         return 0;
     }
 
     /* we do a stacksize('min') */
     if (setStacksizeMin(fname) == 0)
     {
-        unsigned long memmaxavailablebyscilab = get_max_memory_for_scilab_stack();
-        unsigned long newMemSizeMax = maxmemfree;
-        int errCode;
-
-        if (memmaxavailablebyscilab < newMemSizeMax)
+        int errCode = 0;
+        if (maxmemfree < MIN_STACKSIZE)
         {
-            newMemSizeMax = memmaxavailablebyscilab;
+            maxmemfree = MIN_STACKSIZE;
         }
 
-        if (newMemSizeMax < MIN_STACKSIZE)
-        {
-            newMemSizeMax = MIN_STACKSIZE;
-        }
-
-        errCode = setStacksize(newMemSizeMax);
+        errCode = setStacksize(maxmemfree);
         if (errCode != 0)
         {
             setStacksize(backupSize);
@@ -311,15 +311,19 @@ static int setStacksize(unsigned long newsize)
                     C2F(adjuststacksize) (&newsize, &ptr);
                     return 0;
                 }
+                //sciprint("  malloc error\n");
                 return -3;      /* We haven't been able to create (or resize) the stack (probably a malloc error */
             }
             /* Not possible to assign that amount of memory */
+            //sciprint("  Not Enough Minerals !\n");
             return -1;
         }
         /* Trying to create a too small stack */
+        //sciprint("  < MIN_STACKSIZE\n");
         return -2;
     }
     /* Set the stacksize to the same size... No need to do anything */
+    //sciprint("  same size\n");
     return 0;
 }
 

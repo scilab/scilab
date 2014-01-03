@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "nohistory_browser module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "nohistory_browser module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "nohistory_browser.dll"
             VALUE "ProductName", " nohistory_browser"
             VALUE "ProductVersion", "6, 0, 0, 0"

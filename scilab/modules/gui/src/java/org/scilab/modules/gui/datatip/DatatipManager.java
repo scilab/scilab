@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -27,14 +27,14 @@ import java.util.Map;
 
 public class DatatipManager {
 
-    private static Map<String, DatatipManagerMode> allDatatipManagers = new HashMap<String, DatatipManagerMode>();
+    private static Map<Integer, DatatipManagerMode> allDatatipManagers = new HashMap<Integer, DatatipManagerMode>();
 
     /**
      * Create an DatatipManagerMode and put it on the map.
      * @param figureUid Figure which the DatatipManagerMode belongs.
      * @return The created DatatipManagerMode instance.
      */
-    public static DatatipManagerMode newDatatipManagerMode(String figureUid) {
+    public static DatatipManagerMode newDatatipManagerMode(int figureUid) {
         DatatipManagerMode tipManagerMode = new DatatipManagerMode();
         tipManagerMode.setFigure(figureUid);
         allDatatipManagers.put(figureUid, tipManagerMode);
@@ -45,7 +45,7 @@ public class DatatipManager {
      * Enables the DatatipManagerMode which belongs to the given figure uid.
      * @param figureUid Figure wich the editor belongs.
      */
-    public static void setEnabled(String uid, boolean b) {
+    public static void setEnabled(int uid, boolean b) {
         DatatipManagerMode tipManagerMode = allDatatipManagers.get(uid);
         if (tipManagerMode != null) {
             tipManagerMode.setEnabled(b);
@@ -53,7 +53,7 @@ public class DatatipManager {
     }
 
 
-    public static boolean isEnabled(String uid) {
+    public static boolean isEnabled(int uid) {
         DatatipManagerMode tipManagerMode = allDatatipManagers.get(uid);
         if (tipManagerMode != null) {
             return tipManagerMode.isEnabled();
@@ -61,15 +61,15 @@ public class DatatipManager {
         return false;
     }
 
-    public static String getSelected(String uid) {
+    public static int getSelected(int uid) {
         DatatipManagerMode tipManagerMode = allDatatipManagers.get(uid);
         if (tipManagerMode != null) {
             return tipManagerMode.getSelectedTip();
         }
-        return null;
+        return 0;
     }
 
-    public static void setSelected(String figureUid, String tipUid) {
+    public static void setSelected(int figureUid, int tipUid) {
         DatatipManagerMode tipManagerMode = allDatatipManagers.get(figureUid);
         if (tipManagerMode != null) {
             tipManagerMode.setSelectedTip(tipUid);
@@ -80,7 +80,7 @@ public class DatatipManager {
     /**
      * Remove the DatatipManagerMode from the map.
      */
-    public static void deleteDatatipManager(String uid) {
+    public static void deleteDatatipManager(int uid) {
         allDatatipManagers.remove(uid);
     }
 
@@ -89,7 +89,7 @@ public class DatatipManager {
      * @param uid The figure uid.
      * @return The DatatipManagerMode instance.
      */
-    public static DatatipManagerMode getFromUid(String uid) {
+    public static DatatipManagerMode getFromUid(int uid) {
         return allDatatipManagers.get(uid);
     }
 }

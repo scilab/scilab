@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -40,8 +40,8 @@ BOOL isValidColor(double * color)
 
 BOOL createLight(char* fname, long long axes_handle, int type, BOOL visible, double * position, double * direction, double * ambient_color, double * diffuse_color, double * specular_color, long long * pLightHandle)
 {
-    const char * axes;
-    char * light;
+    int iAxes = 0;
+    int iLight = 0;
     int * piType = &type;
     int hType = 0;
     int * pihType = &hType;
@@ -52,11 +52,11 @@ BOOL createLight(char* fname, long long axes_handle, int type, BOOL visible, dou
         return FALSE;
     }
 
-    axes = getObjectFromHandle(axes_handle);
-    if (axes == NULL)
+    iAxes = getObjectFromHandle((long)axes_handle);
+    if (iAxes == 0)
     {
-        axes = getOrCreateDefaultSubwin();
-        if (axes == NULL)
+        iAxes = getOrCreateDefaultSubwin();
+        if (iAxes == 0)
         {
             Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
             return FALSE;
@@ -64,59 +64,55 @@ BOOL createLight(char* fname, long long axes_handle, int type, BOOL visible, dou
     }
 
     //check handle type
-    getGraphicObjectProperty(axes, __GO_TYPE__, jni_int, (void **)&pihType);
+    getGraphicObjectProperty(iAxes, __GO_TYPE__, jni_int, (void **)&pihType);
     if (hType != __GO_AXES__)
     {
         Scierror(999, _("The parent has to be a SUBWIN\n"));
         return FALSE;
     }
 
-    light = createGraphicObject(__GO_LIGHT__);
-    if (light == NULL)
+    iLight = createGraphicObject(__GO_LIGHT__);
+    if (iLight == 0)
     {
         return FALSE;
     }
 
-    setGraphicObjectProperty(light, __GO_VISIBLE__, piVisible, jni_bool, 1);
+    setGraphicObjectProperty(iLight, __GO_VISIBLE__, piVisible, jni_bool, 1);
 
     if (isValidType(type))
     {
-        setGraphicObjectProperty(light, __GO_LIGHT_TYPE__, piType, jni_int, 1);
+        setGraphicObjectProperty(iLight, __GO_LIGHT_TYPE__, piType, jni_int, 1);
     }
 
     if (position)
     {
-        setGraphicObjectProperty(light, __GO_POSITION__, position, jni_double_vector, 3);
+        setGraphicObjectProperty(iLight, __GO_POSITION__, position, jni_double_vector, 3);
     }
 
     if (direction)
     {
-        setGraphicObjectProperty(light, __GO_DIRECTION__, direction, jni_double_vector, 3);
+        setGraphicObjectProperty(iLight, __GO_DIRECTION__, direction, jni_double_vector, 3);
     }
 
     if (isValidColor(ambient_color))
     {
-        setGraphicObjectProperty(light, __GO_AMBIENTCOLOR__, ambient_color, jni_double_vector, 3);
+        setGraphicObjectProperty(iLight, __GO_AMBIENTCOLOR__, ambient_color, jni_double_vector, 3);
     }
 
     if (isValidColor(diffuse_color))
     {
-        setGraphicObjectProperty(light, __GO_DIFFUSECOLOR__, diffuse_color, jni_double_vector, 3);
+        setGraphicObjectProperty(iLight, __GO_DIFFUSECOLOR__, diffuse_color, jni_double_vector, 3);
     }
 
     if (isValidColor(specular_color))
     {
-        setGraphicObjectProperty(light, __GO_SPECULARCOLOR__, specular_color, jni_double_vector, 3);
+        setGraphicObjectProperty(iLight, __GO_SPECULARCOLOR__, specular_color, jni_double_vector, 3);
     }
 
     //return handle
-    *pLightHandle = getHandle(light);
+    *pLightHandle = getHandle(iLight);
 
     //set light as child of axes
-    setGraphicObjectRelationship(axes, light);
-
-    //release memory
-    releaseGraphicObjectProperty(__GO_PARENT__, light, jni_string, 1);
-
+    setGraphicObjectRelationship(iAxes, iLight);
     return TRUE;
 }

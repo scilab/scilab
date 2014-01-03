@@ -170,8 +170,9 @@ LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscihelptools_algo_la_LIBADD =
 am__libscihelptools_algo_la_SOURCES_DIST = src/jni/BuildDocObject.cpp \
 	src/jni/SciDocMain.cpp
-@BUILD_HELP_TRUE@@GUI_TRUE@am__objects_1 = libscihelptools_algo_la-BuildDocObject.lo \
-@BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools_algo_la-SciDocMain.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+@BUILD_HELP_TRUE@@GUI_TRUE@am__objects_1 = src/jni/libscihelptools_algo_la-BuildDocObject.lo \
+@BUILD_HELP_TRUE@@GUI_TRUE@	src/jni/libscihelptools_algo_la-SciDocMain.lo
 @BUILD_HELP_TRUE@@GUI_TRUE@am_libscihelptools_algo_la_OBJECTS =  \
 @BUILD_HELP_TRUE@@GUI_TRUE@	$(am__objects_1)
 libscihelptools_algo_la_OBJECTS =  \
@@ -184,20 +185,19 @@ am__v_lt_1 =
 libscihelptools_disable_la_LIBADD =
 am__libscihelptools_disable_la_SOURCES_DIST =  \
 	sci_gateway/nogui/nogui.cpp
-@BUILD_HELP_TRUE@@GUI_TRUE@am__objects_2 = libscihelptools_disable_la-nogui.lo
+@BUILD_HELP_TRUE@@GUI_TRUE@am__objects_2 = sci_gateway/nogui/libscihelptools_disable_la-nogui.lo
 am_libscihelptools_disable_la_OBJECTS = $(am__objects_2)
 libscihelptools_disable_la_OBJECTS =  \
 	$(am_libscihelptools_disable_la_OBJECTS)
 @BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_la_DEPENDENCIES =  \
 @BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools-algo.la
 am__libscihelptools_la_SOURCES_DIST = sci_gateway/c/gw_helptools.c \
-	sci_gateway/nogui/nogui.cpp sci_gateway/cpp/sci_buildDocv2.cpp
-@BUILD_HELP_TRUE@@GUI_TRUE@am__objects_3 =  \
-@BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools_la-gw_helptools.lo
-@BUILD_HELP_FALSE@@GUI_TRUE@am__objects_4 =  \
-@BUILD_HELP_FALSE@@GUI_TRUE@	libscihelptools_la-nogui.lo
-@BUILD_HELP_TRUE@@GUI_TRUE@am__objects_4 = libscihelptools_la-sci_buildDocv2.lo
-@GUI_FALSE@am__objects_4 = libscihelptools_la-nogui.lo
+	sci_gateway/nogui/nogui.cpp sci_gateway/cpp/sci_buildDoc.cpp
+@BUILD_HELP_TRUE@@GUI_TRUE@am__objects_3 = sci_gateway/c/libscihelptools_la-gw_helptools.lo
+@BUILD_HELP_FALSE@@GUI_TRUE@am__objects_4 = sci_gateway/nogui/libscihelptools_la-nogui.lo
+@BUILD_HELP_TRUE@@GUI_TRUE@am__objects_4 = sci_gateway/cpp/libscihelptools_la-sci_buildDoc.lo
+@GUI_FALSE@am__objects_4 =  \
+@GUI_FALSE@	sci_gateway/nogui/libscihelptools_la-nogui.lo
 am_libscihelptools_la_OBJECTS = $(am__objects_3) $(am__objects_4)
 libscihelptools_la_OBJECTS = $(am_libscihelptools_la_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -338,6 +338,7 @@ DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
+ECJ = @ECJ@
 EGREP = @EGREP@
 EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
@@ -572,7 +573,7 @@ yacc_present = @yacc_present@
 
 @BUILD_HELP_TRUE@@GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_helptools.c
 @BUILD_HELP_FALSE@@GUI_TRUE@GATEWAY_CXX_SOURCES = sci_gateway/nogui/nogui.cpp
-@BUILD_HELP_TRUE@@GUI_TRUE@GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_buildDocv2.cpp
+@BUILD_HELP_TRUE@@GUI_TRUE@GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp
 @GUI_FALSE@GATEWAY_CXX_SOURCES = sci_gateway/nogui/nogui.cpp
 @BUILD_HELP_TRUE@@GUI_TRUE@GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml \
 @BUILD_HELP_TRUE@@GUI_TRUE@	src/jni/BuildDocObjectv2.giws.xml
@@ -821,118 +822,176 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/jni/$(am__dirstamp):
+	@$(MKDIR_P) src/jni
+	@: > src/jni/$(am__dirstamp)
+src/jni/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/jni/$(DEPDIR)
+	@: > src/jni/$(DEPDIR)/$(am__dirstamp)
+src/jni/libscihelptools_algo_la-BuildDocObject.lo:  \
+	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
+src/jni/libscihelptools_algo_la-SciDocMain.lo:  \
+	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
 
 libscihelptools-algo.la: $(libscihelptools_algo_la_OBJECTS) $(libscihelptools_algo_la_DEPENDENCIES) $(EXTRA_libscihelptools_algo_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libscihelptools_algo_la_rpath) $(libscihelptools_algo_la_OBJECTS) $(libscihelptools_algo_la_LIBADD) $(LIBS)
+sci_gateway/nogui/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/nogui
+	@: > sci_gateway/nogui/$(am__dirstamp)
+sci_gateway/nogui/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/nogui/$(DEPDIR)
+	@: > sci_gateway/nogui/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/nogui/libscihelptools_disable_la-nogui.lo:  \
+	sci_gateway/nogui/$(am__dirstamp) \
+	sci_gateway/nogui/$(DEPDIR)/$(am__dirstamp)
 
 libscihelptools-disable.la: $(libscihelptools_disable_la_OBJECTS) $(libscihelptools_disable_la_DEPENDENCIES) $(EXTRA_libscihelptools_disable_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) -rpath $(pkglibdir) $(libscihelptools_disable_la_OBJECTS) $(libscihelptools_disable_la_LIBADD) $(LIBS)
+sci_gateway/c/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c
+	@: > sci_gateway/c/$(am__dirstamp)
+sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
+	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscihelptools_la-gw_helptools.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/nogui/libscihelptools_la-nogui.lo:  \
+	sci_gateway/nogui/$(am__dirstamp) \
+	sci_gateway/nogui/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/cpp
+	@: > sci_gateway/cpp/$(am__dirstamp)
+sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/cpp/$(DEPDIR)
+	@: > sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscihelptools_la-sci_buildDoc.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscihelptools.la: $(libscihelptools_la_OBJECTS) $(libscihelptools_la_DEPENDENCIES) $(EXTRA_libscihelptools_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) -rpath $(pkglibdir) $(libscihelptools_la_OBJECTS) $(libscihelptools_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f sci_gateway/c/*.$(OBJEXT)
+	-rm -f sci_gateway/c/*.lo
+	-rm -f sci_gateway/cpp/*.$(OBJEXT)
+	-rm -f sci_gateway/cpp/*.lo
+	-rm -f sci_gateway/nogui/*.$(OBJEXT)
+	-rm -f sci_gateway/nogui/*.lo
+	-rm -f src/jni/*.$(OBJEXT)
+	-rm -f src/jni/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_algo_la-BuildDocObject.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_algo_la-SciDocMain.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_disable_la-nogui.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_la-gw_helptools.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_la-nogui.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_la-sci_buildDocv2.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscihelptools_la-gw_helptools.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscihelptools_la-sci_buildDoc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/nogui/$(DEPDIR)/libscihelptools_disable_la-nogui.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/nogui/$(DEPDIR)/libscihelptools_la-nogui.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscihelptools_algo_la-BuildDocObject.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscihelptools_algo_la-SciDocMain.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libscihelptools_la-gw_helptools.lo: sci_gateway/c/gw_helptools.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscihelptools_la-gw_helptools.lo -MD -MP -MF $(DEPDIR)/libscihelptools_la-gw_helptools.Tpo -c -o libscihelptools_la-gw_helptools.lo `test -f 'sci_gateway/c/gw_helptools.c' || echo '$(srcdir)/'`sci_gateway/c/gw_helptools.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscihelptools_la-gw_helptools.Tpo $(DEPDIR)/libscihelptools_la-gw_helptools.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_helptools.c' object='libscihelptools_la-gw_helptools.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscihelptools_la-gw_helptools.lo: sci_gateway/c/gw_helptools.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscihelptools_la-gw_helptools.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscihelptools_la-gw_helptools.Tpo -c -o sci_gateway/c/libscihelptools_la-gw_helptools.lo `test -f 'sci_gateway/c/gw_helptools.c' || echo '$(srcdir)/'`sci_gateway/c/gw_helptools.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscihelptools_la-gw_helptools.Tpo sci_gateway/c/$(DEPDIR)/libscihelptools_la-gw_helptools.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_helptools.c' object='sci_gateway/c/libscihelptools_la-gw_helptools.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscihelptools_la-gw_helptools.lo `test -f 'sci_gateway/c/gw_helptools.c' || echo '$(srcdir)/'`sci_gateway/c/gw_helptools.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscihelptools_la-gw_helptools.lo `test -f 'sci_gateway/c/gw_helptools.c' || echo '$(srcdir)/'`sci_gateway/c/gw_helptools.c
 
 .cpp.o:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .cpp.lo:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
-libscihelptools_algo_la-BuildDocObject.lo: src/jni/BuildDocObject.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihelptools_algo_la-BuildDocObject.lo -MD -MP -MF $(DEPDIR)/libscihelptools_algo_la-BuildDocObject.Tpo -c -o libscihelptools_algo_la-BuildDocObject.lo `test -f 'src/jni/BuildDocObject.cpp' || echo '$(srcdir)/'`src/jni/BuildDocObject.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscihelptools_algo_la-BuildDocObject.Tpo $(DEPDIR)/libscihelptools_algo_la-BuildDocObject.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/BuildDocObject.cpp' object='libscihelptools_algo_la-BuildDocObject.lo' libtool=yes @AMDEPBACKSLASH@
+src/jni/libscihelptools_algo_la-BuildDocObject.lo: src/jni/BuildDocObject.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscihelptools_algo_la-BuildDocObject.lo -MD -MP -MF src/jni/$(DEPDIR)/libscihelptools_algo_la-BuildDocObject.Tpo -c -o src/jni/libscihelptools_algo_la-BuildDocObject.lo `test -f 'src/jni/BuildDocObject.cpp' || echo '$(srcdir)/'`src/jni/BuildDocObject.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscihelptools_algo_la-BuildDocObject.Tpo src/jni/$(DEPDIR)/libscihelptools_algo_la-BuildDocObject.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/BuildDocObject.cpp' object='src/jni/libscihelptools_algo_la-BuildDocObject.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihelptools_algo_la-BuildDocObject.lo `test -f 'src/jni/BuildDocObject.cpp' || echo '$(srcdir)/'`src/jni/BuildDocObject.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscihelptools_algo_la-BuildDocObject.lo `test -f 'src/jni/BuildDocObject.cpp' || echo '$(srcdir)/'`src/jni/BuildDocObject.cpp
 
-libscihelptools_algo_la-SciDocMain.lo: src/jni/SciDocMain.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihelptools_algo_la-SciDocMain.lo -MD -MP -MF $(DEPDIR)/libscihelptools_algo_la-SciDocMain.Tpo -c -o libscihelptools_algo_la-SciDocMain.lo `test -f 'src/jni/SciDocMain.cpp' || echo '$(srcdir)/'`src/jni/SciDocMain.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscihelptools_algo_la-SciDocMain.Tpo $(DEPDIR)/libscihelptools_algo_la-SciDocMain.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/SciDocMain.cpp' object='libscihelptools_algo_la-SciDocMain.lo' libtool=yes @AMDEPBACKSLASH@
+src/jni/libscihelptools_algo_la-SciDocMain.lo: src/jni/SciDocMain.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscihelptools_algo_la-SciDocMain.lo -MD -MP -MF src/jni/$(DEPDIR)/libscihelptools_algo_la-SciDocMain.Tpo -c -o src/jni/libscihelptools_algo_la-SciDocMain.lo `test -f 'src/jni/SciDocMain.cpp' || echo '$(srcdir)/'`src/jni/SciDocMain.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscihelptools_algo_la-SciDocMain.Tpo src/jni/$(DEPDIR)/libscihelptools_algo_la-SciDocMain.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/SciDocMain.cpp' object='src/jni/libscihelptools_algo_la-SciDocMain.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihelptools_algo_la-SciDocMain.lo `test -f 'src/jni/SciDocMain.cpp' || echo '$(srcdir)/'`src/jni/SciDocMain.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscihelptools_algo_la-SciDocMain.lo `test -f 'src/jni/SciDocMain.cpp' || echo '$(srcdir)/'`src/jni/SciDocMain.cpp
 
-libscihelptools_disable_la-nogui.lo: sci_gateway/nogui/nogui.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihelptools_disable_la-nogui.lo -MD -MP -MF $(DEPDIR)/libscihelptools_disable_la-nogui.Tpo -c -o libscihelptools_disable_la-nogui.lo `test -f 'sci_gateway/nogui/nogui.cpp' || echo '$(srcdir)/'`sci_gateway/nogui/nogui.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscihelptools_disable_la-nogui.Tpo $(DEPDIR)/libscihelptools_disable_la-nogui.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/nogui/nogui.cpp' object='libscihelptools_disable_la-nogui.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/nogui/libscihelptools_disable_la-nogui.lo: sci_gateway/nogui/nogui.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/nogui/libscihelptools_disable_la-nogui.lo -MD -MP -MF sci_gateway/nogui/$(DEPDIR)/libscihelptools_disable_la-nogui.Tpo -c -o sci_gateway/nogui/libscihelptools_disable_la-nogui.lo `test -f 'sci_gateway/nogui/nogui.cpp' || echo '$(srcdir)/'`sci_gateway/nogui/nogui.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/nogui/$(DEPDIR)/libscihelptools_disable_la-nogui.Tpo sci_gateway/nogui/$(DEPDIR)/libscihelptools_disable_la-nogui.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/nogui/nogui.cpp' object='sci_gateway/nogui/libscihelptools_disable_la-nogui.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihelptools_disable_la-nogui.lo `test -f 'sci_gateway/nogui/nogui.cpp' || echo '$(srcdir)/'`sci_gateway/nogui/nogui.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/nogui/libscihelptools_disable_la-nogui.lo `test -f 'sci_gateway/nogui/nogui.cpp' || echo '$(srcdir)/'`sci_gateway/nogui/nogui.cpp
 
-libscihelptools_la-nogui.lo: sci_gateway/nogui/nogui.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihelptools_la-nogui.lo -MD -MP -MF $(DEPDIR)/libscihelptools_la-nogui.Tpo -c -o libscihelptools_la-nogui.lo `test -f 'sci_gateway/nogui/nogui.cpp' || echo '$(srcdir)/'`sci_gateway/nogui/nogui.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscihelptools_la-nogui.Tpo $(DEPDIR)/libscihelptools_la-nogui.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/nogui/nogui.cpp' object='libscihelptools_la-nogui.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/nogui/libscihelptools_la-nogui.lo: sci_gateway/nogui/nogui.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/nogui/libscihelptools_la-nogui.lo -MD -MP -MF sci_gateway/nogui/$(DEPDIR)/libscihelptools_la-nogui.Tpo -c -o sci_gateway/nogui/libscihelptools_la-nogui.lo `test -f 'sci_gateway/nogui/nogui.cpp' || echo '$(srcdir)/'`sci_gateway/nogui/nogui.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/nogui/$(DEPDIR)/libscihelptools_la-nogui.Tpo sci_gateway/nogui/$(DEPDIR)/libscihelptools_la-nogui.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/nogui/nogui.cpp' object='sci_gateway/nogui/libscihelptools_la-nogui.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihelptools_la-nogui.lo `test -f 'sci_gateway/nogui/nogui.cpp' || echo '$(srcdir)/'`sci_gateway/nogui/nogui.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/nogui/libscihelptools_la-nogui.lo `test -f 'sci_gateway/nogui/nogui.cpp' || echo '$(srcdir)/'`sci_gateway/nogui/nogui.cpp
 
-libscihelptools_la-sci_buildDocv2.lo: sci_gateway/cpp/sci_buildDocv2.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihelptools_la-sci_buildDocv2.lo -MD -MP -MF $(DEPDIR)/libscihelptools_la-sci_buildDocv2.Tpo -c -o libscihelptools_la-sci_buildDocv2.lo `test -f 'sci_gateway/cpp/sci_buildDocv2.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_buildDocv2.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscihelptools_la-sci_buildDocv2.Tpo $(DEPDIR)/libscihelptools_la-sci_buildDocv2.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_buildDocv2.cpp' object='libscihelptools_la-sci_buildDocv2.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscihelptools_la-sci_buildDoc.lo: sci_gateway/cpp/sci_buildDoc.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscihelptools_la-sci_buildDoc.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscihelptools_la-sci_buildDoc.Tpo -c -o sci_gateway/cpp/libscihelptools_la-sci_buildDoc.lo `test -f 'sci_gateway/cpp/sci_buildDoc.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_buildDoc.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscihelptools_la-sci_buildDoc.Tpo sci_gateway/cpp/$(DEPDIR)/libscihelptools_la-sci_buildDoc.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_buildDoc.cpp' object='sci_gateway/cpp/libscihelptools_la-sci_buildDoc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihelptools_la-sci_buildDocv2.lo `test -f 'sci_gateway/cpp/sci_buildDocv2.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_buildDocv2.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscihelptools_la-sci_buildDoc.lo `test -f 'sci_gateway/cpp/sci_buildDoc.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_buildDoc.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
+	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
+	-rm -rf sci_gateway/nogui/.libs sci_gateway/nogui/_libs
+	-rm -rf src/jni/.libs src/jni/_libs
 install-libscihelptools_la_data_configurationDATA: $(libscihelptools_la_data_configuration_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libscihelptools_la_data_configuration_DATA)'; test -n "$(libscihelptools_la_data_configurationdir)" || list=; \
@@ -1241,6 +1300,14 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/c/$(am__dirstamp)
+	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/cpp/$(am__dirstamp)
+	-rm -f sci_gateway/nogui/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/nogui/$(am__dirstamp)
+	-rm -f src/jni/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/jni/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1252,7 +1319,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) sci_gateway/nogui/$(DEPDIR) src/jni/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1307,7 +1374,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) sci_gateway/nogui/$(DEPDIR) src/jni/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -1431,11 +1498,17 @@ check-code:
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
-@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/; \
+@GIWS_TRUE@	MANDATORY_OPTIONS="--throws-exception-on-error --description-file"; \
 @GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
+@GIWS_TRUE@			if test -z "$(GIWS_OPTIONS)"; then \
+@GIWS_TRUE@				$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR $$MANDATORY_OPTIONS $$file; \
+@GIWS_TRUE@			else \
+@GIWS_TRUE@				echo "Custom GIWS call with '$$GIWS_OPTIONS'"; \
+@GIWS_TRUE@				$(GIWS_BIN) $$GIWS_OPTIONS --output-dir $$GIWS_OUTPUTDIR $$MANDATORY_OPTIONS $$file; \
+@GIWS_TRUE@			fi \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 

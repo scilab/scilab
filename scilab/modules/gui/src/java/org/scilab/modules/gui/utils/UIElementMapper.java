@@ -26,29 +26,9 @@ import org.scilab.modules.gui.uielement.UIElement;
 public final class UIElementMapper {
 
     /**
-     * HashMap associated to this mapper
-     */
-    private static class UIElementMap extends HashMap<Integer, UIElement> {
-
-        private static final long serialVersionUID = 1L;
-
-        /**
-         * Default Constructor
-         */
-        public UIElementMap() {
-            super();
-        }
-    }
-
-    /**
-     * ID for an UIElement which in not yet in the UIElementMapper (not yet created)
-     */
-    private static final int DEFAULT_UIELEMENT_ID = -1;
-
-    /**
      * The hashmap containing the mapping between UIElement id (int) and UIElement
      */
-    private static UIElementMap mapper = new UIElementMap();
+    private static HashMap<Integer, UIElement> mapper = new HashMap<Integer, UIElement>();
 
     /**
      * The highest Id already used to map an UIElement
@@ -56,24 +36,10 @@ public final class UIElementMapper {
     private static int maxId;
 
     /**
-     * The ID of the tab which contains the console (known as root object or 0 from Scilab)
-     */
-    private static int consoleId;
-
-    /**
      * Default constructor
      * This is a utility class, there should not be any instance
      */
     private UIElementMapper() {	}
-
-    /**
-     * Add a new mapping between a UIElement and its Id
-     * @param uielementId id of the UIElement
-     * @param uielement corresponding UIelement
-     */
-    public static void addMapping(int uielementId, UIElement uielement) {
-        mapper.put(uielementId, uielement);
-    }
 
     /**
      * Add a new UIElement
@@ -101,46 +67,5 @@ public final class UIElementMapper {
      */
     public static UIElement getCorrespondingUIElement(int uielementId) {
         return mapper.get(uielementId);
-    }
-
-    /**
-     * Returns true if the UIElement already exists in the hashmap
-     * @param uielement UIElement object to be searched
-     * @return true if the figure already exists in the hashmap, false otherwise
-     */
-    public static boolean containsUIElement(UIElement uielement) {
-        return mapper.containsValue(uielement);
-    }
-
-    /**
-     * Returns true if the figure already exists in the hashmap
-     * @return last Id associated to an UIElement
-     */
-    public static int getMaxId() {
-        return maxId;
-    }
-
-    /**
-     * Get the default id for an UIElement
-     * @return the id for a not created UIElement (not in the UIElementMapper)
-     */
-    public static int getDefaultId() {
-        return DEFAULT_UIELEMENT_ID;
-    }
-
-    /**
-     * Set the console id for current Scilab sessions
-     * @param id the id of the tab which contains the console
-     */
-    public static void setConsoleId(int id) {
-        consoleId = id;
-    }
-
-    /**
-     * Get the console id for current Scilab sessions
-     * @return id the id of the tab which contains the console
-     */
-    public static int getConsoleId() {
-        return consoleId;
     }
 }

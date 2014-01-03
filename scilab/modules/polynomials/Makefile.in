@@ -162,16 +162,36 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscipolynomials_algo_la_LIBADD =
-am__objects_1 = residu.lo imptra.lo dmpadj.lo impins.lo dpmul1.lo \
-	wprxc.lo dmpcnc.lo wmpmu.lo mpinsp.lo impext.lo recbez.lo \
-	sfact1.lo dpodiv.lo dmptra.lo dmpins.lo dpsimp.lo dmp2pm.lo \
-	dmpext.lo wpmul.lo bezstp.lo wmpad.lo dprxc.lo quadsd.lo \
-	wmpadj.lo dmpmu.lo wpmul1.lo wmpcnc.lo mptri.lo horner.lo \
-	idegre.lo fxshfr.lo mpdiag.lo dmpcle.lo rpoly.lo wpodiv.lo \
-	wdmpmu.lo wmptra.lo wmpins.lo mpdegr.lo ddmpev.lo realit.lo \
-	dpmul.lo sfact2.lo dmpad.lo nextk.lo blktit.lo dimin.lo \
-	newest.lo dwmpmu.lo impcnc.lo wdmpad.lo wmpcle.lo quadit.lo \
-	quad.lo calcsc.lo writebufsfact.lo chkvar.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+am__objects_1 = src/fortran/residu.lo src/fortran/imptra.lo \
+	src/fortran/dmpadj.lo src/fortran/impins.lo \
+	src/fortran/dpmul1.lo src/fortran/wprxc.lo \
+	src/fortran/dmpcnc.lo src/fortran/wmpmu.lo \
+	src/fortran/mpinsp.lo src/fortran/impext.lo \
+	src/fortran/recbez.lo src/fortran/sfact1.lo \
+	src/fortran/dpodiv.lo src/fortran/dmptra.lo \
+	src/fortran/dmpins.lo src/fortran/dpsimp.lo \
+	src/fortran/dmp2pm.lo src/fortran/dmpext.lo \
+	src/fortran/wpmul.lo src/fortran/bezstp.lo \
+	src/fortran/wmpad.lo src/fortran/dprxc.lo \
+	src/fortran/quadsd.lo src/fortran/wmpadj.lo \
+	src/fortran/dmpmu.lo src/fortran/wpmul1.lo \
+	src/fortran/wmpcnc.lo src/fortran/mptri.lo \
+	src/fortran/horner.lo src/fortran/idegre.lo \
+	src/fortran/fxshfr.lo src/fortran/mpdiag.lo \
+	src/fortran/dmpcle.lo src/fortran/rpoly.lo \
+	src/fortran/wpodiv.lo src/fortran/wdmpmu.lo \
+	src/fortran/wmptra.lo src/fortran/wmpins.lo \
+	src/fortran/mpdegr.lo src/fortran/ddmpev.lo \
+	src/fortran/realit.lo src/fortran/dpmul.lo \
+	src/fortran/sfact2.lo src/fortran/dmpad.lo \
+	src/fortran/nextk.lo src/fortran/blktit.lo \
+	src/fortran/dimin.lo src/fortran/newest.lo \
+	src/fortran/dwmpmu.lo src/fortran/impcnc.lo \
+	src/fortran/wdmpad.lo src/fortran/wmpcle.lo \
+	src/fortran/quadit.lo src/fortran/quad.lo \
+	src/fortran/calcsc.lo src/fortran/writebufsfact.lo \
+	src/fortran/chkvar.lo
 am_libscipolynomials_algo_la_OBJECTS = $(am__objects_1)
 libscipolynomials_algo_la_OBJECTS =  \
 	$(am_libscipolynomials_algo_la_OBJECTS)
@@ -182,17 +202,18 @@ am__v_lt_1 =
 @MAINTAINER_MODE_FALSE@am_libscipolynomials_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscipolynomials_algo_la_rpath =
 libscipolynomials_la_DEPENDENCIES = libscipolynomials-algo.la
-am__objects_2 = libscipolynomials_la-polynomials_gw.lo \
-	libscipolynomials_la-sci_poly.lo \
-	libscipolynomials_la-sci_varn.lo \
-	libscipolynomials_la-sci_roots.lo \
-	libscipolynomials_la-sci_degree.lo \
-	libscipolynomials_la-sci_coeff.lo \
-	libscipolynomials_la-sci_pppdiv.lo \
-	libscipolynomials_la-sci_simpMode.lo \
-	libscipolynomials_la-sci_simp.lo \
-	libscipolynomials_la-sci_sfact.lo \
-	libscipolynomials_la-sci_bezout.lo
+am__objects_2 =  \
+	sci_gateway/cpp/libscipolynomials_la-polynomials_gw.lo \
+	sci_gateway/cpp/libscipolynomials_la-sci_poly.lo \
+	sci_gateway/cpp/libscipolynomials_la-sci_varn.lo \
+	sci_gateway/cpp/libscipolynomials_la-sci_roots.lo \
+	sci_gateway/cpp/libscipolynomials_la-sci_degree.lo \
+	sci_gateway/cpp/libscipolynomials_la-sci_coeff.lo \
+	sci_gateway/cpp/libscipolynomials_la-sci_pppdiv.lo \
+	sci_gateway/cpp/libscipolynomials_la-sci_simpMode.lo \
+	sci_gateway/cpp/libscipolynomials_la-sci_simp.lo \
+	sci_gateway/cpp/libscipolynomials_la-sci_sfact.lo \
+	sci_gateway/cpp/libscipolynomials_la-sci_bezout.lo
 am_libscipolynomials_la_OBJECTS = $(am__objects_2)
 libscipolynomials_la_OBJECTS = $(am_libscipolynomials_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscipolynomials_la_rpath =
@@ -344,6 +365,7 @@ DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
+ECJ = @ECJ@
 EGREP = @EGREP@
 EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
@@ -840,128 +862,294 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/fortran/$(am__dirstamp):
+	@$(MKDIR_P) src/fortran
+	@: > src/fortran/$(am__dirstamp)
+src/fortran/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/fortran/$(DEPDIR)
+	@: > src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/residu.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/imptra.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/dmpadj.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/impins.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/dpmul1.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/wprxc.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/dmpcnc.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/wmpmu.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/mpinsp.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/impext.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/recbez.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/sfact1.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/dpodiv.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/dmptra.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/dmpins.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/dpsimp.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/dmp2pm.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/dmpext.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/wpmul.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/bezstp.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/wmpad.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/dprxc.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/quadsd.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/wmpadj.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/dmpmu.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/wpmul1.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/wmpcnc.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/mptri.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/horner.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/idegre.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/fxshfr.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/mpdiag.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/dmpcle.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/rpoly.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/wpodiv.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/wdmpmu.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/wmptra.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/wmpins.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/mpdegr.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/ddmpev.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/realit.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/dpmul.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/sfact2.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/dmpad.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/nextk.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/blktit.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/dimin.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/newest.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/dwmpmu.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/impcnc.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/wdmpad.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/wmpcle.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/quadit.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/quad.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/calcsc.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/writebufsfact.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/chkvar.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
 
 libscipolynomials-algo.la: $(libscipolynomials_algo_la_OBJECTS) $(libscipolynomials_algo_la_DEPENDENCIES) $(EXTRA_libscipolynomials_algo_la_DEPENDENCIES) 
 	$(AM_V_F77LD)$(F77LINK) $(am_libscipolynomials_algo_la_rpath) $(libscipolynomials_algo_la_OBJECTS) $(libscipolynomials_algo_la_LIBADD) $(LIBS)
+sci_gateway/cpp/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/cpp
+	@: > sci_gateway/cpp/$(am__dirstamp)
+sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/cpp/$(DEPDIR)
+	@: > sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscipolynomials_la-polynomials_gw.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscipolynomials_la-sci_poly.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscipolynomials_la-sci_varn.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscipolynomials_la-sci_roots.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscipolynomials_la-sci_degree.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscipolynomials_la-sci_coeff.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscipolynomials_la-sci_pppdiv.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscipolynomials_la-sci_simpMode.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscipolynomials_la-sci_simp.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscipolynomials_la-sci_sfact.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscipolynomials_la-sci_bezout.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscipolynomials.la: $(libscipolynomials_la_OBJECTS) $(libscipolynomials_la_DEPENDENCIES) $(EXTRA_libscipolynomials_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libscipolynomials_la_rpath) $(libscipolynomials_la_OBJECTS) $(libscipolynomials_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f sci_gateway/cpp/*.$(OBJEXT)
+	-rm -f sci_gateway/cpp/*.lo
+	-rm -f src/fortran/*.$(OBJEXT)
+	-rm -f src/fortran/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipolynomials_la-polynomials_gw.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipolynomials_la-sci_bezout.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipolynomials_la-sci_coeff.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipolynomials_la-sci_degree.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipolynomials_la-sci_poly.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipolynomials_la-sci_pppdiv.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipolynomials_la-sci_roots.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipolynomials_la-sci_sfact.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipolynomials_la-sci_simp.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipolynomials_la-sci_simpMode.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipolynomials_la-sci_varn.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-polynomials_gw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_bezout.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_coeff.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_degree.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_poly.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_pppdiv.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_roots.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_sfact.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_simp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_simpMode.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_varn.Plo@am__quote@
 
 .cpp.o:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .cpp.lo:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
-libscipolynomials_la-polynomials_gw.lo: sci_gateway/cpp/polynomials_gw.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscipolynomials_la-polynomials_gw.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-polynomials_gw.Tpo -c -o libscipolynomials_la-polynomials_gw.lo `test -f 'sci_gateway/cpp/polynomials_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/polynomials_gw.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscipolynomials_la-polynomials_gw.Tpo $(DEPDIR)/libscipolynomials_la-polynomials_gw.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/polynomials_gw.cpp' object='libscipolynomials_la-polynomials_gw.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscipolynomials_la-polynomials_gw.lo: sci_gateway/cpp/polynomials_gw.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscipolynomials_la-polynomials_gw.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-polynomials_gw.Tpo -c -o sci_gateway/cpp/libscipolynomials_la-polynomials_gw.lo `test -f 'sci_gateway/cpp/polynomials_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/polynomials_gw.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-polynomials_gw.Tpo sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-polynomials_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/polynomials_gw.cpp' object='sci_gateway/cpp/libscipolynomials_la-polynomials_gw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscipolynomials_la-polynomials_gw.lo `test -f 'sci_gateway/cpp/polynomials_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/polynomials_gw.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscipolynomials_la-polynomials_gw.lo `test -f 'sci_gateway/cpp/polynomials_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/polynomials_gw.cpp
 
-libscipolynomials_la-sci_poly.lo: sci_gateway/cpp/sci_poly.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscipolynomials_la-sci_poly.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_poly.Tpo -c -o libscipolynomials_la-sci_poly.lo `test -f 'sci_gateway/cpp/sci_poly.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_poly.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_poly.Tpo $(DEPDIR)/libscipolynomials_la-sci_poly.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_poly.cpp' object='libscipolynomials_la-sci_poly.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscipolynomials_la-sci_poly.lo: sci_gateway/cpp/sci_poly.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscipolynomials_la-sci_poly.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_poly.Tpo -c -o sci_gateway/cpp/libscipolynomials_la-sci_poly.lo `test -f 'sci_gateway/cpp/sci_poly.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_poly.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_poly.Tpo sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_poly.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_poly.cpp' object='sci_gateway/cpp/libscipolynomials_la-sci_poly.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscipolynomials_la-sci_poly.lo `test -f 'sci_gateway/cpp/sci_poly.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_poly.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscipolynomials_la-sci_poly.lo `test -f 'sci_gateway/cpp/sci_poly.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_poly.cpp
 
-libscipolynomials_la-sci_varn.lo: sci_gateway/cpp/sci_varn.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscipolynomials_la-sci_varn.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_varn.Tpo -c -o libscipolynomials_la-sci_varn.lo `test -f 'sci_gateway/cpp/sci_varn.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_varn.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_varn.Tpo $(DEPDIR)/libscipolynomials_la-sci_varn.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_varn.cpp' object='libscipolynomials_la-sci_varn.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscipolynomials_la-sci_varn.lo: sci_gateway/cpp/sci_varn.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscipolynomials_la-sci_varn.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_varn.Tpo -c -o sci_gateway/cpp/libscipolynomials_la-sci_varn.lo `test -f 'sci_gateway/cpp/sci_varn.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_varn.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_varn.Tpo sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_varn.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_varn.cpp' object='sci_gateway/cpp/libscipolynomials_la-sci_varn.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscipolynomials_la-sci_varn.lo `test -f 'sci_gateway/cpp/sci_varn.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_varn.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscipolynomials_la-sci_varn.lo `test -f 'sci_gateway/cpp/sci_varn.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_varn.cpp
 
-libscipolynomials_la-sci_roots.lo: sci_gateway/cpp/sci_roots.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscipolynomials_la-sci_roots.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_roots.Tpo -c -o libscipolynomials_la-sci_roots.lo `test -f 'sci_gateway/cpp/sci_roots.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_roots.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_roots.Tpo $(DEPDIR)/libscipolynomials_la-sci_roots.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_roots.cpp' object='libscipolynomials_la-sci_roots.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscipolynomials_la-sci_roots.lo: sci_gateway/cpp/sci_roots.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscipolynomials_la-sci_roots.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_roots.Tpo -c -o sci_gateway/cpp/libscipolynomials_la-sci_roots.lo `test -f 'sci_gateway/cpp/sci_roots.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_roots.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_roots.Tpo sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_roots.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_roots.cpp' object='sci_gateway/cpp/libscipolynomials_la-sci_roots.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscipolynomials_la-sci_roots.lo `test -f 'sci_gateway/cpp/sci_roots.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_roots.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscipolynomials_la-sci_roots.lo `test -f 'sci_gateway/cpp/sci_roots.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_roots.cpp
 
-libscipolynomials_la-sci_degree.lo: sci_gateway/cpp/sci_degree.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscipolynomials_la-sci_degree.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_degree.Tpo -c -o libscipolynomials_la-sci_degree.lo `test -f 'sci_gateway/cpp/sci_degree.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_degree.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_degree.Tpo $(DEPDIR)/libscipolynomials_la-sci_degree.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_degree.cpp' object='libscipolynomials_la-sci_degree.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscipolynomials_la-sci_degree.lo: sci_gateway/cpp/sci_degree.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscipolynomials_la-sci_degree.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_degree.Tpo -c -o sci_gateway/cpp/libscipolynomials_la-sci_degree.lo `test -f 'sci_gateway/cpp/sci_degree.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_degree.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_degree.Tpo sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_degree.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_degree.cpp' object='sci_gateway/cpp/libscipolynomials_la-sci_degree.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscipolynomials_la-sci_degree.lo `test -f 'sci_gateway/cpp/sci_degree.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_degree.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscipolynomials_la-sci_degree.lo `test -f 'sci_gateway/cpp/sci_degree.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_degree.cpp
 
-libscipolynomials_la-sci_coeff.lo: sci_gateway/cpp/sci_coeff.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscipolynomials_la-sci_coeff.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_coeff.Tpo -c -o libscipolynomials_la-sci_coeff.lo `test -f 'sci_gateway/cpp/sci_coeff.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_coeff.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_coeff.Tpo $(DEPDIR)/libscipolynomials_la-sci_coeff.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_coeff.cpp' object='libscipolynomials_la-sci_coeff.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscipolynomials_la-sci_coeff.lo: sci_gateway/cpp/sci_coeff.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscipolynomials_la-sci_coeff.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_coeff.Tpo -c -o sci_gateway/cpp/libscipolynomials_la-sci_coeff.lo `test -f 'sci_gateway/cpp/sci_coeff.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_coeff.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_coeff.Tpo sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_coeff.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_coeff.cpp' object='sci_gateway/cpp/libscipolynomials_la-sci_coeff.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscipolynomials_la-sci_coeff.lo `test -f 'sci_gateway/cpp/sci_coeff.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_coeff.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscipolynomials_la-sci_coeff.lo `test -f 'sci_gateway/cpp/sci_coeff.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_coeff.cpp
 
-libscipolynomials_la-sci_pppdiv.lo: sci_gateway/cpp/sci_pppdiv.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscipolynomials_la-sci_pppdiv.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_pppdiv.Tpo -c -o libscipolynomials_la-sci_pppdiv.lo `test -f 'sci_gateway/cpp/sci_pppdiv.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_pppdiv.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_pppdiv.Tpo $(DEPDIR)/libscipolynomials_la-sci_pppdiv.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_pppdiv.cpp' object='libscipolynomials_la-sci_pppdiv.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscipolynomials_la-sci_pppdiv.lo: sci_gateway/cpp/sci_pppdiv.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscipolynomials_la-sci_pppdiv.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_pppdiv.Tpo -c -o sci_gateway/cpp/libscipolynomials_la-sci_pppdiv.lo `test -f 'sci_gateway/cpp/sci_pppdiv.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_pppdiv.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_pppdiv.Tpo sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_pppdiv.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_pppdiv.cpp' object='sci_gateway/cpp/libscipolynomials_la-sci_pppdiv.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscipolynomials_la-sci_pppdiv.lo `test -f 'sci_gateway/cpp/sci_pppdiv.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_pppdiv.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscipolynomials_la-sci_pppdiv.lo `test -f 'sci_gateway/cpp/sci_pppdiv.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_pppdiv.cpp
 
-libscipolynomials_la-sci_simpMode.lo: sci_gateway/cpp/sci_simpMode.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscipolynomials_la-sci_simpMode.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_simpMode.Tpo -c -o libscipolynomials_la-sci_simpMode.lo `test -f 'sci_gateway/cpp/sci_simpMode.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_simpMode.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_simpMode.Tpo $(DEPDIR)/libscipolynomials_la-sci_simpMode.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_simpMode.cpp' object='libscipolynomials_la-sci_simpMode.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscipolynomials_la-sci_simpMode.lo: sci_gateway/cpp/sci_simpMode.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscipolynomials_la-sci_simpMode.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_simpMode.Tpo -c -o sci_gateway/cpp/libscipolynomials_la-sci_simpMode.lo `test -f 'sci_gateway/cpp/sci_simpMode.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_simpMode.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_simpMode.Tpo sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_simpMode.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_simpMode.cpp' object='sci_gateway/cpp/libscipolynomials_la-sci_simpMode.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscipolynomials_la-sci_simpMode.lo `test -f 'sci_gateway/cpp/sci_simpMode.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_simpMode.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscipolynomials_la-sci_simpMode.lo `test -f 'sci_gateway/cpp/sci_simpMode.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_simpMode.cpp
 
-libscipolynomials_la-sci_simp.lo: sci_gateway/cpp/sci_simp.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscipolynomials_la-sci_simp.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_simp.Tpo -c -o libscipolynomials_la-sci_simp.lo `test -f 'sci_gateway/cpp/sci_simp.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_simp.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_simp.Tpo $(DEPDIR)/libscipolynomials_la-sci_simp.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_simp.cpp' object='libscipolynomials_la-sci_simp.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscipolynomials_la-sci_simp.lo: sci_gateway/cpp/sci_simp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscipolynomials_la-sci_simp.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_simp.Tpo -c -o sci_gateway/cpp/libscipolynomials_la-sci_simp.lo `test -f 'sci_gateway/cpp/sci_simp.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_simp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_simp.Tpo sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_simp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_simp.cpp' object='sci_gateway/cpp/libscipolynomials_la-sci_simp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscipolynomials_la-sci_simp.lo `test -f 'sci_gateway/cpp/sci_simp.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_simp.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscipolynomials_la-sci_simp.lo `test -f 'sci_gateway/cpp/sci_simp.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_simp.cpp
 
-libscipolynomials_la-sci_sfact.lo: sci_gateway/cpp/sci_sfact.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscipolynomials_la-sci_sfact.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_sfact.Tpo -c -o libscipolynomials_la-sci_sfact.lo `test -f 'sci_gateway/cpp/sci_sfact.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_sfact.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_sfact.Tpo $(DEPDIR)/libscipolynomials_la-sci_sfact.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_sfact.cpp' object='libscipolynomials_la-sci_sfact.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscipolynomials_la-sci_sfact.lo: sci_gateway/cpp/sci_sfact.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscipolynomials_la-sci_sfact.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_sfact.Tpo -c -o sci_gateway/cpp/libscipolynomials_la-sci_sfact.lo `test -f 'sci_gateway/cpp/sci_sfact.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_sfact.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_sfact.Tpo sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_sfact.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_sfact.cpp' object='sci_gateway/cpp/libscipolynomials_la-sci_sfact.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscipolynomials_la-sci_sfact.lo `test -f 'sci_gateway/cpp/sci_sfact.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_sfact.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscipolynomials_la-sci_sfact.lo `test -f 'sci_gateway/cpp/sci_sfact.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_sfact.cpp
 
-libscipolynomials_la-sci_bezout.lo: sci_gateway/cpp/sci_bezout.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscipolynomials_la-sci_bezout.lo -MD -MP -MF $(DEPDIR)/libscipolynomials_la-sci_bezout.Tpo -c -o libscipolynomials_la-sci_bezout.lo `test -f 'sci_gateway/cpp/sci_bezout.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_bezout.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscipolynomials_la-sci_bezout.Tpo $(DEPDIR)/libscipolynomials_la-sci_bezout.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_bezout.cpp' object='libscipolynomials_la-sci_bezout.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscipolynomials_la-sci_bezout.lo: sci_gateway/cpp/sci_bezout.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscipolynomials_la-sci_bezout.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_bezout.Tpo -c -o sci_gateway/cpp/libscipolynomials_la-sci_bezout.lo `test -f 'sci_gateway/cpp/sci_bezout.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_bezout.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_bezout.Tpo sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_bezout.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_bezout.cpp' object='sci_gateway/cpp/libscipolynomials_la-sci_bezout.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscipolynomials_la-sci_bezout.lo `test -f 'sci_gateway/cpp/sci_bezout.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_bezout.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscipolynomials_la-sci_bezout.lo `test -f 'sci_gateway/cpp/sci_bezout.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_bezout.cpp
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<
@@ -972,182 +1160,13 @@ libscipolynomials_la-sci_bezout.lo: sci_gateway/cpp/sci_bezout.cpp
 .f.lo:
 	$(AM_V_F77)$(LTF77COMPILE) -c -o $@ $<
 
-residu.lo: src/fortran/residu.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o residu.lo `test -f 'src/fortran/residu.f' || echo '$(srcdir)/'`src/fortran/residu.f
-
-imptra.lo: src/fortran/imptra.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o imptra.lo `test -f 'src/fortran/imptra.f' || echo '$(srcdir)/'`src/fortran/imptra.f
-
-dmpadj.lo: src/fortran/dmpadj.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmpadj.lo `test -f 'src/fortran/dmpadj.f' || echo '$(srcdir)/'`src/fortran/dmpadj.f
-
-impins.lo: src/fortran/impins.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o impins.lo `test -f 'src/fortran/impins.f' || echo '$(srcdir)/'`src/fortran/impins.f
-
-dpmul1.lo: src/fortran/dpmul1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dpmul1.lo `test -f 'src/fortran/dpmul1.f' || echo '$(srcdir)/'`src/fortran/dpmul1.f
-
-wprxc.lo: src/fortran/wprxc.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wprxc.lo `test -f 'src/fortran/wprxc.f' || echo '$(srcdir)/'`src/fortran/wprxc.f
-
-dmpcnc.lo: src/fortran/dmpcnc.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmpcnc.lo `test -f 'src/fortran/dmpcnc.f' || echo '$(srcdir)/'`src/fortran/dmpcnc.f
-
-wmpmu.lo: src/fortran/wmpmu.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wmpmu.lo `test -f 'src/fortran/wmpmu.f' || echo '$(srcdir)/'`src/fortran/wmpmu.f
-
-mpinsp.lo: src/fortran/mpinsp.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mpinsp.lo `test -f 'src/fortran/mpinsp.f' || echo '$(srcdir)/'`src/fortran/mpinsp.f
-
-impext.lo: src/fortran/impext.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o impext.lo `test -f 'src/fortran/impext.f' || echo '$(srcdir)/'`src/fortran/impext.f
-
-recbez.lo: src/fortran/recbez.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o recbez.lo `test -f 'src/fortran/recbez.f' || echo '$(srcdir)/'`src/fortran/recbez.f
-
-sfact1.lo: src/fortran/sfact1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sfact1.lo `test -f 'src/fortran/sfact1.f' || echo '$(srcdir)/'`src/fortran/sfact1.f
-
-dpodiv.lo: src/fortran/dpodiv.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dpodiv.lo `test -f 'src/fortran/dpodiv.f' || echo '$(srcdir)/'`src/fortran/dpodiv.f
-
-dmptra.lo: src/fortran/dmptra.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmptra.lo `test -f 'src/fortran/dmptra.f' || echo '$(srcdir)/'`src/fortran/dmptra.f
-
-dmpins.lo: src/fortran/dmpins.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmpins.lo `test -f 'src/fortran/dmpins.f' || echo '$(srcdir)/'`src/fortran/dmpins.f
-
-dpsimp.lo: src/fortran/dpsimp.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dpsimp.lo `test -f 'src/fortran/dpsimp.f' || echo '$(srcdir)/'`src/fortran/dpsimp.f
-
-dmp2pm.lo: src/fortran/dmp2pm.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmp2pm.lo `test -f 'src/fortran/dmp2pm.f' || echo '$(srcdir)/'`src/fortran/dmp2pm.f
-
-dmpext.lo: src/fortran/dmpext.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmpext.lo `test -f 'src/fortran/dmpext.f' || echo '$(srcdir)/'`src/fortran/dmpext.f
-
-wpmul.lo: src/fortran/wpmul.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wpmul.lo `test -f 'src/fortran/wpmul.f' || echo '$(srcdir)/'`src/fortran/wpmul.f
-
-bezstp.lo: src/fortran/bezstp.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bezstp.lo `test -f 'src/fortran/bezstp.f' || echo '$(srcdir)/'`src/fortran/bezstp.f
-
-wmpad.lo: src/fortran/wmpad.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wmpad.lo `test -f 'src/fortran/wmpad.f' || echo '$(srcdir)/'`src/fortran/wmpad.f
-
-dprxc.lo: src/fortran/dprxc.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dprxc.lo `test -f 'src/fortran/dprxc.f' || echo '$(srcdir)/'`src/fortran/dprxc.f
-
-quadsd.lo: src/fortran/quadsd.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o quadsd.lo `test -f 'src/fortran/quadsd.f' || echo '$(srcdir)/'`src/fortran/quadsd.f
-
-wmpadj.lo: src/fortran/wmpadj.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wmpadj.lo `test -f 'src/fortran/wmpadj.f' || echo '$(srcdir)/'`src/fortran/wmpadj.f
-
-dmpmu.lo: src/fortran/dmpmu.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmpmu.lo `test -f 'src/fortran/dmpmu.f' || echo '$(srcdir)/'`src/fortran/dmpmu.f
-
-wpmul1.lo: src/fortran/wpmul1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wpmul1.lo `test -f 'src/fortran/wpmul1.f' || echo '$(srcdir)/'`src/fortran/wpmul1.f
-
-wmpcnc.lo: src/fortran/wmpcnc.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wmpcnc.lo `test -f 'src/fortran/wmpcnc.f' || echo '$(srcdir)/'`src/fortran/wmpcnc.f
-
-mptri.lo: src/fortran/mptri.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mptri.lo `test -f 'src/fortran/mptri.f' || echo '$(srcdir)/'`src/fortran/mptri.f
-
-horner.lo: src/fortran/horner.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o horner.lo `test -f 'src/fortran/horner.f' || echo '$(srcdir)/'`src/fortran/horner.f
-
-idegre.lo: src/fortran/idegre.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o idegre.lo `test -f 'src/fortran/idegre.f' || echo '$(srcdir)/'`src/fortran/idegre.f
-
-fxshfr.lo: src/fortran/fxshfr.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fxshfr.lo `test -f 'src/fortran/fxshfr.f' || echo '$(srcdir)/'`src/fortran/fxshfr.f
-
-mpdiag.lo: src/fortran/mpdiag.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mpdiag.lo `test -f 'src/fortran/mpdiag.f' || echo '$(srcdir)/'`src/fortran/mpdiag.f
-
-dmpcle.lo: src/fortran/dmpcle.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmpcle.lo `test -f 'src/fortran/dmpcle.f' || echo '$(srcdir)/'`src/fortran/dmpcle.f
-
-rpoly.lo: src/fortran/rpoly.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rpoly.lo `test -f 'src/fortran/rpoly.f' || echo '$(srcdir)/'`src/fortran/rpoly.f
-
-wpodiv.lo: src/fortran/wpodiv.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wpodiv.lo `test -f 'src/fortran/wpodiv.f' || echo '$(srcdir)/'`src/fortran/wpodiv.f
-
-wdmpmu.lo: src/fortran/wdmpmu.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wdmpmu.lo `test -f 'src/fortran/wdmpmu.f' || echo '$(srcdir)/'`src/fortran/wdmpmu.f
-
-wmptra.lo: src/fortran/wmptra.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wmptra.lo `test -f 'src/fortran/wmptra.f' || echo '$(srcdir)/'`src/fortran/wmptra.f
-
-wmpins.lo: src/fortran/wmpins.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wmpins.lo `test -f 'src/fortran/wmpins.f' || echo '$(srcdir)/'`src/fortran/wmpins.f
-
-mpdegr.lo: src/fortran/mpdegr.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mpdegr.lo `test -f 'src/fortran/mpdegr.f' || echo '$(srcdir)/'`src/fortran/mpdegr.f
-
-ddmpev.lo: src/fortran/ddmpev.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ddmpev.lo `test -f 'src/fortran/ddmpev.f' || echo '$(srcdir)/'`src/fortran/ddmpev.f
-
-realit.lo: src/fortran/realit.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o realit.lo `test -f 'src/fortran/realit.f' || echo '$(srcdir)/'`src/fortran/realit.f
-
-dpmul.lo: src/fortran/dpmul.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dpmul.lo `test -f 'src/fortran/dpmul.f' || echo '$(srcdir)/'`src/fortran/dpmul.f
-
-sfact2.lo: src/fortran/sfact2.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sfact2.lo `test -f 'src/fortran/sfact2.f' || echo '$(srcdir)/'`src/fortran/sfact2.f
-
-dmpad.lo: src/fortran/dmpad.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmpad.lo `test -f 'src/fortran/dmpad.f' || echo '$(srcdir)/'`src/fortran/dmpad.f
-
-nextk.lo: src/fortran/nextk.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o nextk.lo `test -f 'src/fortran/nextk.f' || echo '$(srcdir)/'`src/fortran/nextk.f
-
-blktit.lo: src/fortran/blktit.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o blktit.lo `test -f 'src/fortran/blktit.f' || echo '$(srcdir)/'`src/fortran/blktit.f
-
-dimin.lo: src/fortran/dimin.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dimin.lo `test -f 'src/fortran/dimin.f' || echo '$(srcdir)/'`src/fortran/dimin.f
-
-newest.lo: src/fortran/newest.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o newest.lo `test -f 'src/fortran/newest.f' || echo '$(srcdir)/'`src/fortran/newest.f
-
-dwmpmu.lo: src/fortran/dwmpmu.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dwmpmu.lo `test -f 'src/fortran/dwmpmu.f' || echo '$(srcdir)/'`src/fortran/dwmpmu.f
-
-impcnc.lo: src/fortran/impcnc.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o impcnc.lo `test -f 'src/fortran/impcnc.f' || echo '$(srcdir)/'`src/fortran/impcnc.f
-
-wdmpad.lo: src/fortran/wdmpad.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wdmpad.lo `test -f 'src/fortran/wdmpad.f' || echo '$(srcdir)/'`src/fortran/wdmpad.f
-
-wmpcle.lo: src/fortran/wmpcle.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wmpcle.lo `test -f 'src/fortran/wmpcle.f' || echo '$(srcdir)/'`src/fortran/wmpcle.f
-
-quadit.lo: src/fortran/quadit.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o quadit.lo `test -f 'src/fortran/quadit.f' || echo '$(srcdir)/'`src/fortran/quadit.f
-
-quad.lo: src/fortran/quad.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o quad.lo `test -f 'src/fortran/quad.f' || echo '$(srcdir)/'`src/fortran/quad.f
-
-calcsc.lo: src/fortran/calcsc.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o calcsc.lo `test -f 'src/fortran/calcsc.f' || echo '$(srcdir)/'`src/fortran/calcsc.f
-
-writebufsfact.lo: src/fortran/writebufsfact.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o writebufsfact.lo `test -f 'src/fortran/writebufsfact.f' || echo '$(srcdir)/'`src/fortran/writebufsfact.f
-
-chkvar.lo: src/fortran/chkvar.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o chkvar.lo `test -f 'src/fortran/chkvar.f' || echo '$(srcdir)/'`src/fortran/chkvar.f
-
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
+	-rm -rf src/fortran/.libs src/fortran/_libs
 install-libscipolynomials_la_etcDATA: $(libscipolynomials_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libscipolynomials_la_etc_DATA)'; test -n "$(libscipolynomials_la_etcdir)" || list=; \
@@ -1328,6 +1347,10 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/cpp/$(am__dirstamp)
+	-rm -f src/fortran/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/fortran/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1338,7 +1361,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/cpp/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1387,7 +1410,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/cpp/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -1489,11 +1512,17 @@ check-code:
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
-@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/; \
+@GIWS_TRUE@	MANDATORY_OPTIONS="--throws-exception-on-error --description-file"; \
 @GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
+@GIWS_TRUE@			if test -z "$(GIWS_OPTIONS)"; then \
+@GIWS_TRUE@				$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR $$MANDATORY_OPTIONS $$file; \
+@GIWS_TRUE@			else \
+@GIWS_TRUE@				echo "Custom GIWS call with '$$GIWS_OPTIONS'"; \
+@GIWS_TRUE@				$(GIWS_BIN) $$GIWS_OPTIONS --output-dir $$GIWS_OUTPUTDIR $$MANDATORY_OPTIONS $$file; \
+@GIWS_TRUE@			fi \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 

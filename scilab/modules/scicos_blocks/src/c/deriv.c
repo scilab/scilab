@@ -28,18 +28,18 @@
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void deriv(scicos_block *block, int flag)
 {
+    double** work = (double**) block->work;
     double* rw = NULL;
     double t = 0., dt = 0.;
     int i = 0;
     if (flag == 4) /* the workspace is used to store previous values */
     {
-        if ((*block->work =
-                    scicos_malloc(sizeof(double) * 2 * (1 + block->insz[0]))) == NULL )
+        if ((*work = (double*) scicos_malloc(sizeof(double) * 2 * (1 + block->insz[0]))) == NULL )
         {
             set_block_error(-16);
             return;
         }
-        rw = *block->work;
+        rw = *work;
         t = get_scicos_time();
         rw[0] = t;
         rw[1] = t;
@@ -51,11 +51,11 @@ SCICOS_BLOCKS_IMPEXP void deriv(scicos_block *block, int flag)
     }
     else  if (flag == 5)
     {
-        scicos_free(*block->work);
+        scicos_free(*work);
     }
     else  if (flag == 1)
     {
-        rw = *block->work;
+        rw = *work;
         t = get_scicos_time();
         if (t > rw[1])
         {

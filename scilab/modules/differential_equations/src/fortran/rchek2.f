@@ -1,6 +1,8 @@
       subroutine rchek2(job, g, neq, y, yh, nyh, g0, g1, gx, jroot, irt
      $     ,IWORK)
 clll. optimize
+      include 'stack.h'
+      
       external g
       integer job, neq, nyh, jroot, irt
       double precision y, yh, g0, g1, gx
@@ -24,8 +26,6 @@ cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
 cDEC$ ATTRIBUTES DLLIMPORT:: /lsr001/
       common /lsr001/ rownr3(2), t0, tlast, toutc,
      1   iownd3(3), iownr3(2), irfnd, itaskc, ngc, nge      
-      integer         iero
-      common /ierode/ iero
 c     ------------------ masking ----------------
       integer IWORK
       dimension IWORK(*)
@@ -136,7 +136,7 @@ c set t1 to tn or toutc, whichever comes first, and get g at t1. -------
       do 320 i = 1,n
  320    y(i) = yh(i,1)
  330  call g (neq, t1, y, ngc, g1)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nge = nge + 1
 
 C     Call DROOTS to search for root in interval from T0 to T1. -----------
@@ -151,7 +151,7 @@ C     Call DROOTS to search for root in interval from T0 to T1. -----------
       IF (JFLAG .GT. 1) GO TO 360
       call intdy (x, 0, yh, nyh, y, iflag)
       call g (neq, x, y, ngc, gx)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nge = nge + 1
       GO TO 350
       

@@ -30,10 +30,10 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_info_message_property(void* _pvCtx, char* pobjUID)
+void* get_info_message_property(void* _pvCtx, int iObjUID)
 {
     char *infoMessage = NULL;
-    getGraphicObjectProperty(pobjUID, __GO_INFO_MESSAGE__, jni_string, (void **)&infoMessage);
+    getGraphicObjectProperty(iObjUID, __GO_INFO_MESSAGE__, jni_string, (void **)&infoMessage);
 
     if (infoMessage == NULL)
     {

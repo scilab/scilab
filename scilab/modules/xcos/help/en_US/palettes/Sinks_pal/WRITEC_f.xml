@@ -120,10 +120,21 @@
             The file is a sequence of records. Each record has the length fixed by the parameter <emphasis role="bold">Input Size</emphasis> and the structure shown
             below:
         </para>
-        <para />
-        <mediaobject><imageobject>
-                <imagedata fileref="../../../images/sinks_pal/en_US/writec_f_record_en_US.png" align="center" />
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="../../../images/palettes/sinks_pal/en_US/writec_f_record_en_US.gif"/>
             </imageobject>
+            <textobject>
+                <programlisting role="pic"><![CDATA[
+.PS
+box "Field #1";
+box "Field #2";
+box "...";
+box "Field #(N-1)";
+box "Field #N";
+.PE
+                ]]></programlisting>
+            </textobject>
         </mediaobject>
         <para>where the block inputs are numbered from top to bottom.</para>
         <para>

@@ -50,7 +50,7 @@ int sci_xsegs(char *fname, void *pvApiCtx)
     double* zptr = NULL;
     int mx = 0, nx = 0, my = 0, ny = 0, mz = 0, nz = 0, mc = 0, nc = 0;
     const double arsize = 0.0 ; // no arrow here
-    char * psubwinUID = NULL;
+    int iSubwinUID = 0;
 
     CheckInputArgument(pvApiCtx, 2, 4);
 
@@ -218,12 +218,12 @@ int sci_xsegs(char *fname, void *pvApiCtx)
         }
     }
 
-    psubwinUID = (char*)getOrCreateDefaultSubwin();
+    iSubwinUID = getOrCreateDefaultSubwin();
 
     if (mc * nc == 0)
     {
         /* no color specified, use current color (taken from axes parent) */
-        getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piColor);
+        getGraphicObjectProperty(iSubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piColor);
 
         style = &color;
         colorFlag = 0;

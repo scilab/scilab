@@ -28,12 +28,12 @@ LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE 
+1 TEXTINCLUDE
 BEGIN
     "resource.h\0"
 END
 
-3 TEXTINCLUDE 
+3 TEXTINCLUDE
 BEGIN
     "\r\n"
     "\0"
@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "dcd library"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "dcd library for Scilab 6.x"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "dcd_f.dll"
             VALUE "ProductName", "dcd library for Scilab 6.x"
             VALUE "ProductVersion", "6, 0, 0, 0"

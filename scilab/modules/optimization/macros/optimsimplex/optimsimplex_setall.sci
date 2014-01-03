@@ -20,6 +20,12 @@
 //   simplex : the simplex to set
 //
 function this = optimsimplex_setall ( this , simplex )
+    if typeof(this) <> "TSIMPLEX" then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"), "optimsimplex_setall", 1));
+    end
+    if type(simplex) <> 1 | ~isreal(simplex) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "optimsimplex_setall", 2));
+    end
     nbve = size(simplex,1)
     np1 = size(simplex,2)
     if np1 > nbve then
@@ -31,4 +37,3 @@ function this = optimsimplex_setall ( this , simplex )
     this.fv ( 1:nbve , 1 ) = simplex ( 1:nbve , 1 )
     this.x ( 1:nbve , 1:this.n ) = simplex ( 1:nbve , 2:this.n+1 )
 endfunction
-

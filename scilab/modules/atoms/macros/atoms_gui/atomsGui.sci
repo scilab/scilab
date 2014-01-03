@@ -130,7 +130,8 @@ function atomsGui()
     "background" , -2,..
     "UserData"   , allModules, ..
     "ResizeFcn", "atomsGuiResizeFcn", ..
-    "tag"    , "atomsFigure");
+    "tag"    , "atomsFigure", ..
+    "visible", "off");
 
     // Remove Scilab graphics menus & toolbar
     // =========================================================================
@@ -376,5 +377,6 @@ function atomsGui()
     "Position"       , [2 2 msgWidth-10 msgHeight-4],..
     "Tag"        , "msgText");
 
+    atomsfig.visible = "on";
 endfunction
 

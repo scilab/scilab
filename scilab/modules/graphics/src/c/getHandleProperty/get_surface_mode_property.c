@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_surface_mode_property(void* _pvCtx, char* pobjUID)
+void* get_surface_mode_property(void* _pvCtx, int iObjUID)
 {
     int iSurfaceMode = 0;
     int *piSurfaceMode = &iSurfaceMode;
 
-    getGraphicObjectProperty(pobjUID, __GO_SURFACE_MODE__, jni_bool, (void **)&piSurfaceMode);
+    getGraphicObjectProperty(iObjUID, __GO_SURFACE_MODE__, jni_bool, (void **)&piSurfaceMode);
 
     if (piSurfaceMode == NULL)
     {

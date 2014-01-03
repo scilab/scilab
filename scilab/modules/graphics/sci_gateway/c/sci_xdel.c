@@ -38,7 +38,7 @@ int sci_xdel(char *fname, void *pvApiCtx)
     double* l1 = NULL;
 
     int m1 = 0, n1 = 0;
-    char *pstCurrentFigure = NULL;
+    int iCurrentFigure = 0;
     CheckInputArgument(pvApiCtx, -1, 1);
     if (nbInputArgument(pvApiCtx) >= 1)
     {
@@ -79,10 +79,10 @@ int sci_xdel(char *fname, void *pvApiCtx)
     }
     else
     {
-        pstCurrentFigure = (char*)getCurrentFigure();
-        if (pstCurrentFigure != NULL)
+        iCurrentFigure = getCurrentFigure();
+        if (iCurrentFigure != 0)
         {
-            deleteGraphicObject(pstCurrentFigure);
+            deleteGraphicObject(iCurrentFigure);
         }
     }
     AssignOutputVariable(pvApiCtx, 1) = 0;

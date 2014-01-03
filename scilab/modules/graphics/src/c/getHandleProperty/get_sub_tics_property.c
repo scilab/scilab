@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_sub_tics_property(void* _pvCtx, char* pobjUID)
+void* get_sub_tics_property(void* _pvCtx, int iObjUID)
 {
     int iType = -1;
     int *piType = &iType;
@@ -42,7 +42,7 @@ void* get_sub_tics_property(void* _pvCtx, char* pobjUID)
     /*Dj.A 17/12/2003*/
     /* modified jb Silvy 01/2006 */
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
     if (piType == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "type");
@@ -55,7 +55,7 @@ void* get_sub_tics_property(void* _pvCtx, char* pobjUID)
      */
     if (iType == __GO_AXIS__)
     {
-        getGraphicObjectProperty(pobjUID, __GO_SUBTICKS__, jni_int, (void**)&piSubTicks);
+        getGraphicObjectProperty(iObjUID, __GO_SUBTICKS__, jni_int, (void**)&piSubTicks);
 
         if (piSubTicks == NULL)
         {
@@ -71,7 +71,7 @@ void* get_sub_tics_property(void* _pvCtx, char* pobjUID)
         int iView = 0;
         int* piView = &iView;
 
-        getGraphicObjectProperty(pobjUID, __GO_X_AXIS_SUBTICKS__, jni_int, (void**)&piSubTicks);
+        getGraphicObjectProperty(iObjUID, __GO_X_AXIS_SUBTICKS__, jni_int, (void**)&piSubTicks);
         if (piSubTicks == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
@@ -80,7 +80,7 @@ void* get_sub_tics_property(void* _pvCtx, char* pobjUID)
 
         sub_ticks[0] = iSubTicks;
 
-        getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_SUBTICKS__, jni_int, (void**)&piSubTicks);
+        getGraphicObjectProperty(iObjUID, __GO_Y_AXIS_SUBTICKS__, jni_int, (void**)&piSubTicks);
         if (piSubTicks == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
@@ -89,7 +89,7 @@ void* get_sub_tics_property(void* _pvCtx, char* pobjUID)
 
         sub_ticks[1] = iSubTicks;
 
-        getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_SUBTICKS__, jni_int, (void**)&piSubTicks);
+        getGraphicObjectProperty(iObjUID, __GO_Z_AXIS_SUBTICKS__, jni_int, (void**)&piSubTicks);
         if (piSubTicks == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
@@ -98,7 +98,7 @@ void* get_sub_tics_property(void* _pvCtx, char* pobjUID)
 
         sub_ticks[2] = iSubTicks;
 
-        getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, (void**)&piView);
+        getGraphicObjectProperty(iObjUID, __GO_VIEW__, jni_int, (void**)&piView);
         if (piView == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "view");

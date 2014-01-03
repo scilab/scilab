@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -41,7 +41,7 @@ import java.util.LinkedList;
 public class GEDPicker {
 
     private final Double delta = 7.0;
-    private String axesUID;
+    private Integer axesUID;
     private Axes axes;
     private double Z;
 
@@ -53,18 +53,18 @@ public class GEDPicker {
      * @param position Mouse click position in pixels
      * @return Array of picked objects
      */
-    public String[] pick(String figureUID, Integer[] position) {
+    public Integer[] pick(Integer figureUID, Integer[] position) {
 
-        String[] AllObjs;
+        Integer[] AllObjs;
         boolean curObj = false;
 
         axesUID = AxesHandler.clickedAxes(figureUID, position);
         axes = AxesHandler.getAxesFromUid(axesUID);
 
         if (axes == null) {
-            return new String[] { figureUID };
+            return new Integer[] { figureUID };
         }
-        List<String> ret = new LinkedList<String>();
+        List<Integer> ret = new LinkedList<Integer>();
         AllObjs = getAllObjAsArray(axesUID);
 
         for (int i = 0; i < AllObjs.length; i++) {
@@ -117,13 +117,13 @@ public class GEDPicker {
             }
         }
         if (ret.size() > 0) {
-            return ret.toArray(new String[ret.size()]);
+            return ret.toArray(new Integer[ret.size()]);
         }
 
         if (isInsideAxes(figureUID, position)) {
-            return new String[] { axesUID };
+            return new Integer[] { axesUID };
         } else {
-            return new String[] { figureUID };
+            return new Integer[] { figureUID };
         }
     }
 
@@ -135,7 +135,7 @@ public class GEDPicker {
      * @param position Mouse click position in pixels
      * @return true if picked the polyline otherwise returns false
      */
-    boolean getPolyline(String obj, Integer[] position) {
+    boolean getPolyline(Integer obj, Integer[] position) {
 
         double[] datax = (double[])PolylineData.getDataX(obj);
         double[] datay = (double[])PolylineData.getDataY(obj);
@@ -241,22 +241,22 @@ public class GEDPicker {
     /**
      * Surface picker, given a plot3d/fac3d/grayplot/matplot object it checks if the click
      * was over it
-     * 
+     *
      * @param obj The given surface object uid
      * @param position Mouse click position in pixels
      * @return true if picked the surface otherwise returns false
      */
-    boolean getSurface(String obj, Integer[] position) {
+    boolean getSurface(Integer obj, Integer[] position) {
 
-        String figure = (String)GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        Integer figure = (Integer)GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_PARENT_FIGURE__);
         double[] mat = DrawerVisitor.getVisitor(figure).getAxesDrawer().getProjection(axesUID).getMatrix();
-	double[][] factors = axes.getScaleTranslateFactors();
+        double[][] factors = axes.getScaleTranslateFactors();
 
         Vector3d v0 = AxesDrawer.unProject(axes, new Vector3d(1.0f * position[0], 1.0f * position[1], 0.0));
         Vector3d v1 = AxesDrawer.unProject(axes, new Vector3d(1.0f * position[0], 1.0f * position[1], 1.0));
-	v0 = new Vector3d((v0.getX() - factors[1][0]) / factors[0][0], (v0.getY() - factors[1][1]) / factors[0][1], (v0.getZ() - factors[1][2]) / factors[0][2]);
-	v1 = new Vector3d((v1.getX() - factors[1][0]) / factors[0][0], (v1.getY() - factors[1][1]) / factors[0][1], (v1.getZ() - factors[1][2]) / factors[0][2]);
-	
+        v0 = new Vector3d((v0.getX() - factors[1][0]) / factors[0][0], (v0.getY() - factors[1][1]) / factors[0][1], (v0.getZ() - factors[1][2]) / factors[0][2]);
+        v1 = new Vector3d((v1.getX() - factors[1][0]) / factors[0][0], (v1.getY() - factors[1][1]) / factors[0][1], (v1.getZ() - factors[1][2]) / factors[0][2]);
+
         Vector3d Dir = v0.minus(v1).getNormalized();
         Z = 2.0;
         double curZ = SurfaceData.pickSurface(obj, v0.getX(), v0.getY(), v0.getZ(),
@@ -275,13 +275,13 @@ public class GEDPicker {
      * @param position Mouse click position in pixels
      * @return true if picked the legend otherwise returns false
      */
-    boolean getLegend(String obj, Integer[] position) {
+    boolean getLegend(Integer obj, Integer[] position) {
 
         Integer[] axesSize = {0, 0};
         Double delta;
         Double[] axesBounds = { 0., 0. }, dPosition = { 0., 0. }, legendPos = { 0., 0. }, legendBounds = { 0., 0., 0., 0. }, dimension = { 0., 0. };
 
-        String figure = (String)GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        Integer figure = (Integer)GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_PARENT_FIGURE__);
         axesSize = (Integer[])GraphicController.getController().getProperty(figure, GraphicObjectProperties.__GO_AXES_SIZE__);
         axesBounds = (Double[])GraphicController.getController().getProperty(axesUID, GraphicObjectProperties.__GO_AXES_BOUNDS__);
         legendPos = (Double[])GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_POSITION__);
@@ -307,7 +307,7 @@ public class GEDPicker {
      * @param position Mouse click position in pixels
      * @return true if picked the surface otherwise returns false
      */
-    boolean getLabel(String obj, Integer[] position) {
+    boolean getLabel(Integer obj, Integer[] position) {
 
         Double[] corners = (Double[])GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_CORNERS__);
         Double radAngle = (Double)GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_FONT_ANGLE__);
@@ -347,7 +347,7 @@ public class GEDPicker {
     * @param position Mouse click position in pixels
     * @return true if picked the arc otherwise returns false
     */
-    boolean getArc(String obj, Integer[] position) {
+    boolean getArc(Integer obj, Integer[] position) {
 
         double[] upperLeft = (double[])ObjectData.getArcUpperLeftPoint(obj);
         double[] data = (double[])ObjectData.getArcData(obj);
@@ -434,7 +434,7 @@ public class GEDPicker {
      * @param position Mouse click position in pixels
      * @return true if picked the champ otherwise returns false
      */
-    boolean getChamp(String obj, Integer[] position) {
+    boolean getChamp(Integer obj, Integer[] position) {
 
         double[] datax = (double[])ObjectData.getChampX(obj);
         double[] datay = (double[])ObjectData.getChampY(obj);
@@ -489,7 +489,7 @@ public class GEDPicker {
      * @param position Mouse click position in pixels
      * @return true if picked the fec otherwise returns false
      */
-    boolean getFec(String obj, Integer[] position) {
+    boolean getFec(Integer obj, Integer[] position) {
 
         double[] triangles = (double[])ObjectData.getFecTriangles(obj);
         double[] data = (double[])ObjectData.getFecData(obj);
@@ -570,7 +570,7 @@ public class GEDPicker {
      * @param position Mouse click position in pixels
      * @return true if picked the rectangle otherwise returns false
      */
-    boolean getRectangle(String obj, Integer[] position) {
+    boolean getRectangle(Integer obj, Integer[] position) {
 
         Double[] upperLeft = (Double[])GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_UPPER_LEFT_POINT__);
         Double height = (Double)GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_HEIGHT__);
@@ -608,7 +608,7 @@ public class GEDPicker {
      * @param position Mouse click position in pixels
      * @return true if picked the segs otherwise returns false
      */
-    boolean getSegs(String obj, Integer[] position) {
+    boolean getSegs(Integer obj, Integer[] position) {
 
         double[][] base = getAsStdMatrix((double[])ObjectData.getSegsData(obj), 1.);
         double[][] arrows = getAsStdMatrix((double[])ObjectData.getArrows(obj), 1.);
@@ -642,7 +642,7 @@ public class GEDPicker {
      * @param position Mouse click position in pixels
      * @return true if picked the datatip otherwise returns false
      */
-    boolean getDatatip(String obj, Integer[] position) {
+    boolean getDatatip(Integer obj, Integer[] position) {
 
         boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
         double[] pix_pos = {1.0 * position[0], 1.0 * position[1], 1.0};
@@ -680,7 +680,7 @@ public class GEDPicker {
         return false;
     }
 
-    boolean isInsideAxes(String figureUID, Integer[] position) {
+    boolean isInsideAxes(Integer figureUID, Integer[] position) {
         Double[] rotAngles = (Double[])GraphicController.getController().getProperty(axesUID, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
         boolean default2dView = (rotAngles[0] == 0.0 && rotAngles[1] == 270.0);
         //        if (default2dView) {
@@ -696,11 +696,11 @@ public class GEDPicker {
     }
 
 
-    void getObjects(String root, List<String> putObjs) {
+    void getObjects(Integer root, List<Integer> putObjs) {
 
         Integer count = (Integer)GraphicController.getController().getProperty(root, GraphicObjectProperties.__GO_CHILDREN_COUNT__);
         if (count > 0) {
-            String[] children = (String[])GraphicController.getController().getProperty(root, GraphicObjectProperties.__GO_CHILDREN__);
+            Integer[] children = (Integer[])GraphicController.getController().getProperty(root, GraphicObjectProperties.__GO_CHILDREN__);
             for (int i = 0; i < count; i++) {
                 putObjs.add(children[i]);
                 getObjects(children[i], putObjs);
@@ -714,11 +714,11 @@ public class GEDPicker {
      * @param root The root object uid
      * @return Array with all objects
      */
-    String[] getAllObjAsArray(String root) {
+    Integer[] getAllObjAsArray(Integer root) {
 
-        List<String> objs = new LinkedList<String>();
+        List<Integer> objs = new LinkedList<Integer>();
         getObjects(root, objs);
-        return objs.toArray(new String[objs.size()]);
+        return objs.toArray(new Integer[objs.size()]);
     }
 
     private boolean isInRange(Double x0, Double x1, Double y0, Double y1, Double x, Double y, Double xRange, Double yRange) {

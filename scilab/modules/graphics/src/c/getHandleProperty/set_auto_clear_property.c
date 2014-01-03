@@ -34,19 +34,19 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_auto_clear_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_auto_clear_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int b =  (int)FALSE;
-    char* objUID = NULL;
+    int iobjUID = 0;
 
-    if (pobjUID == NULL)
+    if (iObjUID == 0)
     {
-        objUID = (char*)getOrCreateDefaultSubwin();
+        iobjUID = getOrCreateDefaultSubwin();
     }
     else
     {
-        objUID = pobjUID;
+        iobjUID = iObjUID;
     }
 
     b = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "auto_clear");
@@ -56,7 +56,7 @@ int set_auto_clear_property(void* _pvCtx, char* pobjUID, void* _pvData, int valu
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(objUID, __GO_AUTO_CLEAR__, &b, jni_bool, 1);
+    status = setGraphicObjectProperty(iobjUID, __GO_AUTO_CLEAR__, &b, jni_bool, 1);
 
     if (status == TRUE)
     {

@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "symbolic module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "symbolic module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "symbolic.dll"
             VALUE "ProductName", "symbolic module"
             VALUE "ProductVersion", "6, 0, 0, 0"

@@ -50,7 +50,7 @@
 //#include "../../../tclsci/includes/GedManagement.h"
 
 /* get the displayed bounds of an axis */
-void sciGetDisplayedBounds(char * pSubWinUID,
+void sciGetDisplayedBounds(int iSubWinUID,
                            double      * xmin   ,
                            double      * xmax   ,
                            double      * ymin   ,
@@ -68,15 +68,14 @@ void sciGetDisplayedBounds(char * pSubWinUID,
     int iLogFlag = 0;
     int *piLogFlag = &iLogFlag;
 
-    getGraphicObjectProperty(pSubWinUID, __GO_ZOOM_ENABLED__, jni_bool, (void **)&piZoomEnabled);
-
+    getGraphicObjectProperty(iSubWinUID, __GO_ZOOM_ENABLED__, jni_bool, (void **)&piZoomEnabled);
     if (iZoomEnabled)
     {
-        getGraphicObjectProperty(pSubWinUID, __GO_ZOOM_BOX__, jni_double_vector, (void **)&bounds);
+        getGraphicObjectProperty(iSubWinUID, __GO_ZOOM_BOX__, jni_double_vector, (void **)&bounds);
     }
     else
     {
-        getGraphicObjectProperty(pSubWinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&bounds);
+        getGraphicObjectProperty(iSubWinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&bounds);
     }
 
     *xmin = bounds[0];
@@ -90,8 +89,7 @@ void sciGetDisplayedBounds(char * pSubWinUID,
      * modify  bounds and aaint  if using log scaling X axis
      *****************************************************************/
 
-    getGraphicObjectProperty(pSubWinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
-
+    getGraphicObjectProperty(iSubWinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
     if (iLogFlag == 1)
     {
         if (sciGetLogExponent(*xmin, *xmax, xmin, xmax) != 0)
@@ -104,8 +102,7 @@ void sciGetDisplayedBounds(char * pSubWinUID,
      * modify  bounds and aaint  if using log scaling Y axis
      *****************************************************************/
 
-    getGraphicObjectProperty(pSubWinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
-
+    getGraphicObjectProperty(iSubWinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
     if (iLogFlag == 1)
     {
         if (sciGetLogExponent(*ymin, *ymax, ymin, ymax) != 0)
@@ -118,8 +115,7 @@ void sciGetDisplayedBounds(char * pSubWinUID,
      * modify  bounds and aaint  if using log scaling Z axis
      *****************************************************************/
 
-    getGraphicObjectProperty(pSubWinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
-
+    getGraphicObjectProperty(iSubWinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
     if (iLogFlag == 1)
     {
         if (sciGetLogExponent(*zmin, *zmax, zmin, zmax) != 0)
@@ -127,5 +123,4 @@ void sciGetDisplayedBounds(char * pSubWinUID,
             sciprint(_("Warning: Can't use Log on Z-axis zmin is negative.\n"));
         }
     }
-
 }

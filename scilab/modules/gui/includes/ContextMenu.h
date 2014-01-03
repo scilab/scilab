@@ -21,6 +21,6 @@
  *
  * @param sciObj Scilab corresponding object
  */
-char *uiWaitContextMenu(char *pObjUID);
+char *uiWaitContextMenu(int iObjUID);
 
 #endif /* __CONTEXTMENU_H__ */

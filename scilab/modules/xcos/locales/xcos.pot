@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-09-27 17:13+0100\n"
+"Revision-Date: 2013-12-09 09:47+0100\n"
 
 # File: sci_gateway/c/gw_xcos.c, line: 56
 #, c-format
@@ -413,7 +413,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 65
-msgid "Unknowns not equals to Equations"
+msgid "Unknowns not equal to Equations"
 msgstr ""
 
 #
@@ -1950,6 +1950,163 @@ msgid "Field %s has different values."
 msgstr ""
 
 #
+# File: macros/xcos_debug_gui.sci, line: 67
+msgid "Stopped before block:"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 69
+msgid "Stopped after block:"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 71
+msgid "State derivative computation"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 72
+msgid "Regular outputs update"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 73
+msgid "States update on discrete event"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 74
+msgid "Output activation dates"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 75
+msgid "Initialization"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 76
+msgid "Ending"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 77
+msgid "ReInitialization"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 78
+msgid "Continous states properties update"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 80
+msgid "Zero crossing surfaces computation"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 81
+msgid "Residual computation"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 173
+msgid "&File"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 174
+msgid "&Tools"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 175
+msgid "&Edit"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 176
+msgid "&?"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 180
+msgid "Xcos debug"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 202
+msgid "Break point conditions"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 216
+msgid "Break on selected flags"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 264
+msgid "After call"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 264
+msgid "Before call"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 298
+msgid "After date"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 326
+msgid "On the Scilab condition above"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 355
+msgid "Current simulation state"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 397
+msgid "scs_m block path:"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 424
+msgid "Time:"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 452
+msgid "Flag:"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 483
+msgid "Next"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 498
+# File: macros/xcos_debug_gui.sci, line: 566
+msgid "End debug"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 513
+msgid "Pause"
+msgstr ""
+
+#
+# File: macros/xcos_debug_gui.sci, line: 566
+#, c-format
+msgid "Use the %s button to end the debugging"
+msgstr ""
+
+#
 # File: macros/xcos_run.sci, line: 21
 msgid "The Scicos libraries are not loaded"
 msgstr ""
@@ -1984,17 +2141,17 @@ msgid "Initialisation problem"
 msgstr ""
 
 #
-# File: macros/xcos_simulate.sci, line: 337
+# File: macros/xcos_simulate.sci, line: 336
 msgid "End problem"
 msgstr ""
 
 #
-# File: macros/xcos_simulate.sci, line: 357
+# File: macros/xcos_simulate.sci, line: 355
 msgid "Simulation problem"
 msgstr ""
 
 #
-# File: macros/xcos_simulate.sci, line: 424
+# File: macros/xcos_simulate.sci, line: 422
 msgid "Error in post_xcos_simulate: ending simulation."
 msgstr ""
 

@@ -14,12 +14,12 @@
 
 #include "GetUicontrolFontSize.hxx"
 
-void* GetUicontrolFontSize(void* _pvCtx, char *sciObjUID)
+void* GetUicontrolFontSize(void* _pvCtx, int iObjUID)
 {
     double fontSize = 0;
     double* pdblFontSize = &fontSize;
 
-    getGraphicObjectProperty(sciObjUID, __GO_UI_FONTSIZE__, jni_double, (void**) &pdblFontSize);
+    getGraphicObjectProperty(iObjUID, __GO_UI_FONTSIZE__, jni_double, (void**) &pdblFontSize);
 
     if (pdblFontSize == NULL)
     {

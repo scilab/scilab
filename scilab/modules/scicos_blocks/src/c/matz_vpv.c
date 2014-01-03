@@ -28,9 +28,15 @@
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(zgeev)();
-extern int C2F(zheev)();
-extern int C2F(dlaset)();
+extern int C2F(zgeev)(char *jobvl, char *jobvr, int *n,
+                      double *a, int *lda, double *w, double *vl,
+                      int *ldvl, double *vr, int *ldvr, double *work,
+                      int *lwork, double *rwork, int *info);
+extern int C2F(zheev)(char *jobz, char *uplo, int *n, double
+                      *a, int *lda, double *w, double *work, int *lwork,
+                      double *rwork, int *info);
+extern int C2F(dlaset)(char *uplo, int *m, int *n, double *
+                       alpha, double *beta, double *a, int *lda);
 /*--------------------------------------------------------------------------*/
 typedef struct
 {
@@ -52,6 +58,7 @@ SCICOS_BLOCKS_IMPEXP void matz_vpv(scicos_block *block, int flag)
     int i = 0, lwork = 0, lwork1 = 0, j = 0, ii = 0, ij = 0, ji = 0, rw = 0;
     int hermitien = 0;
     double l0 = 0.;
+    mat_vpv_struct** work = (mat_vpv_struct**) block->work;
     mat_vpv_struct *ptr = NULL;
 
     nu = GetInPortRows(block, 1);
@@ -68,12 +75,12 @@ SCICOS_BLOCKS_IMPEXP void matz_vpv(scicos_block *block, int flag)
     /*init : initialization*/
     if (flag == 4)
     {
-        if ((*(block->work) = (mat_vpv_struct*) scicos_malloc(sizeof(mat_vpv_struct))) == NULL)
+        if ((*work = (mat_vpv_struct*) scicos_malloc(sizeof(mat_vpv_struct))) == NULL)
         {
             set_block_error(-16);
             return;
         }
-        ptr = *(block->work);
+        ptr = *work;
         if ((ptr->LA = (double*) scicos_malloc(sizeof(double) * (2 * nu * nu))) == NULL)
         {
             set_block_error(-16);
@@ -142,7 +149,7 @@ SCICOS_BLOCKS_IMPEXP void matz_vpv(scicos_block *block, int flag)
     /* Terminaison */
     else if (flag == 5)
     {
-        ptr = *(block->work);
+        ptr = *work;
         if ((ptr->rwork1) != NULL)
         {
             scicos_free(ptr->LA);
@@ -159,7 +166,7 @@ SCICOS_BLOCKS_IMPEXP void matz_vpv(scicos_block *block, int flag)
 
     else
     {
-        ptr = *(block->work);
+        ptr = *work;
         for (i = 0; i < (nu * nu); i++)
         {
             ptr->LA[2 * i] = ur[i];

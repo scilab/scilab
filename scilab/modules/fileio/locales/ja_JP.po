@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-07-28 15:15+0000\n"
+"PO-Revision-Date: 2013-12-08 11:21+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -26,10 +26,6 @@ msgstr "%s: 入力引数 #%d を読み込めません.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値を指定してください.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -44,10 +40,6 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
-
-#, c-format
 msgid "%s: Can not read named argument %s.\n"
 msgstr "%s: 指定した引数 %s を読み込めません.\n"
 
@@ -58,10 +50,6 @@ msgstr "%s: ディレクトリ %s に移動できません\n"
 #, c-format
 msgid "%s: Cannot go to directory.\n"
 msgstr "%s: ディレクトリに移動できません.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -117,8 +105,9 @@ msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr "%s: 入力引数の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 1行n列またはm行列の配列を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -127,8 +116,8 @@ msgid ""
 msgstr "%s: 入力引数 #%d の型が間違っています: 浮動小数点数の行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real values expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数値を指定してください.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: can not open file %s.\n"
@@ -264,6 +253,11 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定し�
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列または論理値を指定してください.\n"
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: String or logical unit expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列または論理値を指定してください.\n"
 
@@ -288,11 +282,6 @@ msgid "%s: No input file associated to logical unit %d.\n"
 msgstr "%s: 論理ユニット %d に関連付けられた入力ファイルがありません.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列または論理値を指定してください.\n"
-
-#, c-format
 msgid "%s: invalid filename.\n"
 msgstr "%s: ファイル名が無効です.\n"
 
@@ -304,11 +293,6 @@ msgstr "%s: 入力引数  #%d の大きさが間違っています: 文字列を
 msgid ""
 "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr "%s: 入力引数  #%d の型が間違っています: 文字列または整数を指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 1行n列またはm行列の配列を指定してください.\n"
 
 #, c-format
 msgid "%s: Specified format cannot include any '\\n'\n"
@@ -324,6 +308,10 @@ msgstr "エントリが不足しています."
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'w' or 'u' string expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 文字列 'w' または 'u' を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値を指定してください.\n"
 
 #, c-format
 msgid "%s: An error occurred.\n"
@@ -347,6 +335,10 @@ msgid "Could not parse the URL.\n"
 msgstr "URLをパースできませんでした.\n"
 
 #, c-format
+msgid "Could not read the configuration file '%s'.\n"
+msgstr "設定ファイル '%s' を読み込めませんでした.\n"
+
+#, c-format
 msgid "Failed to read the scicurl_config file '%s'.\n"
 msgstr "scicurl_configファイル '%s' を読み込めませんでした.\n"
 
@@ -365,8 +357,8 @@ msgid ""
 msgstr "scicurl_config ファイル ('%s') の構文が間違っています , '='  の前後に空白を指定してください\n"
 
 #, c-format
-msgid "Failed opening '%s' for writing.\n"
-msgstr "'%s' を書き込み用にオープンできませんでした.\n"
+msgid "Failed getting current dir, error code: %d\n"
+msgstr "カレントのディレクトリ, エラーコードを取得できませんでした: %d\n"
 
 #, c-format
 msgid "Failed to set URL [%s]\n"
@@ -397,8 +389,16 @@ msgid "Failed to set write data [%s]\n"
 msgstr "書き込み用データ [%s] を指定できませんでした\n"
 
 #, c-format
+msgid "Failed to set 'Follow Location' [%s]\n"
+msgstr "'Follow Location' [%s] を設定できませんでした\n"
+
+#, c-format
 msgid "Transfer did not complete successfully: %s\n"
 msgstr "転送を成功裏に完了できませんでした: %s\n"
+
+#, c-format
+msgid "Failed opening '%s' for writing.\n"
+msgstr "'%s' を書き込み用にオープンできませんでした.\n"
 
 msgid "unclosed [ directive."
 msgstr "[ ディレクティブが閉じていません."

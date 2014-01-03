@@ -15,8 +15,8 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-char *uiWaitContextMenu(char *pObjUID)
+char *uiWaitContextMenu(int iObjUID)
 {
     /* TO DO : create a copy or move sci_uiwait to cpp to do a delete */
-    return CallScilabBridge::displayAndWaitContextMenu(getScilabJavaVM(), pObjUID);
+    return CallScilabBridge::displayAndWaitContextMenu(getScilabJavaVM(), iObjUID);
 }

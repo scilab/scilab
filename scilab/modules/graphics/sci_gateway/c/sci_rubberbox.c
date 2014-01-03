@@ -214,8 +214,9 @@ int sci_rubberbox(char * fname, void *pvApiCtx)
     int initialRectSize = 0;
 
     double *piJavaValues = NULL;
-    char *pFigureUID = NULL;
-    char *pSubwinUID = (char*)getOrCreateDefaultSubwin();
+    int iFigureUID = 0;
+    int* piFigureUID = &iFigureUID;
+    int iSubwinUID = getOrCreateDefaultSubwin();
     int iView = 0;
     int* piView = &iView;
 
@@ -225,8 +226,8 @@ int sci_rubberbox(char * fname, void *pvApiCtx)
     CheckOutputArgument(pvApiCtx, 1, 2);
     // iView == 1 => 2D
     // else 3D
-    getGraphicObjectProperty(pSubwinUID, __GO_VIEW__, jni_int, (void**)&piView);
-    getGraphicObjectProperty(pSubwinUID, __GO_PARENT__, jni_string, (void **)&pFigureUID);
+    getGraphicObjectProperty(iSubwinUID, __GO_VIEW__, jni_int, (void**)&piView);
+    iFigureUID = getParentObject(iSubwinUID);
 
     if (nbInputArgument(pvApiCtx) == 0)
     {
@@ -349,11 +350,11 @@ int sci_rubberbox(char * fname, void *pvApiCtx)
 
     if (bClickMode == TRUE)
     {
-        piJavaValues = javaClickRubberBox(pFigureUID, initialRect, initialRectSize);
+        piJavaValues = javaClickRubberBox(iFigureUID, initialRect, initialRectSize);
     }
     else
     {
-        piJavaValues = javaDragRubberBox(pFigureUID);
+        piJavaValues = javaDragRubberBox(iFigureUID);
     }
     /* Put values into the stack and return */
     if (iView == 1)

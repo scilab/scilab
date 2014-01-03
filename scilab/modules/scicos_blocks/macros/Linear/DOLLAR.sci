@@ -20,28 +20,30 @@
 //
 
 function [x,y,typ]=DOLLAR(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         //backward compatibility
-        if size(exprs,"*")<2 then exprs(2)="0";end
+        if size(exprs,"*")<2 then
+            exprs(2)="0";
+        end
         while %t do
             [ok,a,inh,exprs]=scicos_getvalue("Set 1/z block parameters",..
             ["initial condition";"Inherit (no:0, yes:1)"],...
             list("mat",[-1 -2],"vec",-1),exprs)
-            if ~ok then break,end
-            out=[size(a,1) size(a,2)];if out==0 then out=[],end
+            if ~ok then
+                break,
+            end
+            out=[size(a,1) size(a,2)];
+            if out==0 then
+                out=[],
+            end
             in=out
             model.sim=list("dollar4_m",4)
             model.odstate=list(a);
@@ -77,14 +79,17 @@ function [x,y,typ]=DOLLAR(job,arg1,arg2)
             elseif (typeof(a)=="uint8") then
                 it=8;
                 ot=8;
-            else message ("type is not recognized"); ok=%f;
+            else
+                message ("type is not recognized");
+                ok=%f;
             end
             if ok then
                 [model,graphics,ok]=set_io(model,graphics,list(in,it),list(out,ot),ones(1-inh,1),[])
             end
             if ok then
                 graphics.exprs=exprs;
-                x.graphics=graphics;x.model=model
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
@@ -103,7 +108,7 @@ function [x,y,typ]=DOLLAR(job,arg1,arg2)
         model.blocktype="d"
         model.dep_ut=[%f %f]
 
-        gr_i="xstringb(orig(1),orig(2),''1/z'',sz(1),sz(2),''fill'')"
+        gr_i=[]
         x=standard_define([2 2],model,exprs,gr_i)
     end
 endfunction

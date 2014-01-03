@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -27,7 +27,7 @@ using namespace org_scilab_modules_gui_datatip;
 
 int sci_datatip_toggle(char *fname, void* pvApiCtx)
 {
-    const char* pstFigureUID = NULL;
+    int iFigureUID      = 0;
 
     int iErr            = 0;
     bool enabled        = false;
@@ -40,11 +40,11 @@ int sci_datatip_toggle(char *fname, void* pvApiCtx)
 
     if (nbInputArgument(pvApiCtx) == 0)
     {
-        pstFigureUID = getCurrentFigure();
-        if (pstFigureUID)
+        iFigureUID = getCurrentFigure();
+        if (iFigureUID)
         {
-            enabled = DatatipManager::isEnabled(getScilabJavaVM(), pstFigureUID);
-            DatatipManager::setEnabled(getScilabJavaVM(), pstFigureUID, (!enabled));
+            enabled = DatatipManager::isEnabled(getScilabJavaVM(), iFigureUID);
+            DatatipManager::setEnabled(getScilabJavaVM(), iFigureUID, (!enabled));
         }
     }
     else if (nbInputArgument(pvApiCtx) == 1)
@@ -65,9 +65,9 @@ int sci_datatip_toggle(char *fname, void* pvApiCtx)
 
         if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
         {
-            pstFigureUID = (char *)getObjectFromHandle((unsigned long) llHandle);
-            enabled = DatatipManager::isEnabled(getScilabJavaVM(), pstFigureUID);
-            DatatipManager::setEnabled(getScilabJavaVM(), pstFigureUID, (!enabled));
+            iFigureUID = getObjectFromHandle((unsigned long) llHandle);
+            enabled = DatatipManager::isEnabled(getScilabJavaVM(), iFigureUID);
+            DatatipManager::setEnabled(getScilabJavaVM(), iFigureUID, (!enabled));
         }
         else
         {

@@ -31,8 +31,10 @@
 #include "scicos_free.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(dgetrf) ();
-extern int C2F(dgetri) ();
+extern int C2F(dgetrf) (int *m, int *n, double *a, int *
+                        lda, int *ipiv, int *info);
+extern int C2F(dgetri) (int *n, double *a, int *lda, int
+                        *ipiv, double *work, int *lwork, int *info);
 
 /*--------------------------------------------------------------------------*/
 typedef struct
@@ -49,6 +51,7 @@ SCICOS_BLOCKS_IMPEXP void mat_inv(scicos_block * block, int flag)
     int nu = 0;
     int info = 0;
     int i = 0;
+    mat_inv_struct** work = (mat_inv_struct**) block->work;
     mat_inv_struct *ptr = NULL;
 
     nu = GetInPortRows(block, 1);
@@ -58,12 +61,12 @@ SCICOS_BLOCKS_IMPEXP void mat_inv(scicos_block * block, int flag)
     /*init : initialization */
     if (flag == 4)
     {
-        if ((*(block->work) = (mat_inv_struct *) scicos_malloc(sizeof(mat_inv_struct))) == NULL)
+        if ((*work = (mat_inv_struct *) scicos_malloc(sizeof(mat_inv_struct))) == NULL)
         {
             set_block_error(-16);
             return;
         }
-        ptr = *(block->work);
+        ptr = *work;
         if ((ptr->ipiv = (int *)scicos_malloc(sizeof(int) * nu)) == NULL)
         {
             set_block_error(-16);
@@ -82,7 +85,7 @@ SCICOS_BLOCKS_IMPEXP void mat_inv(scicos_block * block, int flag)
     /* Terminaison */
     else if (flag == 5)
     {
-        ptr = *(block->work);
+        ptr = *work;
         if ((ptr->dwork) != NULL)
         {
             scicos_free(ptr->ipiv);
@@ -94,7 +97,7 @@ SCICOS_BLOCKS_IMPEXP void mat_inv(scicos_block * block, int flag)
 
     else
     {
-        ptr = *(block->work);
+        ptr = *work;
         for (i = 0; i < (nu * nu); i++)
         {
             y[i] = u[i];

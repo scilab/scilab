@@ -28,10 +28,17 @@
 #include "scicos_free.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(dlacpy)();
-extern int C2F(dgeev)();
-extern int C2F(dlaset)();
-extern int C2F(dsyev)();
+extern int C2F(dlacpy)(char *uplo, int *m, int *n, double *
+                       a, int *lda, double *b, int *ldb);
+extern int C2F(dgeev)(char *jobvl, char *jobvr, int *n, double *
+                      a, int *lda, double *wr, double *wi, double *vl,
+                      int *ldvl, double *vr, int *ldvr, double *work,
+                      int *lwork, int *info);
+extern int C2F(dlaset)(char *uplo, int *m, int *n, double *
+                       alpha, double *beta, double *a, int *lda);
+extern int C2F(dsyev)(char *jobz, char *uplo, int *n, double *a,
+                      int *lda, double *w, double *work, int *lwork,
+                      int *info);
 /*--------------------------------------------------------------------------*/
 typedef struct
 {
@@ -56,6 +63,7 @@ SCICOS_BLOCKS_IMPEXP void mat_vpv(scicos_block *block, int flag)
     int info = 0;
     int i = 0, j = 0, lwork = 0, lwork1 = 0, ii = 0, ij = 0, ij1 = 0, ji = 0;
     int symmetric = 0;
+    mat_vps_struct** work = (mat_vps_struct**) block->work;
     mat_vps_struct *ptr = NULL;
 
     nu = GetInPortRows(block, 1);
@@ -69,12 +77,12 @@ SCICOS_BLOCKS_IMPEXP void mat_vpv(scicos_block *block, int flag)
     /*init : initialization*/
     if (flag == 4)
     {
-        if ((*(block->work) = (mat_vps_struct*) scicos_malloc(sizeof(mat_vps_struct))) == NULL)
+        if ((*work = (mat_vps_struct*) scicos_malloc(sizeof(mat_vps_struct))) == NULL)
         {
             set_block_error(-16);
             return;
         }
-        ptr = *(block->work);
+        ptr = *work;
         if ((ptr->LA = (double*) scicos_malloc(sizeof(double) * (nu * nu))) == NULL)
         {
             set_block_error(-16);
@@ -156,7 +164,7 @@ SCICOS_BLOCKS_IMPEXP void mat_vpv(scicos_block *block, int flag)
     /* Terminaison */
     else if (flag == 5)
     {
-        ptr = *(block->work);
+        ptr = *work;
         if (ptr->dwork1 != NULL)
         {
             scicos_free(ptr->LA);
@@ -174,7 +182,7 @@ SCICOS_BLOCKS_IMPEXP void mat_vpv(scicos_block *block, int flag)
 
     else
     {
-        ptr = *(block->work);
+        ptr = *work;
         C2F(dlacpy)("F", &nu, &nu, u, &nu, ptr->LA, &nu);
         symmetric = 1;
         for (j = 0; j < nu; j++)

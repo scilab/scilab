@@ -28,6 +28,7 @@
             [fopt, xopt, gopt, work, iters] = optim(...)
             [fopt, xopt, gopt, work, iters, evals] = optim(...)
             [fopt, xopt, gopt, work, iters, evals, err] = optim(...)
+            [fopt, xopt, [gopt, work, iters, evals, err], ti, td] = optim(..., params="si","sd")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -83,6 +84,10 @@
                             <para>
                                 The <literal>"nd"</literal> algorithm does not accept
                                 bounds on <literal>x</literal>.
+                            </para>
+                            <para>
+                                The <literal>"qn"</literal> cannot be used if
+                                <literal>size(x0)&gt;46333</literal>.
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -240,6 +245,30 @@
                         <listitem>
                             <para>
                                 <literal>"ti",valti,"td",valtd</literal>
+                            </para>
+                            <para>This mode combines the two previous modes.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"si"</literal>
+                            </para>
+                            <para>
+                                In this mode, <literal>valti</literal> is saved in the output
+                                variable <varname>ti</varname>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"sd"</literal>
+                            </para>
+                            <para>
+                                In this mode, <literal>valtd</literal> is saved in the output
+                                variable <varname>td</varname>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"si","sd"</literal>
                             </para>
                             <para>This mode combines the two previous modes.</para>
                         </listitem>
@@ -411,6 +440,10 @@
                             </itemizedlist>
                         </listitem>
                     </itemizedlist>
+                    <para>
+                        If <varname>imp</varname> is lower than 0, then the cost function is evaluated every
+                        <varname>-m</varname> iterations, with <literal>ind=1</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -714,7 +747,7 @@
             // on the improvement on the parameters x_opt (1e-6;1e-6;1e-6)
             [fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc", "ar", 3, 100, 1e-6, 1e-6, [1e-3; 1e-3; 1e-3])
             
-            // Additionnal messages are printed in the console.
+            // Additional messages are printed in the console.
             [fopt, xopt] = optim(cost, x0, imp = 3)
         </programlisting>
     </refsection>
@@ -884,35 +917,36 @@
             <literal>mydata</literal> is used to store the number of function
             evaluations as well as the number of iterations.
         </para>
-        <programlisting role="example">
-            function [f, g, ind] = cost(x, ind)
-            global _MYDATA_
-            if ( ind == 1 )
-            _MYDATA_.niter = _MYDATA_.niter + 1;
-            else
-            _MYDATA_.nfevals = _MYDATA_.nfevals + 1;
-            end
-            xref = [1; 2; 3];
-            if ( ind == 2 | ind == 4 ) then
-            f = 0.5*norm(x-xref)^2;
-            else
-            f = 0;
-            end
-            if ( ind == 3 | ind == 4 ) then
-            g = x-xref;
-            else
-            g = zeros(3, 1);
-            end
-            endfunction
-            x0 = [1; -1; 1];
-            global _MYDATA_
-            _MYDATA_ = tlist ( ["MYDATA", "niter", "nfevals"]);
-            _MYDATA_.niter = 0;
-            _MYDATA_.nfevals = 0;
-            [f, xopt] = optim(cost, x0, imp=-1);
-            mprintf ( "Number of function evaluations: %d\n", _MYDATA_.nfevals );
-            mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
-        </programlisting>
+        <programlisting role="example"><![CDATA[
+function [f, g, ind] = cost(x, ind)
+    global _MYDATA_
+    if ( ind == 1 )
+        _MYDATA_.niter = _MYDATA_.niter + 1;
+    end
+    _MYDATA_.nfevals = _MYDATA_.nfevals + 1;
+    xref = [1; 2; 3];
+    if ( ind == 2 | ind == 4 ) then
+        f = 0.5*norm(x-xref)^2;
+    else
+        f = 0;
+    end
+    if ( ind == 3 | ind == 4 ) then
+        g = x-xref;
+    else
+        g = zeros(3, 1);
+    end
+endfunction
+
+x0 = [1; -1; 1];
+global _MYDATA_
+_MYDATA_ = tlist ( ["MYDATA", "niter", "nfevals"]);
+_MYDATA_.niter = 0;
+_MYDATA_.nfevals = 0;
+
+[f, xopt] = optim(cost, x0, imp=-1);
+mprintf ( "Number of function evaluations: %d\n", _MYDATA_.nfevals );
+mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
+        ]]></programlisting>
         <para>While the previous example perfectly works, there is a risk that the
             same variable <literal>_MYDATA_</literal> is used by some internal
             function used by <literal>optim</literal>. In this case, the value may be
@@ -928,10 +962,10 @@
         </para>
         <para>In the following example, the cost function uses 4 parameters
             <literal>a, b, c</literal> and <literal>d</literal>. We define the cost
-            function with additionnal input arguments, which are declared after the
+            function with additional input arguments, which are declared after the
             index argument. Then we pass a list as the first input argument of the
             <literal>optim</literal> solver. The first element of the list is the cost
-            function. The additionnal variables are directly passed to the cost
+            function. The additional variables are directly passed to the cost
             function.
         </para>
         <programlisting role="example">function [ f , g , ind ] = costfunction ( x , ind , a , b , c , d )
@@ -1190,12 +1224,12 @@
             "ind" parameter.
         </para>
         <para>At the beginning, Scilab calls the objective function, with the ind
-            parameter equals to 10. This tells the objective function to initialize
+            parameter equal to 10. This tells the objective function to initialize
             the sizes of the arrays it needs by setting the nizs, nrzs and ndzs
             integer parameters of the "nird" common. Then the objective function
             returns. At this point, Scilab creates internal variables and allocate
             memory for the variable izs, rzs and dzs. Scilab calls the objective
-            function back again, this time with ind equals to 11. This tells the
+            function back again, this time with ind equal to 11. This tells the
             objective function to initialize the arrays izs, rzs and dzs. When the
             objective function has done so, it returns. Then Scilab enters in the real
             optimization mode and calls the optimization solver the user requested.
@@ -1222,13 +1256,13 @@
             '      if(ind.eq.10) then'
             '         nizs=2'
             '         nrzs=1'
-            '         ndzs=2'
+            '         ndzs=1'
             '         return'
             '      endif'
             '      if(ind.eq.11) then'
             '         izs(1)=5'
             '         izs(2)=10'
-            '         dzs(2)=100.0d+0'
+            '         dzs(1)=100.0d+0'
             '         return'
             '      endif'
             '      if(ind.eq.2)go to 5'
@@ -1239,17 +1273,17 @@
             '5     f=1.0d+0'
             '      do 10 i=2,n'
             '        im1=i-1'
-            '10      f=f + dzs(2)*(x(i)-x(im1)**2)**2 + (1.0d+0-x(i))**2'
+            '10      f=f + dzs(1)*(x(i)-x(im1)**2)**2 + (1.0d+0-x(i))**2'
             '      if(ind.eq.2)return'
-            '20    g(1)=-4.0d+0*dzs(2)*(x(2)-x(1)**2)*x(1)'
+            '20    g(1)=-4.0d+0*dzs(1)*(x(2)-x(1)**2)*x(1)'
             '      nm1=n-1'
             '      do 30 i=2,nm1'
             '        im1=i-1'
             '        ip1=i+1'
-            '        g(i)=2.0d+0*dzs(2)*(x(i)-x(im1)**2)'
-            '30      g(i)=g(i) -4.0d+0*dzs(2)*(x(ip1)-x(i)**2)*x(i) - '
+            '        g(i)=2.0d+0*dzs(1)*(x(i)-x(im1)**2)'
+            '30      g(i)=g(i) -4.0d+0*dzs(1)*(x(ip1)-x(i)**2)*x(i) - '
             '     &amp;        2.0d+0*(1.0d+0-x(i))'
-            '      g(n)=2.0d+0*dzs(2)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
+            '      g(n)=2.0d+0*dzs(1)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
             '      return'
             '      end'];
             cd TMPDIR;
@@ -1282,7 +1316,7 @@
         </para>
         <para>The following example is a re-writing of the previous example, with
             special attention for the Windows operating system with Intel Fortran
-            compiler as example. In that case, we introduce additionnal compiling
+            compiler as example. In that case, we introduce additional compiling
             instructions, which allows the compiler to import the "nird"
             symbol.
         </para>
@@ -1296,6 +1330,109 @@
             'c     f.bonnans, oct 86'
             '      implicit double precision (a-h,o-z)'
             [etc...]
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Example: Fortran function with tab saving
+        </title>
+        <para>
+            Adding the "si" and/or "sd" options to <literal>optim</literal> implies
+            the addition of the output arguments "ti" and/or "td", which will represent
+            the working tables of the objective function.
+        </para>
+        <para>
+            Those output arguments must be placed at the end of the output list.
+        </para>
+        <programlisting role="example">
+            // Move into the temporary directory to create the temporary files there
+            cur_dir = pwd();
+            chdir(TMPDIR);
+            fortransource = ['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
+            'C     -------------------------------------------'
+            'c (DLL Digital Visual Fortran)'
+            'c On Windows , we need to import common nird from scilab'
+            'cDEC$ IF DEFINED (FORDLL)'
+            'cDEC$ ATTRIBUTES DLLIMPORT:: /nird/'
+            'cDEC$ ENDIF'
+            'C     -------------------------------------------'
+            'c     Example of cost function given by a subroutine'
+            'c     if n.le.2 returns ind=0'
+            'c     f.bonnans, oct 86'
+            '      implicit double precision (a-h,o-z)'
+            '      real rzs(1)'
+            '      double precision dzs(*)'
+            '      dimension x(n),g(n),izs(*)'
+            '      common/nird/nizs,nrzs,ndzs'
+            '      if (n.lt.3) then'
+            '        ind=0'
+            '        return'
+            '      endif'
+            '      if(ind.eq.10) then'
+            '         nizs=2'
+            '         nrzs=1'
+            '         ndzs=1'
+            '         return'
+            '      endif'
+            '      if(ind.eq.11) then'
+            '         izs(1)=5'
+            '         izs(2)=10'
+            '         dzs(1)=100.0d+0'
+            '         return'
+            '      endif'
+            '      if(ind.eq.2)go to 5'
+            '      if(ind.eq.3)go to 20'
+            '      if(ind.eq.4)go to 5'
+            '      ind=-1'
+            '      return'
+            '5     f=1.0d+0'
+            '      do 10 i=2,n'
+            '        im1=i-1'
+            '10      f=f + dzs(1)*(x(i)-x(im1)**2)**2 + (1.0d+0-x(i))**2'
+            '      if(ind.eq.2)return'
+            '20    g(1)=-4.0d+0*dzs(1)*(x(2)-x(1)**2)*x(1)'
+            '      nm1=n-1'
+            '      do 30 i=2,nm1'
+            '        im1=i-1'
+            '        ip1=i+1'
+            '        g(i)=2.0d+0*dzs(1)*(x(i)-x(im1)**2)'
+            '30      g(i)=g(i) -4.0d+0*dzs(1)*(x(ip1)-x(i)**2)*x(i) - '
+            '     &amp;        2.0d+0*(1.0d+0-x(i))'
+            '      g(n)=2.0d+0*dzs(1)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
+            '      return'
+            '      end'];
+            mputl(fortransource, TMPDIR + '/rosenf.f');
+            ilib_for_link('rosenf', 'rosenf.f', [], 'f');
+            exec loader.sce;
+            chdir(cur_dir);
+            //
+            // Define some constants
+            //
+            Leps = 10e3 * 8.e-5;
+            bs = 10.*ones(1, 5);
+            bi = -bs;
+            x0 = 0.12 * bs;
+            epsx = 1.e-15 * x0;
+            xopt = .1*bs;
+            
+            // 'ti' and 'td' always at the end of the output sequence
+            [f, x, ti, td]                           = optim('rosenf', x0, 'in', 'si', 'sd')
+            [f, x, g, ti, td]                        = optim('rosenf', x0, 'in', 'si', 'sd')
+            [f, x, g, w, ti, td]                     = optim('rosenf', x0, 'in', 'si', 'sd')
+            [f, x, g, w, niter, nevals, ti, td]      = optim('rosenf', x0, 'in', 'si', 'sd')
+            [f, x, g, w, niter, nevals, err, ti, td] = optim('rosenf', x0, 'in', 'si', 'sd')
+            
+            // With input argument 'in', ti and td will be initialized by rosenf function.
+            [f, x, ti, td] = optim('rosenf', x0, 'in', 'si', 'sd')
+            // Reuses the last ti and td for the next call and return it again.
+            [f, x, ti, td] = optim('rosenf', x0, 'ti', ti, 'td', td, 'si', 'sd')
+            
+            // Initializes ti and td but return only ti
+            [f, x, ti] = optim('rosenf', x0, 'in', 'si')
+            [f, x, ti] = optim('rosenf', x0, 'ti', ti, 'si')
+            
+            // Initializes ti and td but return only td
+            [f, x, td] = optim('rosenf', x0, 'in', 'sd')
+            [f, x, td] = optim('rosenf', x0, 'td', td, 'sd')
         </programlisting>
     </refsection>
     <refsection role="see also">

@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_data_mapping_property(void* _pvCtx, char* pobjUID)
+void* get_data_mapping_property(void* _pvCtx, int iObjUID)
 {
     int iDataMapping = 0;
     int* piDataMapping = &iDataMapping;
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MAPPING__, jni_int, (void **)&piDataMapping);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MAPPING__, jni_int, (void **)&piDataMapping);
 
     if (piDataMapping == NULL)
     {

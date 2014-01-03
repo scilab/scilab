@@ -15,12 +15,12 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-void setToolbarVisible(char *pParentUID, BOOL status)
+void setToolbarVisible(int iParentUID, BOOL status)
 {
-    CallScilabBridge::setToolbarVisible(getScilabJavaVM(), pParentUID, BOOLtobool(status));
+    CallScilabBridge::setToolbarVisible(getScilabJavaVM(), iParentUID, BOOLtobool(status));
 }
 
-BOOL isToolbarVisible(char *pParentUID)
+BOOL isToolbarVisible(int iParentUID)
 {
-    return booltoBOOL(CallScilabBridge::isToolbarVisible(getScilabJavaVM(), pParentUID));
+    return booltoBOOL(CallScilabBridge::isToolbarVisible(getScilabJavaVM(), iParentUID));
 }

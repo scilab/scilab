@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_auto_rotation_property(void* _pvCtx, char* pobjUID)
+void* get_auto_rotation_property(void* _pvCtx, int iObjUID)
 {
     int iAutoRotation = 0;
     int* piAutoRotation = &iAutoRotation;
 
-    getGraphicObjectProperty(pobjUID, __GO_AUTO_ROTATION__, jni_bool, (void **)&piAutoRotation);
+    getGraphicObjectProperty(iObjUID, __GO_AUTO_ROTATION__, jni_bool, (void **)&piAutoRotation);
 
     if (piAutoRotation == NULL)
     {

@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.editor.action;
@@ -42,9 +42,9 @@ public class ActionMove extends BaseAction {
     * @param newClick The position of mouseup action
     * @param isLegend True if is legend, false if is polyline
     */
-    public ActionMove(String objectUID, Integer[] click, Integer[] newClick, boolean isLegend) {
+    public ActionMove(Integer objectUID, Integer[] click, Integer[] newClick, boolean isLegend) {
 
-        super(objectUID, (String)GraphicController.getController().getProperty(objectUID, GraphicObjectProperties.__GO_PARENT__));
+        super(objectUID, (Integer)GraphicController.getController().getProperty(objectUID, GraphicObjectProperties.__GO_PARENT__));
         myClick = new Integer[2];
         myNewClick = new Integer[2];
         myClick[0] = click[0];

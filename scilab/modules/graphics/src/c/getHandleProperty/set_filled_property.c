@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_filled_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_filled_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status;
     int b =  (int)FALSE;
@@ -40,7 +40,7 @@ int set_filled_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueTyp
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_FILLED__, &b, jni_bool, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_FILLED__, &b, jni_bool, 1);
 
     if (status == TRUE)
     {

@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_handle_visible_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_handle_visible_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int b = (int)FALSE;
     BOOL status = FALSE;
@@ -43,7 +43,7 @@ int set_handle_visible_property(void* _pvCtx, char* pobjUID, void* _pvData, int 
 
     b = 1 - b;                  /* Handle visible is equivalent to not hidden */
 
-    status = setGraphicObjectProperty(pobjUID, __GO_HIDDEN__, &b, jni_bool, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_HIDDEN__, &b, jni_bool, 1);
 
     if (status == TRUE)
     {

@@ -36,7 +36,7 @@ public class ChampDecomposer extends VectFieldDecomposer {
      * @param id the id of the given object.
      * @return the number of data elements.
      */
-    public static int getDataSize(String id) {
+    public static int getDataSize(Integer id) {
         int numberArrows = (Integer) GraphicController.getController().getProperty(id, __GO_NUMBER_ARROWS__);
 
         /* 2 vertices per segment plus 3 vertices for the arrow tip */
@@ -54,7 +54,7 @@ public class ChampDecomposer extends VectFieldDecomposer {
      * @param translation the conversion translation value to apply to data.
      * @param logMask the bit mask specifying whether logarithmic coordinates are used.
      */
-    public static void fillVertices(FloatBuffer buffer, String id, int elementsSize,
+    public static void fillVertices(FloatBuffer buffer, Integer id, int elementsSize,
                                     int coordinateMask, double[] scale, double[] translation, int logMask) {
         int bufferOffset = 0;
 
@@ -70,7 +70,7 @@ public class ChampDecomposer extends VectFieldDecomposer {
         /* The direction vector */
         double[] direction = new double[3];
 
-        int numberArrows = (Integer) GraphicController.getController().getProperty(id, __GO_NUMBER_ARROWS__);
+        GraphicController.getController().getProperty(id, __GO_NUMBER_ARROWS__);
 
         Double[] xBase = (Double[]) GraphicController.getController().getProperty(id, __GO_BASE_X__);
         Double[] yBase = (Double[]) GraphicController.getController().getProperty(id, __GO_BASE_Y__);
@@ -158,13 +158,13 @@ public class ChampDecomposer extends VectFieldDecomposer {
      * @param id the id of the given object.
      * @param elementsSize the number of components taken by one element in the buffer (3 or 4).
      */
-    public static void fillColors(FloatBuffer buffer, String id, int elementsSize) {
+    public static void fillColors(FloatBuffer buffer, Integer id, int elementsSize) {
         int bufferOffset = 0;
 
-        String parentFigureId = (String) GraphicController.getController().getProperty(id, __GO_PARENT_FIGURE__);
+        Integer parentFigureId = (Integer) GraphicController.getController().getProperty(id, __GO_PARENT_FIGURE__);
 
         /* To be sure that the object has a parent Figure, though it should not occur. */
-        if (parentFigureId.equals("")) {
+        if (parentFigureId == 0) {
             return;
         }
 
@@ -172,11 +172,11 @@ public class ChampDecomposer extends VectFieldDecomposer {
         ColorMap colorMap = parentFigure.getColorMap();
         int colorMapSize = colorMap.getSize();
 
-        int numberArrows = (Integer) GraphicController.getController().getProperty(id, __GO_NUMBER_ARROWS__);
+        GraphicController.getController().getProperty(id, __GO_NUMBER_ARROWS__);
 
         Double[] xBase = (Double[]) GraphicController.getController().getProperty(id, __GO_BASE_X__);
         Double[] yBase = (Double[]) GraphicController.getController().getProperty(id, __GO_BASE_Y__);
-        Double[] zBase = (Double[]) GraphicController.getController().getProperty(id, __GO_BASE_Z__);
+        GraphicController.getController().getProperty(id, __GO_BASE_Z__);
 
         Double[] xDirection = (Double[]) GraphicController.getController().getProperty(id, __GO_DIRECTION_X__);
         Double[] yDirection = (Double[]) GraphicController.getController().getProperty(id, __GO_DIRECTION_Y__);
@@ -194,7 +194,7 @@ public class ChampDecomposer extends VectFieldDecomposer {
             maxLength = 1.0;
         }
 
-        double arrowSize = (Double) GraphicController.getController().getProperty(id, __GO_ARROW_SIZE__);
+        GraphicController.getController().getProperty(id, __GO_ARROW_SIZE__);
 
         double[] direction = new double[3];
 
@@ -244,7 +244,7 @@ public class ChampDecomposer extends VectFieldDecomposer {
      * @param id the id of the given object.
      * @return the number of triangle indices.
      */
-    public static int getIndicesSize(String id) {
+    public static int getIndicesSize(Integer id) {
         int numberArrows = (Integer) GraphicController.getController().getProperty(id, __GO_NUMBER_ARROWS__);
 
         /* 3 indices per arrow */
@@ -259,7 +259,7 @@ public class ChampDecomposer extends VectFieldDecomposer {
      * @param logMask the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
-    public static int fillIndices(IntBuffer buffer, String id, int logMask) {
+    public static int fillIndices(IntBuffer buffer, Integer id, int logMask) {
         boolean valid;
         int bufferOffset = 0;
         int segmentOffset;
@@ -375,7 +375,7 @@ public class ChampDecomposer extends VectFieldDecomposer {
      * @param logMask the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
-    public static int fillWireIndices(IntBuffer buffer, String id, int logMask) {
+    public static int fillWireIndices(IntBuffer buffer, Integer id, int logMask) {
         boolean valid;
         int bufferOffset = 0;
 

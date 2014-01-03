@@ -178,6 +178,16 @@ int C2F(scicos) (double *x_in, int *xptr_in, double *z__,
                  int *critev_in, int *nblk1, int *ztyp, int *zcptr_in, int *subscr, int *nsubs, double *simpar, int *flag__, int *ierr_out);
 
 /**
+ * \brief Discrete time counter type
+ *
+ * Used on [evtdly4.c](@ref evtdly4), [m_frequ.c](@ref m_frequ) or
+ * [time_delay.c](@ref time_delay) to manage time difference.
+ *
+ * Warning: effect maximum simulation time (in term of max simulation step).
+ */
+typedef long long int time_counter_t;
+
+/**
 *
 */
 void callf(double *t, scicos_block * block, scicos_flag * flag);

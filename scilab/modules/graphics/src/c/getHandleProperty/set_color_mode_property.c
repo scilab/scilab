@@ -34,7 +34,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_color_mode_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_color_mode_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int colorMode = 0;
@@ -47,7 +47,7 @@ int set_color_mode_property(void* _pvCtx, char* pobjUID, void* _pvData, int valu
 
     colorMode = (int)((double*)_pvData)[0];
 
-    status = setGraphicObjectProperty(pobjUID, __GO_COLOR_MODE__, &colorMode, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_COLOR_MODE__, &colorMode, jni_int, 1);
 
     if (status == FALSE)
     {

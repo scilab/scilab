@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "noumfpack module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "noumfpack module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "noumfpack.dll"
             VALUE "ProductName", " noumfpack"
             VALUE "ProductVersion", "6, 0, 0, 0"

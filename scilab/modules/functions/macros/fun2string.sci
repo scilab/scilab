@@ -1,4 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Samuel GOUGEON: http://bugzilla.scilab.org/10243 fixed
 // Copyright (C) 1999-2010 INRIA - Serge STEER <serge.steer@inria.fr>
 //
 // This file must be used under the terms of the CeCILL.
@@ -7,7 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
-function txt=fun2string(fun,nam)
+function txt = fun2string(fun,nam)
 
     // form  syntax to scilab of a compiled function
     //%Parameters
@@ -15,7 +16,9 @@ function txt=fun2string(fun,nam)
     // nam   : nam of the scilab function to generate
     // txt   : character string column vector: the text of resulting scilab function
     //!
-    if argn(2)<2 then nam="ans",end
+    if argn(2) < 1 then
+        error(sprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "fun2string", 1, 2));
+    elseif argn(2)<2 then nam="ans",end
     if type(fun)==11 then comp(fun),end
     if type(fun)<>15 then
         lst=macr2lst(fun);
@@ -283,8 +286,16 @@ function [txt,ilst]=cod2sci(lst,ilst)
                                 end
                             end
                         elseif type(P(1))==10 then
-                            if execstr(P(1), "errcatch") == 0 & typeof(evstr(P(1)))==10 then
-                                p="."+evstr(P(1))
+                            testOK = execstr("tmp = evstr(P(1))","errcatch")==0
+                            if testOK
+                                testOK = type(tmp)==10
+                                clear tmp
+                                if testOK
+                                    testOK = (execstr(P(1), "errcatch")==0)
+                                end
+                            end
+                            if testOK then
+                                p = "."+evstr(P(1))
                             else
                                 if P(1)=="eye()" then P(1)=":",end
                                 p="("+P(1)+")"
@@ -369,13 +380,24 @@ function [stk,txt,ilst]=exp2sci(lst,ilst)
                             stk(top)=list(op(2),"0")
                             m=%f
                         elseif type(stk(top)(1))==10 then
-                            if op(4)=="1"&funptr(op(2))==0&exists(op(2))==0|(execstr(op(2),"errcatch")==0&and(type(evstr(op(2)))<>[11 13 130])) then
+                            testOK = (op(4)=="1" & ~funptr(op(2)) & ~exists(op(2)))
+                            if ~testOK then
+                                testOK = execstr("tmp = evstr(op(2))", "errcatch")==0
+                                if testOK
+                                    testOK = and(type(tmp)<>[11 13 130])
+                                    clear tmp
+                                    if testOK
+                                        testOK =  (execstr(op(2),"errcatch")==0)
+                                    end
+                                end
+                            end
+                            if testOK then
                                 top=top+1
                                 stk(top)=list(op(2),"0")
                                 m=%f
-                                //        stk(top)(1)=op(2)+'.'+stk(top)(1)
-                                //        pause
-                                //        m=%f
+                                // stk(top)(1)=op(2)+'.'+stk(top)(1)
+                                // pause
+                                // m = %f
                             end
                         end
                     end
@@ -908,11 +930,21 @@ function [stk,txt,top]=_e2sci()
                 end
             end
             stk=list(ex,"0")
-        elseif type(s2(1))==10&execstr(s2(1),"errcatch")==0&type(evstr(s2(1)))==10 then // recursive extraction
-            stk=list(sn(1)+"."+evstr(s2(1)),"0")
         else
-            if s2(1)=="eye()" then s2(1)=":",end
-            stk=list(sn(1)+"("+s2(1)+")","0")
+            testOK = type(s2(1))==10 & (execstr("tmp = evstr(s2(1))", "errcatch")==0)
+            if testOK
+                testOK = type(tmp)==10
+                clear tmp
+                if testOK
+                    testOK = (execstr(s2(1),"errcatch")==0)
+                end
+            end
+            if testOK then // recursive extraction
+                stk=list(sn(1)+"."+evstr(s2(1)),"0")
+            else
+                if s2(1)=="eye()" then s2(1)=":",end
+                stk=list(sn(1)+"("+s2(1)+")","0")
+            end
         end
     elseif rhs==0 then
         sn(1)=sn(1)+"()";

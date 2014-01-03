@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.ged.graphic_objects.properties;
@@ -37,10 +37,10 @@ public class Font extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
-    public void fontColor(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID, final String parentFigure) {
+    public void fontColor(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID, final Integer parentFigure) {
         JLabel lFontColor = new JLabel();
         JPanel pFontColor = new JPanel();
         JButton bFontColor = new JButton();
@@ -50,7 +50,7 @@ public class Font extends ContentLayout {
         JButton okFontColor = new JButton();
 
         addColorDialog(dialogFontColor, chooserFontColor, okFontColor, cFontColor, UID,
-                       parentFigure,"properties.Font", "setFontColor", this);
+                       parentFigure, "properties.Font", "setFontColor", this);
 
         addLabelColorField(panel, lFontColor, MessagesGED.font_color,
                            dialogFontColor, cFontColor, pFontColor, bFontColor,
@@ -58,7 +58,7 @@ public class Font extends ContentLayout {
 
         // Get the current status of the property: Font Color
         Integer scilabFontColor = (Integer) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_FONT_COLOR__);
+                                  .getProperty(UID, GraphicObjectProperties.__GO_FONT_COLOR__);
         Double[] rgbFontColor = ColorMapHandler.getRGBcolor(parentFigure, scilabFontColor);
         cFontColor.setBackground(new Color(rgbFontColor[0].intValue(),
                                            rgbFontColor[1].intValue(),
@@ -70,8 +70,8 @@ public class Font extends ContentLayout {
     * @param scilabColor index of the color map.
     * @param UID objectID.
     */
-    public final void setFontColor(int scilabColor, String UID) {
+    public final void setFontColor(int scilabColor, Integer UID) {
         GraphicController.getController().setProperty(
-                UID, GraphicObjectProperties.__GO_FONT_COLOR__, scilabColor);
+            UID, GraphicObjectProperties.__GO_FONT_COLOR__, scilabColor);
     }
 }

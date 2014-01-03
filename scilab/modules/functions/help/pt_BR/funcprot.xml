@@ -24,20 +24,25 @@
     </refsection>
     <refsection>
         <title>Descrição</title>
-        <para>Funções Scilab são variáveis, funcprot permite especificar o que o
+        <para>
+            Funções Scilab são variáveis, <function>funcprot</function> permite especificar o que o
             Scilab faz quando tais variáveis são redefinidas.
         </para>
         <itemizedlist>
             <listitem>
-                <para>Se prot==0 nada especial é feito</para>
+                <para>
+                    Se <code>prot==0</code> nada especial é feito
+                </para>
             </listitem>
             <listitem>
-                <para>Se prot==1 o scilab exibe uma mensagem de aviso quando a função
+                <para>
+                    Se <code>prot==1</code> o Scilab exibe uma mensagem de aviso quando a função
                     é redefinida (modo padrão)
                 </para>
             </listitem>
             <listitem>
-                <para>Se prot==2 o scilab exibe uma mensagem de erro quando a função é
+                <para>
+                    Se <code>prot==2</code> o Scilab exibe uma mensagem de erro quando a função é
                     redefinida
                 </para>
             </listitem>
@@ -45,7 +50,8 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[previousprot = funcprot(1)
+        <programlisting role="example"><![CDATA[
+previousprot = funcprot(1)
 deff('x = foo(a)','x = a;')
 deff('x = foo(a)','x = a + 1;')
 foo = 33
@@ -53,6 +59,16 @@ funcprot(0)
 deff('x = foo(a)', 'x = a;')
 deff('x = foo(a)', 'x = a + 1;')
 foo = 33
-funcprot(previousprot)]]></programlisting>
+funcprot(previousprot)
+]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Previous value is returned as output argument when setting a new value.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

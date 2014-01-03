@@ -22,13 +22,13 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_figure_closerequestfcn_property(void* _pvCtx, char* pobjUID)
+void* get_figure_closerequestfcn_property(void* _pvCtx, int iObjUID)
 {
     char* closeRequestFcn = NULL;
     int iType = -1;
     int *piType = &iType;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
     if (piType == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "type");
@@ -40,7 +40,7 @@ void* get_figure_closerequestfcn_property(void* _pvCtx, char* pobjUID)
         return NULL;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_CLOSEREQUESTFCN__, jni_string, (void **) &closeRequestFcn);
+    getGraphicObjectProperty(iObjUID, __GO_CLOSEREQUESTFCN__, jni_string, (void **) &closeRequestFcn);
 
     if (closeRequestFcn == NULL)
     {

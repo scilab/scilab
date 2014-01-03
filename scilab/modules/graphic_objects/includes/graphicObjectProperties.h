@@ -338,5 +338,7 @@
 #define __GO_MATERIAL_SHININESS__ 316
 #define __GO_LIGHT__ 317
 #define __GO_LIGHT_TYPE__ 318
+#define __GO_DATATIPS__ 319
+#define __GO_DATATIPS_COUNT__ 320
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */

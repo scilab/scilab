@@ -73,7 +73,7 @@ public final class Jxgetmouse {
          */
         GlobalEventWatcher.enable(new GlobalMouseEventWatcher(eventMask) {
             public void mouseEventFilter(MouseEvent mouseEvent,
-                                         String axesUID, int scilabMouseAction, boolean isControlDown) {
+                                         Integer axesUID, int scilabMouseAction, boolean isControlDown) {
                 mouseActionFilter(mouseEvent, axesUID, scilabMouseAction, isControlDown);
             }
         });
@@ -81,7 +81,7 @@ public final class Jxgetmouse {
         /*
          *  Force xgetmouse not to catch/disable callback execution.
          */
-        GlobalEventWatcher.disableableCatchingCallback();
+        GlobalEventWatcher.disableCatchingCallback();
 
         synchronized (ClickInfos.getInstance()) {
             try {
@@ -115,11 +115,9 @@ public final class Jxgetmouse {
     /**
      * @return the WindowsID
      */
-    public static String getWindowsID() {
+    public static Integer getWindowsID() {
         return ClickInfos.getInstance().getWindowID();
     }
-
-
 
     /**
      * Manage xgetmouse behaviour for keyboard entry.
@@ -144,22 +142,22 @@ public final class Jxgetmouse {
                 }
             }
             isControlDown = keyEvent.isControlDown();
-        } else if (keyEvent.getSource() != null
-                   && keyEvent.getSource() instanceof SwingScilabCanvas) {
+        } else if (keyEvent.getSource() instanceof SwingScilabCanvas) {
             /* Now we have have to be sure we are in a Canvas. */
             /*
              * If a RELEASED is seen use -keyChar
              */
             if (keyEvent.getID() == KeyEvent.KEY_RELEASED) {
-                GlobalEventFilter.filterKey(-keyChar, GlobalEventWatcher.getAxesUID(), isControlDown);
+                GlobalEventFilter.filterKey(-keyChar, GlobalEventWatcher.getAxesUID(), isControlDown, (SwingScilabCanvas) keyEvent.getSource());
             } else if (keyEvent.getID() == KeyEvent.KEY_TYPED) {
                 /*
                  * Or If a TYPED is seen use keyChar
                  */
-                GlobalEventFilter.filterKey(keyChar, GlobalEventWatcher.getAxesUID(), isControlDown);
+                GlobalEventFilter.filterKey(keyChar, GlobalEventWatcher.getAxesUID(), isControlDown, (SwingScilabCanvas) keyEvent.getSource());
             }
         }
     }
+
     /**
      * Manage xgetmouse behaviour for mouse entry.
      *
@@ -168,7 +166,7 @@ public final class Jxgetmouse {
      * @param axes : the axes where action occurs.
      * @param isControlDown true if the CTRL key has been pressed
      */
-    private static void mouseActionFilter(MouseEvent mouseEvent, String axesUID, int scilabMouseAction, boolean isControlDown) {
+    private static void mouseActionFilter(MouseEvent mouseEvent, Integer axesUID, int scilabMouseAction, boolean isControlDown) {
         if (scilabMouseAction != SciTranslator.MOVED
                 && scilabMouseAction != SciTranslator.RELEASED) {
             GlobalEventFilter.filterMouse(mouseEvent, axesUID, scilabMouseAction, isControlDown);
@@ -182,7 +180,4 @@ public final class Jxgetmouse {
             GlobalEventFilter.filterMouse(mouseEvent, axesUID, scilabMouseAction, false);
         }
     }
-
-
 }
-

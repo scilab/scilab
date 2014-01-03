@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_interp_color_mode_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_interp_color_mode_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int b =  (int)FALSE;
@@ -48,7 +48,7 @@ int set_interp_color_mode_property(void* _pvCtx, char* pobjUID, void* _pvData, i
 
     if (b == TRUE)
     {
-        getGraphicObjectProperty(pobjUID, __GO_INTERP_COLOR_VECTOR_SET__, jni_bool, (void **)&piInterpColorVectorSet);
+        getGraphicObjectProperty(iObjUID, __GO_INTERP_COLOR_VECTOR_SET__, jni_bool, (void **)&piInterpColorVectorSet);
 
         if (piInterpColorVectorSet == NULL)
         {
@@ -63,7 +63,7 @@ int set_interp_color_mode_property(void* _pvCtx, char* pobjUID, void* _pvData, i
         }
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_INTERP_COLOR_MODE__, &b, jni_bool, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_INTERP_COLOR_MODE__, &b, jni_bool, 1);
 
     if (status == TRUE)
     {

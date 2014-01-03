@@ -34,7 +34,7 @@ int sci_waitbar(char *fname, void* pvApiCtx)
     long long* handleAdr = NULL;
     long long* stkAdr = NULL;
 
-    char *pWaitbarUID = NULL;
+    int iWaitbarUID = 0;
 
     int nbRow = 0;
     int nbCol = 0;
@@ -99,17 +99,17 @@ int sci_waitbar(char *fname, void* pvApiCtx)
         }
 
         /* Create a new waitbar */
-        pWaitbarUID = createGraphicObject(__GO_WAITBAR__);
-        GraphicHandle = getHandle(pWaitbarUID);
+        iWaitbarUID = createGraphicObject(__GO_WAITBAR__);
+        GraphicHandle = getHandle(iWaitbarUID);
 
         if (fractionAdr != NULL)
         {
             iValue = (int)(fractionAdr[0] * 100);
-            setGraphicObjectProperty(pWaitbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
+            setGraphicObjectProperty(iWaitbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
         }
         else if (messageAdr != NULL)
         {
-            setGraphicObjectProperty(pWaitbarUID, __GO_UI_MESSAGE__, messageAdr, jni_string_vector, nbColMessage * nbRowMessage);
+            setGraphicObjectProperty(iWaitbarUID, __GO_UI_MESSAGE__, messageAdr, jni_string_vector, nbColMessage * nbRowMessage);
             freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
         }
     }
@@ -153,13 +153,13 @@ int sci_waitbar(char *fname, void* pvApiCtx)
             }
 
 
-            pWaitbarUID = createGraphicObject(__GO_WAITBAR__);
+            iWaitbarUID = createGraphicObject(__GO_WAITBAR__);
 
-            GraphicHandle = getHandle(pWaitbarUID);
+            GraphicHandle = getHandle(iWaitbarUID);
 
             iValue = (int)(fractionAdr[0] * 100);
-            setGraphicObjectProperty(pWaitbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
-            setGraphicObjectProperty(pWaitbarUID, __GO_UI_MESSAGE__, messageAdr, jni_string_vector, nbColMessage * nbRowMessage);
+            setGraphicObjectProperty(iWaitbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
+            setGraphicObjectProperty(iWaitbarUID, __GO_UI_MESSAGE__, messageAdr, jni_string_vector, nbColMessage * nbRowMessage);
             freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
         }
         else if ((checkInputArgumentType(pvApiCtx, 1, sci_matrix)) && (checkInputArgumentType(pvApiCtx, 2, sci_handles))) /* waitbar(x,winId) */
@@ -209,15 +209,15 @@ int sci_waitbar(char *fname, void* pvApiCtx)
             }
 
             GraphicHandle = (unsigned long) * handleAdr;
-            pWaitbarUID = (char*)getObjectFromHandle(GraphicHandle);
-            if (pWaitbarUID == NULL)
+            iWaitbarUID = getObjectFromHandle(GraphicHandle);
+            if (iWaitbarUID == 0)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"), fname, 2, "Waitbar");
                 return FALSE;
             }
 
             iValue = (int)(fractionAdr[0] * 100);
-            setGraphicObjectProperty(pWaitbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
+            setGraphicObjectProperty(iWaitbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
         }
         else if ((checkInputArgumentType(pvApiCtx, 1, sci_strings)) && (checkInputArgumentType(pvApiCtx, 2, sci_handles)))   /* waitbar(mes,winId) */
         {
@@ -258,14 +258,14 @@ int sci_waitbar(char *fname, void* pvApiCtx)
             }
 
             GraphicHandle = (unsigned long) * handleAdr;
-            pWaitbarUID = (char*)getObjectFromHandle(GraphicHandle);
-            if (pWaitbarUID == NULL)
+            iWaitbarUID = getObjectFromHandle(GraphicHandle);
+            if (iWaitbarUID == 0)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"), fname, 2, "Waitbar");
                 return FALSE;
             }
 
-            setGraphicObjectProperty(pWaitbarUID, __GO_UI_MESSAGE__, messageAdr, jni_string_vector, nbColMessage * nbRowMessage);
+            setGraphicObjectProperty(iWaitbarUID, __GO_UI_MESSAGE__, messageAdr, jni_string_vector, nbColMessage * nbRowMessage);
             freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
         }
         else
@@ -361,12 +361,12 @@ int sci_waitbar(char *fname, void* pvApiCtx)
         }
 
         GraphicHandle = (unsigned long) * handleAdr;
-        pWaitbarUID = (char*)getObjectFromHandle(GraphicHandle);
-        if (pWaitbarUID != NULL)
+        iWaitbarUID = getObjectFromHandle(GraphicHandle);
+        if (iWaitbarUID != 0)
         {
             iValue = (int)(fractionAdr[0] * 100);
-            setGraphicObjectProperty(pWaitbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
-            setGraphicObjectProperty(pWaitbarUID, __GO_UI_MESSAGE__, messageAdr, jni_string_vector, nbColMessage * nbRowMessage);
+            setGraphicObjectProperty(iWaitbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
+            setGraphicObjectProperty(iWaitbarUID, __GO_UI_MESSAGE__, messageAdr, jni_string_vector, nbColMessage * nbRowMessage);
             freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
         }
         else

@@ -37,7 +37,7 @@ import java.text.DecimalFormatSymbols;
  *
  * @author Pierre Lando
  */
-class AxesRulerSpriteFactory implements RulerSpriteFactory {
+public class AxesRulerSpriteFactory implements RulerSpriteFactory {
     /**
      * The symbol used for ticks label in log and auto ticks mode.
      */
@@ -156,6 +156,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
         exponentTextEntity.setTextUseFractionalMetrics(axisProperty.getFontFractional());
         exponentTextEntity.setTextColor(ColorFactory.createColor(colorMap, axisProperty.getFontColor()));
         exponentTextEntity.setFont(exponentFont);
+        final int exponentHeight = (int) exponentTextEntity.getLayout().getBounds().getHeight();
         final Dimension exponentSize = exponentTextEntity.getSize();
 
         Texture texture = textureManager.createTexture();
@@ -164,7 +165,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
 
             @Override
             public void draw(TextureDrawingTools drawingTools) {
-                drawingTools.draw(mantissaTextEntity, 0, exponentSize.height);
+                drawingTools.draw(mantissaTextEntity, 0, exponentHeight);
                 drawingTools.draw(exponentTextEntity, mantissaSize.width, 0);
             }
 
@@ -172,7 +173,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
             public Dimension getTextureSize() {
                 return new Dimension(
                            exponentSize.width + mantissaSize.width,
-                           exponentSize.height + mantissaSize.height
+                           exponentHeight + mantissaSize.height
                        );
             }
 

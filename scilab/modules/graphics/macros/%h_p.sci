@@ -63,6 +63,7 @@ function %h_p(h)
             t=[t;
             "parent: "+h.parent.type
             "children: "+fmtchildren(h.children)
+            "datatips: "+fmtchildren(h.datatips)
             "visible = "+sci2exp(h.visible)
             "data = "+d
             "closed = "+sci2exp(h.closed)
@@ -88,6 +89,36 @@ function %h_p(h)
             "bar_width = "+sci2exp(h.bar_width)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box)
+            "user_data = "+fmtuser_data(u)
+            "tag = "+h.tag
+            ]
+
+            // Datatip
+            // =====================================================================
+
+        case "Datatip"
+            u=h.user_data
+            t=[t;
+            "parent: "+h.parent.type
+            "children: "+fmtchildren(h.children)
+            "visible = "+sci2exp(h.visible)
+            "tip_data = "+sci2exp(h.tip_data)
+            "tip_box_mode = "+sci2exp(h.tip_box_mode)
+            "tip_label_mode = "+sci2exp(h.tip_label_mode)
+            "tip_orientation = "+sci2exp(h.tip_orientation)
+            "tip_3component = "+sci2exp(h.tip_3component)
+            "tip_auto_orientation = "+sci2exp(h.tip_auto_orientation)
+            "tip_interp_mode = "+sci2exp(h.tip_interp_mode)
+            "tip_disp_function = "+sci2exp(h.tip_disp_function)
+            "font_foreground = "+string(h.font_foreground)
+            "foreground = "+string(h.foreground)
+            "background = "+string(h.background)
+            "mark_mode = "+sci2exp(h.mark_mode)
+            "mark_style = "+sci2exp(h.mark_style)
+            "mark_size_unit = "+sci2exp(h.mark_size_unit)
+            "mark_size = "+string(h.mark_size)
+            "mark_foreground = "+string(h.mark_foreground)
+            "mark_background = "+string(h.mark_background)
             "user_data = "+fmtuser_data(u)
             "tag = "+h.tag
             ]
@@ -875,6 +906,7 @@ function %h_p(h)
             "format_n = "+sci2exp(h.format_n)
             "labels_font_size = "+string(h.labels_font_size)
             "labels_font_color = "+string(h.labels_font_color)
+            "labels_font_style = "+string(h.labels_font_style)
             "fractional_font = " + sci2exp(h.fractional_font)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box,0)
@@ -907,8 +939,13 @@ function %h_p(h)
             // =====================================================================
 
         case "uicontextmenu"
+            if isempty(h.parent) then // For an uicontextmenu, parent can be empty
+                parent = "";
+            else
+                parent = h.parent.type;
+            end
             t=[t;
-            "Parent: "+h.parent.type
+            "Parent: "+parent
             "Children: "+fmtchildren(h.children)
             ]
 

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -586,9 +586,14 @@ msgstr ""
 "d'entrée : Même nombre attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Real, integer or polynomial matrix "
+"expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un réel est attendu.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -639,6 +644,15 @@ msgstr ""
 "de l'argument d'entrée n°%d attendue.\n"
 
 #, c-format
+msgid "%s: Incompatible input arguments: Same types expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un réel est attendu.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un réel attendu.\n"
@@ -685,9 +699,53 @@ msgid "%s: Wrong size for input argument #%d: a vector expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur attendu.\n"
 
+msgid "RESIZING a matrix of DECIMALS:"
+msgstr ""
+
+msgid "TYPE <Enter> to see an example with POLYNOMIALS:"
+msgstr ""
+
+msgid "The padding's unknown is forced to the P's one"
+msgstr ""
+
+msgid "Polynomials can't be converted"
+msgstr ""
+
+msgid "TYPE <Enter> to see an example with TEXT:"
+msgstr ""
+
+msgid "NOTE: Hypermatrix of text can't be converted"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: %s not supported.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong input argument #%d: scalar decimal integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong sizes requested, cannot convert list to matrix.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: can't convert the padding to the "
+"input matrix type.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: conversion of polynomials is not supported\n"
+msgstr ""
+
+#, c-format
+msgid "%s: conversion into %s is not supported\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"
@@ -717,3 +775,9 @@ msgstr ""
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s : Dimension erronée des arguments d'entrée : Dimensions incompatibles.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Reals, encoded integers or "
+"polynomials expected.\n"
+msgstr ""

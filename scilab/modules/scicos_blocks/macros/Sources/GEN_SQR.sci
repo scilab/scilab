@@ -21,16 +21,10 @@
 
 function [x,y,typ]=GEN_SQR(job,arg1,arg2)
     //Generated from SuperBlock on 8-Feb-2008
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         y=needcompile
         arg1.model.ipar=1;
@@ -53,7 +47,9 @@ function [x,y,typ]=GEN_SQR(job,arg1,arg2)
         ok=%f
         while ~ok do
             [ok,scicos_context.Amin,scicos_context.Amax,scicos_context.rule,scicos_context.F,exprs]=scicos_getvalue(Btitre,Bitems,Ss,exprs)
-            if ~ok then return;end
+            if ~ok then
+                return;
+            end
             %scicos_context=scicos_context;
             sblock=x.model.rpar
             [%scicos_context,ierr]=script2var(sblock.props.context,%scicos_context)
@@ -101,9 +97,7 @@ function [x,y,typ]=GEN_SQR(job,arg1,arg2)
         pout=8,..
         pein=16,..
         peout=[],..
-        gr_i=list(..
-        "xstringb(orig(1),orig(2),[''Counter'';+from+'' --> ''+to],sz(1),sz(2),''fill'');",..
-        8),..
+        gr_i=[],..
         id="",..
         in_implicit=[],..
         out_implicit="E"),..
@@ -143,11 +137,7 @@ function [x,y,typ]=GEN_SQR(job,arg1,arg2)
         pout=5,..
         pein=[],..
         peout=[],..
-        gr_i=list(..
-        ["dx=sz(1)/5;dy=sz(2)/10;";
-        "w=sz(1)-2*dx;h=sz(2)-2*dy;";
-        "txt=C;";
-        "xstringb(orig(1)+dx,orig(2)+dy,txt,w,h,''fill'');"],8),..
+        gr_i=[],..
         id="",..
         in_implicit=[],..
         out_implicit="E"),..
@@ -187,11 +177,7 @@ function [x,y,typ]=GEN_SQR(job,arg1,arg2)
         pout=6,..
         pein=[],..
         peout=[],..
-        gr_i=list(..
-        ["dx=sz(1)/5;dy=sz(2)/10;";
-        "w=sz(1)-2*dx;h=sz(2)-2*dy;";
-        "txt=C;";
-        "xstringb(orig(1)+dx,orig(2)+dy,txt,w,h,''fill'');"],8),..
+        gr_i=[],..
         id="",..
         in_implicit=[],..
         out_implicit="E"),..
@@ -231,7 +217,7 @@ function [x,y,typ]=GEN_SQR(job,arg1,arg2)
         pout=14,..
         pein=[9;10],..
         peout=[],..
-        gr_i=list("xstringb(orig(1),orig(2),''Selector'',sz(1),sz(2),''fill'');",8),..
+        gr_i=[],..
         id="",..
         in_implicit=["E";"E"],..
         out_implicit="E"),..
@@ -287,9 +273,7 @@ function [x,y,typ]=GEN_SQR(job,arg1,arg2)
         pout=[],..
         pein=[],..
         peout=[9;10],..
-        gr_i=list(..
-        ["txt=[''event select''];";"xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');"],..
-        8),..
+        gr_i=[],..
         id="",..
         in_implicit="E",..
         out_implicit=[]),..
@@ -355,7 +339,7 @@ function [x,y,typ]=GEN_SQR(job,arg1,arg2)
         pout=[],..
         pein=[],..
         peout=[],..
-        gr_i=list(" ",8),..
+        gr_i=[],..
         id="",..
         in_implicit="E",..
         out_implicit=[]),..
@@ -403,7 +387,7 @@ function [x,y,typ]=GEN_SQR(job,arg1,arg2)
         pout=[],..
         pein=[],..
         peout=16,..
-        gr_i=list(" ",8),..
+        gr_i=[],..
         id="",..
         in_implicit=[],..
         out_implicit=[]),..
@@ -472,12 +456,7 @@ function [x,y,typ]=GEN_SQR(job,arg1,arg2)
         sci2exp(rule)
         sci2exp(F)
         ]
-        gr_i=list(..
-        ["xx=[1 2 2 3 3 4 4 5 5 6]/7;";
-        "yy=[1 1 3 3 1 1 3 3 1 1]/4;";
-        "x=orig(1)*ones(1,10)+sz(1)*xx;";
-        "y=orig(2)*ones(1,10)+sz(2)*yy;";
-        "xpolys(x'',y'');"],8)
+        gr_i=[]
         x=standard_define([3,2],model,exprs,gr_i)
     end
 endfunction

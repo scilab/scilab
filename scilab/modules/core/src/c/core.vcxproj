@@ -392,7 +392,6 @@ cd ..
     <ClInclude Include="..\..\includes\sigbas.h" />
     <ClInclude Include="..\..\includes\signal_mgmt.h" />
     <ClInclude Include="..\..\includes\stack-def.h" />
-    <ClInclude Include="..\..\includes\stack.h" />
     <ClInclude Include="..\..\includes\stack1.h" />
     <ClInclude Include="..\..\includes\stack2.h" />
     <ClInclude Include="..\..\includes\stack3.h" />

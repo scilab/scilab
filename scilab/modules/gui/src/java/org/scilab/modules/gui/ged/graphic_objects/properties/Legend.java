@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.ged.graphic_objects.properties;
@@ -51,9 +51,9 @@ public class Legend extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void legendLocation(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void legendLocation(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lLocation = new JLabel();
         cLocation = new JComboBox();
         String[] options = new String[] {"in_upper_right", "in_upper_left",
@@ -61,20 +61,21 @@ public class Legend extends ContentLayout {
                                          "out_upper_right", "out_upper_left",
                                          "out_lower_right", "out_lower_left",
                                          "upper_caption", "lower_caption",
-                                         "by_coordinates"};
+                                         "by_coordinates"
+                                        };
         addLabelComboBox(panel, lLocation, MessagesGED.location,
-                                cLocation, options, LEFTMARGIN, COLUMN, ROW++);
+                         cLocation, options, LEFTMARGIN, COLUMN, ROW++);
         cLocation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_LEGEND_LOCATION__,
-                        cLocation.getSelectedIndex());
+                    UID, GraphicObjectProperties.__GO_LEGEND_LOCATION__,
+                    cLocation.getSelectedIndex());
             }
         });
         //Get the current status of the property: Legend Location
         cLocation.setSelectedIndex((Integer) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_LEGEND_LOCATION__));
+                                   .getProperty(UID, GraphicObjectProperties.__GO_LEGEND_LOCATION__));
     }
 
     /**
@@ -83,9 +84,9 @@ public class Legend extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void position(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void position(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         int LEFTMARGINIP = 0; //left margin - inner panel
         int COLUMNIP = 0; //left column - inner panel
 
@@ -107,7 +108,7 @@ public class Legend extends ContentLayout {
         });
         //Position X
         addLabelTextField(pCoordinates, lX, MessagesGED.x_coordinate,
-                                 cX, true, LEFTMARGINIP, COLUMNIP, 0);
+                          cX, true, LEFTMARGINIP, COLUMNIP, 0);
         cX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -122,7 +123,7 @@ public class Legend extends ContentLayout {
         });
         //Position Y
         addLabelTextField(pCoordinates, lY, MessagesGED.y_coordinate,
-                                 cY, true, LEFTMARGINIP, COLUMNIP, 1);
+                          cY, true, LEFTMARGINIP, COLUMNIP, 1);
         cY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -149,9 +150,9 @@ public class Legend extends ContentLayout {
     /**
     * Get status of the property: Position (coordinates).
     */
-    private void getCoordinates(String UID) {
+    private void getCoordinates(Integer UID) {
         Double[] coordinates = (Double []) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_POSITION__);
+                               .getProperty(UID, GraphicObjectProperties.__GO_POSITION__);
         cX.setText(coordinates[0].toString());
         cY.setText(coordinates[1].toString());
         titleCoordinates();
@@ -160,15 +161,16 @@ public class Legend extends ContentLayout {
     /**
     * Updates the property: Position.
     */
-    private void updateCoordinates(String UID) {
+    private void updateCoordinates(Integer UID) {
         try {
-            if(cLocation.getSelectedIndex()!=10)
+            if (cLocation.getSelectedIndex() != 10) {
                 cLocation.setSelectedIndex(10);
+            }
             Double[] value = new Double[2];
             value[0] = Double.parseDouble(cX.getText());
             value[1] = Double.parseDouble(cY.getText());
             GraphicController.getController()
-                    .setProperty(UID, GraphicObjectProperties.__GO_POSITION__, value);
+            .setProperty(UID, GraphicObjectProperties.__GO_POSITION__, value);
             titleCoordinates();
         } catch (NumberFormatException e) {
             getCoordinates(UID);
@@ -181,11 +183,11 @@ public class Legend extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
     public void foregroundColor(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN,
-                                  final String UID, final String parentFigure) {
+                                final Integer UID, final Integer parentFigure) {
         JLabel lForeground = new JLabel();
         JPanel pForeground = new JPanel();
         JButton bForeground = new JButton();
@@ -213,11 +215,11 @@ public class Legend extends ContentLayout {
     * Change the color of the object.
     * @param scilabColor index of the color map.
     */
-    public void setForegroundColor(int scilabColor, String UID) {
+    public void setForegroundColor(int scilabColor, Integer UID) {
         EditorManager.getFromUid
-                (
-                    (String) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_PARENT_FIGURE__)
-                ).setOriColor(scilabColor);
+        (
+            (Integer) GraphicController.getController()
+            .getProperty(UID, GraphicObjectProperties.__GO_PARENT_FIGURE__)
+        ).setOriColor(scilabColor);
     }
 }

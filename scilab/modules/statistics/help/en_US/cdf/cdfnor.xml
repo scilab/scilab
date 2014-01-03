@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
  * Copyright (C) 2010 - DIGITEO - Michael Baudin
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -68,7 +68,7 @@
         </para>
         <para>
             A slightly modified version of ANORM from
-            Cody, W.D. (1993). "ALGORITHM 715: SPECFUN - A Portabel FORTRAN
+            Cody, W.D. (1993). "ALGORITHM 715: SPECFUN - A Portable FORTRAN
             Package of Special Function Routines and Test Drivers"
             acm Transactions on Mathematical Software. 19, 22-32.
             is used to calulate the  cumulative standard normal distribution.
@@ -110,17 +110,17 @@ x = -1;
 Mean = 0;
 Std = 1;
 // P = 0.1586553, Q = 0.8413447
-[P,Q]=cdfnor("PQ",x,Mean,Std) 
+[P,Q]=cdfnor("PQ",x,Mean,Std)
    ]]></programlisting>
         <programlisting role="example"><![CDATA[
 // Compute p from a very rare x
-// Notice that Q should be used when P is close to 1, 
+// Notice that Q should be used when P is close to 1,
 // while P should be used when Q is close to 1.
 x = 10;
 Mean = 0;
 Std = 1;
 // P = 1, Q = 7.620D-24
-[P,Q]=cdfnor("PQ",x,Mean,Std) 
+[P,Q]=cdfnor("PQ",x,Mean,Std)
    ]]></programlisting>
         <programlisting role="example"><![CDATA[
 // Make a table of P,Q
@@ -136,7 +136,7 @@ Mean = 0;
 Std = 1;
 p = 0.1;
 q = 0.9;
-// x = - 1.2815516 
+// x = - 1.2815516
 x = cdfnor("X",Mean,Std,p,q)
    ]]></programlisting>
         <programlisting role="example"><![CDATA[
@@ -212,7 +212,7 @@ xtitle("Inverse Cumulated Distribution Normal Standard Function","p","x");
    ]]></programlisting>
         
         
-        <scilab:image>
+        <scilab:image localized="true">
             Mean = 0;
             Std = 1;
             p = linspace(1e-10,1-1e-10,1000);
@@ -223,29 +223,29 @@ xtitle("Inverse Cumulated Distribution Normal Standard Function","p","x");
         </scilab:image>
         
         <programlisting role="example"><![CDATA[
-// The Inverse Normal CDF is ill-conditionned when 
-// p is close to p=0.5. 
+// The Inverse Normal CDF is ill-conditioned when
+// p is close to p=0.5.
 // This is because, at p=0.5, the first derivative is non-zero,
 // while the function is zero.
-// This may produce a large relative error in the function value, 
-// that is, some digits may not be accurate when p is getting 
+// This may produce a large relative error in the function value,
+// that is, some digits may not be accurate when p is getting
 // closer and closer to p=0.5.
 Mean = 0;
 Std = 1;
 p = 0.500000001;
 q = 1-p;
 x = cdfnor("X",Mean,Std,p,q)
-// The expected probability was computed from a symbolic software, 
+// The expected probability was computed from a symbolic software,
 // with the expression sqrt(2)*erfinv(2*p-1)
 // where p = 1/2+10^-9.
 expected = 2.50662827463100050e-9;
-// The relative error is about 1.e-8, meaning that 
+// The relative error is about 1.e-8, meaning that
 // only 8 digits are accurate.
 abs(x-expected)/abs(expected)
    ]]></programlisting>
         <programlisting role="example"><![CDATA[
-// The zero-finder algorithm may be unable to find the standard 
-// deviation in some situations when the inversion cannot be 
+// The zero-finder algorithm may be unable to find the standard
+// deviation in some situations when the inversion cannot be
 // performed.
 Mean = 1;
 p = 0.5;
@@ -254,5 +254,40 @@ x = 1;
 // Std = Nan
 Std = cdfnor("Std",p,q,x,Mean)
    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cdfbet">cdfbet</link>
+            </member>
+            <member>
+                <link linkend="cdfbin">cdfbin</link>
+            </member>
+            <member>
+                <link linkend="cdfchi">cdfchi</link>
+            </member>
+            <member>
+                <link linkend="cdfchn">cdfchn</link>
+            </member>
+            <member>
+                <link linkend="cdff">cdff</link>
+            </member>
+            <member>
+                <link linkend="cdffnc">cdffnc</link>
+            </member>
+            <member>
+                <link linkend="cdfgam">cdfgam</link>
+            </member>
+            <member>
+                <link linkend="cdfnbn">cdfnbn</link>
+            </member>
+            <member>
+                <link linkend="cdfpoi">cdfpoi</link>
+            </member>
+            <member>
+                <link linkend="cdft">cdft</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

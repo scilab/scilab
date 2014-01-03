@@ -31,12 +31,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_foreground_property(void* _pvCtx, char* pobjUID)
+void* get_foreground_property(void* _pvCtx, int iObjUID)
 {
     int iLineColor = 0;
     int *piLineColor = &iLineColor;
 
-    getGraphicObjectProperty(pobjUID, __GO_LINE_COLOR__, jni_int, (void **)&piLineColor);
+    getGraphicObjectProperty(iObjUID, __GO_LINE_COLOR__, jni_int, (void **)&piLineColor);
 
     if (piLineColor == NULL)
     {

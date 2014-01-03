@@ -212,6 +212,7 @@ int CdfBase(char const * const fname, void* pvApiCtx, int inarg, int oarg, int s
             }
         }
     }
+
     for (i = 1; i < inarg ; ++i)
     {
         if (rows[i] != rows[i - 1] || cols[i] != cols[i - 1])

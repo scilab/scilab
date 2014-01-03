@@ -26,14 +26,14 @@
                 <term>vars</term>
                 <listitem>
                     <para>
-                        list,  <literal>list(in, out, nolocal, called, locals)</literal>
+                        a list,  <literal>list(in, out, nolocal, called, locals)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>function</term>
                 <listitem>
-                    <para>name of a function</para>
+                    <para>a name of a function.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -42,23 +42,23 @@
         <title>Description</title>
         <para>
             Returns in a list the set of variables used by a function.
-            <literal>vars</literal> is a list made of five column vectors of character strings:
+            <varname>vars</varname> is a list made of five column vectors of character strings:
         </para>
         <simplelist type="inline">
             <member>
-                <literal>in</literal>: input variables (<literal>vars(1)</literal>)
+                <varname>in</varname>: input variables (<code>vars(1)</code>);
             </member>
             <member>
-                <literal>out</literal>: output variables (<literal>vars(2)</literal>)
+                <varname>out</varname>: output variables (<code>vars(2)</code>);
             </member>
             <member>
-                <literal>nolocal</literal>: referenced variables which are not defined inside the function and which are not functions (<literal>vars(3)</literal>)
+                <varname>nolocal</varname>: referenced variables which are not defined inside the function and which are not functions (<code>vars(3)</code>);
             </member>
             <member>
-                <literal>called</literal>: names of functions called (<literal>vars(4)</literal>)
+                <varname>called</varname>: names of functions called (<code>vars(4)</code>);
             </member>
             <member>
-                <literal>locals</literal>: local variables (<literal>vars(5)</literal>)
+                <varname>locals</varname>: local variables (<code>vars(5)</code>);
             </member>
         </simplelist>
     </refsection>

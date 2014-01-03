@@ -121,9 +121,9 @@ function [d, v] = eigs(varargin)
             end
         case 2
             if(issparse(A) | issparse(B))
-                [d, v] = speigs(A, B, nev, "LM", maxiter, tol, ncv, cholB, resid, info);
+                [d, v] = speigs(A, B, nev, sigma, maxiter, tol, ncv, cholB, resid, info);
             else
-                [d, v] = %_eigs(A, B, nev, "LM", maxiter, tol, ncv, cholB, resid, info);
+                [d, v] = %_eigs(A, B, nev, sigma, maxiter, tol, ncv, cholB, resid, info);
             end
         end
     else
@@ -814,6 +814,7 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
         //check if chol is complex?
         if(~isreal(cholB) | size(cholB, "*") <> 1)
             error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar or a boolean.\n"), "eigs", 8, "opts.cholB"));
+
         end
 
         if(and(cholB <> [0 1]))

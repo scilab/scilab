@@ -328,7 +328,7 @@ function [returned_time,nb_run_done] = bench_run_onebench(module,test,nb_run)
     bench;
     "end";
     "timing = toc();";
-    "returned_time = timing * 1000 / nb_run;"]
+    "returned_time = timing * 1000;"]
 
     mputl(tst_str,scefile);
     exec(scefile);

@@ -15,21 +15,14 @@
 // <-- Short Description -->
 // getURL() downloaded file name is wrong
 
-function checkFile(filename, expectedFileName, minimalFileSize)
-    assert_checkequal(filename, expectedFileName)
-    info = fileinfo(filename);
-    assert_checktrue(info(1) > minimalFileSize);
-    deletefile(filename);
-endfunction
-
 curdir = pwd();
 cd(TMPDIR);
 
-filename = getURL("www.scilab.org");
+filePath = getURL("www.scilab.org");
 
-expectedFileName = "index.html";
-assert_checkequal(filename, expectedFileName);
-assert_checktrue(isfile(expectedFileName));
+expectedFilePath = fullfile(TMPDIR, "index.html");
+assert_checkequal(filePath, expectedFilePath);
+assert_checktrue(isfile(filePath));
 
-deletefile(expectedFileName);
+deletefile(filePath);
 cd(curdir);

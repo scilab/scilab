@@ -67,7 +67,7 @@
         <title>Description</title>
         <para>
             <literal>syslin</literal> définit un système dynamique linéaire en
-            temps que liste typée, et vérifie la consistance des données.
+            tant que liste typée, et vérifie la consistance des données.
         </para>
         <para>
             <literal>dom</literal> spécifie le domaine temporel :
@@ -83,7 +83,7 @@
             défini
         </para>
         <para>Représentation d'état :</para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 sl=syslin(dom,A,B,C [,D [,x0] ])
  ]]></programlisting>
         <para>représente le système :</para>
@@ -97,14 +97,14 @@ sl=syslin(dom,A,B,C [,D [,x0] ])
         <para>
             La sortie de <literal>syslin</literal> est une liste de la forme
             suivante : <literal>
-                sl=tlist(['lss','A','B','C','D','X0','dt'],A,B,C,D,x0,dom) 
+                sl=tlist(['lss','A','B','C','D','X0','dt'],A,B,C,D,x0,dom)
             </literal>
             Notez que <literal>D</literal> peut être une matrice polynomiale (systèmes
             impropres).
         </para>
         <para>Représentation sous forme de matrice de transfert :</para>
-        <programlisting role=""><![CDATA[ 
-sl=syslin(dom,N,D) 
+        <programlisting role=""><![CDATA[
+sl=syslin(dom,N,D)
 sl=syslin(dom,H)
  ]]></programlisting>
         <para>
@@ -125,7 +125,7 @@ sl=syslin(dom,H)
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=[0,1;0,0];B=[1;1];C=[1,1];
 S1=syslin('c',A,B,C)   // Définition du système
 S1.A    // La matrice A

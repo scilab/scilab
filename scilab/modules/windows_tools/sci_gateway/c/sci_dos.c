@@ -24,6 +24,7 @@
 #include "freeArrayOfString.h"
 #include "getshortpathname.h"
 #include "api_scilab.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 /*--------------------------------------------------------------------------*/
@@ -35,7 +36,7 @@ int sci_dos(char *fname, void* pvApiCtx)
     int *piAddressVarOne = NULL;
     int iType1	= 0;
     int m1 = 0, n1 = 0;
-    char *pStVarOne = NULL;
+    wchar_t *pStVarOne = NULL;
     int lenStVarOne = 0;
 
     char **Output = NULL;
@@ -155,14 +156,14 @@ int sci_dos(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    pStVarOne = (char*)MALLOC(sizeof(char) * (lenStVarOne + 1));
+    pStVarOne = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStVarOne + 1));
     if (pStVarOne)
     {
         double exitCode = 0.;
         BOOL DetachProcessOption = FALSE;
         BOOL *StatusExit = NULL;
 
-        sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+        sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -173,7 +174,6 @@ int sci_dos(char *fname, void* pvApiCtx)
         DetachProcessOption = DetectDetachProcessInCommandLine(pStVarOne);
         exitCode = (double)spawncommand(pStVarOne, DetachProcessOption);
         FREE(pStVarOne);
-        pStVarOne = NULL;
 
         StatusExit = (BOOL*)MALLOC(sizeof(BOOL));
 

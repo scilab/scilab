@@ -21,18 +21,23 @@
 //
 
 function [x,y,typ]=GENSIN_f(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         while %t do
             [ok, M, F, P, exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "GENSIN_f");" "; ..
             gettext("Sine wave generator");" "], ..
             [gettext("Magnitude"); gettext("Frequency (rad/s)"); gettext("Phase (rad)")], ..
             list("vec",1,"vec",1,"vec",1), exprs);
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             if F < 0 then
                 block_parameter_error(msprintf(gettext("Wrong value for ''Frequency'' parameter: %e."), F), ..
                 gettext("Strictly positive integer expected."));
@@ -48,7 +53,8 @@ function [x,y,typ]=GENSIN_f(job,arg1,arg2)
                 model.outtyp=1;
 
                 graphics.exprs=exprs;
-                x.graphics=graphics;x.model=model
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end

@@ -31,11 +31,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_z_bounds_property(void* _pvCtx, char* pobjUID)
+void* get_z_bounds_property(void* _pvCtx, int iObjUID)
 {
     double* zBounds = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_Z_BOUNDS__, jni_double_vector, (void **)&zBounds);
+    getGraphicObjectProperty(iObjUID, __GO_Z_BOUNDS__, jni_double_vector, (void **)&zBounds);
 
     if (zBounds == NULL)
     {

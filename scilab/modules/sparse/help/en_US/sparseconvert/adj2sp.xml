@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2010 - DIGITEO - Michael Baudin
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -31,9 +31,9 @@
                 <listitem>
                     <para>
                         a (n+1)-by-1 matrix of floating point integers.
-                        For <literal>j=1:n</literal>, the floating point integer 
+                        For <literal>j=1:n</literal>, the floating point integer
                         <literal>xadj(j+1)-xadj(j)</literal> is the number of non zero entries in
-                        column j. 
+                        column j.
                     </para>
                 </listitem>
             </varlistentry>
@@ -42,8 +42,8 @@
                 <listitem>
                     <para>
                         a nz-by-1 matrix of floating point integers, the row indices for the
-                        nonzeros. 
-                        For <literal>j=1:n</literal>, for <literal>k = xadj(j):xadj(j+1)-1</literal>, the floating point integer 
+                        nonzeros.
+                        For <literal>j=1:n</literal>, for <literal>k = xadj(j):xadj(j+1)-1</literal>, the floating point integer
                         <literal>i = iadj(k)</literal> is the row index of the nonzero entry #k.
                     </para>
                 </listitem>
@@ -52,8 +52,8 @@
                 <term>v</term>
                 <listitem>
                     <para>
-                        a nz-by-1 matrix of floating point integers, the non-zero entries of A. 
-                        For <literal>j=1:n</literal>, for <literal>k = xadj(j):xadj(j+1)-1</literal>, the floating point integer 
+                        a nz-by-1 matrix of floating point integers, the non-zero entries of A.
+                        For <literal>j=1:n</literal>, for <literal>k = xadj(j):xadj(j+1)-1</literal>, the floating point integer
                         <literal>Aij = v(k)</literal> is the value of the nonzero entry #k.
                     </para>
                 </listitem>
@@ -62,8 +62,8 @@
                 <term>mn</term>
                 <listitem>
                     <para>
-                        a 1-by-2 or 2-by-1 matrix of floating point integers, optional, 
-                        <literal>mn(1)</literal> is the number of rows in A, 
+                        a 1-by-2 or 2-by-1 matrix of floating point integers, optional,
+                        <literal>mn(1)</literal> is the number of rows in A,
                         <literal>mn(2)</literal> is the number of columns in A.
                         If <literal>mn</literal> is not provided, then <literal>mn=[m,n]</literal> is the default with
                         <literal>m=max(iadj)</literal> and <literal>n=size(xadj,"*")-1</literal>.
@@ -81,18 +81,18 @@
     <refsection>
         <title>Description</title>
         <para>
-            adj2sp converts a sparse matrix into its adjacency form format. 
-            The values in the adjacency format are stored colum-by-column. 
-            This is why this format is sometimes called "Compressed sparse column" or CSC. 
+            adj2sp converts a sparse matrix into its adjacency form format.
+            The values in the adjacency format are stored colum-by-column.
+            This is why this format is sometimes called "Compressed sparse column" or CSC.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <para>
-            In the following example, we create a sparse matrix from its adjacency format. 
+            In the following example, we create a sparse matrix from its adjacency format.
             Then we check that it matches the expected sparse matrix.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 xadj = [1 3 4 7 9 11]';
 iadj = [3 5 3 1 2 4 3 5 1 4]';
 v = [1 2 3 4 5 6 7 8 9 10]';
@@ -108,10 +108,10 @@ C=sparse(A)
 and(B==C)
  ]]></programlisting>
         <para>
-            In the following example, we create a sparse matrix from its adjacency format. 
+            In the following example, we create a sparse matrix from its adjacency format.
             Then we check that it matches the expected sparse matrix.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 xadj = [1 2 3 4 5 5 6 6 7 8 9]';
 iadj = [2 5 2 3 1 2 7 6]';
 v = [3 7 5 3 6 5 2 3]';
@@ -129,11 +129,11 @@ B=sparse(A)
 and(B==C)
  ]]></programlisting>
         <para>
-            In the following example, we check the use of the mn parameter. 
+            In the following example, we check the use of the mn parameter.
             The consistency between the mn parameter and the actual content of
             xadj and iadj is checked by adj2sp.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 xadj = [1 2 3 4 5 5 6 6 7 8 9]';
 iadj = [2 5 2 3 1 2 7 6]';
 v = [3 7 5 3 6 5 2 3]';
@@ -141,10 +141,10 @@ mn=[7 10];
 C=adj2sp(xadj,iadj,v,mn)
  ]]></programlisting>
         <para>
-            In the following example, create a 3-by-3 sparse matrix. 
+            In the following example, create a 3-by-3 sparse matrix.
             This example is adapted from the documentation of SciPy.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 xadj =  [1,3,4,7]
 iadj =  [1,3,3,1,2,3]
 v = [1,2,3,4,5,6]
@@ -153,23 +153,46 @@ full(adj2sp(xadj,iadj,v))
         <para>
             The previous script produces the following output.
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 -->full(adj2sp(xadj,iadj,v))
  ans  =
-    1.    0.    4.  
-    0.    0.    5.  
-    2.    3.    6.  
+    1.    0.    4.
+    0.    0.    5.
+    2.    3.    6.
  ]]></programlisting>
         <para>
-            In the following example, we check that the sp2adj and adj2sp functions 
+            In the following example, we check that the sp2adj and adj2sp functions
             are inverse.
         </para>
-        <programlisting role="example"><![CDATA[ 
-A = sprand(100,50,.05);
-[xadj,adjncy,anz]= sp2adj(A);
-[n,m] = size(A);
-p = adj2sp(xadj,adjncy,anz,[n,m]);
-A-p
+        <programlisting role="example"><![CDATA[
+// Templates for the Solution of Algebraic Eigenvalue Problems: a Practical Guide
+// Edited by Zhaojun Bai, James Demmel, Jack Dongarra, Axel Ruhe, and Henk van der Vorst
+// "Sparse Matrix Storage Formats", J. Dongarra
+// http://web.eecs.utk.edu/~dongarra/etemplates/book.html
+
+A = [
+10 0 0 0 -2 0
+3 9 0 0 0 3
+0 7 8 7 0 0
+3 0 8 7 5 0
+0 8 0 9 9 13
+0 4 0 0 2 -1
+];
+A = sparse(A)
+
+// To get the Compressed Sparse Column (CSC) :
+[col_ptr,row_ind,val]=sp2adj(A)
+// To convert back to sparse:
+AAsp=adj2sp(col_ptr,row_ind,val)
+// Check the conversion
+AAsp - A
+
+// To get the Compressed Sparse Row (CSR) :
+[row_ptr,col_ind,val]=sp2adj(A')
+// To convert back to sparse:
+AAsp=adj2sp(row_ptr,col_ind,val)'
+// Check the conversion
+AAsp - A
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -179,7 +202,13 @@ A-p
                 <link linkend="sp2adj">sp2adj</link>
             </member>
             <member>
+                <link linkend="sparse">sparse</link>
+            </member>
+            <member>
                 <link linkend="spcompack">spcompack</link>
+            </member>
+            <member>
+                <link linkend="spget">spget</link>
             </member>
         </simplelist>
     </refsection>

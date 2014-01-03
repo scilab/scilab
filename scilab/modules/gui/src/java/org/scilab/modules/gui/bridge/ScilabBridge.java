@@ -4796,7 +4796,7 @@ public class ScilabBridge {
      * @param figureID exported figure id
      * @return the created ExportFileChooser
      */
-    public static SimpleFileChooser createExportFileChooser(String figureUID) {
+    public static SimpleFileChooser createExportFileChooser(Integer figureUID) {
         return ScilabFileChooserBridge.createExportFileChooser(figureUID);
     }
 

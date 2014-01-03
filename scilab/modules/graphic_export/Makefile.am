@@ -26,8 +26,7 @@ libscigraphic_export_la_etc_DATA = etc/graphic_export.quit etc/graphic_export.st
 # List of the c files
 GRAPHIC_EXPORT_CXX_SOURCES = src/cpp/exportToFile.cpp \
 src/jni/FileExporter.cpp \
-src/jni/Driver.cpp \
-src/jni/JOGLConstant.cpp
+src/jni/Driver.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = \
@@ -81,7 +80,6 @@ INCLUDE_FLAGS = $(libscigraphic_export_la_CPPFLAGS)
 libscigraphic_export_la_LIBADD = libscigraphic_export-algo.la
 
 GIWS_WRAPPERS= src/jni/FileExporter.giws.xml \
-src/jni/JOGLConstant.giws.xml \
 src/jni/Driver.giws.xml
 
 BUILT_SOURCES=

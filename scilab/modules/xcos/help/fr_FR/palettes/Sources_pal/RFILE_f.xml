@@ -102,11 +102,21 @@
         <para>
             Le fichier est une séquence d'enregistrements. Chaque enregistrement a une longueur <emphasis role="bold">Record Size</emphasis> et la structure ci-dessous :
         </para>
-        <para/>
         <mediaobject>
             <imageobject>
-                <imagedata fileref="../../../images/sources_pal/fr_FR/rfile_f_record_fr_FR.png" align="center"/>
+                <imagedata fileref="../../../images/palettes/sources_pal/fr_FR/rfile_f_record_fr_FR.gif"/>
             </imageobject>
+            <textobject>
+                <programlisting role="pic"><![CDATA[
+.PS
+box "Champ #1";
+box "Champ #2";
+box "...";
+box "Champ #(N-1)";
+box "Champ #N";
+.PE
+                ]]></programlisting>
+            </textobject>
         </mediaobject>
         <para>
             Le paramètre <emphasis role="bold">Time record Selection</emphasis> permet à l'utilisateur de sélectionner un champ de l'enregistrement qui représente des événements

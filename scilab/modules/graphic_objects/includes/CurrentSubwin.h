@@ -15,8 +15,8 @@
 
 #include "dynlib_graphic_objects.h"
 
-GRAPHIC_OBJECTS_IMPEXP char const* getCurrentSubWin(void);
+GRAPHIC_OBJECTS_IMPEXP int getCurrentSubWin(void);
 
-GRAPHIC_OBJECTS_IMPEXP void setCurrentSubWin(char const* UID);
+GRAPHIC_OBJECTS_IMPEXP void setCurrentSubWin(int iUID);
 
 #endif /* !__CURRENT_SUBWIN_H__ */

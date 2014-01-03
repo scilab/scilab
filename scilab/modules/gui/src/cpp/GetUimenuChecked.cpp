@@ -12,12 +12,12 @@
 
 #include "GetUimenuChecked.hxx"
 
-void* GetUimenuChecked(void* _pvCtx, char *pObjUID)
+void* GetUimenuChecked(void* _pvCtx, int iObjUID)
 {
     int checked = 0;
     int *piChecked = &checked;
 
-    getGraphicObjectProperty(pObjUID, __GO_UI_CHECKED__, jni_bool, (void **)&piChecked);
+    getGraphicObjectProperty(iObjUID, __GO_UI_CHECKED__, jni_bool, (void **)&piChecked);
 
     if (piChecked == NULL)
     {

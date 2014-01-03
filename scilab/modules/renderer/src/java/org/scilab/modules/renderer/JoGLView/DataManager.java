@@ -34,7 +34,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Pierre Lando
- */public class DataManager {
+ */
+public class DataManager {
 
     /**
      * Set of properties that affect Fac3d data.
@@ -144,12 +145,12 @@ import java.util.concurrent.ConcurrentHashMap;
      */
     private static final int DEFAULT_LOG_MASK = 0;
 
-    private final Map<String, TransformedElementsBuffer> vertexBufferMap = new HashMap<String, TransformedElementsBuffer>();
-    private final Map<String, ElementsBuffer> normalBufferMap = new HashMap<String, ElementsBuffer>();
-    private final Map<String, ElementsBuffer> colorBufferMap = new ConcurrentHashMap<String, ElementsBuffer>();
-    private final Map<String, ElementsBuffer> texturesCoordinatesBufferMap = new HashMap<String, ElementsBuffer>();
-    private final Map<String, IndicesBuffer> indexBufferMap = new HashMap<String, IndicesBuffer>();
-    private final Map<String, IndicesBuffer> wireIndexBufferMap = new HashMap<String, IndicesBuffer>();
+    private final Map<Integer, TransformedElementsBuffer> vertexBufferMap = new HashMap<Integer, TransformedElementsBuffer>();
+    private final Map<Integer, ElementsBuffer> normalBufferMap = new HashMap<Integer, ElementsBuffer>();
+    private final Map<Integer, ElementsBuffer> colorBufferMap = new ConcurrentHashMap<Integer, ElementsBuffer>();
+    private final Map<Integer, ElementsBuffer> texturesCoordinatesBufferMap = new HashMap<Integer, ElementsBuffer>();
+    private final Map<Integer, IndicesBuffer> indexBufferMap = new HashMap<Integer, IndicesBuffer>();
+    private final Map<Integer, IndicesBuffer> wireIndexBufferMap = new HashMap<Integer, IndicesBuffer>();
     private final Canvas canvas;
 
 
@@ -167,7 +168,7 @@ import java.util.concurrent.ConcurrentHashMap;
      * @return the vertex buffer of the given object.
      * @throws ObjectRemovedException if the object is now longer present.
      */
-    public ElementsBuffer getVertexBuffer(String id) throws ObjectRemovedException, OutOfMemoryException {
+    public ElementsBuffer getVertexBuffer(Integer id) throws ObjectRemovedException, OutOfMemoryException {
         GraphicObject currentObject = GraphicController.getController().getObjectFromId(id);
         Axes axes = (Axes) GraphicController.getController().getObjectFromId(currentObject.getParentAxes());
         double[][] factors = axes.getScaleTranslateFactors();
@@ -192,7 +193,7 @@ import java.util.concurrent.ConcurrentHashMap;
      * @return the vertex buffer of the given object.
      * @throws ObjectRemovedException if the object is now longer present.
      */
-    public ElementsBuffer getNormalBuffer(String id) throws ObjectRemovedException, OutOfMemoryException {
+    public ElementsBuffer getNormalBuffer(Integer id) throws ObjectRemovedException, OutOfMemoryException {
         if (normalBufferMap.containsKey(id)) {
             return normalBufferMap.get(id);
         } else {
@@ -209,7 +210,7 @@ import java.util.concurrent.ConcurrentHashMap;
      * @return the texture coordinates corresponding to the given graphic object.
      * @throws ObjectRemovedException if the object is now longer present.
      */
-    public ElementsBuffer getTextureCoordinatesBuffer(String identifier) throws ObjectRemovedException, OutOfMemoryException {
+    public ElementsBuffer getTextureCoordinatesBuffer(Integer identifier) throws ObjectRemovedException, OutOfMemoryException {
         if (texturesCoordinatesBufferMap.containsKey(identifier)) {
             return texturesCoordinatesBufferMap.get(identifier);
         } else {
@@ -226,7 +227,7 @@ import java.util.concurrent.ConcurrentHashMap;
      * @return the color buffer of the given object.
      * @throws ObjectRemovedException if the object is now longer present.
      */
-    public ElementsBuffer getColorBuffer(String id) throws ObjectRemovedException, OutOfMemoryException {
+    public ElementsBuffer getColorBuffer(Integer id) throws ObjectRemovedException, OutOfMemoryException {
         if (colorBufferMap.containsKey(id)) {
             return colorBufferMap.get(id);
         } else {
@@ -243,7 +244,7 @@ import java.util.concurrent.ConcurrentHashMap;
      * @return the index buffer of the given object.
      * @throws ObjectRemovedException if the object is now longer present.
      */
-    public IndicesBuffer getIndexBuffer(String id) throws ObjectRemovedException, OutOfMemoryException {
+    public IndicesBuffer getIndexBuffer(Integer id) throws ObjectRemovedException, OutOfMemoryException {
         if (indexBufferMap.containsKey(id)) {
             return indexBufferMap.get(id);
         } else {
@@ -260,7 +261,7 @@ import java.util.concurrent.ConcurrentHashMap;
      * @return the wire index buffer of the given object.
      * @throws ObjectRemovedException if the object is now longer present.
      */
-    public IndicesBuffer getWireIndexBuffer(String id) throws ObjectRemovedException, OutOfMemoryException {
+    public IndicesBuffer getWireIndexBuffer(Integer id) throws ObjectRemovedException, OutOfMemoryException {
         if (wireIndexBufferMap.containsKey(id)) {
             return wireIndexBufferMap.get(id);
         } else {
@@ -276,7 +277,7 @@ import java.util.concurrent.ConcurrentHashMap;
      * @param id given object id.
      * @throws ObjectRemovedException if the object is now longer present.
      */
-    public void updateTextureCoordinatesBuffer(String id) throws ObjectRemovedException, OutOfMemoryException {
+    public void updateTextureCoordinatesBuffer(Integer id) throws ObjectRemovedException, OutOfMemoryException {
         ElementsBuffer textureCoordinatesBuffer = texturesCoordinatesBufferMap.get(id);
         if (textureCoordinatesBuffer != null) {
             fillTextureCoordinatesBuffer(textureCoordinatesBuffer, id);
@@ -288,7 +289,7 @@ import java.util.concurrent.ConcurrentHashMap;
      * @param id the modified object.
      * @param property the changed property.
      */
-    public void update(String id, int property) throws OutOfMemoryException {
+    public void update(Integer id, int property) throws OutOfMemoryException {
         Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
         try {
@@ -329,7 +330,7 @@ import java.util.concurrent.ConcurrentHashMap;
      * @throws ObjectRemovedException if the object is no longer present.
      * @throws OutOfMemoryException if there was not enough memory.
      */
-    private void updateChildrenVertexIndex(String id, int coordinateMask) throws ObjectRemovedException, OutOfMemoryException {
+    private void updateChildrenVertexIndex(Integer id, int coordinateMask) throws ObjectRemovedException, OutOfMemoryException {
         GraphicObject currentObject = GraphicController.getController().getObjectFromId(id);
         Axes axes = (Axes) GraphicController.getController().getObjectFromId(currentObject.getParentAxes());
         double[][] factors = axes.getScaleTranslateFactors();
@@ -361,7 +362,7 @@ import java.util.concurrent.ConcurrentHashMap;
             fillWireIndexBuffer(wireIndexBuffer, id);
         }
 
-        for (String childId : (String []) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_CHILDREN__)) {
+        for (Integer childId : (Integer []) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_CHILDREN__)) {
             updateChildrenVertexIndex(childId, coordinateMask);
         }
     }
@@ -370,7 +371,7 @@ import java.util.concurrent.ConcurrentHashMap;
      * Clear the buffer corresponding to the given object.
      * @param id object id.
      */
-    public void dispose(String id) {
+    public void dispose(Integer id) {
         if (vertexBufferMap.containsKey(id)) {
             canvas.getBuffersManager().dispose(vertexBufferMap.get(id).getBuffer());
             vertexBufferMap.remove(id);
@@ -424,10 +425,15 @@ import java.util.concurrent.ConcurrentHashMap;
      * @param id the object id.
      * @throws ObjectRemovedException if the object is now longer present.
      */
-    private void fillBuffers(String id) throws ObjectRemovedException, OutOfMemoryException {
+    private void fillBuffers(Integer id) throws ObjectRemovedException, OutOfMemoryException {
         TransformedElementsBuffer buf = vertexBufferMap.get(id);
         if (buf != null) {
             fillVertexBuffer(buf.getBuffer(), id, buf.getScale(), buf.getTranslate());
+        }
+
+        ElementsBuffer normalBuffer = normalBufferMap.get(id);
+        if (normalBuffer != null) {
+            fillNormalBuffer(normalBuffer, id);
         }
 
         ElementsBuffer colorBuffer = colorBufferMap.get(id);
@@ -451,11 +457,11 @@ import java.util.concurrent.ConcurrentHashMap;
         }
     }
 
-    private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id, double[] scale, double[] translate) throws ObjectRemovedException, OutOfMemoryException {
+    private void fillVertexBuffer(ElementsBuffer vertexBuffer, Integer id, double[] scale, double[] translate) throws ObjectRemovedException, OutOfMemoryException {
         fillVertexBuffer(vertexBuffer, id, 0x01 | 0x02 | 0x04 | 0x08, scale, translate);
     }
 
-    private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id, int coordinateMask, double[] scale, double[] translate) throws ObjectRemovedException, OutOfMemoryException {
+    private void fillVertexBuffer(ElementsBuffer vertexBuffer, Integer id, int coordinateMask, double[] scale, double[] translate) throws ObjectRemovedException, OutOfMemoryException {
         int logMask = MainDataLoader.getLogMask(id);
         int length = MainDataLoader.getDataSize(id);
         FloatBuffer data = BufferAllocation.newFloatBuffer(length * 4);
@@ -463,35 +469,35 @@ import java.util.concurrent.ConcurrentHashMap;
         vertexBuffer.setData(data, 4);
     }
 
-    private void fillNormalBuffer(ElementsBuffer normalBuffer, String id) throws ObjectRemovedException, OutOfMemoryException {
+    private void fillNormalBuffer(ElementsBuffer normalBuffer, Integer id) throws ObjectRemovedException, OutOfMemoryException {
         int length = MainDataLoader.getDataSize(id);
         FloatBuffer data = BufferAllocation.newFloatBuffer(length * 4);
         MainDataLoader.fillNormals(id, getVertexBuffer(id).getData(), data, 4);
         normalBuffer.setData(data, 4);
     }
 
-    private void updateVertexBuffer(ElementsBuffer vertexBuffer, String id, int coordinateMask, double[] scale, double[] translate) throws ObjectRemovedException {
+    private void updateVertexBuffer(ElementsBuffer vertexBuffer, Integer id, int coordinateMask, double[] scale, double[] translate) throws ObjectRemovedException {
         int logMask = MainDataLoader.getLogMask(id);
         FloatBuffer data = vertexBuffer.getData();
         MainDataLoader.fillVertices(id, data, 4, coordinateMask, scale, translate, logMask);
         vertexBuffer.setData(data, 4);
     }
 
-    private void fillTextureCoordinatesBuffer(ElementsBuffer colorBuffer, String id) throws ObjectRemovedException, OutOfMemoryException {
+    private void fillTextureCoordinatesBuffer(ElementsBuffer colorBuffer, Integer id) throws ObjectRemovedException, OutOfMemoryException {
         int length = MainDataLoader.getDataSize(id);
         FloatBuffer data = BufferAllocation.newFloatBuffer(length * 4);
         MainDataLoader.fillTextureCoordinates(id, data, length);
         colorBuffer.setData(data, 4);
     }
 
-    private void fillColorBuffer(ElementsBuffer colorBuffer, String id) throws ObjectRemovedException, OutOfMemoryException {
+    private void fillColorBuffer(ElementsBuffer colorBuffer, Integer id) throws ObjectRemovedException, OutOfMemoryException {
         int length = MainDataLoader.getDataSize(id);
         FloatBuffer data = BufferAllocation.newFloatBuffer(length * 4);
         MainDataLoader.fillColors(id, data, 4);
         colorBuffer.setData(data, 4);
     }
 
-    private void fillIndexBuffer(IndicesBuffer indexBuffer, String id) throws ObjectRemovedException, OutOfMemoryException {
+    private void fillIndexBuffer(IndicesBuffer indexBuffer, Integer id) throws ObjectRemovedException, OutOfMemoryException {
         int length = MainDataLoader.getIndicesSize(id);
         IntBuffer data = BufferAllocation.newIntBuffer(length);
 
@@ -510,7 +516,7 @@ import java.util.concurrent.ConcurrentHashMap;
         indexBuffer.setData(data);
     }
 
-    private void fillWireIndexBuffer(IndicesBuffer indexBuffer, String id) throws ObjectRemovedException, OutOfMemoryException {
+    private void fillWireIndexBuffer(IndicesBuffer indexBuffer, Integer id) throws ObjectRemovedException, OutOfMemoryException {
         int length = MainDataLoader.getWireIndicesSize(id);
         IntBuffer data = BufferAllocation.newIntBuffer(length);
 

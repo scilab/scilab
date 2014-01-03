@@ -168,20 +168,24 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscixml_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscixml_algo_la_LIBADD =
-am__objects_1 = libscixml_algo_la-XMLMlistsManagement.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+am__objects_1 = src/c/libscixml_algo_la-XMLMlistsManagement.lo
 am__objects_2 =
-am__objects_3 = libscixml_algo_la-VariableScope.lo \
-	libscixml_algo_la-XMLObject.lo \
-	libscixml_algo_la-XMLDocument.lo \
-	libscixml_algo_la-XMLElement.lo libscixml_algo_la-XMLAttr.lo \
-	libscixml_algo_la-XMLNs.lo libscixml_algo_la-XMLNodeList.lo \
-	libscixml_algo_la-XMLNodeSet.lo libscixml_algo_la-XMLXPath.lo \
-	libscixml_algo_la-XMLList.lo \
-	libscixml_algo_la-XMLNotHandledElement.lo \
-	libscixml_algo_la-XMLValidation.lo \
-	libscixml_algo_la-XMLValidationDTD.lo \
-	libscixml_algo_la-XMLValidationSchema.lo \
-	libscixml_algo_la-XMLValidationRelaxNG.lo
+am__objects_3 = src/cpp/libscixml_algo_la-VariableScope.lo \
+	src/cpp/libscixml_algo_la-XMLObject.lo \
+	src/cpp/libscixml_algo_la-XMLDocument.lo \
+	src/cpp/libscixml_algo_la-XMLElement.lo \
+	src/cpp/libscixml_algo_la-XMLAttr.lo \
+	src/cpp/libscixml_algo_la-XMLNs.lo \
+	src/cpp/libscixml_algo_la-XMLNodeList.lo \
+	src/cpp/libscixml_algo_la-XMLNodeSet.lo \
+	src/cpp/libscixml_algo_la-XMLXPath.lo \
+	src/cpp/libscixml_algo_la-XMLList.lo \
+	src/cpp/libscixml_algo_la-XMLNotHandledElement.lo \
+	src/cpp/libscixml_algo_la-XMLValidation.lo \
+	src/cpp/libscixml_algo_la-XMLValidationDTD.lo \
+	src/cpp/libscixml_algo_la-XMLValidationSchema.lo \
+	src/cpp/libscixml_algo_la-XMLValidationRelaxNG.lo
 am_libscixml_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscixml_algo_la_OBJECTS = $(am_libscixml_algo_la_OBJECTS)
@@ -190,34 +194,42 @@ am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
 libscixml_la_DEPENDENCIES = libscixml-algo.la
-am__objects_4 = libscixml_la-gw_xml.lo
-am__objects_5 = libscixml_la-sci_xmlRead.lo \
-	libscixml_la-sci_xmlXPath.lo libscixml_la-sci_extraction.lo \
-	libscixml_la-sci_insertion.lo libscixml_la-sci_print.lo \
-	libscixml_la-sci_xmlGetOpenDocs.lo \
-	libscixml_la-sci_xmlDelete.lo libscixml_la-sci_xmlDump.lo \
-	libscixml_la-sci_xmlReadStr.lo libscixml_la-sci_xmlFormat.lo \
-	libscixml_la-sci_percent_XMLList_e.lo \
-	libscixml_la-sci_percent_XMLAttr_e.lo \
-	libscixml_la-sci_percent_XMLList_size.lo \
-	libscixml_la-sci_percent_XMLAttr_size.lo \
-	libscixml_la-sci_percent_XMLList_length.lo \
-	libscixml_la-sci_percent_XMLAttr_length.lo \
-	libscixml_la-sci_percent_c_i_XMLAttr.lo \
-	libscixml_la-sci_percent_s_i_XMLList.lo \
-	libscixml_la-sci_xmlElement.lo libscixml_la-sci_xmlDocument.lo \
-	libscixml_la-sci_xmlNs.lo libscixml_la-sci_xmlAddNs.lo \
-	libscixml_la-sci_xmlGetNsByHref.lo \
-	libscixml_la-sci_xmlGetNsByPrefix.lo \
-	libscixml_la-sci_xmlWrite.lo \
-	libscixml_la-sci_percent_foo_i_XMLList.lo \
-	libscixml_la-sci_xmlValidationFile.lo \
-	libscixml_la-sci_xmlValidate.lo \
-	libscixml_la-sci_xmlIsValidObject.lo \
-	libscixml_la-sci_xmlAsNumber.lo libscixml_la-sci_xmlAsText.lo \
-	libscixml_la-sci_xmlRemove.lo \
-	libscixml_la-sci_xmlSetAttributes.lo \
-	libscixml_la-sci_xmlName.lo libscixml_la-sci_xmlAppend.lo
+am__objects_4 = sci_gateway/c/libscixml_la-gw_xml.lo
+am__objects_5 = sci_gateway/cpp/libscixml_la-sci_xmlRead.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlXPath.lo \
+	sci_gateway/cpp/libscixml_la-sci_extraction.lo \
+	sci_gateway/cpp/libscixml_la-sci_insertion.lo \
+	sci_gateway/cpp/libscixml_la-sci_print.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlGetOpenDocs.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlDelete.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlDump.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlReadStr.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlFormat.lo \
+	sci_gateway/cpp/libscixml_la-sci_percent_XMLList_e.lo \
+	sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_e.lo \
+	sci_gateway/cpp/libscixml_la-sci_percent_XMLList_size.lo \
+	sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_size.lo \
+	sci_gateway/cpp/libscixml_la-sci_percent_XMLList_length.lo \
+	sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_length.lo \
+	sci_gateway/cpp/libscixml_la-sci_percent_c_i_XMLAttr.lo \
+	sci_gateway/cpp/libscixml_la-sci_percent_s_i_XMLList.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlElement.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlDocument.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlNs.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlAddNs.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlGetNsByHref.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlGetNsByPrefix.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlWrite.lo \
+	sci_gateway/cpp/libscixml_la-sci_percent_foo_i_XMLList.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlValidationFile.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlValidate.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlIsValidObject.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlAsNumber.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlAsText.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlRemove.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlSetAttributes.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlName.lo \
+	sci_gateway/cpp/libscixml_la-sci_xmlAppend.lo
 am_libscixml_la_OBJECTS = $(am__objects_4) $(am__objects_5)
 libscixml_la_OBJECTS = $(am_libscixml_la_OBJECTS)
 libscixml_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -351,6 +363,7 @@ DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
+ECJ = @ECJ@
 EGREP = @EGREP@
 EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
@@ -833,483 +846,664 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/c/$(am__dirstamp):
+	@$(MKDIR_P) src/c
+	@: > src/c/$(am__dirstamp)
+src/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/c/$(DEPDIR)
+	@: > src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscixml_algo_la-XMLMlistsManagement.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/cpp/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp
+	@: > src/cpp/$(am__dirstamp)
+src/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp/$(DEPDIR)
+	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscixml_algo_la-VariableScope.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscixml_algo_la-XMLObject.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscixml_algo_la-XMLDocument.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscixml_algo_la-XMLElement.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscixml_algo_la-XMLAttr.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscixml_algo_la-XMLNs.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscixml_algo_la-XMLNodeList.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscixml_algo_la-XMLNodeSet.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscixml_algo_la-XMLXPath.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscixml_algo_la-XMLList.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscixml_algo_la-XMLNotHandledElement.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscixml_algo_la-XMLValidation.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscixml_algo_la-XMLValidationDTD.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscixml_algo_la-XMLValidationSchema.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscixml_algo_la-XMLValidationRelaxNG.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscixml-algo.la: $(libscixml_algo_la_OBJECTS) $(libscixml_algo_la_DEPENDENCIES) $(EXTRA_libscixml_algo_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK)  $(libscixml_algo_la_OBJECTS) $(libscixml_algo_la_LIBADD) $(LIBS)
+sci_gateway/c/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c
+	@: > sci_gateway/c/$(am__dirstamp)
+sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
+	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscixml_la-gw_xml.lo: sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/cpp
+	@: > sci_gateway/cpp/$(am__dirstamp)
+sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/cpp/$(DEPDIR)
+	@: > sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlRead.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlXPath.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_extraction.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_insertion.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_print.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlGetOpenDocs.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlDelete.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlDump.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlReadStr.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlFormat.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_percent_XMLList_e.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_e.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_percent_XMLList_size.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_size.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_percent_XMLList_length.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_length.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_percent_c_i_XMLAttr.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_percent_s_i_XMLList.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlElement.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlDocument.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlNs.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlAddNs.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlGetNsByHref.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlGetNsByPrefix.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlWrite.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_percent_foo_i_XMLList.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlValidationFile.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlValidate.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlIsValidObject.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlAsNumber.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlAsText.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlRemove.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlSetAttributes.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlName.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixml_la-sci_xmlAppend.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscixml.la: $(libscixml_la_OBJECTS) $(libscixml_la_DEPENDENCIES) $(EXTRA_libscixml_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(libscixml_la_LINK) -rpath $(pkglibdir) $(libscixml_la_OBJECTS) $(libscixml_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f sci_gateway/c/*.$(OBJEXT)
+	-rm -f sci_gateway/c/*.lo
+	-rm -f sci_gateway/cpp/*.$(OBJEXT)
+	-rm -f sci_gateway/cpp/*.lo
+	-rm -f src/c/*.$(OBJEXT)
+	-rm -f src/c/*.lo
+	-rm -f src/cpp/*.$(OBJEXT)
+	-rm -f src/cpp/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-VariableScope.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLAttr.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLDocument.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLElement.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLList.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLMlistsManagement.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLNodeList.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLNodeSet.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLNotHandledElement.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLNs.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLObject.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLValidation.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLValidationDTD.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLValidationRelaxNG.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLValidationSchema.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLXPath.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-gw_xml.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_extraction.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_insertion.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_percent_XMLAttr_e.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_percent_XMLAttr_length.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_percent_XMLAttr_size.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_percent_XMLList_e.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_percent_XMLList_length.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_percent_XMLList_size.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_percent_c_i_XMLAttr.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_percent_foo_i_XMLList.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_percent_s_i_XMLList.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_print.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlAddNs.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlAppend.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlAsNumber.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlAsText.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlDelete.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlDocument.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlDump.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlElement.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlFormat.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlGetNsByHref.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlGetNsByPrefix.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlGetOpenDocs.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlIsValidObject.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlName.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlNs.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlRead.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlReadStr.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlRemove.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlSetAttributes.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlValidate.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlValidationFile.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlWrite.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlXPath.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscixml_la-gw_xml.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_extraction.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_insertion.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLAttr_e.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLAttr_length.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLAttr_size.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLList_e.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLList_length.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLList_size.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_c_i_XMLAttr.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_foo_i_XMLList.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_s_i_XMLList.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_print.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlAddNs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlAppend.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlAsNumber.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlAsText.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlDelete.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlDocument.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlDump.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlElement.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlFormat.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlGetNsByHref.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlGetNsByPrefix.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlGetOpenDocs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlIsValidObject.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlName.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlNs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlRead.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlReadStr.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlRemove.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlSetAttributes.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlValidate.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlValidationFile.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlWrite.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlXPath.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscixml_algo_la-XMLMlistsManagement.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-VariableScope.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLAttr.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLDocument.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLElement.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLList.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLNodeList.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLNodeSet.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLNotHandledElement.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLNs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLObject.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLValidation.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLValidationDTD.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLValidationRelaxNG.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLValidationSchema.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLXPath.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libscixml_algo_la-XMLMlistsManagement.lo: src/c/XMLMlistsManagement.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscixml_algo_la-XMLMlistsManagement.lo -MD -MP -MF $(DEPDIR)/libscixml_algo_la-XMLMlistsManagement.Tpo -c -o libscixml_algo_la-XMLMlistsManagement.lo `test -f 'src/c/XMLMlistsManagement.c' || echo '$(srcdir)/'`src/c/XMLMlistsManagement.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_algo_la-XMLMlistsManagement.Tpo $(DEPDIR)/libscixml_algo_la-XMLMlistsManagement.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/XMLMlistsManagement.c' object='libscixml_algo_la-XMLMlistsManagement.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscixml_algo_la-XMLMlistsManagement.lo: src/c/XMLMlistsManagement.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscixml_algo_la-XMLMlistsManagement.lo -MD -MP -MF src/c/$(DEPDIR)/libscixml_algo_la-XMLMlistsManagement.Tpo -c -o src/c/libscixml_algo_la-XMLMlistsManagement.lo `test -f 'src/c/XMLMlistsManagement.c' || echo '$(srcdir)/'`src/c/XMLMlistsManagement.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscixml_algo_la-XMLMlistsManagement.Tpo src/c/$(DEPDIR)/libscixml_algo_la-XMLMlistsManagement.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/XMLMlistsManagement.c' object='src/c/libscixml_algo_la-XMLMlistsManagement.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscixml_algo_la-XMLMlistsManagement.lo `test -f 'src/c/XMLMlistsManagement.c' || echo '$(srcdir)/'`src/c/XMLMlistsManagement.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscixml_algo_la-XMLMlistsManagement.lo `test -f 'src/c/XMLMlistsManagement.c' || echo '$(srcdir)/'`src/c/XMLMlistsManagement.c
 
-libscixml_la-gw_xml.lo: sci_gateway/c/gw_xml.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscixml_la-gw_xml.lo -MD -MP -MF $(DEPDIR)/libscixml_la-gw_xml.Tpo -c -o libscixml_la-gw_xml.lo `test -f 'sci_gateway/c/gw_xml.c' || echo '$(srcdir)/'`sci_gateway/c/gw_xml.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-gw_xml.Tpo $(DEPDIR)/libscixml_la-gw_xml.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_xml.c' object='libscixml_la-gw_xml.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscixml_la-gw_xml.lo: sci_gateway/c/gw_xml.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscixml_la-gw_xml.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscixml_la-gw_xml.Tpo -c -o sci_gateway/c/libscixml_la-gw_xml.lo `test -f 'sci_gateway/c/gw_xml.c' || echo '$(srcdir)/'`sci_gateway/c/gw_xml.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscixml_la-gw_xml.Tpo sci_gateway/c/$(DEPDIR)/libscixml_la-gw_xml.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_xml.c' object='sci_gateway/c/libscixml_la-gw_xml.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscixml_la-gw_xml.lo `test -f 'sci_gateway/c/gw_xml.c' || echo '$(srcdir)/'`sci_gateway/c/gw_xml.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscixml_la-gw_xml.lo `test -f 'sci_gateway/c/gw_xml.c' || echo '$(srcdir)/'`sci_gateway/c/gw_xml.c
 
 .cpp.o:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .cpp.lo:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
-libscixml_algo_la-VariableScope.lo: src/cpp/VariableScope.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_algo_la-VariableScope.lo -MD -MP -MF $(DEPDIR)/libscixml_algo_la-VariableScope.Tpo -c -o libscixml_algo_la-VariableScope.lo `test -f 'src/cpp/VariableScope.cpp' || echo '$(srcdir)/'`src/cpp/VariableScope.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_algo_la-VariableScope.Tpo $(DEPDIR)/libscixml_algo_la-VariableScope.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/VariableScope.cpp' object='libscixml_algo_la-VariableScope.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscixml_algo_la-VariableScope.lo: src/cpp/VariableScope.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscixml_algo_la-VariableScope.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscixml_algo_la-VariableScope.Tpo -c -o src/cpp/libscixml_algo_la-VariableScope.lo `test -f 'src/cpp/VariableScope.cpp' || echo '$(srcdir)/'`src/cpp/VariableScope.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscixml_algo_la-VariableScope.Tpo src/cpp/$(DEPDIR)/libscixml_algo_la-VariableScope.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/VariableScope.cpp' object='src/cpp/libscixml_algo_la-VariableScope.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_algo_la-VariableScope.lo `test -f 'src/cpp/VariableScope.cpp' || echo '$(srcdir)/'`src/cpp/VariableScope.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixml_algo_la-VariableScope.lo `test -f 'src/cpp/VariableScope.cpp' || echo '$(srcdir)/'`src/cpp/VariableScope.cpp
 
-libscixml_algo_la-XMLObject.lo: src/cpp/XMLObject.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_algo_la-XMLObject.lo -MD -MP -MF $(DEPDIR)/libscixml_algo_la-XMLObject.Tpo -c -o libscixml_algo_la-XMLObject.lo `test -f 'src/cpp/XMLObject.cpp' || echo '$(srcdir)/'`src/cpp/XMLObject.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_algo_la-XMLObject.Tpo $(DEPDIR)/libscixml_algo_la-XMLObject.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLObject.cpp' object='libscixml_algo_la-XMLObject.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscixml_algo_la-XMLObject.lo: src/cpp/XMLObject.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscixml_algo_la-XMLObject.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscixml_algo_la-XMLObject.Tpo -c -o src/cpp/libscixml_algo_la-XMLObject.lo `test -f 'src/cpp/XMLObject.cpp' || echo '$(srcdir)/'`src/cpp/XMLObject.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscixml_algo_la-XMLObject.Tpo src/cpp/$(DEPDIR)/libscixml_algo_la-XMLObject.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLObject.cpp' object='src/cpp/libscixml_algo_la-XMLObject.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_algo_la-XMLObject.lo `test -f 'src/cpp/XMLObject.cpp' || echo '$(srcdir)/'`src/cpp/XMLObject.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixml_algo_la-XMLObject.lo `test -f 'src/cpp/XMLObject.cpp' || echo '$(srcdir)/'`src/cpp/XMLObject.cpp
 
-libscixml_algo_la-XMLDocument.lo: src/cpp/XMLDocument.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_algo_la-XMLDocument.lo -MD -MP -MF $(DEPDIR)/libscixml_algo_la-XMLDocument.Tpo -c -o libscixml_algo_la-XMLDocument.lo `test -f 'src/cpp/XMLDocument.cpp' || echo '$(srcdir)/'`src/cpp/XMLDocument.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_algo_la-XMLDocument.Tpo $(DEPDIR)/libscixml_algo_la-XMLDocument.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLDocument.cpp' object='libscixml_algo_la-XMLDocument.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscixml_algo_la-XMLDocument.lo: src/cpp/XMLDocument.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscixml_algo_la-XMLDocument.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscixml_algo_la-XMLDocument.Tpo -c -o src/cpp/libscixml_algo_la-XMLDocument.lo `test -f 'src/cpp/XMLDocument.cpp' || echo '$(srcdir)/'`src/cpp/XMLDocument.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscixml_algo_la-XMLDocument.Tpo src/cpp/$(DEPDIR)/libscixml_algo_la-XMLDocument.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLDocument.cpp' object='src/cpp/libscixml_algo_la-XMLDocument.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_algo_la-XMLDocument.lo `test -f 'src/cpp/XMLDocument.cpp' || echo '$(srcdir)/'`src/cpp/XMLDocument.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixml_algo_la-XMLDocument.lo `test -f 'src/cpp/XMLDocument.cpp' || echo '$(srcdir)/'`src/cpp/XMLDocument.cpp
 
-libscixml_algo_la-XMLElement.lo: src/cpp/XMLElement.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_algo_la-XMLElement.lo -MD -MP -MF $(DEPDIR)/libscixml_algo_la-XMLElement.Tpo -c -o libscixml_algo_la-XMLElement.lo `test -f 'src/cpp/XMLElement.cpp' || echo '$(srcdir)/'`src/cpp/XMLElement.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_algo_la-XMLElement.Tpo $(DEPDIR)/libscixml_algo_la-XMLElement.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLElement.cpp' object='libscixml_algo_la-XMLElement.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscixml_algo_la-XMLElement.lo: src/cpp/XMLElement.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscixml_algo_la-XMLElement.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscixml_algo_la-XMLElement.Tpo -c -o src/cpp/libscixml_algo_la-XMLElement.lo `test -f 'src/cpp/XMLElement.cpp' || echo '$(srcdir)/'`src/cpp/XMLElement.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscixml_algo_la-XMLElement.Tpo src/cpp/$(DEPDIR)/libscixml_algo_la-XMLElement.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLElement.cpp' object='src/cpp/libscixml_algo_la-XMLElement.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_algo_la-XMLElement.lo `test -f 'src/cpp/XMLElement.cpp' || echo '$(srcdir)/'`src/cpp/XMLElement.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixml_algo_la-XMLElement.lo `test -f 'src/cpp/XMLElement.cpp' || echo '$(srcdir)/'`src/cpp/XMLElement.cpp
 
-libscixml_algo_la-XMLAttr.lo: src/cpp/XMLAttr.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_algo_la-XMLAttr.lo -MD -MP -MF $(DEPDIR)/libscixml_algo_la-XMLAttr.Tpo -c -o libscixml_algo_la-XMLAttr.lo `test -f 'src/cpp/XMLAttr.cpp' || echo '$(srcdir)/'`src/cpp/XMLAttr.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_algo_la-XMLAttr.Tpo $(DEPDIR)/libscixml_algo_la-XMLAttr.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLAttr.cpp' object='libscixml_algo_la-XMLAttr.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscixml_algo_la-XMLAttr.lo: src/cpp/XMLAttr.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscixml_algo_la-XMLAttr.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscixml_algo_la-XMLAttr.Tpo -c -o src/cpp/libscixml_algo_la-XMLAttr.lo `test -f 'src/cpp/XMLAttr.cpp' || echo '$(srcdir)/'`src/cpp/XMLAttr.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscixml_algo_la-XMLAttr.Tpo src/cpp/$(DEPDIR)/libscixml_algo_la-XMLAttr.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLAttr.cpp' object='src/cpp/libscixml_algo_la-XMLAttr.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_algo_la-XMLAttr.lo `test -f 'src/cpp/XMLAttr.cpp' || echo '$(srcdir)/'`src/cpp/XMLAttr.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixml_algo_la-XMLAttr.lo `test -f 'src/cpp/XMLAttr.cpp' || echo '$(srcdir)/'`src/cpp/XMLAttr.cpp
 
-libscixml_algo_la-XMLNs.lo: src/cpp/XMLNs.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_algo_la-XMLNs.lo -MD -MP -MF $(DEPDIR)/libscixml_algo_la-XMLNs.Tpo -c -o libscixml_algo_la-XMLNs.lo `test -f 'src/cpp/XMLNs.cpp' || echo '$(srcdir)/'`src/cpp/XMLNs.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_algo_la-XMLNs.Tpo $(DEPDIR)/libscixml_algo_la-XMLNs.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLNs.cpp' object='libscixml_algo_la-XMLNs.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscixml_algo_la-XMLNs.lo: src/cpp/XMLNs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscixml_algo_la-XMLNs.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscixml_algo_la-XMLNs.Tpo -c -o src/cpp/libscixml_algo_la-XMLNs.lo `test -f 'src/cpp/XMLNs.cpp' || echo '$(srcdir)/'`src/cpp/XMLNs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscixml_algo_la-XMLNs.Tpo src/cpp/$(DEPDIR)/libscixml_algo_la-XMLNs.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLNs.cpp' object='src/cpp/libscixml_algo_la-XMLNs.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_algo_la-XMLNs.lo `test -f 'src/cpp/XMLNs.cpp' || echo '$(srcdir)/'`src/cpp/XMLNs.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixml_algo_la-XMLNs.lo `test -f 'src/cpp/XMLNs.cpp' || echo '$(srcdir)/'`src/cpp/XMLNs.cpp
 
-libscixml_algo_la-XMLNodeList.lo: src/cpp/XMLNodeList.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_algo_la-XMLNodeList.lo -MD -MP -MF $(DEPDIR)/libscixml_algo_la-XMLNodeList.Tpo -c -o libscixml_algo_la-XMLNodeList.lo `test -f 'src/cpp/XMLNodeList.cpp' || echo '$(srcdir)/'`src/cpp/XMLNodeList.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_algo_la-XMLNodeList.Tpo $(DEPDIR)/libscixml_algo_la-XMLNodeList.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLNodeList.cpp' object='libscixml_algo_la-XMLNodeList.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscixml_algo_la-XMLNodeList.lo: src/cpp/XMLNodeList.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscixml_algo_la-XMLNodeList.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscixml_algo_la-XMLNodeList.Tpo -c -o src/cpp/libscixml_algo_la-XMLNodeList.lo `test -f 'src/cpp/XMLNodeList.cpp' || echo '$(srcdir)/'`src/cpp/XMLNodeList.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscixml_algo_la-XMLNodeList.Tpo src/cpp/$(DEPDIR)/libscixml_algo_la-XMLNodeList.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLNodeList.cpp' object='src/cpp/libscixml_algo_la-XMLNodeList.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_algo_la-XMLNodeList.lo `test -f 'src/cpp/XMLNodeList.cpp' || echo '$(srcdir)/'`src/cpp/XMLNodeList.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixml_algo_la-XMLNodeList.lo `test -f 'src/cpp/XMLNodeList.cpp' || echo '$(srcdir)/'`src/cpp/XMLNodeList.cpp
 
-libscixml_algo_la-XMLNodeSet.lo: src/cpp/XMLNodeSet.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_algo_la-XMLNodeSet.lo -MD -MP -MF $(DEPDIR)/libscixml_algo_la-XMLNodeSet.Tpo -c -o libscixml_algo_la-XMLNodeSet.lo `test -f 'src/cpp/XMLNodeSet.cpp' || echo '$(srcdir)/'`src/cpp/XMLNodeSet.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_algo_la-XMLNodeSet.Tpo $(DEPDIR)/libscixml_algo_la-XMLNodeSet.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLNodeSet.cpp' object='libscixml_algo_la-XMLNodeSet.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscixml_algo_la-XMLNodeSet.lo: src/cpp/XMLNodeSet.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscixml_algo_la-XMLNodeSet.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscixml_algo_la-XMLNodeSet.Tpo -c -o src/cpp/libscixml_algo_la-XMLNodeSet.lo `test -f 'src/cpp/XMLNodeSet.cpp' || echo '$(srcdir)/'`src/cpp/XMLNodeSet.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscixml_algo_la-XMLNodeSet.Tpo src/cpp/$(DEPDIR)/libscixml_algo_la-XMLNodeSet.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLNodeSet.cpp' object='src/cpp/libscixml_algo_la-XMLNodeSet.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_algo_la-XMLNodeSet.lo `test -f 'src/cpp/XMLNodeSet.cpp' || echo '$(srcdir)/'`src/cpp/XMLNodeSet.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixml_algo_la-XMLNodeSet.lo `test -f 'src/cpp/XMLNodeSet.cpp' || echo '$(srcdir)/'`src/cpp/XMLNodeSet.cpp
 
-libscixml_algo_la-XMLXPath.lo: src/cpp/XMLXPath.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_algo_la-XMLXPath.lo -MD -MP -MF $(DEPDIR)/libscixml_algo_la-XMLXPath.Tpo -c -o libscixml_algo_la-XMLXPath.lo `test -f 'src/cpp/XMLXPath.cpp' || echo '$(srcdir)/'`src/cpp/XMLXPath.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_algo_la-XMLXPath.Tpo $(DEPDIR)/libscixml_algo_la-XMLXPath.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLXPath.cpp' object='libscixml_algo_la-XMLXPath.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscixml_algo_la-XMLXPath.lo: src/cpp/XMLXPath.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscixml_algo_la-XMLXPath.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscixml_algo_la-XMLXPath.Tpo -c -o src/cpp/libscixml_algo_la-XMLXPath.lo `test -f 'src/cpp/XMLXPath.cpp' || echo '$(srcdir)/'`src/cpp/XMLXPath.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscixml_algo_la-XMLXPath.Tpo src/cpp/$(DEPDIR)/libscixml_algo_la-XMLXPath.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLXPath.cpp' object='src/cpp/libscixml_algo_la-XMLXPath.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_algo_la-XMLXPath.lo `test -f 'src/cpp/XMLXPath.cpp' || echo '$(srcdir)/'`src/cpp/XMLXPath.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixml_algo_la-XMLXPath.lo `test -f 'src/cpp/XMLXPath.cpp' || echo '$(srcdir)/'`src/cpp/XMLXPath.cpp
 
-libscixml_algo_la-XMLList.lo: src/cpp/XMLList.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_algo_la-XMLList.lo -MD -MP -MF $(DEPDIR)/libscixml_algo_la-XMLList.Tpo -c -o libscixml_algo_la-XMLList.lo `test -f 'src/cpp/XMLList.cpp' || echo '$(srcdir)/'`src/cpp/XMLList.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_algo_la-XMLList.Tpo $(DEPDIR)/libscixml_algo_la-XMLList.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLList.cpp' object='libscixml_algo_la-XMLList.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscixml_algo_la-XMLList.lo: src/cpp/XMLList.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscixml_algo_la-XMLList.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscixml_algo_la-XMLList.Tpo -c -o src/cpp/libscixml_algo_la-XMLList.lo `test -f 'src/cpp/XMLList.cpp' || echo '$(srcdir)/'`src/cpp/XMLList.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscixml_algo_la-XMLList.Tpo src/cpp/$(DEPDIR)/libscixml_algo_la-XMLList.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLList.cpp' object='src/cpp/libscixml_algo_la-XMLList.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_algo_la-XMLList.lo `test -f 'src/cpp/XMLList.cpp' || echo '$(srcdir)/'`src/cpp/XMLList.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixml_algo_la-XMLList.lo `test -f 'src/cpp/XMLList.cpp' || echo '$(srcdir)/'`src/cpp/XMLList.cpp
 
-libscixml_algo_la-XMLNotHandledElement.lo: src/cpp/XMLNotHandledElement.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_algo_la-XMLNotHandledElement.lo -MD -MP -MF $(DEPDIR)/libscixml_algo_la-XMLNotHandledElement.Tpo -c -o libscixml_algo_la-XMLNotHandledElement.lo `test -f 'src/cpp/XMLNotHandledElement.cpp' || echo '$(srcdir)/'`src/cpp/XMLNotHandledElement.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_algo_la-XMLNotHandledElement.Tpo $(DEPDIR)/libscixml_algo_la-XMLNotHandledElement.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLNotHandledElement.cpp' object='libscixml_algo_la-XMLNotHandledElement.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscixml_algo_la-XMLNotHandledElement.lo: src/cpp/XMLNotHandledElement.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscixml_algo_la-XMLNotHandledElement.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscixml_algo_la-XMLNotHandledElement.Tpo -c -o src/cpp/libscixml_algo_la-XMLNotHandledElement.lo `test -f 'src/cpp/XMLNotHandledElement.cpp' || echo '$(srcdir)/'`src/cpp/XMLNotHandledElement.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscixml_algo_la-XMLNotHandledElement.Tpo src/cpp/$(DEPDIR)/libscixml_algo_la-XMLNotHandledElement.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLNotHandledElement.cpp' object='src/cpp/libscixml_algo_la-XMLNotHandledElement.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_algo_la-XMLNotHandledElement.lo `test -f 'src/cpp/XMLNotHandledElement.cpp' || echo '$(srcdir)/'`src/cpp/XMLNotHandledElement.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixml_algo_la-XMLNotHandledElement.lo `test -f 'src/cpp/XMLNotHandledElement.cpp' || echo '$(srcdir)/'`src/cpp/XMLNotHandledElement.cpp
 
-libscixml_algo_la-XMLValidation.lo: src/cpp/XMLValidation.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_algo_la-XMLValidation.lo -MD -MP -MF $(DEPDIR)/libscixml_algo_la-XMLValidation.Tpo -c -o libscixml_algo_la-XMLValidation.lo `test -f 'src/cpp/XMLValidation.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidation.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_algo_la-XMLValidation.Tpo $(DEPDIR)/libscixml_algo_la-XMLValidation.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLValidation.cpp' object='libscixml_algo_la-XMLValidation.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscixml_algo_la-XMLValidation.lo: src/cpp/XMLValidation.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscixml_algo_la-XMLValidation.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscixml_algo_la-XMLValidation.Tpo -c -o src/cpp/libscixml_algo_la-XMLValidation.lo `test -f 'src/cpp/XMLValidation.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidation.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscixml_algo_la-XMLValidation.Tpo src/cpp/$(DEPDIR)/libscixml_algo_la-XMLValidation.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLValidation.cpp' object='src/cpp/libscixml_algo_la-XMLValidation.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_algo_la-XMLValidation.lo `test -f 'src/cpp/XMLValidation.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidation.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixml_algo_la-XMLValidation.lo `test -f 'src/cpp/XMLValidation.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidation.cpp
 
-libscixml_algo_la-XMLValidationDTD.lo: src/cpp/XMLValidationDTD.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_algo_la-XMLValidationDTD.lo -MD -MP -MF $(DEPDIR)/libscixml_algo_la-XMLValidationDTD.Tpo -c -o libscixml_algo_la-XMLValidationDTD.lo `test -f 'src/cpp/XMLValidationDTD.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidationDTD.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_algo_la-XMLValidationDTD.Tpo $(DEPDIR)/libscixml_algo_la-XMLValidationDTD.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLValidationDTD.cpp' object='libscixml_algo_la-XMLValidationDTD.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscixml_algo_la-XMLValidationDTD.lo: src/cpp/XMLValidationDTD.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscixml_algo_la-XMLValidationDTD.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscixml_algo_la-XMLValidationDTD.Tpo -c -o src/cpp/libscixml_algo_la-XMLValidationDTD.lo `test -f 'src/cpp/XMLValidationDTD.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidationDTD.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscixml_algo_la-XMLValidationDTD.Tpo src/cpp/$(DEPDIR)/libscixml_algo_la-XMLValidationDTD.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLValidationDTD.cpp' object='src/cpp/libscixml_algo_la-XMLValidationDTD.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_algo_la-XMLValidationDTD.lo `test -f 'src/cpp/XMLValidationDTD.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidationDTD.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixml_algo_la-XMLValidationDTD.lo `test -f 'src/cpp/XMLValidationDTD.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidationDTD.cpp
 
-libscixml_algo_la-XMLValidationSchema.lo: src/cpp/XMLValidationSchema.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_algo_la-XMLValidationSchema.lo -MD -MP -MF $(DEPDIR)/libscixml_algo_la-XMLValidationSchema.Tpo -c -o libscixml_algo_la-XMLValidationSchema.lo `test -f 'src/cpp/XMLValidationSchema.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidationSchema.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_algo_la-XMLValidationSchema.Tpo $(DEPDIR)/libscixml_algo_la-XMLValidationSchema.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLValidationSchema.cpp' object='libscixml_algo_la-XMLValidationSchema.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscixml_algo_la-XMLValidationSchema.lo: src/cpp/XMLValidationSchema.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscixml_algo_la-XMLValidationSchema.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscixml_algo_la-XMLValidationSchema.Tpo -c -o src/cpp/libscixml_algo_la-XMLValidationSchema.lo `test -f 'src/cpp/XMLValidationSchema.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidationSchema.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscixml_algo_la-XMLValidationSchema.Tpo src/cpp/$(DEPDIR)/libscixml_algo_la-XMLValidationSchema.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLValidationSchema.cpp' object='src/cpp/libscixml_algo_la-XMLValidationSchema.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_algo_la-XMLValidationSchema.lo `test -f 'src/cpp/XMLValidationSchema.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidationSchema.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixml_algo_la-XMLValidationSchema.lo `test -f 'src/cpp/XMLValidationSchema.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidationSchema.cpp
 
-libscixml_algo_la-XMLValidationRelaxNG.lo: src/cpp/XMLValidationRelaxNG.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_algo_la-XMLValidationRelaxNG.lo -MD -MP -MF $(DEPDIR)/libscixml_algo_la-XMLValidationRelaxNG.Tpo -c -o libscixml_algo_la-XMLValidationRelaxNG.lo `test -f 'src/cpp/XMLValidationRelaxNG.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidationRelaxNG.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_algo_la-XMLValidationRelaxNG.Tpo $(DEPDIR)/libscixml_algo_la-XMLValidationRelaxNG.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLValidationRelaxNG.cpp' object='libscixml_algo_la-XMLValidationRelaxNG.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscixml_algo_la-XMLValidationRelaxNG.lo: src/cpp/XMLValidationRelaxNG.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscixml_algo_la-XMLValidationRelaxNG.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscixml_algo_la-XMLValidationRelaxNG.Tpo -c -o src/cpp/libscixml_algo_la-XMLValidationRelaxNG.lo `test -f 'src/cpp/XMLValidationRelaxNG.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidationRelaxNG.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscixml_algo_la-XMLValidationRelaxNG.Tpo src/cpp/$(DEPDIR)/libscixml_algo_la-XMLValidationRelaxNG.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLValidationRelaxNG.cpp' object='src/cpp/libscixml_algo_la-XMLValidationRelaxNG.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_algo_la-XMLValidationRelaxNG.lo `test -f 'src/cpp/XMLValidationRelaxNG.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidationRelaxNG.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixml_algo_la-XMLValidationRelaxNG.lo `test -f 'src/cpp/XMLValidationRelaxNG.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidationRelaxNG.cpp
 
-libscixml_la-sci_xmlRead.lo: sci_gateway/cpp/sci_xmlRead.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlRead.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlRead.Tpo -c -o libscixml_la-sci_xmlRead.lo `test -f 'sci_gateway/cpp/sci_xmlRead.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlRead.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlRead.Tpo $(DEPDIR)/libscixml_la-sci_xmlRead.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlRead.cpp' object='libscixml_la-sci_xmlRead.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlRead.lo: sci_gateway/cpp/sci_xmlRead.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlRead.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlRead.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlRead.lo `test -f 'sci_gateway/cpp/sci_xmlRead.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlRead.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlRead.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlRead.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlRead.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlRead.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlRead.lo `test -f 'sci_gateway/cpp/sci_xmlRead.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlRead.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlRead.lo `test -f 'sci_gateway/cpp/sci_xmlRead.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlRead.cpp
 
-libscixml_la-sci_xmlXPath.lo: sci_gateway/cpp/sci_xmlXPath.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlXPath.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlXPath.Tpo -c -o libscixml_la-sci_xmlXPath.lo `test -f 'sci_gateway/cpp/sci_xmlXPath.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlXPath.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlXPath.Tpo $(DEPDIR)/libscixml_la-sci_xmlXPath.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlXPath.cpp' object='libscixml_la-sci_xmlXPath.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlXPath.lo: sci_gateway/cpp/sci_xmlXPath.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlXPath.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlXPath.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlXPath.lo `test -f 'sci_gateway/cpp/sci_xmlXPath.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlXPath.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlXPath.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlXPath.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlXPath.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlXPath.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlXPath.lo `test -f 'sci_gateway/cpp/sci_xmlXPath.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlXPath.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlXPath.lo `test -f 'sci_gateway/cpp/sci_xmlXPath.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlXPath.cpp
 
-libscixml_la-sci_extraction.lo: sci_gateway/cpp/sci_extraction.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_extraction.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_extraction.Tpo -c -o libscixml_la-sci_extraction.lo `test -f 'sci_gateway/cpp/sci_extraction.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_extraction.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_extraction.Tpo $(DEPDIR)/libscixml_la-sci_extraction.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_extraction.cpp' object='libscixml_la-sci_extraction.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_extraction.lo: sci_gateway/cpp/sci_extraction.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_extraction.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_extraction.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_extraction.lo `test -f 'sci_gateway/cpp/sci_extraction.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_extraction.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_extraction.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_extraction.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_extraction.cpp' object='sci_gateway/cpp/libscixml_la-sci_extraction.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_extraction.lo `test -f 'sci_gateway/cpp/sci_extraction.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_extraction.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_extraction.lo `test -f 'sci_gateway/cpp/sci_extraction.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_extraction.cpp
 
-libscixml_la-sci_insertion.lo: sci_gateway/cpp/sci_insertion.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_insertion.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_insertion.Tpo -c -o libscixml_la-sci_insertion.lo `test -f 'sci_gateway/cpp/sci_insertion.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_insertion.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_insertion.Tpo $(DEPDIR)/libscixml_la-sci_insertion.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_insertion.cpp' object='libscixml_la-sci_insertion.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_insertion.lo: sci_gateway/cpp/sci_insertion.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_insertion.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_insertion.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_insertion.lo `test -f 'sci_gateway/cpp/sci_insertion.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_insertion.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_insertion.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_insertion.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_insertion.cpp' object='sci_gateway/cpp/libscixml_la-sci_insertion.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_insertion.lo `test -f 'sci_gateway/cpp/sci_insertion.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_insertion.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_insertion.lo `test -f 'sci_gateway/cpp/sci_insertion.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_insertion.cpp
 
-libscixml_la-sci_print.lo: sci_gateway/cpp/sci_print.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_print.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_print.Tpo -c -o libscixml_la-sci_print.lo `test -f 'sci_gateway/cpp/sci_print.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_print.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_print.Tpo $(DEPDIR)/libscixml_la-sci_print.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_print.cpp' object='libscixml_la-sci_print.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_print.lo: sci_gateway/cpp/sci_print.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_print.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_print.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_print.lo `test -f 'sci_gateway/cpp/sci_print.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_print.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_print.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_print.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_print.cpp' object='sci_gateway/cpp/libscixml_la-sci_print.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_print.lo `test -f 'sci_gateway/cpp/sci_print.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_print.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_print.lo `test -f 'sci_gateway/cpp/sci_print.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_print.cpp
 
-libscixml_la-sci_xmlGetOpenDocs.lo: sci_gateway/cpp/sci_xmlGetOpenDocs.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlGetOpenDocs.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlGetOpenDocs.Tpo -c -o libscixml_la-sci_xmlGetOpenDocs.lo `test -f 'sci_gateway/cpp/sci_xmlGetOpenDocs.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlGetOpenDocs.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlGetOpenDocs.Tpo $(DEPDIR)/libscixml_la-sci_xmlGetOpenDocs.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlGetOpenDocs.cpp' object='libscixml_la-sci_xmlGetOpenDocs.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlGetOpenDocs.lo: sci_gateway/cpp/sci_xmlGetOpenDocs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlGetOpenDocs.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlGetOpenDocs.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlGetOpenDocs.lo `test -f 'sci_gateway/cpp/sci_xmlGetOpenDocs.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlGetOpenDocs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlGetOpenDocs.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlGetOpenDocs.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlGetOpenDocs.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlGetOpenDocs.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlGetOpenDocs.lo `test -f 'sci_gateway/cpp/sci_xmlGetOpenDocs.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlGetOpenDocs.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlGetOpenDocs.lo `test -f 'sci_gateway/cpp/sci_xmlGetOpenDocs.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlGetOpenDocs.cpp
 
-libscixml_la-sci_xmlDelete.lo: sci_gateway/cpp/sci_xmlDelete.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlDelete.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlDelete.Tpo -c -o libscixml_la-sci_xmlDelete.lo `test -f 'sci_gateway/cpp/sci_xmlDelete.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlDelete.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlDelete.Tpo $(DEPDIR)/libscixml_la-sci_xmlDelete.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlDelete.cpp' object='libscixml_la-sci_xmlDelete.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlDelete.lo: sci_gateway/cpp/sci_xmlDelete.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlDelete.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlDelete.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlDelete.lo `test -f 'sci_gateway/cpp/sci_xmlDelete.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlDelete.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlDelete.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlDelete.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlDelete.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlDelete.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlDelete.lo `test -f 'sci_gateway/cpp/sci_xmlDelete.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlDelete.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlDelete.lo `test -f 'sci_gateway/cpp/sci_xmlDelete.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlDelete.cpp
 
-libscixml_la-sci_xmlDump.lo: sci_gateway/cpp/sci_xmlDump.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlDump.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlDump.Tpo -c -o libscixml_la-sci_xmlDump.lo `test -f 'sci_gateway/cpp/sci_xmlDump.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlDump.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlDump.Tpo $(DEPDIR)/libscixml_la-sci_xmlDump.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlDump.cpp' object='libscixml_la-sci_xmlDump.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlDump.lo: sci_gateway/cpp/sci_xmlDump.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlDump.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlDump.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlDump.lo `test -f 'sci_gateway/cpp/sci_xmlDump.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlDump.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlDump.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlDump.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlDump.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlDump.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlDump.lo `test -f 'sci_gateway/cpp/sci_xmlDump.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlDump.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlDump.lo `test -f 'sci_gateway/cpp/sci_xmlDump.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlDump.cpp
 
-libscixml_la-sci_xmlReadStr.lo: sci_gateway/cpp/sci_xmlReadStr.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlReadStr.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlReadStr.Tpo -c -o libscixml_la-sci_xmlReadStr.lo `test -f 'sci_gateway/cpp/sci_xmlReadStr.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlReadStr.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlReadStr.Tpo $(DEPDIR)/libscixml_la-sci_xmlReadStr.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlReadStr.cpp' object='libscixml_la-sci_xmlReadStr.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlReadStr.lo: sci_gateway/cpp/sci_xmlReadStr.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlReadStr.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlReadStr.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlReadStr.lo `test -f 'sci_gateway/cpp/sci_xmlReadStr.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlReadStr.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlReadStr.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlReadStr.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlReadStr.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlReadStr.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlReadStr.lo `test -f 'sci_gateway/cpp/sci_xmlReadStr.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlReadStr.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlReadStr.lo `test -f 'sci_gateway/cpp/sci_xmlReadStr.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlReadStr.cpp
 
-libscixml_la-sci_xmlFormat.lo: sci_gateway/cpp/sci_xmlFormat.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlFormat.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlFormat.Tpo -c -o libscixml_la-sci_xmlFormat.lo `test -f 'sci_gateway/cpp/sci_xmlFormat.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlFormat.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlFormat.Tpo $(DEPDIR)/libscixml_la-sci_xmlFormat.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlFormat.cpp' object='libscixml_la-sci_xmlFormat.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlFormat.lo: sci_gateway/cpp/sci_xmlFormat.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlFormat.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlFormat.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlFormat.lo `test -f 'sci_gateway/cpp/sci_xmlFormat.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlFormat.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlFormat.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlFormat.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlFormat.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlFormat.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlFormat.lo `test -f 'sci_gateway/cpp/sci_xmlFormat.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlFormat.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlFormat.lo `test -f 'sci_gateway/cpp/sci_xmlFormat.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlFormat.cpp
 
-libscixml_la-sci_percent_XMLList_e.lo: sci_gateway/cpp/sci_percent_XMLList_e.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_percent_XMLList_e.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_percent_XMLList_e.Tpo -c -o libscixml_la-sci_percent_XMLList_e.lo `test -f 'sci_gateway/cpp/sci_percent_XMLList_e.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLList_e.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_percent_XMLList_e.Tpo $(DEPDIR)/libscixml_la-sci_percent_XMLList_e.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_percent_XMLList_e.cpp' object='libscixml_la-sci_percent_XMLList_e.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_percent_XMLList_e.lo: sci_gateway/cpp/sci_percent_XMLList_e.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_percent_XMLList_e.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLList_e.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_percent_XMLList_e.lo `test -f 'sci_gateway/cpp/sci_percent_XMLList_e.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLList_e.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLList_e.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLList_e.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_percent_XMLList_e.cpp' object='sci_gateway/cpp/libscixml_la-sci_percent_XMLList_e.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_percent_XMLList_e.lo `test -f 'sci_gateway/cpp/sci_percent_XMLList_e.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLList_e.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_percent_XMLList_e.lo `test -f 'sci_gateway/cpp/sci_percent_XMLList_e.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLList_e.cpp
 
-libscixml_la-sci_percent_XMLAttr_e.lo: sci_gateway/cpp/sci_percent_XMLAttr_e.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_percent_XMLAttr_e.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_percent_XMLAttr_e.Tpo -c -o libscixml_la-sci_percent_XMLAttr_e.lo `test -f 'sci_gateway/cpp/sci_percent_XMLAttr_e.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLAttr_e.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_percent_XMLAttr_e.Tpo $(DEPDIR)/libscixml_la-sci_percent_XMLAttr_e.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_percent_XMLAttr_e.cpp' object='libscixml_la-sci_percent_XMLAttr_e.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_e.lo: sci_gateway/cpp/sci_percent_XMLAttr_e.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_e.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLAttr_e.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_e.lo `test -f 'sci_gateway/cpp/sci_percent_XMLAttr_e.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLAttr_e.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLAttr_e.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLAttr_e.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_percent_XMLAttr_e.cpp' object='sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_e.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_percent_XMLAttr_e.lo `test -f 'sci_gateway/cpp/sci_percent_XMLAttr_e.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLAttr_e.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_e.lo `test -f 'sci_gateway/cpp/sci_percent_XMLAttr_e.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLAttr_e.cpp
 
-libscixml_la-sci_percent_XMLList_size.lo: sci_gateway/cpp/sci_percent_XMLList_size.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_percent_XMLList_size.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_percent_XMLList_size.Tpo -c -o libscixml_la-sci_percent_XMLList_size.lo `test -f 'sci_gateway/cpp/sci_percent_XMLList_size.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLList_size.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_percent_XMLList_size.Tpo $(DEPDIR)/libscixml_la-sci_percent_XMLList_size.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_percent_XMLList_size.cpp' object='libscixml_la-sci_percent_XMLList_size.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_percent_XMLList_size.lo: sci_gateway/cpp/sci_percent_XMLList_size.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_percent_XMLList_size.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLList_size.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_percent_XMLList_size.lo `test -f 'sci_gateway/cpp/sci_percent_XMLList_size.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLList_size.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLList_size.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLList_size.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_percent_XMLList_size.cpp' object='sci_gateway/cpp/libscixml_la-sci_percent_XMLList_size.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_percent_XMLList_size.lo `test -f 'sci_gateway/cpp/sci_percent_XMLList_size.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLList_size.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_percent_XMLList_size.lo `test -f 'sci_gateway/cpp/sci_percent_XMLList_size.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLList_size.cpp
 
-libscixml_la-sci_percent_XMLAttr_size.lo: sci_gateway/cpp/sci_percent_XMLAttr_size.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_percent_XMLAttr_size.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_percent_XMLAttr_size.Tpo -c -o libscixml_la-sci_percent_XMLAttr_size.lo `test -f 'sci_gateway/cpp/sci_percent_XMLAttr_size.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLAttr_size.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_percent_XMLAttr_size.Tpo $(DEPDIR)/libscixml_la-sci_percent_XMLAttr_size.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_percent_XMLAttr_size.cpp' object='libscixml_la-sci_percent_XMLAttr_size.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_size.lo: sci_gateway/cpp/sci_percent_XMLAttr_size.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_size.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLAttr_size.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_size.lo `test -f 'sci_gateway/cpp/sci_percent_XMLAttr_size.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLAttr_size.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLAttr_size.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLAttr_size.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_percent_XMLAttr_size.cpp' object='sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_size.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_percent_XMLAttr_size.lo `test -f 'sci_gateway/cpp/sci_percent_XMLAttr_size.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLAttr_size.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_size.lo `test -f 'sci_gateway/cpp/sci_percent_XMLAttr_size.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLAttr_size.cpp
 
-libscixml_la-sci_percent_XMLList_length.lo: sci_gateway/cpp/sci_percent_XMLList_length.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_percent_XMLList_length.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_percent_XMLList_length.Tpo -c -o libscixml_la-sci_percent_XMLList_length.lo `test -f 'sci_gateway/cpp/sci_percent_XMLList_length.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLList_length.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_percent_XMLList_length.Tpo $(DEPDIR)/libscixml_la-sci_percent_XMLList_length.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_percent_XMLList_length.cpp' object='libscixml_la-sci_percent_XMLList_length.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_percent_XMLList_length.lo: sci_gateway/cpp/sci_percent_XMLList_length.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_percent_XMLList_length.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLList_length.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_percent_XMLList_length.lo `test -f 'sci_gateway/cpp/sci_percent_XMLList_length.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLList_length.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLList_length.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLList_length.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_percent_XMLList_length.cpp' object='sci_gateway/cpp/libscixml_la-sci_percent_XMLList_length.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_percent_XMLList_length.lo `test -f 'sci_gateway/cpp/sci_percent_XMLList_length.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLList_length.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_percent_XMLList_length.lo `test -f 'sci_gateway/cpp/sci_percent_XMLList_length.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLList_length.cpp
 
-libscixml_la-sci_percent_XMLAttr_length.lo: sci_gateway/cpp/sci_percent_XMLAttr_length.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_percent_XMLAttr_length.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_percent_XMLAttr_length.Tpo -c -o libscixml_la-sci_percent_XMLAttr_length.lo `test -f 'sci_gateway/cpp/sci_percent_XMLAttr_length.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLAttr_length.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_percent_XMLAttr_length.Tpo $(DEPDIR)/libscixml_la-sci_percent_XMLAttr_length.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_percent_XMLAttr_length.cpp' object='libscixml_la-sci_percent_XMLAttr_length.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_length.lo: sci_gateway/cpp/sci_percent_XMLAttr_length.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_length.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLAttr_length.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_length.lo `test -f 'sci_gateway/cpp/sci_percent_XMLAttr_length.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLAttr_length.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLAttr_length.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_XMLAttr_length.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_percent_XMLAttr_length.cpp' object='sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_length.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_percent_XMLAttr_length.lo `test -f 'sci_gateway/cpp/sci_percent_XMLAttr_length.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLAttr_length.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_percent_XMLAttr_length.lo `test -f 'sci_gateway/cpp/sci_percent_XMLAttr_length.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_XMLAttr_length.cpp
 
-libscixml_la-sci_percent_c_i_XMLAttr.lo: sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_percent_c_i_XMLAttr.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_percent_c_i_XMLAttr.Tpo -c -o libscixml_la-sci_percent_c_i_XMLAttr.lo `test -f 'sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_percent_c_i_XMLAttr.Tpo $(DEPDIR)/libscixml_la-sci_percent_c_i_XMLAttr.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp' object='libscixml_la-sci_percent_c_i_XMLAttr.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_percent_c_i_XMLAttr.lo: sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_percent_c_i_XMLAttr.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_c_i_XMLAttr.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_percent_c_i_XMLAttr.lo `test -f 'sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_c_i_XMLAttr.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_c_i_XMLAttr.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp' object='sci_gateway/cpp/libscixml_la-sci_percent_c_i_XMLAttr.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_percent_c_i_XMLAttr.lo `test -f 'sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_percent_c_i_XMLAttr.lo `test -f 'sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp
 
-libscixml_la-sci_percent_s_i_XMLList.lo: sci_gateway/cpp/sci_percent_s_i_XMLList.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_percent_s_i_XMLList.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_percent_s_i_XMLList.Tpo -c -o libscixml_la-sci_percent_s_i_XMLList.lo `test -f 'sci_gateway/cpp/sci_percent_s_i_XMLList.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_s_i_XMLList.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_percent_s_i_XMLList.Tpo $(DEPDIR)/libscixml_la-sci_percent_s_i_XMLList.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_percent_s_i_XMLList.cpp' object='libscixml_la-sci_percent_s_i_XMLList.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_percent_s_i_XMLList.lo: sci_gateway/cpp/sci_percent_s_i_XMLList.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_percent_s_i_XMLList.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_s_i_XMLList.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_percent_s_i_XMLList.lo `test -f 'sci_gateway/cpp/sci_percent_s_i_XMLList.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_s_i_XMLList.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_s_i_XMLList.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_s_i_XMLList.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_percent_s_i_XMLList.cpp' object='sci_gateway/cpp/libscixml_la-sci_percent_s_i_XMLList.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_percent_s_i_XMLList.lo `test -f 'sci_gateway/cpp/sci_percent_s_i_XMLList.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_s_i_XMLList.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_percent_s_i_XMLList.lo `test -f 'sci_gateway/cpp/sci_percent_s_i_XMLList.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_s_i_XMLList.cpp
 
-libscixml_la-sci_xmlElement.lo: sci_gateway/cpp/sci_xmlElement.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlElement.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlElement.Tpo -c -o libscixml_la-sci_xmlElement.lo `test -f 'sci_gateway/cpp/sci_xmlElement.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlElement.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlElement.Tpo $(DEPDIR)/libscixml_la-sci_xmlElement.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlElement.cpp' object='libscixml_la-sci_xmlElement.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlElement.lo: sci_gateway/cpp/sci_xmlElement.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlElement.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlElement.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlElement.lo `test -f 'sci_gateway/cpp/sci_xmlElement.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlElement.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlElement.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlElement.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlElement.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlElement.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlElement.lo `test -f 'sci_gateway/cpp/sci_xmlElement.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlElement.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlElement.lo `test -f 'sci_gateway/cpp/sci_xmlElement.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlElement.cpp
 
-libscixml_la-sci_xmlDocument.lo: sci_gateway/cpp/sci_xmlDocument.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlDocument.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlDocument.Tpo -c -o libscixml_la-sci_xmlDocument.lo `test -f 'sci_gateway/cpp/sci_xmlDocument.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlDocument.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlDocument.Tpo $(DEPDIR)/libscixml_la-sci_xmlDocument.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlDocument.cpp' object='libscixml_la-sci_xmlDocument.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlDocument.lo: sci_gateway/cpp/sci_xmlDocument.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlDocument.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlDocument.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlDocument.lo `test -f 'sci_gateway/cpp/sci_xmlDocument.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlDocument.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlDocument.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlDocument.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlDocument.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlDocument.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlDocument.lo `test -f 'sci_gateway/cpp/sci_xmlDocument.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlDocument.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlDocument.lo `test -f 'sci_gateway/cpp/sci_xmlDocument.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlDocument.cpp
 
-libscixml_la-sci_xmlNs.lo: sci_gateway/cpp/sci_xmlNs.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlNs.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlNs.Tpo -c -o libscixml_la-sci_xmlNs.lo `test -f 'sci_gateway/cpp/sci_xmlNs.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlNs.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlNs.Tpo $(DEPDIR)/libscixml_la-sci_xmlNs.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlNs.cpp' object='libscixml_la-sci_xmlNs.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlNs.lo: sci_gateway/cpp/sci_xmlNs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlNs.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlNs.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlNs.lo `test -f 'sci_gateway/cpp/sci_xmlNs.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlNs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlNs.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlNs.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlNs.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlNs.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlNs.lo `test -f 'sci_gateway/cpp/sci_xmlNs.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlNs.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlNs.lo `test -f 'sci_gateway/cpp/sci_xmlNs.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlNs.cpp
 
-libscixml_la-sci_xmlAddNs.lo: sci_gateway/cpp/sci_xmlAddNs.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlAddNs.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlAddNs.Tpo -c -o libscixml_la-sci_xmlAddNs.lo `test -f 'sci_gateway/cpp/sci_xmlAddNs.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlAddNs.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlAddNs.Tpo $(DEPDIR)/libscixml_la-sci_xmlAddNs.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlAddNs.cpp' object='libscixml_la-sci_xmlAddNs.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlAddNs.lo: sci_gateway/cpp/sci_xmlAddNs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlAddNs.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlAddNs.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlAddNs.lo `test -f 'sci_gateway/cpp/sci_xmlAddNs.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlAddNs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlAddNs.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlAddNs.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlAddNs.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlAddNs.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlAddNs.lo `test -f 'sci_gateway/cpp/sci_xmlAddNs.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlAddNs.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlAddNs.lo `test -f 'sci_gateway/cpp/sci_xmlAddNs.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlAddNs.cpp
 
-libscixml_la-sci_xmlGetNsByHref.lo: sci_gateway/cpp/sci_xmlGetNsByHref.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlGetNsByHref.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlGetNsByHref.Tpo -c -o libscixml_la-sci_xmlGetNsByHref.lo `test -f 'sci_gateway/cpp/sci_xmlGetNsByHref.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlGetNsByHref.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlGetNsByHref.Tpo $(DEPDIR)/libscixml_la-sci_xmlGetNsByHref.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlGetNsByHref.cpp' object='libscixml_la-sci_xmlGetNsByHref.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlGetNsByHref.lo: sci_gateway/cpp/sci_xmlGetNsByHref.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlGetNsByHref.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlGetNsByHref.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlGetNsByHref.lo `test -f 'sci_gateway/cpp/sci_xmlGetNsByHref.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlGetNsByHref.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlGetNsByHref.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlGetNsByHref.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlGetNsByHref.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlGetNsByHref.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlGetNsByHref.lo `test -f 'sci_gateway/cpp/sci_xmlGetNsByHref.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlGetNsByHref.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlGetNsByHref.lo `test -f 'sci_gateway/cpp/sci_xmlGetNsByHref.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlGetNsByHref.cpp
 
-libscixml_la-sci_xmlGetNsByPrefix.lo: sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlGetNsByPrefix.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlGetNsByPrefix.Tpo -c -o libscixml_la-sci_xmlGetNsByPrefix.lo `test -f 'sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlGetNsByPrefix.Tpo $(DEPDIR)/libscixml_la-sci_xmlGetNsByPrefix.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp' object='libscixml_la-sci_xmlGetNsByPrefix.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlGetNsByPrefix.lo: sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlGetNsByPrefix.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlGetNsByPrefix.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlGetNsByPrefix.lo `test -f 'sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlGetNsByPrefix.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlGetNsByPrefix.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlGetNsByPrefix.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlGetNsByPrefix.lo `test -f 'sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlGetNsByPrefix.lo `test -f 'sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp
 
-libscixml_la-sci_xmlWrite.lo: sci_gateway/cpp/sci_xmlWrite.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlWrite.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlWrite.Tpo -c -o libscixml_la-sci_xmlWrite.lo `test -f 'sci_gateway/cpp/sci_xmlWrite.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlWrite.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlWrite.Tpo $(DEPDIR)/libscixml_la-sci_xmlWrite.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlWrite.cpp' object='libscixml_la-sci_xmlWrite.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlWrite.lo: sci_gateway/cpp/sci_xmlWrite.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlWrite.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlWrite.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlWrite.lo `test -f 'sci_gateway/cpp/sci_xmlWrite.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlWrite.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlWrite.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlWrite.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlWrite.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlWrite.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlWrite.lo `test -f 'sci_gateway/cpp/sci_xmlWrite.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlWrite.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlWrite.lo `test -f 'sci_gateway/cpp/sci_xmlWrite.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlWrite.cpp
 
-libscixml_la-sci_percent_foo_i_XMLList.lo: sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_percent_foo_i_XMLList.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_percent_foo_i_XMLList.Tpo -c -o libscixml_la-sci_percent_foo_i_XMLList.lo `test -f 'sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_percent_foo_i_XMLList.Tpo $(DEPDIR)/libscixml_la-sci_percent_foo_i_XMLList.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp' object='libscixml_la-sci_percent_foo_i_XMLList.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_percent_foo_i_XMLList.lo: sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_percent_foo_i_XMLList.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_foo_i_XMLList.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_percent_foo_i_XMLList.lo `test -f 'sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_foo_i_XMLList.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_percent_foo_i_XMLList.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp' object='sci_gateway/cpp/libscixml_la-sci_percent_foo_i_XMLList.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_percent_foo_i_XMLList.lo `test -f 'sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_percent_foo_i_XMLList.lo `test -f 'sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp
 
-libscixml_la-sci_xmlValidationFile.lo: sci_gateway/cpp/sci_xmlValidationFile.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlValidationFile.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlValidationFile.Tpo -c -o libscixml_la-sci_xmlValidationFile.lo `test -f 'sci_gateway/cpp/sci_xmlValidationFile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlValidationFile.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlValidationFile.Tpo $(DEPDIR)/libscixml_la-sci_xmlValidationFile.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlValidationFile.cpp' object='libscixml_la-sci_xmlValidationFile.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlValidationFile.lo: sci_gateway/cpp/sci_xmlValidationFile.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlValidationFile.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlValidationFile.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlValidationFile.lo `test -f 'sci_gateway/cpp/sci_xmlValidationFile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlValidationFile.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlValidationFile.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlValidationFile.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlValidationFile.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlValidationFile.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlValidationFile.lo `test -f 'sci_gateway/cpp/sci_xmlValidationFile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlValidationFile.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlValidationFile.lo `test -f 'sci_gateway/cpp/sci_xmlValidationFile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlValidationFile.cpp
 
-libscixml_la-sci_xmlValidate.lo: sci_gateway/cpp/sci_xmlValidate.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlValidate.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlValidate.Tpo -c -o libscixml_la-sci_xmlValidate.lo `test -f 'sci_gateway/cpp/sci_xmlValidate.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlValidate.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlValidate.Tpo $(DEPDIR)/libscixml_la-sci_xmlValidate.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlValidate.cpp' object='libscixml_la-sci_xmlValidate.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlValidate.lo: sci_gateway/cpp/sci_xmlValidate.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlValidate.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlValidate.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlValidate.lo `test -f 'sci_gateway/cpp/sci_xmlValidate.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlValidate.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlValidate.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlValidate.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlValidate.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlValidate.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlValidate.lo `test -f 'sci_gateway/cpp/sci_xmlValidate.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlValidate.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlValidate.lo `test -f 'sci_gateway/cpp/sci_xmlValidate.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlValidate.cpp
 
-libscixml_la-sci_xmlIsValidObject.lo: sci_gateway/cpp/sci_xmlIsValidObject.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlIsValidObject.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlIsValidObject.Tpo -c -o libscixml_la-sci_xmlIsValidObject.lo `test -f 'sci_gateway/cpp/sci_xmlIsValidObject.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlIsValidObject.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlIsValidObject.Tpo $(DEPDIR)/libscixml_la-sci_xmlIsValidObject.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlIsValidObject.cpp' object='libscixml_la-sci_xmlIsValidObject.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlIsValidObject.lo: sci_gateway/cpp/sci_xmlIsValidObject.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlIsValidObject.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlIsValidObject.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlIsValidObject.lo `test -f 'sci_gateway/cpp/sci_xmlIsValidObject.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlIsValidObject.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlIsValidObject.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlIsValidObject.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlIsValidObject.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlIsValidObject.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlIsValidObject.lo `test -f 'sci_gateway/cpp/sci_xmlIsValidObject.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlIsValidObject.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlIsValidObject.lo `test -f 'sci_gateway/cpp/sci_xmlIsValidObject.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlIsValidObject.cpp
 
-libscixml_la-sci_xmlAsNumber.lo: sci_gateway/cpp/sci_xmlAsNumber.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlAsNumber.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlAsNumber.Tpo -c -o libscixml_la-sci_xmlAsNumber.lo `test -f 'sci_gateway/cpp/sci_xmlAsNumber.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlAsNumber.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlAsNumber.Tpo $(DEPDIR)/libscixml_la-sci_xmlAsNumber.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlAsNumber.cpp' object='libscixml_la-sci_xmlAsNumber.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlAsNumber.lo: sci_gateway/cpp/sci_xmlAsNumber.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlAsNumber.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlAsNumber.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlAsNumber.lo `test -f 'sci_gateway/cpp/sci_xmlAsNumber.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlAsNumber.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlAsNumber.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlAsNumber.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlAsNumber.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlAsNumber.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlAsNumber.lo `test -f 'sci_gateway/cpp/sci_xmlAsNumber.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlAsNumber.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlAsNumber.lo `test -f 'sci_gateway/cpp/sci_xmlAsNumber.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlAsNumber.cpp
 
-libscixml_la-sci_xmlAsText.lo: sci_gateway/cpp/sci_xmlAsText.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlAsText.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlAsText.Tpo -c -o libscixml_la-sci_xmlAsText.lo `test -f 'sci_gateway/cpp/sci_xmlAsText.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlAsText.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlAsText.Tpo $(DEPDIR)/libscixml_la-sci_xmlAsText.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlAsText.cpp' object='libscixml_la-sci_xmlAsText.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlAsText.lo: sci_gateway/cpp/sci_xmlAsText.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlAsText.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlAsText.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlAsText.lo `test -f 'sci_gateway/cpp/sci_xmlAsText.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlAsText.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlAsText.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlAsText.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlAsText.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlAsText.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlAsText.lo `test -f 'sci_gateway/cpp/sci_xmlAsText.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlAsText.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlAsText.lo `test -f 'sci_gateway/cpp/sci_xmlAsText.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlAsText.cpp
 
-libscixml_la-sci_xmlRemove.lo: sci_gateway/cpp/sci_xmlRemove.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlRemove.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlRemove.Tpo -c -o libscixml_la-sci_xmlRemove.lo `test -f 'sci_gateway/cpp/sci_xmlRemove.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlRemove.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlRemove.Tpo $(DEPDIR)/libscixml_la-sci_xmlRemove.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlRemove.cpp' object='libscixml_la-sci_xmlRemove.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlRemove.lo: sci_gateway/cpp/sci_xmlRemove.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlRemove.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlRemove.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlRemove.lo `test -f 'sci_gateway/cpp/sci_xmlRemove.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlRemove.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlRemove.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlRemove.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlRemove.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlRemove.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlRemove.lo `test -f 'sci_gateway/cpp/sci_xmlRemove.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlRemove.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlRemove.lo `test -f 'sci_gateway/cpp/sci_xmlRemove.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlRemove.cpp
 
-libscixml_la-sci_xmlSetAttributes.lo: sci_gateway/cpp/sci_xmlSetAttributes.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlSetAttributes.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlSetAttributes.Tpo -c -o libscixml_la-sci_xmlSetAttributes.lo `test -f 'sci_gateway/cpp/sci_xmlSetAttributes.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlSetAttributes.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlSetAttributes.Tpo $(DEPDIR)/libscixml_la-sci_xmlSetAttributes.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlSetAttributes.cpp' object='libscixml_la-sci_xmlSetAttributes.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlSetAttributes.lo: sci_gateway/cpp/sci_xmlSetAttributes.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlSetAttributes.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlSetAttributes.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlSetAttributes.lo `test -f 'sci_gateway/cpp/sci_xmlSetAttributes.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlSetAttributes.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlSetAttributes.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlSetAttributes.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlSetAttributes.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlSetAttributes.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlSetAttributes.lo `test -f 'sci_gateway/cpp/sci_xmlSetAttributes.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlSetAttributes.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlSetAttributes.lo `test -f 'sci_gateway/cpp/sci_xmlSetAttributes.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlSetAttributes.cpp
 
-libscixml_la-sci_xmlName.lo: sci_gateway/cpp/sci_xmlName.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlName.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlName.Tpo -c -o libscixml_la-sci_xmlName.lo `test -f 'sci_gateway/cpp/sci_xmlName.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlName.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlName.Tpo $(DEPDIR)/libscixml_la-sci_xmlName.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlName.cpp' object='libscixml_la-sci_xmlName.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlName.lo: sci_gateway/cpp/sci_xmlName.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlName.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlName.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlName.lo `test -f 'sci_gateway/cpp/sci_xmlName.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlName.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlName.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlName.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlName.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlName.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlName.lo `test -f 'sci_gateway/cpp/sci_xmlName.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlName.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlName.lo `test -f 'sci_gateway/cpp/sci_xmlName.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlName.cpp
 
-libscixml_la-sci_xmlAppend.lo: sci_gateway/cpp/sci_xmlAppend.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlAppend.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlAppend.Tpo -c -o libscixml_la-sci_xmlAppend.lo `test -f 'sci_gateway/cpp/sci_xmlAppend.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlAppend.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlAppend.Tpo $(DEPDIR)/libscixml_la-sci_xmlAppend.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlAppend.cpp' object='libscixml_la-sci_xmlAppend.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscixml_la-sci_xmlAppend.lo: sci_gateway/cpp/sci_xmlAppend.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlAppend.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlAppend.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlAppend.lo `test -f 'sci_gateway/cpp/sci_xmlAppend.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlAppend.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlAppend.Tpo sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlAppend.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xmlAppend.cpp' object='sci_gateway/cpp/libscixml_la-sci_xmlAppend.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlAppend.lo `test -f 'sci_gateway/cpp/sci_xmlAppend.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlAppend.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixml_la-sci_xmlAppend.lo `test -f 'sci_gateway/cpp/sci_xmlAppend.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlAppend.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
+	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
+	-rm -rf src/c/.libs src/c/_libs
+	-rm -rf src/cpp/.libs src/cpp/_libs
 install-libscixml_la_etcDATA: $(libscixml_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libscixml_la_etc_DATA)'; test -n "$(libscixml_la_etcdir)" || list=; \
@@ -1490,6 +1684,14 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/c/$(am__dirstamp)
+	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/cpp/$(am__dirstamp)
+	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/c/$(am__dirstamp)
+	-rm -f src/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/cpp/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1500,7 +1702,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1548,7 +1750,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -1649,11 +1851,17 @@ check-code:
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
-@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/; \
+@GIWS_TRUE@	MANDATORY_OPTIONS="--throws-exception-on-error --description-file"; \
 @GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
+@GIWS_TRUE@			if test -z "$(GIWS_OPTIONS)"; then \
+@GIWS_TRUE@				$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR $$MANDATORY_OPTIONS $$file; \
+@GIWS_TRUE@			else \
+@GIWS_TRUE@				echo "Custom GIWS call with '$$GIWS_OPTIONS'"; \
+@GIWS_TRUE@				$(GIWS_BIN) $$GIWS_OPTIONS --output-dir $$GIWS_OUTPUTDIR $$MANDATORY_OPTIONS $$file; \
+@GIWS_TRUE@			fi \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 

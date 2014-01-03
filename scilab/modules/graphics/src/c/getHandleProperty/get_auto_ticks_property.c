@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_auto_ticks_property(void* _pvCtx, char* pobjUID)
+void* get_auto_ticks_property(void* _pvCtx, int iObjUID)
 {
     char * auto_ticks[3]  = { NULL, NULL, NULL };
     int const axesAutoTicksPropertiesNames[3] = {__GO_X_AXIS_AUTO_TICKS__, __GO_Y_AXIS_AUTO_TICKS__, __GO_Z_AXIS_AUTO_TICKS__};
@@ -46,7 +46,7 @@ void* get_auto_ticks_property(void* _pvCtx, char* pobjUID)
 
     for (i = 0 ; i < 3 ; i++)
     {
-        getGraphicObjectProperty(pobjUID, axesAutoTicksPropertiesNames[i], jni_bool, (void **)&piAutoTicks);
+        getGraphicObjectProperty(iObjUID, axesAutoTicksPropertiesNames[i], jni_bool, (void **)&piAutoTicks);
 
         if (piAutoTicks == NULL)
         {

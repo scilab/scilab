@@ -8,6 +8,9 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function recompilefunction(funname,kind,force)
+    if argn(2) < 1 then
+        error(sprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "recompilefunction", 1, 3));
+    end
     if ~exists("force","local") then force=%f; end
     if ~exists("kind","local") then kind="c"; end
     if ~exists(funname)

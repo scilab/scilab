@@ -24,6 +24,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 /**
  * @author Vincent COUVERT
@@ -170,8 +171,9 @@ public class Uimenu extends GraphicObject {
      * Set the menu checked status
      * @param checked the status
      */
-    public void setChecked(Boolean checked) {
+    public UpdateStatus setChecked(Boolean checked) {
         this.checked = checked;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -186,8 +188,9 @@ public class Uimenu extends GraphicObject {
      * Set the menu enable status
      * @param enable the status
      */
-    public void setEnable(Boolean enable) {
+    public UpdateStatus setEnable(Boolean enable) {
         this.enable = enable;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -202,8 +205,9 @@ public class Uimenu extends GraphicObject {
      * Set the menu Foreground Color
      * @param colors the RGB color
      */
-    public void setForegroundColor(Double[] colors) {
+    public UpdateStatus setForegroundColor(Double[] colors) {
         this.foregroundColor = colors;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -218,8 +222,9 @@ public class Uimenu extends GraphicObject {
      * Set the menu icon
      * @param icon the icon
      */
-    public void setIcon(String icon) {
+    public UpdateStatus setIcon(String icon) {
         this.icon = icon;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -234,8 +239,9 @@ public class Uimenu extends GraphicObject {
      * Set the menu label
      * @param label the label
      */
-    public void setLabel(String label) {
+    public UpdateStatus setLabel(String label) {
         this.label = label;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -250,8 +256,9 @@ public class Uimenu extends GraphicObject {
      * Set the menu mnemonic
      * @param mnemonic the mnemonic
      */
-    public void setMnemonic(String mnemonic) {
+    public UpdateStatus setMnemonic(String mnemonic) {
         this.mnemonic = mnemonic;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -266,8 +273,9 @@ public class Uimenu extends GraphicObject {
      * Set the menu accelerator
      * @param accelerator the accelerator
      */
-    public void setAccelerator(String accelerator) {
+    public UpdateStatus setAccelerator(String accelerator) {
         this.accelerator = accelerator;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -282,8 +290,9 @@ public class Uimenu extends GraphicObject {
      * Set the menu separator mode
      * @param separator the separator mode
      */
-    public void setSeparator(Boolean separator) {
+    public UpdateStatus setSeparator(Boolean separator) {
         this.separator = separator;
+        return UpdateStatus.Success;
     }
 
     @Override

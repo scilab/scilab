@@ -25,6 +25,7 @@ cDEC$ IF DEFINED (FORDLL)
 cDEC$ ATTRIBUTES DLLIMPORT:: /stack/, /vstk/, /recu/, /iop/
 cDEC$ ATTRIBUTES DLLIMPORT:: /errgst/, /com/, /adre/
 cDEC$ ATTRIBUTES DLLIMPORT:: /intersci/ ,/cha1/, /dbg/
+cDEC$ ATTRIBUTES DLLIMPORT:: /ierode/
 cDEC$ ENDIF
 C     ---------------------------------------------------------------
       integer   csiz,bsiz,isizt,psiz,nsiz,lsiz
@@ -60,7 +61,7 @@ c
       integer icall,krec
       common /recu/ ids,pstk,rstk,pt,niv,macr,paus,icall,krec
 
-      integer ddt,err,lct(8),lin(lsiz),lpt(6),hio,rio,rte,wte
+      integer ddt,err,lct(8),lin(lsiz),lpt(6),rio,rte,wte
       common /iop/ ddt,err,lct,lin,lpt,rio,rte,wte
 
       integer err1,err2,errct,toperr,errpt,ieee,catch
@@ -79,10 +80,11 @@ c
       integer lbot,ie,is,ipal,nbarg,ladr(intersiz)
       common/adre/lbot,ie,is,ipal,nbarg,ladr
       integer nbvars,iwhere(intersiz),
-     $	nbrows(intersiz),nbcols(intersiz),
-     $  itflag(intersiz),ntypes(intersiz),lad(intersiz),
-     $  ladc(intersiz),lhsvar(intersiz)
+     $ nbrows(intersiz),nbcols(intersiz),
+     $ itflag(intersiz),ntypes(intersiz),lad(intersiz),
+     $ ladc(intersiz),lhsvar(intersiz)
       common/intersci/nbvars,iwhere,nbrows,nbcols,
      $ itflag,ntypes,lad,ladc,lhsvar
+      integer ierror
+      common/ierode/ierror
 c*------------------------------------------------------------------
-

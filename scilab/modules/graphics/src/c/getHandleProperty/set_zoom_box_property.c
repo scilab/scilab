@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_zoom_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_zoom_box_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int iType = -1;
     int *piType = &iType;
@@ -44,7 +44,7 @@ int set_zoom_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     if (iType != __GO_AXES__)
     {
@@ -55,15 +55,15 @@ int set_zoom_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
     /* We must have a 4x1 matrix */
     if (nbRow * nbCol == 6)
     {
-        return sciZoom3D(pobjUID, (double*)_pvData);
+        return sciZoom3D(iObjUID, (double*)_pvData);
     }
     else if (nbRow * nbCol == 4)
     {
-        return sciZoom2D(pobjUID, (double*)_pvData);
+        return sciZoom2D(iObjUID, (double*)_pvData);
     }
     else if (nbCol * nbRow == 0)
     {
-        sciUnzoomSubwin(pobjUID);
+        sciUnzoomSubwin(iObjUID);
     }
     else
     {

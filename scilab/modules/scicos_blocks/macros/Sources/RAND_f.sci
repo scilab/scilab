@@ -20,22 +20,21 @@
 //
 
 function [x,y,typ]=RAND_f(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then //normal  position
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
-        if size(exprs,"*")==5 then exprs=exprs(1:3),end //compatibility
-        if size(exprs,"*")==3 then exprs=[exprs;string(model.dstate(1))],end //compatibility
+        if size(exprs,"*")==5 then
+            exprs=exprs(1:3),
+        end //compatibility
+        if size(exprs,"*")==3 then
+            exprs=[exprs;string(model.dstate(1))],
+        end //compatibility
         while %t do
             [ok,flag,a,b,seed_c,exprs]=scicos_getvalue([
             "Set Random generator block parameters";
@@ -46,7 +45,9 @@ function [x,y,typ]=RAND_f(job,arg1,arg2)
             "seed is the seed of random number generator (integer<2**31)"],..
             ["flag";"A";"B";"seed"],..
             list("vec",1,"vec",-1,"vec","size(%2,''*'')","vec",1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             if flag<>0&flag<>1 then
                 message("flag must be equal to 1 or 0")
             else
@@ -56,7 +57,8 @@ function [x,y,typ]=RAND_f(job,arg1,arg2)
                 model.ipar=flag
                 model.rpar=[a(:);b(:)]
                 model.dstate=[seed_c;0*a(:)]
-                x.graphics=graphics;x.model=model
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
@@ -77,8 +79,7 @@ function [x,y,typ]=RAND_f(job,arg1,arg2)
         model.dep_ut=[%f %f]
 
         exprs=[string(flag);sci2exp(a(:));sci2exp(b(:));string(model.dstate(1))]
-        gr_i=["txt=[''random'';''generator''];";
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"]
+        gr_i=[]
         x=standard_define([3 2],model,exprs,gr_i)
     end
 endfunction

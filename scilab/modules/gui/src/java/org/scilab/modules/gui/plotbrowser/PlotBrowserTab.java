@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.plotbrowser;
@@ -25,7 +25,7 @@ import org.scilab.modules.gui.utils.ClosingOperationsManager;
 */
 public class PlotBrowserTab {
 
-    public static SwingScilabTab getPlotBrowserInstance(String objectID) {
+    public static SwingScilabTab getPlotBrowserInstance(Integer objectID) {
         final SwingScilabTab plotbrowser = PlotBrowser
                                            .createPlotBrowserTab(objectID);
         ScilabTabFactory.getInstance().addToCache(plotbrowser);

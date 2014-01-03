@@ -20,19 +20,14 @@
 //
 
 function [x,y,typ]=CMSCOPE(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        x=[];y=[];typ=[];
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
 
 
         model=arg1.model;
@@ -55,7 +50,9 @@ function [x,y,typ]=CMSCOPE(job,arg1,arg2)
             list("vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,..
             "vec","size(%1,''*'')","vec","size(%1,''*'')","vec","size(%1,''*'')",..
             "vec",1,"vec",1,"str",1),exprs)
-            if ~ok then break,end //user cancel modification
+            if ~ok then
+                break,
+            end //user cancel modification
             mess=[]
             if size(in,"*")<=0 then
                 mess=[mess;"Block must have at least one input port";" "]
@@ -114,8 +111,12 @@ function [x,y,typ]=CMSCOPE(job,arg1,arg2)
                 [model,graphics,ok]=set_io(model,graphics,list([in in2],ones(a,1)),list(),ones(1-heritance,1),[]);
             end
             if ok then
-                if wpos==[] then wpos=[-1;-1];end
-                if wdim==[] then wdim=[-1;-1];end
+                if wpos==[] then
+                    wpos=[-1;-1];
+                end
+                if wdim==[] then
+                    wdim=[-1;-1];
+                end
                 if ok then
                     period=per(:)';
                     yy=[ymin(:)';ymax(:)']
@@ -128,11 +129,13 @@ function [x,y,typ]=CMSCOPE(job,arg1,arg2)
                     model.evtin=ones(1-heritance,1)
                     model.dstate=[]
                     //model.dstate=dstate;
-                    model.rpar=rpar;model.ipar=ipar
+                    model.rpar=rpar;
+                    model.ipar=ipar
                     model.label=nom;
                     graphics.id=nom;
                     graphics.exprs=exprs;
-                    x.graphics=graphics;x.model=model
+                    x.graphics=graphics;
+                    x.model=model
                     //pause;
                     break
                 end
@@ -146,7 +149,9 @@ function [x,y,typ]=CMSCOPE(job,arg1,arg2)
         clrs=[1;3;5;7;9;11;13;15];
         N=20;
 
-        ymin=[-1;-5];ymax=[1;5];per=[30;30];
+        ymin=[-1;-5];
+        ymax=[1;5];
+        per=[30;30];
         yy=[ymin(:)';ymax(:)']
         period=per(:)'
         model=scicos_model()
@@ -171,7 +176,7 @@ function [x,y,typ]=CMSCOPE(job,arg1,arg2)
         string(N);
         string(0);
         emptystr()];
-        gr_i="xstringb(orig(1),orig(2),''MScope'',sz(1),sz(2),''fill'')"
+        gr_i=[]
         x=standard_define([2 2],model,exprs,gr_i)
     end
 endfunction

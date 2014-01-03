@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_fill_mode_property(void* _pvCtx, char* pobjUID)
+void* get_fill_mode_property(void* _pvCtx, int iObjUID)
 {
     int iFillMode = 0;
     int* piFillMode = &iFillMode;
 
-    getGraphicObjectProperty(pobjUID, __GO_FILL_MODE__, jni_bool, (void **)&piFillMode);
+    getGraphicObjectProperty(iObjUID, __GO_FILL_MODE__, jni_bool, (void **)&piFillMode);
 
     if (piFillMode == NULL)
     {

@@ -20,21 +20,19 @@
 //
 
 function [x,y,typ]=DELAYV_f(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then //normal  position
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
-        model=arg1.model;nin=model.in(1)
-        z0=model.dstate;zz0=z0(1:$-1);told=z0($);
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
+        model=arg1.model;
+        nin=model.in(1)
+        z0=model.dstate;
+        zz0=z0(1:$-1);
+        told=z0($);
 
         while %t do
             [ok,nin,zz0,T,exprs]=scicos_getvalue("Set delay parameters",..
@@ -43,7 +41,9 @@ function [x,y,typ]=DELAYV_f(job,arg1,arg2)
             "Max delay"],..
             list("vec",1,"vec",-1,"vec",1),..
             exprs);
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             if size(zz0,"*")<2 then
                 message("Register length must be at least 2")
                 ok=%f
@@ -58,14 +58,17 @@ function [x,y,typ]=DELAYV_f(job,arg1,arg2)
             end
             if ok then
                 graphics.exprs=exprs;
-                model.dstate=[zz0(:);told];model.rpar=T/(size(zz0,"*"));
-                x.graphics=graphics;x.model=model
+                model.dstate=[zz0(:);told];
+                model.rpar=T/(size(zz0,"*"));
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
     case "define" then
         nin=1
-        z0=zeros(11,1);;zz0=z0(1:$-1)
+        z0=zeros(11,1);
+        zz0=z0(1:$-1)
         T=1
 
         model=scicos_model()
@@ -81,8 +84,7 @@ function [x,y,typ]=DELAYV_f(job,arg1,arg2)
         model.dep_ut=[%t %f]
 
         exprs=[string(nin);strcat(string(z0(1:$-1)),";");string(T)];
-        gr_i=["txt=[''Variable'';''delay''];";
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([3 2],model,exprs,gr_i)
     end
 endfunction

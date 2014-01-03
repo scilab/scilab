@@ -33,30 +33,30 @@
 #include "BOOL.h"
 
 /* Graphic Context Functions */
-GRAPHICS_IMPEXP int sciGetNumColors (char* pobjUID); /* GET */
+GRAPHICS_IMPEXP int sciGetNumColors (int iObjUID); /* GET */
 
 /* Text Functions */
-GRAPHICS_IMPEXP BOOL sciisTextEmpty(char* identifier);
+GRAPHICS_IMPEXP BOOL sciisTextEmpty(int iIdentifier);
 
 /* Window Functions */
-GRAPHICS_IMPEXP double *sciGetPoint (char * pthis, int *num, int *numco); /* GET */
+GRAPHICS_IMPEXP double *sciGetPoint (int iObjUID, int *num, int *numco); /* GET */
 
 /**
  * for a subwindow object, return if the its labels (x,y,z) are all
  *       empty or not.
  * @param pObjUID the subwindow's identifier.
  */
-GRAPHICS_IMPEXP BOOL sciGetLegendDefined(char * pObjUID);
+GRAPHICS_IMPEXP BOOL sciGetLegendDefined(int iObjUID);
 
-GRAPHICS_IMPEXP void sciGetLogFlags(char *pObjUID, char flags[3]); /* GET */
+GRAPHICS_IMPEXP void sciGetLogFlags(int iObjUID, char flags[3]); /* GET */
 
-GRAPHICS_IMPEXP void sciGet2dViewCoordinate(char * pObjUID, const double userCoords3D[3], double userCoords2D[2]); /* GET */
+GRAPHICS_IMPEXP void sciGet2dViewCoordinate(int iObjUID, const double userCoords3D[3], double userCoords2D[2]); /* GET */
 
-GRAPHICS_IMPEXP void sciGet2dViewCoordFromPixel(char * pObjUID, const int pixelCoords[2], double userCoords2D[2]); /* GET */
+GRAPHICS_IMPEXP void sciGet2dViewCoordFromPixel(int iObjUID, const int pixelCoords[2], double userCoords2D[2]); /* GET */
 
-GRAPHICS_IMPEXP void sciGet2dViewPixelCoordinates(char * pObjUID, const double userCoords2D[2], int pixelCoords[2]); /* GET */
+GRAPHICS_IMPEXP void sciGet2dViewPixelCoordinates(int iObjUID, const double userCoords2D[2], int pixelCoords[2]); /* GET */
 
-GRAPHICS_IMPEXP void sciGetViewingArea(char * pObjUID, int * xPos, int * yPos, int * width, int * height); /* GET */
+GRAPHICS_IMPEXP void sciGetViewingArea(int iObjUID, int * xPos, int * yPos, int * width, int * height); /* GET */
 
 GRAPHICS_IMPEXP void printSetGetErrorMessage(const char * propertyName);
 

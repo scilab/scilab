@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -72,14 +72,14 @@
 %}
 
 %{
-double * getSurfDataX(char * uid)
+double * getSurfDataX(int uid)
 {
 	double * X;
 	getGraphicObjectProperty(uid, __GO_DATA_MODEL_X__, jni_double_vector, (void**) &X);
 	return X;
 }
 
-int getDataSizeX(char * uid)
+int getDataSizeX(int uid)
 {
 	int type, size = 0, nGon = 0, nVert = 0;
 	int * pType = &type;
@@ -105,14 +105,14 @@ int getDataSizeX(char * uid)
 %}
 
 %{
-double * getSurfDataY(char * uid)
+double * getSurfDataY(int uid)
 {
 	double * Y;
 	getGraphicObjectProperty(uid, __GO_DATA_MODEL_Y__, jni_double_vector, (void**) &Y);
 	return Y;
 }
 
-int getDataSizeY(char * uid)
+int getDataSizeY(int uid)
 {
 	int type, size = 0, nGon = 0, nVert = 0;
 	int * pType = &type;
@@ -138,14 +138,14 @@ int getDataSizeY(char * uid)
 %}
 
 %{
-double * getSurfDataZ(char * uid)
+double * getSurfDataZ(int uid)
 {
 	double * Z;
 	getGraphicObjectProperty(uid, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &Z);
 	return Z;
 }
 
-int getDataSizeZ(char * uid)
+int getDataSizeZ(int uid)
 {
 	int type, size = 0, nGon = 0, nVert = 0;
 	int * pType = &type;
@@ -171,16 +171,16 @@ int getDataSizeZ(char * uid)
 %}
 
 %{
-extern char * createObject3dData(char *obj, char *newObj, int type);
-extern double pickSurface(char * uid, double x, double y,  double z, double dx, double dy, double dz, double mx, double my, double mz, double mw);
+extern int createObject3dData(int obj, int newObj, int type);
+extern double pickSurface(int uid, double x, double y,  double z, double dx, double dy, double dz, double mx, double my, double mz, double mw);
 %}
 
 
-double * getSurfDataX(char * uid);
-double * getSurfDataY(char * uid);
-double * getSurfDataZ(char * uid);
-char * createObject3dData(char *obj, char *newObj, int type);
-double pickSurface(char * uid, double x, double y,  double z, double dx, double dy, double dz, double mx, double my, double mz, double mw);
+double * getSurfDataX(int uid);
+double * getSurfDataY(int uid);
+double * getSurfDataZ(int uid);
+int createObject3dData(int obj, int newObj, int type);
+double pickSurface(int uid, double x, double y,  double z, double dx, double dy, double dz, double mx, double my, double mz, double mw);
 
 
 

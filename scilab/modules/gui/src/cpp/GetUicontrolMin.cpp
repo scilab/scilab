@@ -14,12 +14,12 @@
 
 #include "GetUicontrolMin.hxx"
 
-void* GetUicontrolMin(void* _pvCtx, char *sciObjUID)
+void* GetUicontrolMin(void* _pvCtx, int iObjUID)
 {
     double minValue = 0;
     double* pdblMinValue = &minValue;
 
-    getGraphicObjectProperty(sciObjUID, __GO_UI_MIN__, jni_double, (void**) &pdblMinValue);
+    getGraphicObjectProperty(iObjUID, __GO_UI_MIN__, jni_double, (void**) &pdblMinValue);
 
     if (pdblMinValue == NULL)
     {

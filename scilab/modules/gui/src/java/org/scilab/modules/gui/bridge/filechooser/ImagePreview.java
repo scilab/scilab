@@ -31,22 +31,31 @@ package org.scilab.modules.gui.bridge.filechooser;
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
-
-import javax.swing.*;
-import java.beans.*;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 
 /* ImagePreview.java by FileChooserDemo2.java. */
 @SuppressWarnings(value = { "serial" })
-public class ImagePreview extends JComponent
-    implements PropertyChangeListener {
+public class ImagePreview extends JComponent implements PropertyChangeListener {
+
     ImageIcon thumbnail = null;
     File file = null;
+    JFileChooser fc;
 
     public ImagePreview(JFileChooser fc) {
-        setPreferredSize(new Dimension(200, 200));
+        this.fc = fc;
+        setPreferredSize(new Dimension(250, 200));
         fc.addPropertyChangeListener(this);
     }
 
@@ -59,12 +68,17 @@ public class ImagePreview extends JComponent
         //Don't use createImageIcon (which is a wrapper for getResource)
         //because the image we're trying to load is probably not one
         //of this program's own resources.
-        ImageIcon tmpIcon = new ImageIcon(file.getPath());
+        ImageIcon tmpIcon = null;
+        try {
+            BufferedImage img = ImageIO.read(new File(file.getPath()));
+            if (img != null) {
+                tmpIcon = new ImageIcon(img);
+            }
+        } catch (IOException e) { }
+
         if (tmpIcon != null) {
-            if (tmpIcon.getIconWidth() > 150) {
-                thumbnail = new ImageIcon(tmpIcon.getImage().
-                                          getScaledInstance(150, -1,
-                                                  Image.SCALE_DEFAULT));
+            if (tmpIcon.getIconWidth() > 230) {
+                thumbnail = new ImageIcon(tmpIcon.getImage().getScaledInstance(230, -1, Image.SCALE_SMOOTH));
             } else { //no need to miniaturize
                 thumbnail = tmpIcon;
             }
@@ -79,11 +93,13 @@ public class ImagePreview extends JComponent
         if (JFileChooser.DIRECTORY_CHANGED_PROPERTY.equals(prop)) {
             file = null;
             update = true;
-
-            //If a file became selected, find out which one.
         } else if (JFileChooser.SELECTED_FILE_CHANGED_PROPERTY.equals(prop)) {
             file = (File) e.getNewValue();
             update = true;
+        } else if (JFileChooser.FILE_FILTER_CHANGED_PROPERTY.equals(prop)) {
+            // Crappy workaround to clear the selection when the filter has changed
+            fc.setMultiSelectionEnabled(true);
+            fc.setMultiSelectionEnabled(false);
         }
 
         //Update the preview accordingly.

@@ -94,44 +94,22 @@
         <title>Description</title>
         <para>
             This component consists of a simple diode parallel with an ohmic
-            resistance (
-            <emphasis role="bold">
-                <emphasis>R</emphasis>
-            </emphasis>
-            ).
-            The current (
-            <emphasis role="bold">
-                <emphasis>I</emphasis>
-            </emphasis>
-            )
-            passing through this component is defined as a function of the voltage across
-            the ports (
-            <emphasis role="bold">
-                <emphasis>V</emphasis>
-            </emphasis>
-            ):
+            resistance (<literal>R</literal>).
+            The current (<literal>I</literal>)
+            passing through this component is defined as a function of the voltage across the ports (<literal>V</literal>):
         </para>
-        <para>
-        </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/Diode_img3_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <latex><![CDATA[
+        $$
+        i = I_{ds} \times (\exp {v/V_t} - 1) + v \over R
+        $$
+        ]]></latex>
         <para>
             where 
-            <emphasis role="bold">
-                <emphasis>Ids</emphasis>
-            </emphasis>
+            <literal>Ids</literal>
             and
-            <emphasis role="bold">
-                <emphasis>Vt</emphasis>
-            </emphasis>
+            <literal>Vt</literal>
             are the saturation
-            current and the voltage equivalent of temperature, respectively. If the exponent
-            reaches a certain limit (<emphasis role="bold">Max exponent for linear continuation</emphasis>),
+            current and the voltage equivalent of temperature, respectively. If the exponent reaches a certain limit (<emphasis role="bold">Max exponent for linear continuation</emphasis>),
             the diode characteristic becomes linear to avoid overflow.
         </para>
     </refsection>

@@ -14,6 +14,8 @@ toolbox_skeleton/src/c/csub.c \
 toolbox_skeleton/src/c/multiplybypi.h \
 toolbox_skeleton/src/c/csub.h \
 toolbox_skeleton/src/c/csum.h \
+toolbox_skeleton/src/java/org/scilab/contrib/toolboxskeleton/Sum.java \
+toolbox_skeleton/src/java/builder_java.sce \
 toolbox_skeleton/src/cleaner_src.sce \
 toolbox_skeleton/src/builder_src.sce \
 toolbox_skeleton/etc/toolbox_skeleton.quit \
@@ -48,6 +50,8 @@ toolbox_skeleton/tests/unit_tests/scilab_sum.dia.ref \
 toolbox_skeleton/tests/unit_tests/fortran_sum.dia.ref \
 toolbox_skeleton/tests/unit_tests/c_sum.dia.ref \
 toolbox_skeleton/tests/unit_tests/scilab_sum.tst \
+toolbox_skeleton/tests/unit_tests/java_sum.tst \
+toolbox_skeleton/tests/unit_tests/java_sum.dia.ref \
 toolbox_skeleton/sci_gateway/fortran/builder_gateway_fortran.sce \
 toolbox_skeleton/sci_gateway/fortran/sci_fsum.c \
 toolbox_skeleton/sci_gateway/c/sci_csub.c \

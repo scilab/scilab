@@ -20,13 +20,13 @@ extern "C" {
 
 DataModel *DataModel::m_me = NULL;
 
-BOOL DataModel::setGraphicObjectProperty(char const* _pstID, int _iName, void const* _dblValue, int numElements)
+BOOL DataModel::setGraphicObjectProperty(int iUID, int _iName, void const* _dblValue, int numElements)
 {
     Data3D* dataObject = NULL;
     int property = 0;
     int returnValue = 0;
 
-    dataObject = (*m_dataMap)[std::string(_pstID)];
+    dataObject = (*m_dataMap)[iUID];
     if (dataObject == NULL)
     {
         return FALSE;
@@ -44,12 +44,12 @@ BOOL DataModel::setGraphicObjectProperty(char const* _pstID, int _iName, void co
     return (BOOL) returnValue;
 }
 
-void DataModel::getGraphicObjectProperty(char const* _pstID, int _iName, void **_pvData)
+void DataModel::getGraphicObjectProperty(int iUID, int _iName, void **_pvData)
 {
     Data3D* dataObject = NULL;
     int property = 0;
 
-    dataObject = (*m_dataMap)[std::string(_pstID)];
+    dataObject = (*m_dataMap)[iUID];
 
     if (dataObject == NULL)
     {
@@ -67,7 +67,7 @@ void DataModel::getGraphicObjectProperty(char const* _pstID, int _iName, void **
     dataObject->getDataProperty(property, _pvData);
 }
 
-char const* DataModel::createDataObject(char const* _pstID, int _iType)
+int DataModel::createDataObject(int iUID, int _iType)
 {
     Data3D* newObject = NULL;
 
@@ -97,17 +97,17 @@ char const* DataModel::createDataObject(char const* _pstID, int _iType)
             newObject = new TriangleMeshFecData();
             break;
         default :
-            return NULL;
+            return 0;
     }
 
-    (*m_dataMap)[std::string(_pstID)] = newObject;
+    (*m_dataMap)[iUID] = newObject;
 
-    return _pstID;
+    return iUID;
 }
 
-void DataModel::deleteDataObject(char const* _pstID)
+void DataModel::deleteDataObject(int iUID)
 {
-    std::map<std::string, Data3D*>::iterator it = m_dataMap->find(std::string(_pstID));
+    std::map<int, Data3D*>::iterator it = m_dataMap->find(iUID);
     if (it != m_dataMap->end() && it->second != NULL)
     {
         delete it->second;

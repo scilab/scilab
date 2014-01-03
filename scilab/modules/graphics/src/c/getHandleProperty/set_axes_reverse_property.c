@@ -34,7 +34,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_axes_reverse_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_axes_reverse_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status[3];
     int axesReversePropertiesNames[3] = {__GO_X_AXIS_REVERSE__, __GO_Y_AXIS_REVERSE__, __GO_Z_AXIS_REVERSE__};
@@ -65,9 +65,9 @@ int set_axes_reverse_property(void* _pvCtx, char* pobjUID, void* _pvData, int va
             return SET_PROPERTY_ERROR ;;
         }
 
-        status[0] = setGraphicObjectProperty(pobjUID, axesReversePropertiesNames[0], &reverse, jni_bool, 1);
-        status[1] = setGraphicObjectProperty(pobjUID, axesReversePropertiesNames[1], &reverse, jni_bool, 1);
-        status[2] = setGraphicObjectProperty(pobjUID, axesReversePropertiesNames[2], &reverse, jni_bool, 1);
+        status[0] = setGraphicObjectProperty(iObjUID, axesReversePropertiesNames[0], &reverse, jni_bool, 1);
+        status[1] = setGraphicObjectProperty(iObjUID, axesReversePropertiesNames[1], &reverse, jni_bool, 1);
+        status[2] = setGraphicObjectProperty(iObjUID, axesReversePropertiesNames[2], &reverse, jni_bool, 1);
 
         if (status[0] == TRUE && status[1] == TRUE && status[2] == TRUE)
         {
@@ -100,7 +100,7 @@ int set_axes_reverse_property(void* _pvCtx, char* pobjUID, void* _pvData, int va
                 return SET_PROPERTY_ERROR;
             }
 
-            status[i] = setGraphicObjectProperty(pobjUID, axesReversePropertiesNames[i], &reverse, jni_bool, 1);
+            status[i] = setGraphicObjectProperty(iObjUID, axesReversePropertiesNames[i], &reverse, jni_bool, 1);
 
             if (status[i] != TRUE)
             {

@@ -184,7 +184,6 @@ public final class G2DCanvas implements Canvas {
 
     @Override
     public void destroy() {
-        // TODO Auto-generated method stub
-
+        getMotor3D().clean();
     }
 }

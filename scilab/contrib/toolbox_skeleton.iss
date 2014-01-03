@@ -54,6 +54,8 @@ Source: contrib\{#TOOLBOX_SKELETON}\src\fortran\builder_fortran.sce; DestDir: {a
 Source: contrib\{#TOOLBOX_SKELETON}\src\fortran\fsum.f; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\src\fortran; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\tests\*.*; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\tests; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\locales\*.*; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\locales; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON}
+Source: contrib\{#TOOLBOX_SKELETON}\src\java\builder_java.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\src\java; Components: {#COMPN_TOOLBOX_SKELETON}
+Source: contrib\{#TOOLBOX_SKELETON}\src\java\org\scilab\contrib\toolboxskeleton\Sum.java; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\src\java\org\scilab\contrib\toolboxskeleton; Components: {#COMPN_TOOLBOX_SKELETON}
 
 ;--------------------------------------------------------------------------------------------------------------
 #define XCOS_TOOLBOX_SKELETON "xcos_toolbox_skeleton"

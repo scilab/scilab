@@ -32,15 +32,17 @@ SCICOS_BLOCKS_IMPEXP void ratelimiter(scicos_block *block, int flag)
     double* pw = NULL;
     double rate = 0. , t = 0.;
 
+    double** work = (double**) block->work;
+
     if (flag == 4)
     {
         /* the workspace is used to store previous values */
-        if ((*block->work = scicos_malloc(sizeof(double) * 4)) == NULL )
+        if ((*work = (double*) scicos_malloc(sizeof(double) * 4)) == NULL )
         {
             set_block_error(-16);
             return;
         }
-        pw = *block->work;
+        pw = *work;
         pw[0] = 0.0;
         pw[1] = 0.0;
         pw[2] = 0.0;
@@ -48,7 +50,7 @@ SCICOS_BLOCKS_IMPEXP void ratelimiter(scicos_block *block, int flag)
     }
     else  if (flag == 5)
     {
-        scicos_free(*block->work);
+        scicos_free(*work);
     }
     else if (flag == 1)
     {
@@ -56,7 +58,7 @@ SCICOS_BLOCKS_IMPEXP void ratelimiter(scicos_block *block, int flag)
         {
             do_cold_restart();
         }
-        pw = *block->work;
+        pw = *work;
         t = get_scicos_time();
         if (t > pw[2])
         {

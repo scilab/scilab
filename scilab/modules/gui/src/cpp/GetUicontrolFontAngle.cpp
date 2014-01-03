@@ -14,12 +14,12 @@
 
 #include "GetUicontrolFontAngle.hxx"
 
-void* GetUicontrolFontAngle(void* _pvCtx, char *sciObjUID)
+void* GetUicontrolFontAngle(void* _pvCtx, int iObjUID)
 {
     char* fontAngle = NULL;
     void* status = NULL;
 
-    getGraphicObjectProperty(sciObjUID, __GO_UI_FONTANGLE__, jni_string, (void**) &fontAngle);
+    getGraphicObjectProperty(iObjUID, __GO_UI_FONTANGLE__, jni_string, (void**) &fontAngle);
 
     if (fontAngle == NULL)
     {

@@ -15,11 +15,9 @@
 // <-- Short Description -->
 // There are some inconsistent error messages in dsearch
 
-errmsg1 = msprintf(_("%s: Wrong type for argument #%d: Real matrix expected.\n"), "dsearch", 1);
-assert_checkerror("dsearch(int8([ 1 5 7]), [3 4 7 10], ""d"")", errmsg1);
+assert_checktrue(execstr("dsearch(int8([ 1 5 7]), [3 4 7 10], ""d"")", "errcatch")==0);
 
-errmsg2 = msprintf(_("%s: Wrong type for argument #%d: Real matrix expected.\n"), "dsearch", 2);
-assert_checkerror("dsearch([1 5 7], int8([3 4 7 10]), ""d"")", errmsg2);
+assert_checktrue(execstr("dsearch([1 5 7], int8([3 4 7 10]), ""d"")", "errcatch")==0);
 
 m=50000;
 n=10;

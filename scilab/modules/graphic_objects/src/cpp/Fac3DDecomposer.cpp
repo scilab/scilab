@@ -24,7 +24,7 @@ extern "C"
 #include "graphicObjectProperties.h"
 }
 
-int Fac3DDecomposer::getDataSize(char* id)
+int Fac3DDecomposer::getDataSize(int id)
 {
     int numVerticesPerGon = 0;
     int* piNumVerticesPerGon = &numVerticesPerGon;
@@ -37,7 +37,7 @@ int Fac3DDecomposer::getDataSize(char* id)
     return numVerticesPerGon * numGons;
 }
 
-void Fac3DDecomposer::fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
+void Fac3DDecomposer::fillVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
 {
     double* x = NULL;
     double* y = NULL;
@@ -102,10 +102,12 @@ void Fac3DDecomposer::fillVertices(char* id, float* buffer, int bufferLength, in
 
 }
 
-void Fac3DDecomposer::fillTextureCoordinates(char* id, float* buffer, int bufferLength)
+void Fac3DDecomposer::fillTextureCoordinates(int id, float* buffer, int bufferLength)
 {
-    char* parentFigure = NULL;
-    char* parent = NULL;
+    int parentFigure = 0;
+    int* pparentFigure = &parentFigure;
+    int parent = 0;
+    int* pparent = &parent;
 
     double* colors = NULL;
     double* colormap = NULL;
@@ -138,17 +140,18 @@ void Fac3DDecomposer::fillTextureCoordinates(char* id, float* buffer, int buffer
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_COLORS__, jni_int, (void**) &piNumColors);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_COLORS__, jni_double_vector, (void**) &colors);
 
-    getGraphicObjectProperty(id, __GO_PARENT__, jni_string, (void**) &parent);
+
+    parent = getParentObject(id);
 
     /* Temporary: to avoid getting a null parent_figure property when the object is built */
-    if (strcmp(parent, "") == 0)
+    if (parent == 0)
     {
         return;
     }
 
-    getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_string, (void**) &parentFigure);
+    getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_int, (void**) &pparentFigure);
 
-    if (parentFigure == NULL)
+    if (parentFigure == 0)
     {
         return;
     }
@@ -399,7 +402,7 @@ void Fac3DDecomposer::computeMinMaxValues(double* values, int numValues, int num
     *valueMax = tmpValueMax;
 }
 
-int Fac3DDecomposer::getIndicesSize(char* id)
+int Fac3DDecomposer::getIndicesSize(int id)
 {
     int numVerticesPerGon = 0;
     int* piNumVerticesPerGon = &numVerticesPerGon;
@@ -421,7 +424,7 @@ int Fac3DDecomposer::getIndicesSize(char* id)
  * To do: use a polygon triangulation algorithm, as the fan decomposition used may produce
  * overlapping triangles for non-convex polygons.
  */
-int Fac3DDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)
+int Fac3DDecomposer::fillIndices(int id, int* buffer, int bufferLength, int logMask)
 {
     double* x = NULL;
     double* y = NULL;
@@ -513,7 +516,7 @@ int Fac3DDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int lo
     return bufferOffset;
 }
 
-int Fac3DDecomposer::getWireIndicesSize(char* id)
+int Fac3DDecomposer::getWireIndicesSize(int id)
 {
     int numVerticesPerGon = 0;
     int* piNumVerticesPerGon = &numVerticesPerGon;
@@ -526,7 +529,7 @@ int Fac3DDecomposer::getWireIndicesSize(char* id)
     return 2 * numVerticesPerGon * numGons;
 }
 
-int Fac3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, int logMask)
+int Fac3DDecomposer::fillWireIndices(int id, int* buffer, int bufferLength, int logMask)
 {
     double* x = NULL;
     double* y = NULL;

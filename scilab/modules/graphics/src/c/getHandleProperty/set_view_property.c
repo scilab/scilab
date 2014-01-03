@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_view_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_view_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int viewType = 0;
@@ -57,7 +57,7 @@ int set_view_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
 
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_VIEW__, &viewType, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_VIEW__, &viewType, jni_int, 1);
 
     if (status = TRUE)
     {

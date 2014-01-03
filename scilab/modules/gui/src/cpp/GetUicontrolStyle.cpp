@@ -54,12 +54,12 @@ char *IntToStyle(int _iStyle)
     return NULL;
 }
 
-void* GetUicontrolStyle(void* _pvCtx, char *sciObjUID)
+void* GetUicontrolStyle(void* _pvCtx, int iObjUID)
 {
     int iStyle = -1;
     int *piStyle = &iStyle;
 
-    getGraphicObjectProperty(sciObjUID, __GO_STYLE__, jni_int, (void **) &piStyle);
+    getGraphicObjectProperty(iObjUID, __GO_STYLE__, jni_int, (void **) &piStyle);
 
     if (piStyle != NULL)
     {

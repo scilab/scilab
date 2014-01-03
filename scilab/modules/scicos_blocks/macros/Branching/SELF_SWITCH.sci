@@ -44,14 +44,6 @@ function [x,y,typ]=SELF_SWITCH(job,arg1,arg2)
         diagram.objs(7) = scicos_link(xx=[0, 0], yy=[0, 0], from=[4, 1], to=[2, 1]);
     endfunction
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x = arg1;
         stateOpen = x.model.opar(1);
@@ -71,8 +63,7 @@ function [x,y,typ]=SELF_SWITCH(job,arg1,arg2)
         x = scicos_block()
         x.gui="SELF_SWITCH"
         x.graphics.sz=[2,2]
-        x.graphics.gr_i=list("xstringb(orig(1),orig(2),''CUT'',sz(1),s"+...
-        "z(2),''fill'')",8)
+        x.graphics.gr_i=[]
         x.graphics.pin=0
         x.graphics.pout=0
         x.model.sim="csuper"

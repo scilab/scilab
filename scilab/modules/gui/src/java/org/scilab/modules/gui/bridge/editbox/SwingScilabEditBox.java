@@ -48,7 +48,7 @@ public class SwingScilabEditBox extends JTextField implements SwingViewObject, S
 
     private static final long serialVersionUID = 1L;
 
-    private String uid;
+    private Integer uid;
 
     private CommonCallBack callback;
 
@@ -260,7 +260,7 @@ public class SwingScilabEditBox extends JTextField implements SwingViewObject, S
      * Set the UID
      * @param id the UID
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         uid = id;
     }
 
@@ -268,7 +268,7 @@ public class SwingScilabEditBox extends JTextField implements SwingViewObject, S
      * Get the UID
      * @return the UID
      */
-    public String getId() {
+    public Integer getId() {
         return uid;
     }
 

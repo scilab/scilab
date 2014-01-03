@@ -40,7 +40,10 @@ function [coef1,coef2,coef21,coef22]=Disc2_5_FVM1d(h,kbc,operi,N,xn,xw,a1)
     //      calculons l'int�grale.                                           //
     //-----------------------------------------------------------------------//
 
-    coef1=[]; coef2=[]; coef21=[]; coef22=[];
+    coef1=[];
+    coef2=[];
+    coef21=[];
+    coef22=[];
     coef1=spzeros(N,N);
     coef2=spzeros(N,1);
     x=xw;

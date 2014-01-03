@@ -7,9 +7,15 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
+
+/* sci_types.i */
+/**
+ * Windows: swig -java -package org.scilab.modules.graphic_objects -outdir ../java/org/scilab/modules/graphic_objects/ PolylineData.i
+ * Other: Use the option --enable-build-swig to the configure
+*/
 
 %module PolylineData
  
@@ -59,7 +65,7 @@
 #include "math.h"
 
 /*help funtion*/
-int getDataSize_(char * uid)
+int getDataSize_(int uid)
 {
 	int size = 0;
 	int *j = &size;
@@ -67,7 +73,7 @@ int getDataSize_(char * uid)
 	return size;
 }
 
-BOOL isZCoordSet(char *uid)
+BOOL isZCoordSet(int uid)
 {
 	int result = 0;
 	int *pResult = &result;
@@ -76,48 +82,48 @@ BOOL isZCoordSet(char *uid)
 	return (BOOL)result;
 }
 
-double * getDataX(char * uid)
+double * getDataX(int uid)
 {
 	double *vec;
 	getGraphicObjectProperty(uid, __GO_DATA_MODEL_X__, jni_double_vector, (void**)&vec);
 	return vec;
 }
-double * getDataY(char * uid)
+double * getDataY(int uid)
 {
 	double *vec;
 	getGraphicObjectProperty(uid, __GO_DATA_MODEL_Y__, jni_double_vector, (void**)&vec);
 	return vec;
 }
 
-double * getDataZ(char * uid)
+double * getDataZ(int uid)
 {
 	double *vec;
 	getGraphicObjectProperty(uid, __GO_DATA_MODEL_Z__, jni_double_vector, (void**)&vec);
 	return vec;
 }
 
-double * getShiftX(char * uid)
+double * getShiftX(int uid)
 {
 	double *vec;
 	getGraphicObjectProperty(uid, __GO_DATA_MODEL_X_COORDINATES_SHIFT__, jni_double_vector, (void**)&vec);
 	return vec;
 }
 
-double * getShiftY(char * uid)
+double * getShiftY(int uid)
 {
 	double *vec;
 	getGraphicObjectProperty(uid, __GO_DATA_MODEL_Y_COORDINATES_SHIFT__, jni_double_vector, (void**)&vec);
 	return vec;
 }
 
-double * getShiftZ(char * uid)
+double * getShiftZ(int uid)
 {
 	double *vec;
 	getGraphicObjectProperty(uid, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, jni_double_vector, (void**)&vec);
 	return vec;
 }
 
-BOOL isXShiftSet(char * uid)
+BOOL isXShiftSet(int uid)
 {
 	int b = 0;
 	int * pb = &b;
@@ -125,7 +131,7 @@ BOOL isXShiftSet(char * uid)
 	return b;
 }
 
-BOOL isYShiftSet(char * uid)
+BOOL isYShiftSet(int uid)
 {
 	int b = 0;
 	int * pb = &b;
@@ -133,7 +139,7 @@ BOOL isYShiftSet(char * uid)
 	return b;
 }
 
-BOOL isZShiftSet(char * uid)
+BOOL isZShiftSet(int uid)
 {
 	int b = 0;
 	int * pb = &b;
@@ -142,7 +148,7 @@ BOOL isZShiftSet(char * uid)
 }
 
 
-char * createPolylineData(char * uidFrom, char *uidTo)
+int createPolylineData(int uidFrom, int uidTo)
 {
 	double *dataFrom, *dataTo;
 	int n[2];
@@ -150,7 +156,7 @@ char * createPolylineData(char * uidFrom, char *uidTo)
 	int *tmp = &size;
 	BOOL result;
 
-    char * polylineID = (char *)createDataObject(uidTo, __GO_POLYLINE__);
+    int polylineID = createDataObject(uidTo, __GO_POLYLINE__);
 	if (polylineID == NULL)
     {
         return NULL;
@@ -174,7 +180,7 @@ char * createPolylineData(char * uidFrom, char *uidTo)
 	
 }
 
-BOOL translatePolyline(char *uid, double x, double y, double z, int flagX, int flagY, int flagZ)
+BOOL translatePolyline(int uid, double x, double y, double z, int flagX, int flagY, int flagZ)
 {
     double *datax = NULL;
     double *datay = NULL;
@@ -231,7 +237,7 @@ BOOL translatePolyline(char *uid, double x, double y, double z, int flagX, int f
 	return TRUE;
 }
 
-BOOL translatePoint(char * uid, int index, double x, double y, double z, int flagX, int flagY, int flagZ)
+BOOL translatePoint(int uid, int index, double x, double y, double z, int flagX, int flagY, int flagZ)
 {
     double *datax = NULL;
     double *datay = NULL;
@@ -269,11 +275,11 @@ BOOL translatePoint(char * uid, int index, double x, double y, double z, int fla
 		}
 	}
 	/*update*/
-	setGraphicObjectProperty(uid, __GO_DATA_MODEL__, uid, jni_string, 1);
+	setGraphicObjectProperty(uid, __GO_DATA_MODEL__, &uid, jni_int, 1);
 	return TRUE;
 }
 
-BOOL setPointValue(char * uid, int index, double x, double y, double z)
+BOOL setPointValue(int uid, int index, double x, double y, double z)
 {
     double *datax = NULL;
     double *datay = NULL;
@@ -299,11 +305,11 @@ BOOL setPointValue(char * uid, int index, double x, double y, double z)
 		}	
 	}
 	/*update*/
-	setGraphicObjectProperty(uid, __GO_DATA_MODEL__, uid, jni_string, 1);
+	setGraphicObjectProperty(uid, __GO_DATA_MODEL__, &uid, jni_int, 1);
 	return TRUE;
 }
 
-BOOL insertPoint(char * uid, int index, double x, double y, double z)
+BOOL insertPoint(int uid, int index, double x, double y, double z)
 {
     double *curData, *newData;
 	int size = getDataSize_(uid);
@@ -349,7 +355,7 @@ BOOL insertPoint(char * uid, int index, double x, double y, double z)
 	return TRUE;
 }
 
-BOOL removePoint(char * uid, int index)
+BOOL removePoint(int uid, int index)
 {
 	double *curData, *newData;
 	int size = getDataSize_(uid);
@@ -388,22 +394,22 @@ BOOL removePoint(char * uid, int index)
 %}
 
 
-double * getDataX(char * uid);
-double * getDataY(char * uid);
-double * getDataZ(char * uid);
-double * getShiftX(char * uid);
-double * getShiftY(char * uid);
-double * getShiftZ(char * uid);
-int isZCoordSet(char *uid);
-int isXShiftSet(char * uid);
-int isYShiftSet(char * uid);
-int isZShiftSet(char * uid);
-char * createPolylineData(char * uidFrom, char *uidTo);
-int translatePolyline(char *uid, double x, double y, double z,  int flagX, int flagY, int flagZ);
-int translatePoint(char * uid, int index, double x, double y, double z,  int flagX, int flagY, int flagZ);
-int setPointValue(char * uid, int index, double x, double y, double z);
-int insertPoint(char * uid, int index, double x, double y, double z);
-int removePoint(char * uid, int index);
+double * getDataX(int uid);
+double * getDataY(int uid);
+double * getDataZ(int uid);
+double * getShiftX(int uid);
+double * getShiftY(int uid);
+double * getShiftZ(int uid);
+int isZCoordSet(int uid);
+int isXShiftSet(int uid);
+int isYShiftSet(int uid);
+int isZShiftSet(int uid);
+int createPolylineData(int uidFrom, int uidTo);
+int translatePolyline(int uid, double x, double y, double z,  int flagX, int flagY, int flagZ);
+int translatePoint(int uid, int index, double x, double y, double z,  int flagX, int flagY, int flagZ);
+int setPointValue(int uid, int index, double x, double y, double z);
+int insertPoint(int uid, int index, double x, double y, double z);
+int removePoint(int uid, int index);
 
 
 

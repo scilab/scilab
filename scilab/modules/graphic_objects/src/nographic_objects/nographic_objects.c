@@ -36,25 +36,25 @@ BOOL sciIsExistingFigure(int figNum)
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-char *createGraphicObject(int _iType)
+int createGraphicObject(int _iType)
 {
-    return NULL;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
-char const* createDataObject(char const* _sId, int _iType)
+int createDataObject(int iUID, int _iType)
 {
-    return NULL;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
-void deleteGraphicObject(char *_sId)
-{
-}
-/*--------------------------------------------------------------------------*/
-void deleteDataObject(char const *_sId)
+void deleteGraphicObject(int iUID)
 {
 }
 /*--------------------------------------------------------------------------*/
-void getGraphicObjectProperty(char const* _pstID, const int _iName, enum _ReturnType_ _returnType, void **_pvData)
+void deleteDataObject(int iUID)
+{
+}
+/*--------------------------------------------------------------------------*/
+void getGraphicObjectProperty(int iUID, const int _iName, enum _ReturnType_ _returnType, void **_pvData)
 {
     *_pvData = NULL;
 }
@@ -63,12 +63,12 @@ void releaseGraphicObjectProperty(const int _iName, void * _pvData, enum _Return
 {
 }
 /*--------------------------------------------------------------------------*/
-BOOL setGraphicObjectProperty(char const* _psUID, const int _iPropertyName, void const* _pvValue, enum _ReturnType_ _valueTtype, int numElements)
+BOOL setGraphicObjectProperty(int iUID, const int _iPropertyName, void const* _pvValue, enum _ReturnType_ _valueTtype, int numElements)
 {
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-void setGraphicObjectRelationship(char const* _parentId, char const* _childId)
+void setGraphicObjectRelationship(int iUID, int iUID2)
 {
 }
 /*--------------------------------------------------------------------------*/

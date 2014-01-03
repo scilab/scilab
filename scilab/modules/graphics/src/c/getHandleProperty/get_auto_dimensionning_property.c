@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_auto_dimensionning_property(void* _pvCtx, char* pobjUID)
+void* get_auto_dimensionning_property(void* _pvCtx, int iObjUID)
 {
     int iAutoDimensioning = 0;
     int* piAutoDimensioning = &iAutoDimensioning;
 
-    getGraphicObjectProperty(pobjUID, __GO_AUTO_DIMENSIONING__, jni_bool, (void **)&piAutoDimensioning);
+    getGraphicObjectProperty(iObjUID, __GO_AUTO_DIMENSIONING__, jni_bool, (void **)&piAutoDimensioning);
 
     if (piAutoDimensioning == NULL)
     {

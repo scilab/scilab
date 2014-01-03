@@ -24,7 +24,7 @@ extern "C"
 
 NgonGridDataDecomposer* NgonGridDataDecomposer::decomposer = NULL;
 
-int NgonGridDataDecomposer::getDataSize(char* id)
+int NgonGridDataDecomposer::getDataSize(int id)
 {
     int numX = 0;
     int* piNumX = &numX;
@@ -41,7 +41,7 @@ int NgonGridDataDecomposer::getDataSize(char* id)
 #endif
 }
 
-void NgonGridDataDecomposer::fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
+void NgonGridDataDecomposer::fillVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
 {
     double* x = NULL;
     double* y = NULL;
@@ -370,7 +370,7 @@ double NgonGridDataDecomposer::getValue(double* values, int numX, int numY, int 
     return values[numX * j + i];
 }
 
-int NgonGridDataDecomposer::getIndicesSize(char* id)
+int NgonGridDataDecomposer::getIndicesSize(int id)
 {
     int numX = 0;
     int* piNumX = &numX;
@@ -389,7 +389,7 @@ int NgonGridDataDecomposer::getIndicesSize(char* id)
 }
 
 
-int NgonGridDataDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)
+int NgonGridDataDecomposer::fillIndices(int id, int* buffer, int bufferLength, int logMask)
 {
     double* x = NULL;
     double* y = NULL;

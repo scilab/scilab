@@ -93,29 +93,24 @@ int NgonGridData::getPropertyFromName(int propertyName)
 
 int NgonGridData::setDataProperty(int property, void const* value, int numElements)
 {
-    if (property == GRID_SIZE)
+    switch (property)
     {
-        return setGridSize((int const*) value);
-    }
-    else if (property == X_COORDINATES)
-    {
-        setDataX((double const*) value, numElements);
-    }
-    else if (property == Y_COORDINATES)
-    {
-        setDataY((double const*) value, numElements);
-    }
-    else if (property == Z_COORDINATES)
-    {
-        setDataZ((double const*) value, numElements);
-    }
-    else if (property == Z_COORDINATES_SHIFT)
-    {
-        setZCoordinatesShift((double const*) value);
-    }
-    else
-    {
-        return NgonData::setDataProperty(property, value, numElements);
+        case GRID_SIZE :
+            return setGridSize((int const*) value);
+        case X_COORDINATES :
+            setDataX((double const*) value, numElements);
+            break;
+        case Y_COORDINATES :
+            setDataY((double const*) value, numElements);
+            break;
+        case Z_COORDINATES :
+            setDataZ((double const*) value, numElements);
+            break;
+        case Z_COORDINATES_SHIFT :
+            setZCoordinatesShift((double const*) value);
+            break;
+        default :
+            return NgonData::setDataProperty(property, value, numElements);
     }
 
     return 1;
@@ -123,47 +118,38 @@ int NgonGridData::setDataProperty(int property, void const* value, int numElemen
 
 void NgonGridData::getDataProperty(int property, void **_pvData)
 {
-    if (property == NUM_X)
+    switch (property)
     {
-        ((int *) *_pvData)[0] = getNumX();
+        case NUM_X:
+            ((int *) *_pvData)[0] = getNumX();
+            break;
+        case NUM_Y :
+            ((int *) *_pvData)[0] = getNumY();
+            break;
+        case NUM_Z :
+            ((int *) *_pvData)[0] = getNumZ();
+            break;
+        case X_DIMENSIONS :
+            *_pvData = getXDimensions();
+            break;
+        case Y_DIMENSIONS :
+            *_pvData = getYDimensions();
+            break;
+        case X_COORDINATES :
+            *_pvData = getDataX();
+            break;
+        case Y_COORDINATES :
+            *_pvData = getDataY();
+            break;
+        case Z_COORDINATES :
+            *_pvData = getDataZ();
+            break;
+        case Z_COORDINATES_SHIFT :
+            ((double *) *_pvData)[0] = getZCoordinatesShift();
+            break;
+        default :
+            NgonData::getDataProperty(property, _pvData);
     }
-    else if (property == NUM_Y)
-    {
-        ((int *) *_pvData)[0] = getNumY();
-    }
-    else if (property == NUM_Z)
-    {
-        ((int *) *_pvData)[0] = getNumZ();
-    }
-    else if (property == X_DIMENSIONS)
-    {
-        *_pvData = getXDimensions();
-    }
-    else if (property == Y_DIMENSIONS)
-    {
-        *_pvData = getYDimensions();
-    }
-    else if (property == X_COORDINATES)
-    {
-        *_pvData = getDataX();
-    }
-    else if (property == Y_COORDINATES)
-    {
-        *_pvData = getDataY();
-    }
-    else if (property == Z_COORDINATES)
-    {
-        *_pvData = getDataZ();
-    }
-    else if (property == Z_COORDINATES_SHIFT)
-    {
-        ((double *) *_pvData)[0] = getZCoordinatesShift();
-    }
-    else
-    {
-        NgonData::getDataProperty(property, _pvData);
-    }
-
 }
 
 int NgonGridData::setGridSize(int const* gridSize)
@@ -229,7 +215,7 @@ int NgonGridData::setGridSize(int const* gridSize)
         }
     }
 
-    if (newXSize*newYSize != xSize * ySize)
+    if (newXSize * newYSize != xSize * ySize)
     {
         zModified = 1;
 

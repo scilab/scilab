@@ -35,8 +35,11 @@ static BOOL convertSlash(char *path_in, char *path_out, BOOL slashToAntislash)
     if ( (path_in) && (path_out) )
     {
         int i = 0;
+        int len_path_out = 0;
         strcpy(path_out, path_in);
-        for (i = 0; i < (int)strlen(path_out); i++)
+        len_path_out = (int)strlen(path_out);
+
+        for (i = 0; i < len_path_out; i++)
         {
             if ( slashToAntislash )
             {
@@ -58,7 +61,7 @@ static BOOL convertSlash(char *path_in, char *path_out, BOOL slashToAntislash)
     }
     else
     {
-        bOK = FALSE;
+        return FALSE;
     }
 
     return bOK;

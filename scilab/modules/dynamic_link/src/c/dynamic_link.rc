@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "dynamic_link module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "dynamic_link module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "dynamic_link.dll"
             VALUE "ProductName", "dynamic_link module"
             VALUE "ProductVersion", "6, 0, 0, 0"

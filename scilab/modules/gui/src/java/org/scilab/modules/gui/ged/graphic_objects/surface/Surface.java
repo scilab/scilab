@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.ged.graphic_objects.surface;
@@ -27,7 +27,7 @@ public class Surface extends SimpleObject {
     * Initializes all sections (JPanel's) and Add in Main JPanel of Object.
     * @param objectID Enters the identification of object.
     */
-    public Surface(String objectID) {
+    public Surface(Integer objectID) {
         super(objectID);
         base = new BaseProperties(objectID);
         data = new DataProperties(objectID);
@@ -47,9 +47,10 @@ public class Surface extends SimpleObject {
     @Override
     public final String[] getSectionsName() {
         return new String[] {
-                base.getName(),
-                data.getName(),
-                mark.getName(),
-                style.getName()};
+                   base.getName(),
+                   data.getName(),
+                   mark.getName(),
+                   style.getName()
+               };
     }
 }

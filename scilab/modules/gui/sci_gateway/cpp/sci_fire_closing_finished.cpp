@@ -29,14 +29,11 @@ int sci_fire_closing_finished(char *fname, void* pvApiCtx)
 {
     CheckInputArgument(pvApiCtx, 0, 0);
 
-    char const* pstCurrentFigure = NULL;
+    int iCurrentFigure = NULL;
 
     /* Set current figure as parent */
-    pstCurrentFigure = getCurrentFigure();
-    if (pstCurrentFigure != NULL)
-    {
-        CallScilabBridge::fireClosingFinished(getScilabJavaVM(), pstCurrentFigure);
-    }
+    iCurrentFigure = getCurrentFigure();
+    CallScilabBridge::fireClosingFinished(getScilabJavaVM(), iCurrentFigure);
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     returnArguments(pvApiCtx);

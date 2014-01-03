@@ -17,7 +17,7 @@
 #include "localization.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
-#ifdef USE_DYNAMIC_STACK
+#ifndef _MSC_VER
 extern int scimem64(int *n, int newsize, BOOL isglobal);
 extern void freemem64(BOOL isglobal);
 #else
@@ -29,10 +29,11 @@ static char *the_gps = NULL;
 /*--------------------------------------------------------------------------*/
 int C2F(scimem) (int *newsize, int *ptr)
 {
-#ifdef USE_DYNAMIC_STACK
+#ifndef _MSC_VER
     return scimem64(ptr, *newsize, FALSE);
 #else
     register char *p1 = NULL;
+    double coef = 1.0;
 
     if (*newsize > 0)
     {
@@ -40,16 +41,28 @@ int C2F(scimem) (int *newsize, int *ptr)
         /* the last +2 is to overcome a problem with adjuststack. */
         /* Which appears on OpenSolaris and on mandriva + EEEPC. */
         /* To be corrected. Thanks Jonathan */
-        p1 = (char *)SCISTACKMALLOC(((unsigned long)sizeof(double)) * (*newsize + 1 + 2));
-
-        if (p1 != NULL)
+        while (coef > 0)
         {
-            the_ps = the_p;
-            the_p = p1;
-            /* add 1 for alignment problems */
-            *ptr = ((int)(the_p - (char *)C2F(stack).Stk)) / sizeof(double) + 1;
+            int size = (int)(*newsize * coef);
+            p1 = (char *)SCISTACKMALLOC((size + 1 + 2) * sizeof(double));
+            if (p1 != NULL)
+            {
+                the_ps = the_p;
+                the_p = p1;
+                /* add 1 for alignment problems */
+                *ptr = ((int)(the_p - (char *)C2F(stack).Stk)) / sizeof(double) + 1;
+                *newsize = size;
+                //sciprint("SUCCEED to alloc %0.0f MB ( %0.0f%% )\n", (double)(size + 1 + 2) * sizeof(double) / (1024*1024), coef * 100);
+                break;
+            }
+            else
+            {
+                //sciprint("FAILED to alloc %0.0f MB\n", (double)(size + 1 + 2) * sizeof(double) / (1024*1024));
+                coef -= 0.01; //remove 1%
+            }
         }
-        else
+
+        if (p1 == NULL)
         {
             /* We could not create a new stack, so, we are using the previous one */
             if (the_p == NULL)
@@ -58,17 +71,18 @@ int C2F(scimem) (int *newsize, int *ptr)
                 sciprint(_("No space to allocate Scilab stack.\n"));
                 exit(1);
             }
+
             *ptr = 0;
         }
+
     }
     return (0);
 #endif
 }
-
 /*--------------------------------------------------------------------------*/
 int C2F(scigmem) (int *n, int *ptr)
 {
-#ifdef USE_DYNAMIC_STACK
+#ifndef _MSC_VER
     return scimem64(ptr, *n, TRUE);
 #else
     register char *p1 = NULL;
@@ -102,7 +116,7 @@ int C2F(scigmem) (int *n, int *ptr)
 /*--------------------------------------------------------------------------*/
 void C2F(freeglobalstacklastmemory) (void)
 {
-#ifndef USE_DYNAMIC_STACK
+#ifdef _MSC_VER
     if (the_gps != NULL)
     {
         SCISTACKFREE(the_gps);
@@ -114,7 +128,7 @@ void C2F(freeglobalstacklastmemory) (void)
 /*--------------------------------------------------------------------------*/
 void C2F(freestacklastmemory) (void)
 {
-#ifndef USE_DYNAMIC_STACK
+#ifdef _MSC_VER
     if (the_ps != NULL)
     {
         SCISTACKFREE(the_ps);
@@ -126,7 +140,7 @@ void C2F(freestacklastmemory) (void)
 /*--------------------------------------------------------------------------*/
 void freeGlobalStackCurrentMemory()
 {
-#ifdef USE_DYNAMIC_STACK
+#ifndef _MSC_VER
     freemem64(TRUE);
 #else
     if (the_gp != NULL)
@@ -139,7 +153,7 @@ void freeGlobalStackCurrentMemory()
 
 void freeStackCurrentMemory()
 {
-#ifdef USE_DYNAMIC_STACK
+#ifndef _MSC_VER
     freemem64(FALSE);
 #else
     if (the_p != NULL)

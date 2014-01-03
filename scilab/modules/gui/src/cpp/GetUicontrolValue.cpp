@@ -14,14 +14,14 @@
 
 #include "GetUicontrolValue.hxx"
 
-void* GetUicontrolValue(void* _pvCtx, char *sciObjUID)
+void* GetUicontrolValue(void* _pvCtx, int iObjUID)
 {
     int valueSize = 0;
     int* piValueSize = &valueSize;
     double* pdblValue = NULL;
     void* status = NULL;
 
-    getGraphicObjectProperty(sciObjUID, __GO_UI_VALUE_SIZE__, jni_int, (void**) &piValueSize);
+    getGraphicObjectProperty(iObjUID, __GO_UI_VALUE_SIZE__, jni_int, (void**) &piValueSize);
 
     if (piValueSize == NULL)
     {
@@ -36,7 +36,7 @@ void* GetUicontrolValue(void* _pvCtx, char *sciObjUID)
         }
         else
         {
-            getGraphicObjectProperty(sciObjUID, __GO_UI_VALUE__, jni_double_vector, (void**) &pdblValue);
+            getGraphicObjectProperty(iObjUID, __GO_UI_VALUE__, jni_double_vector, (void**) &pdblValue);
 
             if (pdblValue == NULL)
             {

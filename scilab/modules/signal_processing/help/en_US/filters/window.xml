@@ -41,7 +41,7 @@
                 <term>Beta</term>
                 <listitem>
                     <para>
-                        Kaiser window parameter <literal>Beta &gt;0</literal>). 
+                        Kaiser window parameter <literal>Beta &gt;0</literal>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -73,12 +73,12 @@
                 </para>
                 <para>
                     By construction, this function peaks at unity for <literal> k = n/2</literal> ,
-                    i.e. at the center of the window, and decays exponentially towards the 
-                    window edges.   The larger the value of <literal>Beta</literal>, the narrower 
+                    i.e. at the center of the window, and decays exponentially towards the
+                    window edges.   The larger the value of <literal>Beta</literal>, the narrower
                     the window becomes; <literal>Beta = 0</literal> corresponds to a rectangular window.
                     Conversely, for larger <literal>Beta</literal> the width of the main lobe
                     increases in the Fourier transform, while the side lobes decrease in
-                    amplitude. 
+                    amplitude.
                     Thus, this parameter controls the tradeoff between main-lobe width and
                     side-lobe area.
                 </para>
@@ -115,8 +115,8 @@
             <listitem>
                 <para>
                     The Hann and Hamming windows are quite similar, they only differ in
-                    the choice of one parameter <literal>alpha</literal>: 
-                    <literal> w=alpha+(1 - alpha)*cos(2*%pi*x/(n-1))</literal> 
+                    the choice of one parameter <literal>alpha</literal>:
+                    <literal> w=alpha+(1 - alpha)*cos(2*%pi*x/(n-1))</literal>
                     <literal>alpha</literal> is equal to 1/2 in Hann window and to 0.54 in
                     Hamming window.
                 </para>
@@ -125,14 +125,14 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
     clf()
     N=24;
     whm=window('hm',N);//Hamming window
     wkr=window('kr',N,6);//Hamming Kaiser window
     wch=window('ch',N,[0.005,-1]);//Chebychev window
     //plot the window profile
-    subplot(121);plot(1:N,[whm;wkr;wch]')
+    subplot(121);plot((1:N)',[whm;wkr;wch]')
     set(gca(),'grid',[1 1]*color('gray'))
     xlabel("n")
     ylabel("w_n")
@@ -142,7 +142,7 @@
     [Whm,fr]=frmag(whm,n);
     [Wkr,fr]=frmag(wkr,n);
     [Wch,fr]=frmag(wch,n);
-    subplot(122);plot(fr,20*log10([Whm;Wkr;Wch]'))
+    subplot(122);plot(fr',20*log10([Whm;Wkr;Wch]'))
     set(gca(),'grid',[1 1]*color('gray'))
     xlabel(gettext("Pulsation (rd/s)"))
     ylabel(gettext("Magnitude (dB)"))
@@ -157,7 +157,7 @@
                 wkr=window('kr',N,6);//Hamming Kaiser window
                 wch=window('ch',N,[0.005,-1]);//Chebychev window
                 //plot the window profile
-                subplot(121);plot(1:N,[whm;wkr;wch]')
+                subplot(121);plot((1:N)',[whm;wkr;wch]')
                 set(gca(),'grid',[1 1]*color('gray'))
                 xlabel("n")
                 ylabel("w_n")
@@ -167,7 +167,7 @@
                 [Whm,fr]=frmag(whm,n);
                 [Wkr,fr]=frmag(wkr,n);
                 [Wch,fr]=frmag(wch,n);
-                subplot(122);plot(fr,20*log10([Whm;Wkr;Wch]'))
+                subplot(122);plot(fr',20*log10([Whm;Wkr;Wch]'))
                 set(gca(),'grid',[1 1]*color('gray'))
                 xlabel(gettext("Pulsation (rd/s)"))
                 ylabel(gettext("Magnitude (dB)"))
@@ -175,7 +175,7 @@
                 title(gettext("Magnitude plot"))
             </scilab:image>
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
     clf()
     N=140;
     w1=window('kr',N,1);
@@ -185,7 +185,7 @@
     w16=window('kr',N,16);
 
     //plot the window profile
-    plot(1:N,[w1;w2;w4;w8;w16]')
+    plot((1:N)',[w1;w2;w4;w8;w16]')
     set(gca(),'grid',[1 1]*color('gray'))
     legend("$\beta="+string([1;2;4;8;16])+'$',[55,0.3])
     xlabel("n")
@@ -203,7 +203,7 @@
                 w16=window('kr',N,16);
                 
                 //plot the window profile
-                plot(1:N,[w1;w2;w4;w8;w16]')
+                plot((1:N)',[w1;w2;w4;w8;w16]')
                 set(gca(),'grid',[1 1]*color('gray'))
                 legend("$\beta="+string([1;2;4;8;16])+'$',[55,0.3])
                 xlabel("n")
@@ -211,7 +211,7 @@
                 title(gettext("Comparison of Kaiser window profiles"))
             </scilab:image>
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
     clf()
     N=140;
     w1=window('ch',N,[0.001,-1]);
@@ -219,7 +219,7 @@
     w3=window('ch',N,[-1,0.4]);
 
     //plot the window profile
-    subplot(121);plot(1:N,[w1;w2;w3]')
+    subplot(121);plot((1:N)',[w1;w2;w3]')
     set(gca(),'grid',[1 1]*color('gray'))
     //legend("$\beta="+string([1;2;4;8;16])+'$',[55,0.3])
     xlabel("n")
@@ -230,7 +230,7 @@
     [W1,fr]=frmag(w1,n);
     [W2,fr]=frmag(w2,n);
     [W3,fr]=frmag(w3,n);
-    subplot(122);plot(fr,20*log10([W1;W2;W3]'))
+    subplot(122);plot(fr',20*log10([W1;W2;W3]'))
     set(gca(),'grid',[1 1]*color('gray'))
     xlabel(gettext("Pulsation (rd/s)"))
     ylabel(gettext("Magnitude (dB)"))
@@ -245,7 +245,7 @@
                 w3=window('ch',N,[-1,0.4]);
                 
                 //plot the window profile
-                subplot(121);plot(1:N,[w1;w2;w3]')
+                subplot(121);plot((1:N)',[w1;w2;w3]')
                 set(gca(),'grid',[1 1]*color('gray'))
                 //legend("$\beta="+string([1;2;4;8;16])+'$',[55,0.3])
                 xlabel("n")
@@ -256,7 +256,7 @@
                 [W1,fr]=frmag(w1,n);
                 [W2,fr]=frmag(w2,n);
                 [W3,fr]=frmag(w3,n);
-                subplot(122);plot(fr,20*log10([W1;W2;W3]'))
+                subplot(122);plot(fr',20*log10([W1;W2;W3]'))
                 set(gca(),'grid',[1 1]*color('gray'))
                 xlabel(gettext("Pulsation (rd/s)"))
                 ylabel(gettext("Magnitude (dB)"))

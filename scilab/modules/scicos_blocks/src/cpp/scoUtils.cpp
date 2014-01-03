@@ -31,12 +31,12 @@ extern "C"
 #define LOG(...)
 }
 
-char *findChildWithKindAt(char const* parent, int type, const int position)
+int findChildWithKindAt(int parent, int type, const int position)
 {
-    char *child = NULL;
+    int child = 0;
 
     int childrenCount;
-    char **children;
+    int*children;
 
     int i;
     int iChildType = -1;
@@ -45,7 +45,7 @@ char *findChildWithKindAt(char const* parent, int type, const int position)
 
     int *pChildrenCount = &childrenCount;
     getGraphicObjectProperty(parent, __GO_CHILDREN_COUNT__, jni_int, (void **)&pChildrenCount);
-    getGraphicObjectProperty(parent, __GO_CHILDREN__, jni_string_vector, (void **)&children);
+    getGraphicObjectProperty(parent, __GO_CHILDREN__, jni_int_vector, (void **)&children);
 
     for (typeCount = 0, i = childrenCount - 1; i >= 0; i--)
     {
@@ -58,45 +58,38 @@ char *findChildWithKindAt(char const* parent, int type, const int position)
 
         if (typeCount == (position + 1))
         {
-            /*
-             * Use a C++ allocation, to allow a future delete char* . Using strdup there will perform a malloc allocation instead of a new allocation.
-             */
-            int len = (int) strlen(children[i]);
-            child = new char[len + 1];
-            strcpy(child, children[i]);
-
-            LOG("%s: found %s at %d : %s\n", "findChildWithKindAt", type, position, child);
+            child = children[i];
+            LOG("%s: found %s at %d : %d\n", "findChildWithKindAt", type, position, child);
             break;
         }
     }
 
-    releaseGraphicObjectProperty(__GO_CHILDREN__, children, jni_string_vector, childrenCount);
+    releaseGraphicObjectProperty(__GO_CHILDREN__, children, jni_int_vector, childrenCount);
     return child;
 };
 
-BOOL setLabel(char const* pAxeUID, int _iName, char const* label)
+BOOL setLabel(int iAxeUID, int _iName, char* pstLabel)
 {
-    char *pLabelUID;
+    int iLabelUID = 0;
+    int* piLabelUID = &iLabelUID;
     int dimensions[2];
 
     BOOL result = TRUE;
 
-    getGraphicObjectProperty(pAxeUID, _iName, jni_string, (void **)&pLabelUID);
+    getGraphicObjectProperty(iAxeUID, _iName, jni_int, (void **)&piLabelUID);
 
-    if (pLabelUID != NULL && strcmp(pLabelUID, "") != 0)
+    if (iLabelUID != 0)
     {
         dimensions[0] = 1;
         dimensions[1] = 1;
 
-        result = setGraphicObjectProperty(pLabelUID, __GO_TEXT_ARRAY_DIMENSIONS__, &dimensions, jni_int_vector, 2);
+        result = setGraphicObjectProperty(iLabelUID, __GO_TEXT_ARRAY_DIMENSIONS__, &dimensions, jni_int_vector, 2);
     }
 
-    if (pLabelUID != NULL && result == TRUE)
+    if (iLabelUID != 0 && result == TRUE)
     {
-        result = setGraphicObjectProperty(pLabelUID, __GO_TEXT_STRINGS__, &label, jni_string_vector, 1);
+        result = setGraphicObjectProperty(iLabelUID, __GO_TEXT_STRINGS__, &pstLabel, jni_string_vector, 1);
     }
 
-    releaseGraphicObjectProperty(_iName, pLabelUID, jni_string, 1);
-
-    return (BOOL) (result && pLabelUID != NULL);
+    return (BOOL) (result && iLabelUID != 0);
 }

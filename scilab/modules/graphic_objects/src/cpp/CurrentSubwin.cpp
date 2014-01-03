@@ -17,12 +17,12 @@ extern "C"
 #include "CurrentSubwin.h"
 }
 
-char const* getCurrentSubWin(void)
+int getCurrentSubWin(void)
 {
     return ScilabView::getCurrentSubWin();
 }
 
-void setCurrentSubWin(char const* UID)
+void setCurrentSubWin(int UID)
 {
     ScilabView::setCurrentSubWin(UID);
 }

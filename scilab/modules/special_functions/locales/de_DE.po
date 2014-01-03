@@ -8,26 +8,26 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2011-09-01 09:39+0000\n"
+"PO-Revision-Date: 2013-12-06 17:57+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: de\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr ""
+msgstr "%s: Falsche Größe für Eingangsargument #%d.\n"
 
 #, c-format
 msgid "%s: arguments #%d and #%d have incompatible dimensions.\n"
-msgstr ""
+msgstr "%s: Argumente #%d und #%d haben inkompatible Dimensionen.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr ""
+msgstr "%s: Falscher Typ für Eingangsargument #%d: Reelle Matrix erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input arguments: Must be > %d.\n"
@@ -35,25 +35,29 @@ msgstr "%s: falscher Wert für Eingangsargument: muß >%d sein.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
+msgstr "%s: Kann Eingangsargument #%d nicht lesen.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
+"%s: Falscher Typ für Eingangsargument #%d: Eine reelle Zahl erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: A matrix expected.\n"
-msgstr ""
+msgstr "%s: Falscher Typ für Argument %d: Eine Matrix erwartet.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Integer or vector of integers "
 "expected.\n"
 msgstr ""
+"%s: Falscher Typ für Eingangsargument #%d: Ganzzahl oder Vektor von "
+"Ganzzahlen erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer >= %d expected.\n"
 msgstr ""
+"%s: Falscher Typ für Eingangsargument #%d: Ganzzahl >= %d erwartet.\n"
 
 #, c-format
 msgid "%s: Only one of arg1 and arg2 may be a vector.\n"
@@ -64,6 +68,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: Matrix with elements in [%d,%d] "
 "expected.\n"
 msgstr ""
+"%s: Falscher Wert für Eingangsargument #%d: Matrix mit Elementen im Bereich "
+"[%d,%d] erwartet.\n"
 
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"
@@ -78,14 +84,15 @@ msgstr "%s: Fehler Nummer %d\n"
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
+"%s: Falscher Typ für Argument #%d: Reelle oder komplexe Matrix erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: Falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for argument %d: 0, 1 or 2 expected.\n"
-msgstr ""
+msgstr "%s: Falscher Wert für Argument %d: 0, 1 oder 2 erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"

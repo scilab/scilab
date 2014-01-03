@@ -20,7 +20,7 @@
  * This function creates Uimenu structure.
  * @return created uimenu UID
  */
-char *CreateUimenu(void)
+int CreateUimenu(void)
 {
     return createGraphicObject(__GO_UIMENU__);
 }

@@ -250,7 +250,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                             int start = e.getStart();
                             int end = start + e.getLength();
                             String exp = ((ScilabDocument) getDocument()).getText(start, e.getLength());
-                            int height = getScrollPane().getHeight() + getScrollPane().getVerticalScrollBar().getValue();
+                            ScilabScrollPane ssp = getScrollPane();
+                            int height;
+                            if (ssp != null) {
+                                height = ssp.getHeight() + ssp.getVerticalScrollBar().getValue();
+                            } else {
+                                height = edComponent.getHeight();
+                            }
                             ScilabLaTeXViewer.displayExpression(ScilabEditorPane.this, height, exp, start, end);
                         } catch (BadLocationException ex) { }
                     } else {
@@ -1635,7 +1641,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                     } catch (BadLocationException e) { }
                 }
 
-                getScrollPane().putMarks(marks);
+                ScilabScrollPane ssp = getScrollPane();
+                if (ssp != null) {
+                    ssp.putMarks(marks);
+                }
 
                 if (centered && positions.size() != 0) {
                     scrollTextToPos(positions.get(0)[0], false, true);
@@ -1653,7 +1662,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             highlighter.removeHighlight(obj);
         }
         highlightedWords.clear();
-        getScrollPane().removeMarks();
+        ScilabScrollPane ssp = getScrollPane();
+        if (ssp != null) {
+            ssp.removeMarks();
+        }
     }
 
     /**

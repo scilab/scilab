@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.ged.graphic_objects.properties;
@@ -51,25 +51,25 @@ public class Label extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID
      */
-    public void autoPosition(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void autoPosition(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lAutoPosition = new JLabel();
         final JComboBox cAutoPosition = new JComboBox();
         addLabelComboBox(panel, lAutoPosition, MessagesGED.auto_position,
-                                cAutoPosition, new String[] {MessagesGED.off , MessagesGED.on},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cAutoPosition, new String[] {MessagesGED.off , MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW++);
         cAutoPosition.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_AUTO_POSITION__,
-                        cAutoPosition.getSelectedIndex() == 0 ? false : true);
+                    UID, GraphicObjectProperties.__GO_AUTO_POSITION__,
+                    cAutoPosition.getSelectedIndex() == 0 ? false : true);
             }
         });
 
         // Get the current status of the property: Auto Position
         boolean enable = (Boolean) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_AUTO_POSITION__);
-        cAutoPosition.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_AUTO_POSITION__);
+        cAutoPosition.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**
@@ -80,25 +80,25 @@ public class Label extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID
      */
-    public void autoRotation(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void autoRotation(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lAutoRotation = new JLabel();
         final JComboBox cAutoRotation = new JComboBox();
         addLabelComboBox(panel, lAutoRotation, MessagesGED.auto_rotation,
-                                cAutoRotation, new String[] {MessagesGED.off , MessagesGED.on},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cAutoRotation, new String[] {MessagesGED.off , MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW++);
         cAutoRotation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_AUTO_ROTATION__,
-                        cAutoRotation.getSelectedIndex() == 0 ? false : true);
+                    UID, GraphicObjectProperties.__GO_AUTO_ROTATION__,
+                    cAutoRotation.getSelectedIndex() == 0 ? false : true);
             }
         });
 
         // Get the current status of the property: Auto Rotation
         boolean enable = (Boolean) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_AUTO_ROTATION__);
-        cAutoRotation.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_AUTO_ROTATION__);
+        cAutoRotation.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**
@@ -109,7 +109,7 @@ public class Label extends ContentLayout {
      * @param LEFTMARGIN
      * @param UID
      */
-    public void fontAngle(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void fontAngle(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lFontAngle = new JLabel();
         final JTextField cFontAngle = new JTextField();
         addLabelTextField(panel, lFontAngle, MessagesGED.font_angle,
@@ -129,7 +129,7 @@ public class Label extends ContentLayout {
 
         //Get the current status of the property: Font Angle.
         cFontAngle.setText(Double.toString((Double) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_FONT_ANGLE__)));
+                                           .getProperty(UID, GraphicObjectProperties.__GO_FONT_ANGLE__)));
     }
 
     /**
@@ -137,15 +137,15 @@ public class Label extends ContentLayout {
     * @param cFontAngle JTextField.
     * @param UID id.
     */
-    private void setFontAngle(JTextField cFontAngle, String UID) {
+    private void setFontAngle(JTextField cFontAngle, Integer UID) {
         try {
             GraphicController.getController().setProperty(
-                    UID,
-                    GraphicObjectProperties.__GO_FONT_ANGLE__,
-                    Double.parseDouble(cFontAngle.getText()));
+                UID,
+                GraphicObjectProperties.__GO_FONT_ANGLE__,
+                Double.parseDouble(cFontAngle.getText()));
         } catch (NumberFormatException e) {
             cFontAngle.setText(Double.toString((Double) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_FONT_ANGLE__)));
+                                               .getProperty(UID, GraphicObjectProperties.__GO_FONT_ANGLE__)));
         }
     }
 
@@ -155,9 +155,9 @@ public class Label extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void position(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void position(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         int LEFTMARGINIP = 0; //left margin - inner panel
         int COLUMNIP = 0; //left column - inner panel
 
@@ -179,7 +179,7 @@ public class Label extends ContentLayout {
         });
         //Position X
         addLabelTextField(pCoordinates, lX, MessagesGED.x_coordinate,
-                                 cX, true, LEFTMARGINIP, COLUMNIP, 0);
+                          cX, true, LEFTMARGINIP, COLUMNIP, 0);
         cX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -194,7 +194,7 @@ public class Label extends ContentLayout {
         });
         //Position Y
         addLabelTextField(pCoordinates, lY, MessagesGED.y_coordinate,
-                                 cY, true, LEFTMARGINIP, COLUMNIP, 1);
+                          cY, true, LEFTMARGINIP, COLUMNIP, 1);
         cY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -221,9 +221,9 @@ public class Label extends ContentLayout {
     /**
     * Get status of the property: Position (coordinates).
     */
-    private void getCoordinates(String UID) {
+    private void getCoordinates(Integer UID) {
         Double[] coordinates = (Double []) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_POSITION__);
+                               .getProperty(UID, GraphicObjectProperties.__GO_POSITION__);
         cX.setText(coordinates[0].toString());
         cY.setText(coordinates[1].toString());
         titleCoordinates();
@@ -232,14 +232,14 @@ public class Label extends ContentLayout {
     /**
     * Updates the property: Position.
     */
-    private void updateCoordinates(String UID) {
+    private void updateCoordinates(Integer UID) {
         try {
             Double[] value = new Double[3];
             value[0] = Double.parseDouble(cX.getText());
             value[1] = Double.parseDouble(cY.getText());
             value[2] = 0.0;
             GraphicController.getController()
-                    .setProperty(UID, GraphicObjectProperties.__GO_POSITION__, value);
+            .setProperty(UID, GraphicObjectProperties.__GO_POSITION__, value);
             titleCoordinates();
         } catch (NumberFormatException e) {
             getCoordinates(UID);
@@ -252,13 +252,13 @@ public class Label extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void text(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void text(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lText = new JLabel();
         final JTextField cText = new JTextField();
         addLabelTextField(panel, lText, MessagesGED.text,
-                         cText, true, LEFTMARGIN, COLUMN, ROW++);
+                          cText, true, LEFTMARGIN, COLUMN, ROW++);
         cText.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -275,7 +275,7 @@ public class Label extends ContentLayout {
         });
         // Get the current status of the property: Text
         String[] text = (String[]) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
+                        .getProperty(UID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
         cText.setText(text[0]);
     }
 }

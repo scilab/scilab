@@ -28,7 +28,8 @@
 #include "scicos_free.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(dgetrf)();
+extern int C2F(dgetrf)(int *m, int *n, double *a, int *
+                       lda, int *ipiv, int *info);
 /*--------------------------------------------------------------------------*/
 typedef struct
 {
@@ -44,6 +45,7 @@ SCICOS_BLOCKS_IMPEXP void mat_det(scicos_block *block, int flag)
     int info = 0;
     int i = 0;
     double D = 0., l = 0.;
+    mat_det_struct** work = (mat_det_struct**) block->work;
     mat_det_struct *mdet = NULL;
 
     nu = GetInPortRows(block, 1);
@@ -53,12 +55,12 @@ SCICOS_BLOCKS_IMPEXP void mat_det(scicos_block *block, int flag)
     /*init : initialization*/
     if (flag == 4)
     {
-        if ((*(block->work) = (mat_det_struct*) scicos_malloc(sizeof(mat_det_struct))) == NULL)
+        if ((*work = (mat_det_struct*) scicos_malloc(sizeof(mat_det_struct))) == NULL)
         {
             set_block_error(-16);
             return;
         }
-        mdet = *(block->work);
+        mdet = *work;
         if ((mdet->ipiv = (int*) scicos_malloc(sizeof(int) * nu)) == NULL)
         {
             set_block_error(-16);
@@ -77,7 +79,7 @@ SCICOS_BLOCKS_IMPEXP void mat_det(scicos_block *block, int flag)
     /* Terminaison */
     else if (flag == 5)
     {
-        mdet = *(block->work);
+        mdet = *work;
         if (mdet->wrk != NULL)
         {
             scicos_free(mdet->ipiv);
@@ -89,7 +91,7 @@ SCICOS_BLOCKS_IMPEXP void mat_det(scicos_block *block, int flag)
 
     else
     {
-        mdet = *(block->work);
+        mdet = *work;
         for (i = 0; i < (nu * nu); i++)
         {
             mdet->wrk[i] = u[i];

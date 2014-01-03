@@ -61,7 +61,7 @@
                 \end{eqnarray}
             </latex>
             <para>
-                &#160; avec, comme dans <link linkend="CVode">CVode</link>,
+                 avec, comme dans <link linkend="CVode">CVode</link>,
                 <emphasis>
                     y<subscript>n</subscript>
                 </emphasis>
@@ -102,15 +102,15 @@
                     </latex>
                 </para>
                 <para>
-                    &#160; avec <emphasis>J</emphasis> une approximation du Jacobien :
+                     avec <emphasis>J</emphasis> une approximation du Jacobien :
                 </para>
                 <para>
-                    &#160; <latex>
+                     <latex>
                         J = \frac{\partial{G}}{\partial{y}} = \frac{\partial{F}}{\partial{y}}+\alpha\frac{\partial{F}}{\partial{\dot{y}}}, \hspace{4 mm} \alpha = \frac{\alpha_{n,0}}{h_n},
                     </latex>
                 </para>
                 <para>
-                    &#160; <emphasis>&#x3B1;</emphasis> change quand le pas ou l'ordre de la méthode varient.
+                     <emphasis>α</emphasis> change quand le pas ou l'ordre de la méthode varient.
                 </para>
                 <para>
                     Un solveur direct dense est alors utilisé et on poursuit sur le prochain pas de temps.

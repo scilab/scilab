@@ -31,12 +31,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_font_angle_property(void* _pvCtx, char* pobjUID)
+void* get_font_angle_property(void* _pvCtx, int iObjUID)
 {
     double dblFontAngle = 0;
     double* pdblFontAngle = &dblFontAngle;
 
-    getGraphicObjectProperty(pobjUID, __GO_FONT_ANGLE__, jni_double, (void **)&pdblFontAngle);
+    getGraphicObjectProperty(iObjUID, __GO_FONT_ANGLE__, jni_double, (void **)&pdblFontAngle);
 
     if (pdblFontAngle == NULL)
     {

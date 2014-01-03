@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_mark_mode_property(void* _pvCtx, char* pobjUID)
+void* get_mark_mode_property(void* _pvCtx, int iObjUID)
 {
     int iMarkMode = 0;
     int *piMarkMode = &iMarkMode;
 
-    getGraphicObjectProperty(pobjUID, __GO_MARK_MODE__, jni_bool, (void **)&piMarkMode);
+    getGraphicObjectProperty(iObjUID, __GO_MARK_MODE__, jni_bool, (void **)&piMarkMode);
 
     if (piMarkMode == NULL)
     {

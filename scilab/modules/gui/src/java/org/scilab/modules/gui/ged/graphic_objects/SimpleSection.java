@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.ged.graphic_objects;
@@ -47,7 +47,7 @@ public abstract class SimpleSection extends ContentLayout {
     * Initilialize the components of the section.
     * @param objectID uid.
     */
-    public abstract void initComponents(String objectID);
+    public abstract void initComponents(Integer objectID);
 
     /**
     * Set Jpanel of Section.

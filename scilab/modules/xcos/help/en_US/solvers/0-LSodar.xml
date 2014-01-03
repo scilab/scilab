@@ -145,11 +145,11 @@ Time for Adams / Functional:
             ]]></screen>
         </para>
         <para>
-            These results show that on a nonstiff problem, for the same precision required, <emphasis>LSodar</emphasis> is significantly faster. Other tests prove the proximity of the results. Indeed, we find that the solution difference order between <emphasis>LSodar</emphasis> and <emphasis>CVode</emphasis> is close to the order of the highest tolerance ( 
+            These results show that on a nonstiff problem, for the same precision required, <emphasis>LSodar</emphasis> is significantly faster. Other tests prove the proximity of the results. Indeed, we find that the solution difference order between <emphasis>LSodar</emphasis> and <emphasis>CVode</emphasis> is close to the order of the highest tolerance (
             <emphasis>
                 y<subscript>lsodar</subscript> - y<subscript>cvode</subscript>
             </emphasis>
-            &#8776; <emphasis>max(reltol, abstol)</emphasis> ).
+            ≈ <emphasis>max(reltol, abstol)</emphasis> ).
         </para>
         <para>
             Variable-size step ODE solvers are not appropriate for deterministic real-time applications because the computational overhead of taking a time step varies over the course of an application.

@@ -121,7 +121,7 @@ public class LegendDrawer {
     private IndicesBuffer rectangleOutlineIndices;
 
     /** The map storing legend text sprites */
-    private Map<String, Texture> textureMap;
+    private Map<Integer, Texture> textureMap;
 
     /**
      * Constructor.
@@ -139,7 +139,7 @@ public class LegendDrawer {
         rectangleIndices = visitor.getCanvas().getBuffersManager().createIndicesBuffer();
         rectangleOutlineIndices = visitor.getCanvas().getBuffersManager().createIndicesBuffer();
 
-        textureMap = new ConcurrentHashMap<String, Texture>();
+        textureMap = new ConcurrentHashMap<Integer, Texture>();
 
         int[] lineIndexData = new int[] {0, 1, 1, 2};
         lineIndices.setData(lineIndexData);
@@ -158,7 +158,7 @@ public class LegendDrawer {
         ColorMap colorMap = visitor.getColorMap();
         Canvas canvas = visitor.getCanvas();
 
-        String [] links = legend.getLinks();
+        Integer [] links = legend.getLinks();
 
         /*
          * Determine whether any links have become invalid,
@@ -190,7 +190,7 @@ public class LegendDrawer {
 
         /* First, compute the legend box's position and dimensions from the Axes' parameters and the text sprite's dimensions */
 
-        String parentAxesID = legend.getParentAxes();
+        Integer parentAxesID = legend.getParentAxes();
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentAxesID);
 
         Double [] axesBounds = parentAxes.getAxesBounds();
@@ -380,7 +380,7 @@ public class LegendDrawer {
         double normSpriteMargin = 0.0;
 
         if (nbValidLinks > 0) {
-            normSpriteMargin = (double) legendSpriteDrawer.getMargin() / (double) canvasHeight;
+            normSpriteMargin = (double) legendSpriteDrawer.getVMargin() / (double) canvasHeight;
         }
 
         lineVertexData[0] = (float) (legendCorner[0] + xOffset);
@@ -423,7 +423,7 @@ public class LegendDrawer {
         barVertexData[12] = barVertexData[4];
         barVertexData[13] = barVertexData[9];
 
-        for (String link : links) {
+        for (Integer link : links) {
             Polyline currentLine = (Polyline) GraphicController.getController().getObjectFromId(link);
 
             drawLegendItem(drawingTools, colorMap, currentLine, barVertexData, lineVertexData);
@@ -569,7 +569,7 @@ public class LegendDrawer {
      * @param id the legend id.
      * @param property the property to update.
      */
-    public void update(String id, int property) {
+    public void update(Integer id, int property) {
         if (textureMap.containsKey(id)) {
             if (SPRITE_PROPERTIES.contains(property)) {
                 dispose(id);
@@ -581,7 +581,7 @@ public class LegendDrawer {
      * Disposes the Legend sprite corresponding to the given id.
      * @param id the legend id.
      */
-    public void dispose(String id) {
+    public void dispose(Integer id) {
         Texture texture = textureMap.get(id);
         if (texture != null) {
             textureManager.dispose(texture);
@@ -628,9 +628,9 @@ public class LegendDrawer {
      */
     private int getNumberValidLinks(Legend legend) {
         int nbValidLinks = 0;
-        String [] links = legend.getLinks();
+        Integer [] links = legend.getLinks();
 
-        for (String link : links) {
+        for (Integer link : links) {
             Polyline currentLine = (Polyline) GraphicController.getController().getObjectFromId(link);
 
             if (currentLine != null) {
@@ -652,7 +652,7 @@ public class LegendDrawer {
      */
     private void updateLinks(Legend legend, int nbValidLinks) {
         int i1 = 0;
-        ArrayList <String> newLinks = new ArrayList<String>(0);
+        ArrayList <Integer> newLinks = new ArrayList<Integer>(0);
         String[] newStrings;
         Integer[] newDims = new Integer[2];
 
@@ -674,7 +674,7 @@ public class LegendDrawer {
             newStrings[0] = new String("");
         }
 
-        String[] links = legend.getLinks();
+        Integer[] links = legend.getLinks();
         String[] strings = legend.getTextStrings();
 
         for (int i = 0; i < links.length; i++) {

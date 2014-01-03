@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -31,15 +31,14 @@ using namespace org_scilab_modules_gui_editor;
 /*--------------------------------------------------------------------------*/
 int sci_useeditor(char *fname, void* pvApiCtx)
 {
-    char const * figureUid = NULL;
-
-    int* piAddr = NULL;
-    int* piVar1 = NULL;
-    int* piVar2 = NULL;
-    int m1      = 0;
-    int n1      = 0;
-    int enable  = 0;
-    int iErr    = 0;
+    int iFigureUid  = 0;
+    int* piAddr     = NULL;
+    int* piVar1     = NULL;
+    int* piVar2     = NULL;
+    int m1          = 0;
+    int n1          = 0;
+    int enable      = 0;
+    int iErr        = 0;
 
     SciErr sciErr;
     CheckInputArgument(pvApiCtx, 1, 2);
@@ -67,11 +66,11 @@ int sci_useeditor(char *fname, void* pvApiCtx)
 
     try
     {
-        figureUid = ScilabView::getFigureFromIndex(*piVar1);
+        iFigureUid = ScilabView::getFigureFromIndex(*piVar1);
 
         if (Rhs == 1)
         {
-            enable = (int)(EditorManager::isModifyEnabled(getScilabJavaVM(), figureUid) == false);
+            enable = (int)(EditorManager::isModifyEnabled(getScilabJavaVM(), iFigureUid) == false);
         }
         else
         {
@@ -99,11 +98,11 @@ int sci_useeditor(char *fname, void* pvApiCtx)
 
         if (enable)
         {
-            EditorManager::enableModify(getScilabJavaVM(), figureUid);
+            EditorManager::enableModify(getScilabJavaVM(), iFigureUid);
         }
         else
         {
-            EditorManager::disableModify(getScilabJavaVM(), figureUid);
+            EditorManager::disableModify(getScilabJavaVM(), iFigureUid);
         }
     }
     catch (const GiwsException::JniException & e)

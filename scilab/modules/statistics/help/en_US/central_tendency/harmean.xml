@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -37,20 +37,26 @@
         <title>Description</title>
         <para>
             This function  computes the harmonic  mean of a  vector or
-            matrix <literal> x</literal>.  For a vector or matrix  <literal> x</literal>, 
+            matrix <literal> x</literal>.  For a vector or matrix  <literal> x</literal>,
             <literal> hm=harmean(x)  </literal>  returns  in  scalar  <literal>  hm</literal>  the
             harmonic mean of all the entries of <literal> x</literal>.
         </para>
         <para>
-            <literal> hm=harmean(x,'r')   </literal>   (or,   equivalently,   
+            <literal> hm=harmean(x,'r')   </literal>   (or,   equivalently,
             <literal> hm=harmean(x,1)  </literal> ) returns  in each  entry of  the row
             vector <literal> hm</literal> the  harmonic mean of each column of <literal> x</literal>.
         </para>
         <para>
-            <literal> hm=harmean(x,'c')   </literal>   (or,   equivalently,   
+            <literal> hm=harmean(x,'c')   </literal>   (or,   equivalently,
             <literal> hm=harmean(x,2) </literal> ) returns  in each entry of the column
             vector <literal> hm</literal> the harmonic mean of each  row of <literal> x </literal>.
         </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+harmean(1:10) // Returns 10/sum(1 ./(1:10)) ~ %pi
+ ]]></programlisting>
     </refsection>
     <refsection>
         <title>Bibliography</title>

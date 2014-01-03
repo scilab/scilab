@@ -8,15 +8,15 @@
 // <-- TEST WITH GRAPHIC -->
 
 //
-// These tests makes comparisons between the empirical cumulated 
+// These tests makes comparisons between the empirical cumulated
 // distribution function and the theoretical distribution function.
 // They do not make use of the Chi-square distribution function,
 // and, therefore, are not Kolmogorov-Smirnov tests.
-// The tester is asked to visually compare the two plots, which 
+// The tester is asked to visually compare the two plots, which
 // cannot be automated.
 //
 
-//Comparison of pseudo-random numbers following an exponential distribution 
+//Comparison of pseudo-random numbers following an exponential distribution
 //and the density of this distribution
 //Parameter of the distribution which can be modified
 lambda=1.6;
@@ -28,15 +28,15 @@ clf();
 //Discretization of the abscisses in classes
 classes = linspace(0,12,25);
 //Draw in histogram
-histplot(classes,X)
-//Draw the density 
+histplot(classes,X);
+//Draw the density
 x=linspace(0,12,25);
 y = (1/lambda)*exp(-(1/lambda)*x);
 plot2d(x,y,3);
 f=gcf();
 delete(f);
 
-//Comparison of pseudo-random numbers following a beta distribution 
+//Comparison of pseudo-random numbers following a beta distribution
 //and the density of this distribution
 //Parameters of the distribution which can be modified
 A=1;B=3;
@@ -48,15 +48,15 @@ clf();
 //Discretization of the abscisses in classes
 classes = linspace(0,1,50);
 //Draw in histogram
-histplot(classes,X)
-//Draw the density 
+histplot(classes,X);
+//Draw the density
 x=linspace(0,1,50);
 y = (1/(beta(A,B))).*(x.^(A-1)).*((1-x).^(B-1)) ;
 plot2d(x,y,2);
 f=gcf();
 delete(f);
 
-//Comparison of pseudo-random numbers following a gamma distribution 
+//Comparison of pseudo-random numbers following a gamma distribution
 //and the density of this distribution
 //Parameters of the distribution which can be modified
 A=2;B=1;
@@ -68,8 +68,8 @@ clf();
 //Discretization of the abscisses in classes
 classes = linspace(0,2,50);
 //Draw in histogram
-histplot(classes,X)
-//Draw the density 
+histplot(classes,X);
+//Draw the density
 x=linspace(0,2,50);
 y = (B/(gamma(A))).*exp(-B*x).*(B*x).^(A-1);
 plot2d(x,y,2);
@@ -77,7 +77,7 @@ f=gcf();
 delete(f);
 
 
-//Comparison of pseudo-random numbers following a binomial distribution 
+//Comparison of pseudo-random numbers following a binomial distribution
 //and the density of this distribution
 //Parameters of the distribution which can be modified
 n=50;p=0.3;
@@ -89,7 +89,7 @@ clf();
 //Discretization of the abscisses in classes
 classes = linspace(0,n,n+1);
 //Draw in histogram
-histplot(classes,X)
+histplot(classes,X);
 //Draw the density
 x=linspace(0,n,n+1);
 y = binomial(p,n);
@@ -97,7 +97,7 @@ plot2d(x,y,2);
 f=gcf();
 delete(f);
 
-//Comparison of pseudo-random numbers following a poisson distribution 
+//Comparison of pseudo-random numbers following a poisson distribution
 //and the density of this distribution
 //Parameters of the distribution which can be modified
 mu=50;
@@ -109,7 +109,7 @@ clf();
 //Discretization of the abscisses in classes
 classes = linspace(0,2*mu,101);
 //Draw in histogram
-histplot(classes,X)
+histplot(classes,X);
 //Draw the density
 [x]=linspace(0,2*mu,101);
 y = exp(-mu).*(mu.^x)./factorial(x);

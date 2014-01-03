@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.ged;
@@ -39,7 +39,7 @@ public class SwapObject {
     * Manager which property window will open.
     * @param objectID Enters the identification of object.
     */
-    public SwapObject(String objectID) {
+    public SwapObject(Integer objectID) {
         Integer type = (Integer) GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_TYPE__);
         lastType = type;
         switch (type) {

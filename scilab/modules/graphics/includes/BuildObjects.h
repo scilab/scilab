@@ -59,64 +59,64 @@ sciTypeOf3D;
  * If a current figure exists : return it
  * Otherwise create a new one.
  */
-GRAPHICS_IMPEXP char * createNewFigureWithAxes(void);
+GRAPHICS_IMPEXP int createNewFigureWithAxes(void);
 
-GRAPHICS_IMPEXP void cloneAxesModel(char const* pstFigureUID);
+GRAPHICS_IMPEXP void cloneAxesModel(int iFigureUID);
 
-GRAPHICS_IMPEXP void cloneMenus(char * pModelUID, char * pCloneUID);
+GRAPHICS_IMPEXP void cloneMenus(int iModelUID, int iCloneUID);
 
-GRAPHICS_IMPEXP char const* getOrCreateDefaultSubwin(void);
+GRAPHICS_IMPEXP int getOrCreateDefaultSubwin(void);
 
-GRAPHICS_IMPEXP char const* ConstructSubWin(char const* pparentfigure); /* BUILD */
+GRAPHICS_IMPEXP int ConstructSubWin(int iParentfigure); /* BUILD */
 
-GRAPHICS_IMPEXP char *allocateText(char * pparentsubwinUID,
-                                   char **text,
-                                   int nbRow,
-                                   int nbCol,
-                                   double x,
-                                   double y,
-                                   BOOL autoSize,
-                                   double userSize[2],
-                                   int  centerPos,
-                                   int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align);
+GRAPHICS_IMPEXP int allocateText(int iParentsubwinUID,
+                                 char **text,
+                                 int nbRow,
+                                 int nbCol,
+                                 double x,
+                                 double y,
+                                 BOOL autoSize,
+                                 double userSize[2],
+                                 int  centerPos,
+                                 int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align);
 
-GRAPHICS_IMPEXP char *ConstructText(char * pparentsubwinUID, char **text, int nbRow, int nbCol, double x,
-                                    double y, BOOL autoSize, double userSize[2], BOOL centerPos, int *foreground, int *background,
-                                    BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align);
+GRAPHICS_IMPEXP int ConstructText(int iParentsubwinUID, char **text, int nbRow, int nbCol, double x,
+                                  double y, BOOL autoSize, double userSize[2], BOOL centerPos, int *foreground, int *background,
+                                  BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align);
 
-GRAPHICS_IMPEXP char *ConstructLegend(char * pparentsubwinUID, char *text[], long long tabofhandles[], int nblegends);   /* BUILD */
+GRAPHICS_IMPEXP int ConstructLegend(int iParentsubwinUID, char *text[], long long tabofhandles[], int nblegends);   /* BUILD */
 
-GRAPHICS_IMPEXP char * ConstructPolyline(char * pparentsubwinUID, double *pvecx, double *pvecy, double *pvecz, int closed, int n1, int plot, int *foreground, int *background, int *mark_style, int *mark_foreground, int *mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded);    /* BUILD */
+GRAPHICS_IMPEXP int ConstructPolyline(int iParentsubwinUID, double *pvecx, double *pvecy, double *pvecz, int closed, int n1, int plot, int *foreground, int *background, int *mark_style, int *mark_foreground, int *mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded);    /* BUILD */
 
-GRAPHICS_IMPEXP char *ConstructArc(char * pparentsubwinUID, double x, double y,
-                                   double height, double width, double alphabegin, double alphaend,
-                                   int *foreground, int *background, BOOL isfilled, BOOL isline);
+GRAPHICS_IMPEXP int ConstructArc(int iParentsubwinUID, double x, double y,
+                                 double height, double width, double alphabegin, double alphaend,
+                                 int *foreground, int *background, BOOL isfilled, BOOL isline);
 
-GRAPHICS_IMPEXP char *ConstructRectangle(char * pparentsubwinUID, double x, double y,
-        double height, double width, int *foreground, int *background, int isfilled, int isline);
+GRAPHICS_IMPEXP int ConstructRectangle(int iParentsubwinUID, double x, double y,
+                                       double height, double width, int *foreground, int *background, int isfilled, int isline);
 
-GRAPHICS_IMPEXP char *ConstructSurface(char * pparentsubwinUID, sciTypeOf3D typeof3d, double *pvecx, double *pvecy, double *pvecz, double *zcol, int izcol, int dimzx, int dimzy, int *flag, double *ebox, int flagcolor, int *isfac, int *m1, int *n1, int *m2, int *n2, int *m3, int *n3, int *m3n, int *n3n); /* BUILD */
+GRAPHICS_IMPEXP int ConstructSurface(int iParentsubwinUID, sciTypeOf3D typeof3d, double *pvecx, double *pvecy, double *pvecz, double *zcol, int izcol, int dimzx, int dimzy, int *flag, double *ebox, int flagcolor, int *isfac, int *m1, int *n1, int *m2, int *n2, int *m3, int *n3, int *m3n, int *n3n); /* BUILD */
 
-GRAPHICS_IMPEXP char *ConstructGrayplot(char * pparentsubwinUID, double *vx, double *vy, double *vz, int nx, int ny, int type);  /* BUILD */
+GRAPHICS_IMPEXP int ConstructGrayplot(int iParentsubwinUID, double *vx, double *vy, double *vz, int nx, int ny, int type);  /* BUILD */
 
-GRAPHICS_IMPEXP char *ConstructImplot(char * pparentsubwinUID, double * rect, unsigned char *vz, int nx, int ny, int plottype);  /* BUILD */
+GRAPHICS_IMPEXP int ConstructImplot(int iParentsubwinUID, double * rect, unsigned char *vz, int nx, int ny, int plottype);  /* BUILD */
 
-GRAPHICS_IMPEXP char *ConstructAxis(char * pparentsubwinUID, char dir, char tics, double *vx, int nx, double *vy, int ny, char *str[], int subint, char *format, int fontsize, int textcolor, int ticscolor, char logscale, int seg, int nb_tics_labels);    /* BUILD */
+GRAPHICS_IMPEXP int ConstructAxis(int iParentsubwinUID, char dir, char tics, double *vx, int nx, double *vy, int ny, char *str[], int subint, char *format, int fontsize, int textcolor, int ticscolor, char logscale, int seg, int nb_tics_labels);    /* BUILD */
 
-GRAPHICS_IMPEXP char *ConstructFec(char * pparentsubwinUID, double *pvecx, double *pvecy, double *pnoeud, double *pfun, int Nnode, int Ntr, double *zminmax, int *colminmax, int *colout, BOOL with_mesh);   /* BUILD */
+GRAPHICS_IMPEXP int ConstructFec(int iParentsubwinUID, double *pvecx, double *pvecy, double *pnoeud, double *pfun, int Nnode, int Ntr, double *zminmax, int *colminmax, int *colout, BOOL with_mesh);   /* BUILD */
 
-GRAPHICS_IMPEXP char *ConstructSegs(char * pparentsubwinUID, int type, double *vx, double *vy, double *vz, int Nbr1, int Nbr2, int Nbr3, double *vfx, double *vfy, int flag, int *style, double arsize, int colored, int typeofchamp);   /* BUILD */
+GRAPHICS_IMPEXP int ConstructSegs(int iParentsubwinUID, int type, double *vx, double *vy, double *vz, int Nbr1, int Nbr2, int Nbr3, double *vfx, double *vfy, int flag, int *style, double arsize, int colored, int typeofchamp);   /* BUILD */
 
-GRAPHICS_IMPEXP char *ConstructCompound(long *tabpointobj, int number); /* BUILD */
-GRAPHICS_IMPEXP char *ConstructCompoundSeq(int number); /* BUILD */
+GRAPHICS_IMPEXP int ConstructCompound(long *tabpointobj, int number); /* BUILD */
+GRAPHICS_IMPEXP int ConstructCompoundSeq(int number); /* BUILD */
 
-GRAPHICS_IMPEXP void ConstructLabel(char * pparentsubwinUID, char const* text, int type); /* BUILD */
+GRAPHICS_IMPEXP void ConstructLabel(int iParentsubwinUID, char const* text, int type); /* BUILD */
 
 /**
  * Create a polyline but does not add it to Scilab hierarchy
  */
-GRAPHICS_IMPEXP char *allocatePolyline(char * pparentsubwinUID, double *pvecx, double *pvecy, double *pvecz,
-                                       int closed, int n1, int plot, int *foreground, int *background,
-                                       int *mark_style, int *mark_foreground, int *mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded);
+GRAPHICS_IMPEXP int allocatePolyline(int iParentsubwinUID, double *pvecx, double *pvecy, double *pvecz,
+                                     int closed, int n1, int plot, int *foreground, int *background,
+                                     int *mark_style, int *mark_foreground, int *mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded);
 
 #endif /* __SCI_BUILD__ */

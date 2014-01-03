@@ -66,7 +66,7 @@
  */
 typedef struct
 {
-#ifdef USE_DYNAMIC_STACK
+#ifndef _MSC_VER
     double *Stk;
 #else
     double Stk[vsiz];

@@ -43,9 +43,9 @@ int sci_relocate_handle(char * fname, void *pvApiCtx)
     int i = 0;
 
     long children = 0;
-    char* childrenID = NULL;
+    int iCchildrenID = 0;
     long parent = 0;
-    char* parentID = NULL;
+    int iParentID = 0;
 
     /* the function should be called with relocate_handle(handle, parent_handle) */
     CheckInputArgument(pvApiCtx, 2, 2);
@@ -93,13 +93,13 @@ int sci_relocate_handle(char * fname, void *pvApiCtx)
     }
 
     parent = (long) * (parentStkIndex);
-    parentID = (char*)getObjectFromHandle(parent);
+    iParentID = getObjectFromHandle(parent);
 
     for (i = 0; i < nbHandle; i++)
     {
         children = (long)handleStkIndex[i];
-        childrenID = (char*)getObjectFromHandle(children);
-        setGraphicObjectRelationship(parentID, childrenID);
+        iCchildrenID = getObjectFromHandle(children);
+        setGraphicObjectRelationship(iParentID, iCchildrenID);
     }
 
     sciErr = allocMatrixOfHandle(pvApiCtx,  nbInputArgument(pvApiCtx) + 1, handleCol, handleRow, &outIndex);

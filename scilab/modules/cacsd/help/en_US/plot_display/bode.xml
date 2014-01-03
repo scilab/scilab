@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -17,10 +17,13 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>bode(sl,[fmin,fmax] [,step] [,comments] )
-            bode(sl,frq [,comments] )
-            bode(frq,db,phi [,comments])
-            bode(frq, repf [,comments])
+        <synopsis>
+            bode(sl, [fmin, fmax] [,step] [,comments] )
+            bode(sl, [fmin, fmax] [,step] [,comments] [,"rad"] )
+            bode(sl, frq [,comments] )
+            bode(sl, frq [,comments] [,"rad"] )
+            bode(frq, db, phi [,comments] )
+            bode(frq, repf [,comments] [,"rad"] )
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -85,6 +88,13 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>"rad"</term>
+                <listitem>
+                    <para>converts the frequency from Hz into rad/s (multiplies by 2&#960;),
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -127,52 +137,70 @@
             frequencies is made by <literal>calfrq</literal>.
         </para>
         <para>
-            The 
-            <member>
-                <link linkend="datatips">datatips</link>
-            </member>
+            The
+            <link linkend="datatips">datatips</link>
             tool may be used
             to display data along the phase and modulus curves.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-s=poly(0,'s')
-h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
-clf();bode(h,0.01,100);
+        <programlisting role="example"><![CDATA[
+s = poly(0, 's');
+h = syslin('c', (s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+
+clf(); bode(h, 0.01, 100);
  ]]></programlisting>
         <para>
             <scilab:image localized="true">
-                s=poly(0,'s')
-                h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
-                clf();bode(h,0.01,100);
+                s = poly(0, 's');
+                h = syslin('c', (s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+                clf(); bode(h, 0.01, 100);
             </scilab:image>
         </para>
-        <programlisting role="example"><![CDATA[ 
-s=poly(0,'s')
-h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
-num=22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
-den=22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4
-h2=syslin('c',num/den);
+        <programlisting role="example"><![CDATA[
+s = poly(0, 's');
+h1 = syslin('c', (s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+num = 22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
+den = 22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4;
+h2 = syslin('c', num/den);
 
-clf();bode([h1;h2],0.01,100,['h1';'h2'])
+clf(); bode([h1; h2], 0.01, 100, ['h1'; 'h2']);
  ]]></programlisting>
         <para>
             <scilab:image localized="true">
-                s=poly(0,'s')
-                h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
-                num=22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
-                den=22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4
-                h2=syslin('c',num/den);
-                
-                clf();bode([h1;h2],0.01,100,['h1';'h2'])
+                s = poly(0, 's');
+                h1 = syslin('c', (s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+                num = 22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
+                den = 22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4;
+                h2 = syslin('c', num/den);
+                clf(); bode([h1; h2], 0.01, 100, ['h1'; 'h2']);
+            </scilab:image>
+        </para>
+        <programlisting role="example"><![CDATA[
+s = %s;
+G = (10*(s+3))/(s*(s+2)*(s^2+s+2)); // A rational matrix
+sys = syslin('c', G); // A continuous-time linear system in transfer matrix representation.
+f_min = .0001; f_max = 16; // Frequencies in Hz
+
+clf(); bode(sys, f_min, f_max, "rad"); // Converts Hz to rad/s
+ ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s = %s;
+                G = (10*(s+3))/(s*(s+2)*(s^2+s+2)); // A rational matrix
+                sys = syslin('c', G); // A continuous-time linear system in transfer matrix representation.
+                f_min = .0001; f_max = 16; // Frequencies in Hz
+                clf(); bode(sys, f_min, f_max, "rad"); // Converts Hz to rad/s
             </scilab:image>
         </para>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="bode_asymp">bode_asymp</link>
+            </member>
             <member>
                 <link linkend="black">black</link>
             </member>

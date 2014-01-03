@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="macro" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="macro" xml:lang="pt">
     <refnamediv>
         <refname>macro</refname>
         <refpurpose>Procedimento Scilab e objeto Scilab</refpurpose>
@@ -19,14 +19,14 @@
         <title>Descrição</title>
         <para>Macros são procedimentos Scilab ("macro", "função" e "procedimento"
             possuem o mesmo significado). Geralmente, eles são definidos em arquivos
-            com um editor e carregados no Scilab com <literal>exec</literal> ou
+            com um editor e carregados no Scilab com <function>exec</function> ou
             através de uma biblioteca.
         </para>
         <para>
-            Também podem ser definidos on-line (ver <literal>deff</literal>). Um
+            Também podem ser definidos on-line (ver <link linkend="deff">deff</link>). Um
             arquivo que contém uma macro deve começar como segue:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role='no-scilab-exec'><![CDATA[
 function [y1,...,yn]=foo(x1,...,xm)
  ]]></programlisting>
         <para>
@@ -37,10 +37,10 @@ function [y1,...,yn]=foo(x1,...,xm)
             que começam pelo símbolo <literal>%</literal> (ex.:
             <literal>%foo</literal>) e cujos argumentos são listas são usadas para
             executar operações específicas: por exemplo,
-            <literal>z=%rmr(x,y)</literal> é equivalente a <literal>z=x*y</literal>
-            quando <literal>x</literal> e <literal>z</literal> são racionais (i.e.
-            <literal>x=list('r',n,d,[])</literal> com <literal>n</literal> e
-            <literal>d</literal> polinômios).
+            <code>z=%rmr(x,y)</code> é equivalente a <code>z=x*y</code>
+            quando <varname>x</varname> e <varname>z</varname> são racionais (i.e.
+            <code>x=list('r',n,d,[])</code> com <varname>n</varname> e
+            <varname>d</varname> polinômios).
         </para>
     </refsection>
     <refsection role="see also">

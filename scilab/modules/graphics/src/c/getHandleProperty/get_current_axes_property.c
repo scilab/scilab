@@ -32,24 +32,24 @@
 #include "CurrentSubwin.h"
 
 /*------------------------------------------------------------------------*/
-void* get_current_axes_property(void* _pvCtx, char* pobjUID)
+void* get_current_axes_property(void* _pvCtx, int iObjUID)
 {
-    char *pFigureUID = NULL;
-    char *pSubWinUID = NULL;
+    int iFigureUID = 0;
+    int iSubWinUID = 0;
 
-    if (pobjUID != NULL)
+    if (iObjUID != 0)
     {
         /* This property should not be called on an handle */
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_axes");
         return NULL;
     }
 
-    pSubWinUID = (char*)getCurrentSubWin();
+    iSubWinUID = getCurrentSubWin();
 
-    if (pSubWinUID == NULL)
+    if (iSubWinUID == 0)
     {
-        pFigureUID = createNewFigureWithAxes();
-        setCurrentFigure(pFigureUID);
+        iFigureUID = createNewFigureWithAxes();
+        setCurrentFigure(iFigureUID);
     }
 
 

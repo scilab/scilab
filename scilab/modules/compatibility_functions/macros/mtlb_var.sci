@@ -26,14 +26,16 @@ function [s] = mtlb_var (x,w,dim)
     //   dim : the dimension along which the variance is computed (default is 1, i.e. column by column)
     //     If dim is 2, the variance is computed row by row.
     //
+
     if x==[] then s=%nan, return, end
     [lhs,rhs]=argn(0)
     if rhs==0 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"mtlb_var",1,2))
     end
     [m n]=size(x);
-    if rhs==1 then
-        w=0;
+    
+    if rhs == 1 then
+        w = 0;
     end
     if rhs<=2 then
         dim=1;
@@ -52,6 +54,15 @@ function [s] = mtlb_var (x,w,dim)
             end
         end
     end
-    s = variance(x,dim,w);
+    
+    query = warning("query");
+    warning("off")
+    if rhs == 1 | w == 0 then
+        s = variance(x,dim);
+    else
+        s = variance(x,dim,mean(x, dim));
+    end
+    warning(query)
+
 endfunction
 

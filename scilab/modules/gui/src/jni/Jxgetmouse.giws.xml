@@ -6,7 +6,7 @@
             <parameter name="withRelease" type="boolean"/>
         </method>
         <method name="getMouseButtonNumber" returnType="int" modifier="static"/>
-        <method name="getWindowsID" returnType="String" modifier="static"/>
+        <method name="getWindowsID" returnType="int" modifier="static"/>
         <method name="getXCoordinate" returnType="double" modifier="static"/>
         <method name="getYCoordinate" returnType="double" modifier="static"/>
     </object>

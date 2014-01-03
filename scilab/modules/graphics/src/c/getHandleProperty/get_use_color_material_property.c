@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -23,12 +23,12 @@
 /**
  * Returns if the diffuse color is used (on/off).
  */
-void* get_use_color_material_property(void* _pvCtx, char* pobjUID)
+void* get_use_color_material_property(void* _pvCtx, int iObjUID)
 {
     int iColorMaterial = 0;
     int *piColorMaterial = &iColorMaterial;
 
-    getGraphicObjectProperty(pobjUID, __GO_COLOR_MATERIAL__, jni_bool, (void **)&piColorMaterial);
+    getGraphicObjectProperty(iObjUID, __GO_COLOR_MATERIAL__, jni_bool, (void **)&piColorMaterial);
 
     if (piColorMaterial == NULL)
     {

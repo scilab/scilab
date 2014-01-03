@@ -9,7 +9,7 @@
 // <-- XCOS TEST -->
 //
 // <-- Short Description -->
-// This script validate the eselect functionnality with a sinus input.
+// This script validate the eselect functionality with a sinus input.
 // The associated diagram (sinus.zcos) is run and export data to the workspace.
 // These data are then compared to the default.
 //
@@ -26,4 +26,4 @@ if ierr <> %t then pause; end
 
 // launch the simulation
 scicos_simulate(scs_m);
-assert_checkalmostequal(A_ref('values'), A('values'));
+assert_checkalmostequal(A_ref("values"), A("values"));

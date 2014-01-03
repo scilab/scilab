@@ -28,20 +28,25 @@ function [hm]=harmean(x,orien)
     //Statistics, J.Wiley & Sons, 1990.
     //
     //
-    if x==[] then hm=%nan, return, end
-    [lhs,rhs]=argn(0)
-    if rhs==0 then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"harmean",1,2)), end
-    if rhs==1 then
-        hm=1/(sum(1 ./x(x<>0))/sum(x<>0))
+    [lhs, rhs] = argn(0)
+    if rhs == 0 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"harmean",1,2))
+    end
+    if x == [] then
+        hm = %nan
         return
-    elseif rhs==2 then
-        if orien=="r"|orien==1 then
-            le=ones(1,size(x,1))*bool2s(x<>0)
-        elseif orien=="c"|orien==2 then
-            le=bool2s(x<>0)*ones(size(x,2),1)
+    end
+    if rhs == 1 then
+        hm = 1/(sum(1 ./x(x<>0))/sum(x<>0))
+        return
+    elseif rhs == 2 then
+        if orien == "r" | orien == 1 then
+            le = ones(1,size(x,1))*bool2s(x<>0)
+        elseif orien == "c" | orien == 2 then
+            le = bool2s(x<>0)*ones(size(x,2),1)
         else error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"),"harmean",2,"r","c",1,2)), end
-        x(x==0)=%inf
-        hm=sum(1 ./x,orien) ./le
+        x(x==0) = %inf
+        hm = sum(1 ./x,orien) ./le
     else
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"harmean",1,2)),
     end

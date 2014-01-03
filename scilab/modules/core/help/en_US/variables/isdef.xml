@@ -52,29 +52,31 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>isdef(name)</literal> returns <literal>%T</literal> if the
-            variable named <literal>name</literal> exists and <literal>%F</literal>
+            <code>isdef(name)</code> returns <constant>%T</constant> if the
+            variable named <varname>name</varname> exists and <constant>%F</constant>
             otherwise.
         </para>
         <para>
-            Caveats: a function which uses <literal>isdef</literal> may return a
-            result which depends on the environment!
+            <caution>
+                Caveats: a function which uses <function>isdef</function> may return a
+                result which depends on the environment!
+            </caution>
         </para>
         <para>
-            <literal>isdef(name, 'l')</literal> returns <literal>%T</literal>
-            if the variable named <literal>name</literal> exists in the local
-            environment of the current function and <literal>%F</literal>
+            <code>isdef(name, 'l')</code> returns <constant>%T</constant>
+            if the variable named <varname>name</varname> exists in the local
+            environment of the current function and <constant>%F</constant>
             otherwise.
         </para>
         <para>
-            <literal>isdef(name, 'n')</literal> returns
-            <literal>%T</literal> if the variable named <literal>name</literal> exists
+            <code>isdef(name, 'n')</code> returns
+            <constant>%T</constant> if the variable named <varname>name</varname> exists
             in the full calling environment (including the global level) of the
-            current function and <literal>%F</literal> otherwise.
+            current function and <constant>%F</constant> otherwise.
         </para>
-        <para>
-            Note: only the first letter of option <literal>where</literal> is taken into account.
-        </para>
+        <note>
+            Note: only the first letter of option <varname>where</varname> is taken into account.
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -86,9 +88,9 @@ isdef(['A', 'B'; 'C', 'D'])
 
 function level1()
   function level2()
-    disp(isdef(["a", "b"], "all"));
-    disp(isdef(["a", "b"], "local"));
-    disp(isdef(["a", "b"], "nolocal"));
+    disp(isdef(["a", "b"], "a"));
+    disp(isdef(["a", "b"], "l"));
+    disp(isdef(["a", "b"], "n"));
   endfunction
   level2()
 endfunction

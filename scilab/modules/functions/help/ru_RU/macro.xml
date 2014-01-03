@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="macro">
+    <refnamediv>
+        <refname>макрос</refname>
+        <refpurpose>Scilab-процедура и Scilab-объект</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Макросы - это Scilab-процедуры ("макрос", "функция" и
+            "процедура" имеют одно и то же значение). Обычно они
+            определяются в файле с помощью редактора и загружаются в
+            Scilab с помощью функции <function>exec</function> или через
+            библиотеку.
+        </para>
+        <para>
+            Они могут быть также определены в ходе выполнения программы
+            (см. <link linkend="deff">deff</link>). Файл, который содержит макрос, должен начинаться следующим образом:
+        </para>
+        <programlisting role='no-scilab-exec'><![CDATA[
+function [y1,...,yn]=foo(x1,...,xm)
+ ]]></programlisting>
+        <para>
+            <literal>yi</literal> - выходные переменные, вычисленные в зависимости от входных переменных и переменных, существующих в Scilab'е в момент исполнения макроса. Макрос может быть скомпилированным для более быстрого исполнения. Коллекции макросов могут быть собраны в библиотеки.
+        </para>
+        <para>
+            Макросы, которые начинаются со знака <literal>%</literal> (например, <literal>%foo</literal>) и чьи аргументы являются списками, используются для выполнения особых операций: например, <code>z=%rmr(x,y)</code> эквивалентно
+            <code>z=x*y</code>, когда <varname>x</varname> и <varname>z</varname> являются рациональными переменными
+            (например, <code>x=list('r',n,d,[])</code>, где <varname>n</varname> и <varname>d</varname> - полиномы).
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="deff">deff</link>
+            </member>
+            <member>
+                <link linkend="exec">exec</link>
+            </member>
+            <member>
+                <link linkend="comp">comp</link>
+            </member>
+            <member>
+                <link linkend="lib">lib</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2000 - INRIA - 
- * 
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: made obsolete, merged in stdev
+ * Copyright (C) 2000 - INRIA -
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -15,6 +16,7 @@
         <refname>st_deviation</refname>
         <refpurpose>standard deviation (row or
             column-wise) of vector/matrix entries
+            <emphasis role="bold">This function is obsolete.</emphasis>
         </refpurpose>
     </refnamediv>
     <refnamediv xml:id="stdev">
@@ -50,6 +52,10 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+            This function is obsolete.
+            It is better to use <link linkend="stdev">stdev</link> instead.
+        </warning>
         <para>
             st_deviation computes the "sample" standard deviation, that
             is, it is normalized by N-1, where N is the sequence length.
@@ -60,17 +66,17 @@
         </para>
         <para>
             <literal>y=st_deviation(x,'r')</literal> (or, equivalently,
-            <literal>y=st_deviation(x,1)</literal>) is the rowwise standard deviation. It returns in each 
+            <literal>y=st_deviation(x,1)</literal>) is the rowwise standard deviation. It returns in each
             entry of the column vector <literal>y</literal> the standard deviation of each row of <literal>x</literal>.
         </para>
         <para>
-            <literal>y=st_deviation(x,'c')</literal> (or, equivalently, <literal>y=st_deviation(x,2)</literal>) is the columnwise st_deviation. It returns in each entry of the row vector 
+            <literal>y=st_deviation(x,'c')</literal> (or, equivalently, <literal>y=st_deviation(x,2)</literal>) is the columnwise st_deviation. It returns in each entry of the row vector
             <literal>y</literal> the standard deviation of each column  of <literal>x</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=[1,2,10;7,7.1,7.01];
 st_deviation(A)
 st_deviation(A,'r')
@@ -96,5 +102,16 @@ st_deviation(A,'c')
                 <link linkend="stdevf">stdevf</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    Function tagged as obsolete. Will be removed in 5.5.1. Please use <link linkend="stdev">stdev</link> instead.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

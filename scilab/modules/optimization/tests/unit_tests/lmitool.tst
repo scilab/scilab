@@ -27,7 +27,7 @@ funcprot(prot);
 
 lmitool("prob", "X", "A1, A2"); // Create prob.sci
 deletefile "prob.sci";
-copyfile("SCI/modules/optimization/tests/unit_tests/prob_bak.sci", "prob.sci"); // Replace prob.sci by prob_bak.sci
+copyfile("SCI/modules/optimization/demos/prob_bak.sci", "prob.sci"); // Replace prob.sci by prob_bak.sci
 exec("prob.sci", -1);
 X = prob(A1, A2); // Run optimization
 

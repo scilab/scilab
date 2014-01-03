@@ -24,7 +24,9 @@ function x=mulfstring(a,b)
         x=[];
         return;
     end
-    [l,m]=size(a);[m,n]=size(b);x=[];
+    [l,m]=size(a);
+    [m,n]=size(b);
+    x=[];
     for j=1:n,
         y=[];
         for i=1:l,

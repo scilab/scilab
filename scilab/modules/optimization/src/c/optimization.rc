@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "optimization module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "optimization module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "optimization.dll"
             VALUE "ProductName", "optimization module"
             VALUE "ProductVersion", "6, 0, 0, 0"

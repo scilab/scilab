@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -17,19 +17,19 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>deff('[s1,s2,...]=newfunction(e1,e2,....)',text [,opt])</synopsis>
+        <synopsis>deff('[s1, s2, ...] = newfunction(e1, e2, ...)',text [,opt])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>e1,e2,...,  </term>
+                <term>e1, e2, ...</term>
                 <listitem>
                     <para>input variables.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>s1,s2,...,  </term>
+                <term>s1, s2, ...</term>
                 <listitem>
                     <para>output variables.</para>
                 </listitem>
@@ -37,30 +37,32 @@
             <varlistentry>
                 <term>text</term>
                 <listitem>
-                    <para>matrix of character strings</para>
+                    <para>a matrix of character strings.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>opt</term>
                 <listitem>
-                    <para>optional character string</para>
+                    <para>an optional character string:</para>
                     <variablelist>
                         <varlistentry>
-                            <term>'c'  </term>
+                            <term>'c'</term>
                             <listitem>
-                                <para>function is "compiled" to be more efficient (default)</para>
+                                <para>function is "compiled" to be more efficient (default);</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>'p'  </term>
+                            <term>'p'</term>
                             <listitem>
-                                <para>function is "compiled" and prepared for profiling (see profile)</para>
+                                <para>
+                                    function is "compiled" and prepared for profiling (see help <link linkend="profile">profile</link>);
+                                </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>'n'  </term>
+                            <term>'n'</term>
                             <listitem>
-                                <para>function is not "compiled"</para>
+                                <para>function is not "compiled".</para>
                             </listitem>
                         </varlistentry>
                     </variablelist>
@@ -71,23 +73,23 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>deff</literal> can be used to define functions from sequences of instructions
+            <function>deff</function> can be used to define functions from sequences of instructions
             written in text strings. The resulting function object has the same properties
-            of any other function defined in a text file and loaded with <literal>exec</literal>.
+            of any other function defined in a text file and loaded with <function>exec</function>.
         </para>
         <para>
-            Quotes in the instructions (delimiting strings or meaning matrix transposition) 
-            have to be doubled to be interpreted correctly (see help quote). This can make
+            Quotes in the instructions (delimiting strings or meaning matrix transposition)
+            have to be doubled to be interpreted correctly (see help <link linkend="quote">quote</link>). This can make
             writing up a little awkward.
             An option in such cases is to define functions in files as usual, to load them into
-            Scilab by <literal>exec</literal> (with the <literal>'n'</literal> option) and to use 
-            <literal>sci2exp</literal> to get a printout of corresponding <literal>deff</literal> 
+            Scilab by <function>exec</function> (with the <literal>'n'</literal> option) and to use
+            <function>sci2exp</function> to get a printout of corresponding <function>deff</function>
             instructions.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 deff('[x]=myplus(y,z)','x=y+z')
 
 deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
@@ -107,6 +109,9 @@ deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
             </member>
             <member>
                 <link linkend="profile">profile</link>
+            </member>
+            <member>
+                <link linkend="quote">quote</link>
             </member>
         </simplelist>
     </refsection>

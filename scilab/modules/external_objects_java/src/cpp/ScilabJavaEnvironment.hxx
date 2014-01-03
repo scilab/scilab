@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -29,15 +29,12 @@ extern "C"
 #include "os_strdup.h"
 }
 
-//#include "PythonVariablesScope.hxx"
 #include "ScilabAbstractEnvironment.hxx"
 #include "ScilabEnvironments.hxx"
 #include "ScilabJavaException.hxx"
 #include "ScilabJavaEnvironmentWrapper.hxx"
-// #include "ScilabPythonInvokers.hxx"
 #include "JavaOptionsHelper.hxx"
 #include "ScilabStream.hxx"
-//#include "ScilabPythonOStream.hxx"
 
 #include <sstream>
 #include <iostream>
@@ -46,12 +43,6 @@ extern "C"
 #include <vector>
 #include <string>
 
-
-// #if defined(PIMS_EXPORTS)
-// #pragma message("defined(PIMS_EXPORTS)")
-// #else
-// #pragma message("Houston !")
-// #endif
 #define LOG_BUFFER_SIZE 4096
 
 using namespace org_modules_external_objects;
@@ -66,7 +57,6 @@ class EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP ScilabJavaEnvironment : public ScilabA
     static ScilabJavaEnvironment * instance;
     static bool usable;
 
-    //    PythonVariablesScope & scope;
     bool traceEnabled;
     bool isInit;
     ScilabStream & scilabStream;
@@ -76,49 +66,7 @@ class EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP ScilabJavaEnvironment : public ScilabA
 
 public :
 
-    ScilabJavaEnvironment();
-
     ~ScilabJavaEnvironment();
-    /*
-        ScilabJavaTupleInvoker getTupleInvoker()
-        {
-            return ScilabJavaTupleInvoker(scope);
-        }
-
-        ScilabJavaDictionaryInvoker getDictionaryInvoker()
-        {
-            return ScilabJavaDictionaryInvoker(scope);
-        }
-
-        ScilabJavaListInvoker getListInvoker()
-        {
-            return ScilabJavaListInvoker(scope);
-        }
-
-        ScilabJavaSetInvoker getSetInvoker()
-        {
-            return ScilabJavaSetInvoker(scope);
-        }
-
-        ScilabJavaGetAttrInvoker getGetAttrInvoker()
-        {
-            return ScilabJavaGetAttrInvoker(scope);
-        }
-
-        ScilabJavaInvokeInvoker getInvokeInvoker()
-        {
-            return ScilabJavaInvokeInvoker(scope);
-        }
-
-        ScilabJavaBuiltinInvoker getBuiltinInvoker(const std::string & name)
-        {
-            return ScilabJavaBuiltinInvoker(scope, name);
-        }
-
-        ScilabJavaModuleInvoker getModuleInvoker(const std::string & name)
-        {
-            return ScilabJavaModuleInvoker(scope, name);
-            }*/
 
     void Initialize();
 
@@ -128,9 +76,9 @@ public :
 
     static void finish();
 
-    static ScilabJavaEnvironment & getInstance()
+    static ScilabJavaEnvironment* getInstance()
     {
-        return *instance;
+        return instance;
     }
 
     JavaOptionsHelper & getOptionsHelper();
@@ -223,26 +171,10 @@ public :
         return traceEnabled;
     }
 
-    /*    static inline std::wstring getWString(PyObject * obj)
-          {
-            if (PyString_Check(obj))
-            {
-                int len = PyString_GET_SIZE(obj);
-                char * str = PyString_AsString(obj);
-
-                return std::wstring(str, str + len);
-            }
-            else if (PyUnicode_Check(obj))
-            {
-                return std::wstring(reinterpret_cast<const wchar_t *>(PyUnicode_AS_DATA(obj)));
-            }
-
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot convert in a wide string"));
-            } */
+    int createJarArchive(char *jarFilePath, char **filePaths, int filePathsSize, char *filesRootPath, char *manifestFilePath);
 
 private:
-
-    //    static void initNumpy();
+    ScilabJavaEnvironment();
 
     void getMethodResult(JavaVM * jvm_, const char * const methodName, int id, const ScilabStringStackAllocator & allocator);
 
@@ -253,71 +185,7 @@ private:
 
     inline void getAccessibleFields(int id, const ScilabStringStackAllocator & allocator, const bool isField)
     {
-
-        /*
-                PyObject * obj = scope.getObject(id);
-                if (!obj)
-                {
-                    throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid object with id %d"), id);
-                }
-
-                PyObject * dir = PyObject_Dir(obj);
-                if (!dir || PyList_Size(dir) == 0)
-                {
-                    allocator.allocate(0, 0, static_cast<char **>(0));
-                    return;
-                }
-
-                int size = PyList_Size(dir);
-                int j = 0;
-                char ** arr = new char*[size];
-
-                for (int i = 0; i < size; i++)
-                {
-                    PyObject * fieldName = PyList_GetItem(dir, i);
-                    char * _field = PyString_AsString(fieldName);
-                    if (helper.getShowPrivate() || _field[0] != '_')
-                    {
-                        PyObject * field = PyObject_GetAttr(obj, fieldName);
-                        if (isField && !PyCallable_Check(field))
-                        {
-                            arr[j++] = _field;
-                        }
-                        else if (!isField && PyCallable_Check(field))
-                        {
-                            arr[j++] = _field;
-                        }
-                    }
-                }
-
-                allocator.allocate(j, 1, arr);
-                delete[] arr;
-        */
     }
-
-    // TODO => Ici
-    /*
-        static inline PyObject * createMultiList(const int * dims, const int len)
-        {
-            if (len == 0)
-            {
-                return PyList_New(0);
-            }
-
-            if (len == 1)
-            {
-                return PyList_New(dims[0]);
-            }
-
-            PyObject * list = PyList_New(dims[0]);
-            for (int i = 0; i < dims[0]; i++)
-            {
-                PyList_SetItem(list, i, createMultiList(dims + 1, len - 1));
-            }
-
-            return list;
-        }
-    */
 
     static inline std::vector<char *> breakInLines(const std::string & str)
     {

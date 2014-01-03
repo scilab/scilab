@@ -141,8 +141,15 @@ public final class SciDocMain {
                     imgConvert.loadMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
                     converter = new CHMDocbookTagConverter(sourceDoc, this, imgConvert);
                     break;
+                case FO:
+                    converter = new FODocbookTagConverter(sourceDoc, this, imgConvert);
+                    break;
                 case JAR_ONLY:
                     converter = new JarOnlyConverter(this);
+                    break;
+                case PDF:
+                case PS:
+                    converter = new FopConverter(this);
                     break;
                 default:
                     System.err.printf("%s is not a supported format.\n", format);

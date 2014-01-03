@@ -162,25 +162,51 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscioptimization_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscioptimization_algo_la_LIBADD =
-am__objects_1 = libscioptimization_algo_la-sp.lo
-am__objects_2 = libscioptimization_algo_la-optimizationfunctions.lo \
-	libscioptimization_algo_la-checkoptimerror.lo \
-	libscioptimization_algo_la-scioptimfunctions.lo
-am__objects_3 = gcbd.lo qpgen2.lo n1qn2a.lo fuclid.lo fmc11b.lo \
-	ql0001.lo shanph.lo fajc1.lo majysa.lo icsei.lo majour.lo \
-	n1qn1.lo n1qn1a.lo n1qn3.lo fmc11z.lo icse0.lo icse2.lo \
-	fmuls1.lo icsec2.lo gcp.lo n1fc1a.lo n1gc2.lo proj.lo \
-	n1gc2a.lo ddd2.lo fremf2.lo dcube.lo fcube.lo bfgsd.lo \
-	fcomp1.lo fmulb1.lo n1fc1o.lo relvar.lo satur.lo strang.lo \
-	fmc11a.lo fmani1.lo fmc11e.lo zqnbd.lo ajour.lo qnbd.lo \
-	nlis0.lo nlis2.lo n1qn2.lo majz.lo n1qn3a.lo frdf1.lo icse1.lo \
-	ctonb.lo icscof.lo fmlag1.lo n1fc1.lo ffinf1.lo ctcab.lo \
-	n1gc2b.lo fprf2.lo icse.lo rlbd.lo calmaj.lo calbx.lo \
-	rednor.lo zgcbd.lo writebuf.lo qpgen1sci.lo rdmps1.lo \
-	rdmpsz.lo
-am__objects_4 = lmdif.lo qrfac.lo hybrj1.lo dogleg.lo lmder.lo \
-	hybrd.lo dpmpar.lo lmpar.lo hybrj.lo r1updt.lo enorm.lo \
-	qform.lo qrsolv.lo fdjac1.lo hybrd1.lo fdjac2.lo r1mpyq.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+am__objects_1 = src/c/libscioptimization_algo_la-sp.lo
+am__objects_2 =  \
+	src/cpp/libscioptimization_algo_la-optimizationfunctions.lo \
+	src/cpp/libscioptimization_algo_la-checkoptimerror.lo \
+	src/cpp/libscioptimization_algo_la-scioptimfunctions.lo
+am__objects_3 = src/fortran/gcbd.lo src/fortran/qpgen2.lo \
+	src/fortran/n1qn2a.lo src/fortran/fuclid.lo \
+	src/fortran/fmc11b.lo src/fortran/ql0001.lo \
+	src/fortran/shanph.lo src/fortran/fajc1.lo \
+	src/fortran/majysa.lo src/fortran/icsei.lo \
+	src/fortran/majour.lo src/fortran/n1qn1.lo \
+	src/fortran/n1qn1a.lo src/fortran/n1qn3.lo \
+	src/fortran/fmc11z.lo src/fortran/icse0.lo \
+	src/fortran/icse2.lo src/fortran/fmuls1.lo \
+	src/fortran/icsec2.lo src/fortran/gcp.lo src/fortran/n1fc1a.lo \
+	src/fortran/n1gc2.lo src/fortran/proj.lo src/fortran/n1gc2a.lo \
+	src/fortran/ddd2.lo src/fortran/fremf2.lo src/fortran/dcube.lo \
+	src/fortran/fcube.lo src/fortran/bfgsd.lo \
+	src/fortran/fcomp1.lo src/fortran/fmulb1.lo \
+	src/fortran/n1fc1o.lo src/fortran/relvar.lo \
+	src/fortran/satur.lo src/fortran/strang.lo \
+	src/fortran/fmc11a.lo src/fortran/fmani1.lo \
+	src/fortran/fmc11e.lo src/fortran/zqnbd.lo \
+	src/fortran/ajour.lo src/fortran/qnbd.lo src/fortran/nlis0.lo \
+	src/fortran/nlis2.lo src/fortran/n1qn2.lo src/fortran/majz.lo \
+	src/fortran/n1qn3a.lo src/fortran/frdf1.lo \
+	src/fortran/icse1.lo src/fortran/ctonb.lo \
+	src/fortran/icscof.lo src/fortran/fmlag1.lo \
+	src/fortran/n1fc1.lo src/fortran/ffinf1.lo \
+	src/fortran/ctcab.lo src/fortran/n1gc2b.lo \
+	src/fortran/fprf2.lo src/fortran/icse.lo src/fortran/rlbd.lo \
+	src/fortran/calmaj.lo src/fortran/calbx.lo \
+	src/fortran/rednor.lo src/fortran/zgcbd.lo \
+	src/fortran/writebuf.lo src/fortran/qpgen1sci.lo \
+	src/fortran/rdmps1.lo src/fortran/rdmpsz.lo
+am__objects_4 = src/fortran/minpack/lmdif.lo \
+	src/fortran/minpack/qrfac.lo src/fortran/minpack/hybrj1.lo \
+	src/fortran/minpack/dogleg.lo src/fortran/minpack/lmder.lo \
+	src/fortran/minpack/hybrd.lo src/fortran/minpack/dpmpar.lo \
+	src/fortran/minpack/lmpar.lo src/fortran/minpack/hybrj.lo \
+	src/fortran/minpack/r1updt.lo src/fortran/minpack/enorm.lo \
+	src/fortran/minpack/qform.lo src/fortran/minpack/qrsolv.lo \
+	src/fortran/minpack/fdjac1.lo src/fortran/minpack/hybrd1.lo \
+	src/fortran/minpack/fdjac2.lo src/fortran/minpack/r1mpyq.lo
 am_libscioptimization_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3) $(am__objects_4)
 libscioptimization_algo_la_OBJECTS =  \
@@ -190,14 +216,16 @@ am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
 libscioptimization_la_DEPENDENCIES = libscioptimization-algo.la
-am__objects_5 = libscioptimization_la-sci_optim.lo \
-	libscioptimization_la-sci_fsolve.lo \
-	libscioptimization_la-sci_semidef.lo \
-	libscioptimization_la-sci_lsqrsolve.lo \
-	libscioptimization_la-sci_readmps.lo
-am__objects_6 = libscioptimization_la-sci_qld.lo \
-	libscioptimization_la-sci_qp_solve.lo
-am__objects_7 = Ex-optim.lo Ex-fsolve.lo Ex-lsqrsolve.lo
+am__objects_5 = sci_gateway/cpp/libscioptimization_la-sci_optim.lo \
+	sci_gateway/cpp/libscioptimization_la-sci_fsolve.lo \
+	sci_gateway/cpp/libscioptimization_la-sci_semidef.lo \
+	sci_gateway/cpp/libscioptimization_la-sci_lsqrsolve.lo \
+	sci_gateway/cpp/libscioptimization_la-sci_readmps.lo
+am__objects_6 = sci_gateway/c/libscioptimization_la-sci_qld.lo \
+	sci_gateway/c/libscioptimization_la-sci_qp_solve.lo
+am__objects_7 = sci_gateway/fortran/Ex-optim.lo \
+	sci_gateway/fortran/Ex-fsolve.lo \
+	sci_gateway/fortran/Ex-lsqrsolve.lo
 am_libscioptimization_la_OBJECTS = $(am__objects_5) $(am__objects_6) \
 	$(am__objects_7)
 libscioptimization_la_OBJECTS = $(am_libscioptimization_la_OBJECTS)
@@ -347,6 +375,7 @@ DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
+ECJ = @ECJ@
 EGREP = @EGREP@
 EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
@@ -885,149 +914,413 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/c/$(am__dirstamp):
+	@$(MKDIR_P) src/c
+	@: > src/c/$(am__dirstamp)
+src/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/c/$(DEPDIR)
+	@: > src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscioptimization_algo_la-sp.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/cpp/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp
+	@: > src/cpp/$(am__dirstamp)
+src/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp/$(DEPDIR)
+	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscioptimization_algo_la-optimizationfunctions.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscioptimization_algo_la-checkoptimerror.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscioptimization_algo_la-scioptimfunctions.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/fortran/$(am__dirstamp):
+	@$(MKDIR_P) src/fortran
+	@: > src/fortran/$(am__dirstamp)
+src/fortran/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/fortran/$(DEPDIR)
+	@: > src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/gcbd.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/qpgen2.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/n1qn2a.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/fuclid.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/fmc11b.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/ql0001.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/shanph.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/fajc1.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/majysa.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/icsei.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/majour.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/n1qn1.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/n1qn1a.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/n1qn3.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/fmc11z.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/icse0.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/icse2.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/fmuls1.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/icsec2.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/gcp.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/n1fc1a.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/n1gc2.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/proj.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/n1gc2a.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/ddd2.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/fremf2.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/dcube.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/fcube.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/bfgsd.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/fcomp1.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/fmulb1.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/n1fc1o.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/relvar.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/satur.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/strang.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/fmc11a.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/fmani1.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/fmc11e.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/zqnbd.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/ajour.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/qnbd.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/nlis0.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/nlis2.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/n1qn2.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/majz.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/n1qn3a.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/frdf1.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/icse1.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/ctonb.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/icscof.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/fmlag1.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/n1fc1.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/ffinf1.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/ctcab.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/n1gc2b.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/fprf2.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/icse.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/rlbd.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/calmaj.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/calbx.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/rednor.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/zgcbd.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/writebuf.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/qpgen1sci.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/rdmps1.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/rdmpsz.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/minpack/$(am__dirstamp):
+	@$(MKDIR_P) src/fortran/minpack
+	@: > src/fortran/minpack/$(am__dirstamp)
+src/fortran/minpack/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/fortran/minpack/$(DEPDIR)
+	@: > src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
+src/fortran/minpack/lmdif.lo: src/fortran/minpack/$(am__dirstamp) \
+	src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
+src/fortran/minpack/qrfac.lo: src/fortran/minpack/$(am__dirstamp) \
+	src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
+src/fortran/minpack/hybrj1.lo: src/fortran/minpack/$(am__dirstamp) \
+	src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
+src/fortran/minpack/dogleg.lo: src/fortran/minpack/$(am__dirstamp) \
+	src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
+src/fortran/minpack/lmder.lo: src/fortran/minpack/$(am__dirstamp) \
+	src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
+src/fortran/minpack/hybrd.lo: src/fortran/minpack/$(am__dirstamp) \
+	src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
+src/fortran/minpack/dpmpar.lo: src/fortran/minpack/$(am__dirstamp) \
+	src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
+src/fortran/minpack/lmpar.lo: src/fortran/minpack/$(am__dirstamp) \
+	src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
+src/fortran/minpack/hybrj.lo: src/fortran/minpack/$(am__dirstamp) \
+	src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
+src/fortran/minpack/r1updt.lo: src/fortran/minpack/$(am__dirstamp) \
+	src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
+src/fortran/minpack/enorm.lo: src/fortran/minpack/$(am__dirstamp) \
+	src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
+src/fortran/minpack/qform.lo: src/fortran/minpack/$(am__dirstamp) \
+	src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
+src/fortran/minpack/qrsolv.lo: src/fortran/minpack/$(am__dirstamp) \
+	src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
+src/fortran/minpack/fdjac1.lo: src/fortran/minpack/$(am__dirstamp) \
+	src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
+src/fortran/minpack/hybrd1.lo: src/fortran/minpack/$(am__dirstamp) \
+	src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
+src/fortran/minpack/fdjac2.lo: src/fortran/minpack/$(am__dirstamp) \
+	src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
+src/fortran/minpack/r1mpyq.lo: src/fortran/minpack/$(am__dirstamp) \
+	src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
 
 libscioptimization-algo.la: $(libscioptimization_algo_la_OBJECTS) $(libscioptimization_algo_la_DEPENDENCIES) $(EXTRA_libscioptimization_algo_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK)  $(libscioptimization_algo_la_OBJECTS) $(libscioptimization_algo_la_LIBADD) $(LIBS)
+sci_gateway/cpp/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/cpp
+	@: > sci_gateway/cpp/$(am__dirstamp)
+sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/cpp/$(DEPDIR)
+	@: > sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscioptimization_la-sci_optim.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscioptimization_la-sci_fsolve.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscioptimization_la-sci_semidef.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscioptimization_la-sci_lsqrsolve.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscioptimization_la-sci_readmps.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c
+	@: > sci_gateway/c/$(am__dirstamp)
+sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
+	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscioptimization_la-sci_qld.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscioptimization_la-sci_qp_solve.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/fortran
+	@: > sci_gateway/fortran/$(am__dirstamp)
+sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/fortran/$(DEPDIR)
+	@: > sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/Ex-optim.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/Ex-fsolve.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/Ex-lsqrsolve.lo:  \
+	sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
 
 libscioptimization.la: $(libscioptimization_la_OBJECTS) $(libscioptimization_la_DEPENDENCIES) $(EXTRA_libscioptimization_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) -rpath $(pkglibdir) $(libscioptimization_la_OBJECTS) $(libscioptimization_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f sci_gateway/c/*.$(OBJEXT)
+	-rm -f sci_gateway/c/*.lo
+	-rm -f sci_gateway/cpp/*.$(OBJEXT)
+	-rm -f sci_gateway/cpp/*.lo
+	-rm -f sci_gateway/fortran/*.$(OBJEXT)
+	-rm -f sci_gateway/fortran/*.lo
+	-rm -f src/c/*.$(OBJEXT)
+	-rm -f src/c/*.lo
+	-rm -f src/cpp/*.$(OBJEXT)
+	-rm -f src/cpp/*.lo
+	-rm -f src/fortran/*.$(OBJEXT)
+	-rm -f src/fortran/*.lo
+	-rm -f src/fortran/minpack/*.$(OBJEXT)
+	-rm -f src/fortran/minpack/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_algo_la-checkoptimerror.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_algo_la-optimizationfunctions.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_algo_la-scioptimfunctions.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_algo_la-sp.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-sci_fsolve.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-sci_lsqrsolve.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-sci_optim.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-sci_qld.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-sci_qp_solve.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-sci_readmps.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-sci_semidef.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_qld.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_qp_solve.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_fsolve.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_lsqrsolve.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_optim.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_readmps.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_semidef.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioptimization_algo_la-sp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioptimization_algo_la-checkoptimerror.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioptimization_algo_la-optimizationfunctions.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioptimization_algo_la-scioptimfunctions.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libscioptimization_algo_la-sp.lo: src/c/sp.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscioptimization_algo_la-sp.lo -MD -MP -MF $(DEPDIR)/libscioptimization_algo_la-sp.Tpo -c -o libscioptimization_algo_la-sp.lo `test -f 'src/c/sp.c' || echo '$(srcdir)/'`src/c/sp.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscioptimization_algo_la-sp.Tpo $(DEPDIR)/libscioptimization_algo_la-sp.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sp.c' object='libscioptimization_algo_la-sp.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscioptimization_algo_la-sp.lo: src/c/sp.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscioptimization_algo_la-sp.lo -MD -MP -MF src/c/$(DEPDIR)/libscioptimization_algo_la-sp.Tpo -c -o src/c/libscioptimization_algo_la-sp.lo `test -f 'src/c/sp.c' || echo '$(srcdir)/'`src/c/sp.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscioptimization_algo_la-sp.Tpo src/c/$(DEPDIR)/libscioptimization_algo_la-sp.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sp.c' object='src/c/libscioptimization_algo_la-sp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscioptimization_algo_la-sp.lo `test -f 'src/c/sp.c' || echo '$(srcdir)/'`src/c/sp.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscioptimization_algo_la-sp.lo `test -f 'src/c/sp.c' || echo '$(srcdir)/'`src/c/sp.c
 
-libscioptimization_la-sci_qld.lo: sci_gateway/c/sci_qld.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscioptimization_la-sci_qld.lo -MD -MP -MF $(DEPDIR)/libscioptimization_la-sci_qld.Tpo -c -o libscioptimization_la-sci_qld.lo `test -f 'sci_gateway/c/sci_qld.c' || echo '$(srcdir)/'`sci_gateway/c/sci_qld.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscioptimization_la-sci_qld.Tpo $(DEPDIR)/libscioptimization_la-sci_qld.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_qld.c' object='libscioptimization_la-sci_qld.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscioptimization_la-sci_qld.lo: sci_gateway/c/sci_qld.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscioptimization_la-sci_qld.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_qld.Tpo -c -o sci_gateway/c/libscioptimization_la-sci_qld.lo `test -f 'sci_gateway/c/sci_qld.c' || echo '$(srcdir)/'`sci_gateway/c/sci_qld.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_qld.Tpo sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_qld.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_qld.c' object='sci_gateway/c/libscioptimization_la-sci_qld.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscioptimization_la-sci_qld.lo `test -f 'sci_gateway/c/sci_qld.c' || echo '$(srcdir)/'`sci_gateway/c/sci_qld.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscioptimization_la-sci_qld.lo `test -f 'sci_gateway/c/sci_qld.c' || echo '$(srcdir)/'`sci_gateway/c/sci_qld.c
 
-libscioptimization_la-sci_qp_solve.lo: sci_gateway/c/sci_qp_solve.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscioptimization_la-sci_qp_solve.lo -MD -MP -MF $(DEPDIR)/libscioptimization_la-sci_qp_solve.Tpo -c -o libscioptimization_la-sci_qp_solve.lo `test -f 'sci_gateway/c/sci_qp_solve.c' || echo '$(srcdir)/'`sci_gateway/c/sci_qp_solve.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscioptimization_la-sci_qp_solve.Tpo $(DEPDIR)/libscioptimization_la-sci_qp_solve.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_qp_solve.c' object='libscioptimization_la-sci_qp_solve.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscioptimization_la-sci_qp_solve.lo: sci_gateway/c/sci_qp_solve.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscioptimization_la-sci_qp_solve.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_qp_solve.Tpo -c -o sci_gateway/c/libscioptimization_la-sci_qp_solve.lo `test -f 'sci_gateway/c/sci_qp_solve.c' || echo '$(srcdir)/'`sci_gateway/c/sci_qp_solve.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_qp_solve.Tpo sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_qp_solve.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_qp_solve.c' object='sci_gateway/c/libscioptimization_la-sci_qp_solve.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscioptimization_la-sci_qp_solve.lo `test -f 'sci_gateway/c/sci_qp_solve.c' || echo '$(srcdir)/'`sci_gateway/c/sci_qp_solve.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscioptimization_la-sci_qp_solve.lo `test -f 'sci_gateway/c/sci_qp_solve.c' || echo '$(srcdir)/'`sci_gateway/c/sci_qp_solve.c
 
 .cpp.o:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .cpp.lo:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
-libscioptimization_algo_la-optimizationfunctions.lo: src/cpp/optimizationfunctions.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioptimization_algo_la-optimizationfunctions.lo -MD -MP -MF $(DEPDIR)/libscioptimization_algo_la-optimizationfunctions.Tpo -c -o libscioptimization_algo_la-optimizationfunctions.lo `test -f 'src/cpp/optimizationfunctions.cpp' || echo '$(srcdir)/'`src/cpp/optimizationfunctions.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscioptimization_algo_la-optimizationfunctions.Tpo $(DEPDIR)/libscioptimization_algo_la-optimizationfunctions.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/optimizationfunctions.cpp' object='libscioptimization_algo_la-optimizationfunctions.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscioptimization_algo_la-optimizationfunctions.lo: src/cpp/optimizationfunctions.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscioptimization_algo_la-optimizationfunctions.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscioptimization_algo_la-optimizationfunctions.Tpo -c -o src/cpp/libscioptimization_algo_la-optimizationfunctions.lo `test -f 'src/cpp/optimizationfunctions.cpp' || echo '$(srcdir)/'`src/cpp/optimizationfunctions.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscioptimization_algo_la-optimizationfunctions.Tpo src/cpp/$(DEPDIR)/libscioptimization_algo_la-optimizationfunctions.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/optimizationfunctions.cpp' object='src/cpp/libscioptimization_algo_la-optimizationfunctions.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioptimization_algo_la-optimizationfunctions.lo `test -f 'src/cpp/optimizationfunctions.cpp' || echo '$(srcdir)/'`src/cpp/optimizationfunctions.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscioptimization_algo_la-optimizationfunctions.lo `test -f 'src/cpp/optimizationfunctions.cpp' || echo '$(srcdir)/'`src/cpp/optimizationfunctions.cpp
 
-libscioptimization_algo_la-checkoptimerror.lo: src/cpp/checkoptimerror.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioptimization_algo_la-checkoptimerror.lo -MD -MP -MF $(DEPDIR)/libscioptimization_algo_la-checkoptimerror.Tpo -c -o libscioptimization_algo_la-checkoptimerror.lo `test -f 'src/cpp/checkoptimerror.cpp' || echo '$(srcdir)/'`src/cpp/checkoptimerror.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscioptimization_algo_la-checkoptimerror.Tpo $(DEPDIR)/libscioptimization_algo_la-checkoptimerror.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/checkoptimerror.cpp' object='libscioptimization_algo_la-checkoptimerror.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscioptimization_algo_la-checkoptimerror.lo: src/cpp/checkoptimerror.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscioptimization_algo_la-checkoptimerror.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscioptimization_algo_la-checkoptimerror.Tpo -c -o src/cpp/libscioptimization_algo_la-checkoptimerror.lo `test -f 'src/cpp/checkoptimerror.cpp' || echo '$(srcdir)/'`src/cpp/checkoptimerror.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscioptimization_algo_la-checkoptimerror.Tpo src/cpp/$(DEPDIR)/libscioptimization_algo_la-checkoptimerror.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/checkoptimerror.cpp' object='src/cpp/libscioptimization_algo_la-checkoptimerror.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioptimization_algo_la-checkoptimerror.lo `test -f 'src/cpp/checkoptimerror.cpp' || echo '$(srcdir)/'`src/cpp/checkoptimerror.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscioptimization_algo_la-checkoptimerror.lo `test -f 'src/cpp/checkoptimerror.cpp' || echo '$(srcdir)/'`src/cpp/checkoptimerror.cpp
 
-libscioptimization_algo_la-scioptimfunctions.lo: src/cpp/scioptimfunctions.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioptimization_algo_la-scioptimfunctions.lo -MD -MP -MF $(DEPDIR)/libscioptimization_algo_la-scioptimfunctions.Tpo -c -o libscioptimization_algo_la-scioptimfunctions.lo `test -f 'src/cpp/scioptimfunctions.cpp' || echo '$(srcdir)/'`src/cpp/scioptimfunctions.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscioptimization_algo_la-scioptimfunctions.Tpo $(DEPDIR)/libscioptimization_algo_la-scioptimfunctions.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/scioptimfunctions.cpp' object='libscioptimization_algo_la-scioptimfunctions.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscioptimization_algo_la-scioptimfunctions.lo: src/cpp/scioptimfunctions.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscioptimization_algo_la-scioptimfunctions.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscioptimization_algo_la-scioptimfunctions.Tpo -c -o src/cpp/libscioptimization_algo_la-scioptimfunctions.lo `test -f 'src/cpp/scioptimfunctions.cpp' || echo '$(srcdir)/'`src/cpp/scioptimfunctions.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscioptimization_algo_la-scioptimfunctions.Tpo src/cpp/$(DEPDIR)/libscioptimization_algo_la-scioptimfunctions.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/scioptimfunctions.cpp' object='src/cpp/libscioptimization_algo_la-scioptimfunctions.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioptimization_algo_la-scioptimfunctions.lo `test -f 'src/cpp/scioptimfunctions.cpp' || echo '$(srcdir)/'`src/cpp/scioptimfunctions.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscioptimization_algo_la-scioptimfunctions.lo `test -f 'src/cpp/scioptimfunctions.cpp' || echo '$(srcdir)/'`src/cpp/scioptimfunctions.cpp
 
-libscioptimization_la-sci_optim.lo: sci_gateway/cpp/sci_optim.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioptimization_la-sci_optim.lo -MD -MP -MF $(DEPDIR)/libscioptimization_la-sci_optim.Tpo -c -o libscioptimization_la-sci_optim.lo `test -f 'sci_gateway/cpp/sci_optim.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_optim.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscioptimization_la-sci_optim.Tpo $(DEPDIR)/libscioptimization_la-sci_optim.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_optim.cpp' object='libscioptimization_la-sci_optim.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscioptimization_la-sci_optim.lo: sci_gateway/cpp/sci_optim.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscioptimization_la-sci_optim.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_optim.Tpo -c -o sci_gateway/cpp/libscioptimization_la-sci_optim.lo `test -f 'sci_gateway/cpp/sci_optim.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_optim.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_optim.Tpo sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_optim.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_optim.cpp' object='sci_gateway/cpp/libscioptimization_la-sci_optim.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioptimization_la-sci_optim.lo `test -f 'sci_gateway/cpp/sci_optim.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_optim.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscioptimization_la-sci_optim.lo `test -f 'sci_gateway/cpp/sci_optim.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_optim.cpp
 
-libscioptimization_la-sci_fsolve.lo: sci_gateway/cpp/sci_fsolve.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioptimization_la-sci_fsolve.lo -MD -MP -MF $(DEPDIR)/libscioptimization_la-sci_fsolve.Tpo -c -o libscioptimization_la-sci_fsolve.lo `test -f 'sci_gateway/cpp/sci_fsolve.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_fsolve.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscioptimization_la-sci_fsolve.Tpo $(DEPDIR)/libscioptimization_la-sci_fsolve.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_fsolve.cpp' object='libscioptimization_la-sci_fsolve.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscioptimization_la-sci_fsolve.lo: sci_gateway/cpp/sci_fsolve.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscioptimization_la-sci_fsolve.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_fsolve.Tpo -c -o sci_gateway/cpp/libscioptimization_la-sci_fsolve.lo `test -f 'sci_gateway/cpp/sci_fsolve.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_fsolve.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_fsolve.Tpo sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_fsolve.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_fsolve.cpp' object='sci_gateway/cpp/libscioptimization_la-sci_fsolve.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioptimization_la-sci_fsolve.lo `test -f 'sci_gateway/cpp/sci_fsolve.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_fsolve.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscioptimization_la-sci_fsolve.lo `test -f 'sci_gateway/cpp/sci_fsolve.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_fsolve.cpp
 
-libscioptimization_la-sci_semidef.lo: sci_gateway/cpp/sci_semidef.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioptimization_la-sci_semidef.lo -MD -MP -MF $(DEPDIR)/libscioptimization_la-sci_semidef.Tpo -c -o libscioptimization_la-sci_semidef.lo `test -f 'sci_gateway/cpp/sci_semidef.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_semidef.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscioptimization_la-sci_semidef.Tpo $(DEPDIR)/libscioptimization_la-sci_semidef.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_semidef.cpp' object='libscioptimization_la-sci_semidef.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscioptimization_la-sci_semidef.lo: sci_gateway/cpp/sci_semidef.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscioptimization_la-sci_semidef.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_semidef.Tpo -c -o sci_gateway/cpp/libscioptimization_la-sci_semidef.lo `test -f 'sci_gateway/cpp/sci_semidef.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_semidef.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_semidef.Tpo sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_semidef.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_semidef.cpp' object='sci_gateway/cpp/libscioptimization_la-sci_semidef.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioptimization_la-sci_semidef.lo `test -f 'sci_gateway/cpp/sci_semidef.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_semidef.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscioptimization_la-sci_semidef.lo `test -f 'sci_gateway/cpp/sci_semidef.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_semidef.cpp
 
-libscioptimization_la-sci_lsqrsolve.lo: sci_gateway/cpp/sci_lsqrsolve.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioptimization_la-sci_lsqrsolve.lo -MD -MP -MF $(DEPDIR)/libscioptimization_la-sci_lsqrsolve.Tpo -c -o libscioptimization_la-sci_lsqrsolve.lo `test -f 'sci_gateway/cpp/sci_lsqrsolve.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_lsqrsolve.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscioptimization_la-sci_lsqrsolve.Tpo $(DEPDIR)/libscioptimization_la-sci_lsqrsolve.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_lsqrsolve.cpp' object='libscioptimization_la-sci_lsqrsolve.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscioptimization_la-sci_lsqrsolve.lo: sci_gateway/cpp/sci_lsqrsolve.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscioptimization_la-sci_lsqrsolve.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_lsqrsolve.Tpo -c -o sci_gateway/cpp/libscioptimization_la-sci_lsqrsolve.lo `test -f 'sci_gateway/cpp/sci_lsqrsolve.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_lsqrsolve.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_lsqrsolve.Tpo sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_lsqrsolve.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_lsqrsolve.cpp' object='sci_gateway/cpp/libscioptimization_la-sci_lsqrsolve.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioptimization_la-sci_lsqrsolve.lo `test -f 'sci_gateway/cpp/sci_lsqrsolve.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_lsqrsolve.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscioptimization_la-sci_lsqrsolve.lo `test -f 'sci_gateway/cpp/sci_lsqrsolve.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_lsqrsolve.cpp
 
-libscioptimization_la-sci_readmps.lo: sci_gateway/cpp/sci_readmps.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioptimization_la-sci_readmps.lo -MD -MP -MF $(DEPDIR)/libscioptimization_la-sci_readmps.Tpo -c -o libscioptimization_la-sci_readmps.lo `test -f 'sci_gateway/cpp/sci_readmps.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_readmps.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscioptimization_la-sci_readmps.Tpo $(DEPDIR)/libscioptimization_la-sci_readmps.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_readmps.cpp' object='libscioptimization_la-sci_readmps.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscioptimization_la-sci_readmps.lo: sci_gateway/cpp/sci_readmps.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscioptimization_la-sci_readmps.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_readmps.Tpo -c -o sci_gateway/cpp/libscioptimization_la-sci_readmps.lo `test -f 'sci_gateway/cpp/sci_readmps.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_readmps.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_readmps.Tpo sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_readmps.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_readmps.cpp' object='sci_gateway/cpp/libscioptimization_la-sci_readmps.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioptimization_la-sci_readmps.lo `test -f 'sci_gateway/cpp/sci_readmps.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_readmps.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscioptimization_la-sci_readmps.lo `test -f 'sci_gateway/cpp/sci_readmps.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_readmps.cpp
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<
@@ -1038,269 +1331,18 @@ libscioptimization_la-sci_readmps.lo: sci_gateway/cpp/sci_readmps.cpp
 .f.lo:
 	$(AM_V_F77)$(LTF77COMPILE) -c -o $@ $<
 
-gcbd.lo: src/fortran/gcbd.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gcbd.lo `test -f 'src/fortran/gcbd.f' || echo '$(srcdir)/'`src/fortran/gcbd.f
-
-qpgen2.lo: src/fortran/qpgen2.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o qpgen2.lo `test -f 'src/fortran/qpgen2.f' || echo '$(srcdir)/'`src/fortran/qpgen2.f
-
-n1qn2a.lo: src/fortran/n1qn2a.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o n1qn2a.lo `test -f 'src/fortran/n1qn2a.f' || echo '$(srcdir)/'`src/fortran/n1qn2a.f
-
-fuclid.lo: src/fortran/fuclid.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fuclid.lo `test -f 'src/fortran/fuclid.f' || echo '$(srcdir)/'`src/fortran/fuclid.f
-
-fmc11b.lo: src/fortran/fmc11b.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fmc11b.lo `test -f 'src/fortran/fmc11b.f' || echo '$(srcdir)/'`src/fortran/fmc11b.f
-
-ql0001.lo: src/fortran/ql0001.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ql0001.lo `test -f 'src/fortran/ql0001.f' || echo '$(srcdir)/'`src/fortran/ql0001.f
-
-shanph.lo: src/fortran/shanph.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o shanph.lo `test -f 'src/fortran/shanph.f' || echo '$(srcdir)/'`src/fortran/shanph.f
-
-fajc1.lo: src/fortran/fajc1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fajc1.lo `test -f 'src/fortran/fajc1.f' || echo '$(srcdir)/'`src/fortran/fajc1.f
-
-majysa.lo: src/fortran/majysa.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o majysa.lo `test -f 'src/fortran/majysa.f' || echo '$(srcdir)/'`src/fortran/majysa.f
-
-icsei.lo: src/fortran/icsei.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o icsei.lo `test -f 'src/fortran/icsei.f' || echo '$(srcdir)/'`src/fortran/icsei.f
-
-majour.lo: src/fortran/majour.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o majour.lo `test -f 'src/fortran/majour.f' || echo '$(srcdir)/'`src/fortran/majour.f
-
-n1qn1.lo: src/fortran/n1qn1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o n1qn1.lo `test -f 'src/fortran/n1qn1.f' || echo '$(srcdir)/'`src/fortran/n1qn1.f
-
-n1qn1a.lo: src/fortran/n1qn1a.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o n1qn1a.lo `test -f 'src/fortran/n1qn1a.f' || echo '$(srcdir)/'`src/fortran/n1qn1a.f
-
-n1qn3.lo: src/fortran/n1qn3.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o n1qn3.lo `test -f 'src/fortran/n1qn3.f' || echo '$(srcdir)/'`src/fortran/n1qn3.f
-
-fmc11z.lo: src/fortran/fmc11z.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fmc11z.lo `test -f 'src/fortran/fmc11z.f' || echo '$(srcdir)/'`src/fortran/fmc11z.f
-
-icse0.lo: src/fortran/icse0.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o icse0.lo `test -f 'src/fortran/icse0.f' || echo '$(srcdir)/'`src/fortran/icse0.f
-
-icse2.lo: src/fortran/icse2.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o icse2.lo `test -f 'src/fortran/icse2.f' || echo '$(srcdir)/'`src/fortran/icse2.f
-
-fmuls1.lo: src/fortran/fmuls1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fmuls1.lo `test -f 'src/fortran/fmuls1.f' || echo '$(srcdir)/'`src/fortran/fmuls1.f
-
-icsec2.lo: src/fortran/icsec2.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o icsec2.lo `test -f 'src/fortran/icsec2.f' || echo '$(srcdir)/'`src/fortran/icsec2.f
-
-gcp.lo: src/fortran/gcp.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gcp.lo `test -f 'src/fortran/gcp.f' || echo '$(srcdir)/'`src/fortran/gcp.f
-
-n1fc1a.lo: src/fortran/n1fc1a.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o n1fc1a.lo `test -f 'src/fortran/n1fc1a.f' || echo '$(srcdir)/'`src/fortran/n1fc1a.f
-
-n1gc2.lo: src/fortran/n1gc2.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o n1gc2.lo `test -f 'src/fortran/n1gc2.f' || echo '$(srcdir)/'`src/fortran/n1gc2.f
-
-proj.lo: src/fortran/proj.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o proj.lo `test -f 'src/fortran/proj.f' || echo '$(srcdir)/'`src/fortran/proj.f
-
-n1gc2a.lo: src/fortran/n1gc2a.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o n1gc2a.lo `test -f 'src/fortran/n1gc2a.f' || echo '$(srcdir)/'`src/fortran/n1gc2a.f
-
-ddd2.lo: src/fortran/ddd2.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ddd2.lo `test -f 'src/fortran/ddd2.f' || echo '$(srcdir)/'`src/fortran/ddd2.f
-
-fremf2.lo: src/fortran/fremf2.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fremf2.lo `test -f 'src/fortran/fremf2.f' || echo '$(srcdir)/'`src/fortran/fremf2.f
-
-dcube.lo: src/fortran/dcube.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dcube.lo `test -f 'src/fortran/dcube.f' || echo '$(srcdir)/'`src/fortran/dcube.f
-
-fcube.lo: src/fortran/fcube.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fcube.lo `test -f 'src/fortran/fcube.f' || echo '$(srcdir)/'`src/fortran/fcube.f
-
-bfgsd.lo: src/fortran/bfgsd.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bfgsd.lo `test -f 'src/fortran/bfgsd.f' || echo '$(srcdir)/'`src/fortran/bfgsd.f
-
-fcomp1.lo: src/fortran/fcomp1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fcomp1.lo `test -f 'src/fortran/fcomp1.f' || echo '$(srcdir)/'`src/fortran/fcomp1.f
-
-fmulb1.lo: src/fortran/fmulb1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fmulb1.lo `test -f 'src/fortran/fmulb1.f' || echo '$(srcdir)/'`src/fortran/fmulb1.f
-
-n1fc1o.lo: src/fortran/n1fc1o.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o n1fc1o.lo `test -f 'src/fortran/n1fc1o.f' || echo '$(srcdir)/'`src/fortran/n1fc1o.f
-
-relvar.lo: src/fortran/relvar.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o relvar.lo `test -f 'src/fortran/relvar.f' || echo '$(srcdir)/'`src/fortran/relvar.f
-
-satur.lo: src/fortran/satur.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o satur.lo `test -f 'src/fortran/satur.f' || echo '$(srcdir)/'`src/fortran/satur.f
-
-strang.lo: src/fortran/strang.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o strang.lo `test -f 'src/fortran/strang.f' || echo '$(srcdir)/'`src/fortran/strang.f
-
-fmc11a.lo: src/fortran/fmc11a.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fmc11a.lo `test -f 'src/fortran/fmc11a.f' || echo '$(srcdir)/'`src/fortran/fmc11a.f
-
-fmani1.lo: src/fortran/fmani1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fmani1.lo `test -f 'src/fortran/fmani1.f' || echo '$(srcdir)/'`src/fortran/fmani1.f
-
-fmc11e.lo: src/fortran/fmc11e.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fmc11e.lo `test -f 'src/fortran/fmc11e.f' || echo '$(srcdir)/'`src/fortran/fmc11e.f
-
-zqnbd.lo: src/fortran/zqnbd.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o zqnbd.lo `test -f 'src/fortran/zqnbd.f' || echo '$(srcdir)/'`src/fortran/zqnbd.f
-
-ajour.lo: src/fortran/ajour.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ajour.lo `test -f 'src/fortran/ajour.f' || echo '$(srcdir)/'`src/fortran/ajour.f
-
-qnbd.lo: src/fortran/qnbd.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o qnbd.lo `test -f 'src/fortran/qnbd.f' || echo '$(srcdir)/'`src/fortran/qnbd.f
-
-nlis0.lo: src/fortran/nlis0.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o nlis0.lo `test -f 'src/fortran/nlis0.f' || echo '$(srcdir)/'`src/fortran/nlis0.f
-
-nlis2.lo: src/fortran/nlis2.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o nlis2.lo `test -f 'src/fortran/nlis2.f' || echo '$(srcdir)/'`src/fortran/nlis2.f
-
-n1qn2.lo: src/fortran/n1qn2.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o n1qn2.lo `test -f 'src/fortran/n1qn2.f' || echo '$(srcdir)/'`src/fortran/n1qn2.f
-
-majz.lo: src/fortran/majz.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o majz.lo `test -f 'src/fortran/majz.f' || echo '$(srcdir)/'`src/fortran/majz.f
-
-n1qn3a.lo: src/fortran/n1qn3a.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o n1qn3a.lo `test -f 'src/fortran/n1qn3a.f' || echo '$(srcdir)/'`src/fortran/n1qn3a.f
-
-frdf1.lo: src/fortran/frdf1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o frdf1.lo `test -f 'src/fortran/frdf1.f' || echo '$(srcdir)/'`src/fortran/frdf1.f
-
-icse1.lo: src/fortran/icse1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o icse1.lo `test -f 'src/fortran/icse1.f' || echo '$(srcdir)/'`src/fortran/icse1.f
-
-ctonb.lo: src/fortran/ctonb.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ctonb.lo `test -f 'src/fortran/ctonb.f' || echo '$(srcdir)/'`src/fortran/ctonb.f
-
-icscof.lo: src/fortran/icscof.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o icscof.lo `test -f 'src/fortran/icscof.f' || echo '$(srcdir)/'`src/fortran/icscof.f
-
-fmlag1.lo: src/fortran/fmlag1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fmlag1.lo `test -f 'src/fortran/fmlag1.f' || echo '$(srcdir)/'`src/fortran/fmlag1.f
-
-n1fc1.lo: src/fortran/n1fc1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o n1fc1.lo `test -f 'src/fortran/n1fc1.f' || echo '$(srcdir)/'`src/fortran/n1fc1.f
-
-ffinf1.lo: src/fortran/ffinf1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ffinf1.lo `test -f 'src/fortran/ffinf1.f' || echo '$(srcdir)/'`src/fortran/ffinf1.f
-
-ctcab.lo: src/fortran/ctcab.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ctcab.lo `test -f 'src/fortran/ctcab.f' || echo '$(srcdir)/'`src/fortran/ctcab.f
-
-n1gc2b.lo: src/fortran/n1gc2b.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o n1gc2b.lo `test -f 'src/fortran/n1gc2b.f' || echo '$(srcdir)/'`src/fortran/n1gc2b.f
-
-fprf2.lo: src/fortran/fprf2.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fprf2.lo `test -f 'src/fortran/fprf2.f' || echo '$(srcdir)/'`src/fortran/fprf2.f
-
-icse.lo: src/fortran/icse.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o icse.lo `test -f 'src/fortran/icse.f' || echo '$(srcdir)/'`src/fortran/icse.f
-
-rlbd.lo: src/fortran/rlbd.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rlbd.lo `test -f 'src/fortran/rlbd.f' || echo '$(srcdir)/'`src/fortran/rlbd.f
-
-calmaj.lo: src/fortran/calmaj.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o calmaj.lo `test -f 'src/fortran/calmaj.f' || echo '$(srcdir)/'`src/fortran/calmaj.f
-
-calbx.lo: src/fortran/calbx.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o calbx.lo `test -f 'src/fortran/calbx.f' || echo '$(srcdir)/'`src/fortran/calbx.f
-
-rednor.lo: src/fortran/rednor.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rednor.lo `test -f 'src/fortran/rednor.f' || echo '$(srcdir)/'`src/fortran/rednor.f
-
-zgcbd.lo: src/fortran/zgcbd.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o zgcbd.lo `test -f 'src/fortran/zgcbd.f' || echo '$(srcdir)/'`src/fortran/zgcbd.f
-
-writebuf.lo: src/fortran/writebuf.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o writebuf.lo `test -f 'src/fortran/writebuf.f' || echo '$(srcdir)/'`src/fortran/writebuf.f
-
-qpgen1sci.lo: src/fortran/qpgen1sci.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o qpgen1sci.lo `test -f 'src/fortran/qpgen1sci.f' || echo '$(srcdir)/'`src/fortran/qpgen1sci.f
-
-rdmps1.lo: src/fortran/rdmps1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rdmps1.lo `test -f 'src/fortran/rdmps1.f' || echo '$(srcdir)/'`src/fortran/rdmps1.f
-
-rdmpsz.lo: src/fortran/rdmpsz.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rdmpsz.lo `test -f 'src/fortran/rdmpsz.f' || echo '$(srcdir)/'`src/fortran/rdmpsz.f
-
-lmdif.lo: src/fortran/minpack/lmdif.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lmdif.lo `test -f 'src/fortran/minpack/lmdif.f' || echo '$(srcdir)/'`src/fortran/minpack/lmdif.f
-
-qrfac.lo: src/fortran/minpack/qrfac.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o qrfac.lo `test -f 'src/fortran/minpack/qrfac.f' || echo '$(srcdir)/'`src/fortran/minpack/qrfac.f
-
-hybrj1.lo: src/fortran/minpack/hybrj1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o hybrj1.lo `test -f 'src/fortran/minpack/hybrj1.f' || echo '$(srcdir)/'`src/fortran/minpack/hybrj1.f
-
-dogleg.lo: src/fortran/minpack/dogleg.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dogleg.lo `test -f 'src/fortran/minpack/dogleg.f' || echo '$(srcdir)/'`src/fortran/minpack/dogleg.f
-
-lmder.lo: src/fortran/minpack/lmder.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lmder.lo `test -f 'src/fortran/minpack/lmder.f' || echo '$(srcdir)/'`src/fortran/minpack/lmder.f
-
-hybrd.lo: src/fortran/minpack/hybrd.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o hybrd.lo `test -f 'src/fortran/minpack/hybrd.f' || echo '$(srcdir)/'`src/fortran/minpack/hybrd.f
-
-dpmpar.lo: src/fortran/minpack/dpmpar.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dpmpar.lo `test -f 'src/fortran/minpack/dpmpar.f' || echo '$(srcdir)/'`src/fortran/minpack/dpmpar.f
-
-lmpar.lo: src/fortran/minpack/lmpar.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lmpar.lo `test -f 'src/fortran/minpack/lmpar.f' || echo '$(srcdir)/'`src/fortran/minpack/lmpar.f
-
-hybrj.lo: src/fortran/minpack/hybrj.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o hybrj.lo `test -f 'src/fortran/minpack/hybrj.f' || echo '$(srcdir)/'`src/fortran/minpack/hybrj.f
-
-r1updt.lo: src/fortran/minpack/r1updt.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o r1updt.lo `test -f 'src/fortran/minpack/r1updt.f' || echo '$(srcdir)/'`src/fortran/minpack/r1updt.f
-
-enorm.lo: src/fortran/minpack/enorm.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o enorm.lo `test -f 'src/fortran/minpack/enorm.f' || echo '$(srcdir)/'`src/fortran/minpack/enorm.f
-
-qform.lo: src/fortran/minpack/qform.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o qform.lo `test -f 'src/fortran/minpack/qform.f' || echo '$(srcdir)/'`src/fortran/minpack/qform.f
-
-qrsolv.lo: src/fortran/minpack/qrsolv.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o qrsolv.lo `test -f 'src/fortran/minpack/qrsolv.f' || echo '$(srcdir)/'`src/fortran/minpack/qrsolv.f
-
-fdjac1.lo: src/fortran/minpack/fdjac1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fdjac1.lo `test -f 'src/fortran/minpack/fdjac1.f' || echo '$(srcdir)/'`src/fortran/minpack/fdjac1.f
-
-hybrd1.lo: src/fortran/minpack/hybrd1.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o hybrd1.lo `test -f 'src/fortran/minpack/hybrd1.f' || echo '$(srcdir)/'`src/fortran/minpack/hybrd1.f
-
-fdjac2.lo: src/fortran/minpack/fdjac2.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fdjac2.lo `test -f 'src/fortran/minpack/fdjac2.f' || echo '$(srcdir)/'`src/fortran/minpack/fdjac2.f
-
-r1mpyq.lo: src/fortran/minpack/r1mpyq.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o r1mpyq.lo `test -f 'src/fortran/minpack/r1mpyq.f' || echo '$(srcdir)/'`src/fortran/minpack/r1mpyq.f
-
-Ex-optim.lo: sci_gateway/fortran/Ex-optim.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-optim.lo `test -f 'sci_gateway/fortran/Ex-optim.f' || echo '$(srcdir)/'`sci_gateway/fortran/Ex-optim.f
-
-Ex-fsolve.lo: sci_gateway/fortran/Ex-fsolve.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-fsolve.lo `test -f 'sci_gateway/fortran/Ex-fsolve.f' || echo '$(srcdir)/'`sci_gateway/fortran/Ex-fsolve.f
-
-Ex-lsqrsolve.lo: sci_gateway/fortran/Ex-lsqrsolve.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-lsqrsolve.lo `test -f 'sci_gateway/fortran/Ex-lsqrsolve.f' || echo '$(srcdir)/'`sci_gateway/fortran/Ex-lsqrsolve.f
-
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
+	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
+	-rm -rf sci_gateway/fortran/.libs sci_gateway/fortran/_libs
+	-rm -rf src/c/.libs src/c/_libs
+	-rm -rf src/cpp/.libs src/cpp/_libs
+	-rm -rf src/fortran/.libs src/fortran/_libs
+	-rm -rf src/fortran/minpack/.libs src/fortran/minpack/_libs
 install-libscioptimization_la_etcDATA: $(libscioptimization_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libscioptimization_la_etc_DATA)'; test -n "$(libscioptimization_la_etcdir)" || list=; \
@@ -1481,6 +1523,20 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/c/$(am__dirstamp)
+	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/cpp/$(am__dirstamp)
+	-rm -f sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/fortran/$(am__dirstamp)
+	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/c/$(am__dirstamp)
+	-rm -f src/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/cpp/$(am__dirstamp)
+	-rm -f src/fortran/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/fortran/$(am__dirstamp)
+	-rm -f src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/fortran/minpack/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1491,7 +1547,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1540,7 +1596,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -1642,11 +1698,17 @@ check-code:
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
-@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/; \
+@GIWS_TRUE@	MANDATORY_OPTIONS="--throws-exception-on-error --description-file"; \
 @GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
+@GIWS_TRUE@			if test -z "$(GIWS_OPTIONS)"; then \
+@GIWS_TRUE@				$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR $$MANDATORY_OPTIONS $$file; \
+@GIWS_TRUE@			else \
+@GIWS_TRUE@				echo "Custom GIWS call with '$$GIWS_OPTIONS'"; \
+@GIWS_TRUE@				$(GIWS_BIN) $$GIWS_OPTIONS --output-dir $$GIWS_OUTPUTDIR $$MANDATORY_OPTIONS $$file; \
+@GIWS_TRUE@			fi \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 

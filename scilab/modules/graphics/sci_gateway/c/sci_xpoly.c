@@ -48,8 +48,8 @@ int sci_xpoly(char * fname, void *pvApiCtx)
     int* piAddrl4 = NULL;
     double* l4 = NULL;
 
-    char *psubwinUID = NULL;
-    char* pobjUID = NULL;
+    int iSubwinUID = 0;
+    int iObjUID = 0;
 
     int m1 = 0, n1 = 0, m2 = 0 , n2 = 0, m4 = 0, n4 = 0, close = 0, mn2 = 0;
 
@@ -167,13 +167,13 @@ int sci_xpoly(char * fname, void *pvApiCtx)
     }
     /* NG beg */
 
-    psubwinUID = (char*)getOrCreateDefaultSubwin();
+    iSubwinUID = getOrCreateDefaultSubwin();
 
     Objpoly ((l1), (l2), mn2, close, mark, &hdl);
 
-    pobjUID = (char*)getObjectFromHandle(hdl); /* the polyline newly created */
+    iObjUID = getObjectFromHandle(hdl); /* the polyline newly created */
 
-    setGraphicObjectRelationship(psubwinUID, pobjUID);
+    setGraphicObjectRelationship(iSubwinUID, iObjUID);
 
     /*
      * The contour properties set calls below were
@@ -187,25 +187,25 @@ int sci_xpoly(char * fname, void *pvApiCtx)
         markMode = 1;
         lineMode = 0;
 
-        getGraphicObjectProperty(psubwinUID, __GO_MARK_STYLE__, jni_int, (void**)&piTmp);
-        setGraphicObjectProperty(pobjUID, __GO_MARK_STYLE__, piTmp, jni_int, 1);
+        getGraphicObjectProperty(iSubwinUID, __GO_MARK_STYLE__, jni_int, (void**)&piTmp);
+        setGraphicObjectProperty(iObjUID, __GO_MARK_STYLE__, piTmp, jni_int, 1);
     }
     else
     {
         markMode = 0;
         lineMode = 1;
 
-        getGraphicObjectProperty(psubwinUID, __GO_LINE_STYLE__, jni_int, (void**)&piTmp);
-        sciSetLineStyle(pobjUID, iTmp);
+        getGraphicObjectProperty(iSubwinUID, __GO_LINE_STYLE__, jni_int, (void**)&piTmp);
+        sciSetLineStyle(iObjUID, iTmp);
     }
 
-    getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piTmp);
+    getGraphicObjectProperty(iSubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piTmp);
     foreground = iTmp;
 
-    setGraphicObjectProperty(pobjUID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
+    setGraphicObjectProperty(iObjUID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
 
-    setGraphicObjectProperty(pobjUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
-    setGraphicObjectProperty(pobjUID, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
+    setGraphicObjectProperty(iObjUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
+    setGraphicObjectProperty(iObjUID, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
 
     /* NG end */
     AssignOutputVariable(pvApiCtx, 1) = 0;

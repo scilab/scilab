@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -22,6 +22,7 @@ extern "C"
 #include "HandleManagement.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "stricmp.h"
 }
 
 using namespace org_scilab_modules_gui_datatip;
@@ -32,7 +33,7 @@ int sci_datatip_set_orient(char *fname, void* pvApiCtx)
     CheckInputArgument(pvApiCtx, 2, 2);
     CheckOutputArgument(pvApiCtx, 0, 1);
 
-    char* datatipUID    = NULL;
+    int iDatatipUID     = 0;
     int* piAddr         = NULL;
     int iRet            = 0;
     int iErr            = 0;
@@ -58,11 +59,11 @@ int sci_datatip_set_orient(char *fname, void* pvApiCtx)
             return 1;
         }
 
-        datatipUID = (char *)getObjectFromHandle((unsigned long) llHandle);
+        iDatatipUID = getObjectFromHandle((unsigned long) llHandle);
 
         if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
         {
-            getGraphicObjectProperty(datatipUID, __GO_TYPE__, jni_int, (void**) &piType);
+            getGraphicObjectProperty(iDatatipUID, __GO_TYPE__, jni_int, (void**) &piType);
             if (iType == __GO_DATATIP__)
             {
                 if (checkInputArgumentType(pvApiCtx, 2, sci_strings))
@@ -85,57 +86,57 @@ int sci_datatip_set_orient(char *fname, void* pvApiCtx)
                             return iRet;
                         }
 
-                        compVar = strcmp(pstData, "upper left");
+                        compVar = stricmp(pstData, "upper left");
                         if (compVar == 0)
                         {
-                            DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), (char*)datatipUID, (char*)pstData, 0);
+                            DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 0);
                             freeAllocatedSingleString(pstData);
                             AssignOutputVariable(pvApiCtx, 1) = 0;
                             ReturnArguments(pvApiCtx);
                             return 0;
                         }
 
-                        compVar = strcmp(pstData, "upper right");
+                        compVar = stricmp(pstData, "upper right");
                         if (compVar == 0)
                         {
-                            DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), (char*)datatipUID, (char*)pstData, 1);
+                            DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 1);
                             freeAllocatedSingleString(pstData);
                             AssignOutputVariable(pvApiCtx, 1) = 0;
                             ReturnArguments(pvApiCtx);
                             return 0;
                         }
 
-                        compVar = strcmp(pstData, "lower left");
+                        compVar = stricmp(pstData, "lower left");
                         if (compVar == 0)
                         {
-                            DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), (char*)datatipUID, (char*)pstData, 2);
+                            DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 2);
                             freeAllocatedSingleString(pstData);
                             AssignOutputVariable(pvApiCtx, 1) = 0;
                             ReturnArguments(pvApiCtx);
                             return 0;
                         }
 
-                        compVar = strcmp(pstData, "lower right");
+                        compVar = stricmp(pstData, "lower right");
                         if (compVar == 0)
                         {
-                            DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), (char*)datatipUID, (char*)pstData, 3);
+                            DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 3);
                             freeAllocatedSingleString(pstData);
                             AssignOutputVariable(pvApiCtx, 1) = 0;
                             ReturnArguments(pvApiCtx);
                             return 0;
                         }
 
-                        compVar = strcmp(pstData, "automatic");
+                        compVar = stricmp(pstData, "automatic");
                         if (compVar == 0)
                         {
-                            DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), (char*)datatipUID, (char*)pstData, 4);
+                            DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 4);
                             freeAllocatedSingleString(pstData);
                             AssignOutputVariable(pvApiCtx, 1) = 0;
                             ReturnArguments(pvApiCtx);
                             return 0;
                         }
 
-                        DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), (char*)datatipUID, (char*)pstData, -1);
+                        DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, -1);
                         freeAllocatedSingleString(pstData);
                         AssignOutputVariable(pvApiCtx, 1) = 0;
                         ReturnArguments(pvApiCtx);

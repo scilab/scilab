@@ -136,7 +136,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">decomposition type (1=singular values 2=sing values+matrix U &amp;amp; V)</emphasis>
+                    <emphasis role="bold">decomposition type (1=singular values 2=sing values+matrix U &amp; V)</emphasis>
                 </para>
                 <para>
                     Indique la forme de la sortie. Quand il est mis à 1, nous avons une sortie unique vectorielle

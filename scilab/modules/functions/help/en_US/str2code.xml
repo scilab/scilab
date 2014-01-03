@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="str2code" xml:lang="en">
     <refnamediv>
         <refname>str2code</refname>
-        <refpurpose>return scilab integer codes associated with a character
+        <refpurpose>returns Scilab integer codes associated with a character
             string. <emphasis role="bold">This function is obsolete.</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>c=str2code(str)</synopsis>
+        <synopsis>c = str2code(str)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -27,26 +27,28 @@
             <varlistentry>
                 <term>str</term>
                 <listitem>
-                    <para>A character string.</para>
+                    <para>a character string.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>c</term>
                 <listitem>
-                    <para>A vector of character integer codes</para>
+                    <para>a column vector of character integer codes.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Return c such that c(i) is the scilab integer code of
-            part(str,i))
+        <para>
+            <code>c = str2code(str)</code> returns a column vector
+            <varname>c</varname> such that <literal>c(i)</literal> is the
+            Scilab integer code of <literal>part(str,i)</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 str2code('Scilab')'
 code2str([-28 12 18 21 10 11])
  ]]></programlisting>
@@ -59,6 +61,9 @@ code2str([-28 12 18 21 10 11])
             </member>
             <member>
                 <link linkend="ascii">ascii</link>
+            </member>
+            <member>
+                <link linkend="part">part</link>
             </member>
         </simplelist>
     </refsection>

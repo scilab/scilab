@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -56,11 +56,11 @@ public class PolylineHandler {
     *
     * @param uid Object unique identifier.
     */
-    public void deleteAll(String uid) {
+    public void deleteAll(Integer uid) {
 
         Integer type = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_TYPE__);
         Integer childCount = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN_COUNT__);
-        String[] child = (String[])GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN__);
+        Integer[] child = (Integer[])GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN__);
         if (type == GraphicObjectProperties.__GO_AXES__) {
             for (Integer i = 0; i < childCount; ++i) {
                 Integer cType = (Integer)GraphicController.getController().getProperty(child[i], GraphicObjectProperties.__GO_TYPE__);
@@ -81,7 +81,7 @@ public class PolylineHandler {
     }
 
 
-    private String[] searchCompound(String uid) {
+    private Integer[] searchCompound(Integer uid) {
         return (new ObjectSearcher()).search(uid, GraphicObjectProperties.__GO_COMPOUND__);
     }
 
@@ -93,9 +93,9 @@ public class PolylineHandler {
     * @param position The click position
     * @param nextPosition The drag position
     */
-    public void dragPolyline(String polyline, Integer[] position, Integer[] nextPosition) {
+    public void dragPolyline(Integer polyline, Integer[] position, Integer[] nextPosition) {
 
-        String axes = (String) GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_PARENT_AXES__);
+        Integer axes = (Integer) GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_PARENT_AXES__);
         if (polyline != null && axes != null) {
 
             double[] datax = (double[])PolylineData.getDataX(polyline);

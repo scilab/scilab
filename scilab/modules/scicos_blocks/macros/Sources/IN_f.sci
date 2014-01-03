@@ -21,22 +21,30 @@
 //
 
 function [x,y,typ]=IN_f(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
     case "set" then
         x=arg1;
         graphics=arg1.graphics;
         model=arg1.model;
         exprs=graphics.exprs;
-        if size(exprs,"*")==2 then exprs=exprs(1),end //compatibility
-        if size(exprs,"*")==1 then exprs=[exprs(1);"[-1 -2]";"-1"],end //compatibility
+        if size(exprs,"*")==2 then
+            exprs=exprs(1),
+        end //compatibility
+        if size(exprs,"*")==1 then
+            exprs=[exprs(1);"[-1 -2]";"-1"],
+        end //compatibility
         while %t do
             [ok,prt,otsz,ot,exprs]=getvalue(_("Set Input block parameters"),...
             [_("Port number");
             _("Outport size ([-1 -2] for inherit)");
             _("Outport Type (-1 for inherit)")],...
             list("vec",1,"vec",-1,"vec",1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             prt=int(prt)
             if prt<=0 then
                 message(_("Port number must be a positive integer"))
@@ -45,7 +53,10 @@ function [x,y,typ]=IN_f(job,arg1,arg2)
             elseif ((ot<1|ot>9)&(ot<>-1)) then
                 message(_("Outport type must be a number between 1 and 9, or -1 for inheritance."))
             else
-                if model.ipar<>prt then needcompile=4;y=needcompile,end
+                if model.ipar<>prt then
+                    needcompile=4;
+                    y=needcompile,
+                end
                 model.ipar=prt
                 model.firing=[];
                 model.out=otsz(1)
@@ -69,7 +80,7 @@ function [x,y,typ]=IN_f(job,arg1,arg2)
         model.dep_ut=[%f %f]
 
         exprs=sci2exp(prt)
-        gr_i=" "
+        gr_i=[]
         x=standard_define([1 1],model,exprs,gr_i)
     end
 endfunction

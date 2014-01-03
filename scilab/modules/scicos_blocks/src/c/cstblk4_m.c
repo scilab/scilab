@@ -30,10 +30,9 @@ SCICOS_BLOCKS_IMPEXP void cstblk4_m(scicos_block *block, int flag)
     Scicos block simulator
     output a vector of constants out(i)=opar(i)
     opar(1:nopar) : given constants */
-    int nopar = 0, mo = 0, no = 0, so = 0;
+    int mo = 0, no = 0, so = 0;
     void *y = NULL;
     void *opar = NULL;
-    nopar = GetNopar(block);
     y = GetOutPortPtrs(block, 1);
     opar = GetOparPtrs(block, 1);
     mo = GetOparSize(block, 1, 1);

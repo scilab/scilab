@@ -183,27 +183,7 @@ int C2F(sci_newfun) (char *fname, void* pvApiCtx)
 /*--------------------------------------------------------------------------*/
 static BOOL Is_a_correct_function_name(char *functionname)
 {
-    //if (functionname)
-    //{
-    //    if ( (strlen(functionname) > 0) && (strlen(functionname) <  nlgh) )
-    //    {
-    //        int i = 0;
-    //        if (isdigit(functionname[0])) return FALSE;
-    //        for(i=1;i<(int)strlen(functionname);i++)
-    //        {
-    //            /*
-    //            ???? = 3
-    //            a___ = 3
-    //            c!!! = 3
-    //            */
-    //            if ( (functionname[i] != '_') && (functionname[i] != '?') && (functionname[i] != '!') )
-    //            {
-    //                if (!isalnum(functionname[i])) return FALSE;
-    //            }
-    //        }
-    //        return TRUE;
-    //    }
-    //}
+    // FIX ME
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/

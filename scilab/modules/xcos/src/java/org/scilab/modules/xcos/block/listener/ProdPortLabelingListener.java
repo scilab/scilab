@@ -94,14 +94,14 @@ public class ProdPortLabelingListener implements PropertyChangeListener,
         }
 
         /**
-         * Check if all the values are equals to the default one.
+         * Check if all the values are equal to the default one.
          */
         if (!hasDefaultValue(ports)) {
             return;
         }
 
         /**
-         * When all values are equals to the default one, set it to the block
+         * When all values are equal to the default one, set it to the block
          * and hide the children.
          */
         source.setValue(NOT_PRINTED_LABEL);

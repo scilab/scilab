@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -82,7 +82,6 @@ public class Datatip extends Text {
         interpMode = true;
         displayFnc = "";
         setVisible(true);
-        setHidden(true); /* To avoid to see the datatips in Scilab when reading 'children' property */
         setBox(true);
         setLineMode(true);
         setFillMode(true);
@@ -185,11 +184,12 @@ public class Datatip extends Text {
      * Set the data tip that will be shown
      * @param data A 3 element vector with the data (x, y, z).
      */
-    public void setTipData(Double[] data) {
+    public UpdateStatus setTipData(Double[] data) {
         tipData[0] = data[0];
         tipData[1] = data[1];
         tipData[2] = data[2];
         updateText();
+        return UpdateStatus.Success;
     }
 
     /**
@@ -224,16 +224,18 @@ public class Datatip extends Text {
      * Set the current orientation (updating the text position)
      * @param orientation the new orientation (integer).
      */
-    public void setOrientation(Integer orientation) {
+    public UpdateStatus setOrientation(Integer orientation) {
         currentOrientation = TipOrientation.intToEnum(orientation);
+        return UpdateStatus.Success;
     }
 
     /**
      * Set the current orientation (updating the text position)
      * @param orientation the new orientation (TipOrientation enum).
      */
-    public void setOrientationAsEnum(TipOrientation orientation) {
+    public UpdateStatus setOrientationAsEnum(TipOrientation orientation) {
         currentOrientation = orientation;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -247,9 +249,10 @@ public class Datatip extends Text {
      * If true set the Z component to be displayed.
      * @param useZ True to enable display the Z component, false to disable.
      */
-    public void setUse3Component(Boolean useZ) {
+    public UpdateStatus setUse3Component(Boolean useZ) {
         use3component = useZ;
         updateText();
+        return UpdateStatus.Success;
     }
 
 
@@ -257,8 +260,9 @@ public class Datatip extends Text {
         return autoOrientation;
     }
 
-    public void setAutoOrientation(Boolean status) {
+    public UpdateStatus setAutoOrientation(Boolean status) {
         autoOrientation = status;
+        return UpdateStatus.Success;
     }
 
 
@@ -287,7 +291,7 @@ public class Datatip extends Text {
 
         if (displayFnc.length() != 0) {
             String updateCommand = "try;" +
-                                   "d = getcallbackobject(\"" + getIdentifier() + "\");" +
+                                   "d = getcallbackobject(" + getIdentifier() + ");" +
                                    "d.text = " + displayFnc + "(d.tip_data);" +
                                    "clear(\"d\");" +
                                    "catch;" +
@@ -320,22 +324,26 @@ public class Datatip extends Text {
         return displayFnc;
     }
 
-    public void setTipBoxMode(Boolean mode) {
+    public UpdateStatus setTipBoxMode(Boolean mode) {
         tipBoxMode = mode;
         setBox(tipBoxMode);
+        return UpdateStatus.Success;
     }
 
-    public void setTipLabelMode(Boolean mode) {
+    public UpdateStatus setTipLabelMode(Boolean mode) {
         tipLabelMode = mode;
+        return UpdateStatus.Success;
     }
 
-    public void setInterpMode(Boolean mode) {
+    public UpdateStatus setInterpMode(Boolean mode) {
         interpMode = mode;
+        return UpdateStatus.Success;
     }
 
-    public void setDisplayFunction(String fnc) {
+    public UpdateStatus setDisplayFunction(String fnc) {
         displayFnc = fnc;
         updateTextDispFunction(displayFnc);
+        return UpdateStatus.Success;
     }
 
     @Override

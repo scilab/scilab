@@ -2,6 +2,8 @@ C/MEMBR ADD NAME=STODA,SSI=0
       subroutine stoda (neq, y, yh, nyh, yh1, ewt, savf, acor,
      1   wm, iwm, f, jac, pjac, slvs)
 clll. optimize
+
+      include 'stack.h'
       external f, jac, pjac, slvs
       integer neq, nyh, iwm
       integer iownd, ialth, ipup, lmax, meo, nqnyh, nslp,
@@ -23,8 +25,6 @@ clll. optimize
       dimension neq(*), y(*), yh(nyh,*), yh1(*), ewt(*), savf(*),
      1   acor(*), wm(*), iwm(*)
       dimension sm1(12)
-      integer         iero
-      common /ierode/ iero
 cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
       common /ls0001/ rownd, conit, crate, el(13), elco(13,12),
      1   hold, rmax, tesco(3,12),
@@ -261,10 +261,10 @@ c-----------------------------------------------------------------------
       do 230 i = 1,n
  230    y(i) = yh(i,1)
       call f (neq, tn, y, savf)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nfe = nfe + 1
       if (tn.gt.64.7) then
-         iero=0
+         ierror=0
       endif
       if (ipup .le. 0) go to 250
 c-----------------------------------------------------------------------
@@ -277,7 +277,7 @@ c-----------------------------------------------------------------------
       nslp = nst
       crate = 0.70d+0
       call pjac (neq, y, yh, nyh, ewt, acor, savf, wm, iwm, f, jac)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       if (ierpj .ne. 0) go to 430
  250  do 260 i = 1,n
  260    acor(i) = 0.0d+0
@@ -339,7 +339,7 @@ c-----------------------------------------------------------------------
       if (m .ge. 2 .and. del .gt. 2.0d+0*delp) go to 410
       delp = del
       call f (neq, tn, y, savf)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nfe = nfe + 1
       go to 270
 c-----------------------------------------------------------------------
@@ -613,7 +613,7 @@ c-----------------------------------------------------------------------
       do 645 i = 1,n
  645    y(i) = yh(i,1)
       call f (neq, tn, y, savf)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nfe = nfe + 1
       do 650 i = 1,n
  650    yh(i,2) = h*savf(i)

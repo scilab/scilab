@@ -25,8 +25,10 @@
 #include "scicos_block.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(dmmul)();
-extern int C2F(dmmul1)();
+extern int C2F(dmmul)(double *a, int *na, double *b, int *nb, double *c__,
+                      int *nc, int *l, int *m, int *n);
+extern int C2F(dmmul1)(double *a, int *na, double *b, int *nb, double *c__,
+                       int *nc, int *l, int *m, int *n);
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void tcslti4(scicos_block *block, int flag)
 {

@@ -21,13 +21,13 @@ extern "C"
 
 using namespace org_scilab_modules_graphic_objects;
 
-void deleteGraphicObject(char *_sId)
+void deleteGraphicObject(int iUID)
 {
-    CallGraphicController::removeRelationShipAndDelete(getScilabJavaVM(), _sId);
+    CallGraphicController::removeRelationShipAndDelete(getScilabJavaVM(), iUID);
 }
 
-void deleteDataObject(char const* _sId)
+void deleteDataObject(int iUID)
 {
-    DataController::deleteDataObject(_sId);
+    DataController::deleteDataObject(iUID);
 }
 

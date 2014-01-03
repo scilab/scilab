@@ -15,13 +15,13 @@
 
 #include "GetUicontrolListboxTop.hxx"
 
-void* GetUicontrolListboxTop(void* _pvCtx, char *sciObjUID)
+void* GetUicontrolListboxTop(void* _pvCtx, int iObjUID)
 {
     int listboxTopSize = 0;
     int* piListboxTopSize = &listboxTopSize;
     int* piListboxTop = NULL;;
 
-    getGraphicObjectProperty(sciObjUID, __GO_UI_LISTBOXTOP_SIZE__, jni_int, (void**) &piListboxTopSize);
+    getGraphicObjectProperty(iObjUID, __GO_UI_LISTBOXTOP_SIZE__, jni_int, (void**) &piListboxTopSize);
 
     if (piListboxTopSize == NULL)
     {
@@ -36,7 +36,7 @@ void* GetUicontrolListboxTop(void* _pvCtx, char *sciObjUID)
         }
         else
         {
-            getGraphicObjectProperty(sciObjUID, __GO_UI_LISTBOXTOP__, jni_int_vector, (void**) &piListboxTop);
+            getGraphicObjectProperty(iObjUID, __GO_UI_LISTBOXTOP__, jni_int_vector, (void**) &piListboxTop);
 
             if (piListboxTop == NULL)
             {

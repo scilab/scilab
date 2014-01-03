@@ -65,4 +65,17 @@ public abstract class ExternalXMLHandler {
 
         buf.append(">");
     }
+
+    protected static final Boolean getLocalized(final String URI, final Attributes attributes) {
+        String v = URI == null ? attributes.getValue("localized") : attributes.getValue(URI, "localized");
+        if (v == null || v.isEmpty()) {
+            return Boolean.FALSE;
+        } else if ("true".equalsIgnoreCase(v)) {
+            return Boolean.TRUE;
+        } else if ("false".equalsIgnoreCase(v)) {
+            return null;
+        } else {
+            return Boolean.FALSE;
+        }
+    }
 }

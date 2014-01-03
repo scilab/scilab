@@ -36,6 +36,7 @@ tics_labels = ["2cm","3cm","4cm","5cm","6cm","7cm"]
 format_n = "%0.0fcm"
 labels_font_size = 0
 labels_font_color = -1
+labels_font_style = 6
 fractional_font = "off"
 clip_state = "off"
 clip_box = []

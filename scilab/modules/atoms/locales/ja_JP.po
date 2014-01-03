@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-17 14:53+0000\n"
+"PO-Revision-Date: 2013-10-02 13:50+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -224,7 +224,7 @@ msgstr "%s: ディレクトリー '%s' を作成できません. このディレ
 
 #, c-format
 msgid "%s: The file '%s' does not exist or is not read accessible.\n"
-msgstr ""
+msgstr "%s:  ファイル '%s' が存在しないか読込みアクセスできません.\n"
 
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
@@ -304,7 +304,7 @@ msgstr "\t - '%s - %s' は '%s' に必要です。\n"
 #, c-format
 msgid ""
 "%s: The file '%s' from (%s - %s) does not exist or is not read accessible.\n"
-msgstr ""
+msgstr "%s: ファイル '%s'  (%s - %s から) が存在しないか読込みアクセスできません.\n"
 
 #, c-format
 msgid "%s: An error occurred while loading '%s-%s':\n"
@@ -686,7 +686,7 @@ msgstr "Atomsモジュールデータベースを更新中..."
 msgid ""
 "%s: The file %s is not well formated, the toolbox %s - %s does not contain "
 "the %s field\n"
-msgstr ""
+msgstr "%s: ファイル %s が整形型でないか, ツールボックス %s - %s が %s フィールドを有していません\n"
 
 #, c-format
 msgid "%s: name and version are not both defined\n"
@@ -726,6 +726,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: String that starts with "
 "'http(s)?://','ftp://' or 'file://' expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 'http(s)?://','ftp://' または 'file://' "
+"から始まる文字列を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -790,7 +792,7 @@ msgstr "\t - ローカルの場所 : '%s'\n"
 
 #, c-format
 msgid "%s: The following file has not been copied:\n"
-msgstr ""
+msgstr "%s: 以下のファイルはコピーされませんでした:\n"
 
 #, c-format
 msgid "\t - source    : '%s'\n"
@@ -802,7 +804,7 @@ msgstr "\t - 出力先 : '%s'\n"
 
 #, c-format
 msgid "%s: The downloaded file does not match the MD5SUM:\n"
-msgstr ""
+msgstr "%s: ダウンロードされたファイルのMD5SUMが一致されませんでした:\n"
 
 #, c-format
 msgid "\t - file      : '%s'\n"
@@ -829,11 +831,11 @@ msgstr "%s: 入力引数 #%d の値が間違っています: .tar.gz, .tgz ま�
 
 #, c-format
 msgid "%s: The file %s does not exist or is not read accessible.\n"
-msgstr ""
+msgstr "%s: ファイル %s が存在しないか読み込めませんでした.\n"
 
 #, c-format
 msgid "%s: The directory %s does not exist.\n"
-msgstr ""
+msgstr "%s: ディレクトリ %s は存在しません.\n"
 
 #, c-format
 msgid "%s: The extraction of the archive '%s' has failed.\n"
@@ -918,11 +920,11 @@ msgstr "%s: 入力引数 #%d で不正な値: '%s' は妥当なURLではあり�
 
 #, c-format
 msgid "%s: the package '%s' does not exist.\n"
-msgstr ""
+msgstr "%s: パッケージ '%s' は存在しません.\n"
 
 #, c-format
 msgid "%s: the package '%s' does not contain the field '%s'.\n"
-msgstr ""
+msgstr "%s: パッケージ '%s' にフィールド '%s' は存在しません.\n"
 
 #, c-format
 msgid "%s: %s (%s) isn't installed.\n"

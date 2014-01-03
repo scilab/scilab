@@ -115,13 +115,13 @@ bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT)
 @USE_STATIC_SYSTEM_LIB_FALSE@am__append_5 = -lstdc++
 #-static-libgfortran
 @IS_MACOSX_TRUE@am__append_6 = -framework Cocoa
-@IS_MACOSX_TRUE@am__append_7 = $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
+@IS_MACOSX_TRUE@am__append_7 = modules/core/src/c/initMacOSXEnv.c
 
 # Force the libscijvm to be linked first. Under Debian, this avoid some reordering issues during the link
 @GUI_TRUE@am__append_8 = $(top_builddir)/modules/jvm/libscijvm.la
-@MPI_TRUE@am__append_9 = $(top_srcdir)/modules/console/src/c/others/initMPI.c
+@MPI_TRUE@am__append_9 = modules/console/src/c/others/initMPI.c
 @MPI_TRUE@am__append_10 = $(OPENMPI_CXXFLAGS)
-@MPI_TRUE@am__append_11 = $(top_srcdir)/modules/console/src/c/others/initMPI.c
+@MPI_TRUE@am__append_11 = modules/console/src/c/others/initMPI.c
 @MPI_TRUE@am__append_12 = $(OPENMPI_CXXFLAGS)
 
 #  The user wants to compile the localization files
@@ -141,6 +141,7 @@ DIST_COMMON = $(top_srcdir)/Makefile.call_scilab.am \
 	$(srcdir)/scilab-lib-doc.properties.in \
 	$(top_srcdir)/modules/helptools/etc/SciDocConf.xml.in \
 	$(top_srcdir)/modules/core/includes/version.h.in \
+	$(top_srcdir)/modules/core/includes/stack.h.in \
 	$(top_srcdir)/config/depcomp COPYING config/ar-lib \
 	config/compile config/config.guess config/config.rpath \
 	config/config.sub config/depcomp config/install-sh \
@@ -187,13 +188,14 @@ CONFIG_CLEAN_FILES = scilab.pc etc/modules.xml etc/classpath.xml \
 	etc/Info.plist etc/logging.properties scilab.properties \
 	scilab-lib.properties scilab-lib-doc.properties \
 	modules/helptools/etc/SciDocConf.xml \
-	modules/core/includes/version.h
+	modules/core/includes/version.h modules/core/includes/stack.h
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(infofilesdir)" "$(DESTDIR)$(pkgconfigdir)" \
 	"$(DESTDIR)$(rootdir)" "$(DESTDIR)$(valgrinddir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_call_scilab_c_OBJECTS = call_scilab_c-myprog.$(OBJEXT)
+am__dirstamp = $(am__leading_dot)dirstamp
+am_call_scilab_c_OBJECTS = modules/call_scilab/examples/call_scilab/c/common/call_scilab_c-myprog.$(OBJEXT)
 call_scilab_c_OBJECTS = $(am_call_scilab_c_OBJECTS)
 call_scilab_c_LDADD = $(LDADD)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -203,7 +205,7 @@ am__v_lt_1 =
 call_scilab_c_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(call_scilab_c_CFLAGS) \
 	$(CFLAGS) $(call_scilab_c_LDFLAGS) $(LDFLAGS) -o $@
-am_call_scilab_c_DisableInteractiveMode_OBJECTS = call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.$(OBJEXT)
+am_call_scilab_c_DisableInteractiveMode_OBJECTS = modules/call_scilab/examples/basicExamples/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.$(OBJEXT)
 call_scilab_c_DisableInteractiveMode_OBJECTS =  \
 	$(am_call_scilab_c_DisableInteractiveMode_OBJECTS)
 call_scilab_c_DisableInteractiveMode_LDADD = $(LDADD)
@@ -212,8 +214,7 @@ call_scilab_c_DisableInteractiveMode_LINK = $(LIBTOOL) $(AM_V_lt) \
 	$(CCLD) $(call_scilab_c_DisableInteractiveMode_CFLAGS) \
 	$(CFLAGS) $(call_scilab_c_DisableInteractiveMode_LDFLAGS) \
 	$(LDFLAGS) -o $@
-am_call_scilab_c_getlastjob_OBJECTS =  \
-	call_scilab_c_getlastjob-GetLastJob.$(OBJEXT)
+am_call_scilab_c_getlastjob_OBJECTS = modules/call_scilab/examples/basicExamples/call_scilab_c_getlastjob-GetLastJob.$(OBJEXT)
 call_scilab_c_getlastjob_OBJECTS =  \
 	$(am_call_scilab_c_getlastjob_OBJECTS)
 call_scilab_c_getlastjob_LDADD = $(LDADD)
@@ -221,16 +222,14 @@ call_scilab_c_getlastjob_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(call_scilab_c_getlastjob_CFLAGS) $(CFLAGS) \
 	$(call_scilab_c_getlastjob_LDFLAGS) $(LDFLAGS) -o $@
-am_call_scilab_c_simple_OBJECTS =  \
-	call_scilab_c_simple-simple_call_scilab.$(OBJEXT)
+am_call_scilab_c_simple_OBJECTS = modules/call_scilab/examples/call_scilab/c/common/call_scilab_c_simple-simple_call_scilab.$(OBJEXT)
 call_scilab_c_simple_OBJECTS = $(am_call_scilab_c_simple_OBJECTS)
 call_scilab_c_simple_LDADD = $(LDADD)
 call_scilab_c_simple_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(call_scilab_c_simple_CFLAGS) $(CFLAGS) \
 	$(call_scilab_c_simple_LDFLAGS) $(LDFLAGS) -o $@
-am_call_scilab_readwriteboolean_OBJECTS =  \
-	call_scilab_readwriteboolean-readwriteboolean.$(OBJEXT)
+am_call_scilab_readwriteboolean_OBJECTS = modules/call_scilab/examples/basicExamples/call_scilab_readwriteboolean-readwriteboolean.$(OBJEXT)
 call_scilab_readwriteboolean_OBJECTS =  \
 	$(am_call_scilab_readwriteboolean_OBJECTS)
 call_scilab_readwriteboolean_LDADD = $(LDADD)
@@ -238,7 +237,7 @@ call_scilab_readwriteboolean_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(call_scilab_readwriteboolean_CFLAGS) $(CFLAGS) \
 	$(call_scilab_readwriteboolean_LDFLAGS) $(LDFLAGS) -o $@
-am_call_scilab_readwritecomplexmatrix_OBJECTS = call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.$(OBJEXT)
+am_call_scilab_readwritecomplexmatrix_OBJECTS = modules/call_scilab/examples/basicExamples/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.$(OBJEXT)
 call_scilab_readwritecomplexmatrix_OBJECTS =  \
 	$(am_call_scilab_readwritecomplexmatrix_OBJECTS)
 call_scilab_readwritecomplexmatrix_LDADD = $(LDADD)
@@ -246,8 +245,7 @@ call_scilab_readwritecomplexmatrix_LINK = $(LIBTOOL) $(AM_V_lt) \
 	--tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link \
 	$(CCLD) $(call_scilab_readwritecomplexmatrix_CFLAGS) $(CFLAGS) \
 	$(call_scilab_readwritecomplexmatrix_LDFLAGS) $(LDFLAGS) -o $@
-am_call_scilab_readwritematrix_OBJECTS =  \
-	call_scilab_readwritematrix-readwritematrix.$(OBJEXT)
+am_call_scilab_readwritematrix_OBJECTS = modules/call_scilab/examples/basicExamples/call_scilab_readwritematrix-readwritematrix.$(OBJEXT)
 call_scilab_readwritematrix_OBJECTS =  \
 	$(am_call_scilab_readwritematrix_OBJECTS)
 call_scilab_readwritematrix_LDADD = $(LDADD)
@@ -255,8 +253,7 @@ call_scilab_readwritematrix_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(call_scilab_readwritematrix_CFLAGS) $(CFLAGS) \
 	$(call_scilab_readwritematrix_LDFLAGS) $(LDFLAGS) -o $@
-am_call_scilab_readwritestring_OBJECTS =  \
-	call_scilab_readwritestring-readwritestring.$(OBJEXT)
+am_call_scilab_readwritestring_OBJECTS = modules/call_scilab/examples/basicExamples/call_scilab_readwritestring-readwritestring.$(OBJEXT)
 call_scilab_readwritestring_OBJECTS =  \
 	$(am_call_scilab_readwritestring_OBJECTS)
 call_scilab_readwritestring_LDADD = $(LDADD)
@@ -264,14 +261,14 @@ call_scilab_readwritestring_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(call_scilab_readwritestring_CFLAGS) $(CFLAGS) \
 	$(call_scilab_readwritestring_LDFLAGS) $(LDFLAGS) -o $@
-am__scilab_bin_SOURCES_DIST =  \
-	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
-	$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c \
-	$(top_srcdir)/modules/console/src/c/others/initMPI.c
-@IS_MACOSX_TRUE@am__objects_1 = scilab_bin-initMacOSXEnv.$(OBJEXT)
-@MPI_TRUE@am__objects_2 = scilab_bin-initMPI.$(OBJEXT)
-am_scilab_bin_OBJECTS = scilab_bin-scilab.$(OBJEXT) $(am__objects_1) \
-	$(am__objects_2)
+am__scilab_bin_SOURCES_DIST = modules/core/src/cpp/scilab.cpp \
+	modules/core/src/c/initMacOSXEnv.c \
+	modules/console/src/c/others/initMPI.c
+@IS_MACOSX_TRUE@am__objects_1 = modules/core/src/c/scilab_bin-initMacOSXEnv.$(OBJEXT)
+@MPI_TRUE@am__objects_2 = modules/console/src/c/others/scilab_bin-initMPI.$(OBJEXT)
+am_scilab_bin_OBJECTS =  \
+	modules/core/src/cpp/scilab_bin-scilab.$(OBJEXT) \
+	$(am__objects_1) $(am__objects_2)
 scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 am__DEPENDENCIES_1 =
 am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
@@ -281,11 +278,11 @@ scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(am__append_8) \
 scilab_bin_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(scilab_bin_LDFLAGS) $(LDFLAGS) -o $@
-am__scilab_cli_bin_SOURCES_DIST =  \
-	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
-	$(top_srcdir)/modules/console/src/c/others/initMPI.c
-@MPI_TRUE@am__objects_3 = scilab_cli_bin-initMPI.$(OBJEXT)
-am_scilab_cli_bin_OBJECTS = scilab_cli_bin-scilab.$(OBJEXT) \
+am__scilab_cli_bin_SOURCES_DIST = modules/core/src/cpp/scilab.cpp \
+	modules/console/src/c/others/initMPI.c
+@MPI_TRUE@am__objects_3 = modules/console/src/c/others/scilab_cli_bin-initMPI.$(OBJEXT)
+am_scilab_cli_bin_OBJECTS =  \
+	modules/core/src/cpp/scilab_cli_bin-scilab.$(OBJEXT) \
 	$(am__objects_3)
 scilab_cli_bin_OBJECTS = $(am_scilab_cli_bin_OBJECTS)
 scilab_cli_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) \
@@ -550,6 +547,7 @@ DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
+ECJ = @ECJ@
 EGREP = @EGREP@
 EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
@@ -823,8 +821,8 @@ scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/console/includes/ \
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
 # (causing issues on some platform)
 COMMON_LIBS = $(LTLIBINTL)
-scilab_bin_SOURCES = $(top_srcdir)/modules/core/src/cpp/scilab.cpp \
-	$(am__append_7) $(am__append_9)
+scilab_bin_SOURCES = modules/core/src/cpp/scilab.cpp $(am__append_7) \
+	$(am__append_9)
 
 # BLAS_LIBS & LAPACK_LIBS are explicitly linked at the end. Unlike Scilab 5 in which the binary
 # is in C, Scilab 6 main is in C++. For some reasons (ie, I don't know why), libtool places blas and
@@ -835,8 +833,8 @@ scilab_bin_LDADD = $(COMMON_LIBS) $(am__append_8) \
 	$(LAPACK_LIBS) $(FLIBS)
 
 # Match scilab -nwni (ie command line without graphics)
-scilab_cli_bin_SOURCES =  \
-	$(top_srcdir)/modules/core/src/cpp/scilab.cpp $(am__append_11)
+scilab_cli_bin_SOURCES = modules/core/src/cpp/scilab.cpp \
+	$(am__append_11)
 scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS) \
 	$(am__append_12)
 
@@ -926,28 +924,28 @@ $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/call_scilab/libscicall_scilab.la \
 $(COMPILER_LDFLAGS)
 
-call_scilab_c_SOURCES = $(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c
+call_scilab_c_SOURCES = modules/call_scilab/examples/call_scilab/c/common/myprog.c
 call_scilab_c_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
 call_scilab_c_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
-call_scilab_c_simple_SOURCES = $(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c
+call_scilab_c_simple_SOURCES = modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c
 call_scilab_c_simple_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
 call_scilab_c_simple_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
-call_scilab_c_getlastjob_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/GetLastJob.c
+call_scilab_c_getlastjob_SOURCES = modules/call_scilab/examples/basicExamples/GetLastJob.c
 call_scilab_c_getlastjob_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
 call_scilab_c_getlastjob_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
-call_scilab_c_DisableInteractiveMode_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c
+call_scilab_c_DisableInteractiveMode_SOURCES = modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c
 call_scilab_c_DisableInteractiveMode_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
 call_scilab_c_DisableInteractiveMode_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
-call_scilab_readwriteboolean_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwriteboolean.c
+call_scilab_readwriteboolean_SOURCES = modules/call_scilab/examples/basicExamples/readwriteboolean.c
 call_scilab_readwriteboolean_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
 call_scilab_readwriteboolean_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
-call_scilab_readwritecomplexmatrix_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c
+call_scilab_readwritecomplexmatrix_SOURCES = modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c
 call_scilab_readwritecomplexmatrix_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
 call_scilab_readwritecomplexmatrix_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
-call_scilab_readwritematrix_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritematrix.c
+call_scilab_readwritematrix_SOURCES = modules/call_scilab/examples/basicExamples/readwritematrix.c
 call_scilab_readwritematrix_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
 call_scilab_readwritematrix_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
-call_scilab_readwritestring_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c
+call_scilab_readwritestring_SOURCES = modules/call_scilab/examples/basicExamples/readwritestring.c
 call_scilab_readwritestring_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
 call_scilab_readwritestring_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
 all: all-recursive
@@ -1024,6 +1022,8 @@ modules/helptools/etc/SciDocConf.xml: $(top_builddir)/config.status $(top_srcdir
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 modules/core/includes/version.h: $(top_builddir)/config.status $(top_srcdir)/modules/core/includes/version.h.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
+modules/core/includes/stack.h: $(top_builddir)/config.status $(top_srcdir)/modules/core/includes/stack.h.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
 install-binPROGRAMS: $(bin_PROGRAMS)
 	@$(NORMAL_INSTALL)
 	@list='$(bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
@@ -1082,42 +1082,109 @@ clean-checkPROGRAMS:
 	list=`for p in $$list; do echo "$$p"; done | sed 's/$(EXEEXT)$$//'`; \
 	echo " rm -f" $$list; \
 	rm -f $$list
+modules/call_scilab/examples/call_scilab/c/common/$(am__dirstamp):
+	@$(MKDIR_P) modules/call_scilab/examples/call_scilab/c/common
+	@: > modules/call_scilab/examples/call_scilab/c/common/$(am__dirstamp)
+modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)
+	@: > modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/$(am__dirstamp)
+modules/call_scilab/examples/call_scilab/c/common/call_scilab_c-myprog.$(OBJEXT): modules/call_scilab/examples/call_scilab/c/common/$(am__dirstamp) \
+	modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/$(am__dirstamp)
 
 call_scilab_c$(EXEEXT): $(call_scilab_c_OBJECTS) $(call_scilab_c_DEPENDENCIES) $(EXTRA_call_scilab_c_DEPENDENCIES) 
 	@rm -f call_scilab_c$(EXEEXT)
 	$(AM_V_CCLD)$(call_scilab_c_LINK) $(call_scilab_c_OBJECTS) $(call_scilab_c_LDADD) $(LIBS)
+modules/call_scilab/examples/basicExamples/$(am__dirstamp):
+	@$(MKDIR_P) modules/call_scilab/examples/basicExamples
+	@: > modules/call_scilab/examples/basicExamples/$(am__dirstamp)
+modules/call_scilab/examples/basicExamples/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) modules/call_scilab/examples/basicExamples/$(DEPDIR)
+	@: > modules/call_scilab/examples/basicExamples/$(DEPDIR)/$(am__dirstamp)
+modules/call_scilab/examples/basicExamples/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.$(OBJEXT):  \
+	modules/call_scilab/examples/basicExamples/$(am__dirstamp) \
+	modules/call_scilab/examples/basicExamples/$(DEPDIR)/$(am__dirstamp)
 
 call_scilab_c_DisableInteractiveMode$(EXEEXT): $(call_scilab_c_DisableInteractiveMode_OBJECTS) $(call_scilab_c_DisableInteractiveMode_DEPENDENCIES) $(EXTRA_call_scilab_c_DisableInteractiveMode_DEPENDENCIES) 
 	@rm -f call_scilab_c_DisableInteractiveMode$(EXEEXT)
 	$(AM_V_CCLD)$(call_scilab_c_DisableInteractiveMode_LINK) $(call_scilab_c_DisableInteractiveMode_OBJECTS) $(call_scilab_c_DisableInteractiveMode_LDADD) $(LIBS)
+modules/call_scilab/examples/basicExamples/call_scilab_c_getlastjob-GetLastJob.$(OBJEXT):  \
+	modules/call_scilab/examples/basicExamples/$(am__dirstamp) \
+	modules/call_scilab/examples/basicExamples/$(DEPDIR)/$(am__dirstamp)
 
 call_scilab_c_getlastjob$(EXEEXT): $(call_scilab_c_getlastjob_OBJECTS) $(call_scilab_c_getlastjob_DEPENDENCIES) $(EXTRA_call_scilab_c_getlastjob_DEPENDENCIES) 
 	@rm -f call_scilab_c_getlastjob$(EXEEXT)
 	$(AM_V_CCLD)$(call_scilab_c_getlastjob_LINK) $(call_scilab_c_getlastjob_OBJECTS) $(call_scilab_c_getlastjob_LDADD) $(LIBS)
+modules/call_scilab/examples/call_scilab/c/common/call_scilab_c_simple-simple_call_scilab.$(OBJEXT): modules/call_scilab/examples/call_scilab/c/common/$(am__dirstamp) \
+	modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/$(am__dirstamp)
 
 call_scilab_c_simple$(EXEEXT): $(call_scilab_c_simple_OBJECTS) $(call_scilab_c_simple_DEPENDENCIES) $(EXTRA_call_scilab_c_simple_DEPENDENCIES) 
 	@rm -f call_scilab_c_simple$(EXEEXT)
 	$(AM_V_CCLD)$(call_scilab_c_simple_LINK) $(call_scilab_c_simple_OBJECTS) $(call_scilab_c_simple_LDADD) $(LIBS)
+modules/call_scilab/examples/basicExamples/call_scilab_readwriteboolean-readwriteboolean.$(OBJEXT):  \
+	modules/call_scilab/examples/basicExamples/$(am__dirstamp) \
+	modules/call_scilab/examples/basicExamples/$(DEPDIR)/$(am__dirstamp)
 
 call_scilab_readwriteboolean$(EXEEXT): $(call_scilab_readwriteboolean_OBJECTS) $(call_scilab_readwriteboolean_DEPENDENCIES) $(EXTRA_call_scilab_readwriteboolean_DEPENDENCIES) 
 	@rm -f call_scilab_readwriteboolean$(EXEEXT)
 	$(AM_V_CCLD)$(call_scilab_readwriteboolean_LINK) $(call_scilab_readwriteboolean_OBJECTS) $(call_scilab_readwriteboolean_LDADD) $(LIBS)
+modules/call_scilab/examples/basicExamples/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.$(OBJEXT):  \
+	modules/call_scilab/examples/basicExamples/$(am__dirstamp) \
+	modules/call_scilab/examples/basicExamples/$(DEPDIR)/$(am__dirstamp)
 
 call_scilab_readwritecomplexmatrix$(EXEEXT): $(call_scilab_readwritecomplexmatrix_OBJECTS) $(call_scilab_readwritecomplexmatrix_DEPENDENCIES) $(EXTRA_call_scilab_readwritecomplexmatrix_DEPENDENCIES) 
 	@rm -f call_scilab_readwritecomplexmatrix$(EXEEXT)
 	$(AM_V_CCLD)$(call_scilab_readwritecomplexmatrix_LINK) $(call_scilab_readwritecomplexmatrix_OBJECTS) $(call_scilab_readwritecomplexmatrix_LDADD) $(LIBS)
+modules/call_scilab/examples/basicExamples/call_scilab_readwritematrix-readwritematrix.$(OBJEXT):  \
+	modules/call_scilab/examples/basicExamples/$(am__dirstamp) \
+	modules/call_scilab/examples/basicExamples/$(DEPDIR)/$(am__dirstamp)
 
 call_scilab_readwritematrix$(EXEEXT): $(call_scilab_readwritematrix_OBJECTS) $(call_scilab_readwritematrix_DEPENDENCIES) $(EXTRA_call_scilab_readwritematrix_DEPENDENCIES) 
 	@rm -f call_scilab_readwritematrix$(EXEEXT)
 	$(AM_V_CCLD)$(call_scilab_readwritematrix_LINK) $(call_scilab_readwritematrix_OBJECTS) $(call_scilab_readwritematrix_LDADD) $(LIBS)
+modules/call_scilab/examples/basicExamples/call_scilab_readwritestring-readwritestring.$(OBJEXT):  \
+	modules/call_scilab/examples/basicExamples/$(am__dirstamp) \
+	modules/call_scilab/examples/basicExamples/$(DEPDIR)/$(am__dirstamp)
 
 call_scilab_readwritestring$(EXEEXT): $(call_scilab_readwritestring_OBJECTS) $(call_scilab_readwritestring_DEPENDENCIES) $(EXTRA_call_scilab_readwritestring_DEPENDENCIES) 
 	@rm -f call_scilab_readwritestring$(EXEEXT)
 	$(AM_V_CCLD)$(call_scilab_readwritestring_LINK) $(call_scilab_readwritestring_OBJECTS) $(call_scilab_readwritestring_LDADD) $(LIBS)
+modules/core/src/cpp/$(am__dirstamp):
+	@$(MKDIR_P) modules/core/src/cpp
+	@: > modules/core/src/cpp/$(am__dirstamp)
+modules/core/src/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) modules/core/src/cpp/$(DEPDIR)
+	@: > modules/core/src/cpp/$(DEPDIR)/$(am__dirstamp)
+modules/core/src/cpp/scilab_bin-scilab.$(OBJEXT):  \
+	modules/core/src/cpp/$(am__dirstamp) \
+	modules/core/src/cpp/$(DEPDIR)/$(am__dirstamp)
+modules/core/src/c/$(am__dirstamp):
+	@$(MKDIR_P) modules/core/src/c
+	@: > modules/core/src/c/$(am__dirstamp)
+modules/core/src/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) modules/core/src/c/$(DEPDIR)
+	@: > modules/core/src/c/$(DEPDIR)/$(am__dirstamp)
+modules/core/src/c/scilab_bin-initMacOSXEnv.$(OBJEXT):  \
+	modules/core/src/c/$(am__dirstamp) \
+	modules/core/src/c/$(DEPDIR)/$(am__dirstamp)
+modules/console/src/c/others/$(am__dirstamp):
+	@$(MKDIR_P) modules/console/src/c/others
+	@: > modules/console/src/c/others/$(am__dirstamp)
+modules/console/src/c/others/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) modules/console/src/c/others/$(DEPDIR)
+	@: > modules/console/src/c/others/$(DEPDIR)/$(am__dirstamp)
+modules/console/src/c/others/scilab_bin-initMPI.$(OBJEXT):  \
+	modules/console/src/c/others/$(am__dirstamp) \
+	modules/console/src/c/others/$(DEPDIR)/$(am__dirstamp)
 
 scilab-bin$(EXEEXT): $(scilab_bin_OBJECTS) $(scilab_bin_DEPENDENCIES) $(EXTRA_scilab_bin_DEPENDENCIES) 
 	@rm -f scilab-bin$(EXEEXT)
 	$(AM_V_CXXLD)$(scilab_bin_LINK) $(scilab_bin_OBJECTS) $(scilab_bin_LDADD) $(LIBS)
+modules/core/src/cpp/scilab_cli_bin-scilab.$(OBJEXT):  \
+	modules/core/src/cpp/$(am__dirstamp) \
+	modules/core/src/cpp/$(DEPDIR)/$(am__dirstamp)
+modules/console/src/c/others/scilab_cli_bin-initMPI.$(OBJEXT):  \
+	modules/console/src/c/others/$(am__dirstamp) \
+	modules/console/src/c/others/$(DEPDIR)/$(am__dirstamp)
 
 scilab-cli-bin$(EXEEXT): $(scilab_cli_bin_OBJECTS) $(scilab_cli_bin_DEPENDENCIES) $(EXTRA_scilab_cli_bin_DEPENDENCIES) 
 	@rm -f scilab-cli-bin$(EXEEXT)
@@ -1160,247 +1227,258 @@ uninstall-binSCRIPTS:
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f modules/call_scilab/examples/basicExamples/*.$(OBJEXT)
+	-rm -f modules/call_scilab/examples/call_scilab/c/common/*.$(OBJEXT)
+	-rm -f modules/console/src/c/others/*.$(OBJEXT)
+	-rm -f modules/core/src/c/*.$(OBJEXT)
+	-rm -f modules/core/src/cpp/*.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/call_scilab_c-myprog.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/call_scilab_c_getlastjob-GetLastJob.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/call_scilab_c_simple-simple_call_scilab.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/call_scilab_readwriteboolean-readwriteboolean.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/call_scilab_readwritematrix-readwritematrix.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/call_scilab_readwritestring-readwritestring.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_bin-initMPI.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_bin-initMacOSXEnv.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_bin-scilab.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_cli_bin-initMPI.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_cli_bin-scilab.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_c_getlastjob-GetLastJob.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwriteboolean-readwriteboolean.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritematrix-readwritematrix.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritestring-readwritestring.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/call_scilab_c-myprog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/call_scilab_c_simple-simple_call_scilab.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@modules/console/src/c/others/$(DEPDIR)/scilab_bin-initMPI.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-initMPI.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@modules/core/src/c/$(DEPDIR)/scilab_bin-initMacOSXEnv.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@modules/core/src/cpp/$(DEPDIR)/scilab_bin-scilab.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@modules/core/src/cpp/$(DEPDIR)/scilab_cli_bin-scilab.Po@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-call_scilab_c-myprog.o: $(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_CFLAGS) $(CFLAGS) -MT call_scilab_c-myprog.o -MD -MP -MF $(DEPDIR)/call_scilab_c-myprog.Tpo -c -o call_scilab_c-myprog.o `test -f '$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/call_scilab_c-myprog.Tpo $(DEPDIR)/call_scilab_c-myprog.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c' object='call_scilab_c-myprog.o' libtool=no @AMDEPBACKSLASH@
+modules/call_scilab/examples/call_scilab/c/common/call_scilab_c-myprog.o: modules/call_scilab/examples/call_scilab/c/common/myprog.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_CFLAGS) $(CFLAGS) -MT modules/call_scilab/examples/call_scilab/c/common/call_scilab_c-myprog.o -MD -MP -MF modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/call_scilab_c-myprog.Tpo -c -o modules/call_scilab/examples/call_scilab/c/common/call_scilab_c-myprog.o `test -f 'modules/call_scilab/examples/call_scilab/c/common/myprog.c' || echo '$(srcdir)/'`modules/call_scilab/examples/call_scilab/c/common/myprog.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/call_scilab_c-myprog.Tpo modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/call_scilab_c-myprog.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/call_scilab/examples/call_scilab/c/common/myprog.c' object='modules/call_scilab/examples/call_scilab/c/common/call_scilab_c-myprog.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_CFLAGS) $(CFLAGS) -c -o call_scilab_c-myprog.o `test -f '$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_CFLAGS) $(CFLAGS) -c -o modules/call_scilab/examples/call_scilab/c/common/call_scilab_c-myprog.o `test -f 'modules/call_scilab/examples/call_scilab/c/common/myprog.c' || echo '$(srcdir)/'`modules/call_scilab/examples/call_scilab/c/common/myprog.c
 
-call_scilab_c-myprog.obj: $(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_CFLAGS) $(CFLAGS) -MT call_scilab_c-myprog.obj -MD -MP -MF $(DEPDIR)/call_scilab_c-myprog.Tpo -c -o call_scilab_c-myprog.obj `if test -f '$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/call_scilab_c-myprog.Tpo $(DEPDIR)/call_scilab_c-myprog.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c' object='call_scilab_c-myprog.obj' libtool=no @AMDEPBACKSLASH@
+modules/call_scilab/examples/call_scilab/c/common/call_scilab_c-myprog.obj: modules/call_scilab/examples/call_scilab/c/common/myprog.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_CFLAGS) $(CFLAGS) -MT modules/call_scilab/examples/call_scilab/c/common/call_scilab_c-myprog.obj -MD -MP -MF modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/call_scilab_c-myprog.Tpo -c -o modules/call_scilab/examples/call_scilab/c/common/call_scilab_c-myprog.obj `if test -f 'modules/call_scilab/examples/call_scilab/c/common/myprog.c'; then $(CYGPATH_W) 'modules/call_scilab/examples/call_scilab/c/common/myprog.c'; else $(CYGPATH_W) '$(srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/call_scilab_c-myprog.Tpo modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/call_scilab_c-myprog.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/call_scilab/examples/call_scilab/c/common/myprog.c' object='modules/call_scilab/examples/call_scilab/c/common/call_scilab_c-myprog.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_CFLAGS) $(CFLAGS) -c -o call_scilab_c-myprog.obj `if test -f '$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c'; fi`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_CFLAGS) $(CFLAGS) -c -o modules/call_scilab/examples/call_scilab/c/common/call_scilab_c-myprog.obj `if test -f 'modules/call_scilab/examples/call_scilab/c/common/myprog.c'; then $(CYGPATH_W) 'modules/call_scilab/examples/call_scilab/c/common/myprog.c'; else $(CYGPATH_W) '$(srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c'; fi`
 
-call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.o: $(top_srcdir)/modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_DisableInteractiveMode_CFLAGS) $(CFLAGS) -MT call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.o -MD -MP -MF $(DEPDIR)/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.Tpo -c -o call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.o `test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.Tpo $(DEPDIR)/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c' object='call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.o' libtool=no @AMDEPBACKSLASH@
+modules/call_scilab/examples/basicExamples/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.o: modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_DisableInteractiveMode_CFLAGS) $(CFLAGS) -MT modules/call_scilab/examples/basicExamples/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.o -MD -MP -MF modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.Tpo -c -o modules/call_scilab/examples/basicExamples/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.o `test -f 'modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c' || echo '$(srcdir)/'`modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.Tpo modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c' object='modules/call_scilab/examples/basicExamples/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_DisableInteractiveMode_CFLAGS) $(CFLAGS) -c -o call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.o `test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_DisableInteractiveMode_CFLAGS) $(CFLAGS) -c -o modules/call_scilab/examples/basicExamples/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.o `test -f 'modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c' || echo '$(srcdir)/'`modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c
 
-call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.obj: $(top_srcdir)/modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_DisableInteractiveMode_CFLAGS) $(CFLAGS) -MT call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.obj -MD -MP -MF $(DEPDIR)/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.Tpo -c -o call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.obj `if test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.Tpo $(DEPDIR)/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c' object='call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.obj' libtool=no @AMDEPBACKSLASH@
+modules/call_scilab/examples/basicExamples/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.obj: modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_DisableInteractiveMode_CFLAGS) $(CFLAGS) -MT modules/call_scilab/examples/basicExamples/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.obj -MD -MP -MF modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.Tpo -c -o modules/call_scilab/examples/basicExamples/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.obj `if test -f 'modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c'; then $(CYGPATH_W) 'modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c'; else $(CYGPATH_W) '$(srcdir)/modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.Tpo modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c' object='modules/call_scilab/examples/basicExamples/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_DisableInteractiveMode_CFLAGS) $(CFLAGS) -c -o call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.obj `if test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c'; fi`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_DisableInteractiveMode_CFLAGS) $(CFLAGS) -c -o modules/call_scilab/examples/basicExamples/call_scilab_c_DisableInteractiveMode-DisableInteractiveMode.obj `if test -f 'modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c'; then $(CYGPATH_W) 'modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c'; else $(CYGPATH_W) '$(srcdir)/modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c'; fi`
 
-call_scilab_c_getlastjob-GetLastJob.o: $(top_srcdir)/modules/call_scilab/examples/basicExamples/GetLastJob.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_getlastjob_CFLAGS) $(CFLAGS) -MT call_scilab_c_getlastjob-GetLastJob.o -MD -MP -MF $(DEPDIR)/call_scilab_c_getlastjob-GetLastJob.Tpo -c -o call_scilab_c_getlastjob-GetLastJob.o `test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/GetLastJob.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/call_scilab/examples/basicExamples/GetLastJob.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/call_scilab_c_getlastjob-GetLastJob.Tpo $(DEPDIR)/call_scilab_c_getlastjob-GetLastJob.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/call_scilab/examples/basicExamples/GetLastJob.c' object='call_scilab_c_getlastjob-GetLastJob.o' libtool=no @AMDEPBACKSLASH@
+modules/call_scilab/examples/basicExamples/call_scilab_c_getlastjob-GetLastJob.o: modules/call_scilab/examples/basicExamples/GetLastJob.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_getlastjob_CFLAGS) $(CFLAGS) -MT modules/call_scilab/examples/basicExamples/call_scilab_c_getlastjob-GetLastJob.o -MD -MP -MF modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_c_getlastjob-GetLastJob.Tpo -c -o modules/call_scilab/examples/basicExamples/call_scilab_c_getlastjob-GetLastJob.o `test -f 'modules/call_scilab/examples/basicExamples/GetLastJob.c' || echo '$(srcdir)/'`modules/call_scilab/examples/basicExamples/GetLastJob.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_c_getlastjob-GetLastJob.Tpo modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_c_getlastjob-GetLastJob.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/call_scilab/examples/basicExamples/GetLastJob.c' object='modules/call_scilab/examples/basicExamples/call_scilab_c_getlastjob-GetLastJob.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_getlastjob_CFLAGS) $(CFLAGS) -c -o call_scilab_c_getlastjob-GetLastJob.o `test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/GetLastJob.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/call_scilab/examples/basicExamples/GetLastJob.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_getlastjob_CFLAGS) $(CFLAGS) -c -o modules/call_scilab/examples/basicExamples/call_scilab_c_getlastjob-GetLastJob.o `test -f 'modules/call_scilab/examples/basicExamples/GetLastJob.c' || echo '$(srcdir)/'`modules/call_scilab/examples/basicExamples/GetLastJob.c
 
-call_scilab_c_getlastjob-GetLastJob.obj: $(top_srcdir)/modules/call_scilab/examples/basicExamples/GetLastJob.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_getlastjob_CFLAGS) $(CFLAGS) -MT call_scilab_c_getlastjob-GetLastJob.obj -MD -MP -MF $(DEPDIR)/call_scilab_c_getlastjob-GetLastJob.Tpo -c -o call_scilab_c_getlastjob-GetLastJob.obj `if test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/GetLastJob.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/call_scilab/examples/basicExamples/GetLastJob.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/call_scilab/examples/basicExamples/GetLastJob.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/call_scilab_c_getlastjob-GetLastJob.Tpo $(DEPDIR)/call_scilab_c_getlastjob-GetLastJob.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/call_scilab/examples/basicExamples/GetLastJob.c' object='call_scilab_c_getlastjob-GetLastJob.obj' libtool=no @AMDEPBACKSLASH@
+modules/call_scilab/examples/basicExamples/call_scilab_c_getlastjob-GetLastJob.obj: modules/call_scilab/examples/basicExamples/GetLastJob.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_getlastjob_CFLAGS) $(CFLAGS) -MT modules/call_scilab/examples/basicExamples/call_scilab_c_getlastjob-GetLastJob.obj -MD -MP -MF modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_c_getlastjob-GetLastJob.Tpo -c -o modules/call_scilab/examples/basicExamples/call_scilab_c_getlastjob-GetLastJob.obj `if test -f 'modules/call_scilab/examples/basicExamples/GetLastJob.c'; then $(CYGPATH_W) 'modules/call_scilab/examples/basicExamples/GetLastJob.c'; else $(CYGPATH_W) '$(srcdir)/modules/call_scilab/examples/basicExamples/GetLastJob.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_c_getlastjob-GetLastJob.Tpo modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_c_getlastjob-GetLastJob.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/call_scilab/examples/basicExamples/GetLastJob.c' object='modules/call_scilab/examples/basicExamples/call_scilab_c_getlastjob-GetLastJob.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_getlastjob_CFLAGS) $(CFLAGS) -c -o call_scilab_c_getlastjob-GetLastJob.obj `if test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/GetLastJob.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/call_scilab/examples/basicExamples/GetLastJob.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/call_scilab/examples/basicExamples/GetLastJob.c'; fi`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_getlastjob_CFLAGS) $(CFLAGS) -c -o modules/call_scilab/examples/basicExamples/call_scilab_c_getlastjob-GetLastJob.obj `if test -f 'modules/call_scilab/examples/basicExamples/GetLastJob.c'; then $(CYGPATH_W) 'modules/call_scilab/examples/basicExamples/GetLastJob.c'; else $(CYGPATH_W) '$(srcdir)/modules/call_scilab/examples/basicExamples/GetLastJob.c'; fi`
 
-call_scilab_c_simple-simple_call_scilab.o: $(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_simple_CFLAGS) $(CFLAGS) -MT call_scilab_c_simple-simple_call_scilab.o -MD -MP -MF $(DEPDIR)/call_scilab_c_simple-simple_call_scilab.Tpo -c -o call_scilab_c_simple-simple_call_scilab.o `test -f '$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/call_scilab_c_simple-simple_call_scilab.Tpo $(DEPDIR)/call_scilab_c_simple-simple_call_scilab.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c' object='call_scilab_c_simple-simple_call_scilab.o' libtool=no @AMDEPBACKSLASH@
+modules/call_scilab/examples/call_scilab/c/common/call_scilab_c_simple-simple_call_scilab.o: modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_simple_CFLAGS) $(CFLAGS) -MT modules/call_scilab/examples/call_scilab/c/common/call_scilab_c_simple-simple_call_scilab.o -MD -MP -MF modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/call_scilab_c_simple-simple_call_scilab.Tpo -c -o modules/call_scilab/examples/call_scilab/c/common/call_scilab_c_simple-simple_call_scilab.o `test -f 'modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c' || echo '$(srcdir)/'`modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/call_scilab_c_simple-simple_call_scilab.Tpo modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/call_scilab_c_simple-simple_call_scilab.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c' object='modules/call_scilab/examples/call_scilab/c/common/call_scilab_c_simple-simple_call_scilab.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_simple_CFLAGS) $(CFLAGS) -c -o call_scilab_c_simple-simple_call_scilab.o `test -f '$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_simple_CFLAGS) $(CFLAGS) -c -o modules/call_scilab/examples/call_scilab/c/common/call_scilab_c_simple-simple_call_scilab.o `test -f 'modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c' || echo '$(srcdir)/'`modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c
 
-call_scilab_c_simple-simple_call_scilab.obj: $(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_simple_CFLAGS) $(CFLAGS) -MT call_scilab_c_simple-simple_call_scilab.obj -MD -MP -MF $(DEPDIR)/call_scilab_c_simple-simple_call_scilab.Tpo -c -o call_scilab_c_simple-simple_call_scilab.obj `if test -f '$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/call_scilab_c_simple-simple_call_scilab.Tpo $(DEPDIR)/call_scilab_c_simple-simple_call_scilab.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c' object='call_scilab_c_simple-simple_call_scilab.obj' libtool=no @AMDEPBACKSLASH@
+modules/call_scilab/examples/call_scilab/c/common/call_scilab_c_simple-simple_call_scilab.obj: modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_simple_CFLAGS) $(CFLAGS) -MT modules/call_scilab/examples/call_scilab/c/common/call_scilab_c_simple-simple_call_scilab.obj -MD -MP -MF modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/call_scilab_c_simple-simple_call_scilab.Tpo -c -o modules/call_scilab/examples/call_scilab/c/common/call_scilab_c_simple-simple_call_scilab.obj `if test -f 'modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c'; then $(CYGPATH_W) 'modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c'; else $(CYGPATH_W) '$(srcdir)/modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/call_scilab_c_simple-simple_call_scilab.Tpo modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/call_scilab_c_simple-simple_call_scilab.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c' object='modules/call_scilab/examples/call_scilab/c/common/call_scilab_c_simple-simple_call_scilab.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_simple_CFLAGS) $(CFLAGS) -c -o call_scilab_c_simple-simple_call_scilab.obj `if test -f '$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c'; fi`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_c_simple_CFLAGS) $(CFLAGS) -c -o modules/call_scilab/examples/call_scilab/c/common/call_scilab_c_simple-simple_call_scilab.obj `if test -f 'modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c'; then $(CYGPATH_W) 'modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c'; else $(CYGPATH_W) '$(srcdir)/modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c'; fi`
 
-call_scilab_readwriteboolean-readwriteboolean.o: $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwriteboolean.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwriteboolean_CFLAGS) $(CFLAGS) -MT call_scilab_readwriteboolean-readwriteboolean.o -MD -MP -MF $(DEPDIR)/call_scilab_readwriteboolean-readwriteboolean.Tpo -c -o call_scilab_readwriteboolean-readwriteboolean.o `test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwriteboolean.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwriteboolean.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/call_scilab_readwriteboolean-readwriteboolean.Tpo $(DEPDIR)/call_scilab_readwriteboolean-readwriteboolean.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwriteboolean.c' object='call_scilab_readwriteboolean-readwriteboolean.o' libtool=no @AMDEPBACKSLASH@
+modules/call_scilab/examples/basicExamples/call_scilab_readwriteboolean-readwriteboolean.o: modules/call_scilab/examples/basicExamples/readwriteboolean.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwriteboolean_CFLAGS) $(CFLAGS) -MT modules/call_scilab/examples/basicExamples/call_scilab_readwriteboolean-readwriteboolean.o -MD -MP -MF modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwriteboolean-readwriteboolean.Tpo -c -o modules/call_scilab/examples/basicExamples/call_scilab_readwriteboolean-readwriteboolean.o `test -f 'modules/call_scilab/examples/basicExamples/readwriteboolean.c' || echo '$(srcdir)/'`modules/call_scilab/examples/basicExamples/readwriteboolean.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwriteboolean-readwriteboolean.Tpo modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwriteboolean-readwriteboolean.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/call_scilab/examples/basicExamples/readwriteboolean.c' object='modules/call_scilab/examples/basicExamples/call_scilab_readwriteboolean-readwriteboolean.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwriteboolean_CFLAGS) $(CFLAGS) -c -o call_scilab_readwriteboolean-readwriteboolean.o `test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwriteboolean.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwriteboolean.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwriteboolean_CFLAGS) $(CFLAGS) -c -o modules/call_scilab/examples/basicExamples/call_scilab_readwriteboolean-readwriteboolean.o `test -f 'modules/call_scilab/examples/basicExamples/readwriteboolean.c' || echo '$(srcdir)/'`modules/call_scilab/examples/basicExamples/readwriteboolean.c
 
-call_scilab_readwriteboolean-readwriteboolean.obj: $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwriteboolean.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwriteboolean_CFLAGS) $(CFLAGS) -MT call_scilab_readwriteboolean-readwriteboolean.obj -MD -MP -MF $(DEPDIR)/call_scilab_readwriteboolean-readwriteboolean.Tpo -c -o call_scilab_readwriteboolean-readwriteboolean.obj `if test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwriteboolean.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwriteboolean.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwriteboolean.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/call_scilab_readwriteboolean-readwriteboolean.Tpo $(DEPDIR)/call_scilab_readwriteboolean-readwriteboolean.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwriteboolean.c' object='call_scilab_readwriteboolean-readwriteboolean.obj' libtool=no @AMDEPBACKSLASH@
+modules/call_scilab/examples/basicExamples/call_scilab_readwriteboolean-readwriteboolean.obj: modules/call_scilab/examples/basicExamples/readwriteboolean.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwriteboolean_CFLAGS) $(CFLAGS) -MT modules/call_scilab/examples/basicExamples/call_scilab_readwriteboolean-readwriteboolean.obj -MD -MP -MF modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwriteboolean-readwriteboolean.Tpo -c -o modules/call_scilab/examples/basicExamples/call_scilab_readwriteboolean-readwriteboolean.obj `if test -f 'modules/call_scilab/examples/basicExamples/readwriteboolean.c'; then $(CYGPATH_W) 'modules/call_scilab/examples/basicExamples/readwriteboolean.c'; else $(CYGPATH_W) '$(srcdir)/modules/call_scilab/examples/basicExamples/readwriteboolean.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwriteboolean-readwriteboolean.Tpo modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwriteboolean-readwriteboolean.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/call_scilab/examples/basicExamples/readwriteboolean.c' object='modules/call_scilab/examples/basicExamples/call_scilab_readwriteboolean-readwriteboolean.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwriteboolean_CFLAGS) $(CFLAGS) -c -o call_scilab_readwriteboolean-readwriteboolean.obj `if test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwriteboolean.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwriteboolean.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwriteboolean.c'; fi`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwriteboolean_CFLAGS) $(CFLAGS) -c -o modules/call_scilab/examples/basicExamples/call_scilab_readwriteboolean-readwriteboolean.obj `if test -f 'modules/call_scilab/examples/basicExamples/readwriteboolean.c'; then $(CYGPATH_W) 'modules/call_scilab/examples/basicExamples/readwriteboolean.c'; else $(CYGPATH_W) '$(srcdir)/modules/call_scilab/examples/basicExamples/readwriteboolean.c'; fi`
 
-call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.o: $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritecomplexmatrix_CFLAGS) $(CFLAGS) -MT call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.o -MD -MP -MF $(DEPDIR)/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.Tpo -c -o call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.o `test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.Tpo $(DEPDIR)/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c' object='call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.o' libtool=no @AMDEPBACKSLASH@
+modules/call_scilab/examples/basicExamples/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.o: modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritecomplexmatrix_CFLAGS) $(CFLAGS) -MT modules/call_scilab/examples/basicExamples/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.o -MD -MP -MF modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.Tpo -c -o modules/call_scilab/examples/basicExamples/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.o `test -f 'modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c' || echo '$(srcdir)/'`modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.Tpo modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c' object='modules/call_scilab/examples/basicExamples/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritecomplexmatrix_CFLAGS) $(CFLAGS) -c -o call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.o `test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritecomplexmatrix_CFLAGS) $(CFLAGS) -c -o modules/call_scilab/examples/basicExamples/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.o `test -f 'modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c' || echo '$(srcdir)/'`modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c
 
-call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.obj: $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritecomplexmatrix_CFLAGS) $(CFLAGS) -MT call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.obj -MD -MP -MF $(DEPDIR)/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.Tpo -c -o call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.obj `if test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.Tpo $(DEPDIR)/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c' object='call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.obj' libtool=no @AMDEPBACKSLASH@
+modules/call_scilab/examples/basicExamples/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.obj: modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritecomplexmatrix_CFLAGS) $(CFLAGS) -MT modules/call_scilab/examples/basicExamples/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.obj -MD -MP -MF modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.Tpo -c -o modules/call_scilab/examples/basicExamples/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.obj `if test -f 'modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c'; then $(CYGPATH_W) 'modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c'; else $(CYGPATH_W) '$(srcdir)/modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.Tpo modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c' object='modules/call_scilab/examples/basicExamples/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritecomplexmatrix_CFLAGS) $(CFLAGS) -c -o call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.obj `if test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c'; fi`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritecomplexmatrix_CFLAGS) $(CFLAGS) -c -o modules/call_scilab/examples/basicExamples/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.obj `if test -f 'modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c'; then $(CYGPATH_W) 'modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c'; else $(CYGPATH_W) '$(srcdir)/modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c'; fi`
 
-call_scilab_readwritematrix-readwritematrix.o: $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritematrix.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritematrix_CFLAGS) $(CFLAGS) -MT call_scilab_readwritematrix-readwritematrix.o -MD -MP -MF $(DEPDIR)/call_scilab_readwritematrix-readwritematrix.Tpo -c -o call_scilab_readwritematrix-readwritematrix.o `test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritematrix.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritematrix.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/call_scilab_readwritematrix-readwritematrix.Tpo $(DEPDIR)/call_scilab_readwritematrix-readwritematrix.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritematrix.c' object='call_scilab_readwritematrix-readwritematrix.o' libtool=no @AMDEPBACKSLASH@
+modules/call_scilab/examples/basicExamples/call_scilab_readwritematrix-readwritematrix.o: modules/call_scilab/examples/basicExamples/readwritematrix.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritematrix_CFLAGS) $(CFLAGS) -MT modules/call_scilab/examples/basicExamples/call_scilab_readwritematrix-readwritematrix.o -MD -MP -MF modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritematrix-readwritematrix.Tpo -c -o modules/call_scilab/examples/basicExamples/call_scilab_readwritematrix-readwritematrix.o `test -f 'modules/call_scilab/examples/basicExamples/readwritematrix.c' || echo '$(srcdir)/'`modules/call_scilab/examples/basicExamples/readwritematrix.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritematrix-readwritematrix.Tpo modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritematrix-readwritematrix.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/call_scilab/examples/basicExamples/readwritematrix.c' object='modules/call_scilab/examples/basicExamples/call_scilab_readwritematrix-readwritematrix.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritematrix_CFLAGS) $(CFLAGS) -c -o call_scilab_readwritematrix-readwritematrix.o `test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritematrix.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritematrix.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritematrix_CFLAGS) $(CFLAGS) -c -o modules/call_scilab/examples/basicExamples/call_scilab_readwritematrix-readwritematrix.o `test -f 'modules/call_scilab/examples/basicExamples/readwritematrix.c' || echo '$(srcdir)/'`modules/call_scilab/examples/basicExamples/readwritematrix.c
 
-call_scilab_readwritematrix-readwritematrix.obj: $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritematrix.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritematrix_CFLAGS) $(CFLAGS) -MT call_scilab_readwritematrix-readwritematrix.obj -MD -MP -MF $(DEPDIR)/call_scilab_readwritematrix-readwritematrix.Tpo -c -o call_scilab_readwritematrix-readwritematrix.obj `if test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritematrix.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritematrix.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritematrix.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/call_scilab_readwritematrix-readwritematrix.Tpo $(DEPDIR)/call_scilab_readwritematrix-readwritematrix.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritematrix.c' object='call_scilab_readwritematrix-readwritematrix.obj' libtool=no @AMDEPBACKSLASH@
+modules/call_scilab/examples/basicExamples/call_scilab_readwritematrix-readwritematrix.obj: modules/call_scilab/examples/basicExamples/readwritematrix.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritematrix_CFLAGS) $(CFLAGS) -MT modules/call_scilab/examples/basicExamples/call_scilab_readwritematrix-readwritematrix.obj -MD -MP -MF modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritematrix-readwritematrix.Tpo -c -o modules/call_scilab/examples/basicExamples/call_scilab_readwritematrix-readwritematrix.obj `if test -f 'modules/call_scilab/examples/basicExamples/readwritematrix.c'; then $(CYGPATH_W) 'modules/call_scilab/examples/basicExamples/readwritematrix.c'; else $(CYGPATH_W) '$(srcdir)/modules/call_scilab/examples/basicExamples/readwritematrix.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritematrix-readwritematrix.Tpo modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritematrix-readwritematrix.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/call_scilab/examples/basicExamples/readwritematrix.c' object='modules/call_scilab/examples/basicExamples/call_scilab_readwritematrix-readwritematrix.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritematrix_CFLAGS) $(CFLAGS) -c -o call_scilab_readwritematrix-readwritematrix.obj `if test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritematrix.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritematrix.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritematrix.c'; fi`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritematrix_CFLAGS) $(CFLAGS) -c -o modules/call_scilab/examples/basicExamples/call_scilab_readwritematrix-readwritematrix.obj `if test -f 'modules/call_scilab/examples/basicExamples/readwritematrix.c'; then $(CYGPATH_W) 'modules/call_scilab/examples/basicExamples/readwritematrix.c'; else $(CYGPATH_W) '$(srcdir)/modules/call_scilab/examples/basicExamples/readwritematrix.c'; fi`
 
-call_scilab_readwritestring-readwritestring.o: $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritestring_CFLAGS) $(CFLAGS) -MT call_scilab_readwritestring-readwritestring.o -MD -MP -MF $(DEPDIR)/call_scilab_readwritestring-readwritestring.Tpo -c -o call_scilab_readwritestring-readwritestring.o `test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/call_scilab_readwritestring-readwritestring.Tpo $(DEPDIR)/call_scilab_readwritestring-readwritestring.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c' object='call_scilab_readwritestring-readwritestring.o' libtool=no @AMDEPBACKSLASH@
+modules/call_scilab/examples/basicExamples/call_scilab_readwritestring-readwritestring.o: modules/call_scilab/examples/basicExamples/readwritestring.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritestring_CFLAGS) $(CFLAGS) -MT modules/call_scilab/examples/basicExamples/call_scilab_readwritestring-readwritestring.o -MD -MP -MF modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritestring-readwritestring.Tpo -c -o modules/call_scilab/examples/basicExamples/call_scilab_readwritestring-readwritestring.o `test -f 'modules/call_scilab/examples/basicExamples/readwritestring.c' || echo '$(srcdir)/'`modules/call_scilab/examples/basicExamples/readwritestring.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritestring-readwritestring.Tpo modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritestring-readwritestring.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/call_scilab/examples/basicExamples/readwritestring.c' object='modules/call_scilab/examples/basicExamples/call_scilab_readwritestring-readwritestring.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritestring_CFLAGS) $(CFLAGS) -c -o call_scilab_readwritestring-readwritestring.o `test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritestring_CFLAGS) $(CFLAGS) -c -o modules/call_scilab/examples/basicExamples/call_scilab_readwritestring-readwritestring.o `test -f 'modules/call_scilab/examples/basicExamples/readwritestring.c' || echo '$(srcdir)/'`modules/call_scilab/examples/basicExamples/readwritestring.c
 
-call_scilab_readwritestring-readwritestring.obj: $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritestring_CFLAGS) $(CFLAGS) -MT call_scilab_readwritestring-readwritestring.obj -MD -MP -MF $(DEPDIR)/call_scilab_readwritestring-readwritestring.Tpo -c -o call_scilab_readwritestring-readwritestring.obj `if test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/call_scilab_readwritestring-readwritestring.Tpo $(DEPDIR)/call_scilab_readwritestring-readwritestring.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c' object='call_scilab_readwritestring-readwritestring.obj' libtool=no @AMDEPBACKSLASH@
+modules/call_scilab/examples/basicExamples/call_scilab_readwritestring-readwritestring.obj: modules/call_scilab/examples/basicExamples/readwritestring.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritestring_CFLAGS) $(CFLAGS) -MT modules/call_scilab/examples/basicExamples/call_scilab_readwritestring-readwritestring.obj -MD -MP -MF modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritestring-readwritestring.Tpo -c -o modules/call_scilab/examples/basicExamples/call_scilab_readwritestring-readwritestring.obj `if test -f 'modules/call_scilab/examples/basicExamples/readwritestring.c'; then $(CYGPATH_W) 'modules/call_scilab/examples/basicExamples/readwritestring.c'; else $(CYGPATH_W) '$(srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritestring-readwritestring.Tpo modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritestring-readwritestring.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/call_scilab/examples/basicExamples/readwritestring.c' object='modules/call_scilab/examples/basicExamples/call_scilab_readwritestring-readwritestring.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritestring_CFLAGS) $(CFLAGS) -c -o call_scilab_readwritestring-readwritestring.obj `if test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c'; fi`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritestring_CFLAGS) $(CFLAGS) -c -o modules/call_scilab/examples/basicExamples/call_scilab_readwritestring-readwritestring.obj `if test -f 'modules/call_scilab/examples/basicExamples/readwritestring.c'; then $(CYGPATH_W) 'modules/call_scilab/examples/basicExamples/readwritestring.c'; else $(CYGPATH_W) '$(srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c'; fi`
 
-scilab_bin-initMacOSXEnv.o: $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT scilab_bin-initMacOSXEnv.o -MD -MP -MF $(DEPDIR)/scilab_bin-initMacOSXEnv.Tpo -c -o scilab_bin-initMacOSXEnv.o `test -f '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/scilab_bin-initMacOSXEnv.Tpo $(DEPDIR)/scilab_bin-initMacOSXEnv.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c' object='scilab_bin-initMacOSXEnv.o' libtool=no @AMDEPBACKSLASH@
+modules/core/src/c/scilab_bin-initMacOSXEnv.o: modules/core/src/c/initMacOSXEnv.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT modules/core/src/c/scilab_bin-initMacOSXEnv.o -MD -MP -MF modules/core/src/c/$(DEPDIR)/scilab_bin-initMacOSXEnv.Tpo -c -o modules/core/src/c/scilab_bin-initMacOSXEnv.o `test -f 'modules/core/src/c/initMacOSXEnv.c' || echo '$(srcdir)/'`modules/core/src/c/initMacOSXEnv.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/core/src/c/$(DEPDIR)/scilab_bin-initMacOSXEnv.Tpo modules/core/src/c/$(DEPDIR)/scilab_bin-initMacOSXEnv.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/core/src/c/initMacOSXEnv.c' object='modules/core/src/c/scilab_bin-initMacOSXEnv.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o scilab_bin-initMacOSXEnv.o `test -f '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o modules/core/src/c/scilab_bin-initMacOSXEnv.o `test -f 'modules/core/src/c/initMacOSXEnv.c' || echo '$(srcdir)/'`modules/core/src/c/initMacOSXEnv.c
 
-scilab_bin-initMacOSXEnv.obj: $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT scilab_bin-initMacOSXEnv.obj -MD -MP -MF $(DEPDIR)/scilab_bin-initMacOSXEnv.Tpo -c -o scilab_bin-initMacOSXEnv.obj `if test -f '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/scilab_bin-initMacOSXEnv.Tpo $(DEPDIR)/scilab_bin-initMacOSXEnv.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c' object='scilab_bin-initMacOSXEnv.obj' libtool=no @AMDEPBACKSLASH@
+modules/core/src/c/scilab_bin-initMacOSXEnv.obj: modules/core/src/c/initMacOSXEnv.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT modules/core/src/c/scilab_bin-initMacOSXEnv.obj -MD -MP -MF modules/core/src/c/$(DEPDIR)/scilab_bin-initMacOSXEnv.Tpo -c -o modules/core/src/c/scilab_bin-initMacOSXEnv.obj `if test -f 'modules/core/src/c/initMacOSXEnv.c'; then $(CYGPATH_W) 'modules/core/src/c/initMacOSXEnv.c'; else $(CYGPATH_W) '$(srcdir)/modules/core/src/c/initMacOSXEnv.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/core/src/c/$(DEPDIR)/scilab_bin-initMacOSXEnv.Tpo modules/core/src/c/$(DEPDIR)/scilab_bin-initMacOSXEnv.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/core/src/c/initMacOSXEnv.c' object='modules/core/src/c/scilab_bin-initMacOSXEnv.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o scilab_bin-initMacOSXEnv.obj `if test -f '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; fi`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o modules/core/src/c/scilab_bin-initMacOSXEnv.obj `if test -f 'modules/core/src/c/initMacOSXEnv.c'; then $(CYGPATH_W) 'modules/core/src/c/initMacOSXEnv.c'; else $(CYGPATH_W) '$(srcdir)/modules/core/src/c/initMacOSXEnv.c'; fi`
 
-scilab_bin-initMPI.o: $(top_srcdir)/modules/console/src/c/others/initMPI.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT scilab_bin-initMPI.o -MD -MP -MF $(DEPDIR)/scilab_bin-initMPI.Tpo -c -o scilab_bin-initMPI.o `test -f '$(top_srcdir)/modules/console/src/c/others/initMPI.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/console/src/c/others/initMPI.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/scilab_bin-initMPI.Tpo $(DEPDIR)/scilab_bin-initMPI.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/console/src/c/others/initMPI.c' object='scilab_bin-initMPI.o' libtool=no @AMDEPBACKSLASH@
+modules/console/src/c/others/scilab_bin-initMPI.o: modules/console/src/c/others/initMPI.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT modules/console/src/c/others/scilab_bin-initMPI.o -MD -MP -MF modules/console/src/c/others/$(DEPDIR)/scilab_bin-initMPI.Tpo -c -o modules/console/src/c/others/scilab_bin-initMPI.o `test -f 'modules/console/src/c/others/initMPI.c' || echo '$(srcdir)/'`modules/console/src/c/others/initMPI.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/console/src/c/others/$(DEPDIR)/scilab_bin-initMPI.Tpo modules/console/src/c/others/$(DEPDIR)/scilab_bin-initMPI.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/console/src/c/others/initMPI.c' object='modules/console/src/c/others/scilab_bin-initMPI.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o scilab_bin-initMPI.o `test -f '$(top_srcdir)/modules/console/src/c/others/initMPI.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/console/src/c/others/initMPI.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o modules/console/src/c/others/scilab_bin-initMPI.o `test -f 'modules/console/src/c/others/initMPI.c' || echo '$(srcdir)/'`modules/console/src/c/others/initMPI.c
 
-scilab_bin-initMPI.obj: $(top_srcdir)/modules/console/src/c/others/initMPI.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT scilab_bin-initMPI.obj -MD -MP -MF $(DEPDIR)/scilab_bin-initMPI.Tpo -c -o scilab_bin-initMPI.obj `if test -f '$(top_srcdir)/modules/console/src/c/others/initMPI.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/console/src/c/others/initMPI.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/console/src/c/others/initMPI.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/scilab_bin-initMPI.Tpo $(DEPDIR)/scilab_bin-initMPI.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/console/src/c/others/initMPI.c' object='scilab_bin-initMPI.obj' libtool=no @AMDEPBACKSLASH@
+modules/console/src/c/others/scilab_bin-initMPI.obj: modules/console/src/c/others/initMPI.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT modules/console/src/c/others/scilab_bin-initMPI.obj -MD -MP -MF modules/console/src/c/others/$(DEPDIR)/scilab_bin-initMPI.Tpo -c -o modules/console/src/c/others/scilab_bin-initMPI.obj `if test -f 'modules/console/src/c/others/initMPI.c'; then $(CYGPATH_W) 'modules/console/src/c/others/initMPI.c'; else $(CYGPATH_W) '$(srcdir)/modules/console/src/c/others/initMPI.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/console/src/c/others/$(DEPDIR)/scilab_bin-initMPI.Tpo modules/console/src/c/others/$(DEPDIR)/scilab_bin-initMPI.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/console/src/c/others/initMPI.c' object='modules/console/src/c/others/scilab_bin-initMPI.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o scilab_bin-initMPI.obj `if test -f '$(top_srcdir)/modules/console/src/c/others/initMPI.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/console/src/c/others/initMPI.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/console/src/c/others/initMPI.c'; fi`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o modules/console/src/c/others/scilab_bin-initMPI.obj `if test -f 'modules/console/src/c/others/initMPI.c'; then $(CYGPATH_W) 'modules/console/src/c/others/initMPI.c'; else $(CYGPATH_W) '$(srcdir)/modules/console/src/c/others/initMPI.c'; fi`
 
-scilab_cli_bin-initMPI.o: $(top_srcdir)/modules/console/src/c/others/initMPI.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT scilab_cli_bin-initMPI.o -MD -MP -MF $(DEPDIR)/scilab_cli_bin-initMPI.Tpo -c -o scilab_cli_bin-initMPI.o `test -f '$(top_srcdir)/modules/console/src/c/others/initMPI.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/console/src/c/others/initMPI.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/scilab_cli_bin-initMPI.Tpo $(DEPDIR)/scilab_cli_bin-initMPI.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/console/src/c/others/initMPI.c' object='scilab_cli_bin-initMPI.o' libtool=no @AMDEPBACKSLASH@
+modules/console/src/c/others/scilab_cli_bin-initMPI.o: modules/console/src/c/others/initMPI.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT modules/console/src/c/others/scilab_cli_bin-initMPI.o -MD -MP -MF modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-initMPI.Tpo -c -o modules/console/src/c/others/scilab_cli_bin-initMPI.o `test -f 'modules/console/src/c/others/initMPI.c' || echo '$(srcdir)/'`modules/console/src/c/others/initMPI.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-initMPI.Tpo modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-initMPI.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/console/src/c/others/initMPI.c' object='modules/console/src/c/others/scilab_cli_bin-initMPI.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o scilab_cli_bin-initMPI.o `test -f '$(top_srcdir)/modules/console/src/c/others/initMPI.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/console/src/c/others/initMPI.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o modules/console/src/c/others/scilab_cli_bin-initMPI.o `test -f 'modules/console/src/c/others/initMPI.c' || echo '$(srcdir)/'`modules/console/src/c/others/initMPI.c
 
-scilab_cli_bin-initMPI.obj: $(top_srcdir)/modules/console/src/c/others/initMPI.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT scilab_cli_bin-initMPI.obj -MD -MP -MF $(DEPDIR)/scilab_cli_bin-initMPI.Tpo -c -o scilab_cli_bin-initMPI.obj `if test -f '$(top_srcdir)/modules/console/src/c/others/initMPI.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/console/src/c/others/initMPI.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/console/src/c/others/initMPI.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/scilab_cli_bin-initMPI.Tpo $(DEPDIR)/scilab_cli_bin-initMPI.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/console/src/c/others/initMPI.c' object='scilab_cli_bin-initMPI.obj' libtool=no @AMDEPBACKSLASH@
+modules/console/src/c/others/scilab_cli_bin-initMPI.obj: modules/console/src/c/others/initMPI.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT modules/console/src/c/others/scilab_cli_bin-initMPI.obj -MD -MP -MF modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-initMPI.Tpo -c -o modules/console/src/c/others/scilab_cli_bin-initMPI.obj `if test -f 'modules/console/src/c/others/initMPI.c'; then $(CYGPATH_W) 'modules/console/src/c/others/initMPI.c'; else $(CYGPATH_W) '$(srcdir)/modules/console/src/c/others/initMPI.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-initMPI.Tpo modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-initMPI.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/console/src/c/others/initMPI.c' object='modules/console/src/c/others/scilab_cli_bin-initMPI.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o scilab_cli_bin-initMPI.obj `if test -f '$(top_srcdir)/modules/console/src/c/others/initMPI.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/console/src/c/others/initMPI.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/console/src/c/others/initMPI.c'; fi`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o modules/console/src/c/others/scilab_cli_bin-initMPI.obj `if test -f 'modules/console/src/c/others/initMPI.c'; then $(CYGPATH_W) 'modules/console/src/c/others/initMPI.c'; else $(CYGPATH_W) '$(srcdir)/modules/console/src/c/others/initMPI.c'; fi`
 
 .cpp.o:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .cpp.lo:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
-scilab_bin-scilab.o: $(top_srcdir)/modules/core/src/cpp/scilab.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scilab_bin-scilab.o -MD -MP -MF $(DEPDIR)/scilab_bin-scilab.Tpo -c -o scilab_bin-scilab.o `test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/scilab.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/scilab_bin-scilab.Tpo $(DEPDIR)/scilab_bin-scilab.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$(top_srcdir)/modules/core/src/cpp/scilab.cpp' object='scilab_bin-scilab.o' libtool=no @AMDEPBACKSLASH@
+modules/core/src/cpp/scilab_bin-scilab.o: modules/core/src/cpp/scilab.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT modules/core/src/cpp/scilab_bin-scilab.o -MD -MP -MF modules/core/src/cpp/$(DEPDIR)/scilab_bin-scilab.Tpo -c -o modules/core/src/cpp/scilab_bin-scilab.o `test -f 'modules/core/src/cpp/scilab.cpp' || echo '$(srcdir)/'`modules/core/src/cpp/scilab.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) modules/core/src/cpp/$(DEPDIR)/scilab_bin-scilab.Tpo modules/core/src/cpp/$(DEPDIR)/scilab_bin-scilab.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='modules/core/src/cpp/scilab.cpp' object='modules/core/src/cpp/scilab_bin-scilab.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab_bin-scilab.o `test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/scilab.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o modules/core/src/cpp/scilab_bin-scilab.o `test -f 'modules/core/src/cpp/scilab.cpp' || echo '$(srcdir)/'`modules/core/src/cpp/scilab.cpp
 
-scilab_bin-scilab.obj: $(top_srcdir)/modules/core/src/cpp/scilab.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scilab_bin-scilab.obj -MD -MP -MF $(DEPDIR)/scilab_bin-scilab.Tpo -c -o scilab_bin-scilab.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/scilab_bin-scilab.Tpo $(DEPDIR)/scilab_bin-scilab.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$(top_srcdir)/modules/core/src/cpp/scilab.cpp' object='scilab_bin-scilab.obj' libtool=no @AMDEPBACKSLASH@
+modules/core/src/cpp/scilab_bin-scilab.obj: modules/core/src/cpp/scilab.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT modules/core/src/cpp/scilab_bin-scilab.obj -MD -MP -MF modules/core/src/cpp/$(DEPDIR)/scilab_bin-scilab.Tpo -c -o modules/core/src/cpp/scilab_bin-scilab.obj `if test -f 'modules/core/src/cpp/scilab.cpp'; then $(CYGPATH_W) 'modules/core/src/cpp/scilab.cpp'; else $(CYGPATH_W) '$(srcdir)/modules/core/src/cpp/scilab.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) modules/core/src/cpp/$(DEPDIR)/scilab_bin-scilab.Tpo modules/core/src/cpp/$(DEPDIR)/scilab_bin-scilab.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='modules/core/src/cpp/scilab.cpp' object='modules/core/src/cpp/scilab_bin-scilab.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab_bin-scilab.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o modules/core/src/cpp/scilab_bin-scilab.obj `if test -f 'modules/core/src/cpp/scilab.cpp'; then $(CYGPATH_W) 'modules/core/src/cpp/scilab.cpp'; else $(CYGPATH_W) '$(srcdir)/modules/core/src/cpp/scilab.cpp'; fi`
 
-scilab_cli_bin-scilab.o: $(top_srcdir)/modules/core/src/cpp/scilab.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scilab_cli_bin-scilab.o -MD -MP -MF $(DEPDIR)/scilab_cli_bin-scilab.Tpo -c -o scilab_cli_bin-scilab.o `test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/scilab.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/scilab_cli_bin-scilab.Tpo $(DEPDIR)/scilab_cli_bin-scilab.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$(top_srcdir)/modules/core/src/cpp/scilab.cpp' object='scilab_cli_bin-scilab.o' libtool=no @AMDEPBACKSLASH@
+modules/core/src/cpp/scilab_cli_bin-scilab.o: modules/core/src/cpp/scilab.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT modules/core/src/cpp/scilab_cli_bin-scilab.o -MD -MP -MF modules/core/src/cpp/$(DEPDIR)/scilab_cli_bin-scilab.Tpo -c -o modules/core/src/cpp/scilab_cli_bin-scilab.o `test -f 'modules/core/src/cpp/scilab.cpp' || echo '$(srcdir)/'`modules/core/src/cpp/scilab.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) modules/core/src/cpp/$(DEPDIR)/scilab_cli_bin-scilab.Tpo modules/core/src/cpp/$(DEPDIR)/scilab_cli_bin-scilab.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='modules/core/src/cpp/scilab.cpp' object='modules/core/src/cpp/scilab_cli_bin-scilab.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab_cli_bin-scilab.o `test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/scilab.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o modules/core/src/cpp/scilab_cli_bin-scilab.o `test -f 'modules/core/src/cpp/scilab.cpp' || echo '$(srcdir)/'`modules/core/src/cpp/scilab.cpp
 
-scilab_cli_bin-scilab.obj: $(top_srcdir)/modules/core/src/cpp/scilab.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scilab_cli_bin-scilab.obj -MD -MP -MF $(DEPDIR)/scilab_cli_bin-scilab.Tpo -c -o scilab_cli_bin-scilab.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/scilab_cli_bin-scilab.Tpo $(DEPDIR)/scilab_cli_bin-scilab.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$(top_srcdir)/modules/core/src/cpp/scilab.cpp' object='scilab_cli_bin-scilab.obj' libtool=no @AMDEPBACKSLASH@
+modules/core/src/cpp/scilab_cli_bin-scilab.obj: modules/core/src/cpp/scilab.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT modules/core/src/cpp/scilab_cli_bin-scilab.obj -MD -MP -MF modules/core/src/cpp/$(DEPDIR)/scilab_cli_bin-scilab.Tpo -c -o modules/core/src/cpp/scilab_cli_bin-scilab.obj `if test -f 'modules/core/src/cpp/scilab.cpp'; then $(CYGPATH_W) 'modules/core/src/cpp/scilab.cpp'; else $(CYGPATH_W) '$(srcdir)/modules/core/src/cpp/scilab.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) modules/core/src/cpp/$(DEPDIR)/scilab_cli_bin-scilab.Tpo modules/core/src/cpp/$(DEPDIR)/scilab_cli_bin-scilab.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='modules/core/src/cpp/scilab.cpp' object='modules/core/src/cpp/scilab_cli_bin-scilab.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab_cli_bin-scilab.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o modules/core/src/cpp/scilab_cli_bin-scilab.obj `if test -f 'modules/core/src/cpp/scilab.cpp'; then $(CYGPATH_W) 'modules/core/src/cpp/scilab.cpp'; else $(CYGPATH_W) '$(srcdir)/modules/core/src/cpp/scilab.cpp'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -1915,6 +1993,16 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f modules/call_scilab/examples/basicExamples/$(DEPDIR)/$(am__dirstamp)
+	-rm -f modules/call_scilab/examples/basicExamples/$(am__dirstamp)
+	-rm -f modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/$(am__dirstamp)
+	-rm -f modules/call_scilab/examples/call_scilab/c/common/$(am__dirstamp)
+	-rm -f modules/console/src/c/others/$(DEPDIR)/$(am__dirstamp)
+	-rm -f modules/console/src/c/others/$(am__dirstamp)
+	-rm -f modules/core/src/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f modules/core/src/c/$(am__dirstamp)
+	-rm -f modules/core/src/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f modules/core/src/cpp/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1927,7 +2015,7 @@ clean-am: clean-binPROGRAMS clean-checkPROGRAMS clean-generic \
 
 distclean: distclean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-	-rm -rf ./$(DEPDIR)
+	-rm -rf modules/call_scilab/examples/basicExamples/$(DEPDIR) modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR) modules/console/src/c/others/$(DEPDIR) modules/core/src/c/$(DEPDIR) modules/core/src/cpp/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-libtool distclean-tags
@@ -1976,7 +2064,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-	-rm -rf ./$(DEPDIR)
+	-rm -rf modules/call_scilab/examples/basicExamples/$(DEPDIR) modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR) modules/console/src/c/others/$(DEPDIR) modules/core/src/c/$(DEPDIR) modules/core/src/cpp/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

@@ -62,14 +62,14 @@
         <programlisting role="example"><![CDATA[
     doc = xmlRead("http://www.w3.org/TR/2009/REC-xml-names-20091208/xml-names-10-3e.xml");
 
-    // Retrieve the nodes with name equals to "note"
+    // Retrieve the nodes with name equal to "note"
     xp = xmlXPath(doc, "//note");
     s = size(xp);
     for i=1:s(2)
         xmlDump(xp(i))
     end
 
-    // Count the nodes with name equals to "note"
+    // Count the nodes with name equal to "note"
     xp = xmlXPath(doc, "count(//note)")
 
     // Retrieve the node with id="Philosophy"
@@ -79,7 +79,7 @@
         xmlDump(xp(1))
     end
 
-    // Retrieve the nodes with an attribute num equals to the number 5
+    // Retrieve the nodes with an attribute num equal to the number 5
     xp = xmlXPath(doc, "//*[number(@num)=5]");
     s = size(xp);
     if (s(2) <> 0) then

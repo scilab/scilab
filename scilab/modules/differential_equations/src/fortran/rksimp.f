@@ -4,15 +4,16 @@ c
 c     fehlberg fourth-fifth order runge-kutta method
 c
 c
+      include 'stack.h'
+      
       integer neqn,iflag,iwork(*)
       double precision y(*),t,tout,rerr,aerr,work(*),h
 c
       double precision ae,scale,eeoet,et,esttol,ee
-      common/ierode/iero
       external fydot2
 c
       integer k1,k2,k3,k4,k5,k6
-      iero=0
+      ierror=0
 c
 c     compute indices for the splitting of the work array
 c
@@ -76,45 +77,46 @@ c
       double precision  y(*),t,h,yp(neqn),f1(neqn),f2(neqn),
      1  f3(neqn),f4(neqn),f5(neqn),s(neqn)
 c
+      include 'stack.h'      
+      
       double precision  ch
       integer  k
       external fydot2
-      common/ierode/iero
 c
 c      write(6,*) 'inputfelh2:',y(1),y(2)
       call fydot2(neqn,t,y,yp)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       ch=h/4.0d0
       do 221 k=1,neqn
   221   y(k)=y(k)+ch*yp(k)
       call fydot2(neqn,t+ch,y,f1)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
 c
       ch=3.0d0*h/32.0d0
       do 222 k=1,neqn
   222   y(k)=s(k)+ch*(yp(k)+3.0d0*f1(k))
       call fydot2(neqn,t+3.0d0*h/8.0d0,y,f2)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
 c
       ch=h/2197.0d0
       do 223 k=1,neqn
   223   y(k)=s(k)+ch*(1932.0d0*yp(k)+(7296.0d0*f2(k)-7200.0d0*f1(k)))
       call fydot2(neqn,t+12.0d0*h/13.0d0,y,f3)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
 c
       ch=h/4104.0d0
       do 224 k=1,neqn
   224   y(k)=s(k)+ch*((8341.0d0*yp(k)-845.0d0*f3(k))+
      1                            (29440.0d0*f2(k)-32832.0d0*f1(k)))
       call fydot2(neqn,t+h,y,f4)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
 c
       ch=h/20520.0d0
       do 225 k=1,neqn
   225   y(k)=s(k)+ch*((-6080.0d0*yp(k)+(9295.0d0*f3(k)-
      1         5643.0d0*f4(k)))+(41040.0d0*f1(k)-28352.0d0*f2(k)))
       call fydot2(neqn,t+h/2.0d0,y,f5)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
 c
 c     compute approximate solution at t+h
 c

@@ -22,7 +22,7 @@
  * @param pParentUID the parent UID (figure or console)
  * @param status TRUE to set the toolbar visible
  */
-GUI_IMPEXP void setToolbarVisible(char *pParentUID, BOOL status);
+GUI_IMPEXP void setToolbarVisible(int iParentUID, BOOL status);
 
 /**
  * Get the visibility of the toolbar
@@ -30,6 +30,6 @@ GUI_IMPEXP void setToolbarVisible(char *pParentUID, BOOL status);
  * @param pParentUID the parent UID (figure or console)
  * @return TRUE if the toolbar is visible
  */
-GUI_IMPEXP BOOL isToolbarVisible(char *pParentUID);
+GUI_IMPEXP BOOL isToolbarVisible(int iParentUID);
 
 #endif /* __TOOLBAR_H__ */

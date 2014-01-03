@@ -34,7 +34,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_tics_style_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_tics_style_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int ticksStyle = 0;
@@ -71,7 +71,7 @@ int set_tics_style_property(void* _pvCtx, char* pobjUID, void* _pvData, int valu
         ticksStyle = 2;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, &ticksStyle, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_TICKS_STYLE__, &ticksStyle, jni_int, 1);
 
     if (status == TRUE)
     {

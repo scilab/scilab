@@ -37,7 +37,7 @@ BOOL sciHasFigures()
     return (ScilabView::isEmptyFigureList() == true ? FALSE : TRUE);
 }
 
-char const* getFigureFromIndex(int figNum)
+int getFigureFromIndex(int figNum)
 {
     return ScilabView::getFigureFromIndex(figNum);
 }

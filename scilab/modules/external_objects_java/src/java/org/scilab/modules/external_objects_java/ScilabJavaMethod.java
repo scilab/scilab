@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -149,6 +149,7 @@ public final class ScilabJavaMethod {
         } catch (IllegalAccessException e) {
             throw new ScilabJavaException("Illegal access to the method " + name + ".");
         } catch (IllegalArgumentException e) {
+            e.printStackTrace();
             throw new ScilabJavaException("Illegal argument in the method " + name + ": \n" + e.getMessage());
         } catch (NullPointerException e) {
             throw new ScilabJavaException("The method " + name + " is called on a null object.");

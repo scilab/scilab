@@ -43,7 +43,7 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
     private static final int WIDTH = 450;
     private static final int HEIGHT = 150;
 
-    private String uid;
+    private Integer uid;
 
     private int elementId;
 
@@ -199,7 +199,7 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
      * Set the UID
      * @param id the UID
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         uid = id;
     }
 
@@ -207,7 +207,7 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
      * Get the UID
      * @return the UID
      */
-    public String getId() {
+    public Integer getId() {
         return uid;
     }
 

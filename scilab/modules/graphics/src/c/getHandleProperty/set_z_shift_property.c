@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_z_shift_property(void* _pvCtx, char * pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_z_shift_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL result = FALSE;
     double* shiftCoordinates = NULL;
@@ -53,7 +53,7 @@ int set_z_shift_property(void* _pvCtx, char * pobjUID, void* _pvData, int valueT
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**)&piNumElements);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**)&piNumElements);
 
     if (piNumElements == NULL)
     {
@@ -71,7 +71,7 @@ int set_z_shift_property(void* _pvCtx, char * pobjUID, void* _pvData, int valueT
     {
         shiftCoordinates = (double*)_pvData;
 
-        result = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, shiftCoordinates, jni_double_vector, iNumElements);
+        result = setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, shiftCoordinates, jni_double_vector, iNumElements);
 
         /* The FALSE value is used for now to identify a failed memory allocation */
         if (result == FALSE)
@@ -88,7 +88,7 @@ int set_z_shift_property(void* _pvCtx, char * pobjUID, void* _pvData, int valueT
          * would probably be better.
          */
         int shiftSet = 0;
-        setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT_SET__, &shiftSet, jni_double_vector, 1);
+        setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT_SET__, &shiftSet, jni_double_vector, 1);
     }
 
     return SET_PROPERTY_SUCCEED;

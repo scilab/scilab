@@ -25,22 +25,11 @@ function [x,y,typ] = AFFICH_m(job,arg1,arg2)
     //** 07 Aug 2008: this function has been update for Scilab 5.0 by
     //**              Simone Mannori and Jean-Baptiste Silvy
 
-    x=[]; y=[]; typ=[] ;
+    x=[];
+    y=[];
+    typ=[];
 
     select job
-
-    case "plot" then
-        ipar = arg1.model.ipar
-        standard_draw(arg1)
-
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-
-    case "getoutputs" then
-        x=[];y=[];typ=[];
-
-    case "getorigin" then
-        [x,y] = standard_origin(arg1)
 
     case "set" then
         x = arg1 ;
@@ -60,7 +49,9 @@ function [x,y,typ] = AFFICH_m(job,arg1,arg2)
             "Block inherits (1) or not (0)"],..
             list("mat",[1 2],"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs)
 
-            if ~ok then break,end //user cancel modification
+            if ~ok then
+                break,
+            end //user cancel modification
 
             mess = [] ; //** no message
 
@@ -147,14 +138,7 @@ function [x,y,typ] = AFFICH_m(job,arg1,arg2)
         string(nd);
         string(0) ]
 
-        gr_i=["fnt=xget(''font'')"
-        "xset(''font'',ipar(1),ipar(2))";
-        "str='' ''+part(''0'',ones(1,ipar(5)-ipar(6)-2))+''.''+part(''0'',ones(1,ipar(6)))"
-        "str(1:model.in*model.in2)=str"
-        "str=matrix(str,model.in,model.in2)"
-        "rr=xstringl(orig(1),orig(2),str)"
-        "xstring(orig(1)+max(0,(sz(1)-rr(3))/2),orig(2)+max(0,(sz(2)-rr(4))/2),str)"
-        "xset(''font'',fnt(1),fnt(2))"]
+        gr_i=[]
 
         x = standard_define([3 2],model,exprs,gr_i)
 

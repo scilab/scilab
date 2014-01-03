@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "api_scilab module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "api_scilab module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "api_scilab.dll"
             VALUE "ProductName", "api_scilab module"
             VALUE "ProductVersion", "6, 0, 0, 0"

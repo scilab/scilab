@@ -101,7 +101,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
             Dans les scripts suivants, on test le surplus de calcul de la détection de racines avec <emphasis>LSodar</emphasis> :
         </para>
         <para>
-            D'abord, un Sinus traversant zéro toutes les &#960; périodes :
+            D'abord, un Sinus traversant zéro toutes les π périodes :
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/Rootfinding.sce">
                 Ouverture du script
             </link>

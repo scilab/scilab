@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr_FR" xml:id="MODELICA_USER_LIBS">
+    <refnamediv>
+        <refname>%MODELICA_USER_LIBS</refname>
+        <refpurpose>
+            Spécifier l'emplacement des librairies Modelica
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Cette variable sert à spécifier où se trouvent les librairies Modelica.
+        </para>
+        <para>
+            Si l'utilisateur souhaite définir ses propres blocs Modelica, les fichiers
+            décrivant ces blocs doivent être indiqués. La variable %MODELICA_USER_LIBS doit
+            être déclarée globale avant de lancer Xcos.
+        </para>
+    </refsection>
+    <refsection id="Example_MODELICA_USER_LIBS">
+        <title>Example</title>
+        <programlisting role="example">
+            // Obtenir le chemin Modelica actuel
+            [modelica_path, modelica_directory] = getModelicaPath()
+            
+            // Pour définir le chemin du dossier contenant les librairies Modelica
+            // Elle doit être globale pour être appelée depuis les toolbox Atoms
+            global %MODELICA_USER_LIBS
+            %MODELICA_USER_LIBS = SCI + "/modules/xcos/modelica_library";
+            
+            // Lancer Xcos
+            xcos();
+            // Charger le diagamme aux blocs Modelica blocks
+            
+            [modelica_path, modelica_directory] = getModelicaPath()
+            
+            // Pour ajouter un nouveau dossier Modelica
+            %MODELICA_USER_LIBS = [%MODELICA_USER_LIBS , SCI + "/modules/xcos/my_modelica_blocks/Electrical_network"];
+            
+            // Lancer Xcos
+            xcos();
+            // Charger le diagamme aux blocs Modelica blocks
+            
+            [modelica_path, modelica_directory] = getModelicaPath()
+            
+        </programlisting>
+    </refsection>
+    <refsection id="SeeAlso_MODELICA_USER_LIBS">
+        <title>Voir aussi</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="getModelicaPath">getModelicaPath</link>: obtenir le chemin du dossier Modelica requis par les diargamme Xcos contenant des blocs Modelica
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

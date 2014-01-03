@@ -46,7 +46,7 @@ typedef struct
  * don't forget to modify it each time the propertyTable
  * is modified.
  */
-#define NB_PROPERTIES 178
+#define NB_PROPERTIES 179
 
 /**
  * list of all property names and associated functions in scilab
@@ -231,7 +231,8 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
     {"material_shininess", get_material_shininess_property},
     {"light_type", get_light_type_property},
     {"direction", get_direction_property},
-    {"image_type", get_image_type_property}
+    {"image_type", get_image_type_property},
+    {"datatips", get_datatips_property}
 };
 
 /*--------------------------------------------------------------------------*/
@@ -266,7 +267,8 @@ GetPropertyHashTable *createScilabGetHashTable(void)
 }
 
 /*--------------------------------------------------------------------------*/
-void* callGetProperty(void* _pvCtx, char *pObjUID, char *propertyName)
+
+void* callGetProperty(void* _pvCtx, int iObjUID, char *propertyName)
 {
     getPropertyFunc accessor = searchGetHashtable(getHashTable, propertyName);
 
@@ -275,7 +277,7 @@ void* callGetProperty(void* _pvCtx, char *pObjUID, char *propertyName)
         Scierror(999, _("Unknown property: %s.\n"), propertyName);
         return NULL;
     }
-    return accessor(_pvCtx, pObjUID);
+    return accessor(_pvCtx, iObjUID);
 }
 
 /*--------------------------------------------------------------------------*/

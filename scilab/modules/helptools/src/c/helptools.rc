@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "helptools module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "helptools"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "helptools.rc"
             VALUE "ProductName", " helptools"
             VALUE "ProductVersion", "6, 0, 0, 0"

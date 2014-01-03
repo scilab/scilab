@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -41,8 +41,8 @@ int sci_datatipcreate(char *fname, void* pvApiCtx)
 
     int* piAddressVarOne    = NULL;
     int* piAddressVarTwo    = NULL;
-    char* datatip_handler   = NULL;
-    char* polylineUID       = NULL;
+    int iDatatip_handler    = 0;
+    int iPolylineUID        = 0;
     double* pdblReal        = NULL;
 
     int iType = 0;
@@ -69,11 +69,11 @@ int sci_datatipcreate(char *fname, void* pvApiCtx)
             return 1;
         }
 
-        polylineUID = (char *)getObjectFromHandle((unsigned long) llHandle);
+        iPolylineUID = getObjectFromHandle((unsigned long) llHandle);
 
         if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
         {
-            getGraphicObjectProperty(polylineUID, __GO_TYPE__, jni_int, (void**) &piType);
+            getGraphicObjectProperty(iPolylineUID, __GO_TYPE__, jni_int, (void**) &piType);
             if (iType == __GO_POLYLINE__)
             {
                 if (checkInputArgumentType(pvApiCtx, 2, sci_matrix))
@@ -95,21 +95,23 @@ int sci_datatipcreate(char *fname, void* pvApiCtx)
                     if (nbRow * nbCol == 1)
                     {
                         indexPoint = (int) pdblReal[0];
-                        datatip_handler = DatatipCreate::createDatatipProgramIndex(getScilabJavaVM(), (char*)polylineUID, indexPoint);
+                        iDatatip_handler = DatatipCreate::createDatatipProgramIndex(getScilabJavaVM(), iPolylineUID, indexPoint);
                     }
                     else if (nbRow * nbCol == 2)
                     {
-                        datatip_handler = DatatipCreate::createDatatipProgramCoord(getScilabJavaVM(), (char*)polylineUID, pdblReal, 2);
+                        iDatatip_handler = DatatipCreate::createDatatipProgramCoord(getScilabJavaVM(), iPolylineUID, pdblReal, 2);
                     }
                     else if (nbRow * nbCol == 3)
                     {
-                        datatip_handler = DatatipCreate::createDatatipProgramCoord(getScilabJavaVM(), (char*)polylineUID, pdblReal, 3);
+                        iDatatip_handler = DatatipCreate::createDatatipProgramCoord(getScilabJavaVM(), iPolylineUID, pdblReal, 3);
                     }
                     else
                     {
                         Scierror(999, _("%s: Wrong size for input argument #%d: 1-by-%d or %d-by-1 vector expected.\n"), fname, 2, 2, 3);
                         return 1;
                     }
+
+                    llHandle = ScilabView::getObjectHandle(iDatatip_handler);
                 }
                 else
                 {

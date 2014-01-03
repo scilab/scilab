@@ -24,7 +24,7 @@
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-extern double C2F(urand)();
+extern double C2F(urand)(int* iy);
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void rndblk_m(scicos_block *block, int flag)
 {

@@ -17,6 +17,12 @@
 //   x : the coordinates of the vertices.
 //
 function this = optimsimplex_setallx ( this , x )
+    if typeof(this) <> "TSIMPLEX" then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"), "optimsimplex_setallx", 1));
+    end
+    if type(x) <> 1 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "optimsimplex_setallx", 2));
+    end
     nx1 = size ( x , 1 );
     if nx1 <> this.nbve then
         error ( msprintf ( gettext ( "%s: The number of rows in x is %d, while expected %d." ), "optimsimplex_setallx" , nx1 , this.nbve ))
@@ -27,4 +33,3 @@ function this = optimsimplex_setallx ( this , x )
     end
     this.x ( 1:this.nbve , 1:this.n ) = x ( 1:this.nbve , 1:this.n );
 endfunction
-

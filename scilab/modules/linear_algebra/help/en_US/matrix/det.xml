@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -27,7 +27,7 @@
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>real or complex square matrix (full or sparse), polynomial or rational matrix</para>
+                    <para>real or complex square matrix, polynomial or rational matrix.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -47,13 +47,24 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>det(X)</literal> ( <literal>m*10^e</literal> ) is the determinant of the square matrix <literal>X</literal>.
+            <literal>det(X)</literal> ( <literal>m*10^e</literal> is the determinant of the square matrix <literal>X</literal>.
         </para>
         <para>
             For polynomial matrix <literal>det(X)</literal> is equivalent to <literal>determ(X)</literal>.
         </para>
         <para>
             For rational matrices <literal>det(X)</literal> is equivalent to <literal>detr(X)</literal>.
+        </para>
+        <para>
+            <important>
+                The <literal>det</literal> and <literal>detr</literal> functions don't use the same algorithm. 
+                For a rational fraction, <literal>det(X)</literal> is overloaded by <literal>%r_det(X)</literal> which is based on the <literal>determ</literal> function.
+                <literal>detr()</literal> uses the Leverrier method.
+            </important>
+            <warning>
+                Sometimes the <literal>det</literal> and <literal>detr</literal> functions may return different values for rational matrices.
+                In such cases you should set rational simplification mode off by using <code>simp_mode(%f)</code> to get the same result.
+            </warning>
         </para>
     </refsection>
     <refsection>
@@ -68,7 +79,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=poly(0,'x');
 det([x,1+x;2-x,x^2])
 w=ssrand(2,2,4);roots(det(systmat(w))),trzeros(w)   //zeros of linear system
@@ -84,6 +95,9 @@ det(A), prod(spec(A))
             </member>
             <member>
                 <link linkend="determ">determ</link>
+            </member>
+            <member>
+                <link linkend="simp_mode">simp_mode</link>
             </member>
         </simplelist>
     </refsection>

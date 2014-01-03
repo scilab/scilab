@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "nowindows_tools module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "nowindows_tools module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "nowindows_tools.dll"
             VALUE "ProductName", " nowindows_tools"
             VALUE "ProductVersion", "6, 0, 0, 0"

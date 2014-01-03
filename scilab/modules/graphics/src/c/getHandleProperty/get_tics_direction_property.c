@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_tics_direction_property(void* _pvCtx, char* pobjUID)
+void* get_tics_direction_property(void* _pvCtx, int iObjUID)
 {
     int iTicksDirection = 0;
     int* piTicksDirection = &iTicksDirection;
 
-    getGraphicObjectProperty(pobjUID, __GO_TICKS_DIRECTION__, jni_int, (void**)&piTicksDirection);
+    getGraphicObjectProperty(iObjUID, __GO_TICKS_DIRECTION__, jni_int, (void**)&piTicksDirection);
 
     if (piTicksDirection == NULL)
     {

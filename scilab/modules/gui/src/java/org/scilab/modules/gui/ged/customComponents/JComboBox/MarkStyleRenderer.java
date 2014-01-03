@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -34,10 +34,10 @@ public class MarkStyleRenderer extends JPanel implements ListCellRenderer {
 
     @Override
     public Component getListCellRendererComponent(JList list,
-                                                  Object value,
-                                                  int index,
-                                                  boolean isSelected,
-                                                  boolean cellHasFocus) {
+            Object value,
+            int index,
+            boolean isSelected,
+            boolean cellHasFocus) {
         if (isSelected) {
             setBackground(list.getSelectionBackground());
             setForeground(list.getSelectionForeground());
@@ -46,10 +46,11 @@ public class MarkStyleRenderer extends JPanel implements ListCellRenderer {
             setForeground(list.getForeground());
         }
 
-        if (value instanceof MarkStyle)
+        if (value instanceof MarkStyle) {
             setMarkType((MarkStyle) value);
-        else
+        } else {
             setMarkType(null);
+        }
 
         return this;
     }

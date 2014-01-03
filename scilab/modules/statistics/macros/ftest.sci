@@ -16,13 +16,16 @@ function [f,p]=ftest(samples)
     //observations this fonction computes in f the Fischer ratio
     //(it is the  ratio between  nr times  the variance   of the
     //means of  samples  and the  mean of the  variances of each
-    //sample).  Additionnally it gives (in p) the p-value of the
+    //sample).  Additionally it gives (in p) the p-value of the
     //computed  Fischer ratio.  samples   is a matrix  with type
     //nrxnc.
     //
     //References:  Wonacott, T.H. & Wonacott, R.J.; Introductory
     //Statistics, J.Wiley & Sons, 1990.
     //
+    if argn(2) == 0 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"ftest",1))
+    end
     [nr nc]=size(samples)
     xbar=mean(samples,"r")
     xbarbar=mean(xbar)

@@ -35,7 +35,7 @@ public class ScilabFileChooser implements FileChooser {
      * Constructor
      * @param figureId id of the exported figure
      */
-    protected ScilabFileChooser(String figureId) {
+    protected ScilabFileChooser(Integer figureId) {
         component = ScilabBridge.createExportFileChooser(figureId);
     }
 
@@ -52,7 +52,7 @@ public class ScilabFileChooser implements FileChooser {
      * @param figureId int
      * @return the created export file chooser
      */
-    public static FileChooser createExportFileChooser(String figureUID) {
+    public static FileChooser createExportFileChooser(Integer figureUID) {
         return new ScilabFileChooser(figureUID);
     }
 

@@ -26,7 +26,7 @@ public final class GlobalEventWatcher {
     private static GlobalKeyEventWatcher keyWatcher;
     private static GlobalMouseEventWatcher mouseWatcher;
     private static boolean activated;
-    private static String axesUID = null;
+    private static Integer axesUID = null;
     private static boolean catchingCallback = false;
 
     /**
@@ -90,11 +90,11 @@ public final class GlobalEventWatcher {
         return activated;
     }
 
-    public static void setAxesUID(String axesUID) {
+    public static void setAxesUID(Integer axesUID) {
         GlobalEventWatcher.axesUID = axesUID;
     }
 
-    public static String getAxesUID() {
+    public static Integer getAxesUID() {
         return axesUID ;
     }
 
@@ -102,7 +102,7 @@ public final class GlobalEventWatcher {
         catchingCallback = true;
     }
 
-    public static void disableableCatchingCallback() {
+    public static void disableCatchingCallback() {
         catchingCallback = false;
     }
 

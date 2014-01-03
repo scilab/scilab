@@ -40,7 +40,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      * @param lw the LinkWriter to use to handle links
      */
     public static void setLinkWriter(LinkWriter lw) {
-        handler.linkWriter = lw;
+        HTMLScilabCodeHandler.linkWriter = lw;
     }
 
     /**

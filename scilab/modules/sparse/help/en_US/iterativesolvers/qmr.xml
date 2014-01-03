@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -28,7 +28,7 @@
                 <term>A</term>
                 <listitem>
                     <para>
-                        matrix of size n-by-n or function.		   
+                        matrix of size n-by-n or function.
                     </para>
                     <itemizedlist>
                         <listitem>
@@ -42,16 +42,16 @@
                                 <literal>function.</literal>If A is a function which returns <literal>A*x</literal>, it must
                                 have the following header :
                             </para>
-                            <programlisting role=""><![CDATA[ 
+                            <programlisting role=""><![CDATA[
 function y = A ( x )
  ]]></programlisting>
                             <para>
-                                If A is a function which returns <literal>A*x</literal> or <literal>A'*x</literal> depending t. 
-                                If <literal>t = "notransp"</literal>, the function returns <literal>A*x</literal>. 
+                                If A is a function which returns <literal>A*x</literal> or <literal>A'*x</literal> depending t.
+                                If <literal>t = "notransp"</literal>, the function returns <literal>A*x</literal>.
                                 If <literal>t = "transp"</literal>, the function returns <literal>A'*x</literal>. It must
                                 have the following header :
                             </para>
-                            <programlisting role=""><![CDATA[ 
+                            <programlisting role=""><![CDATA[
 function y = A ( x, t )
  ]]></programlisting>
                         </listitem>
@@ -64,7 +64,7 @@ function y = A ( x, t )
                     <para>
                         function returning <literal>A'*x</literal>. It must have the followinf header :
                     </para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 function y = Ap ( x )
  ]]></programlisting>
                 </listitem>
@@ -107,8 +107,8 @@ function y = Ap ( x )
                 <term>M1p</term>
                 <listitem>
                     <para>
-                        must only be provided when <literal>M1</literal> is a function returning  <literal>M1*x</literal>. 
-                        In this case <literal>M1p</literal> is the function which returns <literal>M1'*x</literal>. 
+                        must only be provided when <literal>M1</literal> is a function returning  <literal>M1*x</literal>.
+                        In this case <literal>M1p</literal> is the function which returns <literal>M1'*x</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -138,7 +138,7 @@ function y = Ap ( x )
                 <term>M2p</term>
                 <listitem>
                     <para>
-                        must only be provided when <literal>M2</literal> is a function returning  <literal>M2*x</literal>. 
+                        must only be provided when <literal>M2</literal> is a function returning  <literal>M2*x</literal>.
                         In this case <literal>M2p</literal> is the function which returns <literal>M2'*x</literal>
                     </para>
                 </listitem>
@@ -214,17 +214,17 @@ function y = Ap ( x )
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 	// If A is a matrix
-A=[ 94  0   0   0    0   28  0   0   32  0  
-     0   59  13  5    0   0   0   10  0   0  
-     0   13  72  34   2   0   0   0   0   65 
-     0   5   34  114  0   0   0   0   0   55 
-     0   0   2   0    70  0   28  32  12  0  
-     28  0   0   0    0   87  20  0   33  0  
-     0   0   0   0    28  20  71  39  0   0  
-     0   10  0   0    32  0   39  46  8   0  
-     32  0   0   0    12  33  0   8   82  11 
+A=[ 94  0   0   0    0   28  0   0   32  0
+     0   59  13  5    0   0   0   10  0   0
+     0   13  72  34   2   0   0   0   0   65
+     0   5   34  114  0   0   0   0   0   55
+     0   0   2   0    70  0   28  32  12  0
+     28  0   0   0    0   87  20  0   33  0
+     0   0   0   0    28  20  71  39  0   0
+     0   10  0   0    32  0   39  46  8   0
+     32  0   0   0    12  33  0   8   82  11
      0   0   65  55   0   0   0   0   11  100];
 b=ones(10,1);
 [x,flag,err,iter,res] = qmr(A, b)
@@ -233,15 +233,15 @@ b=ones(10,1);
 
 	// If A is a function
 	function y = Atimesx(x,t)
-	A=[ 94  0   0   0    0   28  0   0   32  0  
-     0   59  13  5    0   0   0   10  0   0  
-     0   13  72  34   2   0   0   0   0   65 
-     0   5   34  114  0   0   0   0   0   55 
-     0   0   2   0    70  0   28  32  12  0  
-     28  0   0   0    0   87  20  0   33  0  
-     0   0   0   0    28  20  71  39  0   0  
-     0   10  0   0    32  0   39  46  8   0  
-     32  0   0   0    12  33  0   8   82  11 
+	A=[ 94  0   0   0    0   28  0   0   32  0
+     0   59  13  5    0   0   0   10  0   0
+     0   13  72  34   2   0   0   0   0   65
+     0   5   34  114  0   0   0   0   0   55
+     0   0   2   0    70  0   28  32  12  0
+     28  0   0   0    0   87  20  0   33  0
+     0   0   0   0    28  20  71  39  0   0
+     0   10  0   0    32  0   39  46  8   0
+     32  0   0   0    12  33  0   8   82  11
      0   0   65  55   0   0   0   0   11  100];
 	 if (t == 'notransp') then
         y = A*x;
@@ -249,45 +249,45 @@ b=ones(10,1);
         y = A'*x;
     end
 	endfunction
-	 
+
 	 [x,flag,err,iter,res] = qmr(Atimesx, b)
-	 
+
 	 [x,flag,err,iter,res] = qmr(Atimesx, b, zeros(10,1), eye(10,10), eye(10,10), 10, 1d-12)
-	 
+
 	 // OR
-	 
+
 	 function y = funA(x)
-	A = [ 94  0   0   0    0   28  0   0   32  0  
-     0   59  13  5    0   0   0   10  0   0  
-     0   13  72  34   2   0   0   0   0   65 
-     0   5   34  114  0   0   0   0   0   55 
-     0   0   2   0    70  0   28  32  12  0  
-     28  0   0   0    0   87  20  0   33  0  
-     0   0   0   0    28  20  71  39  0   0  
-     0   10  0   0    32  0   39  46  8   0  
-     32  0   0   0    12  33  0   8   82  11 
+	A = [ 94  0   0   0    0   28  0   0   32  0
+     0   59  13  5    0   0   0   10  0   0
+     0   13  72  34   2   0   0   0   0   65
+     0   5   34  114  0   0   0   0   0   55
+     0   0   2   0    70  0   28  32  12  0
+     28  0   0   0    0   87  20  0   33  0
+     0   0   0   0    28  20  71  39  0   0
+     0   10  0   0    32  0   39  46  8   0
+     32  0   0   0    12  33  0   8   82  11
      0   0   65  55   0   0   0   0   11  100];
 	 y = A*x
 	endfunction
-	
+
 	 function y = funAp(x)
-	A = [ 94  0   0   0    0   28  0   0   32  0  
-     0   59  13  5    0   0   0   10  0   0  
-     0   13  72  34   2   0   0   0   0   65 
-     0   5   34  114  0   0   0   0   0   55 
-     0   0   2   0    70  0   28  32  12  0  
-     28  0   0   0    0   87  20  0   33  0  
-     0   0   0   0    28  20  71  39  0   0  
-     0   10  0   0    32  0   39  46  8   0  
-     32  0   0   0    12  33  0   8   82  11 
+	A = [ 94  0   0   0    0   28  0   0   32  0
+     0   59  13  5    0   0   0   10  0   0
+     0   13  72  34   2   0   0   0   0   65
+     0   5   34  114  0   0   0   0   0   55
+     0   0   2   0    70  0   28  32  12  0
+     28  0   0   0    0   87  20  0   33  0
+     0   0   0   0    28  20  71  39  0   0
+     0   10  0   0    32  0   39  46  8   0
+     32  0   0   0    12  33  0   8   82  11
      0   0   65  55   0   0   0   0   11  100];
 	 y = A'*x
 	endfunction
-	 
+
 	 [x,flag,err,iter,res] = qmr(funA, funAp, b)
-	 
+
 	 [x,flag,err,iter,res] = qmr(funA, funAp, b, zeros(10,1), eye(10,10), eye(10,10), 10, 1d-12)
-	 
+
 	 // If A is a matrix, M1 and M2 are functions
 	 function y = M1timesx(x,t)
 	 M1 = eye(10,10);
@@ -297,7 +297,7 @@ b=ones(10,1);
         y = M1'*x;
     end
 	endfunction
-	
+
 	function y = M2timesx(x,t)
 	 M2 = eye(10,10);
     if(t=="notransp") then
@@ -306,33 +306,33 @@ b=ones(10,1);
         y = M2'*x;
     end
 	endfunction
-	
+
 	[x,flag,err,iter,res] = qmr(A, b, zeros(10,1), M1timesx, M2timesx, 10, 1d-12)
-	
+
 	// OR
-	
+
 	function y = funM1(x)
 	M1 = eye(10,10);
 	y = M1*x;
 	endfunction
-	
+
 	function y = funM1p(x)
 	M1 = eye(10,10);
 	y = M1'*x;
 	endfunction
-	
+
 	function y = funM2(x)
 	M2 = eye(10,10);
 	y = M2*x;
 	endfunction
-	
+
 	function y = funM2p(x)
 	M2 = eye(10,10);
 	y = M2'*x;
 	endfunction
-	
+
 	[x,flag,err,iter,res] = qmr(A, b, zeros(10,1), funM1, funM1p, funM2, funM2p, 10, 1d-12)
-	
+
 	// If A, M1, M2 are functions
 	[x,flag,err,iter,res] = qmr(funA, funAp, b, zeros(10,1), funM1, funM1p, funM2, funM2p, 10, 1d-12)
 	[x,flag,err,iter,res] = qmr(Atimesx, b, zeros(10,1), M1timesx, M2timesx, 10, 1d-12)
@@ -346,7 +346,7 @@ b=ones(10,1);
                 <link linkend="gmres">gmres</link>
             </member>
             <member>
-                <link linkend="pcg">pcg</link>
+                <link linkend="conjgrad">conjgrad</link>
             </member>
         </simplelist>
     </refsection>
@@ -357,7 +357,7 @@ b=ones(10,1);
                 <revnumber>5.4.0</revnumber>
                 <revdescription>
                     Calling qmr(A, Ap) is deprecated. qmr(A) should be used instead. The following function is an example :
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 function y = A ( x, t )
 Amat = eye(2,2);
 if ( t== "notransp") then

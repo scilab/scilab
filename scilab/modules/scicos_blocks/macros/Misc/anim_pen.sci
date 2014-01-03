@@ -22,10 +22,14 @@
 ///withoutPrompt
 function [blocks] = anim_pen(blocks,flag)
     win=20000+curblock()
-    if flag<>4 then H=scf(win), end
+    if flag<>4 then
+        H=scf(win),
+    end
     xold=blocks.z
     rpar=blocks.rpar
-    plen=rpar(1)*1.6;csiz=rpar(2)/4;phi=rpar(3);
+    plen=rpar(1)*1.6;
+    csiz=rpar(2)/4;
+    phi=rpar(3);
     rcirc=csiz/3;
     if flag==4 then
         xset("window",win)
@@ -41,8 +45,12 @@ function [blocks] = anim_pen(blocks,flag)
         xset("color",3)
         xsegs(XY(1,:),XY(2,:)-rcirc)
 
-        x=0;theta=0;
-        x1=x-csiz;x2=x+csiz;y1=-csiz;y2=csiz
+        x=0;
+        theta=0;
+        x1=x-csiz;
+        x2=x+csiz;
+        y1=-csiz;
+        y2=csiz
         XY=S*[x1 x2 x2 x1 x1;y1,y1,y2,y2,y1]
         xset("color",5)
         xfpoly(XY(1,:),XY(2,:))// cart
@@ -67,7 +75,8 @@ function [blocks] = anim_pen(blocks,flag)
         XY=Axe.children(4).data'+ [cos(phi)*(x-xold-rcirc);sin(phi)*(x-xold-rcirc)]*ones(1,5)
         Axe.children(2).data(1)=XY(1,2)
         Axe.children(2).data(2)=XY(2,2)
-        x1=x*cos(phi);y1=x*sin(phi)
+        x1=x*cos(phi);
+        y1=x*sin(phi)
         XY=[x1,x1+plen*sin(theta);y1,y1+plen*cos(theta)]
         Axe.children(1).data=XY'
         drawnow();

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: \n"
 
 #, c-format
@@ -1012,6 +1012,10 @@ msgid "%s: History disabled ; turn on -storehistory option."
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: %s, %s, %d or %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: The -withderivatives option is true but all algorithms in neldermead are "
 "derivative-free."
@@ -1181,6 +1185,11 @@ msgid "%s: Empty function (use -function option)."
 msgstr ""
 
 #, c-format
+msgid ""
+"%s: Wrong type for user function output argument #%d: A real matrix expected."
+msgstr ""
+
+#, c-format
 msgid "%s: History disabled ; enable -storehistory option."
 msgstr ""
 
@@ -1209,6 +1218,10 @@ msgid "%s: No output command is defined."
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Number of rows of x is %d, which is different from number of vertices = "
 "%d."
@@ -1227,6 +1240,14 @@ msgstr ""
 
 #, c-format
 msgid "%s: Number of columns of fv is %d, which is different from 1."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -1293,9 +1314,17 @@ msgid ""
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: The number of vertices (i.e. the number of rows) is %d which is smaller "
 "than the number of columns %d (i.e. n+1)."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -1326,6 +1355,11 @@ msgid "%s: The exclusion index vector has %d rows instead of 1."
 msgstr ""
 
 #, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Real matrix or sparse matrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 
@@ -1340,4 +1374,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""

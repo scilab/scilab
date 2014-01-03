@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "umfpack module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "umfpack module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "umfpack.dll"
             VALUE "ProductName", "umfpack module"
             VALUE "ProductVersion", "6, 0, 0, 0"

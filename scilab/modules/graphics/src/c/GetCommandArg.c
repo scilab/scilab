@@ -216,6 +216,7 @@ int get_strf_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** st
             getAllocatedSingleString(_pvCtx, piAddr, &pstData);
             if ((int)strlen(pstData) != 3)
             {
+                freeAllocatedSingleString(pstData);
                 Scierror(999, _("%s: Wrong size for input argument #%d: String of %d characters expected.\n"), fname, pos, 3);
                 return 0;
             }
@@ -234,6 +235,7 @@ int get_strf_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** st
         getAllocatedSingleString(_pvCtx, opts[kopt].piAddr, &pstData);
         if ((int)strlen(pstData) != 3)
         {
+            freeAllocatedSingleString(pstData);
             Scierror(999, _("%s: Wrong size for input argument #%d: String of %d characters expected.\n"), fname, kopt, 3);
             return 0;
         }
@@ -308,8 +310,7 @@ int get_labels_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** 
         {
             /* jb silvy 03/2006 */
             /* do not change the legend if one already exists */
-            char * pSubWinUID = (char*)getOrCreateDefaultSubwin();
-            if (sciGetLegendDefined(pSubWinUID))
+            if (sciGetLegendDefined(getOrCreateDefaultSubwin()))
             {
                 *labels = NULL;
             }
@@ -329,9 +330,7 @@ int get_labels_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** 
     {
         /* jb silvy 03/2006 */
         /* do not change the legend if one already exists */
-        char* pSubWinUID = (char*)getOrCreateDefaultSubwin();
-
-        if (sciGetLegendDefined(pSubWinUID))
+        if (sciGetLegendDefined(getOrCreateDefaultSubwin()))
         {
             *labels = NULL;
         }

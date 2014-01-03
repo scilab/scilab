@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_cube_scaling_property(void* _pvCtx, char* pobjUID)
+void* get_cube_scaling_property(void* _pvCtx, int iObjUID)
 {
     int iCubeScaling = 0;
     int* piCubeScaling = &iCubeScaling;
 
-    getGraphicObjectProperty(pobjUID, __GO_CUBE_SCALING__, jni_bool, (void **)&piCubeScaling);
+    getGraphicObjectProperty(iObjUID, __GO_CUBE_SCALING__, jni_bool, (void **)&piCubeScaling);
 
     if (piCubeScaling == NULL)
     {

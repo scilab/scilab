@@ -16,7 +16,7 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-int SetUicontrolString(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUicontrolString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int objectStyle = -1;
@@ -25,7 +25,7 @@ int SetUicontrolString(void* _pvCtx, char* sciObjUID, void* _pvData, int valueTy
     int *piType = &type;
 
     // Check type
-    getGraphicObjectProperty(sciObjUID, __GO_TYPE__, jni_int, (void**) &piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void**) &piType);
     if (type != __GO_UICONTROL__)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "String");
@@ -40,7 +40,7 @@ int SetUicontrolString(void* _pvCtx, char* sciObjUID, void* _pvData, int valueTy
     }
 
     // Check size according to uicontrol style
-    getGraphicObjectProperty(sciObjUID, __GO_STYLE__, jni_int, (void**) &piObjectStyle);
+    getGraphicObjectProperty(iObjUID, __GO_STYLE__, jni_int, (void**) &piObjectStyle);
     if (objectStyle == __GO_UI_LISTBOX__ || objectStyle == __GO_UI_POPUPMENU__)
     {
         // Value can be string or a string vector
@@ -60,14 +60,14 @@ int SetUicontrolString(void* _pvCtx, char* sciObjUID, void* _pvData, int valueTy
         }
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_STRING_COLNB__, &nbCol, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_STRING_COLNB__, &nbCol, jni_int, 1);
     if (status == FALSE)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "String");
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_STRING__, (char**)_pvData, jni_string_vector, nbRow * nbCol);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_STRING__, (char**)_pvData, jni_string_vector, nbRow * nbCol);
 
     if (status == TRUE)
     {

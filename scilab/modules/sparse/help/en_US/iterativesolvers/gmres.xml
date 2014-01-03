@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
  * Copyright (C) 2012 - Scilab Enterprises - Adeline Carnis
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -29,7 +29,7 @@
                     <para>
                         n-by-n matrix or function returning <literal>A*x</literal>. If <literal>A</literal> is a function, it must have the following header :
                     </para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 function y = A ( x )
  ]]></programlisting>
                 </listitem>
@@ -52,7 +52,7 @@ function y = A ( x )
                     <para>
                         preconditioner: matrix of size n-by-n or function returning <literal>M*x</literal> (In the first case, default: eye(n,n)). If M is a function, it must have the following header :
                     </para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 function y = M ( x )
  ]]></programlisting>
                 </listitem>
@@ -154,17 +154,17 @@ function y = M ( x )
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 	// If A and M are matrices
-A=[ 94  0   0   0    0   28  0   0   32  0  
-     0   59  13  5    0   0   0   10  0   0  
-     0   13  72  34   2   0   0   0   0   65 
-     0   5   34  114  0   0   0   0   0   55 
-     0   0   2   0    70  0   28  32  12  0  
-     28  0   0   0    0   87  20  0   33  0  
-     0   0   0   0    28  20  71  39  0   0  
-     0   10  0   0    32  0   39  46  8   0  
-     32  0   0   0    12  33  0   8   82  11 
+A=[ 94  0   0   0    0   28  0   0   32  0
+     0   59  13  5    0   0   0   10  0   0
+     0   13  72  34   2   0   0   0   0   65
+     0   5   34  114  0   0   0   0   0   55
+     0   0   2   0    70  0   28  32  12  0
+     28  0   0   0    0   87  20  0   33  0
+     0   0   0   0    28  20  71  39  0   0
+     0   10  0   0    32  0   39  46  8   0
+     32  0   0   0    12  33  0   8   82  11
      0   0   65  55   0   0   0   0   11  100];
 b=ones(10,1);
 [x,flag,err,iter,res] = gmres(A, b)
@@ -174,15 +174,15 @@ M = eye(10, 10);
 [x,flag,err,iter,res] = gmres(A, b, 10, 1d-12, 20, M, zeros(10, 1))
 
 	// If A is a matrix and M is a function
-	A=[ 94  0   0   0    0   28  0   0   32  0  
-     0   59  13  5    0   0   0   10  0   0  
-     0   13  72  34   2   0   0   0   0   65 
-     0   5   34  114  0   0   0   0   0   55 
-     0   0   2   0    70  0   28  32  12  0  
-     28  0   0   0    0   87  20  0   33  0  
-     0   0   0   0    28  20  71  39  0   0  
-     0   10  0   0    32  0   39  46  8   0  
-     32  0   0   0    12  33  0   8   82  11 
+	A=[ 94  0   0   0    0   28  0   0   32  0
+     0   59  13  5    0   0   0   10  0   0
+     0   13  72  34   2   0   0   0   0   65
+     0   5   34  114  0   0   0   0   0   55
+     0   0   2   0    70  0   28  32  12  0
+     28  0   0   0    0   87  20  0   33  0
+     0   0   0   0    28  20  71  39  0   0
+     0   10  0   0    32  0   39  46  8   0
+     32  0   0   0    12  33  0   8   82  11
      0   0   65  55   0   0   0   0   11  100];
 b=ones(10,1);
 
@@ -195,46 +195,46 @@ endfunction
 
 	// If A is a function and M is a matrix
 	function y = Atimesx(x)
-	A=[ 94  0   0   0    0   28  0   0   32  0  
-     0   59  13  5    0   0   0   10  0   0  
-     0   13  72  34   2   0   0   0   0   65 
-     0   5   34  114  0   0   0   0   0   55 
-     0   0   2   0    70  0   28  32  12  0  
-     28  0   0   0    0   87  20  0   33  0  
-     0   0   0   0    28  20  71  39  0   0  
-     0   10  0   0    32  0   39  46  8   0  
-     32  0   0   0    12  33  0   8   82  11 
+	A=[ 94  0   0   0    0   28  0   0   32  0
+     0   59  13  5    0   0   0   10  0   0
+     0   13  72  34   2   0   0   0   0   65
+     0   5   34  114  0   0   0   0   0   55
+     0   0   2   0    70  0   28  32  12  0
+     28  0   0   0    0   87  20  0   33  0
+     0   0   0   0    28  20  71  39  0   0
+     0   10  0   0    32  0   39  46  8   0
+     32  0   0   0    12  33  0   8   82  11
      0   0   65  55   0   0   0   0   11  100];
 	 y = A * x;
 	 endfunction
-	 
+
 	 b = ones(10,1);
 	 M = eye(10, 10);
-	 
+
 	 [x,flag,err,iter,res] = gmres(Atimesx, b)
-	 
+
 	 [x,flag,err,iter,res] = gmres(Atimesx, b, 10, 1d-12, 20, M, zeros(10,1))
-	 
+
 	 // If A and M are functions
 	 function y = Atimesx(x)
-	A=[ 94  0   0   0    0   28  0   0   32  0  
-     0   59  13  5    0   0   0   10  0   0  
-     0   13  72  34   2   0   0   0   0   65 
-     0   5   34  114  0   0   0   0   0   55 
-     0   0   2   0    70  0   28  32  12  0  
-     28  0   0   0    0   87  20  0   33  0  
-     0   0   0   0    28  20  71  39  0   0  
-     0   10  0   0    32  0   39  46  8   0  
-     32  0   0   0    12  33  0   8   82  11 
+	A=[ 94  0   0   0    0   28  0   0   32  0
+     0   59  13  5    0   0   0   10  0   0
+     0   13  72  34   2   0   0   0   0   65
+     0   5   34  114  0   0   0   0   0   55
+     0   0   2   0    70  0   28  32  12  0
+     28  0   0   0    0   87  20  0   33  0
+     0   0   0   0    28  20  71  39  0   0
+     0   10  0   0    32  0   39  46  8   0
+     32  0   0   0    12  33  0   8   82  11
      0   0   65  55   0   0   0   0   11  100];
 	 y = A * x;
 	 endfunction
-	 
+
 	 function y = Mtimesx(x)
 M = eye(10,10);
 y = M*x;
 endfunction
-	 
+
 	 [x,flag,err,iter,res] = gmres(Atimesx, b, 10, 1d-12, 20, Mtimesx, zeros(10,1))
  ]]></programlisting>
     </refsection>
@@ -242,7 +242,7 @@ endfunction
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="pcg">pcg</link>
+                <link linkend="conjgrad">conjgrad</link>
             </member>
             <member>
                 <link linkend="qmr">qmr</link>

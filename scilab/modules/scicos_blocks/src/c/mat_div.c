@@ -30,13 +30,21 @@
 #include "scicos_free.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(dgetrf)();
-extern double C2F(dlamch)();
-extern double C2F(dlange)();
-extern int C2F(dlacpy)();
-extern int C2F(dgecon)();
-extern int C2F(dgetrs)();
-extern int C2F(dgelsy1)();
+extern int C2F(dgetrf)(int *m, int *n, double *a, int *
+                       lda, int *ipiv, int *info);
+extern double C2F(dlamch)(char *cmach);
+extern double C2F(dlange)(char *norm, int *m, int *n, double *a, int
+                          *lda, double *work);
+extern int C2F(dlacpy)(char *uplo, int *m, int *n, double *
+                       a, int *lda, double *b, int *ldb);
+extern int C2F(dgecon)(char *norm, int *n, double *a, int *
+                       lda, double *anorm, double *rcond, double *work, int *
+                       iwork, int *info);
+extern int C2F(dgetrs)(char *trans, int *n, int *nrhs,
+                       double *a, int *lda, int *ipiv, double *b, int *
+                       ldb, int *info);
+extern int C2F(dgelsy1)(int *m, int *n, int *nrhs, double *a, int *
+                        lda, double *b, int *ldb, int *jpvt, double *rcond, int *rank, double *work, int *lwork, int *info);
 /*--------------------------------------------------------------------------*/
 typedef struct
 {
@@ -56,16 +64,16 @@ SCICOS_BLOCKS_IMPEXP void mat_div(scicos_block *block, int flag)
     double *u2 = NULL;
     double *y = NULL;
     int mu1 = 0, mu2 = 0;
-    int nu = 0, nu2 = 0;
+    int nu = 0;
     int info = 0;
     int i = 0, j = 0, l = 0, lw = 0, lu = 0, ij = 0, ji = 0;
+    mat_div_struct** work = (mat_div_struct**) block->work;
     mat_div_struct *ptr = NULL;
     double rcond = 0., ANORM = 0., EPS = 0.;
 
     mu2 = GetInPortRows(block, 1);
     nu = GetInPortCols(block, 1);
     mu1 = GetInPortRows(block, 2);
-    nu2 = GetInPortCols(block, 2);
     u2 = GetRealInPortPtrs(block, 1);
     u1 = GetRealInPortPtrs(block, 2);
     y = GetRealOutPortPtrs(block, 1);
@@ -75,12 +83,12 @@ SCICOS_BLOCKS_IMPEXP void mat_div(scicos_block *block, int flag)
     /*init : initialization*/
     if (flag == 4)
     {
-        if ((*(block->work) = (mat_div_struct*) scicos_malloc(sizeof(mat_div_struct))) == NULL)
+        if ((*work = (mat_div_struct*) scicos_malloc(sizeof(mat_div_struct))) == NULL)
         {
             set_block_error(-16);
             return;
         }
-        ptr = *(block->work);
+        ptr = *work;
         if ((ptr->ipiv = (int*) scicos_malloc(sizeof(int) * nu)) == NULL)
         {
             set_block_error(-16);
@@ -162,7 +170,7 @@ SCICOS_BLOCKS_IMPEXP void mat_div(scicos_block *block, int flag)
     /* Terminaison */
     else if (flag == 5)
     {
-        ptr = *(block->work);
+        ptr = *work;
         if ((ptr->LAT) != NULL)
         {
             scicos_free(ptr->ipiv);
@@ -180,8 +188,8 @@ SCICOS_BLOCKS_IMPEXP void mat_div(scicos_block *block, int flag)
 
     else
     {
-        ptr = *(block->work);
-        EPS = C2F(dlamch)("e", 1L);
+        ptr = *work;
+        EPS = C2F(dlamch)("e");
         ANORM = C2F(dlange)("l", &mu1, &nu, u1, &mu1, ptr->dwork);
         for (j = 0; j < mu1; j++)
         {

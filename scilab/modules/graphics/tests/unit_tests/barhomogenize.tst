@@ -10,21 +10,21 @@
 // Unit test for barhomogenize
 
 subplot(2,3,1);
-xtitle('ex1: creation of 1 yellow bar and  3 bars');
+xtitle("ex1: creation of 1 yellow bar and  3 bars");
 x=1:3; y1=1:3; y2=[4 3 5;6 7 8;9 10 11];
-bar(x,y1,'yellow');bar(x,y2);
+bar(x,y1,"yellow");bar(x,y2);
 
 subplot(2,3,2);
-xtitle('grouped homogenisation');
+xtitle("grouped homogenisation");
 x=1:3; y1=1:3; y2=[4 3 5;6 7 8;9 10 11];
-bar(x,y1,'yellow');bar(x,y2);
+bar(x,y1,"yellow");bar(x,y2);
 barhomogenize();
 
 subplot(2,3,3);
-xtitle('stacked homogenisation');
+xtitle("stacked homogenisation");
 x=1:3; y1=1:3; y2=[4 3 5;6 7 8;9 10 11];
-bar(x,y1,'yellow');bar(x,y2);
-barhomogenize('stacked',1);
+bar(x,y1,"yellow");bar(x,y2);
+barhomogenize("stacked",1);
 
 f=gcf();
 a1=f.children(1);
@@ -68,7 +68,7 @@ assert_checktrue(abs(a3.data_bounds - [0.55,0;3.45,11]) < 0.05);
 assert_checkequal(a3.margins, [0.125,0.125,0.125,0.125]);
 assert_checktrue(abs(a3.axes_bounds - [0,0,0.3333333333,0.5]) < 0.0005);
 
-// Check Second 
+// Check Second
 assert_checkequal(a2.x_location, a3.x_location);
 assert_checkequal(a2.y_location, a3.y_location);
 assert_checkequal(a2.auto_ticks, a3.auto_ticks);
@@ -88,10 +88,10 @@ assert_checkequal(a1.x_location, a3.x_location);
 assert_checkequal(a1.y_location, a3.y_location);
 assert_checkequal(a1.auto_ticks, a3.auto_ticks);
 assert_checkequal(a1.x_ticks.locations, a3.x_ticks.locations);
-assert_checkequal(a1.y_ticks.locations, [0;5;10;15;20;25;30;35]);
+assert_checkequal(a1.y_ticks.locations, [0;10;20;30]);
 assert_checkequal(a1.z_ticks.locations, a3.z_ticks.locations);
 assert_checkequal(a1.x_ticks.labels, a3.x_ticks.labels);
-assert_checkequal(a1.y_ticks.labels, ["0";"5";"10";"15";"20";"25";"30";"35"]);
+assert_checkequal(a1.y_ticks.labels, ["0";"10";"20";"30"]);
 assert_checkequal(a1.z_ticks.labels, a3.z_ticks.labels);
 assert_checkequal(a1.sub_ticks, a3.sub_ticks);
 assert_checktrue(abs(a1.data_bounds - [0.55,0;3.45,33]) < 0.05);

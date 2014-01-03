@@ -106,7 +106,7 @@ assert_checkalmostequal ( fopt , fexpected , 1.e-3 );
 assert_checkequal ( exitflag , -4 );
 assert_checkequal ( iter , 7 );
 //
-// Check output function with additionnal arguments
+// Check output function with additional arguments
 function stop = myoutputfunction2 ( xopt , optimValues , state , myAeq , mybeq , myc )
     localmsg = gettext("Iteration #%3.0f, fopt=%10.3e, state=%s, ||Ax-beq||=%.3e\n")
     teststring = sprintf(localmsg,optimValues.iteration,optimValues.fval,state,norm(myAeq*xopt-mybeq))
@@ -121,7 +121,7 @@ assert_checkalmostequal ( xopt , xexpected , 1.e-3 , 1.e-3 );
 // Example 11.9, p. 361
 // Chapter 12, "Linear Programming Part II: Interior point methods",
 // Example 12.2, p.382
-// 
+//
 // Minimize 2.x1 + 9.x2 + 3.x3
 // -2.x1 + 2.x2 + x3 - x4 = 1
 //    x1 + 4.x2 - x3 - x5 = 1
@@ -279,7 +279,7 @@ assert_checkequal ( yopt.upper , lambda.upper );
 // Example 11.9, p. 361
 // Chapter 12, "Linear Programming Part II: Interior point methods",
 // Example 12.2, p.382
-// 
+//
 // Minimize 2.x1 + 9.x2 + 3.x3
 // +2.x1 - 2.x2 - x3 <= -1
 //   -x1 - 4.x2 + x3 <= -1
@@ -289,11 +289,11 @@ assert_checkequal ( yopt.upper , lambda.upper );
 Aeq=[];
 beq=[];
 A = [
- 2 -2 -1
+2 -2 -1
 -1 -4  1
 -1  0  0
- 0 -1  0
- 0  0 -1
+0 -1  0
+0  0 -1
 ];
 b = [-1;-1;0;0;0];
 c = [2;9;3];
@@ -327,23 +327,23 @@ assert_checkequal ( iter > 0 , %t );
 //  - x1              <= 2
 //       - x2         <= -1
 //               - x3 <= 0
-// 
+//
 // where
 // S4 = sin(pi/4)/4
 // E2 = exp(2)
-//   
+//
 
 S4 = sin(%pi/4)/4;
 E2 = exp(2);
 c = [ 2; 5; -2.5];
-A = [ 
-       1  0 S4
-      E2 -1 -1
-       1  0  0
-       0  0  1
-      -1  0  0
-       0 -1  0
-       0  0 -1
+A = [
+1  0 S4
+E2 -1 -1
+1  0  0
+0  0  1
+-1  0  0
+0 -1  0
+0  0 -1
 ];
 b = [ 5; 0;2;3;2;-1;0];
 Aeq = [];
@@ -375,11 +375,11 @@ assert_checkequal ( yopt.upper , lambda.upper );
 Aeq=[];
 beq=[];
 A = [
- 2 -2 -1
+2 -2 -1
 -1 -4  1
 -1  0  0
- 0 -1  0
- 0  0 -1
+0 -1  0
+0  0 -1
 ];
 b = [-1;-1;-1;0;0];
 c = [2;9;3];
@@ -405,7 +405,7 @@ assert_checkequal ( yopt.upper , lambda.upper );
 Aeq=[];
 beq=[];
 A = [
- 2 -2 -1
+2 -2 -1
 -1 -4  1
 ];
 b = [-1;-1];
@@ -431,7 +431,7 @@ assert_checkequal ( yopt.upper , lambda.upper );
 Aeq=[];
 beq=[];
 A = [
- 2 -2 -1
+2 -2 -1
 -1 -4  1
 ];
 b = [-1;-1];
@@ -454,10 +454,10 @@ assert_checkalmostequal ( yopt.eqlin , lambda.eqlin , %eps , 1.e-8 );
 assert_checkalmostequal ( yopt.lower , lambda.lower , 1.e-9 , 1.e-8 );
 assert_checkalmostequal ( yopt.upper , lambda.upper , 1.e-9 );
 // References
-// LIPSOL is a set of Linear-programming Interior-Point SOLvers written 
-// by Yin Zhang. 
-// The original Matlab-based code has been adapted to Scilab 
-// by H. Rubio Scola. 
+// LIPSOL is a set of Linear-programming Interior-Point SOLvers written
+// by Yin Zhang.
+// The original Matlab-based code has been adapted to Scilab
+// by H. Rubio Scola.
 //
 // Minimize 2 x1 + 5 x2 - 2.5 x3
 //    x1 +   S4 x3 <= 5
@@ -473,9 +473,9 @@ assert_checkalmostequal ( yopt.upper , lambda.upper , 1.e-9 );
 c = [ 2; 5; -2.5];
 S4 = sin(%pi/4)/4;
 E2 = exp(2);
-A = [ 
-   1  0 S4
-  E2 -1 -1
+A = [
+1  0 S4
+E2 -1 -1
 ];
 b = [ 5; 0];
 lb = [ -2; 1   ; 0 ];
@@ -520,8 +520,8 @@ assert_checkequal ( exitflag , -2 );
 // x >= 0
 c = [-3;1];
 A=[
- -1 -1
-  2  2
+-1 -1
+2  2
 ];
 A=-A;
 b=[-2;10];
@@ -551,8 +551,8 @@ assert_checkequal ( yopt.upper , [] );
 // x >= 0
 c = [-1;1];
 A=[
- 2 -1
- 1  2
+2 -1
+1  2
 ];
 A=-A;
 b=[1;2];
@@ -575,8 +575,8 @@ assert_checkequal ( exitflag , -2 );
 // x >= 0
 c = [-1;-2];
 A=[
- -1  1
- -2  1
+-1  1
+-2  1
 ];
 b=[2;1];
 lb=[0;0];
@@ -595,8 +595,8 @@ assert_checkequal ( exitflag , -2 );
 // x >= 0
 c = [-1;0];
 A=[
- -1  -1
-  2   3
+-1  -1
+2   3
 ];
 b=[-6;4];
 lb=[0;0];

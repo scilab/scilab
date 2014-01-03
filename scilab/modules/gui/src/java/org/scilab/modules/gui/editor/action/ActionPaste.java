@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.editor.action;
@@ -27,7 +27,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 public class ActionPaste extends BaseAction {
 
     /* Store the Parent where the object was pasted */
-    String pastedParent;
+    Integer pastedParent;
 
     /* True if the object is a dup, false otherwise */
     boolean isDuplicated;
@@ -40,7 +40,7 @@ public class ActionPaste extends BaseAction {
     * @param pastedParent The parent that the object was pasted
     * @param isDuplicated If the object was cutted it is false, if was duplicated it is true
     */
-    public ActionPaste(String object, String previousParent, String pastedParent, boolean isDuplicated) {
+    public ActionPaste(Integer object, Integer previousParent, Integer pastedParent, boolean isDuplicated) {
 
         super(object, previousParent);
         this.pastedParent = pastedParent;

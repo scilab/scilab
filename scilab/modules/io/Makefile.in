@@ -162,10 +162,13 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciio_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libsciio_algo_la_LIBADD =
-am__objects_1 = libsciio_algo_la-getpidc.lo \
-	libsciio_algo_la-setenvc.lo libsciio_algo_la-systemc.lo \
-	libsciio_algo_la-getenvc.lo libsciio_algo_la-v2cuniterror.lo
-am__objects_2 = libsciio_algo_la-io_gw.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+am__objects_1 = src/c/libsciio_algo_la-getpidc.lo \
+	src/c/libsciio_algo_la-setenvc.lo \
+	src/c/libsciio_algo_la-systemc.lo \
+	src/c/libsciio_algo_la-getenvc.lo \
+	src/c/libsciio_algo_la-v2cuniterror.lo
+am__objects_2 = src/cpp/libsciio_algo_la-io_gw.lo
 am_libsciio_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libsciio_algo_la_OBJECTS = $(am_libsciio_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -175,15 +178,23 @@ am__v_lt_1 =
 @MAINTAINER_MODE_FALSE@am_libsciio_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libsciio_algo_la_rpath =
 libsciio_la_DEPENDENCIES = libsciio-algo.la
-am__objects_3 = libsciio_la-sci_read4b.lo libsciio_la-sci_getio.lo \
-	libsciio_la-sci_readb.lo libsciio_la-sci_getenv.lo \
-	libsciio_la-sci_write.lo libsciio_la-sci_writeb.lo \
-	libsciio_la-sci_setenv.lo libsciio_la-gw_io.lo \
-	libsciio_la-sci_read.lo libsciio_la-sci_getpid.lo \
-	libsciio_la-sci_write4b.lo libsciio_la-sci_save.lo
-am__objects_4 = libsciio_la-sci_genlib.lo libsciio_la-sci_load.lo \
-	libsciio_la-sci_file.lo libsciio_la-sci_host.lo \
-	libsciio_la-sci_unix.lo
+am__objects_3 = sci_gateway/c/libsciio_la-sci_read4b.lo \
+	sci_gateway/c/libsciio_la-sci_getio.lo \
+	sci_gateway/c/libsciio_la-sci_readb.lo \
+	sci_gateway/c/libsciio_la-sci_getenv.lo \
+	sci_gateway/c/libsciio_la-sci_write.lo \
+	sci_gateway/c/libsciio_la-sci_writeb.lo \
+	sci_gateway/c/libsciio_la-sci_setenv.lo \
+	sci_gateway/c/libsciio_la-gw_io.lo \
+	sci_gateway/c/libsciio_la-sci_read.lo \
+	sci_gateway/c/libsciio_la-sci_getpid.lo \
+	sci_gateway/c/libsciio_la-sci_write4b.lo \
+	sci_gateway/c/libsciio_la-sci_save.lo
+am__objects_4 = sci_gateway/cpp/libsciio_la-sci_genlib.lo \
+	sci_gateway/cpp/libsciio_la-sci_load.lo \
+	sci_gateway/cpp/libsciio_la-sci_file.lo \
+	sci_gateway/cpp/libsciio_la-sci_host.lo \
+	sci_gateway/cpp/libsciio_la-sci_unix.lo
 am_libsciio_la_OBJECTS = $(am__objects_3) $(am__objects_4)
 libsciio_la_OBJECTS = $(am_libsciio_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libsciio_la_rpath =
@@ -316,6 +327,7 @@ DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
+ECJ = @ECJ@
 EGREP = @EGREP@
 EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
@@ -774,251 +786,350 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/c/$(am__dirstamp):
+	@$(MKDIR_P) src/c
+	@: > src/c/$(am__dirstamp)
+src/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/c/$(DEPDIR)
+	@: > src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciio_algo_la-getpidc.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciio_algo_la-setenvc.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciio_algo_la-systemc.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciio_algo_la-getenvc.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciio_algo_la-v2cuniterror.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/cpp/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp
+	@: > src/cpp/$(am__dirstamp)
+src/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp/$(DEPDIR)
+	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciio_algo_la-io_gw.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libsciio-algo.la: $(libsciio_algo_la_OBJECTS) $(libsciio_algo_la_DEPENDENCIES) $(EXTRA_libsciio_algo_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libsciio_algo_la_rpath) $(libsciio_algo_la_OBJECTS) $(libsciio_algo_la_LIBADD) $(LIBS)
+sci_gateway/c/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c
+	@: > sci_gateway/c/$(am__dirstamp)
+sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
+	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciio_la-sci_read4b.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciio_la-sci_getio.lo: sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciio_la-sci_readb.lo: sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciio_la-sci_getenv.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciio_la-sci_write.lo: sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciio_la-sci_writeb.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciio_la-sci_setenv.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciio_la-gw_io.lo: sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciio_la-sci_read.lo: sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciio_la-sci_getpid.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciio_la-sci_write4b.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libsciio_la-sci_save.lo: sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/cpp
+	@: > sci_gateway/cpp/$(am__dirstamp)
+sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/cpp/$(DEPDIR)
+	@: > sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libsciio_la-sci_genlib.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libsciio_la-sci_load.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libsciio_la-sci_file.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libsciio_la-sci_host.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libsciio_la-sci_unix.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libsciio.la: $(libsciio_la_OBJECTS) $(libsciio_la_DEPENDENCIES) $(EXTRA_libsciio_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libsciio_la_rpath) $(libsciio_la_OBJECTS) $(libsciio_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f sci_gateway/c/*.$(OBJEXT)
+	-rm -f sci_gateway/c/*.lo
+	-rm -f sci_gateway/cpp/*.$(OBJEXT)
+	-rm -f sci_gateway/cpp/*.lo
+	-rm -f src/c/*.$(OBJEXT)
+	-rm -f src/c/*.lo
+	-rm -f src/cpp/*.$(OBJEXT)
+	-rm -f src/cpp/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_algo_la-getenvc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_algo_la-getpidc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_algo_la-io_gw.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_algo_la-setenvc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_algo_la-systemc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_algo_la-v2cuniterror.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-gw_io.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_file.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_genlib.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_getenv.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_getio.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_getpid.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_host.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_load.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_read.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_read4b.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_readb.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_save.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_setenv.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_unix.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_write.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_write4b.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_writeb.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciio_la-gw_io.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciio_la-sci_getenv.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciio_la-sci_getio.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciio_la-sci_getpid.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciio_la-sci_read.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciio_la-sci_read4b.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciio_la-sci_readb.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciio_la-sci_save.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciio_la-sci_setenv.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciio_la-sci_write.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciio_la-sci_write4b.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciio_la-sci_writeb.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciio_la-sci_file.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciio_la-sci_genlib.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciio_la-sci_host.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciio_la-sci_load.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciio_la-sci_unix.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciio_algo_la-getenvc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciio_algo_la-getpidc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciio_algo_la-setenvc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciio_algo_la-systemc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciio_algo_la-v2cuniterror.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciio_algo_la-io_gw.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libsciio_algo_la-getpidc.lo: src/c/getpidc.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciio_algo_la-getpidc.lo -MD -MP -MF $(DEPDIR)/libsciio_algo_la-getpidc.Tpo -c -o libsciio_algo_la-getpidc.lo `test -f 'src/c/getpidc.c' || echo '$(srcdir)/'`src/c/getpidc.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_algo_la-getpidc.Tpo $(DEPDIR)/libsciio_algo_la-getpidc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getpidc.c' object='libsciio_algo_la-getpidc.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libsciio_algo_la-getpidc.lo: src/c/getpidc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciio_algo_la-getpidc.lo -MD -MP -MF src/c/$(DEPDIR)/libsciio_algo_la-getpidc.Tpo -c -o src/c/libsciio_algo_la-getpidc.lo `test -f 'src/c/getpidc.c' || echo '$(srcdir)/'`src/c/getpidc.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciio_algo_la-getpidc.Tpo src/c/$(DEPDIR)/libsciio_algo_la-getpidc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getpidc.c' object='src/c/libsciio_algo_la-getpidc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciio_algo_la-getpidc.lo `test -f 'src/c/getpidc.c' || echo '$(srcdir)/'`src/c/getpidc.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciio_algo_la-getpidc.lo `test -f 'src/c/getpidc.c' || echo '$(srcdir)/'`src/c/getpidc.c
 
-libsciio_algo_la-setenvc.lo: src/c/setenvc.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciio_algo_la-setenvc.lo -MD -MP -MF $(DEPDIR)/libsciio_algo_la-setenvc.Tpo -c -o libsciio_algo_la-setenvc.lo `test -f 'src/c/setenvc.c' || echo '$(srcdir)/'`src/c/setenvc.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_algo_la-setenvc.Tpo $(DEPDIR)/libsciio_algo_la-setenvc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/setenvc.c' object='libsciio_algo_la-setenvc.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libsciio_algo_la-setenvc.lo: src/c/setenvc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciio_algo_la-setenvc.lo -MD -MP -MF src/c/$(DEPDIR)/libsciio_algo_la-setenvc.Tpo -c -o src/c/libsciio_algo_la-setenvc.lo `test -f 'src/c/setenvc.c' || echo '$(srcdir)/'`src/c/setenvc.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciio_algo_la-setenvc.Tpo src/c/$(DEPDIR)/libsciio_algo_la-setenvc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/setenvc.c' object='src/c/libsciio_algo_la-setenvc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciio_algo_la-setenvc.lo `test -f 'src/c/setenvc.c' || echo '$(srcdir)/'`src/c/setenvc.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciio_algo_la-setenvc.lo `test -f 'src/c/setenvc.c' || echo '$(srcdir)/'`src/c/setenvc.c
 
-libsciio_algo_la-systemc.lo: src/c/systemc.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciio_algo_la-systemc.lo -MD -MP -MF $(DEPDIR)/libsciio_algo_la-systemc.Tpo -c -o libsciio_algo_la-systemc.lo `test -f 'src/c/systemc.c' || echo '$(srcdir)/'`src/c/systemc.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_algo_la-systemc.Tpo $(DEPDIR)/libsciio_algo_la-systemc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/systemc.c' object='libsciio_algo_la-systemc.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libsciio_algo_la-systemc.lo: src/c/systemc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciio_algo_la-systemc.lo -MD -MP -MF src/c/$(DEPDIR)/libsciio_algo_la-systemc.Tpo -c -o src/c/libsciio_algo_la-systemc.lo `test -f 'src/c/systemc.c' || echo '$(srcdir)/'`src/c/systemc.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciio_algo_la-systemc.Tpo src/c/$(DEPDIR)/libsciio_algo_la-systemc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/systemc.c' object='src/c/libsciio_algo_la-systemc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciio_algo_la-systemc.lo `test -f 'src/c/systemc.c' || echo '$(srcdir)/'`src/c/systemc.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciio_algo_la-systemc.lo `test -f 'src/c/systemc.c' || echo '$(srcdir)/'`src/c/systemc.c
 
-libsciio_algo_la-getenvc.lo: src/c/getenvc.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciio_algo_la-getenvc.lo -MD -MP -MF $(DEPDIR)/libsciio_algo_la-getenvc.Tpo -c -o libsciio_algo_la-getenvc.lo `test -f 'src/c/getenvc.c' || echo '$(srcdir)/'`src/c/getenvc.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_algo_la-getenvc.Tpo $(DEPDIR)/libsciio_algo_la-getenvc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getenvc.c' object='libsciio_algo_la-getenvc.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libsciio_algo_la-getenvc.lo: src/c/getenvc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciio_algo_la-getenvc.lo -MD -MP -MF src/c/$(DEPDIR)/libsciio_algo_la-getenvc.Tpo -c -o src/c/libsciio_algo_la-getenvc.lo `test -f 'src/c/getenvc.c' || echo '$(srcdir)/'`src/c/getenvc.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciio_algo_la-getenvc.Tpo src/c/$(DEPDIR)/libsciio_algo_la-getenvc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getenvc.c' object='src/c/libsciio_algo_la-getenvc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciio_algo_la-getenvc.lo `test -f 'src/c/getenvc.c' || echo '$(srcdir)/'`src/c/getenvc.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciio_algo_la-getenvc.lo `test -f 'src/c/getenvc.c' || echo '$(srcdir)/'`src/c/getenvc.c
 
-libsciio_algo_la-v2cuniterror.lo: src/c/v2cuniterror.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciio_algo_la-v2cuniterror.lo -MD -MP -MF $(DEPDIR)/libsciio_algo_la-v2cuniterror.Tpo -c -o libsciio_algo_la-v2cuniterror.lo `test -f 'src/c/v2cuniterror.c' || echo '$(srcdir)/'`src/c/v2cuniterror.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_algo_la-v2cuniterror.Tpo $(DEPDIR)/libsciio_algo_la-v2cuniterror.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/v2cuniterror.c' object='libsciio_algo_la-v2cuniterror.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libsciio_algo_la-v2cuniterror.lo: src/c/v2cuniterror.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciio_algo_la-v2cuniterror.lo -MD -MP -MF src/c/$(DEPDIR)/libsciio_algo_la-v2cuniterror.Tpo -c -o src/c/libsciio_algo_la-v2cuniterror.lo `test -f 'src/c/v2cuniterror.c' || echo '$(srcdir)/'`src/c/v2cuniterror.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciio_algo_la-v2cuniterror.Tpo src/c/$(DEPDIR)/libsciio_algo_la-v2cuniterror.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/v2cuniterror.c' object='src/c/libsciio_algo_la-v2cuniterror.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciio_algo_la-v2cuniterror.lo `test -f 'src/c/v2cuniterror.c' || echo '$(srcdir)/'`src/c/v2cuniterror.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciio_algo_la-v2cuniterror.lo `test -f 'src/c/v2cuniterror.c' || echo '$(srcdir)/'`src/c/v2cuniterror.c
 
-libsciio_la-sci_read4b.lo: sci_gateway/c/sci_read4b.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_read4b.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_read4b.Tpo -c -o libsciio_la-sci_read4b.lo `test -f 'sci_gateway/c/sci_read4b.c' || echo '$(srcdir)/'`sci_gateway/c/sci_read4b.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_la-sci_read4b.Tpo $(DEPDIR)/libsciio_la-sci_read4b.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_read4b.c' object='libsciio_la-sci_read4b.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciio_la-sci_read4b.lo: sci_gateway/c/sci_read4b.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciio_la-sci_read4b.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciio_la-sci_read4b.Tpo -c -o sci_gateway/c/libsciio_la-sci_read4b.lo `test -f 'sci_gateway/c/sci_read4b.c' || echo '$(srcdir)/'`sci_gateway/c/sci_read4b.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciio_la-sci_read4b.Tpo sci_gateway/c/$(DEPDIR)/libsciio_la-sci_read4b.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_read4b.c' object='sci_gateway/c/libsciio_la-sci_read4b.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciio_la-sci_read4b.lo `test -f 'sci_gateway/c/sci_read4b.c' || echo '$(srcdir)/'`sci_gateway/c/sci_read4b.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciio_la-sci_read4b.lo `test -f 'sci_gateway/c/sci_read4b.c' || echo '$(srcdir)/'`sci_gateway/c/sci_read4b.c
 
-libsciio_la-sci_getio.lo: sci_gateway/c/sci_getio.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_getio.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_getio.Tpo -c -o libsciio_la-sci_getio.lo `test -f 'sci_gateway/c/sci_getio.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getio.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_la-sci_getio.Tpo $(DEPDIR)/libsciio_la-sci_getio.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_getio.c' object='libsciio_la-sci_getio.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciio_la-sci_getio.lo: sci_gateway/c/sci_getio.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciio_la-sci_getio.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciio_la-sci_getio.Tpo -c -o sci_gateway/c/libsciio_la-sci_getio.lo `test -f 'sci_gateway/c/sci_getio.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getio.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciio_la-sci_getio.Tpo sci_gateway/c/$(DEPDIR)/libsciio_la-sci_getio.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_getio.c' object='sci_gateway/c/libsciio_la-sci_getio.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciio_la-sci_getio.lo `test -f 'sci_gateway/c/sci_getio.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getio.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciio_la-sci_getio.lo `test -f 'sci_gateway/c/sci_getio.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getio.c
 
-libsciio_la-sci_readb.lo: sci_gateway/c/sci_readb.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_readb.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_readb.Tpo -c -o libsciio_la-sci_readb.lo `test -f 'sci_gateway/c/sci_readb.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readb.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_la-sci_readb.Tpo $(DEPDIR)/libsciio_la-sci_readb.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_readb.c' object='libsciio_la-sci_readb.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciio_la-sci_readb.lo: sci_gateway/c/sci_readb.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciio_la-sci_readb.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciio_la-sci_readb.Tpo -c -o sci_gateway/c/libsciio_la-sci_readb.lo `test -f 'sci_gateway/c/sci_readb.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readb.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciio_la-sci_readb.Tpo sci_gateway/c/$(DEPDIR)/libsciio_la-sci_readb.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_readb.c' object='sci_gateway/c/libsciio_la-sci_readb.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciio_la-sci_readb.lo `test -f 'sci_gateway/c/sci_readb.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readb.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciio_la-sci_readb.lo `test -f 'sci_gateway/c/sci_readb.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readb.c
 
-libsciio_la-sci_getenv.lo: sci_gateway/c/sci_getenv.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_getenv.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_getenv.Tpo -c -o libsciio_la-sci_getenv.lo `test -f 'sci_gateway/c/sci_getenv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getenv.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_la-sci_getenv.Tpo $(DEPDIR)/libsciio_la-sci_getenv.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_getenv.c' object='libsciio_la-sci_getenv.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciio_la-sci_getenv.lo: sci_gateway/c/sci_getenv.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciio_la-sci_getenv.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciio_la-sci_getenv.Tpo -c -o sci_gateway/c/libsciio_la-sci_getenv.lo `test -f 'sci_gateway/c/sci_getenv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getenv.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciio_la-sci_getenv.Tpo sci_gateway/c/$(DEPDIR)/libsciio_la-sci_getenv.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_getenv.c' object='sci_gateway/c/libsciio_la-sci_getenv.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciio_la-sci_getenv.lo `test -f 'sci_gateway/c/sci_getenv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getenv.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciio_la-sci_getenv.lo `test -f 'sci_gateway/c/sci_getenv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getenv.c
 
-libsciio_la-sci_write.lo: sci_gateway/c/sci_write.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_write.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_write.Tpo -c -o libsciio_la-sci_write.lo `test -f 'sci_gateway/c/sci_write.c' || echo '$(srcdir)/'`sci_gateway/c/sci_write.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_la-sci_write.Tpo $(DEPDIR)/libsciio_la-sci_write.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_write.c' object='libsciio_la-sci_write.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciio_la-sci_write.lo: sci_gateway/c/sci_write.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciio_la-sci_write.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciio_la-sci_write.Tpo -c -o sci_gateway/c/libsciio_la-sci_write.lo `test -f 'sci_gateway/c/sci_write.c' || echo '$(srcdir)/'`sci_gateway/c/sci_write.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciio_la-sci_write.Tpo sci_gateway/c/$(DEPDIR)/libsciio_la-sci_write.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_write.c' object='sci_gateway/c/libsciio_la-sci_write.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciio_la-sci_write.lo `test -f 'sci_gateway/c/sci_write.c' || echo '$(srcdir)/'`sci_gateway/c/sci_write.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciio_la-sci_write.lo `test -f 'sci_gateway/c/sci_write.c' || echo '$(srcdir)/'`sci_gateway/c/sci_write.c
 
-libsciio_la-sci_writeb.lo: sci_gateway/c/sci_writeb.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_writeb.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_writeb.Tpo -c -o libsciio_la-sci_writeb.lo `test -f 'sci_gateway/c/sci_writeb.c' || echo '$(srcdir)/'`sci_gateway/c/sci_writeb.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_la-sci_writeb.Tpo $(DEPDIR)/libsciio_la-sci_writeb.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_writeb.c' object='libsciio_la-sci_writeb.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciio_la-sci_writeb.lo: sci_gateway/c/sci_writeb.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciio_la-sci_writeb.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciio_la-sci_writeb.Tpo -c -o sci_gateway/c/libsciio_la-sci_writeb.lo `test -f 'sci_gateway/c/sci_writeb.c' || echo '$(srcdir)/'`sci_gateway/c/sci_writeb.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciio_la-sci_writeb.Tpo sci_gateway/c/$(DEPDIR)/libsciio_la-sci_writeb.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_writeb.c' object='sci_gateway/c/libsciio_la-sci_writeb.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciio_la-sci_writeb.lo `test -f 'sci_gateway/c/sci_writeb.c' || echo '$(srcdir)/'`sci_gateway/c/sci_writeb.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciio_la-sci_writeb.lo `test -f 'sci_gateway/c/sci_writeb.c' || echo '$(srcdir)/'`sci_gateway/c/sci_writeb.c
 
-libsciio_la-sci_setenv.lo: sci_gateway/c/sci_setenv.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_setenv.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_setenv.Tpo -c -o libsciio_la-sci_setenv.lo `test -f 'sci_gateway/c/sci_setenv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_setenv.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_la-sci_setenv.Tpo $(DEPDIR)/libsciio_la-sci_setenv.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_setenv.c' object='libsciio_la-sci_setenv.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciio_la-sci_setenv.lo: sci_gateway/c/sci_setenv.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciio_la-sci_setenv.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciio_la-sci_setenv.Tpo -c -o sci_gateway/c/libsciio_la-sci_setenv.lo `test -f 'sci_gateway/c/sci_setenv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_setenv.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciio_la-sci_setenv.Tpo sci_gateway/c/$(DEPDIR)/libsciio_la-sci_setenv.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_setenv.c' object='sci_gateway/c/libsciio_la-sci_setenv.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciio_la-sci_setenv.lo `test -f 'sci_gateway/c/sci_setenv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_setenv.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciio_la-sci_setenv.lo `test -f 'sci_gateway/c/sci_setenv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_setenv.c
 
-libsciio_la-gw_io.lo: sci_gateway/c/gw_io.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciio_la-gw_io.lo -MD -MP -MF $(DEPDIR)/libsciio_la-gw_io.Tpo -c -o libsciio_la-gw_io.lo `test -f 'sci_gateway/c/gw_io.c' || echo '$(srcdir)/'`sci_gateway/c/gw_io.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_la-gw_io.Tpo $(DEPDIR)/libsciio_la-gw_io.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_io.c' object='libsciio_la-gw_io.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciio_la-gw_io.lo: sci_gateway/c/gw_io.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciio_la-gw_io.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciio_la-gw_io.Tpo -c -o sci_gateway/c/libsciio_la-gw_io.lo `test -f 'sci_gateway/c/gw_io.c' || echo '$(srcdir)/'`sci_gateway/c/gw_io.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciio_la-gw_io.Tpo sci_gateway/c/$(DEPDIR)/libsciio_la-gw_io.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_io.c' object='sci_gateway/c/libsciio_la-gw_io.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciio_la-gw_io.lo `test -f 'sci_gateway/c/gw_io.c' || echo '$(srcdir)/'`sci_gateway/c/gw_io.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciio_la-gw_io.lo `test -f 'sci_gateway/c/gw_io.c' || echo '$(srcdir)/'`sci_gateway/c/gw_io.c
 
-libsciio_la-sci_read.lo: sci_gateway/c/sci_read.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_read.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_read.Tpo -c -o libsciio_la-sci_read.lo `test -f 'sci_gateway/c/sci_read.c' || echo '$(srcdir)/'`sci_gateway/c/sci_read.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_la-sci_read.Tpo $(DEPDIR)/libsciio_la-sci_read.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_read.c' object='libsciio_la-sci_read.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciio_la-sci_read.lo: sci_gateway/c/sci_read.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciio_la-sci_read.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciio_la-sci_read.Tpo -c -o sci_gateway/c/libsciio_la-sci_read.lo `test -f 'sci_gateway/c/sci_read.c' || echo '$(srcdir)/'`sci_gateway/c/sci_read.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciio_la-sci_read.Tpo sci_gateway/c/$(DEPDIR)/libsciio_la-sci_read.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_read.c' object='sci_gateway/c/libsciio_la-sci_read.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciio_la-sci_read.lo `test -f 'sci_gateway/c/sci_read.c' || echo '$(srcdir)/'`sci_gateway/c/sci_read.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciio_la-sci_read.lo `test -f 'sci_gateway/c/sci_read.c' || echo '$(srcdir)/'`sci_gateway/c/sci_read.c
 
-libsciio_la-sci_getpid.lo: sci_gateway/c/sci_getpid.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_getpid.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_getpid.Tpo -c -o libsciio_la-sci_getpid.lo `test -f 'sci_gateway/c/sci_getpid.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getpid.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_la-sci_getpid.Tpo $(DEPDIR)/libsciio_la-sci_getpid.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_getpid.c' object='libsciio_la-sci_getpid.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciio_la-sci_getpid.lo: sci_gateway/c/sci_getpid.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciio_la-sci_getpid.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciio_la-sci_getpid.Tpo -c -o sci_gateway/c/libsciio_la-sci_getpid.lo `test -f 'sci_gateway/c/sci_getpid.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getpid.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciio_la-sci_getpid.Tpo sci_gateway/c/$(DEPDIR)/libsciio_la-sci_getpid.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_getpid.c' object='sci_gateway/c/libsciio_la-sci_getpid.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciio_la-sci_getpid.lo `test -f 'sci_gateway/c/sci_getpid.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getpid.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciio_la-sci_getpid.lo `test -f 'sci_gateway/c/sci_getpid.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getpid.c
 
-libsciio_la-sci_write4b.lo: sci_gateway/c/sci_write4b.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_write4b.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_write4b.Tpo -c -o libsciio_la-sci_write4b.lo `test -f 'sci_gateway/c/sci_write4b.c' || echo '$(srcdir)/'`sci_gateway/c/sci_write4b.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_la-sci_write4b.Tpo $(DEPDIR)/libsciio_la-sci_write4b.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_write4b.c' object='libsciio_la-sci_write4b.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciio_la-sci_write4b.lo: sci_gateway/c/sci_write4b.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciio_la-sci_write4b.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciio_la-sci_write4b.Tpo -c -o sci_gateway/c/libsciio_la-sci_write4b.lo `test -f 'sci_gateway/c/sci_write4b.c' || echo '$(srcdir)/'`sci_gateway/c/sci_write4b.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciio_la-sci_write4b.Tpo sci_gateway/c/$(DEPDIR)/libsciio_la-sci_write4b.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_write4b.c' object='sci_gateway/c/libsciio_la-sci_write4b.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciio_la-sci_write4b.lo `test -f 'sci_gateway/c/sci_write4b.c' || echo '$(srcdir)/'`sci_gateway/c/sci_write4b.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciio_la-sci_write4b.lo `test -f 'sci_gateway/c/sci_write4b.c' || echo '$(srcdir)/'`sci_gateway/c/sci_write4b.c
 
-libsciio_la-sci_save.lo: sci_gateway/c/sci_save.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_save.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_save.Tpo -c -o libsciio_la-sci_save.lo `test -f 'sci_gateway/c/sci_save.c' || echo '$(srcdir)/'`sci_gateway/c/sci_save.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_la-sci_save.Tpo $(DEPDIR)/libsciio_la-sci_save.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_save.c' object='libsciio_la-sci_save.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libsciio_la-sci_save.lo: sci_gateway/c/sci_save.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciio_la-sci_save.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciio_la-sci_save.Tpo -c -o sci_gateway/c/libsciio_la-sci_save.lo `test -f 'sci_gateway/c/sci_save.c' || echo '$(srcdir)/'`sci_gateway/c/sci_save.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciio_la-sci_save.Tpo sci_gateway/c/$(DEPDIR)/libsciio_la-sci_save.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_save.c' object='sci_gateway/c/libsciio_la-sci_save.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciio_la-sci_save.lo `test -f 'sci_gateway/c/sci_save.c' || echo '$(srcdir)/'`sci_gateway/c/sci_save.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciio_la-sci_save.lo `test -f 'sci_gateway/c/sci_save.c' || echo '$(srcdir)/'`sci_gateway/c/sci_save.c
 
 .cpp.o:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .cpp.lo:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
-libsciio_algo_la-io_gw.lo: src/cpp/io_gw.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciio_algo_la-io_gw.lo -MD -MP -MF $(DEPDIR)/libsciio_algo_la-io_gw.Tpo -c -o libsciio_algo_la-io_gw.lo `test -f 'src/cpp/io_gw.cpp' || echo '$(srcdir)/'`src/cpp/io_gw.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_algo_la-io_gw.Tpo $(DEPDIR)/libsciio_algo_la-io_gw.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/io_gw.cpp' object='libsciio_algo_la-io_gw.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libsciio_algo_la-io_gw.lo: src/cpp/io_gw.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciio_algo_la-io_gw.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciio_algo_la-io_gw.Tpo -c -o src/cpp/libsciio_algo_la-io_gw.lo `test -f 'src/cpp/io_gw.cpp' || echo '$(srcdir)/'`src/cpp/io_gw.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciio_algo_la-io_gw.Tpo src/cpp/$(DEPDIR)/libsciio_algo_la-io_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/io_gw.cpp' object='src/cpp/libsciio_algo_la-io_gw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciio_algo_la-io_gw.lo `test -f 'src/cpp/io_gw.cpp' || echo '$(srcdir)/'`src/cpp/io_gw.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciio_algo_la-io_gw.lo `test -f 'src/cpp/io_gw.cpp' || echo '$(srcdir)/'`src/cpp/io_gw.cpp
 
-libsciio_la-sci_genlib.lo: sci_gateway/cpp/sci_genlib.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciio_la-sci_genlib.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_genlib.Tpo -c -o libsciio_la-sci_genlib.lo `test -f 'sci_gateway/cpp/sci_genlib.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_genlib.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_la-sci_genlib.Tpo $(DEPDIR)/libsciio_la-sci_genlib.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_genlib.cpp' object='libsciio_la-sci_genlib.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libsciio_la-sci_genlib.lo: sci_gateway/cpp/sci_genlib.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libsciio_la-sci_genlib.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libsciio_la-sci_genlib.Tpo -c -o sci_gateway/cpp/libsciio_la-sci_genlib.lo `test -f 'sci_gateway/cpp/sci_genlib.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_genlib.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libsciio_la-sci_genlib.Tpo sci_gateway/cpp/$(DEPDIR)/libsciio_la-sci_genlib.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_genlib.cpp' object='sci_gateway/cpp/libsciio_la-sci_genlib.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciio_la-sci_genlib.lo `test -f 'sci_gateway/cpp/sci_genlib.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_genlib.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciio_la-sci_genlib.lo `test -f 'sci_gateway/cpp/sci_genlib.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_genlib.cpp
 
-libsciio_la-sci_load.lo: sci_gateway/cpp/sci_load.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciio_la-sci_load.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_load.Tpo -c -o libsciio_la-sci_load.lo `test -f 'sci_gateway/cpp/sci_load.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_load.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_la-sci_load.Tpo $(DEPDIR)/libsciio_la-sci_load.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_load.cpp' object='libsciio_la-sci_load.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libsciio_la-sci_load.lo: sci_gateway/cpp/sci_load.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libsciio_la-sci_load.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libsciio_la-sci_load.Tpo -c -o sci_gateway/cpp/libsciio_la-sci_load.lo `test -f 'sci_gateway/cpp/sci_load.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_load.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libsciio_la-sci_load.Tpo sci_gateway/cpp/$(DEPDIR)/libsciio_la-sci_load.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_load.cpp' object='sci_gateway/cpp/libsciio_la-sci_load.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciio_la-sci_load.lo `test -f 'sci_gateway/cpp/sci_load.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_load.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciio_la-sci_load.lo `test -f 'sci_gateway/cpp/sci_load.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_load.cpp
 
-libsciio_la-sci_file.lo: sci_gateway/cpp/sci_file.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciio_la-sci_file.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_file.Tpo -c -o libsciio_la-sci_file.lo `test -f 'sci_gateway/cpp/sci_file.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_file.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_la-sci_file.Tpo $(DEPDIR)/libsciio_la-sci_file.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_file.cpp' object='libsciio_la-sci_file.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libsciio_la-sci_file.lo: sci_gateway/cpp/sci_file.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libsciio_la-sci_file.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libsciio_la-sci_file.Tpo -c -o sci_gateway/cpp/libsciio_la-sci_file.lo `test -f 'sci_gateway/cpp/sci_file.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_file.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libsciio_la-sci_file.Tpo sci_gateway/cpp/$(DEPDIR)/libsciio_la-sci_file.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_file.cpp' object='sci_gateway/cpp/libsciio_la-sci_file.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciio_la-sci_file.lo `test -f 'sci_gateway/cpp/sci_file.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_file.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciio_la-sci_file.lo `test -f 'sci_gateway/cpp/sci_file.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_file.cpp
 
-libsciio_la-sci_host.lo: sci_gateway/cpp/sci_host.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciio_la-sci_host.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_host.Tpo -c -o libsciio_la-sci_host.lo `test -f 'sci_gateway/cpp/sci_host.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_host.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_la-sci_host.Tpo $(DEPDIR)/libsciio_la-sci_host.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_host.cpp' object='libsciio_la-sci_host.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libsciio_la-sci_host.lo: sci_gateway/cpp/sci_host.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libsciio_la-sci_host.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libsciio_la-sci_host.Tpo -c -o sci_gateway/cpp/libsciio_la-sci_host.lo `test -f 'sci_gateway/cpp/sci_host.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_host.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libsciio_la-sci_host.Tpo sci_gateway/cpp/$(DEPDIR)/libsciio_la-sci_host.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_host.cpp' object='sci_gateway/cpp/libsciio_la-sci_host.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciio_la-sci_host.lo `test -f 'sci_gateway/cpp/sci_host.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_host.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciio_la-sci_host.lo `test -f 'sci_gateway/cpp/sci_host.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_host.cpp
 
-libsciio_la-sci_unix.lo: sci_gateway/cpp/sci_unix.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciio_la-sci_unix.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_unix.Tpo -c -o libsciio_la-sci_unix.lo `test -f 'sci_gateway/cpp/sci_unix.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_unix.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libsciio_la-sci_unix.Tpo $(DEPDIR)/libsciio_la-sci_unix.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_unix.cpp' object='libsciio_la-sci_unix.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libsciio_la-sci_unix.lo: sci_gateway/cpp/sci_unix.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libsciio_la-sci_unix.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libsciio_la-sci_unix.Tpo -c -o sci_gateway/cpp/libsciio_la-sci_unix.lo `test -f 'sci_gateway/cpp/sci_unix.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_unix.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libsciio_la-sci_unix.Tpo sci_gateway/cpp/$(DEPDIR)/libsciio_la-sci_unix.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_unix.cpp' object='sci_gateway/cpp/libsciio_la-sci_unix.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciio_la-sci_unix.lo `test -f 'sci_gateway/cpp/sci_unix.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_unix.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciio_la-sci_unix.lo `test -f 'sci_gateway/cpp/sci_unix.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_unix.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
+	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
+	-rm -rf src/c/.libs src/c/_libs
+	-rm -rf src/cpp/.libs src/cpp/_libs
 install-libsciio_la_etcDATA: $(libsciio_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libsciio_la_etc_DATA)'; test -n "$(libsciio_la_etcdir)" || list=; \
@@ -1199,6 +1310,14 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/c/$(am__dirstamp)
+	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/cpp/$(am__dirstamp)
+	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/c/$(am__dirstamp)
+	-rm -f src/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/cpp/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1209,7 +1328,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1257,7 +1376,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -1358,11 +1477,17 @@ check-code:
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
-@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/; \
+@GIWS_TRUE@	MANDATORY_OPTIONS="--throws-exception-on-error --description-file"; \
 @GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
+@GIWS_TRUE@			if test -z "$(GIWS_OPTIONS)"; then \
+@GIWS_TRUE@				$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR $$MANDATORY_OPTIONS $$file; \
+@GIWS_TRUE@			else \
+@GIWS_TRUE@				echo "Custom GIWS call with '$$GIWS_OPTIONS'"; \
+@GIWS_TRUE@				$(GIWS_BIN) $$GIWS_OPTIONS --output-dir $$GIWS_OUTPUTDIR $$MANDATORY_OPTIONS $$file; \
+@GIWS_TRUE@			fi \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 

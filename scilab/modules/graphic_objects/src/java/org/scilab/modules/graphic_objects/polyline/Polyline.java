@@ -16,6 +16,11 @@ import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
@@ -30,7 +35,7 @@ public class Polyline extends ClippableContouredObject {
     /** Polyline properties names */
     private enum PolylineProperty { CLOSED, ARROWSIZEFACTOR, POLYLINESTYLE,
                                     INTERPCOLORVECTOR, INTERPCOLORVECTORSET, INTERPCOLORMODE,
-                                    XSHIFT, YSHIFT, ZSHIFT, BARWIDTH
+                                    XSHIFT, YSHIFT, ZSHIFT, BARWIDTH, DATATIPS, DATATIPSCOUNT
                                   };
 
     /** Specifies whether the polyline is closed */
@@ -62,6 +67,9 @@ public class Polyline extends ClippableContouredObject {
 
     /** Bar width */
     private double barWidth;
+    
+    /** Datatips objects list */
+    private List <Integer> datatips;
 
     /** Constructor */
     public Polyline() {
@@ -76,6 +84,7 @@ public class Polyline extends ClippableContouredObject {
         yShift = null;
         zShift = null;
         barWidth = 0.0;
+        datatips = new LinkedList<Integer>();
     }
 
     @Override
@@ -110,6 +119,10 @@ public class Polyline extends ClippableContouredObject {
                 return PolylineProperty.ZSHIFT;
             case __GO_BAR_WIDTH__ :
                 return PolylineProperty.BARWIDTH;
+            case __GO_DATATIPS__ :
+                return PolylineProperty.DATATIPS;
+            case __GO_DATATIPS_COUNT__ :
+                return PolylineProperty.DATATIPSCOUNT;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -141,6 +154,10 @@ public class Polyline extends ClippableContouredObject {
             return getZShift();
         } else if (property == PolylineProperty.BARWIDTH) {
             return getBarWidth();
+        } else if (property == PolylineProperty.DATATIPS) {
+            return getDatatips();
+        } else if (property == PolylineProperty.DATATIPSCOUNT) {
+            return datatips.size();
         } else {
             return super.getProperty(property);
         }
@@ -174,6 +191,8 @@ public class Polyline extends ClippableContouredObject {
                 setZShift((double[]) value);
             } else if (property == PolylineProperty.BARWIDTH) {
                 setBarWidth((Double) value);
+            } else if (property == PolylineProperty.DATATIPS) {
+                setDatatips((Integer[]) value);
             } else {
                 return super.setProperty(property, value);
             }
@@ -209,8 +228,9 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param barWidth the barWidth to set
      */
-    public void setBarWidth(Double barWidth) {
+    public UpdateStatus setBarWidth(Double barWidth) {
         this.barWidth = barWidth;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -223,8 +243,9 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param closed the closed to set
      */
-    public void setClosed(Boolean closed) {
+    public UpdateStatus setClosed(Boolean closed) {
         this.closed = closed;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -260,7 +281,7 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param interpColorVector the interpColorVector to set
      */
-    public void setInterpColorVector(Integer[] interpColorVector) {
+    public UpdateStatus setInterpColorVector(Integer[] interpColorVector) {
         if (interpColorVectorSet == false) {
             interpColorVectorSet = true;
         }
@@ -268,6 +289,7 @@ public class Polyline extends ClippableContouredObject {
         for (int i = 0; i < interpColorVector.length; i++) {
             this.interpColorVector[i] = interpColorVector[i];
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -280,8 +302,9 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param interpColorVectorSet the interpColorVectorSet to set
      */
-    public void setInterpColorVectorSet(Boolean interpColorVectorSet) {
+    public UpdateStatus setInterpColorVectorSet(Boolean interpColorVectorSet) {
         this.interpColorVectorSet = interpColorVectorSet;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -312,8 +335,9 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param shift the xShift to set
      */
-    public void setXShift(double[] shift) {
+    public UpdateStatus setXShift(double[] shift) {
         xShift = shift;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -326,8 +350,9 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param shift the yShift to set
      */
-    public void setYShift(double[] shift) {
+    public UpdateStatus setYShift(double[] shift) {
         yShift = shift;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -340,8 +365,9 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param shift the zShift to set
      */
-    public void setZShift(double[] shift) {
+    public UpdateStatus setZShift(double[] shift) {
         zShift = shift;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -349,6 +375,29 @@ public class Polyline extends ClippableContouredObject {
      */
     public Integer getType() {
         return GraphicObjectProperties.__GO_POLYLINE__;
+    }
+    
+    /**
+     * @return datatips
+     */
+    public Integer[] getDatatips() {
+        return datatips.toArray(new Integer[datatips.size()]);
+    }
+    
+    /**
+     * @param datatips the datatips to set
+     */
+    private UpdateStatus setDatatips(List<Integer> datatips) {
+        this.datatips = datatips;
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * @param datatips the datatips to set
+     */
+    public UpdateStatus setDatatips(Integer[] datatips) {
+        this.datatips = new LinkedList<Integer>(Arrays.asList(datatips));
+        return UpdateStatus.Success;
     }
 
 }

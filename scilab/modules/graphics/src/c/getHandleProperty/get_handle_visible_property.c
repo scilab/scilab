@@ -28,12 +28,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_handle_visible_property(void* _pvCtx, char* pobjUID)
+void* get_handle_visible_property(void* _pvCtx, int iObjUID)
 {
     int handleVisible = 0;
     int *piHandleVisible = &handleVisible;
 
-    getGraphicObjectProperty(pobjUID, __GO_HIDDEN__, jni_bool, (void **)&piHandleVisible);
+    getGraphicObjectProperty(iObjUID, __GO_HIDDEN__, jni_bool, (void **)&piHandleVisible);
 
     if (piHandleVisible == NULL)
     {

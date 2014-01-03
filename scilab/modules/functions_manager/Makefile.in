@@ -141,9 +141,10 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscifunctions_manager_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscifunctions_manager_la_LIBADD =
-am__objects_1 = libscifunctions_manager_la-funcmanager.lo \
-	libscifunctions_manager_la-dynamic_modules.lo \
-	libscifunctions_manager_la-functions_manager.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+am__objects_1 = src/cpp/libscifunctions_manager_la-funcmanager.lo \
+	src/cpp/libscifunctions_manager_la-dynamic_modules.lo \
+	src/cpp/libscifunctions_manager_la-functions_manager.lo
 am_libscifunctions_manager_la_OBJECTS = $(am__objects_1)
 libscifunctions_manager_la_OBJECTS =  \
 	$(am_libscifunctions_manager_la_OBJECTS)
@@ -152,9 +153,9 @@ am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
 am_testFunctionManager_OBJECTS =  \
-	testFunctionManager-test-function.$(OBJEXT) \
-	testFunctionManager-foo.$(OBJEXT) \
-	testFunctionManager-cosinus.$(OBJEXT)
+	src/cpp/testFunctionManager-test-function.$(OBJEXT) \
+	src/cpp/testFunctionManager-foo.$(OBJEXT) \
+	src/cpp/testFunctionManager-cosinus.$(OBJEXT)
 testFunctionManager_OBJECTS = $(am_testFunctionManager_OBJECTS)
 testFunctionManager_DEPENDENCIES =  \
 	$(top_builddir)/modules/types/libsciTypes.la \
@@ -296,6 +297,7 @@ DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
+ECJ = @ECJ@
 EGREP = @EGREP@
 EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
@@ -643,6 +645,18 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/cpp/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp
+	@: > src/cpp/$(am__dirstamp)
+src/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp/$(DEPDIR)
+	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscifunctions_manager_la-funcmanager.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscifunctions_manager_la-dynamic_modules.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscifunctions_manager_la-functions_manager.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscifunctions_manager.la: $(libscifunctions_manager_la_OBJECTS) $(libscifunctions_manager_la_DEPENDENCIES) $(EXTRA_libscifunctions_manager_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) -rpath $(pkglibdir) $(libscifunctions_manager_la_OBJECTS) $(libscifunctions_manager_la_LIBADD) $(LIBS)
@@ -655,6 +669,12 @@ clean-checkPROGRAMS:
 	list=`for p in $$list; do echo "$$p"; done | sed 's/$(EXEEXT)$$//'`; \
 	echo " rm -f" $$list; \
 	rm -f $$list
+src/cpp/testFunctionManager-test-function.$(OBJEXT):  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/testFunctionManager-foo.$(OBJEXT): src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/testFunctionManager-cosinus.$(OBJEXT):  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 testFunctionManager$(EXEEXT): $(testFunctionManager_OBJECTS) $(testFunctionManager_DEPENDENCIES) $(EXTRA_testFunctionManager_DEPENDENCIES) 
 	@rm -f testFunctionManager$(EXEEXT)
@@ -662,106 +682,112 @@ testFunctionManager$(EXEEXT): $(testFunctionManager_OBJECTS) $(testFunctionManag
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f src/cpp/*.$(OBJEXT)
+	-rm -f src/cpp/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_manager_la-dynamic_modules.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_manager_la-funcmanager.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_manager_la-functions_manager.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testFunctionManager-cosinus.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testFunctionManager-foo.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testFunctionManager-test-function.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifunctions_manager_la-dynamic_modules.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifunctions_manager_la-funcmanager.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifunctions_manager_la-functions_manager.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/testFunctionManager-cosinus.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/testFunctionManager-foo.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/testFunctionManager-test-function.Po@am__quote@
 
 .cpp.o:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .cpp.lo:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
-libscifunctions_manager_la-funcmanager.lo: src/cpp/funcmanager.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscifunctions_manager_la-funcmanager.lo -MD -MP -MF $(DEPDIR)/libscifunctions_manager_la-funcmanager.Tpo -c -o libscifunctions_manager_la-funcmanager.lo `test -f 'src/cpp/funcmanager.cpp' || echo '$(srcdir)/'`src/cpp/funcmanager.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifunctions_manager_la-funcmanager.Tpo $(DEPDIR)/libscifunctions_manager_la-funcmanager.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/funcmanager.cpp' object='libscifunctions_manager_la-funcmanager.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscifunctions_manager_la-funcmanager.lo: src/cpp/funcmanager.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscifunctions_manager_la-funcmanager.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscifunctions_manager_la-funcmanager.Tpo -c -o src/cpp/libscifunctions_manager_la-funcmanager.lo `test -f 'src/cpp/funcmanager.cpp' || echo '$(srcdir)/'`src/cpp/funcmanager.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscifunctions_manager_la-funcmanager.Tpo src/cpp/$(DEPDIR)/libscifunctions_manager_la-funcmanager.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/funcmanager.cpp' object='src/cpp/libscifunctions_manager_la-funcmanager.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscifunctions_manager_la-funcmanager.lo `test -f 'src/cpp/funcmanager.cpp' || echo '$(srcdir)/'`src/cpp/funcmanager.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscifunctions_manager_la-funcmanager.lo `test -f 'src/cpp/funcmanager.cpp' || echo '$(srcdir)/'`src/cpp/funcmanager.cpp
 
-libscifunctions_manager_la-dynamic_modules.lo: src/cpp/dynamic_modules.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscifunctions_manager_la-dynamic_modules.lo -MD -MP -MF $(DEPDIR)/libscifunctions_manager_la-dynamic_modules.Tpo -c -o libscifunctions_manager_la-dynamic_modules.lo `test -f 'src/cpp/dynamic_modules.cpp' || echo '$(srcdir)/'`src/cpp/dynamic_modules.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifunctions_manager_la-dynamic_modules.Tpo $(DEPDIR)/libscifunctions_manager_la-dynamic_modules.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/dynamic_modules.cpp' object='libscifunctions_manager_la-dynamic_modules.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscifunctions_manager_la-dynamic_modules.lo: src/cpp/dynamic_modules.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscifunctions_manager_la-dynamic_modules.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscifunctions_manager_la-dynamic_modules.Tpo -c -o src/cpp/libscifunctions_manager_la-dynamic_modules.lo `test -f 'src/cpp/dynamic_modules.cpp' || echo '$(srcdir)/'`src/cpp/dynamic_modules.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscifunctions_manager_la-dynamic_modules.Tpo src/cpp/$(DEPDIR)/libscifunctions_manager_la-dynamic_modules.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/dynamic_modules.cpp' object='src/cpp/libscifunctions_manager_la-dynamic_modules.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscifunctions_manager_la-dynamic_modules.lo `test -f 'src/cpp/dynamic_modules.cpp' || echo '$(srcdir)/'`src/cpp/dynamic_modules.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscifunctions_manager_la-dynamic_modules.lo `test -f 'src/cpp/dynamic_modules.cpp' || echo '$(srcdir)/'`src/cpp/dynamic_modules.cpp
 
-libscifunctions_manager_la-functions_manager.lo: src/cpp/functions_manager.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscifunctions_manager_la-functions_manager.lo -MD -MP -MF $(DEPDIR)/libscifunctions_manager_la-functions_manager.Tpo -c -o libscifunctions_manager_la-functions_manager.lo `test -f 'src/cpp/functions_manager.cpp' || echo '$(srcdir)/'`src/cpp/functions_manager.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscifunctions_manager_la-functions_manager.Tpo $(DEPDIR)/libscifunctions_manager_la-functions_manager.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/functions_manager.cpp' object='libscifunctions_manager_la-functions_manager.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscifunctions_manager_la-functions_manager.lo: src/cpp/functions_manager.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscifunctions_manager_la-functions_manager.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscifunctions_manager_la-functions_manager.Tpo -c -o src/cpp/libscifunctions_manager_la-functions_manager.lo `test -f 'src/cpp/functions_manager.cpp' || echo '$(srcdir)/'`src/cpp/functions_manager.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscifunctions_manager_la-functions_manager.Tpo src/cpp/$(DEPDIR)/libscifunctions_manager_la-functions_manager.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/functions_manager.cpp' object='src/cpp/libscifunctions_manager_la-functions_manager.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscifunctions_manager_la-functions_manager.lo `test -f 'src/cpp/functions_manager.cpp' || echo '$(srcdir)/'`src/cpp/functions_manager.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscifunctions_manager_la-functions_manager.lo `test -f 'src/cpp/functions_manager.cpp' || echo '$(srcdir)/'`src/cpp/functions_manager.cpp
 
-testFunctionManager-test-function.o: src/cpp/test-function.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -MT testFunctionManager-test-function.o -MD -MP -MF $(DEPDIR)/testFunctionManager-test-function.Tpo -c -o testFunctionManager-test-function.o `test -f 'src/cpp/test-function.cpp' || echo '$(srcdir)/'`src/cpp/test-function.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/testFunctionManager-test-function.Tpo $(DEPDIR)/testFunctionManager-test-function.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/test-function.cpp' object='testFunctionManager-test-function.o' libtool=no @AMDEPBACKSLASH@
+src/cpp/testFunctionManager-test-function.o: src/cpp/test-function.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/testFunctionManager-test-function.o -MD -MP -MF src/cpp/$(DEPDIR)/testFunctionManager-test-function.Tpo -c -o src/cpp/testFunctionManager-test-function.o `test -f 'src/cpp/test-function.cpp' || echo '$(srcdir)/'`src/cpp/test-function.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/testFunctionManager-test-function.Tpo src/cpp/$(DEPDIR)/testFunctionManager-test-function.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/test-function.cpp' object='src/cpp/testFunctionManager-test-function.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -c -o testFunctionManager-test-function.o `test -f 'src/cpp/test-function.cpp' || echo '$(srcdir)/'`src/cpp/test-function.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/testFunctionManager-test-function.o `test -f 'src/cpp/test-function.cpp' || echo '$(srcdir)/'`src/cpp/test-function.cpp
 
-testFunctionManager-test-function.obj: src/cpp/test-function.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -MT testFunctionManager-test-function.obj -MD -MP -MF $(DEPDIR)/testFunctionManager-test-function.Tpo -c -o testFunctionManager-test-function.obj `if test -f 'src/cpp/test-function.cpp'; then $(CYGPATH_W) 'src/cpp/test-function.cpp'; else $(CYGPATH_W) '$(srcdir)/src/cpp/test-function.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/testFunctionManager-test-function.Tpo $(DEPDIR)/testFunctionManager-test-function.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/test-function.cpp' object='testFunctionManager-test-function.obj' libtool=no @AMDEPBACKSLASH@
+src/cpp/testFunctionManager-test-function.obj: src/cpp/test-function.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/testFunctionManager-test-function.obj -MD -MP -MF src/cpp/$(DEPDIR)/testFunctionManager-test-function.Tpo -c -o src/cpp/testFunctionManager-test-function.obj `if test -f 'src/cpp/test-function.cpp'; then $(CYGPATH_W) 'src/cpp/test-function.cpp'; else $(CYGPATH_W) '$(srcdir)/src/cpp/test-function.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/testFunctionManager-test-function.Tpo src/cpp/$(DEPDIR)/testFunctionManager-test-function.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/test-function.cpp' object='src/cpp/testFunctionManager-test-function.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -c -o testFunctionManager-test-function.obj `if test -f 'src/cpp/test-function.cpp'; then $(CYGPATH_W) 'src/cpp/test-function.cpp'; else $(CYGPATH_W) '$(srcdir)/src/cpp/test-function.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/testFunctionManager-test-function.obj `if test -f 'src/cpp/test-function.cpp'; then $(CYGPATH_W) 'src/cpp/test-function.cpp'; else $(CYGPATH_W) '$(srcdir)/src/cpp/test-function.cpp'; fi`
 
-testFunctionManager-foo.o: src/cpp/foo.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -MT testFunctionManager-foo.o -MD -MP -MF $(DEPDIR)/testFunctionManager-foo.Tpo -c -o testFunctionManager-foo.o `test -f 'src/cpp/foo.cpp' || echo '$(srcdir)/'`src/cpp/foo.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/testFunctionManager-foo.Tpo $(DEPDIR)/testFunctionManager-foo.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/foo.cpp' object='testFunctionManager-foo.o' libtool=no @AMDEPBACKSLASH@
+src/cpp/testFunctionManager-foo.o: src/cpp/foo.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/testFunctionManager-foo.o -MD -MP -MF src/cpp/$(DEPDIR)/testFunctionManager-foo.Tpo -c -o src/cpp/testFunctionManager-foo.o `test -f 'src/cpp/foo.cpp' || echo '$(srcdir)/'`src/cpp/foo.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/testFunctionManager-foo.Tpo src/cpp/$(DEPDIR)/testFunctionManager-foo.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/foo.cpp' object='src/cpp/testFunctionManager-foo.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -c -o testFunctionManager-foo.o `test -f 'src/cpp/foo.cpp' || echo '$(srcdir)/'`src/cpp/foo.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/testFunctionManager-foo.o `test -f 'src/cpp/foo.cpp' || echo '$(srcdir)/'`src/cpp/foo.cpp
 
-testFunctionManager-foo.obj: src/cpp/foo.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -MT testFunctionManager-foo.obj -MD -MP -MF $(DEPDIR)/testFunctionManager-foo.Tpo -c -o testFunctionManager-foo.obj `if test -f 'src/cpp/foo.cpp'; then $(CYGPATH_W) 'src/cpp/foo.cpp'; else $(CYGPATH_W) '$(srcdir)/src/cpp/foo.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/testFunctionManager-foo.Tpo $(DEPDIR)/testFunctionManager-foo.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/foo.cpp' object='testFunctionManager-foo.obj' libtool=no @AMDEPBACKSLASH@
+src/cpp/testFunctionManager-foo.obj: src/cpp/foo.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/testFunctionManager-foo.obj -MD -MP -MF src/cpp/$(DEPDIR)/testFunctionManager-foo.Tpo -c -o src/cpp/testFunctionManager-foo.obj `if test -f 'src/cpp/foo.cpp'; then $(CYGPATH_W) 'src/cpp/foo.cpp'; else $(CYGPATH_W) '$(srcdir)/src/cpp/foo.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/testFunctionManager-foo.Tpo src/cpp/$(DEPDIR)/testFunctionManager-foo.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/foo.cpp' object='src/cpp/testFunctionManager-foo.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -c -o testFunctionManager-foo.obj `if test -f 'src/cpp/foo.cpp'; then $(CYGPATH_W) 'src/cpp/foo.cpp'; else $(CYGPATH_W) '$(srcdir)/src/cpp/foo.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/testFunctionManager-foo.obj `if test -f 'src/cpp/foo.cpp'; then $(CYGPATH_W) 'src/cpp/foo.cpp'; else $(CYGPATH_W) '$(srcdir)/src/cpp/foo.cpp'; fi`
 
-testFunctionManager-cosinus.o: src/cpp/cosinus.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -MT testFunctionManager-cosinus.o -MD -MP -MF $(DEPDIR)/testFunctionManager-cosinus.Tpo -c -o testFunctionManager-cosinus.o `test -f 'src/cpp/cosinus.cpp' || echo '$(srcdir)/'`src/cpp/cosinus.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/testFunctionManager-cosinus.Tpo $(DEPDIR)/testFunctionManager-cosinus.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/cosinus.cpp' object='testFunctionManager-cosinus.o' libtool=no @AMDEPBACKSLASH@
+src/cpp/testFunctionManager-cosinus.o: src/cpp/cosinus.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/testFunctionManager-cosinus.o -MD -MP -MF src/cpp/$(DEPDIR)/testFunctionManager-cosinus.Tpo -c -o src/cpp/testFunctionManager-cosinus.o `test -f 'src/cpp/cosinus.cpp' || echo '$(srcdir)/'`src/cpp/cosinus.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/testFunctionManager-cosinus.Tpo src/cpp/$(DEPDIR)/testFunctionManager-cosinus.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/cosinus.cpp' object='src/cpp/testFunctionManager-cosinus.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -c -o testFunctionManager-cosinus.o `test -f 'src/cpp/cosinus.cpp' || echo '$(srcdir)/'`src/cpp/cosinus.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/testFunctionManager-cosinus.o `test -f 'src/cpp/cosinus.cpp' || echo '$(srcdir)/'`src/cpp/cosinus.cpp
 
-testFunctionManager-cosinus.obj: src/cpp/cosinus.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -MT testFunctionManager-cosinus.obj -MD -MP -MF $(DEPDIR)/testFunctionManager-cosinus.Tpo -c -o testFunctionManager-cosinus.obj `if test -f 'src/cpp/cosinus.cpp'; then $(CYGPATH_W) 'src/cpp/cosinus.cpp'; else $(CYGPATH_W) '$(srcdir)/src/cpp/cosinus.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/testFunctionManager-cosinus.Tpo $(DEPDIR)/testFunctionManager-cosinus.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/cosinus.cpp' object='testFunctionManager-cosinus.obj' libtool=no @AMDEPBACKSLASH@
+src/cpp/testFunctionManager-cosinus.obj: src/cpp/cosinus.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/testFunctionManager-cosinus.obj -MD -MP -MF src/cpp/$(DEPDIR)/testFunctionManager-cosinus.Tpo -c -o src/cpp/testFunctionManager-cosinus.obj `if test -f 'src/cpp/cosinus.cpp'; then $(CYGPATH_W) 'src/cpp/cosinus.cpp'; else $(CYGPATH_W) '$(srcdir)/src/cpp/cosinus.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/testFunctionManager-cosinus.Tpo src/cpp/$(DEPDIR)/testFunctionManager-cosinus.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/cosinus.cpp' object='src/cpp/testFunctionManager-cosinus.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -c -o testFunctionManager-cosinus.obj `if test -f 'src/cpp/cosinus.cpp'; then $(CYGPATH_W) 'src/cpp/cosinus.cpp'; else $(CYGPATH_W) '$(srcdir)/src/cpp/cosinus.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/testFunctionManager-cosinus.obj `if test -f 'src/cpp/cosinus.cpp'; then $(CYGPATH_W) 'src/cpp/cosinus.cpp'; else $(CYGPATH_W) '$(srcdir)/src/cpp/cosinus.cpp'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf src/cpp/.libs src/cpp/_libs
 install-libscifunctions_manager_la_includeHEADERS: $(libscifunctions_manager_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	@list='$(libscifunctions_manager_la_include_HEADERS)'; test -n "$(libscifunctions_manager_la_includedir)" || list=; \
@@ -994,6 +1020,8 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f src/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/cpp/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1004,7 +1032,7 @@ clean-am: clean-checkPROGRAMS clean-generic clean-libtool \
 	clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf src/cpp/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -1050,7 +1078,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf src/cpp/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

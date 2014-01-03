@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="stdev">
+    <refnamediv>
+        <refname>stdev</refname>
+        <refpurpose>écart-type des termes d'une matrice</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>
+            y = stdev(x)
+            y = stdev(x, '*')
+            y = stdev(x, 'r')
+            y = stdev(x, 'c')
+            y = stdev(x, orien, m)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>vecteur, matrice ou hypermatrice réelle
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>scalaire, vecteur ou matrice réelle
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>orien</term>
+                <listitem>
+                    <para>
+                        caractère, peut valoir <literal>"*"</literal>, <literal>"r"</literal> ou <literal>"c"</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>réel : scalaire, vecteur ou hypermatrice, la moyenne a priori</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            stdev calcule l'estimateur sans biais de l'écart-type (normalisé par N-1, ou N est le nombre d'échantillons).
+            Si <varname>m</varname> est présent, alors <code>stdev</code> retourne l'écart quadratique moyen, normalisé par N,
+            en utilisant la moyenne a priori définie par <varname>m</varname>.
+        </para>
+        <para>
+            Pour un vecteur ou une matrice <literal>x</literal>, <literal>y=stdev(x)</literal> renvoie dans <literal>y</literal> l'écart-type des termes de <literal>x</literal>.
+        </para>
+        <para>
+            <literal>y=stdev(x,'r')</literal> (ou <literal>y=stdev(x,1)</literal>) est l'écart-type suivant l'indice de ligne. Chaque composante du vecteur ligne <literal>y</literal> contient l'écart-type de chaque colonne de <literal>x</literal>.
+        </para>
+        <para>
+        </para>
+        <para>
+            <literal>y=stdev(x,'c')</literal> (ou <literal>y=stdev(x,2)</literal>) est l'écart-type selon l'indice de colonne. Chaque composante du vecteur colonne <literal>y</literal> contient l'écart-type de chaque ligne de <literal>x</literal>.
+        </para>
+        <para>
+            Par extension, <literal>y=stdev(x,n)</literal> avec <literal>n</literal> un entier positif retourne la déviation
+            suivant la <literal>n</literal>-ème dimension, et si <literal>n>ndims(x)</literal>, alors <literal>stdev(x,n)</literal> retourne <literal>zeros(x)</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+A = [1 2 10; 7 7.1 7.01];
+stdev(A)
+stdev(A, 'r')
+stdev(A, 'c')
+stdev(A, 'c', mean(x,'c'))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="nanstdev">nanstdev</link>
+            </member>
+            <member>
+                <link linkend="stdevf">stdevf</link>
+            </member>
+            <member>
+                <link linkend="sum">sum</link>
+            </member>
+            <member>
+                <link linkend="median">median</link>
+            </member>
+            <member>
+                <link linkend="mean">mean</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    Peut désormais calculer l'écart-type moyen quadratique en utilisant la moyenne a priori définie par <varname>m</varname>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

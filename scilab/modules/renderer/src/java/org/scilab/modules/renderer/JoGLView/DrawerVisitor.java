@@ -72,6 +72,7 @@ import org.scilab.modules.renderer.JoGLView.util.LightingUtils;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -150,8 +151,9 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      * Used to get access to the DrawerVisitor corresponding to a given Figure when the
      * renderer module is accessed from another thread than the AWT's.
      */
-    private final static Map<String, DrawerVisitor> visitorMap = new HashMap<String, DrawerVisitor>();
+    private final static Map<Integer, DrawerVisitor> visitorMap = new HashMap<Integer, DrawerVisitor>();
     private final List<PostRendered> postRenderedList = new LinkedList<PostRendered>();
+    private final static Map<Integer, List<Integer>> openGLChildren = new HashMap<Integer, List<Integer>>();
 
     public DrawerVisitor(Component component, Canvas canvas, Figure figure) {
         GraphicController.getController().register(this);
@@ -258,7 +260,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      * @param figureId the figure identifier.
      * @return the visitor.
      */
-    public static DrawerVisitor getVisitor(String figureId) {
+    public static DrawerVisitor getVisitor(Integer figureId) {
         return visitorMap.get(figureId);
     }
 
@@ -291,7 +293,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      * Ask the given object to accept visitor.
      * @param childrenId array of object identifier.
      */
-    public void askAcceptVisitor(String[] childrenId) {
+    public void askAcceptVisitor(Integer[] childrenId) {
         if (childrenId != null) {
 
             for (int i = childrenId.length - 1; i >= 0; --i) {
@@ -773,7 +775,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 if (datatip.getMarkMode()) {
                     /* TODO: appearance can be not-null */
                     Texture texture = markManager.getMarkSprite(datatip, colorMap, null);
-                    Vector3d markPos = datatipTextDrawer.calculateAnchorPoint(datatip);
+                    Vector3d markPos = DatatipTextDrawer.calculateAnchorPoint(datatip);
                     drawingTools.draw(texture, AnchorPosition.CENTER, markPos);
                 }
                 if (datatip.getTipLabelMode()) {
@@ -891,7 +893,36 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     }
 
     @Override
-    public void updateObject(String id, int property) {
+    public void updateObject(Integer id, int property) {
+        /*
+         * Check if property is CHILDREN and if there is a new child I should care about
+         */
+        if (property == GraphicObjectProperties.__GO_CHILDREN__) {
+            if (id != figure.getIdentifier()) {
+                /* Ignore children that are not mine */
+                return;
+            }
+            Integer[] children = GraphicController.getController().getObjectFromId(id).getChildren();
+            List<Integer> currentOpenGLChildren = openGLChildren.get(id);
+            if (currentOpenGLChildren == null) {
+                /* No openGLChildren in cache, create empty one */
+                openGLChildren.put(id, new ArrayList<Integer>());
+                currentOpenGLChildren = openGLChildren.get(id);
+            }
+            List<Integer> updatedOpenGLChildren = new ArrayList<Integer>();
+            for (int i = 0 ; i < children.length ; ++i) {
+                Integer currentType = (Integer) GraphicController.getController().getProperty(children[i], GraphicObjectProperties.__GO_TYPE__);
+                if (currentType != GraphicObjectProperties.__GO_UICONTROL__ && currentType != GraphicObjectProperties.__GO_UIMENU__) {
+                    updatedOpenGLChildren.add(children[i]);
+                }
+            }
+            if (currentOpenGLChildren.size() == updatedOpenGLChildren.size()) {
+                /* No change made on openGL children => nothing to do */
+                return;
+            } else {
+                openGLChildren.put(id, updatedOpenGLChildren);
+            }
+        }
         try {
             if (needUpdate(id, property)) {
                 if (GraphicObjectProperties.__GO_COLORMAP__ == property && figure.getIdentifier().equals(id)) {
@@ -946,7 +977,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      * @param property the changed property.
      * @return true id the given changed property make the figure out of date.
      */
-    protected boolean needUpdate(String id, int property) {
+    protected boolean needUpdate(Integer id, int property) {
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
         int objectType = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
         if ((object != null) && isFigureChild(id)
@@ -958,6 +989,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             }
 
             if (object instanceof Axes) {
+
                 Axes axes = (Axes) object;
 
                 if (axes.getXAxisAutoTicks() && X_AXIS_TICKS_PROPERTIES.contains(property)) {
@@ -980,7 +1012,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             if (object instanceof Figure) {
                 if (property == GraphicObjectProperties.__GO_SIZE__ || property == GraphicObjectProperties.__GO_AXES_SIZE__ || property == GraphicObjectProperties.__GO_CHILDREN__) {
                     Figure fig = (Figure) object;
-                    for (String gid : fig.getChildren()) {
+                    for (Integer gid : fig.getChildren()) {
                         GraphicObject go = GraphicController.getController().getObjectFromId(gid);
                         if (go instanceof Axes) {
                             axesDrawer.computeRulers((Axes) go);
@@ -1003,8 +1035,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         }
     }
 
-    private boolean isImmediateDrawing(String id) {
-        String parentId = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+    private boolean isImmediateDrawing(Integer id) {
+        Integer parentId = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT_FIGURE__);
         if (parentId == null || !parentId.equals(figure.getIdentifier())) {
             return false;
         } else {
@@ -1014,11 +1046,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     }
 
     @Override
-    public void createObject(String id) {
+    public void createObject(Integer id) {
     }
 
     @Override
-    public void deleteObject(String id) {
+    public void deleteObject(Integer id) {
+        openGLChildren.remove(id);
+
         if (isImmediateDrawing(id)) {
             canvas.redraw();
         }
@@ -1059,9 +1093,9 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      * @param id the given id.
      * @return true if the given id correspond to a child of the current {@see Figure}.
      */
-    private boolean isFigureChild(String id) {
-        String parentFigureID = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT_FIGURE__);
-        return figure.getIdentifier().equals(parentFigureID);
+    private boolean isFigureChild(Integer id) {
+        Integer parentFigureID = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        return figure.getIdentifier() == parentFigureID;
     }
 
     /**

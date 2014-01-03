@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -59,7 +59,7 @@
 	(*jenv)->SetDoubleArrayRegion(jenv, $result, 0, _getChampXSize(arg1), $1);
 }
 
-%apply double * CHAMPX { double * getChampX(char * uid)}
+%apply double * CHAMPX { double * getChampX(int uid)}
 
 
 %{
@@ -71,14 +71,14 @@
 #include "MALLOC.h"
 #include "math.h"
 
-double * getChampX(char * uid)
+double * getChampX(int uid)
 {
     double * vx;
     getGraphicObjectProperty(uid, __GO_BASE_X__, jni_double_vector, (void**)&vx);
     return vx;
 }
 
-int _getChampXSize(char * uid) {
+int _getChampXSize(int uid) {
     
     int * dimension;
     getGraphicObjectProperty(uid, __GO_CHAMP_DIMENSIONS__, jni_int_vector, (void**)&dimension);
@@ -93,17 +93,17 @@ int _getChampXSize(char * uid) {
 	(*jenv)->SetDoubleArrayRegion(jenv, $result, 0, _getChampYSize(arg1), $1);
 }
 
-%apply double * CHAMPY { double * getChampY(char * uid) }
+%apply double * CHAMPY { double * getChampY(int uid) }
 %{
 
-double * getChampY(char * uid) {
+double * getChampY(int uid) {
 
     double * vy;
     getGraphicObjectProperty(uid, __GO_BASE_Y__, jni_double_vector, (void**)&vy);
     return vy;
 }
 
-int _getChampYSize(char * uid) {
+int _getChampYSize(int uid) {
     
     int * dimension;
     getGraphicObjectProperty(uid, __GO_CHAMP_DIMENSIONS__, jni_int_vector, (void**)&dimension);
@@ -118,17 +118,17 @@ int _getChampYSize(char * uid) {
 	(*jenv)->SetDoubleArrayRegion(jenv, $result, 0, _getArrowsSize(arg1), $1);
 }
 
-%apply double * ARROWS { double * getArrows(char * uid) }
+%apply double * ARROWS { double * getArrows(int uid) }
 %{
 
-double * getArrows(char * uid) {
+double * getArrows(int uid) {
 
     double * arrows;
     getGraphicObjectProperty(uid, __GO_DIRECTION__, jni_double_vector, (void**)&arrows);
     return arrows;
 }
 
-int _getArrowsSize(char * uid) {
+int _getArrowsSize(int uid) {
     
     int numArrows;
     int * pNumArrows = &numArrows;
@@ -144,17 +144,17 @@ int _getArrowsSize(char * uid) {
 	(*jenv)->SetDoubleArrayRegion(jenv, $result, 0, _getSegsSize(arg1), $1);
 }
 
-%apply double * SEGS { double * getSegsData(char * uid) }
+%apply double * SEGS { double * getSegsData(int uid) }
 %{
 
-double * getSegsData(char * uid) {
+double * getSegsData(int uid) {
 
     double * data;
     getGraphicObjectProperty(uid, __GO_BASE__, jni_double_vector, (void**)&data);
     return data;
 }
 
-int _getSegsSize(char * uid) {
+int _getSegsSize(int uid) {
     
     int base;
     int * pBase = &base;
@@ -168,17 +168,17 @@ int _getSegsSize(char * uid) {
 	(*jenv)->SetDoubleArrayRegion(jenv, $result, 0, _getFecTrianglesSize(arg1), $1);
 }
 
-%apply double * FEC { double * getFecTriangles(char * uid) }
+%apply double * FEC { double * getFecTriangles(int uid) }
 %{
 
-double * getFecTriangles(char * uid) {
+double * getFecTriangles(int uid) {
 
     double * triangles;
     getGraphicObjectProperty(uid, __GO_DATA_MODEL_FEC_TRIANGLES__, jni_double_vector, (void**)&triangles);
     return triangles;
 }
 
-int _getFecTrianglesSize(char * uid) {
+int _getFecTrianglesSize(int uid) {
     
     int indices;
     int * pIndices = &indices;
@@ -193,17 +193,17 @@ int _getFecTrianglesSize(char * uid) {
 	(*jenv)->SetDoubleArrayRegion(jenv, $result, 0, _getFecDataSize(arg1), $1);
 }
 
-%apply double * FEC_XY { double * getFecData(char * uid) }
+%apply double * FEC_XY { double * getFecData(int uid) }
 %{
 
-double * getFecData(char * uid) {
+double * getFecData(int uid) {
 
     double * data;
     getGraphicObjectProperty(uid, __GO_DATA_MODEL_COORDINATES__, jni_double_vector, (void**)&data);
     return data;
 }
 
-int _getFecDataSize(char * uid) {
+int _getFecDataSize(int uid) {
     
     int size;
     int * pSize = &size;
@@ -219,10 +219,10 @@ int _getFecDataSize(char * uid) {
 	(*jenv)->SetDoubleArrayRegion(jenv, $result, 0, 3, $1);
 }
 
-%apply double * ARC_ULP { double * getArcUpperLeftPoint(char * uid) }
+%apply double * ARC_ULP { double * getArcUpperLeftPoint(int uid) }
 %{
 
-double * getArcUpperLeftPoint(char * uid) {
+double * getArcUpperLeftPoint(int uid) {
 
     double * upperLeftPoint;
     getGraphicObjectProperty(uid, __GO_UPPER_LEFT_POINT__, jni_double_vector, (void**)&upperLeftPoint);
@@ -236,10 +236,10 @@ double * getArcUpperLeftPoint(char * uid) {
 	(*jenv)->SetDoubleArrayRegion(jenv, $result, 0, 4, $1);
 }
 
-%apply double * ARC_DATA { double * getArcData(char * uid) }
+%apply double * ARC_DATA { double * getArcData(int uid) }
 %{
 
-double * getArcData(char * uid) {
+double * getArcData(int uid) {
 
     double * data = (double *)MALLOC(sizeof(double)*4);
 	double value;
@@ -258,11 +258,11 @@ double * getArcData(char * uid) {
 %}
 
 
-double * getChampX(char * uid);
-double * getChampY(char * uid);
-double * getArrows(char * uid);
-double * getSegsData(char * uid);
-double * getFecTriangles(char * uid);
-double * getFecData(char * uid);
-double * getArcUpperLeftPoint(char * uid);
-double * getArcData(char * uid);
+double * getChampX(int uid);
+double * getChampY(int uid);
+double * getArrows(int uid);
+double * getSegsData(int uid);
+double * getFecTriangles(int uid);
+double * getFecData(int uid);
+double * getArcUpperLeftPoint(int uid);
+double * getArcData(int uid);

@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "slatec_f module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "slatec_f module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "slatec_f.dll"
             VALUE "ProductName", "slatec_f module"
             VALUE "ProductVersion", "6, 0, 0, 0"

@@ -15,12 +15,13 @@
 
 #include <string.h>
 #include "SetUicontrolBackgroundColor.hxx"
-int SetUicontrolBackgroundColor(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+
+int SetUicontrolBackgroundColor(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* Color can be [R, G, B] or "R|G|B" */
 
     double* allColors = NULL;
-    BOOL status = FALSE;;
+    BOOL status = FALSE;
     int nbValues = 0;
 
     if (valueType == sci_strings)
@@ -68,7 +69,7 @@ int SetUicontrolBackgroundColor(void* _pvCtx, char* sciObjUID, void* _pvData, in
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_BACKGROUNDCOLOR__, allColors, jni_double_vector, 3);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_BACKGROUNDCOLOR__, allColors, jni_double_vector, 3);
 
     if (valueType == sci_strings)
     {

@@ -61,11 +61,6 @@
                             <xref linkend="Interfacingfunction_Extract_Activation">Interfacing function</xref>
                         </para>
                     </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="Extract_Activation">Compiled Super Block content</link>
-                        </para>
-                    </listitem>
                 </itemizedlist>
             </listitem>
         </itemizedlist>
@@ -151,15 +146,5 @@
                 <para> SCI/modules/scicos_blocks/macros/Misc/Extract_Activation.sci</para>
             </listitem>
         </itemizedlist>
-    </refsection>
-    <refsection id="CompiledSuperBlockcontent_Extract_Activation">
-        <title>Compiled Super Block content</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../help/images/Extract_Activation_img2_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
     </refsection>
 </refentry>

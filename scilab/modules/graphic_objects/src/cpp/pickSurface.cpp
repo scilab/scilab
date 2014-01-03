@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -20,7 +20,8 @@ extern "C"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
-    double pickSurface(char * uid, double x, double y,  double z, double dx, double dy, double dz, double mx, double my, double mz, double mw);
+    double pickSurface(int uid, double x, double y,  double z, double dx, double dy, double dz, double mx, double my, double mz, double mw);
+
 }
 
 #define EPS 1e-8
@@ -102,7 +103,7 @@ void QuadTestAndSaveZ(double *bounds, Vec3 P0, Vec3 P1, Vec3 P2, Vec3 P3, Vec3 d
  * or 2.0 if there isn't intersection (projected z vary between -1.0 - 1.0).
  */
 
-double pickSurface(char * uid, double x, double y,  double z, double dx, double dy, double dz, double mx, double my, double mz, double mw)
+double pickSurface(int uid, double x, double y,  double z, double dx, double dy, double dz, double mx, double my, double mz, double mw)
 {
     double* X = NULL;
     double* Y = NULL;
@@ -121,11 +122,12 @@ double pickSurface(char * uid, double x, double y,  double z, double dx, double 
 
 
 
-    char *axes_uid;
+    int axes_uid = 0;
+    int * paxes_uid = &axes_uid;
     int zoom_enabled = 0;
     int *ptr = &zoom_enabled;
     double *bounds;
-    getGraphicObjectProperty(uid, __GO_PARENT_AXES__, jni_string, (void**) &axes_uid);
+    getGraphicObjectProperty(uid, __GO_PARENT_AXES__, jni_int, (void**) &paxes_uid);
     getGraphicObjectProperty(axes_uid, __GO_ZOOM_ENABLED__, jni_bool, (void**) &ptr);
 
     if (zoom_enabled)

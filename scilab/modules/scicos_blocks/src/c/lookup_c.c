@@ -45,6 +45,7 @@ static int FindIndex(int, double , int , int , double *, int);
 SCICOS_BLOCKS_IMPEXP void lookup_c(scicos_block *block, int flag)
 {
     double a = 0., b = 0., c = 0., y1 = 0., y2 = 0., t1 = 0., t2 = 0.;
+    int** work = (int**) block->work;
     int *ind  = NULL, inow = 0, i = 0, ip1 = 0;
     double *y = NULL, *u = NULL, u0 = 0.;
     double  d1 = 0., d2 = 0., h = 0., dh = 0., ddh = 0., dddh = 0.;
@@ -54,12 +55,12 @@ SCICOS_BLOCKS_IMPEXP void lookup_c(scicos_block *block, int flag)
             /* init */
         case 4  :  /* the workspace is used to store discrete counter value */
         {
-            if ((*block->work = scicos_malloc(1 * sizeof(int))) == NULL)
+            if ((*work = (int*) scicos_malloc(1 * sizeof(int))) == NULL)
             {
                 set_block_error(-16);
                 return;
             }
-            ind = *block->work;
+            ind = *work;
             ind[0] = 0;
 
             return;
@@ -70,7 +71,7 @@ SCICOS_BLOCKS_IMPEXP void lookup_c(scicos_block *block, int flag)
             y = GetRealOutPortPtrs(block, 1);
             u = GetRealInPortPtrs(block, 1);
             u0 = u[0];
-            ind = *block->work;
+            ind = *work;
             i = ind[0];
             ip1 = i + 1;
 
@@ -199,7 +200,7 @@ SCICOS_BLOCKS_IMPEXP void lookup_c(scicos_block *block, int flag)
         /* finish */
         case 5  :
         {
-            scicos_free(*block->work); /*free the workspace*/
+            scicos_free(*work); /*free the workspace*/
             break;
         }
 

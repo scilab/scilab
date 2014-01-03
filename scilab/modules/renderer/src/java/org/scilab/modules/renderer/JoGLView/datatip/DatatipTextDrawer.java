@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -58,13 +58,12 @@ public class DatatipTextDrawer extends TextManager {
 
         Transformation projection = drawingTools.getTransformationManager().getCanvasProjection();
 
-        Vector3d textPosition = new Vector3d(datatip.getPosition());
-
-        String parentAxesId = datatip.getParentAxes();
+        Integer parentAxesId = datatip.getParentAxes();
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentAxesId);
 
         /* Compute the text box vectors and the text box to texture dimension ratios */
-        Vector3d[] textBoxVectors =  computeTextBoxVectors(projection, datatip, texture.getDataProvider().getTextureSize(), parentAxes);
+        Vector3d[] textBoxVectors = computeTextBoxVectors(projection, datatip, texture.getDataProvider().getTextureSize(), parentAxes);
+
         double[] ratios = computeRatios(projection, datatip, textBoxVectors, texture.getDataProvider().getTextureSize(), spriteDims);
 
         /* If text box mode is equal to filled, the texture must be updated */
@@ -87,22 +86,43 @@ public class DatatipTextDrawer extends TextManager {
         double r = datatip.getMarkStyle() == 11 ? 1.0 : 2.0;
         finalSize -= (finalSize >= 2.0) ? r : 0.0;
 
-
         Vector3d delta = new Vector3d(finalSize, finalSize, 0);
         /* set up the text position according to the datatip orientation*/
-        if (datatip.getOrientation() == 2 ||
-                datatip.getOrientation() == 3) {
-            cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1]);
-            delta = delta.setY(-finalSize);
-        }
-        if (datatip.getOrientation() == 0 ||
-                datatip.getOrientation() == 2) {
-            cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0]);
-            delta = delta.setX(-finalSize);
+        if (datatip.isAutoOrientationEnabled()) {
+            Vector3d a = cornerPositions[0];
+            Vector3d position = projection.unproject(cornerPositions[0].minus(textBoxVectors[0]).plus(textBoxVectors[1]));
+            if (position.getX() >= -1 && position.getX() <= 1 && position.getY() >= -1 && position.getY() <= 1) {
+                cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0]);
+                delta = delta.setX(-finalSize);
+            } else {
+                position = projection.unproject(cornerPositions[0].plus(textBoxVectors[0]).minus(textBoxVectors[1]));
+                if (position.getX() >= -1 && position.getX() <= 1 && position.getY() >= -1 && position.getY() <= 1) {
+                    cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1]);
+                    delta = delta.setY(-finalSize);
+                } else {
+                    position = projection.unproject(cornerPositions[0].minus(textBoxVectors[0]).minus(textBoxVectors[1]));
+                    if (position.getX() >= -1 && position.getX() <= 1 && position.getY() >= -1 && position.getY() <= 1) {
+                        cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1]);
+                        cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0]);
+                        delta = delta.setX(-finalSize);
+                        delta = delta.setY(-finalSize);
+                    }
+                }
+            }
+        } else {
+            if (datatip.getOrientation() == 2 || datatip.getOrientation() == 3) {
+                cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1]);
+                delta = delta.setY(-finalSize);
+            }
+            if (datatip.getOrientation() == 0 || datatip.getOrientation() == 2) {
+                cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0]);
+                delta = delta.setX(-finalSize);
+            }
         }
 
         cornerPositions[0] = cornerPositions[0].plus(delta);
         cornerPositions[1] = cornerPositions[1].plus(delta);
+
         /* The Text object's rotation direction convention is opposite to the standard one, its angle is expressed in radians. */
         drawingTools.draw(texture, AnchorPosition.LOWER_LEFT, cornerPositions[0], -180.0 * datatip.getFontAngle() / Math.PI);
 

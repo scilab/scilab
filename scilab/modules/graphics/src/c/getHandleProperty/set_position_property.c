@@ -36,17 +36,17 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_position_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_position_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int type = -1;
     int *piType = &type;
     BOOL status = FALSE;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     if (type == __GO_UICONTROL__ || type == __GO_FIGURE__)
     {
-        return SetUicontrolPosition(pobjUID, _pvData, valueType, nbRow, nbCol);
+        return SetUicontrolPosition(iObjUID, _pvData, valueType, nbRow, nbCol);
     }
 
     /* Type test required since a position set requires a 3-element, and 2-element vector
@@ -57,13 +57,13 @@ int set_position_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
         double* currentPosition;
         double labelPosition[3];
 
-        getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, (void **)&currentPosition);
+        getGraphicObjectProperty(iObjUID, __GO_POSITION__, jni_double_vector, (void **)&currentPosition);
 
         labelPosition[0] = values[0];
         labelPosition[1] = values[1];
         labelPosition[2] = currentPosition[2];
 
-        status = setGraphicObjectProperty(pobjUID, __GO_POSITION__, labelPosition, jni_double_vector, 3);
+        status = setGraphicObjectProperty(iObjUID, __GO_POSITION__, labelPosition, jni_double_vector, 3);
 
         if (status == TRUE)
         {
@@ -80,7 +80,7 @@ int set_position_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
     {
         double* values = (double*)_pvData;
 
-        status = setGraphicObjectProperty(pobjUID, __GO_POSITION__, values, jni_double_vector, 2);
+        status = setGraphicObjectProperty(iObjUID, __GO_POSITION__, values, jni_double_vector, 2);
 
         if (status == TRUE)
         {
@@ -109,7 +109,7 @@ int set_position_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
             return SET_PROPERTY_ERROR;
         }
 
-        status = setGraphicObjectProperty(pobjUID, __GO_POSITION__, values, jni_double_vector, 3);
+        status = setGraphicObjectProperty(iObjUID, __GO_POSITION__, values, jni_double_vector, 3);
 
         if (status == TRUE)
         {

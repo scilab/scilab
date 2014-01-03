@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -48,7 +48,7 @@ public class DatatipCommon {
      * Given a polyline and a position x in X axis return
      * the segment from the polyline that x belongs
      */
-    public static Segment getSegment(double x, String polyline) {
+    public static Segment getSegment(double x, Integer polyline) {
         return getSegment(x, polyline, 0);
     }
 
@@ -57,13 +57,13 @@ public class DatatipCommon {
      * Given a polyline and a position (x , y) in 2d view
      * return the segment from the polyline that this point belongs
      */
-    public static Segment getSegment3dView(double x, double y, String polyline) {
+    public static Segment getSegment3dView(double x, double y, Integer polyline) {
 
         double[][] polylineData = getPolylineDataMatrix (polyline);
 
         Double[][] polylineDataBackup = backupPolylineData(polylineData);
 
-        String axesUid = (String)GraphicController.getController().getProperty(polyline, __GO_PARENT_AXES__);
+        Integer axesUid = (Integer)GraphicController.getController().getProperty(polyline, __GO_PARENT_AXES__);
         double[][] geom3dCoords = getGeom3dCoords (axesUid, polylineData);
         polylineData = geom3dCoords;
 
@@ -133,13 +133,13 @@ public class DatatipCommon {
      * Given a polyline and a position x in X axis return
      * the segment+offset from the polyline that x belongs
      */
-    public static Segment getSegment(double x, String polyline, int offset) {
+    public static Segment getSegment(double x, Integer polyline, int offset) {
 
         double dataX[] = (double[])PolylineData.getDataX(polyline);
         double dataY[] = (double[])PolylineData.getDataY(polyline);
         int index = -1;
 
-        String axes = (String)GraphicController.getController().getProperty(polyline, __GO_PARENT_AXES__);
+        Integer axes = (Integer)GraphicController.getController().getProperty(polyline, __GO_PARENT_AXES__);
         boolean[] logFlags = new boolean[] {(Boolean)GraphicController.getController().getProperty(axes, __GO_X_AXIS_LOG_FLAG__),
                                             (Boolean)GraphicController.getController().getProperty(axes, __GO_Y_AXIS_LOG_FLAG__)
                                            };
@@ -210,12 +210,12 @@ public class DatatipCommon {
      * Return the interpolated position (x, y, z)
      * that the segment (x, y) belongs in the polyline
      */
-    public static Double[] Interpolate3dView(double x, double y, Segment seg, String polyline) {
+    public static Double[] Interpolate3dView(double x, double y, Segment seg, Integer polyline) {
 
         double[][] polylineData = getPolylineDataMatrix (polyline);
         Double[][] polylineDataBackup = backupPolylineData(polylineData);
 
-        String axesUid = (String)GraphicController.getController().getProperty(polyline, __GO_PARENT_AXES__);
+        Integer axesUid = (Integer)GraphicController.getController().getProperty(polyline, __GO_PARENT_AXES__);
         double[][] geom3dCoords = getGeom3dCoords (axesUid, polylineData);
         polylineData = geom3dCoords;
 
@@ -233,7 +233,7 @@ public class DatatipCommon {
      * that the segment (x, y) belongs in the polyline
      * to create de datatip by program
      */
-    public static Double[] Interpolate3dViewProgCoord(double x, double y, Segment seg, String polyline) {
+    public static Double[] Interpolate3dViewProgCoord(double x, double y, Segment seg, Integer polyline) {
 
         double[][] polylineData = getPolylineDataMatrix (polyline);
         Double[][] polylineDataBackup = backupPolylineData(polylineData);
@@ -250,8 +250,8 @@ public class DatatipCommon {
     /*
      * Given a datatip return its parent polyline
      */
-    public static String getParentPolyline(String datatip) {
-        String parent = (String)GraphicController.getController().getProperty(datatip, __GO_PARENT__);
+    public static Integer getParentPolyline(Integer datatip) {
+        Integer parent = (Integer)GraphicController.getController().getProperty(datatip, __GO_PARENT__);
         Integer parentType = (Integer)GraphicController.getController().getProperty(parent, __GO_TYPE__);
         if (parentType.equals(__GO_POLYLINE__)) {
             return parent;
@@ -263,9 +263,9 @@ public class DatatipCommon {
     /*
      * Given a pixel coordinate return the transformed axis coordinate
      */
-    public static double[] getTransformedPosition(String figure, Integer[] pos) {
+    public static double[] getTransformedPosition(Integer figure, Integer[] pos) {
 
-        String axes = AxesHandler.clickedAxes(figure, pos);
+        Integer axes = AxesHandler.clickedAxes(figure, pos);
         double[] position = new double[] {1.0 * pos[0], 1.0 * pos[1], 0.0};
         position = CallRenderer.get2dViewFromPixelCoordinates(axes, position);
         boolean[] logFlags = new boolean[] {(Boolean)GraphicController.getController().getProperty(axes, __GO_X_AXIS_LOG_FLAG__),
@@ -283,14 +283,14 @@ public class DatatipCommon {
      * Given a pixel coordinate return the transformed axis coordinate, in the view scale
      * (don't transfor it back if log scale is used)
      */
-    public static double[] getTransformedPositionInViewScale(String figure, Integer[] pos) {
+    public static double[] getTransformedPositionInViewScale(Integer figure, Integer[] pos) {
 
-        String axes = AxesHandler.clickedAxes(figure, pos);
+        Integer axes = AxesHandler.clickedAxes(figure, pos);
         double[] position = {1.0 * pos[0], 1.0 * pos[1], 0.0};
         return CallRenderer.get2dViewFromPixelCoordinates(axes, position);
     }
 
-    private static double[][] getPolylineDataMatrix (String polyline) {
+    private static double[][] getPolylineDataMatrix (Integer polyline) {
         double[] DataX = (double[]) PolylineData.getDataX(polyline);
         double[] DataY = (double[]) PolylineData.getDataY(polyline);
         double[] DataZ = (double[]) PolylineData.getDataZ(polyline);
@@ -323,7 +323,7 @@ public class DatatipCommon {
         return polylineBackup;
     }
 
-    private static double[][] getGeom3dCoords (String axesUid, double[][] polylineData) {
+    private static double[][] getGeom3dCoords (Integer axesUid, double[][] polylineData) {
         double[] tempCoords = new double[3];
         double[][] geom3d = new double[polylineData.length][3];
 

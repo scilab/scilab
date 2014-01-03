@@ -128,7 +128,7 @@ char ** ReBuildUserTicks(char old_logflag, char new_logflag, double* u_xgrads, i
     return  u_xlabels;
 }
 /*------------------------------------------------------------------------*/
-int set_log_flags_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_log_flags_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status[3];
     char * flags = NULL;
@@ -161,7 +161,7 @@ int set_log_flags_property(void* _pvCtx, char* pobjUID, void* _pvData, int value
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
+    getGraphicObjectProperty(iObjUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
 
     if (piLogFlag == NULL)
     {
@@ -171,10 +171,10 @@ int set_log_flags_property(void* _pvCtx, char* pobjUID, void* _pvData, int value
 
     logFlags[0] = iLogFlag;
 
-    getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
+    getGraphicObjectProperty(iObjUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
     logFlags[1] = iLogFlag;
 
-    getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
+    getGraphicObjectProperty(iObjUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
     logFlags[2] = iLogFlag;
 
     for (i = 0; i < 3; i++)
@@ -189,7 +189,7 @@ int set_log_flags_property(void* _pvCtx, char* pobjUID, void* _pvData, int value
         }
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
 
     if (dataBounds == NULL)
     {
@@ -278,9 +278,9 @@ int set_log_flags_property(void* _pvCtx, char* pobjUID, void* _pvData, int value
         }
     }
 
-    status[0] = setGraphicObjectProperty(pobjUID, __GO_X_AXIS_LOG_FLAG__, &logFlags[0], jni_bool, 1);
-    status[1] = setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOG_FLAG__, &logFlags[1], jni_bool, 1);
-    status[2] = setGraphicObjectProperty(pobjUID, __GO_Z_AXIS_LOG_FLAG__, &logFlags[2], jni_bool, 1);
+    status[0] = setGraphicObjectProperty(iObjUID, __GO_X_AXIS_LOG_FLAG__, &logFlags[0], jni_bool, 1);
+    status[1] = setGraphicObjectProperty(iObjUID, __GO_Y_AXIS_LOG_FLAG__, &logFlags[1], jni_bool, 1);
+    status[2] = setGraphicObjectProperty(iObjUID, __GO_Z_AXIS_LOG_FLAG__, &logFlags[2], jni_bool, 1);
 
     if (status[0] == TRUE && status[1] == TRUE && status[2] == TRUE)
     {

@@ -14,6 +14,7 @@ package org.scilab.modules.graphic_objects.textObject;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
@@ -219,15 +220,16 @@ public class Text extends ClippableTextObject {
     /**
      * @param alignment the alignment to set
      */
-    public void setAlignment(Integer alignment) {
-        setAlignmentAsEnum(Alignment.intToEnum(alignment));
+    public UpdateStatus setAlignment(Integer alignment) {
+        return setAlignmentAsEnum(Alignment.intToEnum(alignment));
     }
 
     /**
      * @param alignment the alignment to set
      */
-    public void setAlignmentAsEnum(Alignment alignment) {
+    public UpdateStatus setAlignmentAsEnum(Alignment alignment) {
         this.alignment = alignment;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -240,8 +242,9 @@ public class Text extends ClippableTextObject {
     /**
      * @param autoDimensioning the autoDimensioning to set
      */
-    public void setAutoDimensioning(Boolean autoDimensioning) {
+    public UpdateStatus setAutoDimensioning(Boolean autoDimensioning) {
         this.autoDimensioning = autoDimensioning;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -254,8 +257,9 @@ public class Text extends ClippableTextObject {
     /**
      * @param box the box to set
      */
-    public void setBox(Boolean box) {
+    public UpdateStatus setBox(Boolean box) {
         this.box = box;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -268,8 +272,9 @@ public class Text extends ClippableTextObject {
     /**
      * @param fontAngle the fontAngle to set
      */
-    public void setFontAngle(Double fontAngle) {
+    public UpdateStatus setFontAngle(Double fontAngle) {
         this.fontAngle = fontAngle;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -287,10 +292,11 @@ public class Text extends ClippableTextObject {
     /**
      * @param position the position to set
      */
-    public void setPosition(Double[] position) {
+    public UpdateStatus setPosition(Double[] position) {
         this.position[0] = position[0];
         this.position[1] = position[1];
         this.position[2] = position[2];
+        return UpdateStatus.Success;
     }
 
     /**
@@ -319,9 +325,9 @@ public class Text extends ClippableTextObject {
      * clockwise order.
      * @param coordinates the corners' coordinates (12-element array)
      */
-    public void setCorners(Double[] coordinates) {
+    public UpdateStatus setCorners(Double[] coordinates) {
         if (coordinates.length != 12) {
-            return;
+            return UpdateStatus.NoChange;
         }
 
         corners[0][0] = coordinates[0];
@@ -339,6 +345,8 @@ public class Text extends ClippableTextObject {
         corners[3][0] = coordinates[9];
         corners[3][1] = coordinates[10];
         corners[3][2] = coordinates[11];
+
+        return UpdateStatus.Success;
     }
 
     /**
@@ -355,9 +363,10 @@ public class Text extends ClippableTextObject {
     /**
      * @param textBox the textBox to set
      */
-    public void setTextBox(Double[] textBox) {
+    public UpdateStatus setTextBox(Double[] textBox) {
         this.textBox[0] = textBox[0];
         this.textBox[1] = textBox[1];
+        return UpdateStatus.Success;
     }
 
     /**
@@ -377,15 +386,16 @@ public class Text extends ClippableTextObject {
     /**
      * @param textBoxMode the textBoxMode to set
      */
-    public void setTextBoxMode(Integer textBoxMode) {
-        setTextBoxModeAsEnum(TextBoxMode.intToEnum(textBoxMode));
+    public UpdateStatus setTextBoxMode(Integer textBoxMode) {
+        return setTextBoxModeAsEnum(TextBoxMode.intToEnum(textBoxMode));
     }
 
     /**
      * @param textBoxMode the textBoxMode to set
      */
-    public void setTextBoxModeAsEnum(TextBoxMode textBoxMode) {
+    public UpdateStatus setTextBoxModeAsEnum(TextBoxMode textBoxMode) {
         this.textBoxMode = textBoxMode;
+        return UpdateStatus.Success;
     }
 
     /**

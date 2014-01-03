@@ -25,9 +25,9 @@
             <varlistentry>
                 <term>path</term>
                 <listitem>
-                    <para>A string. The directory pathname</para>
+                    <para>a string. The directory pathname.</para>
                     <para>
-                        "." if <link linkend="getd">getd</link> is called without input argument or if <literal>path</literal> is an empty string.
+                        "." if <function>getd</function> is called without input argument or if <varname>path</varname> is an empty string.
                     </para>
                 </listitem>
             </varlistentry>
@@ -37,7 +37,7 @@
         <title>Description</title>
         <para>
             Loads all <literal>.sci</literal> files (containing Scilab functions) defined in
-            the <literal>path</literal> directory.
+            the <varname>path</varname> directory.
         </para>
         <para>
             If the file does not contain a function, the script will be executed.
@@ -45,7 +45,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 getd('SCI/modules/cacsd/macros')
  ]]></programlisting>
     </refsection>

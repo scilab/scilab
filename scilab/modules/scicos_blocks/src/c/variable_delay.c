@@ -33,19 +33,20 @@
 SCICOS_BLOCKS_IMPEXP void variable_delay(scicos_block *block, int flag)
 {
     /*  rpar[0]=max delay, rpar[1]=init value, ipar[0]=buffer length */
+    double** work = (double**) block->work;
     double* pw = NULL, del = 0., t = 0., td = 0.;
     int* iw = NULL;
     int i = 0, j = 0, k = 0;
     if (flag == 4) /* the workspace is used to store previous values */
     {
-        if ((*block->work =
-                    scicos_malloc(sizeof(int) + sizeof(double) *
-                                  block->ipar[0] * (1 + block->insz[0]))) == NULL )
+        if ((*work = (double*)
+                     scicos_malloc(sizeof(int) + sizeof(double) *
+                                   block->ipar[0] * (1 + block->insz[0]))) == NULL )
         {
             set_block_error(-16);
             return;
         }
-        pw = *block->work;
+        pw = *work;
         pw[0] = -block->rpar[0] * block->ipar[0];
         for (i = 1; i < block->ipar[0]; i++)
         {
@@ -60,7 +61,7 @@ SCICOS_BLOCKS_IMPEXP void variable_delay(scicos_block *block, int flag)
     }
     else  if (flag == 5)
     {
-        scicos_free(*block->work);
+        scicos_free(*work);
     }
     else if (flag == 1)
     {
@@ -68,7 +69,7 @@ SCICOS_BLOCKS_IMPEXP void variable_delay(scicos_block *block, int flag)
         {
             do_cold_restart();
         }
-        pw = *block->work;
+        pw = *work;
         iw = (int *) (pw + block->ipar[0] * (1 + block->insz[0]));
         t = get_scicos_time();
         del = Min(Max(0, block->inptr[1][0]), block->rpar[0]);

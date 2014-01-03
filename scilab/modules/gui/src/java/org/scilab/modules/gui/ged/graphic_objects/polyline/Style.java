@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.ged.graphic_objects.polyline;
@@ -29,7 +29,7 @@ import org.scilab.modules.gui.ged.graphic_objects.SimpleSection;
 public class Style extends SimpleSection {
     private JPanel sectionPanel;
     private static Style instance;
-    private String parentFigure;
+    private Integer parentFigure;
     private ContouredObject contouredObject = new ContouredObject();
     private Polyline polyline = new Polyline();
 
@@ -37,7 +37,7 @@ public class Style extends SimpleSection {
     * Receives and passes the objectID to the parent class.
     * @param objectID Enters the identification of polyline.
     */
-    public Style(String objectID) {
+    public Style(Integer objectID) {
         super(MessagesGED.style_appearance, "polyline");
         instance = this;
         sectionPanel = getSectionPanel();
@@ -57,12 +57,12 @@ public class Style extends SimpleSection {
     * @param objectID uid
     */
     @Override
-    public final void initComponents(String objectID) {
+    public final void initComponents(Integer objectID) {
         int row = 0;
         final int leftmargin = 16; //to inner components
         int column = 0; //first column
-        parentFigure = (String) GraphicController.getController()
-                .getProperty(objectID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        parentFigure = (Integer) GraphicController.getController()
+                       .getProperty(objectID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
 
         //Components of the property: Arrow Size Factor.
         polyline.arrowSizeFactor(sectionPanel, row++, column, leftmargin, objectID);
@@ -85,5 +85,5 @@ public class Style extends SimpleSection {
 
         //Components of the property: Thickness.
         contouredObject.thickness(sectionPanel, row++, column, leftmargin, objectID);
-   }
+    }
 }

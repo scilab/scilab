@@ -27,12 +27,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_filled_property(void* _pvCtx, char* pobjUID)
+void* get_filled_property(void* _pvCtx, int iObjUID)
 {
     int iFilled = 0;
     int* piFilled = &iFilled;
 
-    getGraphicObjectProperty(pobjUID, __GO_FILLED__, jni_bool, (void **)&piFilled);
+    getGraphicObjectProperty(iObjUID, __GO_FILLED__, jni_bool, (void **)&piFilled);
 
     if (piFilled == NULL)
     {

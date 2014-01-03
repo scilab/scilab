@@ -9,6 +9,7 @@
 #
 # Linux autotool files
 #
+.dirstamp
 .deps
 .libs
 Makefile

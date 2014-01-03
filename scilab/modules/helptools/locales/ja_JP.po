@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-21 05:39+0000\n"
+"PO-Revision-Date: 2013-12-08 11:40+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -300,7 +300,7 @@ msgid "Help chapter"
 msgstr "ヘルプ章"
 
 msgid "Scilab Help"
-msgstr ""
+msgstr "Scilabヘルプ"
 
 #
 # File: macros/xmltoformat.sci, line: 383
@@ -343,10 +343,9 @@ msgstr ""
 msgid "\t%s\n"
 msgstr "\t%s\n"
 
-#
-# File: macros/xmltoformat.sci, line: 439
-msgid "Building the scilab manual file ["
-msgstr "scilabマニュアル・ファイルの構築 ["
+#, c-format
+msgid "Building the scilab manual file [%s]\n"
+msgstr "scilabマニュアルファイル [%s] を構築中\n"
 
 #, c-format
 msgid ""

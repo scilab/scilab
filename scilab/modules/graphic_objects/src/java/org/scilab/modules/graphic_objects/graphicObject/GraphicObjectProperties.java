@@ -339,5 +339,7 @@ public class GraphicObjectProperties {
     public static final int __GO_MATERIAL_SHININESS__ = 316;
     public static final int __GO_LIGHT__ = 317;
     public static final int __GO_LIGHT_TYPE__ = 318;
+    public static final int __GO_DATATIPS__ = 319;
+    public static final int __GO_DATATIPS_COUNT__ = 320;
 
 }

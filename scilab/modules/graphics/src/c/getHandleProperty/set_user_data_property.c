@@ -31,7 +31,7 @@
 #include "api_scilab.h"
 #include "MALLOC.h"
 /*------------------------------------------------------------------------*/
-int set_user_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_user_data_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     void* pPrevious = NULL;
     //temporary, try to write address of user_data in int array
@@ -40,13 +40,13 @@ int set_user_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int value
     //increase before decrease to not delete new val in case fo in and out are the same
     increaseValRef(_pvCtx, (int*)_pvData);
 
-    pPrevious = get_user_data_property(_pvCtx, pobjUID);
+    pPrevious = get_user_data_property(_pvCtx, iObjUID);
     if (pPrevious)
     {
         decreaseValRef(_pvCtx, (int*)pPrevious);
     }
 
-    if (setGraphicObjectProperty(pobjUID, __GO_USER_DATA__, &_pvData, jni_int_vector, iSize) == FALSE)
+    if (setGraphicObjectProperty(iObjUID, __GO_USER_DATA__, &_pvData, jni_int_vector, iSize) == FALSE)
     {
         //don't need to keep _pvData, operation failed.
         decreaseValRef(_pvCtx, (int*)_pvData);

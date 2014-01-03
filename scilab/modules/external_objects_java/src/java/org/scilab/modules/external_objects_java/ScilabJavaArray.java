@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -346,6 +346,15 @@ public final class ScilabJavaArray {
         return o;
     }
 
+    public static int[] toIntArray(double[] o) {
+        int[] ret = new int[o.length];
+        for (int i = 0; i < o.length; i++) {
+            ret[i] = (int) o[i];
+        }
+
+        return ret;
+    }
+
     /**
      * Box a double array
      * @param a an array
@@ -516,6 +525,11 @@ public final class ScilabJavaArray {
         return o;
     }
 
+    /**
+     * Get array base type
+     * @param c the Class
+     * @return the base
+     */
     public static Class getArrayBaseType(Class c) {
         Class base = c;
         while (base.isArray()) {
@@ -523,6 +537,22 @@ public final class ScilabJavaArray {
         }
 
         return base;
+    }
+
+    /**
+     * Get array info: base Class and number of dimensions
+     * @param c the Class
+     * @return info
+     */
+    public static Object[] getArrayInfo(Class c) {
+        Class base = c;
+        int dims = 0;
+        while (base.isArray()) {
+            base = base.getComponentType();
+            dims++;
+        }
+
+        return new Object[] {base, new Integer(dims)};
     }
 
     /**
@@ -583,6 +613,194 @@ public final class ScilabJavaArray {
         return cl;
     }
 
+    /**
+     * Convert a bi-dimensional array into one-dim one
+     * @param x the bi-dim array
+     * @return a one-dim array
+     */
+    public static byte[] toOneDim(byte[][] x) {
+        if (x.length == 0 || x[0].length == 0) {
+            return new byte[0];
+        }
+
+        final int len = x[0].length;
+        final byte[] ret = new byte[x.length * len];
+        for (int i = 0, s = 0; i < x.length; i++, s += len) {
+            System.arraycopy(x[i], 0, ret, s, len);
+        }
+
+        return ret;
+    }
+
+    /**
+     * Convert a bi-dimensional array into one-dim one
+     * @param x the bi-dim array
+     * @return a one-dim array
+     */
+    public static short[] toOneDim(short[][] x) {
+        if (x.length == 0 || x[0].length == 0) {
+            return new short[0];
+        }
+
+        final int len = x[0].length;
+        final short[] ret = new short[x.length * len];
+        for (int i = 0, s = 0; i < x.length; i++, s += len) {
+            System.arraycopy(x[i], 0, ret, s, len);
+        }
+
+        return ret;
+    }
+
+    /**
+     * Convert a bi-dimensional array into one-dim one
+     * @param x the bi-dim array
+     * @return a one-dim array
+     */
+    public static int[] toOneDim(int[][] x) {
+        if (x.length == 0 || x[0].length == 0) {
+            return new int[0];
+        }
+
+        final int len = x[0].length;
+        final int[] ret = new int[x.length * len];
+        for (int i = 0, s = 0; i < x.length; i++, s += len) {
+            System.arraycopy(x[i], 0, ret, s, len);
+        }
+
+        return ret;
+    }
+
+    /**
+     * Convert a bi-dimensional array into one-dim one
+     * @param x the bi-dim array
+     * @return a one-dim array
+     */
+    public static long[] toOneDim(long[][] x) {
+        if (x.length == 0 || x[0].length == 0) {
+            return new long[0];
+        }
+
+        final int len = x[0].length;
+        final long[] ret = new long[x.length * len];
+        for (int i = 0, s = 0; i < x.length; i++, s += len) {
+            System.arraycopy(x[i], 0, ret, s, len);
+        }
+
+        return ret;
+    }
+
+    /**
+     * Convert a bi-dimensional array into one-dim one
+     * @param x the bi-dim array
+     * @return a one-dim array
+     */
+    public static float[] toOneDim(float[][] x) {
+        if (x.length == 0 || x[0].length == 0) {
+            return new float[0];
+        }
+
+        final int len = x[0].length;
+        final float[] ret = new float[x.length * len];
+        for (int i = 0, s = 0; i < x.length; i++, s += len) {
+            System.arraycopy(x[i], 0, ret, s, len);
+        }
+
+        return ret;
+    }
+
+    /**
+     * Convert a bi-dimensional array into one-dim one
+     * @param x the bi-dim array
+     * @return a one-dim array
+     */
+    public static double[] toOneDim(double[][] x) {
+        if (x.length == 0 || x[0].length == 0) {
+            return new double[0];
+        }
+
+        final int len = x[0].length;
+        final double[] ret = new double[x.length * len];
+        for (int i = 0, s = 0; i < x.length; i++, s += len) {
+            System.arraycopy(x[i], 0, ret, s, len);
+        }
+
+        return ret;
+    }
+
+    /**
+     * Convert a bi-dimensional array into one-dim one
+     * @param x the bi-dim array
+     * @return a one-dim array
+     */
+    public static char[] toOneDim(char[][] x) {
+        if (x.length == 0 || x[0].length == 0) {
+            return new char[0];
+        }
+
+        final int len = x[0].length;
+        final char[] ret = new char[x.length * len];
+        for (int i = 0, s = 0; i < x.length; i++, s += len) {
+            System.arraycopy(x[i], 0, ret, s, len);
+        }
+
+        return ret;
+    }
+
+    /**
+     * Convert a bi-dimensional array into one-dim one
+     * @param x the bi-dim array
+     * @return a one-dim array
+     */
+    static Object toOneDim(Object x) {
+        Class base = getArrayBaseType(x.getClass());
+
+        if (base.isPrimitive()) {
+            try {
+                Method m = ScilabJavaArray.class.getDeclaredMethod("toOneDim", x.getClass());
+                return m.invoke(null, x);
+            } catch (Exception e) {
+                return null;
+            }
+        } else {
+            Object[][] xx = (Object[][]) x;
+
+            if (xx.length == 0 || xx[0].length == 0) {
+                return Array.newInstance(base, 0);
+            }
+
+            final int len = xx[0].length;
+            final Object ret = Array.newInstance(base, xx.length * len);
+            for (int i = 0, s = 0; i < xx.length; i++, s += len) {
+                System.arraycopy(xx[i], 0, ret, s, len);
+            }
+
+            return ret;
+        }
+    }
+
+    /**
+     * Convert a one-dimensional array into bi-dim one
+     * @param x the one-dim array
+     * @return a bi-dim array
+     */
+    static Object toBiDim(Object x) {
+        Object ret = Array.newInstance(x.getClass(), 1);
+        Array.set(ret, 0, x);
+
+        return ret;
+    }
+
+    /**
+     * Convert a one-dimensional array into bi-dim one
+     * @param x the one-dim array
+     * @return a bi-dim array
+     */
+    static Object singleToOneDim(Class base, Object x) {
+        Object ret = Array.newInstance(base, 1);
+        Array.set(ret, 0, x);
+
+        return ret;
+    }
 
     /**
      * Convert a list to an array of primitive type

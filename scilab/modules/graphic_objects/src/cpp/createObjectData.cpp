@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #include <stdio.h>
@@ -21,26 +21,27 @@ extern "C"
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-    extern char * createObject3dData(char *obj, char *newObj, int type);
+
+    int createObject3dData(int obj, int newObj, int type);
 
 }
 /*
  * Create the data object for the newObj
  * and copy the data from obj to newObj.
  */
-char * createObject3dData(char *obj, char *newObj, int type)
+int createObject3dData(int obj, int newObj, int type)
 {
     double *pvecx, *pvecy, *pvecz;
-    char *dataObj = NULL;
+    int dataObj = 0;
     int numElementsArray[3];
     BOOL result;
     int *ptr;
 
-    dataObj = (char*)createDataObject(newObj, type);
+    dataObj = createDataObject(newObj, type);
 
-    if (dataObj == NULL)
+    if (dataObj == 0)
     {
-        return NULL;
+        return 0;
     }
 
 
@@ -76,14 +77,14 @@ char * createObject3dData(char *obj, char *newObj, int type)
     }
     else
     {
-        return NULL;
+        return 0;
     }
 
 
     if (result == 0)
     {
         deleteDataObject(dataObj);
-        return NULL;
+        return 0;
     }
 
     getGraphicObjectProperty(obj, __GO_DATA_MODEL_X__, jni_double_vector, (void**)&pvecx);

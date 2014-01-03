@@ -26,13 +26,13 @@
 #include "FigureList.h"
 
 /*------------------------------------------------------------------------*/
-void* get_figures_id_property(void* _pvCtx, char* pobjUID)
+void* get_figures_id_property(void* _pvCtx, int iObjUID)
 {
     int nbFig = 0;
     int* ids = NULL;
     void* status = NULL;
 
-    if (pobjUID != NULL)
+    if (iObjUID != 0)
     {
         /* This property should not be called on an handle */
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "figures_id");
@@ -41,7 +41,7 @@ void* get_figures_id_property(void* _pvCtx, char* pobjUID)
 
     nbFig = sciGetNbFigure() ; /* get the number of opened windows */
 
-    ids = MALLOC(nbFig * sizeof(int));
+    ids = (int*)MALLOC(nbFig * sizeof(int));
     if (ids == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), "get_figures_id_property");

@@ -7,12 +7,17 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 function menubar(win,menus)
 
-    names=menus(1)
+    if argn(2) < 2 then
+        error(sprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "menubar", 2));
+    end
+
+    names = menus(1)
     for k=size(names,"*"):-1:1
-        delmenu(win,names(k))
+        delmenu(win, names(k))
     end
 
     for k=1:size(names,"*")
-        addmenu(win,names(k),menus(k+1),list(0,names(k)))
+        addmenu(win, names(k), menus(k+1), list(0, names(k)))
     end
+
 endfunction

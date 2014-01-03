@@ -338,7 +338,6 @@
     <ClCompile Include="..\cpp\SetUiobjectForegroundColor.cpp" />
     <ClCompile Include="setVisibleMainWindow.c" />
     <ClCompile Include="..\cpp\Toolbar.cpp" />
-    <ClCompile Include="..\jni\UIElementMapper.cpp" />
     <ClCompile Include="..\cpp\UnitsConversion.cpp" />
     <ClCompile Include="..\cpp\Widget.cpp" />
   </ItemGroup>
@@ -556,7 +555,6 @@
     <ClInclude Include="..\jni\ScilabDisplayTree.hxx" />
     <ClInclude Include="..\jni\StartPlotBrowser.hxx" />
     <ClInclude Include="..\jni\SwingView.hxx" />
-    <ClInclude Include="..\jni\UIElementMapper.hxx" />
     <ClInclude Include="buildMainWindowTitle.h" />
     <ClInclude Include="checkColorRange.h" />
     <ClInclude Include="CreateUIControl.h" />

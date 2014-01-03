@@ -47,7 +47,7 @@
         <programlisting role="example"><![CDATA[
     doc = xmlReadStr("<root><a>12</a><a>13</a><a>1.2345678</a><a>45e3</a><a>.23E-2</a></root>");
 
-    // Retrieve the content of the nodes with name equals to "a"
+    // Retrieve the content of the nodes with name equal to "a"
     xp = xmlXPath(doc, "//a/text()");
 
     // convert the result into doubles

@@ -53,7 +53,7 @@ public class SwingScilabMenu extends JMenu implements SwingViewObject, SimpleMen
     private boolean checkedState;
     private String text = "";
 
-    private String uid;
+    private Integer uid;
 
     /**
      * Constructor
@@ -444,7 +444,7 @@ public class SwingScilabMenu extends JMenu implements SwingViewObject, SimpleMen
      * Set the UID
      * @param id the UID
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         uid = id;
     }
 
@@ -452,7 +452,7 @@ public class SwingScilabMenu extends JMenu implements SwingViewObject, SimpleMen
      * Get the UID
      * @return the UID
      */
-    public String getId() {
+    public Integer getId() {
         return uid;
     }
 

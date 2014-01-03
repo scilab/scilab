@@ -113,12 +113,11 @@ public class RulerDrawer {
 
     /**
      * Compute different parameters on a ruler
-     * @param drawingTools the {@link DrawingTools} of the canvas where the ruler will be drawn.
      * @param rulerModel the {@link RulerModel} of the drawn ruler.
      * @param canvasProjection the canvas projection.
      */
-    public RulerDrawingResult computeRuler(DrawingTools drawingTools, RulerModel model, Transformation canvasProjection) {
-        return oneShotRulerDrawer.computeRuler(drawingTools, model, canvasProjection);
+    public RulerDrawingResult computeRuler(RulerModel model, Transformation canvasProjection) {
+        return oneShotRulerDrawer.computeRuler(model, canvasProjection);
     }
 
     /**
@@ -192,7 +191,7 @@ public class RulerDrawer {
          * @param rulerModel the {@link RulerModel} of the drawn ruler.
          * @param canvasProjection the canvas projection.
          */
-        public synchronized RulerDrawingResult computeRuler(DrawingTools drawingTools, RulerModel rulerModel, Transformation canvasProjection) {
+        public synchronized RulerDrawingResult computeRuler(RulerModel rulerModel, Transformation canvasProjection) {
             // Same code as drawWithResults (without drawing)
             // Historically, computations were made when drawing and they are made before drawing.
             // TODO: remove drawWithResults ??
@@ -279,6 +278,10 @@ public class RulerDrawer {
          * @param drawingTools {@link DrawingTools} used to perform the ruler drawing.
          */
         private synchronized void draw(DrawingTools drawingTools) {
+            if (rulerModel == null) {
+                return;
+            }
+
             BuffersManager bufferManager = drawingTools.getCanvas().getBuffersManager();
             ElementsBuffer vertices = bufferManager.createElementsBuffer();
             fillVertices(vertices, rulerModel, ticksValue, subTicksValue, canvasProjection);

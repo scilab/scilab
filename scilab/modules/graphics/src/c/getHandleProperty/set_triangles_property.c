@@ -34,7 +34,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_triangles_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_triangles_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int iType = -1;
     int *piType = &iType;
@@ -52,7 +52,7 @@ int set_triangles_property(void* _pvCtx, char* pobjUID, void* _pvData, int value
      * is not done for now.
      * To be implemented/corrected.
      */
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     if (iType == __GO_FEC__)
     {
@@ -67,7 +67,7 @@ int set_triangles_property(void* _pvCtx, char* pobjUID, void* _pvData, int value
     }
 
     /* Resizes the triangle array if required */
-    result  = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_INDICES__, &nbRow, jni_int, 1);
+    result  = setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_NUM_INDICES__, &nbRow, jni_int, 1);
 
     if (result == FALSE)
     {
@@ -77,7 +77,7 @@ int set_triangles_property(void* _pvCtx, char* pobjUID, void* _pvData, int value
 
     pnoeud = (double*)_pvData;
 
-    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_FEC_TRIANGLES__, pnoeud, jni_double_vector, nbRow);
+    setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_FEC_TRIANGLES__, pnoeud, jni_double_vector, nbRow);
 
     return SET_PROPERTY_SUCCEED;
 }

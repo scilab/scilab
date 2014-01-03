@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -52,7 +52,7 @@ public class SystemClipboard {
      *
      * @param uid The figure to copy
      */
-    public static void copyToSysClipboard(String uid) {
+    public static void copyToSysClipboard(Integer uid) {
         BufferedImage image = bufferFromUID(uid);
         ImageTransfer img = new ImageTransfer((Image)image);
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(img, null);
@@ -103,7 +103,7 @@ public class SystemClipboard {
         }
     }
 
-    private static BufferedImage bufferFromUID(String uid) {
+    private static BufferedImage bufferFromUID(Integer uid) {
         JoGLCanvas joglCanvas = null;
 
         DrawerVisitor visitor = DrawerVisitor.getVisitor(uid);

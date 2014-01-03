@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="listfunctions">
+    <refnamediv>
+        <refname>listfunctions</refname>
+        <refpurpose>
+            свойства всех функций в рабочем пространстве
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            [flist,compiled,profilable,called] = listfunctions([scope])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>scope</term>
+                <listitem>
+                    <para>
+                        строка, <literal>"local"</literal> (по умолчанию) или <literal>"global"</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flist</term>
+                <listitem>
+                    <para>
+                        массив строк, имена всех переменных-функций в
+                        указанном рабочем пространстве.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>compiled</term>
+                <listitem>
+                    <para>
+                        массив логических значений, ИСТИНА, если
+                        соответствующий элемент из списка
+                        <varname>flist</varname> имеет тип 13.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>profilable</term>
+                <listitem>
+                    <para>
+                        массив логических значений, ИСТИНА, если
+                        соответствующий элемент из списка
+                        <varname>flist</varname> имеет тип 13 и к тому
+                        же в псевдокоде функции найдена информация
+                        профилирования.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>called</term>
+                <listitem>
+                    <para>
+                        массив значений типа uint32, количество раз,
+                        когда соответствующий элемент из списка
+                        <varname>flist</varname> уже был вызван
+                        (ненулевой только для профилируемых функций).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Эта функция проверяет все переменные в рабочем
+                    пространстве (указанные с помощью функции
+                    <link linkend="who">who</link>) и собирает те,
+                    которые имеют тип 11 или 13; для последних
+                    вызывается <code>lst = macr2lst(fun)</code> для
+                    того, чтобы проверить магический вход профилирования
+                    в конце первой строки кода, т. е. <code>lst(5)(1)=="25"</code>.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+recompilefunction("asinh","p")
+[flist,compiled,profilable,called] = listfunctions();
+flist(profilable)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="function">function</link>
+            </member>
+            <member>
+                <link linkend="exec">exec</link>
+            </member>
+            <member>
+                <link linkend="deff">deff</link>
+            </member>
+            <member>
+                <link linkend="comp">comp</link>
+            </member>
+            <member>
+                <link linkend="fun2string">fun2string</link>
+            </member>
+            <member>
+                <link linkend="macr2lst">macr2lst</link>
+            </member>
+            <member>
+                <link linkend="profile">profile</link>
+            </member>
+            <member>
+                <link linkend="recompilefunction">recompilefunction</link>
+            </member>
+            <member>
+                <link linkend="who">who</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Литература</title>
+        <para>
+            <ulink url="http://wiki.scilab.org/Scilab_function_variables%3A_representation%2C_manipulation">http://wiki.scilab.org/Scilab_function_variables%3A_representation%2C_manipulation</ulink>
+        </para>
+    </refsection>
+</refentry>

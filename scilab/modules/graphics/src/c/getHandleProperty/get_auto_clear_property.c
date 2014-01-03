@@ -29,12 +29,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_auto_clear_property(void* _pvCtx, char* pobjUID)
+void* get_auto_clear_property(void* _pvCtx, int iObjUID)
 {
     int iAutoClear = 0;
     int* piAutoClear = &iAutoClear;
 
-    getGraphicObjectProperty(pobjUID, __GO_AUTO_CLEAR__, jni_bool, (void **)&piAutoClear);
+    getGraphicObjectProperty(iObjUID, __GO_AUTO_CLEAR__, jni_bool, (void **)&piAutoClear);
 
     if (piAutoClear == NULL)
     {

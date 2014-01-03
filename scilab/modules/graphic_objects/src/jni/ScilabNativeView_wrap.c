@@ -187,12 +187,12 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #define SWIG_contract_assert(nullreturn, expr, msg) if (!(expr)) {SWIG_JavaThrowException(jenv, SWIG_JavaIllegalArgumentException, msg); return nullreturn; } else
 
 
-    extern void ScilabNativeView__createObject(char* pstId);
-    extern void ScilabNativeView__deleteObject(char* pstId);
-    extern void ScilabNativeView__updateObject(char* pstId, int iProperty);
-    extern void ScilabNativeView__setCurrentFigure(char* pstId);
-    extern void ScilabNativeView__setCurrentSubWin(char* pstId);
-    extern void ScilabNativeView__setCurrentObject(char* pstId);
+    extern void ScilabNativeView__createObject(int id);
+    extern void ScilabNativeView__deleteObject(int id);
+    extern void ScilabNativeView__updateObject(int id, int iProperty);
+    extern void ScilabNativeView__setCurrentFigure(int id);
+    extern void ScilabNativeView__setCurrentSubWin(int id);
+    extern void ScilabNativeView__setCurrentObject(int id);
     extern int ScilabNativeView__getValidDefaultFigureId();
     
 
@@ -200,95 +200,65 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 extern "C" {
 #endif
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_ScilabNativeViewJNI_ScilabNativeView_1_1createObject(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  char *arg1 = (char *) 0 ;
+SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_ScilabNativeViewJNI_ScilabNativeView_1_1createObject(JNIEnv *jenv, jclass jcls, jint jarg1) {
+  int arg1 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return ;
-  }
+  arg1 = (int)jarg1; 
   ScilabNativeView__createObject(arg1);
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
 }
 
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_ScilabNativeViewJNI_ScilabNativeView_1_1deleteObject(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  char *arg1 = (char *) 0 ;
+SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_ScilabNativeViewJNI_ScilabNativeView_1_1deleteObject(JNIEnv *jenv, jclass jcls, jint jarg1) {
+  int arg1 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return ;
-  }
+  arg1 = (int)jarg1; 
   ScilabNativeView__deleteObject(arg1);
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
 }
 
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_ScilabNativeViewJNI_ScilabNativeView_1_1updateObject(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
-  char *arg1 = (char *) 0 ;
+SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_ScilabNativeViewJNI_ScilabNativeView_1_1updateObject(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2) {
+  int arg1 ;
   int arg2 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return ;
-  }
+  arg1 = (int)jarg1; 
   arg2 = (int)jarg2; 
   ScilabNativeView__updateObject(arg1,arg2);
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
 }
 
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_ScilabNativeViewJNI_ScilabNativeView_1_1setCurrentFigure(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  char *arg1 = (char *) 0 ;
+SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_ScilabNativeViewJNI_ScilabNativeView_1_1setCurrentFigure(JNIEnv *jenv, jclass jcls, jint jarg1) {
+  int arg1 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return ;
-  }
+  arg1 = (int)jarg1; 
   ScilabNativeView__setCurrentFigure(arg1);
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
 }
 
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_ScilabNativeViewJNI_ScilabNativeView_1_1setCurrentSubWin(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  char *arg1 = (char *) 0 ;
+SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_ScilabNativeViewJNI_ScilabNativeView_1_1setCurrentSubWin(JNIEnv *jenv, jclass jcls, jint jarg1) {
+  int arg1 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return ;
-  }
+  arg1 = (int)jarg1; 
   ScilabNativeView__setCurrentSubWin(arg1);
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
 }
 
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_ScilabNativeViewJNI_ScilabNativeView_1_1setCurrentObject(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  char *arg1 = (char *) 0 ;
+SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_ScilabNativeViewJNI_ScilabNativeView_1_1setCurrentObject(JNIEnv *jenv, jclass jcls, jint jarg1) {
+  int arg1 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return ;
-  }
+  arg1 = (int)jarg1; 
   ScilabNativeView__setCurrentObject(arg1);
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
 }
 
 

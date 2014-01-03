@@ -55,13 +55,12 @@ SCICOS_BLOCKS_IMPEXP void assignment(scicos_block *block, int flag)
 
     else if (flag == 1)
     {
-        double *otsz, *indxopt, *indxb, *indx1, *indx2;
+        double *indxopt, *indxb, *indx1, *indx2;
         int typ, i, j, nev;
         int *tempind1 = NULL, *tempind2 = NULL;
         void *y = NULL, *u = NULL;
         tempind1 = (int *) * (block->work);
         tempind2 = tempind1 + (my + 1);
-        otsz = GetRealOparPtrs(block, 5);
         indx2 = GetRealOparPtrs(block, 4);
         indx1 = GetRealOparPtrs(block, 3);
         indxopt = GetRealOparPtrs(block, 2);

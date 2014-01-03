@@ -24,6 +24,7 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -74,6 +75,7 @@ public class Export {
     public static final int INVALID_FILE = 2;
     public static final int MEMORY_ERROR = 3;
     public static final int UNKNOWN_ERROR = 4;
+    public static final int FILENOTFOUND_ERROR = 5;
 
     private static final float DEFAULT_JPEG_COMPRESSION = 0.95f;
 
@@ -128,7 +130,7 @@ public class Export {
      * @param params the export paramaters
      * @return the export status
      */
-    public static int export(String uid, int type, String fileName, ExportParams params, boolean headless) {
+    public static int export(int uid, int type, String fileName, ExportParams params, boolean headless) {
         // Check that the fileName contains an extension
         int dotPosition = fileName.lastIndexOf('.'); // position of the dot
         boolean extensionFound = false;
@@ -168,7 +170,7 @@ public class Export {
      * @param params the export paramaters
      * @return the export status
      */
-    public static int exportVectorial(String uid, int type, String fileName, ExportParams params, boolean headless) {
+    public static int exportVectorial(int uid, int type, String fileName, ExportParams params, boolean headless) {
         if (fileName == null) {
             return INVALID_FILE;
         }
@@ -182,6 +184,9 @@ public class Export {
         try {
             return exportVectorial(uid, types[type], f, params, headless);
         } catch (IOException e) {
+            if (e instanceof FileNotFoundException) {
+                return FILENOTFOUND_ERROR;
+            }
             return IOEXCEPTION_ERROR;
         }
     }
@@ -193,7 +198,7 @@ public class Export {
      * @param file the file where to export
      * @param params the export paramaters
      */
-    public static int exportVectorial(String uid, TYPE type, File file, ExportParams params, boolean headless) throws IOException {
+    public static int exportVectorial(int uid, TYPE type, File file, ExportParams params, boolean headless) throws IOException {
         Figure figure = (Figure) GraphicController.getController().getObjectFromId(uid);
 
         if (!headless) {
@@ -203,13 +208,17 @@ public class Export {
             int height = dims[1];
 
             Graphics2D g2d = exporter.getGraphics2D(width, height, file, params);
+            if (g2d == null) {
+                return FILENOTFOUND_ERROR;
+            }
+
             params.setParamsOnGraphics(g2d);
 
             Canvas canvas = G2DCanvasFactory.createCanvas(g2d, width, height);
             DrawerVisitor oldVisitor = DrawerVisitor.getVisitor(uid);
             DrawerVisitor visitor = new DrawerVisitor(null, canvas, figure) {
                 @Override
-                public void updateObject(String id, int property) {
+                public void updateObject(Integer id, int property) {
                     // Don't update during the export
                 }
             };
@@ -220,6 +229,8 @@ public class Export {
                 exporter.write();
             } catch (OutOfMemoryError e) {
                 return MEMORY_ERROR;
+            } catch (IOException e) {
+                throw e;
             } catch (Throwable e) {
                 return UNKNOWN_ERROR;
             } finally {
@@ -228,6 +239,7 @@ public class Export {
                 exporter.dispose();
                 exporter = null;
                 visitorsToExp.remove(visitor);
+                canvas.destroy();
             }
         } else {
             DrawerVisitor visitor = DrawerVisitor.getVisitor(uid);
@@ -243,6 +255,8 @@ public class Export {
                 }
             } catch (OutOfMemoryError e) {
                 return MEMORY_ERROR;
+            } catch (IOException e) {
+                throw e;
             } catch (Throwable e) {
                 return UNKNOWN_ERROR;
             } finally {
@@ -253,6 +267,7 @@ public class Export {
                 }
                 DrawerVisitor.changeVisitor(figure, null);
                 GraphicController.getController().unregister(visitor);
+                canvas.destroy();
             }
         }
 
@@ -268,7 +283,7 @@ public class Export {
      * @param params the export paramaters
      * @return the export status
      */
-    public static int exportBitmap(String uid, int type, String fileName, boolean fromScreen, ExportParams params) {
+    public static int exportBitmap(int uid, int type, String fileName, boolean fromScreen, ExportParams params) {
         if (fileName == null) {
             return INVALID_FILE;
         }
@@ -282,6 +297,9 @@ public class Export {
         try {
             exportBitmap(uid, types[type], f, fromScreen, params);
         } catch (IOException e) {
+            if (e instanceof FileNotFoundException) {
+                return FILENOTFOUND_ERROR;
+            }
             return IOEXCEPTION_ERROR;
         }
 
@@ -296,7 +314,7 @@ public class Export {
      * @param fromScreen if true, then use the screen view
      * @param params the export paramaters
      */
-    public static void exportBitmap(String uid, TYPE type, File file, boolean fromScreen, ExportParams params) throws IOException {
+    public static void exportBitmap(int uid, TYPE type, File file, boolean fromScreen, ExportParams params) throws IOException {
         if (isBitmapFormat(type)) {
             JoGLCanvas joglCanvas = null;
             if (fromScreen) {
@@ -312,12 +330,12 @@ public class Export {
                 joglCanvas = (JoGLCanvas) JoGLCanvasFactory.createCanvas(dims[0], dims[1]);
                 DrawerVisitor visitor = new DrawerVisitor(null, joglCanvas, figure) {
                     @Override
-                    public void updateObject(String id, int property) {
+                    public void updateObject(Integer id, int property) {
                         // Don't update during the export
                     }
 
                     @Override
-                    public void deleteObject(String id) {
+                    public void deleteObject(Integer id) {
                         // Don't delete during the export
                     }
                 };
@@ -345,7 +363,7 @@ public class Export {
      * @param file the file where to export
      * @param params the export paramaters
      */
-    public static void setVisitor(String uid, int type, final ExportParams params) {
+    public static void setVisitor(int uid, int type, final ExportParams params) {
         final Exporter exporter = getExporter(types[type]);
         Figure figure = (Figure) GraphicController.getController().getObjectFromId(uid);
         final Integer[] dims = figure.getAxesSize();
@@ -359,12 +377,12 @@ public class Export {
         canvas.disableDraw();
         DrawerVisitor visitor = new DrawerVisitor(null, canvas, figure) {
             @Override
-            public void deleteObject(String id) {
+            public void deleteObject(Integer id) {
                 // Don't delete during the export
             }
 
             @Override
-            public void updateObject(String id, int property) {
+            public void updateObject(Integer id, int property) {
                 if (needUpdate(id, property)) {
                     axesDrawer.update(id, property);
                     if (property == GraphicObjectProperties.__GO_AXES_SIZE__) {
@@ -792,6 +810,15 @@ public class Export {
                     }
 
                     @Override
+                    public boolean shouldBeClipped(Shape clip, Shape s) {
+                        if (clip == null || s == null) {
+                            return false;
+                        }
+
+                        return clip.getBounds2D().intersects(s.getBounds2D());
+                    }
+
+                    @Override
                     public int processShape(Shape s) throws IOException {
                         if (s instanceof Ellipse2D.Double) {
                             Ellipse2D.Double ell = (Ellipse2D.Double) s;
@@ -898,7 +925,18 @@ public class Export {
                         gen.writeln("/ReEncode { /MyEncoding exch def exch findfont dup length dict begin {def} forall /Encoding MyEncoding def currentdict end definefont } def");
                         gen.writeln("/Helvetica /HelveticaLatin1 ISOLatin1Encoding ReEncode");
                         gen.writeln("/Times /TimesLatin1 ISOLatin1Encoding ReEncode");
+
+                        // DP macro is used to draw an array as a polyline
                         gen.writeln("/DP {/Points exch def Points 0 get Points 1 get M 2 2 Points length 1 sub {/i exch def Points i get Points i 1 add get L}for} def");
+                    }
+
+                    @Override
+                    public boolean shouldBeClipped(Shape clip, Shape s) {
+                        if (clip == null || s == null) {
+                            return false;
+                        }
+
+                        return clip.getBounds2D().intersects(s.getBounds2D());
                     }
 
                     @Override

@@ -80,7 +80,7 @@
             <emphasis>(x,y)</emphasis> far enough the interpolation points. This leads
             to a discontinuity in a region far outside the interpolation points, and
             so, is not cumbersome in practice (in a general manner, evaluation outside
-            interpolation points (i.e. extrapolation) leads to very inacurate
+            interpolation points (i.e. extrapolation) leads to very inaccurate
             results).
         </para>
     </refsection>

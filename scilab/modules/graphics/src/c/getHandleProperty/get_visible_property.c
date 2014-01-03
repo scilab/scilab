@@ -30,12 +30,12 @@
 
 /*------------------------------------------------------------------------*/
 
-void* get_visible_property(void* _pvCtx, char* pobjUID)
+void* get_visible_property(void* _pvCtx, int iObjUID)
 {
     int visible = 0;
     int* piVisible = &visible;
 
-    getGraphicObjectProperty(pobjUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
+    getGraphicObjectProperty(iObjUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
 
     if (piVisible == NULL)
     {
@@ -53,8 +53,8 @@ void* get_visible_property(void* _pvCtx, char* pobjUID)
     }
 }
 
-void* get_UID(void* _pvCtx, char *pobjUID)
+void* get_UID(void* _pvCtx, int iObjUID)
 {
-    return sciReturnString(pobjUID);
+    return sciReturnDouble((double)iObjUID);
 }
 /*------------------------------------------------------------------------*/

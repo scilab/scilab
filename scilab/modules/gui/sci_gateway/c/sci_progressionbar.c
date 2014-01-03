@@ -32,7 +32,7 @@ int sci_progressionbar(char *fname, void* pvApiCtx)
     int* piAddrmessageAdr = NULL;
     long long* stkAdr = NULL;
 
-    char *pProgressionbarUID = NULL;
+    int iProgressionbarUID = 0;
 
     int nbRow = 0, nbCol = 0;
     int nbRowMessage = 0, nbColMessage = 0;
@@ -95,16 +95,16 @@ int sci_progressionbar(char *fname, void* pvApiCtx)
         if (handleAdr == 0)
         {
             /* Create a new ProgressionBar */
-            pProgressionbarUID = createGraphicObject(__GO_PROGRESSIONBAR__);
-            GraphicHandle = getHandle(pProgressionbarUID);
-            setGraphicObjectProperty(pProgressionbarUID, __GO_UI_MESSAGE__, messageAdr, jni_string_vector, nbColMessage * nbRowMessage);
+            iProgressionbarUID = createGraphicObject(__GO_PROGRESSIONBAR__);
+            GraphicHandle = getHandle(iProgressionbarUID);
+            setGraphicObjectProperty(iProgressionbarUID, __GO_UI_MESSAGE__, messageAdr, jni_string_vector, nbColMessage * nbRowMessage);
             freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
         }
         else
         {
             GraphicHandle = (unsigned long) * (handleAdr);
-            pProgressionbarUID = (char*)getObjectFromHandle(GraphicHandle);
-            setGraphicObjectProperty(pProgressionbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
+            iProgressionbarUID = getObjectFromHandle(GraphicHandle);
+            setGraphicObjectProperty(iProgressionbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
         }
     }
     else if (nbInputArgument(pvApiCtx) == 2)
@@ -140,10 +140,10 @@ int sci_progressionbar(char *fname, void* pvApiCtx)
             }
 
             GraphicHandle = (unsigned long) * handleAdr;
-            pProgressionbarUID = (char*)getObjectFromHandle(GraphicHandle);
+            iProgressionbarUID = getObjectFromHandle(GraphicHandle);
 
-            setGraphicObjectProperty(pProgressionbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
-            setGraphicObjectProperty(pProgressionbarUID, __GO_UI_MESSAGE__, messageAdr, jni_string_vector, nbColMessage * nbRowMessage);
+            setGraphicObjectProperty(iProgressionbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
+            setGraphicObjectProperty(iProgressionbarUID, __GO_UI_MESSAGE__, messageAdr, jni_string_vector, nbColMessage * nbRowMessage);
             freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
         }
         else

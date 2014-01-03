@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -53,9 +53,10 @@
             difference of the means of two independent samples (arrays
             sample1  and sample2) and gives  the half amplitude of the
             range of variability of dif  with an indicated  confidence
-            level (dif(2)). The choice of the normal or t fonctions as
-            the  probability fonction depends on  the sizes of sample1
-            and sample2.  We suppose that  the underlying variances of
+            level (dif(2)). The choice of the normal or t functions as
+            the  probability function depends on  the sizes of sample1
+            and sample2 (cdfnor is chosen if the samples totalize 103 values or more, else cdft is used).
+            We suppose that  the underlying variances of
             both populations are equal. NAN values are not counted.
         </para>
         <para>
@@ -65,6 +66,17 @@
             In absence of the confidence  parameter a confidence level
             of 95% is assumed.
         </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+sample1 = 0:10;
+sample2 = [90:100 %nan];
+
+nand2mean(sample2, sample1)
+// Returns mean(sample2)-mean(sample1) = 95-5 = 90, and since there are only 22 values (NaN excluded), cdft is used to return 2.9499978.
+// The %nan is ignored.
+ ]]></programlisting>
     </refsection>
     <refsection>
         <title>References</title>

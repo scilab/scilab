@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "statistics module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "statistics module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "statistics.dll"
             VALUE "ProductName", "statistics module"
             VALUE "ProductVersion", "6, 0, 0, 0"

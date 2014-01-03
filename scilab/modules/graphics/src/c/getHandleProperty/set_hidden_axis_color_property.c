@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_hidden_axis_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_hidden_axis_color_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int haColor = 0;
@@ -46,7 +46,7 @@ int set_hidden_axis_color_property(void* _pvCtx, char* pobjUID, void* _pvData, i
 
     haColor = (int) ((double*)_pvData)[0];
 
-    status = setGraphicObjectProperty(pobjUID, __GO_HIDDEN_AXIS_COLOR__, &haColor, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_HIDDEN_AXIS_COLOR__, &haColor, jni_int, 1);
 
     if (status == TRUE)
     {

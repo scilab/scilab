@@ -1,10 +1,10 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 c
       subroutine n1qn1a (simul,n,x,f,g,scale,acc,mode,
@@ -12,7 +12,7 @@ c
 c
 
 *     A (very) few modifs by Bruno (14 March 2005): I have translated some output
-*     information in english (but they don't use format instruction 
+*     information in english (but they don't use format instruction
 *     which is put in the second arg of write). Also for the linear
 *     search output information I divide by the direction vector norm
 *     to get the "normalized" directionnal derivative. Note that this is
@@ -133,6 +133,8 @@ c                   iteration
       iecri=0
       indic=1
       call simul(indic,n,x,f,g,izs,rzs,dzs)
+c     error in user function
+      if(indic.eq.0) goto 250
 c               calcul de la direction de recherche
   140 do 150 i=1,n
   150 d(i)=-ga(i)
@@ -186,7 +188,7 @@ c               initialisation du pas
          write (bufstr,'(A,I4,A,I4,A,G11.4)') ' iter num ',itr,
      $                ', nb calls=',nfun,', f=',fa
          call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
-         
+
          if (iprint.ge.3) then
             write (bufstr,'(A,G11.4)')
      $            ' linear search: initial derivative=',dga/dnrm2(n,d,1)
@@ -219,7 +221,7 @@ c              test sur indic
       ial=1
       step=step/10.0d+0
       if (iprint.ge.3) then
-         write (bufstr,'(A,G11.4,A,I2)') 
+         write (bufstr,'(A,G11.4,A,I2)')
      $   '                step length=',c,', indic=',indic
          call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
       endif
@@ -255,7 +257,7 @@ c               calcul de la derivee directionnelle
       write (bufstr,'(A,G11.4,A,G11.4,A,G11.4)')
      $  '                step length=',c,
      $  ', df=',s,', derivative=',dgb/dnrm2(n,d,1)
-     
+
       call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
 c               test si la fonction a descendu
   231 if (fb-fa.le.0.10d+0*c*dga) go to 280

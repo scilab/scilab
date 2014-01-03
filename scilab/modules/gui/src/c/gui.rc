@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "gui module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "gui module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "scigui.dll"
             VALUE "ProductName", "gui module"
             VALUE "ProductVersion", "6, 0, 0, 0"

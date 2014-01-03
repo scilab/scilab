@@ -36,7 +36,7 @@
 #include "MALLOC.h"
 
 /*------------------------------------------------------------------------*/
-int set_data_mapping_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_data_mapping_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int dataMapping = 0;
@@ -61,7 +61,7 @@ int set_data_mapping_property(void* _pvCtx, char* pobjUID, void* _pvData, int va
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_DATA_MAPPING__, &dataMapping, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_DATA_MAPPING__, &dataMapping, jni_int, 1);
 
     if (status == TRUE)
     {
@@ -72,6 +72,5 @@ int set_data_mapping_property(void* _pvCtx, char* pobjUID, void* _pvData, int va
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "data_mapping");
         return SET_PROPERTY_ERROR;
     }
-
 }
 /*------------------------------------------------------------------------*/

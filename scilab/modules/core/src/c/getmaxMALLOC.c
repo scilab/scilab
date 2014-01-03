@@ -13,6 +13,8 @@
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #include <Windows.h>
+#include <Psapi.h>
+#include "getScilabPreference.h"
 #else
 #include <sys/resource.h>
 #include "machine.h"
@@ -24,7 +26,7 @@
 #define LONG_MAX 2147483647L
 #endif
 
-#ifdef USE_DYNAMIC_STACK
+#ifndef _MSC_VER
 #ifndef MAXLONG32
 #define MAXLONG32 2147483647L
 #endif
@@ -33,61 +35,41 @@
 #endif
 
 #include "getmaxMALLOC.h"
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 unsigned long GetLargestFreeMemoryRegion(void)
 {
+
 #if _WIN64
+
+    const ScilabPreferences* prefs =  getScilabPreferences();
     /* we need to limit values to 32 bits for Scilab :( */
 
     /* Bug 10439 JVM reserves some space in 32 bit space */
     /* "Empiric" value for a Java Heap space to 256mb */
     /* It is not really a good workaround :/ */
-#define SECURITY_FREE_MEMORY 355483647
-
-    return MAXLONG32 - SECURITY_FREE_MEMORY;
+    unsigned long SECURITY_FREE_MEMORY = (atoi(prefs->heapSize) + 85) * (1024 * 1024);
 #else
 #define SECURITY_FREE_MEMORY 1040000
-    SYSTEM_INFO systemInfo;
-    VOID *p = 0;
-    MEMORY_BASIC_INFORMATION mbi;
-    unsigned long largestSize = 0;
-
-    GetSystemInfo(&systemInfo);
-
-    while (p < systemInfo.lpMaximumApplicationAddress)
-    {
-        SIZE_T dwRet = VirtualQuery(p, &mbi, sizeof(mbi));
-        if (dwRet > 0)
-        {
-            if (mbi.State == MEM_FREE)
-            {
-                if (largestSize < mbi.RegionSize)
-                {
-                    largestSize = (unsigned long) mbi.RegionSize;
-                }
-            }
-            p = (void*) (((char*)p) + mbi.RegionSize);
-        }
-        else
-        {
-            p = (void*) (((char*)p) + systemInfo.dwPageSize);
-        }
-    }
-    /* We remove a security size to be sure that MALLOC doesn't fails */
-    if (largestSize > SECURITY_FREE_MEMORY)
-    {
-        largestSize = largestSize - SECURITY_FREE_MEMORY;
-    }
-
-    return largestSize;
 #endif
+
+    unsigned long realSize = 0;
+
+    //due to scilab stack limitation this value must not be > MAX_INT
+    realSize = 0x7fffffff;
+
+    if (realSize > SECURITY_FREE_MEMORY)
+    {
+        realSize -= SECURITY_FREE_MEMORY;
+    }
+    return realSize;
 }
 /*-----------------------------------------------------------------------------------*/
 #else
 unsigned long GetLargestFreeMemoryRegion(void)
 {
-#ifdef USE_DYNAMIC_STACK
+#ifndef _MSC_VER
     /* we need to limit values to 32 bits for Scilab :( */
     return MAXLONG32;
 #else
@@ -123,7 +105,7 @@ unsigned long GetLargestFreeMemoryRegion(void)
     }
 
     return largestSize;
-#endif /* #ifdef USE_DYNAMIC_STACK */
+#endif /* #ifdef _MSC_VER (was: USE_DYNAMIC_STACK) */
 }
 #endif
 /*-----------------------------------------------------------------------------------*/

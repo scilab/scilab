@@ -21,19 +21,14 @@
 //
 
 function [x,y,typ]=READAU_f(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         out=model.out
         dstate=model.dstate
@@ -49,8 +44,14 @@ function [x,y,typ]=READAU_f(job,arg1,arg2)
             gettext("(Read Audio File)");" "; gettext("Read is done on a binary ''.au'' file")], ..
             [gettext("Input File Name"); gettext("Buffer size"); gettext("Swap Mode (0:No, 1:Yes)")], ..
             list("str",1,"vec",1,"vec",1), exprs);
-            tmask1=[];outmask=1;frmt1="uc";M=1;offset=1;
-            if ~ok then break,end //user cancel modification
+            tmask1=[];
+            outmask=1;
+            frmt1="uc";
+            M=1;
+            offset=1;
+            if ~ok then
+                break,
+            end //user cancel modification
             fname1=stripblanks(fname1)
             frmt1=stripblanks(frmt1)
             if alreadyran&fname1<>fname then
@@ -84,9 +85,11 @@ function [x,y,typ]=READAU_f(job,arg1,arg2)
                     if prod(size(dstate))<>(N*M)+3 then
                         dstate=[-1;-1;lunit;zeros(N*M,1)]
                     end
-                    model.dstate=dstate;model.ipar=ipar
+                    model.dstate=dstate;
+                    model.ipar=ipar
                     graphics.exprs=exprs;
-                    x.graphics=graphics;x.model=model
+                    x.graphics=graphics;
+                    x.model=model
                     break
                 end
             end
@@ -117,8 +120,7 @@ function [x,y,typ]=READAU_f(job,arg1,arg2)
         exprs=[fname;
         string(N);
         string(swap)]
-        gr_i=["txt=[''read from .au'';''sound file''];";
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"]
+        gr_i=[]
         x=standard_define([5 2],model,exprs,gr_i)
     end
 endfunction

@@ -28,7 +28,7 @@
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
-int set_text_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_text_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     if (valueType != sci_strings)
     {
@@ -36,6 +36,6 @@ int set_text_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
         return SET_PROPERTY_ERROR;
     }
 
-    return sciSetText(pobjUID, (char**)_pvData, nbRow, nbCol);
+    return sciSetText(iObjUID, (char**)_pvData, nbRow, nbCol);
 }
 /*------------------------------------------------------------------------*/

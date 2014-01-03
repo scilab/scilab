@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -31,8 +31,8 @@ public class DatatipOrientation {
      *
      * @param datatip the datatip uid
      */
-    public static void setOrientation(String datatip) {
-        String polyline = DatatipCommon.getParentPolyline(datatip);
+    public static void setOrientation(Integer datatip) {
+        Integer polyline = DatatipCommon.getParentPolyline(datatip);
         if (polyline != null) {
             Double[] tip_pos = (Double[])GraphicController.getController().getProperty(datatip, __GO_DATATIP_DATA__);
             DatatipCommon.Segment seg = DatatipCommon.getSegment(tip_pos[0], polyline);
@@ -47,7 +47,7 @@ public class DatatipOrientation {
      *
      * @param datatip the datatip uid
      */
-    public static void setOrientation(String datatip, Integer lastClick[], Integer[] curClick) {
+    public static void setOrientation(Integer datatip, Integer lastClick[], Integer[] curClick) {
         int dx = curClick[0] - lastClick[0];
         int dy = curClick[1] - lastClick[1];
 
@@ -75,7 +75,7 @@ public class DatatipOrientation {
      * @param datatip the datatip uid
      * @param seg the line segment
      */
-    public static void setOrientation(String datatip, DatatipCommon.Segment seg) {
+    public static void setOrientation(Integer datatip, DatatipCommon.Segment seg) {
 
         Double[] bounds;
         Integer finalOrientation;
@@ -88,7 +88,7 @@ public class DatatipOrientation {
             dy = -dy;
         }
 
-        String axesUid = (String)GraphicController.getController().getProperty(datatip, __GO_PARENT_AXES__);
+        Integer axesUid = (Integer)GraphicController.getController().getProperty(datatip, __GO_PARENT_AXES__);
         if (AxesHandler.isZoomBoxEnabled(axesUid)) {
             bounds = (Double[])GraphicController.getController().getProperty(axesUid, __GO_ZOOM_BOX__);
         } else {
@@ -105,7 +105,6 @@ public class DatatipOrientation {
         }
 
         GraphicController.getController().setProperty(datatip, __GO_DATATIP_ORIENTATION__, finalOrientation);
-
 
         /* check if the tip is visible*/
         CallRenderer.updateTextBounds(datatip);
@@ -165,26 +164,30 @@ public class DatatipOrientation {
      * @param datatipOrientation String with datatip orientation.
      * @param datatipOrientationNum Integer with datatip orientation to set property.
      */
-    public static void datatipSetOrientation (String datatipUid, String datatipOrientation, int datatipOrientationNum) {
-
-        if (datatipOrientationNum == 0) {
-            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
-            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, datatipOrientationNum);
-        } else if (datatipOrientationNum == 1) {
-            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
-            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, datatipOrientationNum);
-        } else if (datatipOrientationNum == 2) {
-            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
-            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, datatipOrientationNum);
-        } else if (datatipOrientationNum == 3) {
-            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
-            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, datatipOrientationNum);
-        } else if (datatipOrientationNum == 4) {
-            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, true);
-        } else {
-            String errorMsg = "error(msprintf(_( \"%s: Unknown input argument #%d: ''%s'' is not valid.\n\"),\"datatipSetOrientation\",2,\"" + datatipOrientation + "\"));";
-            InterpreterManagement.requestScilabExec(errorMsg);
+    public static void datatipSetOrientation(int datatipUid, String datatipOrientation, int datatipOrientationNum) {
+        switch (datatipOrientationNum) {
+            case 0: // upper left
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, 0);
+                break;
+            case 1: // upper right
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, 1);
+                break;
+            case 2: // lower left
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, 2);
+                break;
+            case 3: // lower right
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, 3);
+                break;
+            case 4: // automatic
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, true);
+                break;
+            default:
+                String errorMsg = "error(msprintf(_( \"%s: Unknown input argument #%d: ''%s'' is not valid.\n\"),\"datatipSetOrientation\",2,\"" + datatipOrientation + "\"));";
+                InterpreterManagement.requestScilabExec(errorMsg);
         }
-
     }
 }

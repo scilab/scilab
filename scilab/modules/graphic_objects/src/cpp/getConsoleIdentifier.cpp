@@ -20,7 +20,7 @@ extern "C"
 
 using namespace org_scilab_modules_graphic_objects;
 
-char *getConsoleIdentifier()
+int getConsoleIdentifier()
 {
     return CallGraphicController::getConsoleIdentifier(getScilabJavaVM());
 }

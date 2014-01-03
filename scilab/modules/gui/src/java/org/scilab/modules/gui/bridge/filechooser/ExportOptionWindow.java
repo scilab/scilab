@@ -36,6 +36,7 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
+import org.scilab.modules.localization.Messages;
 
 /**
  * Window in which we can configure option for the selected format
@@ -43,7 +44,7 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
  * @author Calixte DENIZET
  *
  */
-public class ExportOptionWindow extends JDialog implements ActionListener {
+public class ExportOptionWindow implements ActionListener {
 
     private static final long serialVersionUID = 1L;
 
@@ -71,26 +72,23 @@ public class ExportOptionWindow extends JDialog implements ActionListener {
         parentTab = tab;
         parentWindow = (Window) SwingUtilities.getAncestorOfClass(Window.class, (JComponent) tab);
         optionDialog = new JDialog(parentWindow);
-        optionDialog.setTitle("Option for " + exportData.getExportExtension().toUpperCase() + " format");
+        optionDialog.setTitle(String.format(Messages.gettext("Option for %s format"), exportData.getExportExtension().toUpperCase()));
         optionDialog.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
-        //Center the frame
-        optionDialog.setLocationRelativeTo(parentWindow);
     }
 
     /**
      * Selection between portrait or landscape option
      */
     public void landscapePortraitOption() {
-        portrait = new JRadioButton("Portrait", true);
-        landscape = new JRadioButton("Landscape", false);
+        portrait = new JRadioButton(Messages.gettext("Portrait"), true);
+        landscape = new JRadioButton(Messages.gettext("Landscape"), false);
 
         ButtonGroup bgroup = new ButtonGroup();
         bgroup.add(portrait);
         bgroup.add(landscape);
 
-        confirmOption = new JButton("Confirm");
-        abortOption = new JButton("Abort");
-
+        confirmOption = new JButton(Messages.gettext("Confirm"));
+        abortOption = new JButton(Messages.gettext("Cancel"));
 
         JPanel mainPanel = new JPanel();
         BorderLayout layout = new BorderLayout();
@@ -98,7 +96,7 @@ public class ExportOptionWindow extends JDialog implements ActionListener {
 
         JPanel center = new JPanel();
         center.setLayout(new GridLayout(2, 1));
-        center.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), " Orientation "));
+        center.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), String.format(" %s ", Messages.gettext("Orientation"))));
 
         center.add(portrait);
         center.add(landscape);
@@ -121,7 +119,23 @@ public class ExportOptionWindow extends JDialog implements ActionListener {
 
         optionDialog.setModal(true);
         optionDialog.setResizable(false);
+        optionDialog.setLocationRelativeTo(parentWindow);
         optionDialog.setVisible(true);
+    }
+
+    /**
+     * Return the file extension
+     * @param fileName Name of the file
+     * @return the extension
+     */
+    public String getExtension(String fileName) {
+        if (fileName != null) {
+            int i = fileName.lastIndexOf('.');
+            if (i > 0 && i < fileName.length() - 1) {
+                return fileName.substring(i + 1).toLowerCase();
+            }
+        }
+        return null;
     }
 
     /**
@@ -135,15 +149,21 @@ public class ExportOptionWindow extends JDialog implements ActionListener {
 
         if (evt.getSource() == confirmOption) {
             if (b) {
-                properties.add(portrait.getText().toLowerCase());
+                properties.add("portrait");
             } else {
-                properties.add(landscape.getText().toLowerCase());
+                properties.add("landscape");
             }
             exportData.setExportProperties(properties);
             optionDialog.dispose();
 
-            String figId = exportData.getFigureId();
+            Integer figId = exportData.getFigureId();
             String fileName = exportData.getExportName();
+            if (this.getExtension(fileName) == null) {
+                // Could not get the extension from the user input
+                // take the one from the list
+                fileName += "." + exportData.getExportExtension();
+            }
+
             int orientation = exportData.getExportProperties().elementAt(0).equalsIgnoreCase("landscape") ? ExportParams.LANDSCAPE : ExportParams.PORTRAIT;
 
             parentWindow.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -151,7 +171,7 @@ public class ExportOptionWindow extends JDialog implements ActionListener {
             parentWindow.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
             if (err.length() != 0) {
-                ScilabModalDialog.show(parentTab, "An error occurred during export: " + err, "Export error", IconType.ERROR_ICON);
+                ScilabModalDialog.show(parentTab, String.format(Messages.gettext("An error occurred during export: %s"), err), Messages.gettext("Export error"), IconType.ERROR_ICON);
             }
         }
 

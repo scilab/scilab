@@ -14,6 +14,7 @@ package org.scilab.modules.graphic_objects.label;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 import org.scilab.modules.graphic_objects.textObject.TextObject;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
@@ -155,8 +156,9 @@ public class Label extends TextObject {
     /**
      * @param autoPosition the autoPosition to set
      */
-    public void setAutoPosition(Boolean autoPosition) {
+    public UpdateStatus setAutoPosition(Boolean autoPosition) {
         this.autoPosition = autoPosition;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -169,8 +171,9 @@ public class Label extends TextObject {
     /**
      * @param autoRotation the autoRotation to set
      */
-    public void setAutoRotation(Boolean autoRotation) {
+    public UpdateStatus setAutoRotation(Boolean autoRotation) {
         this.autoRotation = autoRotation;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -183,12 +186,13 @@ public class Label extends TextObject {
     /**
      * @param fontAngle the fontAngle to set
      */
-    public void setFontAngle(Double fontAngle) {
+    public UpdateStatus setFontAngle(Double fontAngle) {
         if (autoRotation == true) {
             autoRotation = false;
         }
 
         this.fontAngle = fontAngle;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -207,7 +211,7 @@ public class Label extends TextObject {
     /**
      * @param position the position to set
      */
-    public void setPosition(Double[] position) {
+    public UpdateStatus setPosition(Double[] position) {
         if (autoPosition == true) {
             autoPosition = false;
         }
@@ -215,6 +219,7 @@ public class Label extends TextObject {
         this.position[0] = position[0];
         this.position[1] = position[1];
         this.position[2] = position[2];
+        return UpdateStatus.Success;
     }
 
     /**
@@ -243,9 +248,9 @@ public class Label extends TextObject {
      * clockwise order.
      * @param coordinates the corners' coordinates (12-element array)
      */
-    public void setCorners(Double [] coordinates) {
+    public UpdateStatus setCorners(Double [] coordinates) {
         if (coordinates.length != 12) {
-            return;
+            return UpdateStatus.NoChange;
         }
 
         corners[0][0] = coordinates[0];
@@ -263,6 +268,7 @@ public class Label extends TextObject {
         corners[3][0] = coordinates[9];
         corners[3][1] = coordinates[10];
         corners[3][2] = coordinates[11];
+        return UpdateStatus.Success;
     }
 
     /**

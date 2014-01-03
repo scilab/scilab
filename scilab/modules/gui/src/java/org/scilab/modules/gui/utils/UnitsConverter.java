@@ -71,7 +71,7 @@ public final class UnitsConverter {
     public static double convertFromPoint(double value, UicontrolUnits newUnit, Widget uicontrol, boolean widthAsRef) {
         int refSize = 0;
 
-        String parentId = null;
+        Integer parentId = null;
         int parentType = -1;
 
         SwingViewObject uicontrolAsView = (SwingViewObject) uicontrol;
@@ -86,7 +86,7 @@ public final class UnitsConverter {
             }
             newUnit = UicontrolUnits.PIXELS;
         } else { /* Uicontrol */
-            parentId = (String) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_PARENT__);
+            parentId = (Integer) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_PARENT__);
             if (parentId == null && newUnit == UicontrolUnits.NORMALIZED) { /* Parent not yet set */
                 return 0.0;
             }
@@ -128,7 +128,7 @@ public final class UnitsConverter {
     public static double convertToPoint(double value, UicontrolUnits oldUnit, Widget uicontrol, boolean widthAsRef) {
         int refSize = 0;
 
-        String parentId = null;
+        Integer parentId = null;
         Integer parentType = null;
 
         SwingViewObject uicontrolAsView = (SwingViewObject) uicontrol;
@@ -144,7 +144,7 @@ public final class UnitsConverter {
             }
             oldUnit = UicontrolUnits.PIXELS;
         } else { /* Uicontrol */
-            parentId = (String) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_PARENT__);
+            parentId = (Integer) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_PARENT__);
             if ((parentId == null || parentId.equals("")) && oldUnit == UicontrolUnits.NORMALIZED) { /* Parent not yet set */
                 return 0;
             }

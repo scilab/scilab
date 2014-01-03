@@ -89,22 +89,9 @@
         <title>Description</title>
         <para>
             This component represents a variable ohmic resistor. The resistance
-            (
-            <emphasis role="bold">
-                <emphasis>Rx</emphasis>
-            </emphasis>
-            )is controlled
-            via an explicit input port.
+            (<literal>Rx</literal>) is controlled via an explicit input port.
         </para>
-        <para>
-        </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/VariableResistor_img3_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <latex>$$ R_x = V \over I $$</latex>
     </refsection>
     <refsection id="Defaultproperties_VariableResistor">
         <title>Default properties</title>

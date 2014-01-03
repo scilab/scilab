@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "noui_data module"
             VALUE "FileVersion", "5, 4, 0, 0"
             VALUE "InternalName", "noui_data module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "noui_data.dll"
             VALUE "ProductName", " noui_data"
             VALUE "ProductVersion", "5, 4, 0, 0"

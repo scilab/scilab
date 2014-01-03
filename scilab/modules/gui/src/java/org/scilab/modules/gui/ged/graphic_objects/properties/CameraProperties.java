@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.ged.graphic_objects.properties;
@@ -50,26 +50,26 @@ public class CameraProperties extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void cubeScaling(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void cubeScaling(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lCubeScaling = new JLabel();
         final JComboBox cCubeScaling = new JComboBox();
         addLabelComboBox(panel, lCubeScaling, MessagesGED.cube_scaling,
-                                cCubeScaling, new String[] {MessagesGED.off , MessagesGED.on},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cCubeScaling, new String[] {MessagesGED.off , MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW++);
         cCubeScaling.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_CUBE_SCALING__,
-                        cCubeScaling.getSelectedIndex() == 0 ? false : true);
+                    UID, GraphicObjectProperties.__GO_CUBE_SCALING__,
+                    cCubeScaling.getSelectedIndex() == 0 ? false : true);
             }
         });
         // Get the current status of the property: Cube Scaling
         boolean enable = (Boolean) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_CUBE_SCALING__);
-        cCubeScaling.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_CUBE_SCALING__);
+        cCubeScaling.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**
@@ -78,27 +78,27 @@ public class CameraProperties extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void isometricView(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void isometricView(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lIsoView = new JLabel();
         final JComboBox cIsoView = new JComboBox();
 
         addLabelComboBox(panel, lIsoView, MessagesGED.isometric_view,
-                                cIsoView, new String[] {MessagesGED.off , MessagesGED.on},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cIsoView, new String[] {MessagesGED.off , MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW++);
         cIsoView.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_ISOVIEW__,
-                        cIsoView.getSelectedIndex() == 0 ? false : true);
+                    UID, GraphicObjectProperties.__GO_ISOVIEW__,
+                    cIsoView.getSelectedIndex() == 0 ? false : true);
             }
         });
         // Get the current status of the property: Isometric View (isoview)
         boolean enable = (Boolean) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_ISOVIEW__);
-        cIsoView.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_ISOVIEW__);
+        cIsoView.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**
@@ -107,9 +107,9 @@ public class CameraProperties extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void rotationAngles(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void rotationAngles(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         int LEFTMARGINIP = 0; //left margin - inner panel
         int COLUMNIP = 0; //left column - inner panel
         JLabel lRotationAngles = new JLabel();
@@ -122,7 +122,7 @@ public class CameraProperties extends ContentLayout {
         cTheta = new JTextField();
 
         addInnerPanel(panel, pRotationAngles, bRotationAngles, lRotationAngles,
-                cRotationAngles, MessagesGED.rotation_angles, ROW);
+                      cRotationAngles, MessagesGED.rotation_angles, ROW);
         bRotationAngles.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -132,7 +132,7 @@ public class CameraProperties extends ContentLayout {
         int rowRotation = 0;
         //Rotation Angles - Alpha
         addLabelTextField(pRotationAngles, lAlpha, MessagesGED.alpha,
-                                 cAlpha, true, LEFTMARGINIP, COLUMNIP, rowRotation++);
+                          cAlpha, true, LEFTMARGINIP, COLUMNIP, rowRotation++);
         cAlpha.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -147,7 +147,7 @@ public class CameraProperties extends ContentLayout {
         });
         //Rotation Angles - Theta
         addLabelTextField(pRotationAngles, lTheta, MessagesGED.theta,
-                                 cTheta, true, LEFTMARGINIP, COLUMNIP, rowRotation++);
+                          cTheta, true, LEFTMARGINIP, COLUMNIP, rowRotation++);
         cTheta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -167,9 +167,9 @@ public class CameraProperties extends ContentLayout {
     /**
     * Get the current status of the property: Rotation Angles.
     */
-    private void getRotationAngles(String UID) {
+    private void getRotationAngles(Integer UID) {
         Double[] currentAngles = (Double []) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
+                                 .getProperty(UID, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
         cAlpha.setText(currentAngles[0].toString());
         cTheta.setText(currentAngles[1].toString());
         titleRotationAngles();
@@ -185,12 +185,12 @@ public class CameraProperties extends ContentLayout {
     /**
     * Updates the property: Rotation Angles.
     */
-    private void updateRotationAngles(String UID) {
+    private void updateRotationAngles(Integer UID) {
         Double[] value = new Double[2];
         value[0] = Double.parseDouble(cAlpha.getText());
         value[1] = Double.parseDouble(cTheta.getText());
         GraphicController.getController()
-                .setProperty(UID, GraphicObjectProperties.__GO_ROTATION_ANGLES__, value);
+        .setProperty(UID, GraphicObjectProperties.__GO_ROTATION_ANGLES__, value);
         titleRotationAngles();
     }
 
@@ -200,28 +200,28 @@ public class CameraProperties extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      * @param parentFigure
      */
-    public void view(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void view(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lView = new JLabel();
         final JComboBox cView = new JComboBox();
 
         addLabelComboBox(panel, lView, MessagesGED.view,
-                                cView, new String[] {MessagesGED._2d , MessagesGED._3d},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cView, new String[] {MessagesGED._2d , MessagesGED._3d},
+                         LEFTMARGIN, COLUMN, ROW++);
         cView.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_VIEW__,
-                        cView.getSelectedIndex());
+                    UID, GraphicObjectProperties.__GO_VIEW__,
+                    cView.getSelectedIndex());
                 getRotationAngles(UID);
             }
         });
 
         //Get the current status of the property: View
         cView.setSelectedIndex((Integer) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_VIEW__));
+                               .getProperty(UID, GraphicObjectProperties.__GO_VIEW__));
     }
 }

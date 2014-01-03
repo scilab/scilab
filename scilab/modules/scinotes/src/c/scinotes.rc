@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "scinotes module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "scinotes module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "scinotes.dll"
             VALUE "ProductName", "scinotes module"
             VALUE "ProductVersion", "6, 0, 0, 0"

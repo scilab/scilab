@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-07-29 09:04+0000\n"
+"PO-Revision-Date: 2013-12-08 11:55+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -230,8 +230,12 @@ msgid "Missing vect for random permutation\n"
 msgstr "ランダム置換でvectが指定されていません\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: Column vector expected.\n"
-msgstr "%s: 入力引数の型が間違っています: 列ベクトルを指定してください.\n"
+msgid ""
+"%s: Wrong type for input argument: Matrix (full or sparse) or Hypermatrix of "
+"Reals, Complexes, Integers, Booleans, Strings or Polynomials expected.\n"
+msgstr ""
+"%s: 入力引数の型が間違っています: 実数, 複素数, 整数, 論理値, 文字列または多項式の行列 (通常または疎行列) "
+"またはハイパー行列を指定してください.\n"
 
 msgid "Missing N and P for Negative Binomial law\n"
 msgstr "負の二項分布でNおよびPが指定されていません\n"
@@ -253,6 +257,10 @@ msgstr "%s: 入力引数 #%d の値が間違っています: ランダムシミ�
 
 msgid "Missing Mean and Cov for Multivariate Normal law\n"
 msgstr "多変量正規分布で平均(Mean)と分散(Cov)が指定されていません\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Column vector expected.\n"
+msgstr "%s: 入力引数の型が間違っています: 列ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Square matrix expected.\n"

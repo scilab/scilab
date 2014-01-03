@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_font_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_font_color_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int value = 0;
@@ -44,7 +44,7 @@ int set_font_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int valu
 
     value = (int) ((double*)_pvData)[0];
 
-    status = setGraphicObjectProperty(pobjUID, __GO_FONT_COLOR__, &value, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_FONT_COLOR__, &value, jni_int, 1);
 
     if (status == TRUE)
     {
@@ -55,6 +55,5 @@ int set_font_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int valu
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "font_color");
         return SET_PROPERTY_ERROR;
     }
-
 }
 /*------------------------------------------------------------------------*/

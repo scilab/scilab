@@ -68,7 +68,7 @@ public class RectangleDecomposer {
      * @param the conversion translation value to apply to data.
      * @param the bit mask specifying whether logarithmic coordinates are used.
      */
-    public static void fillVertices(FloatBuffer buffer, String id, int elementsSize,
+    public static void fillVertices(FloatBuffer buffer, Integer id, int elementsSize,
                                     int coordinateMask, double[] scale, double[] translation, int logMask) {
 
         /* The x coordinates of the lower-left and upper-right corners */
@@ -152,7 +152,7 @@ public class RectangleDecomposer {
      * @param the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
-    public static int fillIndices(IntBuffer buffer, String id, int logMask) {
+    public static int fillIndices(IntBuffer buffer, Integer id, int logMask) {
         boolean valid = false;
 
         Double [] upperLeftPoint = (Double []) GraphicController.getController().getProperty(id, __GO_UPPER_LEFT_POINT__);
@@ -188,7 +188,7 @@ public class RectangleDecomposer {
      * @param the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
-    public static int fillWireIndices(IntBuffer buffer, String id, int logMask) {
+    public static int fillWireIndices(IntBuffer buffer, Integer id, int logMask) {
         boolean valid = false;
 
         Double [] upperLeftPoint = (Double []) GraphicController.getController().getProperty(id, __GO_UPPER_LEFT_POINT__);

@@ -334,7 +334,7 @@ bool2s
 browsehistory
 browsevar
 bsplin3val
-buildDocv2
+buildDoc
 buildouttb
 bvode
 c_link

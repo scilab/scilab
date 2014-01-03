@@ -66,7 +66,7 @@ BEGIN
             VALUE "FileDescription", "differential_equations_f module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "differential_equations_f module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "differential_equations_f.dll"
             VALUE "ProductName", "differential_equations_f module"
             VALUE "ProductVersion", "6, 0, 0, 0"

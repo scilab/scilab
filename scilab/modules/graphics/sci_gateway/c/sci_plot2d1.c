@@ -80,6 +80,7 @@ int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
     int    * nax      = NULL ;
     BOOL     flagNax  = FALSE;
     char   * strf     = NULL ;
+    char strfl[4];
     char   * legend   = NULL ;
     char   * logFlags = NULL ;
 
@@ -322,7 +323,6 @@ int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
 
     if (isDefStrf(strf))
     {
-        char strfl[4];
         strcpy(strfl, DEFSTRFN);
 
         strf = strfl;

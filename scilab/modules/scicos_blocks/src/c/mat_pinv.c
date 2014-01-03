@@ -29,10 +29,16 @@
 #include "scicos_free.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(dgesvd)();
-extern int C2F(dlaset)();
-extern int C2F(dlacpy)();
-extern int C2F(dmmul)();
+extern int C2F(dgesvd)(char *jobu, char *jobvt, int *m, int *n,
+                       double *a, int *lda, double *s, double *u, int *
+                       ldu, double *vt, int *ldvt, double *work, int *lwork,
+                       int *info);
+extern int C2F(dlaset)(char *uplo, int *m, int *n, double *
+                       alpha, double *beta, double *a, int *lda);
+extern int C2F(dlacpy)(char *uplo, int *m, int *n, double *
+                       a, int *lda, double *b, int *ldb);
+extern int C2F(dmmul)(double *a, int *na, double *b, int *nb, double *c__,
+                      int *nc, int *l, int *m, int *n);
 /*--------------------------------------------------------------------------*/
 typedef struct
 {
@@ -56,6 +62,7 @@ SCICOS_BLOCKS_IMPEXP void mat_pinv(scicos_block *block, int flag)
     int nu = 0, mu = 0;
     int info = 0;
     int i = 0, j = 0, ij = 0, ji = 0, ii = 0, lwork = 0;
+    mat_pinv_struct** work = (mat_pinv_struct**) block->work;
     mat_pinv_struct *ptr = NULL;
 
     mu = GetInPortRows(block, 1);
@@ -70,12 +77,12 @@ SCICOS_BLOCKS_IMPEXP void mat_pinv(scicos_block *block, int flag)
     /*init : initialization*/
     if (flag == 4)
     {
-        if ((*(block->work) = (mat_pinv_struct*) scicos_malloc(sizeof(mat_pinv_struct))) == NULL)
+        if ((*work = (mat_pinv_struct*) scicos_malloc(sizeof(mat_pinv_struct))) == NULL)
         {
             set_block_error(-16);
             return;
         }
-        ptr = *(block->work);
+        ptr = *work;
         if ((ptr->l0 = (double*) scicos_malloc(sizeof(double))) == NULL)
         {
             set_block_error(-16);
@@ -202,7 +209,7 @@ SCICOS_BLOCKS_IMPEXP void mat_pinv(scicos_block *block, int flag)
     /* Terminaison */
     else if (flag == 5)
     {
-        ptr = *(block->work);
+        ptr = *work;
         if ((ptr->dwork) != 0)
         {
             scicos_free(ptr->LC);
@@ -223,7 +230,7 @@ SCICOS_BLOCKS_IMPEXP void mat_pinv(scicos_block *block, int flag)
 
     else
     {
-        ptr = *(block->work);
+        ptr = *work;
         for (i = 0; i < mu * nu; i++)
         {
             y[i] = 0;

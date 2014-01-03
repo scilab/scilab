@@ -39,7 +39,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
 {
     long long llH = 0;
     types::String* pS = NULL;
-    const char* pobjUID = NULL;
+    int iObjUID = 0;
     types::InternalType* pOut = NULL;
     double pdbll1 = 0;
 
@@ -189,8 +189,8 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
 
     if (llH)
     {
-        pobjUID = getObjectFromHandle((long)llH);
-        if (pobjUID == NULL)
+        iObjUID = getObjectFromHandle((long)llH);
+        if (iObjUID == 0)
         {
             FREE(pstProperty);
             Scierror(999, _("%s: The handle is not or no more valid.\n"), "get");
@@ -199,7 +199,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
     }
 
 
-    pOut = (types::InternalType*)callGetProperty(NULL, (char*)pobjUID, pstProperty);
+    pOut = (types::InternalType*)callGetProperty(NULL, iObjUID, pstProperty);
     if (pOut == NULL)
     {
         /* An error has occurred */

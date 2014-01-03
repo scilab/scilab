@@ -24,11 +24,11 @@
 %}
 
 %inline %{
-    extern void ScilabNativeView__createObject(char* pstId);
-    extern void ScilabNativeView__deleteObject(char* pstId);
-    extern void ScilabNativeView__updateObject(char* pstId, int iProperty);
-    extern void ScilabNativeView__setCurrentFigure(char* pstId);
-    extern void ScilabNativeView__setCurrentSubWin(char* pstId);
-    extern void ScilabNativeView__setCurrentObject(char* pstId);
+    extern void ScilabNativeView__createObject(int id);
+    extern void ScilabNativeView__deleteObject(int id);
+    extern void ScilabNativeView__updateObject(int id, int iProperty);
+    extern void ScilabNativeView__setCurrentFigure(int id);
+    extern void ScilabNativeView__setCurrentSubWin(int id);
+    extern void ScilabNativeView__setCurrentObject(int id);
     extern int ScilabNativeView__getValidDefaultFigureId();
     %}

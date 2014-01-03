@@ -23,12 +23,12 @@ extern "C"
 #include "graphicObjectProperties.h"
 }
 
-void* GetConsoleShowHiddenHandles(void* _pvCtx, char *pObjUID)
+void* GetConsoleShowHiddenHandles(void* _pvCtx, int iObjUID)
 {
     int iShowHiddenHandles = 0;
     int *piShowHiddenHandles = &iShowHiddenHandles;
 
-    getGraphicObjectProperty(pObjUID, __GO_SHOWHIDDENHANDLES__, jni_bool, (void **)&piShowHiddenHandles);
+    getGraphicObjectProperty(iObjUID, __GO_SHOWHIDDENHANDLES__, jni_bool, (void **)&piShowHiddenHandles);
 
     if (piShowHiddenHandles == NULL)
     {

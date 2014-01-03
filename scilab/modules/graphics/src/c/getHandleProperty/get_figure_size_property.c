@@ -32,11 +32,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_figure_size_property(void* _pvCtx, char* pobjUID)
+void* get_figure_size_property(void* _pvCtx, int iObjUID)
 {
     double figureSize[2];
     int* intSize = NULL;
-    getGraphicObjectProperty(pobjUID, __GO_SIZE__, jni_int_vector, (void **)&intSize);
+    getGraphicObjectProperty(iObjUID, __GO_SIZE__, jni_int_vector, (void **)&intSize);
 
     if (intSize == NULL)
     {

@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -74,7 +74,7 @@
                     <para>
                         <emphasis role="strong">Load a module</emphasis>
                         The module is installed but it's not loaded in the scilab environment
-                        and its functionnalities are not available yet.
+                        and its functionalities are not available yet.
                     </para>
                     <para>
                         <inlinemediaobject>
@@ -104,7 +104,7 @@
                     <para>
                         <programlisting><![CDATA[
 -->atomsLoad('NISP');
-      
+
     Start NISP Toolbox
       Load gateways
       Load help
@@ -117,7 +117,7 @@
                         <emphasis role="strong">Remove a module:</emphasis>
                         <programlisting><![CDATA[
 -->atomsRemove NISP
-  
+
     NISP (2.1) will be removed from the 'allusers' section
     the package NISP (2.1) is currently loaded, It will removed at next Scilab restart
 ]]></programlisting>

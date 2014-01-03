@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.ged.graphic_objects.properties;
@@ -35,9 +35,9 @@ public class Imageplot extends ContentLayout {
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
-     * @param UID 
+     * @param UID
      */
-    public void dataMapping(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final String UID) {
+    public void dataMapping(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
         JLabel lDataMapping = new JLabel();
         final JComboBox cDataMapping = new JComboBox();
         this.addLabelComboBox(panel, lDataMapping, MessagesGED.data_mapping,
@@ -47,12 +47,12 @@ public class Imageplot extends ContentLayout {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController()
-                        .setProperty(UID, GraphicObjectProperties.__GO_DATA_MAPPING__,
-                                     cDataMapping.getSelectedIndex());
+                .setProperty(UID, GraphicObjectProperties.__GO_DATA_MAPPING__,
+                             cDataMapping.getSelectedIndex());
             }
         });
         // Get the current status of the property: Data Mapping
         cDataMapping.setSelectedIndex((Integer) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_DATA_MAPPING__));
+                                      .getProperty(UID, GraphicObjectProperties.__GO_DATA_MAPPING__));
     }
 }

@@ -40,13 +40,13 @@
 
 /*------------------------------------------------------------------------*/
 /* @TODO: remove stackPointer, nbRow, nbCol which are used */
-int set_y_ticks_property(void* _pvCtx, char * pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_y_ticks_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL autoTicks = FALSE;
     BOOL status = FALSE;
-    AssignedList * tlist     = NULL;
-    int            nbTicsRow = 0   ;
-    int            nbTicsCol = 0   ;
+    AssignedList * tlist = NULL;
+    int nbTicsRow = 0;
+    int nbTicsCol = 0;
 
     double* userGrads = NULL;
     char** userLabels = NULL;
@@ -76,9 +76,9 @@ int set_y_ticks_property(void* _pvCtx, char * pobjUID, void* _pvData, int valueT
     /* Automatic ticks must be first deactivated in order to set user ticks */
     autoTicks = FALSE;
 
-    setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+    setGraphicObjectProperty(iObjUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
 
-    status = setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_TICKS_LOCATIONS__, userGrads, jni_double_vector, nbTicsRow * nbTicsCol);
+    status = setGraphicObjectProperty(iObjUID, __GO_Y_AXIS_TICKS_LOCATIONS__, userGrads, jni_double_vector, nbTicsRow * nbTicsCol);
 
     if (status == FALSE)
     {
@@ -98,7 +98,7 @@ int set_y_ticks_property(void* _pvCtx, char * pobjUID, void* _pvData, int valueT
         /* Check if we should load LaTex / MathML Java libraries */
         loadTextRenderingAPI(userLabels, nbTicsCol, nbTicsRow);
 
-        setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_TICKS_LABELS__, userLabels, jni_string_vector, nbTicsRow * nbTicsCol);
+        setGraphicObjectProperty(iObjUID, __GO_Y_AXIS_TICKS_LABELS__, userLabels, jni_string_vector, nbTicsRow * nbTicsCol);
     }
     else
     {

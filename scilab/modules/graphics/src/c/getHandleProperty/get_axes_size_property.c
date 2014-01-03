@@ -32,10 +32,10 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_axes_size_property(void* _pvCtx, char* pobjUID)
+void* get_axes_size_property(void* _pvCtx, int iObjUID)
 {
     int* axesSize = NULL;
-    getGraphicObjectProperty(pobjUID, __GO_AXES_SIZE__, jni_int_vector, (void **)&axesSize);
+    getGraphicObjectProperty(iObjUID, __GO_AXES_SIZE__, jni_int_vector, (void **)&axesSize);
 
     if (axesSize == NULL)
     {

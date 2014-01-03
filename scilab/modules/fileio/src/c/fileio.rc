@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "fileio module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "fileio module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "fileio.dll"
             VALUE "ProductName", " fileio"
             VALUE "ProductVersion", "6, 0, 0, 0"

@@ -75,7 +75,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
          * Use match on package name to match GLJPanel and GLCanvas
          * GLJPanel are still used under MacOSX
          */
-        if (mouseEvent.getSource().getClass().getCanonicalName().contains(ScilabOpenGLComponentCanonicalName)) {
+        if (mouseEvent.getSource().getClass().getName().startsWith(ScilabOpenGLComponentCanonicalName)) {
             this.isControlDown = lastMouse.isControlDown();
             switch (mouseEvent.getID()) {
                     /* CLICKED */
@@ -147,7 +147,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
          * Use match on package name to match GLJPanel and GLCanvas
          * GLJPanel are still used under MacOSX
          */
-        if (mouseEvent.getSource().getClass().getCanonicalName().contains(ScilabOpenGLComponentCanonicalName)) {
+        if (mouseEvent.getSource().getClass().getName().startsWith(ScilabOpenGLComponentCanonicalName)) {
             switch (mouseEvent.getID()) {
                 case MouseEvent.MOUSE_ENTERED :
                     this.inCanvas = true;
@@ -168,7 +168,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
          * and got a RELEASED
          */
         if (mouseEvent.getID() == MouseEvent.MOUSE_RELEASED && inCanvas
-                && mouseEvent.getSource().getClass().getCanonicalName().contains(ScilabOpenGLComponentCanonicalName)
+                && mouseEvent.getSource().getClass().getName().startsWith(ScilabOpenGLComponentCanonicalName)
                 && (clickTranslator.getClickAction() == SciTranslator.UNMANAGED
                     || clickTranslator.getClickAction() == SciTranslator.MOVED)) {
             clickTranslator.setClickAction(SciTranslator.RELEASED);
@@ -195,7 +195,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
      * @param scilabMouseAction : the integer scilab code for mouse action.
      * @param isControlDown true if the CTRL key has been pressed
      */
-    public abstract void mouseEventFilter(MouseEvent mouseEvent, String axesUID, int scilabMouseAction, boolean isControlDown);
+    public abstract void mouseEventFilter(MouseEvent mouseEvent, Integer axesUID, int scilabMouseAction, boolean isControlDown);
 
     /**
      * Event Mask getter.

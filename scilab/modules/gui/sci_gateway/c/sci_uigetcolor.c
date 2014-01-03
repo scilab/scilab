@@ -89,12 +89,6 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
                 Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
                 return 1;
             }
-
-            if (nbCol != 1)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-                return FALSE;
-            }
         }
         else
         {
@@ -121,12 +115,6 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             {
                 Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
                 return 1;
-            }
-
-            if (nbCol != 1)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-                return FALSE;
             }
         }
         else
@@ -193,12 +181,6 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             {
                 Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
                 return 1;
-            }
-
-            if (nbCol != 1)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-                return FALSE;
             }
         }
         else

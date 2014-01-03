@@ -503,9 +503,6 @@
 /* If it is UMFPACK/Suitesparse or UMFPACK standalone */
 #undef UMFPACK_SUITESPARSE
 
-/* If we are building a 64 bits version */
-#undef USE_DYNAMIC_STACK
-
 /* Version number of package */
 #undef VERSION
 

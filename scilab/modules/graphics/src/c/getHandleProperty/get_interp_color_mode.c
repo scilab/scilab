@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_interp_color_mode_property(void* _pvCtx, char* pobjUID)
+void* get_interp_color_mode_property(void* _pvCtx, int iObjUID)
 {
     int iInterpColorMode = 0;
     int* piInterpColorMode = &iInterpColorMode;
 
-    getGraphicObjectProperty(pobjUID, __GO_INTERP_COLOR_MODE__, jni_bool, (void **)&piInterpColorMode);
+    getGraphicObjectProperty(iObjUID, __GO_INTERP_COLOR_MODE__, jni_bool, (void **)&piInterpColorMode);
 
     if (piInterpColorMode == NULL)
     {

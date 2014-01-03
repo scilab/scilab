@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_colored_property(void* _pvCtx, char* pobjUID)
+void* get_colored_property(void* _pvCtx, int iObjUID)
 {
     int colored = 0;
     int* piColored = &colored;
 
-    getGraphicObjectProperty(pobjUID, __GO_COLORED__, jni_bool, (void **)&piColored);
+    getGraphicObjectProperty(iObjUID, __GO_COLORED__, jni_bool, (void **)&piColored);
 
     if (piColored == NULL)
     {

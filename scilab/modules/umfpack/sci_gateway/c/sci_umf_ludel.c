@@ -65,6 +65,7 @@ int sci_umf_ludel(char* fname, void* pvApiCtx)
     void * Numeric  = NULL;
     int* piAddr1    = NULL;
     CellAdr *Cell   = NULL;
+    int iType1      = 0;
 
     nbInputArgument(pvApiCtx) = Max(nbInputArgument(pvApiCtx), 0);
 
@@ -96,6 +97,15 @@ int sci_umf_ludel(char* fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            return 1;
+        }
+
+        /* Check if the first argument is a pointer */
+        sciErr = getVarType(pvApiCtx, piAddr1, &iType1);
+        if (sciErr.iErr || iType1 != sci_pointer)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A pointer expected.\n"), fname, 1);
             return 1;
         }
 

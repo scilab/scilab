@@ -14,7 +14,7 @@
 
 #include "SetUicontrolFontUnits.hxx"
 
-int SetUicontrolFontUnits(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUicontrolFontUnits(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* Font weight can be points, normalized, inches, centimeters or pixels */
 
@@ -46,7 +46,7 @@ int SetUicontrolFontUnits(void* _pvCtx, char* sciObjUID, void* _pvData, int valu
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_FONTUNITS__, fontUnits, jni_string, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_FONTUNITS__, fontUnits, jni_string, 1);
 
     if (status == TRUE)
     {

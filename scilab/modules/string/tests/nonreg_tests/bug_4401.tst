@@ -1,5 +1,8 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: removed the instructions that
+//                                                         involved real operations, such as %pi+1,
+//                                                         because they are not handled by isnum anymore
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
 //
 //  This file is distributed under the same license as the Scilab package.
@@ -13,39 +16,26 @@
 // <-- Short Description -->
 // isnum returns wrong values
 
-//======================================================================================== 
-r = isnum("%pi");
-if r <> %t then pause,end
-r = isnum("bla_bla");
-if r <> %f then pause,end
-r = isnum("pi+1");
-if r <> %f then pause,end
-r = isnum("%pi+1");
-if r <> %t then pause,end
-r = isnum("%nan");
-if r <> %t then pause,end
-r = isnum("%inf");
-if r <> %t then pause,end
-r = isnum("%e");
-if r <> %t then pause,end
-r = isnum("%e+1");
-if r <> %t then pause,end
-r = isnum("%e+%pi");
-if r <> %t then pause,end
-r = isnum("%t");
-if r <> %f then pause,end
-r = isnum("%i");
-if r <> %t then pause,end
-r = isnum("1+%i");
-if r <> %t then pause,end
-r = isnum("1+%2i");
-if r <> %f then pause,end
-r = isnum("1+%2*i");
-if r <> %f then pause,end
-r = isnum("1+%i*2");
-if r <> %t then pause,end
-r = isnum("1+2*%i");
-if r <> %t then pause,end
-//======================================================================================== 
-
-
+//========================================================================================
+assert_checktrue(  isnum("%pi")          );
+assert_checkfalse( isnum("bla_bla")      );
+assert_checktrue(  isnum("%nan")         );
+assert_checktrue(  isnum("%inf")         );
+assert_checktrue(  isnum("%e")            );
+assert_checktrue(  isnum("%eps")          );
+assert_checktrue(  isnum("+%eps")         );
+assert_checktrue(  isnum("-%eps")         );
+assert_checktrue(  isnum("Nan")           );
+assert_checktrue(  isnum("Inf")           );
+assert_checktrue(  isnum("Nan-%i*Nan")   );
+assert_checktrue(  isnum("-Inf+Inf*%i")  );
+assert_checktrue(  isnum("1-%i*%nan")  );
+assert_checktrue(  isnum("-%eps+%e*%i")  );
+assert_checkfalse( isnum("%t")            );
+assert_checktrue(  isnum("%i")            );
+assert_checktrue(  isnum("1+%i")          );
+assert_checkfalse( isnum("1+%2i")         );
+assert_checkfalse( isnum("1+%2*i")        );
+assert_checktrue(  isnum("1+%i*2")        );
+assert_checktrue(  isnum("1+2*%i")        );
+//========================================================================================

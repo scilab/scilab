@@ -33,12 +33,12 @@ int geom3d(double *x, double *y, double *z, int n)
     int i = 0;
     double userCoords2d[2];
 
-    char * psubwinUID = (char*)getOrCreateDefaultSubwin();
+    int iCurrentSubwinUID = getOrCreateDefaultSubwin();
 
     for (i = 0; i < n; i++)
     {
         double userCoords[3] = {x[i], y[i], z[i]};
-        sciGet2dViewCoordinate(psubwinUID, userCoords, userCoords2d);
+        sciGet2dViewCoordinate(iCurrentSubwinUID, userCoords, userCoords2d);
         x[i] = userCoords2d[0];
         y[i] = userCoords2d[1];
     }

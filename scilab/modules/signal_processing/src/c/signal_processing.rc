@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "signal_processing module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "signal_processing module"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "signal_processing.dll"
             VALUE "ProductName", "signal_processing module"
             VALUE "ProductVersion", "6, 0, 0, 0"

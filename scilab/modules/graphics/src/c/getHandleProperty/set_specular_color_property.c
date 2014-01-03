@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -24,7 +24,7 @@
 /**
  * Sets the specular color of the light/material.
  */
-int set_specular_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_specular_color_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     double * color;
@@ -49,7 +49,7 @@ int set_specular_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int 
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_SPECULARCOLOR__, _pvData, jni_double_vector, 3);
+    status = setGraphicObjectProperty(iObjUID, __GO_SPECULARCOLOR__, _pvData, jni_double_vector, 3);
 
     if (status == TRUE)
     {

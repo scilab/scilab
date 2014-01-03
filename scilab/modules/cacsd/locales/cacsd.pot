@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-09-27 17:13+0100\n"
+"Revision-Date: 2013-12-09 09:47+0100\n"
 
 # File: sci_gateway/c/sci_contr.c, line: 72
 # File: sci_gateway/c/sci_contr.c, line: 78
@@ -708,8 +708,8 @@ msgstr ""
 # File: macros/arsimul.sci, line: 18
 # File: macros/black.sci, line: 69
 # File: macros/black.sci, line: 99
-# File: macros/bode.sci, line: 46
-# File: macros/bode.sci, line: 76
+# File: macros/bode.sci, line: 59
+# File: macros/bode.sci, line: 89
 # File: macros/findABCD.sci, line: 84
 # File: macros/findAC.sci, line: 60
 # File: macros/findBDK.sci, line: 90
@@ -765,8 +765,8 @@ msgstr ""
 #
 # File: macros/black.sci, line: 62
 # File: macros/black.sci, line: 80
-# File: macros/bode.sci, line: 39
-# File: macros/bode.sci, line: 57
+# File: macros/bode.sci, line: 52
+# File: macros/bode.sci, line: 70
 # File: macros/gainplot.sci, line: 39
 # File: macros/gainplot.sci, line: 56
 # File: macros/nyquist.sci, line: 50
@@ -783,9 +783,9 @@ msgstr ""
 # File: macros/black.sci, line: 84
 # File: macros/black.sci, line: 91
 # File: macros/black.sci, line: 95
-# File: macros/bode.sci, line: 61
-# File: macros/bode.sci, line: 68
-# File: macros/bode.sci, line: 72
+# File: macros/bode.sci, line: 74
+# File: macros/bode.sci, line: 81
+# File: macros/bode.sci, line: 85
 # File: macros/csim.sci, line: 88
 # File: macros/gainplot.sci, line: 60
 # File: macros/gainplot.sci, line: 68
@@ -794,7 +794,6 @@ msgstr ""
 # File: macros/nyquist.sci, line: 81
 # File: macros/phaseplot.sci, line: 48
 # File: macros/phaseplot.sci, line: 56
-# File: macros/reglin.sci, line: 23
 # File: macros/sylv.sci, line: 19
 # File: macros/syslin.sci, line: 97
 # File: macros/syslin.sci, line: 123
@@ -806,7 +805,7 @@ msgstr ""
 
 #
 # File: macros/black.sci, line: 102
-# File: macros/bode.sci, line: 79
+# File: macros/bode.sci, line: 92
 # File: macros/gainplot.sci, line: 75
 # File: macros/nyquist.sci, line: 89
 # File: macros/phaseplot.sci, line: 63
@@ -818,7 +817,7 @@ msgstr ""
 
 #
 # File: macros/black.sci, line: 113
-# File: macros/bode.sci, line: 88
+# File: macros/bode.sci, line: 103
 # File: macros/gainplot.sci, line: 82
 # File: macros/nyquist.sci, line: 99
 # File: macros/phaseplot.sci, line: 70
@@ -835,15 +834,15 @@ msgstr ""
 
 #
 # File: macros/black.sci, line: 151
-# File: macros/bode.sci, line: 126
+# File: macros/bode.sci, line: 142
 # File: macros/gainplot.sci, line: 95
 msgid "Magnitude (dB)"
 msgstr ""
 
 #
 # File: macros/black.sci, line: 233
-# File: macros/bode.sci, line: 167
-# File: macros/bode.sci, line: 173
+# File: macros/bode.sci, line: 187
+# File: macros/bode.sci, line: 193
 # File: macros/gainplot.sci, line: 124
 # File: macros/nyquist.sci, line: 285
 # File: macros/phaseplot.sci, line: 111
@@ -852,7 +851,7 @@ msgstr ""
 
 #
 # File: macros/black.sci, line: 233
-# File: macros/bode.sci, line: 167
+# File: macros/bode.sci, line: 187
 # File: macros/gainplot.sci, line: 124
 # File: macros/hallchart.sci, line: 87
 # File: macros/hallchart.sci, line: 130
@@ -933,16 +932,38 @@ msgid "%s: No input found.\n"
 msgstr ""
 
 #
-# File: macros/bode.sci, line: 126
-# File: macros/bode.sci, line: 152
+# File: macros/bode.sci, line: 142
+# File: macros/bode.sci, line: 168
 # File: macros/gainplot.sci, line: 94
 # File: macros/phaseplot.sci, line: 82
 msgid "Frequency (Hz)"
 msgstr ""
 
 #
-# File: macros/bode.sci, line: 152
+# File: macros/bode.sci, line: 168
 msgid "Phase (degree)"
+msgstr ""
+
+#
+# File: macros/bode_asymp.sci, line: 28
+#, c-format
+msgid "Wrong type for argument #%d: Rational or State-space matrix expected.\n"
+msgstr ""
+
+#
+# File: macros/bode_asymp.sci, line: 67
+#, c-format
+msgid ""
+"%s: Problem evaluating the first argument.\n"
+"n"
+msgstr ""
+
+#
+# File: macros/bode_asymp.sci, line: 127
+#, c-format
+msgid ""
+"ERROR: %s: bode() or gainplot() must be called before bode_asymp() and "
+"graphic window must still be running.\n"
 msgstr ""
 
 #
@@ -1446,7 +1467,13 @@ msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
 msgstr ""
 
 #
-# File: macros/g_margin.sci, line: 20
+# File: macros/g_margin.sci, line: 15
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#
+# File: macros/g_margin.sci, line: 26
 # File: macros/krac2.sci, line: 26
 # File: macros/p_margin.sci, line: 20
 # File: macros/routh_t.sci, line: 51
@@ -1956,11 +1983,6 @@ msgstr ""
 
 #
 # File: macros/routh_t.sci, line: 83
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An scalar expected.\n"
-msgstr ""
-
-#
 # File: macros/routh_t.sci, line: 118
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"

@@ -139,18 +139,20 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscisystem_env_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscisystem_env_la_LIBADD =
-am__objects_1 = libscisystem_env_la-setenvvar.lo \
-	libscisystem_env_la-sci_path.lo \
-	libscisystem_env_la-sci_home.lo libscisystem_env_la-home.lo \
-	libscisystem_env_la-sci_tmpdir.lo \
-	libscisystem_env_la-warningmode.lo \
-	libscisystem_env_la-sci_mode.lo \
-	libscisystem_env_la-configvariable.lo \
-	libscisystem_env_la-lasterror.lo \
-	libscisystem_env_la-promptmode.lo \
-	libscisystem_env_la-formatmode.lo \
-	libscisystem_env_la-sci_ieee.lo \
-	libscisystem_env_la-sci_simpMode.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+am__objects_1 = src/cpp/libscisystem_env_la-setenvvar.lo \
+	src/cpp/libscisystem_env_la-sci_path.lo \
+	src/cpp/libscisystem_env_la-sci_home.lo \
+	src/cpp/libscisystem_env_la-home.lo \
+	src/cpp/libscisystem_env_la-sci_tmpdir.lo \
+	src/cpp/libscisystem_env_la-warningmode.lo \
+	src/cpp/libscisystem_env_la-sci_mode.lo \
+	src/cpp/libscisystem_env_la-configvariable.lo \
+	src/cpp/libscisystem_env_la-lasterror.lo \
+	src/cpp/libscisystem_env_la-promptmode.lo \
+	src/cpp/libscisystem_env_la-formatmode.lo \
+	src/cpp/libscisystem_env_la-sci_ieee.lo \
+	src/cpp/libscisystem_env_la-sci_simpMode.lo
 am_libscisystem_env_la_OBJECTS = $(am__objects_1)
 libscisystem_env_la_OBJECTS = $(am_libscisystem_env_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -266,6 +268,7 @@ DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
+ECJ = @ECJ@
 EGREP = @EGREP@
 EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
@@ -604,147 +607,185 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/cpp/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp
+	@: > src/cpp/$(am__dirstamp)
+src/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp/$(DEPDIR)
+	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscisystem_env_la-setenvvar.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscisystem_env_la-sci_path.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscisystem_env_la-sci_home.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscisystem_env_la-home.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscisystem_env_la-sci_tmpdir.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscisystem_env_la-warningmode.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscisystem_env_la-sci_mode.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscisystem_env_la-configvariable.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscisystem_env_la-lasterror.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscisystem_env_la-promptmode.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscisystem_env_la-formatmode.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscisystem_env_la-sci_ieee.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscisystem_env_la-sci_simpMode.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscisystem_env.la: $(libscisystem_env_la_OBJECTS) $(libscisystem_env_la_DEPENDENCIES) $(EXTRA_libscisystem_env_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) -rpath $(pkglibdir) $(libscisystem_env_la_OBJECTS) $(libscisystem_env_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f src/cpp/*.$(OBJEXT)
+	-rm -f src/cpp/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-configvariable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-formatmode.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-home.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-lasterror.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-promptmode.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-sci_home.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-sci_ieee.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-sci_mode.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-sci_path.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-sci_simpMode.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-sci_tmpdir.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-setenvvar.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-warningmode.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisystem_env_la-configvariable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisystem_env_la-formatmode.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisystem_env_la-home.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisystem_env_la-lasterror.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisystem_env_la-promptmode.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisystem_env_la-sci_home.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisystem_env_la-sci_ieee.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisystem_env_la-sci_mode.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisystem_env_la-sci_path.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisystem_env_la-sci_simpMode.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisystem_env_la-sci_tmpdir.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisystem_env_la-setenvvar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisystem_env_la-warningmode.Plo@am__quote@
 
 .cpp.o:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .cpp.lo:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
-libscisystem_env_la-setenvvar.lo: src/cpp/setenvvar.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisystem_env_la-setenvvar.lo -MD -MP -MF $(DEPDIR)/libscisystem_env_la-setenvvar.Tpo -c -o libscisystem_env_la-setenvvar.lo `test -f 'src/cpp/setenvvar.cpp' || echo '$(srcdir)/'`src/cpp/setenvvar.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscisystem_env_la-setenvvar.Tpo $(DEPDIR)/libscisystem_env_la-setenvvar.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/setenvvar.cpp' object='libscisystem_env_la-setenvvar.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscisystem_env_la-setenvvar.lo: src/cpp/setenvvar.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscisystem_env_la-setenvvar.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscisystem_env_la-setenvvar.Tpo -c -o src/cpp/libscisystem_env_la-setenvvar.lo `test -f 'src/cpp/setenvvar.cpp' || echo '$(srcdir)/'`src/cpp/setenvvar.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscisystem_env_la-setenvvar.Tpo src/cpp/$(DEPDIR)/libscisystem_env_la-setenvvar.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/setenvvar.cpp' object='src/cpp/libscisystem_env_la-setenvvar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-setenvvar.lo `test -f 'src/cpp/setenvvar.cpp' || echo '$(srcdir)/'`src/cpp/setenvvar.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscisystem_env_la-setenvvar.lo `test -f 'src/cpp/setenvvar.cpp' || echo '$(srcdir)/'`src/cpp/setenvvar.cpp
 
-libscisystem_env_la-sci_path.lo: src/cpp/sci_path.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisystem_env_la-sci_path.lo -MD -MP -MF $(DEPDIR)/libscisystem_env_la-sci_path.Tpo -c -o libscisystem_env_la-sci_path.lo `test -f 'src/cpp/sci_path.cpp' || echo '$(srcdir)/'`src/cpp/sci_path.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscisystem_env_la-sci_path.Tpo $(DEPDIR)/libscisystem_env_la-sci_path.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/sci_path.cpp' object='libscisystem_env_la-sci_path.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscisystem_env_la-sci_path.lo: src/cpp/sci_path.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscisystem_env_la-sci_path.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscisystem_env_la-sci_path.Tpo -c -o src/cpp/libscisystem_env_la-sci_path.lo `test -f 'src/cpp/sci_path.cpp' || echo '$(srcdir)/'`src/cpp/sci_path.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscisystem_env_la-sci_path.Tpo src/cpp/$(DEPDIR)/libscisystem_env_la-sci_path.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/sci_path.cpp' object='src/cpp/libscisystem_env_la-sci_path.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-sci_path.lo `test -f 'src/cpp/sci_path.cpp' || echo '$(srcdir)/'`src/cpp/sci_path.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscisystem_env_la-sci_path.lo `test -f 'src/cpp/sci_path.cpp' || echo '$(srcdir)/'`src/cpp/sci_path.cpp
 
-libscisystem_env_la-sci_home.lo: src/cpp/sci_home.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisystem_env_la-sci_home.lo -MD -MP -MF $(DEPDIR)/libscisystem_env_la-sci_home.Tpo -c -o libscisystem_env_la-sci_home.lo `test -f 'src/cpp/sci_home.cpp' || echo '$(srcdir)/'`src/cpp/sci_home.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscisystem_env_la-sci_home.Tpo $(DEPDIR)/libscisystem_env_la-sci_home.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/sci_home.cpp' object='libscisystem_env_la-sci_home.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscisystem_env_la-sci_home.lo: src/cpp/sci_home.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscisystem_env_la-sci_home.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscisystem_env_la-sci_home.Tpo -c -o src/cpp/libscisystem_env_la-sci_home.lo `test -f 'src/cpp/sci_home.cpp' || echo '$(srcdir)/'`src/cpp/sci_home.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscisystem_env_la-sci_home.Tpo src/cpp/$(DEPDIR)/libscisystem_env_la-sci_home.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/sci_home.cpp' object='src/cpp/libscisystem_env_la-sci_home.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-sci_home.lo `test -f 'src/cpp/sci_home.cpp' || echo '$(srcdir)/'`src/cpp/sci_home.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscisystem_env_la-sci_home.lo `test -f 'src/cpp/sci_home.cpp' || echo '$(srcdir)/'`src/cpp/sci_home.cpp
 
-libscisystem_env_la-home.lo: src/cpp/home.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisystem_env_la-home.lo -MD -MP -MF $(DEPDIR)/libscisystem_env_la-home.Tpo -c -o libscisystem_env_la-home.lo `test -f 'src/cpp/home.cpp' || echo '$(srcdir)/'`src/cpp/home.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscisystem_env_la-home.Tpo $(DEPDIR)/libscisystem_env_la-home.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/home.cpp' object='libscisystem_env_la-home.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscisystem_env_la-home.lo: src/cpp/home.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscisystem_env_la-home.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscisystem_env_la-home.Tpo -c -o src/cpp/libscisystem_env_la-home.lo `test -f 'src/cpp/home.cpp' || echo '$(srcdir)/'`src/cpp/home.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscisystem_env_la-home.Tpo src/cpp/$(DEPDIR)/libscisystem_env_la-home.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/home.cpp' object='src/cpp/libscisystem_env_la-home.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-home.lo `test -f 'src/cpp/home.cpp' || echo '$(srcdir)/'`src/cpp/home.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscisystem_env_la-home.lo `test -f 'src/cpp/home.cpp' || echo '$(srcdir)/'`src/cpp/home.cpp
 
-libscisystem_env_la-sci_tmpdir.lo: src/cpp/sci_tmpdir.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisystem_env_la-sci_tmpdir.lo -MD -MP -MF $(DEPDIR)/libscisystem_env_la-sci_tmpdir.Tpo -c -o libscisystem_env_la-sci_tmpdir.lo `test -f 'src/cpp/sci_tmpdir.cpp' || echo '$(srcdir)/'`src/cpp/sci_tmpdir.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscisystem_env_la-sci_tmpdir.Tpo $(DEPDIR)/libscisystem_env_la-sci_tmpdir.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/sci_tmpdir.cpp' object='libscisystem_env_la-sci_tmpdir.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscisystem_env_la-sci_tmpdir.lo: src/cpp/sci_tmpdir.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscisystem_env_la-sci_tmpdir.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscisystem_env_la-sci_tmpdir.Tpo -c -o src/cpp/libscisystem_env_la-sci_tmpdir.lo `test -f 'src/cpp/sci_tmpdir.cpp' || echo '$(srcdir)/'`src/cpp/sci_tmpdir.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscisystem_env_la-sci_tmpdir.Tpo src/cpp/$(DEPDIR)/libscisystem_env_la-sci_tmpdir.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/sci_tmpdir.cpp' object='src/cpp/libscisystem_env_la-sci_tmpdir.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-sci_tmpdir.lo `test -f 'src/cpp/sci_tmpdir.cpp' || echo '$(srcdir)/'`src/cpp/sci_tmpdir.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscisystem_env_la-sci_tmpdir.lo `test -f 'src/cpp/sci_tmpdir.cpp' || echo '$(srcdir)/'`src/cpp/sci_tmpdir.cpp
 
-libscisystem_env_la-warningmode.lo: src/cpp/warningmode.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisystem_env_la-warningmode.lo -MD -MP -MF $(DEPDIR)/libscisystem_env_la-warningmode.Tpo -c -o libscisystem_env_la-warningmode.lo `test -f 'src/cpp/warningmode.cpp' || echo '$(srcdir)/'`src/cpp/warningmode.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscisystem_env_la-warningmode.Tpo $(DEPDIR)/libscisystem_env_la-warningmode.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/warningmode.cpp' object='libscisystem_env_la-warningmode.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscisystem_env_la-warningmode.lo: src/cpp/warningmode.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscisystem_env_la-warningmode.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscisystem_env_la-warningmode.Tpo -c -o src/cpp/libscisystem_env_la-warningmode.lo `test -f 'src/cpp/warningmode.cpp' || echo '$(srcdir)/'`src/cpp/warningmode.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscisystem_env_la-warningmode.Tpo src/cpp/$(DEPDIR)/libscisystem_env_la-warningmode.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/warningmode.cpp' object='src/cpp/libscisystem_env_la-warningmode.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-warningmode.lo `test -f 'src/cpp/warningmode.cpp' || echo '$(srcdir)/'`src/cpp/warningmode.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscisystem_env_la-warningmode.lo `test -f 'src/cpp/warningmode.cpp' || echo '$(srcdir)/'`src/cpp/warningmode.cpp
 
-libscisystem_env_la-sci_mode.lo: src/cpp/sci_mode.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisystem_env_la-sci_mode.lo -MD -MP -MF $(DEPDIR)/libscisystem_env_la-sci_mode.Tpo -c -o libscisystem_env_la-sci_mode.lo `test -f 'src/cpp/sci_mode.cpp' || echo '$(srcdir)/'`src/cpp/sci_mode.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscisystem_env_la-sci_mode.Tpo $(DEPDIR)/libscisystem_env_la-sci_mode.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/sci_mode.cpp' object='libscisystem_env_la-sci_mode.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscisystem_env_la-sci_mode.lo: src/cpp/sci_mode.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscisystem_env_la-sci_mode.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscisystem_env_la-sci_mode.Tpo -c -o src/cpp/libscisystem_env_la-sci_mode.lo `test -f 'src/cpp/sci_mode.cpp' || echo '$(srcdir)/'`src/cpp/sci_mode.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscisystem_env_la-sci_mode.Tpo src/cpp/$(DEPDIR)/libscisystem_env_la-sci_mode.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/sci_mode.cpp' object='src/cpp/libscisystem_env_la-sci_mode.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-sci_mode.lo `test -f 'src/cpp/sci_mode.cpp' || echo '$(srcdir)/'`src/cpp/sci_mode.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscisystem_env_la-sci_mode.lo `test -f 'src/cpp/sci_mode.cpp' || echo '$(srcdir)/'`src/cpp/sci_mode.cpp
 
-libscisystem_env_la-configvariable.lo: src/cpp/configvariable.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisystem_env_la-configvariable.lo -MD -MP -MF $(DEPDIR)/libscisystem_env_la-configvariable.Tpo -c -o libscisystem_env_la-configvariable.lo `test -f 'src/cpp/configvariable.cpp' || echo '$(srcdir)/'`src/cpp/configvariable.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscisystem_env_la-configvariable.Tpo $(DEPDIR)/libscisystem_env_la-configvariable.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/configvariable.cpp' object='libscisystem_env_la-configvariable.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscisystem_env_la-configvariable.lo: src/cpp/configvariable.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscisystem_env_la-configvariable.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscisystem_env_la-configvariable.Tpo -c -o src/cpp/libscisystem_env_la-configvariable.lo `test -f 'src/cpp/configvariable.cpp' || echo '$(srcdir)/'`src/cpp/configvariable.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscisystem_env_la-configvariable.Tpo src/cpp/$(DEPDIR)/libscisystem_env_la-configvariable.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/configvariable.cpp' object='src/cpp/libscisystem_env_la-configvariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-configvariable.lo `test -f 'src/cpp/configvariable.cpp' || echo '$(srcdir)/'`src/cpp/configvariable.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscisystem_env_la-configvariable.lo `test -f 'src/cpp/configvariable.cpp' || echo '$(srcdir)/'`src/cpp/configvariable.cpp
 
-libscisystem_env_la-lasterror.lo: src/cpp/lasterror.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisystem_env_la-lasterror.lo -MD -MP -MF $(DEPDIR)/libscisystem_env_la-lasterror.Tpo -c -o libscisystem_env_la-lasterror.lo `test -f 'src/cpp/lasterror.cpp' || echo '$(srcdir)/'`src/cpp/lasterror.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscisystem_env_la-lasterror.Tpo $(DEPDIR)/libscisystem_env_la-lasterror.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/lasterror.cpp' object='libscisystem_env_la-lasterror.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscisystem_env_la-lasterror.lo: src/cpp/lasterror.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscisystem_env_la-lasterror.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscisystem_env_la-lasterror.Tpo -c -o src/cpp/libscisystem_env_la-lasterror.lo `test -f 'src/cpp/lasterror.cpp' || echo '$(srcdir)/'`src/cpp/lasterror.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscisystem_env_la-lasterror.Tpo src/cpp/$(DEPDIR)/libscisystem_env_la-lasterror.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/lasterror.cpp' object='src/cpp/libscisystem_env_la-lasterror.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-lasterror.lo `test -f 'src/cpp/lasterror.cpp' || echo '$(srcdir)/'`src/cpp/lasterror.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscisystem_env_la-lasterror.lo `test -f 'src/cpp/lasterror.cpp' || echo '$(srcdir)/'`src/cpp/lasterror.cpp
 
-libscisystem_env_la-promptmode.lo: src/cpp/promptmode.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisystem_env_la-promptmode.lo -MD -MP -MF $(DEPDIR)/libscisystem_env_la-promptmode.Tpo -c -o libscisystem_env_la-promptmode.lo `test -f 'src/cpp/promptmode.cpp' || echo '$(srcdir)/'`src/cpp/promptmode.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscisystem_env_la-promptmode.Tpo $(DEPDIR)/libscisystem_env_la-promptmode.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/promptmode.cpp' object='libscisystem_env_la-promptmode.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscisystem_env_la-promptmode.lo: src/cpp/promptmode.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscisystem_env_la-promptmode.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscisystem_env_la-promptmode.Tpo -c -o src/cpp/libscisystem_env_la-promptmode.lo `test -f 'src/cpp/promptmode.cpp' || echo '$(srcdir)/'`src/cpp/promptmode.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscisystem_env_la-promptmode.Tpo src/cpp/$(DEPDIR)/libscisystem_env_la-promptmode.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/promptmode.cpp' object='src/cpp/libscisystem_env_la-promptmode.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-promptmode.lo `test -f 'src/cpp/promptmode.cpp' || echo '$(srcdir)/'`src/cpp/promptmode.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscisystem_env_la-promptmode.lo `test -f 'src/cpp/promptmode.cpp' || echo '$(srcdir)/'`src/cpp/promptmode.cpp
 
-libscisystem_env_la-formatmode.lo: src/cpp/formatmode.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisystem_env_la-formatmode.lo -MD -MP -MF $(DEPDIR)/libscisystem_env_la-formatmode.Tpo -c -o libscisystem_env_la-formatmode.lo `test -f 'src/cpp/formatmode.cpp' || echo '$(srcdir)/'`src/cpp/formatmode.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscisystem_env_la-formatmode.Tpo $(DEPDIR)/libscisystem_env_la-formatmode.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/formatmode.cpp' object='libscisystem_env_la-formatmode.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscisystem_env_la-formatmode.lo: src/cpp/formatmode.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscisystem_env_la-formatmode.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscisystem_env_la-formatmode.Tpo -c -o src/cpp/libscisystem_env_la-formatmode.lo `test -f 'src/cpp/formatmode.cpp' || echo '$(srcdir)/'`src/cpp/formatmode.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscisystem_env_la-formatmode.Tpo src/cpp/$(DEPDIR)/libscisystem_env_la-formatmode.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/formatmode.cpp' object='src/cpp/libscisystem_env_la-formatmode.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-formatmode.lo `test -f 'src/cpp/formatmode.cpp' || echo '$(srcdir)/'`src/cpp/formatmode.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscisystem_env_la-formatmode.lo `test -f 'src/cpp/formatmode.cpp' || echo '$(srcdir)/'`src/cpp/formatmode.cpp
 
-libscisystem_env_la-sci_ieee.lo: src/cpp/sci_ieee.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisystem_env_la-sci_ieee.lo -MD -MP -MF $(DEPDIR)/libscisystem_env_la-sci_ieee.Tpo -c -o libscisystem_env_la-sci_ieee.lo `test -f 'src/cpp/sci_ieee.cpp' || echo '$(srcdir)/'`src/cpp/sci_ieee.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscisystem_env_la-sci_ieee.Tpo $(DEPDIR)/libscisystem_env_la-sci_ieee.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/sci_ieee.cpp' object='libscisystem_env_la-sci_ieee.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscisystem_env_la-sci_ieee.lo: src/cpp/sci_ieee.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscisystem_env_la-sci_ieee.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscisystem_env_la-sci_ieee.Tpo -c -o src/cpp/libscisystem_env_la-sci_ieee.lo `test -f 'src/cpp/sci_ieee.cpp' || echo '$(srcdir)/'`src/cpp/sci_ieee.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscisystem_env_la-sci_ieee.Tpo src/cpp/$(DEPDIR)/libscisystem_env_la-sci_ieee.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/sci_ieee.cpp' object='src/cpp/libscisystem_env_la-sci_ieee.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-sci_ieee.lo `test -f 'src/cpp/sci_ieee.cpp' || echo '$(srcdir)/'`src/cpp/sci_ieee.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscisystem_env_la-sci_ieee.lo `test -f 'src/cpp/sci_ieee.cpp' || echo '$(srcdir)/'`src/cpp/sci_ieee.cpp
 
-libscisystem_env_la-sci_simpMode.lo: src/cpp/sci_simpMode.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisystem_env_la-sci_simpMode.lo -MD -MP -MF $(DEPDIR)/libscisystem_env_la-sci_simpMode.Tpo -c -o libscisystem_env_la-sci_simpMode.lo `test -f 'src/cpp/sci_simpMode.cpp' || echo '$(srcdir)/'`src/cpp/sci_simpMode.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscisystem_env_la-sci_simpMode.Tpo $(DEPDIR)/libscisystem_env_la-sci_simpMode.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/sci_simpMode.cpp' object='libscisystem_env_la-sci_simpMode.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscisystem_env_la-sci_simpMode.lo: src/cpp/sci_simpMode.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscisystem_env_la-sci_simpMode.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscisystem_env_la-sci_simpMode.Tpo -c -o src/cpp/libscisystem_env_la-sci_simpMode.lo `test -f 'src/cpp/sci_simpMode.cpp' || echo '$(srcdir)/'`src/cpp/sci_simpMode.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscisystem_env_la-sci_simpMode.Tpo src/cpp/$(DEPDIR)/libscisystem_env_la-sci_simpMode.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/sci_simpMode.cpp' object='src/cpp/libscisystem_env_la-sci_simpMode.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-sci_simpMode.lo `test -f 'src/cpp/sci_simpMode.cpp' || echo '$(srcdir)/'`src/cpp/sci_simpMode.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscisystem_env_la-sci_simpMode.lo `test -f 'src/cpp/sci_simpMode.cpp' || echo '$(srcdir)/'`src/cpp/sci_simpMode.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf src/cpp/.libs src/cpp/_libs
 install-libscisystem_env_la_includeHEADERS: $(libscisystem_env_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	@list='$(libscisystem_env_la_include_HEADERS)'; test -n "$(libscisystem_env_la_includedir)" || list=; \
@@ -882,6 +923,8 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f src/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/cpp/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -892,7 +935,7 @@ clean-am: clean-generic clean-libtool clean-pkglibLTLIBRARIES \
 	mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf src/cpp/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -938,7 +981,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf src/cpp/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -33,9 +33,9 @@ using namespace org_scilab_modules_gui_datatip;
 
 int sci_datatipremove(char *fname, void* pvApiCtx)
 {
-    char* pFigureUID    = NULL;
-    char* datatipUID    = NULL;
-    char* polylineUID   = NULL;
+    int iFigureUID      = 0;
+    int iDatatipUID     = 0;
+    int iPolylineUID    = 0;
     double* pdblReal    = NULL;
     int* piAddr         = NULL;
     long long llHandle  = 0;
@@ -67,15 +67,15 @@ int sci_datatipremove(char *fname, void* pvApiCtx)
 
     if (nbInputArgument(pvApiCtx) == 1)
     {
-        pFigureUID = (char*)getCurrentFigure();
-        datatipUID = (char *)getObjectFromHandle((unsigned long) llHandle);
+        iFigureUID = getCurrentFigure();
+        iDatatipUID = getObjectFromHandle((unsigned long) llHandle);
 
         if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
         {
-            getGraphicObjectProperty(datatipUID, __GO_TYPE__, jni_int, (void**) &piType);
+            getGraphicObjectProperty(iDatatipUID, __GO_TYPE__, jni_int, (void**) &piType);
             if (iType == __GO_DATATIP__)
             {
-                DatatipDelete::datatipRemoveProgramHandler(getScilabJavaVM(), (char*)datatipUID, (char*)pFigureUID);
+                DatatipDelete::datatipRemoveProgramHandler(getScilabJavaVM(), iDatatipUID, iFigureUID);
             }
             else
             {
@@ -91,11 +91,11 @@ int sci_datatipremove(char *fname, void* pvApiCtx)
     }
     else if (nbInputArgument(pvApiCtx) == 2)
     {
-        polylineUID = (char *)getObjectFromHandle((unsigned long) llHandle);
+        iPolylineUID = getObjectFromHandle((unsigned long) llHandle);
 
         if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
         {
-            getGraphicObjectProperty(polylineUID, __GO_TYPE__, jni_int, (void**) &piType);
+            getGraphicObjectProperty(iPolylineUID, __GO_TYPE__, jni_int, (void**) &piType);
             if (iType == __GO_POLYLINE__)
             {
 
@@ -119,7 +119,7 @@ int sci_datatipremove(char *fname, void* pvApiCtx)
                     if (nbRow * nbCol == 1)
                     {
                         indexPos = (int) pdblReal[0];
-                        DatatipDelete::datatipRemoveProgramIndex(getScilabJavaVM(), (char*)polylineUID, indexPos);
+                        DatatipDelete::datatipRemoveProgramIndex(getScilabJavaVM(), iPolylineUID, indexPos);
 
                     }
                     else

@@ -274,7 +274,7 @@
         </programlisting>
         <para>
             The <literal>data</literal> input parameter may be used if the function
-            uses some additionnal parameters. It is returned as an output
+            uses some additional parameters. It is returned as an output
             parameter because the function may modify the data while
             computing the function value. This feature may be used, for
             example, to count the number of times that the function has
@@ -308,7 +308,7 @@ s1 = optimsimplex_destroy(s1);
             In the following example, one creates a simplex with in the 2D
             domain [-5 5]^2, with [-1.2 1.0] as the first vertex. One uses the
             randomized bounds method to generate a simplex with 5 vertices. The
-            function takes an additionnal argument mystuff, which is counts the number
+            function takes an additional argument mystuff, which is counts the number
             of times the function is called. After the creation of the simplex, the
             value of mystuff.nb is 5, which is the expected result because there is
             one function call by vertex.

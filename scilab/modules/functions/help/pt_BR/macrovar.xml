@@ -10,14 +10,14 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="macrovar" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="macrovar" xml:lang="pt">
     <refnamediv>
         <refname>macrovar</refname>
         <refpurpose>variáveis de uma função</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>vars=macrovar(function)</synopsis>
+        <synopsis>vars = macrovar(function)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -41,33 +41,35 @@
     <refsection>
         <title>Descrição</title>
         <para>Retorna em uma lista o conjunto de variáveis utilizadas por uma
-            função. <literal>vars</literal> é uma lista feita de cinco vetores colunas
-            de strings
+            função. <varname>vars</varname> é uma lista feita de cinco vetores colunas
+            de strings:
         </para>
-        <para>
-            <literal>in</literal> variáveis de entrada
-            (<literal>vars(1)</literal>)
-        </para>
-        <para>
-            <literal>out</literal> variáveis de saída
-            (<literal>vars(2)</literal>)
-        </para>
-        <para>
-            <literal>globals</literal> variáveis globais
-            (<literal>vars(3)</literal>)
-        </para>
-        <para>
-            <literal>called</literal> nomes de funções chamadas
-            (<literal>vars(4)</literal>)
-        </para>
-        <para>
-            <literal>locals</literal> variáveis locais
-            (<literal>vars(5)</literal>)
-        </para>
+        <simplelist type="inline">
+            <member>
+                <varname>in</varname>: variáveis de entrada
+                (<code>vars(1)</code>);
+            </member>
+            <member>
+                <varname>out</varname>: variáveis de saída
+                (<code>vars(2)</code>);
+            </member>
+            <member>
+                <varname>globals</varname>: variáveis globais
+                (<code>vars(3)</code>);
+            </member>
+            <member>
+                <varname>called</varname>: nomes de funções chamadas
+                (<code>vars(4)</code>);
+            </member>
+            <member>
+                <varname>locals</varname>: variáveis locais
+                (<code>vars(5)</code>).
+            </member>
+        </simplelist>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 deff('y=f(x1,x2)','loc=1;y=a*x1+x2-loc')
 vars=macrovar(f)
  ]]></programlisting>

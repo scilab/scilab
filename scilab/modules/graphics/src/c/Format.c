@@ -164,7 +164,7 @@ static int Fsepare(char *fmt, int dec, int *l, double xmin, double xmax, double 
     /**  we don't use %.*f format if numbers are two big **/
     if (strcmp("%.*f", fmt) == 0 && (Abs(xmax) > 1.e+10 || Abs(xmin) > 1.e+10))
     {
-        return(0);
+        return (0);
     }
     sprintf(buf1, fmt, dec, xmin);
     while (x < xmax)
@@ -175,10 +175,10 @@ static int Fsepare(char *fmt, int dec, int *l, double xmin, double xmax, double 
         *l = (((int)strlen(buf1) >= *l) ? (int) strlen(buf1) : *l);
         if (strcmp(buf1, buf2) == 0)
         {
-            return(0);
+            return (0);
         }
     }
-    return(1);
+    return (1);
 }
 
 void ChoixFormatE1(char *fmt, double *xx, int nx)
@@ -258,7 +258,7 @@ static int Fsepare1(char *fmt, int dec, int *l, double *xx, int nx)
     /**  we don't use %.*f format if numbers are two big **/
     if (strcmp("%.*f", fmt) == 0 && (Abs(xx[nx - 1]) > 1.e+10 || Abs(xx[0]) > 1.e+10))
     {
-        return(0);
+        return (0);
     }
     sprintf(buf1, fmt, dec, xx[0]);
     for (i = 1 ; i < nx ; i++)
@@ -268,10 +268,10 @@ static int Fsepare1(char *fmt, int dec, int *l, double *xx, int nx)
         *l = (((int)strlen(buf1) >= *l) ? (int) strlen(buf1) : *l);
         if (strcmp(buf1, buf2) == 0)
         {
-            return(0);
+            return (0);
         }
     }
-    return(1);
+    return (1);
 }
 
 /*----------------------------------------------------
@@ -305,7 +305,7 @@ int C2F(graduate)(double *xmi, double *xma, double *xi, double *xa, int *np1, in
     {
         graduate1(xmi, xma, xi, xa, np1, np2, kminr, kmaxr, ar, 0);
     }
-    return(0);
+    return (0);
 }
 
 static void graduate1(double *xmi, double *xma, double *xi, double *xa, int *np1, int *np2, int *kminr, int *kmaxr, int *ar, int count)
@@ -819,7 +819,7 @@ int sciGetLogExponent(double minBound, double maxBound, double* expMin, double* 
  * default labels for the Axis object. The algorithm is left untouched.
  * Its code ought to be put within the Java part of the Model.
  */
-int ComputeC_format(char * pobjUID, char * c_format)
+int ComputeC_format(int iObjUID, char * c_format)
 {
     int i = 0, j = 0;
     int pos = 0;
@@ -837,11 +837,12 @@ int ComputeC_format(char * pobjUID, char * c_format)
     int iType = -1;
     int *piType = &iType;
     int  xpassed = 0, ypassed = 0, Nx = 0, Ny = 0, x3, y3;
-    char* parentAxesID = NULL;
+    int parentAxesID;
+    int * piParentAxesID = &parentAxesID;
     int logFlag = 0;
     int* piLogFlag = &logFlag;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     if (iType != __GO_AXIS__)
     {
@@ -849,13 +850,13 @@ int ComputeC_format(char * pobjUID, char * c_format)
         return -1;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, (void **)&parentAxesID);
+    getGraphicObjectProperty(iObjUID, __GO_PARENT_AXES__, jni_int, (void **)&piParentAxesID);
 
-    getGraphicObjectProperty(pobjUID, __GO_TICKS_DIRECTION__, jni_int, (void **)&piPos);
-    getGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, jni_int, (void **)&piXy_type);
+    getGraphicObjectProperty(iObjUID, __GO_TICKS_DIRECTION__, jni_int, (void **)&piPos);
+    getGraphicObjectProperty(iObjUID, __GO_TICKS_STYLE__, jni_int, (void **)&piXy_type);
 
-    getGraphicObjectProperty(pobjUID, __GO_X_NUMBER_TICKS__, jni_int, (void **)&piNx);
-    getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, (void **)&piNy);
+    getGraphicObjectProperty(iObjUID, __GO_X_NUMBER_TICKS__, jni_int, (void **)&piNx);
+    getGraphicObjectProperty(iObjUID, __GO_Y_NUMBER_TICKS__, jni_int, (void **)&piNy);
 
     /* Allocating space before re-copying values to not pollute the good values
     that will be used inside Axes.c */
@@ -872,8 +873,8 @@ int ComputeC_format(char * pobjUID, char * c_format)
         return -1;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_X_TICKS_COORDS__, jni_double_vector, (void **)&tmpx);
-    getGraphicObjectProperty(pobjUID, __GO_Y_TICKS_COORDS__, jni_double_vector, (void **)&tmpy);
+    getGraphicObjectProperty(iObjUID, __GO_X_TICKS_COORDS__, jni_double_vector, (void **)&tmpx);
+    getGraphicObjectProperty(iObjUID, __GO_Y_TICKS_COORDS__, jni_double_vector, (void **)&tmpy);
 
     for (i = 0; i < nx; i++)
     {
@@ -890,7 +891,7 @@ int ComputeC_format(char * pobjUID, char * c_format)
     {
         if (pos == 0 || pos == 1)
         {
-            getGraphicObjectProperty(pobjUID, __GO_X_AXIS_LOG_FLAG__, jni_int, (void **)&piLogFlag);
+            getGraphicObjectProperty(iObjUID, __GO_X_AXIS_LOG_FLAG__, jni_int, (void **)&piLogFlag);
 
             if (logFlag == 0)
             {
@@ -922,7 +923,7 @@ int ComputeC_format(char * pobjUID, char * c_format)
         }
         else if (pos == 2 || pos == 3)
         {
-            getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOG_FLAG__, jni_int, (void **)&piLogFlag);
+            getGraphicObjectProperty(iObjUID, __GO_Y_AXIS_LOG_FLAG__, jni_int, (void **)&piLogFlag);
 
             if (logFlag == 0)
             {
@@ -1050,7 +1051,7 @@ int ComputeC_format(char * pobjUID, char * c_format)
  * This function has been updated for the MVC (property get calls).
  * Its code ought to be put within the Java part of the Model.
  */
-int ComputeXIntervals(char * pobjUID, char xy_type, double ** vector, int * N, int checkdim)
+int ComputeXIntervals(int iObjUID, char xy_type, double ** vector, int * N, int checkdim)
 {
     int i = 0;
     double* val = NULL; /* represents the x or y ticks coordinates */
@@ -1063,20 +1064,20 @@ int ComputeXIntervals(char * pobjUID, char xy_type, double ** vector, int * N, i
     int* piNy = &ny;
     BOOL ishoriz = FALSE;
 
-    getGraphicObjectProperty(pobjUID, __GO_X_NUMBER_TICKS__, jni_int, (void **)&piNx);
-    getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, (void **)&piNy);
+    getGraphicObjectProperty(iObjUID, __GO_X_NUMBER_TICKS__, jni_int, (void **)&piNx);
+    getGraphicObjectProperty(iObjUID, __GO_Y_NUMBER_TICKS__, jni_int, (void **)&piNy);
 
     /* draw an horizontal axis : YES (horizontal axis) or NO (vertical axis) */
     ishoriz = (nx > ny) ? TRUE : FALSE;
 
     if (ishoriz == TRUE)
     {
-        getGraphicObjectProperty(pobjUID, __GO_X_TICKS_COORDS__, jni_double_vector, (void **)&val);
+        getGraphicObjectProperty(iObjUID, __GO_X_TICKS_COORDS__, jni_double_vector, (void **)&val);
         nval = nx;
     }
     else
     {
-        getGraphicObjectProperty(pobjUID, __GO_Y_TICKS_COORDS__, jni_double_vector, (void **)&val);
+        getGraphicObjectProperty(iObjUID, __GO_Y_TICKS_COORDS__, jni_double_vector, (void **)&val);
         nval = ny;
     }
 
@@ -1180,7 +1181,7 @@ int ComputeXIntervals(char * pobjUID, char xy_type, double ** vector, int * N, i
  * @return a string matrix containing the labels.
  *         Actually it is a row vector.
  */
-StringMatrix * computeDefaultTicsLabels(char * pobjUID)
+StringMatrix * computeDefaultTicsLabels(int iObjUID)
 {
     StringMatrix * ticsLabels = NULL  ;
     int            nbTics     = 0     ;
@@ -1194,7 +1195,7 @@ StringMatrix * computeDefaultTicsLabels(char * pobjUID)
     int* piTmp = &tmp;
     char ticksStyle = 'v';
 
-    getGraphicObjectProperty(pobjUID, __GO_FORMATN__, jni_string, (void **)&c_format);
+    getGraphicObjectProperty(iObjUID, __GO_FORMATN__, jni_string, (void **)&c_format);
 
     /*
      * If different from the empty string, the format is already specified,
@@ -1202,11 +1203,11 @@ StringMatrix * computeDefaultTicsLabels(char * pobjUID)
      */
     if (strcmp(c_format, "") == 0)
     {
-        ComputeC_format(pobjUID, tempFormat);
+        ComputeC_format(iObjUID, tempFormat);
         c_format = tempFormat;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, jni_int, (void **)&piTmp);
+    getGraphicObjectProperty(iObjUID, __GO_TICKS_STYLE__, jni_int, (void **)&piTmp);
 
     if (tmp == 0)
     {
@@ -1222,7 +1223,7 @@ StringMatrix * computeDefaultTicsLabels(char * pobjUID)
     }
 
     /* vector is allocated here */
-    if (ComputeXIntervals(pobjUID, ticksStyle, &vector, &nbTics, 1) != 0)
+    if (ComputeXIntervals(iObjUID, ticksStyle, &vector, &nbTics, 1) != 0)
     {
         Scierror(999, _("Bad size in %s: you must first increase the size of the %s.\n"), "tics_coord", "tics_coord");
         return 0;
@@ -1317,6 +1318,6 @@ static char FPF[32] = {'\0'};
 
 char * getFPF(void)
 {
-    return(FPF);
+    return (FPF);
 }
 /*--------------------------------------------------------------------------*/

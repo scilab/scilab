@@ -40,6 +40,7 @@ genimpl2dim_
 genimpl2_
 gencheck_
 gensubst_
+gensubst1_
 genmdiag_
 gendiag_
 genmin2_

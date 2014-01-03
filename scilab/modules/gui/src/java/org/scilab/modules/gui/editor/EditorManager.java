@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -28,14 +28,14 @@ import java.util.Map;
 
 public class EditorManager {
 
-    private static Map<String, Editor> allEditors = new HashMap<String, Editor>();
+    private static Map<Integer, Editor> allEditors = new HashMap<Integer, Editor>();
 
     /**
      * Create an editor and put it on the map.
      * @param figureUid Figure which the editor belongs.
      * @return The created editor instance.
      */
-    public static Editor newEditor(String figureUid) {
+    public static Editor newEditor(Integer figureUid) {
         Editor editor = new Editor();
         editor.setFigure(figureUid);
         allEditors.put(figureUid, editor);
@@ -46,7 +46,7 @@ public class EditorManager {
      * Enables the editor which belongs to the given figure uid.
      * @param figureUid Figure wich the editor belongs.
      */
-    public static void enableModify(String uid) {
+    public static void enableModify(int uid) {
         Editor editor = allEditors.get(uid);
         if (editor != null) {
             editor.setDataModifyEnabled(true);
@@ -57,7 +57,7 @@ public class EditorManager {
      * Disables the editor which belongs to the given figure uid.
      * @param figureUid Figure wich the editor belongs.
      */
-    public static void disableModify(String uid) {
+    public static void disableModify(int uid) {
         Editor editor = allEditors.get(uid);
         if (editor != null) {
             editor.setDataModifyEnabled(false);
@@ -68,7 +68,7 @@ public class EditorManager {
      * Checks if the editor which belongs to the given figure uid is enabled.
      * @return True if the editor is enableb, false otherwise.
      */
-    public static boolean isModifyEnabled(String uid) {
+    public static boolean isModifyEnabled(int uid) {
         Editor editor = allEditors.get(uid);
         if (editor != null) {
             return editor.isDataModifyEnabled();
@@ -79,7 +79,7 @@ public class EditorManager {
     /**
      * Remove the editor from the map.
      */
-    public static void deleteEditor(String uid) {
+    public static void deleteEditor(int uid) {
         allEditors.remove(uid);
     }
 
@@ -88,7 +88,7 @@ public class EditorManager {
      * @param uid The figure uid.
      * @return The editor instance.
      */
-    public static Editor getFromUid(String uid) {
+    public static Editor getFromUid(int uid) {
         return allEditors.get(uid);
     }
 }

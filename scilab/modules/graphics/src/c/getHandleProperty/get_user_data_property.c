@@ -33,7 +33,7 @@
 
 
 /*------------------------------------------------------------------------*/
-void* get_user_data_property(void* _pvCtx, char* pobjUID)
+void* get_user_data_property(void* _pvCtx, int iObjUID)
 {
     int iUserDataSize = 0;
     int *piUserDataSize = &iUserDataSize;
@@ -41,16 +41,16 @@ void* get_user_data_property(void* _pvCtx, char* pobjUID)
 
     void* status = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_USER_DATA_SIZE__, jni_int, (void **)&piUserDataSize);
+    getGraphicObjectProperty(iObjUID, __GO_USER_DATA_SIZE__, jni_int, (void **)&piUserDataSize);
 
-    getGraphicObjectProperty(pobjUID, __GO_USER_DATA__, jni_int_vector, (void **)&piUserData);
+    getGraphicObjectProperty(iObjUID, __GO_USER_DATA__, jni_int_vector, (void **)&piUserData);
 
     if ((piUserData == NULL) || (piUserDataSize == NULL))
     {
         int iSize = sizeof(void*) / sizeof(int);
         status = sciReturnEmptyMatrix();
         //force user_data to have something and not create each time a new variable
-        setGraphicObjectProperty(pobjUID, __GO_USER_DATA__, &status, jni_int_vector, iSize);
+        setGraphicObjectProperty(iObjUID, __GO_USER_DATA__, &status, jni_int_vector, iSize);
         increaseValRef(_pvCtx, (int*)status);
     }
     else

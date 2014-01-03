@@ -59,3 +59,15 @@ a.z_ticks = newTicks;
 assert_checkequal(a.auto_ticks, ["on" "on" "off"])
 assert_checkalmostequal(a.z_ticks.locations, [0:0.01:1]')
 assert_checkequal(a.z_ticks.labels, [string(0:0.01:1)]')
+
+clf();
+plot(1d3:2d3, 1d3:2d3);
+a = gca();
+x_str_1k = a.x_ticks.labels(1);
+y_str_1k = a.y_ticks.labels(1);
+x_str_2k = a.x_ticks.labels($);
+y_str_2k = a.y_ticks.labels($);
+assert_checkequal(ascii(x_str_1k), ascii("1 000"));
+assert_checkequal(ascii(y_str_1k), ascii("1 000"));
+assert_checkequal(ascii(x_str_2k), ascii("2 000"));
+assert_checkequal(ascii(y_str_2k), ascii("2 000"));

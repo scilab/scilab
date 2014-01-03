@@ -13,6 +13,8 @@
 package org.scilab.modules.graphic_objects.surface;
 
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
+
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 import org.scilab.modules.graphic_objects.lighting.ColorTriplet;
 import org.scilab.modules.graphic_objects.lighting.Material;
@@ -180,8 +182,9 @@ public abstract class Surface extends ClippableContouredObject {
     /**
      * @param surfaceMode the surfaceMode to set
      */
-    public void setSurfaceMode(Boolean surfaceMode) {
+    public UpdateStatus setSurfaceMode(Boolean surfaceMode) {
         this.surfaceMode = surfaceMode;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -194,8 +197,9 @@ public abstract class Surface extends ClippableContouredObject {
     /**
      * @param colorMode the colorMode to set
      */
-    public void setColorMode(Integer colorMode) {
+    public UpdateStatus setColorMode(Integer colorMode) {
         this.colorMode = colorMode;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -208,8 +212,9 @@ public abstract class Surface extends ClippableContouredObject {
     /**
      * @param colorFlag the colorFlag to set
      */
-    public void setColorFlag(Integer colorFlag) {
+    public UpdateStatus setColorFlag(Integer colorFlag) {
         this.colorFlag = colorFlag;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -222,15 +227,16 @@ public abstract class Surface extends ClippableContouredObject {
     /**
      * @param hiddenColor the hiddenColor to set
      */
-    public void setHiddenColor(Integer hiddenColor) {
+    public UpdateStatus setHiddenColor(Integer hiddenColor) {
         this.hiddenColor = hiddenColor;
+        return UpdateStatus.Success;
     }
 
     /**
      * Sets the color-material mode, that is,
      * use the surface color as diffuse color
      * @param status if true enables color-material
-     */ 
+     */
     public UpdateStatus setColorMaterialMode(Boolean status) {
         return material.setColorMaterialMode(status);
     }
@@ -308,9 +314,10 @@ public abstract class Surface extends ClippableContouredObject {
     /**
      * @param the new material.
      */
-    public void setMaterial(Material material) {
+    public UpdateStatus setMaterial(Material material) {
         if (material != null) {
             this.material = material;
         }
+        return UpdateStatus.Success;
     }
 }

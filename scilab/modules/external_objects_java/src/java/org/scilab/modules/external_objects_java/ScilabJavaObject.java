@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -825,15 +825,15 @@ public class ScilabJavaObject {
             }
 
             if (arraySJO[id] != null) {
-		Object ret = ScilabJavaMethod.invoke(methName, arraySJO[id].clazz, arraySJO[id].object, returnType, args);
-		if (ret == null && returnType[0] == Void.TYPE) {
-		    return -1;
-		} else {
-		    return new ScilabJavaObject(ret, returnType[0]).id;
-		}
+                Object ret = ScilabJavaMethod.invoke(methName, arraySJO[id].clazz, arraySJO[id].object, returnType, args);
+                if (ret == null && returnType[0] == Void.TYPE) {
+                    return -1;
+                } else {
+                    return new ScilabJavaObject(ret, returnType[0]).id;
+                }
             } else {
-		throw new ScilabJavaException("Invalid Java object");
-	    }
+                throw new ScilabJavaException("Invalid Java object");
+            }
         } else {
             throw new ScilabJavaException("null is not an object");
         }
@@ -877,9 +877,10 @@ public class ScilabJavaObject {
                         List l = (List) o;
                         int pos = -1;
                         if (a instanceof Double) {
-                            pos = ((Double) a).intValue();
+                            // Scilab index begins at 1
+                            pos = ((Double) a).intValue() - 1;
                         } else if (a instanceof Integer) {
-                            pos = ((Integer) a).intValue();
+                            pos = ((Integer) a).intValue() - 1;
                         } else {
                             pos = l.indexOf(a);
                         }
@@ -896,7 +897,7 @@ public class ScilabJavaObject {
                             pos = ((Integer) a).intValue();
                         }
 
-                        o = ScilabJavaArray.get(o, new int[] {pos});
+                        o = ScilabJavaArray.get(o, new int[] {pos - 1});
                     } else {
                         throw new ScilabJavaException("Invalid field " + (a == null ? "null" : a.toString()));
                     }
@@ -946,9 +947,10 @@ public class ScilabJavaObject {
                         List l = (List) o;
                         int pos = -1;
                         if (a instanceof Double) {
-                            pos = ((Double) a).intValue();
+                            // Scilab index begins at 1
+                            pos = ((Double) a).intValue() - 1;
                         } else if (a instanceof Integer) {
-                            pos = ((Integer) a).intValue();
+                            pos = ((Integer) a).intValue() - 1;
                         } else {
                             pos = l.indexOf(a);
                         }
@@ -965,7 +967,7 @@ public class ScilabJavaObject {
                             pos = ((Integer) a).intValue();
                         }
 
-                        o = ScilabJavaArray.get(o, new int[] {pos});
+                        o = ScilabJavaArray.get(o, new int[] {pos - 1});
                     } else {
                         throw new ScilabJavaException("Invalid field " + (a == null ? "null" : a.toString()));
                     }
@@ -983,9 +985,10 @@ public class ScilabJavaObject {
                     List l = (List) o;
                     int pos = -1;
                     if (a instanceof Double) {
-                        pos = ((Double) a).intValue();
+                        // Scilab index begins at 1
+                        pos = ((Double) a).intValue() - 1;
                     } else if (a instanceof Integer) {
-                        pos = ((Integer) a).intValue();
+                        pos = ((Integer) a).intValue() - 1;
                     } else {
                         pos = l.indexOf(a);
                     }
@@ -1004,7 +1007,7 @@ public class ScilabJavaObject {
                         pos = ((Integer) a).intValue();
                     }
 
-                    ScilabJavaArray.set(o, new int[] {pos}, arraySJO[value].object);
+                    ScilabJavaArray.set(o, new int[] {pos - 1}, arraySJO[value].object);
                 } else {
                     throw new ScilabJavaException("Invalid field " + (a == null ? "null" : a.toString()));
                 }

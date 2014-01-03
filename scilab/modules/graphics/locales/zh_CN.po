@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: zh_CN\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -111,23 +111,6 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Function %s is obsolete.\n"
-msgstr ""
-
-msgid "Warning"
-msgstr "警告"
-
-#, c-format
-msgid "%s: Please use %s instead.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: This function will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr ""
 
@@ -154,7 +137,20 @@ msgid "A Label object cannot be deleted.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Function %s is obsolete.\n"
+msgstr ""
+
+msgid "Warning"
+msgstr "警告"
+
+#, c-format
 msgid "%s: Please see documentation for more details.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: This function will be permanently removed in Scilab %s\n"
+"\n"
 msgstr ""
 
 #, c-format
@@ -254,6 +250,10 @@ msgid "%s: Wrong size for input arguments #%d and #%d.\n"
 msgstr "%s：输入参数 #%d 和 #%d 的大小错误。\n"
 
 #, c-format
+msgid "%s: Wrong value for strf option: %s.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Impossible status min > max in x or y rect data.\n"
 msgstr "%s：在 x 或 y 矩形数据中不可能的状态：最小值大于最大值。\n"
 
@@ -278,6 +278,10 @@ msgid ""
 "%s: At least one y data must be strictly positive to compute the bounds and "
 "use logarithmic mode\n"
 msgstr "%s：至少一个 y 数据必须严格计算其范围并且使用对数模式。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d or %d expected.\n"
@@ -463,8 +467,8 @@ msgid "%s: Wrong size for input argument #%d: %d, %d or %d expected.\n"
 msgstr "%s：第%d个输入参数 的大小错误：应该为%d，%d或%d。\n"
 
 #, c-format
-msgid "%s: Unrecognized input argument '%s'.\n"
-msgstr "%s：无法识别的输入参数“%s”。\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s：输入参数的数目错误，应该为 %d 个。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -474,10 +478,6 @@ msgstr "%s：输入参数的数目错误：应该为%d个或%d个。\n"
 msgid ""
 "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s：输入参数的数目错误，应该为 %d 个。\n"
 
 #, c-format
 msgid "Figure n%d"
@@ -614,16 +614,8 @@ msgid "This object can not be moved.\n"
 msgstr "这个对象不能移动。\n"
 
 #, c-format
-msgid "Line width must be greater than %d.\n"
-msgstr "线的宽度必须大于 %d。\n"
-
-#, c-format
-msgid "The line style must be greater than %d.\n"
-msgstr "线的风格必须大于 %d。\n"
-
-#, c-format
-msgid "The mark size must be greater or equal than %d.\n"
-msgstr "标号大小必须大于或等于 %d。\n"
+msgid "Wrong value for '%s' property: Must be greater or equal to %d.\n"
+msgstr ""
 
 msgid "Handle is not a SubWindow.\n"
 msgstr "句柄不是一个 SubWindow。\n"
@@ -866,6 +858,9 @@ msgstr ""
 
 #, c-format
 msgid "Incompatible type for property ''%s''.\n"
+msgstr ""
+
+msgid "Datatips property can not be modified directly.\n"
 msgstr ""
 
 #, c-format
@@ -1250,11 +1245,11 @@ msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
 msgstr "%s：输入参数 #%d 的类型错误：应该为 %s 的数据结构。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgid "%s: Wrong type for input argument #%d: a real scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: An integer value expected.\n"
+msgid "%s: Wrong size for input argument #%d: a real scalar expected.\n"
 msgstr ""
 
 #, c-format
@@ -1760,17 +1755,7 @@ msgid "Exact gaussian density"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in increasing "
-"order.\n"
+msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr ""
 
 #, c-format

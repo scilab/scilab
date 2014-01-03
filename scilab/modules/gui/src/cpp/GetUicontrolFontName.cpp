@@ -14,12 +14,12 @@
 
 #include "GetUicontrolFontName.hxx"
 
-void* GetUicontrolFontName(void* _pvCtx, char *sciObjUID)
+void* GetUicontrolFontName(void* _pvCtx, int iObjUID)
 {
     char* fontName = NULL;
     void* status = NULL;
 
-    getGraphicObjectProperty(sciObjUID, __GO_UI_FONTNAME__, jni_string, (void**) &fontName);
+    getGraphicObjectProperty(iObjUID, __GO_UI_FONTNAME__, jni_string, (void**) &fontName);
 
     if (fontName == NULL)
     {

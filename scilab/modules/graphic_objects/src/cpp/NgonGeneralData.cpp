@@ -72,34 +72,27 @@ int NgonGeneralData::getPropertyFromName(int propertyName)
 
 int NgonGeneralData::setDataProperty(int property, void const* value, int numElements)
 {
-
-    if (property == NUM_ELEMENTS_ARRAY)
+    switch (property)
     {
-        return setNumElementsArray((int const*) value);
-    }
-    else if (property == COORDINATES)
-    {
-        setData((double const*) value, numElements);
-    }
-    else if (property == X_COORDINATES)
-    {
-        setDataX((double const*) value, numElements);
-    }
-    else if (property == Y_COORDINATES)
-    {
-        setDataY((double const*) value, numElements);
-    }
-    else if (property == Z_COORDINATES)
-    {
-        setDataZ((double const*) value, numElements);
-    }
-    else if (property == COLORS)
-    {
-        setColors((double const*) value, numElements);
-    }
-    else
-    {
-        return NgonData::setDataProperty(property, value, numElements);
+        case NUM_ELEMENTS_ARRAY :
+            return setNumElementsArray((int const*) value);
+        case COORDINATES :
+            setData((double const*) value, numElements);
+            break;
+        case X_COORDINATES :
+            setDataX((double const*) value, numElements);
+            break;
+        case Y_COORDINATES :
+            setDataY((double const*) value, numElements);
+            break;
+        case Z_COORDINATES :
+            setDataZ((double const*) value, numElements);
+            break;
+        case COLORS :
+            setColors((double const*) value, numElements);
+            break;
+        default :
+            return NgonData::setDataProperty(property, value, numElements);
     }
 
     return 1;
@@ -107,40 +100,33 @@ int NgonGeneralData::setDataProperty(int property, void const* value, int numEle
 
 void NgonGeneralData::getDataProperty(int property, void **_pvData)
 {
-    if (property == NUM_ELEMENTS_ARRAY)
+    switch (property)
     {
-        /* Not implemented yet */
-        //    getNumElementsArray();
+        case NUM_ELEMENTS_ARRAY :
+            /* Not implemented yet */
+            //    getNumElementsArray();
+            break;
+        case COORDINATES :
+            *_pvData = getData();
+            break;
+        case X_COORDINATES :
+            *_pvData = getDataX();
+            break;
+        case Y_COORDINATES :
+            *_pvData = getDataY();
+            break;
+        case Z_COORDINATES :
+            *_pvData = getDataZ();
+            break;
+        case COLORS :
+            *_pvData = getColors();
+            break;
+        case NUM_COLORS :
+            ((int *) *_pvData)[0] = getNumColors();
+            break;
+        default :
+            NgonData::getDataProperty(property, _pvData);
     }
-    else if (property == COORDINATES)
-    {
-        *_pvData = getData();
-    }
-    else if (property == X_COORDINATES)
-    {
-        *_pvData = getDataX();
-    }
-    else if (property == Y_COORDINATES)
-    {
-        *_pvData = getDataY();
-    }
-    else if (property == Z_COORDINATES)
-    {
-        *_pvData = getDataZ();
-    }
-    else if (property == COLORS)
-    {
-        *_pvData = getColors();
-    }
-    else if (property == NUM_COLORS)
-    {
-        ((int *) *_pvData)[0] = getNumColors();
-    }
-    else
-    {
-        NgonData::getDataProperty(property, _pvData);
-    }
-
 }
 
 double* NgonGeneralData::getData()

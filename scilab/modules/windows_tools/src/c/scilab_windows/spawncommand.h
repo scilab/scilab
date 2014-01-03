@@ -37,7 +37,7 @@ pipeinfo SCILAB_WINDOWS_IMPEXP pipeSpawnErr;
 * @param[in] DetachProcess (if we want detach to scilab process)
 * @return 0
 */
-SCILAB_WINDOWS_IMPEXP int spawncommand(char *command, BOOL DetachProcess);
+SCILAB_WINDOWS_IMPEXP int spawncommand(wchar_t *command, BOOL DetachProcess);
 
 /**
 * ReadFromPipe (in or out)
@@ -51,7 +51,7 @@ SCILAB_WINDOWS_IMPEXP DWORD WINAPI ReadFromPipe (LPVOID args);
 * @param[in] command
 * @return TRUE or FALSE
 */
-SCILAB_WINDOWS_IMPEXP BOOL DetectDetachProcessInCommandLine(char *command);
+SCILAB_WINDOWS_IMPEXP BOOL DetectDetachProcessInCommandLine(wchar_t *command);
 
 /**
 * CreateOuput

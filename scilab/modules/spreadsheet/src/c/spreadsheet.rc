@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "spreadsheet module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "spreadsheet"
-            VALUE "LegalCopyright", "Copyright (C) 2013"
+            VALUE "LegalCopyright", "Copyright (C) 2014"
             VALUE "OriginalFilename", "spreadsheet.dll"
             VALUE "ProductName", " spreadsheet"
             VALUE "ProductVersion", "6, 0, 0, 0"

@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_arrow_size_property(void* _pvCtx, char* pobjUID)
+void* get_arrow_size_property(void* _pvCtx, int iObjUID)
 {
     double arrowSize = 0.0;
     double* pdblArrowSize = &arrowSize;
 
-    getGraphicObjectProperty(pobjUID, __GO_ARROW_SIZE__, jni_double, (void **)&pdblArrowSize);
+    getGraphicObjectProperty(iObjUID, __GO_ARROW_SIZE__, jni_double, (void **)&pdblArrowSize);
 
     if (pdblArrowSize == NULL)
     {

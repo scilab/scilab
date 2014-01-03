@@ -65,7 +65,7 @@ function [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,
     list_points = params_pde.points;
     points=strcat(list_points,"|");
 
-    f = figure("Position",[50 50 670 620],"figure_name","PDE_IHM","BackgroundColor",[0.7 0.9 0.4]);
+    f = figure("Position",[50 50 670 620],"figure_name","PDE_IHM","BackgroundColor",[0.7 0.9 0.4], "visible", "off");
     f.axes_size=[670,620];
     f.closerequestfcn = "do_quitter()";
     //m=uimenu(f,'label', 'Model EDP');
@@ -351,13 +351,43 @@ function [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,
     "callback"  , "do_valider()","BackgroundColor",[0 1 0] );
     b4 = uicontrol(f, "Position"  , [610 90 50 20],"Style", "pushbutton","String", _("Cancel"),...
     "callback"  , "do_quitter()","BackgroundColor",[1 0 0] );
-
-    while fin,end
+    f.visible = "on";
+    while fin,
+    end
     if ok then
         close(f)
-        a_domaine=[];b_domaine=[];discr=[];signe=[];choix=[];type_meth=[];degre=[];Nbr_maillage=[];
-        CI=[];CI1=[];CLa_type=[];CLa_exp=[];CLb_type=[];CLb_exp=[];oper=[];a1=[];b1=[];a2=[];b2=[];
-        a3=[];b3=[];a4=[];b4=[];a5=[];b5=[];a6=[];b6=[];a7=[];b7=[];k=[];mesures=[];params_pde=[];
+        a_domaine=[];
+        b_domaine=[];
+        discr=[];
+        signe=[];
+        choix=[];
+        type_meth=[];
+        degre=[];
+        Nbr_maillage=[];
+        CI=[];
+        CI1=[];
+        CLa_type=[];
+        CLa_exp=[];
+        CLb_type=[];
+        CLb_exp=[];
+        oper=[];
+        a1=[];
+        b1=[];
+        a2=[];
+        b2=[];
+        a3=[];
+        b3=[];
+        a4=[];
+        b4=[];
+        a5=[];
+        b5=[];
+        a6=[];
+        b6=[];
+        a7=[];
+        b7=[];
+        k=[];
+        mesures=[];
+        params_pde=[];
         return;
     end
     ok=fin;
@@ -371,21 +401,49 @@ function [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,
     editb7,list_points);
 
     // sauvegarde de l'IHM dans params_pde
-    params_pde.a=string(a_domaine);params_pde.b=string(b_domaine);
-    params_pde.check_op1=string(get(check_op1,"Value"));params_pde.a1=get(edita1,"String");params_pde.b1=get(editb1,"String");
-    params_pde.check_op2=string(get(check_op2,"Value"));params_pde.a2=get(edita2,"String");params_pde.b2=get(editb2,"String");
-    params_pde.check_op3=string(get(check_op3,"Value"));params_pde.a3=get(edita3,"String");params_pde.b3=get(editb3,"String");
-    params_pde.check_op4=string(get(check_op4,"Value"));params_pde.a4=get(edita4,"String");params_pde.b4=get(editb4,"String");
-    params_pde.check_op5=string(get(check_op5,"Value"));params_pde.a5=get(edita5,"String");params_pde.b5=get(editb5,"String");
-    params_pde.check_op6=string(get(check_op6,"Value"));params_pde.a6=get(edita6,"String");params_pde.b6=get(editb6,"String");
-    params_pde.check_op7=string(get(check_op7,"Value"));params_pde.a7=get(edita7,"String");params_pde.b7=get(editb7,"String");
-    params_pde.discr_cst=string(get(check1,"Value"));params_pde.discr_non_cst=string(get(check2,"Value"));
-    params_pde.signe=string(signe);params_pde.rad_automatique=string(get(rad_automatique,"Value"));
-    params_pde.rad_manuel=string(get(rad_manuel,"Value"));params_pde.methode=string(type_meth);params_pde.txt_pas=get(txt_pas,"String");
-    params_pde.ord1=get(editordre1,"String");params_pde.ord2=get(editordre2,"String");params_pde.ord3=get(editordre3,"String");
-    params_pde.degre=string(degre);params_pde.nnode=string(Nbr_maillage);params_pde.txt_exp=get(txt_exp,"String");
-    params_pde.CI=CI;params_pde.dCI=CI1;params_pde.CLa=string(CLa_type);params_pde.CLa_exp=get(editCLa,"String");
-    params_pde.CLb=string(CLb_type);params_pde.CLb_exp=get(editCLb,"String");params_pde.points=list_points;
+    params_pde.a=string(a_domaine);
+    params_pde.b=string(b_domaine);
+    params_pde.check_op1=string(get(check_op1,"Value"));
+    params_pde.a1=get(edita1,"String");
+    params_pde.b1=get(editb1,"String");
+    params_pde.check_op2=string(get(check_op2,"Value"));
+    params_pde.a2=get(edita2,"String");
+    params_pde.b2=get(editb2,"String");
+    params_pde.check_op3=string(get(check_op3,"Value"));
+    params_pde.a3=get(edita3,"String");
+    params_pde.b3=get(editb3,"String");
+    params_pde.check_op4=string(get(check_op4,"Value"));
+    params_pde.a4=get(edita4,"String");
+    params_pde.b4=get(editb4,"String");
+    params_pde.check_op5=string(get(check_op5,"Value"));
+    params_pde.a5=get(edita5,"String");
+    params_pde.b5=get(editb5,"String");
+    params_pde.check_op6=string(get(check_op6,"Value"));
+    params_pde.a6=get(edita6,"String");
+    params_pde.b6=get(editb6,"String");
+    params_pde.check_op7=string(get(check_op7,"Value"));
+    params_pde.a7=get(edita7,"String");
+    params_pde.b7=get(editb7,"String");
+    params_pde.discr_cst=string(get(check1,"Value"));
+    params_pde.discr_non_cst=string(get(check2,"Value"));
+    params_pde.signe=string(signe);
+    params_pde.rad_automatique=string(get(rad_automatique,"Value"));
+    params_pde.rad_manuel=string(get(rad_manuel,"Value"));
+    params_pde.methode=string(type_meth);
+    params_pde.txt_pas=get(txt_pas,"String");
+    params_pde.ord1=get(editordre1,"String");
+    params_pde.ord2=get(editordre2,"String");
+    params_pde.ord3=get(editordre3,"String");
+    params_pde.degre=string(degre);
+    params_pde.nnode=string(Nbr_maillage);
+    params_pde.txt_exp=get(txt_exp,"String");
+    params_pde.CI=CI;
+    params_pde.dCI=CI1;
+    params_pde.CLa=string(CLa_type);
+    params_pde.CLa_exp=get(editCLa,"String");
+    params_pde.CLb=string(CLb_type);
+    params_pde.CLb_exp=get(editCLb,"String");
+    params_pde.points=list_points;
     // fermeure du gui
     close(f)
 

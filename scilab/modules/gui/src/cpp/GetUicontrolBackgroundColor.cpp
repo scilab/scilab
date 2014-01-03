@@ -14,12 +14,12 @@
 
 #include "GetUicontrolBackgroundColor.hxx"
 
-void* GetUicontrolBackgroundColor(void* _pvCtx, char *sciObjUID)
+void* GetUicontrolBackgroundColor(void* _pvCtx, int iObjUID)
 {
     double *tmp = NULL;
     void* status = NULL;
 
-    getGraphicObjectProperty(sciObjUID, __GO_UI_BACKGROUNDCOLOR__, jni_double_vector, (void **) &tmp);
+    getGraphicObjectProperty(iObjUID, __GO_UI_BACKGROUNDCOLOR__, jni_double_vector, (void **) &tmp);
 
     if (tmp == NULL)
     {

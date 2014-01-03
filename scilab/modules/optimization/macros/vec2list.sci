@@ -11,7 +11,12 @@ function li=vec2list(bigVector,varsizes,ind)
     //bigVector: big vector
     //varsizes: k x 2 matrix, varsizes(i,:)=size of ith matrix
     //li: list of k matrices, li(i)=matrix of size varsizes(i,:);
-    [LHS,RHS]=argn(0)
+
+    [LHS, RHS] = argn(0)
+    if RHS < 2 then
+        error(sprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "vec2list", 2, 3));
+    end
+
     if bigVector==[] then
         n=0;for dimi=varsizes',n=n+prod(dimi);end
         bigVector=zeros(n,1);
@@ -24,4 +29,3 @@ function li=vec2list(bigVector,varsizes,ind)
     end
     if RHS==3 then li=recons(li,ind); end
 endfunction
-

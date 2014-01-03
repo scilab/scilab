@@ -6,15 +6,18 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.external_objects_java;
 
+import java.io.BufferedWriter;
+import java.io.CharArrayWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -34,6 +37,7 @@ import javax.tools.DiagnosticCollector;
 import javax.tools.FileObject;
 import javax.tools.ForwardingJavaFileManager;
 import javax.tools.JavaCompiler;
+import javax.tools.StandardLocation;
 import javax.tools.JavaFileObject;
 import javax.tools.SimpleJavaFileObject;
 import javax.tools.StandardJavaFileManager;
@@ -56,6 +60,9 @@ public class ScilabJavaCompiler {
 
     private static JavaCompiler compiler;
     private static boolean ecjLoaded = false;
+
+    private static boolean isECJ;
+
 
     static {
         new File(System.getProperty("java.io.tmpdir") + File.separator + "JIMS").mkdir();
@@ -97,6 +104,8 @@ public class ScilabJavaCompiler {
                 ecjLoaded = true;
                 findCompiler();
             }
+
+            isECJ = compiler.getClass().getSimpleName().indexOf("Eclipse") != -1;
         }
     }
 
@@ -111,8 +120,22 @@ public class ScilabJavaCompiler {
 
         DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<JavaFileObject>();
         StandardJavaFileManager stdFileManager = compiler.getStandardFileManager(null, Locale.getDefault(), null);
+        String cp = null;
+
+        if (isECJ) {
+            // it seems that with the embedded ecj, the only way to set the cp is to use java.class.path...
+            cp = getClasspath();
+            System.setProperty("java.class.path", cp + File.pathSeparatorChar + System.getProperty("java.class.path"));
+        } else {
+            try {
+                stdFileManager.setLocation(StandardLocation.CLASS_PATH, getClasspathFiles());
+            } catch (Exception e) { }
+        }
+
         ClassFileManager manager = new ClassFileManager(stdFileManager);
         List<SimpleJavaFileObject> compilationUnits = new ArrayList<SimpleJavaFileObject>();
+        CharArrayWriter caw = new CharArrayWriter();
+        BufferedWriter out = new BufferedWriter(caw);
         boolean isFile = true;
         SourceString sourceString = null;
         for (String s : code) {
@@ -133,27 +156,120 @@ public class ScilabJavaCompiler {
             compilationUnits.add(sourceString);
         }
 
-        String[] compileOptions = new String[] {"-d", BINPATH} ;
+        String[] compileOptions = new String[] {"-d", BINPATH};
         Iterable<String> options = Arrays.asList(compileOptions);
 
-        CompilationTask task = compiler.getTask(null, manager, diagnostics, options, null, compilationUnits);
+        CompilationTask task = compiler.getTask(out, manager, diagnostics, options, null, compilationUnits);
         boolean success = task.call();
+
+        if (cp != null) {
+            final String s = System.getProperty("java.class.path").replace(cp + File.pathSeparatorChar, "");
+            System.setProperty("java.class.path", s);
+        }
+
+        String error = "";
+
+        try {
+            out.flush();
+            error = caw.toString();
+        } catch (IOException e) {
+
+        } finally {
+            try {
+                out.close();
+            } catch (IOException e) { }
+        }
 
         if (success) {
             if (isFile) {
                 return -1;
             } else {
-                return ScilabClassLoader.loadJavaClass(manager.className, true);
+                if (manager.className != null && !manager.className.isEmpty()) {
+                    return ScilabClassLoader.loadJavaClass(BINPATH, manager.className);
+                } else {
+                    return -1;
+                }
             }
         } else {
-            StringBuffer buf = new StringBuffer();
-            for (Diagnostic diagnostic : diagnostics.getDiagnostics()) {
-                buf.append(diagnostic.toString());
-                buf.append("\n");
+            if (!isECJ) {
+                error = getCompilerErrors(diagnostics);
             }
 
-            throw new ScilabJavaException(buf.toString());
+            throw new ScilabJavaException(error);
         }
+    }
+
+    /**
+     * Returns the compilation errors from the diagnostics
+     * @param diagnostics the diagnostics returned by the compiler
+     * @return a string containing the errors
+     */
+    public static String getCompilerErrors(DiagnosticCollector<JavaFileObject> diagnostics) {
+        StringBuffer buffer = new StringBuffer();
+        int cpt = 1;
+        buffer.append("----------\n");
+        for (Diagnostic <? extends JavaFileObject > d : diagnostics.getDiagnostics()) {
+            buffer.append(Integer.toString(cpt++)).append(". ").append(d.getKind()).append(" in ").append(d.getSource().toUri().getPath()).append(" (at line ").append(Long.toString(d.getLineNumber())).append(")\n");
+
+            Reader reader = null;
+            try {
+                reader = d.getSource().openReader(true);
+                reader.skip(d.getStartPosition());
+                char[] data = new char[(int) (d.getEndPosition() - d.getStartPosition() + 1)];
+                reader.read(data);
+                buffer.append("        ").append(data).append('\n');
+                Arrays.fill(data, '^');
+                buffer.append("        ").append(data).append('\n');
+            } catch (IOException e) {
+
+            } finally {
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (IOException e) { }
+                }
+            }
+
+            buffer.append(d.getMessage(Locale.getDefault())).append('\n');
+        }
+
+        buffer.append("----------\n");
+        return buffer.toString();
+    }
+
+    /**
+     * Get the current classpath with the correct separator (':' under Unix and ';' under Windows)
+     * @return the classpath
+     */
+    public static String getClasspath() {
+        URLClassLoader loader = (URLClassLoader) ClassLoader.getSystemClassLoader();
+        URL[] urls = loader.getURLs();
+        StringBuffer buffer = new StringBuffer();
+
+        for (URL url : urls) {
+            buffer.append(url.getPath()).append(File.pathSeparatorChar);
+        }
+        buffer.append(".");
+
+        return buffer.toString();
+    }
+
+    /**
+     * Get the files in the classpath
+     * @return the files
+     */
+    public static List<File> getClasspathFiles() {
+        URLClassLoader loader = (URLClassLoader) ClassLoader.getSystemClassLoader();
+        URL[] urls = loader.getURLs();
+        List<File> files = new ArrayList<File>(urls.length);
+
+        for (URL url : urls) {
+            try {
+                files.add(new File(url.toURI()));
+            } catch (Exception e) { }
+        }
+
+        return files;
     }
 
     /**
@@ -240,7 +356,7 @@ public class ScilabJavaCompiler {
 
         @Override
         public JavaFileObject getJavaFileForOutput(Location location, String className, Kind kind, FileObject sibling) throws IOException {
-            if (sibling instanceof SourceString) {
+            if (sibling instanceof SourceString && className != null && className.indexOf('$') == -1) {
                 this.className = className.replace('/', '.');
             }
 

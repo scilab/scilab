@@ -38,7 +38,7 @@ class DataModel
 private :
     DataModel()
     {
-        m_dataMap = new std::map<std::string, Data3D*>();
+        m_dataMap = new std::map<int, Data3D*>();
     }
 
 public :
@@ -60,23 +60,23 @@ public :
      * property return value (also FALSE); returning an int, with -1 for a failed
      * allocation would possibly solve this problem.
      */
-    BOOL setGraphicObjectProperty(char const* _pstID, int _iName, void const* _dblValue, int numElements);
+    BOOL setGraphicObjectProperty(int iUID, int _iName, void const* _dblValue, int numElements);
 
     /** Returns a graphic object vector property */
-    void getGraphicObjectProperty(char const* _pstID, int _iName, void **_pvData);
+    void getGraphicObjectProperty(int iUID, int _iName, void **_pvData);
 
     /** Creates a data object */
-    char const* createDataObject(char const* _pstID, int _iType);
+    int createDataObject(int iUID, int _iType);
 
     /**
      * Deletes a data object
      */
-    void deleteDataObject(char const* _pstID);
+    void deleteDataObject(int iUID);
 
 private :
     static DataModel *m_me;
 
-    std::map<std::string, Data3D*> *m_dataMap;
+    std::map<int, Data3D*> *m_dataMap;
 };
 
 #endif

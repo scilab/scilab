@@ -43,7 +43,7 @@ public class ScilabFileChooserBridge {
      * @param figureID id of the exported figure
      * @return the created ExportFileChooser
      */
-    public static SimpleFileChooser createExportFileChooser(String figureUID) {
+    public static SimpleFileChooser createExportFileChooser(Integer figureUID) {
         return new SwingScilabExportFileChooser(figureUID);
     }
 

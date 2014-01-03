@@ -176,23 +176,25 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscijvm_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscijvm_algo_la_LIBADD =
-am__objects_1 = libscijvm_algo_la-InitializeJVM.lo \
-	libscijvm_algo_la-TerminateJVM.lo \
-	libscijvm_algo_la-JVM_Unix.lo libscijvm_algo_la-JVM.lo \
-	libscijvm_algo_la-addToClasspath.lo \
-	libscijvm_algo_la-loadOnUseClassPath.lo \
-	libscijvm_algo_la-loadBackGroundClassPath.lo \
-	libscijvm_algo_la-getClasspath.lo \
-	libscijvm_algo_la-system_getproperty.lo \
-	libscijvm_algo_la-system_setproperty.lo \
-	libscijvm_algo_la-loadClasspath.lo \
-	libscijvm_algo_la-createMainScilabObject.lo \
-	libscijvm_algo_la-JVM_commons.lo \
-	libscijvm_algo_la-catchIfJavaException.lo \
-	libscijvm_algo_la-loadLibrarypath.lo \
-	libscijvm_algo_la-getLibrarypath.lo \
-	libscijvm_algo_la-addToLibrarypath.lo \
-	libscijvm_algo_la-getJvmOptions.lo
+am__dirstamp = $(am__leading_dot)dirstamp
+am__objects_1 = src/c/libscijvm_algo_la-InitializeJVM.lo \
+	src/c/libscijvm_algo_la-TerminateJVM.lo \
+	src/c/libscijvm_algo_la-JVM_Unix.lo \
+	src/c/libscijvm_algo_la-JVM.lo \
+	src/c/libscijvm_algo_la-addToClasspath.lo \
+	src/c/libscijvm_algo_la-loadOnUseClassPath.lo \
+	src/c/libscijvm_algo_la-loadBackGroundClassPath.lo \
+	src/c/libscijvm_algo_la-getClasspath.lo \
+	src/c/libscijvm_algo_la-system_getproperty.lo \
+	src/c/libscijvm_algo_la-system_setproperty.lo \
+	src/c/libscijvm_algo_la-loadClasspath.lo \
+	src/c/libscijvm_algo_la-createMainScilabObject.lo \
+	src/c/libscijvm_algo_la-JVM_commons.lo \
+	src/c/libscijvm_algo_la-catchIfJavaException.lo \
+	src/c/libscijvm_algo_la-loadLibrarypath.lo \
+	src/c/libscijvm_algo_la-getLibrarypath.lo \
+	src/c/libscijvm_algo_la-addToLibrarypath.lo \
+	src/c/libscijvm_algo_la-getJvmOptions.lo
 am_libscijvm_algo_la_OBJECTS = $(am__objects_1)
 libscijvm_algo_la_OBJECTS = $(am_libscijvm_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -201,17 +203,19 @@ am__v_lt_0 = --silent
 am__v_lt_1 = 
 @GUI_TRUE@am_libscijvm_algo_la_rpath =
 libscijvm_disable_la_LIBADD =
-am__objects_2 = libscijvm_disable_la-nojvm.lo
-am__objects_3 = libscijvm_disable_la-nojvm_gw.lo
+am__objects_2 = src/nojvm/libscijvm_disable_la-nojvm.lo
+am__objects_3 = src/nojvm/libscijvm_disable_la-nojvm_gw.lo
 am_libscijvm_disable_la_OBJECTS = $(am__objects_2) $(am__objects_3)
 libscijvm_disable_la_OBJECTS = $(am_libscijvm_disable_la_OBJECTS)
 libscijvm_la_DEPENDENCIES = libscijvm-algo.la
-am__objects_4 = libscijvm_la-sci_system_setproperty.lo \
-	libscijvm_la-sci_with_embedded_jre.lo \
-	libscijvm_la-sci_javaclasspath.lo libscijvm_la-gw_jvm.lo \
-	libscijvm_la-sci_javalibrarypath.lo
-am__objects_5 = libscijvm_la-sci_system_getproperty.lo \
-	libscijvm_la-jvm_gw.lo
+am__objects_4 = sci_gateway/c/libscijvm_la-sci_system_setproperty.lo \
+	sci_gateway/c/libscijvm_la-sci_with_embedded_jre.lo \
+	sci_gateway/c/libscijvm_la-sci_javaclasspath.lo \
+	sci_gateway/c/libscijvm_la-gw_jvm.lo \
+	sci_gateway/c/libscijvm_la-sci_javalibrarypath.lo
+am__objects_5 =  \
+	sci_gateway/cpp/libscijvm_la-sci_system_getproperty.lo \
+	sci_gateway/cpp/libscijvm_la-jvm_gw.lo
 am_libscijvm_la_OBJECTS = $(am__objects_4) $(am__objects_5)
 libscijvm_la_OBJECTS = $(am_libscijvm_la_OBJECTS)
 libscijvm_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -349,6 +353,7 @@ DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
+ECJ = @ECJ@
 EGREP = @EGREP@
 EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
@@ -833,286 +838,388 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+src/c/$(am__dirstamp):
+	@$(MKDIR_P) src/c
+	@: > src/c/$(am__dirstamp)
+src/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/c/$(DEPDIR)
+	@: > src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscijvm_algo_la-InitializeJVM.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscijvm_algo_la-TerminateJVM.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscijvm_algo_la-JVM_Unix.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscijvm_algo_la-JVM.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscijvm_algo_la-addToClasspath.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscijvm_algo_la-loadOnUseClassPath.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscijvm_algo_la-loadBackGroundClassPath.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscijvm_algo_la-getClasspath.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscijvm_algo_la-system_getproperty.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscijvm_algo_la-system_setproperty.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscijvm_algo_la-loadClasspath.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscijvm_algo_la-createMainScilabObject.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscijvm_algo_la-JVM_commons.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscijvm_algo_la-catchIfJavaException.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscijvm_algo_la-loadLibrarypath.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscijvm_algo_la-getLibrarypath.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscijvm_algo_la-addToLibrarypath.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscijvm_algo_la-getJvmOptions.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
 
 libscijvm-algo.la: $(libscijvm_algo_la_OBJECTS) $(libscijvm_algo_la_DEPENDENCIES) $(EXTRA_libscijvm_algo_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) $(am_libscijvm_algo_la_rpath) $(libscijvm_algo_la_OBJECTS) $(libscijvm_algo_la_LIBADD) $(LIBS)
+src/nojvm/$(am__dirstamp):
+	@$(MKDIR_P) src/nojvm
+	@: > src/nojvm/$(am__dirstamp)
+src/nojvm/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/nojvm/$(DEPDIR)
+	@: > src/nojvm/$(DEPDIR)/$(am__dirstamp)
+src/nojvm/libscijvm_disable_la-nojvm.lo: src/nojvm/$(am__dirstamp) \
+	src/nojvm/$(DEPDIR)/$(am__dirstamp)
+src/nojvm/libscijvm_disable_la-nojvm_gw.lo: src/nojvm/$(am__dirstamp) \
+	src/nojvm/$(DEPDIR)/$(am__dirstamp)
 
 libscijvm-disable.la: $(libscijvm_disable_la_OBJECTS) $(libscijvm_disable_la_DEPENDENCIES) $(EXTRA_libscijvm_disable_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) -rpath $(pkglibdir) $(libscijvm_disable_la_OBJECTS) $(libscijvm_disable_la_LIBADD) $(LIBS)
+sci_gateway/c/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c
+	@: > sci_gateway/c/$(am__dirstamp)
+sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
+	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscijvm_la-sci_system_setproperty.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscijvm_la-sci_with_embedded_jre.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscijvm_la-sci_javaclasspath.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscijvm_la-gw_jvm.lo: sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscijvm_la-sci_javalibrarypath.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/cpp
+	@: > sci_gateway/cpp/$(am__dirstamp)
+sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/cpp/$(DEPDIR)
+	@: > sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscijvm_la-sci_system_getproperty.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscijvm_la-jvm_gw.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscijvm.la: $(libscijvm_la_OBJECTS) $(libscijvm_la_DEPENDENCIES) $(EXTRA_libscijvm_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(libscijvm_la_LINK) $(am_libscijvm_la_rpath) $(libscijvm_la_OBJECTS) $(libscijvm_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f sci_gateway/c/*.$(OBJEXT)
+	-rm -f sci_gateway/c/*.lo
+	-rm -f sci_gateway/cpp/*.$(OBJEXT)
+	-rm -f sci_gateway/cpp/*.lo
+	-rm -f src/c/*.$(OBJEXT)
+	-rm -f src/c/*.lo
+	-rm -f src/nojvm/*.$(OBJEXT)
+	-rm -f src/nojvm/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_algo_la-InitializeJVM.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_algo_la-JVM.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_algo_la-JVM_Unix.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_algo_la-JVM_commons.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_algo_la-TerminateJVM.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_algo_la-addToClasspath.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_algo_la-addToLibrarypath.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_algo_la-catchIfJavaException.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_algo_la-createMainScilabObject.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_algo_la-getClasspath.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_algo_la-getJvmOptions.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_algo_la-getLibrarypath.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_algo_la-loadBackGroundClassPath.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_algo_la-loadClasspath.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_algo_la-loadLibrarypath.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_algo_la-loadOnUseClassPath.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_algo_la-system_getproperty.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_algo_la-system_setproperty.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_disable_la-nojvm.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_disable_la-nojvm_gw.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-gw_jvm.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-jvm_gw.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-sci_javaclasspath.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-sci_javalibrarypath.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-sci_system_getproperty.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-sci_system_setproperty.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-sci_with_embedded_jre.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscijvm_la-gw_jvm.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_javaclasspath.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_javalibrarypath.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_system_setproperty.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_with_embedded_jre.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscijvm_la-jvm_gw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscijvm_la-sci_system_getproperty.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscijvm_algo_la-InitializeJVM.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscijvm_algo_la-JVM.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscijvm_algo_la-JVM_Unix.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscijvm_algo_la-JVM_commons.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscijvm_algo_la-TerminateJVM.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscijvm_algo_la-addToClasspath.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscijvm_algo_la-addToLibrarypath.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscijvm_algo_la-catchIfJavaException.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscijvm_algo_la-createMainScilabObject.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscijvm_algo_la-getClasspath.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscijvm_algo_la-getJvmOptions.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscijvm_algo_la-getLibrarypath.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscijvm_algo_la-loadBackGroundClassPath.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscijvm_algo_la-loadClasspath.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscijvm_algo_la-loadLibrarypath.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscijvm_algo_la-loadOnUseClassPath.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscijvm_algo_la-system_getproperty.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscijvm_algo_la-system_setproperty.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/nojvm/$(DEPDIR)/libscijvm_disable_la-nojvm.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/nojvm/$(DEPDIR)/libscijvm_disable_la-nojvm_gw.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libscijvm_algo_la-InitializeJVM.lo: src/c/InitializeJVM.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_algo_la-InitializeJVM.lo -MD -MP -MF $(DEPDIR)/libscijvm_algo_la-InitializeJVM.Tpo -c -o libscijvm_algo_la-InitializeJVM.lo `test -f 'src/c/InitializeJVM.c' || echo '$(srcdir)/'`src/c/InitializeJVM.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_algo_la-InitializeJVM.Tpo $(DEPDIR)/libscijvm_algo_la-InitializeJVM.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/InitializeJVM.c' object='libscijvm_algo_la-InitializeJVM.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscijvm_algo_la-InitializeJVM.lo: src/c/InitializeJVM.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscijvm_algo_la-InitializeJVM.lo -MD -MP -MF src/c/$(DEPDIR)/libscijvm_algo_la-InitializeJVM.Tpo -c -o src/c/libscijvm_algo_la-InitializeJVM.lo `test -f 'src/c/InitializeJVM.c' || echo '$(srcdir)/'`src/c/InitializeJVM.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscijvm_algo_la-InitializeJVM.Tpo src/c/$(DEPDIR)/libscijvm_algo_la-InitializeJVM.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/InitializeJVM.c' object='src/c/libscijvm_algo_la-InitializeJVM.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_algo_la-InitializeJVM.lo `test -f 'src/c/InitializeJVM.c' || echo '$(srcdir)/'`src/c/InitializeJVM.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscijvm_algo_la-InitializeJVM.lo `test -f 'src/c/InitializeJVM.c' || echo '$(srcdir)/'`src/c/InitializeJVM.c
 
-libscijvm_algo_la-TerminateJVM.lo: src/c/TerminateJVM.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_algo_la-TerminateJVM.lo -MD -MP -MF $(DEPDIR)/libscijvm_algo_la-TerminateJVM.Tpo -c -o libscijvm_algo_la-TerminateJVM.lo `test -f 'src/c/TerminateJVM.c' || echo '$(srcdir)/'`src/c/TerminateJVM.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_algo_la-TerminateJVM.Tpo $(DEPDIR)/libscijvm_algo_la-TerminateJVM.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/TerminateJVM.c' object='libscijvm_algo_la-TerminateJVM.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscijvm_algo_la-TerminateJVM.lo: src/c/TerminateJVM.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscijvm_algo_la-TerminateJVM.lo -MD -MP -MF src/c/$(DEPDIR)/libscijvm_algo_la-TerminateJVM.Tpo -c -o src/c/libscijvm_algo_la-TerminateJVM.lo `test -f 'src/c/TerminateJVM.c' || echo '$(srcdir)/'`src/c/TerminateJVM.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscijvm_algo_la-TerminateJVM.Tpo src/c/$(DEPDIR)/libscijvm_algo_la-TerminateJVM.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/TerminateJVM.c' object='src/c/libscijvm_algo_la-TerminateJVM.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_algo_la-TerminateJVM.lo `test -f 'src/c/TerminateJVM.c' || echo '$(srcdir)/'`src/c/TerminateJVM.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscijvm_algo_la-TerminateJVM.lo `test -f 'src/c/TerminateJVM.c' || echo '$(srcdir)/'`src/c/TerminateJVM.c
 
-libscijvm_algo_la-JVM_Unix.lo: src/c/JVM_Unix.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_algo_la-JVM_Unix.lo -MD -MP -MF $(DEPDIR)/libscijvm_algo_la-JVM_Unix.Tpo -c -o libscijvm_algo_la-JVM_Unix.lo `test -f 'src/c/JVM_Unix.c' || echo '$(srcdir)/'`src/c/JVM_Unix.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_algo_la-JVM_Unix.Tpo $(DEPDIR)/libscijvm_algo_la-JVM_Unix.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/JVM_Unix.c' object='libscijvm_algo_la-JVM_Unix.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscijvm_algo_la-JVM_Unix.lo: src/c/JVM_Unix.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscijvm_algo_la-JVM_Unix.lo -MD -MP -MF src/c/$(DEPDIR)/libscijvm_algo_la-JVM_Unix.Tpo -c -o src/c/libscijvm_algo_la-JVM_Unix.lo `test -f 'src/c/JVM_Unix.c' || echo '$(srcdir)/'`src/c/JVM_Unix.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscijvm_algo_la-JVM_Unix.Tpo src/c/$(DEPDIR)/libscijvm_algo_la-JVM_Unix.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/JVM_Unix.c' object='src/c/libscijvm_algo_la-JVM_Unix.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_algo_la-JVM_Unix.lo `test -f 'src/c/JVM_Unix.c' || echo '$(srcdir)/'`src/c/JVM_Unix.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscijvm_algo_la-JVM_Unix.lo `test -f 'src/c/JVM_Unix.c' || echo '$(srcdir)/'`src/c/JVM_Unix.c
 
-libscijvm_algo_la-JVM.lo: src/c/JVM.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_algo_la-JVM.lo -MD -MP -MF $(DEPDIR)/libscijvm_algo_la-JVM.Tpo -c -o libscijvm_algo_la-JVM.lo `test -f 'src/c/JVM.c' || echo '$(srcdir)/'`src/c/JVM.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_algo_la-JVM.Tpo $(DEPDIR)/libscijvm_algo_la-JVM.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/JVM.c' object='libscijvm_algo_la-JVM.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscijvm_algo_la-JVM.lo: src/c/JVM.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscijvm_algo_la-JVM.lo -MD -MP -MF src/c/$(DEPDIR)/libscijvm_algo_la-JVM.Tpo -c -o src/c/libscijvm_algo_la-JVM.lo `test -f 'src/c/JVM.c' || echo '$(srcdir)/'`src/c/JVM.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscijvm_algo_la-JVM.Tpo src/c/$(DEPDIR)/libscijvm_algo_la-JVM.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/JVM.c' object='src/c/libscijvm_algo_la-JVM.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_algo_la-JVM.lo `test -f 'src/c/JVM.c' || echo '$(srcdir)/'`src/c/JVM.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscijvm_algo_la-JVM.lo `test -f 'src/c/JVM.c' || echo '$(srcdir)/'`src/c/JVM.c
 
-libscijvm_algo_la-addToClasspath.lo: src/c/addToClasspath.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_algo_la-addToClasspath.lo -MD -MP -MF $(DEPDIR)/libscijvm_algo_la-addToClasspath.Tpo -c -o libscijvm_algo_la-addToClasspath.lo `test -f 'src/c/addToClasspath.c' || echo '$(srcdir)/'`src/c/addToClasspath.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_algo_la-addToClasspath.Tpo $(DEPDIR)/libscijvm_algo_la-addToClasspath.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/addToClasspath.c' object='libscijvm_algo_la-addToClasspath.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscijvm_algo_la-addToClasspath.lo: src/c/addToClasspath.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscijvm_algo_la-addToClasspath.lo -MD -MP -MF src/c/$(DEPDIR)/libscijvm_algo_la-addToClasspath.Tpo -c -o src/c/libscijvm_algo_la-addToClasspath.lo `test -f 'src/c/addToClasspath.c' || echo '$(srcdir)/'`src/c/addToClasspath.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscijvm_algo_la-addToClasspath.Tpo src/c/$(DEPDIR)/libscijvm_algo_la-addToClasspath.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/addToClasspath.c' object='src/c/libscijvm_algo_la-addToClasspath.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_algo_la-addToClasspath.lo `test -f 'src/c/addToClasspath.c' || echo '$(srcdir)/'`src/c/addToClasspath.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscijvm_algo_la-addToClasspath.lo `test -f 'src/c/addToClasspath.c' || echo '$(srcdir)/'`src/c/addToClasspath.c
 
-libscijvm_algo_la-loadOnUseClassPath.lo: src/c/loadOnUseClassPath.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_algo_la-loadOnUseClassPath.lo -MD -MP -MF $(DEPDIR)/libscijvm_algo_la-loadOnUseClassPath.Tpo -c -o libscijvm_algo_la-loadOnUseClassPath.lo `test -f 'src/c/loadOnUseClassPath.c' || echo '$(srcdir)/'`src/c/loadOnUseClassPath.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_algo_la-loadOnUseClassPath.Tpo $(DEPDIR)/libscijvm_algo_la-loadOnUseClassPath.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/loadOnUseClassPath.c' object='libscijvm_algo_la-loadOnUseClassPath.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscijvm_algo_la-loadOnUseClassPath.lo: src/c/loadOnUseClassPath.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscijvm_algo_la-loadOnUseClassPath.lo -MD -MP -MF src/c/$(DEPDIR)/libscijvm_algo_la-loadOnUseClassPath.Tpo -c -o src/c/libscijvm_algo_la-loadOnUseClassPath.lo `test -f 'src/c/loadOnUseClassPath.c' || echo '$(srcdir)/'`src/c/loadOnUseClassPath.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscijvm_algo_la-loadOnUseClassPath.Tpo src/c/$(DEPDIR)/libscijvm_algo_la-loadOnUseClassPath.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/loadOnUseClassPath.c' object='src/c/libscijvm_algo_la-loadOnUseClassPath.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_algo_la-loadOnUseClassPath.lo `test -f 'src/c/loadOnUseClassPath.c' || echo '$(srcdir)/'`src/c/loadOnUseClassPath.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscijvm_algo_la-loadOnUseClassPath.lo `test -f 'src/c/loadOnUseClassPath.c' || echo '$(srcdir)/'`src/c/loadOnUseClassPath.c
 
-libscijvm_algo_la-loadBackGroundClassPath.lo: src/c/loadBackGroundClassPath.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_algo_la-loadBackGroundClassPath.lo -MD -MP -MF $(DEPDIR)/libscijvm_algo_la-loadBackGroundClassPath.Tpo -c -o libscijvm_algo_la-loadBackGroundClassPath.lo `test -f 'src/c/loadBackGroundClassPath.c' || echo '$(srcdir)/'`src/c/loadBackGroundClassPath.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_algo_la-loadBackGroundClassPath.Tpo $(DEPDIR)/libscijvm_algo_la-loadBackGroundClassPath.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/loadBackGroundClassPath.c' object='libscijvm_algo_la-loadBackGroundClassPath.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscijvm_algo_la-loadBackGroundClassPath.lo: src/c/loadBackGroundClassPath.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscijvm_algo_la-loadBackGroundClassPath.lo -MD -MP -MF src/c/$(DEPDIR)/libscijvm_algo_la-loadBackGroundClassPath.Tpo -c -o src/c/libscijvm_algo_la-loadBackGroundClassPath.lo `test -f 'src/c/loadBackGroundClassPath.c' || echo '$(srcdir)/'`src/c/loadBackGroundClassPath.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscijvm_algo_la-loadBackGroundClassPath.Tpo src/c/$(DEPDIR)/libscijvm_algo_la-loadBackGroundClassPath.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/loadBackGroundClassPath.c' object='src/c/libscijvm_algo_la-loadBackGroundClassPath.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_algo_la-loadBackGroundClassPath.lo `test -f 'src/c/loadBackGroundClassPath.c' || echo '$(srcdir)/'`src/c/loadBackGroundClassPath.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscijvm_algo_la-loadBackGroundClassPath.lo `test -f 'src/c/loadBackGroundClassPath.c' || echo '$(srcdir)/'`src/c/loadBackGroundClassPath.c
 
-libscijvm_algo_la-getClasspath.lo: src/c/getClasspath.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_algo_la-getClasspath.lo -MD -MP -MF $(DEPDIR)/libscijvm_algo_la-getClasspath.Tpo -c -o libscijvm_algo_la-getClasspath.lo `test -f 'src/c/getClasspath.c' || echo '$(srcdir)/'`src/c/getClasspath.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_algo_la-getClasspath.Tpo $(DEPDIR)/libscijvm_algo_la-getClasspath.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getClasspath.c' object='libscijvm_algo_la-getClasspath.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscijvm_algo_la-getClasspath.lo: src/c/getClasspath.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscijvm_algo_la-getClasspath.lo -MD -MP -MF src/c/$(DEPDIR)/libscijvm_algo_la-getClasspath.Tpo -c -o src/c/libscijvm_algo_la-getClasspath.lo `test -f 'src/c/getClasspath.c' || echo '$(srcdir)/'`src/c/getClasspath.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscijvm_algo_la-getClasspath.Tpo src/c/$(DEPDIR)/libscijvm_algo_la-getClasspath.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getClasspath.c' object='src/c/libscijvm_algo_la-getClasspath.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_algo_la-getClasspath.lo `test -f 'src/c/getClasspath.c' || echo '$(srcdir)/'`src/c/getClasspath.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscijvm_algo_la-getClasspath.lo `test -f 'src/c/getClasspath.c' || echo '$(srcdir)/'`src/c/getClasspath.c
 
-libscijvm_algo_la-system_getproperty.lo: src/c/system_getproperty.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_algo_la-system_getproperty.lo -MD -MP -MF $(DEPDIR)/libscijvm_algo_la-system_getproperty.Tpo -c -o libscijvm_algo_la-system_getproperty.lo `test -f 'src/c/system_getproperty.c' || echo '$(srcdir)/'`src/c/system_getproperty.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_algo_la-system_getproperty.Tpo $(DEPDIR)/libscijvm_algo_la-system_getproperty.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/system_getproperty.c' object='libscijvm_algo_la-system_getproperty.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscijvm_algo_la-system_getproperty.lo: src/c/system_getproperty.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscijvm_algo_la-system_getproperty.lo -MD -MP -MF src/c/$(DEPDIR)/libscijvm_algo_la-system_getproperty.Tpo -c -o src/c/libscijvm_algo_la-system_getproperty.lo `test -f 'src/c/system_getproperty.c' || echo '$(srcdir)/'`src/c/system_getproperty.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscijvm_algo_la-system_getproperty.Tpo src/c/$(DEPDIR)/libscijvm_algo_la-system_getproperty.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/system_getproperty.c' object='src/c/libscijvm_algo_la-system_getproperty.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_algo_la-system_getproperty.lo `test -f 'src/c/system_getproperty.c' || echo '$(srcdir)/'`src/c/system_getproperty.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscijvm_algo_la-system_getproperty.lo `test -f 'src/c/system_getproperty.c' || echo '$(srcdir)/'`src/c/system_getproperty.c
 
-libscijvm_algo_la-system_setproperty.lo: src/c/system_setproperty.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_algo_la-system_setproperty.lo -MD -MP -MF $(DEPDIR)/libscijvm_algo_la-system_setproperty.Tpo -c -o libscijvm_algo_la-system_setproperty.lo `test -f 'src/c/system_setproperty.c' || echo '$(srcdir)/'`src/c/system_setproperty.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_algo_la-system_setproperty.Tpo $(DEPDIR)/libscijvm_algo_la-system_setproperty.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/system_setproperty.c' object='libscijvm_algo_la-system_setproperty.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscijvm_algo_la-system_setproperty.lo: src/c/system_setproperty.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscijvm_algo_la-system_setproperty.lo -MD -MP -MF src/c/$(DEPDIR)/libscijvm_algo_la-system_setproperty.Tpo -c -o src/c/libscijvm_algo_la-system_setproperty.lo `test -f 'src/c/system_setproperty.c' || echo '$(srcdir)/'`src/c/system_setproperty.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscijvm_algo_la-system_setproperty.Tpo src/c/$(DEPDIR)/libscijvm_algo_la-system_setproperty.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/system_setproperty.c' object='src/c/libscijvm_algo_la-system_setproperty.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_algo_la-system_setproperty.lo `test -f 'src/c/system_setproperty.c' || echo '$(srcdir)/'`src/c/system_setproperty.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscijvm_algo_la-system_setproperty.lo `test -f 'src/c/system_setproperty.c' || echo '$(srcdir)/'`src/c/system_setproperty.c
 
-libscijvm_algo_la-loadClasspath.lo: src/c/loadClasspath.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_algo_la-loadClasspath.lo -MD -MP -MF $(DEPDIR)/libscijvm_algo_la-loadClasspath.Tpo -c -o libscijvm_algo_la-loadClasspath.lo `test -f 'src/c/loadClasspath.c' || echo '$(srcdir)/'`src/c/loadClasspath.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_algo_la-loadClasspath.Tpo $(DEPDIR)/libscijvm_algo_la-loadClasspath.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/loadClasspath.c' object='libscijvm_algo_la-loadClasspath.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscijvm_algo_la-loadClasspath.lo: src/c/loadClasspath.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscijvm_algo_la-loadClasspath.lo -MD -MP -MF src/c/$(DEPDIR)/libscijvm_algo_la-loadClasspath.Tpo -c -o src/c/libscijvm_algo_la-loadClasspath.lo `test -f 'src/c/loadClasspath.c' || echo '$(srcdir)/'`src/c/loadClasspath.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscijvm_algo_la-loadClasspath.Tpo src/c/$(DEPDIR)/libscijvm_algo_la-loadClasspath.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/loadClasspath.c' object='src/c/libscijvm_algo_la-loadClasspath.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_algo_la-loadClasspath.lo `test -f 'src/c/loadClasspath.c' || echo '$(srcdir)/'`src/c/loadClasspath.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscijvm_algo_la-loadClasspath.lo `test -f 'src/c/loadClasspath.c' || echo '$(srcdir)/'`src/c/loadClasspath.c
 
-libscijvm_algo_la-createMainScilabObject.lo: src/c/createMainScilabObject.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_algo_la-createMainScilabObject.lo -MD -MP -MF $(DEPDIR)/libscijvm_algo_la-createMainScilabObject.Tpo -c -o libscijvm_algo_la-createMainScilabObject.lo `test -f 'src/c/createMainScilabObject.c' || echo '$(srcdir)/'`src/c/createMainScilabObject.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_algo_la-createMainScilabObject.Tpo $(DEPDIR)/libscijvm_algo_la-createMainScilabObject.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/createMainScilabObject.c' object='libscijvm_algo_la-createMainScilabObject.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscijvm_algo_la-createMainScilabObject.lo: src/c/createMainScilabObject.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscijvm_algo_la-createMainScilabObject.lo -MD -MP -MF src/c/$(DEPDIR)/libscijvm_algo_la-createMainScilabObject.Tpo -c -o src/c/libscijvm_algo_la-createMainScilabObject.lo `test -f 'src/c/createMainScilabObject.c' || echo '$(srcdir)/'`src/c/createMainScilabObject.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscijvm_algo_la-createMainScilabObject.Tpo src/c/$(DEPDIR)/libscijvm_algo_la-createMainScilabObject.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/createMainScilabObject.c' object='src/c/libscijvm_algo_la-createMainScilabObject.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_algo_la-createMainScilabObject.lo `test -f 'src/c/createMainScilabObject.c' || echo '$(srcdir)/'`src/c/createMainScilabObject.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscijvm_algo_la-createMainScilabObject.lo `test -f 'src/c/createMainScilabObject.c' || echo '$(srcdir)/'`src/c/createMainScilabObject.c
 
-libscijvm_algo_la-JVM_commons.lo: src/c/JVM_commons.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_algo_la-JVM_commons.lo -MD -MP -MF $(DEPDIR)/libscijvm_algo_la-JVM_commons.Tpo -c -o libscijvm_algo_la-JVM_commons.lo `test -f 'src/c/JVM_commons.c' || echo '$(srcdir)/'`src/c/JVM_commons.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_algo_la-JVM_commons.Tpo $(DEPDIR)/libscijvm_algo_la-JVM_commons.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/JVM_commons.c' object='libscijvm_algo_la-JVM_commons.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscijvm_algo_la-JVM_commons.lo: src/c/JVM_commons.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscijvm_algo_la-JVM_commons.lo -MD -MP -MF src/c/$(DEPDIR)/libscijvm_algo_la-JVM_commons.Tpo -c -o src/c/libscijvm_algo_la-JVM_commons.lo `test -f 'src/c/JVM_commons.c' || echo '$(srcdir)/'`src/c/JVM_commons.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscijvm_algo_la-JVM_commons.Tpo src/c/$(DEPDIR)/libscijvm_algo_la-JVM_commons.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/JVM_commons.c' object='src/c/libscijvm_algo_la-JVM_commons.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_algo_la-JVM_commons.lo `test -f 'src/c/JVM_commons.c' || echo '$(srcdir)/'`src/c/JVM_commons.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscijvm_algo_la-JVM_commons.lo `test -f 'src/c/JVM_commons.c' || echo '$(srcdir)/'`src/c/JVM_commons.c
 
-libscijvm_algo_la-catchIfJavaException.lo: src/c/catchIfJavaException.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_algo_la-catchIfJavaException.lo -MD -MP -MF $(DEPDIR)/libscijvm_algo_la-catchIfJavaException.Tpo -c -o libscijvm_algo_la-catchIfJavaException.lo `test -f 'src/c/catchIfJavaException.c' || echo '$(srcdir)/'`src/c/catchIfJavaException.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_algo_la-catchIfJavaException.Tpo $(DEPDIR)/libscijvm_algo_la-catchIfJavaException.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/catchIfJavaException.c' object='libscijvm_algo_la-catchIfJavaException.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscijvm_algo_la-catchIfJavaException.lo: src/c/catchIfJavaException.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscijvm_algo_la-catchIfJavaException.lo -MD -MP -MF src/c/$(DEPDIR)/libscijvm_algo_la-catchIfJavaException.Tpo -c -o src/c/libscijvm_algo_la-catchIfJavaException.lo `test -f 'src/c/catchIfJavaException.c' || echo '$(srcdir)/'`src/c/catchIfJavaException.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscijvm_algo_la-catchIfJavaException.Tpo src/c/$(DEPDIR)/libscijvm_algo_la-catchIfJavaException.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/catchIfJavaException.c' object='src/c/libscijvm_algo_la-catchIfJavaException.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_algo_la-catchIfJavaException.lo `test -f 'src/c/catchIfJavaException.c' || echo '$(srcdir)/'`src/c/catchIfJavaException.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscijvm_algo_la-catchIfJavaException.lo `test -f 'src/c/catchIfJavaException.c' || echo '$(srcdir)/'`src/c/catchIfJavaException.c
 
-libscijvm_algo_la-loadLibrarypath.lo: src/c/loadLibrarypath.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_algo_la-loadLibrarypath.lo -MD -MP -MF $(DEPDIR)/libscijvm_algo_la-loadLibrarypath.Tpo -c -o libscijvm_algo_la-loadLibrarypath.lo `test -f 'src/c/loadLibrarypath.c' || echo '$(srcdir)/'`src/c/loadLibrarypath.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_algo_la-loadLibrarypath.Tpo $(DEPDIR)/libscijvm_algo_la-loadLibrarypath.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/loadLibrarypath.c' object='libscijvm_algo_la-loadLibrarypath.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscijvm_algo_la-loadLibrarypath.lo: src/c/loadLibrarypath.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscijvm_algo_la-loadLibrarypath.lo -MD -MP -MF src/c/$(DEPDIR)/libscijvm_algo_la-loadLibrarypath.Tpo -c -o src/c/libscijvm_algo_la-loadLibrarypath.lo `test -f 'src/c/loadLibrarypath.c' || echo '$(srcdir)/'`src/c/loadLibrarypath.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscijvm_algo_la-loadLibrarypath.Tpo src/c/$(DEPDIR)/libscijvm_algo_la-loadLibrarypath.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/loadLibrarypath.c' object='src/c/libscijvm_algo_la-loadLibrarypath.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_algo_la-loadLibrarypath.lo `test -f 'src/c/loadLibrarypath.c' || echo '$(srcdir)/'`src/c/loadLibrarypath.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscijvm_algo_la-loadLibrarypath.lo `test -f 'src/c/loadLibrarypath.c' || echo '$(srcdir)/'`src/c/loadLibrarypath.c
 
-libscijvm_algo_la-getLibrarypath.lo: src/c/getLibrarypath.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_algo_la-getLibrarypath.lo -MD -MP -MF $(DEPDIR)/libscijvm_algo_la-getLibrarypath.Tpo -c -o libscijvm_algo_la-getLibrarypath.lo `test -f 'src/c/getLibrarypath.c' || echo '$(srcdir)/'`src/c/getLibrarypath.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_algo_la-getLibrarypath.Tpo $(DEPDIR)/libscijvm_algo_la-getLibrarypath.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getLibrarypath.c' object='libscijvm_algo_la-getLibrarypath.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscijvm_algo_la-getLibrarypath.lo: src/c/getLibrarypath.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscijvm_algo_la-getLibrarypath.lo -MD -MP -MF src/c/$(DEPDIR)/libscijvm_algo_la-getLibrarypath.Tpo -c -o src/c/libscijvm_algo_la-getLibrarypath.lo `test -f 'src/c/getLibrarypath.c' || echo '$(srcdir)/'`src/c/getLibrarypath.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscijvm_algo_la-getLibrarypath.Tpo src/c/$(DEPDIR)/libscijvm_algo_la-getLibrarypath.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getLibrarypath.c' object='src/c/libscijvm_algo_la-getLibrarypath.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_algo_la-getLibrarypath.lo `test -f 'src/c/getLibrarypath.c' || echo '$(srcdir)/'`src/c/getLibrarypath.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscijvm_algo_la-getLibrarypath.lo `test -f 'src/c/getLibrarypath.c' || echo '$(srcdir)/'`src/c/getLibrarypath.c
 
-libscijvm_algo_la-addToLibrarypath.lo: src/c/addToLibrarypath.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_algo_la-addToLibrarypath.lo -MD -MP -MF $(DEPDIR)/libscijvm_algo_la-addToLibrarypath.Tpo -c -o libscijvm_algo_la-addToLibrarypath.lo `test -f 'src/c/addToLibrarypath.c' || echo '$(srcdir)/'`src/c/addToLibrarypath.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_algo_la-addToLibrarypath.Tpo $(DEPDIR)/libscijvm_algo_la-addToLibrarypath.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/addToLibrarypath.c' object='libscijvm_algo_la-addToLibrarypath.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscijvm_algo_la-addToLibrarypath.lo: src/c/addToLibrarypath.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscijvm_algo_la-addToLibrarypath.lo -MD -MP -MF src/c/$(DEPDIR)/libscijvm_algo_la-addToLibrarypath.Tpo -c -o src/c/libscijvm_algo_la-addToLibrarypath.lo `test -f 'src/c/addToLibrarypath.c' || echo '$(srcdir)/'`src/c/addToLibrarypath.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscijvm_algo_la-addToLibrarypath.Tpo src/c/$(DEPDIR)/libscijvm_algo_la-addToLibrarypath.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/addToLibrarypath.c' object='src/c/libscijvm_algo_la-addToLibrarypath.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_algo_la-addToLibrarypath.lo `test -f 'src/c/addToLibrarypath.c' || echo '$(srcdir)/'`src/c/addToLibrarypath.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscijvm_algo_la-addToLibrarypath.lo `test -f 'src/c/addToLibrarypath.c' || echo '$(srcdir)/'`src/c/addToLibrarypath.c
 
-libscijvm_algo_la-getJvmOptions.lo: src/c/getJvmOptions.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_algo_la-getJvmOptions.lo -MD -MP -MF $(DEPDIR)/libscijvm_algo_la-getJvmOptions.Tpo -c -o libscijvm_algo_la-getJvmOptions.lo `test -f 'src/c/getJvmOptions.c' || echo '$(srcdir)/'`src/c/getJvmOptions.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_algo_la-getJvmOptions.Tpo $(DEPDIR)/libscijvm_algo_la-getJvmOptions.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getJvmOptions.c' object='libscijvm_algo_la-getJvmOptions.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscijvm_algo_la-getJvmOptions.lo: src/c/getJvmOptions.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscijvm_algo_la-getJvmOptions.lo -MD -MP -MF src/c/$(DEPDIR)/libscijvm_algo_la-getJvmOptions.Tpo -c -o src/c/libscijvm_algo_la-getJvmOptions.lo `test -f 'src/c/getJvmOptions.c' || echo '$(srcdir)/'`src/c/getJvmOptions.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscijvm_algo_la-getJvmOptions.Tpo src/c/$(DEPDIR)/libscijvm_algo_la-getJvmOptions.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getJvmOptions.c' object='src/c/libscijvm_algo_la-getJvmOptions.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_algo_la-getJvmOptions.lo `test -f 'src/c/getJvmOptions.c' || echo '$(srcdir)/'`src/c/getJvmOptions.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscijvm_algo_la-getJvmOptions.lo `test -f 'src/c/getJvmOptions.c' || echo '$(srcdir)/'`src/c/getJvmOptions.c
 
-libscijvm_disable_la-nojvm.lo: src/nojvm/nojvm.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_disable_la-nojvm.lo -MD -MP -MF $(DEPDIR)/libscijvm_disable_la-nojvm.Tpo -c -o libscijvm_disable_la-nojvm.lo `test -f 'src/nojvm/nojvm.c' || echo '$(srcdir)/'`src/nojvm/nojvm.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_disable_la-nojvm.Tpo $(DEPDIR)/libscijvm_disable_la-nojvm.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/nojvm/nojvm.c' object='libscijvm_disable_la-nojvm.lo' libtool=yes @AMDEPBACKSLASH@
+src/nojvm/libscijvm_disable_la-nojvm.lo: src/nojvm/nojvm.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/nojvm/libscijvm_disable_la-nojvm.lo -MD -MP -MF src/nojvm/$(DEPDIR)/libscijvm_disable_la-nojvm.Tpo -c -o src/nojvm/libscijvm_disable_la-nojvm.lo `test -f 'src/nojvm/nojvm.c' || echo '$(srcdir)/'`src/nojvm/nojvm.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/nojvm/$(DEPDIR)/libscijvm_disable_la-nojvm.Tpo src/nojvm/$(DEPDIR)/libscijvm_disable_la-nojvm.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/nojvm/nojvm.c' object='src/nojvm/libscijvm_disable_la-nojvm.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_disable_la-nojvm.lo `test -f 'src/nojvm/nojvm.c' || echo '$(srcdir)/'`src/nojvm/nojvm.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/nojvm/libscijvm_disable_la-nojvm.lo `test -f 'src/nojvm/nojvm.c' || echo '$(srcdir)/'`src/nojvm/nojvm.c
 
-libscijvm_la-sci_system_setproperty.lo: sci_gateway/c/sci_system_setproperty.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_la-sci_system_setproperty.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-sci_system_setproperty.Tpo -c -o libscijvm_la-sci_system_setproperty.lo `test -f 'sci_gateway/c/sci_system_setproperty.c' || echo '$(srcdir)/'`sci_gateway/c/sci_system_setproperty.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_la-sci_system_setproperty.Tpo $(DEPDIR)/libscijvm_la-sci_system_setproperty.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_system_setproperty.c' object='libscijvm_la-sci_system_setproperty.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscijvm_la-sci_system_setproperty.lo: sci_gateway/c/sci_system_setproperty.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscijvm_la-sci_system_setproperty.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_system_setproperty.Tpo -c -o sci_gateway/c/libscijvm_la-sci_system_setproperty.lo `test -f 'sci_gateway/c/sci_system_setproperty.c' || echo '$(srcdir)/'`sci_gateway/c/sci_system_setproperty.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_system_setproperty.Tpo sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_system_setproperty.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_system_setproperty.c' object='sci_gateway/c/libscijvm_la-sci_system_setproperty.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_la-sci_system_setproperty.lo `test -f 'sci_gateway/c/sci_system_setproperty.c' || echo '$(srcdir)/'`sci_gateway/c/sci_system_setproperty.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscijvm_la-sci_system_setproperty.lo `test -f 'sci_gateway/c/sci_system_setproperty.c' || echo '$(srcdir)/'`sci_gateway/c/sci_system_setproperty.c
 
-libscijvm_la-sci_with_embedded_jre.lo: sci_gateway/c/sci_with_embedded_jre.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_la-sci_with_embedded_jre.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-sci_with_embedded_jre.Tpo -c -o libscijvm_la-sci_with_embedded_jre.lo `test -f 'sci_gateway/c/sci_with_embedded_jre.c' || echo '$(srcdir)/'`sci_gateway/c/sci_with_embedded_jre.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_la-sci_with_embedded_jre.Tpo $(DEPDIR)/libscijvm_la-sci_with_embedded_jre.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_with_embedded_jre.c' object='libscijvm_la-sci_with_embedded_jre.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscijvm_la-sci_with_embedded_jre.lo: sci_gateway/c/sci_with_embedded_jre.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscijvm_la-sci_with_embedded_jre.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_with_embedded_jre.Tpo -c -o sci_gateway/c/libscijvm_la-sci_with_embedded_jre.lo `test -f 'sci_gateway/c/sci_with_embedded_jre.c' || echo '$(srcdir)/'`sci_gateway/c/sci_with_embedded_jre.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_with_embedded_jre.Tpo sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_with_embedded_jre.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_with_embedded_jre.c' object='sci_gateway/c/libscijvm_la-sci_with_embedded_jre.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_la-sci_with_embedded_jre.lo `test -f 'sci_gateway/c/sci_with_embedded_jre.c' || echo '$(srcdir)/'`sci_gateway/c/sci_with_embedded_jre.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscijvm_la-sci_with_embedded_jre.lo `test -f 'sci_gateway/c/sci_with_embedded_jre.c' || echo '$(srcdir)/'`sci_gateway/c/sci_with_embedded_jre.c
 
-libscijvm_la-sci_javaclasspath.lo: sci_gateway/c/sci_javaclasspath.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_la-sci_javaclasspath.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-sci_javaclasspath.Tpo -c -o libscijvm_la-sci_javaclasspath.lo `test -f 'sci_gateway/c/sci_javaclasspath.c' || echo '$(srcdir)/'`sci_gateway/c/sci_javaclasspath.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_la-sci_javaclasspath.Tpo $(DEPDIR)/libscijvm_la-sci_javaclasspath.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_javaclasspath.c' object='libscijvm_la-sci_javaclasspath.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscijvm_la-sci_javaclasspath.lo: sci_gateway/c/sci_javaclasspath.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscijvm_la-sci_javaclasspath.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_javaclasspath.Tpo -c -o sci_gateway/c/libscijvm_la-sci_javaclasspath.lo `test -f 'sci_gateway/c/sci_javaclasspath.c' || echo '$(srcdir)/'`sci_gateway/c/sci_javaclasspath.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_javaclasspath.Tpo sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_javaclasspath.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_javaclasspath.c' object='sci_gateway/c/libscijvm_la-sci_javaclasspath.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_la-sci_javaclasspath.lo `test -f 'sci_gateway/c/sci_javaclasspath.c' || echo '$(srcdir)/'`sci_gateway/c/sci_javaclasspath.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscijvm_la-sci_javaclasspath.lo `test -f 'sci_gateway/c/sci_javaclasspath.c' || echo '$(srcdir)/'`sci_gateway/c/sci_javaclasspath.c
 
-libscijvm_la-gw_jvm.lo: sci_gateway/c/gw_jvm.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_la-gw_jvm.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-gw_jvm.Tpo -c -o libscijvm_la-gw_jvm.lo `test -f 'sci_gateway/c/gw_jvm.c' || echo '$(srcdir)/'`sci_gateway/c/gw_jvm.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_la-gw_jvm.Tpo $(DEPDIR)/libscijvm_la-gw_jvm.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_jvm.c' object='libscijvm_la-gw_jvm.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscijvm_la-gw_jvm.lo: sci_gateway/c/gw_jvm.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscijvm_la-gw_jvm.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscijvm_la-gw_jvm.Tpo -c -o sci_gateway/c/libscijvm_la-gw_jvm.lo `test -f 'sci_gateway/c/gw_jvm.c' || echo '$(srcdir)/'`sci_gateway/c/gw_jvm.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscijvm_la-gw_jvm.Tpo sci_gateway/c/$(DEPDIR)/libscijvm_la-gw_jvm.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_jvm.c' object='sci_gateway/c/libscijvm_la-gw_jvm.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_la-gw_jvm.lo `test -f 'sci_gateway/c/gw_jvm.c' || echo '$(srcdir)/'`sci_gateway/c/gw_jvm.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscijvm_la-gw_jvm.lo `test -f 'sci_gateway/c/gw_jvm.c' || echo '$(srcdir)/'`sci_gateway/c/gw_jvm.c
 
-libscijvm_la-sci_javalibrarypath.lo: sci_gateway/c/sci_javalibrarypath.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscijvm_la-sci_javalibrarypath.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-sci_javalibrarypath.Tpo -c -o libscijvm_la-sci_javalibrarypath.lo `test -f 'sci_gateway/c/sci_javalibrarypath.c' || echo '$(srcdir)/'`sci_gateway/c/sci_javalibrarypath.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_la-sci_javalibrarypath.Tpo $(DEPDIR)/libscijvm_la-sci_javalibrarypath.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_javalibrarypath.c' object='libscijvm_la-sci_javalibrarypath.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/c/libscijvm_la-sci_javalibrarypath.lo: sci_gateway/c/sci_javalibrarypath.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscijvm_la-sci_javalibrarypath.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_javalibrarypath.Tpo -c -o sci_gateway/c/libscijvm_la-sci_javalibrarypath.lo `test -f 'sci_gateway/c/sci_javalibrarypath.c' || echo '$(srcdir)/'`sci_gateway/c/sci_javalibrarypath.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_javalibrarypath.Tpo sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_javalibrarypath.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_javalibrarypath.c' object='sci_gateway/c/libscijvm_la-sci_javalibrarypath.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscijvm_la-sci_javalibrarypath.lo `test -f 'sci_gateway/c/sci_javalibrarypath.c' || echo '$(srcdir)/'`sci_gateway/c/sci_javalibrarypath.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscijvm_la-sci_javalibrarypath.lo `test -f 'sci_gateway/c/sci_javalibrarypath.c' || echo '$(srcdir)/'`sci_gateway/c/sci_javalibrarypath.c
 
 .cpp.o:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .cpp.lo:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
-libscijvm_disable_la-nojvm_gw.lo: src/nojvm/nojvm_gw.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscijvm_disable_la-nojvm_gw.lo -MD -MP -MF $(DEPDIR)/libscijvm_disable_la-nojvm_gw.Tpo -c -o libscijvm_disable_la-nojvm_gw.lo `test -f 'src/nojvm/nojvm_gw.cpp' || echo '$(srcdir)/'`src/nojvm/nojvm_gw.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_disable_la-nojvm_gw.Tpo $(DEPDIR)/libscijvm_disable_la-nojvm_gw.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/nojvm/nojvm_gw.cpp' object='libscijvm_disable_la-nojvm_gw.lo' libtool=yes @AMDEPBACKSLASH@
+src/nojvm/libscijvm_disable_la-nojvm_gw.lo: src/nojvm/nojvm_gw.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/nojvm/libscijvm_disable_la-nojvm_gw.lo -MD -MP -MF src/nojvm/$(DEPDIR)/libscijvm_disable_la-nojvm_gw.Tpo -c -o src/nojvm/libscijvm_disable_la-nojvm_gw.lo `test -f 'src/nojvm/nojvm_gw.cpp' || echo '$(srcdir)/'`src/nojvm/nojvm_gw.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/nojvm/$(DEPDIR)/libscijvm_disable_la-nojvm_gw.Tpo src/nojvm/$(DEPDIR)/libscijvm_disable_la-nojvm_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/nojvm/nojvm_gw.cpp' object='src/nojvm/libscijvm_disable_la-nojvm_gw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscijvm_disable_la-nojvm_gw.lo `test -f 'src/nojvm/nojvm_gw.cpp' || echo '$(srcdir)/'`src/nojvm/nojvm_gw.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/nojvm/libscijvm_disable_la-nojvm_gw.lo `test -f 'src/nojvm/nojvm_gw.cpp' || echo '$(srcdir)/'`src/nojvm/nojvm_gw.cpp
 
-libscijvm_la-sci_system_getproperty.lo: sci_gateway/cpp/sci_system_getproperty.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscijvm_la-sci_system_getproperty.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-sci_system_getproperty.Tpo -c -o libscijvm_la-sci_system_getproperty.lo `test -f 'sci_gateway/cpp/sci_system_getproperty.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_system_getproperty.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_la-sci_system_getproperty.Tpo $(DEPDIR)/libscijvm_la-sci_system_getproperty.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_system_getproperty.cpp' object='libscijvm_la-sci_system_getproperty.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscijvm_la-sci_system_getproperty.lo: sci_gateway/cpp/sci_system_getproperty.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscijvm_la-sci_system_getproperty.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscijvm_la-sci_system_getproperty.Tpo -c -o sci_gateway/cpp/libscijvm_la-sci_system_getproperty.lo `test -f 'sci_gateway/cpp/sci_system_getproperty.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_system_getproperty.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscijvm_la-sci_system_getproperty.Tpo sci_gateway/cpp/$(DEPDIR)/libscijvm_la-sci_system_getproperty.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_system_getproperty.cpp' object='sci_gateway/cpp/libscijvm_la-sci_system_getproperty.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscijvm_la-sci_system_getproperty.lo `test -f 'sci_gateway/cpp/sci_system_getproperty.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_system_getproperty.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscijvm_la-sci_system_getproperty.lo `test -f 'sci_gateway/cpp/sci_system_getproperty.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_system_getproperty.cpp
 
-libscijvm_la-jvm_gw.lo: sci_gateway/cpp/jvm_gw.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscijvm_la-jvm_gw.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-jvm_gw.Tpo -c -o libscijvm_la-jvm_gw.lo `test -f 'sci_gateway/cpp/jvm_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/jvm_gw.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijvm_la-jvm_gw.Tpo $(DEPDIR)/libscijvm_la-jvm_gw.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/jvm_gw.cpp' object='libscijvm_la-jvm_gw.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscijvm_la-jvm_gw.lo: sci_gateway/cpp/jvm_gw.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscijvm_la-jvm_gw.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscijvm_la-jvm_gw.Tpo -c -o sci_gateway/cpp/libscijvm_la-jvm_gw.lo `test -f 'sci_gateway/cpp/jvm_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/jvm_gw.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscijvm_la-jvm_gw.Tpo sci_gateway/cpp/$(DEPDIR)/libscijvm_la-jvm_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/jvm_gw.cpp' object='sci_gateway/cpp/libscijvm_la-jvm_gw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscijvm_la-jvm_gw.lo `test -f 'sci_gateway/cpp/jvm_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/jvm_gw.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscijvm_la-jvm_gw.lo `test -f 'sci_gateway/cpp/jvm_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/jvm_gw.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
+	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
+	-rm -rf src/c/.libs src/c/_libs
+	-rm -rf src/nojvm/.libs src/nojvm/_libs
 install-libscijvm_la_etcDATA: $(libscijvm_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libscijvm_la_etc_DATA)'; test -n "$(libscijvm_la_etcdir)" || list=; \
@@ -1336,6 +1443,14 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/c/$(am__dirstamp)
+	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/cpp/$(am__dirstamp)
+	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/c/$(am__dirstamp)
+	-rm -f src/nojvm/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/nojvm/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1346,7 +1461,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/nojvm/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1396,7 +1511,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/nojvm/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -1501,11 +1616,17 @@ check-code:
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
-@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/; \
+@GIWS_TRUE@	MANDATORY_OPTIONS="--throws-exception-on-error --description-file"; \
 @GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
+@GIWS_TRUE@			if test -z "$(GIWS_OPTIONS)"; then \
+@GIWS_TRUE@				$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR $$MANDATORY_OPTIONS $$file; \
+@GIWS_TRUE@			else \
+@GIWS_TRUE@				echo "Custom GIWS call with '$$GIWS_OPTIONS'"; \
+@GIWS_TRUE@				$(GIWS_BIN) $$GIWS_OPTIONS --output-dir $$GIWS_OUTPUTDIR $$MANDATORY_OPTIONS $$file; \
+@GIWS_TRUE@			fi \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 

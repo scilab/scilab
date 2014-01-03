@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -577,10 +577,14 @@ msgstr ""
 "esperava-se a mesma quantidade.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Real, integer or polynomial matrix "
+"expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
-"real.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -630,6 +634,16 @@ msgstr ""
 "menos o tamanho do argumento de entrada #%d.\n"
 
 #, c-format
+msgid "%s: Incompatible input arguments: Same types expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
+"real.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um número "
@@ -676,11 +690,55 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: a vector expected.\n"
 msgstr ""
 
+msgid "RESIZING a matrix of DECIMALS:"
+msgstr ""
+
+msgid "TYPE <Enter> to see an example with POLYNOMIALS:"
+msgstr ""
+
+msgid "The padding's unknown is forced to the P's one"
+msgstr ""
+
+msgid "Polynomials can't be converted"
+msgstr ""
+
+msgid "TYPE <Enter> to see an example with TEXT:"
+msgstr ""
+
+msgid "NOTE: Hypermatrix of text can't be converted"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 "%s: Quantidade incorreta de argumento(s) de entrada: esperava-se de %d a "
 "%d.\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: %s not supported.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong input argument #%d: scalar decimal integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong sizes requested, cannot convert list to matrix.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: can't convert the padding to the "
+"input matrix type.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: conversion of polynomials is not supported\n"
+msgstr ""
+
+#, c-format
+msgid "%s: conversion into %s is not supported\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"
@@ -711,3 +769,9 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: Tamanho incorreto para os argumentos de entrada: tamanhos "
 "incompatíveis.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Reals, encoded integers or "
+"polynomials expected.\n"
+msgstr ""

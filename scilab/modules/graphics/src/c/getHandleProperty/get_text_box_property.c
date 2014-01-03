@@ -30,11 +30,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_text_box_property(void* _pvCtx, char* pobjUID)
+void* get_text_box_property(void* _pvCtx, int iObjUID)
 {
     double* size;
 
-    getGraphicObjectProperty(pobjUID, __GO_TEXT_BOX__, jni_double_vector, (void **)&size);
+    getGraphicObjectProperty(iObjUID, __GO_TEXT_BOX__, jni_double_vector, (void **)&size);
 
     if (size == NULL)
     {

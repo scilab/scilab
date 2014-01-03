@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.ged.graphic_objects;
@@ -23,13 +23,13 @@ import org.scilab.modules.gui.ged.ContentLayout;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public abstract class SimpleObject extends ContentLayout {
-    private String objectID;
+    private Integer objectID;
 
     /**
     * Constructor
     * @param objectID uid.
     */
-    public SimpleObject(String objectID) {
+    public SimpleObject(Integer objectID) {
         this.objectID = objectID;
     }
 
@@ -63,7 +63,7 @@ public abstract class SimpleObject extends ContentLayout {
     * Set the Object ID.
     * @param objectID Enters the identification of object.
     */
-    public final void setObjectID(String objectID) {
+    public final void setObjectID(Integer objectID) {
         this.objectID = objectID;
     }
 
@@ -71,7 +71,7 @@ public abstract class SimpleObject extends ContentLayout {
     * Get the Object ID.
     * @return Object ID
     */
-    public final String getObjectID() {
+    public final Integer getObjectID() {
         return objectID;
     }
 
@@ -80,8 +80,8 @@ public abstract class SimpleObject extends ContentLayout {
     * @param objectID Enters the identification of object.
     * @return FigreID
     */
-    public final String getFigueID(String objectID) {
-        return (String) GraphicController.getController()
-                .getProperty(objectID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+    public final Integer getFigueID(Integer objectID) {
+        return (Integer) GraphicController.getController()
+               .getProperty(objectID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
     }
 }

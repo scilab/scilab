@@ -23,6 +23,6 @@
  * @param pobjUID Scilab object corresponding to the uicontrol
  * @return true if the vertical alignment property has been correcty got
  */
-GUI_IMPEXP void* GetUicontrolVerticalAlignment(void* _pvCtx, char *pobjUID);
+GUI_IMPEXP void* GetUicontrolVerticalAlignment(void* _pvCtx, int iObjUID);
 
 #endif /* __GET_UICONTROL_VERTICALALIGNMENT_H__ */

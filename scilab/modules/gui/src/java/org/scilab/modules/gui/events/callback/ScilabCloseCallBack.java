@@ -31,14 +31,14 @@ public abstract class ScilabCloseCallBack extends CommonCallBack {
 
     private static final long serialVersionUID = 7712036428657481222L;
 
-    private String figureUID;
+    private Integer figureUID;
 
     /**
      * Constructor
      * @param figureIndex : the figure ID where callback occurred.
      * @param command : the command to execute.
      */
-    private ScilabCloseCallBack(String figureUID, String command) {
+    private ScilabCloseCallBack(Integer figureUID, String command) {
         super(command, CallBack.UNTYPED);
         this.figureUID = figureUID;
     }
@@ -50,7 +50,7 @@ public abstract class ScilabCloseCallBack extends CommonCallBack {
      * @param command : the command to execute.
      * @return a usable Scilab callback
      */
-    public static ScilabCloseCallBack create(String figureUID, String command) {
+    public static ScilabCloseCallBack create(Integer figureUID, String command) {
         return (new ScilabCloseCallBack(figureUID, command) {
 
             private static final long serialVersionUID = -7286803341046313407L;

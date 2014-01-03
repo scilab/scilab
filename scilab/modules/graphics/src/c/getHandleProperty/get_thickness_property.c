@@ -32,12 +32,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_thickness_property(void* _pvCtx, char* pobjUID)
+void* get_thickness_property(void* _pvCtx, int iObjUID)
 {
     double lineThickness = 0.0;
     void* pdblLineThickness = &lineThickness;
 
-    getGraphicObjectProperty(pobjUID, __GO_LINE_THICKNESS__, jni_double,  &pdblLineThickness);
+    getGraphicObjectProperty(iObjUID, __GO_LINE_THICKNESS__, jni_double, (void**)(&pdblLineThickness));
 
     if (pdblLineThickness == NULL)
     {
