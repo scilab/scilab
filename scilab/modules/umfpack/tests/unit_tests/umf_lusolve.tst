@@ -7,7 +7,7 @@
 
 // <-- CLI SHELL MODE -->
 
-// unit tests for umf_lusolve function 
+// unit tests for umf_lusolve function
 // =============================================================================
 
 assert_checkfalse(execstr("umf_lusolve()"   ,"errcatch") == 0);
