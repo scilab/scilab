@@ -25,7 +25,7 @@ refMsg = msprintf(_("%s: Wrong type for input argument #%d: A real or complex co
 assert_checkerror("umf_lusolve(Lup, speye(3,3))", refMsg);
 
 assert_checkfalse(execstr("umf_lusolve(Lup, eye(3,3), ""Cx=d"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong input argument #%d: ''Ax=b'' or ''A''x=b'' expected.\n"), "umf_lusolve", 3);
+refMsg = msprintf(_("%s: Wrong input argument #%d: ''%s'' or ''%s'' expected.\n"), "umf_lusolve", 3, "Ax=b", "A''x=b");
 assert_checkerror("umf_lusolve(Lup, eye(3,3), ""Cx=d"")", refMsg);
 
 assert_checkfalse(execstr("umf_lusolve(Lup, eye(3,3), ""Ax=b"", ""titi"")"   ,"errcatch") == 0);
