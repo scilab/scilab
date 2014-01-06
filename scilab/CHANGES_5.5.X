@@ -348,6 +348,8 @@ Xcos Bug Fixes
 
 * Bug #13059 fixed - Nan propagated at startup made the simulation fail.
 
+* Bug #13172 fixed - Logic bloc help file had some typo.
+
 
                  Changes between version 5.4.1 and 5.5.0-beta-1
                  ==============================================

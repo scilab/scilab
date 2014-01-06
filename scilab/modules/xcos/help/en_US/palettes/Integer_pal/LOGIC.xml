@@ -128,7 +128,7 @@
                 </para>
                 <para/>
                 <para>
-                    <latex><![CDATA[Line\,number = {(Input\,number)}^2]]></latex>
+                    <latex><![CDATA[Line\,number = 2^{(Input\,number)}]]></latex>
                 </para>
                 <para/>
             </listitem>
