@@ -7,6 +7,8 @@
 //
 // <-- CLI SHELL MODE -->
 //
+// <-- ENGLISH IMPOSED -->
+//
 // <-- Non-regression test for bug 13146 -->
 //
 // <-- Bugzilla URL -->
