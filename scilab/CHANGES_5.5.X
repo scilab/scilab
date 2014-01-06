@@ -331,6 +331,8 @@ Scilab Bug Fixes
 
 * Bug #13134 fixed - User defined ticks in log scale were invisible.
 
+* Bug #13136 fixed - exists and isdef failed for input arguments longer than 1.
+
 * Bug #13139 fixed - fft help page fixed.
 
 * Bug #13140 fixed - Various typos fixed.
