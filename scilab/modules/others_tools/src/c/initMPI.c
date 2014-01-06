@@ -24,7 +24,7 @@ void MPIErrHandler(MPI_Comm * comm, int *errorcode, ...)
 
     MPI_Error_string(*errorcode, buffer, &resultlen);
     buffer[resultlen] = 0;
-    fprintf(stderr,_("MPI error: %s\n"), buffer);
+    fprintf(stderr, _("MPI error: %s\n"), buffer);
 }
 
 
