@@ -392,8 +392,12 @@ int sci_get(char *fname, unsigned long fname_len)
                     iType != __GO_LEGEND__ &&
                     iType != __GO_RECTANGLE__ &&
                     iType != __GO_CHAMP__ &&
-                    iType != __GO_SEGS__)
+                    iType != __GO_SEGS__ &&
+                    iType != __GO_LABEL__ &&
+                    iType != __GO_FAC3D__ &&
+                    iType != __GO_PLOT3D__)
             {
+                //old school call
                 if (sciGet(pvApiCtx, iObjUID, (l2)) != 0)
                 {
                     /* An error has occurred */
@@ -416,7 +420,9 @@ int sci_get(char *fname, unsigned long fname_len)
                         iType == __GO_POLYLINE__ ||
                         iType == __GO_RECTANGLE__ ||
                         iType == __GO_CHAMP__ ||
-                        iType == __GO_SEGS__)
+                        iType == __GO_SEGS__ ||
+                        iType == __GO_FAC3D__ ||
+                        iType == __GO_PLOT3D__)
                 {
                     if (first == 'd')
                     {
@@ -426,15 +432,8 @@ int sci_get(char *fname, unsigned long fname_len)
                             bDataProp = TRUE;
                         }
                     }
-                    else if (first == 't')
-                    {
-                        if (stricmp(l2, "triangles") == 0)
-                        {
-                            get_triangles_property(pvApiCtx, iObjUID);
-                            bDataProp = TRUE;
-                        }
-                    }
                 }
+
 
                 if (iType == __GO_MATPLOT__)
                 {
@@ -443,6 +442,18 @@ int sci_get(char *fname, unsigned long fname_len)
                         if (stricmp(l2, "image_type") == 0)
                         {
                             get_image_type_property(pvApiCtx, iObjUID);
+                            bDataProp = TRUE;
+                        }
+                    }
+                }
+
+                if (iType == __GO_FEC__)
+                {
+                    if (first == 't')
+                    {
+                        if (stricmp(l2, "triangles") == 0)
+                        {
+                            get_triangles_property(pvApiCtx, iObjUID);
                             bDataProp = TRUE;
                         }
                     }
@@ -872,7 +883,10 @@ int sci_get(char *fname, unsigned long fname_len)
                         iType == __GO_LEGEND__ ||
                         iType == __GO_RECTANGLE__ ||
                         iType == __GO_CHAMP__ ||
-                        iType == __GO_SEGS__)
+                        iType == __GO_SEGS__ ||
+                        iType == __GO_LABEL__ ||
+                        iType == __GO_FAC3D__ ||
+                        iType == __GO_PLOT3D__)
                 {
                     switch (first)
                     {

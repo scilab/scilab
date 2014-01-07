@@ -64,5 +64,8 @@ GRAPHIC_OBJECTS_IMPEXP int createPolyline(int parent, BOOL closed, int plot, int
 GRAPHIC_OBJECTS_IMPEXP int createLegend(int parent, char** text, int iTextSize, int* handles, int iHandlesSize);
 GRAPHIC_OBJECTS_IMPEXP int createSegs(int parent, double* vx, int vxSize, double* vy, int vySize, double* vz, int vzSize, int* style, int styleSize, double arsize);
 GRAPHIC_OBJECTS_IMPEXP int createChamp(int parent, double* vx, int vxSize, double* vy, int vySize, double* vfx, int vfxSize, double* vfy, int vfySize, double arsize, BOOL typeofchamp);
+GRAPHIC_OBJECTS_IMPEXP int createSurface(int parent, int typeof3d, int colorFlag, int colorMode);
+GRAPHIC_OBJECTS_IMPEXP void initSubWinTo3d(int subwin, char* legend, int* flag, double alpha, double theta,
+        double* ebox, double* x, int xSize, double* y, int ySize, double* z, int zSize);
 
 #endif /* !__CREATEGRAPHICOBJECT_H__ */

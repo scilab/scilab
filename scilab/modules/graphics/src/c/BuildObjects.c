@@ -134,9 +134,9 @@ int ConstructLegend(int iParentsubwinUID, char **text, int* tabofhandles, int nb
 /**
  * Create a polyline but does not add it to Scilab hierarchy
  */
-int allocatePolyline(int iParentsubwinUID, double *pvecx, double *pvecy, double *pvecz,
-                     int closed, int n1, int plot, int *foreground, int *background,
-                     int *mark_style, int *mark_foreground, int *mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded)
+int ConstructPolyline(int iParentsubwinUID, double *pvecx, double *pvecy, double *pvecz,
+                      int closed, int n1, int plot, int *foreground, int *background,
+                      int *mark_style, int *mark_foreground, int *mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded)
 {
     int iObj = 0;
     int i = 0;
@@ -267,19 +267,6 @@ int allocatePolyline(int iParentsubwinUID, double *pvecx, double *pvecy, double 
     return iObj;
 }
 
-/*---------------------------------------------------------------------------------*/
-/**ConstructPolyline
- * This function creates  Polyline 2d structure
- */
-int ConstructPolyline(int iParentsubwinUID, double *pvecx, double *pvecy, double *pvecz,
-                      int closed, int n1, int plot, int *foreground, int *background,
-                      int *mark_style, int *mark_foreground, int *mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded)
-{
-    return allocatePolyline(iParentsubwinUID, pvecx, pvecy, pvecz, closed, n1, plot,
-                            foreground, background, mark_style, mark_foreground, mark_background,
-                            isline, isfilled, ismark, isinterpshaded);
-}
-
 /**ConstructSurface
  * This function creates Surface Structure
  */
@@ -297,13 +284,6 @@ int ConstructSurface(int iParentsubwinUID, sciTypeOf3D typeof3d,
 
     int nx = 0, ny = 0, nz = 0, nc = 0;
     int result = 0;
-    int clipRegionSet = 0;
-    int *piClipRegionSet = &clipRegionSet;
-    int clipState = 0;
-    int *piClipState = &clipState;
-    int visible = 0;
-    int *piVisible = &visible;
-    int cdataMapping = 0;
     int hiddenColor = 0;
     int *piHiddenColor = &hiddenColor;
     int surfaceMode = 0;
@@ -365,36 +345,9 @@ int ConstructSurface(int iParentsubwinUID, sciTypeOf3D typeof3d,
         return 0;
     }
 
-    iObj = createGraphicObject(surfaceTypes[*isfac]);
+    //iObj = createGraphicObject(surfaceTypes[*isfac]);
+    iObj = createSurface(iParentsubwinUID, surfaceTypes[*isfac], flagcolor, *flag);
     createDataObject(iObj, surfaceTypes[*isfac]);
-
-    /* Clip state and region */
-    /* To be checked for consistency */
-
-    getGraphicObjectProperty(iParentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipRegion);
-    setGraphicObjectProperty(iObj, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
-    releaseGraphicObjectProperty(__GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
-
-    getGraphicObjectProperty(iParentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, (void **)&piClipRegionSet);
-    setGraphicObjectProperty(iObj, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
-
-    getGraphicObjectProperty(iParentsubwinUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
-    setGraphicObjectProperty(iObj, __GO_CLIP_STATE__, &clipState, jni_int, 1);
-
-    /* Visibility */
-    getGraphicObjectProperty(iParentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
-
-    setGraphicObjectProperty(iObj, __GO_VISIBLE__, &visible, jni_bool, 1);
-
-    setGraphicObjectProperty(iObj, __GO_COLOR_FLAG__, &flagcolor, jni_int, 1);
-
-    /* Direct mode enabled as default */
-    cdataMapping = 1;
-
-    /* Only for Fac3D */
-    setGraphicObjectProperty(iObj, __GO_DATA_MAPPING__, &cdataMapping, jni_int, 1);
-
-    setGraphicObjectProperty(iObj, __GO_COLOR_MODE__, &flag[0], jni_int, 1);
 
     /* Plot3d case */
     if (!*isfac)
@@ -447,28 +400,6 @@ int ConstructSurface(int iParentsubwinUID, sciTypeOf3D typeof3d,
     {
         setGraphicObjectProperty(iObj, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, nz);
     }
-
-    /*-------END Replaced by: --------*/
-
-    getGraphicObjectProperty(iParentsubwinUID, __GO_HIDDEN_COLOR__, jni_int, (void **)&piHiddenColor);
-    setGraphicObjectProperty(iObj, __GO_HIDDEN_COLOR__, &hiddenColor, jni_int, 1);
-
-    /*
-     * surfaceMode set to "on", was previously done by InitGraphicContext, by setting
-     * the graphic context's line_mode to on, which stood for the surface_mode.
-     */
-    surfaceMode = 1;
-
-    setGraphicObjectProperty(iObj, __GO_SURFACE_MODE__, &surfaceMode, jni_bool, 1);
-
-    /*
-     * Adding a new handle and setting the parent-child relationship is now
-     * done after data initialization in order to avoid additional
-     * clean-up.
-     */
-    // Here we init old 'graphicContext' by cloning it from parent.
-    cloneGraphicContext(iParentsubwinUID, iObj);
-    setGraphicObjectRelationship(iParentsubwinUID, iObj);
 
     return iObj;
 }

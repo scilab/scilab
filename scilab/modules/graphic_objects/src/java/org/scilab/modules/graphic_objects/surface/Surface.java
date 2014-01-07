@@ -54,7 +54,7 @@ public abstract class Surface extends ClippableContouredObject {
     /** Constructor */
     public Surface() {
         super();
-        surfaceMode = false;
+        surfaceMode = true;
         colorMode = 0;
         colorFlag = 0;
         hiddenColor = 0;
@@ -113,7 +113,7 @@ public abstract class Surface extends ClippableContouredObject {
             Material.MaterialProperty mp = (Material.MaterialProperty)property;
             switch (mp) {
                 case COLOR_MATERIAL:
-                    return getColorMaterialMode();
+                    return getUseColorMaterial();
                 case SHININESS:
                     return getMaterialShininess();
             }
@@ -121,11 +121,11 @@ public abstract class Surface extends ClippableContouredObject {
             ColorTriplet.ColorTripletProperty cp = (ColorTriplet.ColorTripletProperty)property;
             switch (cp) {
                 case AMBIENTCOLOR:
-                    return getMaterialAmbientColor();
+                    return getAmbientColor();
                 case DIFFUSECOLOR:
-                    return getMaterialDiffuseColor();
+                    return getDiffuseColor();
                 case SPECULARCOLOR:
-                    return getMaterialSpecularColor();
+                    return getSpecularColor();
             }
         }
         return super.getProperty(property);
@@ -158,7 +158,7 @@ public abstract class Surface extends ClippableContouredObject {
             Material.MaterialProperty mp = (Material.MaterialProperty)property;
             switch (mp) {
                 case COLOR_MATERIAL:
-                    return setColorMaterialMode((Boolean)value);
+                    return setUseColorMaterial((Boolean)value);
                 case SHININESS:
                     return setMaterialShininess((Double)value);
             }
@@ -166,11 +166,11 @@ public abstract class Surface extends ClippableContouredObject {
             ColorTriplet.ColorTripletProperty cp = (ColorTriplet.ColorTripletProperty)property;
             switch (cp) {
                 case AMBIENTCOLOR:
-                    return setMaterialAmbientColor((Double[])value);
+                    return setAmbientColor((Double[])value);
                 case DIFFUSECOLOR:
-                    return setMaterialDiffuseColor((Double[])value);
+                    return setDiffuseColor((Double[])value);
                 case SPECULARCOLOR:
-                    return setMaterialSpecularColor((Double[])value);
+                    return setSpecularColor((Double[])value);
             }
         } else {
             return super.setProperty(property, value);
@@ -189,7 +189,7 @@ public abstract class Surface extends ClippableContouredObject {
     /**
      * @param surfaceMode the surfaceMode to set
      */
-    public UpdateStatus setSurfaceMode(Boolean surfaceMode) {
+    public UpdateStatus setSurfaceMode(boolean surfaceMode) {
         this.surfaceMode = surfaceMode;
         return UpdateStatus.Success;
     }
@@ -204,7 +204,7 @@ public abstract class Surface extends ClippableContouredObject {
     /**
      * @param colorMode the colorMode to set
      */
-    public UpdateStatus setColorMode(Integer colorMode) {
+    public UpdateStatus setColorMode(int colorMode) {
         this.colorMode = colorMode;
         return UpdateStatus.Success;
     }
@@ -219,7 +219,7 @@ public abstract class Surface extends ClippableContouredObject {
     /**
      * @param colorFlag the colorFlag to set
      */
-    public UpdateStatus setColorFlag(Integer colorFlag) {
+    public UpdateStatus setColorFlag(int colorFlag) {
         this.colorFlag = colorFlag;
         return UpdateStatus.Success;
     }
@@ -234,7 +234,7 @@ public abstract class Surface extends ClippableContouredObject {
     /**
      * @param hiddenColor the hiddenColor to set
      */
-    public UpdateStatus setHiddenColor(Integer hiddenColor) {
+    public UpdateStatus setHiddenColor(int hiddenColor) {
         this.hiddenColor = hiddenColor;
         return UpdateStatus.Success;
     }
@@ -244,56 +244,56 @@ public abstract class Surface extends ClippableContouredObject {
      * use the surface color as diffuse color
      * @param status if true enables color-material
      */
-    public UpdateStatus setColorMaterialMode(Boolean status) {
+    public UpdateStatus setUseColorMaterial(boolean status) {
         return material.setColorMaterialMode(status);
     }
 
     /**
      * @return if color-material is enabled.
      */
-    public Boolean getColorMaterialMode() {
+    public Boolean getUseColorMaterial() {
         return material.getColorMaterialMode();
     }
 
     /**
      * @return the ambient color of the material.
      */
-    public Double[] getMaterialAmbientColor() {
+    public Double[] getAmbientColor() {
         return material.getAmbientColor();
     }
 
     /**
      * @param the new ambient color of the material.
      */
-    public UpdateStatus setMaterialAmbientColor(Double[] color) {
+    public UpdateStatus setAmbientColor(Double[] color) {
         return material.setAmbientColor(color);
     }
 
     /**
      * @return the diffuse color of the material.
      */
-    public Double[] getMaterialDiffuseColor() {
+    public Double[] getDiffuseColor() {
         return material.getDiffuseColor();
     }
 
     /**
      * @param the new diffuse color of the material.
      */
-    public UpdateStatus setMaterialDiffuseColor(Double[] color) {
+    public UpdateStatus setDiffuseColor(Double[] color) {
         return material.setDiffuseColor(color);
     }
 
     /**
      * @return the specular color of the material.
      */
-    public Double[] getMaterialSpecularColor() {
+    public Double[] getSpecularColor() {
         return material.getSpecularColor();
     }
 
     /**
      * @param the new specular color of the material.
      */
-    public UpdateStatus setMaterialSpecularColor(Double[] color) {
+    public UpdateStatus setSpecularColor(Double[] color) {
         return material.setSpecularColor(color);
     }
 
@@ -307,7 +307,7 @@ public abstract class Surface extends ClippableContouredObject {
     /**
      * @param the new shininess level of the material.
      */
-    public UpdateStatus setMaterialShininess(Double s) {
+    public UpdateStatus setMaterialShininess(double s) {
         return material.setShininess(s);
     }
 

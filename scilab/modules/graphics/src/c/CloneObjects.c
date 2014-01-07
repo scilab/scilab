@@ -109,9 +109,9 @@ int clonePolyline(int iSource)
     getGraphicObjectProperty(iSource, __GO_INTERP_COLOR_MODE__, jni_bool, (void **)&pTmp);
     interpShaded = tmp;
 
-    iClonedPolylineUID = allocatePolyline(iParentAxes, dataX, dataY, dataZ, closed, nPoints, polylineStyle,
-                                          &foreground, &background, &markStyle, &markForeground, &markBackground,
-                                          lineMode, fillMode, markMode, interpShaded);
+    iClonedPolylineUID = ConstructPolyline(iParentAxes, dataX, dataY, dataZ, closed, nPoints, polylineStyle,
+                                           &foreground, &background, &markStyle, &markForeground, &markBackground,
+                                           lineMode, fillMode, markMode, interpShaded);
 
     /* These properties must be additionally set as this is not done by allocatePolyline */
     setGraphicObjectProperty(iClonedPolylineUID, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);

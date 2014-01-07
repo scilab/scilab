@@ -98,6 +98,8 @@ jmethodID jintcreatePolylinejintintjbooleanbooleanjintintjintintjbooleanbooleanj
 jmethodID jintcreateLegendjintintjobjectArray_java_lang_Stringjava_lang_StringjintArray_intintID; // cache method id
 jmethodID jintcreateSegsjintintjdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejbooleanbooleanjintArray_intintjdoubledoubleID; // cache method id
 jmethodID jintcreateChampjintintjdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubledoublejbooleanbooleanID; // cache method id
+jmethodID jintcreateSurfacejintintjintintjintintjintintID; // cache method id
+jmethodID voidinitSubWinTo3djintintjstringjava_lang_StringjbooleanbooleanjintArray_intintjdoubledoublejdoubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoubleID; // cache method id
 
 
 
@@ -198,6 +200,10 @@ static int createLegend(JavaVM * jvm_, int parent, char const* const* text, int 
 static int createSegs(JavaVM * jvm_, int parent, double const* vx, int vxSize, double const* vy, int vySize, double const* vz, int vzSize, bool isVZ, int const* style, int styleSize, double arsize);
 
 static int createChamp(JavaVM * jvm_, int parent, double const* vx, int vxSize, double const* vy, int vySize, double const* vfx, int vfxSize, double const* vfy, int vfySize, double arsize, bool typeofchamp);
+
+static int createSurface(JavaVM * jvm_, int parent, int typeof3d, int colorFlag, int colorMode);
+
+static void initSubWinTo3d(JavaVM * jvm_, int iSubWin, char const* legend, bool isLegend, int const* flag, int flagSize, double alpha, double theta, double const* ebox, int eboxSize, double const* x, int xSize, double const* y, int ySize, double const* z, int zSize);
 
 
                         /**

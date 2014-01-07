@@ -124,6 +124,8 @@ jintcreatePolylinejintintjbooleanbooleanjintintjintintjbooleanbooleanjintArray_i
 jintcreateLegendjintintjobjectArray_java_lang_Stringjava_lang_StringjintArray_intintID=NULL;
 jintcreateSegsjintintjdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejbooleanbooleanjintArray_intintjdoubledoubleID=NULL;
 jintcreateChampjintintjdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubledoublejbooleanbooleanID=NULL;
+jintcreateSurfacejintintjintintjintintjintintID=NULL;
+voidinitSubWinTo3djintintjstringjava_lang_StringjbooleanbooleanjintArray_intintjdoubledoublejdoubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoubleID=NULL;
 
 
 }
@@ -167,6 +169,8 @@ jintcreatePolylinejintintjbooleanbooleanjintintjintintjbooleanbooleanjintArray_i
 jintcreateLegendjintintjobjectArray_java_lang_Stringjava_lang_StringjintArray_intintID=NULL;
 jintcreateSegsjintintjdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejbooleanbooleanjintArray_intintjdoubledoubleID=NULL;
 jintcreateChampjintintjdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubledoublejbooleanbooleanID=NULL;
+jintcreateSurfacejintintjintintjintintjintintID=NULL;
+voidinitSubWinTo3djintintjstringjava_lang_StringjbooleanbooleanjintArray_intintjdoubledoublejdoubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoubleID=NULL;
 
 
 }
@@ -962,6 +966,118 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 return res;
 
+}
+
+int Builder::createSurface (JavaVM * jvm_, int parent, int typeof3d, int colorFlag, int colorMode){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jintcreateSurfacejintintjintintjintintjintintID = curEnv->GetStaticMethodID(cls, "createSurface", "(IIII)I" ) ;
+if (jintcreateSurfacejintintjintintjintintjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "createSurface");
+}
+
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintcreateSurfacejintintjintintjintintjintintID ,parent, typeof3d, colorFlag, colorMode));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
+
+}
+
+void Builder::initSubWinTo3d (JavaVM * jvm_, int iSubWin, char const* legend, bool isLegend, int const* flag, int flagSize, double alpha, double theta, double const* ebox, int eboxSize, double const* x, int xSize, double const* y, int ySize, double const* z, int zSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidinitSubWinTo3djintintjstringjava_lang_StringjbooleanbooleanjintArray_intintjdoubledoublejdoubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoubleID = curEnv->GetStaticMethodID(cls, "initSubWinTo3d", "(ILjava/lang/String;Z[IDD[D[D[D[D)V" ) ;
+if (voidinitSubWinTo3djintintjstringjava_lang_StringjbooleanbooleanjintArray_intintjdoubledoublejdoubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoubleID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "initSubWinTo3d");
+}
+
+jstring legend_ = curEnv->NewStringUTF( legend );
+if (legend != NULL && legend_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+
+jboolean isLegend_ = (static_cast<bool>(isLegend) ? JNI_TRUE : JNI_FALSE);
+
+jintArray flag_ = curEnv->NewIntArray( flagSize ) ;
+
+if (flag_ == NULL)
+{
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetIntArrayRegion( flag_, 0, flagSize, (jint*)(flag) ) ;
+
+
+jdoubleArray ebox_ = curEnv->NewDoubleArray( eboxSize ) ;
+
+if (ebox_ == NULL)
+{
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetDoubleArrayRegion( ebox_, 0, eboxSize, (jdouble*)(ebox) ) ;
+
+
+jdoubleArray x_ = curEnv->NewDoubleArray( xSize ) ;
+
+if (x_ == NULL)
+{
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetDoubleArrayRegion( x_, 0, xSize, (jdouble*)(x) ) ;
+
+
+jdoubleArray y_ = curEnv->NewDoubleArray( ySize ) ;
+
+if (y_ == NULL)
+{
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetDoubleArrayRegion( y_, 0, ySize, (jdouble*)(y) ) ;
+
+
+jdoubleArray z_ = curEnv->NewDoubleArray( zSize ) ;
+
+if (z_ == NULL)
+{
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetDoubleArrayRegion( z_, 0, zSize, (jdouble*)(z) ) ;
+
+
+                         curEnv->CallStaticVoidMethod(cls, voidinitSubWinTo3djintintjstringjava_lang_StringjbooleanbooleanjintArray_intintjdoubledoublejdoubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoubleID ,iSubWin, legend_, isLegend_, flag_, alpha, theta, ebox_, x_, y_, z_);
+                        curEnv->DeleteLocalRef(legend_);
+curEnv->DeleteLocalRef(flag_);
+curEnv->DeleteLocalRef(ebox_);
+curEnv->DeleteLocalRef(x_);
+curEnv->DeleteLocalRef(y_);
+curEnv->DeleteLocalRef(z_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 }
 
 }

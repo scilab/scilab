@@ -143,7 +143,7 @@ public abstract class TextObject extends ContouredObject {
      */
     public UpdateStatus setProperty(Object property, Object value) {
         if (property == TextObjectProperty.TEXT) {
-            setFormattedText((FormattedText[]) value);
+            setText((String[][]) value);
         } else if (property == TextObjectProperty.TEXT_ARRAY_DIMENSIONS) {
             setTextArrayDimensions((Integer[]) value);
         } else if (property == FormattedText.FormattedTextProperty.TEXT) {

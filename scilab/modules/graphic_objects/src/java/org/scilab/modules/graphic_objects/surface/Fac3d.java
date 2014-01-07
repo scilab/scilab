@@ -17,6 +17,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.utils.DataMapping;
 
 /**
  * Fac3d class
@@ -25,26 +26,6 @@ import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 public class Fac3d extends Surface {
     /** Fac3d properties names */
     private enum Fac3dProperty { DATAMAPPING };
-
-    /** Data mapping type */
-    private enum DataMapping { SCALED, DIRECT;
-
-                               /**
-                                * Converts an integer to the corresponding enum
-                                * @param intValue the integer value
-                                * @return the data mapping enum
-                                */
-    public static DataMapping intToEnum(Integer intValue) {
-        switch (intValue) {
-            case 0:
-                return DataMapping.SCALED;
-            case 1:
-                return DataMapping.DIRECT;
-            default:
-                return null;
-        }
-    }
-                             }
 
     /** Specifies how colors are mapped to scalar values */
     private DataMapping dataMapping;
@@ -80,7 +61,7 @@ public class Fac3d extends Surface {
      */
     public Object getProperty(Object property) {
         if (property == Fac3dProperty.DATAMAPPING) {
-            return getDataMapping();
+            return getCdataMapping();
         } else {
             return super.getProperty(property);
         }
@@ -94,7 +75,7 @@ public class Fac3d extends Surface {
      */
     public UpdateStatus setProperty(Object property, Object value) {
         if (property == Fac3dProperty.DATAMAPPING) {
-            setDataMapping((Integer) value);
+            setCdataMapping(DataMapping.intToEnum((Integer) value));
         } else {
             return super.setProperty(property, value);
         }
@@ -105,29 +86,14 @@ public class Fac3d extends Surface {
     /**
      * @return the dataMapping
      */
-    public Integer getDataMapping() {
-        return getDataMappingAsEnum().ordinal();
-    }
-
-    /**
-     * @return the dataMapping
-     */
-    public DataMapping getDataMappingAsEnum() {
+    public DataMapping getCdataMapping() {
         return dataMapping;
     }
 
     /**
      * @param dataMapping the dataMapping to set
      */
-    public UpdateStatus setDataMapping(Integer dataMapping) {
-        setDataMappingAsEnum(DataMapping.intToEnum(dataMapping));
-        return UpdateStatus.Success;
-    }
-
-    /**
-     * @param dataMapping the dataMapping to set
-     */
-    public UpdateStatus setDataMappingAsEnum(DataMapping dataMapping) {
+    public UpdateStatus setCdataMapping(DataMapping dataMapping) {
         this.dataMapping = dataMapping;
         return UpdateStatus.Success;
     }

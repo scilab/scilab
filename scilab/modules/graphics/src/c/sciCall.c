@@ -49,14 +49,6 @@
 #include "Format.h"
 #include "deleteGraphicObject.h"
 
-/**
- * Put min and max of vector in dMin and dMax.
- * If no min and max can't be found (no finite data in dMin or dMax),
- * then use the default values
- */
-static void getDrect(const double vector[], int nbElements,
-                     double* dMin, double* dMax,
-                     double defaultMin, double defaultMax);
 /*------------------------------------------------
  * Objrect :
  * On recupere la figure courante, puis on recupere la sous fenetre qui y est selectionnee
@@ -447,265 +439,21 @@ void Objplot3d (char    * fname ,
     int i = 0;
 
     int iSubwinUID = 0;
-    int iObjUID = 0;
 
-    double drect[6];
-    double rotationAngles[2];
-    double* dataBounds = NULL;
-    char * loc = NULL;
-    char * legx = NULL;
-    char * legy = NULL;
-    char * legz = NULL;
-    int iLabelId = 0;
-    int* piLabelId = &iLabelId;
-    /*   char * buff = NULL; */
-    int dimvectx = -1;
-    int dimvecty = -1;
-    int view = 0;
-    int linLogFlag;
     int firstPlot = 0;
-    int *piFirstPlot = &firstPlot;
 
-    int box = 0;
-    int axisVisible = 0;
-    int autoScale = 0;
-    int *piAutoScale = &autoScale;
-
-    int isoview = 0;
     int clipState = 0;
 
     int iNewSurfaceUID = 0;
 
-
-    /* Initialisation drect A.C pour debuggueur */
-    drect[0] = 0.0;
-    drect[1] = 0.0;
-    drect[2] = 0.0;
-    drect[3] = 0.0;
-    drect[4] = 0.0;
-    drect[5] = 0.0;
 
     /* =================================================
      * Force SubWindow properties according to arguments
      * ================================================= */
 
     iSubwinUID = getCurrentSubWin();
-
     checkRedrawing();
-
-    /* Force 3D view */
-    view = 1;
-    setGraphicObjectProperty(iSubwinUID, __GO_VIEW__, &view, jni_int, 1);
-
-    if (legend != NULL)
-    {
-        int textDimensions[2] = {1, 1};
-        /* F.Leray 25.04.05 replace the default labels by the user labels if specified */
-        loc = (char *) MALLOC((strlen(legend) + 1) * sizeof(char));
-        if (loc == NULL)
-        {
-            Scierror(999, _("%s: No more memory.\n"), "Objplot3d");
-        }
-
-        strcpy(loc, legend);
-
-        /*   legx=strtok_r(loc,"@",&buff); */
-        legx = strtok(loc, "@");
-
-        if (legx != NULL)
-        {
-            getGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_LABEL__, jni_int, (void **)&piLabelId);
-
-            setGraphicObjectProperty(iLabelId, __GO_TEXT_ARRAY_DIMENSIONS__, textDimensions, jni_int_vector, 2);
-            setGraphicObjectProperty(iLabelId, __GO_TEXT_STRINGS__, &legx, jni_string_vector, textDimensions[0]*textDimensions[1]);
-        }
-
-        /*   legy=strtok_r((char *)0,"@",&buff); */
-        legy = strtok((char *)NULL, "@"); /* NULL to begin at the last read character */
-        if (legy != NULL)
-        {
-            getGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_LABEL__, jni_int, (void **)&piLabelId);
-
-            setGraphicObjectProperty(iLabelId, __GO_TEXT_ARRAY_DIMENSIONS__, textDimensions, jni_int_vector, 2);
-            setGraphicObjectProperty(iLabelId, __GO_TEXT_STRINGS__, &legy, jni_string_vector, textDimensions[0]*textDimensions[1]);
-        }
-
-        /*   legz=strtok_r((char *)0,"@",&buff); */
-        legz = strtok((char *)NULL, "@");
-        if (legz != NULL)
-        {
-            getGraphicObjectProperty(iSubwinUID, __GO_Z_AXIS_LABEL__, jni_int, (void **)&piLabelId);
-
-            setGraphicObjectProperty(iLabelId, __GO_TEXT_ARRAY_DIMENSIONS__, textDimensions, jni_int_vector, 2);
-            setGraphicObjectProperty(iLabelId, __GO_TEXT_STRINGS__, &legz, jni_string_vector, textDimensions[0]*textDimensions[1]);
-        }
-    }
-
-    /* Force psubwin->logflags to linear */
-    linLogFlag = 0;
-
-    setGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_LOG_FLAG__, &linLogFlag, jni_bool, 1);
-    setGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_LOG_FLAG__, &linLogFlag, jni_bool, 1);
-    setGraphicObjectProperty(iSubwinUID, __GO_Z_AXIS_LOG_FLAG__, &linLogFlag, jni_bool, 1);
-
-
-    getGraphicObjectProperty(iSubwinUID, __GO_FIRST_PLOT__, jni_bool, (void **)&piFirstPlot);
-
-    if (firstPlot == 0 && (iflag[2] == 0 || iflag[2] == 1))
-    {
-        /* Nothing to do: we leave as before */
-    }
-    else
-    {
-        int labelVisible;
-
-        if (iflag[2] == 0 || iflag[2] == 1)
-        {
-            if (firstPlot)
-            {
-                /* 0: OFF */
-                box = 0;
-
-                axisVisible = 0;
-                setGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-                setGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-                setGraphicObjectProperty(iSubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-
-                setGraphicObjectProperty(iSubwinUID, __GO_BOX_TYPE__, &box, jni_int, 1);
-
-                labelVisible = 0;
-                getGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_LABEL__, jni_int, (void **)&piLabelId);
-                setGraphicObjectProperty(iLabelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-                getGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_LABEL__, jni_int, (void **)&piLabelId);
-                setGraphicObjectProperty(iLabelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-                getGraphicObjectProperty(iSubwinUID, __GO_Z_AXIS_LABEL__, jni_int, (void **)&piLabelId);
-                setGraphicObjectProperty(iLabelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            }
-            /*else no changes : the axes visible properties are driven by the previous plot */
-        }
-        else if (iflag[2] == 2)
-        {
-            /* 2: HIDDEN_AXES */
-            box = 2;
-
-            /* for 2d use only (when switching to 2d mode) */
-            setGraphicObjectProperty(iSubwinUID, __GO_BOX_TYPE__, &box, jni_int, 1);
-
-            axisVisible = 0;
-            setGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-            setGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-            setGraphicObjectProperty(iSubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-
-            labelVisible = 0;
-            getGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_LABEL__, jni_int, (void **)&piLabelId);
-            setGraphicObjectProperty(iLabelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            getGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_LABEL__, jni_int, (void **)&piLabelId);
-            setGraphicObjectProperty(iLabelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            getGraphicObjectProperty(iSubwinUID, __GO_Z_AXIS_LABEL__, jni_int, (void **)&piLabelId);
-            setGraphicObjectProperty(iLabelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-        }
-        else if (iflag[2] == 3)
-        {
-            /* 1: ON */
-            box = 1;
-
-            /* for 2d use only (when switching to 2d mode) */
-            setGraphicObjectProperty(iSubwinUID, __GO_BOX_TYPE__, &box, jni_int, 1);
-
-            axisVisible = 0;
-            setGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-            setGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-            setGraphicObjectProperty(iSubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-
-            labelVisible = 1;
-            getGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_LABEL__, jni_int, (void **)&piLabelId);
-            setGraphicObjectProperty(iLabelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            getGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_LABEL__, jni_int, (void **)&piLabelId);
-            setGraphicObjectProperty(iLabelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            getGraphicObjectProperty(iSubwinUID, __GO_Z_AXIS_LABEL__, jni_int, (void **)&piLabelId);
-            setGraphicObjectProperty(iLabelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-        }
-        else if (iflag[2] == 4)
-        {
-            /* 1: ON */
-            box = 1;
-            setGraphicObjectProperty(iSubwinUID, __GO_BOX_TYPE__, &box, jni_int, 1);
-
-            axisVisible = 1;
-            setGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-            setGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-            setGraphicObjectProperty(iSubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-
-            labelVisible = 1;
-            getGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_LABEL__, jni_int, (void **)&piLabelId);
-            setGraphicObjectProperty(iLabelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            getGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_LABEL__, jni_int, (void **)&piLabelId);
-            setGraphicObjectProperty(iLabelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            getGraphicObjectProperty(iSubwinUID, __GO_Z_AXIS_LABEL__, jni_int, (void **)&piLabelId);
-            setGraphicObjectProperty(iLabelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-        }
-    }
-
-    rotationAngles[0] = *alpha;
-    rotationAngles[1] = *theta;
-
-    setGraphicObjectProperty(iSubwinUID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
-
-    getGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
-
-    getGraphicObjectProperty(iSubwinUID, __GO_AUTO_SCALE__, jni_bool, (void **)&piAutoScale);
-
-    if (autoScale)
-    {
-        /* compute and merge new specified bounds with data bounds */
-        switch (iflag[1])
-        {
-            case 0:  /* do not change data bounds */
-                break;
-            case 1 :
-            case 3 :
-            case 5 :
-            case 7 : /* Force data bounds=ebox */
-                drect[0] = ebox[0]; /*xmin*/
-                drect[2] = ebox[2]; /*ymin*/
-                drect[1] = ebox[1]; /*xmax*/
-                drect[3] = ebox[3]; /*ymax*/
-                drect[4] = ebox[4]; /*zmin*/
-                drect[5] = ebox[5]; /*zmax*/
-                break;
-            case 2 :
-            case 4 :
-            case 6 :
-            case 8:/* Force data bounds to the x and y bounds */
-                getDrect(x, (*m1) * (*n1), &drect[0], &drect[1], dataBounds[0], dataBounds[1]);
-                getDrect(y, (*m2) * (*n2), &drect[2], &drect[3], dataBounds[2], dataBounds[3]);
-                getDrect(z, (*m3) * (*n3), &drect[4], &drect[5], dataBounds[4], dataBounds[5]);
-                break;
-        }
-
-        /* merge data bounds and drect */
-        if (!firstPlot)
-        {
-            drect[0] = Min(dataBounds[0], drect[0]); /* xmin */
-            drect[1] = Max(dataBounds[1], drect[1]); /* xmax */
-            drect[2] = Min(dataBounds[2], drect[2]); /* ymin */
-            drect[3] = Max(dataBounds[3], drect[3]); /* ymax */
-            drect[4] = Min(dataBounds[4], drect[4]); /* zmin */
-            drect[5] = Max(dataBounds[5], drect[5]); /* zmax */
-        }
-
-        if (iflag[1] != 0)
-        {
-            setGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, drect, jni_double_vector, 6);
-        }
-    }
-
-    if (iflag[1] != 0)
-    {
-        isoview = (iflag[1] == 3 || iflag[1] == 4 || iflag[1] == 5 || iflag[1] == 6);
-
-        setGraphicObjectProperty(iSubwinUID, __GO_ISOVIEW__, &isoview, jni_bool, 1);
-    }
+    initSubWinTo3d(iSubwinUID, legend, iflag, *alpha, *theta, ebox, x, *m1 * *n1, y, *m2 * *n2, z, *m3 * *n3);
 
     /* =================================================
      * Analyze arguments to find entity type
@@ -763,6 +511,8 @@ void Objplot3d (char    * fname ,
     /*Distinction here between SCI_PARAM3D1 and others*/
     if (typeof3d != SCI_PARAM3D1)
     {
+        int dimvectx = -1;
+        int dimvecty = -1;
         if (*isfac == 1)
         {
             /* x is considered as a matrix */
@@ -852,12 +602,6 @@ void Objplot3d (char    * fname ,
 
         for (i = 0; i < *n; ++i)
         {
-            /* F.Leray Pb here: In fact we do not create a Surface but one or several 3D Polylines
-               Pb comes when wanting to access the fields "surface_color" or "flag" for example
-               in function sciSet (cf. matdes.c).
-               Question 1: Are these properties accessible from a SCI_PARAM3D1 ?
-               Question 2: Is "flag" obsolete and replaced by "color_mode"?*/
-
             if ((*n > 0) && (zcol != (double *)NULL))
             {
                 if ((int) zcol[i] > 0)
@@ -900,13 +644,11 @@ void Objplot3d (char    * fname ,
             setCurrentObject(iNewPolylineUID);
             setGraphicObjectRelationship(iCurrentSubwinUID, iNewPolylineUID);
 
-            iObjUID = getCurrentObject();
-
             /* Force clipping, 1: CLIPGRF */
             clipState = 1;
-            setGraphicObjectProperty(iObjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+            setGraphicObjectProperty(iNewPolylineUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-            pObj[i] = iObjUID;
+            pObj[i] = iNewPolylineUID;
         }
 
         /** construct Compound and make it current object**/
@@ -926,10 +668,6 @@ void Objplot3d (char    * fname ,
 
     firstPlot = 0;
     setGraphicObjectProperty(iSubwinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
-
-    FREE(loc);
-    loc = NULL;
-
 }
 /*-----------------------------------------------------------
  * Objaxis:
@@ -1059,21 +797,5 @@ void Objfec (double    x[]        ,
 {
     C2F(fec)(x, y, noeud, fun, n, m, strflag, legend, brect, aaint,
              Zminmax, Colminmax, ColOut, WithMesh, flagNax, 4L, bsiz);
-}
-/*------------------------------------------------------------------------*/
-static void getDrect(const double vector[], int nbElements,
-                     double* dMin, double* dMax,
-                     double defaultMin, double defaultMax)
-{
-    if (containsOneFiniteElement(vector, nbElements))
-    {
-        *dMin = Mini(vector, nbElements);
-        *dMax = Maxi(vector, nbElements);
-    }
-    else
-    {
-        *dMin = defaultMin;
-        *dMax = defaultMax;
-    }
 }
 /*------------------------------------------------------------------------*/

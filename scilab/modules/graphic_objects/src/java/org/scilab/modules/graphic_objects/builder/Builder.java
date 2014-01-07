@@ -14,6 +14,7 @@
 package org.scilab.modules.graphic_objects.builder;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import org.scilab.modules.graphic_objects.ScilabNativeView;
 import org.scilab.modules.graphic_objects.arc.Arc;
@@ -24,12 +25,14 @@ import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.imageplot.Imageplot;
 import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.legend.Legend;
 import org.scilab.modules.graphic_objects.polyline.Polyline;
 import org.scilab.modules.graphic_objects.rectangle.Rectangle;
+import org.scilab.modules.graphic_objects.surface.Surface;
 import org.scilab.modules.graphic_objects.textObject.Font;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.utils.Alignment;
@@ -52,7 +55,7 @@ public final class Builder {
             return 0;
         }
 
-        Integer iRect = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_RECTANGLE__));
+        Integer iRect = controller.askObject(Type.RECTANGLE);
 
         /*
          * Sets the rectangle's parent in order to initialize the former's Contoured properties
@@ -174,7 +177,7 @@ public final class Builder {
 
         GraphicController controller = GraphicController.getController();
 
-        Integer iLabel = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_LABEL__));
+        Integer iLabel = controller.askObject(Type.LABEL);
         Label label = (Label) controller.getObjectFromId(iLabel);
 
         //Hide Label as they are non explicit children
@@ -361,7 +364,7 @@ public final class Builder {
                                        boolean isFilled, int align) {
 
         GraphicController controller = GraphicController.getController();
-        int iText = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_TEXT__));
+        int iText = controller.askObject(Type.TEXT);
 
         Axes axes = (Axes) controller.getObjectFromId(iParentsubwinUID);
         Text text = (Text) controller.getObjectFromId(iText);
@@ -432,7 +435,7 @@ public final class Builder {
                                       boolean filled, boolean line) {
 
         GraphicController controller = GraphicController.getController();
-        int iArc = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_ARC__));
+        int iArc = controller.askObject(Type.ARC);
 
         Axes axes = (Axes) controller.getObjectFromId(parent);
         Arc arc = (Arc) controller.getObjectFromId(iArc);
@@ -480,7 +483,7 @@ public final class Builder {
                                        int fontSize, int textColor, int ticsColor, boolean seg) {
 
         GraphicController controller = GraphicController.getController();
-        int iAxis = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_AXIS__));
+        int iAxis = controller.askObject(Type.AXIS);
 
         Axes axes = (Axes) controller.getObjectFromId(parent);
         Axis axis = (Axis) controller.getObjectFromId(iAxis);
@@ -515,7 +518,7 @@ public final class Builder {
 
     public static int createCompound(int parent, int[] children) {
         GraphicController controller = GraphicController.getController();
-        int iCompound = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_COMPOUND__));
+        int iCompound = controller.askObject(Type.COMPOUND);
         controller.objectCreated(iCompound);
 
         GraphicObject obj = controller.getObjectFromId(parent);
@@ -530,7 +533,7 @@ public final class Builder {
 
     public static int createCompoundSeq(int parent, int childrenCount) {
         GraphicController controller = GraphicController.getController();
-        int iCompound = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_COMPOUND__));
+        int iCompound = controller.askObject(Type.COMPOUND);
         controller.objectCreated(iCompound);
         GraphicObject axes = controller.getObjectFromId(parent);
 
@@ -564,7 +567,7 @@ public final class Builder {
     public static int createFec(int parent, double[] zminmax, int[] colminmax, int[] colout, boolean with_mesh) {
 
         GraphicController controller = GraphicController.getController();
-        int iFec = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_FEC__));
+        int iFec = controller.askObject(Type.FEC);
         Axes axes = (Axes) controller.getObjectFromId(parent);
         Fec fec = (Fec) controller.getObjectFromId(iFec);
 
@@ -629,7 +632,7 @@ public final class Builder {
                                      boolean isline, boolean isfilled, boolean ismark, boolean isinterp) {
 
         GraphicController controller = GraphicController.getController();
-        int iPoly = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_POLYLINE__));
+        int iPoly = controller.askObject(Type.POLYLINE);
         Axes axes = (Axes) controller.getObjectFromId(parent);
         Polyline poly = (Polyline) controller.getObjectFromId(iPoly);
 
@@ -694,7 +697,7 @@ public final class Builder {
         }
 
 
-        int iLeg = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_LEGEND__));
+        int iLeg = controller.askObject(Type.LEGEND);
         Legend leg = (Legend)controller.getObjectFromId(iLeg);
 
         leg.setParent(parent);
@@ -738,7 +741,7 @@ public final class Builder {
                                  int[] style, double arsize) {
         GraphicController controller = GraphicController.getController();
         Axes axes = (Axes) controller.getObjectFromId(parent);
-        int iSegs = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_SEGS__));
+        int iSegs = controller.askObject(Type.SEGS);
         Segs segs = (Segs)controller.getObjectFromId(iSegs);
 
         segs.setVisible(axes.getVisible());
@@ -797,7 +800,7 @@ public final class Builder {
         GraphicController controller = GraphicController.getController();
         Axes axes = (Axes) controller.getObjectFromId(parent);
 
-        int iChamp = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_CHAMP__));
+        int iChamp = controller.askObject(Type.CHAMP);
         Champ champ = (Champ)controller.getObjectFromId(iChamp);
 
         champ.setVisible(axes.getVisible());
@@ -846,6 +849,225 @@ public final class Builder {
         controller.setGraphicObjectRelationship(parent, iChamp);
 
         return iChamp;
+    }
+
+    public static int createSurface(int parent, int typeof3d, int colorFlag, int colorMode) {
+        GraphicController controller = GraphicController.getController();
+        Axes axes = (Axes) controller.getObjectFromId(parent);
+
+        int iSurf = controller.askObject(GraphicObject.getTypeFromName(typeof3d));
+        Surface surf = (Surface) controller.getObjectFromId(iSurf);
+
+        surf.setVisible(axes.getVisible());
+
+        //clip box
+        surf.setClipBox(axes.getClipBox());
+        surf.setClipBoxSet(axes.getClipBoxSet());
+        surf.setClipState(axes.getClipState());
+
+        surf.setColorFlag(colorFlag);
+        surf.setColorMode(colorMode);
+
+        surf.setHiddenColor(axes.getHiddenColor());
+
+        cloneGraphicContext(parent, iSurf);
+        controller.objectCreated(iSurf);
+        controller.setGraphicObjectRelationship(parent, iSurf);
+
+        return iSurf;
+    }
+
+    public static void initSubWinTo3d(int iSubwin, String legend, boolean isLegend,
+                                      int[] flag, double alpha, double theta,
+                                      double[] ebox, double[] x, double[] y, double[] z) {
+        GraphicController controller = GraphicController.getController();
+
+        // Force 3d view
+        controller.setProperty(iSubwin, GraphicObjectProperties.__GO_VIEW__, 1);
+
+        if (isLegend) {
+            StringTokenizer strTok =  new StringTokenizer(legend, "@");
+            int iToken = strTok.countTokens();
+            if (iToken > 0) {
+                //X
+                String str[][] = new String[][] {new String[] {strTok.nextToken()}};
+                Integer label = (Integer) controller.getProperty(iSubwin, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
+                controller.setProperty(label, GraphicObjectProperties.__GO_FORMATTED_TEXT__, str);
+            }
+
+            if (iToken > 1) {
+                //Y
+                String str[][] = new String[][] {new String[] {strTok.nextToken()}};
+                Integer label = (Integer) controller.getProperty(iSubwin, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
+                controller.setProperty(label, GraphicObjectProperties.__GO_FORMATTED_TEXT__, str);
+            }
+
+            if (iToken > 2) {
+                //Z
+                String str[][] = new String[][] {new String[] {strTok.nextToken()}};
+                Integer label = (Integer) controller.getProperty(iSubwin, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
+                controller.setProperty(label, GraphicObjectProperties.__GO_FORMATTED_TEXT__, str);
+            }
+        }
+
+        // Force psubwin->logflags to linear
+        controller.setProperty(iSubwin, GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__, false);
+        controller.setProperty(iSubwin, GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__, false);
+        controller.setProperty(iSubwin, GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__, false);
+
+        Boolean firstPlot = (Boolean) controller.getProperty(iSubwin, GraphicObjectProperties.__GO_FIRST_PLOT__);
+
+        if (firstPlot && (flag[2] == 0 || flag[2] == 1)) {
+            /* Nothing to do */
+        } else {
+            if (flag[2] == 0 || flag[2] == 1) {
+                if (firstPlot) {
+                    controller.setProperty(iSubwin, GraphicObjectProperties.__GO_X_AXIS_VISIBLE__, false);
+                    controller.setProperty(iSubwin, GraphicObjectProperties.__GO_Y_AXIS_VISIBLE__, false);
+                    controller.setProperty(iSubwin, GraphicObjectProperties.__GO_Z_AXIS_VISIBLE__, false);
+
+                    // 0: OFF
+                    controller.setProperty(iSubwin, GraphicObjectProperties.__GO_BOX_TYPE__, 0);
+
+                    Integer label = 0;
+                    label = (Integer) controller.getProperty(iSubwin, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
+                    controller.setProperty(label, GraphicObjectProperties.__GO_VISIBLE__, false);
+                    label = (Integer) controller.getProperty(iSubwin, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
+                    controller.setProperty(label, GraphicObjectProperties.__GO_VISIBLE__, false);
+                    label = (Integer) controller.getProperty(iSubwin, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
+                    controller.setProperty(label, GraphicObjectProperties.__GO_VISIBLE__, false);
+                }
+            } else if (flag[2] == 2) {
+                controller.setProperty(iSubwin, GraphicObjectProperties.__GO_X_AXIS_VISIBLE__, false);
+                controller.setProperty(iSubwin, GraphicObjectProperties.__GO_Y_AXIS_VISIBLE__, false);
+                controller.setProperty(iSubwin, GraphicObjectProperties.__GO_Z_AXIS_VISIBLE__, false);
+
+                //2: HIDDEN_AXES
+                controller.setProperty(iSubwin, GraphicObjectProperties.__GO_BOX_TYPE__, 2);
+
+                Integer label = 0;
+                label = (Integer) controller.getProperty(iSubwin, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
+                controller.setProperty(label, GraphicObjectProperties.__GO_VISIBLE__, false);
+                label = (Integer) controller.getProperty(iSubwin, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
+                controller.setProperty(label, GraphicObjectProperties.__GO_VISIBLE__, false);
+                label = (Integer) controller.getProperty(iSubwin, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
+                controller.setProperty(label, GraphicObjectProperties.__GO_VISIBLE__, false);
+
+            } else if (flag[2] == 3) {
+                controller.setProperty(iSubwin, GraphicObjectProperties.__GO_X_AXIS_VISIBLE__, false);
+                controller.setProperty(iSubwin, GraphicObjectProperties.__GO_Y_AXIS_VISIBLE__, false);
+                controller.setProperty(iSubwin, GraphicObjectProperties.__GO_Z_AXIS_VISIBLE__, false);
+
+                //1: ON
+                controller.setProperty(iSubwin, GraphicObjectProperties.__GO_BOX_TYPE__, 1);
+
+                Integer label = 0;
+                label = (Integer) controller.getProperty(iSubwin, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
+                controller.setProperty(label, GraphicObjectProperties.__GO_VISIBLE__, true);
+                label = (Integer) controller.getProperty(iSubwin, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
+                controller.setProperty(label, GraphicObjectProperties.__GO_VISIBLE__, true);
+                label = (Integer) controller.getProperty(iSubwin, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
+                controller.setProperty(label, GraphicObjectProperties.__GO_VISIBLE__, true);
+
+            } else if (flag[2] == 4) {
+                controller.setProperty(iSubwin, GraphicObjectProperties.__GO_X_AXIS_VISIBLE__, true);
+                controller.setProperty(iSubwin, GraphicObjectProperties.__GO_Y_AXIS_VISIBLE__, true);
+                controller.setProperty(iSubwin, GraphicObjectProperties.__GO_Z_AXIS_VISIBLE__, true);
+
+                //1: ON
+                controller.setProperty(iSubwin, GraphicObjectProperties.__GO_BOX_TYPE__, 1);
+
+                Integer label = 0;
+                label = (Integer) controller.getProperty(iSubwin, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
+                controller.setProperty(label, GraphicObjectProperties.__GO_VISIBLE__, true);
+                label = (Integer) controller.getProperty(iSubwin, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
+                controller.setProperty(label, GraphicObjectProperties.__GO_VISIBLE__, true);
+                label = (Integer) controller.getProperty(iSubwin, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
+                controller.setProperty(label, GraphicObjectProperties.__GO_VISIBLE__, true);
+            }
+        }
+
+        Double[] rotationAngles = new Double[] {alpha, theta};
+        controller.setProperty(iSubwin, GraphicObjectProperties.__GO_ROTATION_ANGLES__, rotationAngles);
+
+        Double[] dataBounds = (Double[]) controller.getProperty(iSubwin, GraphicObjectProperties.__GO_DATA_BOUNDS__);
+        Boolean autoScale = (Boolean) controller.getProperty(iSubwin, GraphicObjectProperties.__GO_AUTO_SCALE__);
+
+        Double rect[] = new Double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+        if (autoScale) {
+            // compute and merge new specified bounds with data bounds
+            switch (flag[1]) {
+                case 0 :
+                    break;
+                case 1 :
+                case 3 :
+                case 5 :
+                case 7 :
+                    rect[0] = ebox[0]; // xmin
+                    rect[1] = ebox[1]; // xmax
+                    rect[2] = ebox[2]; // ymin
+                    rect[3] = ebox[3]; // ymax
+                    rect[4] = ebox[4]; // zmin
+                    rect[5] = ebox[5]; // zmax
+                    break;
+                case 2 :
+                case 4 :
+                case 6 :
+                case 8 :
+                    double[] res = getDrect(x, x.length, rect[0], rect[1], dataBounds[0], dataBounds[1]);
+                    rect[0] = res[0];
+                    rect[1] = res[1];
+
+                    res = getDrect(y, y.length, rect[2], rect[3], dataBounds[2], dataBounds[3]);
+                    rect[2] = res[0];
+                    rect[3] = res[1];
+
+                    res = getDrect(z, z.length, rect[4], rect[5], dataBounds[4], dataBounds[5]);
+                    rect[4] = res[0];
+                    rect[5] = res[1];
+                    break;
+            }
+
+            if (firstPlot == false) {
+                rect[0] = Math.min(dataBounds[0], rect[0]); // xmin
+                rect[1] = Math.max(dataBounds[1], rect[1]); // xmax
+                rect[2] = Math.min(dataBounds[2], rect[2]); // ymin
+                rect[3] = Math.max(dataBounds[3], rect[3]); // ymax
+                rect[4] = Math.min(dataBounds[4], rect[4]); // zmin
+                rect[5] = Math.max(dataBounds[5], rect[5]); // zmax
+            }
+
+            if (flag[1] != 0) {
+                controller.setProperty(iSubwin, GraphicObjectProperties.__GO_DATA_BOUNDS__, rect);
+            }
+        }
+
+        if (flag[1] != 0) {
+            boolean isoview = (flag[1] == 3 || flag[1] == 4 || flag[1] == 5 || flag[1] == 6);
+            controller.setProperty(iSubwin, GraphicObjectProperties.__GO_ISOVIEW__, isoview);
+        }
+    }
+
+    static double[] getDrect(double[] x, int xSize, double min, double max, double defaultMin, double defaultMax) {
+        double refMax = Double.NEGATIVE_INFINITY;
+        double refMin = Double.POSITIVE_INFINITY;
+        boolean isInfinite = true;
+
+        for (int i = 0 ; i < xSize ; i++) {
+            Double tmp = x[i];
+            if (tmp.isInfinite() == false) {
+                refMin = Math.min(refMin, tmp);
+                refMax = Math.max(refMax, tmp);
+                isInfinite = false;
+            }
+        }
+
+        if (isInfinite) {
+            refMin = defaultMin;
+            refMax = defaultMax;
+        }
+
+        return new double[] {refMin, refMax};
     }
 }
 

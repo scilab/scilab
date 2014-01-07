@@ -167,3 +167,15 @@ int createChamp(int parent, double* vx, int vxSize, double* vy, int vySize, doub
 {
     return Builder::createChamp(getScilabJavaVM(), parent, vx, vxSize, vy, vySize, vfx, vfxSize, vfy, vfySize, arsize, typeofchamp == TRUE);
 }
+
+int createSurface(int parent, int typeof3d, int colorFlag, int colorMode)
+{
+    return Builder::createSurface(getScilabJavaVM(), parent, typeof3d, colorFlag, colorMode);
+}
+
+void initSubWinTo3d(int subwin, char* legend, int* flag, double alpha, double theta,
+                    double* ebox, double* x, int xSize, double* y, int ySize, double* z, int zSize)
+{
+    Builder::initSubWinTo3d(getScilabJavaVM(), subwin, legend, legend != NULL, flag, 3, alpha, theta,
+                            ebox, 6, x, xSize, y, ySize, z, zSize);
+}

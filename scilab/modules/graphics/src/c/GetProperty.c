@@ -43,6 +43,7 @@
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
 #include "FigureModel.h"
+#include "api_scilab.h"
 
 /**sciGetNumColors
 * This function gets the number of the color defined in colormap
@@ -76,40 +77,48 @@ int sciGetNumColors (int iObjUID)
 
 BOOL sciisTextEmpty(int iObjUID)
 {
-    int nbElements = 0;
-    int* dimensions = NULL;
+    int iAddr = 0;
+    int* piAddr = NULL;
+    int iRows = 0;
+    int iCols = 0;
+    char** pstText = NULL;
 
-    getGraphicObjectProperty(iObjUID, __GO_TEXT_ARRAY_DIMENSIONS__, jni_int_vector, (void **)&dimensions);
-
-    if (dimensions == NULL)
+    int ret = getProperty(iObjUID, "text", Rhs + 1);
+    if (ret != 0)
     {
+        //unable to get information, so is empty ;)
         return TRUE;
     }
 
-    nbElements = dimensions[0] * dimensions[1];
+    iAddr = iadr(*Lstk(Top + 1));
+    piAddr = istk(iAddr);
 
-    if (nbElements == 0)
+    if (getAllocatedMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &pstText))
     {
+        if (pstText)
+        {
+            freeAllocatedMatrixOfString(iRows, iCols, pstText);
+        }
+
         return TRUE;
     }
 
-    if (nbElements == 1)
+    if (iRows * iCols == 0)
     {
-        char** textMatrix = NULL;
-        getGraphicObjectProperty(iObjUID, __GO_TEXT_STRINGS__, jni_string_vector, (void **) &textMatrix);
-
-        if (textMatrix[0] == NULL)
-        {
-            return TRUE;
-        }
-        else if (strcmp(textMatrix[0], "") == 0)
-        {
-            /* empty string */
-            return TRUE;
-        }
-
+        freeAllocatedMatrixOfString(iRows, iCols, pstText);
+        return TRUE;
     }
 
+    if (iRows * iCols == 1)
+    {
+        if (pstText[0][0] == '\0')
+        {
+            freeAllocatedMatrixOfString(iRows, iCols, pstText);
+            return TRUE;
+        }
+    }
+
+    freeAllocatedMatrixOfString(iRows, iCols, pstText);
     return FALSE;
 }
 
