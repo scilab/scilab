@@ -49,7 +49,7 @@ static char **extractComments(const char **lines, int nbLines, const char *regex
 static char **removeComments(const char **lines, int nbLines, const char *regexpcomments, int *nbNewLine, int *iErr);
 static char **removeAllBlankLines(const char **lines, int *sizelines);
 // =============================================================================
-csvResult* csvRead(const char *filename, const char *separator, const char *decimal, const char **toreplace, int sizetoreplace, const char *regexpcomments)
+csvResult* csvRead(const char *filename, const char *separator, const char *decimal, const char **toreplace, int sizetoreplace, const char *regexpcomments, int header)
 {
     char *expandedFilename = NULL;
     csvResult *result = NULL;
@@ -107,6 +107,10 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
         return result;
     }
 
+    if (header != 0)
+    {
+        mgetl(fd, header, &nblines, &errMGETL);
+    }
     lines = mgetl(fd, -1, &nblines, &errMGETL);
 
     C2F(mclose)(&fd, &dErrClose);

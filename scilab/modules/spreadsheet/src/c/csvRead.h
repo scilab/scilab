@@ -40,7 +40,7 @@ extern "C" {
 #endif
 
     csvResult* csvRead(const char *filename, const char *separator, const char *decimal,
-                       const char **toreplace, int sizetoreplace, const char *regexpcomments);
+                       const char **toreplace, int sizetoreplace, const char *regexpcomments, int header);
 
     csvResult* csvTextScan(const char **lines, int numberOfLines, const char *separator, const char *decimal);
 
