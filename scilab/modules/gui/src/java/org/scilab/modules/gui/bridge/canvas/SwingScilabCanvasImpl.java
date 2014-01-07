@@ -265,9 +265,9 @@ public class SwingScilabCanvasImpl {
 
     public Component createOpenGLComponent(boolean isCanvas) {
         if (isCanvas) {
-            return new GLCanvas();
+            return new SafeGLCanvas();
         } else {
-            return new GLJPanel();
+            return new SafeGLJPanel();
         }
     }
 
