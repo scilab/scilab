@@ -290,7 +290,6 @@ cd ..
     <ClCompile Include="ifexpr.c" />
     <ClCompile Include="InitializeCore.c" />
     <ClCompile Include="InitializePreferences.c" />
-    <ClCompile Include="initMacOSXEnv.c" />
     <ClCompile Include="isanan.c" />
     <ClCompile Include="islittleendian.c" />
     <ClCompile Include="LaunchScilabSignal.c" />

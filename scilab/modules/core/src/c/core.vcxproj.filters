@@ -197,9 +197,6 @@
     <ClCompile Include="getdynamicdebuginfo.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="initMacOSXEnv.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="setPrecisionFPU.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -403,9 +400,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\signal_mgmt.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\stack1.h">

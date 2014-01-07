@@ -20,7 +20,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\core\src\cpp\scilab.cpp">
+    <ClCompile Include="..\..\..\..\others_tools\src\cpp\scilab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
