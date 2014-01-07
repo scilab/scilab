@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2012-2014 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -332,6 +332,13 @@ void XMLNodeList::insertAtIndex(int index, const XMLElement & elem)
 xmlNode *XMLNodeList::getListNode(int index)
 {
     return XMLList::getListElement < xmlNode > (index, size, &prev, &prevNode);
+}
+
+void XMLNodeList::revalidateSize()
+{
+    size = getNodeListSize(parent->children);
+    prevNode = parent->children;
+    prev = 1;
 }
 
 int XMLNodeList::getNodeListSize(xmlNode * node)

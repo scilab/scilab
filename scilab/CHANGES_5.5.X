@@ -330,6 +330,8 @@ Scilab Bug Fixes
 
 * Bug #13152 fixed - Typo fixed in syslin french help page.
 
+* Bug #13174 fixed - Scilab crashed after XML element removal.
+
 
 Xcos Bug Fixes
 ==============
