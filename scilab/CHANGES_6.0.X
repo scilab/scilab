@@ -35,3 +35,8 @@ Deprecated behavior
 * Declaration of a number on two lines is no longer allowed:
  1..
  2
+
+Scilab Bug Fixes
+================
+
+* Bug #9621 fixed - A tlist with undefined fields can now be saved.
