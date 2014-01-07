@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-07-29 09:17+0000\n"
+"PO-Revision-Date: 2013-12-08 12:08+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -266,6 +266,10 @@ msgid "%s and %s must have same size.\n"
 msgstr "%s と %s は、サイズが一致しなくてはいけません。\n"
 
 #, c-format
+msgid "Answer appears to be lower than lowest search bound %g\n"
+msgstr "解が探索域の下限 %g よりも小さいようです\n"
+
+#, c-format
 msgid "Answer appears to be lower than lowest search bound %f\n"
 msgstr "解が探索範囲の下限 %f よりも小さくなっています.\n"
 
@@ -365,6 +369,36 @@ msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: A single boolean expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を1つ指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数の行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 範囲 %s とする必要があります.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 要素は昇順としてください.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
 
@@ -422,6 +456,10 @@ msgid "%s: Wrong value for input argument #%d: '%s', '%s', %d or %d.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています:  '%s', '%s', %d または %d.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s','%s' or a positive number "
 "expected.\n"
@@ -446,8 +484,18 @@ msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 数値を指定してください.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected."
 msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください."
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
+"expected.\n"
+msgstr "%s: 入力引数 #%d と #%d に互換性がありません: 列の数を同じにしてください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Numerical expected.\n"
@@ -498,6 +546,16 @@ msgstr "相関円"
 
 msgid "Eigenvalues"
 msgstr "固有値"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s','%s', '%s' or a positive "
+"integer expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s','%s', '%s' または正の整数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -557,12 +615,14 @@ msgid "Unexpected value of orien : %s\n"
 msgstr "orien に想定外の値が指定されました: %s\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument: '%s', '%s', %d or %d expected.\n"
-msgstr "%s: 入力引数の値が間違っています: '%s', '%s', %d または %d を指定してください.\n"
+msgid "%s: Wrong value of m : a priori mean expected.\n"
+msgstr "%s: m の値が間違っています:  平均の予測値を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong value of w : %s; %d or %d expected.\n"
-msgstr "%s: w の値が間違っています:  %s; %d または %d を指定してください.\n"
+msgid ""
+"%s: The significance of input argument #%d has been modified. Please refer "
+"to the variance help page.\n"
+msgstr "%s: 入力引数 #%d の有意性が修正されました. varianceのヘルプページを参照してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"

@@ -662,7 +662,7 @@
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 // The following sets dimensions for this problem.
 
 nx    = 10;
@@ -680,9 +680,9 @@ _select = zeros(ncv, 1);
 dr       = zeros(nev + 1, 1);
 di      = zeros(nev + 1, 1);
 z       = zeros(nx, nev + 1);
-resid   = zeros(nx, 1); 
+resid   = zeros(nx, 1);
 v       = zeros(nx, ncv);
-workd   = zeros(3 * nx, 1); 
+workd   = zeros(3 * nx, 1);
 workev  = zeros(3 * ncv, 1);
 workl   = zeros(3 * ncv * ncv + 6 * ncv, 1);
 
@@ -714,14 +714,14 @@ while(ido <> 99)
   // either convergence is indicated or maxitr has been exceeded.
 
   [ido, resid, v, iparam, ipntr, workd, workl, info_dnaupd] = dnaupd(ido, bmat, nx, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info_dnaupd);
-  
+
   if(info_dnaupd < 0)
     printf('\nError with dnaupd, info = %d\n',info_dnaupd);
     printf('Check the documentation of dnaupd\n\n');
   end
-  
+
   if(ido == -1 | ido == 1)
-    // Perform matrix vector multiplication 
+    // Perform matrix vector multiplication
     workd(ipntr(2):ipntr(2) + nx -1) = A * workd(ipntr(1):ipntr(1) + nx - 1);
   end
 end
@@ -734,7 +734,7 @@ info_dneupd = 0;
 [dr, di, z, resid, v, iparam, ipntr, workd, workl, info_dneupd] = dneupd(rvec, howmany, _select, dr, di, z, sigmar, sigmai, workev, ...
                                                                        bmat, nx, which, nev, tol, resid, ncv, v, ...
                                                                        iparam, ipntr, workd, workl, info_dneupd);
-                                                                       
+
 if(info_dneupd < 0)
   printf('\nError with dneupd, info = %d\n', info_dneupd);
   printf('Check the documentation of dneupd.\n\n');
@@ -750,7 +750,7 @@ printf('What portion of the spectrum: %s\n', which);
 printf('The number of Implicit Arnoldi update iterations taken is %d\n', iparam(3));
 printf('The number of OP*x is %d\n', iparam(9));
 printf('The convergence criterion is %d\n', tol);
- 
+
 ]]>
         </programlisting>
     </refsection>
@@ -778,7 +778,7 @@ printf('The convergence criterion is %d\n', tol);
         </para>
         <para>
             4. At present there is no a-priori analysis to guide the selection
-            of NCV relative to NEV. The only formal requrement is that NCV &gt; NEV +
+            of NCV relative to NEV. The only formal requirement is that NCV &gt; NEV +
             2. However, it is recommended that NCV &gt;= 2 * NEV + 1. If many problems of
             the same type are to be solved, one should experiment with increasing NCV
             while keeping NEV fixed for a given test problem. This will usually

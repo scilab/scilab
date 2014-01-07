@@ -285,7 +285,7 @@ c         "ELEMENTARY FUNCTIONS"
 c         "Algorithms and implementation"
 c         J.M. Muller (Birkhauser)
 c
-c        (*) without the additionnal raffinement to get the first coefs
+c        (*) without the additional raffinement to get the first coefs
 c         very near floating point numbers)
 c
       double precision s2

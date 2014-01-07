@@ -12,16 +12,16 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=11452
 //
 // <-- Short Description -->
-// diag optionnal argument in lsqrsolve cannot be used
+// diag optional argument in lsqrsolve cannot be used
 //
 
 a=[1,7;
-   2,8
-   4 3
-  -1 0.3];
+2,8
+4 3
+-1 0.3];
 b=[10;11;-1;2];
 function y=f1(x, m)
-  y=a*x-b;
+    y=a*x-b;
 endfunction
 
 stp=[1.d-10,1.d-10,1.d-5,100,0,100];

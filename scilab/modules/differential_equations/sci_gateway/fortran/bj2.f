@@ -18,8 +18,7 @@ c
       integer iadr,sadr
 c     
       double precision y(n),s(n),jac(nrowj,n),t(*)
-      common/ierode/iero
-c     
+      
       logical allowptr
       integer vol,tops,nordre
       data nordre/3/,mlhs/1/
@@ -32,16 +31,16 @@ c     de donnee,
 c     mlhs (mrhs) est le nombre de parametres de sortie (entree)
 c     du simulateur 
 c     
-      iero=0
+      ierror=0
       mrhs=3
 c     
       ilp=iadr(lstk(top))
       il=istk(ilp+nordre)
 c     external is a Scilab function
 
-c     on return iero=1 is used to notify to the ode solver that
+c     on return ierror=1 is used to notify to the ode solver that
 c     scilab was not able to evaluate the external
-      iero=1
+      ierror=1
 
 c     Putting Fortran arguments on Scilab stack 
 c+    
@@ -121,8 +120,8 @@ c+
 c     transfert des variables  de sortie vers fortran
       call btof(jac,n*n)
       if(err.gt.0.or.err1.gt.0) return
-c     normal return iero set to 0
-      iero=0 
+c     normal return ierror set to 0
+      ierror=0 
       return
 
 c+    

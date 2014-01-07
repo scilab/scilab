@@ -225,7 +225,7 @@ checkassert ( flag , errmsg , "failure" );
 //
 ///////////////////////////////////////////////////////////////////
 // 
-// A comparison function with an additionnal argument
+// A comparison function with an additional argument
 //
 // A test with a comparison function which ignores comment lines.
 //

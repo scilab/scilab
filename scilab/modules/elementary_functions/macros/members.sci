@@ -352,7 +352,7 @@ function [nb, loc] = members(A, S, varargin)
         // Row-wise processing: searching for matching rows
         // ------------------------------------------------
 
-        // Additionnal input checking:
+        // Additional input checking:
         A = squeeze(A);
         if ~ismatrix(A) then
             msg = _("%s: Wrong type for argument #%d: Matrix expected.\n"); // error #209

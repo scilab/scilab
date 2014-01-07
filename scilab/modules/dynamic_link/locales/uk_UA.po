@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-04 04:29+0000\n"
+"PO-Revision-Date: 2013-12-07 08:05+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: uk\n"
 
 #, c-format
@@ -356,6 +356,79 @@ msgstr "   Виконання makefile\n"
 
 msgid "   Generate a cleaner file\n"
 msgstr "   Створення файла чищення\n"
+
+#, c-format
+msgid "%s: function not available in NWNI mode.\n"
+msgstr "%s: у режимі NWNI функцією не можна користуватися.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): 3 to 5 expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: мало бути від 3 до 5 "
+"параметрів.\n"
+
+#, c-format
+msgid "   Building JAR library %s\n"
+msgstr "   Збираємо бібліотеку JAR %s\n"
+
+#, c-format
+msgid "Cannot create jar build dir %s"
+msgstr "Не вдалося створити каталог збирання jar %s"
+
+#, c-format
+msgid ""
+"   Add dependency class paths:\n"
+"%s\n"
+msgstr ""
+"   Додавання шляхів класів залежностей:\n"
+"%s\n"
+
+#, c-format
+msgid "   Build package %s\n"
+msgstr "   Збирання пакунка %s\n"
+
+msgid "   Compiling source files:\n"
+msgstr "   Збираємо файли коду:\n"
+
+#, c-format
+msgid "   Compiling Java sources in %s\n"
+msgstr "   Збираємо код Java у %s\n"
+
+#, c-format
+msgid "No Java sources in %s to compile for package %s"
+msgstr "У %s немає коду Java для збирання пакунка %s"
+
+#, c-format
+msgid "Cannot create jar package directory %s"
+msgstr "Не вдалося створити каталог пакунка jar %s"
+
+#, c-format
+msgid "   Copying compiled package from %s to %s\n"
+msgstr "   Копіюємо зібраний пакунок з %s до %s\n"
+
+#, c-format
+msgid "Cannot find compilation directory %s for package %s"
+msgstr "Не вдалося знайти каталог збирання %s для пакунка %s"
+
+#, c-format
+msgid "   Creating JAR archive %s\n"
+msgstr "   Створюємо архів JAR %s\n"
+
+#, c-format
+msgid "Cannot create JAR file %s"
+msgstr "Не вдалося створити файл JAR %s"
+
+#, c-format
+msgid "   Creating scripts for JAR relative path %s\n"
+msgstr "   Створюємо скрипти для відносного шляху JAR %s\n"
+
+#, c-format
+msgid "   Create loader script for Java %s\n"
+msgstr "   Створення скрипту завантаження для Java %s\n"
+
+#, c-format
+msgid "   Create cleaner script for Java %s\n"
+msgstr "   Створення скрипту очищення для Java %s\n"
 
 msgid "A Fortran or C compiler is required."
 msgstr "Потрібен компілятор Fortran або C."

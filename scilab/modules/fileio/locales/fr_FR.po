@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: fr\n"
 
 #, c-format
@@ -24,11 +24,6 @@ msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un booléen attendu.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Un booléen attendu.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -47,12 +42,6 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
-"caractères attendue.\n"
-
-#, c-format
 msgid "%s: Can not read named argument %s.\n"
 msgstr "%s : Impossible de lire l'argument nommé %s.\n"
 
@@ -63,12 +52,6 @@ msgstr "%s : Impossible d'aller dans le répertoire %s\n"
 #, c-format
 msgid "%s: Cannot go to directory.\n"
 msgstr "%s : Impossible d'aller dans le répertoire.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A string expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
 
 #, c-format
 msgid ""
@@ -139,8 +122,11 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s : Dimension erronée de l'argument d'entrée n°%d.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un tableau 1-par-n ou m-"
+"par-1 attendu.\n"
 
 #, c-format
 msgid ""
@@ -151,10 +137,10 @@ msgstr ""
 "virgule flottante attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real values expected.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Des valeurs réelles "
-"attendues.\n"
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid "%s: can not open file %s.\n"
@@ -316,6 +302,13 @@ msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
+"unité logique attendue.\n"
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: String or logical unit expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
@@ -342,13 +335,6 @@ msgid "%s: No input file associated to logical unit %d.\n"
 msgstr "%s : Aucun fichier d'entrée associé à l'unité logique %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
-"unité logique attendue.\n"
-
-#, c-format
 msgid "%s: invalid filename.\n"
 msgstr "%s : Nom de fichier invalide.\n"
 
@@ -366,13 +352,6 @@ msgstr ""
 "un entier attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Un tableau 1-par-n ou m-"
-"par-1 attendu.\n"
-
-#, c-format
 msgid "%s: Specified format cannot include any '\\n'\n"
 msgstr "%s : Le format spécifié ne peut pas inclure de '\\n'\n"
 
@@ -388,6 +367,11 @@ msgid "%s: Wrong value for input argument #%d: 'w' or 'u' string expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Une chaîne de caractères "
 "'w' ou 'u' attendue.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un booléen attendu.\n"
 
 #, c-format
 msgid "%s: An error occurred.\n"
@@ -414,6 +398,10 @@ msgid "Could not parse the URL.\n"
 msgstr "Impossible d'analyser l'URL.\n"
 
 #, c-format
+msgid "Could not read the configuration file '%s'.\n"
+msgstr ""
+
+#, c-format
 msgid "Failed to read the scicurl_config file '%s'.\n"
 msgstr "Impossible de lire le fichier scicurl_config '%s'.\n"
 
@@ -436,8 +424,8 @@ msgstr ""
 "après '=' attendu.\n"
 
 #, c-format
-msgid "Failed opening '%s' for writing.\n"
-msgstr "Impossible d'ouvrir '%s' en écriture.\n"
+msgid "Failed getting current dir, error code: %d\n"
+msgstr ""
 
 #, c-format
 msgid "Failed to set URL [%s]\n"
@@ -468,8 +456,16 @@ msgid "Failed to set write data [%s]\n"
 msgstr "Impossible de configurer les données à écrire [%s]\n"
 
 #, c-format
+msgid "Failed to set 'Follow Location' [%s]\n"
+msgstr ""
+
+#, c-format
 msgid "Transfer did not complete successfully: %s\n"
 msgstr "Le transfert ne s'est pas terminé correctement : %s\n"
+
+#, c-format
+msgid "Failed opening '%s' for writing.\n"
+msgstr "Impossible d'ouvrir '%s' en écriture.\n"
 
 msgid "unclosed [ directive."
 msgstr "Directive [ non fermée."

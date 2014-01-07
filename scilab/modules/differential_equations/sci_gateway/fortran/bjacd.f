@@ -17,9 +17,7 @@ c ======================================================================
 c
       INCLUDE 'stack.h'
       integer iadr,sadr
-c     
-      common/ierode/iero
-c     
+
       character tmpbuf * (bsiz) 
       logical allowptr
       double precision t, y(*),ydot(*),res(*),rpar(*),cj
@@ -40,7 +38,7 @@ c     data structure,
 c     mlhs (mrhs) is the number of output (input) parameters
 c     of the simulator
 c     
-      iero=0
+      ierror=0
       mrhs=4
 c     
       ilp=iadr(lstk(top))
@@ -56,9 +54,9 @@ c     Case of a Fortran simulator
       endif
 c     external is a Scilab function
 
-c     On return iero=1 is used to notify to the ode solver that
+c     On return ierror=1 is used to notify to the ode solver that
 c     scilab was not able to evaluate the external
-      iero=1
+      ierror=1
 
 c     Putting Fortran arguments on Scilab stack 
 c+    
@@ -146,8 +144,8 @@ c+
 c     Transferring the output to Fortran
       call btof(res,neq*neq)
       if(err.gt.0.or.err1.gt.0) return
-c     normal return iero set to 0
-      iero=0 
+c     normal return ierror set to 0
+      ierror=0 
       return
 c     
  9999 continue

@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -60,7 +60,7 @@
                         <listitem>
                             <para>
                                 <literal>5th column</literal> : I/A, this parameter tell if
-                                the external module has been automatically or intentionnaly installed.
+                                the external module has been automatically or intentionaly installed.
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -116,7 +116,7 @@
     <!-- ===================================================================== -->
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 atomsSetConfig("Verbose","True");
 atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
 atomsInstall("toolbox_5");

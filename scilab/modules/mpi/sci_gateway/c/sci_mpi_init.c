@@ -10,12 +10,16 @@
  *
  */
 #include <stdio.h>                      // for NULL, fprintf, stderr
+#include <mpi.h>
 #include "MALLOC.h"
 #include "BOOL.h"                       // for ::TRUE, ::FALSE, BOOL
 #include "api_scilab.h"                 // for pvApiCtx, etc
-#include "mpi.h"                        // for MPI_Request, etc
-#include "sci_mpi.h"                    // for REQUEST_MAXSIZE, etc
 
+/* Create some static datastructure to store all the Request references */
+MPI_Request *request;
+int **listRequestPointer;
+int *listRequestPointerSize;
+static int REQUEST_MAXSIZE = 10000;
 
 /**
  * This function init the MPI env

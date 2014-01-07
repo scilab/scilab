@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -36,7 +36,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            For   a   vector    or   a  matrix   <literal>    x</literal>,   
+            For   a   vector    or   a  matrix   <literal>    x</literal>,
             <literal>[m]=nanmedian(x)</literal>  returns in the vector  <literal>  m</literal> the
             median of the  values (ignoring the NANs)  of vector <literal>x</literal>.
         </para>
@@ -48,8 +48,8 @@
             column of <literal> x</literal>.
         </para>
         <para>
-            <literal>[m]=nanmedian(x,'c')</literal>      (or,   equivalently,   
-            <literal>[m]=nanmedian(x,2)</literal>)  are the  columnwise  madians.   It
+            <literal>[m]=nanmedian(x,'c')</literal>      (or,   equivalently,
+            <literal>[m]=nanmedian(x,2)</literal>)  are the  columnwise  medians.   It
             returns in each position of the column vector <literal> m</literal> the
             medians of data (ignoring  the NANs) in the  corresponding
             row of <literal> x</literal>.
@@ -60,7 +60,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[0.2113249 %nan 0.6653811;0.7560439 0.3303271 0.6283918]
 m=nanmedian(x)
 m=nanmedian(x,1)

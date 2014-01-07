@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=7505
 //
 // <-- Short Description -->
-// Last optionnal parameter of "legend" macros was not readed.
+// Last optional parameter of "legend" macros was not readed.
 
 
 scf(42);

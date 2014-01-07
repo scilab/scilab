@@ -35,13 +35,11 @@ C
 c-----------------------------------------------------------------------
       integer  it,itout
       double precision tt
-      integer         iero
-      common /ierode/ iero
       include 'stack.h'
 c
       it=int(t)
       itout=int(tout)
-      iero=0	
+      ierror=0	
       if ( itout.lt.it) then 
          istate=-3
          return
@@ -52,7 +50,7 @@ c
          do 10 j=it,itout-1
             tt=dble(j)
             call f (neq,tt, y, rwork)
-            if(iero.gt.0) then
+            if(ierror.gt.0) then
                istate=-4
                return
             endif

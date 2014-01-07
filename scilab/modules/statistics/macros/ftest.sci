@@ -16,7 +16,7 @@ function [f,p]=ftest(samples)
     //observations this fonction computes in f the Fischer ratio
     //(it is the  ratio between  nr times  the variance   of the
     //means of  samples  and the  mean of the  variances of each
-    //sample).  Additionnally it gives (in p) the p-value of the
+    //sample).  Additionally it gives (in p) the p-value of the
     //computed  Fischer ratio.  samples   is a matrix  with type
     //nrxnc.
     //

@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -148,7 +148,7 @@ xx=linspace(0,3,100);
 yy1=interp1(x,y,xx,'linear');
 yy2=interp1(x,y,xx,'spline');
 yy3=interp1(x,y,xx,'nearest');
-plot(xx,[yy1;yy2;yy3],x,y,'*')
+plot(xx',[yy1;yy2;yy3]',x,y,'*')
 xtitle('interpolation of square function')
 legend(['linear','spline','nearest'],a=2)
  ]]></programlisting>
@@ -159,7 +159,7 @@ legend(['linear','spline','nearest'],a=2)
             yy1=interp1(x,y,xx,'linear');
             yy2=interp1(x,y,xx,'spline');
             yy3=interp1(x,y,xx,'nearest');
-            plot(xx,[yy1;yy2;yy3],x,y,'*')
+            plot(xx',[yy1;yy2;yy3]',x,y,'*')
             xtitle('interpolation of square function')
             legend(['linear','spline','nearest'],a=2)
         </scilab:image>

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-04 13:49+0000\n"
+"PO-Revision-Date: 2013-12-07 08:24+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: uk\n"
 
 #, c-format
@@ -118,15 +118,27 @@ msgstr ""
 "скалярну величину або елемент керування «Figure».\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A valid figure identifier expected.\n"
 msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+"%s: помилкове значення вхідного параметра №%d:мало бути використано "
+"коректний ідентифікатор рисунка.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати дійсні значення.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
 "рядків.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
@@ -410,8 +422,12 @@ msgstr ""
 "%s"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
+
+#, c-format
 msgid "%s: Wrong number for input argument: %d expected.\n"
-msgstr ""
+msgstr "%s: помилкове число для вхідного параметра: мало бути %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -421,14 +437,20 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: A string expected.\n"
 msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
 msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати %d або "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
+"тип.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -438,29 +460,37 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number for input argument: %d or %d expected.\n"
-msgstr ""
+msgstr "%s: помилкове число для вхідного параметра: мало бути %d або %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: 1-by-%d or %d-by-1 vector expected.\n"
 msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути використано "
+"вектор 1 на %d або %d на 1.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
+"або векторний тип.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A handle expected.\n"
-msgstr ""
+msgid "%s: Can not create output argument #%d.\n"
+msgstr "%s: не вдалося створити параметр виведення №%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A handle expected.\n"
 msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано тип "
+"елемента керування.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"дійсне число.\n"
 
 #, c-format
 msgid ""
@@ -510,10 +540,8 @@ msgid ""
 "%s: A Java exception arised:\n"
 "%s"
 msgstr ""
-
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
+"%s: сталося виключення Java:\n"
+"%s"
 
 #, c-format
 msgid ""
@@ -688,19 +716,19 @@ msgid "Stop datatip manager"
 msgstr "Завершити роботу керування позначками даних"
 
 msgid "Start curve data modification"
-msgstr ""
+msgstr "Розпочати внесення змін до даних кривої"
 
 msgid "Stop curve data modification"
-msgstr ""
+msgstr "Завершити внесення змін до даних кривої"
 
 msgid "Plot Browser"
-msgstr ""
+msgstr "Перегляд креслень"
 
 msgid "Scilab Graphic Editor - GED"
-msgstr ""
+msgstr "Редактор графіки Scilab — GED"
 
 msgid "&Quick Editor"
-msgstr ""
+msgstr "&Швидке редагування"
 
 msgid "&MVC"
 msgstr "&MVC"
@@ -865,13 +893,13 @@ msgid "Original View"
 msgstr "Початковий масштаб"
 
 msgid "Toggle datatip mode"
-msgstr ""
+msgstr "Увімкнути або вимкнути режим підписів до даних"
 
 msgid "Open the graphics editor"
-msgstr ""
+msgstr "Відкрити редактор графіки"
 
 msgid "Toggle curve data modification"
-msgstr ""
+msgstr "Увімкнути або вимкнути режим внесення змін до даних кривої"
 
 msgid "Help Browser"
 msgstr "Перегляд довідки"
@@ -1339,6 +1367,32 @@ msgstr "Обчислити позначення з показом результ
 msgid "Evaluate selection with no echo"
 msgstr "Обчислити позначене без показу результатів"
 
+#, c-format
+msgid "Option for %s format"
+msgstr "Параметр для формату %s"
+
+msgid "Portrait"
+msgstr "Книжкова"
+
+msgid "Landscape"
+msgstr "Альбомна"
+
+msgid "Confirm"
+msgstr "Підтвердити"
+
+msgid "Cancel"
+msgstr "Скасувати"
+
+msgid "Orientation"
+msgstr "Орієнтація"
+
+#, c-format
+msgid "An error occurred during export: %s"
+msgstr "Під час експортування сталася помилка: %s"
+
+msgid "Export error"
+msgstr "Помилка експортування"
+
 msgid "Windows BMP image"
 msgstr "Зображення BMP Windows"
 
@@ -1360,6 +1414,9 @@ msgstr "Зображення Enhanced Metafile (EMF)"
 msgid "Encapsulated PostScript image (EPS)"
 msgstr "Вбудоване зображення PostScript (EPS)"
 
+msgid "PostScript image (PS)"
+msgstr "Зображення PostScript (PS)"
+
 msgid "FIG image"
 msgstr "Зображення FIG"
 
@@ -1372,11 +1429,11 @@ msgstr "Зображення SVG"
 msgid "All files"
 msgstr "Всі файли"
 
-msgid "Export"
-msgstr "Експортувати"
-
 msgid "Untitled-export"
 msgstr "Без назви — експорт"
+
+msgid "Export"
+msgstr "Експортувати"
 
 msgid "Preview"
 msgstr "Перегляд"
@@ -1393,14 +1450,12 @@ msgstr "Будь ласка, вкажіть формат файлів"
 msgid "Error on export"
 msgstr "Помилка під час спроби експортування"
 
-msgid "Unrecognized extension '"
-msgstr "Невідомий суфікс «"
-
+#, c-format
 msgid ""
-"'.\n"
+"Unrecognized extension '%s'.\n"
 " Please specify a valid file format."
 msgstr ""
-"».\n"
+"Невідомий суфікс назви «%s».\n"
 " Будь ласка, вкажіть коректний формат файлів."
 
 msgid "Font Chooser"
@@ -1426,9 +1481,6 @@ msgstr "Сумісний зі SciNotes"
 
 msgid "Ok"
 msgstr "Гаразд"
-
-msgid "Cancel"
-msgstr "Скасувати"
 
 msgid "Loading help browser..."
 msgstr "Завантаження засобу перегляду довідки…"
@@ -1458,138 +1510,140 @@ msgid ""
 "Left click on the curve creates a datatip and right click on the datatip "
 "removes it."
 msgstr ""
+"Клацання лівою кнопкою миші створює підпис до даних, а клацання правою "
+"кнопкою на підписі вилучає його."
 
 msgid "Insert"
-msgstr ""
+msgstr "Вставити"
 
 msgid "Insert a new point here"
-msgstr ""
+msgstr "Вставити у цій позиції нову точку"
 
 msgid "Remove"
-msgstr ""
+msgstr "Вилучити"
 
 msgid "Remove this point"
-msgstr ""
+msgstr "Вилучити цю точку"
 
 msgid "Exit"
 msgstr "Вийти"
 
 msgid "Leave data editor mode"
-msgstr ""
+msgstr "Вийти з режиму редагування даних"
 
 msgid "Label"
-msgstr ""
+msgstr "Мітка"
 
 msgid "Legend"
-msgstr ""
+msgstr "Умовні позначення"
 
 msgid "Copy selected object"
-msgstr ""
+msgstr "Копіювати позначений об’єкт"
 
 msgid "Cut selected object"
-msgstr ""
+msgstr "Вирізати позначений об’єкт"
 
 msgid "Paste copied object on this figure"
-msgstr ""
+msgstr "Вставити копійований об’єкт до цього рисунка"
 
 msgid "Delete"
-msgstr ""
+msgstr "Вилучити"
 
 msgid "Delete selected object"
-msgstr ""
+msgstr "Вилучити вибраний об'єкт"
 
 msgid "Clear"
-msgstr ""
+msgstr "Спорожнити"
 
 msgid "Clears the figure"
-msgstr ""
+msgstr "Спорожнити рисунок"
 
 msgid "Hide"
-msgstr ""
+msgstr "Приховати"
 
 msgid "Hide selected object"
-msgstr ""
+msgstr "Приховати позначений об’єкт"
 
 msgid "Unhide all"
-msgstr ""
+msgstr "Показати усі приховані"
 
 msgid "Unhide all objects"
-msgstr ""
+msgstr "Скасувати приховування усіх об’єктів"
 
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "Скопіювати до буфера обміну"
 
 msgid "Copy figure to system clipboard"
-msgstr ""
+msgstr "Копіювати рисунок до буфера обміну даними системи"
 
 msgid "Label X"
-msgstr ""
+msgstr "Мітка X"
 
 msgid "Insert a label in X axis"
-msgstr ""
+msgstr "Вставлення мітки до вісі X"
 
 msgid "Label Y"
-msgstr ""
+msgstr "Мітка Y"
 
 msgid "Insert a label in Y axis"
-msgstr ""
+msgstr "Вставлення мітки до вісі Y"
 
 msgid "Label Z"
-msgstr ""
+msgstr "Мітка Z"
 
 msgid "Insert a label in Z axis"
-msgstr ""
+msgstr "Вставлення мітки до вісі Z"
 
 msgid "Insert a legend into the selected curve"
-msgstr ""
+msgstr "Вставити панель умовних позначень для вибраної кривої"
 
 msgid "Remove the legend from the selected curve"
-msgstr ""
+msgstr "Вилучити панель умовних позначень для вибраної кривої"
 
 msgid "Open Quick Editor"
-msgstr ""
+msgstr "Відкрити вікно швидкого редагування"
 
 msgid "Initialize the graphics editor"
-msgstr ""
+msgstr "Запустити редактор графіки"
 
 msgid "Edit curve data"
-msgstr ""
+msgstr "Редагувати дані кривої"
 
 msgid "Enables curve data modification"
-msgstr ""
+msgstr "Вмикає можливість зміни даних кривої"
 
 msgid "Undo"
-msgstr ""
+msgstr "Скасувати"
 
 msgid "Undo last action"
-msgstr ""
+msgstr "Скасувати останню дію"
 
 msgid "Redo"
-msgstr ""
+msgstr "Повторити"
 
 msgid "Redo last undo action"
-msgstr ""
+msgstr "Повторити останню скасовану дію"
 
 msgid "Copy style"
-msgstr ""
+msgstr "Копювати стиль"
 
 msgid "Copy the style of the axes"
-msgstr ""
+msgstr "Копіювати стиль осей"
 
 msgid "Paste style"
-msgstr ""
+msgstr "Вставити стиль"
 
-msgid "Paste the copied style on this axes"
-msgstr ""
+msgid "Paste the copied style on these axes"
+msgstr "Вставити скопійований стиль до цих осей"
 
 msgid "Enter the text"
-msgstr ""
+msgstr "Введіть текст"
 
 msgid "Set label text"
-msgstr ""
+msgstr "Визначити текст мітки"
 
 msgid "Set legend text"
-msgstr ""
+msgstr "Визначити текст запису умовних позначень"
 
 msgid "Close"
 msgstr "Закрити"
@@ -1598,564 +1652,581 @@ msgid "File"
 msgstr "Файл"
 
 msgid "Quick GED"
-msgstr ""
+msgstr "Швидкий GED"
 
 msgid "Property List"
-msgstr ""
+msgstr "Список властивостей"
 
 msgid "Show"
-msgstr ""
+msgstr "Показати"
 
 msgid "Arc"
-msgstr ""
+msgstr "Дуга"
 
 msgid "Axes"
-msgstr ""
+msgstr "Осі"
 
 msgid "Champ"
-msgstr ""
+msgstr "Champ"
 
 msgid "Datatip"
-msgstr ""
+msgstr "Підпис даних"
 
 msgid "Polyline"
-msgstr ""
+msgstr "Ламана"
 
 msgid "Fec"
-msgstr ""
+msgstr "Fec"
 
 msgid "Figure"
-msgstr ""
+msgstr "Рисунок"
 
 msgid "Segs"
-msgstr ""
+msgstr "Ланки"
 
 msgid "Surface"
-msgstr ""
+msgstr "Поверхня"
 
 msgid "Plot3D"
-msgstr ""
+msgstr "Простір"
 
 msgid "Rectangle"
-msgstr ""
+msgstr "Прямокутник"
 
 msgid "Fac3D"
-msgstr ""
+msgstr "Fac3D"
 
 msgid "Grayplot"
-msgstr ""
+msgstr "Grayplot"
 
 msgid "Matplot"
-msgstr ""
+msgstr "Matplot"
+
+msgid "Arc Drawing Method"
+msgstr "Метод малювання дуги"
+
+msgid "Auto Rotation"
+msgstr "Автообертання"
+
+msgid "Auto Position"
+msgstr "Автопозиціювання"
 
 msgid "Auto Ticks"
-msgstr ""
+msgstr "Автопозначки"
 
 msgid "Tick"
-msgstr ""
+msgstr "Позначка"
 
 msgid "Lines"
-msgstr ""
+msgstr "Лінії"
 
 msgid "Nurbs"
-msgstr ""
+msgstr "Сплайни"
 
 msgid "Anti-alising"
-msgstr ""
+msgstr "Згладжування"
 
 msgid "Auto Clear"
-msgstr ""
+msgstr "Автоспорожнення"
 
 msgid "Auto Orientation"
-msgstr ""
+msgstr "Автоорієнтація"
 
 msgid "Auto Scale"
-msgstr ""
+msgstr "Автомасштаб"
 
 msgid "Auto Resize"
-msgstr ""
+msgstr "Автоматична зміна розмірів"
 
 msgid "Axes Visible"
-msgstr ""
+msgstr "Видимі вісі"
 
 msgid "Axes Reverse"
-msgstr ""
+msgstr "Реверс осей"
 
 msgid "Closed"
-msgstr ""
+msgstr "Замкнена"
 
 msgid "Cube Scaling"
-msgstr ""
+msgstr "Кубічне масштабування"
 
 msgid "Fill Mode"
-msgstr ""
+msgstr "Режим заповнення"
 
 msgid "Immediate Drawing"
-msgstr ""
+msgstr "Негайне малювання"
 
 msgid "Isometric View"
-msgstr ""
+msgstr "Ізометрія"
 
 msgid "Label Mode"
-msgstr ""
+msgstr "Режим міток"
 
 msgid "Line Mode"
-msgstr ""
+msgstr "Режим ліній"
 
 msgid "Mark Mode"
-msgstr ""
-
-msgid "Orientation"
-msgstr ""
+msgstr "Режим позначок"
 
 msgid "Visible"
-msgstr ""
+msgstr "Видима"
 
 msgid "Base Properties"
-msgstr ""
+msgstr "Основні властивості"
 
 msgid "On"
-msgstr ""
+msgstr "Увімк"
 
 msgid "Off"
-msgstr ""
+msgstr "Вимк"
 
 msgid "Pixmap"
-msgstr ""
+msgstr "Растр"
 
 msgid "Tag"
-msgstr ""
+msgstr "Мітка"
 
 msgid "Text"
-msgstr ""
+msgstr "Текст"
 
 msgid "Surface Mode"
-msgstr ""
+msgstr "Режим поверхні"
 
 msgid "Box"
-msgstr ""
+msgstr "Блок"
 
 msgid "Hidden Axis Color"
-msgstr ""
+msgstr "Колір прихованої частини вісі"
 
 msgid "Camera"
-msgstr ""
+msgstr "Камера"
 
 msgid "Alpha"
-msgstr ""
+msgstr "α"
 
 msgid "Theta"
-msgstr ""
+msgstr "θ"
 
 msgid "Ticks"
-msgstr ""
+msgstr "Позначки"
 
 msgid ""
 "The data bounds from the axis must be strictly positive to be changed to "
 "logarithmic scale."
 msgstr ""
+"Межі даних осей мають бути додатними значеннями, щоб режим вісі можна було "
+"перемкнути на логарифмічний."
 
 msgid "Choose Background Color"
-msgstr ""
+msgstr "Виберіть колір тла"
 
 msgid "Choose Foreground Color"
-msgstr ""
+msgstr "Виберіть колір передньо плану"
 
 msgid "Choose Font Color"
-msgstr ""
+msgstr "Виберіть колір шрифту"
 
 msgid "Choose a Color"
-msgstr ""
+msgstr "Виберіть колір"
 
 msgid "Arrow Size"
-msgstr ""
+msgstr "Розмір стрілки"
 
 msgid "Colored"
-msgstr ""
+msgstr "Кольорові"
 
 msgid "Background"
-msgstr ""
+msgstr "Тло"
 
 msgid "Foreground"
-msgstr ""
+msgstr "Передній план"
 
 msgid "Grid Position"
-msgstr ""
+msgstr "Розташування сітки"
 
 msgid "X Grid Color"
-msgstr ""
+msgstr "Колір ліній сітки за X"
 
 msgid "Y Grid Color"
-msgstr ""
+msgstr "Колір ліній сітки за Y"
 
 msgid "Back Half"
-msgstr ""
+msgstr "Задня частина"
 
 msgid "Hidden Axes"
-msgstr ""
+msgstr "Приховані вісі"
 
 msgid "Style/Appearance"
-msgstr ""
+msgstr "Стиль/Вигляд"
 
 msgid "Background Color"
-msgstr ""
+msgstr "Колір тла"
 
 msgid "Foreground Color"
-msgstr ""
+msgstr "Колір переднього плану"
 
 msgid "Line Style"
-msgstr ""
+msgstr "Стиль ліній"
 
 msgid "solid"
-msgstr ""
+msgstr "суцільна"
 
 msgid "dash"
-msgstr ""
+msgstr "штрихова"
 
 msgid "dash dot"
-msgstr ""
+msgstr "штрих-пунктир"
 
 msgid "longdash dot"
-msgstr ""
+msgstr "довгий штрих-пунктир"
 
 msgid "bigdash dot"
-msgstr ""
+msgstr "великий штрих-пунктир"
 
 msgid "bigdash longdash"
-msgstr ""
+msgstr "великий штрих — довгий штрих"
 
 msgid "dot"
-msgstr ""
+msgstr "пунктир"
 
 msgid "double dot"
-msgstr ""
+msgstr "подвійний пунктир"
 
 msgid "Polyline Style"
-msgstr ""
+msgstr "Стиль ламаної"
 
 msgid "interpolated"
-msgstr ""
+msgstr "наближена"
 
 msgid "staircase"
-msgstr ""
+msgstr "драбинка"
 
 msgid "barplot"
-msgstr ""
+msgstr "стовпчикова діаграма"
 
 msgid "bar"
-msgstr ""
+msgstr "стовпчик"
 
 msgid "arrowed"
-msgstr ""
+msgstr "зі стрілками"
 
 msgid "filled"
-msgstr ""
+msgstr "заповнена"
 
 msgid "Min"
-msgstr ""
+msgstr "Мін."
 
 msgid "Max"
-msgstr ""
+msgstr "Макс."
 
 msgid "Color Range"
-msgstr ""
+msgstr "Діапазон кольорів"
 
 msgid "Outside Color"
-msgstr ""
+msgstr "Зовнішній колір"
 
 msgid "Z Bounds"
-msgstr ""
+msgstr "Межі за Z"
 
 msgid "Pixel Drawing Mode"
-msgstr ""
+msgstr "Режим малювання пікселів"
 
 msgid "Rotation Style"
-msgstr ""
+msgstr "Стиль обертання"
 
 msgid "unary"
-msgstr ""
+msgstr "одинарне"
 
 msgid "multiple"
-msgstr ""
+msgstr "кратне"
 
 msgid "Arrow Size Factor"
-msgstr ""
+msgstr "Коефіцієнт розміру стрілки"
 
 msgid "Bar Width"
-msgstr ""
+msgstr "Ширина стовпчика"
 
 msgid "Color Mode"
-msgstr ""
+msgstr "Режим кольорів"
 
 msgid "Color Flag"
-msgstr ""
+msgstr "Прапорець кольору"
 
 msgid "Hidden Color"
-msgstr ""
+msgstr "Колір прихованого"
 
 msgid "Thickness"
-msgstr ""
+msgstr "Товщина"
 
 msgid "Mark"
-msgstr ""
+msgstr "Позначка"
 
 msgid "Mark Background"
-msgstr ""
+msgstr "Тло позначки"
 
 msgid "Mark Foreground"
-msgstr ""
+msgstr "Передній план позначки"
 
 msgid "Mark Size"
-msgstr ""
+msgstr "Розмір позначки"
 
 msgid "Mark Style"
-msgstr ""
+msgstr "Стиль позначки"
 
 msgid "3 Components"
-msgstr ""
+msgstr "3 компоненти"
 
 msgid "Data Properties"
-msgstr ""
+msgstr "Властивості даних"
 
 msgid "Data Mapping"
-msgstr ""
+msgstr "Прив’язка даних"
 
 msgid "Direct"
-msgstr ""
+msgstr "Спрямоване"
 
 msgid "Clip Box"
-msgstr ""
+msgstr "Обрізаний блок"
 
 msgid "Upper-left"
-msgstr ""
+msgstr "Вгорі ліворуч"
 
 msgid "Point"
-msgstr ""
+msgstr "Точка"
 
 msgid "Clip State"
-msgstr ""
+msgstr "Стан обрізання"
 
 msgid "clipgrf"
-msgstr ""
+msgstr "обрізати"
 
 msgid "Data"
-msgstr ""
+msgstr "Дані"
 
 msgid "Figure ID"
-msgstr ""
+msgstr "Ід. рисунка"
 
 msgid "Figure Name"
-msgstr ""
+msgstr "Назва рисунка"
 
 msgid "Info Message"
-msgstr ""
+msgstr "Інформаційне повідомлення"
 
 msgid "Units"
-msgstr ""
+msgstr "Одиниці"
 
 msgid "Upper Left Point"
-msgstr ""
+msgstr "Верхня ліва точка"
 
 msgid "User Data"
-msgstr ""
+msgstr "Дані користувача"
 
 msgid "X Label"
-msgstr ""
+msgstr "Мітка X"
 
 msgid "Y Label"
-msgstr ""
+msgstr "Мітка Y"
 
 msgid "Z Label"
-msgstr ""
+msgstr "Мітка Z"
 
 msgid "Scaled"
-msgstr ""
+msgstr "Масштабування"
 
 msgid "Title"
-msgstr ""
+msgstr "Заголовок"
+
+msgid "Start Angle"
+msgstr "Початковий кут"
+
+msgid "End Angle"
+msgstr "Кінцевий кут"
 
 msgid "Number of current figure."
-msgstr ""
+msgstr "Номер поточного рисунка."
 
 msgid "Enter a figure name."
-msgstr ""
+msgstr "Введіть назву рисунка."
 
 msgid "Refresh"
-msgstr ""
+msgstr "Оновити"
 
 msgid "Submit and close"
-msgstr ""
+msgstr "Надіслати і закрити"
 
 msgid "Append"
-msgstr ""
+msgstr "Додати"
 
 msgid "Data Editor"
-msgstr ""
+msgstr "Редактор даних"
 
 msgid "2D"
-msgstr ""
+msgstr "Плоский"
 
 msgid "3D"
-msgstr ""
+msgstr "Просторовий"
 
 msgid "Control"
-msgstr ""
+msgstr "Керування"
 
 msgid "Axes Size"
-msgstr ""
+msgstr "Розмір осей"
 
 msgid "CloseRequestFcn"
-msgstr ""
+msgstr "Функція запиту закриття"
 
 msgid "ResizeFcn"
-msgstr ""
+msgstr "Функція зміни розмірів"
 
 msgid "Figure Position"
-msgstr ""
+msgstr "Розташування рисунка"
 
 msgid "Figure Size"
-msgstr ""
+msgstr "Розмір рисунка"
 
 msgid "Event Handler"
-msgstr ""
+msgstr "Обробник подій"
 
 msgid "Function"
-msgstr ""
+msgstr "Функція"
 
 msgid "View"
-msgstr ""
+msgstr "Перегляд"
 
 msgid "Viewport"
-msgstr ""
+msgstr "Область перегляду"
 
 msgid "X Left"
-msgstr ""
+msgstr "Лівий X"
 
 msgid "Y Up"
-msgstr ""
+msgstr "Верхній Y"
 
 msgid "Log Flags"
-msgstr ""
+msgstr "Прапорці журналювання"
 
 msgid "Tight Limits"
-msgstr ""
+msgstr "Жорсткі обмеження"
 
 msgid "Enter a x position."
-msgstr ""
+msgstr "Введіть розташування x."
 
 msgid "Enter a y position."
-msgstr ""
+msgstr "Введіть розташування y."
 
 msgid "Enter a x size."
-msgstr ""
+msgstr "Введіть розмір x."
 
 msgid "Enter a y size."
-msgstr ""
+msgstr "Введіть розмір y."
 
 msgid "Axis Rulers"
-msgstr ""
+msgstr "Лінійки вісі"
 
 msgid "X Location"
-msgstr ""
+msgstr "Розташування X"
 
 msgid "Y Location"
-msgstr ""
+msgstr "Розташування Y"
 
 msgid "Location"
-msgstr ""
+msgstr "Розташування"
 
 msgid "bottom"
-msgstr ""
+msgstr "внизу"
 
 msgid "middle"
-msgstr ""
+msgstr "посередині"
 
 msgid "origin"
-msgstr ""
+msgstr "початок"
 
 msgid "top"
-msgstr ""
+msgstr "вгорі"
 
 msgid "left"
-msgstr ""
+msgstr "ліворуч"
 
 msgid "right"
-msgstr ""
+msgstr "праворуч"
 
 msgid "Reverse"
-msgstr ""
+msgstr "Реверс"
 
 msgid "Box Mode"
-msgstr ""
+msgstr "Режим блоку"
 
 msgid "Title Page"
-msgstr ""
+msgstr "Титульна сторінка"
 
 msgid "Axis Title"
-msgstr ""
+msgstr "Заголовок вісі"
+
+msgid "Font Angle"
+msgstr "Кут нахилу шрифту"
 
 msgid "Font Color"
-msgstr ""
+msgstr "Колір шрифту"
 
 msgid "Font Size"
-msgstr ""
+msgstr "Розмір символів"
 
 msgid "Font Style"
-msgstr ""
+msgstr "Гарнітура шрифту"
 
 msgid "Fractional Font"
-msgstr ""
+msgstr "Дробовий розмір"
 
 msgid "Sub Ticks"
-msgstr ""
+msgstr "Підпозначки"
 
 msgid "Coordinates"
-msgstr ""
+msgstr "Координати"
 
 msgid "X Coordinate"
-msgstr ""
+msgstr "Координата X"
 
 msgid "Y Coordinate"
-msgstr ""
+msgstr "Координата Y"
 
 msgid "Position"
-msgstr ""
+msgstr "Позиція"
 
 msgid "Axes Bounds"
-msgstr ""
+msgstr "Межі осей"
 
 msgid "Mark Size Unit"
-msgstr ""
+msgstr "Одиниці розміру позначок"
 
 msgid "Shift"
-msgstr ""
+msgstr "Зсув"
 
 msgid "Up"
-msgstr ""
+msgstr "Вгору"
 
 msgid "Width"
-msgstr ""
+msgstr "Ширина"
 
 msgid "Height"
-msgstr ""
+msgstr "Висота"
 
 msgid "Margins"
-msgstr ""
+msgstr "Поля"
 
 msgid "Rotation Angles"
-msgstr ""
+msgstr "Кути повороту"
 
 msgid "Tabulated"
-msgstr ""
+msgstr "За таблицею"
 
 msgid "X Shift"
-msgstr ""
+msgstr "Зсув за X"
 
 msgid "Y Shift"
-msgstr ""
+msgstr "Зсув за Y"
 
 msgid "Z Shift"
-msgstr ""
+msgstr "Зсув за Z"
 
 msgid "OK"
 msgstr "Гаразд"
@@ -2170,7 +2241,7 @@ msgid "Save and execute"
 msgstr "Зберегти і виконати"
 
 msgid "Axis"
-msgstr ""
+msgstr "Вісь"
 
 msgid "Empty tab"
 msgstr "Порожня вкладка"
@@ -2462,6 +2533,12 @@ msgstr ""
 "керування «Figure» або дійсне число.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d параметрів.\n"
+
+#, c-format
 msgid "%s: Type %s is not implemented.\n"
 msgstr "%s: тип %s не реалізовано.\n"
 
@@ -2490,6 +2567,10 @@ msgid ""
 msgstr ""
 "Відповідь, вказана для %s \n"
 " є помилковою: %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"

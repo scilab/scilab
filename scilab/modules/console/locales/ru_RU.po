@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-17 15:30+0000\n"
+"PO-Revision-Date: 2013-10-19 15:36+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: ru\n"
 
 #, c-format
@@ -220,7 +220,7 @@ msgid "Clear console"
 msgstr "Очистить командное окно"
 
 msgid "Console box"
-msgstr ""
+msgstr "Командная строка"
 
 msgid "Completion"
 msgstr "Завершение"
@@ -235,7 +235,7 @@ msgid "Help Browser"
 msgstr "Справочная система"
 
 msgid "Console Search Field"
-msgstr ""
+msgstr "Поле поиска командного окна"
 
 msgid "Paste"
 msgstr "Вставить"
@@ -385,7 +385,7 @@ msgid "Paste a column"
 msgstr "Вставить столбец"
 
 msgid "Repeat selection on column"
-msgstr ""
+msgstr "Повтор выбора столбца"
 
 msgid "Undo"
 msgstr "Отменить"
@@ -478,7 +478,7 @@ msgid "Go to previous anchor"
 msgstr "Перейти к предыдущей метке"
 
 msgid "Start Code Navigator"
-msgstr ""
+msgstr "Запустить навигатор по коду"
 
 msgid "Search word in file"
 msgstr "Искать слово в файле"
@@ -520,7 +520,7 @@ msgid "Close all"
 msgstr "Закрыть всё"
 
 msgid "Close all but this"
-msgstr ""
+msgstr "Закрыть все, кроме этой"
 
 msgid "Convert quote to double quote"
 msgstr "Заменить кавычки на двойные кавычки"
@@ -535,7 +535,7 @@ msgid "Set the SciNotes colors"
 msgstr "Установить цвета в SciNotes"
 
 msgid "New diagram"
-msgstr ""
+msgstr "Создать диаграмму"
 
 msgid "Open file in Scilab current directory"
 msgstr "Открыть файл в текущей директории Scilab"
@@ -586,7 +586,7 @@ msgid "Execution trace and Debug"
 msgstr "Отслеживание исполнения и Отладка"
 
 msgid "Set Context"
-msgstr ""
+msgstr "Установить контекст"
 
 msgid "Compile"
 msgstr "Компилировать"

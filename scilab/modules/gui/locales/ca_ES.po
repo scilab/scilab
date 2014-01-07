@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: ca\n"
 
 #, c-format
@@ -114,16 +114,25 @@ msgstr ""
 "real o un tractament de 'Figure'.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A valid figure identifier expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
-"text.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
 "de cadenes de text.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"text.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
@@ -391,6 +400,10 @@ msgid ""
 msgstr ""
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr ""
 
@@ -430,7 +443,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A handle expected.\n"
+msgid "%s: Can not create output argument #%d.\n"
 msgstr ""
 
 #, c-format
@@ -480,10 +493,6 @@ msgstr "No s'ha pogut recuperar l'aparença actual"
 msgid ""
 "%s: A Java exception arised:\n"
 "%s"
-msgstr ""
-
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
@@ -1277,6 +1286,32 @@ msgstr ""
 msgid "Evaluate selection with no echo"
 msgstr ""
 
+#, c-format
+msgid "Option for %s format"
+msgstr ""
+
+msgid "Portrait"
+msgstr ""
+
+msgid "Landscape"
+msgstr ""
+
+msgid "Confirm"
+msgstr ""
+
+msgid "Cancel"
+msgstr "Cancel·la"
+
+msgid "Orientation"
+msgstr ""
+
+#, c-format
+msgid "An error occurred during export: %s"
+msgstr ""
+
+msgid "Export error"
+msgstr ""
+
 msgid "Windows BMP image"
 msgstr "imatge BMP de Windows"
 
@@ -1298,6 +1333,9 @@ msgstr "Imatge Enhanced Metafile (EMF)"
 msgid "Encapsulated PostScript image (EPS)"
 msgstr "Imatge Encapsulated PostScript (EPS)"
 
+msgid "PostScript image (PS)"
+msgstr ""
+
 msgid "FIG image"
 msgstr "Imatge FIG"
 
@@ -1310,11 +1348,11 @@ msgstr "Imatge SVG"
 msgid "All files"
 msgstr "Tots els fitxers"
 
-msgid "Export"
-msgstr "Exporta"
-
 msgid "Untitled-export"
 msgstr "Exporta-sense títol"
+
+msgid "Export"
+msgstr "Exporta"
 
 msgid "Preview"
 msgstr "Previsualitza"
@@ -1331,15 +1369,11 @@ msgstr "Especifiqueu un format de fitxer"
 msgid "Error on export"
 msgstr "Error a l'exportació"
 
-msgid "Unrecognized extension '"
-msgstr "Extensió no reconeguda '"
-
+#, c-format
 msgid ""
-"'.\n"
+"Unrecognized extension '%s'.\n"
 " Please specify a valid file format."
 msgstr ""
-"'.\n"
-" Especifiqueu un format de fitxer vàlid."
 
 msgid "Font Chooser"
 msgstr ""
@@ -1364,9 +1398,6 @@ msgstr ""
 
 msgid "Ok"
 msgstr "Accepta"
-
-msgid "Cancel"
-msgstr "Cancel·la"
 
 msgid "Loading help browser..."
 msgstr "S'està carregant el navegador de l'ajuda..."
@@ -1517,7 +1548,7 @@ msgstr ""
 msgid "Paste style"
 msgstr ""
 
-msgid "Paste the copied style on this axes"
+msgid "Paste the copied style on these axes"
 msgstr ""
 
 msgid "Enter the text"
@@ -1586,6 +1617,15 @@ msgstr ""
 msgid "Matplot"
 msgstr ""
 
+msgid "Arc Drawing Method"
+msgstr ""
+
+msgid "Auto Rotation"
+msgstr ""
+
+msgid "Auto Position"
+msgstr ""
+
 msgid "Auto Ticks"
 msgstr ""
 
@@ -1641,9 +1681,6 @@ msgid "Line Mode"
 msgstr ""
 
 msgid "Mark Mode"
-msgstr ""
-
-msgid "Orientation"
 msgstr ""
 
 msgid "Visible"
@@ -1912,6 +1949,12 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+msgid "Start Angle"
+msgstr ""
+
+msgid "End Angle"
+msgstr ""
+
 msgid "Number of current figure."
 msgstr ""
 
@@ -2030,6 +2073,9 @@ msgid "Title Page"
 msgstr ""
 
 msgid "Axis Title"
+msgstr ""
+
+msgid "Font Angle"
 msgstr ""
 
 msgid "Font Color"
@@ -2395,6 +2441,10 @@ msgstr ""
 "'Figure' o un nombre real.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Type %s is not implemented.\n"
 msgstr "%s: No està implementat el tipus %s.\n"
 
@@ -2420,6 +2470,10 @@ msgstr ""
 msgid ""
 "Answer given for %s \n"
 " is incorrect: %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format

@@ -60,7 +60,7 @@ expected = [
 assert_checkalmostequal ( computed , expected , 10*%eps );
 s1 = optimsimplex_destroy ( s1 );
 //
-// Test with a scalar length and an additionnal object
+// Test with a scalar length and an additional object
 //
 myobj = tlist(["T_MYSTUFF","nb"]);
 myobj.nb = 0;

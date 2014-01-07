@@ -10,13 +10,13 @@
 
 function [m]=nfreq(x)
     //
-    //Frequence of the values in a real or complex vector or a  real
+    //Frequency of the values in a real or complex vector or a  real
     //or complex matrix x.
     //
     //For a real or complex vector or a  real or complex matrix x,
     //m=freq(x) returns in the first column of the size(x,'*')x2 matrix
     //m the values of x and in the second column of this matrix the
-    //frequences of the corresponding values.
+    //frequencies of the corresponding values.
     //
     //
     warnobsolete("tabul", "5.5.1");

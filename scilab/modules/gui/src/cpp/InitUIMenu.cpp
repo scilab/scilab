@@ -42,7 +42,7 @@ int setMenuParent(int iObjUID, void* pvData, int valueType, int nbRow, int nbCol
     int iCurrentFigure = 0;
     int parentType = -1;
     int *piParentType = &parentType;
-    int iParentUID = NULL;
+    int iParentUID = 0;
 
     double *value = NULL;
 

@@ -2,6 +2,8 @@ C/MEMBR ADD NAME=PREPJI,SSI=0
       subroutine prepji (neq, y, yh, nyh, ewt, rtem, savr, s, wm, iwm,
      1   res, jac, adda)
 clll. optimize
+      include 'stack.h'
+      
       external res, jac, adda
       integer neq, nyh, iwm
       integer iownd, iowns,
@@ -20,8 +22,6 @@ clll. optimize
      3   iownd(14), iowns(6),
      4   icf, ierpj, iersl, jcur, jstart, kflag, l, meth, miter,
      5   maxord, maxcor, msbp, mxncf, n, nq, nst, nre, nje, nqu
-      integer         iero
-      common /ierode/ iero
 c-----------------------------------------------------------------------
 c%purpose
 c prepji is called by stodi to compute and process the matrix
@@ -69,14 +69,14 @@ c-----------------------------------------------------------------------
 c if miter = 1, call res, then jac, and multiply by scalar. ------------
  100  ires = 1
       call res (neq, tn, y, s, savr, ires)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nre = nre + 1
       if (ires .gt. 1) go to 600
       lenp = n*n
       do 110 i = 1,lenp
  110    wm(i+2) = 0.0d+0
       call jac ( neq, tn, y, s, 0, 0, wm(3), n )
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       con = -hl0
       do 120 i = 1,lenp
  120    wm(i+2) = wm(i+2)*con
@@ -85,7 +85,7 @@ c if miter = 2, make n + 1 calls to res to approximate j. --------------
  200  continue
       ires = -1
       call res (neq, tn, y, s, savr, ires)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nre = nre + 1
       if (ires .gt. 1) go to 600
       srur = wm(1)
@@ -96,7 +96,7 @@ c if miter = 2, make n + 1 calls to res to approximate j. --------------
         y(j) = y(j) + r
         fac = -hl0/r
         call res ( neq, tn, y, s, rtem, ires )
-        if(iero.gt.0) return
+        if(ierror.gt.0) return
         nre = nre + 1
         if (ires .gt. 1) go to 600
         do 220 i = 1,n
@@ -106,13 +106,13 @@ c if miter = 2, make n + 1 calls to res to approximate j. --------------
  230    continue
       ires = 1
       call res (neq, tn, y, s, savr, ires)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nre = nre + 1
       if (ires .gt. 1) go to 600
 c add matrix a. --------------------------------------------------------
  240  continue
       call adda(neq, tn, y, 0, 0, wm(3), n)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
 c do lu decomposition on p. --------------------------------------------
       call dgefa (wm(3), n, n, iwm(21), ier)
       if (ier .ne. 0) ierpj = 1
@@ -122,7 +122,7 @@ c dummy section for miter = 3
 c if miter = 4, call res, then jac, and multiply by scalar. ------------
  400  ires = 1
       call res (neq, tn, y, s, savr, ires)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nre = nre + 1
       if (ires .gt. 1) go to 600
       ml = iwm(1)
@@ -137,7 +137,7 @@ cc fin
       do 410 i = 1,lenp
  410    wm(i+2) = 0.0d+0
       call jac ( neq, tn, y, s, ml, mu, wm(ml3), meband)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       con = -hl0
       do 420 i = 1,lenp
  420    wm(i+2) = wm(i+2)*con
@@ -146,7 +146,7 @@ c if miter = 5, make ml + mu + 2 calls to res to approximate j. --------
  500  continue
       ires = -1
       call res (neq, tn, y, s, savr, ires)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nre = nre + 1
       if (ires .gt. 1) go to 600
       ml = iwm(1)
@@ -163,7 +163,7 @@ c if miter = 5, make ml + mu + 2 calls to res to approximate j. --------
           r = max(srur*abs(yi),0.010d+0/ewt(i))
  530      y(i) = y(i) + r
         call res ( neq, tn, y, s, rtem, ires)
-        if(iero.gt.0) return
+        if(ierror.gt.0) return
         nre = nre + 1
         if (ires .gt. 1) go to 600
         do 550 jj = j,n,mband
@@ -180,13 +180,13 @@ c if miter = 5, make ml + mu + 2 calls to res to approximate j. --------
  560    continue
       ires = 1
       call res (neq, tn, y, s, savr, ires)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nre = nre + 1
       if (ires .gt. 1) go to 600
 c add matrix a. --------------------------------------------------------
  570  continue
       call adda(neq, tn, y, ml, mu, wm(ml3), meband)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
 c do lu decomposition of p. --------------------------------------------
       call dgbfa (wm(3), meband, n, ml, mu, iwm(21), ier)
       if (ier .ne. 0) ierpj = 1

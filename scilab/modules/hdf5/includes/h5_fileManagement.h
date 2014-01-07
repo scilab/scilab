@@ -15,6 +15,7 @@
 
 #include "dynlib_hdf5_scilab.h"
 
+HDF5_SCILAB_IMPEXP void HDF5cleanup(void);
 HDF5_SCILAB_IMPEXP int createHDF5File(char *name);
 HDF5_SCILAB_IMPEXP int openHDF5File(char *name, int _iAppendMode);
 HDF5_SCILAB_IMPEXP void closeHDF5File(int file);

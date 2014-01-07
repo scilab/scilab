@@ -73,7 +73,7 @@
                 <para>mtlb_var returns a real (i.e. with a zero imaginary part) variance, 
                     even if x is a complex vector or matrix. The Scilab variance
                     primitive returns a complex value if the input vector x is complex and 
-                    if no option additionnal is used.
+                    if no option additional is used.
                 </para>
             </listitem>
             <listitem>

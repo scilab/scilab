@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: ca\n"
 
 #, c-format
@@ -46,11 +46,6 @@ msgstr ""
 "escalar.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta. Ha de ser un escalar.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un enter.\n"
@@ -62,12 +57,12 @@ msgstr ""
 "de caràcters.\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: No hi ha més memòria.\n"
-
-#, c-format
 msgid "%s: Undefined environment variable %s.\n"
 msgstr "%s: La variable d'entorn %s no està definida.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: No hi ha més memòria.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -82,7 +77,7 @@ msgid "Warning"
 msgstr ""
 
 #, c-format
-msgid "%s: See help('load') for the rational.\n"
+msgid "%s: See help('load') for the rationale.\n"
 msgstr ""
 
 #, c-format

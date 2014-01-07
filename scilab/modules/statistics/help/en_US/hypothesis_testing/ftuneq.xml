@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -44,12 +44,12 @@
             still  is possible  to modify  the  ANOVA calculations."
             Note  that  the  definition  of  xbarbar  is  no  longer
             mean(xbar), but  rather a weighted  average with weights
-            ni.  Additionnally  it gives (in  p) the p-value  of the
+            ni.  Additionally  it gives (in  p) the p-value  of the
             computed Fisher ratio.
         </para>
         <para>
             Given a number  a of samples each of  them composed of n_i
-            (i from 1  to a) observations this fonction  computes in f
+            (i from 1  to a) observations this function  computes in f
             the Fisher  ratio (it is  the ratio between nr  times the
             variance  of the  means of  samples  and the  mean of  the
             variances of each sample).
@@ -75,7 +75,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 sample1=[46 55 54];
 sample2=[53 54];
 sample3=[50 49 58 51 50];

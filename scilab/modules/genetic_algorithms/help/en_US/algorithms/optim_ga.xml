@@ -332,7 +332,7 @@ ga_params = add_param(ga_params,"init_func",myinitga);
     <refsection>
         <title>Extra parameters for the function</title>
         <para>
-            In some cases, the objective function needs additionnal parameters
+            In some cases, the objective function needs additional parameters
             in order to be evaluated.
             In this case, we can pass a list to the <literal>optim_ga</literal> 
             function, where the first element of the list is the function and the 

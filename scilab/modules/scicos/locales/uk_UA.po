@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-04 12:28+0000\n"
+"PO-Revision-Date: 2013-12-06 19:33+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: uk\n"
 
 #, c-format
@@ -45,6 +45,12 @@ msgstr "%s: розмірності параметрів lnksz і lnktyp мают
 #, c-format
 msgid "%s : No more free memory.\n"
 msgstr "%s: недостатньо вільної пам’яті.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
+"значення.\n"
 
 #, c-format
 msgid "%s : First argument must be a scicos_block typed list.\n"
@@ -612,10 +618,6 @@ msgid "Error: Cannot find file '%s'.\n"
 msgstr "Помилка: не знайдено файл «%s».\n"
 
 #, c-format
-msgid "Error: cannot write to  '%s'  \n"
-msgstr "Помилка: не вдалося здійснити запис до «%s»  \n"
-
-#, c-format
 msgid ""
 "\n"
 "Warning: The initialization system #%d returns a NaN/Inf"
@@ -833,6 +835,12 @@ msgid ""
 "to include a block with continuous-time state in your diagram.\n"
 "   You can for example include DUMMY CLSS block (linear palette)."
 msgstr ""
+"Режим обробки часу не є неперервним. Порогові обмеження ігноруються.\n"
+"Цим можна не перейматися, якщо ви не створюєте програмно\n"
+"зовнішніх подій для таких обмежень.\n"
+"Якщо вам потрібно задіяти порогові обмеження,\n"
+"вам слід включити до діаграми блок з неперервною обробкою за часом.\n"
+"   Наприклад, ви можете включити блок DUMMY CLSS (набір лінійних блоків)."
 
 msgid "Diagram contains implicit blocks, compiling for implicit Solver."
 msgstr ""
@@ -1003,13 +1011,21 @@ msgid "Superblock should not contains any Scilab function block."
 msgstr "Надблок не повинен містити блоків функцій Scilab."
 
 msgid "Generated block cannot be linked with Scilab."
-msgstr ""
+msgstr "Створений блок не може бути скомпоновано зі Scilab."
 
 msgid "Evaluation problem: value not updated from context."
 msgstr "Проблема обчислення: значення не оновлено на основі контексту."
 
 msgid "Evaluation problem: Unknown block"
 msgstr "Проблема з обчисленнями: невідомий блок"
+
+#, c-format
+msgid ""
+"%s: Error while calling block %s [uid='%s']: invalid parameter (ier=%f, \\"
+"%scicos_prob=%f).\n"
+msgstr ""
+"%s: помилка під час спроби викликати блок %s [uid=«%s»]: некоректний "
+"параметр (ier=%f, \\%scicos_prob=%f).\n"
 
 msgid "Cannot load dynamic library: "
 msgstr "Не вдалося завантажити динамічну бібліотеку: "
@@ -1039,16 +1055,16 @@ msgid "This Super block input port is not connected."
 msgstr "Цей порт вхідних даних надблоку ні з чим не з’єднано."
 
 msgid "Input ports are not numbered properly."
-msgstr ""
+msgstr "Нумерація вхідних портів є помилковою."
 
 msgid "Output ports are not numbered properly."
-msgstr ""
+msgstr "Нумерація вихідних портів є помилковою."
 
 msgid "Event input ports are not numbered properly."
-msgstr ""
+msgstr "Нумерація вхідних портів подій є помилковою."
 
 msgid "Event output ports are not numbered properly."
-msgstr ""
+msgstr "Нумерація вихідних портів подій є помилковою."
 
 #, c-format
 msgid "%s: Empty diagram"

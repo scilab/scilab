@@ -201,7 +201,7 @@
             </varlistentry>
         </variablelist>
         <para>
-            It might happen that the function requires additionnal arguments to be evaluated.
+            It might happen that the function requires additional arguments to be evaluated.
             In this case, we can use the following feature.
             The argument <literal>costf</literal> can also be the list <literal>(myfun,a1,a2,...)</literal>.
             In this case <literal>myfun</literal>, the first element in the list, must be a function and must

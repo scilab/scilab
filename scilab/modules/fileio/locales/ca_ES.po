@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: ca\n"
 
 #, c-format
@@ -25,11 +25,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un booleà.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un booleà.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -48,12 +43,6 @@ msgstr ""
 "de caràcters.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
-"text.\n"
-
-#, c-format
 msgid "%s: Can not read named argument %s.\n"
 msgstr ""
 
@@ -64,10 +53,6 @@ msgstr "%s: No s'ha pogut anar al directori %s\n"
 #, c-format
 msgid "%s: Cannot go to directory.\n"
 msgstr "%s: No s'ha pogut anar al directori.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A string expected.\n"
-msgstr ""
 
 #, c-format
 msgid ""
@@ -132,8 +117,11 @@ msgstr ""
 "text.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
+"(1 x n) o de (m x 1).\n"
 
 #, c-format
 msgid ""
@@ -144,10 +132,10 @@ msgstr ""
 "de nombres decimals amb coma flotant.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real values expected.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Han de ser valors "
-"reals.\n"
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"text.\n"
 
 #, c-format
 msgid "%s: can not open file %s.\n"
@@ -308,6 +296,13 @@ msgstr "%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un enter.\n"
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text o "
+"una unitat lògica.\n"
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: String or logical unit expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un text o una "
@@ -334,13 +329,6 @@ msgid "%s: No input file associated to logical unit %d.\n"
 msgstr "%s: No s'ha associat cap fitxer a la unitat lògica %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text o "
-"una unitat lògica.\n"
-
-#, c-format
 msgid "%s: invalid filename.\n"
 msgstr "%s: El nom de fitxer no és vàlid.\n"
 
@@ -352,13 +340,6 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
-"(1 x n) o de (m x 1).\n"
 
 #, c-format
 msgid "%s: Specified format cannot include any '\\n'\n"
@@ -374,6 +355,11 @@ msgstr "No hi ha prou entrades."
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'w' or 'u' string expected.\n"
 msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un booleà.\n"
 
 #, c-format
 msgid "%s: An error occurred.\n"
@@ -397,6 +383,10 @@ msgid "Could not parse the URL.\n"
 msgstr ""
 
 #, c-format
+msgid "Could not read the configuration file '%s'.\n"
+msgstr ""
+
+#, c-format
 msgid "Failed to read the scicurl_config file '%s'.\n"
 msgstr ""
 
@@ -415,7 +405,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "Failed opening '%s' for writing.\n"
+msgid "Failed getting current dir, error code: %d\n"
 msgstr ""
 
 #, c-format
@@ -447,7 +437,15 @@ msgid "Failed to set write data [%s]\n"
 msgstr ""
 
 #, c-format
+msgid "Failed to set 'Follow Location' [%s]\n"
+msgstr ""
+
+#, c-format
 msgid "Transfer did not complete successfully: %s\n"
+msgstr ""
+
+#, c-format
+msgid "Failed opening '%s' for writing.\n"
 msgstr ""
 
 msgid "unclosed [ directive."

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-21 06:07+0000\n"
+"PO-Revision-Date: 2013-12-08 12:24+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <zz-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -245,8 +245,8 @@ msgstr "ヤコビアンを生成"
 msgid "Error"
 msgstr "エラー"
 
-msgid "Unknowns not equals to Equations"
-msgstr "未知量は方程式ではありません"
+msgid "Unknowns not equal to Equations"
+msgstr "未知数の数が方程式と等じではありません"
 
 msgid "Unknowns"
 msgstr "未知"
@@ -1195,6 +1195,100 @@ msgstr "%s: 入力引数 #%d の型が間違っています: ブロックを指�
 #, c-format
 msgid "Field %s has different values."
 msgstr "フィールド %s は異なる値を有しています."
+
+msgid "Stopped before block:"
+msgstr "ブロックの前で停止:"
+
+msgid "Stopped after block:"
+msgstr "ブロックの後で停止:"
+
+msgid "State derivative computation"
+msgstr "状態量微分計算"
+
+msgid "Regular outputs update"
+msgstr "通常の出力更新"
+
+msgid "States update on discrete event"
+msgstr "離散イベントで状態量更新"
+
+msgid "Output activation dates"
+msgstr "出力アクティベーションした日付"
+
+msgid "Initialization"
+msgstr "初期化"
+
+msgid "Ending"
+msgstr "終了中"
+
+msgid "ReInitialization"
+msgstr "最初期化"
+
+msgid "Continous states properties update"
+msgstr "連続状態量プロパティ更新"
+
+msgid "Zero crossing surfaces computation"
+msgstr "ゼロ交差局面の計算"
+
+msgid "Residual computation"
+msgstr "残差の計算"
+
+msgid "&File"
+msgstr "ファイル(&F)"
+
+msgid "&Tools"
+msgstr "ツール (&T)"
+
+msgid "&Edit"
+msgstr "編集(&E)"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "Xcos debug"
+msgstr "Xcosデバック"
+
+msgid "Break point conditions"
+msgstr "ブレークポイント条件"
+
+msgid "Break on selected flags"
+msgstr "選択されたフラグでブレーク"
+
+msgid "After call"
+msgstr ""
+
+msgid "Before call"
+msgstr ""
+
+msgid "After date"
+msgstr ""
+
+msgid "On the Scilab condition above"
+msgstr ""
+
+msgid "Current simulation state"
+msgstr ""
+
+msgid "scs_m block path:"
+msgstr ""
+
+msgid "Time:"
+msgstr ""
+
+msgid "Flag:"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "End debug"
+msgstr ""
+
+msgid "Pause"
+msgstr ""
+
+#, c-format
+msgid "Use the %s button to end the debugging"
+msgstr ""
 
 msgid "The Scicos libraries are not loaded"
 msgstr "Scilabライブラリは取り込めませんでした"

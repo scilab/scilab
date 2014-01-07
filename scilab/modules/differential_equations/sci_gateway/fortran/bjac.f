@@ -14,7 +14,6 @@ c
       integer iadr,sadr
 c     
       double precision y(ny),jac(nrowj,ny),t(*)
-      common/ierode/iero
 c     
       logical allowptr
       integer vol,tops,nordre
@@ -23,7 +22,7 @@ c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c     
-      iero=0
+      ierror=0
       mrhs=2
 c     
       ilp=iadr(lstk(top))
@@ -39,9 +38,9 @@ c     Case of a Fortran simulator
       endif
 c     external is a Scilab function
 
-c     On return iero=1 is used to notify to the ode solver that
+c     On return ierror=1 is used to notify to the ode solver that
 c     scilab was not able to evaluate the external
-      iero=1
+      ierror=1
 
 c     Putting Fortran arguments on Scilab stack 
 c+    
@@ -124,8 +123,8 @@ c     Transferring the output to Fortran
       endif
       if(err.gt.0.or.err1.gt.0) return
 c+    
-c     normal return iero set to 0
-      iero=0 
+c     normal return ierror set to 0
+      ierror=0 
       return
 c     
  9999 continue

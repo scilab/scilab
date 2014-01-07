@@ -74,9 +74,11 @@ class UserDefineGraduation implements Graduations {
     public List<Double> getAllValues() {
         if (allValues == null) {
             Double[] locs = axisProperty.getTicksLocations();
+            final boolean log = axisProperty.getLogFlag();
             allValues = new LinkedList<Double>();
             for (Double d : locs) {
-                if (contain(d)) {
+                final double v = log ? Math.log10(d) : d;
+                if (contain(v)) {
                     allValues.add(d);
                 }
             }

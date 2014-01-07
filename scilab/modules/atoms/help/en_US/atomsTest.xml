@@ -74,7 +74,7 @@
             <emphasis role="strong">Example 1</emphasis>: Test a module already
             installed
         </para>
-        <programlisting role="example">// Display some additionnal information
+        <programlisting role="example">// Display some additional information
             atomsSetConfig("Verbose","True");
             
             // Get the list of loaded modules:
@@ -140,7 +140,7 @@
                 --------------------------------------------------------------------------
                 ans  =
                 
-                %f 
+                %f
             </programlisting>
             <para>TMPDIR is the general folder where all the temporary files of the
                 tests will be saved. The list of the tests is then shown, with their
@@ -235,7 +235,7 @@
                             to fix it
                         </td>
                     </tr>
-                    <!-- skipped : bug reoponed -->
+                    <!-- skipped : bug reopened -->
                     <tr>
                         <td>
                             <emphasis>failed : bug reopened</emphasis>
@@ -320,7 +320,7 @@
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revdescription>
-                    atomsTest returns a status: 
+                    atomsTest returns a status:
                     <itemizedlist>
                         <listitem>Returns %t if no error has been detected</listitem><listitem>Returns %f if any error has been detected</listitem>
                     </itemizedlist>

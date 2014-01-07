@@ -355,7 +355,7 @@ stop = outfun ( xopt , optimValues , state )
             </listitem>
         </itemizedlist>
         <para>
-            It might happen that the output function requires additionnal arguments to be evaluated.
+            It might happen that the output function requires additional arguments to be evaluated.
             In this case, we can use the following feature.
             The function <literal>outfun</literal> can also be the list <literal>(outf,a1,a2,...)</literal>.
             In this case <literal>outf</literal>, the first element in the list, must have the header:

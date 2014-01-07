@@ -23,6 +23,8 @@ $SCILAB : scilab path (SCI in Scilab)
     <option value="-Djava.compiler=JIT"/>
     <!-- Set Java Heap space to 256mb -->
     <option value="-Xmx256m"/>
+    <!-- Avoid jvm to handle sigint (& other signals)  -->
+    <option value="-Xrs"/>
     
     <!-- Set Java space for direct buffer allocation -->
     <!--

@@ -45,7 +45,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>correl(x,y)</literal> or <literal>correl(x,y, fre)</literal> computes the 
+            <literal>correl(x,y)</literal> or <literal>correl(x,y, fre)</literal> computes the
             correlation of two variables <literal>x</literal> and <literal>y</literal>.
         </para>
         <para>
@@ -53,9 +53,9 @@
             size (size(x, "*") must be equal to size(y, "*")).
         </para>
         <para>
-            <literal>fre</literal> is a matrix of dimensions  length(x) x length(y). In 
-            <literal>fre</literal>, the element of indices (i,j) corresponds to the value or 
-            number or frequences of x_i&amp;y_j.
+            <literal>fre</literal> is a matrix of dimensions  length(x) x length(y). In
+            <literal>fre</literal>, the element of indices (i,j) corresponds to the value or
+            number or frequencies of x_i&amp;y_j.
         </para>
     </refsection>
     <refsection>
@@ -66,12 +66,12 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
         // correl(x, y)
         x = [2.5 7.5 12.5 17.5];
         y = [6.3 7.1 8.2 9.4];
         r = correl(x, y)
-        
+
         // correl(x, y, fre)
         h=[0 1 2]
         fre=[.03 .12 .07;.02 .13 .11;.01 .13 .14;.01 .09 .14]

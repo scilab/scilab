@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-08-01 13:58+0000\n"
+"PO-Revision-Date: 2013-10-03 23:49+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: ru\n"
 
 #, c-format
@@ -362,7 +362,7 @@ msgid "Bytes:"
 msgstr "Байты:"
 
 msgid "Type not supported for this operation"
-msgstr ""
+msgstr "Для этой операции такой тип не поддерживается"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"

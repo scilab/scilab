@@ -97,11 +97,11 @@ opt = optimbase_new ();
 opt = optimbase_configure(opt,"-numberofvariables",2);
 nbvar = optimbase_cget(opt,"-numberofvariables");
 assert_checkequal ( nbvar , 2 );
-// Check cost function without additionnal argument
+// Check cost function without additional argument
 opt = optimbase_configure(opt,"-function",rosenbrock);
 [this,f , index ] = optimbase_function ( opt , [0.0 0.0] , 2 );
 assert_checkalmostequal ( f , 1.0 , %eps );
-// Check cost function with additionnal argument
+// Check cost function with additional argument
 opt = optimbase_configure(opt,"-function",list(rosenbrock2,mystuff));
 [this,f, index ] = optimbase_function ( opt , [0.0 0.0] , 2 );
 assert_checkalmostequal ( f , 144.0 , %eps );
@@ -156,7 +156,7 @@ opt = optimbase_configure(opt,"-verbose",0);
 opt = optimbase_configure(opt,"-verbosetermination",1);
 opt = optimbase_stoplog ( opt , "My interesting stop message" );
 opt = optimbase_configure(opt,"-verbosetermination",0);
-// Check output command without additionnal argument
+// Check output command without additional argument
 opt = optimbase_configure(opt,"-outputcommand",myoutputcmd);
 brutedata = optimbase_outstruct ( opt );
 mydata = tlist(["T_MYDATA",...
@@ -169,7 +169,7 @@ mydata.funccount = brutedata.funccount;
 mydata.myspecialdata = "yahoo !";
 optimbase_outputcmd ( opt , "init" , mydata );
 assert_checkequal ( _OUTPUCMDFLAG_ , 1 );
-// Check output command with additionnal argument
+// Check output command with additional argument
 opt = optimbase_configure(opt,"-outputcommand",list(myoutputcmd2,myobj));
 brutedata = optimbase_outstruct ( opt );
 mydata = tlist(["T_MYDATA",...

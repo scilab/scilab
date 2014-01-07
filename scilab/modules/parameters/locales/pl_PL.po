@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: pl\n"
 
 #, c-format
@@ -145,31 +145,12 @@ msgid ""
 "Check type: \n"
 msgstr ""
 
-msgid "Show that parameters operators only apply to the plist type"
+#, c-format
+msgid "Second output argument of %s is obsolete.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"\n"
-"Add a parameter to 'A' when 'A' is not a plist.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"\n"
-"Before add_param: \n"
-msgstr ""
-
-#, c-format
-msgid ""
-"\n"
-"After add_param: \n"
-msgstr ""
-
-#, c-format
-msgid ""
-"\n"
-"Error = %f. If error<>0, an error occurred.\n"
+msgid "This argument will be permanently removed in Scilab %s"
 msgstr ""
 
 #, c-format

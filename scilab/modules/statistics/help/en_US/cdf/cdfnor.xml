@@ -68,7 +68,7 @@
         </para>
         <para>
             A slightly modified version of ANORM from
-            Cody, W.D. (1993). "ALGORITHM 715: SPECFUN - A Portabel FORTRAN
+            Cody, W.D. (1993). "ALGORITHM 715: SPECFUN - A Portable FORTRAN
             Package of Special Function Routines and Test Drivers"
             acm Transactions on Mathematical Software. 19, 22-32.
             is used to calulate the  cumulative standard normal distribution.
@@ -223,7 +223,7 @@ xtitle("Inverse Cumulated Distribution Normal Standard Function","p","x");
         </scilab:image>
         
         <programlisting role="example"><![CDATA[
-// The Inverse Normal CDF is ill-conditionned when
+// The Inverse Normal CDF is ill-conditioned when
 // p is close to p=0.5.
 // This is because, at p=0.5, the first derivative is non-zero,
 // while the function is zero.

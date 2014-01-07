@@ -26,7 +26,7 @@
 
 //   allusers : . Tell where will be record the change
 //              . boolean
-//              . optionnal
+//              . optional
 
 function  atomsSaveInstalleddeps(child_deps,section)
 

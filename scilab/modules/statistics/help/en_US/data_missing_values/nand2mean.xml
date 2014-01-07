@@ -53,8 +53,8 @@
             difference of the means of two independent samples (arrays
             sample1  and sample2) and gives  the half amplitude of the
             range of variability of dif  with an indicated  confidence
-            level (dif(2)). The choice of the normal or t fonctions as
-            the  probability fonction depends on  the sizes of sample1
+            level (dif(2)). The choice of the normal or t functions as
+            the  probability function depends on  the sizes of sample1
             and sample2 (cdfnor is chosen if the samples totalize 103 values or more, else cdft is used).
             We suppose that  the underlying variances of
             both populations are equal. NAN values are not counted.

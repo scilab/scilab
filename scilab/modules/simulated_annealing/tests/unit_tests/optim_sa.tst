@@ -13,7 +13,7 @@
 
 // Test that we can run with default values for parameters
 function y=test_func(x)
-  y=x^2
+    y=x^2
 endfunction
 
 rand("seed",0);
@@ -37,17 +37,17 @@ assert_checkequal ( iter>0 , %t );
 ///////////////////////////////////////////
 // Test that we can configure our own neighbour function
 function f = quad ( x )
-  p = [4 3];
-  f = (x(1) - p(1))^2 + (x(2) - p(2))^2
+    p = [4 3];
+    f = (x(1) - p(1))^2 + (x(2) - p(2))^2
 endfunction
 
 // We produce a neighbor by adding some noise to each component of a given vector
 function x_neigh = myneigh_func ( x_current, T , param)
-  nxrow = size(x_current,"r")
-  nxcol = size(x_current,"c")
-  sa_min_delta = -0.1*ones(nxrow,nxcol);
-  sa_max_delta = 0.1*ones(nxrow,nxcol);
-  x_neigh = x_current + (sa_max_delta - sa_min_delta).*rand(nxrow,nxcol) + sa_min_delta;
+    nxrow = size(x_current,"r")
+    nxcol = size(x_current,"c")
+    sa_min_delta = -0.1*ones(nxrow,nxcol);
+    sa_max_delta = 0.1*ones(nxrow,nxcol);
+    x_neigh = x_current + (sa_max_delta - sa_min_delta).*rand(nxrow,nxcol) + sa_min_delta;
 endfunction
 
 rand("seed",0);
@@ -67,10 +67,10 @@ assert_checkalmostequal ( x_opt , [4 3] ,  1.e-1 );
 assert_checkalmostequal ( f_opt , 0 ,  [] , 1.e-1 );
 
 ///////////////////////////////////////////
-// Test that an additionnal parameter can be passed to the cost function
+// Test that an additional parameter can be passed to the cost function
 
 function f = quadp ( x , p )
-  f = (x(1) - p(1))^2 + (x(2) - p(2))^2
+    f = (x(1) - p(1))^2 + (x(2) - p(2))^2
 endfunction
 
 rand("seed",0);
@@ -85,24 +85,24 @@ assert_checkalmostequal ( f_opt , 0 ,  [] , 1.e-1 );
 // Test with a plot function, which serves also as a stop function.
 
 function f = quad ( x )
-  p = [4 3];
-  f = (x(1) - p(1))^2 + (x(2) - p(2))^2
+    p = [4 3];
+    f = (x(1) - p(1))^2 + (x(2) - p(2))^2
 endfunction
 
 // See that the stop variable becomes true when the function value is near zero.
 // The threshold is rather loose.
 function stop = outfunc ( itExt , x_best , f_best , T , saparams )
-  [mythreshold,err] = get_param(saparams,"mythreshold",0);
-  v = format()
-  format("e",10)
-  sxbest = string(x_best)
-  mprintf ( "Iter = #%-4d, \t x_best=[%12s %12s], f_best = %12s, T = %12s\n", itExt , sxbest(1), sxbest(2) , string(f_best) , string(T) )
-  if ( v(1) == 0 ) then
-    format("e",v(2))
-  else
-    format("v",v(2))
-  end
-  stop = ( abs(f_best) < mythreshold )
+    [mythreshold,err] = get_param(saparams,"mythreshold",0);
+    v = format()
+    format("e",10)
+    sxbest = string(x_best)
+    mprintf ( "Iter = #%-4d, \t x_best=[%12s %12s], f_best = %12s, T = %12s\n", itExt , sxbest(1), sxbest(2) , string(f_best) , string(T) )
+    if ( v(1) == 0 ) then
+        format("e",v(2))
+    else
+        format("v",v(2))
+    end
+    stop = ( abs(f_best) < mythreshold )
 endfunction
 
 rand("seed",0);
@@ -112,9 +112,9 @@ saparams = add_param(saparams,"output_func", outfunc );
 saparams = add_param(saparams,"mythreshold", 1.e-1 );
 
 T0 = compute_initial_temp(x0, quad , 0.7, 100, saparams);
-// Notice that the number of external iterations is %inf, so 
+// Notice that the number of external iterations is %inf, so
 // that the external loop never stops.
-// This allows to check that the output function really allows to 
+// This allows to check that the output function really allows to
 // stop the algorithm.
 [x_best, f_best, mean_list, var_list, temp_list, f_history, x_history , iter ] = optim_sa(x0, quad , 1e6, 100, T0, %f, saparams);
 assert_checkalmostequal ( x_best , [4 3] ,  1.e-1 );

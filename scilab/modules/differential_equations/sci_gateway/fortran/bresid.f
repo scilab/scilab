@@ -19,7 +19,6 @@ c
 c     
       logical allowptr
       double precision t(*), y(n),res(n),s(n)
-      common/ierode/iero
 c     
       integer vol,tops,nordre
       data nordre/1/,mlhs/1/
@@ -32,16 +31,16 @@ c     nordre=external number
 c     mlhs (mrhs) = number ot output (input) parameters of the 
 c     external 
 c     
-      iero=0
+      ierror=0
       mrhs=3
 c     
       ilp=iadr(lstk(top))
       il=istk(ilp+nordre)
 c     
 c     external is a Scilab function
-c     on return iero=1 is used to notify to the ode solver that
+c     on return ierror=1 is used to notify to the ode solver that
 c     scilab was not able to evaluate the external
-      iero=1
+      ierror=1
 c     
 c     transfer of input parameters
       call ftob(t,1,istk(il+1))
@@ -118,7 +117,7 @@ c     transfert des variables  de sortie vers fortran
       if(err.gt.0.or.err1.gt.0) return
 c+    
 c     normal return
-      iero=0
+      ierror=0
       return
 c     
  9999 continue

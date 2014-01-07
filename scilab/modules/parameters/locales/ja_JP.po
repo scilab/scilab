@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-21 05:52+0000\n"
+"PO-Revision-Date: 2013-12-08 11:54+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -155,44 +155,21 @@ msgstr ""
 "\n"
 "型を確認: \n"
 
-msgid "Show that parameters operators only apply to the plist type"
-msgstr ""
+#, c-format
+msgid "Second output argument of %s is obsolete.\n"
+msgstr "%s の第二出力引数は廃止予定です.\n"
 
 #, c-format
-msgid ""
-"\n"
-"Add a parameter to 'A' when 'A' is not a plist.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"\n"
-"Before add_param: \n"
-msgstr ""
-"\n"
-"add_param の前: \n"
-
-#, c-format
-msgid ""
-"\n"
-"After add_param: \n"
-msgstr ""
-"\n"
-"add_param の後: \n"
-
-#, c-format
-msgid ""
-"\n"
-"Error = %f. If error<>0, an error occurred.\n"
-msgstr ""
+msgid "This argument will be permanently removed in Scilab %s"
+msgstr "この引数は Scilab %s から削除されます"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: key %s already defined.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: キー %s が既に定義されています.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
@@ -214,7 +191,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています : 文字列を指定
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #
 # File: macros/set_param.sci, line: 19

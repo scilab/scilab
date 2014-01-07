@@ -47,7 +47,6 @@ C
       integer mlhs,mrhs
       logical allowptr
 C
-      common /ierode/ iero
       common /scsptr/ ptr
 C
       if (ddt .eq. 4) then
@@ -59,7 +58,7 @@ c    &       buf(5:8)      )
 C
       mlhs = 5
       mrhs = 8
-      iero = 0
+      ierror = 0
       call itosci(flag,1,1)
       if (err .gt. 0) goto 9999
       call itosci(nevprt,1,1)
@@ -140,8 +139,8 @@ C+
       return
 C     
  9999 continue
-      iero = -1
-      flag=iero
+      ierror = -1
+      flag=ierror
       niv = niv - 1
       return
       end

@@ -2,13 +2,13 @@ C/MEMBR ADD NAME=AINVG,SSI=0
       subroutine ainvg (res, adda, neq, t, y, ydot, miter,
      1                   ml, mu, pw, ipvt, ier )
 clll. optimize
+      
+      include 'stack.h'
       external res, adda
       integer neq, miter, ml, mu, ipvt, ier
       integer i, lenpw, mlp1, nrowpw
       double precision t, y, ydot, pw
       dimension y(*), ydot(*), pw(*), ipvt(*)
-      integer         iero
-      common /ierode/ iero
 c-----------------------------------------------------------------------
 c%purpose
 c this subroutine computes the initial value
@@ -33,11 +33,11 @@ c
 c
       ier = 1
       call res ( neq, t, y, pw, ydot, ier )
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       if (ier .gt. 1) return
 c
       call adda ( neq, t, y, 0, 0, pw, neq )
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       call dgefa ( pw, neq, neq, ipvt, ier )
       if (ier .eq. 0) go to 20
          ier = -ier
@@ -55,12 +55,12 @@ c
 c
       ier = 1
       call res ( neq, t, y, pw, ydot, ier )
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       if (ier .gt. 1) return
 c
       mlp1 = ml + 1
       call adda ( neq, t, y, ml, mu, pw(mlp1), nrowpw )
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       call dgbfa ( pw, nrowpw, neq, ml, mu, ipvt, ier )
       if (ier .eq. 0) go to 120
          ier = -ier

@@ -64,7 +64,7 @@ function [] = bode_asymp(sl, w_min, w_max)
             end
         end
         s = poly(0, var);
-        msg = _("%s: Problem evaluating the first argument.\nn")
+        msg = _("%s: Problem evaluating the first argument.\n")
         try K = horner(h*s^alpha, 0); catch error(msprintf(msg, "bode_asymp")); end
 
         root_den(rac_nul) = []; // Removing the zeros
@@ -135,8 +135,8 @@ function [] = bode_asymp(sl, w_min, w_max)
         end
 
         if rhs == 1 then
-            wmin = fig.children(1).data_bounds(1, 1); // Minimal frequence, w_min
-            wmax = fig.children(1).data_bounds(2, 1); // Maximal frequence, w_max
+            wmin = fig.children(1).data_bounds(1, 1); // Minimal frequency, w_min
+            wmax = fig.children(1).data_bounds(2, 1); // Maximal frequency, w_max
         else
             wmin = w_min;
             wmax = w_max;

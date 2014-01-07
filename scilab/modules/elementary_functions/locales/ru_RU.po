@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-27 14:38+0000\n"
+"PO-Revision-Date: 2013-12-10 15:35+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: ru\n"
 
 #, c-format
@@ -573,9 +573,17 @@ msgstr ""
 "ожидалось одинаковое количество.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Real, integer or polynomial matrix "
+"expected.\n"
 msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалось вещественное число.\n"
+"%s: Неверный тип входного аргумента №%d: ожидалась матрица вещественных, "
+"целочисленных или полиномиальных значений.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
+msgstr ""
+"%s: Несовместимые входные аргументы №%d и №%d: ожидался одинаковый тип.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -625,6 +633,15 @@ msgstr ""
 "входного параметра №%d.\n"
 
 #, c-format
+msgid "%s: Incompatible input arguments: Same types expected.\n"
+msgstr "%s: Несовместимые входные аргументы: ожидались одинаковые типы.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось вещественное число.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалось вещественное число.\n"
@@ -669,9 +686,53 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: a vector expected.\n"
 msgstr "%s: Неверный размер входного аргумента №%d: ожидался вектор.\n"
 
+msgid "RESIZING a matrix of DECIMALS:"
+msgstr ""
+
+msgid "TYPE <Enter> to see an example with POLYNOMIALS:"
+msgstr ""
+
+msgid "The padding's unknown is forced to the P's one"
+msgstr ""
+
+msgid "Polynomials can't be converted"
+msgstr "Полиномы нельзя преобразовать"
+
+msgid "TYPE <Enter> to see an example with TEXT:"
+msgstr ""
+
+msgid "NOTE: Hypermatrix of text can't be converted"
+msgstr "Примечание: текстовая гиперматрица не может быть преобразована"
+
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: %s not supported.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: %s не поддерживается.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: scalar decimal integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong sizes requested, cannot convert list to matrix.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: can't convert the padding to the "
+"input matrix type.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: conversion of polynomials is not supported\n"
+msgstr "%s: преобразование полиномов не поддерживается\n"
+
+#, c-format
+msgid "%s: conversion into %s is not supported\n"
+msgstr "%s: преобразование в %s не поддерживается\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"
@@ -698,3 +759,11 @@ msgstr ""
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: Неверный размер входных параметров: ожидался совместимый размер.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Reals, encoded integers or "
+"polynomials expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидались вещественные, "
+"закодированные целочисленные или полиномиальные значения.\n"

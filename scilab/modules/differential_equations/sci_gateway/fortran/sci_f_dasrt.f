@@ -29,7 +29,6 @@ c
       common /dassln/ namer,namej,names
       external bresd,bjacd,bsurfd
       external setfresd,setfjacd,setfsurfd
-      common/ierode/iero
 c     
       data atol/1.d-7/,rtol/1.d-9/
 c     
@@ -40,7 +39,7 @@ c     SCILAB function : dasrt
 c     --------------------------
 c     [y0,nvs,[,hotdata]]=dasrt(y0,t0,t1[,atol,rtol],res[,jac],nh,h,info
 c     [,hotdata])
-      iero=0
+      ierror=0
       maxord=5
       lbuf = 1
       topk=top

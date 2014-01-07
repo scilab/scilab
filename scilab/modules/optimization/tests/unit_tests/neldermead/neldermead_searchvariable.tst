@@ -14,7 +14,7 @@
 
 
 function [ y , index ] = rosenbrock ( x , index )
-  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+    y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
 //
@@ -66,7 +66,7 @@ assert_checkequal ( status , "tolsize" );
 // Cleanup
 nm = neldermead_destroy(nm);
 
-// Check that the verbose mode is functionnal
+// Check that the verbose mode is functional
 // Few iterations are necessary to check this
 // Many iterations costs a lot more in time.
 nm = neldermead_new ();

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) ????-2006 - INRIA - Scilab 
-    * 
+    * Copyright (C) ????-2006 - INRIA - Scilab
+    *
     * This file must be used under the terms of the CeCILL.
     * This source file is licensed as described in the file COPYING, which
     * you should have received as part of this distribution.  The terms
-    * are also available at    
+    * are also available at
     * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
     *
     -->
@@ -80,12 +80,12 @@
             
             <literal>auwrite(y,Fs,bits,method,aufile)</literal> allows selection of the
             encoding method, which can be either 'mu' or 'linear'.
-            Note that bits must be 8 for 'mu' choice. The default method is 8-bits mu-law enconding.
+            Note that bits must be 8 for 'mu' choice. The default method is 8-bits mu-law encoding.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=matrix(1:6,2,3);
 auwrite(A/6,22050,64,'linear',TMPDIR+'/foo.au');
 B=auread(TMPDIR+'/foo.au');

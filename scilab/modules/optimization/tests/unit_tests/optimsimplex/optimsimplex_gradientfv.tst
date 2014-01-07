@@ -11,7 +11,7 @@
 // <-- CLI SHELL MODE -->
 
 function y = rosenbrock (x)
-  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+    y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
 // Forward
@@ -36,12 +36,12 @@ s1 = optimsimplex_setall ( s1 , simplex );
 computed = optimsimplex_gradientfv ( s1 , method = "centered" , fun = rosenbrock );
 assert_checkalmostequal ( computed , [-1636.3333333333333 -1684.8333333333333]' , 10 * %eps );
 s1 = optimsimplex_destroy ( s1 );
-// Centered with additionnal arguments
+// Centered with additional arguments
 myobj = tlist(["T_MYSTUFF","nb"]);
 myobj.nb = 0;
 function [ y , myobj ] = mycostf ( x , myobj )
-  y = rosenbrock(x);
-  myobj.nb = myobj.nb + 1
+    y = rosenbrock(x);
+    myobj.nb = myobj.nb + 1
 endfunction
 s1 = optimsimplex_new ();
 simplex = [

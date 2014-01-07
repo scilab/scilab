@@ -287,7 +287,7 @@ function ax_handle=getAxes(pt,fig)
     //Returns the axes handle where a point given in pixel lies in the
     //current (or given) figure
     // pt        : the vector or coordinates in pixel in the figure
-    // fig       : optionnal handle on the figure
+    // fig       : optional handle on the figure
     // ax_handle : selected axes handle
     if argn(2)==1 then fig=gcf(),end
     axes=get(fig,"children");

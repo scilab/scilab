@@ -1138,7 +1138,12 @@ public final class Xcos {
      */
     @ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
     public static void xcosSimulationStarted() {
-        GraphActionManager.setEnable(StopAction.class, true);
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                GraphActionManager.setEnable(StopAction.class, true);
+            }
+        });
     }
 
     /**

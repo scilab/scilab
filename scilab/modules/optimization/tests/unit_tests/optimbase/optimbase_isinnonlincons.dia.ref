@@ -10,7 +10,7 @@
 // <-- CLI SHELL MODE -->
 //
 // gould.nonconvex --
-//   The Gould test case with additionnal inequality constraints.
+//   The Gould test case with additional inequality constraints.
 // Arguments
 //    x : the point where to compute the cost
 //    index : a flag which states what is to compute
@@ -57,7 +57,7 @@ function [ f , c , index ] = gouldnonconvex ( x , index )
 endfunction
 //
 // The same cost function as before, with an 
-// additionnal argument, which contains parameters of the 
+// additional argument, which contains parameters of the 
 // cost function and constraints.
 // In this case, the mydata variable is passed
 // explicitely by the optimization class.
@@ -110,7 +110,7 @@ Inequality constraint #3/4 is not satisfied for x
 assert_checkequal ( isfeasible , %f );
 opt = optimbase_destroy(opt);
 //
-// Test with nonlinear inequality constraints and additionnal argument in cost function
+// Test with nonlinear inequality constraints and additional argument in cost function
 mystuff = struct();
 mystuff.f1 = 10.0;
 mystuff.f2 = 20.0;

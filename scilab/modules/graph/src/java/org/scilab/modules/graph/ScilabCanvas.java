@@ -329,6 +329,10 @@ public class ScilabCanvas extends mxInteractiveCanvas {
     public String getImageForStyle(Map<String, Object> style) {
         String filename = mxUtils.getString(style, mxConstants.STYLE_IMAGE);
 
+        if (filename == null) {
+            return null;
+        }
+
         try {
             return new URL(this.urlBasePath, filename).toExternalForm();
         } catch (MalformedURLException e) {
