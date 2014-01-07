@@ -9,4 +9,4 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //------------------------------------
 
-genlib("booleanlib","SCI/modules/boolean/macros",%f,%t);
+//genlib("booleanlib","SCI/modules/boolean/macros",%f,%t);
