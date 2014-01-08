@@ -24,6 +24,8 @@
 #include "filesmanagement.h"
 #include "scilabmode.h"
 #include "dynamic_gateways.h" /* freeAllDynamicGateways */
+#include "h5_fileManagement.h" /* HDF5cleanup */
+
 /*--------------------------------------------------------------------------*/
 BOOL TerminateCorePart1(void)
 {
@@ -56,7 +58,6 @@ BOOL TerminateCorePart2(void)
     freeStackCurrentMemory();
     freeGlobalStackCurrentMemory();
 
-
     DisposeModulesInfo();
 
     destroy_hashtable_scilab_functions();
@@ -68,6 +69,8 @@ BOOL TerminateCorePart2(void)
     * Cleanup function for the XML library.
     */
     xmlCleanupParser();
+
+    HDF5cleanup();
 
     /** clean tmpfiles **/
     C2F(tmpdirc)();

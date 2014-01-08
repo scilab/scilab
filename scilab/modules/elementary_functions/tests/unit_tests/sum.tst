@@ -159,7 +159,7 @@ refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n
 assert_checkerror("sum(d, [""r"", ""c""])", refMsg);
 
 //empty matrices
-T=list(list(),list('native'),list('double'));
+T=list(list(),list("native"),list("double"));
 for typ=T
     assert_checkequal(sum([], typ(:)), 0);
     assert_checkequal(sum([], "*", typ(:)), 0);
@@ -171,7 +171,7 @@ end
 //=======================================================================
 //float matrices
 d=[1 10;254 9];
-T=list(list(),list('native'),list('double'));
+T=list(list(),list("native"),list("double"));
 for typ=T
     assert_checkequal(sum(d, typ(:)), 274);
     assert_checkequal(sum(d, "*", typ(:)), 274);
@@ -195,7 +195,7 @@ end
 //matrices of short integers
 // Caution : uint8([11;263]) is equal to uint8([11;7])
 i=uint8([1 10;254 9]);
-T = list(list(),list('native'));
+T = list(list(),list("native"));
 for typ=T
     assert_checkequal(sum(i, typ(:)), uint8(274));
     assert_checkequal(sum(i, "*", typ(:)), uint8(274));
@@ -212,7 +212,7 @@ assert_checkequal(sum(i, 3, "double"), double(i));
 
 //with hypermatrices
 i(1,1,2)=uint8(1);
-T = list(list(),list('native'));
+T = list(list(),list("native"));
 for typ=T
     assert_checkequal(sum(i, typ(:)), uint8(275));
     assert_checkequal(sum(i, "*", typ(:)), uint8(275));
@@ -232,7 +232,7 @@ assert_checkequal(sum(i, 3, "double"), [2,10;254,9]);
 //Matrices of polynomials
 s=%s;
 p=[s s+1;s^2 0];
-T=list(list(),list('native'),list('double'));
+T=list(list(),list("native"),list("double"));
 for typ=T
     assert_checkequal(sum(p, typ(:)), 1+2*s+s^2);
     assert_checkequal(sum(p, "*", typ(:)), 1+2*s+s^2);
@@ -256,7 +256,7 @@ end
 //Matrices of rationals
 s=%s;
 r=1.0 ./[s s+1;s^2 1];
-T=list(list(),list('native'),list('double'));
+T=list(list(),list("native"),list("double"));
 for typ=T
     assert_checkequal(sum(r, typ(:)), (1+2*s+3*s^2+s^3)./(s^2+s^3));
     assert_checkequal(sum(r, "*", typ(:)), (1+2*s+3*s^2+s^3)./(s^2+s^3));
@@ -269,7 +269,7 @@ end
 ///Matrices of boolean
 
 b=[%t %t %f %t];
-T = list(list(),list('double'));
+T = list(list(),list("double"));
 for typ=T
     assert_checkequal(sum(b, typ(:)), 3);
     assert_checkequal(sum(b, "*", typ(:)), 3);
@@ -284,9 +284,9 @@ assert_checkequal(sum(b, 1, "native"), b);
 assert_checkequal(sum(b, 2, "native"), %t);
 assert_checkequal(sum(b, 3, "native"), b);
 
-//with hypermatrices 
+//with hypermatrices
 b=[%t %t %f %t];b(1,1,2)=%f;
-T = list(list(),list('double'));
+T = list(list(),list("double"));
 for typ=T
     assert_checkequal(sum(b, typ(:)), 3);
     assert_checkequal(sum(b, "*", typ(:)), 3);
@@ -306,7 +306,7 @@ assert_checkequal(sum(b, 5, "native"), b);
 //=======================================================================
 //sparse matrices of floats
 s=sparse([1 10 0;0 254 9]);
-T=list(list(),list('native'),list('double'));
+T=list(list(),list("native"),list("double"));
 for typ=T
     assert_checkequal(sum(s, typ(:)), 274);
     assert_checkequal(sum(s, "*", typ(:)), 274);
@@ -318,7 +318,7 @@ end
 //=======================================================================
 //sparse  matrices of boolean
 bs=sparse([1 10 0;0 254 9])<>0;
-T = list(list(),list('double'));
+T = list(list(),list("double"));
 for typ=T
     assert_checkequal(sum(bs, typ(:)), 4);
     assert_checkequal(sum(bs, "*", typ(:)), 4);

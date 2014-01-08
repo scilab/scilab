@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-01-09 12:12+0000\n"
+"PO-Revision-Date: 2013-10-02 14:14+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: ja\n"
 
 #, c-format
@@ -113,7 +113,7 @@ msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr "%s: 入力引数 #%d の型が正しくありません: 文字列の配列を指定してください.\n"
 
 msgid "Generating localization\n"
-msgstr ""
+msgstr "ローカル化を生成中\n"
 
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
@@ -146,4 +146,4 @@ msgstr "ソースを構築中...\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"

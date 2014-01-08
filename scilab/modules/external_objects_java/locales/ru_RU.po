@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-17 15:36+0000\n"
+"PO-Revision-Date: 2013-12-07 01:53+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 
 #, c-format
 msgid "%s: Function %s is obsolete.\n"
@@ -35,6 +35,18 @@ msgstr ""
 "%s: Эта функция будет окончательно удалена в  Scilab %s\n"
 "\n"
 
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался массив строк.\n"
+
+#, c-format
+msgid "Invalid dimension for argument #%d: A row or a column expected."
+msgstr "Недопустимый размер аргумента №%d: ожидалась строка или столбец."
+
 msgid "Invalid operation"
 msgstr "Недопустимая операция"
 
@@ -44,6 +56,22 @@ msgstr "Недопустимое имя поля"
 #, c-format
 msgid "Cannot set the field: %s"
 msgstr "Нельзя установить поле:  %s"
+
+#, c-format
+msgid ""
+"Cannot compile the code:\n"
+"%s"
+msgstr ""
+"Нельзя скомпилировать код:\n"
+"%s"
+
+#, c-format
+msgid ""
+"Cannot create jar:\n"
+"%s"
+msgstr ""
+"Нельзя создать jar:\n"
+"%s"
 
 msgid "Invalid operator: '"
 msgstr "Недопустимый оператор: '"

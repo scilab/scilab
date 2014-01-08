@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2012-2014 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -55,8 +55,20 @@ void *XMLElement::getRealXMLPointer() const
 
 void XMLElement::remove() const
 {
+    XMLNodeList *obj = 0;
+
+    if (node->parent && node->parent->children)
+    {
+        obj = scope->getXMLNodeListFromLibXMLPtr(node->parent->children);
+    }
+
     xmlUnlinkNode(node);
     xmlFreeNode(node);
+
+    if (obj)
+    {
+        obj->revalidateSize();
+    }
 }
 
 const XMLObject *XMLElement::getXMLObjectParent() const

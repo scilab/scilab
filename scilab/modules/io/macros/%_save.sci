@@ -981,30 +981,30 @@ function [] = %_save(%__filename__, varargin)
             continue;
         end
 
-        temp = evstr(varargin(%__i__));
+        %__temp__ = evstr(varargin(%__i__));
 
-        if isList(temp) then
+        if isList(%__temp__) then
             //list container
-            value = inspectList(temp);
+            value = inspectList(%__temp__);
             //update
             execstr(varargin(%__i__) + " = value");
-        elseif typeof(temp) == "handle" then
-            if ~is_handle_valid(temp) then // Invalid handle ignored
+        elseif typeof(%__temp__) == "handle" then
+            if ~is_handle_valid(%__temp__) then // Invalid handle ignored
                 warning(oldMode);
                 warning(msprintf(gettext("%s: handle no more valid ignored.\n"), "save"));
                 warning("off");
                 varargin(%__i__) = null();
             else //convert handle to tlist
-                value = extractMatrixHandle(temp);
+                value = extractMatrixHandle(%__temp__);
                 //update
                 execstr(varargin(%__i__) + " = value");
             end
-        elseif isMacro(temp) | isCompiledMacro(temp) then
+        elseif isMacro(%__temp__) | isCompiledMacro(%__temp__) then
             //convert macro to tlist
-            value = extractMacro(temp, varargin(%__i__));
+            value = extractMacro(%__temp__, varargin(%__i__));
             //update
             execstr(varargin(%__i__) + " = value");
-        elseif type(temp) == 14 then //library, must not be save
+        elseif type(%__temp__) == 14 then //library, must not be save
             varargin(%__i__) = null();
         end
     end

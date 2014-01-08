@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -23,10 +23,6 @@ msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Byl očekáván boolean.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -41,10 +37,6 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
 msgid "%s: Can not read named argument %s.\n"
 msgstr "%s: Nelze přečíst pojmenovaný argument %s.\n"
 
@@ -55,10 +47,6 @@ msgstr "%s: Nelze přejít do adresáře %s\n"
 #, c-format
 msgid "%s: Cannot go to directory.\n"
 msgstr "%s: Nelze přejít do adresáře.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A string expected.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
 msgid ""
@@ -119,8 +107,11 @@ msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr "%s: Špatný typ vstupních argumentů: Očekávány řetězce.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáváno pole 1 krát n nebo m "
+"krát 1.\n"
 
 #, c-format
 msgid ""
@@ -131,8 +122,8 @@ msgstr ""
 "čísla.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real values expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávány reálné hodnoty.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
 msgid "%s: can not open file %s.\n"
@@ -277,6 +268,13 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo.\n
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec nebo logická "
+"jednotka.\n"
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: String or logical unit expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec nebo logická "
@@ -303,13 +301,6 @@ msgid "%s: No input file associated to logical unit %d.\n"
 msgstr "%s: K logické jednotce %d není přidělen žádný vstupní soubor.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec nebo logická "
-"jednotka.\n"
-
-#, c-format
 msgid "%s: invalid filename.\n"
 msgstr "%s: neplatný název souboru.\n"
 
@@ -322,13 +313,6 @@ msgid ""
 "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván Řetězec nebo Celé číslo.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáváno pole 1 krát n nebo m "
-"krát 1.\n"
 
 #, c-format
 msgid "%s: Specified format cannot include any '\\n'\n"
@@ -345,6 +329,10 @@ msgstr "Nedostatek záznamů."
 msgid "%s: Wrong value for input argument #%d: 'w' or 'u' string expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: očekáván řetězec 'w' nebo 'u'.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Byl očekáván boolean.\n"
 
 #, c-format
 msgid "%s: An error occurred.\n"
@@ -370,6 +358,10 @@ msgid "Could not parse the URL.\n"
 msgstr "Nelze zpracovat URL.\n"
 
 #, c-format
+msgid "Could not read the configuration file '%s'.\n"
+msgstr ""
+
+#, c-format
 msgid "Failed to read the scicurl_config file '%s'.\n"
 msgstr "Nelze přečíst soubor scicurl_config '%s'.\n"
 
@@ -391,8 +383,8 @@ msgstr ""
 "'='\n"
 
 #, c-format
-msgid "Failed opening '%s' for writing.\n"
-msgstr "Nelze otevřít '%s' pro zápis.\n"
+msgid "Failed getting current dir, error code: %d\n"
+msgstr ""
 
 #, c-format
 msgid "Failed to set URL [%s]\n"
@@ -423,8 +415,16 @@ msgid "Failed to set write data [%s]\n"
 msgstr "Nelze nastavit data zápisu [%s]\n"
 
 #, c-format
+msgid "Failed to set 'Follow Location' [%s]\n"
+msgstr ""
+
+#, c-format
 msgid "Transfer did not complete successfully: %s\n"
 msgstr "Přenos nebyl úspěšně dokončen: %s\n"
+
+#, c-format
+msgid "Failed opening '%s' for writing.\n"
+msgstr "Nelze otevřít '%s' pro zápis.\n"
 
 msgid "unclosed [ directive."
 msgstr "neuzavřený příkaz [."

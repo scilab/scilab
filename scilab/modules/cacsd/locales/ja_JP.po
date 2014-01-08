@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-07-26 14:44+0000\n"
+"PO-Revision-Date: 2013-12-08 10:51+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -503,6 +503,25 @@ msgid "Phase (degree)"
 msgstr "位相 (度)"
 
 #, c-format
+msgid ""
+"Wrong type for argument #%d: Rational or State-space matrix expected.\n"
+msgstr "引数 #%d の型が間違っています:  有理数または状態空間行列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Problem evaluating the first argument.\n"
+"n"
+msgstr "%s: 最初の引数を評価する際に問題が発生しました."
+
+#, c-format
+msgid ""
+"ERROR: %s: bode() or gainplot() must be called before bode_asymp() and "
+"graphic window must still be running.\n"
+msgstr ""
+"エラー: %s: bode() または gainplot() を bode_asymp() の前にコールし, "
+"グラフィックウインドウが実行中である必要があります.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr "%s: 入力引数 #%d の型が正しくありません: 文字配列を指定してください.\n"
 
@@ -777,6 +796,10 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 周波数0でゲイ
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
 msgstr "%s: 入力引数 #%dの型が間違っています: 線形システムを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -1098,12 +1121,8 @@ msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 多項式を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: An scalar expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid ""

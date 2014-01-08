@@ -88,6 +88,8 @@ Scilab Bug Fixes
 
 * Bug #7879 fixed - string now accepts plist type, and printing a plist displays that string.
 
+* Bug #7916 fixed - nansum([]) returned Nan value while this function must ignore it.
+
 * Bug #8031 fixed - cdfgam error message fixed.
 
 * Bug #8060 fixed - Display of a list improved in the variable browser.
@@ -157,6 +159,8 @@ Scilab Bug Fixes
 
 * Bug #12121 fixed - inv function did not work for complex sparse matrices.
 
+* Bug #12156 fixed - Closing a Scilab session in Javasci could lead to a HDF5 error message.
+
 * Bug #12334 fixed - Mark color in legend was invalid.
 
 * Bug #12481 fixed - xlabel could not be used with Scilab property names.
@@ -182,6 +186,8 @@ Scilab Bug Fixes
 
 * Bug #12785 fixed - plot did not allow int data as first argument.
 
+* Bug #12880 fixed - A warning is displayed when transposing arguments of plot.
+
 * Bug #12882 fixed - Some help pages were not clear.
 
 * Bug #12910 fixed - Some typos fixed.
@@ -204,6 +210,11 @@ Scilab Bug Fixes
 * Bug #12962 fixed - xinfo documentation was not clear.
 
 * Bug #12963 fixed - drawaxis did not place the axis correctly.
+
+* Bug #12966 fixed - Rotation, tool tip and other Xcos plot actions were
+                     disabled by default.
+
+* Bug #12968 fixed - Cannot save variable named 'temp'.
 
 * Bug #12971 fixed - getURL downloaded file name was wrong.
 
@@ -251,6 +262,8 @@ Scilab Bug Fixes
 
 * Bug #13027 fixed - There was no autowrap into array in JIMS.
 
+* Bug #13031 fixed - Lorentz Butterfly demonstration fixed.
+
 * Bug #13032 fixed - Fixed CMATVIEW help example and created one for CMAT3D.
 
 * Bug #13033 fixed - -1 could not be used as nax argument in plot2d.
@@ -274,6 +287,9 @@ Scilab Bug Fixes
 * Bug #13061 fixed - hdf5 demo failed with a read only file.
 
 * Bug #13063 fixed - Color selection in SciNotes preferences threw exceptions.
+
+* Bug #13064 fixed - Deleting a link connected to a split lead to a translated
+                     link.
 
 * Bug #13069 fixed - Documentation for %MODELICA_USER_LIBS updated.
 
@@ -309,6 +325,12 @@ Scilab Bug Fixes
 * Bug #13139 fixed - fft help page fixed.
 
 * Bug #13140 fixed - Various typos fixed.
+
+* Bug #13146 fixed - profile failed when a comment was on the same line as a function declaration.
+
+* Bug #13152 fixed - Typo fixed in syslin french help page.
+
+* Bug #13174 fixed - Scilab crashed after XML element removal.
 
 
 Xcos Bug Fixes

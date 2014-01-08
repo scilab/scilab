@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-04 13:59+0000\n"
+"PO-Revision-Date: 2013-12-07 08:28+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: uk\n"
 
 #, c-format
@@ -1134,6 +1134,12 @@ msgid "%s: History disabled ; turn on -storehistory option."
 msgstr "%s: журнал вимкнено; увімкнути його можна параметром -storehistory."
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: %s, %s, %d or %d expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути використано %s, %s, "
+"%d або %d.\n"
+
+#, c-format
 msgid ""
 "%s: The -withderivatives option is true but all algorithms in neldermead are "
 "derivative-free."
@@ -1308,6 +1314,7 @@ msgstr "%s: початкова точка не задовольняє умова
 #, c-format
 msgid "%s: Wrong size for x0 argument: A vector expected."
 msgstr ""
+"%s: помилкова розмірність параметра x0: мало бути використано вектор."
 
 #, c-format
 msgid "%s: Unknown value %s for %s option"
@@ -1330,6 +1337,13 @@ msgstr ""
 #, c-format
 msgid "%s: Empty function (use -function option)."
 msgstr "%s: порожня функція (скористайтеся параметром -function)."
+
+#, c-format
+msgid ""
+"%s: Wrong type for user function output argument #%d: A real matrix expected."
+msgstr ""
+"%s: помилковий тип виведеного параметра функції користувача №%d: мало бути "
+"використано матрицю з дійсних чисел."
 
 #, c-format
 msgid "%s: History disabled ; enable -storehistory option."
@@ -1360,6 +1374,12 @@ msgid "%s: No output command is defined."
 msgstr "%s: не визначено команди виведення даних."
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано тип "
+"TSIMPLEX.\n"
+
+#, c-format
 msgid ""
 "%s: Number of rows of x is %d, which is different from number of vertices = "
 "%d."
@@ -1386,6 +1406,18 @@ msgstr ""
 msgid "%s: Number of columns of fv is %d, which is different from 1."
 msgstr ""
 "%s: кількість стовпчиків fv дорівнює %d, значенню, що не збігається з 1."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати дійсне "
+"число.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
+"значення.\n"
 
 #, c-format
 msgid ""
@@ -1465,12 +1497,24 @@ msgstr ""
 "3."
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути вказано матрицю з "
+"дійсними елементами.\n"
+
+#, c-format
 msgid ""
 "%s: The number of vertices (i.e. the number of rows) is %d which is smaller "
 "than the number of columns %d (i.e. n+1)."
 msgstr ""
 "%s: кількість вершин (тобто кількість рядків) дорівнює %d. Це менше за "
 "кількість стовпчиків %d (тобто n+1)."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано тип вектора "
+"з дійсних значень.\n"
 
 #, c-format
 msgid ""
@@ -1503,6 +1547,13 @@ msgid "%s: The exclusion index vector has %d rows instead of 1."
 msgstr "%s: у векторі індексів виключення %d рядків замість 1."
 
 #, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Real matrix or sparse matrix expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: мало бути використано матрицю з дійсних "
+"значень або розріджену матрицю.\n"
+
+#, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: помилковий тип параметра %d: слід використовувати матрицю дійсних "
@@ -1524,3 +1575,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d.\n"

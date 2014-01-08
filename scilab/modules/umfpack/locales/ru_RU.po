@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: ru\n"
 
 #, c-format
@@ -94,12 +94,20 @@ msgid "%s: not enough memory.\n"
 msgstr "%s: недостаточно памяти.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A pointer expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
 "LU factors.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: должна быть действительная "
 "ссылка на (umf) LU-разложение.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A sparse matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: An error occurred: %s: %s\n"
@@ -128,6 +136,12 @@ msgid "This is a factorization of a singular matrix"
 msgstr "Это разложение вырожденной матрицы"
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or complex column vector or "
+"matrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s: Неверный входной параметр №%d: ожидался «%s» или «%s».\n"
 
@@ -137,6 +151,14 @@ msgstr "%s: Неверный размер входного параметра �
 
 msgid "Matrix is not compatible with the given LU factors"
 msgstr "Mатрица несовместима с заданным LU-разложением"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
+msgstr ""
 
 msgid "numeric factorization"
 msgstr "численное разложение"

@@ -14,9 +14,6 @@
 #include <Windows.h>
 #else
 #include <unistd.h>
-#ifndef __APPLE__
-#include <sys/sysinfo.h>
-#endif
 #endif
 #include <stdio.h>
 
@@ -251,12 +248,6 @@ static int setStacksizeMax(char *fname)
     /* it works on XP, Vista, S7ven */
     /* GetLargestFreeMemoryRegion() returns a superior size to real value */
     unsigned long maxmemfree = (GetLargestFreeMemoryRegion()) / sizeof(double);
-
-    long long freePhysicalMem = 0;
-
-#ifndef _MSC_VER
-    freePhysicalMem = (long long)((get_avphys_pages() * get_phys_pages()) / sizeof(double));
-#endif
 
     /* We have already max */
     if (maxmemfree <= backupSize)

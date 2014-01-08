@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected with option '%s'.\n"
@@ -221,8 +221,10 @@ msgid "Missing vect for random permutation\n"
 msgstr "Chybí vektor pro náhodnou permutaci\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: Column vector expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu: Očekáván sloupcový vektor.\n"
+msgid ""
+"%s: Wrong type for input argument: Matrix (full or sparse) or Hypermatrix of "
+"Reals, Complexes, Integers, Booleans, Strings or Polynomials expected.\n"
+msgstr ""
 
 msgid "Missing N and P for Negative Binomial law\n"
 msgstr "Chybí N a P pro Záporný Binomický zákon\n"
@@ -243,6 +245,10 @@ msgstr ""
 
 msgid "Missing Mean and Cov for Multivariate Normal law\n"
 msgstr "Chybí Mean a Cov pro Vícerozměrný Normální zákon\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Column vector expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu: Očekáván sloupcový vektor.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Square matrix expected.\n"

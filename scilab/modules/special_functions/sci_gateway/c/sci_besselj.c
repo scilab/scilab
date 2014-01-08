@@ -290,7 +290,7 @@ int sci_besselj(char *fname, unsigned long fname_len)
     }
     else if (ierr == 3)
     {
-        /* inacurate result */
+        /* inaccurate result */
         ierr = 4;
         C2F(msgs)(&ierr, &un);
     }

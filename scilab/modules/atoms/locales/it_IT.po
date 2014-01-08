@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-09-29 00:03+0000\n"
+"PO-Revision-Date: 2013-12-09 16:10+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: it\n"
 
 #, c-format
@@ -269,7 +269,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: The file '%s' does not exist or is not read accessible.\n"
-msgstr ""
+msgstr "%s: Il file '%s' non esiste o non è accessibile in lettura.\n"
 
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
@@ -301,7 +301,7 @@ msgstr "%s: Errore durante la creazione della directory '%s'.\n"
 
 #, c-format
 msgid "%s: Previously existing file with the same name in '%s'.\n"
-msgstr ""
+msgstr "%s: È già presente un file con lo stesso nome in '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -363,6 +363,7 @@ msgstr "\t - '%s - %s' è necessario per '%s'\n"
 msgid ""
 "%s: The file '%s' from (%s - %s) does not exist or is not read accessible.\n"
 msgstr ""
+"%s: Il file '%s' da (%s - %s) non esiste o non è accessibile in lettura.\n"
 
 #, c-format
 msgid "%s: An error occurred while loading '%s-%s':\n"
@@ -791,6 +792,8 @@ msgid ""
 "%s: The file %s is not well formated, the toolbox %s - %s does not contain "
 "the %s field\n"
 msgstr ""
+"%s: Il file %s non è formattato bene, il toolbox %s - %s non contiene il "
+"campo %s.\n"
 
 #, c-format
 msgid "%s: name and version are not both defined\n"
@@ -832,6 +835,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: String that starts with "
 "'http(s)?://','ftp://' or 'file://' expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
+"stringa che inizia per 'http(s)?://','ftp://' o 'file://'  .\n"
 
 #, c-format
 msgid ""
@@ -851,38 +856,39 @@ msgstr "Download in corso... Attendere."
 #, c-format
 msgid "%s: Error: the response status from the URL %s is invalid.\n"
 msgstr ""
+"%s: Errore: lo stato della risposta dall'indirizzo %s non è valido.\n"
 
 #, c-format
 msgid "%s: Error while opening an Internet connection.\n"
-msgstr ""
+msgstr "%s: Errore nell'apertura di una connessione ad Internet.\n"
 
 #, c-format
 msgid "%s: Error while opening the URL %s.\n"
-msgstr ""
+msgstr "%s: Errore nell'apertura dell'indirizzo %s.\n"
 
 #, c-format
 msgid "%s: Error while creating the file %s on disk.\n"
-msgstr ""
+msgstr "%s: Errore nella creazione del file %s sul disco.\n"
 
 #, c-format
 msgid "%s: Error while retrieving the size of file at URL %s.\n"
-msgstr ""
+msgstr "%s: Errore nell'ottenere la dimensione del file all'indirizzo %s.\n"
 
 #, c-format
 msgid "%s: Error while reading the file from the URL %s.\n"
-msgstr ""
+msgstr "%s: Errore nella lettura del file dall'indirizzo %s.\n"
 
 #, c-format
 msgid "%s: Error while writing the file %s on disk.\n"
-msgstr ""
+msgstr "%s: Errore nella scrittura del file %s sul disco.\n"
 
 #, c-format
 msgid "%s: Error while downloading the file from the URL %s.\n"
-msgstr ""
+msgstr "%s: Errore nello scaricamento del file dall'indirizzo %s.\n"
 
 #, c-format
 msgid "%s: Error: out of memory.\n"
-msgstr ""
+msgstr "%s: Errore: memoria esaurita.\n"
 
 #, c-format
 msgid "%s: The following file hasn't been downloaded:\n"
@@ -898,7 +904,7 @@ msgstr "\t - Posizione locale : '%s'\n"
 
 #, c-format
 msgid "%s: The following file has not been copied:\n"
-msgstr ""
+msgstr "%s: Il seguente file non è stato copiato:\n"
 
 #, c-format
 msgid "\t - source    : '%s'\n"
@@ -910,7 +916,7 @@ msgstr "\t - destinazione : '%s'\n"
 
 #, c-format
 msgid "%s: The downloaded file does not match the MD5SUM:\n"
-msgstr ""
+msgstr "%s: Il file scaricato non corrisponde con lo MD5SUM:\n"
 
 #, c-format
 msgid "\t - file      : '%s'\n"
@@ -941,11 +947,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: The file %s does not exist or is not read accessible.\n"
-msgstr ""
+msgstr "%s: Il file %s non esiste o non è accessibile in lettura.\n"
 
 #, c-format
 msgid "%s: The directory %s does not exist.\n"
-msgstr ""
+msgstr "%s: La directory %s non esiste.\n"
 
 #, c-format
 msgid "%s: The extraction of the archive '%s' has failed.\n"
@@ -1051,11 +1057,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: the package '%s' does not exist.\n"
-msgstr ""
+msgstr "%s: il pacchetto '%s' non esiste.\n"
 
 #, c-format
 msgid "%s: the package '%s' does not contain the field '%s'.\n"
-msgstr ""
+msgstr "%s: il pacchetto '%s' non contiene il campo '%s'.\n"
 
 #, c-format
 msgid "%s: %s (%s) isn't installed.\n"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: ca\n"
 
 #, c-format
@@ -44,6 +44,10 @@ msgstr "%s : L'argument lnksz i lnktyp ha de tenir la mateixa mida.\n"
 #, c-format
 msgid "%s : No more free memory.\n"
 msgstr "%s : No hi ha més memòria lliure.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s : First argument must be a scicos_block typed list.\n"
@@ -578,10 +582,6 @@ msgid "Error: Cannot find file '%s'.\n"
 msgstr ""
 
 #, c-format
-msgid "Error: cannot write to  '%s'  \n"
-msgstr "Error: No s'ha pogut escriure a '%s'  \n"
-
-#, c-format
 msgid ""
 "\n"
 "Warning: The initialization system #%d returns a NaN/Inf"
@@ -936,6 +936,12 @@ msgid "Evaluation problem: value not updated from context."
 msgstr ""
 
 msgid "Evaluation problem: Unknown block"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Error while calling block %s [uid='%s']: invalid parameter (ier=%f, \\"
+"%scicos_prob=%f).\n"
 msgstr ""
 
 msgid "Cannot load dynamic library: "

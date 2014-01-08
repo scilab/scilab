@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: de\n"
 
 #, c-format
@@ -43,6 +43,10 @@ msgstr ""
 
 #, c-format
 msgid "%s : No more free memory.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -530,10 +534,6 @@ msgid "Error: Cannot find file '%s'.\n"
 msgstr ""
 
 #, c-format
-msgid "Error: cannot write to  '%s'  \n"
-msgstr ""
-
-#, c-format
 msgid ""
 "\n"
 "Warning: The initialization system #%d returns a NaN/Inf"
@@ -880,6 +880,12 @@ msgid "Evaluation problem: value not updated from context."
 msgstr ""
 
 msgid "Evaluation problem: Unknown block"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Error while calling block %s [uid='%s']: invalid parameter (ier=%f, \\"
+"%scicos_prob=%f).\n"
 msgstr ""
 
 msgid "Cannot load dynamic library: "

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-21 03:58+0000\n"
+"PO-Revision-Date: 2013-10-02 13:59+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 
 msgid "Exception thrown in file"
 msgstr "ファイルで例外発生"
@@ -24,7 +24,7 @@ msgstr "行"
 
 #, c-format
 msgid "%s: An error occurred: %s"
-msgstr ""
+msgstr "%s: エラーが発生しました: %s"
 
 #, c-format
 msgid "Invalid environment: identifier %d is invalid"
@@ -35,7 +35,7 @@ msgstr "無効な環境"
 
 #, c-format
 msgid "Invalid variable name: %s"
-msgstr ""
+msgstr "変数名が無効です: %s"
 
 msgid "Cannot allocate memory"
 msgstr "メモリを確保できません"
@@ -53,11 +53,11 @@ msgid "External object expected"
 msgstr "外部オブジェクトを指定してください"
 
 msgid "Incompatible External object"
-msgstr ""
+msgstr "外部オブジェクトに互換性がありません"
 
 #, c-format
 msgid "Unable to wrap. Unmanaged datatype (%d) ?"
-msgstr ""
+msgstr "ラップできません. アンマネージドなデータ型 (%d) ですか?"
 
 msgid "Invalid String"
 msgstr "文字列が無効です"
@@ -180,8 +180,8 @@ msgid "Can only wrap as a reference to a named variable"
 msgstr "名前付きの変数へのリファレンスとしてラップすることのみ可能です"
 
 msgid "Invalid variable: cannot retrieve the data type"
-msgstr ""
+msgstr "変数が無効です: データ型を取得できませんでした"
 
 #, c-format
 msgid "%s: Wrong argument type at position %i: Double expected\n"
-msgstr ""
+msgstr "%s: 位置 %i にある引数の型が間違っています:] double を指定してください\n"

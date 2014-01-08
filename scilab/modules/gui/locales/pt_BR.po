@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -115,16 +115,25 @@ msgstr ""
 "real ou um manipulador \"Figure\".\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A valid figure identifier expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
-"texto.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
 "de textos.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"texto.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
@@ -396,6 +405,10 @@ msgstr ""
 "%s"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr ""
 
@@ -435,7 +448,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A handle expected.\n"
+msgid "%s: Can not create output argument #%d.\n"
 msgstr ""
 
 #, c-format
@@ -485,10 +498,6 @@ msgstr "É impossível obter a aparência atual"
 msgid ""
 "%s: A Java exception arised:\n"
 "%s"
-msgstr ""
-
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
@@ -1299,6 +1308,32 @@ msgstr "Avaliar seleção com eco"
 msgid "Evaluate selection with no echo"
 msgstr "Avaliar seleção sem ecoar"
 
+#, c-format
+msgid "Option for %s format"
+msgstr ""
+
+msgid "Portrait"
+msgstr ""
+
+msgid "Landscape"
+msgstr ""
+
+msgid "Confirm"
+msgstr ""
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Orientation"
+msgstr ""
+
+#, c-format
+msgid "An error occurred during export: %s"
+msgstr ""
+
+msgid "Export error"
+msgstr ""
+
 msgid "Windows BMP image"
 msgstr "Imagem BMP do Windows"
 
@@ -1320,6 +1355,9 @@ msgstr "Imagem Enhanced Metafile (EMF)"
 msgid "Encapsulated PostScript image (EPS)"
 msgstr "Imagem Encapsulated PostScript (EPS)"
 
+msgid "PostScript image (PS)"
+msgstr ""
+
 msgid "FIG image"
 msgstr "Imagem FIG"
 
@@ -1332,11 +1370,11 @@ msgstr "Imagem SVG"
 msgid "All files"
 msgstr "Todos os arquivos"
 
-msgid "Export"
-msgstr "Exportar"
-
 msgid "Untitled-export"
 msgstr "Exportação sem nome"
+
+msgid "Export"
+msgstr "Exportar"
 
 msgid "Preview"
 msgstr "Visualização"
@@ -1353,15 +1391,11 @@ msgstr "Especifique um formato de arquivo"
 msgid "Error on export"
 msgstr "Erro na exportação"
 
-msgid "Unrecognized extension '"
-msgstr "Extensão desconhecida: '"
-
+#, c-format
 msgid ""
-"'.\n"
+"Unrecognized extension '%s'.\n"
 " Please specify a valid file format."
 msgstr ""
-"'.\n"
-" Especifique um formato válido de arquivo."
 
 msgid "Font Chooser"
 msgstr "Seletor de fontes"
@@ -1386,9 +1420,6 @@ msgstr "Compatível com SciNotes"
 
 msgid "Ok"
 msgstr "Ok"
-
-msgid "Cancel"
-msgstr "Cancelar"
 
 msgid "Loading help browser..."
 msgstr "Carregando o navegador da ajuda..."
@@ -1539,7 +1570,7 @@ msgstr ""
 msgid "Paste style"
 msgstr ""
 
-msgid "Paste the copied style on this axes"
+msgid "Paste the copied style on these axes"
 msgstr ""
 
 msgid "Enter the text"
@@ -1608,6 +1639,15 @@ msgstr ""
 msgid "Matplot"
 msgstr ""
 
+msgid "Arc Drawing Method"
+msgstr ""
+
+msgid "Auto Rotation"
+msgstr ""
+
+msgid "Auto Position"
+msgstr ""
+
 msgid "Auto Ticks"
 msgstr ""
 
@@ -1663,9 +1703,6 @@ msgid "Line Mode"
 msgstr ""
 
 msgid "Mark Mode"
-msgstr ""
-
-msgid "Orientation"
 msgstr ""
 
 msgid "Visible"
@@ -1934,6 +1971,12 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+msgid "Start Angle"
+msgstr ""
+
+msgid "End Angle"
+msgstr ""
+
 msgid "Number of current figure."
 msgstr ""
 
@@ -2052,6 +2095,9 @@ msgid "Title Page"
 msgstr ""
 
 msgid "Axis Title"
+msgstr ""
+
+msgid "Font Angle"
 msgstr ""
 
 msgid "Font Color"
@@ -2416,6 +2462,10 @@ msgstr ""
 "manipulador de 'Figura' ou um número real.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Type %s is not implemented.\n"
 msgstr "%s: O tipo %s não foi implementado.\n"
 
@@ -2444,6 +2494,10 @@ msgid ""
 msgstr ""
 "A resposta dada para %s \n"
 " está incorreta: %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"

@@ -115,9 +115,9 @@ bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT)
 @USE_STATIC_SYSTEM_LIB_FALSE@am__append_5 = -lstdc++
 #-static-libgfortran
 @IS_MACOSX_TRUE@am__append_6 = -framework Cocoa
-@MPI_TRUE@am__append_7 = modules/console/src/c/others/initMPI.c
+@MPI_TRUE@am__append_7 = modules/startup/src/c/initMPI.c
 @MPI_TRUE@am__append_8 = $(OPENMPI_CXXFLAGS)
-@MPI_TRUE@am__append_9 = modules/console/src/c/others/initMPI.c
+@MPI_TRUE@am__append_9 = modules/startup/src/c/initMPI.c
 @MPI_TRUE@am__append_10 = $(OPENMPI_CXXFLAGS)
 
 #  The user wants to compile the localization files
@@ -257,12 +257,12 @@ call_scilab_readwritestring_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(call_scilab_readwritestring_CFLAGS) $(CFLAGS) \
 	$(call_scilab_readwritestring_LDFLAGS) $(LDFLAGS) -o $@
-am__scilab_bin_SOURCES_DIST =  \
-	modules/console/src/c/others/mainscic.cpp \
-	modules/console/src/c/others/initMPI.c
-@MPI_TRUE@am__objects_1 = modules/console/src/c/others/scilab_bin-initMPI.$(OBJEXT)
+am__scilab_bin_SOURCES_DIST = modules/startup/src/c/mainscic.cpp \
+	modules/startup/src/c/initMPI.c
+@MPI_TRUE@am__objects_1 =  \
+@MPI_TRUE@	modules/startup/src/c/scilab_bin-initMPI.$(OBJEXT)
 am_scilab_bin_OBJECTS =  \
-	modules/console/src/c/others/scilab_bin-mainscic.$(OBJEXT) \
+	modules/startup/src/c/scilab_bin-mainscic.$(OBJEXT) \
 	$(am__objects_1)
 scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 am__DEPENDENCIES_1 =
@@ -272,11 +272,11 @@ scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) \
 scilab_bin_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(scilab_bin_LDFLAGS) $(LDFLAGS) -o $@
-am__scilab_cli_bin_SOURCES_DIST =  \
-	modules/console/src/c/others/mainscic.cpp \
-	modules/console/src/c/others/initMPI.c
-@MPI_TRUE@am__objects_2 = modules/console/src/c/others/scilab_cli_bin-initMPI.$(OBJEXT)
-am_scilab_cli_bin_OBJECTS = modules/console/src/c/others/scilab_cli_bin-mainscic.$(OBJEXT) \
+am__scilab_cli_bin_SOURCES_DIST = modules/startup/src/c/mainscic.cpp \
+	modules/startup/src/c/initMPI.c
+@MPI_TRUE@am__objects_2 = modules/startup/src/c/scilab_cli_bin-initMPI.$(OBJEXT)
+am_scilab_cli_bin_OBJECTS =  \
+	modules/startup/src/c/scilab_cli_bin-mainscic.$(OBJEXT) \
 	$(am__objects_2)
 scilab_cli_bin_OBJECTS = $(am_scilab_cli_bin_OBJECTS)
 scilab_cli_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) \
@@ -791,12 +791,12 @@ scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/io/includes/ \
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
 # (causing issues on some platform)
 COMMON_LIBS = $(LTLIBINTL)
-scilab_bin_SOURCES = modules/console/src/c/others/mainscic.cpp \
+scilab_bin_SOURCES = modules/startup/src/c/mainscic.cpp \
 	$(am__append_7)
 scilab_bin_LDADD = $(COMMON_LIBS) $(top_builddir)/modules/libscilab.la $(FLIBS)
 
 # Match scilab -nwni (ie command line without graphics)
-scilab_cli_bin_SOURCES = modules/console/src/c/others/mainscic.cpp \
+scilab_cli_bin_SOURCES = modules/startup/src/c/mainscic.cpp \
 	$(am__append_9)
 scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS) \
 	$(am__append_10)
@@ -1098,28 +1098,28 @@ modules/call_scilab/examples/basicExamples/call_scilab_readwritestring-readwrite
 call_scilab_readwritestring$(EXEEXT): $(call_scilab_readwritestring_OBJECTS) $(call_scilab_readwritestring_DEPENDENCIES) $(EXTRA_call_scilab_readwritestring_DEPENDENCIES) 
 	@rm -f call_scilab_readwritestring$(EXEEXT)
 	$(AM_V_CCLD)$(call_scilab_readwritestring_LINK) $(call_scilab_readwritestring_OBJECTS) $(call_scilab_readwritestring_LDADD) $(LIBS)
-modules/console/src/c/others/$(am__dirstamp):
-	@$(MKDIR_P) modules/console/src/c/others
-	@: > modules/console/src/c/others/$(am__dirstamp)
-modules/console/src/c/others/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) modules/console/src/c/others/$(DEPDIR)
-	@: > modules/console/src/c/others/$(DEPDIR)/$(am__dirstamp)
-modules/console/src/c/others/scilab_bin-mainscic.$(OBJEXT):  \
-	modules/console/src/c/others/$(am__dirstamp) \
-	modules/console/src/c/others/$(DEPDIR)/$(am__dirstamp)
-modules/console/src/c/others/scilab_bin-initMPI.$(OBJEXT):  \
-	modules/console/src/c/others/$(am__dirstamp) \
-	modules/console/src/c/others/$(DEPDIR)/$(am__dirstamp)
+modules/startup/src/c/$(am__dirstamp):
+	@$(MKDIR_P) modules/startup/src/c
+	@: > modules/startup/src/c/$(am__dirstamp)
+modules/startup/src/c/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) modules/startup/src/c/$(DEPDIR)
+	@: > modules/startup/src/c/$(DEPDIR)/$(am__dirstamp)
+modules/startup/src/c/scilab_bin-mainscic.$(OBJEXT):  \
+	modules/startup/src/c/$(am__dirstamp) \
+	modules/startup/src/c/$(DEPDIR)/$(am__dirstamp)
+modules/startup/src/c/scilab_bin-initMPI.$(OBJEXT):  \
+	modules/startup/src/c/$(am__dirstamp) \
+	modules/startup/src/c/$(DEPDIR)/$(am__dirstamp)
 
 scilab-bin$(EXEEXT): $(scilab_bin_OBJECTS) $(scilab_bin_DEPENDENCIES) $(EXTRA_scilab_bin_DEPENDENCIES) 
 	@rm -f scilab-bin$(EXEEXT)
 	$(AM_V_CXXLD)$(scilab_bin_LINK) $(scilab_bin_OBJECTS) $(scilab_bin_LDADD) $(LIBS)
-modules/console/src/c/others/scilab_cli_bin-mainscic.$(OBJEXT):  \
-	modules/console/src/c/others/$(am__dirstamp) \
-	modules/console/src/c/others/$(DEPDIR)/$(am__dirstamp)
-modules/console/src/c/others/scilab_cli_bin-initMPI.$(OBJEXT):  \
-	modules/console/src/c/others/$(am__dirstamp) \
-	modules/console/src/c/others/$(DEPDIR)/$(am__dirstamp)
+modules/startup/src/c/scilab_cli_bin-mainscic.$(OBJEXT):  \
+	modules/startup/src/c/$(am__dirstamp) \
+	modules/startup/src/c/$(DEPDIR)/$(am__dirstamp)
+modules/startup/src/c/scilab_cli_bin-initMPI.$(OBJEXT):  \
+	modules/startup/src/c/$(am__dirstamp) \
+	modules/startup/src/c/$(DEPDIR)/$(am__dirstamp)
 
 scilab-cli-bin$(EXEEXT): $(scilab_cli_bin_OBJECTS) $(scilab_cli_bin_DEPENDENCIES) $(EXTRA_scilab_cli_bin_DEPENDENCIES) 
 	@rm -f scilab-cli-bin$(EXEEXT)
@@ -1164,7 +1164,7 @@ mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 	-rm -f modules/call_scilab/examples/basicExamples/*.$(OBJEXT)
 	-rm -f modules/call_scilab/examples/call_scilab/c/common/*.$(OBJEXT)
-	-rm -f modules/console/src/c/others/*.$(OBJEXT)
+	-rm -f modules/startup/src/c/*.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
@@ -1177,10 +1177,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@modules/call_scilab/examples/basicExamples/$(DEPDIR)/call_scilab_readwritestring-readwritestring.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/call_scilab_c-myprog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/call_scilab_c_simple-simple_call_scilab.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@modules/console/src/c/others/$(DEPDIR)/scilab_bin-initMPI.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@modules/console/src/c/others/$(DEPDIR)/scilab_bin-mainscic.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-initMPI.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-mainscic.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@modules/startup/src/c/$(DEPDIR)/scilab_bin-initMPI.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@modules/startup/src/c/$(DEPDIR)/scilab_bin-mainscic.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@modules/startup/src/c/$(DEPDIR)/scilab_cli_bin-initMPI.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@modules/startup/src/c/$(DEPDIR)/scilab_cli_bin-mainscic.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -1318,33 +1318,33 @@ modules/call_scilab/examples/basicExamples/call_scilab_readwritestring-readwrite
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritestring_CFLAGS) $(CFLAGS) -c -o modules/call_scilab/examples/basicExamples/call_scilab_readwritestring-readwritestring.obj `if test -f 'modules/call_scilab/examples/basicExamples/readwritestring.c'; then $(CYGPATH_W) 'modules/call_scilab/examples/basicExamples/readwritestring.c'; else $(CYGPATH_W) '$(srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c'; fi`
 
-modules/console/src/c/others/scilab_bin-initMPI.o: modules/console/src/c/others/initMPI.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT modules/console/src/c/others/scilab_bin-initMPI.o -MD -MP -MF modules/console/src/c/others/$(DEPDIR)/scilab_bin-initMPI.Tpo -c -o modules/console/src/c/others/scilab_bin-initMPI.o `test -f 'modules/console/src/c/others/initMPI.c' || echo '$(srcdir)/'`modules/console/src/c/others/initMPI.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/console/src/c/others/$(DEPDIR)/scilab_bin-initMPI.Tpo modules/console/src/c/others/$(DEPDIR)/scilab_bin-initMPI.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/console/src/c/others/initMPI.c' object='modules/console/src/c/others/scilab_bin-initMPI.o' libtool=no @AMDEPBACKSLASH@
+modules/startup/src/c/scilab_bin-initMPI.o: modules/startup/src/c/initMPI.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT modules/startup/src/c/scilab_bin-initMPI.o -MD -MP -MF modules/startup/src/c/$(DEPDIR)/scilab_bin-initMPI.Tpo -c -o modules/startup/src/c/scilab_bin-initMPI.o `test -f 'modules/startup/src/c/initMPI.c' || echo '$(srcdir)/'`modules/startup/src/c/initMPI.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/startup/src/c/$(DEPDIR)/scilab_bin-initMPI.Tpo modules/startup/src/c/$(DEPDIR)/scilab_bin-initMPI.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/startup/src/c/initMPI.c' object='modules/startup/src/c/scilab_bin-initMPI.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o modules/console/src/c/others/scilab_bin-initMPI.o `test -f 'modules/console/src/c/others/initMPI.c' || echo '$(srcdir)/'`modules/console/src/c/others/initMPI.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o modules/startup/src/c/scilab_bin-initMPI.o `test -f 'modules/startup/src/c/initMPI.c' || echo '$(srcdir)/'`modules/startup/src/c/initMPI.c
 
-modules/console/src/c/others/scilab_bin-initMPI.obj: modules/console/src/c/others/initMPI.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT modules/console/src/c/others/scilab_bin-initMPI.obj -MD -MP -MF modules/console/src/c/others/$(DEPDIR)/scilab_bin-initMPI.Tpo -c -o modules/console/src/c/others/scilab_bin-initMPI.obj `if test -f 'modules/console/src/c/others/initMPI.c'; then $(CYGPATH_W) 'modules/console/src/c/others/initMPI.c'; else $(CYGPATH_W) '$(srcdir)/modules/console/src/c/others/initMPI.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/console/src/c/others/$(DEPDIR)/scilab_bin-initMPI.Tpo modules/console/src/c/others/$(DEPDIR)/scilab_bin-initMPI.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/console/src/c/others/initMPI.c' object='modules/console/src/c/others/scilab_bin-initMPI.obj' libtool=no @AMDEPBACKSLASH@
+modules/startup/src/c/scilab_bin-initMPI.obj: modules/startup/src/c/initMPI.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT modules/startup/src/c/scilab_bin-initMPI.obj -MD -MP -MF modules/startup/src/c/$(DEPDIR)/scilab_bin-initMPI.Tpo -c -o modules/startup/src/c/scilab_bin-initMPI.obj `if test -f 'modules/startup/src/c/initMPI.c'; then $(CYGPATH_W) 'modules/startup/src/c/initMPI.c'; else $(CYGPATH_W) '$(srcdir)/modules/startup/src/c/initMPI.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/startup/src/c/$(DEPDIR)/scilab_bin-initMPI.Tpo modules/startup/src/c/$(DEPDIR)/scilab_bin-initMPI.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/startup/src/c/initMPI.c' object='modules/startup/src/c/scilab_bin-initMPI.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o modules/console/src/c/others/scilab_bin-initMPI.obj `if test -f 'modules/console/src/c/others/initMPI.c'; then $(CYGPATH_W) 'modules/console/src/c/others/initMPI.c'; else $(CYGPATH_W) '$(srcdir)/modules/console/src/c/others/initMPI.c'; fi`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o modules/startup/src/c/scilab_bin-initMPI.obj `if test -f 'modules/startup/src/c/initMPI.c'; then $(CYGPATH_W) 'modules/startup/src/c/initMPI.c'; else $(CYGPATH_W) '$(srcdir)/modules/startup/src/c/initMPI.c'; fi`
 
-modules/console/src/c/others/scilab_cli_bin-initMPI.o: modules/console/src/c/others/initMPI.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT modules/console/src/c/others/scilab_cli_bin-initMPI.o -MD -MP -MF modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-initMPI.Tpo -c -o modules/console/src/c/others/scilab_cli_bin-initMPI.o `test -f 'modules/console/src/c/others/initMPI.c' || echo '$(srcdir)/'`modules/console/src/c/others/initMPI.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-initMPI.Tpo modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-initMPI.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/console/src/c/others/initMPI.c' object='modules/console/src/c/others/scilab_cli_bin-initMPI.o' libtool=no @AMDEPBACKSLASH@
+modules/startup/src/c/scilab_cli_bin-initMPI.o: modules/startup/src/c/initMPI.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT modules/startup/src/c/scilab_cli_bin-initMPI.o -MD -MP -MF modules/startup/src/c/$(DEPDIR)/scilab_cli_bin-initMPI.Tpo -c -o modules/startup/src/c/scilab_cli_bin-initMPI.o `test -f 'modules/startup/src/c/initMPI.c' || echo '$(srcdir)/'`modules/startup/src/c/initMPI.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/startup/src/c/$(DEPDIR)/scilab_cli_bin-initMPI.Tpo modules/startup/src/c/$(DEPDIR)/scilab_cli_bin-initMPI.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/startup/src/c/initMPI.c' object='modules/startup/src/c/scilab_cli_bin-initMPI.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o modules/console/src/c/others/scilab_cli_bin-initMPI.o `test -f 'modules/console/src/c/others/initMPI.c' || echo '$(srcdir)/'`modules/console/src/c/others/initMPI.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o modules/startup/src/c/scilab_cli_bin-initMPI.o `test -f 'modules/startup/src/c/initMPI.c' || echo '$(srcdir)/'`modules/startup/src/c/initMPI.c
 
-modules/console/src/c/others/scilab_cli_bin-initMPI.obj: modules/console/src/c/others/initMPI.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT modules/console/src/c/others/scilab_cli_bin-initMPI.obj -MD -MP -MF modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-initMPI.Tpo -c -o modules/console/src/c/others/scilab_cli_bin-initMPI.obj `if test -f 'modules/console/src/c/others/initMPI.c'; then $(CYGPATH_W) 'modules/console/src/c/others/initMPI.c'; else $(CYGPATH_W) '$(srcdir)/modules/console/src/c/others/initMPI.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-initMPI.Tpo modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-initMPI.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/console/src/c/others/initMPI.c' object='modules/console/src/c/others/scilab_cli_bin-initMPI.obj' libtool=no @AMDEPBACKSLASH@
+modules/startup/src/c/scilab_cli_bin-initMPI.obj: modules/startup/src/c/initMPI.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT modules/startup/src/c/scilab_cli_bin-initMPI.obj -MD -MP -MF modules/startup/src/c/$(DEPDIR)/scilab_cli_bin-initMPI.Tpo -c -o modules/startup/src/c/scilab_cli_bin-initMPI.obj `if test -f 'modules/startup/src/c/initMPI.c'; then $(CYGPATH_W) 'modules/startup/src/c/initMPI.c'; else $(CYGPATH_W) '$(srcdir)/modules/startup/src/c/initMPI.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) modules/startup/src/c/$(DEPDIR)/scilab_cli_bin-initMPI.Tpo modules/startup/src/c/$(DEPDIR)/scilab_cli_bin-initMPI.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='modules/startup/src/c/initMPI.c' object='modules/startup/src/c/scilab_cli_bin-initMPI.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o modules/console/src/c/others/scilab_cli_bin-initMPI.obj `if test -f 'modules/console/src/c/others/initMPI.c'; then $(CYGPATH_W) 'modules/console/src/c/others/initMPI.c'; else $(CYGPATH_W) '$(srcdir)/modules/console/src/c/others/initMPI.c'; fi`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o modules/startup/src/c/scilab_cli_bin-initMPI.obj `if test -f 'modules/startup/src/c/initMPI.c'; then $(CYGPATH_W) 'modules/startup/src/c/initMPI.c'; else $(CYGPATH_W) '$(srcdir)/modules/startup/src/c/initMPI.c'; fi`
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -1370,33 +1370,33 @@ modules/console/src/c/others/scilab_cli_bin-initMPI.obj: modules/console/src/c/o
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
-modules/console/src/c/others/scilab_bin-mainscic.o: modules/console/src/c/others/mainscic.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT modules/console/src/c/others/scilab_bin-mainscic.o -MD -MP -MF modules/console/src/c/others/$(DEPDIR)/scilab_bin-mainscic.Tpo -c -o modules/console/src/c/others/scilab_bin-mainscic.o `test -f 'modules/console/src/c/others/mainscic.cpp' || echo '$(srcdir)/'`modules/console/src/c/others/mainscic.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) modules/console/src/c/others/$(DEPDIR)/scilab_bin-mainscic.Tpo modules/console/src/c/others/$(DEPDIR)/scilab_bin-mainscic.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='modules/console/src/c/others/mainscic.cpp' object='modules/console/src/c/others/scilab_bin-mainscic.o' libtool=no @AMDEPBACKSLASH@
+modules/startup/src/c/scilab_bin-mainscic.o: modules/startup/src/c/mainscic.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT modules/startup/src/c/scilab_bin-mainscic.o -MD -MP -MF modules/startup/src/c/$(DEPDIR)/scilab_bin-mainscic.Tpo -c -o modules/startup/src/c/scilab_bin-mainscic.o `test -f 'modules/startup/src/c/mainscic.cpp' || echo '$(srcdir)/'`modules/startup/src/c/mainscic.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) modules/startup/src/c/$(DEPDIR)/scilab_bin-mainscic.Tpo modules/startup/src/c/$(DEPDIR)/scilab_bin-mainscic.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='modules/startup/src/c/mainscic.cpp' object='modules/startup/src/c/scilab_bin-mainscic.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o modules/console/src/c/others/scilab_bin-mainscic.o `test -f 'modules/console/src/c/others/mainscic.cpp' || echo '$(srcdir)/'`modules/console/src/c/others/mainscic.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o modules/startup/src/c/scilab_bin-mainscic.o `test -f 'modules/startup/src/c/mainscic.cpp' || echo '$(srcdir)/'`modules/startup/src/c/mainscic.cpp
 
-modules/console/src/c/others/scilab_bin-mainscic.obj: modules/console/src/c/others/mainscic.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT modules/console/src/c/others/scilab_bin-mainscic.obj -MD -MP -MF modules/console/src/c/others/$(DEPDIR)/scilab_bin-mainscic.Tpo -c -o modules/console/src/c/others/scilab_bin-mainscic.obj `if test -f 'modules/console/src/c/others/mainscic.cpp'; then $(CYGPATH_W) 'modules/console/src/c/others/mainscic.cpp'; else $(CYGPATH_W) '$(srcdir)/modules/console/src/c/others/mainscic.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) modules/console/src/c/others/$(DEPDIR)/scilab_bin-mainscic.Tpo modules/console/src/c/others/$(DEPDIR)/scilab_bin-mainscic.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='modules/console/src/c/others/mainscic.cpp' object='modules/console/src/c/others/scilab_bin-mainscic.obj' libtool=no @AMDEPBACKSLASH@
+modules/startup/src/c/scilab_bin-mainscic.obj: modules/startup/src/c/mainscic.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT modules/startup/src/c/scilab_bin-mainscic.obj -MD -MP -MF modules/startup/src/c/$(DEPDIR)/scilab_bin-mainscic.Tpo -c -o modules/startup/src/c/scilab_bin-mainscic.obj `if test -f 'modules/startup/src/c/mainscic.cpp'; then $(CYGPATH_W) 'modules/startup/src/c/mainscic.cpp'; else $(CYGPATH_W) '$(srcdir)/modules/startup/src/c/mainscic.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) modules/startup/src/c/$(DEPDIR)/scilab_bin-mainscic.Tpo modules/startup/src/c/$(DEPDIR)/scilab_bin-mainscic.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='modules/startup/src/c/mainscic.cpp' object='modules/startup/src/c/scilab_bin-mainscic.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o modules/console/src/c/others/scilab_bin-mainscic.obj `if test -f 'modules/console/src/c/others/mainscic.cpp'; then $(CYGPATH_W) 'modules/console/src/c/others/mainscic.cpp'; else $(CYGPATH_W) '$(srcdir)/modules/console/src/c/others/mainscic.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o modules/startup/src/c/scilab_bin-mainscic.obj `if test -f 'modules/startup/src/c/mainscic.cpp'; then $(CYGPATH_W) 'modules/startup/src/c/mainscic.cpp'; else $(CYGPATH_W) '$(srcdir)/modules/startup/src/c/mainscic.cpp'; fi`
 
-modules/console/src/c/others/scilab_cli_bin-mainscic.o: modules/console/src/c/others/mainscic.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT modules/console/src/c/others/scilab_cli_bin-mainscic.o -MD -MP -MF modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-mainscic.Tpo -c -o modules/console/src/c/others/scilab_cli_bin-mainscic.o `test -f 'modules/console/src/c/others/mainscic.cpp' || echo '$(srcdir)/'`modules/console/src/c/others/mainscic.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-mainscic.Tpo modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-mainscic.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='modules/console/src/c/others/mainscic.cpp' object='modules/console/src/c/others/scilab_cli_bin-mainscic.o' libtool=no @AMDEPBACKSLASH@
+modules/startup/src/c/scilab_cli_bin-mainscic.o: modules/startup/src/c/mainscic.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT modules/startup/src/c/scilab_cli_bin-mainscic.o -MD -MP -MF modules/startup/src/c/$(DEPDIR)/scilab_cli_bin-mainscic.Tpo -c -o modules/startup/src/c/scilab_cli_bin-mainscic.o `test -f 'modules/startup/src/c/mainscic.cpp' || echo '$(srcdir)/'`modules/startup/src/c/mainscic.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) modules/startup/src/c/$(DEPDIR)/scilab_cli_bin-mainscic.Tpo modules/startup/src/c/$(DEPDIR)/scilab_cli_bin-mainscic.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='modules/startup/src/c/mainscic.cpp' object='modules/startup/src/c/scilab_cli_bin-mainscic.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o modules/console/src/c/others/scilab_cli_bin-mainscic.o `test -f 'modules/console/src/c/others/mainscic.cpp' || echo '$(srcdir)/'`modules/console/src/c/others/mainscic.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o modules/startup/src/c/scilab_cli_bin-mainscic.o `test -f 'modules/startup/src/c/mainscic.cpp' || echo '$(srcdir)/'`modules/startup/src/c/mainscic.cpp
 
-modules/console/src/c/others/scilab_cli_bin-mainscic.obj: modules/console/src/c/others/mainscic.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT modules/console/src/c/others/scilab_cli_bin-mainscic.obj -MD -MP -MF modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-mainscic.Tpo -c -o modules/console/src/c/others/scilab_cli_bin-mainscic.obj `if test -f 'modules/console/src/c/others/mainscic.cpp'; then $(CYGPATH_W) 'modules/console/src/c/others/mainscic.cpp'; else $(CYGPATH_W) '$(srcdir)/modules/console/src/c/others/mainscic.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-mainscic.Tpo modules/console/src/c/others/$(DEPDIR)/scilab_cli_bin-mainscic.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='modules/console/src/c/others/mainscic.cpp' object='modules/console/src/c/others/scilab_cli_bin-mainscic.obj' libtool=no @AMDEPBACKSLASH@
+modules/startup/src/c/scilab_cli_bin-mainscic.obj: modules/startup/src/c/mainscic.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT modules/startup/src/c/scilab_cli_bin-mainscic.obj -MD -MP -MF modules/startup/src/c/$(DEPDIR)/scilab_cli_bin-mainscic.Tpo -c -o modules/startup/src/c/scilab_cli_bin-mainscic.obj `if test -f 'modules/startup/src/c/mainscic.cpp'; then $(CYGPATH_W) 'modules/startup/src/c/mainscic.cpp'; else $(CYGPATH_W) '$(srcdir)/modules/startup/src/c/mainscic.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) modules/startup/src/c/$(DEPDIR)/scilab_cli_bin-mainscic.Tpo modules/startup/src/c/$(DEPDIR)/scilab_cli_bin-mainscic.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='modules/startup/src/c/mainscic.cpp' object='modules/startup/src/c/scilab_cli_bin-mainscic.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o modules/console/src/c/others/scilab_cli_bin-mainscic.obj `if test -f 'modules/console/src/c/others/mainscic.cpp'; then $(CYGPATH_W) 'modules/console/src/c/others/mainscic.cpp'; else $(CYGPATH_W) '$(srcdir)/modules/console/src/c/others/mainscic.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o modules/startup/src/c/scilab_cli_bin-mainscic.obj `if test -f 'modules/startup/src/c/mainscic.cpp'; then $(CYGPATH_W) 'modules/startup/src/c/mainscic.cpp'; else $(CYGPATH_W) '$(srcdir)/modules/startup/src/c/mainscic.cpp'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -1915,8 +1915,8 @@ distclean-generic:
 	-rm -f modules/call_scilab/examples/basicExamples/$(am__dirstamp)
 	-rm -f modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR)/$(am__dirstamp)
 	-rm -f modules/call_scilab/examples/call_scilab/c/common/$(am__dirstamp)
-	-rm -f modules/console/src/c/others/$(DEPDIR)/$(am__dirstamp)
-	-rm -f modules/console/src/c/others/$(am__dirstamp)
+	-rm -f modules/startup/src/c/$(DEPDIR)/$(am__dirstamp)
+	-rm -f modules/startup/src/c/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1929,7 +1929,7 @@ clean-am: clean-binPROGRAMS clean-checkPROGRAMS clean-generic \
 
 distclean: distclean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-	-rm -rf modules/call_scilab/examples/basicExamples/$(DEPDIR) modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR) modules/console/src/c/others/$(DEPDIR)
+	-rm -rf modules/call_scilab/examples/basicExamples/$(DEPDIR) modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR) modules/startup/src/c/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-libtool distclean-tags
@@ -1978,7 +1978,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-	-rm -rf modules/call_scilab/examples/basicExamples/$(DEPDIR) modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR) modules/console/src/c/others/$(DEPDIR)
+	-rm -rf modules/call_scilab/examples/basicExamples/$(DEPDIR) modules/call_scilab/examples/call_scilab/c/common/$(DEPDIR) modules/startup/src/c/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

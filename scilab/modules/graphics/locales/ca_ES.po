@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: ca\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -131,23 +131,6 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Function %s is obsolete.\n"
-msgstr ""
-
-msgid "Warning"
-msgstr ""
-
-#, c-format
-msgid "%s: Please use %s instead.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: This function will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr ""
 
@@ -177,7 +160,20 @@ msgid "A Label object cannot be deleted.\n"
 msgstr "No es pot eliminar un objecte Etiqueta.\n"
 
 #, c-format
+msgid "%s: Function %s is obsolete.\n"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+#, c-format
 msgid "%s: Please see documentation for more details.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: This function will be permanently removed in Scilab %s\n"
+"\n"
 msgstr ""
 
 #, c-format
@@ -293,6 +289,10 @@ msgid "%s: Wrong size for input arguments #%d and #%d.\n"
 msgstr "%s: Mida incorrecta per als arguments d'entrada #%d i #%d.\n"
 
 #, c-format
+msgid "%s: Wrong value for strf option: %s.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Impossible status min > max in x or y rect data.\n"
 msgstr "%s: Estat impossible. min > max a x o y rect dada.\n"
 
@@ -324,6 +324,10 @@ msgid ""
 msgstr ""
 "%s: Com a mínim una dada y ha de ser estrictament positiva per calcular els "
 "límits i utilitzar el mode logarítmic.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d or %d expected.\n"
@@ -550,8 +554,8 @@ msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser %d, %d o %d.\n"
 
 #, c-format
-msgid "%s: Unrecognized input argument '%s'.\n"
-msgstr "%s: L'argument d'entrada '%s' no és reconegut.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -562,10 +566,6 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
 
 #, c-format
 msgid "Figure n%d"
@@ -726,16 +726,8 @@ msgid "This object can not be moved.\n"
 msgstr "No es pot moure aquest objecte.\n"
 
 #, c-format
-msgid "Line width must be greater than %d.\n"
-msgstr "L'ample de línia ha de ser major que %d.\n"
-
-#, c-format
-msgid "The line style must be greater than %d.\n"
-msgstr "L'estil de la línia ha de ser major que %d.\n"
-
-#, c-format
-msgid "The mark size must be greater or equal than %d.\n"
-msgstr "La mida de la marca ha de ser igual o major que %d.\n"
+msgid "Wrong value for '%s' property: Must be greater or equal to %d.\n"
+msgstr ""
 
 msgid "Handle is not a SubWindow.\n"
 msgstr "El tractament no és un SubWindow.\n"
@@ -998,6 +990,9 @@ msgstr ""
 
 #, c-format
 msgid "Incompatible type for property ''%s''.\n"
+msgstr ""
+
+msgid "Datatips property can not be modified directly.\n"
 msgstr ""
 
 #, c-format
@@ -1404,11 +1399,11 @@ msgstr ""
 "estructura de dades %s.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgid "%s: Wrong type for input argument #%d: a real scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: An integer value expected.\n"
+msgid "%s: Wrong size for input argument #%d: a real scalar expected.\n"
 msgstr ""
 
 #, c-format
@@ -1936,17 +1931,7 @@ msgid "Exact gaussian density"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in increasing "
-"order.\n"
+msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr ""
 
 #, c-format

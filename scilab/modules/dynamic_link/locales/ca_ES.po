@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: ca\n"
 
 #, c-format
@@ -341,6 +341,75 @@ msgstr "   S'està executant el makefile\n"
 
 msgid "   Generate a cleaner file\n"
 msgstr "   Genera un fitxer de neteja\n"
+
+#, c-format
+msgid "%s: function not available in NWNI mode.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): 3 to 5 expected.\n"
+msgstr ""
+
+#, c-format
+msgid "   Building JAR library %s\n"
+msgstr ""
+
+#, c-format
+msgid "Cannot create jar build dir %s"
+msgstr ""
+
+#, c-format
+msgid ""
+"   Add dependency class paths:\n"
+"%s\n"
+msgstr ""
+
+#, c-format
+msgid "   Build package %s\n"
+msgstr ""
+
+msgid "   Compiling source files:\n"
+msgstr ""
+
+#, c-format
+msgid "   Compiling Java sources in %s\n"
+msgstr ""
+
+#, c-format
+msgid "No Java sources in %s to compile for package %s"
+msgstr ""
+
+#, c-format
+msgid "Cannot create jar package directory %s"
+msgstr ""
+
+#, c-format
+msgid "   Copying compiled package from %s to %s\n"
+msgstr ""
+
+#, c-format
+msgid "Cannot find compilation directory %s for package %s"
+msgstr ""
+
+#, c-format
+msgid "   Creating JAR archive %s\n"
+msgstr ""
+
+#, c-format
+msgid "Cannot create JAR file %s"
+msgstr ""
+
+#, c-format
+msgid "   Creating scripts for JAR relative path %s\n"
+msgstr ""
+
+#, c-format
+msgid "   Create loader script for Java %s\n"
+msgstr ""
+
+#, c-format
+msgid "   Create cleaner script for Java %s\n"
+msgstr ""
 
 msgid "A Fortran or C compiler is required."
 msgstr "Es necessita un compilador de Fortran o de C."

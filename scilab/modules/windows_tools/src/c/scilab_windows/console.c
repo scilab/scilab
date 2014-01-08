@@ -133,7 +133,7 @@ void CreateScilabConsole(int ShowBanner)
         printf(line);
         strcpy(line, "                     Scilab Enterprises\n");
         printf(line);
-        strcpy(line, "         Copyright (c) 2011-2013 (Scilab Enterprises)\n");
+        strcpy(line, "         Copyright (c) 2011-2014 (Scilab Enterprises)\n");
         printf(line);
         strcpy(line, "               Copyright (c) 1989-2012 (INRIA)\n");
         printf(line);

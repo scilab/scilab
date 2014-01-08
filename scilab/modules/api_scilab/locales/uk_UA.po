@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-24 04:29+0000\n"
+"PO-Revision-Date: 2013-12-06 19:31+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 #, c-format
@@ -26,7 +26,7 @@ msgid "%s: Invalid argument type, %s expected"
 msgstr "%s: некоректний тип параметра, мало бути %s"
 
 msgid "boolean matrix"
-msgstr "матриця з булівських значень"
+msgstr "матриця з булевих значень"
 
 #, c-format
 msgid "%s: Unable to get argument #%d"

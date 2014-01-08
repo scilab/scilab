@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: helptools-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-27 14:39+0000\n"
+"PO-Revision-Date: 2013-12-10 15:31+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Generator: Launchpad (build 16869)\n"
 "Language: ru\n"
 
 #, c-format
@@ -273,8 +273,9 @@ msgstr ""
 msgid "\t%s\n"
 msgstr "\t%s\n"
 
-msgid "Building the scilab manual file ["
-msgstr "Формируется файл руководства Scilab ["
+#, c-format
+msgid "Building the scilab manual file [%s]\n"
+msgstr "Сборка файла руководства Scilab [%s]\n"
 
 #, c-format
 msgid ""

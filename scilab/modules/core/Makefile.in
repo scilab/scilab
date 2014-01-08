@@ -1049,7 +1049,8 @@ libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/modules/history_manager/includes/ \
 	-I$(top_srcdir)/modules/preferences/includes/ \
 	-I$(top_srcdir)/modules/external_objects/includes/ \
-	-I$(top_srcdir)/modules/functions/includes/ $(XML_FLAGS) \
+	-I$(top_srcdir)/modules/functions/includes/ \
+	-I$(top_srcdir)/modules/hdf5/includes/ $(XML_FLAGS) \
 	$(AM_CPPFLAGS) $(am__append_1)
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscicore.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscicore-algo.la libscicore.la
