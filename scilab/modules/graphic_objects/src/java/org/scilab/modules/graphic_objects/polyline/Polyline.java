@@ -374,14 +374,6 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param datatips the datatips to set
      */
-    private UpdateStatus setDatatips(List<Integer> datatips) {
-        this.datatips = datatips;
-        return UpdateStatus.Success;
-    }
-
-    /**
-     * @param datatips the datatips to set
-     */
     public UpdateStatus setDatatips(Integer[] datatips) {
         this.datatips = new LinkedList<Integer>(Arrays.asList(datatips));
         return UpdateStatus.Success;

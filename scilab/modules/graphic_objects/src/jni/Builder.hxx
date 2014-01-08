@@ -100,6 +100,7 @@ jmethodID jintcreateSegsjintintjdoubleArray_doubledoublejdoubleArray_doubledoubl
 jmethodID jintcreateChampjintintjdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubledoublejbooleanbooleanID; // cache method id
 jmethodID jintcreateSurfacejintintjintintjintintjintintID; // cache method id
 jmethodID voidinitSubWinTo3djintintjstringjava_lang_StringjbooleanbooleanjintArray_intintjdoubledoublejdoubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoubleID; // cache method id
+jmethodID jintcreateLightjintintjintintjbooleanbooleanjdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoubleID; // cache method id
 
 
 
@@ -203,7 +204,9 @@ static int createChamp(JavaVM * jvm_, int parent, double const* vx, int vxSize, 
 
 static int createSurface(JavaVM * jvm_, int parent, int typeof3d, int colorFlag, int colorMode);
 
-static void initSubWinTo3d(JavaVM * jvm_, int iSubWin, char const* legend, bool isLegend, int const* flag, int flagSize, double alpha, double theta, double const* ebox, int eboxSize, double const* x, int xSize, double const* y, int ySize, double const* z, int zSize);
+static void initSubWinTo3d(JavaVM * jvm_, int parent, char const* legend, bool isLegend, int const* flag, int flagSize, double alpha, double theta, double const* ebox, int eboxSize, double const* x, int xSize, double const* y, int ySize, double const* z, int zSize);
+
+static int createLight(JavaVM * jvm_, int parent, int type, bool visible, double const* pos, int posSize, double const* dir, int dirSize, double const* ambient, int ambientSize, double const* diffuse, int diffuseSize, double const* specular, int specularSize);
 
 
                         /**

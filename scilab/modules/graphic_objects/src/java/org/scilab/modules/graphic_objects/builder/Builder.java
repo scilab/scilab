@@ -30,6 +30,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.imageplot.Imageplot;
 import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.legend.Legend;
+import org.scilab.modules.graphic_objects.lighting.Light;
 import org.scilab.modules.graphic_objects.polyline.Polyline;
 import org.scilab.modules.graphic_objects.rectangle.Rectangle;
 import org.scilab.modules.graphic_objects.surface.Surface;
@@ -37,6 +38,7 @@ import org.scilab.modules.graphic_objects.textObject.Font;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.utils.Alignment;
 import org.scilab.modules.graphic_objects.utils.ClipStateType;
+import org.scilab.modules.graphic_objects.utils.LightType;
 import org.scilab.modules.graphic_objects.utils.LineType;
 import org.scilab.modules.graphic_objects.utils.TextBoxMode;
 import org.scilab.modules.graphic_objects.utils.TicksDirection;
@@ -1014,15 +1016,15 @@ public final class Builder {
                 case 4 :
                 case 6 :
                 case 8 :
-                    double[] res = getDrect(x, x.length, rect[0], rect[1], dataBounds[0], dataBounds[1]);
+                    double[] res = getDrect(x, rect[0], rect[1], dataBounds[0], dataBounds[1]);
                     rect[0] = res[0];
                     rect[1] = res[1];
 
-                    res = getDrect(y, y.length, rect[2], rect[3], dataBounds[2], dataBounds[3]);
+                    res = getDrect(y, rect[2], rect[3], dataBounds[2], dataBounds[3]);
                     rect[2] = res[0];
                     rect[3] = res[1];
 
-                    res = getDrect(z, z.length, rect[4], rect[5], dataBounds[4], dataBounds[5]);
+                    res = getDrect(z, rect[4], rect[5], dataBounds[4], dataBounds[5]);
                     rect[4] = res[0];
                     rect[5] = res[1];
                     break;
@@ -1048,12 +1050,12 @@ public final class Builder {
         }
     }
 
-    static double[] getDrect(double[] x, int xSize, double min, double max, double defaultMin, double defaultMax) {
+    private static double[] getDrect(double[] x, double min, double max, double defaultMin, double defaultMax) {
         double refMax = Double.NEGATIVE_INFINITY;
         double refMin = Double.POSITIVE_INFINITY;
         boolean isInfinite = true;
 
-        for (int i = 0 ; i < xSize ; i++) {
+        for (int i = 0 ; i < x.length ; i++) {
             Double tmp = x[i];
             if (tmp.isInfinite() == false) {
                 refMin = Math.min(refMin, tmp);
@@ -1068,6 +1070,51 @@ public final class Builder {
         }
 
         return new double[] {refMin, refMax};
+    }
+
+    private static boolean isValidColor(double[] color) {
+        return (color[0] >= 0.0 && color[0] <= 1.0)
+               && (color[1] >= 0.0 && color[1] <= 1.0)
+               && (color[2] >= 0.0 && color[2] <= 1.0);
+    }
+
+    public static int createLight(int parent, int type, boolean visible, double[] pos,
+                                  double[] dir, double[] ambient, double[] diffuse, double[] specular) {
+        GraphicController controller = GraphicController.getController();
+
+        int iLight = controller.askObject(Type.LIGHT);
+        Light light = (Light) controller.getObjectFromId(iLight);
+
+        light.setVisible(visible);
+        light.setLightType(LightType.intToEnum(type));
+
+        if (pos.length == 3) {
+            light.setPosition(pos);
+        }
+
+        if (dir.length == 3) {
+            light.setDirection(dir);
+        }
+        if (ambient.length == 3) {
+            if (isValidColor(ambient)) {
+                light.setAmbientColor(ambient);
+            }
+        }
+        if (diffuse.length == 3) {
+            if (isValidColor(diffuse)) {
+                light.setDiffuseColor(diffuse);
+            }
+        }
+        if (specular.length == 3) {
+            if (isValidColor(specular)) {
+                light.setSpecularColor(specular);
+            }
+        }
+
+        controller.objectCreated(iLight);
+        // Set light's parent
+        controller.setGraphicObjectRelationship(parent, iLight);
+        return iLight;
     }
 }
 

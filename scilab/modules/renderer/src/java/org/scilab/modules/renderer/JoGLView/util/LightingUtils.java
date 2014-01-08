@@ -10,14 +10,13 @@
  */
 package org.scilab.modules.renderer.JoGLView.util;
 
-import org.scilab.forge.scirenderer.shapes.appearance.Material;
-import org.scilab.forge.scirenderer.shapes.appearance.Color;
-import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.forge.scirenderer.lightning.Light;
 import org.scilab.forge.scirenderer.lightning.LightManager;
-
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.forge.scirenderer.shapes.appearance.Color;
+import org.scilab.forge.scirenderer.shapes.appearance.Material;
+import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 
 /**
  * Utility functions to setup lighting.
@@ -104,11 +103,11 @@ public class LightingUtils {
         color = light.getSpecularColor();
         sciLight.setSpecularColor(new Color(color[0].floatValue(), color[1].floatValue(), color[2].floatValue()));
 
-        switch (light.getLightTypeAsInteger()) {
-            case 0: //directional
+        switch (light.getLightType()) {
+            case DIRECTIONAL : //directional
                 sciLight.setDirection(new Vector3d(light.getDirection()));
                 break;
-            case 1: //point
+            case POINT: //point
                 sciLight.setPosition(new Vector3d(light.getPosition()));
                 break;
             default:

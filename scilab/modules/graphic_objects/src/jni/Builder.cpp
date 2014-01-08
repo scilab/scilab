@@ -126,6 +126,7 @@ jintcreateSegsjintintjdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleAr
 jintcreateChampjintintjdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubledoublejbooleanbooleanID=NULL;
 jintcreateSurfacejintintjintintjintintjintintID=NULL;
 voidinitSubWinTo3djintintjstringjava_lang_StringjbooleanbooleanjintArray_intintjdoubledoublejdoubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoubleID=NULL;
+jintcreateLightjintintjintintjbooleanbooleanjdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoubleID=NULL;
 
 
 }
@@ -171,6 +172,7 @@ jintcreateSegsjintintjdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleAr
 jintcreateChampjintintjdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubledoublejbooleanbooleanID=NULL;
 jintcreateSurfacejintintjintintjintintjintintID=NULL;
 voidinitSubWinTo3djintintjstringjava_lang_StringjbooleanbooleanjintArray_intintjdoubledoublejdoubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoubleID=NULL;
+jintcreateLightjintintjintintjbooleanbooleanjdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoubleID=NULL;
 
 
 }
@@ -990,7 +992,7 @@ return res;
 
 }
 
-void Builder::initSubWinTo3d (JavaVM * jvm_, int iSubWin, char const* legend, bool isLegend, int const* flag, int flagSize, double alpha, double theta, double const* ebox, int eboxSize, double const* x, int xSize, double const* y, int ySize, double const* z, int zSize){
+void Builder::initSubWinTo3d (JavaVM * jvm_, int parent, char const* legend, bool isLegend, int const* flag, int flagSize, double alpha, double theta, double const* ebox, int eboxSize, double const* x, int xSize, double const* y, int ySize, double const* z, int zSize){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
@@ -1068,7 +1070,7 @@ throw GiwsException::JniBadAllocException(curEnv);
 curEnv->SetDoubleArrayRegion( z_, 0, zSize, (jdouble*)(z) ) ;
 
 
-                         curEnv->CallStaticVoidMethod(cls, voidinitSubWinTo3djintintjstringjava_lang_StringjbooleanbooleanjintArray_intintjdoubledoublejdoubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoubleID ,iSubWin, legend_, isLegend_, flag_, alpha, theta, ebox_, x_, y_, z_);
+                         curEnv->CallStaticVoidMethod(cls, voidinitSubWinTo3djintintjstringjava_lang_StringjbooleanbooleanjintArray_intintjdoubledoublejdoubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoubleID ,parent, legend_, isLegend_, flag_, alpha, theta, ebox_, x_, y_, z_);
                         curEnv->DeleteLocalRef(legend_);
 curEnv->DeleteLocalRef(flag_);
 curEnv->DeleteLocalRef(ebox_);
@@ -1078,6 +1080,90 @@ curEnv->DeleteLocalRef(z_);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
+}
+
+int Builder::createLight (JavaVM * jvm_, int parent, int type, bool visible, double const* pos, int posSize, double const* dir, int dirSize, double const* ambient, int ambientSize, double const* diffuse, int diffuseSize, double const* specular, int specularSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jintcreateLightjintintjintintjbooleanbooleanjdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoubleID = curEnv->GetStaticMethodID(cls, "createLight", "(IIZ[D[D[D[D[D)I" ) ;
+if (jintcreateLightjintintjintintjbooleanbooleanjdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoubleID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "createLight");
+}
+
+jboolean visible_ = (static_cast<bool>(visible) ? JNI_TRUE : JNI_FALSE);
+
+jdoubleArray pos_ = curEnv->NewDoubleArray( posSize ) ;
+
+if (pos_ == NULL)
+{
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetDoubleArrayRegion( pos_, 0, posSize, (jdouble*)(pos) ) ;
+
+
+jdoubleArray dir_ = curEnv->NewDoubleArray( dirSize ) ;
+
+if (dir_ == NULL)
+{
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetDoubleArrayRegion( dir_, 0, dirSize, (jdouble*)(dir) ) ;
+
+
+jdoubleArray ambient_ = curEnv->NewDoubleArray( ambientSize ) ;
+
+if (ambient_ == NULL)
+{
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetDoubleArrayRegion( ambient_, 0, ambientSize, (jdouble*)(ambient) ) ;
+
+
+jdoubleArray diffuse_ = curEnv->NewDoubleArray( diffuseSize ) ;
+
+if (diffuse_ == NULL)
+{
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetDoubleArrayRegion( diffuse_, 0, diffuseSize, (jdouble*)(diffuse) ) ;
+
+
+jdoubleArray specular_ = curEnv->NewDoubleArray( specularSize ) ;
+
+if (specular_ == NULL)
+{
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetDoubleArrayRegion( specular_, 0, specularSize, (jdouble*)(specular) ) ;
+
+
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintcreateLightjintintjintintjbooleanbooleanjdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoublejdoubleArray_doubledoubleID ,parent, type, visible_, pos_, dir_, ambient_, diffuse_, specular_));
+                        curEnv->DeleteLocalRef(pos_);
+curEnv->DeleteLocalRef(dir_);
+curEnv->DeleteLocalRef(ambient_);
+curEnv->DeleteLocalRef(diffuse_);
+curEnv->DeleteLocalRef(specular_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
+
 }
 
 }

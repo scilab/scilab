@@ -1157,9 +1157,6 @@
     <ClCompile Include="src\c\getHandleProperty\set_material_shininess_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\Light.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_image_type_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>

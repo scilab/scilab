@@ -43,7 +43,7 @@ public class Material extends ColorTriplet {
      * Sets color-material mode, if true
      * the surface color is used as diffuse color.
      */
-    public UpdateStatus setColorMaterialMode(Boolean status) {
+    public UpdateStatus setColorMaterialMode(boolean status) {
         if (useColorMaterial != status) {
             useColorMaterial = status;
             return UpdateStatus.Success;
@@ -57,7 +57,7 @@ public class Material extends ColorTriplet {
     }
 
     /** Sets shininess level*/
-    public UpdateStatus setShininess(Double s) {
+    public UpdateStatus setShininess(double s) {
         if (shininess != s) {
             shininess = s;
             return UpdateStatus.Success;

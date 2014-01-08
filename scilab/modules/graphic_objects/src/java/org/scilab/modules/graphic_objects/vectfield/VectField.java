@@ -135,6 +135,7 @@ public abstract class VectField extends GraphicClippableObject {
      * @param value the property value
      * @return true if the property has been set, false otherwise
      */
+    @SuppressWarnings("unchecked")
     public UpdateStatus setProperty(Object property, Object value) {
         if (property == VectFieldProperty.ARROWS) {
             setArrows((ArrayList<Arrow>) value);

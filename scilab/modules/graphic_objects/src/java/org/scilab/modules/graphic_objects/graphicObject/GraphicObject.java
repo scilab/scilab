@@ -168,7 +168,6 @@ public abstract class GraphicObject implements Cloneable {
     public GraphicObject clone() {
         GraphicObject copy = null;
 
-        GraphicObject o = GraphicController.getController().getObjectFromId(getParent());
         try {
             copy = (GraphicObject) super.clone();
         } catch (CloneNotSupportedException e) {

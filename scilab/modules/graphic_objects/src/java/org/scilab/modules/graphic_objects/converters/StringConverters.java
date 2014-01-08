@@ -50,6 +50,7 @@ import org.scilab.modules.graphic_objects.utils.ClipStateType;
 import org.scilab.modules.graphic_objects.utils.DataMapping;
 import org.scilab.modules.graphic_objects.utils.GridPosition;
 import org.scilab.modules.graphic_objects.utils.LegendLocation;
+import org.scilab.modules.graphic_objects.utils.LightType;
 import org.scilab.modules.graphic_objects.utils.MarkSizeUnitType;
 import org.scilab.modules.graphic_objects.utils.PixelDrawingMode;
 import org.scilab.modules.graphic_objects.utils.RotationType;
@@ -99,6 +100,7 @@ public final class StringConverters {
      * @param value the value to convert
      * @return the converted object
      */
+    @SuppressWarnings("unchecked")
     public static final <T> T getObjectFromValue(final Class<T> clazz, final String value) {
         final StringConverter converter = converters.get(clazz);
         if (converter == null) {
@@ -115,6 +117,7 @@ public final class StringConverters {
      * @param defaultValue the default value
      * @return the converted object
      */
+    @SuppressWarnings("unchecked")
     public static final <T> T getObjectFromValue(final Class<T> clazz, final String value, final T defaultValue) {
         final StringConverter converter = converters.get(clazz);
         if (converter == null) {
@@ -364,6 +367,7 @@ public final class StringConverters {
             }
         });
         converters.put(Action.class, new StringConverter() {
+            @SuppressWarnings("serial")
             public Object convert(final String str) {
                 if (str == null || str.isEmpty()) {
                     return null;
@@ -784,6 +788,11 @@ public final class StringConverters {
         converters.put(LegendLocation.class, new StringConverter() {
             public LegendLocation convert(String str) {
                 return LegendLocation.stringToEnum(str);
+            }
+        });
+        converters.put(LightType.class, new StringConverter() {
+            public LightType convert(String str) {
+                return LightType.stringToEnum(str);
             }
         });
     }

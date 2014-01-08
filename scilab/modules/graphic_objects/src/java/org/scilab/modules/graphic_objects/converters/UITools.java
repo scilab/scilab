@@ -268,7 +268,7 @@ public class UITools {
     }
 
     public static Color getFontColor(Font font) {
-        Map<TextAttribute, Object> map = (Map<TextAttribute, Object>) font.getAttributes();
+        Map < TextAttribute, ? > map = (Map < TextAttribute, ? >) font.getAttributes();
         Paint p = (Paint) map.get(TextAttribute.FOREGROUND);
         if (p instanceof Color) {
             return (Color) p;
@@ -322,6 +322,7 @@ public class UITools {
         return new Font(map);
     }
 
+    @SuppressWarnings("unchecked")
     public static Font getFont(Color bg, Color fg, Font font, double size, boolean underline, boolean bold, boolean italic, boolean strikethrough, FontWeight weight) {
         Map<TextAttribute, Object> map = (Map<TextAttribute, Object>) font.getAttributes();
         map.put(TextAttribute.UNDERLINE, underline ? TextAttribute.UNDERLINE_ON : -1);

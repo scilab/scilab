@@ -792,3 +792,35 @@ int ConstructCompoundSeq(int number)
 
     return iObj;
 }
+
+int ConstructLight(char* fname, int iSubwin, int type, BOOL visible, double * position, double * direction, double * ambient_color, double * diffuse_color, double * specular_color)
+{
+    int iLight = 0;
+    int * piType = &type;
+    int hType = 0;
+    int * pihType = &hType;
+    int * piVisible = &visible;
+
+    if (iSubwin == 0)
+    {
+        iSubwin = getOrCreateDefaultSubwin();
+        if (iSubwin == 0)
+        {
+            Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
+            return 0;
+        }
+    }
+    else
+    {
+        //check handle type
+        getGraphicObjectProperty(iSubwin, __GO_TYPE__, jni_int, (void **)&pihType);
+        if (hType != __GO_AXES__)
+        {
+            Scierror(999, _("The parent has to be a SUBWIN\n"));
+            return 0;
+        }
+    }
+
+    iLight = createLight(iSubwin, type, visible, position, direction, ambient_color, diffuse_color, specular_color);
+    return iLight;
+}

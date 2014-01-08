@@ -719,6 +719,14 @@ public class Axes extends GraphicObject {
                     return setAxesBounds((Double[]) value);
                 case HIDDENCOLOR:
                     return setHiddenColor((Integer) value);
+                case XAXISNUMBERTICKS:
+                    break;
+                case YAXISNUMBERTICKS:
+                    break;
+                case ZAXISNUMBERTICKS:
+                    break;
+                default:
+                    break;
             }
         } else if (property instanceof Camera.CameraProperty) {
             Camera.CameraProperty cp = (Camera.CameraProperty) property;

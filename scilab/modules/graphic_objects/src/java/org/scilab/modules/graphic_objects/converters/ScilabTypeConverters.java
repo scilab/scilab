@@ -23,7 +23,6 @@ import java.util.Map;
 
 import org.scilab.modules.graphic_objects.ScilabNativeView;
 import org.scilab.modules.graphic_objects.axes.TicksProperty;
-import org.scilab.modules.graphic_objects.textObject.FormattedText;
 import org.scilab.modules.graphic_objects.utils.LineType;
 import org.scilab.modules.types.ScilabBoolean;
 import org.scilab.modules.types.ScilabDouble;
@@ -99,6 +98,7 @@ public final class ScilabTypeConverters {
      * @param value the Scilab value
      * @return the corresponding Java object
      */
+    @SuppressWarnings("unchecked")
     public static final <T> T getObjectFromValue(final Class<T> clazz, final ScilabType value) {
         ScilabTypeConverter converter;
         if (value == null) {
@@ -131,6 +131,7 @@ public final class ScilabTypeConverters {
      * @param defaultValue the default value to return
      * @return the corresponding Java object
      */
+    @SuppressWarnings("unchecked")
     public static final <T> T getObjectFromValue(final Class<T> clazz, final ScilabType value, final T defaultValue) {
         ScilabTypeConverter converter;
         if (value == null) {

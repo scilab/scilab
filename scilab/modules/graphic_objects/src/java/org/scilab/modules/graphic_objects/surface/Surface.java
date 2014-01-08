@@ -163,15 +163,7 @@ public abstract class Surface extends ClippableContouredObject {
                     return setMaterialShininess((Double)value);
             }
         } else if (property instanceof ColorTriplet.ColorTripletProperty) {
-            ColorTriplet.ColorTripletProperty cp = (ColorTriplet.ColorTripletProperty)property;
-            switch (cp) {
-                case AMBIENTCOLOR:
-                    return setAmbientColor((Double[])value);
-                case DIFFUSECOLOR:
-                    return setDiffuseColor((Double[])value);
-                case SPECULARCOLOR:
-                    return setSpecularColor((Double[])value);
-            }
+            //remove light properties
         } else {
             return super.setProperty(property, value);
         }
@@ -265,7 +257,7 @@ public abstract class Surface extends ClippableContouredObject {
     /**
      * @param the new ambient color of the material.
      */
-    public UpdateStatus setAmbientColor(Double[] color) {
+    public UpdateStatus setAmbientColor(double[] color) {
         return material.setAmbientColor(color);
     }
 
@@ -279,7 +271,7 @@ public abstract class Surface extends ClippableContouredObject {
     /**
      * @param the new diffuse color of the material.
      */
-    public UpdateStatus setDiffuseColor(Double[] color) {
+    public UpdateStatus setDiffuseColor(double[] color) {
         return material.setDiffuseColor(color);
     }
 
@@ -293,7 +285,7 @@ public abstract class Surface extends ClippableContouredObject {
     /**
      * @param the new specular color of the material.
      */
-    public UpdateStatus setSpecularColor(Double[] color) {
+    public UpdateStatus setSpecularColor(double[] color) {
         return material.setSpecularColor(color);
     }
 

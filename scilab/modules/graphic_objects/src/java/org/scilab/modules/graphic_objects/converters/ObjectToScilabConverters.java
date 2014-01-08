@@ -33,7 +33,6 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.graphic_objects.axes.TicksProperty;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-import org.scilab.modules.graphic_objects.textObject.FormattedText;
 import org.scilab.modules.graphic_objects.utils.Alignment;
 import org.scilab.modules.graphic_objects.utils.Antialiasing;
 import org.scilab.modules.graphic_objects.utils.ArcDrawingMethod;
@@ -43,6 +42,7 @@ import org.scilab.modules.graphic_objects.utils.ClipStateType;
 import org.scilab.modules.graphic_objects.utils.DataMapping;
 import org.scilab.modules.graphic_objects.utils.GridPosition;
 import org.scilab.modules.graphic_objects.utils.LegendLocation;
+import org.scilab.modules.graphic_objects.utils.LightType;
 import org.scilab.modules.graphic_objects.utils.LineType;
 import org.scilab.modules.graphic_objects.utils.MarkSizeUnitType;
 import org.scilab.modules.graphic_objects.utils.PixelDrawingMode;
@@ -487,6 +487,11 @@ public final class ObjectToScilabConverters {
         converters.put(LegendLocation.class, new ObjectConverter() {
             public void convert(Object o, int stackPos) {
                 ScilabStackPutter.put(stackPos, LegendLocation.enumToString((LegendLocation)o));
+            }
+        });
+        converters.put(LightType.class, new ObjectConverter() {
+            public void convert(Object o, int stackPos) {
+                ScilabStackPutter.put(stackPos, LightType.enumToString((LightType)o));
             }
         });
     }

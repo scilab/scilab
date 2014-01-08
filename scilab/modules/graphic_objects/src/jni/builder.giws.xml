@@ -151,5 +151,33 @@
             <parameter name="arsize" type="double"/>
             <parameter name="typeofchamp" type="boolean"/>
         </method>
+        <method name="createSurface" returnType="int" modifier="static">
+            <parameter name="parent" type="int"/>
+            <parameter name="typeof3d" type="int"/>
+            <parameter name="colorFlag" type="int"/>
+            <parameter name="colorMode" type="int"/>
+        </method>
+        <method name="initSubWinTo3d" returnType="void" modifier="static">
+            <parameter name="parent" type="int"/>
+            <parameter name="legend" type="String"/>
+            <parameter name="isLegend" type="boolean"/>
+            <parameter name="flag" type="int[]"/>
+            <parameter name="alpha" type="double"/>
+            <parameter name="theta" type="double"/>
+            <parameter name="ebox" type="double[]"/>
+            <parameter name="x" type="double[]"/>
+            <parameter name="y" type="double[]"/>
+            <parameter name="z" type="double[]"/>
+        </method>
+        <method name="createLight" returnType="int" modifier="static">
+            <parameter name="parent" type="int"/>
+            <parameter name="type" type="int"/>
+            <parameter name="visible" type="boolean"/>
+            <parameter name="pos" type="double[]"/>
+            <parameter name="dir" type="double[]"/>
+            <parameter name="ambient" type="double[]"/>
+            <parameter name="diffuse" type="double[]"/>
+            <parameter name="specular" type="double[]"/>
+        </method>
     </object>
 </package>

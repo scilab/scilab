@@ -179,3 +179,13 @@ void initSubWinTo3d(int subwin, char* legend, int* flag, double alpha, double th
     Builder::initSubWinTo3d(getScilabJavaVM(), subwin, legend, legend != NULL, flag, 3, alpha, theta,
                             ebox, 6, x, xSize, y, ySize, z, zSize);
 }
+
+int createLight(int parent, int type, BOOL visible, double* pos, double* dir, double* ambient, double* diffuse, double* specular)
+{
+    return Builder::createLight(getScilabJavaVM(), parent, type, visible == TRUE,
+                                pos, pos == NULL ? 0 : 3,
+                                dir, dir == NULL ? 0 : 3,
+                                ambient, ambient == NULL ? 0 : 3,
+                                diffuse, diffuse == NULL ? 0 : 3,
+                                specular, specular == NULL ? 0 : 3);
+}
