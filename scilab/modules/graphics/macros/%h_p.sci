@@ -845,47 +845,6 @@ function %h_p(h)
                 ]
             end
 
-            // Param3d
-            // =====================================================================
-
-        case "Param3d"
-            u=h.user_data;
-            if size(h.data,"*") > 10 then
-                d="matrix "+strcat(string(size(h.data)),"x")
-            else
-                d=sci2exp(h.data,0)
-                if length(d)>70 then d="matrix "+strcat(string(size(h.data)),"x"),end
-            end
-
-            if size(h.surface_color,"*") > 10 then
-                c="matrix "+strcat(string(size(h.surface_color)),"x")
-            else
-                c=sci2exp(h.surface_color,0)
-                if length(c)>70 then c="matrix "+strcat(string(size(h.surface_color)),"x"),end
-            end
-
-            t=[t;
-            "parent: "+h.parent.type
-            "children: "+fmtchildren(h.children)
-            "visible = "+sci2exp(h.visible)
-            "line_mode = "+sci2exp(h.line_mode)
-            "foreground = "+string(h.foreground)
-            "thickness = "+string(h.thickness)
-            "mark_mode = "+sci2exp(h.mark_mode)
-            "mark_style = "+sci2exp(h.mark_style)
-            "mark_size_unit = "+sci2exp(h.mark_size_unit)
-            "mark_size = "+string(h.mark_size)
-            "mark_foreground = "+string(h.mark_foreground)
-            "mark_background = "+string(h.mark_background)
-            "data = "+d
-            "clip_state = "+sci2exp(h.clip_state)
-            "clip_box = "+sci2exp(h.clip_box,0)
-            "color_mode = "+string(h.color_mode)
-            "surface_color = "+c
-            "user_data = "+fmtuser_data(u)
-            "tag = "+h.tag
-            ]
-
             // Axis
             // =====================================================================
 

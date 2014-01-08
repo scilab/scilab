@@ -395,7 +395,8 @@ int sci_get(char *fname, unsigned long fname_len)
                     iType != __GO_SEGS__ &&
                     iType != __GO_LABEL__ &&
                     iType != __GO_FAC3D__ &&
-                    iType != __GO_PLOT3D__)
+                    iType != __GO_PLOT3D__ &&
+                    iType != __GO_CONSOLE__)
             {
                 //old school call
                 if (sciGet(pvApiCtx, iObjUID, (l2)) != 0)
