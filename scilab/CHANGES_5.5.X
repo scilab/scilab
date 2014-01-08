@@ -38,6 +38,8 @@ Scilab Bug Fixes
 
 * Bug #2067 fixed - Scilab crashed when plot was called with a large numerical value.
 
+* Bug #2802 fixed - convstr did not convert non ascii chars.
+
 * Bug #4401 fixed - isnum did not recognize all constants or some complex numbers.
 
 * Bug #4649 fixed - License issue in the xs2ppm help page fixed.
@@ -156,6 +158,8 @@ Scilab Bug Fixes
 * Bug #11680 fixed - GUI functions in Scilab 5.4.X were much slower than in Scilab 5.3.3.
 
 * Bug #11996 fixed - eye extended to hypermatrix.
+
+* Bug #12082 fixed - convstr function did not work with non-ASCII symbols.
 
 * Bug #12121 fixed - inv function did not work for complex sparse matrices.
 

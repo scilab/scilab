@@ -29,7 +29,7 @@
 * param[in] typ  'l' or 'u'  means low or upper
 * param[in] Number_Input   the number of input string matrix
 */
-STRING_IMPEXP void convstr(char **Input_Matrix, char **Output_Matrix, char typ, int Number_Input);
+STRING_IMPEXP void convstr(wchar_t **Input_Matrix, wchar_t **Output_Matrix, char typ, int Number_Input);
 
 #endif /* __CONVSTR_H__ */
 /*--------------------------------------------------------------------------*/

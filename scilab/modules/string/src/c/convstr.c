@@ -15,29 +15,30 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
-#include <ctype.h>
+#include <wchar.h>
+#include <wctype.h>
 #include "gw_string.h"
 #include "convstr.h"
 /*--------------------------------------------------------------------------*/
-void convstr(char **Input_Matrix, char **Output_Matrix, char typ, int mn)
+void convstr(wchar_t **Input_Matrix, wchar_t **Output_Matrix, char typ, int mn)
 {
     int x = 0;
     for (x = 0 ; x < mn; x++)
     {
         int y = 0;
-        int len_Input_Matrix = (int)strlen(Input_Matrix[x]);
+        size_t len_Input_Matrix = wcslen(Input_Matrix[x]);
         for (y = 0; y < len_Input_Matrix; y++)
         {
             /*To traverse every string in the string matrix */
             if ( (typ == UPPER) || (typ == UPPER_B) )
             {
                 /*converts the matrix of strings  str-matrix into upper case */
-                Output_Matrix[x][y] = (char)toupper(Input_Matrix[x][y]);
+                Output_Matrix[x][y] = (wchar_t) towupper(Input_Matrix[x][y]);
             }
             else if ( (typ == LOW) || (typ == LOW_B) )
             {
                 /*converts the matrix of strings  str-matrix  into lower case */
-                Output_Matrix[x][y] = (char)tolower(Input_Matrix[x][y]);
+                Output_Matrix[x][y] = (wchar_t) towlower(Input_Matrix[x][y]);
             }
         }
         Output_Matrix[x][y] = 0;

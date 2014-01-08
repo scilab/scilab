@@ -20,8 +20,9 @@
 #include <string.h>
 #include <stdio.h>
 #include "gw_string.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "MALLOC.h"
+#include "wchar.h"
 #include "convstr.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -29,119 +30,130 @@
 /*----------------------------------------------------------------------------*/
 int sci_convstr(char *fname, unsigned long fname_len)
 {
-    char **Input_Matrix = NULL;
-    char **Output_Matrix = NULL;
-    char typ = LOW;
-    int numRow = 0;
-    int numCol = 0;
-    int Row_Num_One = 0;
-    int Col_Num_One = 0;
-    int mn = 0; /* Row_Num_One * Col_Num_One */
+    SciErr sciErr;
+    wchar_t **pstInput = NULL;
+    wchar_t **pstOutput = NULL;
+    char cType = LOW;
+    int iRows1 = 0;
+    int iCols1 = 0;
     int i = 0;
 
-    int Type_One = 0;
+    int* piAddr1 = NULL;
 
-    CheckRhs(1, 2);
-    CheckLhs(1, 1);
+    int* piAddr2 = NULL;
 
-    Type_One = VarType(1);
+    int iRhs = nbInputArgument(pvApiCtx);
+    CheckInputArgument(pvApiCtx, 1, 2);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
-    if (Rhs == 2)
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+    if (sciErr.iErr)
     {
-        int Type_Two = VarType(2);
-
-        if (Type_Two == sci_strings)
-        {
-            int Row_Num_Two = 0, Col_Num_Two = 0, Stack_Pos = 0;
-
-            GetRhsVar(2, STRING_DATATYPE, &Row_Num_Two, &Col_Num_Two, &Stack_Pos);
-            if ( (Row_Num_Two * Col_Num_Two) == 1 )
-            {
-                /* To put "flag" into typ; whether "u" or "l" */
-                typ = cstk(Stack_Pos)[0];
-                if ( (typ != UPPER) && (typ != LOW) && (typ != UPPER_B) && (typ != LOW_B) )
-                {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) expected.\n"), fname, 2);
-                    return 0;
-                }
-            }
-            else
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
-                return 0;
-            }
-        }
-        else
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
-            return 0;
-        }
+        printError(&sciErr, 0);
+        return 0;
     }
 
-    switch (Type_One)
+
+    if (isEmptyMatrix(pvApiCtx, piAddr1))
     {
-        case sci_strings :
+        if (createEmptyMatrix(pvApiCtx, Rhs + 1))
         {
-            GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &Row_Num_One, &Col_Num_One, &Input_Matrix); /* To input the string matrix */
-            mn = Row_Num_One * Col_Num_One;
-        }
-        break;
-        case sci_matrix :
-        {
-            GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &Row_Num_One, &Col_Num_One, &Input_Matrix);
-            if ( (Row_Num_One == 0) && (Col_Num_One == 0) )
-            {
-                int l = 0;
-                CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &Row_Num_One, &Col_Num_One, &l);
-                LhsVar(1) = Rhs + 1 ;
-                PutLhsVar();
-                return 0;
-            }
-            else
-            {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), fname, 1);
-                return 0;
-            }
-        }
-        break;
-        default :
-            Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), fname, 1);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
-            break;
+        }
+
+        AssignOutputVariable(pvApiCtx, 1) = iRhs + 1 ;
+        ReturnArguments(pvApiCtx);
+        return 0;
     }
 
-    Output_Matrix = (char**)MALLOC(sizeof(char*) * (mn));
-    if (Output_Matrix == NULL)
+    if (iRhs == 2)
     {
+        char* pstFlag = NULL;
+
+        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        if (isStringType(pvApiCtx, piAddr2) && isScalar(pvApiCtx, piAddr2) == 0)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
+            return 0;
+        }
+
+        /* To put "flag" into typ; whether "u" or "l" */
+        if (getAllocatedSingleString(pvApiCtx, piAddr2, &pstFlag))
+        {
+            freeAllocatedSingleString(pstFlag);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 0;
+        }
+
+        if (strlen(pstFlag) != 1 || (pstFlag[0] != UPPER && pstFlag[0] != LOW && pstFlag[0] != UPPER_B && pstFlag[0] != LOW_B ))
+        {
+            freeAllocatedSingleString(pstFlag);
+            Scierror(999, _("%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) expected.\n"), fname, 2);
+            return 0;
+        }
+
+        cType = pstFlag[0];
+        freeAllocatedSingleString(pstFlag);
+    }
+
+    if (isStringType(pvApiCtx, piAddr1) == 0)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), fname, 1);
+        return 0;
+    }
+
+    /* To input the string matrix */
+    if (getAllocatedMatrixOfWideString(pvApiCtx, piAddr1, &iRows1, &iCols1, &pstInput))
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), fname, 1);
+        return 0;
+    }
+
+    pstOutput = (wchar_t**)MALLOC(sizeof(wchar_t*) * iRows1 * iCols1);
+    if (pstOutput == NULL)
+    {
+        freeAllocatedMatrixOfWideString(iRows1, iCols1, pstInput);
         Scierror(999, _("%s: No more memory.\n"), fname);
         return 0;
     }
 
-    for (i = 0; i < mn; i++)
+    for (i = 0; i < iRows1 * iCols1; i++)
     {
-        Output_Matrix[i] = (char*)MALLOC(sizeof(char) * (strlen(Input_Matrix[i]) + 1));
-        if (Output_Matrix[i] == NULL)
+        pstOutput[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (wcslen(pstInput[i]) + 1));
+        if (pstOutput[i] == NULL)
         {
-            freeArrayOfString(Output_Matrix, i);
+            freeAllocatedMatrixOfWideString(iRows1, iCols1, pstInput);
+            freeArrayOfWideString(pstOutput, i);
             Scierror(999, ("%s: No more memory.\n"), fname);
             return 0;
         }
     }
 
     /* convstr algorithm */
-    convstr(Input_Matrix, Output_Matrix, typ, mn);
-    freeArrayOfString(Input_Matrix, mn);
+    convstr(pstInput, pstOutput, cType, iRows1 * iCols1);
+    freeAllocatedMatrixOfWideString(iRows1, iCols1, pstInput);
 
     /* put on scilab stack */
-    numRow   = Row_Num_One;
-    numCol   = Col_Num_One ;
-    CreateVarFromPtr( Rhs + 1, MATRIX_OF_STRING_DATATYPE, &numRow, &numCol, Output_Matrix );
+    sciErr = createMatrixOfWideString(pvApiCtx, iRhs + 1, iRows1, iCols1, (const wchar_t**)pstOutput);
+    freeArrayOfWideString(pstOutput, iRows1 * iCols1);
 
-    /* free pointers used */
-    freeArrayOfString(Output_Matrix, mn);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
 
-    LhsVar(1) = Rhs + 1 ;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = iRhs + 1 ;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/
