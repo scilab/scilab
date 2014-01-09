@@ -130,7 +130,7 @@
 //   Adapted from the Slicot Matlab Mexfile by S. Steer Oct 2001
 //
 // **********************************************************************
-
+#include "gw_cacsd.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -1228,5 +1228,6 @@ int sci_linmeq(char *fname, void* pvApiCtx)
         sciprint(_("%s: Warning: the equation is (almost) singular. Perturbed values have been used.\n"), fname);
     }
 
+    ReturnArguments(pvApiCtx);
     return 0;
 }

@@ -153,49 +153,53 @@ src/fortran/calsca.f \
 src/fortran/qitz.f \
 src/fortran/front.f
 
+CACSD_C_SOURCES = \
+src/c/dmp2pm.c
+
 GATEWAY_C_SOURCES = \
-sci_gateway/c/sci_arl2.c \
-sci_gateway/c/sci_rtitr.c \
-sci_gateway/c/sci_ppol.c \
-sci_gateway/c/sci_tzer.c \
+sci_gateway/c/gw_cacsd.c \
 sci_gateway/c/sci_contr.c \
-sci_gateway/c/sci_residu.c \
-sci_gateway/c/gw_cacsd0.c \
-sci_gateway/c/sci_freq.c \
-sci_gateway/c/gw_cacsd1.c \
-sci_gateway/c/sci_rankqr.c \
-sci_gateway/c/sci_rrankqr.c \
-sci_gateway/c/sci_zrankqr.c \
-sci_gateway/c/sci_ltitr.c \
-sci_gateway/c/sci_ldiv.c \
-sci_gateway/c/gw_cacsd2.c \
-sci_gateway/c/gw_cacsd3.c \
 sci_gateway/c/sci_dhinf.c \
 sci_gateway/c/sci_hinf.c \
 sci_gateway/c/sci_linmeq.c \
 sci_gateway/c/sci_mucomp.c \
-sci_gateway/c/sci_ricc2.c
+sci_gateway/c/sci_rankqr.c \
+sci_gateway/c/sci_rrankqr.c \
+sci_gateway/c/sci_zrankqr.c \
+sci_gateway/c/sci_ricc.c \
+sci_gateway/c/sci_sident.c \
+sci_gateway/c/sci_sorder.c \
+sci_gateway/c/sci_findbd.c
 
-
-GATEWAY_FORTRAN_SOURCES = \
-sci_gateway/fortran/sci_f_tzer.f \
-sci_gateway/fortran/sci_f_residu.f \
-sci_gateway/fortran/sci_f_sylv.f \
-sci_gateway/fortran/sci_f_ppol.f \
-sci_gateway/fortran/sci_f_freq.f \
-sci_gateway/fortran/sci_f_ldiv.f \
-sci_gateway/fortran/sci_f_lyap.f \
-sci_gateway/fortran/sci_f_rtitr.f \
-sci_gateway/fortran/sci_f_ltitr.f \
-sci_gateway/fortran/sci_f_arl2.f
+GATEWAY_CPP_SOURCES = \
+sci_gateway/cpp/sci_arl2_ius.cpp \
+sci_gateway/cpp/sci_ldiv.cpp \
+sci_gateway/cpp/sci_tzer.cpp \
+sci_gateway/cpp/sci_residu.cpp \
+sci_gateway/cpp/sci_ppol.cpp \
+sci_gateway/cpp/sci_freq.cpp \
+sci_gateway/cpp/sci_ltitr.cpp \
+sci_gateway/cpp/sci_rtitr.cpp \
+sci_gateway/cpp/sci_ereduc.cpp \
+sci_gateway/cpp/sci_fstair.cpp
 
 libscicacsd_la_CPPFLAGS= 	-I$(srcdir)/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/elementary_functions/includes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			-I$(top_srcdir)/modules/operations/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			$(AM_CPPFLAGS)
+            -I$(srcdir)/src/c/ \
+            -I$(top_srcdir)/modules/output_stream/includes/ \
+            -I$(top_srcdir)/modules/elementary_functions/includes/ \
+            -I$(top_srcdir)/modules/api_scilab/includes/ \
+            -I$(top_srcdir)/modules/operations/includes/ \
+            -I$(top_srcdir)/modules/localization/includes/ \
+            -I$(top_srcdir)/modules/types/includes/ \
+            -I$(top_srcdir)/modules/ast/includes/ \
+            -I$(top_srcdir)/modules/symbol/includes/ \
+            -I$(top_srcdir)/modules/dynamic_link/includes/ \
+            -I$(top_srcdir)/modules/system_env/includes/ \
+            -I$(top_srcdir)/modules/threads/includes/ \
+            -I$(top_srcdir)/modules/string/includes/ \
+            -I$(top_srcdir)/modules/console/includes/ \
+            $(EIGEN_CPPFLAGS) \
+            $(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscicacsd.la
@@ -207,8 +211,8 @@ endif
 
 libscicacsd_la_LDFLAGS = $(ATLAS_LIBS) $(AM_LDFLAGS)
 
-libscicacsd_algo_la_SOURCES = $(CACSD_FORTRAN_SOURCES) $(SLICOT_FORTRAN_SOURCES)
-libscicacsd_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libscicacsd_algo_la_SOURCES = $(CACSD_FORTRAN_SOURCES) $(SLICOT_FORTRAN_SOURCES) $(CACSD_C_SOURCES)
+libscicacsd_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscicacsd_algo_la_CPPFLAGS = $(libscicacsd_la_CPPFLAGS)
 
 

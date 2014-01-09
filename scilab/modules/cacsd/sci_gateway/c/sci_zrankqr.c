@@ -331,5 +331,6 @@ int sci_zrankqr(char *fname, void* pvApiCtx)
     AssignOutputVariable(pvApiCtx, 4) = RANK;
     AssignOutputVariable(pvApiCtx, 5) = SVAL;
 
+    ReturnArguments(pvApiCtx);
     return 0;
 }

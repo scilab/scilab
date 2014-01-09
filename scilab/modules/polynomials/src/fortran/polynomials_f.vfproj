@@ -65,7 +65,6 @@
 		<File RelativePath=".\chkvar.f"/>
 		<File RelativePath=".\ddmpev.f"/>
 		<File RelativePath=".\dimin.f"/>
-		<File RelativePath=".\dmp2pm.f"/>
 		<File RelativePath=".\dmpad.f"/>
 		<File RelativePath=".\dmpadj.f"/>
 		<File RelativePath=".\dmpcle.f"/>

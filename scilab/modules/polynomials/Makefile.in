@@ -171,27 +171,26 @@ am__objects_1 = src/fortran/residu.lo src/fortran/imptra.lo \
 	src/fortran/recbez.lo src/fortran/sfact1.lo \
 	src/fortran/dpodiv.lo src/fortran/dmptra.lo \
 	src/fortran/dmpins.lo src/fortran/dpsimp.lo \
-	src/fortran/dmp2pm.lo src/fortran/dmpext.lo \
-	src/fortran/wpmul.lo src/fortran/bezstp.lo \
-	src/fortran/wmpad.lo src/fortran/dprxc.lo \
-	src/fortran/quadsd.lo src/fortran/wmpadj.lo \
-	src/fortran/dmpmu.lo src/fortran/wpmul1.lo \
-	src/fortran/wmpcnc.lo src/fortran/mptri.lo \
-	src/fortran/horner.lo src/fortran/idegre.lo \
-	src/fortran/fxshfr.lo src/fortran/mpdiag.lo \
-	src/fortran/dmpcle.lo src/fortran/rpoly.lo \
-	src/fortran/wpodiv.lo src/fortran/wdmpmu.lo \
-	src/fortran/wmptra.lo src/fortran/wmpins.lo \
-	src/fortran/mpdegr.lo src/fortran/ddmpev.lo \
-	src/fortran/realit.lo src/fortran/dpmul.lo \
-	src/fortran/sfact2.lo src/fortran/dmpad.lo \
-	src/fortran/nextk.lo src/fortran/blktit.lo \
-	src/fortran/dimin.lo src/fortran/newest.lo \
-	src/fortran/dwmpmu.lo src/fortran/impcnc.lo \
-	src/fortran/wdmpad.lo src/fortran/wmpcle.lo \
-	src/fortran/quadit.lo src/fortran/quad.lo \
-	src/fortran/calcsc.lo src/fortran/writebufsfact.lo \
-	src/fortran/chkvar.lo
+	src/fortran/dmpext.lo src/fortran/wpmul.lo \
+	src/fortran/bezstp.lo src/fortran/wmpad.lo \
+	src/fortran/dprxc.lo src/fortran/quadsd.lo \
+	src/fortran/wmpadj.lo src/fortran/dmpmu.lo \
+	src/fortran/wpmul1.lo src/fortran/wmpcnc.lo \
+	src/fortran/mptri.lo src/fortran/horner.lo \
+	src/fortran/idegre.lo src/fortran/fxshfr.lo \
+	src/fortran/mpdiag.lo src/fortran/dmpcle.lo \
+	src/fortran/rpoly.lo src/fortran/wpodiv.lo \
+	src/fortran/wdmpmu.lo src/fortran/wmptra.lo \
+	src/fortran/wmpins.lo src/fortran/mpdegr.lo \
+	src/fortran/ddmpev.lo src/fortran/realit.lo \
+	src/fortran/dpmul.lo src/fortran/sfact2.lo \
+	src/fortran/dmpad.lo src/fortran/nextk.lo \
+	src/fortran/blktit.lo src/fortran/dimin.lo \
+	src/fortran/newest.lo src/fortran/dwmpmu.lo \
+	src/fortran/impcnc.lo src/fortran/wdmpad.lo \
+	src/fortran/wmpcle.lo src/fortran/quadit.lo \
+	src/fortran/quad.lo src/fortran/calcsc.lo \
+	src/fortran/writebufsfact.lo src/fortran/chkvar.lo
 am_libscipolynomials_algo_la_OBJECTS = $(am__objects_1)
 libscipolynomials_algo_la_OBJECTS =  \
 	$(am_libscipolynomials_algo_la_OBJECTS)
@@ -610,7 +609,6 @@ src/fortran/dpodiv.f \
 src/fortran/dmptra.f \
 src/fortran/dmpins.f \
 src/fortran/dpsimp.f \
-src/fortran/dmp2pm.f \
 src/fortran/dmpext.f \
 src/fortran/wpmul.f \
 src/fortran/bezstp.f \
@@ -899,8 +897,6 @@ src/fortran/dmptra.lo: src/fortran/$(am__dirstamp) \
 src/fortran/dmpins.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dpsimp.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dmp2pm.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dmpext.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

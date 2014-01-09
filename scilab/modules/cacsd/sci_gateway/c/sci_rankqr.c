@@ -13,6 +13,7 @@
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#include "gw_cacsd.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -23,6 +24,9 @@ int sci_rankqr(char* fname, void* pvApiCtx)
     SciErr sciErr;
     int* piAddr = 0;
     int ret = 0;
+
+    CheckInputArgument(pvApiCtx, 1, 3);
+    CheckOutputArgument(pvApiCtx, 1, 5);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)

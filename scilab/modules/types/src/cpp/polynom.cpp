@@ -162,6 +162,20 @@ bool Polynom::getRank(int *_piRank)
     return true;
 }
 
+bool Polynom::getRealRank(int *_piRank)
+{
+    if (_piRank == NULL || m_pRealData == NULL)
+    {
+        return false;
+    }
+
+    for (int i = 0 ; i < getSize() ; i++)
+    {
+        _piRank[i] = m_pRealData[i]->getRank() - 1;
+    }
+    return true;
+}
+
 GenericType::RealType Polynom::getType()
 {
     return RealPoly;
@@ -282,6 +296,10 @@ int Polynom::getMaxRank(void)
     }
     delete[] piRank;
     return iMaxRank;
+}
+int Polynom::getRealMaxRank(void)
+{
+    return getMaxRank() - 1;
 }
 
 Double* Polynom::getCoef(void)

@@ -19,7 +19,6 @@ src/fortran/dpodiv.f \
 src/fortran/dmptra.f \
 src/fortran/dmpins.f \
 src/fortran/dpsimp.f \
-src/fortran/dmp2pm.f \
 src/fortran/dmpext.f \
 src/fortran/wpmul.f \
 src/fortran/bezstp.f \

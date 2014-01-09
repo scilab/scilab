@@ -61,7 +61,9 @@ public :
     std::wstring            getVariableName();
     void                    setVariableName(std::wstring);
     bool                    getRank(int *_piRank);
+    bool                    getRealRank(int *_piRank);
     int                     getMaxRank(void);
+    int                     getRealMaxRank(void);
     Double*                 evaluate(Double* _pdblValue);
     void                    updateRank(void);
     Double*                 getCoef(void);

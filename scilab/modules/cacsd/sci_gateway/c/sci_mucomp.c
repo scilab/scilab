@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
-
+#include "gw_cacsd.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -274,5 +274,6 @@ int sci_mucomp(char *fname, void* pvApiCtx)
         AssignOutputVariable(pvApiCtx, 3) = 6;
     }
 
+    ReturnArguments(pvApiCtx);
     return 0;
 }

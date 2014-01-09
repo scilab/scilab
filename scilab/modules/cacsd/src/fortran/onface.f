@@ -39,6 +39,7 @@ C!
       dimension tq(0:nq), w(*),tg(ng+1)
 C
       dimension tps(0:1), taux2(0:2), tabeta(0:2), xx(1)
+cDEC$ ATTRIBUTES DLLIMPORT:: /sortie/
       common /sortie/ io,info,ll
 C
 C     decoupage du tableau de travail

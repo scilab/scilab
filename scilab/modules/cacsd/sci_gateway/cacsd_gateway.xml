@@ -3,7 +3,7 @@
 <!--
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
+ *  Copyright (C) 2012-2014 - Scilab Enterprises - Cedric DELAMARRE
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -19,27 +19,27 @@
  Don't touch if you do not know what you are doing
 -->
 <module name="sci_cacsd">
-    <!--
-    <gateway name="intab01od"       function="contr"    type="0" />
-    <gateway name="sci_fstair"      function="fstair"   type="1" />
-    <gateway name="sci_ricc_old"    function="ricc_old" type="1" />
+    <!-- gateways C -->
+    <gateway name="sci_contr"       function="contr"    type="0" />
+    <gateway name="sci_dhinf"       function="dhinf"    type="0" />
+    <gateway name="sci_hinf"        function="hinf"     type="0" />
+    <gateway name="sci_linmeq"      function="linmeq"   type="0" />
+    <gateway name="sci_mucomp"      function="mucomp"   type="0" />
+    <gateway name="sci_rankqr"      function="rankqr"   type="0" />
+    <gateway name="sci_ricc"        function="ricc"     type="0" />
+    <gateway name="sci_sident"      function="sident"   type="0" />
+    <gateway name="sci_sorder"      function="sorder"   type="0" />
+    <gateway name="sci_findbd"      function="findBD"   type="0" />
+
+    <!-- gateways CPP -->
+    <gateway name="sci_arl2_ius"    function="arl2_ius" type="1" />
+    <gateway name="sci_ldiv"        function="ldiv"     type="1" />
+    <gateway name="sci_tzer"        function="tr_zer"   type="1" />
+    <gateway name="sci_residu"      function="residu"   type="1" />
     <gateway name="sci_ppol"        function="ppol"     type="1" />
-    <gateway name="sci_tr_zer"      function="tr_zer"   type="1" />
     <gateway name="sci_freq"        function="freq"     type="1" />
     <gateway name="sci_ltitr"       function="ltitr"    type="1" />
     <gateway name="sci_rtitr"       function="rtitr"    type="1" />
-    <gateway name="sci_arl2_ius"    function="arl2_ius" type="1" />
-    <gateway name="sci_residu"      function="residu"   type="1" />
-    <gateway name="sci_ldiv"        function="ldiv"     type="1" />
-    <gateway name="sci_sident"      function="sident"   type="1" />
-    <gateway name="sci_sorder"      function="sorder"   type="1" />
-    <gateway name="sci_findBD"      function="findBD"   type="1" />
-    <gateway name="sci_rankqr"      function="rankqr"   type="1" />
-    <gateway name="sci_contr"       function="contr"    type="1" />
-    <gateway name="sci_mucomp"      function="mucomp"   type="1" />
-    <gateway name="sci_ricc"        function="ricc"     type="1" />
-    <gateway name="sci_hinf"        function="hinf"     type="1" />
-    <gateway name="sci_dhinf"       function="dhinf"    type="1" />
-    <gateway name="sci_linmeq"      function="linmeq"   type="1" />
--->
+    <gateway name="sci_ereduc"      function="ereduc"   type="1" />
+    <gateway name="sci_fstair"      function="fstair"   type="1" />
 </module>
