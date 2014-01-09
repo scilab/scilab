@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2008 - INRIA - Vincent COUVERT 
-    * 
+    * Copyright (C) 2008 - INRIA - Vincent COUVERT
+    *
     * This file must be used under the terms of the CeCILL.
     * This source file is licensed as described in the file COPYING, which
     * you should have received as part of this distribution.  The terms
-    * are also available at    
+    * are also available at
     * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
     *
     -->
@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>fd = matfile_open(filename[, mode])</synopsis>
+        <synopsis>fd = matfile_open(filename[, mode[, version]])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -49,6 +49,26 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>version</term>
+                <listitem>
+                    <para>
+                        Scalar string: file version format (<literal>"5"</literal> by default).
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <emphasis>"5"</emphasis>: Matlab 5 file.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>"7.3"</emphasis>: Matlab 7.3 file.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>fd</term>
                 <listitem>
                     <para>Real: file descriptor (-1 if opening failed).</para>
@@ -70,15 +90,17 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-A = rand(10,10);
-B = sprand(100,100,0.1);
-savematfile('test_matfile.mat','A','B','-v6');
+A = rand(10, 10);
+B = sprand(100, 100, 0.1);
+savematfile("test_matfile.mat", "A", "B", "-v6");
 clear();
 fd = matfile_open("test_matfile.mat");
 matfile_listvar(fd)
 matfile_close(fd);
 
-//fd = matfile_open("test_matfile.mat","w"); // Empty test_matfile.mat
+//fd = matfile_open("test_matfile.mat", "w"); // Empty test_matfile.mat
+
+//fd = matfile_open("test_matfile.mat", "w", "7.3"); // Empty test_matfile.mat as a Matlab 7.3 file
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -107,5 +129,14 @@ matfile_close(fd);
             </literal>
             ).
         </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Support for Matlab 7.3 files.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

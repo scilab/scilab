@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2004-2007 - INRIA - Serge STEER 
-    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
-    * 
+    * Copyright (C) 2004-2007 - INRIA - Serge STEER
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
+    *
     * This file must be used under the terms of the CeCILL.
     * This source file is licensed as described in the file COPYING, which
     * you should have received as part of this distribution.  The terms
-    * are also available at    
+    * are also available at
     * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
     *
     -->
@@ -133,12 +133,21 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-A = rand(10,10);
-B = sprand(100,100,0.1);
-savematfile('test_matfile.mat','A','B','-v6');
+        <programlisting role="example"><![CDATA[
+A = rand(10, 10);
+B = sprand(100, 100, 0.1);
+savematfile("test_matfile.mat", "A", "B", "-v6");
 clear;
-loadmatfile('test_matfile.mat');
+loadmatfile("test_matfile.mat");
+disp(A)
+disp(B)
+
+// As a Matlab 7.3 file
+A = rand(10, 10);
+B = sprand(100, 100, 0.1);
+savematfile("test_matfile.mat", "A", "B", "-v7.3");
+clear;
+loadmatfile("test_matfile.mat");
 disp(A)
 disp(B)
  ]]></programlisting>
@@ -163,7 +172,7 @@ disp(B)
     <refsection>
         <title>Bibliography</title>
         <para>This function has been developed following the "MAT-File Format"
-            description: 
+            description:
             <literal>
                 <ulink url="http://www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf">Mat-File Format</ulink>
             </literal>

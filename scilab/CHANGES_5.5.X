@@ -379,6 +379,8 @@ Scilab Bug Fixes
 
 * Bug #13101 fixed - When x-axis was in reverse position x_location='origin' failed.
 
+* Bug #13102 fixed - savematfile did not support "-v7.3" option.
+
 * Bug #13108 fixed - Time between ATOMS database updates is now a month (was a day) and is configurable.
 
 * Bug #13109 fixed - pll2str now supports polynomials with complex coefficients and hypermatrices.
