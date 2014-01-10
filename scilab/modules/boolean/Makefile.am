@@ -8,17 +8,14 @@ BOOLEAN_C_SOURCES = src/c/matboolean.c \
 src/c/vect_or.c \
 src/c/vect_and.c
 
-BOOLEAN_FORTRAN_SOURCES = src/fortran/logic.f \
-src/fortran/find.f
+BOOLEAN_FORTRAN_SOURCES = src/fortran/logic.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_and.c \
 sci_gateway/c/sci_or.c \
-sci_gateway/c/sci_find.c \
 sci_gateway/c/sci_bool2s.c \
 sci_gateway/c/gw_boolean.c
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_bool2s.f \
-sci_gateway/fortran/sci_f_find.f
+GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_bool2s.f
 
 libsciboolean_la_CPPFLAGS= -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
@@ -50,7 +47,7 @@ modulename=boolean
 
 #### boolean : Conf files ####
 libsciboolean_la_rootdir = $(mydatadir)
-libsciboolean_la_root_DATA =  license.txt 
+libsciboolean_la_root_DATA =  license.txt
 
 
 #### boolean : init scripts ####

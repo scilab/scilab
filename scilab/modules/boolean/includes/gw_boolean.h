@@ -20,7 +20,6 @@ int gw_boolean(void);
 /*--------------------------------------------------------------------------*/
 int sci_or(char *fname, unsigned long fname_len);
 int sci_and(char *fname, unsigned long fname_len);
-int C2F(sci_find)(char *fname, unsigned long fname_len);
 int C2F(sci_bool2s)(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_BOOLEAN__ */

@@ -300,7 +300,8 @@ am__objects_5 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
 	src/fortran/dtild.lo src/fortran/i1mach.lo \
 	src/fortran/dclmat.lo src/fortran/ortran.lo \
 	src/fortran/bdiag.lo src/fortran/wvmul.lo src/fortran/dmmul.lo \
-	src/fortran/wsqrt.lo src/fortran/israt.lo src/fortran/rat.lo
+	src/fortran/wsqrt.lo src/fortran/israt.lo src/fortran/rat.lo \
+	src/fortran/find.lo
 am__objects_6 =
 am_libscielementary_functions_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
@@ -364,7 +365,8 @@ am__objects_7 =  \
 	sci_gateway/c/libscielementary_functions_la-sci_gsort.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_isequalbitwise.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_base2dec.lo \
-	sci_gateway/c/libscielementary_functions_la-sci_dec2base.lo
+	sci_gateway/c/libscielementary_functions_la-sci_dec2base.lo \
+	sci_gateway/c/libscielementary_functions_la-sci_find.lo
 am__objects_8 = sci_gateway/fortran/sci_f_isequal.lo \
 	sci_gateway/fortran/sci_f_maxi.lo \
 	sci_gateway/fortran/sci_f_testmatrix.lo \
@@ -411,7 +413,8 @@ am__objects_8 = sci_gateway/fortran/sci_f_isequal.lo \
 	sci_gateway/fortran/sci_f_conj.lo \
 	sci_gateway/fortran/sci_f_int.lo \
 	sci_gateway/fortran/sci_f_imult.lo \
-	sci_gateway/fortran/sci_f_exp.lo
+	sci_gateway/fortran/sci_f_exp.lo \
+	sci_gateway/fortran/sci_f_find.lo
 am_libscielementary_functions_la_OBJECTS = $(am__objects_7) \
 	$(am__objects_8)
 libscielementary_functions_la_OBJECTS =  \
@@ -1018,7 +1021,8 @@ src/fortran/wvmul.f \
 src/fortran/dmmul.f \
 src/fortran/wsqrt.f \
 src/fortran/israt.f \
-src/fortran/rat.f
+src/fortran/rat.f \
+src/fortran/find.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
 sci_gateway/c/sci_matrix.c \
@@ -1071,7 +1075,8 @@ sci_gateway/c/sci_maxi.c \
 sci_gateway/c/sci_gsort.c \
 sci_gateway/c/sci_isequalbitwise.c \
 sci_gateway/c/sci_base2dec.c \
-sci_gateway/c/sci_dec2base.c
+sci_gateway/c/sci_dec2base.c \
+sci_gateway/c/sci_find.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_isequal.f \
 sci_gateway/fortran/sci_f_maxi.f \
@@ -1119,7 +1124,8 @@ sci_gateway/fortran/sci_f_round.f \
 sci_gateway/fortran/sci_f_conj.f \
 sci_gateway/fortran/sci_f_int.f \
 sci_gateway/fortran/sci_f_imult.f \
-sci_gateway/fortran/sci_f_exp.f
+sci_gateway/fortran/sci_f_exp.f \
+sci_gateway/fortran/sci_f_find.f
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
@@ -1847,6 +1853,8 @@ src/fortran/israt.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/rat.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/find.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
 
 libscielementary_functions-algo.la: $(libscielementary_functions_algo_la_OBJECTS) $(libscielementary_functions_algo_la_DEPENDENCIES) $(EXTRA_libscielementary_functions_algo_la_DEPENDENCIES) 
 	$(AM_V_F77LD)$(F77LINK) $(am_libscielementary_functions_algo_la_rpath) $(libscielementary_functions_algo_la_OBJECTS) $(libscielementary_functions_algo_la_LIBADD) $(LIBS)
@@ -2012,6 +2020,9 @@ sci_gateway/c/libscielementary_functions_la-sci_base2dec.lo:  \
 sci_gateway/c/libscielementary_functions_la-sci_dec2base.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscielementary_functions_la-sci_find.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/fortran/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/fortran
 	@: > sci_gateway/fortran/$(am__dirstamp)
@@ -2149,6 +2160,9 @@ sci_gateway/fortran/sci_f_imult.lo:  \
 	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/fortran/sci_f_exp.lo: sci_gateway/fortran/$(am__dirstamp) \
 	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/sci_f_find.lo:  \
+	sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
 
 libscielementary_functions.la: $(libscielementary_functions_la_OBJECTS) $(libscielementary_functions_la_DEPENDENCIES) $(EXTRA_libscielementary_functions_la_DEPENDENCIES) 
 	$(AM_V_F77LD)$(F77LINK) $(am_libscielementary_functions_la_rpath) $(libscielementary_functions_la_OBJECTS) $(libscielementary_functions_la_LIBADD) $(LIBS)
@@ -2192,6 +2206,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_exp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_expm.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_eye.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_find.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_floor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_frexp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_gsort.Plo@am__quote@
@@ -2789,6 +2804,13 @@ sci_gateway/c/libscielementary_functions_la-sci_dec2base.lo: sci_gateway/c/sci_d
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_dec2base.c' object='sci_gateway/c/libscielementary_functions_la-sci_dec2base.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscielementary_functions_la-sci_dec2base.lo `test -f 'sci_gateway/c/sci_dec2base.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dec2base.c
+
+sci_gateway/c/libscielementary_functions_la-sci_find.lo: sci_gateway/c/sci_find.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscielementary_functions_la-sci_find.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_find.Tpo -c -o sci_gateway/c/libscielementary_functions_la-sci_find.lo `test -f 'sci_gateway/c/sci_find.c' || echo '$(srcdir)/'`sci_gateway/c/sci_find.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_find.Tpo sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_find.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_find.c' object='sci_gateway/c/libscielementary_functions_la-sci_find.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscielementary_functions_la-sci_find.lo `test -f 'sci_gateway/c/sci_find.c' || echo '$(srcdir)/'`sci_gateway/c/sci_find.c
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<

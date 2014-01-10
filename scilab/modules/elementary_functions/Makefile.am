@@ -250,7 +250,8 @@ src/fortran/wvmul.f \
 src/fortran/dmmul.f \
 src/fortran/wsqrt.f \
 src/fortran/israt.f \
-src/fortran/rat.f
+src/fortran/rat.f \
+src/fortran/find.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
 sci_gateway/c/sci_matrix.c \
@@ -303,7 +304,8 @@ sci_gateway/c/sci_maxi.c \
 sci_gateway/c/sci_gsort.c \
 sci_gateway/c/sci_isequalbitwise.c \
 sci_gateway/c/sci_base2dec.c \
-sci_gateway/c/sci_dec2base.c
+sci_gateway/c/sci_dec2base.c \
+sci_gateway/c/sci_find.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_isequal.f \
 sci_gateway/fortran/sci_f_maxi.f \
@@ -351,7 +353,8 @@ sci_gateway/fortran/sci_f_round.f \
 sci_gateway/fortran/sci_f_conj.f \
 sci_gateway/fortran/sci_f_int.f \
 sci_gateway/fortran/sci_f_imult.f \
-sci_gateway/fortran/sci_f_exp.f
+sci_gateway/fortran/sci_f_exp.f \
+sci_gateway/fortran/sci_f_find.f
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 

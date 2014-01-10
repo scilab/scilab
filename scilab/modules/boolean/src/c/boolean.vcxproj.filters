@@ -38,9 +38,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_bool2s.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_find.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_or.c">
       <Filter>Source Files</Filter>
     </ClCompile>

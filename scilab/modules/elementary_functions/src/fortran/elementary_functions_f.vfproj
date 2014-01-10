@@ -107,6 +107,7 @@
 		<File RelativePath=".\dwrdiv.f"/>
 		<File RelativePath=".\entier.f"/>
 		<File RelativePath=".\exch.f"/>
+		<File RelativePath=".\find.f"/>
 		<File RelativePath=".\franck.f"/>
 		<File RelativePath=".\gdcp2i.f"/>
 		<File RelativePath=".\getdimfromvar.f"/>
@@ -152,6 +153,7 @@
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_exp.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_expm.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_eye.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_find.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_floor.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_frexp.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_imag.f"/>

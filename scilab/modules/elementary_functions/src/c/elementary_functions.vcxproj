@@ -196,6 +196,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\c\sci_base2dec.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_dec2base.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_find.c" />
     <ClCompile Include="cmp.c" />
     <ClCompile Include="convertbase.c" />
     <ClCompile Include="DllmainElementary_functions.c" />

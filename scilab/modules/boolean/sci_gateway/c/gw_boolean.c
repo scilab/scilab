@@ -20,7 +20,6 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
-    {C2F(sci_find), "find"},
     {C2F(sci_bool2s), "bool2s"},
     {sci_or, "or"},
     {sci_and, "and"}

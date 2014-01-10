@@ -255,7 +255,6 @@ lib /DEF:"$(ProjectDir)boolean_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile Include="matboolean.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_and.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_bool2s.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_find.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_or.c" />
     <ClCompile Include="vect_and.c" />
     <ClCompile Include="vect_or.c" />

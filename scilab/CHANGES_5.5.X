@@ -69,6 +69,8 @@ Scilab Bug Fixes
 
 * Bug #2802 fixed - convstr did not convert non ascii chars.
 
+* Bug #4177 fixed - find function moved to the "elementary_functions" module.
+
 * Bug #4401 fixed - isnum did not recognize all constants or some complex numbers.
 
 * Bug #4490 fixed - Input argument of sinc function must be in rad: help page updated.
