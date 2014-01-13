@@ -50,15 +50,15 @@ int ScilabGateway::newInstance(char * fname, const int envId, void * pvApiCtx)
         throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
     }
 
-    cwd = scigetcwd(&error);
-    if (error)
-    {
-        FREE(cwd);
-        cwd = 0;
-    }
-
     if (isStringType(pvApiCtx, addr))
     {
+        cwd = scigetcwd(&error);
+        if (error && cwd)
+        {
+            FREE(cwd);
+            cwd = 0;
+        }
+
         className = ScilabObjects::getSingleString(1, pvApiCtx);
         try
         {
@@ -66,11 +66,17 @@ int ScilabGateway::newInstance(char * fname, const int envId, void * pvApiCtx)
         }
         catch (std::exception & e)
         {
-            FREE(cwd);
+            if (cwd)
+            {
+                FREE(cwd);
+            }
             freeAllocatedSingleString(className);
             throw;
         }
-        FREE(cwd);
+        if (cwd)
+        {
+            FREE(cwd);
+        }
         freeAllocatedSingleString(className);
     }
     else if (ScilabObjects::isExternalClass(addr, pvApiCtx))
