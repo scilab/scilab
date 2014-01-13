@@ -1089,6 +1089,7 @@ public abstract class UIComponent {
         Object c = getModifiableComponent();
         if (c instanceof JComponent) {
             ((JComponent) c).setFont(UITools.getFont(((JComponent) c).getFont(), style));
+            fontUnit = UITools.FontUnit.PIXELS;
         }
         for (String key : style.keySet()) {
             try {
