@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2011-2014 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -35,7 +35,7 @@ int sci_xmlName(char *fname, unsigned long fname_len)
     SciErr err;
     int *addr = 0;
     const char **pstStrings = 0;
-    const char * types[] = {"XMLAttr", "XMLList", "XMLSet", "XMLElem"};
+    const int types[] = {XMLATTRIBUTE, XMLLIST, XMLSET, XMLELEMENT};
     int type;
     int size;
 
@@ -51,12 +51,11 @@ int sci_xmlName(char *fname, unsigned long fname_len)
     }
 
     type = isXMLObjects(types, 4, addr, pvApiCtx);
-    if (!type)
+    if (type == -1)
     {
         Scierror(999, gettext("%s: Wrong type for input argument #%i: XMLSet, XMLList, XMLAttr or XMLElem expected.\n"), fname, 1);
         return 0;
     }
-    type--;
 
     id = getXMLObjectId(addr, pvApiCtx);
 
