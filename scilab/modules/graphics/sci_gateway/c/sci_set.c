@@ -332,7 +332,8 @@ int sci_set(char *fname, unsigned long fname_len)
                             iType == __GO_SEGS__ ||
                             iType == __GO_FAC3D__ ||
                             iType == __GO_PLOT3D__ ||
-                            iType == __GO_CONSOLE__))
+                            iType == __GO_CONSOLE__ ||
+                            iType == __GO_DATATIP__))
         {
             if (setGraphicObjectVariable(pvApiCtx, pstProperty, piAddr3) == FALSE)
             {
@@ -454,7 +455,8 @@ int sci_set(char *fname, unsigned long fname_len)
             iType == __GO_SEGS__ ||
             iType == __GO_FAC3D__ ||
             iType == __GO_PLOT3D__ ||
-            iType == __GO_CONSOLE__)
+            iType == __GO_CONSOLE__ ||
+            iType == __GO_DATATIP__)
     {
         if (runSetProperty(iObjUID) == FALSE)
         {

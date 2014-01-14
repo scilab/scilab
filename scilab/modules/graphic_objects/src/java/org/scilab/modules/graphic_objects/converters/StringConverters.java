@@ -57,6 +57,7 @@ import org.scilab.modules.graphic_objects.utils.RotationType;
 import org.scilab.modules.graphic_objects.utils.TextBoxMode;
 import org.scilab.modules.graphic_objects.utils.TicksDirection;
 import org.scilab.modules.graphic_objects.utils.TicksStyle;
+import org.scilab.modules.graphic_objects.utils.TipOrientation;
 import org.scilab.modules.graphic_objects.utils.ViewType;
 
 /**
@@ -793,6 +794,11 @@ public final class StringConverters {
         converters.put(LightType.class, new StringConverter() {
             public LightType convert(String str) {
                 return LightType.stringToEnum(str);
+            }
+        });
+        converters.put(TipOrientation.class, new StringConverter() {
+            public TipOrientation convert(String str) {
+                return TipOrientation.stringToEnum(str);
             }
         });
     }

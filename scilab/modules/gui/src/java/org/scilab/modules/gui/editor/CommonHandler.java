@@ -17,10 +17,12 @@ package org.scilab.modules.gui.editor;
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.graphic_objects.SurfaceData;
 import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.graphic_objects.utils.MarkSizeUnitType;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 
 
@@ -94,8 +96,10 @@ public class CommonHandler {
      * @param uid object unique identifier.
      * @return Mark size.
      */
-    public static Integer getMarkSizeUnit(Integer uid) {
-        return (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_SIZE_UNIT__);
+    public static MarkSizeUnitType getMarkSizeUnit(Integer uid) {
+        //        return (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_SIZE_UNIT__);
+        ContouredObject co = (ContouredObject)GraphicController.getController().getObjectFromId(uid);
+        return co.getMarkSizeUnit();
     }
 
     /**

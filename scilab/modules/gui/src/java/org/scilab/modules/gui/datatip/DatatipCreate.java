@@ -176,7 +176,7 @@ public class DatatipCreate {
 
         ViewType view = axes.getView();
         if (view == ViewType.VIEW_3D && PolylineData.isZCoordSet(iPolyline) == 1) {
-            datatip.setUse3Component(true);
+            datatip.setTip3component(true);
             datatip.setClipState(ClipStateType.OFF);
         }
 

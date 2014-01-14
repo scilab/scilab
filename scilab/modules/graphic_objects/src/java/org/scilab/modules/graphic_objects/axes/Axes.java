@@ -868,7 +868,11 @@ public class Axes extends GraphicObject {
         return visible;
     }
 
-    public UpdateStatus setAxesVisible(boolean[] visible) {
+    public UpdateStatus setAxesVisible(boolean visible) {
+        return setAxesVisible(new Boolean[] {visible, visible, visible});
+    }
+
+    public UpdateStatus setAxesVisible(Boolean[] visible) {
         UpdateStatus status = UpdateStatus.NoChange;
 
         UpdateStatus statusX = setXAxisVisible(visible[0]);
@@ -911,12 +915,16 @@ public class Axes extends GraphicObject {
         return visible;
     }
 
-    public UpdateStatus setAxesReverse(Boolean[] visible) {
+    public UpdateStatus setAxesReverse(boolean reverse) {
+        return setAxesReverse(new Boolean[] {reverse, reverse, reverse});
+    }
+
+    public UpdateStatus setAxesReverse(Boolean[] reverse) {
         UpdateStatus status = UpdateStatus.NoChange;
 
-        UpdateStatus statusX = setXAxisReverse(visible[0]);
-        UpdateStatus statusY = setYAxisReverse(visible[1]);
-        UpdateStatus statusZ = setZAxisReverse(visible[2]);
+        UpdateStatus statusX = setXAxisReverse(reverse[0]);
+        UpdateStatus statusY = setYAxisReverse(reverse[1]);
+        UpdateStatus statusZ = setZAxisReverse(reverse[2]);
 
         if (statusX == UpdateStatus.Fail ||
                 statusY == UpdateStatus.Fail ||

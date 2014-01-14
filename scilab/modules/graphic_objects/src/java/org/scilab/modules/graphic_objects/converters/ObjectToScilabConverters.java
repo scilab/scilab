@@ -50,6 +50,7 @@ import org.scilab.modules.graphic_objects.utils.RotationType;
 import org.scilab.modules.graphic_objects.utils.TextBoxMode;
 import org.scilab.modules.graphic_objects.utils.TicksDirection;
 import org.scilab.modules.graphic_objects.utils.TicksStyle;
+import org.scilab.modules.graphic_objects.utils.TipOrientation;
 import org.scilab.modules.graphic_objects.utils.ViewType;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabHandle;
@@ -492,6 +493,11 @@ public final class ObjectToScilabConverters {
         converters.put(LightType.class, new ObjectConverter() {
             public void convert(Object o, int stackPos) {
                 ScilabStackPutter.put(stackPos, LightType.enumToString((LightType)o));
+            }
+        });
+        converters.put(TipOrientation.class, new ObjectConverter() {
+            public void convert(Object o, int stackPos) {
+                ScilabStackPutter.put(stackPos, TipOrientation.enumToString((TipOrientation)o));
             }
         });
     }

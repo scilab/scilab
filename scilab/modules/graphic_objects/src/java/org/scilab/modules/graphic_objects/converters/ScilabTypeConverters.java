@@ -24,6 +24,7 @@ import java.util.Map;
 import org.scilab.modules.graphic_objects.ScilabNativeView;
 import org.scilab.modules.graphic_objects.axes.TicksProperty;
 import org.scilab.modules.graphic_objects.utils.LineType;
+import org.scilab.modules.graphic_objects.utils.TipOrientation;
 import org.scilab.modules.types.ScilabBoolean;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabHandle;
@@ -586,7 +587,6 @@ public final class ScilabTypeConverters {
                 return LineType.intToEnum((int) ((ScilabDouble)value).getRealPart()[0][0]);
             }
         });
-
         converters.put(TicksProperty.class, new ScilabTypeConverter() {
             public TicksProperty convert(ScilabType value) {
                 if (value == null || value.getType() != ScilabTypeEnum.sci_tlist || value.isEmpty()) {
@@ -627,6 +627,14 @@ public final class ScilabTypeConverters {
                 ticks.setLocations(locations);
                 ticks.setLabelsStrings(labels);
                 return ticks;
+            }
+        });
+        converters.put(TipOrientation.class, new ScilabTypeConverter() {
+            public TipOrientation convert(ScilabType value) {
+                if (value == null || value.getType() != ScilabTypeEnum.sci_matrix || value.isEmpty()) {
+                    return TipOrientation.TOP_RIGHT;
+                }
+                return TipOrientation.intToEnum((int) ((ScilabDouble)value).getRealPart()[0][0]);
             }
         });
     }

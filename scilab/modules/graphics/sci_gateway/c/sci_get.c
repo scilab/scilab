@@ -323,31 +323,37 @@ int sci_get(char *fname, unsigned long fname_len)
                 return 1;
             }
 
-            if (strcmp((l2), "default_figure") != 0 && strcmp((l2), "default_axes") != 0)
+            switch (l2[0])
             {
-                if (strcmp((l2), "current_figure") == 0 || strcmp((l2), "current_axes") == 0 || strcmp((l2), "current_entity") == 0
-                        || strcmp((l2), "hdl") == 0 || strcmp((l2), "figures_id") == 0)
-                {
-                    hdl = 0;
-                }
-                else
-                {
-                    /* Test debug F.Leray 13.04.04 */
-                    if ((strcmp((l2), "children") != 0) && (strcmp((l2), "zoom_") != 0) && (strcmp((l2), "clip_box") != 0)
-                            && (strcmp((l2), "auto_") != 0))
+                case 'd' :
+                    if (strcmp(l2, "default_figure") == 0 ||
+                            strcmp(l2, "default_axes") == 0)
                     {
-                        getOrCreateDefaultSubwin();
-                        hdl = getHandle(getCurrentObject());
+                        hdl = 0;
                     }
-                    else
+                    break;
+                case 'c' :
+                    if (strcmp(l2, "current_figure") == 0 ||
+                            strcmp(l2, "current_axes") == 0 ||
+                            strcmp(l2, "current_entity") == 0)
                     {
-                        hdl = getHandle(getCurrentSubWin());    /* on recupere le pointeur d'objet par le handle */
+                        hdl = 0;
                     }
-                }                   /* DJ.A 08/01/04 */
-            }
-            else
-            {
-                hdl = 0;
+                    else if (strcmp(l2, "children") == 0 || strcmp(l2, "clip_box") == 0)
+                    {
+                        hdl = getHandle(getOrCreateDefaultSubwin());    /* on recupere le pointeur d'objet par le handle */
+                    }
+                    break;
+                case 'h' :
+                    if (strcmp(l2, "hdl") == 0)
+                    {
+                        hdl = 0;
+                    }
+                    break;
+                default :
+                    getOrCreateDefaultSubwin();
+                    hdl = getHandle(getCurrentObject());
+                    break;
             }
             break;
         default:
@@ -362,7 +368,7 @@ int sci_get(char *fname, unsigned long fname_len)
     if (hdl == 0)
     {
         /* No handle specified */
-        if (sciGet(pvApiCtx, 0, (l2)) != 0)
+        if (sciGet(pvApiCtx, 0, l2) != 0)
         {
             /* An error has occurred */
             freeAllocatedSingleString(l2);
@@ -396,10 +402,11 @@ int sci_get(char *fname, unsigned long fname_len)
                     iType != __GO_LABEL__ &&
                     iType != __GO_FAC3D__ &&
                     iType != __GO_PLOT3D__ &&
-                    iType != __GO_CONSOLE__)
+                    iType != __GO_CONSOLE__ &&
+                    iType != __GO_DATATIP__)
             {
                 //old school call
-                if (sciGet(pvApiCtx, iObjUID, (l2)) != 0)
+                if (sciGet(pvApiCtx, iObjUID, l2) != 0)
                 {
                     /* An error has occurred */
                     freeAllocatedSingleString(l2);

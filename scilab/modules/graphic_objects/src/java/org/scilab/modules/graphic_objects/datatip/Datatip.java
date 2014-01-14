@@ -29,6 +29,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.utils.ClipStateType;
+import org.scilab.modules.graphic_objects.utils.TipOrientation;
 
 public class Datatip extends Text {
 
@@ -51,27 +52,6 @@ public class Datatip extends Text {
 
 
     enum DatatipObjectProperty { TIP_DATA, TIP_BOX_MODE, TIP_LABEL_MODE, TIP_ORIENTATION, TIP_AUTOORIENTATION, TIP_3COMPONENT, TIP_INTERP_MODE, TIP_DISPLAY_FNC };
-    enum TipOrientation { TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT;
-
-                          /**
-                           * Transform a integer to a TipOrientation enum.
-                           */
-    public static TipOrientation intToEnum(Integer i) {
-        switch (i) {
-            case 0:
-                return TipOrientation.TOP_LEFT;
-            case 1:
-                return TipOrientation.TOP_RIGHT;
-            case 2:
-                return TipOrientation.BOTTOM_LEFT;
-            case 3:
-                return TipOrientation.BOTTOM_RIGHT;
-            default:
-                return TipOrientation.TOP_RIGHT;
-        }
-    }
-
-                        };
 
     TipOrientation currentOrientation;
 
@@ -83,7 +63,7 @@ public class Datatip extends Text {
         tipData = new Double[] {0.0, 0.0, 0.0};
         use3component = false;
         autoOrientation = true;
-        setOrientationAsEnum(TipOrientation.TOP_RIGHT);
+        setTipOrientation(TipOrientation.TOP_RIGHT);
         tipTextFormat = new DecimalFormat("#.####");
         tipBoxMode = true;
         tipLabelMode = true;
@@ -145,15 +125,15 @@ public class Datatip extends Text {
         } else if (property == DatatipObjectProperty.TIP_LABEL_MODE) {
             return getTipLabelMode();
         } else if (property == DatatipObjectProperty.TIP_ORIENTATION) {
-            return getOrientation();
+            return getTipOrientation();
         } else if (property == DatatipObjectProperty.TIP_3COMPONENT) {
-            return isUsing3Component();
+            return getTip3component();
         } else if (property == DatatipObjectProperty.TIP_AUTOORIENTATION) {
-            return isAutoOrientationEnabled();
+            return getTipAutoOrientation();
         } else if (property == DatatipObjectProperty.TIP_INTERP_MODE) {
-            return getInterpMode();
+            return getTipInterpMode();
         } else if (property == DatatipObjectProperty.TIP_DISPLAY_FNC) {
-            return getDisplayFunction();
+            return getTipDispFunction();
         } else {
             return super.getProperty(property);
         }
@@ -172,15 +152,19 @@ public class Datatip extends Text {
         } else if (property == DatatipObjectProperty.TIP_LABEL_MODE) {
             setTipLabelMode((Boolean) value);
         } else if (property == DatatipObjectProperty.TIP_ORIENTATION) {
-            setOrientation((Integer) value);
+            if (value instanceof String) {
+                setTipOrientation(TipOrientation.stringToEnum((String) value));
+            } else {
+                setTipOrientation(TipOrientation.intToEnum((Integer) value));
+            }
         } else if (property == DatatipObjectProperty.TIP_3COMPONENT) {
-            setUse3Component((Boolean)value);
+            setTip3component((Boolean)value);
         } else if (property == DatatipObjectProperty.TIP_AUTOORIENTATION) {
-            setAutoOrientation((Boolean)value);
+            setTipAutoOrientation((Boolean)value);
         } else if (property == DatatipObjectProperty.TIP_INTERP_MODE) {
-            setInterpMode((Boolean) value);
+            setTipInterpMode((Boolean) value);
         } else if (property == DatatipObjectProperty.TIP_DISPLAY_FNC) {
-            setDisplayFunction((String) value);
+            setTipDispFunction((String) value);
         } else {
             return super.setProperty(property, value);
         }
@@ -213,35 +197,18 @@ public class Datatip extends Text {
     }
 
     /**
-     * Get the current textbox orientation as an integer
-     * @return current orientation.
-     */
-    public Integer getOrientation() {
-        return getOrientationAsEnum().ordinal();
-    }
-
-    /**
      * Get the current oriantation as a enum
      * @return the current orientation
      */
-    public TipOrientation getOrientationAsEnum() {
+    public TipOrientation getTipOrientation() {
         return currentOrientation;
-    }
-
-    /**
-     * Set the current orientation (updating the text position)
-     * @param orientation the new orientation (integer).
-     */
-    public UpdateStatus setOrientation(Integer orientation) {
-        currentOrientation = TipOrientation.intToEnum(orientation);
-        return UpdateStatus.Success;
     }
 
     /**
      * Set the current orientation (updating the text position)
      * @param orientation the new orientation (TipOrientation enum).
      */
-    public UpdateStatus setOrientationAsEnum(TipOrientation orientation) {
+    public UpdateStatus setTipOrientation(TipOrientation orientation) {
         currentOrientation = orientation;
         return UpdateStatus.Success;
     }
@@ -249,7 +216,7 @@ public class Datatip extends Text {
     /**
      * @return true if the datatip is displaying the Z component, false otherwise.
      */
-    public Boolean isUsing3Component() {
+    public Boolean getTip3component() {
         return use3component;
     }
 
@@ -257,18 +224,18 @@ public class Datatip extends Text {
      * If true set the Z component to be displayed.
      * @param useZ True to enable display the Z component, false to disable.
      */
-    public UpdateStatus setUse3Component(Boolean useZ) {
+    public UpdateStatus setTip3component(boolean useZ) {
         use3component = useZ;
         updateText();
         return UpdateStatus.Success;
     }
 
 
-    public Boolean isAutoOrientationEnabled() {
+    public Boolean getTipAutoOrientation() {
         return autoOrientation;
     }
 
-    public UpdateStatus setAutoOrientation(Boolean status) {
+    public UpdateStatus setTipAutoOrientation(boolean status) {
         autoOrientation = status;
         return UpdateStatus.Success;
     }
@@ -324,31 +291,31 @@ public class Datatip extends Text {
         return tipLabelMode;
     }
 
-    public Boolean getInterpMode() {
+    public Boolean getTipInterpMode() {
         return interpMode;
     }
 
-    public String getDisplayFunction() {
+    public String getTipDispFunction() {
         return displayFnc;
     }
 
-    public UpdateStatus setTipBoxMode(Boolean mode) {
+    public UpdateStatus setTipBoxMode(boolean mode) {
         tipBoxMode = mode;
         setBox(tipBoxMode);
         return UpdateStatus.Success;
     }
 
-    public UpdateStatus setTipLabelMode(Boolean mode) {
+    public UpdateStatus setTipLabelMode(boolean mode) {
         tipLabelMode = mode;
         return UpdateStatus.Success;
     }
 
-    public UpdateStatus setInterpMode(Boolean mode) {
+    public UpdateStatus setTipInterpMode(boolean mode) {
         interpMode = mode;
         return UpdateStatus.Success;
     }
 
-    public UpdateStatus setDisplayFunction(String fnc) {
+    public UpdateStatus setTipDispFunction(String fnc) {
         displayFnc = fnc;
         updateTextDispFunction(displayFnc);
         return UpdateStatus.Success;

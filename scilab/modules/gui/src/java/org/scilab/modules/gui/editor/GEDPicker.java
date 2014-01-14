@@ -24,6 +24,7 @@ import org.scilab.modules.graphic_objects.SurfaceData;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.graphic_objects.utils.MarkSizeUnitType;
 import org.scilab.modules.renderer.CallRenderer;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
@@ -207,9 +208,9 @@ public class GEDPicker {
         if (CommonHandler.isMarkEnabled(obj)) {
 
             Integer markSize = CommonHandler.getMarkSize(obj);
-            Integer unit = CommonHandler.getMarkSizeUnit(obj);
+            MarkSizeUnitType unit = CommonHandler.getMarkSizeUnit(obj);
 
-            int finalSize = (unit == 1) ? (8 + 2 * markSize) : markSize;
+            int finalSize = (unit == MarkSizeUnitType.TABULATED) ? (8 + 2 * markSize) : markSize;
             finalSize /= 2;
             double deltax = Math.abs((dx / delta) * finalSize);
             double deltay = Math.abs((dy / delta) * finalSize);
@@ -660,8 +661,8 @@ public class GEDPicker {
         }
 
         Integer size = CommonHandler.getMarkSize(obj);
-        Integer unit = CommonHandler.getMarkSizeUnit(obj);
-        int finalSize = (unit == 1) ? (8 + 2 * size) : size;
+        MarkSizeUnitType unit = CommonHandler.getMarkSizeUnit(obj);
+        int finalSize = (unit == MarkSizeUnitType.TABULATED) ? (8 + 2 * size) : size;
         finalSize /= 2;
 
         if ((Math.abs(point[0] - c2d[0]) <= dx * finalSize) && (Math.abs(point[1] - c2d[1]) <= dy * finalSize)) {

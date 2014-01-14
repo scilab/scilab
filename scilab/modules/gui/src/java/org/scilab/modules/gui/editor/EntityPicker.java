@@ -20,6 +20,7 @@ import org.scilab.modules.graphic_objects.SurfaceData;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.graphic_objects.utils.MarkSizeUnitType;
 import org.scilab.modules.renderer.CallRenderer;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
@@ -226,9 +227,9 @@ public class EntityPicker {
         dataz = CommonHandler.toLogScale(dataz, curAxes.getZAxisLogFlag());
 
         Integer size = CommonHandler.getMarkSize(uid);
-        Integer unit = CommonHandler.getMarkSizeUnit(uid);
+        MarkSizeUnitType unit = CommonHandler.getMarkSizeUnit(uid);
 
-        int finalSize = (unit == 1) ? (8 + 2 * size) : size;
+        int finalSize = (unit == MarkSizeUnitType.TABULATED) ? (8 + 2 * size) : size;
         finalSize /= 2;
         double deltax = Math.abs((dx / selectionDelta) * finalSize);
         double deltay = Math.abs((dy / selectionDelta) * finalSize);
@@ -535,9 +536,9 @@ public class EntityPicker {
                 }
 
                 Integer size = CommonHandler.getMarkSize(datatips[i]);
-                Integer unit = CommonHandler.getMarkSizeUnit(datatips[i]);
+                MarkSizeUnitType unit = CommonHandler.getMarkSizeUnit(datatips[i]);
 
-                int finalSize = (unit == 1) ? (8 + 2 * size) : size;
+                int finalSize = (unit == MarkSizeUnitType.TABULATED) ? (8 + 2 * size) : size;
                 finalSize /= 2;
 
                 if ((Math.abs(point[0] - c2d[0]) <= dx * finalSize) && (Math.abs(point[1] - c2d[1]) <= dy * finalSize)) {
