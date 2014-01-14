@@ -1,6 +1,6 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2003 - INRIA - Carlos Klimann
+// Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -31,19 +31,40 @@ function [s]=nancumsum(x,orient)
     //(ignoring     NANs)    of     the     columns    of     x:
     //s(i,:)=nancumsum(x(i,:))
     //
-    //For the  last two cases,  if a row  or column is  in whole
-    //composed of NAN, the corresponding place of s will contain
-    //a NAN.
-    //
-    //
+
     [lhs, rhs] = argn(0)
-    if rhs == 0 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"nancumsum",1,2))
+    if lhs > 1 then
+        error(msprintf(gettext("%s: Wrong number of output argument: %d expected.\n"),"nancumsum",1))
     end
-    if argn(2)==1 then  orient="*",end
+    
+    if rhs < 1 | rhs > 2 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"),"nancumsum",1,2))
+    end
+    
+    if or(type(x) == [10 15 16]) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex, boolean, polynomial matrix expected.\n"), "nancumsum", 1));
+    end
+    
+    // cumsum([]) == []
+    if isempty(x) | and(isnan(x)) then
+        s = [];
+        return
+    end
+    
+    if rhs == 1 then
+        orient = "*";
+    else
+        if and(type(orient) <> [1  10])  then
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: A string or scalar expected.\n"), "nancumsum", 2));
+        end
+        
+        if ~or(orient == ["r", "*", "c"] | orient == [1, 2]) then
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "nancumsum", 2, """r"", ""c"", ""*"", 1, 2"));
+        end
+    end
+    
     isn=isnan(x)
     x(isn)=0
     s=cumsum(x,orient)
-    s(find(and(isn,orient)))=%nan
 
 endfunction

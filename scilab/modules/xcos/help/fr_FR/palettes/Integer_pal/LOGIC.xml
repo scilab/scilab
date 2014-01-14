@@ -117,7 +117,7 @@
                 </para>
                 <para/>
                 <para>
-                    <latex scilab:localized="true"><![CDATA[Nombre\,de\,lignes = {(Nombre\,d'entrées)}^2]]></latex>
+                    <latex scilab:localized="true"><![CDATA[Nombre\,de\,lignes = 2^{(Nombre\,d'entrées)}]]></latex>
                 </para>
                 <para/>
             </listitem>

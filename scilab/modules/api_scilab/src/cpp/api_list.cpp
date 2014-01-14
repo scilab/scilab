@@ -115,16 +115,18 @@ static void popListAddress(int _iRhsPos)
     if (it != stackListPosition.end())
     {
         delete it->second->back();
-        stackListPosition[_iRhsPos]->pop_back();
+        it->second->pop_back();
         if (it->second->size() > 0 && it->second->back()->m_iLast == 1)
         {
             //close cascade
             popListAddress(_iRhsPos);
         }
 
-        if (stackListPosition.find(_iRhsPos) != stackListPosition.end() && stackListPosition[_iRhsPos]->empty())
+        StackList::iterator jt = stackListPosition.find(_iRhsPos);
+        if (jt != stackListPosition.end() && jt->second->empty())
         {
-            stackListPosition.erase(stackListPosition.find(_iRhsPos));
+            delete jt->second;
+            stackListPosition.erase(jt);
             //TODO : check to close list
         }
     }
@@ -136,17 +138,19 @@ static void popNamedListAddress(std::string _stNamedList)
     if (it != stackNamedListPosition.end())
     {
         delete it->second->back();
-        stackNamedListPosition[_stNamedList]->pop_back();
+        it->second->pop_back();
         if (it->second->size() > 0 && it->second->back()->m_iLast == 1)
         {
             //close cascade
             popNamedListAddress(_stNamedList);
         }
 
-        if (stackNamedListPosition.find(_stNamedList) != stackNamedListPosition.end() && stackNamedListPosition[_stNamedList]->empty())
+        StackNamedList::iterator jt = stackNamedListPosition.find(_stNamedList);
+        if (jt != stackNamedListPosition.end() && jt->second->empty())
         {
             int iVarID[nsiz];
-            stackNamedListPosition.erase(stackNamedListPosition.find(_stNamedList));
+            delete jt->second;
+            stackNamedListPosition.erase(jt);
             C2F(str2name)(_stNamedList.c_str(), iVarID, (unsigned long)_stNamedList.size());
             createNamedVariable(iVarID);
         }
