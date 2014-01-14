@@ -89,7 +89,6 @@ int createXMLObjectAtPos(int type, int pos, int id, void *pvApiCtx)
         printError(&err, 0);
         return 0;
     }
-    getMListType(mlistaddr, pvApiCtx);
     return 1;
 }
 
