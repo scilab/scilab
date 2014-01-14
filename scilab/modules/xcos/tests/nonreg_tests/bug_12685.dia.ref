@@ -1,0 +1,57 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Alexandre HERISSE
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- XCOS TEST -->
+// <-- Non-regression test for bug 12685 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=12685
+//
+// <-- Short Description -->
+// The lincos and steadycos functions did not load
+// the XcosLibs so all the blocs were unknown.
+funcprot(0);
+ilib_verbose(0);
+// steadycos
+// loading data
+exec("SCI/modules/xcos/tests/unit_tests/PENDULUM_ANIM.sci");
+exec("SCI/modules/xcos/tests/unit_tests/anim_pen.sci");
+importXcosDiagram("SCI/modules/xcos/tests/unit_tests/pendulum_anim45.zcos");
+// configure the context
+M  = 10;
+m  = 3;
+l  = 3;
+ph = 0.1;
+z0 = -4;
+th0 = .02;
+// look for the specific sub-diagram to work on
+for i=1:length(scs_m.objs)
+    if typeof(scs_m.objs(i))=="Block" & scs_m.objs(i).gui=="SUPER_f" then
+        scs_m = scs_m.objs(i).model.rpar;
+        break;
+    end
+end
+steadycos(scs_m,[],[],[],[],1,1:$);
+// lincos
+// loading data
+exec("SCI/modules/xcos/tests/unit_tests/PENDULUM_ANIM.sci");
+exec("SCI/modules/xcos/tests/unit_tests/anim_pen.sci");
+importXcosDiagram("SCI/modules/xcos/tests/unit_tests/pendulum_anim45.zcos");
+// specific context data
+M  = 10;
+m  = 3;
+l  = 3;
+ph = 0.1;
+z0 = -4;
+th0 = .02;
+// looking for the Superblock to linearize
+for i=1:length(scs_m.objs)
+    if typeof(scs_m.objs(i))=="Block" & scs_m.objs(i).gui=="SUPER_f" then
+        scs_m = scs_m.objs(i).model.rpar;
+        break;
+    end
+end
+sys = lincos(scs_m);

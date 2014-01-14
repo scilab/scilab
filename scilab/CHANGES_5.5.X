@@ -355,6 +355,9 @@ Xcos
 
 * Bug #12423 fixed - Data types of SWITCH2_m were not documented.
 
+* Bug #12685 fixed - The lincos and steadycos functions did not load
+                     the XcosLibs so all the blocs were unknown.
+
 * Bug #12998 fixed - 'ans' was not ignored in the context results.
 
 * Bug #13006 fixed - Selection to superblock (in_f and out_f) was failing.
