@@ -181,6 +181,8 @@ Scilab Bug Fixes
 
 * Bug #12682 fixed - Key events were disabled after zooming.
 
+* Bug #12714 fixed - csvDefault("decimal", ",") returned %f while this value is accepted.
+
 * Bug #12733 fixed - There was no way to direct graphs to nothing with driver function.
 
 * Bug #12769 fixed - xset("window", 1) did not set the current axes.
