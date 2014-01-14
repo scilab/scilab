@@ -181,6 +181,9 @@ Scilab Bug Fixes
 
 * Bug #12682 fixed - Key events were disabled after zooming.
 
+* Bug #12683 fixed - proc_name(k, gwin) callback was badly managed depending on
+                     input arguments of addmenu function.
+
 * Bug #12714 fixed - csvDefault("decimal", ",") returned %f while this value is accepted.
 
 * Bug #12733 fixed - There was no way to direct graphs to nothing with driver function.
