@@ -7,6 +7,8 @@
 
 // <-- CLI SHELL MODE -->
 
+// <-- LINUX ONLY -->
+
 // <-- Non-regression test for bug 12082 -->
 //
 // <-- Bugzilla URL -->

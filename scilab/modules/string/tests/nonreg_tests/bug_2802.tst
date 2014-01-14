@@ -8,6 +8,8 @@
 
 // <-- CLI SHELL MODE -->
 
+// <-- LINUX ONLY -->
+
 // <-- Non-regression test for bug 2802 -->
 //
 // <-- Bugzilla URL -->
