@@ -10,7 +10,7 @@
 function X = sylv(A,B,C,flag)
     //  solve  A*X+X*B=C if flag=='c' or  A*X*B-X=C if flag=='d'
     if argn(2)<>4 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"sylv",4))
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"sylv",4))
     end
     if size(A,1)<> size(A,2) then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"), "sylv", 1));
