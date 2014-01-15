@@ -14,6 +14,10 @@ package org.scilab.modules.gui.datatip;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VIEW__;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
@@ -45,7 +49,7 @@ public class DatatipCreate {
         double[] graphicCoord = DatatipCommon.getTransformedPosition(figureUid, new Integer[] {coordIntX, coordIntY});
         EntityPicker.PickedPoint picked = ep.pickPoint(polylineUid, coordIntX, coordIntY);
         double[] point = CommonHandler.computeIntersection(polylineUid, picked.point, graphicCoord);
-        Integer newDatatip = datatipProperties(point, polylineUid);
+        Integer newDatatip = datatipProperties(point, polylineUid, picked.point);
         return newDatatip;
     }
 
@@ -55,37 +59,20 @@ public class DatatipCreate {
     *
     * @param polylineUid Polyline unique identifier.
     * @param coordDoubleXY double array with graphic position x and y.
-    * @return Datatip handler string.
+    * @return Datatip.
     */
     public static int createDatatipProgramCoord(int polylineUid, double[] coordDoubleXY) {
-
         if (polylineUid != 0) {
-
             if (PolylineData.isZCoordSet(polylineUid) == 0) {
-
                 DatatipCommon.Segment seg = DatatipCommon.getSegment(coordDoubleXY[0], polylineUid);
-
-
                 Double[] pos = DatatipCommon.Interpolate(coordDoubleXY[0], seg);
-                double[] position = new double[] {pos[0], pos[1], 0.0};
-
-                Integer newDatatip = datatipProperties(position, polylineUid);
-                return newDatatip;
-
+                return datatipProperties(new double[] {pos[0], pos[1], 0.0, 0.0, 0.0}, polylineUid, seg.pointIndex);
             } else {
-
                 DatatipCommon.Segment seg3d = DatatipCommon.getSegment3dView(coordDoubleXY[0], coordDoubleXY[1], polylineUid);
-
                 Double[] pos = DatatipCommon.Interpolate3dViewProgCoord(coordDoubleXY[0], coordDoubleXY[1], seg3d, polylineUid);
-                double[] position = new double[] {pos[0], pos[1], pos[2]};
-
-                Integer newDatatip = datatipProperties(position, polylineUid);
-                return newDatatip;
-
+                return datatipProperties(new double[] {pos[0], pos[1], pos[2], 0.0, 0.0}, polylineUid, seg3d.pointIndex);
             }
-
         }
-
         return 0;
     }
 
@@ -108,7 +95,7 @@ public class DatatipCreate {
             indexPoint = 1;
         }
 
-        double[] coordDoubleXY = new double[3];
+        double[] coordDoubleXY = new double[] {0.0, 0.0, 0.0, 0.0, 0.0};
         if (PolylineData.isZCoordSet(polylineUid) == 1) {
             double[] DataZ = (double[]) PolylineData.getDataZ(polylineUid);
             coordDoubleXY[0] = DataX[indexPoint - 1];
@@ -119,7 +106,7 @@ public class DatatipCreate {
             coordDoubleXY[1] = DataY[indexPoint - 1];
         }
 
-        Integer newDatatip = datatipProperties(coordDoubleXY, polylineUid);
+        Integer newDatatip = datatipProperties(coordDoubleXY, polylineUid, indexPoint - 1);
         return newDatatip;
     }
 
@@ -158,21 +145,43 @@ public class DatatipCreate {
     * @param polyline the polyline uid string.
     * @return Datatip uid string.
     */
-    private static int datatipProperties(double[] coord, Integer polyline) {
+    private static int datatipProperties(double[] coord, Integer polyline, int dataIndex) {
+        GraphicController controller = GraphicController.getController();
 
-        Integer newDatatip = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_DATATIP__));
-        Double[] datatipPosition = new Double[] {coord[0], coord[1], coord[2]};
+        Integer newDatatip = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_DATATIP__));
 
-        GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_DATATIP_DATA__, datatipPosition);
+        //Double[] datatipPosition = new Double[] {coord[0], coord[1], coord[2]};
+        //controller.setProperty(newDatatip, GraphicObjectProperties.__GO_DATATIP_DATA__, datatipPosition);
 
-        Integer axesUid = (Integer)GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_PARENT_AXES__);
-        Integer viewInfo = (Integer) GraphicController.getController().getProperty(axesUid, __GO_VIEW__);
+        Double[] indexes = null;
+        Integer axesUid = (Integer)controller.getProperty(polyline, GraphicObjectProperties.__GO_PARENT_AXES__);
+        Integer viewInfo = (Integer) controller.getProperty(axesUid, __GO_VIEW__);
         if (viewInfo == 1 && PolylineData.isZCoordSet(polyline) == 1) {
-            GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_DATATIP_3COMPONENT__, true);
-            GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_CLIP_STATE__, 0);
+            controller.setProperty(newDatatip, GraphicObjectProperties.__GO_DATATIP_3COMPONENT__, true);
+            controller.setProperty(newDatatip, GraphicObjectProperties.__GO_CLIP_STATE__, 0);
+            indexes = new Double[] {new Double(dataIndex), new Double(dataIndex), coord[3], coord[4]};
+        } else {
+            indexes = new Double[] {new Double(dataIndex), coord[3], coord[4]};
         }
 
-        GraphicController.getController().setGraphicObjectRelationship(polyline, newDatatip);
+        //do not set relationship, only set parent to be able to go up in hierarchy
+        controller.setProperty(newDatatip, GraphicObjectProperties.__GO_PARENT__, polyline);
+
+        //set dataIndex and ratio from polyline
+        controller.setProperty(newDatatip, GraphicObjectProperties.__GO_DATATIP_INDEXES__, indexes);
+
+        //get current polyline datatips
+        Integer[] tips = (Integer[])controller.getProperty(polyline, GraphicObjectProperties.__GO_DATATIPS__);
+
+        //insert new tip in children array
+        List<Integer> l = new LinkedList<Integer>(Arrays.asList(tips));
+        l.add(newDatatip);
+
+        //set new datatips arry in polyline
+        Integer[] var = new Integer[l.size()];
+        l.toArray(var);
+        controller.setProperty(polyline, GraphicObjectProperties.__GO_DATATIPS__, var);
+
         return newDatatip;
     }
 

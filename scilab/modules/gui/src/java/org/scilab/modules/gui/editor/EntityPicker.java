@@ -514,7 +514,7 @@ public class EntityPicker {
         }
 
         curAxes = AxesHandler.getAxesFromUid(axes);
-        Integer[] datatips = (new ObjectSearcher()).search(axes, GraphicObjectProperties.__GO_DATATIP__);
+        Integer[] datatips = (new ObjectSearcher()).search(axes, GraphicObjectProperties.__GO_DATATIP__, true);
         boolean[] logFlags = {  curAxes.getXAxisLogFlag(), curAxes.getYAxisLogFlag(), curAxes.getZAxisLogFlag()};
 
         if (datatips != null) {

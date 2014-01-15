@@ -134,7 +134,6 @@ public class DatatipCommon {
      * the segment+offset from the polyline that x belongs
      */
     public static Segment getSegment(double x, Integer polyline, int offset) {
-
         double dataX[] = (double[])PolylineData.getDataX(polyline);
         double dataY[] = (double[])PolylineData.getDataY(polyline);
         int index = -1;
@@ -194,7 +193,7 @@ public class DatatipCommon {
                 double y = seg.y0 + ca * (x - seg.x0);
                 return new Double[] {x, y, 0.0};
             } else {
-                /*angular coeficent -> inf, return the first point*/
+                /*angular coefficient -> inf, return the first point*/
                 return new Double[] {seg.x0, seg.y0, 0.0};
             }
         } else {

@@ -566,7 +566,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     invalidate(polyline, e);
                 }
                 axesDrawer.disableClipping(polyline.getClipProperty());
-                askAcceptVisitor(polyline.getChildren());
+                askAcceptVisitor(polyline.getDatatips());
             }
         }
     }

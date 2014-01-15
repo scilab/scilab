@@ -12,17 +12,31 @@
 
 package org.scilab.modules.graphic_objects.polyline;
 
-import org.scilab.modules.graphic_objects.ObjectRemovedException;
-import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.graphicObject.Visitor;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ARROW_SIZE_FACTOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BAR_WIDTH__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CLOSED__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIPS_COUNT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIPS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_DISPLAY_FNC__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INTERP_COLOR_MODE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INTERP_COLOR_VECTOR_SET__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INTERP_COLOR_VECTOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POLYLINE_STYLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_SHIFT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_SHIFT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_SHIFT__;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+import org.scilab.modules.graphic_objects.ObjectRemovedException;
+import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
+import org.scilab.modules.graphic_objects.datatip.Datatip;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 /**
  * Polyline class
@@ -35,7 +49,7 @@ public class Polyline extends ClippableContouredObject {
     /** Polyline properties names */
     private enum PolylineProperty { CLOSED, ARROWSIZEFACTOR, POLYLINESTYLE,
                                     INTERPCOLORVECTOR, INTERPCOLORVECTORSET, INTERPCOLORMODE,
-                                    XSHIFT, YSHIFT, ZSHIFT, BARWIDTH, DATATIPS, DATATIPSCOUNT
+                                    XSHIFT, YSHIFT, ZSHIFT, BARWIDTH, DATATIPS, DATATIPSCOUNT, TIP_DISPLAY_FNC
                                   };
 
     /** Specifies whether the polyline is closed */
@@ -44,7 +58,7 @@ public class Polyline extends ClippableContouredObject {
     /** Determines the arrow size */
     private double arrowSizeFactor;
 
-    /** Polyline drawing style (normal, staircase, bar, etc.) */
+    /** Polyline drawing style (normal, staircase, , etc.) */
     private int polylineStyle;
 
     /** Interpolation color vector (3- or 4-element array) */
@@ -67,9 +81,12 @@ public class Polyline extends ClippableContouredObject {
 
     /** Bar width */
     private double barWidth;
-    
+
     /** Datatips objects list */
-    private List <Integer> datatips;
+    private List<Integer> datatips;
+
+    /** Display function*/
+    private String displayFnc;
 
     /** Constructor */
     public Polyline() {
@@ -84,7 +101,8 @@ public class Polyline extends ClippableContouredObject {
         yShift = null;
         zShift = null;
         barWidth = 0.0;
-        datatips = new LinkedList<Integer>();
+        datatips = new ArrayList<Integer>();
+        displayFnc = "";
     }
 
     @Override
@@ -123,6 +141,8 @@ public class Polyline extends ClippableContouredObject {
                 return PolylineProperty.DATATIPS;
             case __GO_DATATIPS_COUNT__ :
                 return PolylineProperty.DATATIPSCOUNT;
+            case __GO_DATATIP_DISPLAY_FNC__ :
+                return PolylineProperty.TIP_DISPLAY_FNC;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -158,6 +178,8 @@ public class Polyline extends ClippableContouredObject {
             return getDatatips();
         } else if (property == PolylineProperty.DATATIPSCOUNT) {
             return datatips.size();
+        } else if (property == PolylineProperty.TIP_DISPLAY_FNC) {
+            return getDisplayFunction();
         } else {
             return super.getProperty(property);
         }
@@ -193,6 +215,8 @@ public class Polyline extends ClippableContouredObject {
                 setBarWidth((Double) value);
             } else if (property == PolylineProperty.DATATIPS) {
                 setDatatips((Integer[]) value);
+            } else if (property == PolylineProperty.TIP_DISPLAY_FNC) {
+                setDisplayFunction((String) value);
             } else {
                 return super.setProperty(property, value);
             }
@@ -376,14 +400,14 @@ public class Polyline extends ClippableContouredObject {
     public Integer getType() {
         return GraphicObjectProperties.__GO_POLYLINE__;
     }
-    
+
     /**
      * @return datatips
      */
     public Integer[] getDatatips() {
         return datatips.toArray(new Integer[datatips.size()]);
     }
-    
+
     /**
      * @param datatips the datatips to set
      */
@@ -400,4 +424,18 @@ public class Polyline extends ClippableContouredObject {
         return UpdateStatus.Success;
     }
 
+    public String getDisplayFunction() {
+        return displayFnc;
+    }
+
+    public UpdateStatus setDisplayFunction(String fnc) {
+        GraphicController controller =  GraphicController.getController();
+        displayFnc = fnc;
+        //update datatips
+        for (int i = 0 ; i < datatips.size() ; i++) {
+            Datatip tip = (Datatip) controller.getObjectFromId(datatips.get(i));
+            tip.updateText();
+        }
+        return UpdateStatus.Success;
+    }
 }

@@ -42,17 +42,10 @@ typedef struct
 } getHashTableCouple;
 
 /**
- * number of properties
- * don't forget to modify it each time the propertyTable
- * is modified.
- */
-#define NB_PROPERTIES 179
-
-/**
  * list of all property names and associated functions in scilab
  * This is inserted in the hashTable
  */
-static getHashTableCouple propertyTable[NB_PROPERTIES] =
+static getHashTableCouple propertyGetTable[] =
 {
     {"figures_id", get_figures_id_property},
     {"visible", get_visible_property},
@@ -240,6 +233,7 @@ GetPropertyHashTable *createScilabGetHashTable(void)
 {
     int i = 0;
 
+    int propertyCount = sizeof(propertyGetTable) / sizeof(getHashTableCouple);
     if (getHashTableCreated)
     {
         /* hastable already created, return */
@@ -255,9 +249,9 @@ GetPropertyHashTable *createScilabGetHashTable(void)
     }
 
     /* insert every couple */
-    for (i = 0; i < NB_PROPERTIES; i++)
+    for (i = 0; i < propertyCount; i++)
     {
-        insertGetHashtable(getHashTable, propertyTable[i].key, propertyTable[i].accessor);
+        insertGetHashtable(getHashTable, propertyGetTable[i].key, propertyGetTable[i].accessor);
     }
 
     getHashTableCreated = TRUE;
@@ -295,28 +289,27 @@ void destroyScilabGetHashTable(void)
 char **getDictionaryGetProperties(int *sizearray)
 {
     char **dictionary = NULL;
+    int propertyCount = sizeof(propertyGetTable) / sizeof(getHashTableCouple);
 
     *sizearray = 0;
 
-    dictionary = (char **)MALLOC(sizeof(char *) * NB_PROPERTIES);
+    dictionary = (char **)MALLOC(sizeof(char *) * propertyCount);
     if (dictionary)
     {
         int i = 0;
 
-        *sizearray = NB_PROPERTIES;
-        for (i = 0; i < NB_PROPERTIES; i++)
+        *sizearray = propertyCount;
+        for (i = 0; i < propertyCount ; i++)
         {
-            char *propertyname = (char *)MALLOC(sizeof(char) * (strlen(propertyTable[i].key) + 1));
+            char *propertyname = (char *)MALLOC(sizeof(char) * (strlen(propertyGetTable[i].key) + 1));
 
             if (propertyname)
             {
-                strcpy(propertyname, propertyTable[i].key);
+                strcpy(propertyname, propertyGetTable[i].key);
             }
             dictionary[i] = propertyname;
         }
     }
     return dictionary;
 }
-
 /*--------------------------------------------------------------------------*/
-#undef NB_PROPERTIES

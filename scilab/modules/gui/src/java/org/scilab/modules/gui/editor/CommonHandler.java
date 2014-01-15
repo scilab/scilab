@@ -359,7 +359,7 @@ public class CommonHandler {
      * @param polyline The polyline to find the point
      * @param i The index from the first point of R1
      * @param point2d The 2d point in default view
-     * @return The position in 3d coordinates (x, y ,z)
+     * @return The position in 3d coordinates (x, y ,z) and ratio between polyline data and interpoled data ( dx, dy )
      */
     public static double[] computeIntersection(Integer polyline, int i, double[] point2d) {
 
@@ -387,7 +387,11 @@ public class CommonHandler {
         nl = cross(q1, cross(p1, q1));
         double u = (dot(nl, q0) - dot(nl, p0)) / dot(nl, p1);
         double[] point = plus(p0, scalar(p1, u));
-        return point;
+
+        double dx = (point[0] - p3d1[0]) / (p3d2[0] - p3d1[0]);
+        double dy = (point[1] - p3d1[1]) / (p3d2[1] - p3d1[1]);
+
+        return new double[] {point[0], point[1], point[2], dx, dy};
     }
 
     private static double dot(double[] p, double[] q) {

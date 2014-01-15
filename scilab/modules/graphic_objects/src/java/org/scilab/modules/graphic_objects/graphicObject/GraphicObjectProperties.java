@@ -341,5 +341,5 @@ public class GraphicObjectProperties {
     public static final int __GO_LIGHT_TYPE__ = 318;
     public static final int __GO_DATATIPS__ = 319;
     public static final int __GO_DATATIPS_COUNT__ = 320;
-
+    public static final int __GO_DATATIP_INDEXES__ = 321;
 }

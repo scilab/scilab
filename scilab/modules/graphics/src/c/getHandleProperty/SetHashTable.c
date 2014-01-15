@@ -48,17 +48,10 @@ typedef struct
 } setHashTableCouple;
 
 /**
-* number of properties
-* don't forget to modify it each time the propertyTable
-* is modified.
-*/
-#define NB_PROPERTIES 174
-
-/**
 * list of all property names and associated functions in scilab
 * This is inserted in the hashTable
 */
-static setHashTableCouple propertyTable[NB_PROPERTIES] =
+static setHashTableCouple propertySetTable[] =
 {
     {"visible", set_visible_property},
     {"pixel_drawing_mode", set_pixel_drawing_mode_property},
@@ -241,6 +234,7 @@ SetPropertyHashTable *createScilabSetHashTable(void)
 {
     int i = 0;
 
+    int propertyCount = sizeof(propertySetTable) / sizeof(setHashTableCouple);
     if (setHashTableCreated)
     {
         return setHashTable;
@@ -255,9 +249,10 @@ SetPropertyHashTable *createScilabSetHashTable(void)
     }
 
     /* insert every couple */
-    for (i = 0; i < NB_PROPERTIES; i++)
+
+    for (i = 0; i < propertyCount ; i++)
     {
-        insertSetHashtable(setHashTable, propertyTable[i].key, propertyTable[i].accessor);
+        insertSetHashtable(setHashTable, propertySetTable[i].key, propertySetTable[i].accessor);
     }
 
     setHashTableCreated = TRUE;
@@ -295,17 +290,18 @@ void destroyScilabSetHashTable(void)
 char **getDictionarySetProperties(int *sizearray)
 {
     char **dictionary = NULL;
+    int propertyCount = sizeof(propertySetTable) / sizeof(setHashTableCouple);
 
     *sizearray = 0;
-    dictionary = (char **)MALLOC(sizeof(char *) * NB_PROPERTIES);
+    dictionary = (char **)MALLOC(sizeof(char *) * propertyCount);
     if (dictionary)
     {
         int i = 0;
 
-        *sizearray = NB_PROPERTIES;
-        for (i = 0; i < NB_PROPERTIES; i++)
+        *sizearray = propertyCount;
+        for (i = 0; i < propertyCount ; i++)
         {
-            dictionary[i] = strdup(propertyTable[i].key);
+            dictionary[i] = strdup(propertySetTable[i].key);
         }
     }
     return dictionary;
