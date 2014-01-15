@@ -86,7 +86,14 @@ Source: contrib\{#XCOS_TOOLBOX_SKELETON}\src\c\block_sum.c; DestDir: {app}\contr
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\src\c\builder_c.sce; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\src\c; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\src\c\business.h; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\src\c; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\src\c\business_sum.c; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\src\c; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
+Source: contrib\{#XCOS_TOOLBOX_SKELETON}\src\c\tbx_block_noop.c; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\src\c; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\src\cleaner_src.sce; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\src; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\tests\unit_tests\tbx_sum.tst; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\tests\unit_tests; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\tests\unit_tests\tbx_sum.dia.ref; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\tests\unit_tests; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
+Source: contrib\{#XCOS_TOOLBOX_SKELETON}\tests\benchmark\noop_matrices.zcos; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\tests\benchmark; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
+Source: contrib\{#XCOS_TOOLBOX_SKELETON}\tests\benchmark\noop_matrices_c.tst; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\tests\benchmark; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
+Source: contrib\{#XCOS_TOOLBOX_SKELETON}\tests\benchmark\noop_matrices_scilab.tst; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\tests\benchmark; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
+Source: contrib\{#XCOS_TOOLBOX_SKELETON}\tests\benchmark\noop_scalar.zcos; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\tests\benchmark; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
+Source: contrib\{#XCOS_TOOLBOX_SKELETON}\tests\benchmark\noop_scalar_c.tst; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\tests\benchmark; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
+Source: contrib\{#XCOS_TOOLBOX_SKELETON}\tests\benchmark\noop_scalar_scilab.tst; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\tests\benchmark; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 ;--------------------------------------------------------------------------------------------------------------

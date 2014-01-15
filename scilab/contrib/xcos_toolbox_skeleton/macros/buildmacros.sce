@@ -3,7 +3,7 @@
 function buildmacros()
     macros_path = get_absolute_file_path("buildmacros.sce");
 
-    blocks = ["TBX_SUM_c" "TBX_MUT_STYLE", "TBX_SUM_sci"];
+    blocks = ["TBX_SUM_c" "TBX_MUT_STYLE", "TBX_SUM_sci", "TBX_NOOP"];
 
     tbx_build_macros(TOOLBOX_NAME, macros_path);
     tbx_build_blocks(toolbox_dir, blocks);
