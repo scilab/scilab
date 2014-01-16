@@ -48,17 +48,10 @@ typedef struct
 } setHashTableCouple;
 
 /**
-* number of properties
-* don't forget to modify it each time the propertyTable
-* is modified.
-*/
-#define NB_PROPERTIES 174
-
-/**
 * list of all property names and associated functions in scilab
 * This is inserted in the hashTable
 */
-static setHashTableCouple propertyTable[NB_PROPERTIES] =
+static setHashTableCouple propertySetTable[] =
 {
     {"visible", set_visible_property},
     {"pixel_drawing_mode", set_pixel_drawing_mode_property},
@@ -217,14 +210,13 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
     {"resizefcn", set_figure_resizefcn_property},
     {"tooltipstring", SetUicontrolTooltipString},
     {"closerequestfcn", set_figure_closerequestfcn_property},
-    {"tip_data", set_tip_data_property},
-    {"tip_orientation", set_tip_orientation_property},
-    {"tip_3component", set_tip_3component_property},
-    {"tip_auto_orientation", set_tip_auto_orientation_property},
-    {"tip_interp_mode", set_tip_interp_mode_property},
-    {"tip_box_mode", set_tip_box_mode_property},
-    {"tip_label_mode", set_tip_label_mode_property},
-    {"tip_disp_function", set_tip_disp_function_property},
+    {"orientation", set_tip_orientation_property},
+    {"z_component", set_tip_3component_property},
+    {"auto_orientation", set_tip_auto_orientation_property},
+    {"interp_mode", set_tip_interp_mode_property},
+    {"box_mode", set_tip_box_mode_property},
+    {"label_mode", set_tip_label_mode_property},
+    {"display_function", set_tip_disp_function_property},
     {"ambient_color", set_ambient_color_property},
     {"diffuse_color", set_diffuse_color_property},
     {"specular_color", set_specular_color_property},
@@ -241,6 +233,7 @@ SetPropertyHashTable *createScilabSetHashTable(void)
 {
     int i = 0;
 
+    int propertyCount = sizeof(propertySetTable) / sizeof(setHashTableCouple);
     if (setHashTableCreated)
     {
         return setHashTable;
@@ -255,9 +248,10 @@ SetPropertyHashTable *createScilabSetHashTable(void)
     }
 
     /* insert every couple */
-    for (i = 0; i < NB_PROPERTIES; i++)
+
+    for (i = 0; i < propertyCount ; i++)
     {
-        insertSetHashtable(setHashTable, propertyTable[i].key, propertyTable[i].accessor);
+        insertSetHashtable(setHashTable, propertySetTable[i].key, propertySetTable[i].accessor);
     }
 
     setHashTableCreated = TRUE;
@@ -295,17 +289,18 @@ void destroyScilabSetHashTable(void)
 char **getDictionarySetProperties(int *sizearray)
 {
     char **dictionary = NULL;
+    int propertyCount = sizeof(propertySetTable) / sizeof(setHashTableCouple);
 
     *sizearray = 0;
-    dictionary = (char **)MALLOC(sizeof(char *) * NB_PROPERTIES);
+    dictionary = (char **)MALLOC(sizeof(char *) * propertyCount);
     if (dictionary)
     {
         int i = 0;
 
-        *sizearray = NB_PROPERTIES;
-        for (i = 0; i < NB_PROPERTIES; i++)
+        *sizearray = propertyCount;
+        for (i = 0; i < propertyCount ; i++)
         {
-            dictionary[i] = strdup(propertyTable[i].key);
+            dictionary[i] = strdup(propertySetTable[i].key);
         }
     }
     return dictionary;

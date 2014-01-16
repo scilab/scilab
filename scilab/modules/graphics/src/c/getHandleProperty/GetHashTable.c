@@ -42,17 +42,10 @@ typedef struct
 } getHashTableCouple;
 
 /**
- * number of properties
- * don't forget to modify it each time the propertyTable
- * is modified.
- */
-#define NB_PROPERTIES 179
-
-/**
  * list of all property names and associated functions in scilab
  * This is inserted in the hashTable
  */
-static getHashTableCouple propertyTable[NB_PROPERTIES] =
+static getHashTableCouple propertyGetTable[] =
 {
     {"figures_id", get_figures_id_property},
     {"visible", get_visible_property},
@@ -216,14 +209,13 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
     {"resizefcn", get_figure_resizefcn_property},
     {"tooltipstring", GetUicontrolTooltipString},
     {"closerequestfcn", get_figure_closerequestfcn_property},
-    {"tip_data", get_tip_data_property},
-    {"tip_orientation", get_tip_orientation_property},
-    {"tip_3component", get_tip_3component_property},
-    {"tip_auto_orientation", get_tip_auto_orientation_property},
-    {"tip_interp_mode", get_tip_interp_mode_property},
-    {"tip_box_mode", get_tip_box_mode_property},
-    {"tip_label_mode", get_tip_label_mode_property},
-    {"tip_disp_function", get_tip_disp_function_property},
+    {"orientation", get_tip_orientation_property},
+    {"z_component", get_tip_3component_property},
+    {"auto_orientation", get_tip_auto_orientation_property},
+    {"interp_mode", get_tip_interp_mode_property},
+    {"box_mode", get_tip_box_mode_property},
+    {"label_mode", get_tip_label_mode_property},
+    {"display_function", get_tip_disp_function_property},
     {"ambient_color", get_ambient_color_property},
     {"diffuse_color", get_diffuse_color_property},
     {"specular_color", get_specular_color_property},
@@ -240,6 +232,7 @@ GetPropertyHashTable *createScilabGetHashTable(void)
 {
     int i = 0;
 
+    int propertyCount = sizeof(propertyGetTable) / sizeof(getHashTableCouple);
     if (getHashTableCreated)
     {
         /* hastable already created, return */
@@ -255,9 +248,9 @@ GetPropertyHashTable *createScilabGetHashTable(void)
     }
 
     /* insert every couple */
-    for (i = 0; i < NB_PROPERTIES; i++)
+    for (i = 0; i < propertyCount; i++)
     {
-        insertGetHashtable(getHashTable, propertyTable[i].key, propertyTable[i].accessor);
+        insertGetHashtable(getHashTable, propertyGetTable[i].key, propertyGetTable[i].accessor);
     }
 
     getHashTableCreated = TRUE;
@@ -295,28 +288,27 @@ void destroyScilabGetHashTable(void)
 char **getDictionaryGetProperties(int *sizearray)
 {
     char **dictionary = NULL;
+    int propertyCount = sizeof(propertyGetTable) / sizeof(getHashTableCouple);
 
     *sizearray = 0;
 
-    dictionary = (char **)MALLOC(sizeof(char *) * NB_PROPERTIES);
+    dictionary = (char **)MALLOC(sizeof(char *) * propertyCount);
     if (dictionary)
     {
         int i = 0;
 
-        *sizearray = NB_PROPERTIES;
-        for (i = 0; i < NB_PROPERTIES; i++)
+        *sizearray = propertyCount;
+        for (i = 0; i < propertyCount ; i++)
         {
-            char *propertyname = (char *)MALLOC(sizeof(char) * (strlen(propertyTable[i].key) + 1));
+            char *propertyname = (char *)MALLOC(sizeof(char) * (strlen(propertyGetTable[i].key) + 1));
 
             if (propertyname)
             {
-                strcpy(propertyname, propertyTable[i].key);
+                strcpy(propertyname, propertyGetTable[i].key);
             }
             dictionary[i] = propertyname;
         }
     }
     return dictionary;
 }
-
 /*--------------------------------------------------------------------------*/
-#undef NB_PROPERTIES

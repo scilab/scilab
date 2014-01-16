@@ -41,10 +41,18 @@ public class ObjectSearcher {
     * @return             A vector with the uid of the objects found.
     */
     public Integer[] search( Integer rootUid, int objType) {
+        return search(rootUid, objType, false);
+    }
+
+    public Integer[] search( Integer rootUid, int objType, boolean isDatatip) {
 
         type = objType;
         objects.clear();
-        getObjects(rootUid);
+        if (isDatatip) {
+            getDatatipsObjects(rootUid);
+        } else {
+            getObjects(rootUid);
+        }
         if (objects.size() != 0) {
             Integer[] ret = new Integer[objects.size()];
             for (int i = 0; i < objects.size(); ++i) {
@@ -74,6 +82,26 @@ public class ObjectSearcher {
             }
         }
         return null;
+    }
+
+    private void getDatatipsObjects(Integer uid) {
+
+        Integer parentType = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_TYPE__);
+        if (parentType == GraphicObjectProperties.__GO_POLYLINE__) {
+            Integer tipCount = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_DATATIPS_COUNT__);
+            Integer[] tipUid = (Integer[])GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_DATATIPS__);
+
+            for (Integer i = 0; i < tipCount; ++i ) {
+                objects.add(tipUid[i]);
+            }
+        } else {
+            Integer childCount = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN_COUNT__);
+            Integer[] childUid = (Integer[])GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN__);
+
+            for (Integer i = 0; i < childCount; ++i ) {
+                getDatatipsObjects(childUid[i]);
+            }
+        }
     }
 
     private void getObjects(Integer uid) {

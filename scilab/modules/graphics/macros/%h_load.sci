@@ -640,14 +640,14 @@ function [h,immediate_drawing] = load_graphichandle(fd)
         if is_higher_than([5 4 0 1]) then
             visible=toggle(mget(1,characterFormat,fd)) // visible
             sz = mget(2,characterFormat,fd)
-            tip_data = matrix(mget(prod(sz),"dl",fd),sz(1),-1) // tip_data
-            tip_box_mode = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // tip_box_mode
-            tip_label_mode = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // tip_label_mode
-            tip_orientation = mget(1,characterFormat,fd); // tip_orientation
-            tip_3component = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // tip_3component
-            tip_auto_orientation = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // tip_auto_orientation
-            tip_interp_mode = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // tip_interp_mode
-            tip_disp_function = load_text_matrix(fd); // tip_disp_function
+            tip_data = matrix(mget(prod(sz),"dl",fd),sz(1),-1) // data
+            tip_box_mode = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // box_mode
+            tip_label_mode = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // label_mode
+            tip_orientation = mget(1,characterFormat,fd); // orientation
+            tip_3component = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // z_component
+            tip_auto_orientation = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // auto_orientation
+            tip_interp_mode = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // interp_mode
+            tip_disp_function = load_text_matrix(fd); // display_function
             mark_mode = toggle(mget(1,characterFormat,fd)) // mark_mode
             mark_style = mget(1,characterFormat,fd); // mark_style
             if ascii(mget(1,characterFormat,fd))=="t" then // mark_size_unit

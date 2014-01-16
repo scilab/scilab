@@ -638,11 +638,23 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
         // Display
         ((JScrollPane) objs[0]).setBorder(BorderFactory.createEmptyBorder());
         final JPanel message = new JPanel(new BorderLayout());
-        message.add(objs[0], BorderLayout.NORTH);
+
+        /*
+         * If there is only one object to display then center it
+         * If 2 objects then add a header and a centered component
+         * If more then add a header and append all other objects to a centered container
+         */
+        if (objs.length > 1) {
+            message.add(objs[0], BorderLayout.NORTH);
+        } else {
+            message.add(objs[0], BorderLayout.CENTER);
+        }
 
         if (objs.length == 2) {
             message.add(objs[1], BorderLayout.CENTER);
-        } else {
+        }
+
+        if (objs.length > 2) {
             // seems that this case is never called as x_message is no more available into Scilab.
             final JPanel content = new JPanel();
             for (int i = 1; i < objs.length; i++) {
@@ -650,6 +662,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
             }
             message.add(content, BorderLayout.CENTER);
         }
+
         if (messageType != -1) {
             setContentPane(new JOptionPane(message, messageType, JOptionPane.CANCEL_OPTION, null, buttons));
         } else {

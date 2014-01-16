@@ -181,6 +181,11 @@ Scilab Bug Fixes
 
 * Bug #12682 fixed - Key events were disabled after zooming.
 
+* Bug #12683 fixed - proc_name(k, gwin) callback was badly managed depending on
+                     input arguments of addmenu function.
+
+* Bug #12714 fixed - csvDefault("decimal", ",") returned %f while this value is accepted.
+
 * Bug #12733 fixed - There was no way to direct graphs to nothing with driver function.
 
 * Bug #12769 fixed - xset("window", 1) did not set the current axes.
@@ -326,6 +331,8 @@ Scilab Bug Fixes
 
 * Bug #13134 fixed - User defined ticks in log scale were invisible.
 
+* Bug #13136 fixed - exists and isdef failed for input arguments longer than 1.
+
 * Bug #13139 fixed - fft help page fixed.
 
 * Bug #13140 fixed - Various typos fixed.
@@ -339,12 +346,17 @@ Scilab Bug Fixes
 * Bug #13392 fixed - Typo in the CACSD help chapter fixed.
 
 
-Xcos Bug Fixes
-==============
+Xcos
+====
 
 * xcos_debug_gui function added  for a simple use of the Debug block.
 
+* tbx_build_pal_loader function added to ease external module creation (See SEP #120).
+
 * Bug #12423 fixed - Data types of SWITCH2_m were not documented.
+
+* Bug #12685 fixed - The lincos and steadycos functions did not load
+                     the XcosLibs so all the blocs were unknown.
 
 * Bug #12998 fixed - 'ans' was not ignored in the context results.
 

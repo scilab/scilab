@@ -231,8 +231,8 @@ public class Datatip extends ContentLayout {
             value[0] = Double.parseDouble(cTipDataX.getText());
             value[1] = Double.parseDouble(cTipDataY.getText());
             value[2] = Double.parseDouble(cTipDataZ.getText());
-            GraphicController.getController()
-            .setProperty(UID, GraphicObjectProperties.__GO_DATATIP_DATA__, value);
+            //TODO Fix ged set property on datatip by computing ratio instead of fixed values
+            //GraphicController.getController().setProperty(UID, GraphicObjectProperties.__GO_DATATIP_DATA__, value);
             titleTipData();
         } catch (NumberFormatException e) {
             getTipData(UID);

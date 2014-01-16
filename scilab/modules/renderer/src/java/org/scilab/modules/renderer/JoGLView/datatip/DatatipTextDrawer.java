@@ -93,7 +93,7 @@ public class DatatipTextDrawer extends TextManager {
 
         Vector3d delta = new Vector3d(finalSize, finalSize, 0);
         /* set up the text position according to the datatip orientation*/
-        if (datatip.getTipAutoOrientation()) {
+        if (datatip.getAutoOrientation()) {
             Vector3d a = cornerPositions[0];
             Vector3d position = projection.unproject(cornerPositions[0].minus(textBoxVectors[0]).plus(textBoxVectors[1]));
             if (position.getX() >= -1 && position.getX() <= 1 && position.getY() >= -1 && position.getY() <= 1) {
@@ -115,11 +115,11 @@ public class DatatipTextDrawer extends TextManager {
                 }
             }
         } else {
-            if (datatip.getTipOrientation() == TipOrientation.BOTTOM_LEFT || datatip.getTipOrientation() == TipOrientation.BOTTOM_RIGHT) {
+            if (datatip.getOrientation() == TipOrientation.LOWER_LEFT || datatip.getOrientation() == TipOrientation.LOWER_RIGHT) {
                 cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1]);
                 delta = delta.setY(-finalSize);
             }
-            if (datatip.getTipOrientation() == TipOrientation.TOP_LEFT || datatip.getTipOrientation() == TipOrientation.BOTTOM_LEFT) {
+            if (datatip.getOrientation() == TipOrientation.UPPER_LEFT || datatip.getOrientation() == TipOrientation.LOWER_LEFT) {
                 cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0]);
                 delta = delta.setX(-finalSize);
             }
@@ -179,11 +179,11 @@ public class DatatipTextDrawer extends TextManager {
 
             Vector3d delta = new Vector3d(finalSize, finalSize, 0);
             /* set up the text position according to the datatip orientation*/
-            if (datatip.getTipOrientation() == TipOrientation.BOTTOM_LEFT || datatip.getTipOrientation() == TipOrientation.BOTTOM_RIGHT) {
+            if (datatip.getOrientation() == TipOrientation.LOWER_LEFT || datatip.getOrientation() == TipOrientation.LOWER_RIGHT) {
                 cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1]);
                 delta = delta.setY(-finalSize);
             }
-            if (datatip.getTipOrientation() == TipOrientation.TOP_LEFT || datatip.getTipOrientation() == TipOrientation.BOTTOM_LEFT) {
+            if (datatip.getOrientation() == TipOrientation.UPPER_LEFT || datatip.getOrientation() == TipOrientation.LOWER_LEFT) {
                 cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0]);
                 delta = delta.setX(-finalSize);
             }
@@ -219,7 +219,7 @@ public class DatatipTextDrawer extends TextManager {
         Axes axes = (Axes) GraphicController.getController().getObjectFromId(datatip.getParentAxes());
         double[][] factors = axes.getScaleTranslateFactors();
         boolean[] logFlags = new boolean[] {axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
-        Vector3d v = ScaleUtils.applyLogScale(new Vector3d(datatip.getTipData()), logFlags);
+        Vector3d v = ScaleUtils.applyLogScale(new Vector3d(datatip.getData()), logFlags);
 
         return new Vector3d(v.getX() * factors[0][0] + factors[1][0], v.getY() * factors[0][1] + factors[1][1], v.getZ() * factors[0][2] + factors[1][2]);
     }

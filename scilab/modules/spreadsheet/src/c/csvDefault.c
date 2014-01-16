@@ -141,20 +141,15 @@ int setCsvDefaultDecimal(const char *decimal)
     if ((strcmp(decimal, CSV_DECIMAL_MODE_1) == 0) ||
             (strcmp(decimal, CSV_DECIMAL_MODE_2) == 0))
     {
-        if (strcmp(decimal, getCsvDefaultSeparator()) == 0)
-        {
-            return 1;
-        }
         if (defaultCsvDecimal)
         {
             FREE(defaultCsvDecimal);
         }
         defaultCsvDecimal = strdup(decimal);
-        if (defaultCsvDecimal == NULL)
+        if (defaultCsvDecimal)
         {
-            return 1;
+            return 0;
         }
-        return 0;
     }
     return 1;
 }

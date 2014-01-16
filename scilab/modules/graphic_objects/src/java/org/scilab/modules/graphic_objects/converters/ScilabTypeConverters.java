@@ -632,7 +632,7 @@ public final class ScilabTypeConverters {
         converters.put(TipOrientation.class, new ScilabTypeConverter() {
             public TipOrientation convert(ScilabType value) {
                 if (value == null || value.getType() != ScilabTypeEnum.sci_matrix || value.isEmpty()) {
-                    return TipOrientation.TOP_RIGHT;
+                    return TipOrientation.UPPER_RIGHT;
                 }
                 return TipOrientation.intToEnum((int) ((ScilabDouble)value).getRealPart()[0][0]);
             }

@@ -17,6 +17,9 @@ exec("TMPDIR/xcos_toolbox_skeleton/builder.sce");
 Building macros...
 -- Creation of [xcos_toolbox_skeletonlib] (Macros) --
 genlib: Processing file: TBX_MUT_STYLE.sci
+genlib: Processing file: TBX_NOOP.sci
+genlib: Processing file: TBX_NOOP_sci.sci
+genlib: Processing file: TBX_NOOP_sim.sci
 genlib: Processing file: TBX_SUM_c.sci
 genlib: Processing file: TBX_SUM_sci.sci
 genlib: Processing file: TBX_SUM_sim.sci
@@ -28,6 +31,7 @@ Building sources...
    Running the Makefile
    Compilation of block_sum.c
    Compilation of business_sum.c
+   Compilation of tbx_block_noop.c
    Building shared library (be patient)
    Generate a cleaner file
 Building gateway...

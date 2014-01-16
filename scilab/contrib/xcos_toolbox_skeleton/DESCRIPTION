@@ -4,7 +4,7 @@ Title: Xcos toolbox skeleton
 
 Summary: Add some blocks to a palette
 
-Version: 1.0
+Version: 1.1
 
 Author: Clément DAVID <clement.david@scilab-enterprises.com>
 
@@ -18,11 +18,11 @@ WebSite: http://www.scilab.org
 
 License: CeCILL
 
-ScilabVersion: >= 5.4
+ScilabVersion: >= 5.5
 
 Depends: 
 
-Date: 2011-03-15
+Date: 2014-01-15
 
 Description: Example for an Xcos toolbox
  

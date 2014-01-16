@@ -35,21 +35,23 @@ public class DatatipDrag {
     * @param endY Integer with pixel mouse position y after mouse drag.
     */
     public static void dragDatatip(int datatipUid, int endX, int endY) {
-
+        GraphicController controller = GraphicController.getController();
         Integer parentPolyline = DatatipCommon.getParentPolyline(datatipUid);
 
-        Integer pos[] = {endX, endY};
-        Integer figure = (Integer)GraphicController.getController().getProperty(datatipUid, __GO_PARENT_FIGURE__);
-        double[] c2d = DatatipCommon.getTransformedPositionInViewScale(figure, pos);
+        if (parentPolyline != 0) {
 
-        Integer axesUid = (Integer)GraphicController.getController().getProperty(parentPolyline, __GO_PARENT_AXES__);
-        Integer viewInfo = (Integer) GraphicController.getController().getProperty(axesUid, __GO_VIEW__);
+            Integer pos[] = {endX, endY};
+            Integer figure = (Integer)controller.getProperty(datatipUid, __GO_PARENT_FIGURE__);
+            double[] c2d = DatatipCommon.getTransformedPositionInViewScale(figure, pos);
 
-        if (parentPolyline != null) {
+
+            Integer axesUid = (Integer)controller.getProperty(parentPolyline, __GO_PARENT_AXES__);
+            Integer viewInfo = (Integer)controller.getProperty(axesUid, __GO_VIEW__);
+
             if (viewInfo == 0 && PolylineData.isZCoordSet(parentPolyline) == 0) {
                 DatatipCommon.Segment seg = DatatipCommon.getSegment(c2d[0], parentPolyline);
 
-                Boolean useInterp = (Boolean)GraphicController.getController().getProperty(datatipUid, __GO_DATATIP_INTERP_MODE__);
+                Boolean useInterp = (Boolean)controller.getProperty(datatipUid, __GO_DATATIP_INTERP_MODE__);
                 Double[] newPos;
                 if (useInterp) {
                     newPos = DatatipCommon.Interpolate(c2d[0], seg);
@@ -63,17 +65,23 @@ public class DatatipDrag {
                 newPos[1] = CommonHandler.InverseLogScale(newPos[1], logFlags[1]);
                 newPos[2] = CommonHandler.InverseLogScale(newPos[2], logFlags[2]);
 
-                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_DATA__, newPos);
+                //controller.setProperty(datatipUid, __GO_DATATIP_DATA__, newPos);
 
-                Boolean AutoOrientation = (Boolean)GraphicController.getController().getProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__);
+                Boolean AutoOrientation = (Boolean)controller.getProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__);
                 if (AutoOrientation) {
                     DatatipOrientation.setOrientation(datatipUid, seg);
                 }
 
+                //update indexes
+                //compute ratioX and radioY
+                double dx = (newPos[0] - seg.x0) / (seg.x1 - seg.x0);
+                double dy = (newPos[1] - seg.y0) / (seg.y1 - seg.y0);
+
+                controller.setProperty(datatipUid, __GO_DATATIP_INDEXES__, new Double[] {new Double(seg.pointIndex), dx, dy});
             } else {
                 DatatipCommon.Segment seg3d = DatatipCommon.getSegment3dView(c2d[0], c2d[1], parentPolyline);
 
-                Boolean useInterp = (Boolean)GraphicController.getController().getProperty(datatipUid, __GO_DATATIP_INTERP_MODE__);
+                Boolean useInterp = (Boolean)controller.getProperty(datatipUid, __GO_DATATIP_INTERP_MODE__);
                 Double[] newPos3d;
                 if (useInterp) {
                     newPos3d = DatatipCommon.Interpolate3dView(c2d[0], c2d[1], seg3d, parentPolyline);
@@ -87,13 +95,22 @@ public class DatatipDrag {
                 newPos3d[1] = CommonHandler.InverseLogScale(newPos3d[1], logFlags[1]);
                 newPos3d[2] = CommonHandler.InverseLogScale(newPos3d[2], logFlags[2]);
 
-                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_DATA__, newPos3d);
+                //controller.setProperty(datatipUid, __GO_DATATIP_DATA__, newPos3d);
 
-                Boolean AutoOrientation = (Boolean)GraphicController.getController().getProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__);
+                Boolean AutoOrientation = (Boolean)controller.getProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__);
                 if (AutoOrientation) {
                     DatatipOrientation.setOrientation(datatipUid, seg3d);
                 }
 
+                //update indexes
+                //compute ratioX and radioY
+                double dx = (newPos3d[0] - seg3d.x0) / (seg3d.x1 - seg3d.x0);
+                double dy = (newPos3d[1] - seg3d.y0) / (seg3d.y1 - seg3d.y0);
+
+                controller.setProperty(datatipUid, __GO_DATATIP_INDEXES__,
+                new Double[] { new Double(seg3d.pointIndex),
+                        new Double(seg3d.pointIndex), dx, dy
+                });
             }
         }
     }

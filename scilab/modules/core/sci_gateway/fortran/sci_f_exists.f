@@ -1,10 +1,11 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 2014 - Scilab Enterprises - Paul Bignier: bug #13136 fixed
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
@@ -20,7 +21,7 @@ c
       data local/21/
       data nolocal/23/
       data all/10/
-c    
+c
       iadr(l)=l+l-1
 c
       topk=top
@@ -58,10 +59,20 @@ c        isdef
           if(.not.crebmat('exists',top,m1,n1,l)) return
       endif
 
+c     Initializing variables to prevent overwrite
+      nacc=0
+      nextLength=istk(iadr(lstk(top))+5)
+      nextnextLength=istk(iadr(lstk(top))+6)
       do 10, i=1, m1*n1
- 
-         call namstr(id,istk(il+i-1),n,0)
-c        look for  variables in the stack
+
+c        Start by reading the size of the input string
+c        The size of the first element was calculated by getsmat()
+         if(i.gt.1) then
+            n=nextLength-curLength
+         endif
+         call namstr(id,istk(il+nacc),n,0)
+         nacc=nacc+n !nacc allows reading the strings one by one in the 'il' array
+c        look for variables in the stack
          if(flag.eq.2) then
 c        in the full calling context
 c        but not in the local environment
@@ -93,6 +104,11 @@ c           look for libraries functions
             endif
          endif
 c
+c        To prevent the input from being progressively overwritten by the return,
+c        save the next useful information (string lengths)
+         curLength=nextLength
+         nextLength=nextnextLength
+         nextnextLength=istk(iadr(lstk(top))+4+i+2)
          if(job.eq.0) then
 c        exists returns 0 or 1
             if (fin.gt.0) then
@@ -108,9 +124,9 @@ c        isdef returns %f or %t
                istk(l+i-1)=0.0d0
             endif
          endif
-         
- 10   continue 
-      
+
+ 10   continue
+
       fin=1
       return
       end

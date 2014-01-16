@@ -18,6 +18,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_BOX_MODE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_DATA__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_DISPLAY_FNC__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_INDEXES__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_INTERP_MODE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_LABEL_MODE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_ORIENTATION__;
@@ -25,6 +26,9 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import java.text.DecimalFormat;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.graphic_objects.PolylineData;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.textObject.Text;
@@ -33,8 +37,6 @@ import org.scilab.modules.graphic_objects.utils.TipOrientation;
 
 public class Datatip extends Text {
 
-    /** Stores the data that will be shown(tip)*/
-    Double[] tipData;
     /** false = datatip text box is hidden*/
     Boolean tipBoxMode;
     /** false = datatip label is hidden*/
@@ -49,9 +51,13 @@ public class Datatip extends Text {
     String displayFnc;
     /** For automatic update the datatip orientation*/
     Boolean autoOrientation;
+    /* index of data in parent objec t ( polyline, plot3d, fac3d*/
+    /* size = 1 for polyline and 2 for others*/
+    Integer[] dataIndex;
+    Double[] ratio;
 
 
-    enum DatatipObjectProperty { TIP_DATA, TIP_BOX_MODE, TIP_LABEL_MODE, TIP_ORIENTATION, TIP_AUTOORIENTATION, TIP_3COMPONENT, TIP_INTERP_MODE, TIP_DISPLAY_FNC };
+    enum DatatipObjectProperty { TIP_DATA, TIP_BOX_MODE, TIP_LABEL_MODE, TIP_ORIENTATION, TIP_AUTOORIENTATION, TIP_3COMPONENT, TIP_INTERP_MODE, TIP_DISPLAY_FNC, TIP_INDEXES};
 
     TipOrientation currentOrientation;
 
@@ -60,15 +66,16 @@ public class Datatip extends Text {
      */
     public Datatip() {
         super();
-        tipData = new Double[] {0.0, 0.0, 0.0};
         use3component = false;
         autoOrientation = true;
-        setTipOrientation(TipOrientation.TOP_RIGHT);
+        setOrientation(TipOrientation.UPPER_RIGHT);
         tipTextFormat = new DecimalFormat("#.####");
         tipBoxMode = true;
         tipLabelMode = true;
         interpMode = true;
         displayFnc = "";
+        ratio = new Double[] {0.0, 0.0};
+        dataIndex = new Integer[] {0, 0};
         setVisible(true);
         setBox(true);
         setLineMode(true);
@@ -109,6 +116,8 @@ public class Datatip extends Text {
                 return DatatipObjectProperty.TIP_INTERP_MODE;
             case __GO_DATATIP_DISPLAY_FNC__:
                 return DatatipObjectProperty.TIP_DISPLAY_FNC;
+            case __GO_DATATIP_INDEXES__ :
+                return DatatipObjectProperty.TIP_INDEXES;
             default:
                 return super.getPropertyFromName(propertyName);
         }
@@ -119,21 +128,23 @@ public class Datatip extends Text {
      */
     public Object getProperty(Object property) {
         if (property == DatatipObjectProperty.TIP_DATA) {
-            return getTipData();
+            return getData();
         } else if (property == DatatipObjectProperty.TIP_BOX_MODE) {
-            return getTipBoxMode();
+            return getBoxMode();
         } else if (property == DatatipObjectProperty.TIP_LABEL_MODE) {
-            return getTipLabelMode();
+            return getLabelMode();
         } else if (property == DatatipObjectProperty.TIP_ORIENTATION) {
-            return getTipOrientation();
+            return getOrientation();
         } else if (property == DatatipObjectProperty.TIP_3COMPONENT) {
-            return getTip3component();
+            return getZComponent();
         } else if (property == DatatipObjectProperty.TIP_AUTOORIENTATION) {
-            return getTipAutoOrientation();
+            return getAutoOrientation();
         } else if (property == DatatipObjectProperty.TIP_INTERP_MODE) {
-            return getTipInterpMode();
+            return getInterpMode();
         } else if (property == DatatipObjectProperty.TIP_DISPLAY_FNC) {
-            return getTipDispFunction();
+            return getDisplayFunction();
+        } else if (property == DatatipObjectProperty.TIP_INDEXES) {
+            return getIndexes();
         } else {
             return super.getProperty(property);
         }
@@ -145,26 +156,26 @@ public class Datatip extends Text {
      * @param value the new property value.
      */
     public UpdateStatus setProperty(Object property, Object value) {
-        if (property == DatatipObjectProperty.TIP_DATA) {
-            setTipData((Double[]) value);
-        } else if (property == DatatipObjectProperty.TIP_BOX_MODE) {
-            setTipBoxMode((Boolean) value);
+        if (property == DatatipObjectProperty.TIP_BOX_MODE) {
+            setBoxMode((Boolean) value);
         } else if (property == DatatipObjectProperty.TIP_LABEL_MODE) {
-            setTipLabelMode((Boolean) value);
+            setLabelMode((Boolean) value);
         } else if (property == DatatipObjectProperty.TIP_ORIENTATION) {
             if (value instanceof String) {
-                setTipOrientation(TipOrientation.stringToEnum((String) value));
+                setOrientation(TipOrientation.stringToEnum((String) value));
             } else {
-                setTipOrientation(TipOrientation.intToEnum((Integer) value));
+                setOrientation(TipOrientation.intToEnum((Integer) value));
             }
         } else if (property == DatatipObjectProperty.TIP_3COMPONENT) {
-            setTip3component((Boolean)value);
+            setZComponent((Boolean)value);
         } else if (property == DatatipObjectProperty.TIP_AUTOORIENTATION) {
-            setTipAutoOrientation((Boolean)value);
+            setAutoOrientation((Boolean)value);
         } else if (property == DatatipObjectProperty.TIP_INTERP_MODE) {
-            setTipInterpMode((Boolean) value);
+            setInterpMode((Boolean) value);
         } else if (property == DatatipObjectProperty.TIP_DISPLAY_FNC) {
-            setTipDispFunction((String) value);
+            setDisplayFunction((String) value);
+        } else if (property == DatatipObjectProperty.TIP_INDEXES) {
+            setIndexes((Double[]) value);
         } else {
             return super.setProperty(property, value);
         }
@@ -173,34 +184,45 @@ public class Datatip extends Text {
     }
 
     /**
-     * Set the data tip that will be shown
-     * @param data A 3 element vector with the data (x, y, z).
-     */
-    public UpdateStatus setTipData(Double[] data) {
-        tipData[0] = data[0];
-        tipData[1] = data[1];
-        tipData[2] = data[2];
-        updateText();
-        return UpdateStatus.Success;
-    }
-
-    /**
      * Get the current tip data
      * @return the tip data
      */
-    public Double[] getTipData() {
-        Double[] ret = new Double[3];
-        ret[0] = tipData[0];
-        ret[1] = tipData[1];
-        ret[2] = tipData[2];
-        return ret;
+    public Double[] getData() {
+
+        double x = 0.0;
+        double y = 0.0;
+        double z = 0.0;
+        //compute values from dataIndex and ratio
+        if (dataIndex.length == 1) {
+            double[] dataX = (double[])PolylineData.getDataX(getParent());
+            double[] dataY = (double[])PolylineData.getDataY(getParent());
+
+            //get pt0 and pt1 from polyline data
+            double[] pt0 = new double[] {dataX[dataIndex[0]], dataY[dataIndex[0]]};
+            double[] pt1 = new double[] {dataX[dataIndex[0] + 1], dataY[dataIndex[0] + 1]};
+
+            //coefficient
+            double a = (pt1[1] - pt0[1]) / (pt1[0] - pt0[0]);
+            //origin
+            double orig = pt0[1] - a * pt0[0];
+
+            //y = a * x + b
+            x = pt0[0] + ((pt1[0] - pt0[0]) * ratio[0]);
+            y = a * x + orig;
+        } else if (dataIndex.length == 2) {
+            //    		double[] dataX = (double[])PolylineData.getDataX(getParent());
+            //    		double[] dataY = (double[])PolylineData.getDataY(getParent());
+            //    		double[] dataZ = (double[])PolylineData.getDataZ(getParent());
+        }
+
+        return new Double[] {x, y, z};
     }
 
     /**
      * Get the current oriantation as a enum
      * @return the current orientation
      */
-    public TipOrientation getTipOrientation() {
+    public TipOrientation getOrientation() {
         return currentOrientation;
     }
 
@@ -208,7 +230,7 @@ public class Datatip extends Text {
      * Set the current orientation (updating the text position)
      * @param orientation the new orientation (TipOrientation enum).
      */
-    public UpdateStatus setTipOrientation(TipOrientation orientation) {
+    public UpdateStatus setOrientation(TipOrientation orientation) {
         currentOrientation = orientation;
         return UpdateStatus.Success;
     }
@@ -216,7 +238,7 @@ public class Datatip extends Text {
     /**
      * @return true if the datatip is displaying the Z component, false otherwise.
      */
-    public Boolean getTip3component() {
+    public Boolean getZComponent() {
         return use3component;
     }
 
@@ -224,18 +246,18 @@ public class Datatip extends Text {
      * If true set the Z component to be displayed.
      * @param useZ True to enable display the Z component, false to disable.
      */
-    public UpdateStatus setTip3component(boolean useZ) {
+    public UpdateStatus setZComponent(boolean useZ) {
         use3component = useZ;
         updateText();
         return UpdateStatus.Success;
     }
 
 
-    public Boolean getTipAutoOrientation() {
+    public Boolean getAutoOrientation() {
         return autoOrientation;
     }
 
-    public UpdateStatus setTipAutoOrientation(boolean status) {
+    public UpdateStatus setAutoOrientation(boolean status) {
         autoOrientation = status;
         return UpdateStatus.Success;
     }
@@ -245,85 +267,139 @@ public class Datatip extends Text {
     /**
      * Update the text from the datatip base on current tipData value.
      */
-    void updateText() {
-        String[] textArray = new String[] {"X:", "Y:", "Z:"};
-        textArray[0] += tipTextFormat.format(tipData[0]);
-        textArray[1] += tipTextFormat.format(tipData[1]);
-        textArray[2] += tipTextFormat.format(tipData[2]);
+    public void updateText() {
 
-        Integer[] dim = new Integer[2];
-        dim[0] = use3component ? 3 : 2;
-        dim[1] = 1;
+        //if display function is empty look in parent
+        //if parent is empty too use default print
 
-        setTextArrayDimensions(dim);
-        setTextWithoutResize(textArray);
-    }
+        String fnc = getDisplayFunction();
+        if (fnc == null || fnc.equals("")) {
+            //look in parent
+            fnc = (String) GraphicController.getController().getProperty(getParent(), GraphicObjectProperties.__GO_DATATIP_DISPLAY_FNC__);
+            if (fnc == null || fnc.equals("")) {
+                String[] textArray = new String[] {"X:", "Y:", "Z:"};
+                Double[] tipData = getData();
+                textArray[0] += tipTextFormat.format(tipData[0]);
+                textArray[1] += tipTextFormat.format(tipData[1]);
+                textArray[2] += tipTextFormat.format(tipData[2]);
 
-    /**
-     * Update the text from the datatip for datatipSetDisplay
-     */
-    void updateTextDispFunction(String displayFnc) {
-
-        if (displayFnc.length() != 0) {
-            String updateCommand = "try;" +
-                                   "d = getcallbackobject(" + getIdentifier() + ");" +
-                                   "d.text = " + displayFnc + "(d.tip_data);" +
-                                   "clear(\"d\");" +
-                                   "catch;" +
-                                   "d.tip_disp_function = \"\";" +
-                                   "clear(\"d\");" +
-                                   "error(msprintf(_( \"%s: Wrong name of input argument #%d: Function ''%s'' not defined.\n\"),\"datatipSetDisplay\",2,\"" + displayFnc + "\"));" +
-                                   "end;";
-
-
-            InterpreterManagement.requestScilabExec(updateCommand);
-        } else {
-            updateText();
+                Integer[] dim = new Integer[2];
+                dim[0] = use3component ? 3 : 2;
+                dim[1] = 1;
+                setTextArrayDimensions(dim);
+                setTextWithoutResize(textArray);
+                return;
+            }
         }
 
+        String updateCommand = "try;" +
+                               "d = getcallbackobject(" + getIdentifier() + ");" +
+                               "d.text = " + fnc + "(d.data);" +
+                               "clear(\"d\");" +
+                               "catch;" +
+                               "d.display_function = \"\";" +
+                               "clear(\"d\");" +
+                               "error(msprintf(_( \"%s: Wrong name of input argument #%d: Function ''%s'' not defined.\n\"),\"datatipSetDisplay\",2,\"" + fnc + "\"));" +
+                               "end;";
+        InterpreterManagement.requestScilabExec(updateCommand);
     }
 
-    public Boolean getTipBoxMode() {
+    public Boolean getBoxMode() {
         return tipBoxMode;
     }
 
-    public Boolean getTipLabelMode() {
+    public Boolean getLabelMode() {
         return tipLabelMode;
     }
 
-    public Boolean getTipInterpMode() {
+    public Boolean getInterpMode() {
         return interpMode;
     }
 
-    public String getTipDispFunction() {
+    public String getDisplayFunction() {
         return displayFnc;
     }
 
-    public UpdateStatus setTipBoxMode(boolean mode) {
+    public UpdateStatus setBoxMode(boolean mode) {
         tipBoxMode = mode;
         setBox(tipBoxMode);
         return UpdateStatus.Success;
     }
 
-    public UpdateStatus setTipLabelMode(boolean mode) {
+    public UpdateStatus setLabelMode(boolean mode) {
         tipLabelMode = mode;
         return UpdateStatus.Success;
     }
 
-    public UpdateStatus setTipInterpMode(boolean mode) {
+    public UpdateStatus setInterpMode(boolean mode) {
         interpMode = mode;
         return UpdateStatus.Success;
     }
 
-    public UpdateStatus setTipDispFunction(String fnc) {
+    public UpdateStatus setDisplayFunction(String fnc) {
         displayFnc = fnc;
-        updateTextDispFunction(displayFnc);
+        updateText();
         return UpdateStatus.Success;
     }
 
     @Override
     public Double[] getPosition() {
-        return getTipData();
+        return getData();
+    }
+
+    public UpdateStatus setIndexes(Double[] value) {
+        //if length == 3
+        //dataIndexX, ratioX, ratioY
+        //if length == 4
+        //dataIndexX, dataIndexY, ratioX, ratioY
+
+        UpdateStatus status = UpdateStatus.NoChange;
+
+        //check dimensions of dataIndex and values to know if update is needed
+        if (value.length == 3) {
+            if (dataIndex.length != 1) {
+                status = UpdateStatus.Success;
+            } else {
+                if (dataIndex[0] != value[0].intValue()) {
+                    status = UpdateStatus.Success;
+                }
+            }
+        } else if (value.length == 4) {
+            if (dataIndex.length != 2) {
+                status = UpdateStatus.Success;
+            } else {
+                if (dataIndex[0] != value[0].intValue() || dataIndex[1] != value[1].intValue()) {
+                    status = UpdateStatus.Success;
+                }
+            }
+        }
+
+        //check values of ration to know if update is needed
+        if (value[value.length - 2] != ratio[0] || value[value.length - 1] != ratio[1]) {
+            status = UpdateStatus.Success;
+        }
+
+        //update dataIndex
+        if (status == UpdateStatus.Success) {
+            if (value.length == 3) {
+                dataIndex = new Integer[] {value[0].intValue()};
+            } else if (value.length == 4) {
+                dataIndex = new Integer[] {value[0].intValue(), value[1].intValue()};
+            }
+
+            ratio = new Double[] {value[value.length - 2], value[value.length - 1]};
+            updateText();
+        }
+
+        return status;
+    }
+
+    public Integer[] getIndexes() {
+        Integer[] value = new Integer[dataIndex.length];
+        for (int i = 0 ; i < dataIndex.length ; i++) {
+            value[i] = dataIndex[i];
+        }
+        return value;
     }
 
     /**
@@ -332,5 +408,6 @@ public class Datatip extends Text {
     public Integer getType() {
         return GraphicObjectProperties.__GO_DATATIP__;
     }
+
 
 }

@@ -12,9 +12,12 @@
 
 package org.scilab.modules.gui.datatip;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-
 import org.scilab.modules.gui.editor.ObjectSearcher;
 import org.scilab.modules.gui.datatip.DatatipCommon;
 
@@ -30,16 +33,23 @@ public class DatatipDelete {
     * @param datatipUid Datatip unique identifier.
     */
     public static void deleteDatatip(int datatipUid) {
+        GraphicController controller = GraphicController.getController();
 
-        Double[] datatipPosition = (Double[]) GraphicController.getController().getProperty(datatipUid, GraphicObjectProperties.__GO_DATATIP_DATA__);
-
-        double[] graphCoordDouble = new double[] {0.0, 0.0, 0.0};
-        graphCoordDouble[0] = datatipPosition[0];
-        graphCoordDouble[1] = datatipPosition[1];
-        graphCoordDouble[2] = datatipPosition[2];
-
-
-        GraphicController.getController().removeRelationShipAndDelete(datatipUid);
+        //get parent
+        Integer parent = (Integer) controller.getProperty(datatipUid, GraphicObjectProperties.__GO_PARENT__);
+        //get parent datatips
+        Integer[] tips = (Integer[]) controller.getProperty(parent, GraphicObjectProperties.__GO_DATATIPS__);
+        //convert [] in list
+        List<Integer> l = new LinkedList<Integer>(Arrays.asList(tips));
+        //remove me
+        l.remove((Object)datatipUid);
+        //convert list in []
+        Integer[] var = new Integer[l.size()];
+        l.toArray(var);
+        //update parent datatips without me
+        controller.setProperty(parent, GraphicObjectProperties.__GO_DATATIPS__, var);
+        //self destruction !
+        controller.deleteObject(datatipUid);
     }
 
     /**
@@ -50,12 +60,11 @@ public class DatatipDelete {
     */
     public static void datatipRemoveProgramIndex(int polylineUid, int indexRemove) {
 
-        Integer[] datatips = (new ObjectSearcher()).search(polylineUid, GraphicObjectProperties.__GO_DATATIP__);
+        Integer[] datatips = (new ObjectSearcher()).search(polylineUid, GraphicObjectProperties.__GO_DATATIP__, true);
 
         if (datatips != null) {
             /* use index from 1 .. lenght (like scilab vectors)*/
             if (indexRemove >= 1 && indexRemove <= datatips.length) {
-                Double[] datatipPosition = (Double[]) GraphicController.getController().getProperty(datatips[indexRemove - 1], GraphicObjectProperties.__GO_DATATIP_DATA__);
                 GraphicController.getController().removeRelationShipAndDelete(datatips[indexRemove - 1]);
             }
         }

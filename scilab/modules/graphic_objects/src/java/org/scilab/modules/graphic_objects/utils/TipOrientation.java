@@ -2,33 +2,33 @@ package org.scilab.modules.graphic_objects.utils;
 
 
 public enum TipOrientation {
-    TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT;
+    UPPER_LEFT, UPPER_RIGHT, LOWER_LEFT, LOWER_RIGHT;
 
     public static TipOrientation intToEnum(Integer val) {
         switch (val) {
             case 0:
-                return TOP_LEFT;
+                return UPPER_LEFT;
             case 1:
-                return TOP_RIGHT;
+                return UPPER_RIGHT;
             case 2:
-                return BOTTOM_LEFT;
+                return LOWER_LEFT;
             case 3:
-                return BOTTOM_RIGHT;
+                return LOWER_RIGHT;
             default:
-                return TOP_RIGHT;
+                return UPPER_RIGHT;
         }
     }
 
     public static Integer enumToInt(TipOrientation val) {
         switch (val) {
-            case BOTTOM_LEFT:
+            case LOWER_LEFT:
                 return 2;
-            case BOTTOM_RIGHT:
+            case LOWER_RIGHT:
                 return 3;
-            case TOP_LEFT:
+            case UPPER_LEFT:
                 return 1;
             default :
-            case TOP_RIGHT:
+            case UPPER_RIGHT:
                 return 3;
         }
     }
@@ -36,34 +36,34 @@ public enum TipOrientation {
     public static TipOrientation stringToEnum(String val) {
         char[] chars = val.toCharArray();
 
-        if (chars[0] == 't' || chars[0] == 'T') {
-            if (val.equalsIgnoreCase("top_left")) {
-                return TOP_LEFT;
-            } else if (val.equalsIgnoreCase("top_right")) {
-                return TOP_RIGHT;
+        if (chars[0] == 'u' || chars[0] == 'U') {
+            if (val.equalsIgnoreCase("upper_left")) {
+                return UPPER_LEFT;
+            } else if (val.equalsIgnoreCase("upper_right")) {
+                return UPPER_RIGHT;
             }
-        } else if (chars[0] == 'b' || chars[0] == 'B') {
-            if (val.equalsIgnoreCase("bottom_left")) {
-                return BOTTOM_LEFT;
-            } else if (val.equalsIgnoreCase("bottom_right")) {
-                return BOTTOM_RIGHT;
+        } else if (chars[0] == 'l' || chars[0] == 'L') {
+            if (val.equalsIgnoreCase("lower_left")) {
+                return LOWER_LEFT;
+            } else if (val.equalsIgnoreCase("lower_right")) {
+                return LOWER_RIGHT;
             }
         }
 
-        return TOP_RIGHT;
+        return UPPER_RIGHT;
     }
 
     public static String enumToString(TipOrientation val) {
         switch (val) {
-            case BOTTOM_LEFT:
-                return "bottom_left";
-            case BOTTOM_RIGHT:
-                return "bottom_right";
-            case TOP_LEFT:
-                return "top_left";
+            case LOWER_LEFT:
+                return "lower_left";
+            case LOWER_RIGHT:
+                return "lower_right";
+            case UPPER_LEFT:
+                return "upper_left";
             default :
-            case TOP_RIGHT:
-                return "top_right";
+            case UPPER_RIGHT:
+                return "upper_right";
         }
     }
 };

@@ -22,45 +22,6 @@
 #include "graphicObjectProperties.h"
 
 /**
- * Sets the datatip data.
- */
-int set_tip_data_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
-{
-    BOOL status = FALSE;
-    double *tip_data;
-
-    if (!( valueType == sci_matrix ))
-    {
-        Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "tip_data");
-        return SET_PROPERTY_ERROR ;
-    }
-
-    /* We must have 4 elements */
-    if ( nbRow * nbCol != 3 )
-    {
-        Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "tip_data", 3);
-        return SET_PROPERTY_ERROR;
-    }
-
-    tip_data = (double*)_pvData;
-
-
-    status = setGraphicObjectProperty(iObj, __GO_DATATIP_DATA__, tip_data, jni_double_vector, 3);
-
-    if (status == TRUE)
-    {
-        return SET_PROPERTY_SUCCEED;
-    }
-    else
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_data");
-        return SET_PROPERTY_ERROR;
-    }
-}
-
-
-
-/**
  * Sets the datatip oriantation.
  */
 int set_tip_orientation_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
@@ -70,7 +31,7 @@ int set_tip_orientation_property(void* _pvCtx, int iObj, void* _pvData, int valu
 
     if ( !( valueType == sci_matrix ) )
     {
-        Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "tip_orientation");
+        Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "orientation");
         return SET_PROPERTY_ERROR;
     }
 
@@ -84,7 +45,7 @@ int set_tip_orientation_property(void* _pvCtx, int iObj, void* _pvData, int valu
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_orientation");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "orientation");
         return SET_PROPERTY_ERROR;
     }
 }
@@ -95,7 +56,7 @@ int set_tip_orientation_property(void* _pvCtx, int iObj, void* _pvData, int valu
 int set_tip_3component_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
-    int use_z = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "tip_3component");
+    int use_z = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "z_component");
     if (use_z == NOT_A_BOOLEAN_VALUE)
     {
         return SET_PROPERTY_ERROR;
@@ -108,7 +69,7 @@ int set_tip_3component_property(void* _pvCtx, int iObj, void* _pvData, int value
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_3component");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "z_component");
         return SET_PROPERTY_ERROR;
     }
 }
@@ -120,7 +81,7 @@ int set_tip_3component_property(void* _pvCtx, int iObj, void* _pvData, int value
 int set_tip_auto_orientation_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
-    int auto_orientation = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "tip_auto_orientation");
+    int auto_orientation = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "auto_orientation");
     if (auto_orientation == NOT_A_BOOLEAN_VALUE)
     {
         return SET_PROPERTY_ERROR;
@@ -133,7 +94,7 @@ int set_tip_auto_orientation_property(void* _pvCtx, int iObj, void* _pvData, int
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_auto_orientation");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_orientation");
         return SET_PROPERTY_ERROR;
     }
 }
@@ -145,7 +106,7 @@ int set_tip_auto_orientation_property(void* _pvCtx, int iObj, void* _pvData, int
 int set_tip_interp_mode_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
-    int interp_mode = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "tip_interp_mode");
+    int interp_mode = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "interp_mode");
     if (interp_mode == NOT_A_BOOLEAN_VALUE)
     {
         return SET_PROPERTY_ERROR;
@@ -158,7 +119,7 @@ int set_tip_interp_mode_property(void* _pvCtx, int iObj, void* _pvData, int valu
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_interp_mode");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "interp_mode");
         return SET_PROPERTY_ERROR;
     }
 }
@@ -169,7 +130,7 @@ int set_tip_interp_mode_property(void* _pvCtx, int iObj, void* _pvData, int valu
 int set_tip_box_mode_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
-    int box_mode = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "tip_box_mode");
+    int box_mode = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "box_mode");
     if (box_mode == NOT_A_BOOLEAN_VALUE)
     {
         return SET_PROPERTY_ERROR;
@@ -182,7 +143,7 @@ int set_tip_box_mode_property(void* _pvCtx, int iObj, void* _pvData, int valueTy
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_box_mode");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "box_mode");
         return SET_PROPERTY_ERROR;
     }
 }
@@ -193,7 +154,7 @@ int set_tip_box_mode_property(void* _pvCtx, int iObj, void* _pvData, int valueTy
 int set_tip_label_mode_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
-    int label_mode = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "tip_label_mode");
+    int label_mode = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "label_mode");
     if (label_mode == NOT_A_BOOLEAN_VALUE)
     {
         return SET_PROPERTY_ERROR;
@@ -206,7 +167,7 @@ int set_tip_label_mode_property(void* _pvCtx, int iObj, void* _pvData, int value
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_label_mode");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "label_mode");
         return SET_PROPERTY_ERROR;
     }
 }
@@ -217,7 +178,7 @@ int set_tip_disp_function_property(void* _pvCtx, int iObj, void* _pvData, int va
     BOOL status = FALSE;
     if (valueType != sci_strings)
     {
-        Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "tip_disp_function");
+        Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "display_function");
         return SET_PROPERTY_ERROR;
     }
 
@@ -229,7 +190,7 @@ int set_tip_disp_function_property(void* _pvCtx, int iObj, void* _pvData, int va
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_disp_function");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "display_function");
         return SET_PROPERTY_ERROR;
     }
 }

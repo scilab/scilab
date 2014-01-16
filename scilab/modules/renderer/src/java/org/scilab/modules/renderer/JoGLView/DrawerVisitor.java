@@ -567,7 +567,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     invalidate(polyline, e);
                 }
                 axesDrawer.disableClipping(polyline.getClipProperty());
-                askAcceptVisitor(polyline.getChildren());
+                askAcceptVisitor(polyline.getDatatips());
             }
         }
     }
@@ -779,7 +779,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     Vector3d markPos = DatatipTextDrawer.calculateAnchorPoint(datatip);
                     drawingTools.draw(texture, AnchorPosition.CENTER, markPos);
                 }
-                if (datatip.getTipLabelMode()) {
+                if (datatip.getLabelMode()) {
                     datatipTextDrawer.draw(drawingTools, colorMap, datatip);
                 }
             } catch (SciRendererException e) {

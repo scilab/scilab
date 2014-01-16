@@ -93,36 +93,6 @@ function %h_p(h)
             "tag = "+h.tag
             ]
 
-            // Datatip
-            // =====================================================================
-
-        case "Datatip"
-            u=h.user_data
-            t=[t;
-            "parent: "+h.parent.type
-            "children: "+fmtchildren(h.children)
-            "visible = "+sci2exp(h.visible)
-            "tip_data = "+sci2exp(h.tip_data)
-            "tip_box_mode = "+sci2exp(h.tip_box_mode)
-            "tip_label_mode = "+sci2exp(h.tip_label_mode)
-            "tip_orientation = "+sci2exp(h.tip_orientation)
-            "tip_3component = "+sci2exp(h.tip_3component)
-            "tip_auto_orientation = "+sci2exp(h.tip_auto_orientation)
-            "tip_interp_mode = "+sci2exp(h.tip_interp_mode)
-            "tip_disp_function = "+sci2exp(h.tip_disp_function)
-            "font_foreground = "+string(h.font_foreground)
-            "foreground = "+string(h.foreground)
-            "background = "+string(h.background)
-            "mark_mode = "+sci2exp(h.mark_mode)
-            "mark_style = "+sci2exp(h.mark_style)
-            "mark_size_unit = "+sci2exp(h.mark_size_unit)
-            "mark_size = "+string(h.mark_size)
-            "mark_foreground = "+string(h.mark_foreground)
-            "mark_background = "+string(h.mark_background)
-            "user_data = "+fmtuser_data(u)
-            "tag = "+h.tag
-            ]
-
             // Compound
             // =====================================================================
 
@@ -585,14 +555,14 @@ function %h_p(h)
             "parent: "+h.parent.type
             "children: "+fmtchildren(h.children)
             "visible = "+sci2exp(h.visible)
-            "tip_data = "+sci2exp(h.tip_data)
-            "tip_box_mode = "+sci2exp(h.tip_box_mode)
-            "tip_label_mode = "+sci2exp(h.tip_label_mode)
-            "tip_orientation = "+sci2exp(h.tip_orientation)
-            "tip_3component = "+sci2exp(h.tip_3component)
-            "tip_auto_orientation = "+sci2exp(h.tip_auto_orientation)
-            "tip_interp_mode = "+sci2exp(h.tip_interp_mode)
-            "tip_disp_function = "+sci2exp(h.tip_disp_function)
+            "data = "+sci2exp(h.data)
+            "box_mode = "+sci2exp(h.box_mode)
+            "label_mode = "+sci2exp(h.label_mode)
+            "orientation = "+sci2exp(h.orientation)
+            "z_component = "+sci2exp(h.z_component)
+            "auto_orientation = "+sci2exp(h.auto_orientation)
+            "interp_mode = "+sci2exp(h.interp_mode)
+            "display_function = "+sci2exp(h.display_function)
             "font_foreground = "+string(h.font_foreground)
             "foreground = "+string(h.foreground)
             "background = "+string(h.background)

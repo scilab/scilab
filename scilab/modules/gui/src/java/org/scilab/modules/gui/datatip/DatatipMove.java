@@ -90,7 +90,7 @@ public class DatatipMove {
             newPos[1] = CommonHandler.InverseLogScale(newPos[1], logFlags[1]);
             newPos[2] = CommonHandler.InverseLogScale(newPos[2], logFlags[2]);
 
-            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_DATA__, newPos);
+            //GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_DATA__, newPos);
 
             Boolean AutoOrientation = (Boolean)GraphicController.getController().getProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__);
             if (AutoOrientation) {
