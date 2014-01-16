@@ -341,6 +341,21 @@ int get3ddata(int iObjUID)
     return 0;
 }
 /*------------------------------------------------------------------------*/
+int get_tip_data_property(void* _pvCtx, int iObjUID)
+{
+    double *tip_data = NULL;
+
+    getGraphicObjectProperty(iObjUID, __GO_DATATIP_DATA__, jni_double_vector, (void **)&tip_data);
+
+    if (tip_data == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "data");
+        return -1;
+    }
+
+    return sciReturnRowVector(_pvCtx, tip_data, 3);
+}
+/*------------------------------------------------------------------------*/
 int get_data_property(void* _pvCtx, int iObjUID)
 {
     int type = -1;
@@ -364,6 +379,8 @@ int get_data_property(void* _pvCtx, int iObjUID)
             return getgrayplotdata(iObjUID);
         case __GO_MATPLOT__ :
             return getmatplotdata(_pvCtx, iObjUID);
+        case __GO_DATATIP__ :
+            return get_tip_data_property(_pvCtx, iObjUID);
         default :
             /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
         {

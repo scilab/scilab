@@ -66,11 +66,15 @@ public class DatatipCreate {
             if (PolylineData.isZCoordSet(polylineUid) == 0) {
                 DatatipCommon.Segment seg = DatatipCommon.getSegment(coordDoubleXY[0], polylineUid);
                 Double[] pos = DatatipCommon.Interpolate(coordDoubleXY[0], seg);
-                return datatipProperties(new double[] {pos[0], pos[1], 0.0, 0.0, 0.0}, polylineUid, seg.pointIndex);
+                double dx = (coordDoubleXY[0] - seg.x0) / (seg.x1 - seg.x0);
+                double dy = (coordDoubleXY[1] - seg.y0) / (seg.y1 - seg.y0);
+                return datatipProperties(new double[] {pos[0], pos[1], 0.0, dx, dy}, polylineUid, seg.pointIndex);
             } else {
                 DatatipCommon.Segment seg3d = DatatipCommon.getSegment3dView(coordDoubleXY[0], coordDoubleXY[1], polylineUid);
                 Double[] pos = DatatipCommon.Interpolate3dViewProgCoord(coordDoubleXY[0], coordDoubleXY[1], seg3d, polylineUid);
-                return datatipProperties(new double[] {pos[0], pos[1], pos[2], 0.0, 0.0}, polylineUid, seg3d.pointIndex);
+                double dx = (coordDoubleXY[0] - seg3d.x0) / (seg3d.x1 - seg3d.x0);
+                double dy = (coordDoubleXY[1] - seg3d.y0) / (seg3d.y1 - seg3d.y0);
+                return datatipProperties(new double[] {pos[0], pos[1], pos[2], dx, dy}, polylineUid, seg3d.pointIndex);
             }
         }
         return 0;

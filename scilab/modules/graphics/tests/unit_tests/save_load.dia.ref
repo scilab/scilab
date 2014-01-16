@@ -272,4 +272,4 @@ delete(f);
 load(plotExportFile);
 e = gce();
 e = e.children(1);
-assert_checkequal(e.datatips.tip_data, [0.5, 0.125, 0]);
+assert_checkequal(e.datatips.data, [0.5, 0.125, 0]);

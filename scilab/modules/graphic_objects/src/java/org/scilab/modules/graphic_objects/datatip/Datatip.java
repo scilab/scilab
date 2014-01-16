@@ -325,7 +325,7 @@ public class Datatip extends Text {
 
         String updateCommand = "try;" +
                                "d = getcallbackobject(" + getIdentifier() + ");" +
-                               "d.text = " + fnc + "(d.tip_data);" +
+                               "d.text = " + fnc + "(d.data);" +
                                "clear(\"d\");" +
                                "catch;" +
                                "d.tip_disp_function = \"\";" +
@@ -333,12 +333,6 @@ public class Datatip extends Text {
                                "error(msprintf(_( \"%s: Wrong name of input argument #%d: Function ''%s'' not defined.\n\"),\"datatipSetDisplay\",2,\"" + fnc + "\"));" +
                                "end;";
         InterpreterManagement.requestScilabExec(updateCommand);
-    }
-
-    /**
-     * Update the text from the datatip for datatipSetDisplay
-     */
-    public void updateTextDispFunction(String displayFnc) {
     }
 
     public Boolean getTipBoxMode() {

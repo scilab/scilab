@@ -301,17 +301,17 @@ function save_graphichandle(h,fd)
         mput(length(h.type),characterFormat,fd); // type
         mput(ascii(h.type),characterFormat,fd);
         mput(bool2s(h.visible=="on"),characterFormat,fd) // visible
-        mput(size(h.tip_data),characterFormat,fd); // tip_data
-        mput(h.tip_data,"dl",fd);
-        mput(length(h.tip_box_mode),characterFormat,fd); // tip_box_mode
-        mput(ascii(h.tip_box_mode),characterFormat,fd);
-        mput(length(h.tip_label_mode),characterFormat,fd); // tip_label_mode
-        mput(ascii(h.tip_label_mode),characterFormat,fd);
-        mput(h.tip_orientation,characterFormat,fd) // tip_orientation
-        mput(bool2s(h.tip_3component=="on"),characterFormat,fd) // tip_3component
-        mput(bool2s(h.tip_auto_orientation=="on"),characterFormat,fd) // tip_auto_orientation
-        mput(bool2s(h.tip_interp_mode=="on"),characterFormat,fd) // tip_interp_mode
-        mput(length(ascii(h.tip_disp_function)),stringFormat,fd); // tip_disp_function
+        mput(size(h.data),characterFormat,fd); // data
+        mput(h.data,"dl",fd);
+        mput(length(h.box_mode),characterFormat,fd); // box_mode
+        mput(ascii(h.box_mode),characterFormat,fd);
+        mput(length(h.label_mode),characterFormat,fd); // label_mode
+        mput(ascii(h.label_mode),characterFormat,fd);
+        mput(h.orientation,characterFormat,fd) // orientation
+        mput(bool2s(h.z_component=="on"),characterFormat,fd) // z_component
+        mput(bool2s(h.auto_orientation=="on"),characterFormat,fd) // auto_orientation
+        mput(bool2s(h.interp_mode=="on"),characterFormat,fd) // interp_mode
+        mput(length(ascii(h.display_function)),stringFormat,fd); // display_function
         mput(h.font_foreground, "il", fd) ; // font_foreground
         mput(h.foreground,"il",fd) // foreground
         mput(h.background, "il", fd) ; // background

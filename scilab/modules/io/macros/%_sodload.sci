@@ -696,9 +696,14 @@ function %_sodload(%__filename__, varargin)
         fields = fieldnames(datatipProperties);
         fields(1) = [];
 
-        h = datatipCreate(%POLYLINE, 0);
+        tip_data = datatipProperties("data");
+        h = datatipCreate(%POLYLINE, tip_data);
 
         for i = 1:size(fields, "*")
+            if fields(i) == "data" then
+                continue;
+            end
+
             set(h, fields(i), datatipProperties(fields(i)));
         end
     endfunction
