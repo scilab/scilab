@@ -179,7 +179,7 @@ public class DatatipCreate {
 
         //insert new tip in children array
         List<Integer> l = new LinkedList<Integer>(Arrays.asList(tips));
-        l.add(newDatatip);
+        l.add(0, newDatatip);
 
         //set new datatips arry in polyline
         Integer[] var = new Integer[l.size()];

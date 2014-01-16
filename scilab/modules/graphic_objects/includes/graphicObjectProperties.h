@@ -340,5 +340,6 @@
 #define __GO_LIGHT_TYPE__ 318
 #define __GO_DATATIPS__ 319
 #define __GO_DATATIPS_COUNT__ 320
+#define __GO_DATATIP_INDEXES__ 321
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */
