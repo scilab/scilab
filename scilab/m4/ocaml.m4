@@ -1,11 +1,11 @@
 dnl
 dnl Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 dnl Copyright (C) INRIA - 2006/2008 - Sylvestre Ledru
-dnl 
+dnl
 dnl This file must be used under the terms of the CeCILL.
 dnl This source file is licensed as described in the file COPYING, which
 dnl you should have received as part of this distribution.  The terms
-dnl are also available at    
+dnl are also available at
 dnl http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 dnl
 dnl Macros which process ./configure arguments
@@ -20,23 +20,23 @@ AC_DEFUN([AC_CHECK_PROG_OCAML],[
 	OCAMLDEP=
 	AC_CHECK_PROG(OCAMLC,ocamlc,ocamlc,no)
 	if test "$OCAMLC" = no; then
-		AC_MSG_WARN([ocamlc not found. Mandatory to build the Scicos modelica compiler (Use --without-ocaml to disable the Modelica compiler).])
+		AC_MSG_ERROR([ocamlc not found. Mandatory to build the Scicos modelica compiler (Use --without-modelica to disable the Modelica compiler).])
 	fi
 	AC_CHECK_PROG(OCAMLOPT,ocamlopt,ocamlopt,no)
 	if test "$OCAMLOPT" = no; then
-		AC_MSG_WARN([ocamlopt not found. Mandatory to build the Scicos modelica compiler.])
+		AC_MSG_ERROR([ocamlopt not found. Mandatory to build the Scicos modelica compiler.])
 	fi
 	AC_CHECK_PROG(OCAMLDEP,ocamldep,ocamldep,no)
 	if test "$OCAMLDEP" = no; then
-		AC_MSG_WARN([ocamldep not found. Mandatory to build the Scicos modelica compiler.])
+		AC_MSG_ERROR([ocamldep not found. Mandatory to build the Scicos modelica compiler.])
 	fi
 	AC_CHECK_PROG(OCAMLYACC,ocamlyacc,ocamlyacc,no)
 	if test "$OCAMLYACC" = no; then
-		AC_MSG_WARN([ocamlyacc not found. Mandatory to build the Scicos modelica compiler.])
+		AC_MSG_ERROR([ocamlyacc not found. Mandatory to build the Scicos modelica compiler.])
 	fi
 	AC_CHECK_PROG(OCAMLLEX,ocamllex,ocamllex,no)
 	if test "$OCAMLLEX" = no; then
-		AC_MSG_WARN([ocamllex not found. Mandatory to build the Scicos modelica compiler.])
+		AC_MSG_ERROR([ocamllex not found. Mandatory to build the Scicos modelica compiler.])
 	fi
 	AC_DEFINE([WITH_OCAML],[],[With OCAML])
 

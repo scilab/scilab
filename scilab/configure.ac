@@ -2043,7 +2043,7 @@ if test $XCOS_ENABLE = yes; then
    echo "Xcos enable"
    echo "Build modelica compiler (--without-modelica) ....... = $with_modelica"
    echo ""
-   if test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
+   if test "$with_modelica" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
      echo "Ocaml Configuration (for Modelica compiler):"
      echo "  OCAMLC ............. = $OCAMLC"
      echo "  OCAMLOPT ........... = $OCAMLOPT"
