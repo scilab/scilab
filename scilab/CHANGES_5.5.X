@@ -30,6 +30,9 @@ Obsolete & Removed Functions
 
 * milk_drop tagged as obsolete. Will be removed in Scilab 5.5.1.
 
+* datatipGetStruct tagged as obsolete. Will be removed in Scilab 5.5.1.
+  Please use 'datatips' property instead.
+
 * clear_pixmap removed, please use drawlater/drawnow instead.
 
 

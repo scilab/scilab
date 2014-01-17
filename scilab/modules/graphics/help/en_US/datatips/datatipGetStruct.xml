@@ -12,7 +12,7 @@
     <refnamediv>
         <refname>datatipGetStruct</refname>
         <refpurpose>
-            Retreive the datatips data structure from the polyline entity. <emphasis role="bold">Obsolete function. </emphasis>
+            Retreive the datatips data structure from the polyline entity. <emphasis role="bold">This function is obsolete.</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -80,9 +80,9 @@
         <title>History</title>
         <revhistory>
             <revision>
-                <revnumber>5.4.1</revnumber>
+                <revnumber>5.5.0</revnumber>
                 <revdescription>
-                    Function tagged obsolete. Will be removed in 5.5.0.
+                    Function tagged obsolete. Will be removed in 5.5.1. Please use <link linkend="polyline_properties">"datatips" property</link> instead.
                 </revdescription>
             </revision>
         </revhistory>
