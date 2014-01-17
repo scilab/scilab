@@ -822,10 +822,6 @@ fi
 export LD_LIBRARY_PATH
 export PATH
 
-# Scilab does not support the LANGUAGE variable.
-# Unset to avoid some weird issue. CF bug #10032
-unset LANGUAGE
-
 if test $IS_SCILAB_BINARY -ne 1; then
 # We are not using the Scilab binary, find out where docbook is.
     find_docbook_path
