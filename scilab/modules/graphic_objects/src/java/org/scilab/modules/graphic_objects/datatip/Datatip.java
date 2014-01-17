@@ -208,8 +208,12 @@ public class Datatip extends Text {
         double z = 0.0;
         //compute values from dataIndex and ratio
         if (dataIndex.length == 1) {
-            double[] dataX = (double[])PolylineData.getDataX(getParent());
-            double[] dataY = (double[])PolylineData.getDataY(getParent());
+            double[] dataX = (double[]) PolylineData.getDataX(getParent());
+            double[] dataY = (double[]) PolylineData.getDataY(getParent());
+
+            if (dataX.length < (dataIndex[0] + 1) || dataY.length < (dataIndex[0] + 2)) {
+                return new Double[] {x, y, z};
+            }
 
             //get pt0 and pt1 from polyline data
             double[] pt0 = new double[] {dataX[dataIndex[0]], dataY[dataIndex[0]]};

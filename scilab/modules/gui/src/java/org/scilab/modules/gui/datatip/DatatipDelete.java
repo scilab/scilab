@@ -19,7 +19,6 @@ import java.util.List;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.editor.ObjectSearcher;
-import org.scilab.modules.gui.datatip.DatatipCommon;
 
 /**
  * Delete a datatip
@@ -42,7 +41,7 @@ public class DatatipDelete {
         //convert [] in list
         List<Integer> l = new LinkedList<Integer>(Arrays.asList(tips));
         //remove me
-        l.remove((Object)datatipUid);
+        l.remove((Object) datatipUid);
         //convert list in []
         Integer[] var = new Integer[l.size()];
         l.toArray(var);
@@ -59,17 +58,8 @@ public class DatatipDelete {
     * @param indexRemove Index of the datatip to be removed.
     */
     public static void datatipRemoveProgramIndex(int polylineUid, int indexRemove) {
-
         Integer[] datatips = (new ObjectSearcher()).search(polylineUid, GraphicObjectProperties.__GO_DATATIP__, true);
-
-        if (datatips != null) {
-            /* use index from 1 .. lenght (like scilab vectors)*/
-            if (indexRemove >= 1 && indexRemove <= datatips.length) {
-                GraphicController.getController().removeRelationShipAndDelete(datatips[indexRemove - 1]);
-            }
-        }
-
-
+        deleteDatatip(datatips[datatips.length - indexRemove]);
     }
 
     /**
