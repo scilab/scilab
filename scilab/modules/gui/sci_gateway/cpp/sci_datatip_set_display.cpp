@@ -15,6 +15,7 @@ extern "C"
 #include "api_scilab.h"
 #include "getScilabJavaVM.h"
 #include "localization.h"
+#include "MALLOC.h"
 #include "Scierror.h"
 #include "gw_gui.h"
 #include "HandleManagement.h"
@@ -98,16 +99,34 @@ int sci_datatip_set_display(char *fname, unsigned long fname_len)
                     }
                     else
                     {
-                        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
+                        Scierror(999, _("%s: Wrong size for input argument #%d: A string or a macro name expected.\n"), fname, 2);
                         return 1;
                     }
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
-                    return 1;
+                    sciErr = getVarType(pvApiCtx, piAddr, &iType);
+                    if (iType == sci_c_function || iType == sci_u_function)
+                    {
+                        char *pstFunctionName = (char*) MALLOC(sizeof(char) * (200));
+                        sciErr = getVarNameFromPosition(pvApiCtx, 2, pstFunctionName);
+                        if (sciErr.iErr)
+                        {
+                            Scierror(999, _("%s: Wrong type for input argument #%d: A string or a macro name expected.\n"), fname, 2);
+                            return 1;
+                        }
+                        setGraphicObjectProperty(iDatatipUID, __GO_DATATIP_DISPLAY_FNC__, pstFunctionName, jni_string, 1);
+                        FREE(pstFunctionName);
+                        AssignOutputVariable(pvApiCtx, 1) = 0;
+                        ReturnArguments(pvApiCtx);
+                        return 0;
+                    }
+                    else
+                    {
+                        Scierror(999, _("%s: Wrong type for input argument #%d: A string or a macro name expected.\n"), fname, 2);
+                        return 1;
+                    }
                 }
-
             }
             else
             {
@@ -118,13 +137,13 @@ int sci_datatip_set_display(char *fname, unsigned long fname_len)
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Datatip");
+            Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"), fname, 1, "Polyline", "Datatip");
             return 1;
         }
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Datatip");
+        Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"), fname, 1, "Polyline", "Datatip");
         return 1;
     }
 }

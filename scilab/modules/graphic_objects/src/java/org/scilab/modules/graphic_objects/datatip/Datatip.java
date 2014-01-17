@@ -31,6 +31,7 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.textObject.Text;
+import org.scilab.modules.localization.Messages;
 
 public class Datatip extends Text {
 
@@ -327,14 +328,15 @@ public class Datatip extends Text {
             }
         }
 
+        String errMsg =  Messages.gettext("\"Wrong value for ''%s'' property: A valid function name expected.\n\"");
         String updateCommand = "try;" +
-                               "d = getcallbackobject(" + getIdentifier() + ");" +
-                               "d.text = " + fnc + "(d.data);" +
-                               "clear(\"d\");" +
+                               "    d = getcallbackobject(" + getIdentifier() + ");" +
+                               "    d.text = " + fnc + "(d);" +
+                               "    clear(\"d\");" +
                                "catch;" +
-                               "d.tip_disp_function = \"\";" +
-                               "clear(\"d\");" +
-                               "error(msprintf(_( \"%s: Wrong name of input argument #%d: Function ''%s'' not defined.\n\"),\"datatipSetDisplay\",2,\"" + fnc + "\"));" +
+                               "    d.display_function = \"\";" +
+                               "    clear(\"d\");" +
+                               "    error(msprintf(" + errMsg + ", \"display_function\"));" +
                                "end;";
         InterpreterManagement.requestScilabExec(updateCommand);
     }

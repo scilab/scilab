@@ -1,4 +1,4 @@
-!!_invoke_
+!_invoke_
 %H5Object_e
 %H5Object_fieldnames
 %H5Object_p
@@ -397,6 +397,7 @@ daskr
 dasrt
 dassl
 data2sig
+datatipsSetDisplay
 dawson
 dct
 debug

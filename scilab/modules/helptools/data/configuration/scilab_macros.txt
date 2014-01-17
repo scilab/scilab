@@ -1053,7 +1053,6 @@ datatipRedraw
 datatipRemove
 datatipRemoveAll
 datatipRemoveNearest
-datatipSetDisplay
 datatipSetGUI
 datatipSetInterp
 datatipSetOrientation
