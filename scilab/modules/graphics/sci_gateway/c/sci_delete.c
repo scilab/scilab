@@ -43,6 +43,7 @@
 #include "getConsoleIdentifier.h"
 #include "CurrentSubwin.h"
 #include "sciprint.h"
+#include "createGraphicObject.h"
 
 #ifdef _MSC_VER
 #include "strdup_windows.h"

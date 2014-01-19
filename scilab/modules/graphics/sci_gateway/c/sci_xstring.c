@@ -30,6 +30,7 @@
 
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
+#include "createGraphicObject.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xstring(char *fname, unsigned long fname_len)
@@ -55,6 +56,7 @@ int sci_xstring(char *fname, unsigned long fname_len)
     long hdlstr = 0;
     int nbElement = 0, i = 0;
     BOOL isboxed = FALSE;
+    int iCurrentSubWin = 0;
 
     CheckInputArgument(pvApiCtx, 3, 5);
 
@@ -202,7 +204,7 @@ int sci_xstring(char *fname, unsigned long fname_len)
         isboxed = (*l5 != 0);
     }
 
-    getOrCreateDefaultSubwin();
+    iCurrentSubWin = getOrCreateDefaultSubwin();
 
     if (nbElement == 1)
     {
@@ -245,7 +247,7 @@ int sci_xstring(char *fname, unsigned long fname_len)
          * To be modified
          */
         {
-            int o = ConstructCompoundSeq(nbElement);
+            int o = createCompoundSeq(iCurrentSubWin, nbElement);
         }
     }
 

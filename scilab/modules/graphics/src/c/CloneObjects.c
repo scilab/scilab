@@ -33,126 +33,9 @@
 #include "Scierror.h"
 #include "BasicAlgos.h"
 
-#include "createGraphicObject.h" /* cloneGraphicObject */
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-
-/*--------------------------------------------------------------------------*/
-/*
- * Copies the ContouredObject properties from the source object to the destination object
- * This code ought to be moved into the Java Model, either in the relevant
- * constructor (ContouredObject) or into an initialization function.
- */
-int cloneGraphicContext(int iSource, int iDest)
-{
-    double dblTmp = 0.0;
-    double *pdblTmp = &dblTmp;
-    int iTmp = 0;
-    int *piTmp = &iTmp;
-
-    int lineMode = 0;
-    int foreground = 0;
-    int lineStyle = 0;
-    int background = 0;
-    int markForeground = 0;
-    int markBackground = 0;
-    int markStyle = 0;
-    int markSize = 0;
-    int markSizeUnit = 0;
-    double lineThickness = 0.;
-
-    /*
-     * All these properties are passed by value thus do not care to release them
-     * and do not call releaseGraphicObjectProperty on purpose.
-     */
-
-    getGraphicObjectProperty(iSource, __GO_LINE_MODE__, jni_bool, (void **)&piTmp);
-    lineMode = iTmp;
-    getGraphicObjectProperty(iSource, __GO_LINE_COLOR__, jni_int, (void **)&piTmp);
-    foreground = iTmp;
-    getGraphicObjectProperty(iSource, __GO_LINE_THICKNESS__, jni_double, (void **)&pdblTmp);
-    lineThickness = dblTmp;
-    getGraphicObjectProperty(iSource, __GO_LINE_STYLE__, jni_int, (void **)&piTmp);
-    lineStyle = iTmp;
-
-    /*
-     * Commented out since there is a confusion between Axes' FILLED property
-     * and the FILL_MODE ContouredObject property
-     * To be corrected
-     */
-#if 0
-    tmp = (int*) setGraphicObjectProperty(pobj->UID, __GO_FILL_MODE__, &fillMode, jni_bool, 1);
-    fillMode = *tmp;
-#endif
-
-    getGraphicObjectProperty(iSource, __GO_BACKGROUND__, jni_int, (void **)&piTmp);
-    background = iTmp;
-
-    getGraphicObjectProperty(iSource, __GO_MARK_FOREGROUND__, jni_int, (void **)&piTmp);
-    markForeground = iTmp;
-    getGraphicObjectProperty(iSource, __GO_MARK_BACKGROUND__, jni_int, (void **)&piTmp);
-    markBackground = iTmp;
-    getGraphicObjectProperty(iSource, __GO_MARK_STYLE__, jni_int, (void **)&piTmp);
-    markStyle = iTmp;
-    getGraphicObjectProperty(iSource, __GO_MARK_SIZE__, jni_int, (void **)&piTmp);
-    markSize = iTmp;
-    getGraphicObjectProperty(iSource, __GO_MARK_SIZE_UNIT__, jni_int, (void **)&piTmp);
-    markSizeUnit = iTmp;
-
-    setGraphicObjectProperty(iDest, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
-    setGraphicObjectProperty(iDest, __GO_LINE_COLOR__, &foreground, jni_int, 1);
-    setGraphicObjectProperty(iDest, __GO_LINE_THICKNESS__, &lineThickness, jni_double, 1);
-    setGraphicObjectProperty(iDest, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
-
-    /* Commented out due to the confusion between Axes' FILLED and the FILL_MODE Contoured property */
-#if 0
-    setGraphicObjectProperty(iDest, __GO_FILL_MODE__, &fillMode, jni_bool, 1);
-#endif
-
-    setGraphicObjectProperty(iDest, __GO_BACKGROUND__, &background, jni_int, 1);
-
-    setGraphicObjectProperty(iDest, __GO_MARK_FOREGROUND__, &markForeground, jni_int, 1);
-    setGraphicObjectProperty(iDest, __GO_MARK_BACKGROUND__, &markBackground, jni_int, 1);
-    setGraphicObjectProperty(iDest, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
-    setGraphicObjectProperty(iDest, __GO_MARK_SIZE__, &markSize, jni_int, 1);
-    setGraphicObjectProperty(iDest, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
-
-    return 0;
-}
-/*--------------------------------------------------------------------------*/
-int cloneFontContext(int iSource, int iDest)
-{
-    double dblTmp = 0.0;
-    double *pdblTmp = &dblTmp;
-    double fontSize = 0.;
-    int fontColor = 0;
-    int fontStyle = 0;
-    int fontFractional = 0;
-    int iTmp = 0;
-    int *piTmp = &iTmp;
-
-    /*
-     * All these properties are passed by value thus do not care to release them
-     * and do not call releaseGraphicObjectProperty on purpose.
-     */
-
-    getGraphicObjectProperty(iSource, __GO_FONT_COLOR__, jni_int, (void **)&piTmp);
-    fontColor = iTmp;
-    getGraphicObjectProperty(iSource, __GO_FONT_STYLE__, jni_int, (void **)&piTmp);
-    fontStyle = iTmp;
-    getGraphicObjectProperty(iSource, __GO_FONT_SIZE__, jni_double, (void **)&pdblTmp);
-    fontSize = dblTmp;
-    getGraphicObjectProperty(iSource, __GO_FONT_FRACTIONAL__, jni_bool, (void **)&piTmp);
-    fontFractional = iTmp;
-
-    setGraphicObjectProperty(iDest, __GO_FONT_COLOR__, &fontColor, jni_int, 1);
-    setGraphicObjectProperty(iDest, __GO_FONT_STYLE__, &fontStyle, jni_int, 1);
-    setGraphicObjectProperty(iDest, __GO_FONT_SIZE__, &fontSize, jni_double, 1);
-    setGraphicObjectProperty(iDest, __GO_FONT_FRACTIONAL__, &fontFractional, jni_bool, 1);
-
-    return 0;
-}
 
 int clonePolyline(int iSource)
 {
@@ -226,9 +109,9 @@ int clonePolyline(int iSource)
     getGraphicObjectProperty(iSource, __GO_INTERP_COLOR_MODE__, jni_bool, (void **)&pTmp);
     interpShaded = tmp;
 
-    iClonedPolylineUID = allocatePolyline(iParentAxes, dataX, dataY, dataZ, closed, nPoints, polylineStyle,
-                                          &foreground, &background, &markStyle, &markForeground, &markBackground,
-                                          lineMode, fillMode, markMode, interpShaded);
+    iClonedPolylineUID = ConstructPolyline(iParentAxes, dataX, dataY, dataZ, closed, nPoints, polylineStyle,
+                                           &foreground, &background, &markStyle, &markForeground, &markBackground,
+                                           lineMode, fillMode, markMode, interpShaded);
 
     /* These properties must be additionally set as this is not done by allocatePolyline */
     setGraphicObjectProperty(iClonedPolylineUID, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);

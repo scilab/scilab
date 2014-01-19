@@ -29,6 +29,7 @@
 #include "Interaction.h"
 #include "FigureList.h"
 #include "CurrentFigure.h"
+#include "createGraphicObject.h"
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"

@@ -27,6 +27,7 @@
 #include "Scierror.h"
 #include "stricmp.h"
 #include "CreateUimenu.h"
+#include "createGraphicObject.h"
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"

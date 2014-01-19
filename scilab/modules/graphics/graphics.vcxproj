@@ -378,7 +378,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="sci_gateway\c\gw_graphics.c" />
     <ClCompile Include="src\c\InitObjects.c" />
     <ClCompile Include="src\c\Interaction.c" />
-    <ClCompile Include="src\c\Light.c" />
     <ClCompile Include="src\c\loadTextRenderingAPI.c" />
     <ClCompile Include="src\c\math_graphics.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MinSpace</Optimization>

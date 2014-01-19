@@ -14,6 +14,7 @@
 #define __CREATEGRAPHICOBJECT_H__
 
 #include "dynlib_graphic_objects.h"
+#include "BOOL.h"
 
 /*
 ** Ask Controller to create a graphic object
@@ -39,6 +40,34 @@ GRAPHIC_OBJECTS_IMPEXP int createDataObject(int iId, int _iType);
 */
 GRAPHIC_OBJECTS_IMPEXP void buildFigureMenuBar(int iFigureId);
 
-GRAPHIC_OBJECTS_IMPEXP int constructRectangles(int iParentsubwinUID, double x, double y, double height, double width, int foreground, int background, int isfilled, int isline);
+GRAPHIC_OBJECTS_IMPEXP int cloneGraphicContext(int iSourceIdentifier, int iDestIdentifier);
+GRAPHIC_OBJECTS_IMPEXP int cloneFontContext(int iSourceIdentifier, int iDestIdentifier);
+
+GRAPHIC_OBJECTS_IMPEXP BOOL isAxesRedrawing(int iSubWin);
+GRAPHIC_OBJECTS_IMPEXP void cloneMenus(int iModel, int iNewParent);
+GRAPHIC_OBJECTS_IMPEXP int cloneAxesModel(int iParent);
+
+GRAPHIC_OBJECTS_IMPEXP int createHiddenLabel(int iParent);
+GRAPHIC_OBJECTS_IMPEXP int createLabel(int iParent, int type);
+GRAPHIC_OBJECTS_IMPEXP int createNewFigureWithAxes();
+GRAPHIC_OBJECTS_IMPEXP int createSubWin(int iParent);
+GRAPHIC_OBJECTS_IMPEXP int createText(int iParentsubwinUID, char** text, int nbRow, int nbCol, double x, double y, BOOL autoSize, double* userSize, int  centerPos, int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, int align);
+GRAPHIC_OBJECTS_IMPEXP int createRect(int iParentsubwinUID, double x, double y, double height, double width, int foreground, int background, int isfilled, int isline);
+GRAPHIC_OBJECTS_IMPEXP int createArc(int parent, double x, double y, double h, double w, double start, double end, int* foreground, int* background, BOOL filled, BOOL line);
+GRAPHIC_OBJECTS_IMPEXP int createAxis(int parent, int dir, int tics, double* vx, int nx, double* vy, int ny, int subint, char* format, int fontSize, int textColor, int ticsColor, BOOL seg);
+GRAPHIC_OBJECTS_IMPEXP int createCompound(int parent, int* children, int childrenCount);
+GRAPHIC_OBJECTS_IMPEXP int createCompoundSeq(int parent, int childrenCount);
+GRAPHIC_OBJECTS_IMPEXP int createFec(int parent, double* zminmax, int zminmaxsize, int* colminmax, int colminmaxSize, int* colout, int coloutSize, BOOL with_mesh);
+GRAPHIC_OBJECTS_IMPEXP int createGrayplot(int parent, int type, double* pvecx, int pvecxSize, int n1, int n2);
+GRAPHIC_OBJECTS_IMPEXP int createPolyline(int parent, BOOL closed, int plot, int *foreground, int* background, int backgroundSize,
+        int* mark_style, int* mark_foreground, int* mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterp);
+GRAPHIC_OBJECTS_IMPEXP int createLegend(int parent, char** text, int iTextSize, int* handles, int iHandlesSize);
+GRAPHIC_OBJECTS_IMPEXP int createSegs(int parent, double* vx, int vxSize, double* vy, int vySize, double* vz, int vzSize, int* style, int styleSize, double arsize);
+GRAPHIC_OBJECTS_IMPEXP int createChamp(int parent, double* vx, int vxSize, double* vy, int vySize, double* vfx, int vfxSize, double* vfy, int vfySize, double arsize, BOOL typeofchamp);
+GRAPHIC_OBJECTS_IMPEXP int createSurface(int parent, int typeof3d, int colorFlag, int colorMode);
+GRAPHIC_OBJECTS_IMPEXP int createLight(int parent, int type, BOOL visible, double* pos, double* dir, double* ambient, double* diffuse, double* specular);
+
+GRAPHIC_OBJECTS_IMPEXP void initSubWinTo3d(int subwin, char* legend, int* flag, double alpha, double theta,
+        double* ebox, double* x, int xSize, double* y, int ySize, double* z, int zSize);
 
 #endif /* !__CREATEGRAPHICOBJECT_H__ */

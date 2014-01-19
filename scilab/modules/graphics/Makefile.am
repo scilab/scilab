@@ -347,9 +347,7 @@ src/c/getHandleProperty/set_specular_color_property.c \
 src/c/getHandleProperty/set_use_color_material_property.c \
 src/c/getHandleProperty/set_material_shininess_property.c \
 src/c/getHandleProperty/set_light_type_property.c \
-src/c/getHandleProperty/set_direction_property.c \
-src/c/Light.c
-
+src/c/getHandleProperty/set_direction_property.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
 sci_gateway/c/sci_grayplot.c \

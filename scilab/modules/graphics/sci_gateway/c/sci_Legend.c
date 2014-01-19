@@ -54,7 +54,7 @@ int sci_Legend(char * fname, unsigned long fname_len)
     long handlesvalue = 0;
     int i = 0;
     int iObjUID = 0;
-    long long *tabofhandles = NULL;
+    int* tabofhandles = NULL;
     int iFigureUID = 0;
     int* piFigureUID = &iFigureUID;
     int iSubwinUID;
@@ -145,7 +145,7 @@ int sci_Legend(char * fname, unsigned long fname_len)
         location = propertyNameToLegendPlace(DEF_LEGEND_LOCATION);
     }
 
-    tabofhandles = (long long *)MALLOC(n * sizeof(long long));
+    tabofhandles = (int*)MALLOC(n * sizeof(int));
     if (tabofhandles == NULL)
     {
         freeAllocatedMatrixOfString(m2, n2, Str);
@@ -201,7 +201,7 @@ int sci_Legend(char * fname, unsigned long fname_len)
             return 1;
         }
 
-        tabofhandles[i] = handlesvalue;
+        tabofhandles[i] = iObjUID;
     }
 
     /* Create the legend */

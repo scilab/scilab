@@ -32,6 +32,7 @@
 #include "Plot2d.h"
 #include "Scierror.h"
 
+#include "createGraphicObject.h"
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -115,8 +116,7 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
         style[i] = i;
     }
 
-    iNewSegsUID = ConstructSegs(iSubwinUID, type, x, y, NULL, *n1, *n2, 0, fx, fy, flag,
-                                style, arsize1, colored, typeofchamp);
+    iNewSegsUID = createChamp(iSubwinUID, x, *n1, y, *n2, fx, *n1 * *n2, fy, *n1 * *n2, arsize1, typeofchamp != 0);
 
     if (iNewSegsUID == 0)
     {
@@ -136,10 +136,6 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
         FREE(style);
         style = NULL;
     }
-
-    /* Force clipping to CLIPGRF (1) */
-    clipState = 1;
-    setGraphicObjectProperty(iNewSegsUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     /* Get segs bounding box */
     getGraphicObjectProperty(iNewSegsUID, __GO_BOUNDING_BOX__, jni_double_vector, (void **)&boundingBox);

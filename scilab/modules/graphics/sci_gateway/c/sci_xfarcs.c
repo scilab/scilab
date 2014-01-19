@@ -27,6 +27,7 @@
 
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
+#include "createGraphicObject.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xfarcs(char *fname, unsigned long fname_len)
@@ -42,6 +43,7 @@ int sci_xfarcs(char *fname, unsigned long fname_len)
     int m2 = 0, n2 = 0;
 
     long hdl = 0;
+    int iCurrentSubWin = 0;
 
     int i = 0;
 
@@ -121,7 +123,7 @@ int sci_xfarcs(char *fname, unsigned long fname_len)
         }
     }
 
-    getOrCreateDefaultSubwin();
+    iCurrentSubWin = getOrCreateDefaultSubwin();
 
     for (i = 0; i < n1; ++i)
     {
@@ -133,7 +135,7 @@ int sci_xfarcs(char *fname, unsigned long fname_len)
 
     /** Construct Compound and make it current object **/
     {
-        int o = ConstructCompoundSeq(n1);
+        int o = createCompoundSeq(iCurrentSubWin, n1);
         setCurrentObject(o);
     }
 

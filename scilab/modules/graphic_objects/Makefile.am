@@ -30,7 +30,8 @@ BUILT_SOURCES = 	includes/graphicObjectsProperties.h
 #src/java/org/scilab/modules/graphic_objects/graphicObject/GraphicObjectProperties.java
 
 GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp \
-                              src/jni/GraphicObjectBuilder.cpp
+                              src/jni/GraphicObjectBuilder.cpp \
+                              src/jni/Builder.cpp                              
 
 GRAPHIC_OBJECTS_C_SOURCES = src/jni/DataLoader_wrap.c \
 							src/jni/ScilabNativeView_wrap.c \
@@ -78,7 +79,8 @@ GRAPHIC_OBJECTS_CXX_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/Texture.cpp \
 								src/cpp/NormalGenerator.cpp
 
-GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
+GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml \
+                src/jni/builder.giws.xml
 
 if GIWS
 BUILT_SOURCES += giws

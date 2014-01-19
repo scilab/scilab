@@ -255,6 +255,7 @@
     <ClCompile Include="..\cpp\ScilabView.cpp" />
     <ClCompile Include="..\cpp\Texture.cpp" />
     <ClCompile Include="..\cpp\Triangulator.cpp" />
+    <ClCompile Include="..\jni\Builder.cpp" />
     <ClCompile Include="..\jni\CallGraphicController.cpp" />
     <ClCompile Include="..\cpp\ColorComputer.cpp" />
     <ClCompile Include="..\cpp\createGraphicObject.cpp" />
@@ -302,6 +303,7 @@
     <ClInclude Include="..\..\includes\setGraphicObjectProperty.h" />
     <ClInclude Include="..\..\includes\Texture.hxx" />
     <ClInclude Include="..\..\includes\Triangulator.hxx" />
+    <ClInclude Include="..\jni\Builder.hxx" />
     <ClInclude Include="..\jni\CallGraphicController.hxx" />
     <ClInclude Include="..\..\includes\createGraphicObject.h" />
     <ClInclude Include="..\..\includes\Data3D.hxx" />

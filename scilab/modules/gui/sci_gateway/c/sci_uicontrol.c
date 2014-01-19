@@ -33,6 +33,7 @@
 #include "CurrentFigure.h"
 #include "BuildObjects.h"
 #include "api_scilab.h"
+#include "createGraphicObject.h"
 
 /* DO NOT CHANGE ORDER !! */
 static const char* propertiesNames[] =
@@ -532,8 +533,8 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
     }
 
     if (propertiesValuesIndices != NULL
-        && (propertiesValuesIndices[14] == NOT_FOUND &&
-            (propertiesValuesIndices[7] != NOT_FOUND || propertiesValuesIndices[8] != NOT_FOUND)))    /* SliderStep property not set */
+            && (propertiesValuesIndices[14] == NOT_FOUND &&
+                (propertiesValuesIndices[7] != NOT_FOUND || propertiesValuesIndices[8] != NOT_FOUND)))    /* SliderStep property not set */
     {
         /* Set SliderStep property to [1/100*(Max-Min) 1/10*(Max-Min)] */
         double maxValue = 0;

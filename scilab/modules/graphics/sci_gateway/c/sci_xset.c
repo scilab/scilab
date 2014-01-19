@@ -30,6 +30,7 @@
 #include "Scierror.h"
 #include "HandleManagement.h"
 
+#include "createGraphicObject.h"
 #include "CurrentObject.h"
 #include "BuildObjects.h"
 #include "graphicObjectProperties.h"

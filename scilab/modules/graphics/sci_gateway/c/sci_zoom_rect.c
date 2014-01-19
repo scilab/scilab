@@ -35,6 +35,7 @@
 
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
+#include "createGraphicObject.h"
 
 /*--------------------------------------------------------------------------*/
 static int getZoomedObject(const char * fname);

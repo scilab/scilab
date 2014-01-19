@@ -26,6 +26,7 @@
 #include "localization.h"
 #include "MALLOC.h"
 
+#include "createGraphicObject.h"
 #include "BuildObjects.h"
 #include "HandleManagement.h"
 #include "CurrentFigure.h"

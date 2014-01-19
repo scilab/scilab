@@ -25,6 +25,7 @@
 #include "BuildObjects.h"
 #include "CurrentFigure.h"
 
+#include "createGraphicObject.h"
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
 
