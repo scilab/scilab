@@ -10,6 +10,9 @@
 function s=%st_e(varargin)
     //extraction from struct
     w=varargin($);
+    if type(varargin(1))==4 then
+        varargin(1)=find(varargin(1)); // Bug #7244
+    end
     if type(varargin(1))==15  //x(i,j,k).f or x.f(i,j,k)
         index=varargin($-1);
         if type(index($))==10 then  //x(i,j,k).f
@@ -95,8 +98,10 @@ function s=%st_e(varargin)
         ww=getfield(k,w);
         if type(ww)~=15 then ww=list(ww);end
         //S(2,3).f1=12  -> k=3;I=6;ww(I)=12;s=mlist(["st","dims","f1"],int32([1;1]));
-        if prod(dims)==1
-        setfield(k,ww(I),s); else setfield(k,list(ww(I)),s);
+        if prod(dims)==1 then
+            setfield(k,ww(I),s);
+        elseif prod(dims)>1 then
+            setfield(k,list(ww(I)),s);
         end
     end
 endfunction
