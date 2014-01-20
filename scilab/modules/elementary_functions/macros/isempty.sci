@@ -42,17 +42,21 @@ function answ = isempty(m)
 
     case 16
         // typed list
-        answ = %t;
-        for i=1:size(m),
-            clear __element__;
-            __element__ = m(i);
-            if isdef("__element__") then
-                r = isempty(m(i));
-            else
-                r = %F;
-            end
-            answ = answ & r;
-        end;
+        if typeof(m) == "rational" then
+            answ = size(m, "*") == 0;
+        else
+            answ = %t;
+            for i=1:size(m),
+                clear __element__;
+                __element__ = m(i);
+                if isdef("__element__") then
+                    r = isempty(m(i));
+                else
+                    r = %F;
+                end
+                answ = answ & r;
+            end;
+        end
 
     case 17
         // mlist

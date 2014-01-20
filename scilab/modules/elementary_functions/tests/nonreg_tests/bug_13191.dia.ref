@@ -1,0 +1,22 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2014 - Scilab Enterprises - Adeline CARNIS
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+//
+// <-- Non-regression test for bug 13191 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=13191
+//
+// <-- Short Description -->
+// isempty(rational) returned an error message.
+A = [1/%s 1/%s];
+assert_checkfalse(isempty(A));
+A = A';
+assert_checkfalse(isempty(A));
+A = rlist([], []);
+assert_checktrue(isempty(A));
