@@ -131,7 +131,7 @@ function [] = bode(varargin)
     e = gce();
 
     for i=1:size(e.children, "*")
-        datatipInitStruct(e.children(i), "formatfunction", "formatBodeMagTip");
+        e.children(i).display_function = "formatBodeMagTip"
     end
 
     if discr & fmax <> [] & max(frq) < fmax then
@@ -157,7 +157,7 @@ function [] = bode(varargin)
     ephi = gce();
     // Set datatips info
     for i=1:size(ephi.children, "*")
-        datatipInitStruct(ephi.children(i), "formatfunction", "formatBodePhaseTip");
+        ephi.children(i).display_function = "formatBodePhaseTip";
     end
 
     if discr & fmax <> [] & max(frq) < fmax then
@@ -179,18 +179,6 @@ function [] = bode(varargin)
         bode_Hz2rad_2(fig);
     end
 
-endfunction
-
-function str = formatBodeMagTip(curve, pt, index)
-    // This function is called by the datatips mechanism to format the tip
-    // string for the magnitude bode curves
-    str = msprintf("%.4g"+_("Hz")+"\n%.4g"+_("dB"), pt(1), pt(2));
-endfunction
-
-function str = formatBodePhaseTip(curve, pt, index)
-    // This function is called by the datatip mechanism to format the tip
-    // string for the bode phase curves
-    str = msprintf("%.4g"+_("Hz")+"\n %.4g"+"°", pt(1), pt(2));
 endfunction
 
 function [] = bode_Hz2rad_2(h)

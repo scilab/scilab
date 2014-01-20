@@ -109,7 +109,8 @@ function []=zgrid(varargin)
         r=[raci(:,l);conj(raci($:-1:1,l))]
         xpoly(real(r),imag(r))
         ec=gce();
-        datatipInitStruct(ec,"formatfunction","formatZgridDampingTip","freq",zeta(l))
+        ec.display_function = "formatZgridDampingTip";
+        ec.display_function_data = zeta(l);
         ec.foreground=colors(1),
         ec.line_style=7;
         ec.clip_state="clipgrf";
@@ -128,7 +129,8 @@ function []=zgrid(varargin)
         z=[zw(:,l);zw($:-1:1,l)];
         xpoly(real(z),imag(z))
         ec=gce();
-        datatipInitStruct(ec,"formatfunction","formatZgridFreqTip","freq",wn(l))
+        ec.display_function = "formatZgridFreqTip";
+        ec.display_function_data = wn(l);
         ec.foreground=colors(2),
         ec.line_style=7;
         ec.clip_state="clipgrf";
@@ -140,7 +142,8 @@ function []=zgrid(varargin)
         chart_handles=[glue([es ec]) chart_handles]
         xpoly(real(z),-imag(z))
         ec=gce();
-        datatipInitStruct(ec,"formatfunction","formatZgridFreqTip","freq",wn(l))
+        ec.display_function = "formatZgridFreqTip";
+        ec.display_function_data = wn(l);
         ec.foreground=colors(2),
         ec.line_style=7;
         ec.clip_state="clipgrf";
@@ -160,16 +163,4 @@ function []=zgrid(varargin)
 
     fig.immediate_drawing = immediate_drawing;
 
-endfunction
-function str=formatZgridFreqTip(curve,pt,index)
-    //This function is called by the datatip mechanism to format the tip
-    //string for the zgrid chart iso natural frequency curves.
-    ud=datatipGetStruct(curve);
-    str=msprintf("%.2gπ/dt rad/sec",ud.freq);
-endfunction
-function str=formatZgridDampingTip(curve,pt,index)
-    //This function is called by the datatip mechanism to format the tip
-    //string for the zgrid chart iso damping factor curves.
-    ud=datatipGetStruct(curve);
-    str=msprintf("%.2g\%",ud.damping*100);
 endfunction

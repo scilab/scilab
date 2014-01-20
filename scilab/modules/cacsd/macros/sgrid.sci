@@ -114,7 +114,8 @@ function sgrid(varargin)
     for i=1:size(wn,"*")
         xpoly(wn(i)*cos(t),wn(i)*sin(t))
         ec=gce();
-        datatipInitStruct(ec,"formatfunction","formatSgridFreqTip","freq",wn(i))
+        ec.display_function = "formatSgridFreqTip";
+        ec.display_function_data = wn(i);
 
         ec.foreground=colors(1),
         ec.line_style=7;
@@ -155,8 +156,8 @@ function sgrid(varargin)
 
         xpoly([0 -r*ca],[0 -r*sa])
         ec=gce();
-        datatipInitStruct(ec,"formatfunction","formatSgridDampingTip",..
-        "damping",zeta(i),"interpolate",%t)
+        ec.display_function = "formatSgridDampingTip";
+        ec.display_function_data = zeta(i);
 
         ec.foreground=colors(2),
         ec.line_style=7;
@@ -175,8 +176,8 @@ function sgrid(varargin)
         r=min(ymax/sa,-xmin/ca)
         xpoly([0 -r*ca],[0 r*sa])
         ec=gce();
-        datatipInitStruct(ec,"formatfunction","formatSgridDampingTip",..
-        "damping",zeta(i),"interpolate",%t)
+        ec.display_function = "formatSgridDampingTip";
+        ec.display_function_data = zeta(i);
 
         ec.foreground=colors(2),
         ec.line_style=7;
@@ -199,16 +200,4 @@ function sgrid(varargin)
     end
     fig.immediate_drawing=immediate_drawing;
     show_window()
-endfunction
-function str=formatSgridFreqTip(curve,pt,index)
-    //This function is called by the datatip mechanism to format the tip
-    //string for the sgrid chart iso natural frequency curves.
-    ud=datatipGetStruct(curve);
-    str=msprintf("%.2g"+_("rad/sec"),ud.freq);
-endfunction
-function str=formatSgridDampingTip(curve,pt,index)
-    //This function is called by the datatip mechanism to format the tip
-    //string for the sgrid chart iso damping factor curves.
-    ud=datatipGetStruct(curve);
-    str=msprintf("%.2g\%",ud.damping*100);
 endfunction

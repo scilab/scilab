@@ -98,15 +98,10 @@ function []=phaseplot(varargin)
         e=gce();
     end
     for i=1:size(e.children,"*")
-        datatipInitStruct(e.children(i),"formatfunction","formatPhaseplotTip")
+        e.children(i).display_function = "formatPhaseplotTip";
     end
     if comments<>[] then
         legend(comments)
     end
     fig.immediate_drawing=id;
-endfunction
-function str=formatPhaseplotTip(curve,pt,index)
-    //this function is called by the datatips mechanism to format the tip
-    //string for the magnitude bode curves
-    str=msprintf("%.4g"+_("Hz")+"\n%.4g"+"°", pt(1),pt(2))
 endfunction
