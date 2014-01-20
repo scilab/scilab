@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- TEST WITH GRAPHIC -->
+// <-- ENGLISH IMPOSED -->
 // <-- Non-regression test for bug 9269 -->
 //
 // <-- Bugzilla URL -->
@@ -38,6 +39,7 @@ y = rand(10,7);
 scf(1);
 clf;
 plot(x, y);
+WARNING: Transposing row vector X to get compatible dimensions
 NameList = ['aze' 'rty' 'uio' 'qsd' 'fgh' 'jkl' 'wxc'];
 MyOrder = [4 1 5 3]; // My selection in My order
 ha = gca();          // handle on axis
