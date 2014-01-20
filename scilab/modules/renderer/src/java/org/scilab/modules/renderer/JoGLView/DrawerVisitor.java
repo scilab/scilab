@@ -226,6 +226,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     }
 
     /**
+     * @return the LegendDrawer
+     */
+    public LegendDrawer getLegendDrawer() {
+        return legendDrawer;
+    }
+
+    /**
      * Mark manager getter.
      * @return the mark manager.
      */
@@ -1009,7 +1016,22 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 }
             }
 
-            if (object instanceof Figure) {
+            if (object instanceof Label || object instanceof Legend) {
+                GraphicObject parent = GraphicController.getController().getObjectFromId(object.getParent());
+                if (parent instanceof Axes) {
+                    Axes axes = (Axes) parent;
+                    if (axes.getXAxisLabel().equals(id) ||
+                            axes.getYAxisLabel().equals(id) ||
+                            axes.getZAxisLabel().equals(id) ||
+                            axes.getTitle().equals(id)) {
+                        labelManager.update(id, property);
+                        axesDrawer.computeMargins(axes);
+                    } else if (object instanceof Legend && property == GraphicObjectProperties.__GO_LEGEND_LOCATION__) {
+                        legendDrawer.update(id, property);
+                        axesDrawer.computeMargins(axes);
+                    }
+                }
+            } else if (object instanceof Figure) {
                 if (property == GraphicObjectProperties.__GO_SIZE__ || property == GraphicObjectProperties.__GO_AXES_SIZE__ || property == GraphicObjectProperties.__GO_CHILDREN__) {
                     Figure fig = (Figure) object;
                     for (Integer gid : fig.getChildren()) {

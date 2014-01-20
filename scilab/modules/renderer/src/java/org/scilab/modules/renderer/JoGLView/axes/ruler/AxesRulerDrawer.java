@@ -57,7 +57,7 @@ public class AxesRulerDrawer {
     private static final double LOG_MINIMAL_SUB_TICKS_DISTANCE = 2;
 
     /** Ticks length in pixels. */
-    private static final int TICKS_LENGTH = 6;
+    public static final int TICKS_LENGTH = 6;
 
     /** Sub-ticks length in pixels. */
     private static final int SUB_TICKS_LENGTH = 3;
@@ -70,6 +70,10 @@ public class AxesRulerDrawer {
 
     public AxesRulerDrawer(Canvas canvas) {
         this.rulerDrawerManager = new RulerDrawerManager(canvas.getTextureManager());
+    }
+
+    public RulerDrawer getRulerDrawer(Axes axes, int axis) {
+        return rulerDrawerManager.get(axes)[axis];
     }
 
     /**

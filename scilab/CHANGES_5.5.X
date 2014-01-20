@@ -36,6 +36,8 @@ Obsolete & Removed Functions
 Scilab Bug Fixes
 ================
 
+* Bug #1751 fixed - Margins were not computed according to contents.
+
 * Bug #2067 fixed - Scilab crashed when plot was called with a large numerical value.
 
 * Bug #4401 fixed - isnum did not recognize all constants or some complex numbers.

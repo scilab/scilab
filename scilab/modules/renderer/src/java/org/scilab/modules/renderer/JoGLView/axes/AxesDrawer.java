@@ -24,6 +24,7 @@ import org.scilab.forge.scirenderer.tranformations.TransformationStack;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.forge.scirenderer.tranformations.Vector4d;
 import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.axes.AxisProperty;
 import org.scilab.modules.graphic_objects.axes.Box;
 import org.scilab.modules.graphic_objects.axes.Camera.ViewType;
 import org.scilab.modules.graphic_objects.contouredObject.Line;
@@ -32,6 +33,8 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClipStateType;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
+import org.scilab.modules.graphic_objects.legend.Legend;
+import org.scilab.modules.graphic_objects.legend.Legend.LegendLocation;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.axes.ruler.AxesRulerDrawer;
 import org.scilab.modules.renderer.JoGLView.label.AxisLabelPositioner;
@@ -39,6 +42,7 @@ import org.scilab.modules.renderer.JoGLView.label.LabelManager;
 import org.scilab.modules.renderer.JoGLView.label.LabelPositioner;
 import org.scilab.modules.renderer.JoGLView.label.TitlePositioner;
 import org.scilab.modules.renderer.JoGLView.label.YAxisLabelPositioner;
+import org.scilab.modules.renderer.JoGLView.legend.LegendDrawer;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
 
@@ -152,6 +156,9 @@ public class AxesDrawer {
             Integer[] size = visitor.getFigure().getAxesSize();
             double w = ((double) (int) size[0]) / 2;
             double h = ((double) (int) size[1]) / 2;
+
+            //computeMargins(axes);
+
             Transformation windowTrans = TransformationFactory.getAffineTransformation(new Vector3d(w, h, 1), new Vector3d(w, h, 0));
             Transformation zoneProjection = computeZoneProjection(axes);
             Transformation transformation = computeBoxTransformation(axes, new Dimension(size[0], size[1]), false);
@@ -160,6 +167,132 @@ public class AxesDrawer {
             rulerDrawer.computeRulers(axes, this, colorMap, transformation, canvasTrans);
         } catch (DegenerateMatrixException e) {
 
+        }
+    }
+
+    public void computeMargins(Axes axes) {
+        if (axes.getViewAsEnum() == ViewType.VIEW_2D) {
+            ColorMap colorMap = visitor.getColorMap();
+            Dimension[] marginLabels = labelManager.getLabelsSize(colorMap, axes, this);
+            Integer[] size = visitor.getFigure().getAxesSize();
+            // [x_left, y_up, w, h]
+            Double[] axesBounds = axes.getAxesBounds();
+            // [l, r, t, b]
+            Double[] margins = axes.getMargins();
+            // m is a copy of margins
+            Double[] mt = new Double[] { 0., 0., 0., 0. };
+            Double[] ml = new Double[] { 0., 0., 0., 0. };
+            Double[] ma = new Double[] { 0., 0., 0., 0. };
+            Double[] m = new Double[] { 0., 0., 0., 0. };
+            AxisProperty.AxisLocation xloc = axes.getXAxis().getAxisLocation();
+            AxisProperty.AxisLocation yloc = axes.getYAxis().getAxisLocation();
+            final double DEFAULT_MARGIN = 0.125;
+
+            // We compute the adapted margins for axes titles.
+            if (marginLabels[0].height != 0 || marginLabels[2].height != 0 || marginLabels[1].width != 0) {
+                if (marginLabels[2].height != 0) {
+                    final double th = (marginLabels[2].height + 2 + TitlePositioner.TITLEOFFSET) / (size[1] * axesBounds[3]);
+                    mt[2] = th;
+                }
+
+                if (marginLabels[0].height != 0 && (xloc == AxisProperty.AxisLocation.BOTTOM || xloc == AxisProperty.AxisLocation.TOP)) {
+                    final double xh = (marginLabels[0].height + 2) / (size[1] * axesBounds[3]);
+                    if (xloc == AxisProperty.AxisLocation.BOTTOM) {
+                        mt[3] = xh;
+                    } else {
+                        mt[2] = xh;
+                    }
+                }
+
+                if (marginLabels[1].width != 0 && (yloc == AxisProperty.AxisLocation.LEFT || yloc == AxisProperty.AxisLocation.RIGHT)) {
+                    final double yh = (marginLabels[1].width + 2) / (size[0] * axesBounds[2]);
+                    if (yloc == AxisProperty.AxisLocation.LEFT) {
+                        mt[0] = yh;
+                    } else {
+                        mt[1] = yh;
+                    }
+                }
+            }
+
+            computeRulers(axes);
+            final double xratio = rulerDrawer.getRulerDrawer(axes, 0).getDistanceRatio();
+            final double yratio = rulerDrawer.getRulerDrawer(axes, 1).getDistanceRatio();
+
+            if (xloc == AxisProperty.AxisLocation.BOTTOM) {
+                ma[3] = (1 - margins[2] - margins[3]) * xratio / 2.;
+            } else if (xloc == AxisProperty.AxisLocation.TOP) {
+                ma[2] = (1 - margins[2] - margins[3]) * xratio / 2.;
+            }
+
+            if (yloc == AxisProperty.AxisLocation.LEFT) {
+                ma[0] = (1 - margins[0] - margins[1]) * yratio / 2.;
+            } else if (yloc == AxisProperty.AxisLocation.RIGHT) {
+                ma[1] = (1 - margins[0] - margins[1]) * yratio / 2.;
+            }
+
+            // Get the legend if any (only one ???)
+            if (axes.getChildren() != null) {
+                for (Integer i : axes.getChildren()) {
+                    GraphicObject child = GraphicController.getController().getObjectFromId(i);
+                    if (child instanceof Legend) {
+                        Legend legend = (Legend) child;
+                        Dimension legDims = visitor.getLegendDrawer().computeDimensions(axes, legend);
+                        if (legDims != null) {
+                            LegendLocation legLoc = legend.getLegendLocationAsEnum();
+                            double C;
+                            /*
+                             * Legends dimension are linearly dependent of margins... so we need to solve an equation
+                             * to find a good value for margins.
+                             * For example:
+                             *  legend.w = texture.w + 3/8 * line.w + line.w
+                             *  where line.w = LINE_WIDTH * ab[2] * (1 - m[0] - m[1]) * size[0];
+                             *  the minimal value for m[1] is the solution of the equation (where unknown is m[1]):
+                             *   legend.w = ab[2] * m[1] * size[0].
+                             */
+                            switch (legLoc) {
+                                case OUT_UPPER_RIGHT:
+                                case OUT_LOWER_RIGHT:
+                                    // 1/8 of LINE_WIDTH is xOffset
+                                    // see legendDims[0] = ... in LegendDrawer::draw
+                                    // we add 2*xoffset to have a little space around the box
+                                    C = LegendDrawer.LINE_WIDTH * (3. / 8. + 1 + 2. / 8.);
+                                    m[0] = Math.max(ma[0] + mt[0], DEFAULT_MARGIN);
+                                    m[1] = Math.max(((legDims.width + 2) / (axesBounds[2] * size[0]) + C * (1 - m[0])) / (1 + C) + ma[1] + mt[1], DEFAULT_MARGIN);
+                                    break;
+                                case OUT_UPPER_LEFT:
+                                case OUT_LOWER_LEFT:
+                                    C = LegendDrawer.LINE_WIDTH * (3. / 8. + 1 + 2. / 8.);
+                                    m[1] = Math.max(ma[1] + mt[1], DEFAULT_MARGIN);
+                                    m[0] = Math.max(((legDims.width + 2) / (axesBounds[2] * size[0]) + C * (1 - m[1])) / (1 + C) + ma[0] + mt[0], DEFAULT_MARGIN);
+                                    break;
+                                case UPPER_CAPTION:
+                                    C = LegendDrawer.Y_OFFSET * (3. + 2.);
+                                    m[3] = Math.max(ma[3] + mt[3], DEFAULT_MARGIN);
+                                    m[2] = Math.max(Math.max(((legDims.height + 2) / (axesBounds[3] * size[1]) + C * (1 - m[3])) / (1 + C), mt[2]) + ma[2], DEFAULT_MARGIN);
+                                    break;
+                                case LOWER_CAPTION:
+                                    C = LegendDrawer.Y_OFFSET * (3. + 2.);
+                                    m[2] = Math.max(ma[2] + mt[2], DEFAULT_MARGIN);
+                                    m[3] = Math.max(Math.max(((legDims.height + 2) / (axesBounds[3] * size[1]) + C * (1 - m[2])) / (1 + C), mt[3]) + ma[3], DEFAULT_MARGIN);
+                                    break;
+                                default:
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+
+            for (int i = 0; i < m.length; i++) {
+                if (m[i] == 0) {
+                    m[i] = Math.max(ma[i] + mt[i], DEFAULT_MARGIN);
+                }
+            }
+
+            if (!m[0].equals(margins[0]) || !m[1].equals(margins[1]) || !m[2].equals(margins[2]) || !m[3].equals(margins[3])) {
+                axes.setMargins(m);
+                computeRulers(axes);
+            }
         }
     }
 

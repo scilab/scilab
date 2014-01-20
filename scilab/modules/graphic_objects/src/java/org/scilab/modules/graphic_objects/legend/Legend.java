@@ -346,5 +346,4 @@ public class Legend extends ClippableTextObject {
     public Integer getType() {
         return GraphicObjectProperties.__GO_LEGEND__;
     }
-
 }
