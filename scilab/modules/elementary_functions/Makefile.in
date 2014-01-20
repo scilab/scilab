@@ -251,9 +251,8 @@ am__objects_4 = src/c/libscielementary_functions_algo_la-finite.lo \
 	src/c/libscielementary_functions_algo_la-qsort-string.lo \
 	src/c/libscielementary_functions_algo_la-IsEqualVar.lo \
 	src/c/libscielementary_functions_algo_la-convertbase.lo
-am__objects_5 = src/fortran/psi.lo src/fortran/wasum.lo \
-	src/fortran/dexpm1.lo src/fortran/wwdiv.lo \
-	src/fortran/wdotcr.lo src/fortran/iset.lo \
+am__objects_5 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
+	src/fortran/wwdiv.lo src/fortran/wdotcr.lo src/fortran/iset.lo \
 	src/fortran/franck.lo src/fortran/dwpowe.lo \
 	src/fortran/rcsort.lo src/fortran/wddiv.lo \
 	src/fortran/lnblnk.lo src/fortran/entier.lo \
@@ -905,7 +904,6 @@ LINPACK_SOURCES = src/fortran/linpack/dgesl.f \
 	src/fortran/linpack/dpofa.f
 
 ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
-src/fortran/psi.f \
 src/fortran/wasum.f \
 src/fortran/dexpm1.f \
 src/fortran/wwdiv.f \
@@ -1619,8 +1617,6 @@ src/c/libscielementary_functions_algo_la-IsEqualVar.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-convertbase.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
-src/fortran/psi.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wasum.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dexpm1.lo: src/fortran/$(am__dirstamp) \

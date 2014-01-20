@@ -16,6 +16,7 @@ src/fortran/dbesig.f \
 src/fortran/dbesjg.f \
 src/fortran/dbeskg.f \
 src/fortran/dbesyg.f \
+src/fortran/psi.f \
 src/fortran/zbesig.f \
 src/fortran/zbesjg.f \
 src/fortran/zbeskg.f \

@@ -91,6 +91,8 @@ Scilab Bug Fixes
 
 * Bug #7570 fixed - The switch criterion on x and y is now explicited in beta() help page.
 
+* Bug #7585 fixed - psi.f moved from "elementary functions" module to "special functions".
+
 * Bug #7593 fixed - stdev now encompasses msd and st_deviation thanks to a new optional input argument.
 
 * Bug #7650 fixed - isempty(tlist(...)) always returned false, even when all defined fields were empty.

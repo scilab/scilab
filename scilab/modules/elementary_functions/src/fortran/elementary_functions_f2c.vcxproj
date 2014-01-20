@@ -357,7 +357,6 @@ cd ..
     <ClCompile Include="nearfloat.c" />
     <ClCompile Include="orthes.c" />
     <ClCompile Include="ortran.c" />
-    <ClCompile Include="psi.c" />
     <ClCompile Include="pythag.c" />
     <ClCompile Include="rat.c" />
     <ClCompile Include="rcopy.c" />
@@ -523,7 +522,6 @@ cd ..
     <f2c_rule Include="nearfloat.f" />
     <f2c_rule Include="orthes.f" />
     <f2c_rule Include="ortran.f" />
-    <f2c_rule Include="psi.f" />
     <f2c_rule Include="pythag.f" />
     <f2c_rule Include="rat.f" />
     <f2c_rule Include="rcopy.f" />

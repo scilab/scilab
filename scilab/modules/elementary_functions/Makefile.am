@@ -136,7 +136,6 @@ LINPACK_SOURCES =    src/fortran/linpack/dgesl.f \
 	src/fortran/linpack/dpofa.f
 
 ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
-src/fortran/psi.f \
 src/fortran/wasum.f \
 src/fortran/dexpm1.f \
 src/fortran/wwdiv.f \

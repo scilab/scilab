@@ -98,6 +98,7 @@ lib /DEF:&quot;$(InputDir)slatec_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:
 		<File RelativePath=".\dbesjg.f"/>
 		<File RelativePath=".\dbeskg.f"/>
 		<File RelativePath=".\dbesyg.f"/>
+		<File RelativePath=".\psi.f"/>
 		<File RelativePath=".\zbesig.f"/>
 		<File RelativePath=".\zbesjg.f"/>
 		<File RelativePath=".\zbeskg.f"/>

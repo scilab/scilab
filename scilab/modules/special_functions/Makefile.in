@@ -166,7 +166,7 @@ libscispecial_functions_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/c/libscispecial_functions_algo_la-zbeshv.lo
 am__objects_2 = src/fortran/dbesig.lo src/fortran/dbesjg.lo \
-	src/fortran/dbeskg.lo src/fortran/dbesyg.lo \
+	src/fortran/dbeskg.lo src/fortran/dbesyg.lo src/fortran/psi.lo \
 	src/fortran/zbesig.lo src/fortran/zbesjg.lo \
 	src/fortran/zbeskg.lo src/fortran/zbesyg.lo
 am__objects_3 = src/cpp/libscispecial_functions_algo_la-faddeeva.lo
@@ -579,6 +579,7 @@ src/fortran/dbesig.f \
 src/fortran/dbesjg.f \
 src/fortran/dbeskg.f \
 src/fortran/dbesyg.f \
+src/fortran/psi.f \
 src/fortran/zbesig.f \
 src/fortran/zbesjg.f \
 src/fortran/zbeskg.f \
@@ -814,6 +815,8 @@ src/fortran/dbesjg.lo: src/fortran/$(am__dirstamp) \
 src/fortran/dbeskg.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dbesyg.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/psi.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/zbesig.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
