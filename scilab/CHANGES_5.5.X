@@ -372,6 +372,8 @@ Scilab Bug Fixes
 
 * Bug #13191 fixed - isempty(rational) returned an error message.
 
+* Bug #13192 fixed - horner returned an error message when the input arguments did not have the same size.
+
 * Bug #13392 fixed - Typo in the CACSD help chapter fixed.
 
 
