@@ -40,7 +40,7 @@ LINEAR_ALGEBRA_IMPEXP int C2F(intslash)(char *fname, unsigned long fname_len);
 LINEAR_ALGEBRA_IMPEXP int C2F(intsvd)(char *fname, unsigned long fname_len);
 LINEAR_ALGEBRA_IMPEXP int C2F(intlsq)(char *fname, unsigned long fname_len);
 LINEAR_ALGEBRA_IMPEXP int C2F(intchol)(char *fname, unsigned long fname_len);
-LINEAR_ALGEBRA_IMPEXP int C2F(inteig) (char *fname, unsigned long fname_len);
+LINEAR_ALGEBRA_IMPEXP int C2F(intspec) (char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 /* used in 'eig' */
 LINEAR_ALGEBRA_IMPEXP int sci_dsyev(char *fname, unsigned long fname_len);

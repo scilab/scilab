@@ -23,7 +23,7 @@ static gw_generic_table Tab[] =
     {C2F(intqr), "qr"},
     {C2F(intsvd), "svd"},
     {C2F(intlsq), "lsq"},
-    {C2F(inteig), "spec"},
+    {C2F(intspec), "spec"},
     {C2F(intinv), "inv"},
     {C2F(intrcond), "rcond"},
     {C2F(intchol), "chol"},

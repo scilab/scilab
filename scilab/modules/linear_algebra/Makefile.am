@@ -74,7 +74,7 @@ sci_gateway/c/sci_balanc.c \
 sci_gateway/c/sci_qr.c \
 sci_gateway/c/sci_schur.c \
 sci_gateway/c/sci_chol.c \
-sci_gateway/c/sci_eig.c \
+sci_gateway/c/sci_spec.c \
 sci_gateway/c/gw_linear_algebra.c \
 sci_gateway/c/sci_inv.c \
 sci_gateway/c/sci_svd.c \

@@ -22,7 +22,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(complexify)(int *num);
 /*--------------------------------------------------------------------------*/
-int C2F(inteig)(char *fname, unsigned long fname_len)
+int C2F(intspec)(char *fname, unsigned long fname_len)
 {
     int *header1, *header2;
     int CmplxA, CmplxB;

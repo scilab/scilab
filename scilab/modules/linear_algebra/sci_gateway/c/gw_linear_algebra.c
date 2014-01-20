@@ -26,7 +26,7 @@ static gw_generic_table Tab[] =
 {
     {C2F(inthess), "hess"},
     {C2F(intschur), "schur"},
-    {C2F(inteig), "spec"},
+    {C2F(intspec), "spec"},
     {C2F(intbdiagr), "bdiag"},
     {C2F(intvoid), "xxxx"},
     {C2F(intbalanc), "balanc"}

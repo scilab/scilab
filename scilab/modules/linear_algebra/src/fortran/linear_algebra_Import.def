@@ -19,7 +19,7 @@ EXPORTS
 	intbdiagr_
 	intchol_
 	intdet_
-	inteig_
+	intspec_
 	inthess_
 	intinv_
 	intlsq_
