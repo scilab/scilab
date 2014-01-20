@@ -65,7 +65,6 @@ public class LegendSpriteDrawer extends TextObjectSpriteDrawer implements Textur
         return a;
     }
 
-
     /**
      * Compute and return the matrix of text string from the given {@see Legend} object.
      * The legend text array is treated as a 1D-array.
@@ -94,6 +93,4 @@ public class LegendSpriteDrawer extends TextObjectSpriteDrawer implements Textur
 
         return texts;
     }
-
-
 }

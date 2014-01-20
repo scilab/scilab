@@ -29,6 +29,7 @@ import org.scilab.modules.graphic_objects.utils.Utils;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
 
+import java.awt.Dimension;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -63,6 +64,31 @@ public class LabelManager {
      */
     public LabelManager(TextureManager textureManager) {
         this.textureManager = textureManager;
+    }
+
+    public Dimension[] getLabelsSize(ColorMap colorMap, Axes axes, AxesDrawer drawer) {
+        final Label xl = (Label) GraphicController.getController().getObjectFromId(axes.getXAxisLabel());
+        final Label yl = (Label) GraphicController.getController().getObjectFromId(axes.getYAxisLabel());
+        final Label tl = (Label) GraphicController.getController().getObjectFromId(axes.getTitle());
+        final Dimension[] dims = new Dimension[3];
+        final Label[] labels = new Label[] {xl, yl, tl};
+        final LabelPositioner[] positioners = new LabelPositioner[] {drawer.getXAxisLabelPositioner(axes), drawer.getYAxisLabelPositioner(axes), drawer.getTitlePositioner(axes) };
+        for (int i = 0; i < 3; i++) {
+            if (!labels[i].isEmpty() && labels[i].getAutoPosition() && labels[i].getAutoRotation()) {
+                final Texture texture = getTexture(colorMap, labels[i]);
+                dims[i] = texture.getDataProvider().getTextureSize();
+                final double a = positioners[i].getAutoRotationAngle();
+                if (a == 90 || a == 270) {
+                    final int t = dims[i].width;
+                    dims[i].width = dims[i].height;
+                    dims[i].height = t;
+                }
+            } else {
+                dims[i] = new Dimension();
+            }
+        }
+
+        return dims;
     }
 
     /**
@@ -143,8 +169,6 @@ public class LabelManager {
         /* Un scale/translate the label position to be drawn */
         Vector3d labelUserPosition = computeUnscaledAxesCoords(new Vector3d(label.getPosition()), factors);
 
-
-
         /* Logarithmic scaling must be applied to the label's user position to obtain object coordinates */
         labelUserPosition = ScaleUtils.applyLogScale(labelUserPosition, logFlags);
 
@@ -161,7 +185,6 @@ public class LabelManager {
         if (label.getAutoPosition()) {
             Vector3d cornerPos = labelPositioner.getLowerLeftCornerPosition();
             Vector3d objectCornerPos = axesDrawer.getObjectCoordinates(cornerPos);
-
             /* Apply inverse scaling to obtain user coordinates */
             objectCornerPos = ScaleUtils.applyInverseLogScale(objectCornerPos, logFlags);
 
@@ -177,22 +200,17 @@ public class LabelManager {
 
         /* Compute and set the label's corners */
         Transformation projection = axesDrawer.getProjection();
-
         Vector3d[] projCorners = labelPositioner.getProjCorners();
-
         Vector3d[] corners = computeCorners(projection, projCorners, parentAxes);
-
         Double[] coordinates = cornersToCoordinateArray(corners);
 
         /* Set the computed coordinates */
         label.setCorners(coordinates);
 
-
         double rotationAngle = 0.0;
 
         if (label.getAutoRotation()) {
             rotationAngle = labelPositioner.getRotationAngle();
-
             label.setFontAngle(Math.PI * rotationAngle / 180.0);
 
             /*
@@ -213,7 +231,7 @@ public class LabelManager {
                     /* Draw in window coordinates */
                     Transformation canvasProjection = drawingTools.getTransformationManager().getCanvasProjection();
                     Vector3d projLabelPos = canvasProjection.project(labelPos);
-
+                    projLabelPos = new Vector3d(Math.round(projLabelPos.getX()), Math.round(projLabelPos.getY()), Math.round(projLabelPos.getZ()));
                     drawingTools.getTransformationManager().useWindowCoordinate();
                     drawingTools.draw(labelSprite, labelAnchor, projLabelPos, rotationAngle);
                     drawingTools.getTransformationManager().useSceneCoordinate();
@@ -223,7 +241,6 @@ public class LabelManager {
                 }
             }
         }
-
     }
 
     /**

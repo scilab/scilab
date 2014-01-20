@@ -178,7 +178,6 @@ public class AxisLabelPositioner extends LabelPositioner {
 
         /* Compute the label displacement and set it */
         labelDisplacement = ticksDirection.times(distRatio);
-
         position = position.plus(labelDisplacement);
 
         return position;

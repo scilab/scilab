@@ -40,7 +40,7 @@ public class TitlePositioner extends LabelPositioner {
      * to the Title label's anchor point. Relevant only to
      * automatic positioning.
      */
-    private static final double TITLEOFFSET = 8.0;
+    public static final double TITLEOFFSET = 8.0;
 
     /**
      * The minimum z value in window coordinates.
@@ -76,8 +76,8 @@ public class TitlePositioner extends LabelPositioner {
         }
 
         /* Compute the anchor point's position in window coordinates */
-        double xmid = (axesBounds[0] + axesBounds[2] * margins[0] + 0.5 * axesBounds[2] * (1.0 - margins[0] - margins[1]));
-        double ymid = (1.0 - axesBounds[1] + (margins[3] - 1.0) * axesBounds[3] + axesBounds[3] * (1.0 - margins[2] - margins[3]));
+        double xmid = axesBounds[0] + axesBounds[2] * margins[0] + 0.5 * axesBounds[2] * (1.0 - margins[0] - margins[1]);
+        double ymid = 1.0 - axesBounds[1] - axesBounds[3] * margins[2];
 
         Vector3d projAnchorPoint = new Vector3d(Math.floor((xmid) * (double) drawingTools.getCanvas().getWidth()),
                                                 Math.floor((ymid) * (double) drawingTools.getCanvas().getHeight()),
@@ -106,6 +106,4 @@ public class TitlePositioner extends LabelPositioner {
     protected AnchorPosition getAutoAnchorPosition() {
         return AnchorPosition.DOWN;
     }
-
 }
-
