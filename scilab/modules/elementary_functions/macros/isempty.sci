@@ -46,7 +46,7 @@ function answ = isempty(m)
             answ = size(m, "*") == 0;
         else
             answ = %t;
-            for i=1:size(m),
+            for i=2:size(m),
                 clear __element__;
                 __element__ = m(i);
                 if isdef("__element__") then

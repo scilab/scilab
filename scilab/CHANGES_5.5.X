@@ -87,6 +87,8 @@ Scilab Bug Fixes
 
 * Bug #7593 fixed - stdev now encompasses msd and st_deviation thanks to a new optional input argument.
 
+* Bug #7650 fixed - isempty(tlist(...)) always returned false, even when all defined fields were empty.
+
 * Bug #7705 fixed - In the Genetic algorithms help pages, documented the
                     "dimension", "minbounds" and "maxbounds" fields.
 
