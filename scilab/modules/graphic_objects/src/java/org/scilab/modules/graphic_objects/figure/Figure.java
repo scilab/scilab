@@ -19,18 +19,27 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CLOSEREQUESTFCN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COLORMAP_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COLORMAP__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DOCKABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_NAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFOBAR_VISIBLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFO_MESSAGE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT_SET__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MENUBAR_VISIBLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MENUBAR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_NAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PIXEL_DRAWING_MODE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PIXMAP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_RESIZEFCN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_RESIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ROTATION_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TOOLBAR_VISIBLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TOOLBAR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VIEWPORT__;
 
 import java.util.Arrays;
@@ -38,6 +47,7 @@ import java.util.Arrays;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.utils.LayoutType;
 /**
  * Figure class
  * @author Manuel JULIACHS
@@ -45,8 +55,9 @@ import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 public class Figure extends GraphicObject {
     /** Figure properties names */
     private enum FigureProperty {
-        INFOMESSAGE, COLORMAP, COLORMAPSIZE,
-        BACKGROUND, ROTATIONTYPE, RESIZEFCN, CLOSEREQUESTFCN
+        INFOMESSAGE, COLORMAP, COLORMAPSIZE, BACKGROUND, ROTATIONTYPE,
+        RESIZEFCN, CLOSEREQUESTFCN, RESIZE, TOOLBAR, TOOLBAR_VISIBLE,
+        MENUBAR, MENUBAR_VISIBLE, INFOBAR_VISIBLE, DOCKABLE, LAYOUT, LAYOUT_SET
     };
 
     /** Specifies whether rotation applies to a single subwindow or to all the figure's subwindows */
@@ -68,7 +79,17 @@ public class Figure extends GraphicObject {
         }
     }
                              }
-
+    public enum BarType { NONE, FIGURE;
+    public static BarType intToEnum(Integer intValue) {
+        switch (intValue) {
+            default:
+            case 0:
+                return BarType.NONE;
+            case 1:
+                return BarType.FIGURE;
+        }
+    }
+                        }
     /** Pixel drawing logical operations */
     private enum PixelDrawingMode { CLEAR, AND, ANDREVERSE, COPY, ANDINVERTED, NOOP, XOR, OR, NOR,
                                     EQUIV, INVERT, ORREVERSE, COPYINVERTED, ORINVERTED, NAND, SET;
@@ -352,6 +373,26 @@ public class Figure extends GraphicObject {
     /** Rotation type */
     private RotationType rotation;
 
+    /** resize */
+    private Boolean resize;
+
+    /** toolbar */
+    private BarType toolbar;
+    private Boolean toolbarVisible;
+
+    /** menubar */
+    private BarType menubar;
+    private Boolean menubarVisible;
+
+    /** infobar */
+    private Boolean infobarVisible;
+
+    /** dockable */
+    private Boolean dockable;
+
+    /** layout */
+    private LayoutType layout;
+
     /** Constructor */
     public Figure() {
         super();
@@ -367,6 +408,14 @@ public class Figure extends GraphicObject {
         resizeFcn = "";
         closeRequestFcn = "";
         rotation = RotationType.UNARY;
+        resize = true;
+        toolbarVisible = true;
+        toolbar = BarType.FIGURE;
+        menubarVisible = true;
+        menubar = BarType.FIGURE;
+        infobarVisible = true;
+        dockable = true;
+        layout = LayoutType.NONE;
     }
 
     @Override
@@ -438,6 +487,24 @@ public class Figure extends GraphicObject {
                 return FigureProperty.RESIZEFCN;
             case __GO_CLOSEREQUESTFCN__ :
                 return FigureProperty.CLOSEREQUESTFCN;
+            case __GO_RESIZE__ :
+                return FigureProperty.RESIZE;
+            case __GO_TOOLBAR__ :
+                return FigureProperty.TOOLBAR;
+            case __GO_TOOLBAR_VISIBLE__ :
+                return FigureProperty.TOOLBAR_VISIBLE;
+            case __GO_MENUBAR__ :
+                return FigureProperty.MENUBAR;
+            case __GO_MENUBAR_VISIBLE__ :
+                return FigureProperty.MENUBAR_VISIBLE;
+            case __GO_INFOBAR_VISIBLE__ :
+                return FigureProperty.INFOBAR_VISIBLE;
+            case __GO_DOCKABLE__ :
+                return FigureProperty.DOCKABLE;
+            case __GO_LAYOUT__ :
+                return FigureProperty.LAYOUT;
+            case __GO_LAYOUT_SET__ :
+                return FigureProperty.LAYOUT_SET;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -489,6 +556,24 @@ public class Figure extends GraphicObject {
             return getResizeFcn();
         } else if (property == FigureProperty.CLOSEREQUESTFCN) {
             return getCloseRequestFcn();
+        } else if (property == FigureProperty.RESIZE) {
+            return getResize();
+        } else if (property == FigureProperty.TOOLBAR) {
+            return getToolbar();
+        } else if (property == FigureProperty.TOOLBAR_VISIBLE) {
+            return getToolbarVisible();
+        } else if (property == FigureProperty.MENUBAR) {
+            return getMenubar();
+        } else if (property == FigureProperty.MENUBAR_VISIBLE) {
+            return getMenubarVisible();
+        } else if (property == FigureProperty.INFOBAR_VISIBLE) {
+            return getInfobarVisible();
+        } else if (property == FigureProperty.DOCKABLE) {
+            return getDockable();
+        } else if (property == FigureProperty.LAYOUT) {
+            return getLayout();
+        } else if (property == FigureProperty.LAYOUT_SET) {
+            return isLayoutSettable();
         } else {
             return super.getProperty(property);
         }
@@ -517,6 +602,24 @@ public class Figure extends GraphicObject {
                     return setResizeFcn((String) value);
                 case ROTATIONTYPE:
                     return setRotation((Integer) value);
+                case RESIZE:
+                    return setResize((Boolean) value);
+                case TOOLBAR:
+                    return setToolbar((Integer) value);
+                case TOOLBAR_VISIBLE:
+                    return setToolbarVisible((Boolean) value);
+                case MENUBAR:
+                    return setMenubar((Integer) value);
+                case MENUBAR_VISIBLE:
+                    return setMenubarVisible((Boolean) value);
+                case INFOBAR_VISIBLE:
+                    return setInfobarVisible((Boolean) value);
+                case DOCKABLE:
+                    return setDockable((Boolean) value);
+                case LAYOUT:
+                    return setLayout((Integer) value);
+                default:
+                    break;
             }
         } else if (property instanceof CanvasProperty) {
             switch ((CanvasProperty)property) {
@@ -1048,6 +1151,144 @@ public class Figure extends GraphicObject {
         }
         this.closeRequestFcn = closeRequestFcn;
         return UpdateStatus.Success;
+    }
+
+
+    public Boolean getResize() {
+        return resize;
+    }
+
+    public UpdateStatus setResize(Boolean status) {
+        if (status.equals(resize)) {
+            return UpdateStatus.NoChange;
+        }
+
+        resize = status;
+        return UpdateStatus.Success;
+    }
+
+    public Boolean getToolbarVisible() {
+        return toolbarVisible;
+    }
+
+    public UpdateStatus setToolbarVisible(Boolean status) {
+        if (status.equals(toolbarVisible)) {
+            return UpdateStatus.NoChange;
+        }
+
+        toolbarVisible = status;
+        return UpdateStatus.Success;
+    }
+
+    public Integer getToolbar() {
+        return toolbar.ordinal();
+    }
+
+    public BarType getToolbarAsEnum() {
+        return toolbar;
+    }
+
+    public UpdateStatus setToolbar(Integer toolbar) {
+        return setToolbar(BarType.intToEnum(toolbar));
+    }
+
+    public UpdateStatus setToolbar(BarType toolbar) {
+        if (toolbar == this.toolbar) {
+            return UpdateStatus.NoChange;
+        }
+
+        this.toolbar = toolbar;
+        return UpdateStatus.Success;
+    }
+
+    public Boolean getMenubarVisible() {
+        return menubarVisible;
+    }
+
+    public UpdateStatus setMenubarVisible(Boolean status) {
+        if (status.equals(menubarVisible)) {
+            return UpdateStatus.NoChange;
+        }
+
+        menubarVisible = status;
+        return UpdateStatus.Success;
+    }
+
+    public Integer getMenubar() {
+        return menubar.ordinal();
+    }
+
+    public BarType getMenubarAsEnum() {
+        return menubar;
+    }
+
+    public UpdateStatus setMenubar(Integer menubar) {
+        return setMenubar(BarType.intToEnum(menubar));
+    }
+
+    public UpdateStatus setMenubar(BarType menubar) {
+        if (menubar == this.menubar) {
+            return UpdateStatus.NoChange;
+        }
+
+        this.menubar = menubar;
+        return UpdateStatus.Success;
+    }
+
+    public Boolean getInfobarVisible() {
+        return infobarVisible;
+    }
+
+    public UpdateStatus setInfobarVisible(Boolean status) {
+        if (status.equals(infobarVisible)) {
+            return UpdateStatus.NoChange;
+        }
+
+        infobarVisible = status;
+        return UpdateStatus.Success;
+    }
+
+    public Boolean getDockable() {
+        return dockable;
+    }
+
+    public UpdateStatus setDockable(Boolean status) {
+        if (status.equals(dockable)) {
+            return UpdateStatus.NoChange;
+        }
+
+        dockable = status;
+        return UpdateStatus.Success;
+    }
+
+    public Integer getLayout() {
+        return layout.ordinal();
+    }
+
+    public LayoutType getLayoutAsEnum() {
+        return layout;
+    }
+
+    public boolean isLayoutSettable() {
+        return (this.layout == LayoutType.NONE);
+    }
+
+    public UpdateStatus setLayout(Integer value) {
+        return setLayout(LayoutType.intToEnum(value));
+    }
+
+    public UpdateStatus setLayout(LayoutType layout) {
+        //avoid to set layout twice
+        if (this.layout == LayoutType.NONE) {
+            if (layout == LayoutType.NONE) {
+                return UpdateStatus.NoChange;
+            }
+
+            this.layout = layout;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.Fail;
     }
 
     /**

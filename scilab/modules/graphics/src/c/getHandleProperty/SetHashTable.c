@@ -226,7 +226,16 @@ static setHashTableCouple propertySetTable[] =
     {"direction", set_direction_property},
     {"image_type", set_image_type_property},
     {"datatips", set_datatips_property},
-    {"display_function_data", set_display_function_data_property}
+    {"display_function_data", set_display_function_data_property},
+    {"resize", set_resize_property},
+    {"toolbar", set_toolbar_property},
+    {"toolbar_visible", set_toolbar_visible_property},
+    {"menubar", set_menubar_property},
+    {"menubar_visible", set_menubar_visible_property},
+    {"infobar_visible", set_infobar_visible_property},
+    {"dockable", set_dockable_property},
+    {"layout", set_layout_property},
+    {"constraints", set_constraints_property}
 };
 
 /*--------------------------------------------------------------------------*/

@@ -26,3 +26,11 @@ if f.event_handler <> "" then bugmes();quit;end
 if f.event_handler_enable <> "off" then bugmes();quit;end
 if f.user_data <> [] then bugmes();quit;end
 if f.tag <> "" then bugmes();quit;end
+assert_checkequal(f.resize, "on");
+assert_checkequal(f.toolbar, "figure");
+assert_checkequal(f.toolbar_visible, "on");
+assert_checkequal(f.menubar, "figure");
+assert_checkequal(f.menubar_visible, "on");
+assert_checkequal(f.infobar_visible, "on");
+assert_checkequal(f.dockable, "on");
+assert_checkequal(f.layout, "none");

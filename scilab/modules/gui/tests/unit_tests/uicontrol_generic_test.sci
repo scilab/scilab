@@ -316,4 +316,22 @@ function ierr = uicontrol_generic_test(uicontrol_style)
     assert_checkequal(get(h, "verticalalignment"), "middle");
     // TODO test with wrong values
 
+    // Layout
+    assert_checkequal(get(h, "layout"), "none"); // Default value
+    set(h, "layout", "border");
+    assert_checkequal(get(h, "layout"), "border");
+    assert_checktrue(execstr("set(h, ""layout"", ""grid"");", "errcatch")<>0)
+
+    // Margins
+    assert_checkequal(get(h, "margins"), [0 0 0 0]); // Default value
+    set(h, "margins", [1 2 3 4]);
+    assert_checkequal(get(h, "margins"), [1 2 3 4]);
+    // TODO test with wrong values
+
+    // Constraints
+    h.parent.layout = "border";
+    assert_checkequal(get(h, "constraints"), "center"); // Default value
+    set(h, "constraints", "left");
+    // TODO test with wrong values & different layouts
+
 endfunction

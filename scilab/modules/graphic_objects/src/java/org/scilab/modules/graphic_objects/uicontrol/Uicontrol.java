@@ -13,13 +13,16 @@
 
 package org.scilab.modules.graphic_objects.uicontrol;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT_SET__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARGINS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_STYLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BORDER_CONSTRAINTS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKBOX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_EDIT__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTNAME__;
@@ -27,29 +30,31 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTUNITS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTWEIGHT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRID_CONSTRAINTS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOX__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP_SIZE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_POPUPMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RADIOBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TOOLTIPSTRING__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TOOLTIPSTRING_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TOOLTIPSTRING_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TOOLTIPSTRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_UNITS__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
 
 import java.util.Arrays;
@@ -57,14 +62,32 @@ import java.util.StringTokenizer;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.GraphicObjectPropertyType;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
+import org.scilab.modules.graphic_objects.utils.LayoutType;
 
 /**
  * @author Bruno JOFRET
  * @author Vincent COUVERT
  */
 public class Uicontrol extends GraphicObject {
+
+    public enum BorderLayoutType {
+        SOUTH, NORTH, CENTER, WEST, EAST;
+        public static BorderLayoutType intToEnum(Integer intValue) {
+            switch (intValue) {
+                case 0:
+                    return BorderLayoutType.SOUTH;
+                case 1:
+                    return BorderLayoutType.NORTH;
+                default:
+                case 2:
+                    return BorderLayoutType.CENTER;
+                case 3:
+                    return BorderLayoutType.WEST;
+                case 4:
+                    return BorderLayoutType.EAST;
+            }
+        }
+    }
 
     protected static final String FLAT_RELIEF   = "flat";
     protected static final String RAISED_RELIEF = "raised";
@@ -110,6 +133,10 @@ public class Uicontrol extends GraphicObject {
     private String units = "pixels";
     private Double[] value;
     private String verticalAlignment = "middle";
+    private LayoutType layout = LayoutType.NONE;
+    private Double[] margins = new Double[] {0.0, 0.0, 0.0, 0.0};
+    private BorderLayoutType borderConstraints = BorderLayoutType.CENTER;
+    private Double[] gridConstraints = new Double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 
     /**
      * All uicontrol properties
@@ -142,7 +169,12 @@ public class Uicontrol extends GraphicObject {
         UNITS,
         VALUE,
         VALUE_SIZE,
-        VERTICALALIGNMENT
+        VERTICALALIGNMENT,
+        LAYOUT,
+        LAYOUT_SET,
+        MARGINS,
+        BORDERCONSTRAINTS,
+        GRIDCONSTRAINTS;
     };
 
     /**
@@ -306,6 +338,16 @@ public class Uicontrol extends GraphicObject {
                 return UicontrolProperty.VALUE_SIZE;
             case __GO_UI_VERTICALALIGNMENT__ :
                 return UicontrolProperty.VERTICALALIGNMENT;
+            case __GO_LAYOUT__ :
+                return UicontrolProperty.LAYOUT;
+            case __GO_LAYOUT_SET__ :
+                return UicontrolProperty.LAYOUT_SET;
+            case __GO_MARGINS__:
+                return UicontrolProperty.MARGINS;
+            case __GO_UI_BORDER_CONSTRAINTS__:
+                return UicontrolProperty.BORDERCONSTRAINTS;
+            case __GO_UI_GRID_CONSTRAINTS__:
+                return UicontrolProperty.GRIDCONSTRAINTS;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -369,6 +411,16 @@ public class Uicontrol extends GraphicObject {
             return getUiValueSize();
         } else if (property == UicontrolProperty.VERTICALALIGNMENT) {
             return getVerticalAlignment();
+        } else if (property == UicontrolProperty.LAYOUT) {
+            return getLayout();
+        } else if (property == UicontrolProperty.LAYOUT_SET) {
+            return isLayoutSettable();
+        } else if (property == UicontrolProperty.MARGINS) {
+            return getMargins();
+        } else if (property == UicontrolProperty.BORDERCONSTRAINTS) {
+            return getBorderConstraints();
+        } else if (property == UicontrolProperty.GRIDCONSTRAINTS) {
+            return getGridConstraints();
         } else {
             return super.getProperty(property);
         }
@@ -431,6 +483,14 @@ public class Uicontrol extends GraphicObject {
                 return setUiValue((Double[]) value);
             case VERTICALALIGNMENT:
                 return setVerticalAlignment((String) value);
+            case LAYOUT:
+                return setLayout((Integer) value);
+            case MARGINS:
+                return setMargins((Double[]) value);
+            case BORDERCONSTRAINTS:
+                return setBorderConstraints((Integer) value);
+            case GRIDCONSTRAINTS:
+                return setGridConstraints((Double[]) value);
             default:
                 return super.setProperty(property, value);
         }
@@ -772,8 +832,98 @@ public class Uicontrol extends GraphicObject {
         return UpdateStatus.Success;
     }
 
-    public void accept(Visitor visitor) {
+    public Integer getLayout() {
+        return layout.ordinal();
+    }
 
+    public LayoutType getLayoutAsEnum() {
+        return layout;
+    }
+
+    public boolean isLayoutSettable() {
+        return (this.layout == LayoutType.NONE);
+    }
+
+    public UpdateStatus setLayout(Integer value) {
+        return setLayout(LayoutType.intToEnum(value));
+    }
+
+    public UpdateStatus setLayout(LayoutType layout) {
+        //avoid to set layout twice
+        if (this.layout == LayoutType.NONE) {
+            if (layout == LayoutType.NONE) {
+                return UpdateStatus.NoChange;
+            }
+
+            this.layout = layout;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.Fail;
+    }
+
+    public Double[] getMargins() {
+        return margins;
+    }
+
+    public UpdateStatus setMargins(Double[] value) {
+        UpdateStatus status = UpdateStatus.NoChange;
+        if (value.length != 4) {
+            return UpdateStatus.Fail;
+        }
+
+        for (int i = 0 ; i < 4 ; i++) {
+            if (margins[i].equals(value[i]) == false) {
+                margins[i] = value[i];
+                status = UpdateStatus.Success;
+            }
+        }
+
+        return status;
+    }
+
+    public Integer getBorderConstraints() {
+        return borderConstraints.ordinal();
+    }
+
+    public BorderLayoutType getBorderConstraintsAsEnum() {
+        return borderConstraints;
+    }
+
+    public UpdateStatus setBorderConstraints(Integer value) {
+        return setBorderConstraints(BorderLayoutType.intToEnum(value));
+    }
+
+    public UpdateStatus setBorderConstraints(BorderLayoutType borderConstraints) {
+        if (this.borderConstraints == borderConstraints) {
+            return UpdateStatus.NoChange;
+        }
+
+        this.borderConstraints = borderConstraints;
+        return UpdateStatus.Success;
+    }
+
+    public Double[] getGridConstraints() {
+        return gridConstraints;
+    }
+
+    public UpdateStatus setGridConstraints(Double[] gridConstraints) {
+        UpdateStatus status = UpdateStatus.NoChange;
+        if (gridConstraints.length != 6) {
+            return UpdateStatus.Fail;
+        }
+
+        for (int i = 0 ; i < 6 ; i++) {
+            if (gridConstraints[i].equals(this.gridConstraints[i]) == false) {
+                gridConstraints[i] = this.gridConstraints[i];
+                status = UpdateStatus.Success;
+            }
+        }
+
+        return status;
+    }
+
+    public void accept(Visitor visitor) {
     }
 
 }

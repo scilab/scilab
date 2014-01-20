@@ -162,6 +162,11 @@ src/c/getHandleProperty/get_grid_position_property.c \
 src/c/getHandleProperty/get_anti_aliasing_property.c \
 src/c/getHandleProperty/get_tag_property.c \
 src/c/getHandleProperty/get_image_type_property.c \
+src/c/getHandleProperty/get_resize_property.c \
+src/c/getHandleProperty/get_toolbar_property.c \
+src/c/getHandleProperty/get_menubar_property.c \
+src/c/getHandleProperty/get_infobar_property.c \
+src/c/getHandleProperty/get_dockable_property.c \
 src/c/getHandleProperty/GetHashTable.c \
 src/c/graphicModuleLoad.c \
 src/c/getHandleProperty/set_old_style_property.c \
@@ -307,6 +312,15 @@ src/c/getHandleProperty/set_datatip_property.c \
 src/c/getHandleProperty/set_image_type_property.c \
 src/c/getHandleProperty/get_display_function_data_property.c \
 src/c/getHandleProperty/set_display_function_data_property.c \
+src/c/getHandleProperty/set_resize_property.c \
+src/c/getHandleProperty/set_toolbar_property.c \
+src/c/getHandleProperty/set_menubar_property.c \
+src/c/getHandleProperty/set_infobar_property.c \
+src/c/getHandleProperty/set_dockable_property.c \
+src/c/getHandleProperty/get_layout_property.c \
+src/c/getHandleProperty/set_layout_property.c \
+src/c/getHandleProperty/get_constraints_property.c \
+src/c/getHandleProperty/set_constraints_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \

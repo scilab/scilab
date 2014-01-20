@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -233,6 +233,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_background_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_bar_layout_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_bar_width_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_constraints_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_datatips_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_box_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_callback_property.c" />
@@ -260,6 +261,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_diffuse_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_direction_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_display_function_data_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_dockable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_event_handler_enable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_event_handler_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_figure_closerequestfcn_property.c" />
@@ -287,6 +289,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_hidden_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_image_type_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_immediate_drawing_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_infobar_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_info_message_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_interp_color_mode.c" />
     <ClCompile Include="src\c\getHandleProperty\get_interp_color_vector.c" />
@@ -294,6 +297,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_labels_font_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_labels_font_size_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_labels_font_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_layout_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_legend_location_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_light_type_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_line_mode_property.c" />
@@ -308,6 +312,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_mark_size_unit_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_mark_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_material_shininess_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_menubar_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_old_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_outside_colors_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_parent_property.c" />
@@ -315,6 +320,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_pixmap_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_polyline_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_position_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_resize_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_rotation_angles_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_rotation_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_screen_position_property.c" />
@@ -328,18 +334,26 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_text_box_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_text_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_thickness_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_toolbar_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_use_color_material_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_ambient_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_constraints_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_diffuse_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_direction_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_display_function_data_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_dockable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_closerequestfcn_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_resizefcn_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_infobar_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_layout_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_light_type_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_material_shininess_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_menubar_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_resize_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_specular_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_image_type_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_tag_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_toolbar_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_use_color_material_property.c" />
     <ClCompile Include="src\c\get_ticks_utils.c" />
     <ClCompile Include="src\c\getHandleProperty\get_tics_color_property.c" />
@@ -596,6 +610,8 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClInclude Include="includes\Champ.h" />
     <ClInclude Include="includes\Light.h" />
     <ClInclude Include="src\c\CheckScilabXgc.h" />
+    <ClInclude Include="src\c\getHandleProperty\BarType.h" />
+    <ClInclude Include="src\c\getHandleProperty\BorderLayoutType.h" />
     <ClInclude Include="src\c\getHandleProperty\CheckTicksProperty.h" />
     <ClInclude Include="includes\CloneObjects.h" />
     <ClInclude Include="includes\Contour.h" />
@@ -606,6 +622,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClInclude Include="src\c\Fec.h" />
     <ClInclude Include="includes\Format.h" />
     <ClInclude Include="src\c\getHandleProperty\get_data_property.h" />
+    <ClInclude Include="src\c\getHandleProperty\LayoutType.h" />
     <ClInclude Include="src\c\get_ticks_utils.h" />
     <ClInclude Include="includes\GetCommandArg.h" />
     <ClInclude Include="includes\getDictionaryGetProperties.h" />

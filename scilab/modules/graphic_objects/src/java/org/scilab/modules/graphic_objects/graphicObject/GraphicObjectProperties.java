@@ -344,5 +344,16 @@ public class GraphicObjectProperties {
     public static final int __GO_DATATIP_INDEXES__ = 321;
     public static final int __GO_DATA_MODEL_DISPLAY_FUNCTION__ = 322;
     public static final int __GO_DATA_MODEL_DISPLAY_FUNCTION_SIZE__ = 323;
+    public static final int __GO_RESIZE__ = 324;
+    public static final int __GO_TOOLBAR__ = 325;
+    public static final int __GO_TOOLBAR_VISIBLE__ = 326;
+    public static final int __GO_MENUBAR__ = 327;
+    public static final int __GO_MENUBAR_VISIBLE__ = 328;
+    public static final int __GO_INFOBAR_VISIBLE__ = 329;
+    public static final int __GO_DOCKABLE__ = 330;
+    public static final int __GO_LAYOUT__ = 331;
+    public static final int __GO_LAYOUT_SET__ = 332;
+    public static final int __GO_UI_BORDER_CONSTRAINTS__ = 333;
+    public static final int __GO_UI_GRID_CONSTRAINTS__ = 334;
 
 }

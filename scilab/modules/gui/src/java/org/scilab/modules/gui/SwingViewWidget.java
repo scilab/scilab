@@ -433,7 +433,7 @@ public final class SwingViewWidget {
                                        .getProperty(uid, __GO_POSITION__));
                 break;
             default :
-                System.err.println("[SwingScilabWidget.update] Property not mapped: " + property);
+                //System.err.println("[SwingScilabWidget.update] Property not mapped: " + property);
         }
     }
 }

@@ -317,6 +317,14 @@ function %h_p(h)
             "user_data = "+fmtuser_data(u)
             "resizefcn = "+sci2exp(h.resizefcn)
             "closerequestfcn = "+sci2exp(h.closerequestfcn)
+            "resize = "+sci2exp(h.resize)
+            "toolbar = "+sci2exp(h.toolbar)
+            "toolbar_visible = "+sci2exp(h.toolbar_visible)
+            "menubar = "+sci2exp(h.menubar)
+            "menubar_visible = "+sci2exp(h.menubar_visible)
+            "infobar_visible = "+sci2exp(h.infobar_visible)
+            "dockable = "+sci2exp(h.dockable)
+            "layout = "+sci2exp(h.layout)
             "tag = "+sci2exp(h.tag)
             ]
 
@@ -954,7 +962,9 @@ function %h_p(h)
             "Visible = "+sci2exp(h.visible)
             "Callback = "+h.callback
             "Callback_Type = "+sci2exp(h.callback_type,0)
-            "Handle_Visible = "+sci2exp(h.handle_visible)
+            "Layout = "+sci2exp(h.layout)
+            "Constraints = "+sci2exp(h.constraints)
+            "Margins = "+sci2exp(h.margins)
             "Userdata = "+fmtuser_data(u)
             "Tag = "+h.tag
             ]
