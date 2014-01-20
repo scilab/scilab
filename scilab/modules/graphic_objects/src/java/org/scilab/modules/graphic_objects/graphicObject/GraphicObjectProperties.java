@@ -355,5 +355,7 @@ public class GraphicObjectProperties {
     public static final int __GO_LAYOUT_SET__ = 332;
     public static final int __GO_UI_BORDER_CONSTRAINTS__ = 333;
     public static final int __GO_UI_GRID_CONSTRAINTS__ = 334;
+    public static final int __GO_UI_TABGROUP__ = 335;
+    public static final int __GO_UI_TAB__ = 336;
 
 }

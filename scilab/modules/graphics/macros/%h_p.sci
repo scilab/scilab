@@ -934,41 +934,80 @@ function %h_p(h)
             // =====================================================================
 
         case "uicontrol"
-            u=h.user_data;
-            t=[t;
-            "Parent: "+h.parent.type
-            "Children: "+fmtchildren(h.children)
-            "BackgroundColor = "+sci2exp(h.backgroundcolor,0)
-            "Enable = "+sci2exp(h.enable)
-            "FontAngle = "+h.fontangle
-            "FontName = "+h.fontname
-            "FontSize = "+sci2exp(h.fontsize)
-            "FontUnits = "+h.fontunits
-            "FontWeight = "+h.fontweight
-            "ForegroundColor = "+sci2exp(h.foregroundcolor,0)
-            "HorizontalAlignment = "+h.horizontalalignment
-            "ListboxTop = "+sci2exp(h.listboxtop,0)
-            "Max = "+sci2exp(h.max)
-            "Min = "+sci2exp(h.min)
-            "Position = "+sci2exp(h.position,0)
-            "Relief = "+h.relief
-            "SliderStep = "+sci2exp(h.sliderstep)
-            "String = "+fmtuser_data(h.string)
-            "Style = "+h.style
-            "TooltipString = "+fmtuser_data(h.tooltipstring)
-            "Units = "+h.units
-            "Value = "+sci2exp(h.value,0)
-            "VerticalAlignment = "+h.verticalalignment
-            "Visible = "+sci2exp(h.visible)
-            "Callback = "+h.callback
-            "Callback_Type = "+sci2exp(h.callback_type,0)
-            "Layout = "+sci2exp(h.layout)
-            "Constraints = "+sci2exp(h.constraints)
-            "Margins = "+sci2exp(h.margins)
-            "Userdata = "+fmtuser_data(u)
-            "Tag = "+h.tag
-            ]
 
+            u=h.user_data;
+            if h.style == "tabgroup" then
+                t=[t;
+                "Parent: "+h.parent.type
+                "Children: "+fmtchildren(h.children)
+                "Enable = "+sci2exp(h.enable)
+                "Position = "+sci2exp(h.position,0)
+                "Relief = "+h.relief
+                "Style = "+h.style
+                "Visible = "+sci2exp(h.visible)
+                "Callback = "+h.callback
+                "Callback_Type = "+sci2exp(h.callback_type,0)
+                "Layout = "+sci2exp(h.layout)
+                "Constraints = "+sci2exp(h.constraints)
+                "Margins = "+sci2exp(h.margins)
+                "Value = "+sci2exp(h.value)
+                "Userdata = "+fmtuser_data(u)
+                "Tag = "+h.tag
+                ]
+            elseif h.style == "tab" then
+                t=[t;
+                "Parent: "+h.parent.type
+                "Children: "+fmtchildren(h.children)
+                "Enable = "+sci2exp(h.enable)
+                "BackgroundColor = "+sci2exp(h.backgroundcolor,0)
+                "ForegroundColor = "+sci2exp(h.foregroundcolor,0)
+                "Relief = "+h.relief
+                "String = "+fmtuser_data(h.string)
+                "Style = "+h.style
+                "Visible = "+sci2exp(h.visible)
+                "Callback = "+h.callback
+                "Callback_Type = "+sci2exp(h.callback_type,0)
+                "Layout = "+sci2exp(h.layout)
+                "Constraints = "+sci2exp(h.constraints)
+                "Margins = "+sci2exp(h.margins)
+                "Userdata = "+fmtuser_data(u)
+                "Tag = "+h.tag
+                ]
+            else
+                t=[t;
+                "Parent: "+h.parent.type
+                "Children: "+fmtchildren(h.children)
+                "BackgroundColor = "+sci2exp(h.backgroundcolor,0)
+                "Enable = "+sci2exp(h.enable)
+                "FontAngle = "+h.fontangle
+                "FontName = "+h.fontname
+                "FontSize = "+sci2exp(h.fontsize)
+                "FontUnits = "+h.fontunits
+                "FontWeight = "+h.fontweight
+                "ForegroundColor = "+sci2exp(h.foregroundcolor,0)
+                "HorizontalAlignment = "+h.horizontalalignment
+                "ListboxTop = "+sci2exp(h.listboxtop,0)
+                "Max = "+sci2exp(h.max)
+                "Min = "+sci2exp(h.min)
+                "Position = "+sci2exp(h.position,0)
+                "Relief = "+h.relief
+                "SliderStep = "+sci2exp(h.sliderstep)
+                "String = "+fmtuser_data(h.string)
+                "Style = "+h.style
+                "TooltipString = "+fmtuser_data(h.tooltipstring)
+                "Units = "+h.units
+                "Value = "+sci2exp(h.value,0)
+                "VerticalAlignment = "+h.verticalalignment
+                "Visible = "+sci2exp(h.visible)
+                "Callback = "+h.callback
+                "Callback_Type = "+sci2exp(h.callback_type,0)
+                "Layout = "+sci2exp(h.layout)
+                "Constraints = "+sci2exp(h.constraints)
+                "Margins = "+sci2exp(h.margins)
+                "Userdata = "+fmtuser_data(u)
+                "Tag = "+h.tag
+                ]
+            end
             // Console
             // =====================================================================
 

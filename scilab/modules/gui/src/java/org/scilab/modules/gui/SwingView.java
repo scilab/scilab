@@ -18,6 +18,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CONSOLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PROGRESSIONBAR__;
@@ -54,13 +55,14 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SEPARATOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABGROUP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VALID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_WAITBAR__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__;
 import static org.scilab.modules.gui.utils.Debug.DEBUG;
 
 import java.awt.Component;
@@ -185,7 +187,9 @@ public final class SwingView implements GraphicView {
         UiChildMenu,
         UiCheckedMenu,
         UiContextMenu,
-        Waitbar
+        Waitbar,
+        TabGroup,
+        Tab
     }
 
     private class TypedObject {
@@ -315,6 +319,10 @@ public final class SwingView implements GraphicView {
                 return UielementType.Waitbar;
             case __GO_UICONTEXTMENU__ :
                 return UielementType.UiContextMenu;
+            case __GO_UI_TABGROUP__ :
+                return UielementType.TabGroup;
+            case __GO_UI_TAB__ :
+                return UielementType.Tab;
         }
         return null;
     }
@@ -496,6 +504,17 @@ public final class SwingView implements GraphicView {
                 waitbar.setIndeterminateMode(false);
                 waitbar.setId(id);
                 return waitbar;
+            case TabGroup:
+                SwingScilabPushButton TabGroup = new SwingScilabPushButton();
+                TabGroup.setId(id);
+                setDefaultProperties(TabGroup, id);
+                return TabGroup;
+            case Tab:
+                SwingScilabPushButton Tab = new SwingScilabPushButton();
+                Tab.setId(id);
+                setDefaultProperties(Tab, id);
+                return Tab;
+
             default:
                 return null;
         }

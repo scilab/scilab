@@ -354,5 +354,7 @@
 #define __GO_LAYOUT_SET__ 332
 #define __GO_UI_BORDER_CONSTRAINTS__ 333
 #define __GO_UI_GRID_CONSTRAINTS__ 334
+#define __GO_UI_TABGROUP__ 335
+#define __GO_UI_TAB__ 336
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */

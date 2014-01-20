@@ -48,7 +48,9 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABGROUP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TOOLTIPSTRING_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TOOLTIPSTRING__;
@@ -174,7 +176,7 @@ public class Uicontrol extends GraphicObject {
         LAYOUT_SET,
         MARGINS,
         BORDERCONSTRAINTS,
-        GRIDCONSTRAINTS;
+        GRIDCONSTRAINTS
     };
 
     /**
@@ -191,7 +193,9 @@ public class Uicontrol extends GraphicObject {
         RADIOBUTTON,
         SLIDER,
         TABLE,
-        TEXT
+        TEXT,
+        TABGROUP,
+        TAB
     };
 
     /**
@@ -231,6 +235,10 @@ public class Uicontrol extends GraphicObject {
                 return __GO_UI_TABLE__;
             case TEXT:
                 return __GO_UI_TEXT__;
+            case TABGROUP:
+                return __GO_UI_TABGROUP__;
+            case TAB:
+                return __GO_UI_TAB__;
             default :
                 return -1;
         }
@@ -265,6 +273,10 @@ public class Uicontrol extends GraphicObject {
                 return UicontrolStyle.TABLE;
             case __GO_UI_TEXT__ :
                 return UicontrolStyle.TEXT;
+            case __GO_UI_TABGROUP__:
+                return UicontrolStyle.TABGROUP;
+            case __GO_UI_TAB__:
+                return UicontrolStyle.TAB;
             default :
                 return null;
         }
@@ -925,5 +937,4 @@ public class Uicontrol extends GraphicObject {
 
     public void accept(Visitor visitor) {
     }
-
 }
