@@ -8,7 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
-function h=figure(varargin)
+function h=oldfigure(varargin)
     // -----------------------------------------------------------
     function h = createOrSetFigure(numOrHandle)
         // Vincent COUVERT - INRIA 2008

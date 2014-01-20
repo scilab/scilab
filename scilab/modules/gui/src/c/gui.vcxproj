@@ -315,6 +315,7 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_x_mdialog.c" />
     <ClCompile Include="..\jni\ScilabDisplayTree.cpp" />
     <ClCompile Include="ScilabTermination.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_figure.c" />
     <ClCompile Include="setMainWindowTitle.c" />
     <ClCompile Include="..\cpp\SetUicontrolBackgroundColor.cpp" />
     <ClCompile Include="..\cpp\SetUicontrolFontAngle.cpp" />

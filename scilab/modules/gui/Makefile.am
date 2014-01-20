@@ -187,7 +187,8 @@ sci_gateway/c/sci_helpbrowser.c \
 sci_gateway/c/sci_uigetfont.c \
 sci_gateway/c/sci_uigetcolor.c \
 sci_gateway/c/sci_getcallbackobject.c \
-sci_gateway/c/sci_exportUI.c
+sci_gateway/c/sci_exportUI.c \
+sci_gateway/c/sci_figure.c
 
 GATEWAY_CXX_SOURCES = \
 sci_gateway/cpp/sci_printsetupbox.cpp \

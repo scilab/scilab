@@ -302,7 +302,8 @@ am__objects_4 = sci_gateway/c/libscigui_la-sci_x_choice.lo \
 	sci_gateway/c/libscigui_la-sci_uigetfont.lo \
 	sci_gateway/c/libscigui_la-sci_uigetcolor.lo \
 	sci_gateway/c/libscigui_la-sci_getcallbackobject.lo \
-	sci_gateway/c/libscigui_la-sci_exportUI.lo
+	sci_gateway/c/libscigui_la-sci_exportUI.lo \
+	sci_gateway/c/libscigui_la-sci_figure.lo
 am__objects_5 = sci_gateway/cpp/libscigui_la-sci_printsetupbox.lo \
 	sci_gateway/cpp/libscigui_la-sci_toprint.lo \
 	sci_gateway/cpp/libscigui_la-sci_printfigure.lo \
@@ -850,7 +851,8 @@ sci_gateway/c/sci_helpbrowser.c \
 sci_gateway/c/sci_uigetfont.c \
 sci_gateway/c/sci_uigetcolor.c \
 sci_gateway/c/sci_getcallbackobject.c \
-sci_gateway/c/sci_exportUI.c
+sci_gateway/c/sci_exportUI.c \
+sci_gateway/c/sci_figure.c
 
 GATEWAY_CXX_SOURCES = \
 sci_gateway/cpp/sci_printsetupbox.cpp \
@@ -1512,6 +1514,9 @@ sci_gateway/c/libscigui_la-sci_getcallbackobject.lo:  \
 sci_gateway/c/libscigui_la-sci_exportUI.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscigui_la-sci_figure.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/cpp
 	@: > sci_gateway/cpp/$(am__dirstamp)
@@ -1622,6 +1627,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigui_la-sci_ClipBoard.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigui_la-sci_delmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigui_la-sci_exportUI.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigui_la-sci_figure.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigui_la-sci_getcallbackobject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigui_la-sci_helpbrowser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigui_la-sci_messagebox.Plo@am__quote@
@@ -2035,6 +2041,13 @@ sci_gateway/c/libscigui_la-sci_exportUI.lo: sci_gateway/c/sci_exportUI.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_exportUI.c' object='sci_gateway/c/libscigui_la-sci_exportUI.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigui_la-sci_exportUI.lo `test -f 'sci_gateway/c/sci_exportUI.c' || echo '$(srcdir)/'`sci_gateway/c/sci_exportUI.c
+
+sci_gateway/c/libscigui_la-sci_figure.lo: sci_gateway/c/sci_figure.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigui_la-sci_figure.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigui_la-sci_figure.Tpo -c -o sci_gateway/c/libscigui_la-sci_figure.lo `test -f 'sci_gateway/c/sci_figure.c' || echo '$(srcdir)/'`sci_gateway/c/sci_figure.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscigui_la-sci_figure.Tpo sci_gateway/c/$(DEPDIR)/libscigui_la-sci_figure.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_figure.c' object='sci_gateway/c/libscigui_la-sci_figure.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigui_la-sci_figure.lo `test -f 'sci_gateway/c/sci_figure.c' || echo '$(srcdir)/'`sci_gateway/c/sci_figure.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
