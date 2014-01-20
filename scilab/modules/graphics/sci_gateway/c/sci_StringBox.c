@@ -127,13 +127,13 @@ int sci_stringbox(char * fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname,  1);
+            Scierror(202, _("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"), fname,  1, "Text");
             return 1;
         }
 
         if (m * n != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A 'Text' handle expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A ''%s'' handle expected.\n"), fname, 1, "Text");
             return 0;
         }
 

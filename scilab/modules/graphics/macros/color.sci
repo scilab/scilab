@@ -17,7 +17,7 @@ function id=color(varargin)
         else
             c=name2rgb(c1);
             if c==[] then
-                error(msprintf(gettext("%s: Wrong values for input argument #%d: ''%s'' expected.\n"), "color", 1, "know color"));
+                error(msprintf(gettext("%s: Wrong value for input argument #%d: A known color expected.\n"), "color", 1));
             end
             c=c/255;
         end

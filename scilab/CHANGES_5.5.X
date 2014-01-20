@@ -178,6 +178,8 @@ Scilab Bug Fixes
 
 * Bug #12334 fixed - Mark color in legend was invalid.
 
+* Bug #12412 fixed - Typo fixed.
+
 * Bug #12439 fixed - edit_error returned a wrong message when there was no recorded error.
 
 * Bug #12472 fixed - grand and link error messages fixed.

@@ -172,7 +172,7 @@ public class SciNotesMessages {
     public static final String FILE_DOESNT_EXIST = Messages.gettext("The file %s does not exist. Do you want to create it?");
     public static final String CLOSE_TAB_TIP = Messages.gettext("close this tab");
     public static final String THIS_FILE = Messages.gettext("This file");
-    public static final String MODIFIED = Messages.gettext("%s has been modified since last save. Save it?");
+    public static final String MODIFIED = Messages.gettext("The file %s has been modified since last save. Save it?");
     public static final String EXTERNAL_MODIFICATION = Messages.gettext("The file %s has been modified by another program ! Overwrite it ?");
     public static final String EXTERNAL_MODIFICATION_INFO = Messages.gettext("Warning: the file has been modified by another program !");
     public static final String RELOAD = Messages.gettext("Reload");
