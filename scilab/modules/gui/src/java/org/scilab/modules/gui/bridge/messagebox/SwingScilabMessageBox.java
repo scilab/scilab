@@ -90,6 +90,11 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
     private static final String SEPARATOR = "[--sep--]";
 
     /**
+     * The minimal fixed width of any mdialog inputs
+     */
+    private static final int X_MDIALOG_TEXTFIELD_SIZE = 10;
+
+    /**
      * Icons
      */
     private final Icon scilabIcon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "48x48"));
@@ -459,6 +464,11 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
                         ((JCheckBox) c).setSelected(false);
                     } else {
                         c = new JTextField(initial);
+
+                        // force an initial width when the initial text is too small
+                        if (initial.length() < X_MDIALOG_TEXTFIELD_SIZE) {
+                            ((JTextField) c).setColumns(X_MDIALOG_TEXTFIELD_SIZE);
+                        }
                     }
 
                     textFields[col * lineLabels.length + line] = c;
