@@ -87,6 +87,8 @@ Scilab Bug Fixes
 
 * Bug #7244 fixed - Extraction from a struct array with a boolean vector had a strange behavior.
 
+* Bug #7561 fixed - roots help page now explains that it uses coefficients in the contrary order of poly.
+
 * Bug #7570 fixed - The switch criterion on x and y is now explicited in beta() help page.
 
 * Bug #7593 fixed - stdev now encompasses msd and st_deviation thanks to a new optional input argument.
