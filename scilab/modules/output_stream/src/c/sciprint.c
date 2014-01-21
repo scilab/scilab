@@ -101,7 +101,7 @@ int scivprint(char *fmt, va_list args)
         s_buf[MAXPRINTF - 1] = '\0';
     }
 
-    scilabWrite(s_buf);
+    scilabForcedWrite(s_buf);
 
     va_end(savedargs);
 
