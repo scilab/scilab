@@ -101,7 +101,9 @@
     xmlDelete(doc);
 
     // 名前空間を検索
-    doc = xmlReadStr("<root xmlns:scilab=""http://www.scilab.org""><scilab:a att=""foo"" rib=""bar""><b>Hello</b></scilab:a></root>");
+    t = "<root xmlns:scilab=""http://www.scilab.org"">"+..
+        "<scilab:a att=""foo"" rib=""bar""><b>Hello</b></scilab:a></root>"
+    doc = xmlReadStr(t);
 
     // aという名前の要素を探します
     xmlXPath(doc, "//a") // => nothing
@@ -113,7 +115,9 @@
     xmlDelete(doc);
 
     // 要素で始まるクエリ
-    doc = xmlReadStr("<root att=""attribute""><a a1=""A1"" a2=""A2"" a3=""A3""><b>Hello</b><c>Scilab</c><b>World</b></a><b>Nothing</b></root>");
+    t = "<root att=""attribute""><a a1=""A1"" a2=""A2"" a3=""A3"">"+..
+        "<b>Hello</b><c>Scilab</c><b>World</b></a><b>Nothing</b></root>"
+    doc = xmlReadStr(t);
     e = doc.root.children(1);
 
     // eの属性を取得

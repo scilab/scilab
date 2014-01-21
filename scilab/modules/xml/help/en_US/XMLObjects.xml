@@ -131,7 +131,10 @@
                 </listitem>
             </itemizedlist>
             <programlisting role="example"><![CDATA[
-    doc = xmlReadStr("<root xmlns:bar=""http://www.scilab.org/""><bar:a att=""foo"" rib=""bar""><b>Hello</b><c> world</c></bar:a></root>");
+    s = "<root xmlns:bar=""http://www.scilab.org/"">"+..
+        "<bar:a att=""foo"" rib=""bar"">"+..
+        "<b>Hello</b><c> world</c></bar:a></root>"
+    doc = xmlReadStr(s);
     first = doc.root.children(1);
     b = first.children(1);
 
@@ -165,7 +168,10 @@
         <title>XML Attributes</title>
         <para>A XML Attributes is a kind of hashtable which maps attributes name to attributes value. An attribute value can be accessed or modified in using the attribute name as field of this object or in using an index between 1 and attributes size.</para>
         <programlisting role="example"><![CDATA[
-    doc = xmlReadStr("<root xmlns:bar=""http://www.scilab.org/""><bar:a att=""foo"" rib=""bar""><b>Hello</b><c> world</c></bar:a></root>");
+    s = "<root xmlns:bar=""http://www.scilab.org/"">"+..
+        "<bar:a att=""foo"" rib=""bar"">"+..
+        "<b>Hello</b><c> world</c></bar:a></root>"
+    doc = xmlReadStr(s);
     first = doc.root.children(1);
 
     // Read an attribute
@@ -202,7 +208,10 @@
             </itemizedlist>
         </para>
         <programlisting role="example"><![CDATA[
-    doc = xmlReadStr("<root xmlns:bar=""http://www.scilab.org/""><bar:a att=""foo"" rib=""bar""><b>Hello</b><c> world</c></bar:a></root>");
+    s = "<root xmlns:bar=""http://www.scilab.org/"">"+..
+        "<bar:a att=""foo"" rib=""bar"">"+..
+        "<b>Hello</b><c> world</c></bar:a></root>"
+    doc = xmlReadStr(s);
     ns = doc.root.children(1).namespace;
     ns.href
     ns.prefix

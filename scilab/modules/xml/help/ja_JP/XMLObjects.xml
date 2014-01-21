@@ -102,7 +102,7 @@
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">content</emphasis>: 
+                        <emphasis role="bold">content</emphasis>:
                         ノードの内容を表す文字列.
                         例えば,&lt;A&gt;hello &lt;B&gt;world&lt;/B&gt; というノードA
                         の内容は文字列 "hello world"となります.
@@ -110,7 +110,7 @@
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">type</emphasis>: 
+                        <emphasis role="bold">type</emphasis>:
                         ノードの型を表す文字列. 以下の値のどれかとなります:
                         "XML_ELEMENT_NODE", "XML_ATTRIBUTE_NODE", "XML_TEXT_NODE", "XML_CDATA_SECTION_NODE", "XML_ENTITY_REF_NODE", "XML_ENTITY_NODE", "XML_PI_NODE", "XML_COMMENT_NODE", "XML_DOCUMENT_NODE", "XML_DOCUMENT_TYPE_NODE", "XML_DOCUMENT_FRAG_NODE", "XML_NOTATION_NODE", "XML_HTML_DOCUMENT_NODE", "XML_DTD_NODE", "XML_ELEMENT_DECL", "XML_ATTRIBUTE_DECL", "XML_ENTITY_DECL", "XML_NAMESPACE_DECL", "XML_XINCLUDE_START", "XML_XINCLUDE_END", "XML_DOCB_DOCUMENT_NODE".
                     </para>
@@ -122,25 +122,28 @@
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">attributes</emphasis>: 
+                        <emphasis role="bold">attributes</emphasis>:
                         XML属性オブジェクトとして表したノード属性;
                     </para>
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">children</emphasis>: 
+                        <emphasis role="bold">children</emphasis>:
                         XMLノードリストオブジェクトとして表した子要素.
                     </para>
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">line</emphasis>: 
+                        <emphasis role="bold">line</emphasis>:
                         XML要素の線の定義.
                     </para>
                 </listitem>
             </itemizedlist>
             <programlisting role="example"><![CDATA[
-    doc = xmlReadStr("<root xmlns:bar=""http://www.scilab.org/""><bar:a att=""foo"" rib=""bar""><b>Hello</b><c> world</c></bar:a></root>");
+    s = "<root xmlns:bar=""http://www.scilab.org/"">"+..
+        "<bar:a att=""foo"" rib=""bar"">"+..
+        "<b>Hello</b><c> world</c></bar:a></root>"
+    doc = xmlReadStr(s);
     first = doc.root.children(1);
     b = first.children(1);
 
@@ -178,7 +181,10 @@
             1から属性の大きさまでの添字番号によりアクセスや修正が可能です.
         </para>
         <programlisting role="example"><![CDATA[
-    doc = xmlReadStr("<root xmlns:bar=""http://www.scilab.org/""><bar:a att=""foo"" rib=""bar""><b>Hello</b><c> world</c></bar:a></root>");
+    s = "<root xmlns:bar=""http://www.scilab.org/"">"+..
+        "<bar:a att=""foo"" rib=""bar"">"+..
+        "<b>Hello</b><c> world</c></bar:a></root>"
+    doc = xmlReadStr(s);
     first = doc.root.children(1);
 
     // 属性を読み込みます
@@ -209,14 +215,17 @@
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">prefix</emphasis>: 
+                        <emphasis role="bold">prefix</emphasis>:
                         この名前空間で使用する接頭辞を表す文字列.
                     </para>
                 </listitem>
             </itemizedlist>
         </para>
         <programlisting role="example"><![CDATA[
-    doc = xmlReadStr("<root xmlns:bar=""http://www.scilab.org/""><bar:a att=""foo"" rib=""bar""><b>Hello</b><c> world</c></bar:a></root>");
+    s = "<root xmlns:bar=""http://www.scilab.org/"">"+..
+        "<bar:a att=""foo"" rib=""bar"">"+..
+        "<b>Hello</b><c> world</c></bar:a></root>"
+    doc = xmlReadStr(s);
     ns = doc.root.children(1).namespace;
     ns.href
     ns.prefix
