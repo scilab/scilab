@@ -156,6 +156,8 @@ Scilab Bug Fixes
 
 * Bug #10645 fixed - File encoding could not be given as argument in xmlRead.
 
+* Bug #10816 fixed - Typo in part error message fixed.
+
 * Bug #10936 fixed - Scilab hung with invalid strf in plot2d.
 
 * Bug #10998 fixed - matrix*hypermatrix and hypermatrix*matrix operations failed.

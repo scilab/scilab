@@ -25,8 +25,8 @@ function r = %ip_part(txt, s)
 
     //check s
     if ~checkip(s) then
-        msg = _("%s: Wrong value for input argument #%d: $ expected.\n", 2);
-        error(msprintf(msg,"part"))
+        msg = _("%s: Wrong value for input argument #%d: $ expected.\n");
+        error(msprintf(msg,"part",2))
     end
 
     L = length(txt)
