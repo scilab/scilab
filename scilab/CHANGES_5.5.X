@@ -180,6 +180,8 @@ Scilab Bug Fixes
 
 * Bug #11680 fixed - GUI functions in Scilab 5.4.X were much slower than in Scilab 5.3.3.
 
+* Bug #11714 fixed - help_from_sci sometimes failed when input function had "<imagedata>" comments.
+
 * Bug #11996 fixed - eye extended to hypermatrix.
 
 * Bug #12082 fixed - convstr function did not work with non-ASCII symbols.
