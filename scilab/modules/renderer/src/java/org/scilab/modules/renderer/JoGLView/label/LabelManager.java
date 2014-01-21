@@ -91,6 +91,16 @@ public class LabelManager {
         return dims;
     }
 
+    public Dimension getXLabelSize(ColorMap colorMap, Axes axes, AxesDrawer drawer) {
+        final Label xl = (Label) GraphicController.getController().getObjectFromId(axes.getXAxisLabel());
+        if (!xl.isEmpty()) {
+            final Texture texture = getTexture(colorMap, xl);
+            return texture.getDataProvider().getTextureSize();
+        }
+
+        return new Dimension();
+    }
+
     /**
      * Draws the given {@see Label} with the given {@see DrawingTools}.
      * @param drawingTools the given {@see DrawingTools}.

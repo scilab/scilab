@@ -14,6 +14,7 @@ package org.scilab.modules.renderer.JoGLView.label;
 import org.scilab.forge.scirenderer.texture.AnchorPosition;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
+import org.scilab.modules.graphic_objects.axes.AxisProperty;
 
 /**
  * TitlePositioner class.
@@ -50,6 +51,10 @@ public class TitlePositioner extends LabelPositioner {
      */
     private static final double ZNEAR = -1.0;
 
+    /** The ratio between the maximum tick label sprite distance and the projected ticks direction norm. */
+    private double distRatio;
+    private int xlabelHeight;
+
     /**
      * Constructor.
      */
@@ -57,6 +62,18 @@ public class TitlePositioner extends LabelPositioner {
         super();
         /* Title labels are drawn in window coordinates to avoid jittering. */
         useWindowCoordinates = true;
+    }
+
+    /**
+     * Sets the maximum sprite distance to projected ticks norm ratio.
+     * @param distanceRatio the distance ratio to set.
+     */
+    public void setDistanceRatio(double distanceRatio) {
+        this.distRatio = distanceRatio;
+    }
+
+    public void setXLabelHeight(int height) {
+        this.xlabelHeight = height;
     }
 
     /**
@@ -68,11 +85,16 @@ public class TitlePositioner extends LabelPositioner {
     protected Vector3d computeDisplacedPosition() {
         Transformation canvasProjection = drawingTools.getTransformationManager().getCanvasProjection();
 
-        Double [] axesBounds = {0.0, 0.0, 0.0, 0.0};
-        Double [] margins = {0.0, 0.0, 0.0, 0.0};
+        Double[] axesBounds = {0.0, 0.0, 0.0, 0.0};
+        Double[] margins = {0.0, 0.0, 0.0, 0.0};
+        boolean onTop = false;
         if (parentAxes != null) {
             axesBounds = parentAxes.getAxesBounds();
             margins = parentAxes.getMargins();
+            AxisProperty.AxisLocation xloc = parentAxes.getXAxis().getAxisLocation();
+            if (xloc == AxisProperty.AxisLocation.TOP) {
+                onTop = true;
+            }
         }
 
         /* Compute the anchor point's position in window coordinates */
@@ -85,9 +107,14 @@ public class TitlePositioner extends LabelPositioner {
 
         Vector3d unprojAnchorPoint = new Vector3d(projAnchorPoint);
         unprojAnchorPoint = canvasProjection.unproject(unprojAnchorPoint);
+        int h = 0;
+
+        if (onTop) {
+            h = (int) ((1 - margins[2] - margins[3]) * distRatio / 2 * axesBounds[3] * drawingTools.getCanvas().getHeight()) + xlabelHeight;
+        }
 
         /* The anchor point is displaced along the y-axis by TITLEOFFSET pixels. */
-        projAnchorPoint = projAnchorPoint.setY(projAnchorPoint.getY() + TITLEOFFSET);
+        projAnchorPoint = projAnchorPoint.setY(projAnchorPoint.getY() + TITLEOFFSET + h);
 
         Vector3d unprojDispAnchorPoint = canvasProjection.unproject(projAnchorPoint);
         Vector3d position = new Vector3d(unprojDispAnchorPoint);

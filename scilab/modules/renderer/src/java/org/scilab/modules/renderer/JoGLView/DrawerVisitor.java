@@ -1045,6 +1045,9 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 if (SILENT_FIGURE_PROPERTIES.contains(property)) {
                     return false;
                 }
+            } else if (object instanceof Axes && property == GraphicObjectProperties.__GO_X_AXIS_LOCATION__ ||
+                       property == GraphicObjectProperties.__GO_Y_AXIS_LOCATION__) {
+                axesDrawer.computeMargins((Axes) object);
             }
 
             if (!object.isValid()) {

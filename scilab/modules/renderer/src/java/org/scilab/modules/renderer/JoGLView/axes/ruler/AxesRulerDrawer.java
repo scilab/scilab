@@ -36,8 +36,10 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.label.AxisLabelPositioner;
+import org.scilab.modules.renderer.JoGLView.label.TitlePositioner;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 
+import java.awt.Dimension;
 import java.nio.FloatBuffer;
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -183,6 +185,11 @@ public class AxesRulerDrawer {
             xAxisLabelPositioner.setDistanceRatio((double) TICKS_LENGTH / projTicksDir.getNorm());
             xAxisLabelPositioner.setProjectedTicksDirection(projTicksDir.getNormalized().setZ(0));
         }
+
+        TitlePositioner titlePositioner = axesDrawer.getTitlePositioner(axes);
+        Dimension xdim = axesDrawer.getLabelManager().getXLabelSize(colorMap, axes, axesDrawer);
+        titlePositioner.setXLabelHeight(xdim.height);
+        titlePositioner.setDistanceRatio(xAxisLabelPositioner.getDistanceRatio());
 
         // Draw Y ruler
         rulerModel = getDefaultRulerModel(axes, colorMap);

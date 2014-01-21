@@ -128,6 +128,13 @@ public class AxesDrawer {
         reversedBoundsIntervals = new double[3];
     }
 
+    /**
+     * @return the axis label manager
+     */
+    public LabelManager getLabelManager() {
+        return labelManager;
+    }
+
     public Transformation getCurrentProjection(Axes axes) throws DegenerateMatrixException {
         DrawingTools drawingTools = visitor.getDrawingTools();
         Integer[] size = visitor.getFigure().getAxesSize();
@@ -200,7 +207,7 @@ public class AxesDrawer {
                     if (xloc == AxisProperty.AxisLocation.BOTTOM) {
                         mt[3] = xh;
                     } else {
-                        mt[2] = xh;
+                        mt[2] += xh;
                     }
                 }
 
@@ -1362,7 +1369,7 @@ public class AxesDrawer {
      * Returns the title positioner.
      * @return the title positioner.
      */
-    public LabelPositioner getTitlePositioner(Axes axes) {
+    public TitlePositioner getTitlePositioner(Axes axes) {
         TitlePositioner positioner = this.titlePositioner.get(axes.getIdentifier());
         if (positioner == null) {
             positioner = new TitlePositioner();
