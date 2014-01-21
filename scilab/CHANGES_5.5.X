@@ -376,6 +376,8 @@ Scilab Bug Fixes
 
 * Bug #13192 fixed - horner returned an error message when the input arguments did not have the same size.
 
+* Bug #13194 fixed - part help page has been improved.
+
 * Bug #13392 fixed - Typo in the CACSD help chapter fixed.
 
 
