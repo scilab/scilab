@@ -37,6 +37,8 @@ Obsolete & Removed Functions
 
 * demo_message and demo_mdialog removed.
 
+* with_embedded_jre removed.
+
 
 Scilab Bug Fixes
 ================
@@ -145,6 +147,8 @@ Scilab Bug Fixes
 * Bug #9110 fixed - Examples and references to other functions added in the Statistics help pages.
 
 * Bug #9319 fixed - Big polylines could not be exported in PS/EPS.
+
+* Bug #9444 fixed - with_embedded_jre function removed.
 
 * Bug #9627 fixed - Arguments checking added in optimsimplex_* functions.
 

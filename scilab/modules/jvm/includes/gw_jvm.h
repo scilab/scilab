@@ -21,7 +21,6 @@ JVM_IMPEXP int gw_jvm(void);
 /*--------------------------------------------------------------------------*/
 /* Declaration of all the profile function declared and */
 /* used in sci_gateway */
-JVM_IMPEXP int sci_with_embedded_jre(char *fname, unsigned long fname_len);
 JVM_IMPEXP int sci_system_setproperty(char *fname, unsigned long fname_len);
 JVM_IMPEXP int sci_system_getproperty(char *fname, unsigned long fname_len);
 JVM_IMPEXP int sci_javaclasspath(char *fname, unsigned long fname_len);

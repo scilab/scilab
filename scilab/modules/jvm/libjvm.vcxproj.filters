@@ -90,9 +90,6 @@
     <ClCompile Include="sci_gateway\c\sci_system_setproperty.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_with_embedded_jre.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\system_getproperty.c">
       <Filter>Source Files</Filter>
     </ClCompile>

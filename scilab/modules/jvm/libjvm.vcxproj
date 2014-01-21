@@ -241,7 +241,6 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile Include="sci_gateway\c\sci_javalibrarypath.c" />
     <ClCompile Include="sci_gateway\c\sci_system_getproperty.c" />
     <ClCompile Include="sci_gateway\c\sci_system_setproperty.c" />
-    <ClCompile Include="sci_gateway\c\sci_with_embedded_jre.c" />
     <ClCompile Include="src\c\system_getproperty.c" />
     <ClCompile Include="src\c\system_setproperty.c" />
     <ClCompile Include="src\c\TerminateJVM.c" />

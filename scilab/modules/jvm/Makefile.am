@@ -2,11 +2,11 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA   - 2006 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 #
 
@@ -16,7 +16,7 @@ modulename=jvm
 
 #### jvm : Conf files ####
 libscijvm_la_rootdir = $(mydatadir)
-libscijvm_la_root_DATA =  license.txt 
+libscijvm_la_root_DATA =  license.txt
 
 #### jvm : init scripts ####
 libscijvm_la_etcdir = $(mydatadir)/etc
@@ -50,7 +50,7 @@ endif
 libscijvm_la_LDFLAGS = -lpthread $(XML_LIBS) $(JAVA_JNI_LIBS) $(AM_LDFLAGS)
 
 # FIXME: This a platform specific flag, this should be done on configure.ac
-if IS_MACOSX 
+if IS_MACOSX
 libscijvm_la_LDFLAGS += -framework JavaVM
 endif
 
@@ -74,7 +74,6 @@ includes/getScilabObject.h
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_system_getproperty.c \
 sci_gateway/c/sci_system_setproperty.c \
-sci_gateway/c/sci_with_embedded_jre.c \
 sci_gateway/c/sci_javaclasspath.c \
 sci_gateway/c/gw_jvm.c \
 sci_gateway/c/sci_javalibrarypath.c

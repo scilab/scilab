@@ -31,18 +31,18 @@ assert_checkequal(c, []);
 with_tk();
 
 function x = with_foo(y, z)
-  x = y + z;
+    x = y + z;
 endfunction
 
 [a, b, c, d] = completion("with");
-ref_a = ["with_embedded_jre"; "with_module"];
+ref_a = ["with_module"];
 ref_b = [];
 ref_c = [];
 ref_d = ["with_foo"; ..
-         "with_javasci"; ..
-         "with_macros_source"; ..
-         "with_modelica_compiler"; ..
-         "with_tk"];
+"with_javasci"; ..
+"with_macros_source"; ..
+"with_modelica_compiler"; ..
+"with_tk"];
 
 assert_checkequal(a, ref_a);
 assert_checkequal(b, ref_b);
