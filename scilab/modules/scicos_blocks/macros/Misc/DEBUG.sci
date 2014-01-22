@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ]=DEBUG_SCICOS(job,arg1,arg2)
+function [x,y,typ]=DEBUG(job,arg1,arg2)
     x=[];
     y=[];
     typ=[];

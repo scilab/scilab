@@ -30,7 +30,7 @@ notTested = ["SUPER_f", "DSUPER", ..              // Specific blocks
              "CLKIN_f", "CLKINV_f", "CLKOUT_f", "CLKOUTV_f",..
              "VirtualCLK0",..
              "SPLIT_f", "CLKSPLIT_f",..
-             "TEXT_f", "PAL_f", "DEBUG_SCICOS", ..
+             "TEXT_f", "PAL_f", "DEBUG", ..
              "SIGNUM", "MAXMIN", "ABS_VALUE", ..    // buggy blocks
              "PENDULUM_ANIM", "BPLATFORM", "MBLOCK", ..
              "TKSCALE", "BARXY", ..
@@ -103,7 +103,7 @@ function model = configure(model)
     model.in = ones(model.in);
     model.in2 = ones(model.in2);
     model.intyp = ones(model.intyp);
-    
+
     model.out = ones(model.out);
     model.out2 = ones(model.out2);
     model.outtyp = ones(model.outtyp);

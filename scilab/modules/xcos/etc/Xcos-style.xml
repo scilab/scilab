@@ -772,7 +772,7 @@
     <add as="fortran_block" extend="blockWithLabel">
         <add as="displayedLabel" value="Fortran block:&lt;BR&gt;%4$s"/>
     </add>
-    <add as="DEBUG_SCICOS" extend="blockWithLabel">
+    <add as="DEBUG" extend="blockWithLabel">
         <add as="displayedLabel" value="Debug:&lt;BR&gt;%2$s"/>
     </add>
     <add as="EXPRESSION" extend="blockWithLabel">

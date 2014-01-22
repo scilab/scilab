@@ -26,7 +26,7 @@ notTested = ["SUPER_f", "DSUPER", ..              // Specific blocks
              "CLKIN_f", "CLKINV_f", "CLKOUT_f", "CLKOUTV_f",..
              "VirtualCLK0",..
              "SPLIT_f", "CLKSPLIT_f",..
-             "TEXT_f", "PAL_f", "DEBUG_SCICOS", ..
+             "TEXT_f", "PAL_f", "DEBUG", ..
              "SIGNUM", "MAXMIN", "ABS_VALUE", ..    // buggy blocks
              "PENDULUM_ANIM", "BPLATFORM", "MBLOCK", ..
              "TKSCALE", "BARXY", ..
