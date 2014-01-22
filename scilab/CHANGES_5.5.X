@@ -77,6 +77,8 @@ Scilab Bug Fixes
 
 * Bug #6859 fixed - xlabel and xtitle could overlap.
 
+* Bug #6930 fixed - Matplot handle had no rect property.
+
 * Bug #7038 fixed - Toolbar button managing datatip mode did not toggle.
 
 * Bug #7047 fixed - milk_drop is now obsolete. It will be removed in Scilab 5.5.1, but will be kept as a demo.

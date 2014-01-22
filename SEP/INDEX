@@ -116,3 +116,4 @@ SEP #117: New function ilib_build_jar
 SEP #118: New function ifftshift
 SEP #119: Management of encoding in xmlRead
 SEP #120: New function tbx_build_pal_loader
+SEP #121: New rect property for matplot handle

@@ -234,7 +234,8 @@ static getHashTableCouple propertyGetTable[] =
     {"infobar_visible", get_infobar_visible_property},
     {"dockable", get_dockable_property},
     {"layout", get_layout_property},
-    {"constraints", get_constraints_property}
+    {"constraints", get_constraints_property},
+    {"rect", get_rect_property}
 };
 
 /*--------------------------------------------------------------------------*/

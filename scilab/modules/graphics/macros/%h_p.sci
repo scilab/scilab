@@ -388,6 +388,7 @@ function %h_p(h)
             "children: "+fmtchildren(h.children)
             "visible = "+sci2exp(h.visible)
             "data = "+d
+            "rect = " + sci2exp(h.rect, 0)
             "image_type = " + sci2exp(h.image_type)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box,0)

@@ -83,18 +83,22 @@ Matplot1(a,[5,6,7,8])
 n=100;
 
 clf();
-f=gcf();//カレントの図のハンドルを取得
-ax=gca();//カレントの軸のハンドルを取得
-ax.data_bounds=[0,0;10,10];//data_boundsを設定
-ax.box='on'; //ボックスを描画 
-for k=-n:n,
-  a=ones(n,n);
-  a= 3*tril(a,k)+ 2*a;
-  a= a + a';
-  k1= 3*(k+100)/200;
-  if k>-n then delete(gce()),end
-  Matplot1(a,[k1,2,k1+7,9])
-  sleep(8);
+f = gcf();//カレントの図のハンドルを取得
+ax = gca();//カレントの軸のハンドルを取得
+ax.data_bounds = [0, 0 ; 10, 10];//data_boundsを設定
+ax.box = 'on'; //ボックスを描画 
+o = ones(n, n);
+a = 3 * tril(o, -n) + 2*o;
+a = a + a';
+Matplot1(a, [0, 2, 7, 9])
+mp = gce();
+for k = (-n + 1):n,
+  a = 3 * tril(o, k) + 2 * o;
+  a = a + a';
+  k1 = 3 * (k + 100) / 200;
+  mp.data = a;
+  mp.rect = [k1, 2, k1 + 7, 9];
+  sleep(8); // Slow down the simulation
 end
  ]]></programlisting>
     </refsection>

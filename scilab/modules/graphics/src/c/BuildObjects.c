@@ -575,6 +575,8 @@ int ConstructImplot(int iParentsubwinUID, double *pvecx, unsigned char *pvecz, i
         setGraphicObjectProperty(iObj, __GO_MATPLOT_SCALE__, pdblScale, jni_double_vector, 2);
     }
 
+    setGraphicObjectProperty(iObj, __GO_DATA_MODEL_MATPLOT_BOUNDS__, pvecx, jni_double_vector, 4);
+
     numElements = (n1 - 1) * (n2 - 1);
     if (plottype != -1)
     {

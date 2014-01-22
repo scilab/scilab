@@ -89,21 +89,23 @@ Matplot1(a,[5,6,7,8])
 n=100;
 
 clf();
-f=gcf();//get current figure handle
-f.pixmap='on';//double buffer modea
-ax=gca();//get current axes handle
-ax.data_bounds=[0,0;10,10];//set the data_bounds
-ax.box='on'; //draw a box
-for k=-n:n,
-  a=ones(n,n);
-  a= 3*tril(a,k)+ 2*a;
-  a= a + a';
-  k1= 3*(k+100)/200;
-  if k>-n then delete(gce()),end
-  Matplot1(a,[k1,2,k1+7,9])
-  sleep(20); // Slow down the simulation
+f = gcf();//get current figure handle
+ax = gca();//get current axes handle
+ax.data_bounds = [0, 0 ; 10, 10];//set the data_bounds
+ax.box = 'on'; //draw a box
+o = ones(n, n);
+a = 3 * tril(o, -n) + 2*o;
+a = a + a';
+Matplot1(a, [0, 2, 7, 9])
+mp = gce();
+for k = (-n + 1):n,
+  a = 3 * tril(o, k) + 2 * o;
+  a = a + a';
+  k1 = 3 * (k + 100) / 200;
+  mp.data = a;
+  mp.rect = [k1, 2, k1 + 7, 9];
+  sleep(8); // Slow down the simulation
 end
-f.pixmap='off';
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

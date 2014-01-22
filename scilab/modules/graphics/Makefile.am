@@ -167,6 +167,7 @@ src/c/getHandleProperty/get_toolbar_property.c \
 src/c/getHandleProperty/get_menubar_property.c \
 src/c/getHandleProperty/get_infobar_property.c \
 src/c/getHandleProperty/get_dockable_property.c \
+src/c/getHandleProperty/get_rect_property.c \
 src/c/getHandleProperty/GetHashTable.c \
 src/c/graphicModuleLoad.c \
 src/c/getHandleProperty/set_old_style_property.c \
@@ -321,6 +322,7 @@ src/c/getHandleProperty/get_layout_property.c \
 src/c/getHandleProperty/set_layout_property.c \
 src/c/getHandleProperty/get_constraints_property.c \
 src/c/getHandleProperty/set_constraints_property.c \
+src/c/getHandleProperty/set_rect_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \

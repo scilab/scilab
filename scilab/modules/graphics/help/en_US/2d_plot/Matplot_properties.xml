@@ -69,6 +69,15 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>rect: </term>
+                <listitem>
+                    <para>
+                        this field contains a row-vector defined by <literal>[xmin, ymin, xmax, ymax]</literal>.
+                        It specifies a rectangle in the current scale and the matrix is drawn inside this rectangle.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>image_type: </term>
                 <listitem>
                     <para>
@@ -236,5 +245,19 @@ e.data=e.data($:-1:1) // reverse order
                 <link linkend="grayplot_properties">grayplot_properties</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Property image_type introduced.
+                </revremark>
+                <revremark>
+                    Property rect introduced.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

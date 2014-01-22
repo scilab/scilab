@@ -235,7 +235,8 @@ static setHashTableCouple propertySetTable[] =
     {"infobar_visible", set_infobar_visible_property},
     {"dockable", set_dockable_property},
     {"layout", set_layout_property},
-    {"constraints", set_constraints_property}
+    {"constraints", set_constraints_property},
+    {"rect", set_rect_property}
 };
 
 /*--------------------------------------------------------------------------*/
