@@ -29,7 +29,7 @@ libsciarnoldi_la_CPPFLAGS = \
 
 pkglib_LTLIBRARIES = libsciarnoldi.la
 
-libsciarnoldi_la_LDFLAGS = $(LAPACK_LIBS) $(ARPACK_LIBS) $(AM_LDFLAGS)
+libsciarnoldi_la_LDFLAGS = $(BLAS_LIBS) $(LAPACK_LIBS) $(ARPACK_LIBS) $(AM_LDFLAGS)
 
 libsciarnoldi_la_SOURCES = $(ARNOLDI_C_SOURCES) $(GATEWAY_C_SOURCES)
 
