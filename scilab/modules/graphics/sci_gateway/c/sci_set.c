@@ -142,7 +142,8 @@ int sci_set(char *fname, unsigned long fname_len)
                     return 1;
                 }
 
-                if ((strcmp(pstProperty, "user_data") == 0) || (stricmp(pstProperty, "userdata") == 0))
+                if ((strcmp(pstProperty, "user_data") == 0) || (stricmp(pstProperty, "userdata") == 0) ||
+                        (strcmp(pstProperty, "display_function_data") == 0))
                 {
                     /* in this case set_user_data_property
                      * directly uses the  third position in the stack

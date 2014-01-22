@@ -197,5 +197,6 @@ int get_direction_property(void* _pvCtx, int iObjUID);
 int get_image_type_property(void* _pvCtx, int iObjUID);
 int get_video_mode_property(void* _pvCtx, int iObjUID);
 int get_datatips_property(void* _pvCtx, int iObjUID);
+int get_display_function_data_property(void* _pvCtx, int iObjUID);
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

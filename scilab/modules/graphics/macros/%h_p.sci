@@ -64,6 +64,8 @@ function %h_p(h)
             "parent: "+h.parent.type
             "children: "+fmtchildren(h.children)
             "datatips: "+fmtchildren(h.datatips)
+            "display_function: "++sci2exp(h.display_function)
+            "display_function_data: "+fmtuser_data(h.display_function_data)
             "visible = "+sci2exp(h.visible)
             "data = "+d
             "closed = "+sci2exp(h.closed)

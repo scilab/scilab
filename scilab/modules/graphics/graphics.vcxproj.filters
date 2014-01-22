@@ -1178,6 +1178,12 @@
     <ClCompile Include="src\c\getHandleProperty\set_direction_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_display_function_data_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_display_function_data_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\Axes.h">

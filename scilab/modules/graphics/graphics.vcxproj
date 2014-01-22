@@ -259,6 +259,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_default_figure_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_diffuse_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_direction_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_display_function_data_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_event_handler_enable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_event_handler_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_figure_closerequestfcn_property.c" />
@@ -331,6 +332,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\set_ambient_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_diffuse_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_direction_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_display_function_data_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_closerequestfcn_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_resizefcn_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_light_type_property.c" />

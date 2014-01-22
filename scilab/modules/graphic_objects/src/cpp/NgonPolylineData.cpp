@@ -36,6 +36,10 @@ NgonPolylineData::NgonPolylineData(void)
     coordinatesShift = NULL;
 
     zCoordinatesSet = 0;
+
+    display_function_data = NULL;
+    display_function_data_size = 0;
+
 }
 
 NgonPolylineData::~NgonPolylineData(void)
@@ -53,6 +57,11 @@ NgonPolylineData::~NgonPolylineData(void)
     if (zShiftSet)
     {
         delete [] zShift;
+    }
+
+    if (display_function_data)
+    {
+        delete[] display_function_data;
     }
 }
 
@@ -78,6 +87,10 @@ int NgonPolylineData::getPropertyFromName(int propertyName)
             return Z_COORDINATES_SHIFT_SET;
         case __GO_DATA_MODEL_Z_COORDINATES_SET__ :
             return Z_COORDINATES_SET;
+        case __GO_DATA_MODEL_DISPLAY_FUNCTION__ :
+            return DISPLAY_FUNCTION_DATA;
+        case __GO_DATA_MODEL_DISPLAY_FUNCTION_SIZE__ :
+            return DISPLAY_FUNCTION_DATA_SIZE;
         default :
             return NgonGeneralData::getPropertyFromName(propertyName);
     }
@@ -108,6 +121,9 @@ int NgonPolylineData::setDataProperty(int property, void const* value, int numEl
             break;
         case Z_COORDINATES_SET :
             setZCoordinatesSet(*((int const*) value));
+            break;
+        case DISPLAY_FUNCTION_DATA :
+            setDisplayFunctionData((int const*) value, numElements);
             break;
         default :
             return NgonGeneralData::setDataProperty(property, value, numElements);
@@ -143,6 +159,12 @@ void NgonPolylineData::getDataProperty(int property, void **_pvData)
             break;
         case Z_COORDINATES_SET :
             ((int *) *_pvData)[0] = getZCoordinatesSet();
+            break;
+        case DISPLAY_FUNCTION_DATA :
+            *_pvData = getDisplayFunctionData();
+            break;
+        case DISPLAY_FUNCTION_DATA_SIZE :
+            ((int *) *_pvData)[0] = getDisplayFunctionDataSize();
             break;
         default :
             NgonGeneralData::getDataProperty(property, _pvData);
@@ -512,3 +534,35 @@ void NgonPolylineData::deleteCoordinatesArrays(void)
     }
 }
 
+int* NgonPolylineData::getDisplayFunctionData()
+{
+    return display_function_data;
+}
+
+int NgonPolylineData::getDisplayFunctionDataSize()
+{
+    return display_function_data_size;
+}
+
+int NgonPolylineData::setDisplayFunctionData(int const* data, int numElements)
+{
+    if (display_function_data != NULL)
+    {
+        delete[] display_function_data;
+        display_function_data = NULL;
+    }
+
+    try
+    {
+        display_function_data_size = numElements;
+        display_function_data = new int[numElements];
+    }
+    catch (const std::exception& e)
+    {
+        e.what();
+        return 0;
+    }
+
+    memcpy(display_function_data, data, display_function_data_size * sizeof(int));
+    return 1;
+}

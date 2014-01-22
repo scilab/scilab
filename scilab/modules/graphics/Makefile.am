@@ -305,6 +305,8 @@ src/c/getHandleProperty/get_figure_closerequestfcn_property.c \
 src/c/getHandleProperty/get_datatip_property.c \
 src/c/getHandleProperty/set_datatip_property.c \
 src/c/getHandleProperty/set_image_type_property.c \
+src/c/getHandleProperty/get_display_function_data_property.c \
+src/c/getHandleProperty/set_display_function_data_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \

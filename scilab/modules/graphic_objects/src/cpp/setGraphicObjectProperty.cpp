@@ -98,6 +98,7 @@ BOOL setGraphicObjectPropertyAndWarn(int _iID, int _iName, void const* _pvValue,
             || _iName == __GO_DATA_MODEL_MATPLOT_DATA_ORDER__
             || _iName == __GO_DATA_MODEL_MATPLOT_IMAGE_TYPE__
             || _iName == __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__
+            || _iName == __GO_DATA_MODEL_DISPLAY_FUNCTION__
        )
     {
         BOOL ret = DataController::setGraphicObjectProperty(_iID, _iName, _pvValue, numElements);

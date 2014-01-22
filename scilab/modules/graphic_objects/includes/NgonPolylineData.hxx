@@ -55,6 +55,10 @@ private :
     /** The coordinates shift array */
     double* coordinatesShift;
 
+    /** data of datatip display function */
+    int* display_function_data;
+    int display_function_data_size;
+
 public :
     /**
      * Constructor
@@ -213,6 +217,15 @@ public :
      * Deletes the coordinates and shift arrays
      */
     void deleteCoordinatesArrays(void);
+
+    /**
+     * Sets data for display function
+     * @param data (numElements values)
+     * @param numElements the number of elements in the array
+     */
+    int setDisplayFunctionData(int const* data, int numElements);
+    int getDisplayFunctionDataSize();
+    int* getDisplayFunctionData();
 };
 
 #endif

@@ -72,6 +72,8 @@ void getGraphicObjectProperty(int iUID, int _iName, _ReturnType_ _returnType, vo
             || _iName == __GO_DATA_MODEL_MATPLOT_IMAGE_TYPE__
             || _iName == __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__
             || _iName == __GO_DATA_MODEL_MATPLOT_IMAGE_DATASIZE__
+            || _iName == __GO_DATA_MODEL_DISPLAY_FUNCTION__
+            || _iName == __GO_DATA_MODEL_DISPLAY_FUNCTION_SIZE__
        )
     {
         DataController::getGraphicObjectProperty(iUID, _iName, _pvData);

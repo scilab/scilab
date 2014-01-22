@@ -224,7 +224,8 @@ static getHashTableCouple propertyGetTable[] =
     {"light_type", get_light_type_property},
     {"direction", get_direction_property},
     {"image_type", get_image_type_property},
-    {"datatips", get_datatips_property}
+    {"datatips", get_datatips_property},
+    {"display_function_data", get_display_function_data_property}
 };
 
 /*--------------------------------------------------------------------------*/
