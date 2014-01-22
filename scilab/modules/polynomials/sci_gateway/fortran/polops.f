@@ -1251,7 +1251,7 @@ c     .        arg4(arg1,[])=[] --> arg4
                if(err.gt.0) return
 
                if(mi.eq.0) then
-c     .           arg4(1:m4,arg2)=[] 
+c     .           arg4(1:m4,arg2)=[]
                   call indxg(il1,m4,ili,mi,mxi,lw,1)
                   if(err.gt.0) return
                   l3r=l4r
@@ -2037,20 +2037,54 @@ c     des valeurs
       do 185 i=0,mn1-1
          i1=i1+inc1
          i2=i2+inc2
-         if(istk(i1+1)-istk(i1).ne.istk(i2+1)-istk(i2) ) goto 184
-         nl=istk(i1+1)-istk(i1)-1
-         do 182 ii=0,nl
-            if(stk(l1r+istk(i1)+ii).ne.stk(l2r+istk(i2)+ii)) goto 184
- 182     continue
-         istk(il1+3+i)=itrue
-         if(max(it1,it2).eq.0) goto 185
-         e1=0.0d+0
-         e2=0.0d+0
-         do 183 ii=0,nl
-            if(it1.eq.1) e1=stk(l1i+istk(i1)+ii)
-            if(it2.eq.1) e2=stk(l2i+istk(i2)+ii)
-            if(e1.ne.e2) goto 184
- 183     continue
+         if(istk(il2).eq.1) then
+c        poly == double
+c            check rank
+             if(istk(i1+1)-istk(i1)-1.ne.0) goto 184
+c            check real values
+             if(stk(l1r+istk(i1)).ne.stk(l2r+(i*inc2)+1)) goto 184
+c            check imaginary values
+             if(it1+it2.eq.2) then
+                 if(stk(l1i+istk(i1)).ne.stk(l2i+(i*inc2)+1)) goto 184
+             else if(it1.eq.1) then
+                 if(stk(l1i+istk(i1)).ne.0.0d+0) goto 184
+             else if(it2.eq.1) then
+                 if(0.0d+0.ne.stk(l2i+(i*inc2)+1)) goto 184
+             endif
+         else if (istk(il1).eq.1) then
+c        double == poly
+c            check rank
+             if(istk(i2+1)-istk(i2)-1.ne.0) goto 184
+c            check real values
+             if(stk(l1r+(i*inc1)+1).ne.stk(l2r+istk(i2))) goto 184
+c            check imaginary values
+             if(it1+it2.eq.2) then
+                if(stk(l1i+(i*inc1)+1).ne.stk(l2i+istk(i2))) goto 184
+             else if(it1.eq.1) then
+                if(stk(l1i+(i*inc1)+1).ne.0.0d+0) goto 184
+             else if(it2.eq.1) then
+                if(0.0d+0.ne.stk(l2i+istk(i2))) goto 184
+             endif
+         else
+c        poly == poly
+c            check rank
+             if(istk(i1+1)-istk(i1).ne.istk(i2+1)-istk(i2) ) goto 184
+             nl=istk(i1+1)-istk(i1)-1
+c            check real values
+             do 182 ii=0,nl
+               if(stk(l1r+istk(i1)+ii).ne.stk(l2r+istk(i2)+ii)) goto 184
+  182     continue
+             istk(il1+3+i)=itrue
+             if(max(it1,it2).eq.0) goto 185
+             e1=0.0d+0
+             e2=0.0d+0
+c            check imaginary values
+             do 183 ii=0,nl
+                if(it1.eq.1) e1=stk(l1i+istk(i1)+ii)
+                if(it2.eq.1) e2=stk(l2i+istk(i2)+ii)
+                if(e1.ne.e2) goto 184
+  183     continue
+         endif
          istk(il1+3+i)=itrue
          goto 185
  184     istk(il1+3+i)=1-itrue
