@@ -54,7 +54,7 @@ int sci_xmlGetNsByPrefix(char *fname, unsigned long fname_len)
     elem = XMLObject::getFromId < XMLElement > (getXMLObjectId(addr, pvApiCtx));
     if (!elem)
     {
-        Scierror(999, gettext("%s: XML Element does not exist.\n"), fname);
+        Scierror(999, gettext("%s: XML element does not exist.\n"), fname);
         return 0;
     }
 

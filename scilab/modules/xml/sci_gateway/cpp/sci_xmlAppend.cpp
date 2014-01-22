@@ -54,7 +54,7 @@ int sci_xmlAppend(char *fname, unsigned long fname_len)
     parent = XMLObject::getFromId < org_modules_xml::XMLElement > (getXMLObjectId(addr, pvApiCtx));
     if (!parent)
     {
-        Scierror(999, gettext("%s: XML Document does not exist.\n"), fname);
+        Scierror(999, gettext("%s: XML document does not exist.\n"), fname);
         return 0;
     }
 
@@ -75,7 +75,7 @@ int sci_xmlAppend(char *fname, unsigned long fname_len)
     elem = XMLObject::getFromId < org_modules_xml::XMLElement > (getXMLObjectId(addr, pvApiCtx));
     if (!elem)
     {
-        Scierror(999, gettext("%s: XML Document does not exist.\n"), fname);
+        Scierror(999, gettext("%s: XML document does not exist.\n"), fname);
         return 0;
     }
 

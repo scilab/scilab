@@ -55,7 +55,7 @@ int sci_xmlElement(char *fname, unsigned long fname_len)
     doc = XMLObject::getFromId < org_modules_xml::XMLDocument > (getXMLObjectId(addr, pvApiCtx));
     if (!doc)
     {
-        Scierror(999, gettext("%s: XML Document does not exist.\n"), fname);
+        Scierror(999, gettext("%s: XML document does not exist.\n"), fname);
         return 0;
     }
 

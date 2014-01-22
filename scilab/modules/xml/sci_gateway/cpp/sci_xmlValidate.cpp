@@ -71,7 +71,7 @@ int sci_xmlValidate(char *fname, unsigned long fname_len)
         doc = XMLObject::getFromId < org_modules_xml::XMLDocument > (id);
         if (!doc)
         {
-            Scierror(999, gettext("%s: XML document does not exist\n"), fname);
+            Scierror(999, gettext("%s: XML document does not exist.\n"), fname);
             return 0;
         }
     }
@@ -149,7 +149,7 @@ int sci_xmlValidate(char *fname, unsigned long fname_len)
 
         if (clines.size())
         {
-            err = createMatrixOfString(pvApiCtx, Rhs + 1, (int)lines.size(), 1, const_cast < const char *const *>(&(clines[0])));
+            err = createMatrixOfString(pvApiCtx, Rhs + 1, (int)lines.size(), 1, const_cast < const char * const *>(&(clines[0])));
         }
         else
         {
