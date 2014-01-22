@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-01-23 11:33+0100\n"
+"Revision-Date: 2014-01-23 14:00+0100\n"
 
 # File: sci_gateway/c/gw_scinotes.c, line: 37
 #, c-format
@@ -914,19 +914,16 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 33
-#, c-format
 msgid "File not found: %s"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 34
-#, c-format
 msgid "I/O error: %s"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 35
-#, c-format
 msgid "The file %s has been modified by an other program. Reload it ?"
 msgstr ""
 
@@ -1252,7 +1249,6 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 165
-#, c-format
 msgid "Invalid regular expression : %s"
 msgstr ""
 
@@ -1278,13 +1274,11 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 170
-#, c-format
 msgid "String %s not found"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 172
-#, c-format
 msgid "The file %s does not exist. Do you want to create it?"
 msgstr ""
 
@@ -1300,13 +1294,11 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 175
-#, c-format
 msgid "%s has been modified since last save. Save it?"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 176
-#, c-format
 msgid "The file %s has been modified by another program ! Overwrite it ?"
 msgstr ""
 
@@ -1435,7 +1427,6 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 207
-#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr ""
 
@@ -1446,7 +1437,6 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 209
-#, c-format
 msgid "Line %s, Column %s."
 msgstr ""
 
@@ -1472,7 +1462,6 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 218
-#, c-format
 msgid "%s is a directory."
 msgstr ""
 
@@ -1513,7 +1502,6 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 230
-#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -1530,7 +1518,6 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 234
-#, c-format
 msgid "Cannot save the file %s... stop the backup process"
 msgstr ""
 
@@ -1541,7 +1528,6 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 236
-#, c-format
 msgid "%s occurences found."
 msgstr ""
 
@@ -1737,19 +1723,16 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 319
-#, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 320
-#, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 321
-#, c-format
 msgid "Elapsed time: %s sec."
 msgstr ""
 
@@ -1845,7 +1828,7 @@ msgid "Scilab '%s' module not installed.\n"
 msgstr ""
 
 # File: macros/edit_error.sci, line: 19
-msgid "the last error did not occur inside a library function."
+msgid "The last error did not occur inside a library function."
 msgstr ""
 
 #
@@ -1855,7 +1838,7 @@ msgstr ""
 
 #
 # File: macros/edit_error.sci, line: 24
-msgid "opening file "
+msgid "Opening file "
 msgstr ""
 
 #
@@ -1865,11 +1848,15 @@ msgstr ""
 
 #
 # File: macros/edit_error.sci, line: 27
-msgid "the source file of the function "
+msgid "The source file of the function "
 msgstr ""
 
 #
 # File: macros/edit_error.sci, line: 28
-# File: macros/edit_error.sci, line: 32
 msgid " was not found in any library path"
+msgstr ""
+
+#
+# File: macros/edit_error.sci, line: 32
+msgid "There is no recorded error"
 msgstr ""

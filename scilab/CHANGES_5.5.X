@@ -178,6 +178,8 @@ Scilab Bug Fixes
 
 * Bug #12334 fixed - Mark color in legend was invalid.
 
+* Bug #12439 fixed - edit_error returned a wrong message when there was no recorded error.
+
 * Bug #12472 fixed - grand and link error messages fixed.
 
 * Bug #12481 fixed - xlabel could not be used with Scilab property names.
@@ -190,7 +192,7 @@ Scilab Bug Fixes
 
 * Bug #12535 fixed - In french version, comma was used as decimal separator when zooming (rather than point).
 
-* Bug #12567 fixed - Fixed some error messages in ricc.
+* Bug #12567 fixed - Some error messages fixed in ricc.
 
 * Bug #12622 fixed - Various typos fixed in error messages.
 
