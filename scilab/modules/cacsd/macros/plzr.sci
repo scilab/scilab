@@ -97,14 +97,14 @@ function plzr(a,b,c,d)
         xpoly(nr,ni)
         e=gce();e.line_mode="off";e.mark_mode="on";
         e.mark_size_unit="point";e.mark_size=7;e.mark_style=5;
-        legs=[legs;gettext("Zeros")]
+        legs=gettext("Zeros")
         lhandle=[e;lhandle]
     end;
     if size(dr,"*")<>0 then
         xpoly(dr,di)
         e=gce();e.line_mode="off";e.mark_mode="on";
         e.mark_size_unit="point";e.mark_size=7;e.mark_style=2;
-        legs=[legs;gettext("Poles")]
+        legs=[gettext("Poles");legs]
         lhandle=[e;lhandle]
     end
     if dt == "d" then

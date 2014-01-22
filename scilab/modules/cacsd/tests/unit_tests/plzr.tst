@@ -7,18 +7,16 @@
 
 // <-- TEST WITH GRAPHIC -->
 //
-// <-- ENGLISH IMPOSED -->
-//
 // Unit tests for plzr()
 
 function checkplzr(h,zrs,pls)
-    
-    if typeof(h)=='rational' then
+
+    if typeof(h)=="rational" then
         plzr(h);
         h=tf2ss(h);
         [a,b,c,d]=h(2:5);
         dt=h.dt;
-    elseif typeof(h)=='state-space' then
+    elseif typeof(h)=="state-space" then
         plzr(h);
         [a,b,c,d]=h(2:5)
         dt=h.dt;
@@ -37,39 +35,39 @@ function checkplzr(h,zrs,pls)
     nr=al./be;
     nr=real(nr);
     dr=real(dr);
-    
+
     //nb_child=size
-    assert_checkequal(ax.type,"Axes");
+    assert_checkequal(ax.type, "Axes");
 
     // Check axis name
-    assert_checkequal(ax.x_label.text,"Real axis");
-    assert_checkequal(ax.y_label.text, "Imaginary axis");
+    assert_checkequal(ax.x_label.text, _("Real axis"));
+    assert_checkequal(ax.y_label.text, _("Imaginary axis"));
 
     // Check legend
     assert_checkequal(ax.children(1).type,"Legend");
 
     // Check stability
-    if dt == 'd' then
+    if dt == "d" then
         assert_checkequal(ax.children(2).type,"Arc");
     else
         assert_checkequal(ax.children(2).type,"Segs");
     end
 
     // Check zeros
-    if size(nr,'*') <> 0 & size(dr,'*') == 0 then
-        assert_checkequal(ax.children(1).text,"Zeros");
-        assert_checkequal(ax.children(3).type,"Polyline");
+    if size(nr,"*") <> 0 & size(dr,"*") == 0 then
+        assert_checkequal(ax.children(1).text, _("Zeros"));
+        assert_checkequal(ax.children(3).type, "Polyline");
         assert_checktrue(ax.children(3).data-zrs<1d-5);
     end
     // Check poles
-    if size(dr,'*') <> 0 & size(nr,'*') == 0 then
-        assert_checkequal(ax.children(1).text,"Poles");
-        assert_checkequal(ax.children(3).type,"Polyline");
+    if size(dr,"*") <> 0 & size(nr,"*") == 0 then
+        assert_checkequal(ax.children(1).text, _("Poles"));
+        assert_checkequal(ax.children(3).type, "Polyline");
         assert_checktrue(ax.children(3).data-pls<1d-5);
     end
     // Check zeros and poles
-    if size(nr,'*')<> 0 & size(dr,'*') <> 0 then
-        assert_checkequal(ax.children(1).text,["Zeros";"Poles"]);
+    if size(nr,"*")<> 0 & size(dr,"*") <> 0 then
+        assert_checkequal(ax.children(1).text,[_("Poles");_("Zeros")]);
         assert_checkequal(ax.children(3).type,"Polyline");
         assert_checkequal(ax.children(4).type,"Polyline");
         assert_checktrue(ax.children(3).data-zrs<1d-5);
@@ -79,14 +77,14 @@ function checkplzr(h,zrs,pls)
 endfunction
 
 // With zeros and poles
-s=poly(0,'s');
+s=poly(0,"s");
 n=1+s;
 d=1+3*s;
 // continuous transfert fct
-hc=syslin('c',n./d);
+hc=syslin("c",n./d);
 checkplzr(hc,[-1/3 0],[-1 0]);
 // discete transfert fct
-hd=syslin('d',n./d);
+hd=syslin("d",n./d);
 checkplzr(hd,[-1/3 0],[-1 0]);
 // undifined time domain transfert fct
 h=syslin([],n./d);
@@ -104,14 +102,14 @@ checkplzr(ss,[-1/3 0],[-1 0]);
 checkplzr([ss(2),ss(3),ss(4),ss(5)],[-1/3 0],[-1 0]);
 
 // With poles
-s=poly(0,'s');
+s=poly(0,"s");
 n=[1+s 2+3*s+4*s^2];
 d=[1+3*s 5-s^3];
 // continuous transfert fct
-hc=syslin('c',n./d)
+hc=syslin("c",n./d)
 checkplzr(hc,[],[1.7099759,0;-0.8549880,1.4808826;-0.8549880,-1.4808826;-1/3 0]);
 // discete transfert fct
-hd=syslin('d',n./d);
+hd=syslin("d",n./d);
 checkplzr(hd,[],[1.7099759,0;-0.8549880,1.4808826;-0.8549880,-1.4808826;-1/3 0]);
 // undifined time domain transfert fct
 h=syslin([],n./d);
