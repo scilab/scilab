@@ -182,6 +182,8 @@ Scilab Bug Fixes
 
 * Bug #12439 fixed - edit_error returned a wrong message when there was no recorded error.
 
+* Bug #12440 fixed - Unitary test added for bitxor.
+
 * Bug #12472 fixed - grand and link error messages fixed.
 
 * Bug #12481 fixed - xlabel could not be used with Scilab property names.
