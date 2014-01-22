@@ -3,6 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2013 - Samuel GOUGEON : revision for x|y|z_ticks and "See also" sections
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -247,77 +248,50 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>x_ticks.locations: </term>
+                            <term>x_ticks, y_ticks, z_ticks: </term>
                             <listitem>
-                                <para>A real vector containing the locations for the graduations on
-                                    x axis. This property can be edited specifying a new real vector
-                                    (of the same size). To specify greater or lesser graduations, man
-                                    can act on the <literal>x_ticks</literal> <literal>tlist</literal> defining a
-                                    corresponding<literal> x_ticks.labels</literal> string vector too.
+                                <para>Each of these properties is a tlist of type "ticks" with 2 fields named "locations" and "labels":
+                                    <literal>tlist(["ticks", "locations", "labels"], Locations, Labels)</literal> where
+                                    <variablelist>
+                                        <varlistentry>
+                                            <term>Locations</term>
+                                            <listitem>
+                                                is a real vector containing the locations of graduations along and according to the data scale of the given x or y or z axis.
+                                                When the number of ticks does not need to be changed, their locations can be set or changed through
+                                                the syntax (e.g. along x) <literal>Haxes.x_ticks.locations = Locations</literal> where <literal>Haxes = gca();</literal>
+                                                and <literal>Locations</literal> is the complete vector of updated ticks positions. To change just the ith location, just use:
+                                                <literal>Haxes.x_ticks.locations(i) = newLoc</literal>
+                                            </listitem>
+                                        </varlistentry>
+                                        <varlistentry>
+                                            <term>Labels</term>
+                                            <listitem>
+                                                is a text vector containing the labels to be displayed in front of each related graduation. As for Locations of ticks, Labels can be addressed with (e.g. along y) <literal>Haxes.y_ticks.labels = Labels</literal> or <literal>Haxes.y_ticks.labels(j) = newLabelJ</literal>
+                                            </listitem>
+                                        </varlistentry>
+                                        <warning>
+                                            For an axis, <literal>Locations</literal> and <literal>Labels</literal> vectors must have the same number of components.
+                                        </warning>
+                                        <warning>
+                                            When the number of ticks must be changed, their positions AND labels must be changed at once, in order to avoid any mismatch: The syntax (e.g. along x) <literal>Haxes.x_ticks = tlist(["ticks" "locations", "labels"], newLocations, newLabels)</literal> must then be used.
+                                        </warning>
+                                    </variablelist>
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>y_ticks.locations: </term>
+                            <term>x_ticks.locations, y_ticks.locations, z_ticks.locations: </term>
                             <listitem>
-                                <para>A real vector containing the locations for the graduations on
-                                    y axis. This property can be edited specifying a new real vector
-                                    (of the same size). To specify greater or lesser graduations, man
-                                    can act on the <literal>y_ticks</literal> <literal>tlist</literal> defining a
-                                    corresponding<literal> y_ticks.labels</literal> string vector too.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>z_ticks.locations: </term>
-                            <listitem>
-                                <para>A real vector containing the locations for the graduations on
-                                    z axis. This property can be edited specifying a new real vector
-                                    (of the same size). To specify greater or lesser graduations, man
-                                    can act on the <literal>z_ticks</literal> <literal>tlist</literal> defining a
-                                    corresponding<literal> z_ticks.labels</literal> string vector too.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>x_ticks.labels: </term>
-                            <listitem>
-                                <para>A string vector containing the labels for the graduations on x
-                                    axis. This property can be edited specifying a new string vector
-                                    (of the same size). To specify greater or lesser graduations, man
-                                    can act on the <literal>x_ticks</literal> <literal>tlist</literal> defining a
-                                    corresponding<literal> x_ticks.locations</literal> real vector too.
-                                </para>
                                 <para>
-                                    Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.
+                                    Each of these properties is a real vector containing the locations of graduations on the related x or y or z axis. <varname>x_ticks.locations</varname> must have the same number of components as <varname>x_ticks.labels</varname>. See <varname>x_ticks</varname> hereabove for more details.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>y_ticks.labels: </term>
+                            <term>x_ticks.labels, y_ticks.labels, z_ticks.labels: </term>
                             <listitem>
-                                <para>A string vector containing the labels for the graduations on y
-                                    axis. This property can be edited specifying a new string vector
-                                    (of the same size). To specify greater or lesser graduations, man
-                                    can act on the <literal>y_ticks</literal> <literal>tlist</literal> defining a
-                                    corresponding<literal> y_ticks.locations</literal> real vector too.
-                                </para>
                                 <para>
-                                    Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>z_ticks.labels: </term>
-                            <listitem>
-                                <para>A string vector containing the labels for the graduations on z
-                                    axis. This property can be edited specifying a new string vector
-                                    (of the same size). To specify greater or lesser graduations, man
-                                    can act on the <literal>z_ticks</literal> <literal>tlist</literal> defining a
-                                    corresponding<literal> z_ticks.locations</literal> real vector too.
-                                </para>
-                                <para>
-                                    Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.
+                                    Each of these properties is a text vector containing the labels to be displayed in front of ticks on the related x or y or z axis. <varname>x_ticks.labels</varname> must have the same number of components as <varname>x_ticks.locations</varname>. See <varname>x_ticks</varname> hereabove for more details.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -942,6 +916,9 @@ a.y_ticks = tlist(["ticks", "locations", "labels"], (-2:0.5:2)', ["0";"1";"2";"3
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="axis_properties">axis_properties</link>
+            </member>
             <member>
                 <link linkend="lines">lines</link>
             </member>

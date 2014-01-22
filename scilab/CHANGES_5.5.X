@@ -196,6 +196,8 @@ Scilab Bug Fixes
 
 * Bug #12622 fixed - Various typos fixed in error messages.
 
+* Bug #12672 fixed - Ticks part of axes_property help page updated.
+
 * Bug #12673 fixed - Ticks were drawn outside of axes area.
 
 * Bug #12682 fixed - Key events were disabled after zooming.
