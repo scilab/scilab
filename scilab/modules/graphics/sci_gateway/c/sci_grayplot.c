@@ -39,6 +39,7 @@ int sci_grayplot(char *fname, unsigned long fname_len)
     {
         { -1, "axesflag", -1, 0, 0, NULL},
         { -1, "frameflag", -1, 0, 0, NULL},
+        { -1, "logflag", -1, 0, 0, NULL},
         { -1, "nax", -1, 0, 0, NULL},
         { -1, "rect", -1, 0, 0, NULL},
         { -1, "strf", -1, 0, 0, NULL},
@@ -50,6 +51,7 @@ int sci_grayplot(char *fname, unsigned long fname_len)
     double* rect    = NULL ;
     int    * nax     = NULL ;
     BOOL     flagNax = FALSE;
+    char* logFlags = NULL;
 
     int* piAddr1 = NULL;
     int* piAddr2 = NULL;
@@ -168,6 +170,7 @@ int sci_grayplot(char *fname, unsigned long fname_len)
     GetStrf(pvApiCtx, fname, 4, opts, &strf);
     GetRect(pvApiCtx, fname, 5, opts, &rect);
     GetNax(pvApiCtx, 6, opts, &nax, &flagNax);
+    GetLogflags(pvApiCtx, fname, 7, opts, &logFlags);
 
     getOrCreateDefaultSubwin();
 
@@ -193,7 +196,7 @@ int sci_grayplot(char *fname, unsigned long fname_len)
         }
     }
 
-    Objgrayplot ((l1), (l2), (l3), &m3, &n3, strf, rect, nax, flagNax);
+    Objgrayplot ((l1), (l2), (l3), &m3, &n3, strf, rect, nax, flagNax, logFlags);
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

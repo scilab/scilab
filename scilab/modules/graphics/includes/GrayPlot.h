@@ -35,7 +35,7 @@
  *  values of colors in the current colormap
  *  the color associated to zmoy is used for filling a specific rectangle
  */
-GRAPHICS_IMPEXP int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag, double *brect, int *aaint, BOOL flagNax, long int l1);
+GRAPHICS_IMPEXP int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag, double *brect, int *aaint, BOOL flagNax, char * logflags, long int l1);
 
 
 /**

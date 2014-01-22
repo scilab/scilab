@@ -47,7 +47,7 @@
                             key2=value2
                         </literal>
                         ,... を表します.ただし,<literal>key1</literal>,
-                        <literal>key2,...</literal> には以下のどれかを指定します: rect, nax, strf
+                        <literal>key2,...</literal> には以下のどれかを指定します: rect, nax, strf, logflag
                         または axesflag および frameflag (<literal>plot2d</literal> および
                         参照).
                     </para>

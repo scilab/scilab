@@ -40,7 +40,7 @@
 #include "CurrentSubwin.h"
 #include "CurrentObject.h"
 
-int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag, double *brect, int *aaint, BOOL flagNax, long int l1)
+int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag, double *brect, int *aaint, BOOL flagNax, char *logflags, long int l1)
 {
     int iSubwinUID = 0;
     int iGrayplotUID = 0;
@@ -57,6 +57,7 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
     int autoScale = 0;
     int firstPlot = 0;
     int logFlags[3];
+    char dataflag = 0;
     int autoSubticks = 0;
 
     int iTmp = 0;
@@ -87,6 +88,16 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
     getGraphicObjectProperty(iSubwinUID, __GO_AUTO_SCALE__, jni_bool, (void **)&piTmp);
     autoScale = iTmp;
 
+    /* Reset x and y logflags */
+    if (firstPlot)
+    {
+        logFlags[0] = getBooleanLogFlag(logflags[1]);
+        logFlags[1] = getBooleanLogFlag(logflags[2]);
+
+        setGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_LOG_FLAG__, &logFlags[0], jni_bool, 1);
+        setGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_LOG_FLAG__, &logFlags[1], jni_bool, 1);
+    }
+
     if (autoScale)
     {
         /* compute and merge new specified bounds with the data bounds */
@@ -107,6 +118,15 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
             case '6' :
             case '8':
             case '9':
+                /* Force data bounds to the x and y bounds */
+                if ((int)strlen(logflags) < 1)
+                {
+                    dataflag = 'g';
+                }
+                else
+                {
+                    dataflag = logflags[0];
+                }
 
                 getGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
                 logFlags[0] = iTmp;
@@ -121,7 +141,7 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
                 textLogFlags[2] = getTextLogFlag(logFlags[2]);
 
                 /* Force data bounds to the x and y bounds */
-                compute_data_bounds2(0, 'g', textLogFlags, xx, yy, nn1, nn2, drect);
+                compute_data_bounds2(0, dataflag, textLogFlags, xx, yy, nn1, nn2, drect);
                 break;
         }
 

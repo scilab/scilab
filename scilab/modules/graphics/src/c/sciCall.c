@@ -349,9 +349,10 @@ void Objgrayplot (double    x[]      ,
                   char      strflag[],
                   double    brect[]  ,
                   int   aaint[]  ,
-                  BOOL      flagNax)
+                  BOOL      flagNax,
+                  char logflag[])
 {
-    C2F(xgray)(x, y, z, n1, n2, strflag, brect, aaint, flagNax, bsiz);
+    C2F(xgray)(x, y, z, n1, n2, strflag, brect, aaint, flagNax, logflag, bsiz);
 }
 
 /*------------------------------------------------
@@ -453,7 +454,7 @@ void Objplot3d (char    * fname ,
 
     iSubwinUID = getCurrentSubWin();
     checkRedrawing();
-    initSubWinTo3d(iSubwinUID, legend, iflag, *alpha, *theta, ebox, x, *m1 * *n1, y, *m2 * *n2, z, *m3 * *n3);
+    initSubWinTo3d(iSubwinUID, legend, iflag, *alpha, *theta, ebox, x, *m1 **n1, y, *m2 **n2, z, *m3 **n3);
 
     /* =================================================
      * Analyze arguments to find entity type

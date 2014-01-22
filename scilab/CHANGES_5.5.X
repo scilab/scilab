@@ -60,6 +60,8 @@ Scilab Bug Fixes
 
 * Bug #5826 fixed - Graphic windows did not redirect key events in console.
 
+* Bug #5844 fixed - grayplot did not have a logflag option.
+
 * Bug #5886 fixed - There was no property labels_font_style on axis.
 
 * Bug #6305 fixed - dsearch function did not work with integers, strings and hypermatrices.

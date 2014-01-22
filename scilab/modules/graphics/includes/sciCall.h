@@ -37,7 +37,7 @@ GRAPHICS_IMPEXP void Objstring(char** fname, int nbRow, int nbCol, double  x, do
 
 GRAPHICS_IMPEXP void Objplot2d(int ptype, char logflags[], double x[], double y[], int* n1, int* n2, int style[], char strflag[], char legend[], double brect[], int aaint[], BOOL flagNax);
 
-GRAPHICS_IMPEXP void Objgrayplot(double x[], double y[], double z[], int* n1, int* n2, char strflag[], double brect[], int aaint[], BOOL flagNax);
+GRAPHICS_IMPEXP void Objgrayplot(double x[], double y[], double z[], int* n1, int* n2, char strflag[], double brect[], int aaint[], BOOL flagNax, char logflag[]);
 
 GRAPHICS_IMPEXP void Objmatplot(double z[], int* n1, int* n2, char strflag[], double brect[], int aaint[], BOOL flagNax);
 
