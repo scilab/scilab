@@ -139,7 +139,7 @@ int sci_link(char *fname, unsigned long fname_len)
             }
             else
             {
-                Scierror(999, _("%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 3, "f", "c");
+                Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 3, "f", "c");
                 return 0;
             }
         }
