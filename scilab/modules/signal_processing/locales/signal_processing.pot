@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-01-23 11:33+0100\n"
+"Revision-Date: 2014-01-23 13:37+0100\n"
 
 # File: sci_gateway/c/sci_conv2.c, line: 38
 # File: sci_gateway/c/sci_conv2.c, line: 99
@@ -198,12 +198,12 @@ msgstr ""
 
 #
 # File: demos/iirfilt.dem.sce, line: 21
-msgid "Discrete IIR filter : low pass  fr < 0.2"
+msgid "Discrete IIR filter: low pass  fr < 0.2"
 msgstr ""
 
 #
 # File: demos/iirfilt.dem.sce, line: 32
-msgid "Discrete IIR filter band pass 0.15 < fr < 0.25"
+msgid "Discrete IIR filter: band pass 0.15 < fr < 0.25"
 msgstr ""
 
 #
@@ -343,12 +343,12 @@ msgstr ""
 
 #
 # File: demos/winfilt.dem.sce, line: 23
-msgid "Kaiser window,cut-off:0.2"
+msgid "Kaiser window, cut-off: 0.2"
 msgstr ""
 
 #
 # File: demos/winfilt.dem.sce, line: 38
-msgid "Hamming window,cut-off:0.2,0.3"
+msgid "Hamming window, cut-off: 0.2, 0.3"
 msgstr ""
 
 #
@@ -363,7 +363,7 @@ msgstr ""
 
 #
 # File: demos/winfilt.dem.sce, line: 54
-msgid "Chebyshev window,cut-off:0.15,0.35"
+msgid "Chebyshev window, cut-off: 0.15, 0.35"
 msgstr ""
 
 #

@@ -120,7 +120,7 @@ int sci_base2dec(char *fname, unsigned long fname_len)
             FREE(dResults);
             dResults = NULL;
 
-            Scierror(999, _("%s: Wrong value for input argument(s): Valid base %d representations expected.\n"), fname, iValue);
+            Scierror(999, _("%s: Wrong value for input argument #%d: Valid base %d representations expected.\n"), fname, 1, iValue);
             return 0;
 
         }

@@ -9,5 +9,5 @@
 
 function M=generic_i_ce(varargin)
     // Generic function for insertion of any type of data in a cell
-    error(msprintf(_("%s: Invalid assignement: for insertion in cell, use e.g. x(i,j).entries=y.\n"),"generic_i_ce"));
+    error(msprintf(_("%s: Invalid assignment: for insertion in cell, use e.g. x(i,j).entries=y.\n"),"generic_i_ce"));
 endfunction

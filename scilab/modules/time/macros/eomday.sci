@@ -20,7 +20,7 @@ function E=eomday(Y,M)
     leap_year   = [31,29,31,30,31,30,31,31,30,31,30,31];
 
     if size(Y) <> size(M) then
-        error(msprintf(gettext("%s: Wrong size for input argument: Same size expected.\n"),"eomday"));
+        error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"),"eomday"), 1, 2);
     end
 
     if rhs <> 2 then

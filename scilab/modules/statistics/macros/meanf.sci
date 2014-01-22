@@ -68,7 +68,7 @@ function [m]=meanf(val,fre,orient)
         elseif orient=="c"|orient==2 then
             m=sum(val .* fre,"c") ./ sum(fre,"c")
         else
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d.\n"),"meanf",3,"r","c",1,2)),
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"),"meanf",3,"r","c",1,2)),
         end
     end
 endfunction

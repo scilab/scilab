@@ -32,7 +32,7 @@ function t=etime(t1,t0)
     end
 
     if size(t1,"*")<>size(t0,"*") then
-        error(msprintf(gettext("%s: Wrong size for input argument: Same size expected.\n"),"etime"));
+        error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"),"etime"), 1, 2);
     end
 
     if size(t1,2)==10 then

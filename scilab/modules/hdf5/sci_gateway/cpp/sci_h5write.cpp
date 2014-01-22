@@ -197,7 +197,7 @@ int sci_h5write(char *fname, unsigned long fname_len)
                     }
                     else if (size != (row > col ? row : col))
                     {
-                        Scierror(999, _("%s: Wrong size for input argument #%d: Same size expected.\n"), fname, i);
+                        Scierror(999, _("%s: Wrong size for input argument #%d: Same size as the data expected.\n"), fname, i);
                         return 0;
                     }
                 }

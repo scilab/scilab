@@ -781,7 +781,7 @@ int C2F(intehm)()
 
     if ( ! get_hmat(Rhs, &H) )
     {
-        Scierror(999, _("%s: Wrong type for input argument(s): An hypermatrix expected.\n"), "hmops");
+        Scierror(999, _("%s: Wrong type for input argument #%d: An hypermatrix expected.\n"), "hmops", Rhs);
         return 0;
     }
     else if ( H.type == NOT_REAL_or_CMPLX_or_BOOL_or_INT  || H.type == OLD_HYPERMAT )
@@ -988,7 +988,7 @@ int C2F(intihm)()
 
     if ( ! get_hmat(Rhs, &A) )
     {
-        Scierror(999, _("%s: Wrong type for input argument(s): An hypermatrix expected.\n"), "hmops");
+        Scierror(999, _("%s: Wrong type for input argument #%d: An hypermatrix expected.\n"), "hmops", Rhs);
         return 0;
     }
     else if ( A.type == NOT_REAL_or_CMPLX_or_BOOL_or_INT  || A.type == OLD_HYPERMAT )

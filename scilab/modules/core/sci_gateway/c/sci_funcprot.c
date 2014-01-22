@@ -82,7 +82,7 @@ int C2F(sci_funcprot)(char *fname, unsigned long fname_len)
 
         if (!setfuncprot(ilevel))
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: 0,1 or 2 expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong value for input argument #%d: %d, %d or %d expected.\n"), fname, 1, 0, 1, 2);
             return 0;
         }
         else
