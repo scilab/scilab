@@ -190,6 +190,8 @@ Scilab Bug Fixes
 
 * Bug #12535 fixed - In french version, comma was used as decimal separator when zooming (rather than point).
 
+* Bug #12567 fixed - Fixed some error messages in ricc.
+
 * Bug #12622 fixed - Various typos fixed in error messages.
 
 * Bug #12673 fixed - Ticks were drawn outside of axes area.

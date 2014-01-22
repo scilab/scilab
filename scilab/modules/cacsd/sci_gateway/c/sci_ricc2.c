@@ -155,7 +155,7 @@ int sci_ricc2(char *fname, unsigned long fname_len)
 
     if (WANTC == FALSE && WANTD == FALSE)
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: Type must be continuous or discrete.\n"), fname, 4);
+        Scierror(999, _("%s: Wrong value for input argument #%d: ""%s"" or ""%s"" expected.\n"), fname, 4, "cont", "disc");
         return 1;
     }
 
@@ -184,7 +184,7 @@ int sci_ricc2(char *fname, unsigned long fname_len)
             if (WSCHUR == FALSE && WSIGN == FALSE)
             {
                 freeAllocatedSingleString(lMETHOD);
-                Scierror(999, _("%s: Wrong value for input argument #%d: Method must be schur or sign.\n"), fname, 5);
+                Scierror(999, _("%s: Wrong value for input argument #%d: ""%s"" or ""%s"" expected.\n"), fname, 5, "schr", "sign");
                 return 1;
             }
         }
@@ -194,7 +194,7 @@ int sci_ricc2(char *fname, unsigned long fname_len)
             if (WSCHUR == FALSE && WINVF == FALSE)
             {
                 freeAllocatedSingleString(lMETHOD);
-                Scierror(999, _("%s: Wrong value for input argument #%d: Method must be schur or invf.\n"), fname, 5);
+                Scierror(999, _("%s: Wrong value for input argument #%d: ""%s"" or ""%s"" expected.\n"), fname, 5, "schr", "invf");
                 return 1;
             }
         }
