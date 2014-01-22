@@ -174,6 +174,8 @@ Scilab Bug Fixes
 
 * Bug #12156 fixed - Closing a Scilab session in Javasci could lead to a HDF5 error message.
 
+* Bug #12308 fixed - create_palette help page removed (function removed).
+
 * Bug #12334 fixed - Mark color in legend was invalid.
 
 * Bug #12481 fixed - xlabel could not be used with Scilab property names.
