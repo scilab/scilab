@@ -308,7 +308,8 @@ am__objects_5 = sci_gateway/cpp/libscicore_la-core_gw.lo \
 	sci_gateway/cpp/libscicore_la-sci_mode.lo \
 	sci_gateway/cpp/libscicore_la-sci_typename.lo \
 	sci_gateway/cpp/libscicore_la-sci_where.lo \
-	sci_gateway/cpp/libscicore_la-sci_getmemory.lo
+	sci_gateway/cpp/libscicore_la-sci_getmemory.lo \
+	sci_gateway/cpp/libscicore_la-sci_errclear.lo
 am_libscicore_la_OBJECTS = $(am__objects_4) $(am__objects_5)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
 libscicore_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
@@ -846,7 +847,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_mode.cpp \
 	sci_gateway/cpp/sci_typename.cpp \
 	sci_gateway/cpp/sci_where.cpp \
-	sci_gateway/cpp/sci_getmemory.cpp
+	sci_gateway/cpp/sci_getmemory.cpp \
+	sci_gateway/cpp/sci_errclear.cpp
 
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ \
@@ -1476,6 +1478,9 @@ sci_gateway/cpp/libscicore_la-sci_where.lo:  \
 sci_gateway/cpp/libscicore_la-sci_getmemory.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscicore_la-sci_errclear.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscicore.la: $(libscicore_la_OBJECTS) $(libscicore_la_DEPENDENCIES) $(EXTRA_libscicore_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(libscicore_la_LINK) $(am_libscicore_la_rpath) $(libscicore_la_OBJECTS) $(libscicore_la_LIBADD) $(LIBS)
@@ -1510,6 +1515,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_banner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_clear.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_clearglobal.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_errclear.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_error.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_exists.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_exit.Plo@am__quote@
@@ -2346,6 +2352,13 @@ sci_gateway/cpp/libscicore_la-sci_getmemory.lo: sci_gateway/cpp/sci_getmemory.cp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_getmemory.cpp' object='sci_gateway/cpp/libscicore_la-sci_getmemory.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicore_la-sci_getmemory.lo `test -f 'sci_gateway/cpp/sci_getmemory.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getmemory.cpp
+
+sci_gateway/cpp/libscicore_la-sci_errclear.lo: sci_gateway/cpp/sci_errclear.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicore_la-sci_errclear.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_errclear.Tpo -c -o sci_gateway/cpp/libscicore_la-sci_errclear.lo `test -f 'sci_gateway/cpp/sci_errclear.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_errclear.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_errclear.Tpo sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_errclear.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_errclear.cpp' object='sci_gateway/cpp/libscicore_la-sci_errclear.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicore_la-sci_errclear.lo `test -f 'sci_gateway/cpp/sci_errclear.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_errclear.cpp
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<

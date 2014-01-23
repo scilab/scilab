@@ -109,9 +109,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_where.cpp">
-    <Filter>Source Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_getmemory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_errclear.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
