@@ -19,7 +19,7 @@
 f = figure(1);
 
 // Create the uicontrol
-h=uicontrol(f,"style","edit","position",[20 20 80 20])
+h=uicontrol(f,"style","edit","position",[20 20 80 20]);
 
 // Now type something in the entry box
 

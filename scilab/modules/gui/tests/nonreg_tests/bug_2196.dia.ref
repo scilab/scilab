@@ -26,40 +26,7 @@ set(h1,"parent",f2);
 pos = get(h1, "position");
 if pos(3) < pos(4) then bugmes();quit;end
 // --- Pushbuttons ---
-h2 = uicontrol(f1,"style","pushbutton","position",[10 10 100 100])
- h2  =
- 
-Handle of type "uicontrol" with properties:
-===========================================
-Parent: Figure
-Children: []
-BackgroundColor = [0.6,0.6,0.6]
-Enable = "on"
-FontAngle = normal
-FontName = helvetica
-FontSize = 10
-FontUnits = points
-FontWeight = normal
-ForegroundColor = [0,0,0]
-HorizontalAlignment = center
-ListboxTop = []
-Max = 1
-Min = 0
-Position = [10,10,100,100]
-Relief = raised
-SliderStep = [0.01,0.1]
-String = ""
-Style = pushbutton
-TooltipString = ""
-Units = pixels
-Value = []
-VerticalAlignment = middle
-Visible = "on"
-Callback = 
-Callback_Type = -1
-Handle_Visible = "on"
-Userdata = []
-Tag = 
+h2 = uicontrol(f1,"style","pushbutton","position",[10 10 100 100]);
 bg = get(h2, "backgroundcolor");
 relief = get(h2, "relief");
 // Reset previous parent

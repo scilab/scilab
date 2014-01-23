@@ -15,7 +15,7 @@
 // Setting the callback_type property of an uicontrol was not taken into account.
 
 c = uicontrol(gcf(),"style","checkbox","string","Test","position", ..
-        [10,400,100,15],"callback","disp(""Hello"")")
+        [10,400,100,15],"callback","disp(""Hello"")");
 assert_checkequal(c.callback_type, 0);
 
 c.callback_type = -1;
