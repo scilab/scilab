@@ -53,10 +53,10 @@ function mat = resize_matrix(mat, varargin)
             disp(c)
             execstr("disp("+c+")")
         end
-        disp(_("The padding''s unknown is forced to the P''s one"))
+        disp(_("The unknown variable of added values is forced to the P''s one"))
         disp(_("Polynomials can''t be converted"))
 
-        halt(ascii(10)+_("TYPE <Enter> to see an example with TEXT:"))
+        halt(ascii(10)+_("TYPE <Enter> to see an example with character strings:"))
         T = string(grand(4, 3, 2, "unf", 0, 1)*100)
         disp("T = ")
         disp(T)
@@ -69,7 +69,7 @@ function mat = resize_matrix(mat, varargin)
             disp(c)
             execstr("disp("+c+")")
         end
-        disp(_("NOTE: Hypermatrix of text can''t be converted"))
+        disp(_("NOTE: Hypermatrices of character strings can''t be converted"))
 
         mat = []
         return
@@ -107,7 +107,7 @@ function mat = resize_matrix(mat, varargin)
         if rhs>2 then
             varg2 = varargin(2)
             if type(varg2)~=1 | ~isscalar(varg2) then
-                msg = _("%s: Wrong input argument #%d: scalar decimal integer expected.\n")
+                msg = _("%s: Wrong input argument #%d: An integer value expected.\n")
                 error(msprintf(msg, "resize_matrix", 2))
             end
             nextvarg = 3
@@ -169,7 +169,7 @@ function mat = resize_matrix(mat, varargin)
                     err = %t
                 end
                 if err then
-                    msg = _("%s: Wrong type for input argument #%d: can''t convert the padding to the input matrix type.\n")
+                    msg = _("%s: Wrong type for input argument #%d: cannot convert the padding value to the input matrix type.\n")
                     error(msprintf(msg, "resize_matrix", nextvarg+1))
                 end
             else

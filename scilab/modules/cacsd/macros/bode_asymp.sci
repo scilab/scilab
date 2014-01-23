@@ -64,7 +64,7 @@ function [] = bode_asymp(sl, w_min, w_max)
             end
         end
         s = poly(0, var);
-        msg = _("%s: Problem evaluating the first argument.\n")
+        msg = _("%s: Wrong value for input argument #%d: Evaluation failed.\n")
         try K = horner(h*s^alpha, 0); catch error(msprintf(msg, "bode_asymp")); end
 
         root_den(rac_nul) = []; // Removing the zeros
