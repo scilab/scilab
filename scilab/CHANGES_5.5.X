@@ -55,6 +55,8 @@ Scilab Bug Fixes
 
 * Bug #5016 fixed - condestsp could return different results when repeated calls were performed.
 
+* Bug #5826 fixed - Graphic windows did not redirect key events in console.
+
 * Bug #5886 fixed - There was no property labels_font_style on axis.
 
 * Bug #6305 fixed - dsearch function did not work with integers, strings and hypermatrices.

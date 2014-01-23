@@ -44,6 +44,8 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.HierarchyBoundsListener;
 import java.awt.event.HierarchyEvent;
 import java.lang.reflect.InvocationTargetException;
@@ -54,6 +56,7 @@ import java.util.ListIterator;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
+import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
@@ -66,6 +69,7 @@ import org.flexdock.docking.props.PropertyChangeListenerFactory;
 import org.flexdock.view.Titlebar;
 import org.flexdock.view.View;
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingView;
@@ -92,8 +96,10 @@ import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
+import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
+import org.scilab.modules.gui.events.GlobalEventWatcher;
 import org.scilab.modules.gui.events.ScilabEventListener;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
@@ -132,7 +138,7 @@ import org.scilab.modules.gui.editor.EditorEventListener;
  * @author Marouane BEN JELLOUL
  * @author Jean-Baptiste SILVY
  */
-public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, FocusListener {
+public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, FocusListener, KeyListener {
 
     public static final String GRAPHICS_TOOLBAR_DESCRIPTOR = System.getenv("SCI") + "/modules/gui/etc/graphics_toolbar.xml";
 
@@ -288,6 +294,8 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         layerdPane.add(canvas, JLayeredPane.FRAME_CONTENT_LAYER);
 
         scrolling = new SwingScilabScrollPane(layerdPane, canvas, figure);
+
+        contentCanvas.addKeyListener(this);
 
         setContentPane(scrolling.getAsContainer());
         canvas.setVisible(true);
@@ -1590,6 +1598,24 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
             contentCanvas.removeEventHandlerKeyListener(eventHandler);
             contentCanvas.removeEventHandlerMouseListener(eventHandler);
             contentCanvas.removeEventHandlerMouseMotionListener(eventHandler);
+        }
+    }
+
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    public void keyReleased(KeyEvent e) {
+    }
+
+    public void keyTyped(KeyEvent e) {
+        if (ScilabConstants.isGUI() && (eventHandler == null || !eventEnabled) && !GlobalEventWatcher.isActivated() && !editorEventHandler.isDatatipEnable() && Character.isLetterOrDigit(e.getKeyChar())) {
+            SwingScilabConsole console = (SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole();
+            JTextPane input = (JTextPane) console.getConfiguration().getInputCommandView();
+            input.requestFocus();
+            SwingScilabWindow win = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, console);
+            win.toFront();
+            input.dispatchEvent(new KeyEvent(input, KeyEvent.KEY_TYPED, System.currentTimeMillis(), e.getModifiers(), e.getKeyCode(), e.getKeyChar(), e.getKeyLocation()));
         }
     }
 }

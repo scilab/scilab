@@ -77,6 +77,14 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
         this.enabled = enabled;
     }
 
+    public boolean isEnable() {
+        return enabled;
+    }
+
+    public boolean isDatatipEnable() {
+        return datatipManagerMode.isEnabled();
+    }
+
     public void onExit() {
         EditorManager.deleteEditor(editor.getFigureUid());
         DatatipManager.deleteDatatipManager(windowUid);
