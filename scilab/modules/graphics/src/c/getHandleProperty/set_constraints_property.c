@@ -30,58 +30,37 @@
 /*------------------------------------------------------------------------*/
 int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    int iParent = 0;
-    int* piParent = &iParent;
-    int iLayout = 0;
-    int* piLayout = &iLayout;
+    int iBorder = -1;
+    int j = 0;
 
-    getGraphicObjectProperty(iObjUID, __GO_PARENT__, jni_int, (void **)&piParent);
-    if (piParent == NULL)
+    if (valueType != sci_matrix && valueType != sci_strings)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
+        Scierror(999, _("Wrong type for '%s' property: %s or %s expected.\n"), "constraints", "Single string", "Matrix of double");
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(iParent, __GO_LAYOUT__, jni_int, (void **)&piLayout);
-    if (piLayout == NULL)
+    if (valueType == sci_matrix)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
-        return SET_PROPERTY_ERROR;
-    }
-
-    switch (iLayout)
-    {
-        default:
-        case NONE :
+        if (nbRow * nbCol == 6)
         {
-            Scierror(999, _("'%s' Please set 'layout' property in parent before.\n"), "constraints");
-            return SET_PROPERTY_ERROR;
-        }
-        case GRID :
-        {
-            if (valueType != sci_matrix || nbRow * nbCol != 6)
-            {
-                Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "constraints", 6);
-                return SET_PROPERTY_ERROR;
-            }
-
             if (setGraphicObjectProperty(iObjUID, __GO_UI_GRID_CONSTRAINTS__, _pvData, jni_double_vector, 6) == FALSE)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
                 return SET_PROPERTY_ERROR;
             }
-
             return SET_PROPERTY_SUCCEED;
         }
-        case BORDER :
+        else
         {
-            int iBorder = -1;
-            if (valueType != sci_strings)
-            {
-                Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "constraints", 1);
-                return SET_PROPERTY_ERROR;
-            }
+            Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "constraints", 6);
+            return SET_PROPERTY_ERROR;
+        }
+    }
 
+    if (valueType == sci_strings)
+    {
+        if (nbCol == 1)
+        {
             if (stricmp((char*)_pvData, "center") == 0)
             {
                 iBorder = CENTER;
@@ -112,8 +91,14 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
                 return SET_PROPERTY_ERROR;
             }
-
             return SET_PROPERTY_SUCCEED;
         }
+        else
+        {
+            Scierror(999, _("Wrong size for '%s' property: %d elements expected (%dx%d).\n"), "constraints", 1, nbRow , nbCol);
+            return SET_PROPERTY_ERROR;
+        }
     }
+
+    return SET_PROPERTY_ERROR;
 }

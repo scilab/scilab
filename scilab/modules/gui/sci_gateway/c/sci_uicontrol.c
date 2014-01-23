@@ -65,7 +65,10 @@ static const char* propertiesNames[] =
     "visible",
     "enable",
     "callback_type",
-    "tooltipstring"
+    "tooltipstring",
+    "constraints",
+    "layout",
+    "margins"
 };
 
 /*--------------------------------------------------------------------------*/
@@ -421,6 +424,29 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
             return FALSE;
         }
         GraphicHandle = getHandle(iUicontrol);
+
+        /* Set Constraints before going further */
+        if (propertiesValuesIndices[28] != NOT_FOUND)
+        {
+            int* piAddr = NULL;
+            sciErr = getVarAddressFromPosition(pvApiCtx, propertiesValuesIndices[28], &piAddr);
+            char* pstValue = NULL;
+            if (getAllocatedSingleString(pvApiCtx, piAddr, &pstValue))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, propertiesValuesIndices[inputIndex]);
+                return 1;
+            }
+
+            nbRow = (int)strlen(pstValue);
+            nbCol = 1;
+            setStatus = callSetProperty(pvApiCtx, getObjectFromHandle(GraphicHandle), pstValue, sci_strings, nbRow, nbCol, (char*)propertiesNames[28]);
+            freeAllocatedSingleString(pstValue);
+            if (setStatus == SET_PROPERTY_ERROR)
+            {
+                Scierror(999, _("%s: Could not set property '%s'.\n"), fname, (char*)propertiesNames[28]);
+                return FALSE;
+            }
+        }
 
         /* If no parent given then the current figure is the parent */
         if (propertiesValuesIndices[1] == NOT_FOUND)
