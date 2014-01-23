@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-12-09 09:48+0100\n"
+"Revision-Date: 2014-01-23 11:33+0100\n"
 
 # File: sci_gateway/c/sci_PlaySound.c, line: 48
 # File: sci_gateway/c/sci_PlaySound.c, line: 56
@@ -106,7 +106,7 @@ msgstr ""
 # File: macros/auread.sci, line: 43
 # File: macros/auwrite.sci, line: 68
 # File: macros/loadwave.sci, line: 32
-# File: macros/savewave.sci, line: 242
+# File: macros/savewave.sci, line: 249
 # File: macros/wavread.sci, line: 49
 #, c-format
 msgid "%s: Cannot open file %s.\n"
@@ -223,7 +223,7 @@ msgid "only 8/16/24/32 bits for the encoding."
 msgstr ""
 
 #
-# File: macros/savewave.sci, line: 185
+# File: macros/savewave.sci, line: 192
 msgid "Unknown data format."
 msgstr ""
 

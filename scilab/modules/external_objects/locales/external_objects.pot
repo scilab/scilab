@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-12-09 09:47+0100\n"
+"Revision-Date: 2014-01-23 11:33+0100\n"
 
 # File: includes/ScilabAbstractEnvironmentException.hxx, line: 108
 msgid "Exception thrown in file"
@@ -172,7 +172,7 @@ msgstr ""
 # File: src/cpp/invoke_lu.cpp, line: 167
 # File: src/cpp/invoker.cpp, line: 48
 # File: src/cpp/newInstance.cpp, line: 50
-# File: src/cpp/newInstance.cpp, line: 93
+# File: src/cpp/newInstance.cpp, line: 99
 # File: src/cpp/objectExtract.cpp, line: 33
 # File: src/cpp/objectExtract.cpp, line: 59
 # File: src/cpp/objectExtract.cpp, line: 89

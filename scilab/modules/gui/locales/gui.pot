@@ -14,9 +14,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-12-09 09:48+0100\n"
+"Revision-Date: 2014-01-23 11:33+0100\n"
 
-# File: sci_gateway/c/gw_gui.c, line: 85
+# File: sci_gateway/c/gw_gui.c, line: 86
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""
@@ -32,14 +32,14 @@ msgstr ""
 # File: sci_gateway/c/sci_setmenu.c, line: 119
 # File: sci_gateway/c/sci_setmenu.c, line: 139
 # File: sci_gateway/c/sci_setmenu.c, line: 221
-# File: sci_gateway/c/sci_uicontrol.c, line: 359
-# File: sci_gateway/c/sci_uicontrol.c, line: 403
-# File: sci_gateway/c/sci_uicontrol.c, line: 496
+# File: sci_gateway/c/sci_uicontrol.c, line: 360
+# File: sci_gateway/c/sci_uicontrol.c, line: 404
+# File: sci_gateway/c/sci_uicontrol.c, line: 497
 # File: sci_gateway/c/sci_uigetcolor.c, line: 89
 # File: sci_gateway/c/sci_uigetcolor.c, line: 116
 # File: sci_gateway/c/sci_uigetcolor.c, line: 182
-# File: sci_gateway/c/sci_uimenu.c, line: 164
-# File: sci_gateway/c/sci_uimenu.c, line: 213
+# File: sci_gateway/c/sci_uimenu.c, line: 165
+# File: sci_gateway/c/sci_uimenu.c, line: 214
 # File: sci_gateway/c/sci_unsetmenu.c, line: 68
 # File: sci_gateway/c/sci_unsetmenu.c, line: 113
 # File: sci_gateway/c/sci_unsetmenu.c, line: 139
@@ -59,7 +59,7 @@ msgstr ""
 # File: sci_gateway/c/sci_progressionbar.c, line: 165
 # File: sci_gateway/c/sci_toolbar.c, line: 209
 # File: sci_gateway/c/sci_uicontextmenu.c, line: 51
-# File: sci_gateway/c/sci_uicontrol.c, line: 574
+# File: sci_gateway/c/sci_uicontrol.c, line: 575
 # File: sci_gateway/c/sci_uigetcolor.c, line: 331
 # File: sci_gateway/c/sci_uigetcolor.c, line: 346
 # File: sci_gateway/c/sci_uigetcolor.c, line: 356
@@ -76,7 +76,7 @@ msgstr ""
 # File: sci_gateway/c/sci_uigetfont.c, line: 310
 # File: sci_gateway/c/sci_uigetfont.c, line: 322
 # File: sci_gateway/c/sci_uigetfont.c, line: 334
-# File: sci_gateway/c/sci_uimenu.c, line: 278
+# File: sci_gateway/c/sci_uimenu.c, line: 279
 # File: sci_gateway/c/sci_uiwait.c, line: 90
 # File: sci_gateway/c/sci_waitbar.c, line: 389
 # File: sci_gateway/c/sci_x_choice.c, line: 168
@@ -139,17 +139,16 @@ msgstr ""
 # File: sci_gateway/c/sci_setmenu.c, line: 53
 # File: sci_gateway/c/sci_setmenu.c, line: 228
 # File: sci_gateway/c/sci_toolbar.c, line: 190
-# File: sci_gateway/c/sci_uicontrol.c, line: 344
-# File: sci_gateway/c/sci_uicontrol.c, line: 409
+# File: sci_gateway/c/sci_uicontrol.c, line: 345
+# File: sci_gateway/c/sci_uicontrol.c, line: 410
 # File: sci_gateway/c/sci_uigetcolor.c, line: 122
 # File: sci_gateway/c/sci_uigetfont.c, line: 78
-# File: sci_gateway/c/sci_uimenu.c, line: 150
+# File: sci_gateway/c/sci_uimenu.c, line: 151
 # File: sci_gateway/c/sci_unsetmenu.c, line: 54
 # File: sci_gateway/c/sci_unsetmenu.c, line: 226
 # File: sci_gateway/c/sci_waitbar.c, line: 327
 # File: sci_gateway/c/sci_x_choose.c, line: 131
 # File: sci_gateway/c/sci_x_choose_modeless.c, line: 134
-# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 107
 # File: sci_gateway/cpp/sci_datatip_set_orient.cpp, line: 153
 # File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 124
 # File: sci_gateway/cpp/sci_uigetdir.cpp, line: 73
@@ -183,7 +182,7 @@ msgstr ""
 # File: sci_gateway/c/sci_progressionbar.c, line: 85
 # File: sci_gateway/c/sci_progressionbar.c, line: 138
 # File: sci_gateway/c/sci_toolbar.c, line: 165
-# File: sci_gateway/c/sci_uicontrol.c, line: 484
+# File: sci_gateway/c/sci_uicontrol.c, line: 485
 # File: sci_gateway/c/sci_uigetfont.c, line: 64
 # File: sci_gateway/c/sci_waitbar.c, line: 90
 # File: sci_gateway/c/sci_waitbar.c, line: 151
@@ -211,7 +210,9 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_ClipBoard.c, line: 246
 # File: sci_gateway/c/sci_ClipBoard.c, line: 263
-# File: sci_gateway/c/sci_uicontrol.c, line: 204
+# File: sci_gateway/c/sci_figure.c, line: 74
+# File: sci_gateway/c/sci_figure.c, line: 127
+# File: sci_gateway/c/sci_uicontrol.c, line: 205
 # File: sci_gateway/cpp/sci_getinstalledlookandfeels.cpp, line: 82
 # File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 76
 # File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 65
@@ -232,15 +233,15 @@ msgstr ""
 # File: sci_gateway/c/sci_setmenu.c, line: 156
 # File: sci_gateway/c/sci_setmenu.c, line: 192
 # File: sci_gateway/c/sci_setmenu.c, line: 246
-# File: sci_gateway/c/sci_uicontrol.c, line: 244
-# File: sci_gateway/c/sci_uicontrol.c, line: 470
+# File: sci_gateway/c/sci_uicontrol.c, line: 245
+# File: sci_gateway/c/sci_uicontrol.c, line: 471
 # File: sci_gateway/c/sci_uigetcolor.c, line: 67
 # File: sci_gateway/c/sci_uigetcolor.c, line: 141
 # File: sci_gateway/c/sci_uigetcolor.c, line: 211
 # File: sci_gateway/c/sci_uigetcolor.c, line: 242
 # File: sci_gateway/c/sci_uigetcolor.c, line: 273
 # File: sci_gateway/c/sci_uigetfont.c, line: 100
-# File: sci_gateway/c/sci_uimenu.c, line: 201
+# File: sci_gateway/c/sci_uimenu.c, line: 202
 # File: sci_gateway/c/sci_unsetmenu.c, line: 92
 # File: sci_gateway/c/sci_unsetmenu.c, line: 155
 # File: sci_gateway/c/sci_unsetmenu.c, line: 191
@@ -332,10 +333,10 @@ msgstr ""
 # File: sci_gateway/c/sci_progressionbar.c, line: 63
 # File: sci_gateway/c/sci_progressionbar.c, line: 119
 # File: sci_gateway/c/sci_toolbar.c, line: 120
-# File: sci_gateway/c/sci_uicontrol.c, line: 150
-# File: sci_gateway/c/sci_uicontrol.c, line: 298
-# File: sci_gateway/c/sci_uicontrol.c, line: 513
-# File: sci_gateway/c/sci_uimenu.c, line: 230
+# File: sci_gateway/c/sci_uicontrol.c, line: 151
+# File: sci_gateway/c/sci_uicontrol.c, line: 299
+# File: sci_gateway/c/sci_uicontrol.c, line: 514
+# File: sci_gateway/c/sci_uimenu.c, line: 231
 # File: sci_gateway/c/sci_uiwait.c, line: 55
 # File: sci_gateway/c/sci_waitbar.c, line: 201
 # File: sci_gateway/c/sci_waitbar.c, line: 250
@@ -370,6 +371,50 @@ msgid ""
 msgstr ""
 
 #
+# File: sci_gateway/c/sci_figure.c, line: 115
+# File: sci_gateway/c/sci_figure.c, line: 170
+# File: sci_gateway/c/sci_figure.c, line: 196
+# File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 137
+# File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 163
+# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 54
+# File: sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 57
+# File: sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 80
+# File: sci_gateway/cpp/sci_datatip_set_orient.cpp, line: 58
+# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 61
+# File: sci_gateway/cpp/sci_datatip_toggle.cpp, line: 62
+# File: sci_gateway/cpp/sci_datatipcreate.cpp, line: 61
+# File: sci_gateway/cpp/sci_datatipcreate.cpp, line: 68
+# File: sci_gateway/cpp/sci_datatipmove.cpp, line: 58
+# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 57
+# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 64
+# File: sci_gateway/cpp/sci_openged.cpp, line: 55
+# File: sci_gateway/cpp/sci_plotbrowser.cpp, line: 55
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 78
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 197
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 205
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 228
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 251
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 295
+# File: sci_gateway/cpp/sci_useeditor.cpp, line: 57
+# File: sci_gateway/cpp/sci_useeditor.cpp, line: 87
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_figure.c, line: 121
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_figure.c, line: 176
+# File: sci_gateway/c/sci_figure.c, line: 234
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+
+#
 # File: sci_gateway/c/sci_getcallbackobject.c, line: 48
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
@@ -393,7 +438,6 @@ msgstr ""
 # File: sci_gateway/c/sci_uigetfont.c, line: 72
 # File: sci_gateway/c/sci_x_choose.c, line: 125
 # File: sci_gateway/c/sci_x_choose_modeless.c, line: 128
-# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 101
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
@@ -436,7 +480,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_helpbrowser.c, line: 302
-# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 114
+# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 133
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
@@ -503,8 +547,8 @@ msgstr ""
 # File: sci_gateway/c/sci_progressionbar.c, line: 69
 # File: sci_gateway/c/sci_progressionbar.c, line: 125
 # File: sci_gateway/c/sci_toolbar.c, line: 126
-# File: sci_gateway/c/sci_uicontrol.c, line: 144
-# File: sci_gateway/c/sci_uicontrol.c, line: 238
+# File: sci_gateway/c/sci_uicontrol.c, line: 145
+# File: sci_gateway/c/sci_uicontrol.c, line: 239
 # File: sci_gateway/c/sci_uiwait.c, line: 61
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
@@ -566,16 +610,16 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 173
-# File: sci_gateway/c/sci_uicontrol.c, line: 527
-# File: sci_gateway/c/sci_uimenu.c, line: 253
+# File: sci_gateway/c/sci_uicontrol.c, line: 174
+# File: sci_gateway/c/sci_uicontrol.c, line: 528
+# File: sci_gateway/c/sci_uimenu.c, line: 254
 #, c-format
 msgid "%s: Could not set property '%s'.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 179
-# File: sci_gateway/c/sci_uicontrol.c, line: 186
+# File: sci_gateway/c/sci_uicontrol.c, line: 180
+# File: sci_gateway/c/sci_uicontrol.c, line: 187
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s', '%s' or '%s' handle "
@@ -583,31 +627,31 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 252
-# File: sci_gateway/c/sci_uicontrol.c, line: 263
-# File: sci_gateway/c/sci_uicontrol.c, line: 273
-# File: sci_gateway/c/sci_uicontrol.c, line: 305
-# File: sci_gateway/c/sci_uicontrol.c, line: 315
+# File: sci_gateway/c/sci_uicontrol.c, line: 253
+# File: sci_gateway/c/sci_uicontrol.c, line: 264
+# File: sci_gateway/c/sci_uicontrol.c, line: 274
+# File: sci_gateway/c/sci_uicontrol.c, line: 306
+# File: sci_gateway/c/sci_uicontrol.c, line: 316
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 291
+# File: sci_gateway/c/sci_uicontrol.c, line: 292
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A '%s' or a '%s' handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 383
+# File: sci_gateway/c/sci_uicontrol.c, line: 384
 #, c-format
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 419
+# File: sci_gateway/c/sci_uicontrol.c, line: 420
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
 msgstr ""
@@ -642,21 +686,23 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uimenu.c, line: 78
+# File: sci_gateway/c/sci_uimenu.c, line: 79
 # File: sci_gateway/c/sci_uiwait.c, line: 80
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uimenu.c, line: 96
+# File: sci_gateway/c/sci_uimenu.c, line: 97
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uimenu.c, line: 106
-# File: sci_gateway/c/sci_uimenu.c, line: 118
+# File: sci_gateway/c/sci_uimenu.c, line: 107
+# File: sci_gateway/c/sci_uimenu.c, line: 119
+# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 140
+# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 146
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
@@ -665,8 +711,6 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_uiwait.c, line: 74
 # File: sci_gateway/c/sci_waitbar.c, line: 359
-# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 121
-# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 127
 # File: sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 94
 # File: sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 100
 # File: sci_gateway/cpp/sci_datatip_set_orient.cpp, line: 159
@@ -798,37 +842,24 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 137
-# File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 163
-# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 53
-# File: sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 57
-# File: sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 80
-# File: sci_gateway/cpp/sci_datatip_set_orient.cpp, line: 58
-# File: sci_gateway/cpp/sci_datatip_set_style.cpp, line: 61
-# File: sci_gateway/cpp/sci_datatip_toggle.cpp, line: 62
-# File: sci_gateway/cpp/sci_datatipcreate.cpp, line: 61
-# File: sci_gateway/cpp/sci_datatipcreate.cpp, line: 68
-# File: sci_gateway/cpp/sci_datatipmove.cpp, line: 58
-# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 57
-# File: sci_gateway/cpp/sci_datatipremove.cpp, line: 64
-# File: sci_gateway/cpp/sci_openged.cpp, line: 55
-# File: sci_gateway/cpp/sci_plotbrowser.cpp, line: 55
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 78
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 197
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 205
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 228
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 251
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 295
-# File: sci_gateway/cpp/sci_useeditor.cpp, line: 57
-# File: sci_gateway/cpp/sci_useeditor.cpp, line: 87
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
-
-#
 # File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 250
 #, c-format
 msgid "%s: Wrong number for input argument: %d expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 102
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A string or a macro name expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 115
+# File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 126
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a macro name expected.\n"
 msgstr ""
 
 #
@@ -1877,39 +1908,39 @@ msgstr ""
 
 #
 # File: src/cpp/GetUicontrolString.cpp, line: 39
-# File: src/cpp/GetUicontrolStyle.cpp, line: 70
+# File: src/cpp/GetUicontrolStyle.cpp, line: 74
 # File: src/cpp/GetUicontrolTooltipString.cpp, line: 39
 #, c-format
 msgid "No '%s' property for this object.\n"
 msgstr ""
 
 #
-# File: src/cpp/InitUIMenu.cpp, line: 74
+# File: src/cpp/InitUIMenu.cpp, line: 75
 #, c-format
 msgid "%s: Wrong type for parent: A handle or 0 expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/InitUIMenu.cpp, line: 84
+# File: src/cpp/InitUIMenu.cpp, line: 85
 #, c-format
 msgid "%s: can not add a menu into the console in this mode.\n"
 msgstr ""
 
 #
-# File: src/cpp/InitUIMenu.cpp, line: 89
+# File: src/cpp/InitUIMenu.cpp, line: 90
 #, c-format
 msgid "%s: Wrong type for parent: A handle expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/InitUIMenu.cpp, line: 107
-# File: src/cpp/InitUIMenu.cpp, line: 113
+# File: src/cpp/InitUIMenu.cpp, line: 108
+# File: src/cpp/InitUIMenu.cpp, line: 114
 #, c-format
 msgid "%s: Wrong type for parent: Figure or uimenu handle expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/InitUIMenu.cpp, line: 125
+# File: src/cpp/InitUIMenu.cpp, line: 126
 #, c-format
 msgid "%s: Wrong value for parent: 0 expected.\n"
 msgstr ""
@@ -4196,15 +4227,6 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/figure.sci, line: 107
-# File: macros/figure.sci, line: 134
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
-"expected.\n"
-msgstr ""
-
-#
 # File: macros/getvalue.sci, line: 75
 # File: macros/tree_show.sci, line: 25
 #, c-format
@@ -4247,6 +4269,15 @@ msgstr ""
 # File: macros/x_matrix.sci, line: 12
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#
+# File: macros/oldfigure.sci, line: 107
+# File: macros/oldfigure.sci, line: 134
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
+"expected.\n"
 msgstr ""
 
 #

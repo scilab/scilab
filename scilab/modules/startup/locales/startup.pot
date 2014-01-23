@@ -1,4 +1,4 @@
-# Localization of the module symbolic
+# Localization of the module startup
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Revision-Date: 2014-01-23 11:33+0100\n"
 
-# File: sci_gateway/c/gw_symbolic.c, line: 33
+# File: src/c/initMPI.c, line: 27
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgid "MPI error: %s\n"
 msgstr ""

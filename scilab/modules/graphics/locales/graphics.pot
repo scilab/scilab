@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-12-09 09:48+0100\n"
+"Revision-Date: 2014-01-23 11:33+0100\n"
 
 # File: sci_gateway/c/gw_graphics.c, line: 137
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -30,11 +30,11 @@ msgstr ""
 # File: sci_gateway/c/sci_contour2di.c, line: 224
 # File: sci_gateway/c/sci_contour2di.c, line: 232
 # File: sci_gateway/c/sci_copy.c, line: 156
-# File: sci_gateway/c/sci_glue.c, line: 82
-# File: sci_gateway/c/sci_glue.c, line: 90
-# File: sci_gateway/c/sci_glue.c, line: 165
-# File: sci_gateway/c/sci_light.c, line: 170
-# File: sci_gateway/c/sci_newaxes.c, line: 52
+# File: sci_gateway/c/sci_glue.c, line: 83
+# File: sci_gateway/c/sci_glue.c, line: 91
+# File: sci_gateway/c/sci_glue.c, line: 166
+# File: sci_gateway/c/sci_light.c, line: 182
+# File: sci_gateway/c/sci_newaxes.c, line: 53
 # File: sci_gateway/c/sci_plot2d.c, line: 152
 # File: sci_gateway/c/sci_plot2d.c, line: 256
 # File: sci_gateway/c/sci_plot2d.c, line: 283
@@ -48,7 +48,7 @@ msgstr ""
 # File: sci_gateway/c/sci_rubberbox.c, line: 162
 # File: sci_gateway/c/sci_rubberbox.c, line: 177
 # File: sci_gateway/c/sci_rubberbox.c, line: 197
-# File: sci_gateway/c/sci_xarcs.c, line: 129
+# File: sci_gateway/c/sci_xarcs.c, line: 130
 # File: sci_gateway/c/sci_xchange.c, line: 118
 # File: sci_gateway/c/sci_xchange.c, line: 126
 # File: sci_gateway/c/sci_xchange.c, line: 135
@@ -61,7 +61,7 @@ msgstr ""
 # File: sci_gateway/c/sci_xclick.c, line: 139
 # File: sci_gateway/c/sci_xclick.c, line: 154
 # File: sci_gateway/c/sci_xclick.c, line: 170
-# File: sci_gateway/c/sci_xfarcs.c, line: 114
+# File: sci_gateway/c/sci_xfarcs.c, line: 116
 # File: sci_gateway/c/sci_xfpolys.c, line: 185
 # File: sci_gateway/c/sci_xget.c, line: 133
 # File: sci_gateway/c/sci_xgetmouse.c, line: 127
@@ -91,20 +91,20 @@ msgstr ""
 # File: sci_gateway/c/sci_StringBox.c, line: 130
 # File: sci_gateway/c/sci_copy.c, line: 71
 # File: sci_gateway/c/sci_copy.c, line: 123
-# File: sci_gateway/c/sci_delete.c, line: 114
+# File: sci_gateway/c/sci_delete.c, line: 115
 # File: sci_gateway/c/sci_get.c, line: 182
-# File: sci_gateway/c/sci_glue.c, line: 73
+# File: sci_gateway/c/sci_glue.c, line: 74
 # File: sci_gateway/c/sci_move.c, line: 93
 # File: sci_gateway/c/sci_relocate_handle.c, line: 67
 # File: sci_gateway/c/sci_relocate_handle.c, line: 84
 # File: sci_gateway/c/sci_rotate_axes.c, line: 77
-# File: sci_gateway/c/sci_show_window.c, line: 79
+# File: sci_gateway/c/sci_show_window.c, line: 80
 # File: sci_gateway/c/sci_swap_handles.c, line: 69
 # File: sci_gateway/c/sci_swap_handles.c, line: 85
 # File: sci_gateway/c/sci_unglue.c, line: 71
 # File: sci_gateway/c/sci_unglue.c, line: 102
 # File: sci_gateway/c/sci_unzoom.c, line: 78
-# File: sci_gateway/c/sci_zoom_rect.c, line: 128
+# File: sci_gateway/c/sci_zoom_rect.c, line: 129
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
 msgstr ""
@@ -113,7 +113,7 @@ msgstr ""
 # File: sci_gateway/c/sci_Legend.c, line: 111
 # File: sci_gateway/c/sci_StringBox.c, line: 218
 # File: sci_gateway/c/sci_get.c, line: 131
-# File: sci_gateway/c/sci_xstring.c, line: 71
+# File: sci_gateway/c/sci_xstring.c, line: 73
 # File: sci_gateway/c/sci_xstringb.c, line: 120
 # File: sci_gateway/c/sci_xtitle.c, line: 146
 #, c-format
@@ -122,8 +122,8 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_Legend.c, line: 129
-# File: sci_gateway/c/sci_delete.c, line: 132
-# File: sci_gateway/c/sci_delete.c, line: 150
+# File: sci_gateway/c/sci_delete.c, line: 133
+# File: sci_gateway/c/sci_delete.c, line: 151
 # File: sci_gateway/c/sci_get.c, line: 202
 # File: sci_gateway/c/sci_get.c, line: 220
 # File: sci_gateway/c/sci_move.c, line: 63
@@ -131,10 +131,10 @@ msgstr ""
 # File: sci_gateway/c/sci_xget.c, line: 74
 # File: sci_gateway/c/sci_xlfont.c, line: 96
 # File: sci_gateway/c/sci_xlfont.c, line: 278
-# File: sci_gateway/c/sci_xname.c, line: 54
+# File: sci_gateway/c/sci_xname.c, line: 55
 # File: sci_gateway/c/sci_xpoly.c, line: 118
-# File: sci_gateway/c/sci_xset.c, line: 82
-# File: sci_gateway/c/sci_xset.c, line: 125
+# File: sci_gateway/c/sci_xset.c, line: 83
+# File: sci_gateway/c/sci_xset.c, line: 126
 # File: sci_gateway/c/sci_xstringb.c, line: 192
 # File: sci_gateway/c/sci_xstringb.c, line: 198
 #, c-format
@@ -149,12 +149,11 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_Legend.c, line: 152
-# File: sci_gateway/c/sci_newaxes.c, line: 61
+# File: sci_gateway/c/sci_newaxes.c, line: 62
 # File: sci_gateway/c/sci_unzoom.c, line: 86
 # File: sci_gateway/c/sci_winsid.c, line: 43
-# File: sci_gateway/c/sci_xset.c, line: 365
-# File: src/c/BuildObjects.c, line: 439
-# File: src/c/Champ.c, line: 97
+# File: sci_gateway/c/sci_xset.c, line: 366
+# File: src/c/Champ.c, line: 98
 # File: src/c/Champ.c, line: 123
 # File: src/c/Contour.c, line: 449
 # File: src/c/Contour.c, line: 526
@@ -172,9 +171,8 @@ msgstr ""
 # File: src/c/Gray.c, line: 564
 # File: src/c/InitObjects.c, line: 161
 # File: src/c/Plo2dn.c, line: 400
-# File: src/c/Plo2dn.c, line: 408
-# File: src/c/Plo2dn.c, line: 442
-# File: src/c/Plo2dn.c, line: 471
+# File: src/c/Plo2dn.c, line: 432
+# File: src/c/Plo2dn.c, line: 454
 # File: src/c/SetProperty.c, line: 281
 # File: src/c/SetProperty.c, line: 478
 # File: src/c/SetProperty.c, line: 561
@@ -198,14 +196,13 @@ msgstr ""
 # File: src/c/getHandleProperty/set_y_ticks_property.c, line: 72
 # File: src/c/getHandleProperty/set_z_shift_property.c, line: 79
 # File: src/c/getHandleProperty/set_z_ticks_property.c, line: 72
-# File: src/c/sciCall.c, line: 162
-# File: src/c/sciCall.c, line: 230
-# File: src/c/sciCall.c, line: 265
-# File: src/c/sciCall.c, line: 319
-# File: src/c/sciCall.c, line: 507
-# File: src/c/sciCall.c, line: 830
-# File: src/c/sciCall.c, line: 895
-# File: src/c/sciCall.c, line: 965
+# File: src/c/sciCall.c, line: 156
+# File: src/c/sciCall.c, line: 224
+# File: src/c/sciCall.c, line: 257
+# File: src/c/sciCall.c, line: 311
+# File: src/c/sciCall.c, line: 580
+# File: src/c/sciCall.c, line: 639
+# File: src/c/sciCall.c, line: 736
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -278,15 +275,15 @@ msgstr ""
 # File: sci_gateway/c/sci_plot3d.c, line: 228
 # File: sci_gateway/c/sci_plot3d.c, line: 243
 # File: sci_gateway/c/sci_rubberbox.c, line: 60
-# File: sci_gateway/c/sci_show_window.c, line: 115
+# File: sci_gateway/c/sci_show_window.c, line: 116
 # File: sci_gateway/c/sci_xarc.c, line: 72
 # File: sci_gateway/c/sci_xarc.c, line: 95
 # File: sci_gateway/c/sci_xarc.c, line: 118
 # File: sci_gateway/c/sci_xarc.c, line: 141
 # File: sci_gateway/c/sci_xarc.c, line: 164
 # File: sci_gateway/c/sci_xarc.c, line: 187
-# File: sci_gateway/c/sci_xarcs.c, line: 66
-# File: sci_gateway/c/sci_xarcs.c, line: 103
+# File: sci_gateway/c/sci_xarcs.c, line: 67
+# File: sci_gateway/c/sci_xarcs.c, line: 104
 # File: sci_gateway/c/sci_xarrows.c, line: 63
 # File: sci_gateway/c/sci_xarrows.c, line: 79
 # File: sci_gateway/c/sci_xarrows.c, line: 112
@@ -297,8 +294,8 @@ msgstr ""
 # File: sci_gateway/c/sci_xchange.c, line: 166
 # File: sci_gateway/c/sci_xchange.c, line: 182
 # File: sci_gateway/c/sci_xdel.c, line: 59
-# File: sci_gateway/c/sci_xfarcs.c, line: 65
-# File: sci_gateway/c/sci_xfarcs.c, line: 89
+# File: sci_gateway/c/sci_xfarcs.c, line: 67
+# File: sci_gateway/c/sci_xfarcs.c, line: 91
 # File: sci_gateway/c/sci_xfpoly.c, line: 66
 # File: sci_gateway/c/sci_xfpoly.c, line: 82
 # File: sci_gateway/c/sci_xfpoly.c, line: 108
@@ -328,18 +325,18 @@ msgstr ""
 # File: sci_gateway/c/sci_xsegs.c, line: 150
 # File: sci_gateway/c/sci_xsegs.c, line: 177
 # File: sci_gateway/c/sci_xsegs.c, line: 202
-# File: sci_gateway/c/sci_xset.c, line: 180
-# File: sci_gateway/c/sci_xset.c, line: 217
-# File: sci_gateway/c/sci_xstring.c, line: 94
-# File: sci_gateway/c/sci_xstring.c, line: 110
-# File: sci_gateway/c/sci_xstring.c, line: 152
-# File: sci_gateway/c/sci_xstring.c, line: 178
+# File: sci_gateway/c/sci_xset.c, line: 181
+# File: sci_gateway/c/sci_xset.c, line: 218
+# File: sci_gateway/c/sci_xstring.c, line: 96
+# File: sci_gateway/c/sci_xstring.c, line: 112
+# File: sci_gateway/c/sci_xstring.c, line: 154
+# File: sci_gateway/c/sci_xstring.c, line: 180
 # File: sci_gateway/c/sci_xstringb.c, line: 73
 # File: sci_gateway/c/sci_xstringb.c, line: 98
 # File: sci_gateway/c/sci_xstringb.c, line: 143
 # File: sci_gateway/c/sci_xstringb.c, line: 167
 # File: sci_gateway/c/sci_xtitle.c, line: 97
-# File: sci_gateway/c/sci_zoom_rect.c, line: 71
+# File: sci_gateway/c/sci_zoom_rect.c, line: 72
 #, c-format
 msgid "%s: Wrong type for argument %d: A real expected.\n"
 msgstr ""
@@ -365,7 +362,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_StringBox.c, line: 145
-# File: sci_gateway/c/sci_delete.c, line: 218
+# File: sci_gateway/c/sci_delete.c, line: 219
 #, c-format
 msgid "%s: The handle is not valid.\n"
 msgstr ""
@@ -448,9 +445,9 @@ msgstr ""
 # File: sci_gateway/c/sci_contour2di.c, line: 95
 # File: sci_gateway/c/sci_grayplot.c, line: 101
 # File: sci_gateway/c/sci_grayplot.c, line: 125
-# File: sci_gateway/c/sci_xarcs.c, line: 110
+# File: sci_gateway/c/sci_xarcs.c, line: 111
 # File: sci_gateway/c/sci_xarrows.c, line: 184
-# File: sci_gateway/c/sci_xfarcs.c, line: 96
+# File: sci_gateway/c/sci_xfarcs.c, line: 98
 # File: sci_gateway/c/sci_xfpolys.c, line: 163
 # File: sci_gateway/c/sci_xpolys.c, line: 141
 # File: sci_gateway/c/sci_xrects.c, line: 101
@@ -462,7 +459,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_contour2di.c, line: 124
-# File: sci_gateway/c/sci_set.c, line: 224
+# File: sci_gateway/c/sci_set.c, line: 225
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr ""
@@ -471,12 +468,12 @@ msgstr ""
 # File: sci_gateway/c/sci_copy.c, line: 85
 # File: sci_gateway/c/sci_copy.c, line: 131
 # File: sci_gateway/c/sci_get.c, line: 287
-# File: sci_gateway/c/sci_glue.c, line: 120
+# File: sci_gateway/c/sci_glue.c, line: 121
 # File: sci_gateway/c/sci_move.c, line: 101
 # File: sci_gateway/c/sci_rotate_axes.c, line: 99
-# File: sci_gateway/c/sci_set.c, line: 276
+# File: sci_gateway/c/sci_set.c, line: 277
 # File: sci_gateway/c/sci_unglue.c, line: 81
-# File: src/c/Light.c, line: 61
+# File: src/c/BuildObjects.c, line: 809
 #, c-format
 msgid "%s: The handle is not or no more valid.\n"
 msgstr ""
@@ -488,7 +485,7 @@ msgid "%s: Parent entity for destination should be an axes.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_delete.c, line: 194
+# File: sci_gateway/c/sci_delete.c, line: 195
 # File: sci_gateway/c/sci_move.c, line: 74
 # File: sci_gateway/c/sci_xstringb.c, line: 209
 #, c-format
@@ -496,12 +493,12 @@ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_delete.c, line: 224
+# File: sci_gateway/c/sci_delete.c, line: 225
 msgid "This object cannot be deleted.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_delete.c, line: 240
+# File: sci_gateway/c/sci_delete.c, line: 241
 msgid "A Label object cannot be deleted.\n"
 msgstr ""
 
@@ -603,13 +600,13 @@ msgid "%s: Could not read property '%s' for root object.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_glue.c, line: 105
+# File: sci_gateway/c/sci_glue.c, line: 106
 #, c-format
 msgid "%s: Each handle should not appear twice.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_glue.c, line: 134
+# File: sci_gateway/c/sci_glue.c, line: 135
 #, c-format
 msgid "%s: Objects must have the same parent.\n"
 msgstr ""
@@ -617,31 +614,31 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_is_handle_valid.c, line: 48
 # File: sci_gateway/c/sci_is_handle_valid.c, line: 64
-# File: sci_gateway/c/sci_set.c, line: 234
+# File: sci_gateway/c/sci_set.c, line: 235
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_light.c, line: 66
+# File: sci_gateway/c/sci_light.c, line: 65
 # File: sci_gateway/c/sci_set.c, line: 56
 # File: sci_gateway/c/sci_set.c, line: 127
 # File: sci_gateway/c/sci_set.c, line: 141
-# File: sci_gateway/c/sci_set.c, line: 214
+# File: sci_gateway/c/sci_set.c, line: 215
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_light.c, line: 76
-# File: sci_gateway/c/sci_light.c, line: 82
+# File: sci_gateway/c/sci_light.c, line: 75
+# File: sci_gateway/c/sci_light.c, line: 81
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_light.c, line: 97
-# File: sci_gateway/c/sci_light.c, line: 117
+# File: sci_gateway/c/sci_light.c, line: 103
+# File: sci_gateway/c/sci_light.c, line: 128
 # File: sci_gateway/c/sci_xlfont.c, line: 185
 # File: sci_gateway/c/sci_xlfont.c, line: 362
 #, c-format
@@ -758,7 +755,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_plot2d.c, line: 338
-# File: sci_gateway/c/sci_xfarcs.c, line: 102
+# File: sci_gateway/c/sci_xfarcs.c, line: 104
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d.\n"
 msgstr ""
@@ -924,34 +921,34 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_set.c, line: 133
-# File: sci_gateway/c/sci_set.c, line: 177
-# File: sci_gateway/c/sci_set.c, line: 204
-# File: sci_gateway/c/sci_set.c, line: 255
+# File: sci_gateway/c/sci_set.c, line: 178
+# File: sci_gateway/c/sci_set.c, line: 205
+# File: sci_gateway/c/sci_set.c, line: 256
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_set.c, line: 247
+# File: sci_gateway/c/sci_set.c, line: 248
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A matrix of string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_set.c, line: 265
+# File: sci_gateway/c/sci_set.c, line: 266
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_set.c, line: 347
+# File: sci_gateway/c/sci_set.c, line: 348
 #, c-format
 msgid "%s: Wrong value for input argument #%d: a valid property expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_show_window.c, line: 86
-# File: sci_gateway/c/sci_show_window.c, line: 121
+# File: sci_gateway/c/sci_show_window.c, line: 87
+# File: sci_gateway/c/sci_show_window.c, line: 122
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A '%s' handle or a real scalar "
@@ -959,14 +956,14 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_show_window.c, line: 94
+# File: sci_gateway/c/sci_show_window.c, line: 95
 #, c-format
 msgid "%s: Handle does not or no longer exists.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_show_window.c, line: 101
-# File: sci_gateway/c/sci_show_window.c, line: 139
+# File: sci_gateway/c/sci_show_window.c, line: 102
+# File: sci_gateway/c/sci_show_window.c, line: 140
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' handle or a real scalar "
@@ -974,7 +971,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_show_window.c, line: 154
+# File: sci_gateway/c/sci_show_window.c, line: 155
 #, c-format
 msgid "%s: '%s' handle does not or no longer exists.\n"
 msgstr ""
@@ -1000,16 +997,16 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xarcs.c, line: 74
-# File: sci_gateway/c/sci_xarcs.c, line: 82
-# File: sci_gateway/c/sci_xfarcs.c, line: 71
+# File: sci_gateway/c/sci_xarcs.c, line: 75
+# File: sci_gateway/c/sci_xarcs.c, line: 83
+# File: sci_gateway/c/sci_xfarcs.c, line: 73
 # File: sci_gateway/c/sci_xrects.c, line: 75
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %s expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xarcs.c, line: 116
+# File: sci_gateway/c/sci_xarcs.c, line: 117
 #, c-format
 msgid "%s: Wrong size for arguments #%d and #%d.\n"
 msgstr ""
@@ -1037,8 +1034,8 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_xget.c, line: 90
 # File: sci_gateway/c/sci_xget.c, line: 420
-# File: sci_gateway/c/sci_xset.c, line: 98
-# File: sci_gateway/c/sci_xset.c, line: 656
+# File: sci_gateway/c/sci_xset.c, line: 99
+# File: sci_gateway/c/sci_xset.c, line: 657
 #, c-format
 msgid "%s: Unrecognized input argument: '%s'.\n"
 msgstr ""
@@ -1099,58 +1096,58 @@ msgid "%s: Wrong size for input argument #%d: %d, %d or %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xset.c, line: 108
-# File: sci_gateway/c/sci_xset.c, line: 158
-# File: sci_gateway/c/sci_xset.c, line: 244
-# File: sci_gateway/c/sci_xset.c, line: 261
-# File: sci_gateway/c/sci_xset.c, line: 277
-# File: sci_gateway/c/sci_xset.c, line: 293
-# File: sci_gateway/c/sci_xset.c, line: 457
-# File: sci_gateway/c/sci_xset.c, line: 469
-# File: sci_gateway/c/sci_xset.c, line: 487
-# File: sci_gateway/c/sci_xset.c, line: 508
-# File: sci_gateway/c/sci_xset.c, line: 519
-# File: sci_gateway/c/sci_xset.c, line: 529
-# File: sci_gateway/c/sci_xset.c, line: 540
-# File: sci_gateway/c/sci_xset.c, line: 551
-# File: sci_gateway/c/sci_xset.c, line: 562
-# File: sci_gateway/c/sci_xset.c, line: 573
-# File: sci_gateway/c/sci_xset.c, line: 614
-# File: sci_gateway/c/sci_xset.c, line: 626
-# File: sci_gateway/c/sci_xset.c, line: 640
+# File: sci_gateway/c/sci_xset.c, line: 109
+# File: sci_gateway/c/sci_xset.c, line: 159
+# File: sci_gateway/c/sci_xset.c, line: 245
+# File: sci_gateway/c/sci_xset.c, line: 262
+# File: sci_gateway/c/sci_xset.c, line: 278
+# File: sci_gateway/c/sci_xset.c, line: 294
+# File: sci_gateway/c/sci_xset.c, line: 458
+# File: sci_gateway/c/sci_xset.c, line: 470
+# File: sci_gateway/c/sci_xset.c, line: 488
+# File: sci_gateway/c/sci_xset.c, line: 509
+# File: sci_gateway/c/sci_xset.c, line: 520
+# File: sci_gateway/c/sci_xset.c, line: 530
+# File: sci_gateway/c/sci_xset.c, line: 541
+# File: sci_gateway/c/sci_xset.c, line: 552
+# File: sci_gateway/c/sci_xset.c, line: 563
+# File: sci_gateway/c/sci_xset.c, line: 574
+# File: sci_gateway/c/sci_xset.c, line: 615
+# File: sci_gateway/c/sci_xset.c, line: 627
+# File: sci_gateway/c/sci_xset.c, line: 641
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xset.c, line: 194
-# File: sci_gateway/c/sci_xset.c, line: 588
+# File: sci_gateway/c/sci_xset.c, line: 195
+# File: sci_gateway/c/sci_xset.c, line: 589
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xset.c, line: 225
+# File: sci_gateway/c/sci_xset.c, line: 226
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xset.c, line: 412
+# File: sci_gateway/c/sci_xset.c, line: 413
 #, c-format
 msgid "Figure n%d"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xstring.c, line: 125
+# File: sci_gateway/c/sci_xstring.c, line: 127
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same element number expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xstring.c, line: 158
-# File: sci_gateway/c/sci_xstring.c, line: 184
+# File: sci_gateway/c/sci_xstring.c, line: 160
+# File: sci_gateway/c/sci_xstring.c, line: 186
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d or %d elements expected.\n"
 msgstr ""
@@ -1162,80 +1159,61 @@ msgid "%s: Wrong type for input argument: Scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_zoom_rect.c, line: 80
-# File: sci_gateway/c/sci_zoom_rect.c, line: 84
+# File: sci_gateway/c/sci_zoom_rect.c, line: 81
+# File: sci_gateway/c/sci_zoom_rect.c, line: 85
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of size %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_zoom_rect.c, line: 136
+# File: sci_gateway/c/sci_zoom_rect.c, line: 137
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_zoom_rect.c, line: 144
-# File: sci_gateway/c/sci_zoom_rect.c, line: 152
+# File: sci_gateway/c/sci_zoom_rect.c, line: 145
+# File: sci_gateway/c/sci_zoom_rect.c, line: 153
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Figure or Axes handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_zoom_rect.c, line: 221
+# File: sci_gateway/c/sci_zoom_rect.c, line: 222
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Specified bounds are not correct.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_zoom_rect.c, line: 233
+# File: sci_gateway/c/sci_zoom_rect.c, line: 234
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Handle or vector of double expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_zoom_rect.c, line: 246
+# File: sci_gateway/c/sci_zoom_rect.c, line: 247
 #, c-format
 msgid ""
 "%s: Wrong type for input arguments: Handle or vector of double expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_zoom_rect.c, line: 259
+# File: sci_gateway/c/sci_zoom_rect.c, line: 260
 #, c-format
 msgid "%s: Error on input argument #%d: Specified bounds are not correct.\n"
 msgstr ""
 
 #
-# File: src/c/BuildObjects.c, line: 204
-msgid "The parent has to be a FIGURE\n"
-msgstr ""
-
-#
-# File: src/c/BuildObjects.c, line: 362
-# File: src/c/BuildObjects.c, line: 423
-# File: src/c/BuildObjects.c, line: 764
-# File: src/c/BuildObjects.c, line: 1015
-# File: src/c/BuildObjects.c, line: 1164
-# File: src/c/BuildObjects.c, line: 1308
-# File: src/c/BuildObjects.c, line: 1407
-# File: src/c/BuildObjects.c, line: 1591
-# File: src/c/BuildObjects.c, line: 1978
-# File: src/c/Light.c, line: 70
+# File: src/c/BuildObjects.c, line: 104
+# File: src/c/BuildObjects.c, line: 344
+# File: src/c/BuildObjects.c, line: 434
+# File: src/c/BuildObjects.c, line: 542
+# File: src/c/BuildObjects.c, line: 646
+# File: src/c/BuildObjects.c, line: 819
 msgid "The parent has to be a SUBWIN\n"
-msgstr ""
-
-#
-# File: src/c/BuildObjects.c, line: 863
-msgid "Width and height must be positive.\n"
-msgstr ""
-
-#
-# File: src/c/BuildObjects.c, line: 1521
-msgid "Impossible case when building axis\n"
 msgstr ""
 
 #
@@ -1451,27 +1429,32 @@ msgstr ""
 # File: src/c/getHandleProperty/get_color_mode_property.c, line: 42
 # File: src/c/getHandleProperty/get_color_range_property.c, line: 40
 # File: src/c/getHandleProperty/get_colored_property.c, line: 42
+# File: src/c/getHandleProperty/get_constraints_property.c, line: 40
+# File: src/c/getHandleProperty/get_constraints_property.c, line: 47
+# File: src/c/getHandleProperty/get_constraints_property.c, line: 62
+# File: src/c/getHandleProperty/get_constraints_property.c, line: 76
 # File: src/c/getHandleProperty/get_cube_scaling_property.c, line: 42
-# File: src/c/getHandleProperty/get_current_axes_property.c, line: 43
+# File: src/c/getHandleProperty/get_current_axes_property.c, line: 44
 # File: src/c/getHandleProperty/get_current_entity_property.c, line: 37
-# File: src/c/getHandleProperty/get_current_figure_property.c, line: 43
+# File: src/c/getHandleProperty/get_current_figure_property.c, line: 44
 # File: src/c/getHandleProperty/get_data_bounds_property.c, line: 42
 # File: src/c/getHandleProperty/get_data_bounds_property.c, line: 49
 # File: src/c/getHandleProperty/get_data_mapping_property.c, line: 42
 # File: src/c/getHandleProperty/get_data_property.c, line: 352
-# File: src/c/getHandleProperty/get_data_property.c, line: 390
-# File: src/c/getHandleProperty/get_datatip_property.c, line: 35
+# File: src/c/getHandleProperty/get_data_property.c, line: 367
+# File: src/c/getHandleProperty/get_data_property.c, line: 407
+# File: src/c/getHandleProperty/get_datatip_property.c, line: 36
 # File: src/c/getHandleProperty/get_datatip_property.c, line: 55
-# File: src/c/getHandleProperty/get_datatip_property.c, line: 74
-# File: src/c/getHandleProperty/get_datatip_property.c, line: 100
-# File: src/c/getHandleProperty/get_datatip_property.c, line: 126
-# File: src/c/getHandleProperty/get_datatip_property.c, line: 152
-# File: src/c/getHandleProperty/get_datatip_property.c, line: 178
-# File: src/c/getHandleProperty/get_datatip_property.c, line: 203
+# File: src/c/getHandleProperty/get_datatip_property.c, line: 81
+# File: src/c/getHandleProperty/get_datatip_property.c, line: 107
+# File: src/c/getHandleProperty/get_datatip_property.c, line: 133
+# File: src/c/getHandleProperty/get_datatip_property.c, line: 159
+# File: src/c/getHandleProperty/get_datatip_property.c, line: 184
 # File: src/c/getHandleProperty/get_default_axes_property.c, line: 37
 # File: src/c/getHandleProperty/get_default_figure_property.c, line: 37
 # File: src/c/getHandleProperty/get_diffuse_color_property.c, line: 33
 # File: src/c/getHandleProperty/get_direction_property.c, line: 33
+# File: src/c/getHandleProperty/get_dockable_property.c, line: 31
 # File: src/c/getHandleProperty/get_event_handler_enable_property.c, line: 42
 # File: src/c/getHandleProperty/get_event_handler_property.c, line: 40
 # File: src/c/getHandleProperty/get_figure_closerequestfcn_property.c, line: 34
@@ -1504,12 +1487,14 @@ msgstr ""
 # File: src/c/getHandleProperty/get_image_type_property.c, line: 41
 # File: src/c/getHandleProperty/get_immediate_drawing_property.c, line: 42
 # File: src/c/getHandleProperty/get_info_message_property.c, line: 40
+# File: src/c/getHandleProperty/get_infobar_property.c, line: 31
 # File: src/c/getHandleProperty/get_interp_color_mode.c, line: 42
 # File: src/c/getHandleProperty/get_interp_color_vector.c, line: 46
 # File: src/c/getHandleProperty/get_isoview_property.c, line: 41
 # File: src/c/getHandleProperty/get_labels_font_color_property.c, line: 47
 # File: src/c/getHandleProperty/get_labels_font_size_property.c, line: 47
 # File: src/c/getHandleProperty/get_labels_font_style_property.c, line: 47
+# File: src/c/getHandleProperty/get_layout_property.c, line: 36
 # File: src/c/getHandleProperty/get_legend_location_property.c, line: 44
 # File: src/c/getHandleProperty/get_light_type_property.c, line: 35
 # File: src/c/getHandleProperty/get_line_mode_property.c, line: 44
@@ -1527,6 +1512,8 @@ msgstr ""
 # File: src/c/getHandleProperty/get_mark_size_unit_property.c, line: 42
 # File: src/c/getHandleProperty/get_mark_style_property.c, line: 42
 # File: src/c/getHandleProperty/get_material_shininess_property.c, line: 35
+# File: src/c/getHandleProperty/get_menubar_property.c, line: 30
+# File: src/c/getHandleProperty/get_menubar_property.c, line: 52
 # File: src/c/getHandleProperty/get_old_style_property.c, line: 34
 # File: src/c/getHandleProperty/get_outside_colors_property.c, line: 40
 # File: src/c/getHandleProperty/get_pixel_drawing_mode_property.c, line: 44
@@ -1537,6 +1524,7 @@ msgstr ""
 # File: src/c/getHandleProperty/get_position_property.c, line: 83
 # File: src/c/getHandleProperty/get_position_property.c, line: 98
 # File: src/c/getHandleProperty/get_position_property.c, line: 111
+# File: src/c/getHandleProperty/get_resize_property.c, line: 31
 # File: src/c/getHandleProperty/get_rotation_angles_property.c, line: 40
 # File: src/c/getHandleProperty/get_rotation_style_property.c, line: 41
 # File: src/c/getHandleProperty/get_segs_color_property.c, line: 45
@@ -1564,6 +1552,8 @@ msgstr ""
 # File: src/c/getHandleProperty/get_tight_limits_property.c, line: 41
 # File: src/c/getHandleProperty/get_title_property.c, line: 53
 # File: src/c/getHandleProperty/get_title_property.c, line: 61
+# File: src/c/getHandleProperty/get_toolbar_property.c, line: 30
+# File: src/c/getHandleProperty/get_toolbar_property.c, line: 52
 # File: src/c/getHandleProperty/get_triangles_property.c, line: 43
 # File: src/c/getHandleProperty/get_use_color_material_property.c, line: 35
 # File: src/c/getHandleProperty/get_view_property.c, line: 41
@@ -1630,25 +1620,30 @@ msgstr ""
 # File: src/c/getHandleProperty/set_color_mode_property.c, line: 54
 # File: src/c/getHandleProperty/set_color_range_property.c, line: 71
 # File: src/c/getHandleProperty/set_colored_property.c, line: 54
+# File: src/c/getHandleProperty/set_constraints_property.c, line: 41
+# File: src/c/getHandleProperty/set_constraints_property.c, line: 48
+# File: src/c/getHandleProperty/set_constraints_property.c, line: 70
+# File: src/c/getHandleProperty/set_constraints_property.c, line: 112
 # File: src/c/getHandleProperty/set_cube_scaling_property.c, line: 54
 # File: src/c/getHandleProperty/set_current_axes_property.c, line: 51
 # File: src/c/getHandleProperty/set_current_entity_property.c, line: 41
-# File: src/c/getHandleProperty/set_current_figure_property.c, line: 57
+# File: src/c/getHandleProperty/set_current_figure_property.c, line: 58
 # File: src/c/getHandleProperty/set_data_bounds_property.c, line: 129
 # File: src/c/getHandleProperty/set_data_bounds_property.c, line: 158
 # File: src/c/getHandleProperty/set_data_mapping_property.c, line: 72
-# File: src/c/getHandleProperty/set_datatip_property.c, line: 56
-# File: src/c/getHandleProperty/set_datatip_property.c, line: 87
-# File: src/c/getHandleProperty/set_datatip_property.c, line: 111
-# File: src/c/getHandleProperty/set_datatip_property.c, line: 136
-# File: src/c/getHandleProperty/set_datatip_property.c, line: 161
-# File: src/c/getHandleProperty/set_datatip_property.c, line: 185
-# File: src/c/getHandleProperty/set_datatip_property.c, line: 209
-# File: src/c/getHandleProperty/set_datatip_property.c, line: 232
+# File: src/c/getHandleProperty/set_datatip_property.c, line: 48
+# File: src/c/getHandleProperty/set_datatip_property.c, line: 72
+# File: src/c/getHandleProperty/set_datatip_property.c, line: 97
+# File: src/c/getHandleProperty/set_datatip_property.c, line: 122
+# File: src/c/getHandleProperty/set_datatip_property.c, line: 146
+# File: src/c/getHandleProperty/set_datatip_property.c, line: 170
+# File: src/c/getHandleProperty/set_datatip_property.c, line: 193
 # File: src/c/getHandleProperty/set_default_values_property.c, line: 63
 # File: src/c/getHandleProperty/set_diffuse_color_property.c, line: 60
 # File: src/c/getHandleProperty/set_direction_property.c, line: 62
 # File: src/c/getHandleProperty/set_direction_property.c, line: 68
+# File: src/c/getHandleProperty/set_display_function_data_property.c, line: 33
+# File: src/c/getHandleProperty/set_dockable_property.c, line: 45
 # File: src/c/getHandleProperty/set_event_handler_enable_property.c, line: 52
 # File: src/c/getHandleProperty/set_event_handler_property.c, line: 62
 # File: src/c/getHandleProperty/set_figure_closerequestfcn_property.c, line: 42
@@ -1674,6 +1669,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_hidden_color_property.c, line: 54
 # File: src/c/getHandleProperty/set_immediate_drawing_property.c, line: 52
 # File: src/c/getHandleProperty/set_info_message_property.c, line: 51
+# File: src/c/getHandleProperty/set_infobar_property.c, line: 45
 # File: src/c/getHandleProperty/set_interp_color_mode_property.c, line: 55
 # File: src/c/getHandleProperty/set_interp_color_mode_property.c, line: 74
 # File: src/c/getHandleProperty/set_interp_color_vector_property.c, line: 56
@@ -1682,6 +1678,8 @@ msgstr ""
 # File: src/c/getHandleProperty/set_label_font_style_property.c, line: 60
 # File: src/c/getHandleProperty/set_labels_font_color_property.c, line: 60
 # File: src/c/getHandleProperty/set_labels_font_size_property.c, line: 60
+# File: src/c/getHandleProperty/set_layout_property.c, line: 47
+# File: src/c/getHandleProperty/set_layout_property.c, line: 77
 # File: src/c/getHandleProperty/set_legend_location_property.c, line: 79
 # File: src/c/getHandleProperty/set_light_type_property.c, line: 61
 # File: src/c/getHandleProperty/set_line_mode_property.c, line: 50
@@ -1697,6 +1695,8 @@ msgstr ""
 # File: src/c/getHandleProperty/set_mark_size_unit_property.c, line: 69
 # File: src/c/getHandleProperty/set_mark_style_property.c, line: 68
 # File: src/c/getHandleProperty/set_material_shininess_property.c, line: 51
+# File: src/c/getHandleProperty/set_menubar_property.c, line: 53
+# File: src/c/getHandleProperty/set_menubar_property.c, line: 73
 # File: src/c/getHandleProperty/set_outside_colors_property.c, line: 71
 # File: src/c/getHandleProperty/set_pixel_drawing_mode_property.c, line: 62
 # File: src/c/getHandleProperty/set_pixmap_property.c, line: 53
@@ -1705,6 +1705,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_position_property.c, line: 91
 # File: src/c/getHandleProperty/set_position_property.c, line: 120
 # File: src/c/getHandleProperty/set_position_property.c, line: 126
+# File: src/c/getHandleProperty/set_resize_property.c, line: 45
 # File: src/c/getHandleProperty/set_rotation_angles_property.c, line: 52
 # File: src/c/getHandleProperty/set_rotation_style_property.c, line: 67
 # File: src/c/getHandleProperty/set_screen_position_property.c, line: 65
@@ -1728,6 +1729,8 @@ msgstr ""
 # File: src/c/getHandleProperty/set_tics_style_property.c, line: 82
 # File: src/c/getHandleProperty/set_tight_limits_property.c, line: 53
 # File: src/c/getHandleProperty/set_title_property.c, line: 43
+# File: src/c/getHandleProperty/set_toolbar_property.c, line: 53
+# File: src/c/getHandleProperty/set_toolbar_property.c, line: 73
 # File: src/c/getHandleProperty/set_triangles_property.c, line: 59
 # File: src/c/getHandleProperty/set_use_color_material_property.c, line: 46
 # File: src/c/getHandleProperty/set_user_data_property.c, line: 42
@@ -1780,8 +1783,8 @@ msgid "%s should be a string vector.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/GetHashTable.c, line: 276
-# File: src/c/getHandleProperty/SetHashTable.c, line: 276
+# File: src/c/getHandleProperty/GetHashTable.c, line: 279
+# File: src/c/getHandleProperty/SetHashTable.c, line: 280
 #, c-format
 msgid "Unknown property: %s.\n"
 msgstr ""
@@ -1809,7 +1812,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_cdata_mapping_property.c, line: 44
 # File: src/c/getHandleProperty/set_clip_state_property.c, line: 43
 # File: src/c/getHandleProperty/set_data_mapping_property.c, line: 46
-# File: src/c/getHandleProperty/set_datatip_property.c, line: 220
+# File: src/c/getHandleProperty/set_datatip_property.c, line: 181
 # File: src/c/getHandleProperty/set_event_handler_property.c, line: 42
 # File: src/c/getHandleProperty/set_figure_closerequestfcn_property.c, line: 30
 # File: src/c/getHandleProperty/set_figure_name_property.c, line: 41
@@ -1819,15 +1822,18 @@ msgstr ""
 # File: src/c/getHandleProperty/set_grid_position_property.c, line: 40
 # File: src/c/getHandleProperty/set_image_type_property.c, line: 43
 # File: src/c/getHandleProperty/set_info_message_property.c, line: 39
+# File: src/c/getHandleProperty/set_layout_property.c, line: 38
 # File: src/c/getHandleProperty/set_legend_location_property.c, line: 50
 # File: src/c/getHandleProperty/set_light_type_property.c, line: 35
 # File: src/c/getHandleProperty/set_log_flags_property.c, line: 144
 # File: src/c/getHandleProperty/set_mark_size_unit_property.c, line: 42
+# File: src/c/getHandleProperty/set_menubar_property.c, line: 33
 # File: src/c/getHandleProperty/set_pixel_drawing_mode_property.c, line: 42
 # File: src/c/getHandleProperty/set_rotation_style_property.c, line: 41
 # File: src/c/getHandleProperty/set_text_box_mode_property.c, line: 46
 # File: src/c/getHandleProperty/set_tics_direction_property.c, line: 45
 # File: src/c/getHandleProperty/set_tics_style_property.c, line: 46
+# File: src/c/getHandleProperty/set_toolbar_property.c, line: 33
 # File: src/c/getHandleProperty/set_view_property.c, line: 42
 # File: src/c/getHandleProperty/set_x_location_property.c, line: 42
 # File: src/c/getHandleProperty/set_y_location_property.c, line: 42
@@ -1858,7 +1864,7 @@ msgid "Wrong value for '%s' property.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/get_data_property.c, line: 385
+# File: src/c/getHandleProperty/get_data_property.c, line: 402
 #, c-format
 msgid "%s: No more memory."
 msgstr ""
@@ -1888,7 +1894,6 @@ msgstr ""
 # File: src/c/getHandleProperty/set_color_map_property.c, line: 40
 # File: src/c/getHandleProperty/set_color_range_property.c, line: 42
 # File: src/c/getHandleProperty/set_data_bounds_property.c, line: 101
-# File: src/c/getHandleProperty/set_datatip_property.c, line: 34
 # File: src/c/getHandleProperty/set_diffuse_color_property.c, line: 34
 # File: src/c/getHandleProperty/set_direction_property.c, line: 44
 # File: src/c/getHandleProperty/set_figure_size_property.c, line: 42
@@ -1921,7 +1926,8 @@ msgstr ""
 # File: src/c/getHandleProperty/set_axes_bounds_property.c, line: 49
 # File: src/c/getHandleProperty/set_clip_box_property.c, line: 53
 # File: src/c/getHandleProperty/set_color_range_property.c, line: 48
-# File: src/c/getHandleProperty/set_datatip_property.c, line: 41
+# File: src/c/getHandleProperty/set_constraints_property.c, line: 64
+# File: src/c/getHandleProperty/set_constraints_property.c, line: 81
 # File: src/c/getHandleProperty/set_diffuse_color_property.c, line: 40
 # File: src/c/getHandleProperty/set_direction_property.c, line: 50
 # File: src/c/getHandleProperty/set_figure_size_property.c, line: 48
@@ -1955,8 +1961,10 @@ msgstr ""
 # File: src/c/getHandleProperty/set_figure_style_property.c, line: 53
 # File: src/c/getHandleProperty/set_grid_position_property.c, line: 54
 # File: src/c/getHandleProperty/set_mark_size_unit_property.c, line: 57
+# File: src/c/getHandleProperty/set_menubar_property.c, line: 47
 # File: src/c/getHandleProperty/set_tics_direction_property.c, line: 69
 # File: src/c/getHandleProperty/set_tics_direction_property.c, line: 85
+# File: src/c/getHandleProperty/set_toolbar_property.c, line: 47
 # File: src/c/getHandleProperty/set_view_property.c, line: 56
 #, c-format
 msgid "Wrong value for '%s' property: %s or %s expected.\n"
@@ -1998,7 +2006,7 @@ msgstr ""
 #
 # File: src/c/getHandleProperty/set_background_property.c, line: 41
 # File: src/c/getHandleProperty/set_color_mode_property.c, line: 44
-# File: src/c/getHandleProperty/set_datatip_property.c, line: 73
+# File: src/c/getHandleProperty/set_datatip_property.c, line: 34
 # File: src/c/getHandleProperty/set_figure_id_property.c, line: 42
 # File: src/c/getHandleProperty/set_font_color_property.c, line: 41
 # File: src/c/getHandleProperty/set_font_foreground_property.c, line: 41
@@ -2100,6 +2108,19 @@ msgid ""
 msgstr ""
 
 #
+# File: src/c/getHandleProperty/set_constraints_property.c, line: 57
+#, c-format
+msgid "'%s' Please set 'layout' property in parent before.\n"
+msgstr ""
+
+#
+# File: src/c/getHandleProperty/set_constraints_property.c, line: 107
+# File: src/c/getHandleProperty/set_layout_property.c, line: 71
+#, c-format
+msgid "Wrong value for '%s' property: %s, %s or %s expected.\n"
+msgstr ""
+
+#
 # File: src/c/getHandleProperty/set_current_axes_property.c, line: 57
 # File: src/c/getHandleProperty/set_current_entity_property.c, line: 47
 #, c-format
@@ -2120,19 +2141,19 @@ msgid "Wrong value for '%s' property: Must be a handle on axes.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/set_current_figure_property.c, line: 63
+# File: src/c/getHandleProperty/set_current_figure_property.c, line: 64
 #, c-format
 msgid "Wrong size for '%s' property: A scalar expected.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/set_current_figure_property.c, line: 74
+# File: src/c/getHandleProperty/set_current_figure_property.c, line: 75
 #, c-format
 msgid "'%s' handle does not or no longer exists.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/set_current_figure_property.c, line: 89
+# File: src/c/getHandleProperty/set_current_figure_property.c, line: 90
 #, c-format
 msgid "Wrong type for '%s' property: Real or '%s' handle expected.\n"
 msgstr ""
@@ -2302,6 +2323,12 @@ msgid ""
 msgstr ""
 
 #
+# File: src/c/getHandleProperty/set_layout_property.c, line: 53
+#, c-format
+msgid "'%s' has already been set.\n"
+msgstr ""
+
+#
 # File: src/c/getHandleProperty/set_light_type_property.c, line: 49
 #, c-format
 msgid "Wrong value for '%s' property: 'directional' or 'point' expected.\n"
@@ -2450,15 +2477,20 @@ msgid "Wrong size for '%s' property: Row vector expected.\n"
 msgstr ""
 
 #
-# File: src/c/sciCall.c, line: 789
+# File: src/c/sciCall.c, line: 539
 #, c-format
 msgid "%s: x vector is not monotonous.\n"
 msgstr ""
 
 #
-# File: src/c/sciCall.c, line: 819
+# File: src/c/sciCall.c, line: 569
 #, c-format
 msgid "%s: y vector is not monotonous.\n"
+msgstr ""
+
+#
+# File: src/c/sciCall.c, line: 774
+msgid "Impossible case when building axis\n"
 msgstr ""
 
 #
@@ -3066,19 +3098,40 @@ msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
 
 #
-# File: macros/checkXYPair.sci, line: 66
+# File: macros/checkXYPair.sci, line: 71
+msgid "Transposing row vector X to get compatible dimensions"
+msgstr ""
+
+#
 # File: macros/checkXYPair.sci, line: 73
+msgid "Transposing row vector Y to get compatible dimensions"
+msgstr ""
+
+#
+# File: macros/checkXYPair.sci, line: 80
+# File: macros/checkXYPair.sci, line: 87
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A non empty matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/checkXYPair.sci, line: 102
-# File: macros/checkXYPair.sci, line: 121
-# File: macros/checkXYPair.sci, line: 134
+# File: macros/checkXYPair.sci, line: 108
+# File: macros/checkXYPair.sci, line: 132
+msgid "Transposing data matrix Y to get compatible dimensions"
+msgstr ""
+
+#
+# File: macros/checkXYPair.sci, line: 120
+# File: macros/checkXYPair.sci, line: 143
+# File: macros/checkXYPair.sci, line: 156
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Incompatible dimensions.\n"
+msgstr ""
+
+#
+# File: macros/checkXYPair.sci, line: 136
+msgid "Transposing column vector X to get row vector"
 msgstr ""
 
 #
@@ -3199,7 +3252,6 @@ msgstr ""
 # File: macros/contour2d.sci, line: 21
 # File: macros/datatips/datatipInitStruct.sci, line: 18
 # File: macros/datatips/datatipMove.sci, line: 14
-# File: macros/datatips/datatipSetDisplay.sci, line: 13
 # File: macros/datatips/datatipSetStyle.sci, line: 17
 # File: macros/errbar.sci, line: 33
 # File: macros/fcontour.sci, line: 49
@@ -3424,7 +3476,6 @@ msgstr ""
 # File: macros/datatips/datatipInitStruct.sci, line: 21
 # File: macros/datatips/datatipMove.sci, line: 18
 # File: macros/datatips/datatipMove.sci, line: 26
-# File: macros/datatips/datatipSetDisplay.sci, line: 17
 # File: macros/datatips/datatipSetOrientation.sci, line: 17
 # File: macros/datatips/datatipSetStruct.sci, line: 16
 # File: macros/datatips/datatipSetStyle.sci, line: 24
@@ -3443,7 +3494,12 @@ msgid "The selected file defines more than one function"
 msgstr ""
 
 #
-# File: macros/datatips/datatipGetStruct.sci, line: 13
+# File: macros/datatips/datatipGetStruct.sci, line: 12
+msgid "'datatips' property"
+msgstr ""
+
+#
+# File: macros/datatips/datatipGetStruct.sci, line: 15
 # File: macros/replot.sci, line: 30
 # File: macros/twinkle.sci, line: 14
 # File: macros/twinkle.sci, line: 19
@@ -3510,16 +3566,6 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: handle on axes or axes children "
 "expected.\n"
-msgstr ""
-
-#
-# File: macros/datatips/datatipSetDisplay.sci, line: 53
-msgid "The selected function must have 3 input parameters (curve,pt,index)"
-msgstr ""
-
-#
-# File: macros/datatips/datatipSetDisplay.sci, line: 57
-msgid "The selected function must have 1 output parameter (str)"
 msgstr ""
 
 #
@@ -3949,20 +3995,20 @@ msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 
 #
-# File: macros/plot.sci, line: 228
+# File: macros/plot.sci, line: 229
 #, c-format
 msgid "%s: Error : unable to evaluate input function '%s'."
 msgstr ""
 
 #
-# File: macros/plot.sci, line: 228
-# File: macros/plot.sci, line: 230
+# File: macros/plot.sci, line: 229
+# File: macros/plot.sci, line: 231
 #, c-format
 msgid "Error %d at line %d of the function: '%s"
 msgstr ""
 
 #
-# File: macros/plot.sci, line: 230
+# File: macros/plot.sci, line: 231
 #, c-format
 msgid "%s: Error : unable to evaluate input function."
 msgstr ""
