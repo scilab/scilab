@@ -144,6 +144,8 @@ int get_ytics_coord_property(void* _pvCtx, int iObjUID);
 int get_tics_labels_property(void* _pvCtx, int iObjUID);
 int get_box_property(void* _pvCtx, int iObjUID);
 int get_grid_property(void* _pvCtx, int iObjUID);
+int get_grid_thickness_property(void* _pvCtx, int iObjUID);
+int get_grid_style_property(void* _pvCtx, int iObjUID);
 int get_axes_visible_property(void* _pvCtx, int iObjUID);
 int get_hidden_color_property(void* _pvCtx, int iObjUID);
 int get_isoview_property(void* _pvCtx, int iObjUID);

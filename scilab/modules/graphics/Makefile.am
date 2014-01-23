@@ -130,6 +130,8 @@ src/c/getHandleProperty/get_ytics_coord_property.c \
 src/c/getHandleProperty/get_labels_font_size_property.c \
 src/c/getHandleProperty/get_isoview_property.c \
 src/c/getHandleProperty/get_grid_property.c \
+src/c/getHandleProperty/get_grid_thickness_property.c \
+src/c/getHandleProperty/get_grid_style_property.c \
 src/c/getHandleProperty/get_box_property.c \
 src/c/getHandleProperty/get_hidden_color_property.c \
 src/c/getHandleProperty/get_handle_visible_property.c \
@@ -269,6 +271,8 @@ src/c/getHandleProperty/set_arrow_size_property.c \
 src/c/getHandleProperty/set_children_property.c \
 src/c/getHandleProperty/set_axes_reverse_property.c \
 src/c/getHandleProperty/set_grid_property.c \
+src/c/getHandleProperty/set_grid_thickness_property.c \
+src/c/getHandleProperty/set_grid_style_property.c \
 src/c/getHandleProperty/set_log_flags_property.c \
 src/c/getHandleProperty/set_cube_scaling_property.c \
 src/c/getHandleProperty/set_colored_property.c \

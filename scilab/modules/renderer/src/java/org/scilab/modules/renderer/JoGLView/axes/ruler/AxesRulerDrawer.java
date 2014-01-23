@@ -31,6 +31,7 @@ import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axes.AxisProperty;
 import org.scilab.modules.graphic_objects.axes.Camera;
+import org.scilab.modules.graphic_objects.contouredObject.Line;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
@@ -49,11 +50,6 @@ import java.util.List;
  * @author Pierre Lando
  */
 public class AxesRulerDrawer {
-
-    /**
-     * Grid pattern.
-     */
-    private static final short GRID_LINE_PATTERN = (short) 0xF0F0;
 
     private static final double LINEAR_MINIMAL_SUB_TICKS_DISTANCE = 8;
     private static final double LOG_MINIMAL_SUB_TICKS_DISTANCE = 2;
@@ -321,8 +317,6 @@ public class AxesRulerDrawer {
      */
     public void drawRuler(Axes axes, AxesDrawer axesDrawer, ColorMap colorMap, DrawingTools drawingTools) throws SciRendererException {
         Appearance gridAppearance = new Appearance();
-        gridAppearance.setLinePattern(GRID_LINE_PATTERN);
-        gridAppearance.setLineWidth(axes.getLineThickness().floatValue());
 
         Double[] bounds = axes.getDisplayedBounds();
         double[] matrix = drawingTools.getTransformationManager().getModelViewStack().peek().getMatrix();
@@ -373,6 +367,8 @@ public class AxesRulerDrawer {
                 }
 
                 gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getXAxisGridColor()));
+                gridAppearance.setLineWidth(axes.getXAxisGridThickness().floatValue());
+                gridAppearance.setLinePattern(Line.LineType.fromScilabIndex(axes.getXAxisGridStyle()).asPattern());
                 drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
                 DefaultGeometry gridGeometry = new DefaultGeometry();
                 gridGeometry.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
@@ -414,6 +410,8 @@ public class AxesRulerDrawer {
                 }
 
                 gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getYAxisGridColor()));
+                gridAppearance.setLineWidth(axes.getYAxisGridThickness().floatValue());
+                gridAppearance.setLinePattern(Line.LineType.fromScilabIndex(axes.getYAxisGridStyle()).asPattern());
                 drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
                 DefaultGeometry gridGeometry = new DefaultGeometry();
                 gridGeometry.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
@@ -456,6 +454,8 @@ public class AxesRulerDrawer {
                     }
 
                     gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getZAxisGridColor()));
+                    gridAppearance.setLineWidth(axes.getZAxisGridThickness().floatValue());
+                    gridAppearance.setLinePattern(Line.LineType.fromScilabIndex(axes.getZAxisGridStyle()).asPattern());
                     drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
                     DefaultGeometry gridGeometry = new DefaultGeometry();
                     gridGeometry.setFillDrawingMode(Geometry.FillDrawingMode.NONE);

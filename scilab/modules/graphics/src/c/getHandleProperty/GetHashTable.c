@@ -148,6 +148,8 @@ static getHashTableCouple propertyGetTable[] =
     {"tics_labels", get_tics_labels_property},
     {"box", get_box_property},
     {"grid", get_grid_property},
+    {"grid_thickness", get_grid_thickness_property},
+    {"grid_style", get_grid_style_property},
     {"axes_visible", get_axes_visible_property},
     {"hiddencolor", get_hidden_color_property},
     {"isoview", get_isoview_property},

@@ -277,6 +277,8 @@ am__objects_1 = src/c/libscigraphics_algo_la-GetCommandArg.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_labels_font_size_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_isoview_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_grid_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-get_grid_thickness_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-get_grid_style_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_box_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_hidden_color_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_handle_visible_property.lo \
@@ -416,6 +418,8 @@ am__objects_1 = src/c/libscigraphics_algo_la-GetCommandArg.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_children_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_axes_reverse_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_grid_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-set_grid_thickness_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-set_grid_style_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_log_flags_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_cube_scaling_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_colored_property.lo \
@@ -1053,6 +1057,8 @@ src/c/getHandleProperty/get_ytics_coord_property.c \
 src/c/getHandleProperty/get_labels_font_size_property.c \
 src/c/getHandleProperty/get_isoview_property.c \
 src/c/getHandleProperty/get_grid_property.c \
+src/c/getHandleProperty/get_grid_thickness_property.c \
+src/c/getHandleProperty/get_grid_style_property.c \
 src/c/getHandleProperty/get_box_property.c \
 src/c/getHandleProperty/get_hidden_color_property.c \
 src/c/getHandleProperty/get_handle_visible_property.c \
@@ -1192,6 +1198,8 @@ src/c/getHandleProperty/set_arrow_size_property.c \
 src/c/getHandleProperty/set_children_property.c \
 src/c/getHandleProperty/set_axes_reverse_property.c \
 src/c/getHandleProperty/set_grid_property.c \
+src/c/getHandleProperty/set_grid_thickness_property.c \
+src/c/getHandleProperty/set_grid_style_property.c \
 src/c/getHandleProperty/set_log_flags_property.c \
 src/c/getHandleProperty/set_cube_scaling_property.c \
 src/c/getHandleProperty/set_colored_property.c \
@@ -1925,6 +1933,12 @@ src/c/getHandleProperty/libscigraphics_algo_la-get_isoview_property.lo:  \
 src/c/getHandleProperty/libscigraphics_algo_la-get_grid_property.lo:  \
 	src/c/getHandleProperty/$(am__dirstamp) \
 	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-get_grid_thickness_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-get_grid_style_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
 src/c/getHandleProperty/libscigraphics_algo_la-get_box_property.lo:  \
 	src/c/getHandleProperty/$(am__dirstamp) \
 	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
@@ -2339,6 +2353,12 @@ src/c/getHandleProperty/libscigraphics_algo_la-set_axes_reverse_property.lo:  \
 	src/c/getHandleProperty/$(am__dirstamp) \
 	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
 src/c/getHandleProperty/libscigraphics_algo_la-set_grid_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-set_grid_thickness_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-set_grid_style_property.lo:  \
 	src/c/getHandleProperty/$(am__dirstamp) \
 	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
 src/c/getHandleProperty/libscigraphics_algo_la-set_log_flags_property.lo:  \
@@ -3010,6 +3030,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_fractional_font_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_grid_position_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_grid_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_grid_style_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_grid_thickness_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_handle_visible_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_hidden_axis_color_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_hidden_color_property.Plo@am__quote@
@@ -3164,6 +3186,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_fractional_font_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_grid_position_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_grid_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_grid_style_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_grid_thickness_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_handle_visible_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_hidden_axis_color_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_hidden_color_property.Plo@am__quote@
@@ -4007,6 +4031,20 @@ src/c/getHandleProperty/libscigraphics_algo_la-get_grid_property.lo: src/c/getHa
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_grid_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_grid_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_grid_property.lo `test -f 'src/c/getHandleProperty/get_grid_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_grid_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-get_grid_thickness_property.lo: src/c/getHandleProperty/get_grid_thickness_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_grid_thickness_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_grid_thickness_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_grid_thickness_property.lo `test -f 'src/c/getHandleProperty/get_grid_thickness_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_grid_thickness_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_grid_thickness_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_grid_thickness_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_grid_thickness_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_grid_thickness_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_grid_thickness_property.lo `test -f 'src/c/getHandleProperty/get_grid_thickness_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_grid_thickness_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-get_grid_style_property.lo: src/c/getHandleProperty/get_grid_style_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_grid_style_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_grid_style_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_grid_style_property.lo `test -f 'src/c/getHandleProperty/get_grid_style_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_grid_style_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_grid_style_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_grid_style_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_grid_style_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_grid_style_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_grid_style_property.lo `test -f 'src/c/getHandleProperty/get_grid_style_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_grid_style_property.c
 
 src/c/getHandleProperty/libscigraphics_algo_la-get_box_property.lo: src/c/getHandleProperty/get_box_property.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_box_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_box_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_box_property.lo `test -f 'src/c/getHandleProperty/get_box_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_box_property.c
@@ -4980,6 +5018,20 @@ src/c/getHandleProperty/libscigraphics_algo_la-set_grid_property.lo: src/c/getHa
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_grid_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-set_grid_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_grid_property.lo `test -f 'src/c/getHandleProperty/set_grid_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_grid_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-set_grid_thickness_property.lo: src/c/getHandleProperty/set_grid_thickness_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-set_grid_thickness_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_grid_thickness_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_grid_thickness_property.lo `test -f 'src/c/getHandleProperty/set_grid_thickness_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_grid_thickness_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_grid_thickness_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_grid_thickness_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_grid_thickness_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-set_grid_thickness_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_grid_thickness_property.lo `test -f 'src/c/getHandleProperty/set_grid_thickness_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_grid_thickness_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-set_grid_style_property.lo: src/c/getHandleProperty/set_grid_style_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-set_grid_style_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_grid_style_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_grid_style_property.lo `test -f 'src/c/getHandleProperty/set_grid_style_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_grid_style_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_grid_style_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_grid_style_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_grid_style_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-set_grid_style_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_grid_style_property.lo `test -f 'src/c/getHandleProperty/set_grid_style_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_grid_style_property.c
 
 src/c/getHandleProperty/libscigraphics_algo_la-set_log_flags_property.lo: src/c/getHandleProperty/set_log_flags_property.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-set_log_flags_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_log_flags_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_log_flags_property.lo `test -f 'src/c/getHandleProperty/set_log_flags_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_log_flags_property.c

@@ -13,6 +13,7 @@
 
 package org.scilab.modules.graphic_objects.axes;
 
+import org.scilab.modules.graphic_objects.contouredObject.Line;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
 
@@ -27,7 +28,7 @@ public class AxisProperty {
     /**
      * AxisProperty properties names
      */
-    public enum AxisPropertyProperty { VISIBLE, REVERSE, GRIDCOLOR, LABEL, AXISLOCATION,
+    public enum AxisPropertyProperty { VISIBLE, REVERSE, GRIDCOLOR, GRIDTHICKNESS, GRIDSTYLE, LABEL, AXISLOCATION,
                                        LOGFLAG, UNKNOWNPROPERTY
                                      }
 
@@ -73,6 +74,12 @@ public class AxisProperty {
     /** Grid color */
     private int gridColor;
 
+    /** Grid thickness */
+    private double gridThickness;
+
+    /** Grid style */
+    private Line.LineType gridStyle;
+
     /** Axis label UID */
     private Integer label;
 
@@ -90,6 +97,8 @@ public class AxisProperty {
         visible = false;
         reverse = false;
         gridColor = 0;
+        gridThickness = -1;
+        gridStyle = Line.LineType.DASH_DOT;
 
         /* Sets the label to the null object */
         label = 0;
@@ -107,6 +116,8 @@ public class AxisProperty {
         visible = axisProperty.visible;
         reverse = axisProperty.reverse;
         gridColor = axisProperty.gridColor;
+        gridThickness = axisProperty.gridThickness;
+        gridStyle = axisProperty.gridStyle;
 
         label = 0;
 
@@ -127,6 +138,10 @@ public class AxisProperty {
             return AxisPropertyProperty.REVERSE;
         } else if (propertyName.equals("GridColor")) {
             return AxisPropertyProperty.GRIDCOLOR;
+        } else if (propertyName.equals("GridThickness")) {
+            return AxisPropertyProperty.GRIDTHICKNESS;
+        } else if (propertyName.equals("GridStyle")) {
+            return AxisPropertyProperty.GRIDSTYLE;
         } else if (propertyName.equals("Label")) {
             return AxisPropertyProperty.LABEL;
         } else if (propertyName.equals("AxisLocation")) {
@@ -150,6 +165,10 @@ public class AxisProperty {
             return getReverse();
         } else if (property == AxisPropertyProperty.GRIDCOLOR) {
             return getGridColor();
+        } else if (property == AxisPropertyProperty.GRIDTHICKNESS) {
+            return getGridThickness();
+        } else if (property == AxisPropertyProperty.GRIDSTYLE) {
+            return getGridStyle();
         } else if (property == AxisPropertyProperty.LABEL) {
             return getLabel();
         } else if (property == AxisPropertyProperty.AXISLOCATION) {
@@ -174,6 +193,10 @@ public class AxisProperty {
             setReverse((Boolean) value);
         } else if (property == AxisPropertyProperty.GRIDCOLOR) {
             setGridColor((Integer) value);
+        } else if (property == AxisPropertyProperty.GRIDTHICKNESS) {
+            setGridThickness((Double) value);
+        } else if (property == AxisPropertyProperty.GRIDSTYLE) {
+            setGridStyle((Integer) value);
         } else if (property == AxisPropertyProperty.LABEL) {
             setLabel((Integer) value);
         } else if (property == AxisPropertyProperty.AXISLOCATION) {
@@ -224,6 +247,45 @@ public class AxisProperty {
     public UpdateStatus setGridColor(Integer gridColor) {
         if (this.gridColor != gridColor) {
             this.gridColor = gridColor;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
+    }
+
+    /**
+     * @return the gridThickness
+     */
+    public Double getGridThickness() {
+        return gridThickness;
+    }
+
+    /**
+     * @param gridThickness the gridThickness to set
+     */
+    public UpdateStatus setGridThickness(Double gridThickness) {
+        if (this.gridThickness != gridThickness) {
+            this.gridThickness = gridThickness;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
+    }
+
+    /**
+     * @return the gridStyle
+     */
+    public Integer getGridStyle() {
+        return gridStyle.asScilabIndex();
+    }
+
+    /**
+     * @param gridStyle the gridStyle to set
+     */
+    public UpdateStatus setGridStyle(Integer gridStyle) {
+        Line.LineType type = Line.LineType.fromScilabIndex(gridStyle);
+        if (this.gridStyle != type) {
+            this.gridStyle = type;
             return UpdateStatus.Success;
         }
 

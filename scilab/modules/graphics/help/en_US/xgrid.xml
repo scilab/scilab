@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,19 +14,31 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xgrid">
     <refnamediv>
         <refname>xgrid</refname>
-        <refpurpose>add a grid on a 2D plot</refpurpose>
+        <refpurpose>add a grid on a 2D or 3D plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>xgrid([style])</synopsis>
+        <synopsis>xgrid([color] [, thickness] [, style])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
+                <term>color</term>
+                <listitem>
+                    <para>an integer or a row matrix.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>thickness</term>
+                <listitem>
+                    <para>a real or a row matrix.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>style</term>
                 <listitem>
-                    <para>an integer.</para>
+                    <para>an integer or a row matrix.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,9 +46,17 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>xgrid</function> adds a grid on a 2D plot.
-            <varname>style</varname> is the dash id or the color id to use for
-            the grid plotting. Use <code>xset()</code> for the meaning of id.
+            <function>xgrid</function> adds a grid on a 2D or 3D plot.
+            d for each axis).
+        </para>
+        <para>
+            <literal>color</literal> is the colors id to use for the grid plotting (if <literal>color</literal> is a scalar then the same color is used for each axis).
+        </para>
+        <para>
+            <literal>thickness</literal> is the thickness to use for the grid plotting (if <literal>thickness</literal> is a scalar then the same thickness is used for each axis).
+        </para>
+        <para>
+            <literal>style</literal> is the style to use for the grid plotting (if <literal>style</literal> is a scalar then the same style is used for each axis). Available styles are the same as for <literal>line_style</literal> property (see <link linkend="axes_properties">axes_properties</link>).
         </para>
     </refsection>
     <refsection>
@@ -43,23 +64,34 @@
         <programlisting role="example"><![CDATA[ 
 x=[0:0.1:2*%pi]';
 plot2d(sin(x))
-xgrid(5)
+xgrid(5, 1, 7)
  ]]></programlisting>
         <scilab:image>
             x=[0:0.1:2*%pi]';
             plot2d(sin(x))
-            xgrid(5)
+            xgrid(5, 1, 7)
         </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="xset">xset</link>
+                <link linkend="axes_properties">axes_properties</link>
             </member>
             <member>
                 <link linkend="plot2d">plot2d</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Arguments <literal>thickness</literal> and <literal>style</literal> introduced.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -118,3 +118,5 @@ SEP #119: Management of encoding in xmlRead
 SEP #120: New function tbx_build_pal_loader
 SEP #121: New rect property for matplot handle
 SEP #122: Customized mark draw
+SEP #123: Grid improvements
+

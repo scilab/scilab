@@ -64,6 +64,8 @@ Scilab Bug Fixes
 
 * Bug #5886 fixed - There was no property labels_font_style on axis.
 
+* Bug #6191 fixed - It was not possible to set thickness and line_style properties for a grid.
+
 * Bug #6305 fixed - dsearch function did not work with integers, strings and hypermatrices.
 
 * Bug #6306 fixed - It is now possible to compute an histogram instead of plotting it
@@ -91,6 +93,8 @@ Scilab Bug Fixes
 * Bug #7084 fixed - Old, not documented and deprecated gr_menu function removed.
 
 * Bug #7133 fixed - help_from_sci with no input argument now launches a full demonstration.
+
+* Bug #7169 fixed - It was not possible to specify different option value (thickness, style, ...) for X and Y grids.
 
 * Bug #7244 fixed - Extraction from a struct array with a boolean vector had a strange behavior.
 

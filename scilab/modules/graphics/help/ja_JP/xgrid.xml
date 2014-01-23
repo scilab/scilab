@@ -44,7 +44,7 @@
         <scilab:image>
             x=[0:0.1:2*%pi]';
             plot2d(sin(x))
-            xgrid(5)
+            xgrid(5, 1, 7)
         </scilab:image>
     </refsection>
     <refsection>
@@ -52,7 +52,7 @@
         <programlisting role="example"><![CDATA[ 
 x=[0:0.1:2*%pi]';
 plot2d(sin(x))
-xgrid(2)
+xgrid(5, 1, 7)
  ]]></programlisting>
     </refsection>
     <refsection>

@@ -151,6 +151,8 @@ static setHashTableCouple propertySetTable[] =
     {"tics_labels", set_tics_labels_property},
     {"box", set_box_property},
     {"grid", set_grid_property},
+    {"grid_thickness", set_grid_thickness_property},
+    {"grid_style", set_grid_style_property},
     {"axes_visible", set_axes_visible_property},
     {"hiddencolor", set_hidden_color_property},
     {"isoview", set_isoview_property},
