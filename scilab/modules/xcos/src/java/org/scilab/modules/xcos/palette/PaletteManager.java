@@ -28,7 +28,7 @@ import javax.xml.validation.SchemaFactory;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.ScilabConstants;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
@@ -155,7 +155,7 @@ public final class PaletteManager {
                 PaletteManagerView.restore(null, true);
             }
         } else if (oldValue) {
-            ClosingOperationsManager.startClosingOperation((SwingScilabTab) PaletteManagerView.get());
+            ClosingOperationsManager.startClosingOperation((SwingScilabDockable) PaletteManagerView.get());
         }
 
         getInstance().firePropertyChange("visible", oldValue, newValue);

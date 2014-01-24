@@ -18,7 +18,7 @@ import javax.swing.ScrollPaneConstants;
 
 import org.scilab.modules.gui.plotbrowser.actions.CloseAction;
 import org.scilab.modules.gui.plotbrowser.actions.RefreshAction;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -33,7 +33,7 @@ import org.scilab.modules.gui.utils.WindowsConfigurationManager;
  *
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
-public class SwingPlotBrowser extends SwingScilabTab {
+public class SwingPlotBrowser extends SwingScilabDockable {
     private JScrollPane desktop;
     public static JPanel pReceive;
     private MenuBar menuBar;

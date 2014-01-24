@@ -106,7 +106,7 @@ import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.bridge.uiimage.SwingScilabUiImage;
 import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
 import org.scilab.modules.gui.bridge.waitbar.SwingScilabWaitBar;
@@ -365,7 +365,7 @@ public final class SwingView implements GraphicView {
                 if (console.getScilabMode() == Console.ScilabMode.STD) {
                     WindowsConfigurationManager.restoreUUID(NULLUUID);
                     SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
-                    SwingScilabTab consoleTab = (SwingScilabTab) sciConsole.getParent();
+                    SwingScilabDockable consoleTab = (SwingScilabDockable) sciConsole.getParent();
                     consoleTab.setId(id);
                     return consoleTab;
                 }
@@ -389,11 +389,11 @@ public final class SwingView implements GraphicView {
                 Integer[] figureSize = figure.getSize();
                 window.setDims(new Size(figureSize[0], figureSize[1]));
                 /* TOOLBAR */
-                ToolBar toolBar = ToolBarBuilder.buildToolBar(SwingScilabTab.GRAPHICS_TOOLBAR_DESCRIPTOR, figureId);
+                ToolBar toolBar = ToolBarBuilder.buildToolBar(SwingScilabDockable.GRAPHICS_TOOLBAR_DESCRIPTOR, figureId);
                 /* INFOBAR */
                 TextBox infoBar = ScilabTextBox.createTextBox();
 
-                SwingScilabTab tab = new SwingScilabTab(figureTitle, figureId, figure);
+                SwingScilabDockable tab = new SwingScilabDockable(figureTitle, figureId, figure);
                 tab.setId(id);
 
                 tab.setMenuBar(ScilabMenuBar.createMenuBar());
@@ -588,7 +588,7 @@ public final class SwingView implements GraphicView {
             switch (requestedObject.getType()) {
                 case Figure:
                     if (SwingUtilities.isEventDispatchThread()) {
-                        final SwingScilabTab tab = (SwingScilabTab) requestedObject.getValue();
+                        final SwingScilabDockable tab = (SwingScilabDockable) requestedObject.getValue();
                         tab.disablePaint();
                         DockingManager.close(tab);
                         DockingManager.unregisterDockable((Dockable) tab);
@@ -602,7 +602,7 @@ public final class SwingView implements GraphicView {
 
                                 @Override
                                 public void run() {
-                                    final SwingScilabTab tab = (SwingScilabTab) requestedObject.getValue();
+                                    final SwingScilabDockable tab = (SwingScilabDockable) requestedObject.getValue();
                                     tab.disablePaint();
                                     DockingManager.close(tab);
                                     DockingManager.unregisterDockable((Dockable) tab);
@@ -656,14 +656,14 @@ public final class SwingView implements GraphicView {
         if (registeredObject != null &&
                 property == __GO_VALID__ &&
                 ((Boolean) GraphicController.getController().getProperty(id, __GO_VALID__))) {
-            if (registeredObject.getValue() instanceof SwingScilabTab) {
+            if (registeredObject.getValue() instanceof SwingScilabDockable) {
                 final Runnable r = new Runnable() {
                     @Override
                     public void run() {
-                        ((SwingScilabTab) registeredObject.getValue()).getParentWindow().setVisible(true);
-                        ((SwingScilabTab) registeredObject.getValue()).setVisible(true);
+                        ((SwingScilabDockable) registeredObject.getValue()).getParentWindow().setVisible(true);
+                        ((SwingScilabDockable) registeredObject.getValue()).setVisible(true);
                         Integer[] figureSize = (Integer[]) GraphicController.getController().getProperty(id, __GO_SIZE__);
-                        ((SwingScilabTab) registeredObject.getValue()).getParentWindow().setDims(new Size(figureSize[0], figureSize[1]));
+                        ((SwingScilabDockable) registeredObject.getValue()).getParentWindow().setDims(new Size(figureSize[0], figureSize[1]));
                     }
                 };
 
@@ -844,7 +844,7 @@ public final class SwingView implements GraphicView {
      * @param newChildren the new children IDs list
      */
     private void updateFigureChildren(TypedObject updatedObject, Integer[] newChildren) {
-        Container updatedComponent = (SwingScilabTab) updatedObject.getValue();
+        Container updatedComponent = (SwingScilabDockable) updatedObject.getValue();
         boolean needRevalidate = false;
 
         // Add new children
@@ -859,7 +859,7 @@ public final class SwingView implements GraphicView {
                 /* Add an uicontrol */
                 if (childType == __GO_UICONTROL__) {
                     SwingViewObject uiContol = allObjects.get(childId).getValue();
-                    ((SwingScilabTab) updatedComponent).addMember(uiContol);
+                    ((SwingScilabDockable) updatedComponent).addMember(uiContol);
 
                     // Force Position
                     uiContol.update(__GO_POSITION__, GraphicController.getController().getProperty(childId, __GO_POSITION__));
@@ -874,10 +874,10 @@ public final class SwingView implements GraphicView {
                         case UiCheckedMenu:
                             allObjects.remove(childId);
                             allObjects.put(childId, CreateObjectFromType(__GO_UIPARENTMENU__, childId));
-                            ((Container) ((SwingScilabTab) updatedComponent).getMenuBar().getAsSimpleMenuBar()).add((SwingScilabMenu) allObjects.get(childId).getValue());
+                            ((Container) ((SwingScilabDockable) updatedComponent).getMenuBar().getAsSimpleMenuBar()).add((SwingScilabMenu) allObjects.get(childId).getValue());
                             break;
                         default: /* UiParentMenu */
-                            ((Container) ((SwingScilabTab) updatedComponent).getMenuBar().getAsSimpleMenuBar()).add((SwingScilabMenu) allObjects.get(childId).getValue());
+                            ((Container) ((SwingScilabDockable) updatedComponent).getMenuBar().getAsSimpleMenuBar()).add((SwingScilabMenu) allObjects.get(childId).getValue());
                             break;
                     }
                     needRevalidate = true;
@@ -904,7 +904,7 @@ public final class SwingView implements GraphicView {
 
                 /* Remove an uicontrol */
                 if (childType == __GO_UICONTROL__) {
-                    ((SwingScilabTab) updatedComponent).removeMember(allObjects.get(childId).getValue());
+                    ((SwingScilabDockable) updatedComponent).removeMember(allObjects.get(childId).getValue());
                     needRevalidate = true;
                 }
 
@@ -913,10 +913,10 @@ public final class SwingView implements GraphicView {
                     TypedObject childAsTypedObject = allObjects.get(childId);
                     switch (childAsTypedObject.getType()) {
                         case UiCheckedMenu:
-                            ((Container) ((SwingScilabTab) updatedComponent).getMenuBar().getAsSimpleMenuBar()).remove((SwingScilabCheckBoxMenuItem) allObjects.get(childId).getValue());
+                            ((Container) ((SwingScilabDockable) updatedComponent).getMenuBar().getAsSimpleMenuBar()).remove((SwingScilabCheckBoxMenuItem) allObjects.get(childId).getValue());
                             break;
                         default: /* UiParentMenu */
-                            ((Container) ((SwingScilabTab) updatedComponent).getMenuBar().getAsSimpleMenuBar()).remove((SwingScilabMenu) allObjects.get(childId).getValue());
+                            ((Container) ((SwingScilabDockable) updatedComponent).getMenuBar().getAsSimpleMenuBar()).remove((SwingScilabMenu) allObjects.get(childId).getValue());
                             break;
                     }
                     needRevalidate = true;
@@ -984,7 +984,7 @@ public final class SwingView implements GraphicView {
      * @param newChildren the new children IDs list
      */
     private void updateConsoleChildren(TypedObject updatedObject, Integer[] newChildren) {
-        Container updatedComponent = (SwingScilabTab) updatedObject.getValue();
+        Container updatedComponent = (SwingScilabDockable) updatedObject.getValue();
         boolean needRevalidate = false;
 
         // Add new children
@@ -1003,10 +1003,10 @@ public final class SwingView implements GraphicView {
                         case UiCheckedMenu:
                             TypedObject newUiParentMenu = CreateObjectFromType(__GO_UIPARENTMENU__, childId);
                             allObjects.put(childId, newUiParentMenu);
-                            ((Container) ((SwingScilabTab) updatedObject.getValue()).getMenuBar().getAsSimpleMenuBar()).add((SwingScilabMenu) newUiParentMenu.getValue());
+                            ((Container) ((SwingScilabDockable) updatedObject.getValue()).getMenuBar().getAsSimpleMenuBar()).add((SwingScilabMenu) newUiParentMenu.getValue());
                             break;
                         default: /* UiParentMenu */
-                            ((Container) ((SwingScilabTab) updatedObject.getValue()).getMenuBar().getAsSimpleMenuBar()).add((SwingScilabMenu) childAsTypedObject.getValue());
+                            ((Container) ((SwingScilabDockable) updatedObject.getValue()).getMenuBar().getAsSimpleMenuBar()).add((SwingScilabMenu) childAsTypedObject.getValue());
                             break;
                     }
                     needRevalidate = true;
@@ -1027,7 +1027,7 @@ public final class SwingView implements GraphicView {
                 int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
 
                 if (childType == __GO_UIMENU__) {
-                    ((Container) ((SwingScilabTab) updatedObject.getValue()).getMenuBar().getAsSimpleMenuBar()).remove((SwingScilabMenu) allObjects.get(childId).getValue());
+                    ((Container) ((SwingScilabDockable) updatedObject.getValue()).getMenuBar().getAsSimpleMenuBar()).remove((SwingScilabMenu) allObjects.get(childId).getValue());
                     needRevalidate = true;
                 }
             }

@@ -14,7 +14,7 @@ package org.scilab.modules.gui.plotbrowser;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 
@@ -25,8 +25,8 @@ import org.scilab.modules.gui.utils.ClosingOperationsManager;
 */
 public class PlotBrowserTab {
 
-    public static SwingScilabTab getPlotBrowserInstance(Integer objectID) {
-        final SwingScilabTab plotbrowser = PlotBrowser
+    public static SwingScilabDockable getPlotBrowserInstance(Integer objectID) {
+        final SwingScilabDockable plotbrowser = PlotBrowser
                                            .createPlotBrowserTab(objectID);
         ScilabTabFactory.getInstance().addToCache(plotbrowser);
 
@@ -44,13 +44,13 @@ public class PlotBrowserTab {
             }
 
             //@Override
-            public String askForClosing(final List<SwingScilabTab> list) {
+            public String askForClosing(final List<SwingScilabDockable> list) {
                 return null;
             }
 
             //@Override
-            public void updateDependencies(List<SwingScilabTab> list,
-            ListIterator<SwingScilabTab> it) {
+            public void updateDependencies(List<SwingScilabDockable> list,
+            ListIterator<SwingScilabDockable> it) {
             }
         });
 

@@ -18,7 +18,7 @@ import java.io.File;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.commons.OS;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
@@ -66,7 +66,7 @@ public class EditFileWithDefaultAppAction extends CommonCallBack {
                     dt.edit(file);
                 }
             } catch (Exception e) {
-                ScilabModalDialog.show((SwingScilabTab) SwingUtilities.getAncestorOfClass(SwingScilabTab.class, table), String.format(UiDataMessages.CANNOTREAD, file.getName()));
+                ScilabModalDialog.show((SwingScilabDockable) SwingUtilities.getAncestorOfClass(SwingScilabDockable.class, table), String.format(UiDataMessages.CANNOTREAD, file.getName()));
             }
         }
     }

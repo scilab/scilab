@@ -22,7 +22,7 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -45,7 +45,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Implement the default view for the palette
  */
 @SuppressWarnings(value = { "serial" })
-public class PaletteManagerView extends SwingScilabTab implements SimpleTab {
+public class PaletteManagerView extends SwingScilabDockable implements SimpleTab {
     public static final String DEFAULT_WIN_UUID = "xcos-palette-default-window";
     public static final String DEFAULT_TAB_UUID = PaletteManager.MODEL_CLASS_PACKAGE;
 
@@ -86,13 +86,13 @@ public class PaletteManagerView extends SwingScilabTab implements SimpleTab {
         }
 
         @Override
-        public String askForClosing(List<SwingScilabTab> list) {
+        public String askForClosing(List<SwingScilabDockable> list) {
             return null;
         }
 
         @Override
-        public void updateDependencies(List<SwingScilabTab> list,
-                                       ListIterator<SwingScilabTab> it) {
+        public void updateDependencies(List<SwingScilabDockable> list,
+                                       ListIterator<SwingScilabDockable> it) {
         }
     }
 
@@ -117,8 +117,8 @@ public class PaletteManagerView extends SwingScilabTab implements SimpleTab {
         }
         PaletteManager.getInstance().firePropertyChange("visible", false, true);
 
-        ClosingOperationsManager.addDependencyWithRoot((SwingScilabTab) tab);
-        ClosingOperationsManager.registerClosingOperation((SwingScilabTab) tab,
+        ClosingOperationsManager.addDependencyWithRoot((SwingScilabDockable) tab);
+        ClosingOperationsManager.registerClosingOperation((SwingScilabDockable) tab,
                 new ClosingOperation());
         ScilabTabFactory.getInstance().addToCache(tab);
     }

@@ -12,7 +12,7 @@
 
 package org.scilab.modules.scinotes.tabfactory;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.tabfactory.AbstractScilabTabFactory;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 
@@ -46,7 +46,7 @@ public class SearchInFilesTabFactory extends AbstractScilabTabFactory {
     /**
      * {@inheritDoc}
      */
-    public SwingScilabTab getTab(String uuid) {
+    public SwingScilabDockable getTab(String uuid) {
         String editorUUID = ConfigSciNotesManager.getSearchInFilesState(uuid);
         SciNotes editor = (SciNotes) ScilabTabFactory.getInstance().getFromCache(editorUUID);
 

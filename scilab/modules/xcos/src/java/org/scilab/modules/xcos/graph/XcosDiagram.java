@@ -47,7 +47,7 @@ import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.I
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
@@ -2173,7 +2173,7 @@ public class XcosDiagram extends ScilabGraph {
 
         final String tabTitle = new StringBuilder().append(modified).append(title).append(formattedPath).append(" - ").append(product).toString();
 
-        final SwingScilabTab tab = ScilabTabFactory.getInstance().getFromCache(getGraphTab());
+        final SwingScilabDockable tab = ScilabTabFactory.getInstance().getFromCache(getGraphTab());
         if (tab != null) {
             tab.setName(tabTitle);
         }

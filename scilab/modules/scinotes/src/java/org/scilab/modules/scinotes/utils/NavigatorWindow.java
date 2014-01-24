@@ -58,7 +58,7 @@ import javax.swing.tree.TreePath;
 
 import org.flexdock.docking.event.DockingEvent;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
@@ -85,7 +85,7 @@ import org.scilab.modules.scinotes.tabfactory.CodeNavigatorTabFactory;
  * @author Calixte DENIZET
  */
 @SuppressWarnings(value = { "serial" })
-public final class NavigatorWindow extends SwingScilabTab implements DocumentListener,
+public final class NavigatorWindow extends SwingScilabDockable implements DocumentListener,
     TreeExpansionListener {
 
     private static final String EMPTY = "";
@@ -287,8 +287,8 @@ public final class NavigatorWindow extends SwingScilabTab implements DocumentLis
     public void changeToolBar() {
         SwingScilabWindow win = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
         if (win != null && win.getDockingPort() != null) {
-            Set<SwingScilabTab> set = (Set<SwingScilabTab>) win.getDockingPort().getDockables();
-            for (SwingScilabTab tab : set) {
+            Set<SwingScilabDockable> set = (Set<SwingScilabDockable>) win.getDockingPort().getDockables();
+            for (SwingScilabDockable tab : set) {
                 if (tab == editor) {
                     addToolBar(editor.getToolBar());
                     break;
@@ -513,7 +513,7 @@ public final class NavigatorWindow extends SwingScilabTab implements DocumentLis
 
         CommonCallBack callback = new CommonCallBack(null) {
             public void callBack() {
-                ClosingOperationsManager.startClosingOperation((SwingScilabTab) NavigatorWindow.this);
+                ClosingOperationsManager.startClosingOperation((SwingScilabDockable) NavigatorWindow.this);
             }
 
             public void actionPerformed(ActionEvent e) {

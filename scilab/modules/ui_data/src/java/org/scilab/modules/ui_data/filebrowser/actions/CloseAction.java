@@ -16,7 +16,7 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
@@ -57,6 +57,6 @@ public class CloseAction extends CommonCallBack {
      * {@inheritDoc}
      */
     public void callBack() {
-        ClosingOperationsManager.startClosingOperation((SwingScilabTab) ScilabFileBrowser.getFileBrowser());
+        ClosingOperationsManager.startClosingOperation((SwingScilabDockable) ScilabFileBrowser.getFileBrowser());
     }
 }

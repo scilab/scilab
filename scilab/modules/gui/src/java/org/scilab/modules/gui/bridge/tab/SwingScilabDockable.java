@@ -150,7 +150,7 @@ import org.scilab.modules.gui.utils.ToolBarBuilder;
  * @author Jean-Baptiste SILVY
  */
 
-public class SwingScilabTab extends View implements SimpleTab, FocusListener, KeyListener, SwingScilabPanel {
+public class SwingScilabDockable extends View implements SimpleTab, FocusListener, KeyListener, SwingScilabPanel {
 
     public static final String GRAPHICS_TOOLBAR_DESCRIPTOR = System.getenv("SCI") + "/modules/gui/etc/graphics_toolbar.xml";
 
@@ -200,7 +200,7 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener, Ke
      * @param name the name of the tab
      * @param uuid an uuid to identify the tab
      */
-    public SwingScilabTab(String name, String uuid) {
+    public SwingScilabDockable(String name, String uuid) {
         super(uuid, name, name);
         //This button is "overloaded" when we add a callback
         //this.addAction(DockingConstants.CLOSE_ACTION);
@@ -227,7 +227,7 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener, Ke
      * @param name name of the tab
      * @param figureId id of the displayed figure
      */
-    public SwingScilabTab(String name, int figureId) {
+    public SwingScilabDockable(String name, int figureId) {
         super(name, name, name);
 
         // This button is "overloaded" when we add a callback
@@ -258,7 +258,7 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener, Ke
      * Constructor
      * @param name the name of the tab (used to identify it)
      */
-    public SwingScilabTab(String name) {
+    public SwingScilabDockable(String name) {
         this(name, name);
     }
 
@@ -278,7 +278,7 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener, Ke
         return helpID;
     }
 
-    public static void removeActions(SwingScilabTab tab) {
+    public static void removeActions(SwingScilabDockable tab) {
         tab.setActionBlocked(DockingConstants.CLOSE_ACTION, true);
         tab.setActionBlocked(UNDOCK, true);
         if (tab.getTitlebar() != null) {
@@ -286,13 +286,13 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener, Ke
         }
     }
 
-    public static void addActions(SwingScilabTab tab) {
+    public static void addActions(SwingScilabDockable tab) {
         tab.setActionBlocked(DockingConstants.CLOSE_ACTION, false);
         tab.setActionBlocked(UNDOCK, false);
         tab.getTitlebar().revalidate();
     }
 
-    public SwingScilabTab(String figureTitle, int figureId, final Figure figure) {
+    public SwingScilabDockable(String figureTitle, int figureId, final Figure figure) {
         this(figureTitle, figureId);
         /* OpenGL context */
         SwingScilabCanvas canvas = new SwingScilabCanvas(figureId, figure);
@@ -365,7 +365,7 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener, Ke
         });
 
         /* Manage closerequestfcn */
-        ClosingOperationsManager.registerClosingOperation(SwingScilabTab.this, new ClosingOperationsManager.ClosingOperation() {
+        ClosingOperationsManager.registerClosingOperation(SwingScilabDockable.this, new ClosingOperationsManager.ClosingOperation() {
 
             public int canClose() {
                 String closeRequestFcn = (String) GraphicController.getController().getProperty(getId(), __GO_CLOSEREQUESTFCN__);
@@ -385,12 +385,12 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener, Ke
             public void destroy() {
             }
 
-            public String askForClosing(final List<SwingScilabTab> list) {
+            public String askForClosing(final List<SwingScilabDockable> list) {
                 return null;
             }
 
             @Override
-            public void updateDependencies(List<SwingScilabTab> list, ListIterator<SwingScilabTab> it) {
+            public void updateDependencies(List<SwingScilabDockable> list, ListIterator<SwingScilabDockable> it) {
 
             }
         });
@@ -408,7 +408,7 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener, Ke
         } else if (getContentPane() != null) {
             getContentPane().requestFocus();
         } else {
-            SwingScilabTab.this.requestFocusInWindow();
+            SwingScilabDockable.this.requestFocusInWindow();
         }
     }
 
@@ -462,8 +462,8 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener, Ke
         if (port.getDockables().size() > 1) {
             while (iter.hasNext()) {
                 Object d = iter.next();
-                if (d instanceof SwingScilabTab) {
-                    SwingScilabTab view = (SwingScilabTab) d;
+                if (d instanceof SwingScilabDockable) {
+                    SwingScilabDockable view = (SwingScilabDockable) d;
                     addActions(view);
                 }
             }
@@ -480,7 +480,7 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener, Ke
                     if (getParentWindow() != null) {
                         setParentWindowId(getParentWindow().getId());
                     } else {
-                        System.err.println("No window for tab:" + SwingScilabTab.this.getClass().getName() + " after docking complete");
+                        System.err.println("No window for tab:" + SwingScilabDockable.this.getClass().getName() + " after docking complete");
                     }
                 }
             });

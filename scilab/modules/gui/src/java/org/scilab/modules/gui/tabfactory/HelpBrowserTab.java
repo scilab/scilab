@@ -15,7 +15,7 @@ package org.scilab.modules.gui.tabfactory;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 
@@ -31,8 +31,8 @@ public class HelpBrowserTab {
      *            the uuid to restore
      * @return a new SciNotes instance
      */
-    public static SwingScilabTab getHelpBrowserInstance() {
-        final SwingScilabTab hb = ScilabHelpBrowser.createHelpBrowserTab();
+    public static SwingScilabDockable getHelpBrowserInstance() {
+        final SwingScilabDockable hb = ScilabHelpBrowser.createHelpBrowserTab();
         ScilabTabFactory.getInstance().addToCache(hb);
 
         ClosingOperationsManager.registerClosingOperation(hb,
@@ -49,13 +49,13 @@ public class HelpBrowserTab {
             }
 
             @Override
-            public String askForClosing(final List<SwingScilabTab> list) {
+            public String askForClosing(final List<SwingScilabDockable> list) {
                 return null;
             }
 
             @Override
-            public void updateDependencies(List<SwingScilabTab> list,
-                                           ListIterator<SwingScilabTab> it) {
+            public void updateDependencies(List<SwingScilabDockable> list,
+                                           ListIterator<SwingScilabDockable> it) {
             }
         });
 

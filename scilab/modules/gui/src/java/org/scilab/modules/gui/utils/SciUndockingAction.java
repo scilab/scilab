@@ -25,7 +25,7 @@ import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
 import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.view.View;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 
 /**
@@ -39,13 +39,13 @@ public class SciUndockingAction extends AbstractAction {
 
     private static final int UNDOCK_OFFSET = 30;
 
-    private SwingScilabTab associatedTab;
+    private SwingScilabDockable associatedTab;
 
     /**
      * Constructor
      * @param tab the associated tab
      */
-    public SciUndockingAction(SwingScilabTab tab) {
+    public SciUndockingAction(SwingScilabDockable tab) {
         associatedTab = tab;
     }
 
@@ -81,7 +81,7 @@ public class SciUndockingAction extends AbstractAction {
         DockingManager.undock((Dockable) associatedTab);
         iter = port.getDockables().iterator();
         if (iter.hasNext()) {
-            SwingScilabTab tab = (SwingScilabTab) iter.next();
+            SwingScilabDockable tab = (SwingScilabDockable) iter.next();
             BarUpdater.updateBars(tab.getParentWindowId(), tab.getMenuBar(), tab.getToolBar(), tab.getInfoBar(), tab.getName(), tab.getWindowIcon());
         }
         DockingManager.dock(associatedTab, newWindow.getDockingPort());

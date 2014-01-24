@@ -21,7 +21,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 
 import org.scilab.modules.types.ScilabTypeEnumDescription;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
@@ -104,7 +104,7 @@ public final class PlotAction extends CommonCallBack {
 
     private static final String CREATE = "Create";
 
-    private final SwingScilabTab editor;
+    private final SwingScilabDockable editor;
     private final int type;
     private final boolean onSelection;
 
@@ -113,7 +113,7 @@ public final class PlotAction extends CommonCallBack {
      * @param editor the editor
      * @param name the name of the action
      */
-    public PlotAction(SwingScilabTab editor, String name, boolean onSelection) {
+    public PlotAction(SwingScilabDockable editor, String name, boolean onSelection) {
         super(name);
         this.editor = editor;
         this.type = map.get(name);
@@ -235,7 +235,7 @@ public final class PlotAction extends CommonCallBack {
      * @param title tooltip for the button
      * @return the button
      */
-    public static PushButton createButton(SwingScilabTab editor, String title) {
+    public static PushButton createButton(SwingScilabDockable editor, String title) {
         final PushButton button = ScilabPushButton.createPushButton();
         button.setToolTipText(title);
         ImageIcon imageIcon = new ImageIcon(ScilabSwingUtilities.findIcon("plot"));
@@ -284,7 +284,7 @@ public final class PlotAction extends CommonCallBack {
      * @param title the menu title
      * @return the menu item
      */
-    public static MenuItem createMenuItem(SwingScilabTab editor, String title, boolean onSelection) {
+    public static MenuItem createMenuItem(SwingScilabDockable editor, String title, boolean onSelection) {
         MenuItem menu = ScilabMenuItem.createMenuItem();
         menu.setCallback(new PlotAction(editor, title, onSelection));
         menu.setText(title);
@@ -299,7 +299,7 @@ public final class PlotAction extends CommonCallBack {
      * @param title the menu title
      * @return the menu item
      */
-    public static SwingScilabMenuItem createJMenuItem(SwingScilabTab editor, String title, boolean onSelection) {
+    public static SwingScilabMenuItem createJMenuItem(SwingScilabDockable editor, String title, boolean onSelection) {
         return (SwingScilabMenuItem) createMenuItem(editor, title, onSelection).getAsSimpleMenuItem();
     }
 }

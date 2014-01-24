@@ -12,7 +12,7 @@
 
 package org.scilab.modules.ui_data.filebrowser;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -35,7 +35,7 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * @author Calixte DENIZET
  */
 @SuppressWarnings(value = { "serial" })
-public final class SwingScilabFileBrowser extends SwingScilabTab {
+public final class SwingScilabFileBrowser extends SwingScilabDockable {
 
     public static final String FILEBROWSERUUID = "3b649047-6a71-4998-bd8e-00d367a4793d";
 

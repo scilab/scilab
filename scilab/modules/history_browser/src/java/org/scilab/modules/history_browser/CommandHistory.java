@@ -38,7 +38,7 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -72,7 +72,7 @@ import org.scilab.modules.localization.Messages;
  * @author Calixte DENIZET
  */
 @SuppressWarnings(value = { "serial" })
-public final class CommandHistory extends SwingScilabTab implements SimpleTab {
+public final class CommandHistory extends SwingScilabDockable implements SimpleTab {
 
     public static final String COMMANDHISTORYUUID = "856207f6-0a60-47a0-b9f4-232feedd4bf4";
 
@@ -86,7 +86,7 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
     private static DefaultMutableTreeNode scilabHistoryRootNode;
     private static DefaultMutableTreeNode currentSessionNode;
     private static DefaultTreeModel scilabHistoryTreeModel;
-    private static SwingScilabTab browserTab;
+    private static SwingScilabDockable browserTab;
     private static JScrollPane scrollPane;
 
     private static boolean modelLoaded;
@@ -162,7 +162,7 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
      * Create a new Command History tab
      * @return the corresponding tab
      */
-    public static SwingScilabTab createCommandHistoryTab() {
+    public static SwingScilabDockable createCommandHistoryTab() {
         browserTab = new CommandHistory();
         WindowsConfigurationManager.restorationFinished(browserTab);
 
@@ -391,7 +391,7 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
     /**
      * @return the browserTab
      */
-    public static SwingScilabTab getBrowserTab() {
+    public static SwingScilabDockable getBrowserTab() {
         return browserTab;
     }
 

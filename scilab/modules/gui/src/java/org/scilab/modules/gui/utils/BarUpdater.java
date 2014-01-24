@@ -20,7 +20,7 @@ import java.beans.PropertyChangeListener;
 import org.flexdock.docking.props.DockablePropertySet;
 import org.flexdock.docking.props.PropertyChangeListenerFactory;
 import org.scilab.modules.commons.OS;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -127,15 +127,15 @@ public final class BarUpdater implements PropertyChangeListener {
     /**
      * Update the bar on activation event.
      *
-     * @param evt the event emitted by a {@link SwingScilabTab}
+     * @param evt the event emitted by a {@link SwingScilabDockable}
      * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
      */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getSource() instanceof SwingScilabTab
+        if (evt.getSource() instanceof SwingScilabDockable
                 && evt.getPropertyName().equals(DockablePropertySet.ACTIVE)
                 && evt.getNewValue().equals(Boolean.TRUE)) {
-            SwingScilabTab tab = (SwingScilabTab) evt.getSource();
+            SwingScilabDockable tab = (SwingScilabDockable) evt.getSource();
 
             BarUpdater.updateBars(tab.getParentWindowId(),
                                   tab.getMenuBar(),

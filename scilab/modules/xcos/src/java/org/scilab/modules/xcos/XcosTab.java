@@ -37,7 +37,7 @@ import org.scilab.modules.graph.actions.ZoomOutAction;
 import org.scilab.modules.graph.event.ArrowKeyListener;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.menu.Menu;
@@ -120,7 +120,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 // CSOFF: ClassFanOutComplexity
 // CSOFF: ClassDataAbstractionCoupling
 @SuppressWarnings(value = { "serial" })
-public class XcosTab extends SwingScilabTab implements SimpleTab {
+public class XcosTab extends SwingScilabDockable implements SimpleTab {
     public static final String DEFAULT_WIN_UUID = "xcos-default-window";
     public static final String DEFAULT_TAB_UUID = "xcos-default-tab";
 
@@ -186,7 +186,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
         }
 
         @Override
-        public String askForClosing(final List<SwingScilabTab> list) {
+        public String askForClosing(final List<SwingScilabDockable> list) {
             final XcosDiagram diag = graph.get();
             if (diag == null) {
                 return null;
@@ -196,7 +196,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
         }
 
         @Override
-        public void updateDependencies(List<SwingScilabTab> list, ListIterator<SwingScilabTab> it) {
+        public void updateDependencies(List<SwingScilabDockable> list, ListIterator<SwingScilabDockable> it) {
             final PaletteManagerView palette = PaletteManagerView.get();
 
             /*
@@ -322,9 +322,9 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
             BarUpdater.updateBars(tab.getParentWindowId(), tab.getMenuBar(), tab.getToolBar(), tab.getInfoBar(), tab.getName(), tab.getWindowIcon());
         }
 
-        ClosingOperationsManager.addDependencyWithRoot((SwingScilabTab) tab);
-        ClosingOperationsManager.registerClosingOperation((SwingScilabTab) tab, new ClosingOperation(graph));
-        WindowsConfigurationManager.registerEndedRestoration((SwingScilabTab) tab, new EndedRestoration(graph));
+        ClosingOperationsManager.addDependencyWithRoot((SwingScilabDockable) tab);
+        ClosingOperationsManager.registerClosingOperation((SwingScilabDockable) tab, new ClosingOperation(graph));
+        WindowsConfigurationManager.registerEndedRestoration((SwingScilabDockable) tab, new EndedRestoration(graph));
     }
 
     /*

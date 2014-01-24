@@ -12,7 +12,7 @@
 
 package org.scilab.modules.ui_data.tabfactory;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.tabfactory.AbstractScilabTabFactory;
 import org.scilab.modules.ui_data.variablebrowser.SwingScilabVariableBrowser;
 
@@ -42,7 +42,7 @@ public class VariableBrowserTabFactory extends AbstractScilabTabFactory {
     /**
      * {@inheritDoc}
      */
-    public SwingScilabTab getTab(String uuid) {
+    public SwingScilabDockable getTab(String uuid) {
         return VariableBrowserTab.getVariableBrowserInstance();
     }
 

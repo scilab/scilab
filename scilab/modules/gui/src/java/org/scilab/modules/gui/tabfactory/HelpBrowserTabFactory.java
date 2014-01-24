@@ -13,7 +13,7 @@
 package org.scilab.modules.gui.tabfactory;
 
 import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 
 /**
  * The main Tab factory.
@@ -41,7 +41,7 @@ public class HelpBrowserTabFactory extends AbstractScilabTabFactory {
     /**
      * {@inheritDoc}
      */
-    public SwingScilabTab getTab(String uuid) {
+    public SwingScilabDockable getTab(String uuid) {
         return HelpBrowserTab.getHelpBrowserInstance();
     }
 

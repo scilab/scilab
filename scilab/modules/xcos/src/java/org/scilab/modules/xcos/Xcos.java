@@ -40,7 +40,7 @@ import org.scilab.modules.graph.actions.base.GraphActionManager;
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
@@ -634,7 +634,7 @@ public final class Xcos {
      *            the diagram to check
      * @return diagram name for the "Are your sure ?" dialog
      */
-    public String askForClosing(final XcosDiagram graph, final List<SwingScilabTab> list) {
+    public String askForClosing(final XcosDiagram graph, final List<SwingScilabDockable> list) {
         final String msg;
 
         if (wasLastOpened(list)) {
@@ -653,14 +653,14 @@ public final class Xcos {
      *            the list to be closed
      * @return true if all files will be close on tabs close.
      */
-    public boolean wasLastOpened(final List<SwingScilabTab> list) {
+    public boolean wasLastOpened(final List<SwingScilabDockable> list) {
         final HashSet<String> opened = new HashSet<String>();
         for (XcosDiagram diag : openedDiagrams()) {
             opened.add(diag.getGraphTab());
         }
 
         final HashSet<String> tabs = new HashSet<String>();
-        for (SwingScilabTab tab : list) {
+        for (SwingScilabDockable tab : list) {
             if (tab != null) {
                 tabs.add(tab.getPersistentId());
             }
@@ -700,10 +700,10 @@ public final class Xcos {
         final Xcos instance = sharedInstance;
 
         // get all tabs
-        final List<SwingScilabTab> tabs = new ArrayList<SwingScilabTab>();
+        final List<SwingScilabDockable> tabs = new ArrayList<SwingScilabDockable>();
         for (final Collection<XcosDiagram> diags : instance.diagrams.values()) {
             for (final XcosDiagram diag : diags) {
-                final SwingScilabTab tab = XcosTab.get(diag);
+                final SwingScilabDockable tab = XcosTab.get(diag);
                 if (tab != null) {
                     tabs.add(tab);
                 }
@@ -1082,7 +1082,7 @@ public final class Xcos {
          */
         for (final XcosDiagram d : instance.openedDiagrams()) {
             final String uuid = d.getGraphTab();
-            final SwingScilabTab tab = ScilabTabFactory.getInstance().getFromCache(uuid);
+            final SwingScilabDockable tab = ScilabTabFactory.getInstance().getFromCache(uuid);
 
             if (tab != null) {
                 final SwingScilabMenuBar bar = ((SwingScilabMenuBar) tab.getMenuBar().getAsSimpleMenuBar());
@@ -1209,12 +1209,12 @@ public final class Xcos {
          * @return the tab instance
          */
         @Override
-        public synchronized SwingScilabTab getTab(final String uuid) {
+        public synchronized SwingScilabDockable getTab(final String uuid) {
             if (uuid == null) {
                 return null;
             }
 
-            SwingScilabTab tab = ScilabTabFactory.getInstance().getFromCache(uuid);
+            SwingScilabDockable tab = ScilabTabFactory.getInstance().getFromCache(uuid);
 
             // Palette manager restore
             if (tab == null) {

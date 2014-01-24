@@ -15,7 +15,7 @@ package org.scilab.modules.scinotes.tabfactory;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
@@ -44,7 +44,7 @@ public class CodeNavigatorTab {
             ScilabTabFactory.getInstance().addToCache(nav);
         }
 
-        ClosingOperationsManager.registerClosingOperation((SwingScilabTab) nav,
+        ClosingOperationsManager.registerClosingOperation((SwingScilabDockable) nav,
         new ClosingOperationsManager.ClosingOperation() {
 
             @Override
@@ -58,18 +58,18 @@ public class CodeNavigatorTab {
             }
 
             @Override
-            public String askForClosing(final List<SwingScilabTab> list) {
+            public String askForClosing(final List<SwingScilabDockable> list) {
                 return null;
             }
 
             @Override
-            public void updateDependencies(List<SwingScilabTab> list,
-                                           ListIterator<SwingScilabTab> it) {
+            public void updateDependencies(List<SwingScilabDockable> list,
+                                           ListIterator<SwingScilabDockable> it) {
             }
         });
 
         WindowsConfigurationManager.registerEndedRestoration(
-            (SwingScilabTab) nav,
+            (SwingScilabDockable) nav,
         new WindowsConfigurationManager.EndedRestoration() {
 
             @Override
@@ -78,8 +78,8 @@ public class CodeNavigatorTab {
             }
         });
 
-        ClosingOperationsManager.addDependency((SwingScilabTab) editor,
-                                               (SwingScilabTab) nav);
+        ClosingOperationsManager.addDependency((SwingScilabDockable) editor,
+                                               (SwingScilabDockable) nav);
 
         return nav;
     }

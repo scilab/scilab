@@ -22,7 +22,7 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.gui.ScilabTermination;
 import org.scilab.modules.gui.bridge.CallScilabBridge;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
@@ -60,8 +60,8 @@ public class ConsoleTab {
             Tab tab = ScilabTab.createTab(EMPTYTAB, uuid);
             JTextArea textarea = new JTextArea(NOCONSOLE);
             textarea.setEditable(false);
-            ((SwingScilabTab) tab.getAsSimpleTab()).setContentPane(textarea);
-            ((SwingScilabTab) tab.getAsSimpleTab()).setAssociatedXMLIDForHelp("console");
+            ((SwingScilabDockable) tab.getAsSimpleTab()).setContentPane(textarea);
+            ((SwingScilabDockable) tab.getAsSimpleTab()).setAssociatedXMLIDForHelp("console");
 
             ClosingOperationsManager.registerClosingOperation(tab, new ClosingOperationsManager.ClosingOperation() {
 
@@ -71,18 +71,18 @@ public class ConsoleTab {
 
                 public void destroy() { }
 
-                public String askForClosing(final List<SwingScilabTab> list) {
+                public String askForClosing(final List<SwingScilabDockable> list) {
                     return null;
                 }
 
                 @Override
-                public void updateDependencies(List<SwingScilabTab> list,
-                                               ListIterator<SwingScilabTab> it) {
+                public void updateDependencies(List<SwingScilabDockable> list,
+                                               ListIterator<SwingScilabDockable> it) {
                 }
             });
 
             ClosingOperationsManager.addDependencyWithRoot(tab);
-            WindowsConfigurationManager.restorationFinished((SwingScilabTab) tab.getAsSimpleTab());
+            WindowsConfigurationManager.restorationFinished((SwingScilabDockable) tab.getAsSimpleTab());
 
             return tab;
         }
@@ -114,13 +114,13 @@ public class ConsoleTab {
                     }
                 }
 
-                public String askForClosing(final List<SwingScilabTab> list) {
+                public String askForClosing(final List<SwingScilabDockable> list) {
                     return "Scilab";
                 }
 
                 @Override
-                public void updateDependencies(List<SwingScilabTab> list,
-                                               ListIterator<SwingScilabTab> it) {
+                public void updateDependencies(List<SwingScilabDockable> list,
+                                               ListIterator<SwingScilabDockable> it) {
                 }
             });
 
@@ -137,10 +137,10 @@ public class ConsoleTab {
         /** Adding content into container */
         ScilabConsole.getConsole().setMaxOutputSize(ConfigManager.getMaxOutputSize());
         consoleTab.addMember(ScilabConsole.getConsole());
-        ((SwingScilabTab) consoleTab.getAsSimpleTab()).setAssociatedXMLIDForHelp("console");
+        ((SwingScilabDockable) consoleTab.getAsSimpleTab()).setAssociatedXMLIDForHelp("console");
 
         MenuBar menuBar = ScilabMenuBar.createMenuBar();
-        ((SwingScilabTab) consoleTab.getAsSimpleTab()).setMenuBar(menuBar);
+        ((SwingScilabDockable) consoleTab.getAsSimpleTab()).setMenuBar(menuBar);
         ScilabConsole.getConsole().addMenuBar(menuBar);
 
         ToolBar toolBar = ToolBarBuilder.buildToolBar(MAINTOOLBARXMLFILE);
@@ -148,8 +148,8 @@ public class ConsoleTab {
 
         toolBar.setVisible(true); // Enabled in scilab.start
 
-        ((SwingScilabTab) consoleTab.getAsSimpleTab()).setToolBar(toolBar);
-        ((SwingScilabTab) consoleTab.getAsSimpleTab()).setInfoBar(infoBar);
+        ((SwingScilabDockable) consoleTab.getAsSimpleTab()).setToolBar(toolBar);
+        ((SwingScilabDockable) consoleTab.getAsSimpleTab()).setInfoBar(infoBar);
 
         ScilabConsole.getConsole().addMenuBar(consoleTab.getMenuBar());
         ScilabConsole.getConsole().addToolBar(toolBar);

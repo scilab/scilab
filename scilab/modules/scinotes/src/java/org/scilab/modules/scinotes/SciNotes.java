@@ -64,7 +64,7 @@ import org.scilab.modules.commons.xml.XConfiguration;
 import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
 import org.scilab.modules.core.Scilab;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.filechooser.Juigetfile;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
@@ -121,7 +121,7 @@ import org.scilab.modules.scinotes.utils.SearchFile;
  * @author Bruno JOFRET
  * @author Calixte DENIZET
  */
-public class SciNotes extends SwingScilabTab {
+public class SciNotes extends SwingScilabDockable {
 
     private static final long serialVersionUID = -6410183357490518676L;
 
@@ -616,7 +616,7 @@ public class SciNotes extends SwingScilabTab {
         if (b) {
             ed.closeTabAtWithoutConfirmation(ed.getTabPane().getSelectedIndex());
             if (ed.getTabPane().getTabCount() == 0) {
-                ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabTab) ed);
+                ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabDockable) ed);
                 ConfigSciNotesManager.removeEditorUUID(ed.uuid.toString());
             }
         }
@@ -874,9 +874,9 @@ public class SciNotes extends SwingScilabTab {
 
     public static void closeEditor(SciNotes ed) {
         if (scinotesList.size() > 1) {
-            ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabTab) ed);
+            ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabDockable) ed);
         } else {
-            ClosingOperationsManager.startClosingOperation((SwingScilabTab) ed);
+            ClosingOperationsManager.startClosingOperation((SwingScilabDockable) ed);
         }
     }
 

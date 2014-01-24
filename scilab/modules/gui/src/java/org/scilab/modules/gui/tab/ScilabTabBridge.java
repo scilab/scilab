@@ -13,7 +13,7 @@
 
 package org.scilab.modules.gui.tab;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
@@ -53,7 +53,7 @@ public class ScilabTabBridge {
      * @return the created tab
      */
     public static SimpleTab createTab(String name) {
-        return new SwingScilabTab(name);
+        return new SwingScilabDockable(name);
     }
 
     /**
@@ -62,7 +62,7 @@ public class ScilabTabBridge {
      * @return the created tab
      */
     public static SimpleTab createTab(String name, String uuid) {
-        return new SwingScilabTab(name, uuid);
+        return new SwingScilabDockable(name, uuid);
     }
 
     /**
@@ -72,7 +72,7 @@ public class ScilabTabBridge {
      * @return the created tab
      */
     public static SimpleTab createTab(String name, int figureId) {
-        return new SwingScilabTab(name, figureId);
+        return new SwingScilabDockable(name, figureId);
     }
 
     /**

@@ -27,7 +27,7 @@ import org.flexdock.docking.defaults.DefaultDockingPort;
 import org.flexdock.docking.event.DockingEvent;
 import org.flexdock.docking.event.DockingListener;
 import org.flexdock.docking.floating.frames.FloatingDockingPort;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 
 /**
@@ -65,7 +65,7 @@ public class SciDockingListener implements DockingListener {
         String newId = null;
 
         DockingListener[] newListeners = e.getNewDockingPort().getDockingListeners();
-        SwingScilabTab dockedTab = (SwingScilabTab) e.getDockable();
+        SwingScilabDockable dockedTab = (SwingScilabDockable) e.getDockable();
         if (newListeners.length == 2) {
             /* This docking port has been created when the parent window were created */
             /* So this docking port has a sciDockingListener */
@@ -81,7 +81,7 @@ public class SciDockingListener implements DockingListener {
                 while (e.getDockable() == dock) {
                     dock = it.next();
                 }
-                newId = ((SwingScilabTab) dock).getParentWindowId();
+                newId = ((SwingScilabDockable) dock).getParentWindowId();
             } else { /** Create a new Window to display the tab inside it */
 
                 DefaultDockingPort dockingPort = ((DefaultDockingPort) e.getOldDockingPort());

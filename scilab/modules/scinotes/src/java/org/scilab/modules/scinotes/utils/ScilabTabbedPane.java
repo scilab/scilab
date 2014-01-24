@@ -60,7 +60,7 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 
 import org.scilab.modules.scinotes.SciNotes;

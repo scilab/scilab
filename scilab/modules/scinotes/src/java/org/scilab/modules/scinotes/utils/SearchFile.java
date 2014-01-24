@@ -46,7 +46,7 @@ import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
@@ -76,7 +76,7 @@ import org.w3c.dom.NodeList;
  * @author Calixte DENIZET
  */
 @SuppressWarnings(value = { "serial" })
-public class SearchFile extends SwingScilabTab {
+public class SearchFile extends SwingScilabDockable {
 
     public static final String SEARCHDONE = "SearchFile.SearchDone";
 
@@ -171,8 +171,8 @@ public class SearchFile extends SwingScilabTab {
      */
     public void changeToolBar() {
         SwingScilabWindow win = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
-        Set<SwingScilabTab> set = win.getDockingPort().getDockables();
-        for (SwingScilabTab tab : set) {
+        Set<SwingScilabDockable> set = win.getDockingPort().getDockables();
+        for (SwingScilabDockable tab : set) {
             if (tab == editor) {
                 addToolBar(editor.getToolBar());
                 break;
@@ -308,7 +308,7 @@ public class SearchFile extends SwingScilabTab {
         CommonCallBack callback = new CommonCallBack(null) {
             @Override
             public void callBack() {
-                ClosingOperationsManager.startClosingOperation((SwingScilabTab) SearchFile.this);
+                ClosingOperationsManager.startClosingOperation((SwingScilabDockable) SearchFile.this);
             }
 
             @Override

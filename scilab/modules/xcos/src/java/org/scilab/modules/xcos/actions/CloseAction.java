@@ -19,7 +19,7 @@ import java.awt.event.KeyEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
@@ -70,7 +70,7 @@ public final class CloseAction extends DefaultAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         final XcosDiagram graph = (XcosDiagram) getGraph(e);
-        final SwingScilabTab tab = ScilabTabFactory.getInstance().getFromCache(
+        final SwingScilabDockable tab = ScilabTabFactory.getInstance().getFromCache(
                                        graph.getGraphTab());
         ClosingOperationsManager.startClosingOperation(tab);
     }
