@@ -203,6 +203,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\c\assembleEigenvectors.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_spec.c" />
     <ClCompile Include="DllmainLinear_algebra.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_linear_algebra.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_linear_algebra2.c" />
@@ -216,7 +217,6 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="..\..\sci_gateway\c\sci_dgeev.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_dggev.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_dsyev.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_eig.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_hess.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_inv.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_lsq.c" />
