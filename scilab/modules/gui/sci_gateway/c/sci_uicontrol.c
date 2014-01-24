@@ -429,8 +429,8 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
         if (propertiesValuesIndices[28] != NOT_FOUND)
         {
             int* piAddr = NULL;
-            sciErr = getVarAddressFromPosition(pvApiCtx, propertiesValuesIndices[28], &piAddr);
             char* pstValue = NULL;
+            sciErr = getVarAddressFromPosition(pvApiCtx, propertiesValuesIndices[28], &piAddr);
             if (getAllocatedSingleString(pvApiCtx, piAddr, &pstValue))
             {
                 Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, propertiesValuesIndices[inputIndex]);
