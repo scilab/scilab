@@ -12,6 +12,8 @@
 /*--------------------------------------------------------------------------*/
 #include "elem_func_gw.hxx"
 #include "function.hxx"
+#include "overload.hxx"
+#include "execvisitor.hxx"
 #include "double.hxx"
 #include "string.hxx"
 
@@ -194,8 +196,8 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string or a real expected.\n"), "rand", 1);
-        return types::Function::Error;
+        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_rand";
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
     }
 
     return types::Function::OK;

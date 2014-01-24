@@ -293,19 +293,9 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             break;
         }
         case GenericType::RealTList :
-        {
-            types::TList* pTL = in[0]->getAs<types::TList>();
-            wchar_t* wcsStr = pTL->get(0)->getAs<types::String>()->get(0);
-
-            std::wstring wstFuncName = L"%"  + std::wstring(wcsStr) + L"_string";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
-        }
         case GenericType::RealMList :
         {
-            types::MList* pML = in[0]->getAs<types::MList>();
-            wchar_t* wcsStr = pML->get(0)->getAs<types::String>()->get(0);
-
-            std::wstring wstFuncName = L"%"  + std::wstring(wcsStr) + L"_string";
+            std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_string";
             return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
         }
         default :

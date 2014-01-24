@@ -46,6 +46,16 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
             break;
         }
         case InternalType::RealTList:
+        {
+            // calls the overload if it exists.
+            std::wstring wstFuncName = L"%"  + in[0]->getTypeStr() + L"_size";
+            types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(wstFuncName));
+            if(pIT)
+            {
+                Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+                break;
+            }
+        }
         case InternalType::RealList:
         {
             if (in.size() > 1)

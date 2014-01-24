@@ -12,6 +12,8 @@
 /*--------------------------------------------------------------------------*/
 #include "elem_func_gw.hxx"
 #include "context.hxx"
+#include "overload.hxx"
+#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -44,8 +46,8 @@ Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::type
     {
         if (in[0]->isGenericType() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), "eye", 1);
-            return Function::Error;
+            std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_eye";
+            return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
         }
 
         iRows = in[0]->getAs<GenericType>()->getRows();

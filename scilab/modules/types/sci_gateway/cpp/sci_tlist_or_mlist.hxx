@@ -48,6 +48,13 @@ Function::ReturnValue sci_tlist_or_mlist(typed_list &in, int _piRetCount, typed_
     //check uniqueness of fields name
     String* pS = in[0]->getAs<types::String>();
 
+    //check for rational type
+    if(pS->getSize() > 0 && wcscmp(pS->get(0), L"r") == 0)
+    {
+        Scierror(999, _("%ls: Can not create a %ls with input argument #%d.\n"), _pstrFunName, _pstrFunName, 1);
+        return Function::Error;
+    }
+
     //first string is the tlist type
     list<wstring> fieldNames;
     for (int i = 1 ; i < pS->getSize() ; i++)

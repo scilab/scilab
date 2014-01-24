@@ -162,6 +162,10 @@ public :
     }
 
     virtual bool                    isGenericType(void);
+    virtual bool                    isArrayOf(void)
+    {
+        return false;
+    }
     virtual bool                    isString(void)
     {
         return false;

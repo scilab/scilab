@@ -200,6 +200,7 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\cpp\data_structures_gw.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_getfield.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_rlist.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_setfield.cpp" />
     <ClCompile Include="DllmainData_structures.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_data_structures1.c" />
@@ -207,7 +208,6 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile Include="..\..\sci_gateway\c\sci_definedfields.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_glist.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_lsslist.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_rlist.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\data_structures_gw.hxx" />

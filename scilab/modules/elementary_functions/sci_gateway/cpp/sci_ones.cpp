@@ -14,6 +14,8 @@
 /*--------------------------------------------------------------------------*/
 #include "elem_func_gw.hxx"
 #include "function.hxx"
+#include "overload.hxx"
+#include "execvisitor.hxx"
 #include "double.hxx"
 #include "int.hxx"
 
@@ -38,6 +40,17 @@ Function::ReturnValue sci_ones(types::typed_list &in, int _iRetCount, types::typ
     else if (in.size() == 1)
     {
         types::GenericType* pIn = in[0]->getAs<types::GenericType>();
+
+        if(pIn->isList())
+        {
+            std::wstring wstFuncName = L"%"  + in[0]->getTypeStr() + L"_ones";
+            types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(wstFuncName));
+            if(pIT)
+            {
+                return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+            }
+        }
+
         int iDims = pIn->getDims();
         int* piDims = pIn->getDimsArray();
 

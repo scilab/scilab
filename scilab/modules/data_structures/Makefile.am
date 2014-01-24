@@ -19,13 +19,13 @@ sci_gateway/c/sci_lsslist.c \
 sci_gateway/c/sci_glist.c \
 sci_gateway/c/sci_definedfields.c \
 sci_gateway/c/gw_data_structures1.c \
-sci_gateway/c/gw_data_structures2.c \
-sci_gateway/c/sci_rlist.c
+sci_gateway/c/gw_data_structures2.c
 
 GATEWAY_CPP_SOURCES = \
 sci_gateway/cpp/data_structures_gw.cpp \
 sci_gateway/cpp/sci_getfield.cpp \
-sci_gateway/cpp/sci_setfield.cpp
+sci_gateway/cpp/sci_setfield.cpp \
+sci_gateway/cpp/sci_rlist.cpp
 
 GATEWAY_FORTRAN_SOURCES = \
 sci_gateway/fortran/sci_f_definedfields.f

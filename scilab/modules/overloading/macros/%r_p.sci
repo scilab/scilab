@@ -61,18 +61,23 @@ function %r_p(h)
             // add matrix delimiter and columns title and display
             nt=size(txt,1)
             txt=part(txt,1:max(length(txt)))
+
             if k0==0&last==n then
-                write(%io(2),del(ones(nt,1))+txt+blank(ones(nt,1))+del(ones(nt,1)))
+                r = del(ones(nt,1))+txt+blank(ones(nt,1))+del(ones(nt,1));
+                for i=1:size(r,"*")
+                    mprintf("%s\n", r(i))
+                end
             else
                 if last==1 then
                     leg="column "+string(k0+1)
                 else
                     leg="column "+string(k0+1)+" to "+string(k0+last)
                 end
-                write(%io(2),[" ";
-                leg;
-                " ";
-                del(ones(nt,1))+txt+blank(ones(nt,1))+del(ones(nt,1))])
+
+                r = [" "; leg; " ";del(ones(nt,1))+txt+blank(ones(nt,1))+del(ones(nt,1))];
+                for i=1:size(r,"*")
+                    mprintf("%s\n", r(i))
+                end
             end
             width(1:last)=[]
             k0=last
@@ -194,9 +199,9 @@ function   %hmr_p(h)
     k=1;sz=dims(1)*dims(2)
     for II=I
         tit="(:,:,"+strcat(string(II'),",")+")"
-        write(%io(2),tit)
-        hb=rlist(matrix(num.entries(k:k-1+sz),dims(1),dims(2)),matrix(den.entries(k:k-1+sz),dims(1),dims(2)),h.dt)
-        disp(hb)
+        mprintf("%s\n",tit)
+        hb=rlist(matrix(num(k:k-1+sz),dims(1),dims(2)),matrix(den(k:k-1+sz),dims(1),dims(2)),h.dt)
+        %r_p(hb)
         k=k+sz
     end
 endfunction

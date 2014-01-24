@@ -131,6 +131,11 @@ protected :
     virtual void            deleteImg() = 0;
 public :
 
+    bool isArrayOf()
+    {
+        return true;
+    }
+
     virtual bool isVector() //only one dim must be != 1
     {
         bool bFirstChance = false;

@@ -494,11 +494,10 @@ void visitprivate(const AssignExp  &e)
                             break;
                         default :
                         {
-                            //manage error
-                            std::wostringstream os;
-                            os << _W("Operation not yet managed.\n");
-                            //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
-                            throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
+                            // overload
+                            types::Double* pEmpty = types::Double::Empty();
+                            pOut = callOverload(L"i", pArgs, pITR, pEmpty);
+                            delete pEmpty;
                             break;
                         }
                     }
@@ -551,6 +550,39 @@ void visitprivate(const AssignExp  &e)
                 {
                     pRet = pIT->getAs<SparseBool>()->insert(pArgs, pInsert);
                 }
+                else if (pIT->isDouble() && pInsert->isPoly())
+                {
+                    Double* pDest = pIT->getAs<Double>();
+                    Polynom* pIns = pInsert->getAs<Polynom>();
+                    Polynom* pP = new Polynom(pIns->getVariableName(), pDest->getDims(), pDest->getDimsArray());
+                    pP->setComplex(pDest->isComplex());
+
+                    for (int idx = 0 ; idx < pP->getSize() ; idx++)
+                    {
+                        double* pR = NULL;
+                        double* pI = NULL;
+                        if (pP->isComplex())
+                        {
+                            SinglePoly* pS = new SinglePoly(&pR, &pI, 1);
+                            double dblR = pDest->get(idx);
+                            double dblI = pDest->getImg(idx);
+                            pS->setCoef(&dblR, &dblI);
+                            pP->set(idx, pS);
+                            delete pS;
+                        }
+                        else
+                        {
+                            SinglePoly* pS = new SinglePoly(&pR, 1);
+                            double dblR = pDest->get(idx);
+                            pS->setCoef(&dblR, NULL);
+                            pP->set(idx, pS);
+                            delete pS;
+                        }
+                    }
+
+                    pRet = pP->insert(pArgs, pIns);
+                    pDest->DecreaseRef();
+                }
                 else if (pIT->isPoly() && pInsert->isDouble())
                 {
                     Polynom* pDest = pIT->getAs<Polynom>();
@@ -580,7 +612,7 @@ void visitprivate(const AssignExp  &e)
                             delete pS;
                         }
                     }
-                    pRet = pIT->getAs<Polynom>()->insert(pArgs, pP);
+                    pRet = pDest->insert(pArgs, pP);
                     delete pP;
                 }
                 else if (pIT->isPoly() && pInsert->isPoly())
@@ -647,25 +679,38 @@ void visitprivate(const AssignExp  &e)
                 else if (pIT->isTList() || pIT->isMList())
                 {
                     TList* pTL = pIT->getAs<TList>();
-                    if (pArgs->size() == 1 && (*pArgs)[0]->isString())
+                    if (pArgs->size() == 1)
                     {
-                        //s("x") = y
-                        String *pS = (*pArgs)[0]->getAs<types::String>();
-                        if (pS->isScalar() == false)
+                        if((*pArgs)[0]->isString())
                         {
-                            //manage error
-                            std::wostringstream os;
-                            os << _W("Invalid Index.\n");
-                            //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
-                            throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
-                        }
+                            //s("x") = y
+                            String *pS = (*pArgs)[0]->getAs<types::String>();
+                            if (pS->isScalar() == false)
+                            {
+                                //manage error
+                                std::wostringstream os;
+                                os << _W("Invalid Index.\n");
+                                //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
+                                throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
+                            }
 
-                        pTL->set(pS->get(0), pInsert);
-                        pRet = pTL;
+                            pTL->set(pS->get(0), pInsert);
+                            pRet = pTL;
+                        }
+                        else
+                        {
+                            pRet = pTL->insert(pArgs, pInsert);
+                        }
                     }
                     else
                     {
-                        pRet = pTL->insert(pArgs, pInsert);
+                        // call the overload if it exists.
+                        pRet = callOverload(L"i", pArgs, pInsert, pIT);
+                        if(pRet == NULL)
+                        {
+                            // else normal insert
+                            pRet = pTL->insert(pArgs, pInsert);
+                        }
                     }
                 }
                 else if (pIT->isList())
@@ -701,51 +746,8 @@ void visitprivate(const AssignExp  &e)
                 }
                 else
                 {
-                    //overloading
-                    types::typed_list in;
-                    types::typed_list out;
-
-                    //overload insertion
-                    //%x_i_x(i1, i2, ..., in, source, dest)
-                    //i1, ..., in : indexes
-                    //dest : variable where to insert data
-                    //source : data to insert
-
-                    for (int i = 0 ; i < (int)pArgs->size() ; i++)
-                    {
-                        (*pArgs)[i]->IncreaseRef();
-                        in.push_back((*pArgs)[i]);
-                    }
-
-                    pInsert->IncreaseRef();
-                    in.push_back(pInsert);
-
-                    pIT->IncreaseRef();
-                    in.push_back(pIT);
-
-                    //build function name
-                    //a_i_b
-                    //a : type to insert
-                    //b : type that receive data
-                    std::wstring function_name;
-                    function_name = L"%" + pInsert->getShortTypeStr() + L"_i_" + pIT->getShortTypeStr();
-                    Overload::call(function_name, in, 1, out, this);
-
-                    pIT->DecreaseRef();
-                    pInsert->DecreaseRef();
-                    for (int i = 0 ; i < (int)pArgs->size() ; i++)
-                    {
-                        (*pArgs)[i]->DecreaseRef();
-                    }
-
-                    if (out.size() != 0)
-                    {
-                        pRet = out[0];
-                    }
-                    else
-                    {
-                        pRet = NULL;
-                    }
+                    // overload
+                    pRet = callOverload(L"i", pArgs, pInsert, pIT);
                 }
 
                 if (pRet && pRet != pIT)
@@ -1069,4 +1071,50 @@ void visitprivate(const AssignExp  &e)
     {
         throw error;
     }
+}
+
+/*** overload insertion ***/
+//%x_i_x(i1, i2, ..., in, source, dest)
+//i1, ..., in : indexes
+//dest : variable where to insert data
+//source : data to insert
+types::InternalType* callOverload(std::wstring strType, types::typed_list* _pArgs, types::InternalType* _source, types::InternalType* _dest)
+{
+    types::InternalType* pITOut = NULL;
+    types::typed_list in;
+    types::typed_list out;
+
+    for(int i = 0; i < _pArgs->size(); i++)
+    {
+        (*_pArgs)[i]->IncreaseRef();
+        in.push_back((*_pArgs)[i]);
+    }
+
+    _source->IncreaseRef();
+    _dest->IncreaseRef();
+
+    in.push_back(_source);
+    in.push_back(_dest);
+
+    std::wstring function_name;
+    function_name = L"%" + _source->getAs<List>()->getShortTypeStr() + L"_" + strType + L"_" +_dest->getAs<List>()->getShortTypeStr();
+    if(symbol::Context::getInstance()->get(symbol::Symbol(function_name)))
+    {
+        Overload::call(function_name, in, 1, out, this);
+    }
+
+    for(int i = 0; i < _pArgs->size(); i++)
+    {
+        (*_pArgs)[i]->DecreaseRef();
+    }
+
+    _source->DecreaseRef();
+    _dest->DecreaseRef();
+
+    if (out.size() != 0)
+    {
+        pITOut = out[0];
+    }
+
+    return pITOut;
 }

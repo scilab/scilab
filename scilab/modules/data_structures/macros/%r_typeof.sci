@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
+// Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,18 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
-function f1=%r_x_p(f1,f2)
-    // %r_x_p(r,p)=r.*p
-    //author Serge Steer, INRIA
-    //!
-    f1.num=f1.num.*f2
-    sz=size(f1.num)
-    if size(sz,"*")<=2 then
-
-        f1=simp(f1)
-    else
-        [num,den]=simp(f1.num(:),f1.den(:))
-        f1.num=matrix(num,sz)
-        f1.den=matrix(den,sz)
-    end
+function s = %r_typeof(x)
+    s = "rational";
 endfunction
