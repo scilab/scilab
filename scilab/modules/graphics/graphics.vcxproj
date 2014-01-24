@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -284,6 +284,8 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_fractional_font_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_grid_position_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_grid_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_grid_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_grid_thickness_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_handle_visible_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_hidden_axis_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_hidden_color_property.c" />
@@ -308,8 +310,10 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_mark_background_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_mark_foreground_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_mark_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_mark_offset_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_mark_size_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_mark_size_unit_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_mark_stride_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_mark_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_material_shininess_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_menubar_property.c" />
@@ -320,6 +324,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_pixmap_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_polyline_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_position_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_rect_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_resize_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_rotation_angles_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_rotation_style_property.c" />
@@ -344,11 +349,16 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\set_dockable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_closerequestfcn_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_resizefcn_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_grid_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_grid_thickness_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_infobar_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_layout_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_light_type_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_mark_offset_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_mark_stride_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_material_shininess_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_menubar_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_rect_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_resize_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_specular_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_image_type_property.c" />
