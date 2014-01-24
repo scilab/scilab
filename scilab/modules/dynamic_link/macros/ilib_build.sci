@@ -55,10 +55,6 @@ function ilib_build(ilib_name, ..
         error(999, msprintf(_("%s: A managed file extension for input argument #%d expected."), "ilib_build", 3));
     end
 
-    if getos() <> "Windows" & libs <> [] then
-        warning(msprintf(_("%s: Input argument #%d is only used under Windows.\n"), "ilib_build", 4));
-    end
-
     if rhs > 4 then
         if (makename <> [] & makename <> "") then
             warning(msprintf(_("%s: Wrong value for input argument #%d: """" or ""[]"" expected.\n"), "ilib_build", 5));
@@ -78,7 +74,7 @@ function ilib_build(ilib_name, ..
 
     if getos() == "Windows" then
         if ~isdef("makename") | (makename == "") | (makename == []) then
-            // Load dynamic_link Internal lib if it's not already loaded
+            // Load dynamic_link Internal lib if it"s not already loaded
             if ~exists("dynamic_linkwindowslib") then
                 load("SCI/modules/dynamic_link/macros/windows/lib");
             end

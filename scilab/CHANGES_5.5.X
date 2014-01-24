@@ -56,8 +56,6 @@ Scilab Bug Fixes
 
 * Bug #4649 fixed - License issue in the xs2ppm help page fixed.
 
-* Bug #4668 fixed - In ilib_build, "libs" argument tagged as only used under Windows.
-
 * Bug #4677 fixed - xclick did not return correct mouse position on keyboard event.
 
 * Bug #4965 fixed - Setting links property for a handle of type legend did not work.

@@ -48,7 +48,7 @@
                 <term>libs</term>
                 <listitem>
                     <para>string matrix giving extra libraries needed for shared library
-                        creation. Only used under Windows.
+                        creation
                     </para>
                 </listitem>
             </varlistentry>
