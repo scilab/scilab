@@ -425,6 +425,8 @@ Scilab Bug Fixes
 
 * Bug #13203 fixed - Some error messages typos fixed.
 
+* Bug #13205 fixed - group accepted continuous transfer functions.
+
 * Bug #13392 fixed - Typo in the CACSD help chapter fixed.
 
 

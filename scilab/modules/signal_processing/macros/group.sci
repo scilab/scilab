@@ -39,6 +39,9 @@ function [tg,fr]=group(npts,a1i,a2i,b1i,b2i)
     //get the of arguments used to called group
 
     [ns,ne]=argn(0);
+    if and(ne <> [2 5]) then
+        error(sprintf(_("%s: Wrong number of input argument(s): %d or %d expected.\n"), "group", 2, 5));
+    end
 
     //if the number of arguments is 2 then
     //the case may be non-cascade
@@ -50,6 +53,12 @@ function [tg,fr]=group(npts,a1i,a2i,b1i,b2i)
 
         h=a1i;
         ht=type(h);
+        if and(ht <> [1 2 15 16]) then
+            error(sprintf(_("%s: Wrong type for input argument #%d: A real or polynomial matrix or a rational expected.\n"), "group", 2));
+        end
+        if or(ht == 16) & h.dt <> "d" then
+            error(sprintf(_("%s: Wrong type for input argument #%d: A discrete system expected.\n"), "group", 2));
+        end
 
         //if ht==1 then h is a vector containing filter coefficients
 
