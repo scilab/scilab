@@ -22920,18 +22920,18 @@ if eval test \"x\$"$as_ac_var"\" = x"yes"; then :
 fi
 
 	LIBS="$save_LIBS"
-
 fi
 
-# BLAS in ATLAS library? (http://math-atlas.sourceforge.net/)
+# BLAS in OpenBlas library (http://www.openblas.net/)
 if test $acx_blas_ok = no; then
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for ATL_xerbla in -latlas" >&5
-$as_echo_n "checking for ATL_xerbla in -latlas... " >&6; }
-if ${ac_cv_lib_atlas_ATL_xerbla+:} false; then :
+    as_ac_Lib=`$as_echo "ac_cv_lib_openblas_$sgemm" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $sgemm in -lopenblas" >&5
+$as_echo_n "checking for $sgemm in -lopenblas... " >&6; }
+if eval \${$as_ac_Lib+:} false; then :
   $as_echo_n "(cached) " >&6
 else
   ac_check_lib_save_LIBS=$LIBS
-LIBS="-latlas  $LIBS"
+LIBS="-lopenblas  $LIBS"
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
@@ -22941,7 +22941,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 #ifdef __cplusplus
 extern "C"
 #endif
-char ATL_xerbla ();
+char $sgemm ();
 #ifdef F77_DUMMY_MAIN
 
 #  ifdef __cplusplus
@@ -22953,24 +22953,82 @@ char ATL_xerbla ();
 int
 main ()
 {
-return ATL_xerbla ();
+return $sgemm ();
   ;
   return 0;
 }
 _ACEOF
 if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_lib_atlas_ATL_xerbla=yes
+  eval "$as_ac_Lib=yes"
 else
-  ac_cv_lib_atlas_ATL_xerbla=no
+  eval "$as_ac_Lib=no"
 fi
 rm -f core conftest.err conftest.$ac_objext \
     conftest$ac_exeext conftest.$ac_ext
 LIBS=$ac_check_lib_save_LIBS
 fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_atlas_ATL_xerbla" >&5
-$as_echo "$ac_cv_lib_atlas_ATL_xerbla" >&6; }
-if test "x$ac_cv_lib_atlas_ATL_xerbla" = xyes; then :
-  as_ac_Lib=`$as_echo "ac_cv_lib_f77blas_$sgemm" | $as_tr_sh`
+eval ac_res=\$$as_ac_Lib
+	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
+$as_echo "$ac_res" >&6; }
+if eval test \"x\$"$as_ac_Lib"\" = x"yes"; then :
+  acx_blas_ok=yes; BLAS_TYPE="OpenBLAS"; BLAS_LIBS="-lopenblas"
+fi
+
+fi
+
+# BLAS in ATLAS library (http://math-atlas.sourceforge.net/)
+if test $acx_blas_ok = no; then
+	as_ac_Lib=`$as_echo "ac_cv_lib_f77blas_$sgemm" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $sgemm in -lf77blas" >&5
+$as_echo_n "checking for $sgemm in -lf77blas... " >&6; }
+if eval \${$as_ac_Lib+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lf77blas  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char $sgemm ();
+#ifdef F77_DUMMY_MAIN
+
+#  ifdef __cplusplus
+     extern "C"
+#  endif
+   int F77_DUMMY_MAIN() { return 1; }
+
+#endif
+int
+main ()
+{
+return $sgemm ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  eval "$as_ac_Lib=yes"
+else
+  eval "$as_ac_Lib=no"
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+eval ac_res=\$$as_ac_Lib
+	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
+$as_echo "$ac_res" >&6; }
+if eval test \"x\$"$as_ac_Lib"\" = x"yes"; then :
+  acx_blas_ok=yes; BLAS_TYPE="Atlas"; BLAS_LIBS="-lf77blas"
+else
+
+		as_ac_Lib=`$as_echo "ac_cv_lib_f77blas_$sgemm" | $as_tr_sh`
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $sgemm in -lf77blas" >&5
 $as_echo_n "checking for $sgemm in -lf77blas... " >&6; }
 if eval \${$as_ac_Lib+:} false; then :
@@ -23017,71 +23075,23 @@ eval ac_res=\$$as_ac_Lib
 	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
 $as_echo "$ac_res" >&6; }
 if eval test \"x\$"$as_ac_Lib"\" = x"yes"; then :
-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for cblas_dgemm in -lcblas" >&5
-$as_echo_n "checking for cblas_dgemm in -lcblas... " >&6; }
-if ${ac_cv_lib_cblas_cblas_dgemm+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lcblas -lf77blas -latlas $LIBS"
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-/* Override any GCC internal prototype to avoid an error.
-   Use char because int might match the return type of a GCC
-   builtin and then its argument prototype would still apply.  */
-#ifdef __cplusplus
-extern "C"
-#endif
-char cblas_dgemm ();
-#ifdef F77_DUMMY_MAIN
-
-#  ifdef __cplusplus
-     extern "C"
-#  endif
-   int F77_DUMMY_MAIN() { return 1; }
-
-#endif
-int
-main ()
-{
-return cblas_dgemm ();
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_lib_cblas_cblas_dgemm=yes
-else
-  ac_cv_lib_cblas_cblas_dgemm=no
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_cblas_cblas_dgemm" >&5
-$as_echo "$ac_cv_lib_cblas_cblas_dgemm" >&6; }
-if test "x$ac_cv_lib_cblas_cblas_dgemm" = xyes; then :
-  acx_blas_ok=yes; BLAS_TYPE="Atlas"
-			 BLAS_LIBS="-lcblas -lf77blas -latlas"
+  acx_blas_ok=yes; BLAS_TYPE="Atlas"; BLAS_LIBS="-lf77blas -latlas"
 fi
 
 fi
 
 fi
 
-fi
-
-# BLAS in Intel MKL libraries?
+# BLAS in Intel MKL libraries (http://software.intel.com/en-us/articles/a-new-linking-model-single-dynamic-library-mkl_rt-since-intel-mkl-103)
 if test $acx_blas_ok = no; then
-	as_ac_Lib=`$as_echo "ac_cv_lib_mkl_$sgemm" | $as_tr_sh`
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $sgemm in -lmkl" >&5
-$as_echo_n "checking for $sgemm in -lmkl... " >&6; }
+	as_ac_Lib=`$as_echo "ac_cv_lib_mkl_rt_$sgemm" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $sgemm in -lmkl_rt" >&5
+$as_echo_n "checking for $sgemm in -lmkl_rt... " >&6; }
 if eval \${$as_ac_Lib+:} false; then :
   $as_echo_n "(cached) " >&6
 else
   ac_check_lib_save_LIBS=$LIBS
-LIBS="-lmkl  $LIBS"
+LIBS="-lmkl_rt  $LIBS"
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
@@ -23121,7 +23131,7 @@ eval ac_res=\$$as_ac_Lib
 	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
 $as_echo "$ac_res" >&6; }
 if eval test \"x\$"$as_ac_Lib"\" = x"yes"; then :
-  acx_blas_ok=yes; BLAS_TYPE="MKL"; BLAS_LIBS="-lmkl -lguide -lpthread"
+  acx_blas_ok=yes; BLAS_TYPE="MKL"; BLAS_LIBS="-lmkl_rt"
 fi
 
 fi
@@ -23757,7 +23767,7 @@ fi
 fi
 
 if test "$with_blas_library" != no -a "$with_blas_library" != ""; then
-BLAS_LIBS="$BLAS_LIBS -L$with_blas_library"
+BLAS_LIBS="-L$with_blas_library $BLAS_LIBS"
 fi
 
 
@@ -23876,7 +23886,7 @@ if test $acx_lapack_ok = no; then
         as_ac_var=`$as_echo "ac_cv_func_$cheev" | $as_tr_sh`
 ac_fn_c_check_func "$LINENO" "$cheev" "$as_ac_var"
 if eval test \"x\$"$as_ac_var"\" = x"yes"; then :
-  acx_lapack_ok=yes; LAPACK_TYPE="Default link"
+  acx_lapack_ok=yes; LAPACK_TYPE="Default link (may be provided with BLAS)"
 fi
 
         LIBS="$save_LIBS"
@@ -26116,7 +26126,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 26119 "configure"
+#line 26129 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -26427,7 +26437,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 26430 "configure"
+#line 26440 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -27011,7 +27021,7 @@ $as_echo_n "checking saxon9he... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27014 "configure"
+// #line 27024 "configure"
 import java.util.regex.Pattern;
 
 import net.sf.saxon.Version;
@@ -27126,7 +27136,7 @@ $as_echo_n "checking saxon... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27129 "configure"
+// #line 27139 "configure"
 import java.util.regex.Pattern;
 
 import net.sf.saxon.Version;
@@ -27242,7 +27252,7 @@ $as_echo_n "checking saxon... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27245 "configure"
+// #line 27255 "configure"
 import java.util.regex.Pattern;
 
 import com.icl.saxon.Loader;
