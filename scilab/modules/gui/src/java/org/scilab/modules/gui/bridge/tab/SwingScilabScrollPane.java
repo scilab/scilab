@@ -24,6 +24,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
@@ -45,16 +46,18 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
     private SwingScilabCanvas canvas;
     private Figure figure;
     private Component comp;
+    private JPanel uiContent;
 
     /**
      * Create a new Scroll pane around an axes.
      * @param axes axes to scroll
      */
-    public SwingScilabScrollPane(Component comp, SwingScilabCanvas canvas, Figure figure) {
+    public SwingScilabScrollPane(Component comp, SwingScilabCanvas canvas, JPanel uiContentPane, Figure figure) {
         super(comp);
         this.comp = comp;
         this.canvas = canvas;
         this.figure = figure;
+        this.uiContent = uiContentPane;
         // use the axes background as default one
         setRealBackground(canvas.getBackground());
         GraphicController.getController().register(this);
@@ -140,6 +143,8 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
                 Dimension d = new Dimension(figure.getAxesSize()[0], figure.getAxesSize()[1]);
                 comp.setPreferredSize(d);
                 comp.setSize(d);
+                uiContent.setSize(d);
+                uiContent.setPreferredSize(d);
                 canvas.setBounds(0, 0, figure.getAxesSize()[0], figure.getAxesSize()[1]);
             }
 

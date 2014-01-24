@@ -4,6 +4,7 @@
  * Copyright (C) 2007 - INRIA - Bruno JOFRET
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
  * Copyright (C) 2011 - DIGITEO - Vincent Couvert
+ * Copyright (C) 2014 - Scilab Enterprises - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -23,10 +24,15 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_NAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ID__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFOBAR_VISIBLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFO_MESSAGE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MENUBAR_VISIBLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_NAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_RESIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TOOLBAR_VISIBLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHECKEDMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHILDMENU__;
@@ -34,11 +40,13 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIPARENTMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
@@ -57,6 +65,7 @@ import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextPane;
+import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
@@ -72,6 +81,9 @@ import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
+import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
+import org.scilab.modules.graphic_objects.utils.LayoutType;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
@@ -100,6 +112,7 @@ import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.GlobalEventWatcher;
+import org.scilab.modules.gui.editor.EditorEventListener;
 import org.scilab.modules.gui.events.ScilabEventListener;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
@@ -128,8 +141,6 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
 
-import org.scilab.modules.gui.editor.EditorEventListener;
-
 /**
  * Swing implementation for Scilab tabs in GUIs
  * This implementation uses FlexDock package
@@ -138,7 +149,8 @@ import org.scilab.modules.gui.editor.EditorEventListener;
  * @author Marouane BEN JELLOUL
  * @author Jean-Baptiste SILVY
  */
-public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, FocusListener, KeyListener {
+
+public class SwingScilabTab extends View implements SimpleTab, FocusListener, KeyListener, SwingScilabPanel {
 
     public static final String GRAPHICS_TOOLBAR_DESCRIPTOR = System.getenv("SCI") + "/modules/gui/etc/graphics_toolbar.xml";
 
@@ -166,6 +178,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
 
     /** Contains the canvas and widgets */
     private SwingScilabAxes contentPane;
+    private JPanel uiContentPane;
     private JLayeredPane layerdPane;
 
     /** Scroll the axes */
@@ -197,6 +210,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
 
         // no need for an axes
         contentPane = null;
+        uiContentPane = null;
         scrolling = null;
 
         this.setVisible(true);
@@ -292,13 +306,19 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         layerdPane = new JLayeredPane();
         layerdPane.setLayout(null);
         layerdPane.add(canvas, JLayeredPane.FRAME_CONTENT_LAYER);
+        uiContentPane = new JPanel();
+        uiContentPane.setOpaque(false);
+        uiContentPane.setSize(new Dimension(800,800));
+        layerdPane.add(uiContentPane, JLayeredPane.DEFAULT_LAYER + 1, 0);
 
-        scrolling = new SwingScilabScrollPane(layerdPane, canvas, figure);
+        scrolling = new SwingScilabScrollPane(layerdPane, canvas, uiContentPane, figure);
 
         contentCanvas.addKeyListener(this);
 
         setContentPane(scrolling.getAsContainer());
+        //setContentPane(uiContentPane);
         canvas.setVisible(true);
+        uiContentPane.setVisible(true);
 
         /* Manage figure_position property */
         addHierarchyBoundsListener(new HierarchyBoundsListener() {
@@ -563,6 +583,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     @Override
     public void setAxesSize(Size newSize) {
         contentPane.setSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
+        uiContentPane.setSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
     }
 
     /**
@@ -622,7 +643,34 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
          * Force adding Widget at JLayeredPane.DEFAULT_LAYER + 1
          * to draw them uppon GLJPanel (even if it is at level JLayeredPane.FRAME_CONTENT_LAYER)
          */
-        layerdPane.add((Component) member, JLayeredPane.DEFAULT_LAYER + 1, 0);
+        if (uiContentPane.getLayout() instanceof BorderLayout) {
+            //member.get
+            Uicontrol uicontrol = (Uicontrol) GraphicModel.getModel().getObjectFromId(member.getId());
+            switch (uicontrol.getBorderConstraintsAsEnum()) {
+            case SOUTH:
+                uiContentPane.add((Component) member, BorderLayout.SOUTH);
+                break;
+            case NORTH:
+                uiContentPane.add((Component) member, BorderLayout.NORTH);
+                break;
+            case WEST:
+                uiContentPane.add((Component) member, BorderLayout.WEST);
+                break;
+            case EAST:
+                uiContentPane.add((Component) member, BorderLayout.EAST);
+                break;
+            case CENTER:
+                uiContentPane.add((Component) member, BorderLayout.CENTER);
+                break;
+            default:
+                break;
+            }
+            //layerdPane.add((Component) member, GraphicController.getController().getProperty(member.getId(), __GO_CONSTRAINTS__));
+        } else if (uiContentPane.getLayout() instanceof GridBagLayout) {
+            
+        } else {
+            uiContentPane.add((Component) member);
+        }
     }
 
     /**
@@ -630,7 +678,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param member the member to remove
      */
     public void removeMember(SwingViewObject member) {
-        layerdPane.remove((Component) member);
+        uiContentPane.remove((Component) member);
     }
 
     /**
@@ -1297,6 +1345,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     public void setBackground(double red, double green, double blue) {
         Color newColor = new Color((float) red, (float) green, (float) blue);
         contentPane.setBackground(red, green, blue);
+        uiContentPane.setBackground(newColor);
         scrolling.setBackground(red, green, blue);
         setBackground(newColor);
     }
@@ -1516,6 +1565,33 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
                 break;
             case __GO_VISIBLE__ :
                 layerdPane.setVisible((Boolean) value);
+                break;
+            case __GO_INFOBAR_VISIBLE__ :
+                getInfoBar().setVisible((Boolean) value);
+                break;
+            case __GO_TOOLBAR_VISIBLE__ :
+                getToolBar().setVisible((Boolean) value);
+                break;
+            case __GO_MENUBAR_VISIBLE__ :
+                getMenuBar().setVisible((Boolean) value);
+                break;
+            case __GO_RESIZE__ :
+                getParentWindow().setResizable((Boolean) value);
+                break;
+            case __GO_LAYOUT__ :
+                LayoutType newLayout = LayoutType.intToEnum((Integer) value);
+                switch (newLayout) {
+                case BORDER :
+                    System.err.println("{SwingScilabTab} add Layout BORDER");
+                    uiContentPane.setLayout(new BorderLayout());                    
+                    break;
+                case GRID :
+                    uiContentPane.setLayout(new GridBagLayout());
+                case NONE :
+                default:
+                    uiContentPane.setLayout(null);
+                    break;
+                }
                 break;
         }
     }
