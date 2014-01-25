@@ -65,12 +65,17 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
 
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.uicontrol.frame.border.FrameBorder;
 import org.scilab.modules.graphic_objects.utils.LayoutType;
 
 /**
@@ -292,6 +297,9 @@ public class Uicontrol extends GraphicObject {
     private Integer[] gridOptPadding = new Integer[] {0, 0};
     private Integer[] borderOptPadding = new Integer[] {0, 0};
 
+    /** border options */
+    private Integer frameBorder = 0;
+
     /**
      * All uicontrol properties
      */
@@ -335,7 +343,8 @@ public class Uicontrol extends GraphicObject {
         BORDER_POSITION,
         GRIDOPT_GRID,
         GRIDOPT_PADDING,
-        BORDEROPT_PADDING
+        BORDEROPT_PADDING,
+        FRAMEBORDER
     };
 
     /**
@@ -534,6 +543,8 @@ public class Uicontrol extends GraphicObject {
                 return UicontrolProperty.GRIDOPT_PADDING;
             case __GO_BORDER_OPT_PADDING__:
                 return UicontrolProperty.BORDEROPT_PADDING;
+            case __GO_UI_FRAME_BORDER__:
+                return UicontrolProperty.FRAMEBORDER;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -621,6 +632,8 @@ public class Uicontrol extends GraphicObject {
             return getGridOptPadding();
         } else if (property == UicontrolProperty.BORDEROPT_PADDING) {
             return getBorderOptPadding();
+        } else if (property == UicontrolProperty.FRAMEBORDER) {
+            return getFrameBorder();
         } else {
             return super.getProperty(property);
         }
@@ -705,6 +718,8 @@ public class Uicontrol extends GraphicObject {
                 return setGridOptPadding((Integer[]) value);
             case BORDEROPT_PADDING:
                 return setBorderOptPadding((Integer[]) value);
+            case FRAMEBORDER:
+                return setFrameBorder((Integer) value);
             default:
                 return super.setProperty(property, value);
         }
@@ -1277,6 +1292,19 @@ public class Uicontrol extends GraphicObject {
         }
 
         return status;
+    }
+
+    public Integer getFrameBorder() {
+        return frameBorder;
+    }
+
+    public UpdateStatus setFrameBorder(Integer value) {
+        if (value.equals(frameBorder)) {
+            return UpdateStatus.NoChange;
+        }
+
+        frameBorder = value;
+        return UpdateStatus.Success;
     }
 
     public void accept(Visitor visitor) {

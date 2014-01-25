@@ -374,5 +374,18 @@ public class GraphicObjectProperties {
     public static final int __GO_GRID_OPT_GRID__ = 351;
     public static final int __GO_GRID_OPT_PADDING__ = 352;
     public static final int __GO_BORDER_OPT_PADDING__ = 353;
+    public static final int __GO_UI_FRAME_BORDER__ = 354;
+    public static final int __GO_UI_FRAME_BORDER_COLOR__ = 355;
+    public static final int __GO_UI_FRAME_BORDER_HIGHLIGHT_IN__ = 356;
+    public static final int __GO_UI_FRAME_BORDER_HIGHLIGHT_OUT__ = 357;
+    public static final int __GO_UI_FRAME_BORDER_IN_BORDER__ = 358;
+    public static final int __GO_UI_FRAME_BORDER_JUSTIFICATION__ = 359;
+    public static final int __GO_UI_FRAME_BORDER_OUT_BORDER__ = 360;
+    public static final int __GO_UI_FRAME_BORDER_ROUNDED__ = 361;
+    public static final int __GO_UI_FRAME_BORDER_SHADOW_IN__ = 362;
+    public static final int __GO_UI_FRAME_BORDER_SHADOW_OUT__ = 363;
+    public static final int __GO_UI_FRAME_BORDER_TITLE__ = 364;
+    public static final int __GO_UI_FRAME_BORDER_POSITION__ = 365;
+    public static final int __GO_UI_FRAME_BORDER_STYLE__ = 366;
 
 }

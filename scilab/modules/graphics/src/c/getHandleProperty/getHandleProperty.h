@@ -213,5 +213,6 @@ int get_layout_property(void* _pvCtx, int iObjUID);
 int get_constraints_property(void* _pvCtx, int iObjUID);
 int get_rect_property(void* _pvCtx, int iObjUID);
 int get_layout_options_property(void* _pvCtx, int iObjUID);
+int get_borders_property(void* _pvCtx, int iObjUID);
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

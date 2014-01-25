@@ -70,6 +70,7 @@ static const char* propertiesNames[] =
     "constraints",
     "layout",
     "margins"
+    "borders",
 };
 
 /*--------------------------------------------------------------------------*/

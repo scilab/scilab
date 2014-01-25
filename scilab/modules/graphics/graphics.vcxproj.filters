@@ -1262,6 +1262,12 @@
     <ClCompile Include="src\c\getHandleProperty\get_layout_options_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_borders_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_borders_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\Axes.h">
@@ -1421,6 +1427,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\c\getHandleProperty\FillType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\getHandleProperty\FrameBorderType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

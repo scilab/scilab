@@ -957,6 +957,11 @@ function %h_p(h)
                 l = l(1);
                 l = l(1);
             end
+            b = h.borders;
+            if type(b) == 16 then //tlist
+                b = b(1);
+                b = b(1);
+            end
             if h.style == "tabgroup" then
                 t=[t;
                 "Parent: "+h.parent.type
@@ -1027,6 +1032,7 @@ function %h_p(h)
                 "Layout = "+sci2exp(h.layout)
                 "Layout_options = "+sci2exp(l)
                 "Constraints = "+sci2exp(c)
+                "Borders = "+sci2exp(b)
                 "Margins = "+sci2exp(h.margins)
                 "Userdata = "+fmtuser_data(u)
                 "Tag = "+h.tag

@@ -225,26 +225,25 @@ public class XmlLoader extends DefaultHandler {
 
             for (int i = 0 ; i < attributes.getLength() ; i++) {
                 String val = attributes.getValue(i);
-                System.out.print(attributes.getLocalName(i) + ":");
+                //System.out.print(attributes.getLocalName(i) + ":");
                 if (val != null) {
-                    System.out.println(val);
+                    //System.out.println(val);
                     try {
                         Map<String, String> map = CSSParser.parseLine(val);
                         if (map.size() != 0) {
                             Set<Entry<String, String>> entries = map.entrySet();
                             for (Entry<String, String> entry : entries) {
-                                System.out.println(entry.getKey() + " -> " + entry.getValue());
+                                //System.out.println(entry.getKey() + " -> " + entry.getValue());
                             }
                         }
                     } catch (CSSParserException e) {
-                        //e.printStackTrace();
                     }
                 } else {
-                    System.out.println("");
+                    //System.out.println("");
                 }
             }
 
-            System.out.println("");
+            //System.out.println("");
 
 
 

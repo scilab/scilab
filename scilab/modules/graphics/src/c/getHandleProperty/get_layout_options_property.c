@@ -92,7 +92,7 @@ int get_layout_options_property(void* _pvCtx, int iObjUID)
         {
             char * variable_tlist[] = {"OptBorder", "padding"};
             returnedList * tList = createReturnedList(1, variable_tlist);
-            double pdblPadding[2];
+            double pdblPadding[2] = {0, 0};
             int* piPadding = NULL;
 
             getGraphicObjectProperty(iObjUID, __GO_BORDER_OPT_PADDING__, jni_int_vector, (void **)&piPadding);

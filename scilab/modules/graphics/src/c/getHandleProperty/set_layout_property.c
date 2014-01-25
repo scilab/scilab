@@ -72,7 +72,7 @@ int set_layout_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType,
     }
     else
     {
-        Scierror(999, _("Wrong value for '%s' property: %s, %s or %s expected.\n"), "layout", "'none'", "'grid'", "'border'");
+        Scierror(999, _("Wrong value for '%s' property: %s, %s or %s expected.\n"), "layout", "'none'", "'grid'", "'gridbag'", "'border'");
         return SET_PROPERTY_ERROR;
     }
 

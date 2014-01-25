@@ -240,7 +240,8 @@ static getHashTableCouple propertyGetTable[] =
     {"layout", get_layout_property},
     {"constraints", get_constraints_property},
     {"rect", get_rect_property},
-    {"layout_options", get_layout_options_property}
+    {"layout_options", get_layout_options_property},
+    {"borders", get_borders_property}
 };
 
 /*--------------------------------------------------------------------------*/
