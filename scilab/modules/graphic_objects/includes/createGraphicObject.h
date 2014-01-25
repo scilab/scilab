@@ -70,4 +70,5 @@ GRAPHIC_OBJECTS_IMPEXP int createLight(int parent, int type, BOOL visible, doubl
 GRAPHIC_OBJECTS_IMPEXP void initSubWinTo3d(int subwin, char* legend, int* flag, double alpha, double theta,
         double* ebox, double* x, int xSize, double* y, int ySize, double* z, int zSize);
 
+GRAPHIC_OBJECTS_IMPEXP int xmlload(char* xmlfile);
 #endif /* !__CREATEGRAPHICOBJECT_H__ */

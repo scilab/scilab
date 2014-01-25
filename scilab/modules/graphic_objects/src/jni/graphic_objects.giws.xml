@@ -13,6 +13,11 @@
             <parameter name="isline" type="int"/>
         </method>
     </object>
+    <object name="CallXmlLoader">
+        <method name="Load" returnType="int" modifier="static">
+            <parameter name="xmlFile" type="String"/>
+        </method>
+    </object>
     <object name="CallGraphicController">
         <method name="deleteGraphicObject" returnType="void" modifier="static">
             <parameter name="id" type="int"/>

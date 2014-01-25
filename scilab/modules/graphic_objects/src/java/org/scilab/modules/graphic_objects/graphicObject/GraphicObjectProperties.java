@@ -368,8 +368,9 @@ public class GraphicObjectProperties {
     public static final int __GO_UI_GRIDBAG_FILL__ = 345;
     public static final int __GO_UI_GRIDBAG_ANCHOR__ = 346;
     public static final int __GO_UI_GRIDBAG_PADDING__ = 347;
-    public static final int __GO_UI_GRID_GRID__ = 348;
-    public static final int __GO_UI_GRID_PADDING__ = 349;
     public static final int __GO_UI_BORDER_POSITION__ = 350;
+    public static final int __GO_GRID_OPT_GRID__ = 351;
+    public static final int __GO_GRID_OPT_PADDING__ = 352;
+    public static final int __GO_BORDER_OPT_PADDING__ = 353;
 
 }

@@ -34,6 +34,7 @@
 #include "BuildObjects.h"
 #include "api_scilab.h"
 #include "createGraphicObject.h"
+#include "expandPathVariable.h"
 
 /* DO NOT CHANGE ORDER !! */
 static const char* propertiesNames[] =
@@ -126,11 +127,63 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
     {
         /* Create a pushbutton in figure given as parameter */
         /* Or give focus to the uicontrol given as parameter */
+        int* piAddr = NULL;
+        int iType = 0;
 
-        if ((!checkInputArgumentType(pvApiCtx, 1, sci_handles)))
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+        if (sciErr.iErr)
+        {
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+            return 0;
+        }
+
+        if (isHandleType(pvApiCtx, piAddr) == FALSE && isStringType(pvApiCtx, piAddr) == FALSE)
         {
             OverLoad(1);
             return FALSE;
+        }
+        else if (isStringType(pvApiCtx, piAddr))
+        {
+            char* pstXmlfile = NULL;
+            char* pstExpandedPath = NULL;
+
+            if (isScalar(pvApiCtx, piAddr) == 0)
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+                return FALSE;
+            }
+
+            if (getAllocatedSingleString(pvApiCtx, piAddr, &pstXmlfile))
+            {
+                freeAllocatedSingleString(pstXmlfile);
+                Scierror(999, _("%s: No more memory.\n"), fname);
+                return FALSE;
+            }
+
+            pstExpandedPath = expandPathVariable(pstXmlfile);
+            freeAllocatedSingleString(pstXmlfile);
+            iUicontrol = xmlload(pstExpandedPath);
+            if (iUicontrol < 1)
+            {
+                Scierror(999, _("%s: can not read file %s.\n"), fname, pstExpandedPath);
+                FREE(pstExpandedPath);
+                return 0;
+            }
+            FREE(pstExpandedPath);
+            GraphicHandle = getHandle(iUicontrol);
+
+            /* Create return variable */
+            if (createScalarHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, GraphicHandle))
+            {
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 1;
+            }
+
+            AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+            ReturnArguments(pvApiCtx);
+            return TRUE;
+
+
         }
         else /* Get parent ID */
         {
@@ -314,7 +367,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                 if (iParentType != __GO_FIGURE__)
                 {
                     getGraphicObjectProperty(iParentUID, __GO_STYLE__, jni_int, (void **)&piParentStyle);
-                    if (iParentType != __GO_UICONTROL__ || iParentStyle != __GO_UI_FRAME__)
+                    if (iParentType != __GO_UICONTROL__ || (iParentStyle != __GO_UI_FRAME__ && iParentStyle != __GO_UI_TAB__))
                     {
                         Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
                                  "Frame uicontrol");

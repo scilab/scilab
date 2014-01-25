@@ -63,37 +63,8 @@ int get_constraints_property(void* _pvCtx, int iObjUID)
         break;
         case LAYOUT_GRID :
         {
-            char * variable_tlist[] = {"GridConstraints", "grid", "padding"};
-            returnedList * tList = createReturnedList(2, variable_tlist);
-            double pdblGrid[2];
-            double pdblPadding[2];
-            int* piGrid = NULL;
-            int* piPadding = NULL;
-
-            getGraphicObjectProperty(iObjUID, __GO_UI_GRID_GRID__, jni_int_vector, (void **)&piGrid);
-            if (pdblGrid == NULL)
-            {
-                Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
-                return -1;
-            }
-
-            getGraphicObjectProperty(iObjUID, __GO_UI_GRID_PADDING__, jni_int_vector, (void **)&piPadding);
-            if (pdblGrid == NULL)
-            {
-                Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
-                return -1;
-            }
-
-            //convert to double
-            pdblGrid[0] = (double)piGrid[0];
-            pdblGrid[1] = (double)piGrid[1];
-
-            pdblPadding[0] = (double)piPadding[0];
-            pdblPadding[1] = (double)piPadding[1];
-
-            //add to TList
-            addRowVectorToReturnedList(tList, pdblGrid, 2);
-            addRowVectorToReturnedList(tList, pdblPadding, 2);
+            char * variable_tlist[] = {"GridConstraints"};
+            returnedList * tList = createReturnedList(0, variable_tlist);
             destroyReturnedList(tList);
         }
         break;

@@ -31,7 +31,6 @@ int get_rect_property(void* _pvCtx, int iObjUID)
 {
     double * rect = NULL;
     double _rect[4];
-    double x;
 
     getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_MATPLOT_BOUNDS__, jni_double_vector, (void **)&rect);
 

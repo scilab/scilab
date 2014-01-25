@@ -240,7 +240,8 @@ static setHashTableCouple propertySetTable[] =
     {"dockable", set_dockable_property},
     {"layout", set_layout_property},
     {"constraints", set_constraints_property},
-    {"rect", set_rect_property}
+    {"rect", set_rect_property},
+    {"layout_options", set_layout_options_property}
 };
 
 /*--------------------------------------------------------------------------*/

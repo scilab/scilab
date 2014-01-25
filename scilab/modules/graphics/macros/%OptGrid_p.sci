@@ -5,7 +5,8 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
-function %GridCons_p(t)
-    printf("Grid Layout\n");
-    printf("  No option\n");
+function %OptGrid_p(t)
+    printf("Grid Layout Options\n");
+    printf("  Grid    : %s\n", sci2exp(t.grid));
+    printf("  Padding : %s\n", sci2exp(t.padding));
 endfunction

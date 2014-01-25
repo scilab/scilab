@@ -123,51 +123,7 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
         }
         else if (strcmp(pstType, "GridConstraints") == 0)
         {
-            //arg2 -> double 1x2 -> int 1*2
-            //arg3 -> double 1x2 -> int 1*2
-            int* piAddr2 = NULL;
-            int iRows2 = 0;
-            int iCols2 = 0;
-            double* pdblGrid = NULL;
-            int piGrid[2];
-
-            int* piAddr3 = NULL;
-            int iRows3 = 0;
-            int iCols3 = 0;
-            double* pdblPadding = NULL;
-            int piPadding[2];
-
-            sciErr = getListItemAddress(_pvCtx, piAddrList, 2, &piAddr2);
-            if (sciErr.iErr)
-            {
-                return SET_PROPERTY_ERROR;
-            }
-
-            sciErr = getMatrixOfDouble(_pvCtx, piAddr2, &iRows2, &iCols2, &pdblGrid);
-            if (sciErr.iErr)
-            {
-                return SET_PROPERTY_ERROR;
-            }
-
-            sciErr = getListItemAddress(_pvCtx, piAddrList, 3, &piAddr3);
-            if (sciErr.iErr)
-            {
-                return SET_PROPERTY_ERROR;
-            }
-
-            sciErr = getMatrixOfDouble(_pvCtx, piAddr3, &iRows3, &iCols3, &pdblPadding);
-            if (sciErr.iErr)
-            {
-                return SET_PROPERTY_ERROR;
-            }
-
-            piGrid[0] = (int)pdblGrid[0];
-            piGrid[1] = (int)pdblGrid[1];
-            piPadding[0] = (int)pdblPadding[0];
-            piPadding[1] = (int)pdblPadding[1];
-
-            setGraphicObjectProperty(iObjUID, __GO_UI_GRID_GRID__, piGrid, jni_int_vector, 2);
-            setGraphicObjectProperty(iObjUID, __GO_UI_GRID_PADDING__, piPadding, jni_int_vector, 2);
+            return clearConstraints(iObjUID);
         }
         else if (strcmp(pstType, "GridBagConstraints") == 0)
         {
@@ -362,26 +318,12 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
 int clearConstraints(int iObjUID)
 {
     //reset all constraints data in model
-    int pi[6] = {0, 0, 0, 0, 0, 0};
+    int pi[4] = {0, 0, 0, 0};
     double pdbl[2] = {0, 0};
     int iPos = BORDER_CENTER;
     int iFill = FILL_NONE;
     int iAnchor = ANCHOR_CENTER;
     BOOL status = FALSE;
-
-    status = setGraphicObjectProperty(iObjUID, __GO_UI_GRID_GRID__, pi, jni_int_vector, 2);
-    if (status != TRUE)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "contraints");
-        return SET_PROPERTY_ERROR;
-    }
-
-    status = setGraphicObjectProperty(iObjUID, __GO_UI_GRID_PADDING__, pi, jni_int_vector, 2);
-    if (status != TRUE)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "contraints");
-        return SET_PROPERTY_ERROR;
-    }
 
     status = setGraphicObjectProperty(iObjUID, __GO_UI_BORDER_POSITION__, &iPos, jni_int, 1);
     if (status != TRUE)

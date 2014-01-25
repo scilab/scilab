@@ -297,6 +297,11 @@ function %h_p(h)
             // =====================================================================
 
         case "Figure"
+            l = h.layout_options;
+            if type(l) == 16 then //tlist
+                l = l(1);
+                l = l(1);
+            end
             u=h.user_data
             t=[t;
             "children: "+fmtchildren(h.children)
@@ -329,6 +334,7 @@ function %h_p(h)
             "infobar_visible = "+sci2exp(h.infobar_visible)
             "dockable = "+sci2exp(h.dockable)
             "layout = "+sci2exp(h.layout)
+            "layout_options = "+sci2exp(l)
             "tag = "+sci2exp(h.tag)
             ]
 
@@ -941,6 +947,16 @@ function %h_p(h)
         case "uicontrol"
 
             u=h.user_data;
+            c = h.constraints;
+            if type(c) == 16 then //tlist
+                c = c(1);
+                c = c(1);
+            end
+            l = h.layout_options;
+            if type(l) == 16 then //tlist
+                l = l(1);
+                l = l(1);
+            end
             if h.style == "tabgroup" then
                 t=[t;
                 "Parent: "+h.parent.type
@@ -953,6 +969,7 @@ function %h_p(h)
                 "Callback = "+h.callback
                 "Callback_Type = "+sci2exp(h.callback_type,0)
                 "Layout = "+sci2exp(h.layout)
+                "Layout_options = "+sci2exp(l)
                 "Constraints = "+sci2exp(h.constraints)
                 "Margins = "+sci2exp(h.margins)
                 "Value = "+sci2exp(h.value)
@@ -973,17 +990,13 @@ function %h_p(h)
                 "Callback = "+h.callback
                 "Callback_Type = "+sci2exp(h.callback_type,0)
                 "Layout = "+sci2exp(h.layout)
+                "Layout_options = "+sci2exp(l)
                 "Constraints = "+sci2exp(h.constraints)
                 "Margins = "+sci2exp(h.margins)
                 "Userdata = "+fmtuser_data(u)
                 "Tag = "+h.tag
                 ]
             else
-                c = h.constraints;
-                if type(c) == 16 then //tlist
-                    c = c(1);
-                    c = c(1);
-                end
                 t=[t;
                 "Parent: "+h.parent.type
                 "Children: "+fmtchildren(h.children)
@@ -1012,6 +1025,7 @@ function %h_p(h)
                 "Callback = "+h.callback
                 "Callback_Type = "+sci2exp(h.callback_type,0)
                 "Layout = "+sci2exp(h.layout)
+                "Layout_options = "+sci2exp(l)
                 "Constraints = "+sci2exp(c)
                 "Margins = "+sci2exp(h.margins)
                 "Userdata = "+fmtuser_data(u)

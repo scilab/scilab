@@ -299,6 +299,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_labels_font_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_labels_font_size_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_labels_font_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_layout_options_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_layout_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_legend_location_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_light_type_property.c" />
@@ -352,6 +353,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\set_grid_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_grid_thickness_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_infobar_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_layout_options_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_layout_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_light_type_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_mark_offset_property.c" />

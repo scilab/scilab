@@ -16,12 +16,15 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTORESIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BACKGROUND__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CLOSEREQUESTFCN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COLORMAP_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COLORMAP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DOCKABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_NAME__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFOBAR_VISIBLE__;
@@ -57,7 +60,8 @@ public class Figure extends GraphicObject {
     private enum FigureProperty {
         INFOMESSAGE, COLORMAP, COLORMAPSIZE, BACKGROUND, ROTATIONTYPE,
         RESIZEFCN, CLOSEREQUESTFCN, RESIZE, TOOLBAR, TOOLBAR_VISIBLE,
-        MENUBAR, MENUBAR_VISIBLE, INFOBAR_VISIBLE, DOCKABLE, LAYOUT, LAYOUT_SET
+        MENUBAR, MENUBAR_VISIBLE, INFOBAR_VISIBLE, DOCKABLE, LAYOUT, LAYOUT_SET,
+        GRIDOPT_GRID, GRIDOPT_PADDING, BORDEROPT_PADDING
     };
 
     /** Specifies whether rotation applies to a single subwindow or to all the figure's subwindows */
@@ -393,6 +397,11 @@ public class Figure extends GraphicObject {
     /** layout */
     private LayoutType layout;
 
+    /** layout options */
+    private Integer[] gridOptGrid = new Integer[2];
+    private Integer[] gridOptPadding = new Integer[2];
+    private Integer[] borderOptPadding = new Integer[2];
+
     /** Constructor */
     public Figure() {
         super();
@@ -505,6 +514,12 @@ public class Figure extends GraphicObject {
                 return FigureProperty.LAYOUT;
             case __GO_LAYOUT_SET__ :
                 return FigureProperty.LAYOUT_SET;
+            case __GO_GRID_OPT_GRID__ :
+                return FigureProperty.GRIDOPT_GRID;
+            case __GO_GRID_OPT_PADDING__ :
+                return FigureProperty.GRIDOPT_PADDING;
+            case __GO_BORDER_OPT_PADDING__ :
+                return FigureProperty.BORDEROPT_PADDING;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -574,6 +589,12 @@ public class Figure extends GraphicObject {
             return getLayout();
         } else if (property == FigureProperty.LAYOUT_SET) {
             return isLayoutSettable();
+        } else if (property == FigureProperty.GRIDOPT_GRID) {
+            return getGridOptGrid();
+        } else if (property == FigureProperty.GRIDOPT_PADDING) {
+            return getGridOptPadding();
+        } else if (property == FigureProperty.BORDEROPT_PADDING) {
+            return getBorderOptPadding();
         } else {
             return super.getProperty(property);
         }
@@ -618,6 +639,12 @@ public class Figure extends GraphicObject {
                     return setDockable((Boolean) value);
                 case LAYOUT:
                     return setLayout((Integer) value);
+                case GRIDOPT_GRID:
+                    return setGridOptGrid((Integer[]) value);
+                case GRIDOPT_PADDING:
+                    return setGridOptPadding((Integer[]) value);
+                case BORDEROPT_PADDING:
+                    return setBorderOptPadding((Integer[]) value);
                 default:
                     break;
             }
@@ -748,6 +775,7 @@ public class Figure extends GraphicObject {
      * @return the axes size
      */
     public Integer[] getAxesSize() {
+        //System.out.println("getAxesSize : (" + canvas.axesSize[0] + "," + canvas.axesSize[1] + ")");
         Integer[] retAxesSize = new Integer[2];
 
         retAxesSize[0] = canvas.axesSize[0];
@@ -760,6 +788,7 @@ public class Figure extends GraphicObject {
      * @param axesSize the axes size to set
      */
     public UpdateStatus setAxesSize(Integer[] axesSize) {
+        //System.out.println("setAxesSize : (" + axesSize[0] + "," + axesSize[1] + ")");
         if (Arrays.equals(canvas.axesSize, axesSize)) {
             //must return Success to broadcast information
             return UpdateStatus.Success;
@@ -823,6 +852,7 @@ public class Figure extends GraphicObject {
      * @return the figure size
      */
     public Integer[] getSize() {
+        //System.out.println("getSize : (" + dimensions.size[0] + "," + dimensions.size[1] + ")");
         Integer[] retSize = new Integer[2];
 
         retSize[0] = dimensions.size[0];
@@ -835,6 +865,7 @@ public class Figure extends GraphicObject {
      * @param size the size to set
      */
     public UpdateStatus setSize(Integer[] size) {
+        //System.out.println("setSize : (" + size[0] + "," + size[1] + ")");
         if (Arrays.equals(dimensions.size, size)) {
             return UpdateStatus.NoChange;
         }
@@ -1290,6 +1321,67 @@ public class Figure extends GraphicObject {
 
         return UpdateStatus.Fail;
     }
+
+    public Integer[] getBorderOptPadding() {
+        return borderOptPadding;
+    }
+
+    public UpdateStatus setBorderOptPadding(Integer[] value) {
+        UpdateStatus status = UpdateStatus.NoChange;
+        if (borderOptPadding.length != value.length) {
+            return UpdateStatus.Fail;
+        }
+
+        for (int i = 0 ; i < value.length ; i++) {
+            if (borderOptPadding[i] != value[i]) {
+                borderOptPadding[i] = value[i];
+                status = UpdateStatus.Success;
+            }
+        }
+
+        return status;
+    }
+
+    public Integer[] getGridOptPadding() {
+        return gridOptPadding;
+    }
+
+    public UpdateStatus setGridOptPadding(Integer[] value) {
+        UpdateStatus status = UpdateStatus.NoChange;
+        if (gridOptPadding.length != value.length) {
+            return UpdateStatus.Fail;
+        }
+
+        for (int i = 0 ; i < value.length ; i++) {
+            if (gridOptPadding[i] != value[i]) {
+                gridOptPadding[i] = value[i];
+                status = UpdateStatus.Success;
+            }
+        }
+
+        return status;
+    }
+
+    public Integer[] getGridOptGrid() {
+        return gridOptGrid;
+    }
+
+    public UpdateStatus setGridOptGrid(Integer[] value) {
+        UpdateStatus status = UpdateStatus.NoChange;
+        if (gridOptGrid.length != value.length) {
+            return UpdateStatus.Fail;
+        }
+
+        for (int i = 0 ; i < value.length ; i++) {
+            if (gridOptGrid[i] != value[i]) {
+                gridOptGrid[i] = value[i];
+                status = UpdateStatus.Success;
+            }
+        }
+
+        return status;
+    }
+
 
     /**
      * @return Type as String

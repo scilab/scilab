@@ -331,6 +331,8 @@ src/c/getHandleProperty/set_layout_property.c \
 src/c/getHandleProperty/get_constraints_property.c \
 src/c/getHandleProperty/set_constraints_property.c \
 src/c/getHandleProperty/set_rect_property.c \
+src/c/getHandleProperty/get_layout_options_property.c \
+src/c/getHandleProperty/set_layout_options_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \

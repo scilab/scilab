@@ -261,6 +261,7 @@
     <ClCompile Include="..\cpp\createGraphicObject.cpp" />
     <ClCompile Include="..\cpp\Data3D.cpp" />
     <ClCompile Include="..\cpp\DataLoader.cpp" />
+    <ClCompile Include="..\jni\CallXmlLoader.cpp" />
     <ClCompile Include="..\jni\DataLoader_wrap.c" />
     <ClCompile Include="..\cpp\dataModel.cpp" />
     <ClCompile Include="..\cpp\DecompositionUtils.cpp" />
@@ -325,6 +326,7 @@
     <ClInclude Include="..\..\includes\PolylineDecomposer.hxx" />
     <ClInclude Include="..\..\includes\TriangleMeshData.hxx" />
     <ClInclude Include="..\..\includes\TriangleMeshFecDataDecomposer.hxx" />
+    <ClInclude Include="..\jni\CallXmlLoader.hxx" />
     <ClInclude Include="..\jni\GraphicObjectBuilder.hxx" />
   </ItemGroup>
   <ItemGroup>

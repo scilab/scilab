@@ -5,7 +5,10 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
-function %GridCons_p(t)
-    printf("Grid Layout\n");
-    printf("  No option\n");
+function h = %BorderCo_i_h(i,v,h)
+    if type(i)==10 then
+        set(h,i,v)
+    else
+        error(msprintf(_("%s: Wrong type for input argument #%d.\n"),"%BorderCo_i_h",1));
+    end
 endfunction

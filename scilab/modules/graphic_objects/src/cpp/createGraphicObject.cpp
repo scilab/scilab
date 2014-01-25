@@ -17,6 +17,7 @@ extern "C"
 }
 
 #include "CallGraphicController.hxx"
+#include "CallXmlLoader.hxx"
 #include "Builder.hxx"
 #include "DataController.hxx"
 
@@ -188,4 +189,9 @@ int createLight(int parent, int type, BOOL visible, double* pos, double* dir, do
                                 ambient, ambient == NULL ? 0 : 3,
                                 diffuse, diffuse == NULL ? 0 : 3,
                                 specular, specular == NULL ? 0 : 3);
+}
+
+int xmlload(char* xmlfile)
+{
+    return CallXmlLoader::Load(getScilabJavaVM(), xmlfile);
 }

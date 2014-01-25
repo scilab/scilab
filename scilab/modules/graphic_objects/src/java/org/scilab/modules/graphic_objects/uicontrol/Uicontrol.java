@@ -36,8 +36,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRIDBAG_GRID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRIDBAG_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRIDBAG_WEIGHT__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRID_GRID__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRID_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP_SIZE__;
@@ -64,6 +62,9 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
 
 import java.util.Arrays;
 import java.util.StringTokenizer;
@@ -71,6 +72,8 @@ import java.util.StringTokenizer;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.utils.LayoutType;
+
+import sun.font.EAttribute;
 
 /**
  * @author Bruno JOFRET
@@ -95,6 +98,31 @@ public class Uicontrol extends GraphicObject {
                     return BorderLayoutType.EAST;
             }
         }
+
+        public static BorderLayoutType stringToEnum(String value) {
+            if (value == null || value.equals("")) {
+                return CENTER;
+            }
+
+            char[] chars = value.toCharArray();
+            if (chars[0] == 'n' || chars[0] == 'N') {
+                return NORTH;
+            }
+
+            if (chars[0] == 's' || chars[0] == 'S') {
+                return SOUTH;
+            }
+
+            if (chars[0] == 'e' || chars[0] == 'E') {
+                return EAST;
+            }
+
+            if (chars[0] == 'w' || chars[0] == 'W') {
+                return WEST;
+            }
+
+            return CENTER;
+        }
     }
 
     public enum FillType {
@@ -112,10 +140,32 @@ public class Uicontrol extends GraphicObject {
                     return FillType.BOTH;
             }
         }
+
+        public static FillType stringToEnum(String value) {
+            if (value == null || value.equals("")) {
+                return NONE;
+            }
+
+            char[] chars = value.toCharArray();
+            if (chars[0] == 'v' || chars[0] == 'V') {
+                return VERTICAL;
+            }
+
+            if (chars[0] == 'h' || chars[0] == 'H') {
+                return HORIZONTAL;
+            }
+
+            if (chars[0] == 'b' || chars[0] == 'B') {
+                return BOTH;
+            }
+
+            return NONE;
+        }
     }
 
     public enum AnchorType {
         CENTER, UPPER, LOWER, RIGHT, LEFT, UPPER_RIGHT, UPPER_LEFT, LOWER_RIGHT, LOWER_LEFT;
+        //c,e,w,n,s,ne,nw,se,sw
         public static AnchorType intToEnum(Integer value) {
             switch (value) {
                 default:
@@ -138,6 +188,51 @@ public class Uicontrol extends GraphicObject {
                 case 8:
                     return LOWER_LEFT;
             }
+        }
+
+        public static AnchorType stringToEnum(String value) {
+            if (value == null || value.equals("")) {
+                return CENTER;
+            }
+
+            char[] chars = value.toCharArray();
+            if (chars[0] == 'e' || chars[0] == 'E') {
+                return RIGHT;
+            }
+
+            if (chars[0] == 'w' || chars[0] == 'W') {
+                return LEFT;
+            }
+
+            if (chars[0] == 'n' || chars[0] == 'N') {
+                if (chars.length == 1) {
+                    return UPPER;
+                }
+
+                if (chars[1] == 'e' || chars[1] == 'E') {
+                    return UPPER_RIGHT;
+                }
+
+                if (chars[1] == 'w' || chars[1] == 'W') {
+                    return UPPER_LEFT;
+                }
+            }
+
+            if (chars[0] == 's' || chars[0] == 'S') {
+                if (chars.length == 1) {
+                    return LOWER;
+                }
+
+                if (chars[1] == 'e' || chars[1] == 'E') {
+                    return LOWER_RIGHT;
+                }
+
+                if (chars[1] == 'w' || chars[1] == 'W') {
+                    return LOWER_LEFT;
+                }
+            }
+
+            return CENTER;
         }
     }
 
@@ -196,6 +291,11 @@ public class Uicontrol extends GraphicObject {
     private Integer[] gridPadding = new Integer[] {0, 0};
     private BorderLayoutType borderPosition = BorderLayoutType.CENTER;
 
+    /** layout options */
+    private Integer[] gridOptGrid = new Integer[2];
+    private Integer[] gridOptPadding = new Integer[2];
+    private Integer[] borderOptPadding = new Integer[2];
+
     /**
      * All uicontrol properties
      */
@@ -236,9 +336,10 @@ public class Uicontrol extends GraphicObject {
         GRIDBAG_FILL,
         GRIDBAG_ANCHOR,
         GRIDBAG_PADDING,
-        GRID_GRID,
-        GRID_PADDING,
-        BORDER_POSITION
+        BORDER_POSITION,
+        GRIDOPT_GRID,
+        GRIDOPT_PADDING,
+        BORDEROPT_PADDING
     };
 
     /**
@@ -428,12 +529,14 @@ public class Uicontrol extends GraphicObject {
                 return UicontrolProperty.GRIDBAG_ANCHOR;
             case __GO_UI_GRIDBAG_PADDING__:
                 return UicontrolProperty.GRIDBAG_PADDING;
-            case __GO_UI_GRID_GRID__:
-                return UicontrolProperty.GRID_GRID;
-            case __GO_UI_GRID_PADDING__:
-                return UicontrolProperty.GRID_PADDING;
             case __GO_UI_BORDER_POSITION__:
                 return UicontrolProperty.BORDER_POSITION;
+            case __GO_GRID_OPT_GRID__:
+                return UicontrolProperty.GRIDOPT_GRID;
+            case __GO_GRID_OPT_PADDING__:
+                return UicontrolProperty.GRIDOPT_PADDING;
+            case __GO_BORDER_OPT_PADDING__:
+                return UicontrolProperty.BORDEROPT_PADDING;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -513,12 +616,14 @@ public class Uicontrol extends GraphicObject {
             return getGridBagAnchor();
         } else if (property == UicontrolProperty.GRIDBAG_PADDING) {
             return getGridBagPadding();
-        } else if (property == UicontrolProperty.GRID_GRID) {
-            return getGridGrid();
-        } else if (property == UicontrolProperty.GRID_PADDING) {
-            return getGridPadding();
         } else if (property == UicontrolProperty.BORDER_POSITION) {
             return getBorderPosition();
+        } else if (property == UicontrolProperty.GRIDOPT_GRID) {
+            return getGridOptGrid();
+        } else if (property == UicontrolProperty.GRIDOPT_PADDING) {
+            return getGridOptPadding();
+        } else if (property == UicontrolProperty.BORDEROPT_PADDING) {
+            return getBorderOptPadding();
         } else {
             return super.getProperty(property);
         }
@@ -595,12 +700,14 @@ public class Uicontrol extends GraphicObject {
                 return setGridBagAnchor((Integer) value);
             case GRIDBAG_PADDING:
                 return setGridBagPadding((Integer[]) value);
-            case GRID_GRID:
-                return setGridGrid((Integer[]) value);
-            case GRID_PADDING:
-                return setGridPadding((Integer[]) value);
             case BORDER_POSITION:
                 return setBorderPosition((Integer) value);
+            case GRIDOPT_GRID:
+                return setGridOptGrid((Integer[]) value);
+            case GRIDOPT_PADDING:
+                return setGridOptPadding((Integer[]) value);
+            case BORDEROPT_PADDING:
+                return setBorderOptPadding((Integer[]) value);
             default:
                 return super.setProperty(property, value);
         }
@@ -1013,46 +1120,6 @@ public class Uicontrol extends GraphicObject {
         return UpdateStatus.Success;
     }
 
-    public Integer[] getGridPadding() {
-        return gridPadding;
-    }
-
-    public UpdateStatus setGridPadding(Integer[] value) {
-        UpdateStatus status = UpdateStatus.NoChange;
-        if (gridPadding.length != value.length) {
-            return UpdateStatus.Fail;
-        }
-
-        for (int i = 0 ; i < value.length ; i++) {
-            if (gridPadding[i] != value[i]) {
-                gridPadding[i] = value[i];
-                status = UpdateStatus.Success;
-            }
-        }
-
-        return status;
-    }
-
-    public Integer[] getGridGrid() {
-        return gridGrid;
-    }
-
-    public UpdateStatus setGridGrid(Integer[] value) {
-        UpdateStatus status = UpdateStatus.NoChange;
-        if (gridGrid.length != value.length) {
-            return UpdateStatus.Fail;
-        }
-
-        for (int i = 0 ; i < value.length ; i++) {
-            if (gridGrid[i] != value[i]) {
-                gridGrid[i] = value[i];
-                status = UpdateStatus.Success;
-            }
-        }
-
-        return status;
-    }
-
     public Integer[] getGridBagPadding() {
         return gridbagPadding;
     }
@@ -1148,6 +1215,66 @@ public class Uicontrol extends GraphicObject {
         for (int i = 0 ; i < value.length ; i++) {
             if (gridbagGrid[i] != value[i]) {
                 gridbagGrid[i] = value[i];
+                status = UpdateStatus.Success;
+            }
+        }
+
+        return status;
+    }
+
+    public Integer[] getBorderOptPadding() {
+        return borderOptPadding;
+    }
+
+    public UpdateStatus setBorderOptPadding(Integer[] value) {
+        UpdateStatus status = UpdateStatus.NoChange;
+        if (borderOptPadding.length != value.length) {
+            return UpdateStatus.Fail;
+        }
+
+        for (int i = 0 ; i < value.length ; i++) {
+            if (borderOptPadding[i] != value[i]) {
+                borderOptPadding[i] = value[i];
+                status = UpdateStatus.Success;
+            }
+        }
+
+        return status;
+    }
+
+    public Integer[] getGridOptPadding() {
+        return gridOptPadding;
+    }
+
+    public UpdateStatus setGridOptPadding(Integer[] value) {
+        UpdateStatus status = UpdateStatus.NoChange;
+        if (gridOptPadding.length != value.length) {
+            return UpdateStatus.Fail;
+        }
+
+        for (int i = 0 ; i < value.length ; i++) {
+            if (gridOptPadding[i] != value[i]) {
+                gridOptPadding[i] = value[i];
+                status = UpdateStatus.Success;
+            }
+        }
+
+        return status;
+    }
+
+    public Integer[] getGridOptGrid() {
+        return gridOptGrid;
+    }
+
+    public UpdateStatus setGridOptGrid(Integer[] value) {
+        UpdateStatus status = UpdateStatus.NoChange;
+        if (gridOptGrid.length != value.length) {
+            return UpdateStatus.Fail;
+        }
+
+        for (int i = 0 ; i < value.length ; i++) {
+            if (gridOptGrid[i] != value[i]) {
+                gridOptGrid[i] = value[i];
                 status = UpdateStatus.Success;
             }
         }
