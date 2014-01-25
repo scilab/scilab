@@ -620,6 +620,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClInclude Include="includes\Champ.h" />
     <ClInclude Include="includes\Light.h" />
     <ClInclude Include="src\c\CheckScilabXgc.h" />
+    <ClInclude Include="src\c\getHandleProperty\AnchorType.h" />
     <ClInclude Include="src\c\getHandleProperty\BarType.h" />
     <ClInclude Include="src\c\getHandleProperty\BorderLayoutType.h" />
     <ClInclude Include="src\c\getHandleProperty\CheckTicksProperty.h" />
@@ -631,6 +632,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClInclude Include="includes\dynlib_graphics.h" />
     <ClInclude Include="src\c\Fec.h" />
     <ClInclude Include="includes\Format.h" />
+    <ClInclude Include="src\c\getHandleProperty\FillType.h" />
     <ClInclude Include="src\c\getHandleProperty\get_data_property.h" />
     <ClInclude Include="src\c\getHandleProperty\LayoutType.h" />
     <ClInclude Include="src\c\get_ticks_utils.h" />

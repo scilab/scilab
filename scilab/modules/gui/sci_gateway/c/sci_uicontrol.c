@@ -429,23 +429,38 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
         if (propertiesValuesIndices[28] != NOT_FOUND)
         {
             int* piAddr = NULL;
-            char* pstValue = NULL;
+            int iType = 0;
+
             sciErr = getVarAddressFromPosition(pvApiCtx, propertiesValuesIndices[28], &piAddr);
-            if (getAllocatedSingleString(pvApiCtx, piAddr, &pstValue))
+            if (sciErr.iErr != 0)
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, propertiesValuesIndices[inputIndex]);
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                return 0;
+            }
+
+            sciErr = getVarType(pvApiCtx, piAddr, &iType);
+            if (sciErr.iErr != 0)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                return 0;
+            }
+
+            if (iType != sci_tlist && isEmptyMatrix(pvApiCtx, piAddr) == FALSE)
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: A tlist expected.\n"), fname, propertiesValuesIndices[inputIndex]);
                 return 1;
             }
 
-            nbRow = (int)strlen(pstValue);
-            nbCol = 1;
-            setStatus = callSetProperty(pvApiCtx, getObjectFromHandle(GraphicHandle), pstValue, sci_strings, nbRow, nbCol, (char*)propertiesNames[28]);
-            freeAllocatedSingleString(pstValue);
+            setStatus = callSetProperty(pvApiCtx, getObjectFromHandle(GraphicHandle), piAddr, iType, 0, 0, (char*)propertiesNames[28]);
             if (setStatus == SET_PROPERTY_ERROR)
             {
                 Scierror(999, _("%s: Could not set property '%s'.\n"), fname, (char*)propertiesNames[28]);
                 return FALSE;
             }
+
+            propertiesValuesIndices[28] = NOT_FOUND;
         }
 
         /* If no parent given then the current figure is the parent */

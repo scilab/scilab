@@ -1411,6 +1411,12 @@
     <ClInclude Include="src\c\getHandleProperty\BorderLayoutType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\c\getHandleProperty\AnchorType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\getHandleProperty\FillType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Gui_Import.def">

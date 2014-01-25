@@ -10,11 +10,11 @@
  *
  */
 
-enum LayoutType
+enum FillType
 {
-    LAYOUT_NONE = 0,
-    LAYOUT_GRIDBAG,
-    LAYOUT_GRID,
-    LAYOUT_BORDER
+    FILL_NONE = 0,
+    FILL_VERTICAL,
+    FILL_HORIZONTAL,
+    FILL_BOTH
 };
 

@@ -40,11 +40,13 @@ int get_layout_property(void* _pvCtx, int iObjUID)
     switch (iLayout)
     {
         default :
-        case NONE :
+        case LAYOUT_NONE :
             return sciReturnString(_pvCtx, "none");
-        case GRID :
+        case LAYOUT_GRIDBAG :
+            return sciReturnString(_pvCtx, "gridbag");
+        case LAYOUT_GRID :
             return sciReturnString(_pvCtx, "grid");
-        case BORDER :
+        case LAYOUT_BORDER :
             return sciReturnString(_pvCtx, "border");
     }
 }

@@ -47,15 +47,16 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.HierarchyBoundsListener;
 import java.awt.event.HierarchyEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.List;
@@ -64,8 +65,8 @@ import java.util.ListIterator;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
-import javax.swing.JTextPane;
 import javax.swing.JPanel;
+import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
@@ -111,8 +112,8 @@ import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
-import org.scilab.modules.gui.events.GlobalEventWatcher;
 import org.scilab.modules.gui.editor.EditorEventListener;
+import org.scilab.modules.gui.events.GlobalEventWatcher;
 import org.scilab.modules.gui.events.ScilabEventListener;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
@@ -308,7 +309,7 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
         layerdPane.add(canvas, JLayeredPane.FRAME_CONTENT_LAYER);
         uiContentPane = new JPanel();
         uiContentPane.setOpaque(false);
-        uiContentPane.setSize(new Dimension(800,800));
+        uiContentPane.setSize(new Dimension(800, 800));
         layerdPane.add(uiContentPane, JLayeredPane.DEFAULT_LAYER + 1, 0);
 
         scrolling = new SwingScilabScrollPane(layerdPane, canvas, uiContentPane, figure);
@@ -646,28 +647,28 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
         if (uiContentPane.getLayout() instanceof BorderLayout) {
             //member.get
             Uicontrol uicontrol = (Uicontrol) GraphicModel.getModel().getObjectFromId(member.getId());
-            switch (uicontrol.getBorderConstraintsAsEnum()) {
-            case SOUTH:
-                uiContentPane.add((Component) member, BorderLayout.SOUTH);
-                break;
-            case NORTH:
-                uiContentPane.add((Component) member, BorderLayout.NORTH);
-                break;
-            case WEST:
-                uiContentPane.add((Component) member, BorderLayout.WEST);
-                break;
-            case EAST:
-                uiContentPane.add((Component) member, BorderLayout.EAST);
-                break;
-            case CENTER:
-                uiContentPane.add((Component) member, BorderLayout.CENTER);
-                break;
-            default:
-                break;
+            switch (uicontrol.getBorderPositionAsEnum()) {
+                case SOUTH:
+                    uiContentPane.add((Component) member, BorderLayout.SOUTH);
+                    break;
+                case NORTH:
+                    uiContentPane.add((Component) member, BorderLayout.NORTH);
+                    break;
+                case WEST:
+                    uiContentPane.add((Component) member, BorderLayout.WEST);
+                    break;
+                case EAST:
+                    uiContentPane.add((Component) member, BorderLayout.EAST);
+                    break;
+                case CENTER:
+                    uiContentPane.add((Component) member, BorderLayout.CENTER);
+                    break;
+                default:
+                    break;
             }
             //layerdPane.add((Component) member, GraphicController.getController().getProperty(member.getId(), __GO_CONSTRAINTS__));
         } else if (uiContentPane.getLayout() instanceof GridBagLayout) {
-            
+
         } else {
             uiContentPane.add((Component) member);
         }
@@ -1581,16 +1582,17 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
             case __GO_LAYOUT__ :
                 LayoutType newLayout = LayoutType.intToEnum((Integer) value);
                 switch (newLayout) {
-                case BORDER :
-                    System.err.println("{SwingScilabTab} add Layout BORDER");
-                    uiContentPane.setLayout(new BorderLayout());                    
-                    break;
-                case GRID :
-                    uiContentPane.setLayout(new GridBagLayout());
-                case NONE :
-                default:
-                    uiContentPane.setLayout(null);
-                    break;
+                    case BORDER :
+                        uiContentPane.setLayout(new BorderLayout());
+                        break;
+                    case GRIDBAG :
+                        uiContentPane.setLayout(new GridBagLayout());
+                    case GRID :
+                        uiContentPane.setLayout(new GridLayout());
+                    case NONE :
+                    default:
+                        uiContentPane.setLayout(null);
+                        break;
                 }
                 break;
         }

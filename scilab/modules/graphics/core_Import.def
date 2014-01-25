@@ -9,6 +9,8 @@ vstk_
 addColVectorToReturnedList 
 addMatrixToReturnedList
 addStringColVectorToReturnedList
+addStringToReturnedList
+addRowVectorToReturnedList
 callFunctionFromGateway
 com_
 createReturnedList

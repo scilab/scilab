@@ -979,6 +979,11 @@ function %h_p(h)
                 "Tag = "+h.tag
                 ]
             else
+                c = h.constraints;
+                if type(c) == 16 then //tlist
+                    c = c(1);
+                    c = c(1);
+                end
                 t=[t;
                 "Parent: "+h.parent.type
                 "Children: "+fmtchildren(h.children)
@@ -1007,7 +1012,7 @@ function %h_p(h)
                 "Callback = "+h.callback
                 "Callback_Type = "+sci2exp(h.callback_type,0)
                 "Layout = "+sci2exp(h.layout)
-                "Constraints = "+sci2exp(h.constraints)
+                "Constraints = "+sci2exp(c)
                 "Margins = "+sci2exp(h.margins)
                 "Userdata = "+fmtuser_data(u)
                 "Tag = "+h.tag

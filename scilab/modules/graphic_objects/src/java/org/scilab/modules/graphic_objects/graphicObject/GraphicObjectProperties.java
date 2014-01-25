@@ -361,9 +361,15 @@ public class GraphicObjectProperties {
     public static final int __GO_DOCKABLE__ = 338;
     public static final int __GO_LAYOUT__ = 339;
     public static final int __GO_LAYOUT_SET__ = 340;
-    public static final int __GO_UI_BORDER_CONSTRAINTS__ = 341;
-    public static final int __GO_UI_GRID_CONSTRAINTS__ = 342;
-    public static final int __GO_UI_TABGROUP__ = 343;
-    public static final int __GO_UI_TAB__ = 344;
+    public static final int __GO_UI_TABGROUP__ = 341;
+    public static final int __GO_UI_TAB__ = 342;
+    public static final int __GO_UI_GRIDBAG_GRID__ = 343;
+    public static final int __GO_UI_GRIDBAG_WEIGHT__ = 344;
+    public static final int __GO_UI_GRIDBAG_FILL__ = 345;
+    public static final int __GO_UI_GRIDBAG_ANCHOR__ = 346;
+    public static final int __GO_UI_GRIDBAG_PADDING__ = 347;
+    public static final int __GO_UI_GRID_GRID__ = 348;
+    public static final int __GO_UI_GRID_PADDING__ = 349;
+    public static final int __GO_UI_BORDER_POSITION__ = 350;
 
 }

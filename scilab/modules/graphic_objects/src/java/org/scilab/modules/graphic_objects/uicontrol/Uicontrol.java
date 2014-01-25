@@ -20,7 +20,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_STYLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BORDER_CONSTRAINTS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BORDER_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKBOX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_EDIT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
@@ -31,7 +31,13 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTWEIGHT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRID_CONSTRAINTS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRIDBAG_ANCHOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRIDBAG_FILL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRIDBAG_GRID__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRIDBAG_PADDING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRIDBAG_WEIGHT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRID_GRID__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRID_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP_SIZE__;
@@ -74,8 +80,8 @@ public class Uicontrol extends GraphicObject {
 
     public enum BorderLayoutType {
         SOUTH, NORTH, CENTER, WEST, EAST;
-        public static BorderLayoutType intToEnum(Integer intValue) {
-            switch (intValue) {
+        public static BorderLayoutType intToEnum(Integer value) {
+            switch (value) {
                 case 0:
                     return BorderLayoutType.SOUTH;
                 case 1:
@@ -87,6 +93,50 @@ public class Uicontrol extends GraphicObject {
                     return BorderLayoutType.WEST;
                 case 4:
                     return BorderLayoutType.EAST;
+            }
+        }
+    }
+
+    public enum FillType {
+        NONE, VERTICAL, HORIZONTAL, BOTH;
+        public static FillType intToEnum(Integer value) {
+            switch (value) {
+                default:
+                case 0:
+                    return FillType.NONE;
+                case 1:
+                    return FillType.VERTICAL;
+                case 2:
+                    return FillType.HORIZONTAL;
+                case 3:
+                    return FillType.BOTH;
+            }
+        }
+    }
+
+    public enum AnchorType {
+        CENTER, UPPER, LOWER, RIGHT, LEFT, UPPER_RIGHT, UPPER_LEFT, LOWER_RIGHT, LOWER_LEFT;
+        public static AnchorType intToEnum(Integer value) {
+            switch (value) {
+                default:
+                case 0:
+                    return CENTER;
+                case 1:
+                    return UPPER;
+                case 2:
+                    return LOWER;
+                case 3:
+                    return RIGHT;
+                case 4:
+                    return LEFT;
+                case 5:
+                    return UPPER_RIGHT;
+                case 6:
+                    return UPPER_LEFT;
+                case 7:
+                    return LOWER_RIGHT;
+                case 8:
+                    return LOWER_LEFT;
             }
         }
     }
@@ -137,8 +187,14 @@ public class Uicontrol extends GraphicObject {
     private String verticalAlignment = "middle";
     private LayoutType layout = LayoutType.NONE;
     private Double[] margins = new Double[] {0.0, 0.0, 0.0, 0.0};
-    private BorderLayoutType borderConstraints = BorderLayoutType.CENTER;
-    private Double[] gridConstraints = new Double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+    private Integer[] gridbagGrid = new Integer[] {0, 0, 0, 0};
+    private Double[] gridbagWeight = new Double[] {0.0, 0.0};
+    private FillType gridbagFill = FillType.NONE;
+    private AnchorType gridbagAnchor = AnchorType.CENTER;
+    private Integer[] gridbagPadding = new Integer[] {0, 0};
+    private Integer[] gridGrid = new Integer[] {0, 0};
+    private Integer[] gridPadding = new Integer[] {0, 0};
+    private BorderLayoutType borderPosition = BorderLayoutType.CENTER;
 
     /**
      * All uicontrol properties
@@ -175,8 +231,14 @@ public class Uicontrol extends GraphicObject {
         LAYOUT,
         LAYOUT_SET,
         MARGINS,
-        BORDERCONSTRAINTS,
-        GRIDCONSTRAINTS
+        GRIDBAG_GRID,
+        GRIDBAG_WEIGHT,
+        GRIDBAG_FILL,
+        GRIDBAG_ANCHOR,
+        GRIDBAG_PADDING,
+        GRID_GRID,
+        GRID_PADDING,
+        BORDER_POSITION
     };
 
     /**
@@ -356,10 +418,22 @@ public class Uicontrol extends GraphicObject {
                 return UicontrolProperty.LAYOUT_SET;
             case __GO_MARGINS__:
                 return UicontrolProperty.MARGINS;
-            case __GO_UI_BORDER_CONSTRAINTS__:
-                return UicontrolProperty.BORDERCONSTRAINTS;
-            case __GO_UI_GRID_CONSTRAINTS__:
-                return UicontrolProperty.GRIDCONSTRAINTS;
+            case __GO_UI_GRIDBAG_GRID__:
+                return UicontrolProperty.GRIDBAG_GRID;
+            case __GO_UI_GRIDBAG_WEIGHT__:
+                return UicontrolProperty.GRIDBAG_WEIGHT;
+            case __GO_UI_GRIDBAG_FILL__:
+                return UicontrolProperty.GRIDBAG_FILL;
+            case __GO_UI_GRIDBAG_ANCHOR__:
+                return UicontrolProperty.GRIDBAG_ANCHOR;
+            case __GO_UI_GRIDBAG_PADDING__:
+                return UicontrolProperty.GRIDBAG_PADDING;
+            case __GO_UI_GRID_GRID__:
+                return UicontrolProperty.GRID_GRID;
+            case __GO_UI_GRID_PADDING__:
+                return UicontrolProperty.GRID_PADDING;
+            case __GO_UI_BORDER_POSITION__:
+                return UicontrolProperty.BORDER_POSITION;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -429,10 +503,22 @@ public class Uicontrol extends GraphicObject {
             return isLayoutSettable();
         } else if (property == UicontrolProperty.MARGINS) {
             return getMargins();
-        } else if (property == UicontrolProperty.BORDERCONSTRAINTS) {
-            return getBorderConstraints();
-        } else if (property == UicontrolProperty.GRIDCONSTRAINTS) {
-            return getGridConstraints();
+        } else if (property == UicontrolProperty.GRIDBAG_GRID) {
+            return getGridBagGrid();
+        } else if (property == UicontrolProperty.GRIDBAG_WEIGHT) {
+            return getGridBagWeight();
+        } else if (property == UicontrolProperty.GRIDBAG_FILL) {
+            return getGridBagFill();
+        } else if (property == UicontrolProperty.GRIDBAG_ANCHOR) {
+            return getGridBagAnchor();
+        } else if (property == UicontrolProperty.GRIDBAG_PADDING) {
+            return getGridBagPadding();
+        } else if (property == UicontrolProperty.GRID_GRID) {
+            return getGridGrid();
+        } else if (property == UicontrolProperty.GRID_PADDING) {
+            return getGridPadding();
+        } else if (property == UicontrolProperty.BORDER_POSITION) {
+            return getBorderPosition();
         } else {
             return super.getProperty(property);
         }
@@ -499,10 +585,22 @@ public class Uicontrol extends GraphicObject {
                 return setLayout((Integer) value);
             case MARGINS:
                 return setMargins((Double[]) value);
-            case BORDERCONSTRAINTS:
-                return setBorderConstraints((Integer) value);
-            case GRIDCONSTRAINTS:
-                return setGridConstraints((Double[]) value);
+            case GRIDBAG_GRID:
+                return setGridBagGrid((Integer[]) value);
+            case GRIDBAG_WEIGHT:
+                return setGridBagWeight((Double[]) value);
+            case GRIDBAG_FILL:
+                return setGridBagFill((Integer) value);
+            case GRIDBAG_ANCHOR:
+                return setGridBagAnchor((Integer) value);
+            case GRIDBAG_PADDING:
+                return setGridBagPadding((Integer[]) value);
+            case GRID_GRID:
+                return setGridGrid((Integer[]) value);
+            case GRID_PADDING:
+                return setGridPadding((Integer[]) value);
+            case BORDER_POSITION:
+                return setBorderPosition((Integer) value);
             default:
                 return super.setProperty(property, value);
         }
@@ -894,40 +992,162 @@ public class Uicontrol extends GraphicObject {
         return status;
     }
 
-    public Integer getBorderConstraints() {
-        return borderConstraints.ordinal();
+    public Integer getBorderPosition() {
+        return borderPosition.ordinal();
     }
 
-    public BorderLayoutType getBorderConstraintsAsEnum() {
-        return borderConstraints;
+    public BorderLayoutType getBorderPositionAsEnum() {
+        return borderPosition;
     }
 
-    public UpdateStatus setBorderConstraints(Integer value) {
-        return setBorderConstraints(BorderLayoutType.intToEnum(value));
+    public UpdateStatus setBorderPosition(Integer value) {
+        return setBorderPosition(BorderLayoutType.intToEnum(value));
     }
 
-    public UpdateStatus setBorderConstraints(BorderLayoutType borderConstraints) {
-        if (this.borderConstraints == borderConstraints) {
+    public UpdateStatus setBorderPosition(BorderLayoutType value) {
+        if (borderPosition == value) {
             return UpdateStatus.NoChange;
         }
 
-        this.borderConstraints = borderConstraints;
+        borderPosition = value;
         return UpdateStatus.Success;
     }
 
-    public Double[] getGridConstraints() {
-        return gridConstraints;
+    public Integer[] getGridPadding() {
+        return gridPadding;
     }
 
-    public UpdateStatus setGridConstraints(Double[] gridConstraints) {
+    public UpdateStatus setGridPadding(Integer[] value) {
         UpdateStatus status = UpdateStatus.NoChange;
-        if (gridConstraints.length != 6) {
+        if (gridPadding.length != value.length) {
             return UpdateStatus.Fail;
         }
 
-        for (int i = 0 ; i < 6 ; i++) {
-            if (gridConstraints[i].equals(this.gridConstraints[i]) == false) {
-                gridConstraints[i] = this.gridConstraints[i];
+        for (int i = 0 ; i < value.length ; i++) {
+            if (gridPadding[i] != value[i]) {
+                gridPadding[i] = value[i];
+                status = UpdateStatus.Success;
+            }
+        }
+
+        return status;
+    }
+
+    public Integer[] getGridGrid() {
+        return gridGrid;
+    }
+
+    public UpdateStatus setGridGrid(Integer[] value) {
+        UpdateStatus status = UpdateStatus.NoChange;
+        if (gridGrid.length != value.length) {
+            return UpdateStatus.Fail;
+        }
+
+        for (int i = 0 ; i < value.length ; i++) {
+            if (gridGrid[i] != value[i]) {
+                gridGrid[i] = value[i];
+                status = UpdateStatus.Success;
+            }
+        }
+
+        return status;
+    }
+
+    public Integer[] getGridBagPadding() {
+        return gridbagPadding;
+    }
+
+    public UpdateStatus setGridBagPadding(Integer[] value) {
+        UpdateStatus status = UpdateStatus.NoChange;
+        if (gridbagPadding.length != value.length) {
+            return UpdateStatus.Fail;
+        }
+
+        for (int i = 0 ; i < value.length ; i++) {
+            if (gridbagPadding[i] != value[i]) {
+                gridbagPadding[i] = value[i];
+                status = UpdateStatus.Success;
+            }
+        }
+
+        return status;
+    }
+
+    public Integer getGridBagAnchor() {
+        return gridbagAnchor.ordinal();
+    }
+
+    public AnchorType getGridBagAnchorAsEnum() {
+        return gridbagAnchor;
+    }
+
+    public UpdateStatus setGridBagAnchor(Integer value) {
+        return setGridBagAnchor(AnchorType.intToEnum(value));
+    }
+
+    public UpdateStatus setGridBagAnchor(AnchorType value) {
+        if (gridbagAnchor == value) {
+            return UpdateStatus.NoChange;
+        }
+
+        gridbagAnchor = value;
+        return UpdateStatus.Success;
+    }
+
+    public Integer getGridBagFill() {
+        return gridbagFill.ordinal();
+    }
+
+    public FillType getGridBagFillAsEnum() {
+        return gridbagFill;
+    }
+
+    public UpdateStatus setGridBagFill(Integer value) {
+        return setGridBagFill(FillType.intToEnum(value));
+    }
+
+    public UpdateStatus setGridBagFill(FillType value) {
+        if (gridbagFill == value) {
+            return UpdateStatus.NoChange;
+        }
+
+        gridbagFill = value;
+        return UpdateStatus.Success;
+    }
+
+    public Double[] getGridBagWeight() {
+        return gridbagWeight;
+    }
+
+    public UpdateStatus setGridBagWeight(Double[] value) {
+        UpdateStatus status = UpdateStatus.NoChange;
+        if (gridbagWeight.length != value.length) {
+            return UpdateStatus.Fail;
+        }
+
+        for (int i = 0 ; i < value.length ; i++) {
+            if (gridbagWeight[i] != value[i]) {
+                gridbagWeight[i] = value[i];
+                status = UpdateStatus.Success;
+            }
+        }
+
+        return status;
+    }
+
+    public Integer[] getGridBagGrid() {
+        return gridbagGrid;
+    }
+
+    public UpdateStatus setGridBagGrid(Integer[] value) {
+        UpdateStatus status = UpdateStatus.NoChange;
+        if (gridbagGrid.length != value.length) {
+            return UpdateStatus.Fail;
+        }
+
+        for (int i = 0 ; i < value.length ; i++) {
+            if (gridbagGrid[i] != value[i]) {
+                gridbagGrid[i] = value[i];
                 status = UpdateStatus.Success;
             }
         }

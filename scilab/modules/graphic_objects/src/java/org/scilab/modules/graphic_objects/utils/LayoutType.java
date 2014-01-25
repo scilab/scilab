@@ -14,7 +14,7 @@ package org.scilab.modules.graphic_objects.utils;
 
 
 public enum LayoutType {
-    NONE, GRID, BORDER;
+    NONE, GRIDBAG, GRID, BORDER;
 
     public static LayoutType intToEnum(Integer intValue) {
         switch (intValue) {
@@ -22,8 +22,10 @@ public enum LayoutType {
             case 0:
                 return LayoutType.NONE;
             case 1:
-                return LayoutType.GRID;
+                return LayoutType.GRIDBAG;
             case 2:
+                return LayoutType.GRID;
+            case 3:
                 return LayoutType.BORDER;
         }
     }

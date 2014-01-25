@@ -79,5 +79,6 @@ int addMatrixToReturnedList( returnedList * list, const double matrix[], int nbR
  *                -1 if an other error occurred
  */
 int addStringColVectorToReturnedList( returnedList * list, char * vector[], int nbValues ) ;
+int addStringToReturnedList( returnedList * list, char * str) ;
 
 #endif /* _RETURN_PROPERTY_LIST_H_ */

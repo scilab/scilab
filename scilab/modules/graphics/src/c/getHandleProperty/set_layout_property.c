@@ -29,7 +29,7 @@
 /*------------------------------------------------------------------------*/
 int set_layout_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    enum LayoutType layout = NONE;
+    enum LayoutType layout = LAYOUT_NONE;
     int iLayout = 0;
     int* piLayout = &iLayout;
 
@@ -56,15 +56,19 @@ int set_layout_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType,
 
     if (stricmp((char*)_pvData, "none") == 0)
     {
-        layout = NONE;
+        layout = LAYOUT_NONE;
+    }
+    else if (stricmp((char*)_pvData, "gridbag") == 0)
+    {
+        layout = LAYOUT_GRIDBAG;
     }
     else if (stricmp((char*)_pvData, "grid") == 0)
     {
-        layout = GRID;
+        layout = LAYOUT_GRID;
     }
     else if (stricmp((char*)_pvData, "border") == 0)
     {
-        layout = BORDER;
+        layout = LAYOUT_BORDER;
     }
     else
     {
