@@ -49,8 +49,6 @@ char *IntToStyle(int _iStyle)
             return "table";
         case __GO_UI_TEXT__ :
             return "text";
-        case __GO_UI_TABGROUP__ :
-            return "tabgroup";
         case __GO_UI_TAB__ :
             return "tab";
     }

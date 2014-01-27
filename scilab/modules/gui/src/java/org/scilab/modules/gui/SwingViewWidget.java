@@ -429,8 +429,7 @@ public final class SwingViewWidget {
             case __GO_PARENT__ :
                 /* Update position */
                 SwingViewWidget.update(uiControl, __GO_POSITION__,
-                                       (Double[]) GraphicController.getController()
-                                       .getProperty(uid, __GO_POSITION__));
+                                       GraphicController.getController().getProperty(uid, __GO_POSITION__));
                 break;
             default :
                 //System.err.println("[SwingScilabWidget.update] Property not mapped: " + property);

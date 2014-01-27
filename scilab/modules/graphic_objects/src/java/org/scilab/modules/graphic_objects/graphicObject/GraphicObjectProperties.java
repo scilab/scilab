@@ -361,18 +361,17 @@ public class GraphicObjectProperties {
     public static final int __GO_DOCKABLE__ = 338;
     public static final int __GO_LAYOUT__ = 339;
     public static final int __GO_LAYOUT_SET__ = 340;
-    public static final int __GO_UI_TABGROUP__ = 341;
-    public static final int __GO_UI_TAB__ = 342;
-    public static final int __GO_UI_GRIDBAG_GRID__ = 343;
-    public static final int __GO_UI_GRIDBAG_WEIGHT__ = 344;
-    public static final int __GO_UI_GRIDBAG_FILL__ = 345;
-    public static final int __GO_UI_GRIDBAG_ANCHOR__ = 346;
-    public static final int __GO_UI_GRIDBAG_PADDING__ = 347;
-    public static final int __GO_UI_GRID_GRID__ = 348;
-    public static final int __GO_UI_GRID_PADDING__ = 349;
-    public static final int __GO_UI_BORDER_POSITION__ = 350;
-    public static final int __GO_GRID_OPT_GRID__ = 351;
-    public static final int __GO_GRID_OPT_PADDING__ = 352;
-    public static final int __GO_BORDER_OPT_PADDING__ = 353;
+    public static final int __GO_UI_TAB__ = 341;
+    public static final int __GO_UI_GRIDBAG_GRID__ = 342;
+    public static final int __GO_UI_GRIDBAG_WEIGHT__ = 343;
+    public static final int __GO_UI_GRIDBAG_FILL__ = 344;
+    public static final int __GO_UI_GRIDBAG_ANCHOR__ = 345;
+    public static final int __GO_UI_GRIDBAG_PADDING__ = 346;
+    public static final int __GO_UI_GRID_GRID__ = 347;
+    public static final int __GO_UI_GRID_PADDING__ = 348;
+    public static final int __GO_UI_BORDER_POSITION__ = 349;
+    public static final int __GO_GRID_OPT_GRID__ = 350;
+    public static final int __GO_GRID_OPT_PADDING__ = 351;
+    public static final int __GO_BORDER_OPT_PADDING__ = 352;
 
 }

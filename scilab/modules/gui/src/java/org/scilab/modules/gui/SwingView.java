@@ -55,7 +55,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SEPARATOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABGROUP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
@@ -107,6 +106,7 @@ import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTabGroup;
 import org.scilab.modules.gui.bridge.uiimage.SwingScilabUiImage;
 import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
 import org.scilab.modules.gui.bridge.waitbar.SwingScilabWaitBar;
@@ -188,7 +188,6 @@ public final class SwingView implements GraphicView {
         UiCheckedMenu,
         UiContextMenu,
         Waitbar,
-        TabGroup,
         Tab
     }
 
@@ -319,8 +318,6 @@ public final class SwingView implements GraphicView {
                 return UielementType.Waitbar;
             case __GO_UICONTEXTMENU__ :
                 return UielementType.UiContextMenu;
-            case __GO_UI_TABGROUP__ :
-                return UielementType.TabGroup;
             case __GO_UI_TAB__ :
                 return UielementType.Tab;
         }
@@ -503,17 +500,11 @@ public final class SwingView implements GraphicView {
                 waitbar.setIndeterminateMode(false);
                 waitbar.setId(id);
                 return waitbar;
-            case TabGroup:
-                SwingScilabPushButton TabGroup = new SwingScilabPushButton();
-                TabGroup.setId(id);
-                setDefaultProperties(TabGroup, id);
-                return TabGroup;
             case Tab:
-                SwingScilabPushButton Tab = new SwingScilabPushButton();
-                Tab.setId(id);
-                setDefaultProperties(Tab, id);
-                return Tab;
-
+                SwingScilabTabGroup TabGroup = new SwingScilabTabGroup();
+                TabGroup.setId(id);
+                //setDefaultProperties(TabGroup, id);
+                return TabGroup;
             default:
                 return null;
         }
@@ -755,8 +746,14 @@ public final class SwingView implements GraphicView {
                      */
                 case __GO_UICONTROL__ :
                     int style = (Integer) GraphicController.getController().getProperty(id, __GO_STYLE__);
-                    if (style == __GO_UI_FRAME__) {
+                    switch (style)
+                    {
+                    case __GO_UI_FRAME__ :
                         updateFrameChildren(registeredObject, newChildren);
+                        break;
+                    case __GO_UI_TAB__ :
+                        updateTabGroupChildren(registeredObject, newChildren);
+                        break;
                     }
                     break;
             }
@@ -977,7 +974,56 @@ public final class SwingView implements GraphicView {
             ((JPanel) updatedComponent).revalidate();
         }
     }
+    
+    /**
+     * Update the frame children (called by generic updateObject method)
+     * @param id the id of the figure
+     * @param newChildren the new children IDs list
+     */
+    private void updateTabGroupChildren(TypedObject updatedObject, Integer[] newChildren) {
+        SwingScilabTabGroup updatedComponent = (SwingScilabTabGroup) updatedObject.getValue();
+        boolean needRevalidate = false;
 
+        // Add new children
+        for (Integer childId : newChildren) {
+            if (!updatedObject.hasChild(childId)) {
+
+                // Add the child
+                updatedObject.addChild(childId);
+
+                int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
+
+                /* Add an uicontrol */
+                if (childType == __GO_UICONTROL__) {
+                    updatedComponent.addTab("Tab", (Component) allObjects.get(childId).getValue());
+                    needRevalidate = true;
+                }
+            }
+        }
+
+        // Remove children which have been deleted
+        Set<Integer> newChildrenSet = new HashSet<Integer>(Arrays.asList(newChildren));
+        // Clone the children set to avoid concurrent accesses
+        Integer[] oldChildrenSet = updatedObject.getChildren().toArray(new Integer[updatedObject.getChildren().size()]);
+        for (Integer childId : oldChildrenSet) {
+            if (!newChildrenSet.contains(childId)) {
+
+                // Remove the child
+                updatedObject.removeChild(childId);
+
+                int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
+
+                /* Remove an uicontrol */
+                if (childType == __GO_UICONTROL__) {
+                    updatedComponent.remove((Component) allObjects.get(childId).getValue());
+                    needRevalidate = true;
+                }
+            }
+        }
+        if (needRevalidate && updatedComponent != null) {
+            updatedComponent.revalidate();
+        }
+    }
     /**
      * Update the Console menus (called by generic updateObject method)
      * @param id the id of the console object

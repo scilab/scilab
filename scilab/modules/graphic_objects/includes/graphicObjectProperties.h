@@ -360,18 +360,17 @@
 #define __GO_DOCKABLE__ 338
 #define __GO_LAYOUT__ 339
 #define __GO_LAYOUT_SET__ 340
-#define __GO_UI_TABGROUP__ 341
-#define __GO_UI_TAB__ 342
-#define __GO_UI_GRIDBAG_GRID__ 343
-#define __GO_UI_GRIDBAG_WEIGHT__ 344
-#define __GO_UI_GRIDBAG_FILL__ 345
-#define __GO_UI_GRIDBAG_ANCHOR__ 346
-#define __GO_UI_GRIDBAG_PADDING__ 347
-#define __GO_UI_GRID_GRID__ 348
-#define __GO_UI_GRID_PADDING__ 349
-#define __GO_UI_BORDER_POSITION__ 350
-#define __GO_GRID_OPT_GRID__ 351
-#define __GO_GRID_OPT_PADDING__ 352
-#define __GO_BORDER_OPT_PADDING__ 353
+#define __GO_UI_TAB__ 341
+#define __GO_UI_GRIDBAG_GRID__ 342
+#define __GO_UI_GRIDBAG_WEIGHT__ 343
+#define __GO_UI_GRIDBAG_FILL__ 344
+#define __GO_UI_GRIDBAG_ANCHOR__ 345
+#define __GO_UI_GRIDBAG_PADDING__ 346
+#define __GO_UI_GRID_GRID__ 347
+#define __GO_UI_GRID_PADDING__ 348
+#define __GO_UI_BORDER_POSITION__ 349
+#define __GO_GRID_OPT_GRID__ 350
+#define __GO_GRID_OPT_PADDING__ 351
+#define __GO_BORDER_OPT_PADDING__ 352
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */

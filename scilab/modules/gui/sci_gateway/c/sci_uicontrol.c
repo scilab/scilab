@@ -315,7 +315,8 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                     if (iParentType != __GO_FIGURE__)
                     {
                         getGraphicObjectProperty(iParentUID, __GO_STYLE__, jni_int, (void **)&piParentStyle);
-                        if (iParentType != __GO_UICONTROL__ || iParentStyle != __GO_UI_FRAME__)
+                        if (iParentType != __GO_UICONTROL__ || (
+                                iParentStyle != __GO_UI_FRAME__ && iParentStyle != __GO_UI_TAB__))
                         {
                             Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
                                      "Frame uicontrol");

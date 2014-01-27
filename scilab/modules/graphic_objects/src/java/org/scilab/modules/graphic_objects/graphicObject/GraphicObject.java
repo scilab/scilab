@@ -222,8 +222,6 @@ public abstract class GraphicObject implements Cloneable {
                 return Type.DATATIP;
             case __GO_LIGHT__ :
                 return Type.LIGHT;
-            case __GO_UI_TABGROUP__ :
-                return Type.TABGROUP;
             case __GO_UI_TAB__ :
                 return Type.TAB;
             default :

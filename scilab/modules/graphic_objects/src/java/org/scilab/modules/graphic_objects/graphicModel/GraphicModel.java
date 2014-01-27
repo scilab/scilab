@@ -48,7 +48,6 @@ import org.scilab.modules.graphic_objects.uicontrol.pushbutton.PushButton;
 import org.scilab.modules.graphic_objects.uicontrol.radiobutton.RadioButton;
 import org.scilab.modules.graphic_objects.uicontrol.slider.Slider;
 import org.scilab.modules.graphic_objects.uicontrol.tab.Tab;
-import org.scilab.modules.graphic_objects.uicontrol.tabgroup.Tabgroup;
 import org.scilab.modules.graphic_objects.uicontrol.table.Table;
 import org.scilab.modules.graphic_objects.uicontrol.uiimage.UiImage;
 import org.scilab.modules.graphic_objects.uicontrol.uitext.UiText;
@@ -320,9 +319,6 @@ public final class GraphicModel {
                 break;
             case DATATIP:
                 createdObject = new Datatip();
-                break;
-            case TABGROUP:
-                createdObject = new Tabgroup();
                 break;
             case TAB:
                 createdObject = new Tab();

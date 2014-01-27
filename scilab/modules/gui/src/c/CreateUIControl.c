@@ -73,10 +73,6 @@ int CreateUIControl(char *style)
     {
         iObjUID = createGraphicObject(__GO_UI_TEXT__);
     }
-    else if (strcmp(style, "tabgroup") == 0)
-    {
-        iObjUID = createGraphicObject(__GO_UI_TABGROUP__);
-    }
     else if (strcmp(style, "tab") == 0)
     {
         iObjUID = createGraphicObject(__GO_UI_TAB__);

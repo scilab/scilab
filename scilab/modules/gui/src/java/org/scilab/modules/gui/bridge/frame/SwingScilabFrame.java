@@ -15,8 +15,10 @@ package org.scilab.modules.gui.bridge.frame;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 
 import java.awt.Component;
+import java.awt.Container;
 
 import javax.swing.JPanel;
 
@@ -34,6 +36,7 @@ import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTabGroup;
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
@@ -602,6 +605,21 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      */
     public void update(int property, Object value) {
         SwingViewWidget.update(this, property, value);
+        System.err.println(value);
+        if (property == __GO_UI_STRING__) {
+            // Update tab title 
+            Container parent = getParent();
+            if (parent instanceof SwingScilabTabGroup) {
+                SwingScilabTabGroup tab = (SwingScilabTabGroup) parent;
+                Component[] components = tab.getComponents();
+                for(int i = 0; i < components.length ; ++i) {
+                    if (components[i] instanceof SwingScilabFrame && this.getId() == ((SwingScilabFrame) components[i]).getId()) {
+                        tab.setTitleAt(i, ((String[]) value)[0]);
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     /**
