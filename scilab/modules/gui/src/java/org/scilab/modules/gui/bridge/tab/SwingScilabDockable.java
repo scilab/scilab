@@ -1587,8 +1587,10 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
                         break;
                     case GRIDBAG :
                         uiContentPane.setLayout(new GridBagLayout());
-                    case GRID :
+			break;
+		    case GRID :
                         uiContentPane.setLayout(new GridLayout());
+			break;
                     case NONE :
                     default:
                         uiContentPane.setLayout(null);
