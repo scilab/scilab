@@ -26,6 +26,7 @@
 #include "strdup_windows.h"
 #endif
 #include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "getConsoleIdentifier.h"
 /*--------------------------------------------------------------------------*/
@@ -87,7 +88,7 @@ int sci_toolbar(char *fname, unsigned long l)
 
         if (figNum != -1)       /* Check that the figure exists */
         {
-            if (getFigureFromIndex(figNum) == NULL)
+            if (getFigureFromIndex(figNum) == 0)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: 'Graphic Window Number %d' does not exist.\n"), fname, 1, figNum);
                 return FALSE;
@@ -136,7 +137,7 @@ int sci_toolbar(char *fname, unsigned long l)
         }
 
         getGraphicObjectProperty(iParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
-        if (iParentType == __GO_FIGURE__)
+        if (iParentType != __GO_FIGURE__)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"), fname, 1);
             return FALSE;
@@ -144,7 +145,7 @@ int sci_toolbar(char *fname, unsigned long l)
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"), fname, 1);
         return FALSE;
     }
 
@@ -162,7 +163,7 @@ int sci_toolbar(char *fname, unsigned long l)
             // Retrieve a matrix of string at position 2.
             if (getAllocatedMatrixOfString(pvApiCtx, piAddrparam, &nbRow, &nbCol, &param))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+                Scierror(202, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
                 return 1;
             }
 
@@ -175,7 +176,8 @@ int sci_toolbar(char *fname, unsigned long l)
 
             if ((strcmp(param[0], "off") == 0) || (strcmp(param[0], "on") == 0))
             {
-                setToolbarVisible(iParentUID, strcmp(param[0], "on") == 0);
+                int iIsVisible = strcmp(param[0], "on") == 0;
+                setGraphicObjectProperty(iParentUID, __GO_TOOLBAR_VISIBLE__, &iIsVisible, jni_bool, 1);
                 freeAllocatedMatrixOfString(nbRow, nbCol, param);
             }
             else

@@ -22,5 +22,15 @@ void setToolbarVisible(int iParentUID, BOOL status)
 
 BOOL isToolbarVisible(int iParentUID)
 {
-    return booltoBOOL(CallScilabBridge::isToolbarVisible(getScilabJavaVM(), iParentUID));
+    if (iParentUID == -1) /* Console */
+    {
+        return booltoBOOL(CallScilabBridge::isToolbarVisible(getScilabJavaVM(), iParentUID));
+    }
+    else /* Figure */
+    {
+        int iIsVisible;
+        int *piIsVisible = &iIsVisible;
+        getGraphicObjectProperty(iParentUID, __GO_TOOLBAR_VISIBLE__, jni_bool, (void**)&piIsVisible);
+        return (BOOL)iIsVisible;
+    }
 }

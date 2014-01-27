@@ -19,6 +19,8 @@ extern "C"
 #include "Toolbar.h"
 #include "BOOL.h"
 #include "getScilabJavaVM.h"
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 }
 
 #endif                          /* !__TOOLBAR_HXX__ */
