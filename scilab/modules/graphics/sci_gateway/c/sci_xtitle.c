@@ -94,7 +94,7 @@ int sci_xtitle(char * fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
                 return 1;
             }
 

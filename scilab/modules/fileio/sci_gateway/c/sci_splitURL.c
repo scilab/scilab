@@ -49,7 +49,7 @@ int sci_splitURL(char *fname, int fname_len)
     if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &url))
     {
         freeAllocatedSingleString(url);
-        Scierror(999, _("%s: Wrong type for argument %d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
 

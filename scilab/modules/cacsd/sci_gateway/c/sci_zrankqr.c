@@ -92,7 +92,7 @@ int sci_zrankqr(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A complex expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A complex expected.\n"), fname, 1);
         return 1;
     }
 
@@ -135,7 +135,7 @@ int sci_zrankqr(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, RCOND);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, RCOND);
             return 1;
         }
 
@@ -171,7 +171,7 @@ int sci_zrankqr(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, RCOND);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, RCOND);
             return 1;
         }
 
@@ -193,7 +193,7 @@ int sci_zrankqr(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, JPVT);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, JPVT);
             return 1;
         }
 

@@ -64,7 +64,7 @@ static int getScalarFromStack(int paramIndex, char * funcName, double* res)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), funcName,  paramIndex);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), funcName,  paramIndex);
         return -1;
     }
 

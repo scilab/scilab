@@ -298,7 +298,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
                     if (getScalarDouble(pvApiCtx, piAddr, &dblValue))
                     {
-                        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+                        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
                         return 1;
                     }
 
@@ -562,7 +562,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                             if (sciErr.iErr)
                             {
                                 printError(&sciErr, 0);
-                                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, propertiesValuesIndices[inputIndex]);
+                                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, propertiesValuesIndices[inputIndex]);
                                 return 1;
                             }
 

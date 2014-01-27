@@ -242,7 +242,7 @@ int sci_matplot1(char * fname, unsigned long fname_len)
                     sciErr = getHypermatOfDouble(pvApiCtx, piAddr1, &dims, &ndims, (double **)&l1);
                     if (sciErr.iErr || ndims != 3 || (dims[2] != 1 && dims[2] != 3 && dims[2] != 4))
                     {
-                        Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), fname, 1);
+                        Scierror(202, _("%s: Wrong type for argument #%d: A real or integer expected.\n"), fname, 1);
                         return 1;
                     }
 

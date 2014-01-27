@@ -178,7 +178,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         {
             freeAllocatedSingleString(l1);
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, i);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, i);
             return 1;
         }
 
@@ -215,7 +215,7 @@ int sci_xset(char *fname, unsigned long fname_len)
             {
                 freeAllocatedSingleString(l1);
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
                 return 1;
             }
 

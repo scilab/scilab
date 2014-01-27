@@ -58,7 +58,7 @@ int sci_getcommonpart(char *fname, unsigned long fname_len)
         else
         {
             freeArrayOfString(InputString, m * n);
-            Scierror(999, _("%s: Wrong size for input argument %d.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 1);
         }
     }
     else

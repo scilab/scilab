@@ -421,6 +421,8 @@ Scilab Bug Fixes
 
 * Bug #13202 fixed - kernel help page improved.
 
+* Bug #13203 fixed - Some error messages typos fixed.
+
 * Bug #13392 fixed - Typo in the CACSD help chapter fixed.
 
 

@@ -57,7 +57,7 @@ static int getInitialRectangle(double initRect[4])
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &rectNbRow, &rectNbCol, &rectStackPointer);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), "rubberbox", 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), "rubberbox", 1);
         printError(&sciErr, 0);
         return 1;
     }
@@ -110,7 +110,7 @@ static int getEditionMode(int rhsPos)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: Boolean matrix expected.\n"), "rubberbox", rhsPos);
+        Scierror(202, _("%s: Wrong type for argument #%d: Boolean matrix expected.\n"), "rubberbox", rhsPos);
         return 1;
     }
 

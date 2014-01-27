@@ -64,7 +64,7 @@ int sci_lgamma(char *fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddrX, &MX, &NX, &lX);
     if (sciErr.iErr)
     {
-        Scierror(999, _("%s: Wrong type for argument %d: A matrix expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for argument #%d: A matrix expected.\n"), fname, 1);
     }
 
     for (i = 0; i < MX * NX; i++)

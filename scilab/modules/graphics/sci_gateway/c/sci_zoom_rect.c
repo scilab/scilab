@@ -69,7 +69,7 @@ static BOOL getZoomRect(const char * fname, int attribPos, double rect[4])
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, attribPos);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, attribPos);
         return 1;
     }
 

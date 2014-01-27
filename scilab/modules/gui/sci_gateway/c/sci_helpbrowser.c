@@ -259,7 +259,7 @@ int sci_helpbrowser(char *fname, unsigned long fname_len)
                 freeAllocatedSingleString(*keywordAdr);
                 freeAllocatedSingleString(*languageAdr);
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: Boolean matrix expected.\n"), fname, 4);
+                Scierror(202, _("%s: Wrong type for argument #%d: Boolean matrix expected.\n"), fname, 4);
                 return 1;
             }
 

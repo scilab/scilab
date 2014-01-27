@@ -39,7 +39,7 @@ function y=calerf(x,flag)
     elseif flag==2 then
         y=erfcx(x);
     else
-        error(msprintf(gettext("%s: Wrong value for argument %d: 0, 1 or 2 expected.\n"),"calerf",2));
+        error(msprintf(gettext("%s: Wrong value for argument #%d: 0, 1 or 2 expected.\n"),"calerf",2));
     end
 
 endfunction

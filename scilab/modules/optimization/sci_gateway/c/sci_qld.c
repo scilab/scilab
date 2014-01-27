@@ -83,7 +83,7 @@ int sci_qld(char *fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &n, &nbis, &Q);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         printError(&sciErr, 0);
         return 1;
     }
@@ -109,7 +109,7 @@ int sci_qld(char *fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &nbis, &unbis, &p);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
         printError(&sciErr, 0);
         return 1;
     }
@@ -135,7 +135,7 @@ int sci_qld(char *fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &m, &nbis, &C);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
         printError(&sciErr, 0);
         return 1;
     }
@@ -161,7 +161,7 @@ int sci_qld(char *fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr4, &mbis, &unbis, &b);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
         printError(&sciErr, 0);
         return 1;
     }
@@ -187,7 +187,7 @@ int sci_qld(char *fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr5, &nbis, &unbis, &lb);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 5);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 5);
         printError(&sciErr, 0);
         return 1;
     }
@@ -227,7 +227,7 @@ int sci_qld(char *fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr6, &nbis, &unbis, &ub);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 6);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 6);
         printError(&sciErr, 0);
         return 1;
     }
@@ -268,7 +268,7 @@ int sci_qld(char *fname, unsigned long fname_len)
     sciErr = getMatrixOfDoubleAsInteger(pvApiCtx, piAddr7, &pipo, &unbis, &me);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 7);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 7);
         printError(&sciErr, 0);
         return 1;
     }
@@ -304,7 +304,7 @@ int sci_qld(char *fname, unsigned long fname_len)
         sciErr = getMatrixOfDouble(pvApiCtx, piAddr8, &pipo, &unbis, &leps);
         if (sciErr.iErr)
         {
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 8);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 8);
             printError(&sciErr, 0);
             return 1;
         }

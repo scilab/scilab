@@ -24,7 +24,7 @@ function [x]=nehari(r,tol)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space expected.\n"),"nehari",1))
     end
     if r.dt==[] then
-        warning(msprintf(gettext("%s: Input argument %d is assumed continuous time.\n"),"nehari",1));
+        warning(msprintf(gettext("%s: Input argument #%d is assumed continuous time.\n"),"nehari",1));
         r.dt="c"
     end
     if r.dt<>"c" then

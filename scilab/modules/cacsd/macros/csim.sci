@@ -49,7 +49,7 @@ function [y,x]=csim(u,dt,sl,x0,tol)
     end
     if sltyp=="rational" then sl=tf2ss(sl),end
     if sl.dt<>"c" then
-        warning(msprintf(gettext("%s: Input argument %d is assumed continuous time.\n"),"csim",1));
+        warning(msprintf(gettext("%s: Input argument #%d is assumed continuous time.\n"),"csim",1));
     end
     //
     [a,b,c,d]=sl(2:5);

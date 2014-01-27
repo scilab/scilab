@@ -110,7 +110,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &m1, &n1, &l1);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         printError(&sciErr, 0);
         return 1;
     }
@@ -134,9 +134,15 @@ int sci_plot3d(char * fname, unsigned long fname_len)
         m2 = 1;
         n2 = n3;
         l1 = (double *)MALLOC(sizeof(double) * n1);
-        for (i = 0; i < n1; l1[i] = (++i));
+        for (i = 0; i < n1; l1[i] = (++i))
+        {
+            ;
+        }
         l2 = (double *)MALLOC(sizeof(double) * n2);
-        for (i = 0; i < n2; l2[i] = (++i));
+        for (i = 0; i < n2; l2[i] = (++i))
+        {
+            ;
+        }
 
         mustFree = 1;
     }
@@ -155,7 +161,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
         sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &m2, &n2, &l2);
         if (sciErr.iErr)
         {
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
             printError(&sciErr, 0);
             return 1;
         }
@@ -190,7 +196,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
                 sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &m3, &n3, &l3);
                 if (sciErr.iErr)
                 {
-                    Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+                    Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
                     printError(&sciErr, 0);
                     return 1;
                 }
@@ -203,7 +209,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
                 sciErr = getListItemNumber(pvApiCtx, piAddr3, &m3l);
                 if (sciErr.iErr)
                 {
-                    Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+                    Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
                     printError(&sciErr, 0);
                     return 1;
                 }
@@ -225,7 +231,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
                 sciErr = getMatrixOfDouble(pvApiCtx, piAddr31, &m3, &n3, &l3); /* z */
                 if (sciErr.iErr)
                 {
-                    Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+                    Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
                     printError(&sciErr, 0);
                     return 1;
                 }
@@ -240,7 +246,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
                 sciErr = getMatrixOfDouble(pvApiCtx, piAddr32, &m3n, &n3n, &l3n); /* z */
                 if (sciErr.iErr)
                 {
-                    Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+                    Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
                     printError(&sciErr, 0);
                     return 1;
                 }
