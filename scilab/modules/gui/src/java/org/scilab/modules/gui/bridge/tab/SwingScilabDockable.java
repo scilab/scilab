@@ -1582,19 +1582,19 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
             case __GO_LAYOUT__ :
                 LayoutType newLayout = LayoutType.intToEnum((Integer) value);
                 switch (newLayout) {
-                    case BORDER :
-                        uiContentPane.setLayout(new BorderLayout());
-                        break;
-                    case GRIDBAG :
-                        uiContentPane.setLayout(new GridBagLayout());
-			break;
-		    case GRID :
-                        uiContentPane.setLayout(new GridLayout());
-			break;
-                    case NONE :
-                    default:
-                        uiContentPane.setLayout(null);
-                        break;
+                case BORDER :
+                    uiContentPane.setLayout(new BorderLayout());
+                    break;
+                case GRIDBAG :
+                    uiContentPane.setLayout(new GridBagLayout());
+                    break;
+                case GRID :
+                    uiContentPane.setLayout(new GridLayout());
+                    break;
+                case NONE :
+                default:
+                    uiContentPane.setLayout(null);
+                    break;
                 }
                 break;
         }

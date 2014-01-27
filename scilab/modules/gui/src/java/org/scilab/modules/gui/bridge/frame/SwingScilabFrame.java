@@ -14,15 +14,22 @@
 package org.scilab.modules.gui.bridge.frame;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
+import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
+import org.scilab.modules.graphic_objects.utils.LayoutType;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
@@ -78,7 +85,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
     public SwingScilabFrame() {
         super();
         // the Default layout is null so we have to set a Position and a Size of every Dockable we add to it
-        this.setLayout((LayoutManager) null);
+        super.setLayout(null);
     }
 
     /**
@@ -132,7 +139,30 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * @param member the member to add
      */
     public void addMember(SwingViewObject member) {
-        this.add((Component) member);
+        if (getLayout() instanceof BorderLayout) {
+            Uicontrol uicontrol = (Uicontrol) GraphicModel.getModel().getObjectFromId(member.getId());
+            switch (uicontrol.getBorderPositionAsEnum()) {
+            case SOUTH:
+                add((Component) member, BorderLayout.SOUTH);
+                break;
+            case NORTH:
+                add((Component) member, BorderLayout.NORTH);
+                break;
+            case WEST:
+                add((Component) member, BorderLayout.WEST);
+                break;
+            case EAST:
+                add((Component) member, BorderLayout.EAST);
+                break;
+            case CENTER:
+                add((Component) member, BorderLayout.CENTER);
+                break;
+            default:
+                break;
+            }
+        } else {
+            this.add((Component) member);
+        }
     }
 
     /**
@@ -452,14 +482,6 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
     }
 
     /**
-     * To set the Layout of the element.
-     * @param layout the layout
-     */
-    public void setLayout(LayoutManager layout) {
-        super.setLayout((java.awt.LayoutManager) layout);
-    }
-
-    /**
      * Add a callback to the Frame
      * @param callback the callback to set.
      */
@@ -605,8 +627,8 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      */
     public void update(int property, Object value) {
         SwingViewWidget.update(this, property, value);
-        System.err.println(value);
-        if (property == __GO_UI_STRING__) {
+        switch (property) {
+        case __GO_UI_STRING__:
             // Update tab title 
             Container parent = getParent();
             if (parent instanceof SwingScilabTabGroup) {
@@ -619,6 +641,25 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
                     }
                 }
             }
+            break;
+        case __GO_LAYOUT__ :
+            LayoutType newLayout = LayoutType.intToEnum((Integer) value);
+            switch (newLayout) {
+            case BORDER :
+                setLayout(new BorderLayout());
+                break;
+            case GRIDBAG :
+                setLayout(new GridBagLayout());
+                break;
+            case GRID :
+                setLayout(new GridLayout());
+                break;
+            case NONE :
+            default:
+                setLayout(null);
+                break;
+            }
+            break;
         }
     }
 
