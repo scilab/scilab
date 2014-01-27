@@ -159,7 +159,7 @@ int ConstructPolyline(int iParentsubwinUID, double *pvecx, double *pvecy, double
         iBackgroundSize = 0;
     }
 
-    iObj = createPolyline(iParentsubwinUID, closed > 1 ? TRUE : FALSE, plot, foreground, background, iBackgroundSize,
+    iObj = createPolyline(iParentsubwinUID, closed > 0 ? TRUE : FALSE, plot, foreground, background, iBackgroundSize,
                           mark_style, mark_foreground, mark_background, isline, isfilled, ismark, isinterpshaded);
 
     iPolyline = createDataObject(iObj, __GO_POLYLINE__);
