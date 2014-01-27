@@ -691,7 +691,7 @@ public final class Builder {
         Axes axes = (Axes) controller.getObjectFromId(parent);
 
         if (axes.getHasLegendChild()) {
-            controller.deleteObject(axes.getLegendChild());
+            controller.removeRelationShipAndDelete(axes.getLegendChild());
         }
 
 
@@ -731,6 +731,7 @@ public final class Builder {
         leg.setFillMode(true);
 
         controller.objectCreated(iLeg);
+        leg.setParent(0);
         controller.setGraphicObjectRelationship(parent, iLeg);
         return iLeg;
     }
