@@ -19,6 +19,8 @@ New Features
 
 * pol2str(): support to polynomials with complex coefficients and hypermatrices (See bug #13109).
 
+* nanreglin(): reglin() with arguments containing NaNs (See bug #13208).
+
 
 Obsolete & Removed Functions
 ============================
@@ -554,6 +556,8 @@ Scilab Bug Fixes
 * Bug #13203 fixed - Some error messages typos fixed.
 
 * Bug #13205 fixed - group accepted continuous transfer functions.
+
+* Bug #13208 fixed - New function nanreglin to handle NaNs for reglin().
 
 * Bug #13210 fixed - Incorrect argument description in the mseek help page.
 
