@@ -199,6 +199,8 @@ Scilab Bug Fixes
 
 * Bug #11714 fixed - help_from_sci sometimes failed when input function had "<imagedata>" comments.
 
+* Bug #11814 fixed - Typo in the CACSD help chapter fixed.
+
 * Bug #11996 fixed - eye extended to hypermatrix.
 
 * Bug #12073 fixed - Width of code examples has been decreased in XML help pages.
@@ -426,8 +428,6 @@ Scilab Bug Fixes
 * Bug #13203 fixed - Some error messages typos fixed.
 
 * Bug #13205 fixed - group accepted continuous transfer functions.
-
-* Bug #13392 fixed - Typo in the CACSD help chapter fixed.
 
 
 Xcos
