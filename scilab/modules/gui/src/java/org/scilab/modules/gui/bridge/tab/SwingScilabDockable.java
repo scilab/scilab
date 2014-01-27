@@ -46,6 +46,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -640,13 +641,10 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
      * @param member the member to add
      */
     public void addMember(SwingViewObject member) {
-        /**
-         * Force adding Widget at JLayeredPane.DEFAULT_LAYER + 1
-         * to draw them uppon GLJPanel (even if it is at level JLayeredPane.FRAME_CONTENT_LAYER)
-         */
+        //member.get
+        Uicontrol uicontrol = (Uicontrol) GraphicModel.getModel().getObjectFromId(member.getId());
+
         if (uiContentPane.getLayout() instanceof BorderLayout) {
-            //member.get
-            Uicontrol uicontrol = (Uicontrol) GraphicModel.getModel().getObjectFromId(member.getId());
             switch (uicontrol.getBorderPositionAsEnum()) {
                 case SOUTH:
                     uiContentPane.add((Component) member, BorderLayout.SOUTH);
@@ -666,9 +664,82 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
                 default:
                     break;
             }
-            //layerdPane.add((Component) member, GraphicController.getController().getProperty(member.getId(), __GO_CONSTRAINTS__));
+
         } else if (uiContentPane.getLayout() instanceof GridBagLayout) {
 
+            GridBagConstraints constraints = new GridBagConstraints();
+
+            // Grid
+            Integer[] grid = uicontrol.getGridBagGrid();
+            constraints.gridx = grid[0];
+            constraints.gridy = grid[1];
+            constraints.gridwidth = grid[2];
+            constraints.gridheight = grid[3];
+
+            // Weight
+            Double[] weight = uicontrol.getGridBagWeight();
+            constraints.weightx = weight[0];
+            constraints.weighty = weight[1];
+
+            // Anchor
+            switch (uicontrol.getGridBagAnchorAsEnum()) {
+                case LEFT :
+                    constraints.anchor = GridBagConstraints.EAST;
+                    break;
+                case UPPER :
+                    constraints.anchor = GridBagConstraints.NORTH;
+                    break;
+                case LOWER:
+                    constraints.anchor = GridBagConstraints.SOUTH;
+                    break;
+                case LOWER_LEFT:
+                    constraints.anchor = GridBagConstraints.SOUTHEAST;
+                    break;
+                case LOWER_RIGHT:
+                    constraints.anchor = GridBagConstraints.SOUTHWEST;
+                    break;
+                case RIGHT:
+                    constraints.anchor = GridBagConstraints.WEST;
+                    break;
+                case UPPER_LEFT:
+                    constraints.anchor = GridBagConstraints.NORTHEAST;
+                    break;
+                case UPPER_RIGHT:
+                    constraints.anchor = GridBagConstraints.NORTHWEST;
+                    break;
+                case CENTER :
+                default :
+                    constraints.anchor = GridBagConstraints.CENTER;
+                    break;
+            }
+
+            // Fill
+            switch (uicontrol.getGridBagFillAsEnum()) {
+                case BOTH :
+                    constraints.fill = GridBagConstraints.BOTH;
+                    break;
+                case HORIZONTAL:
+                    constraints.fill = GridBagConstraints.HORIZONTAL;
+                    break;
+                case VERTICAL:
+                    constraints.fill = GridBagConstraints.VERTICAL;
+                    break;
+                case NONE:
+                default:
+                    constraints.fill = GridBagConstraints.NONE;
+                    break;
+            }
+
+            // Insets
+            // TODO : add Insets
+
+            // Padding
+            Integer[] padding = uicontrol.getGridBagPadding();
+            constraints.ipadx = padding[0];
+            constraints.ipady = padding[1];
+
+            uiContentPane.add((Component) member, constraints);
+            uiContentPane.revalidate();
         } else {
             uiContentPane.add((Component) member);
         }
@@ -1582,19 +1653,19 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
             case __GO_LAYOUT__ :
                 LayoutType newLayout = LayoutType.intToEnum((Integer) value);
                 switch (newLayout) {
-                case BORDER :
-                    uiContentPane.setLayout(new BorderLayout());
-                    break;
-                case GRIDBAG :
-                    uiContentPane.setLayout(new GridBagLayout());
-                    break;
-                case GRID :
-                    uiContentPane.setLayout(new GridLayout());
-                    break;
-                case NONE :
-                default:
-                    uiContentPane.setLayout(null);
-                    break;
+                    case BORDER :
+                        uiContentPane.setLayout(new BorderLayout());
+                        break;
+                    case GRIDBAG :
+                        uiContentPane.setLayout(new GridBagLayout());
+                        break;
+                    case GRID :
+                        uiContentPane.setLayout(new GridLayout());
+                        break;
+                    case NONE :
+                    default:
+                        uiContentPane.setLayout(null);
+                        break;
                 }
                 break;
         }
