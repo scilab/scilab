@@ -17,6 +17,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -55,7 +56,6 @@ import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.SimpleFrame;
 import org.scilab.modules.gui.label.Label;
-import org.scilab.modules.gui.layout.LayoutManager;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -721,7 +721,8 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             LayoutType newLayout = LayoutType.intToEnum((Integer) value);
             switch (newLayout) {
             case BORDER :
-                setLayout(new BorderLayout());
+                Integer[] padding = (Integer[]) GraphicController.getController().getProperty(getId(), __GO_BORDER_OPT_PADDING__);
+                setLayout(new BorderLayout(padding[0], padding[1]));
                 break;
             case GRIDBAG :
                 setLayout(new GridBagLayout());

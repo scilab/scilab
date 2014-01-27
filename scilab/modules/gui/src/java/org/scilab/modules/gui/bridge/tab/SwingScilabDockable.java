@@ -39,6 +39,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIPARENTMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -1652,6 +1653,8 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
                 LayoutType newLayout = LayoutType.intToEnum((Integer) value);
                 switch (newLayout) {
                     case BORDER :
+                        Integer[] padding = (Integer[]) GraphicController.getController().getProperty(getId(), __GO_BORDER_OPT_PADDING__);
+                        uiContentPane.setLayout(new BorderLayout(padding[0], padding[1]));
                         uiContentPane.setLayout(new BorderLayout());
                         break;
                     case GRIDBAG :

@@ -438,7 +438,7 @@ public class Figure extends GraphicObject {
         copy.colorMap = new ColorMap(this.colorMap);
         copy.renderingMode = new RenderingMode(this.renderingMode);
         copy.eventHandler = new EventHandler(this.eventHandler);
-        
+
         copy.gridOptGrid = new Integer[] {0, 0};
         copy.gridOptPadding = new Integer[] {0, 0};
         copy.borderOptPadding = new Integer[] {0, 0};
