@@ -1055,7 +1055,7 @@ public final class Builder {
 
         for (int i = 0 ; i < x.length ; i++) {
             Double tmp = x[i];
-            if (tmp.isInfinite() == false) {
+            if (tmp.isInfinite() == false && tmp.isNaN() == false) {
                 refMin = Math.min(refMin, tmp);
                 refMax = Math.max(refMax, tmp);
                 isInfinite = false;
