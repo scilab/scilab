@@ -10,4 +10,4 @@
 // Exec tests common to all uicontrols
 clear uicontrol_generic_test
 exec("SCI/modules/gui/tests/unit_tests/uicontrol_generic_test.sci");
-if uicontrol_generic_test("popupmenu") <> 0 then pause; end
+if uicontrol_generic_test("tab") <> 0 then pause; end
