@@ -1034,6 +1034,7 @@ function %h_p(h)
                 "Constraints = "+sci2exp(c)
                 "Borders = "+sci2exp(b)
                 "Margins = "+sci2exp(h.margins)
+                "Groupname = "+sci2exp(h.groupname)
                 "Userdata = "+fmtuser_data(u)
                 "Tag = "+h.tag
                 ]

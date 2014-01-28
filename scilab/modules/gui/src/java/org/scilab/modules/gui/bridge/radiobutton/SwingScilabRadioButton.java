@@ -13,18 +13,27 @@
 
 package org.scilab.modules.gui.bridge.radiobutton;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GROUP_NAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
+import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
+import org.scilab.modules.gui.bridge.groupmanager.GroupManager;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.radiobutton.SimpleRadioButton;
@@ -64,10 +73,38 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
             @Override
             public void actionPerformed(ActionEvent e) {
                 Double[] value = new Double[1];
-                value[0] = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
                 if (isSelected()) {
                     value[0] = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+                } else {
+                    value[0] = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
                 }
+
+                if (isSelected()) {
+                    String groupname = (String) GraphicController.getController().getProperty(uid, __GO_UI_GROUP_NAME__);
+                    if (groupname != null && groupname.equals("") == false) {
+                        Enumeration<AbstractButton> elements = GroupManager.getGroupManager().getGroupElements(groupname);
+                        while (elements.hasMoreElements()) {
+                            AbstractButton aButton =  elements.nextElement();
+                            if (aButton == e.getSource()) {
+                                continue;
+                            }
+
+                            Integer id = 0;
+                            if (aButton instanceof SwingScilabRadioButton) {
+                                id = ((SwingScilabRadioButton)aButton).getId();
+                            } else if (aButton instanceof SwingScilabRadioButton) {
+                                id = ((SwingScilabCheckBox)aButton).getId();
+                            } else {
+                                continue;
+                            }
+                            //update model with min value
+                            Double newValue[] = new Double[1];
+                            newValue[0] = (Double) GraphicController.getController().getProperty(id, __GO_UI_MIN__);
+                            GraphicController.getController().setProperty(id, __GO_UI_VALUE__, newValue);
+                        }
+                    }
+                }
+
                 GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, value);
                 if (callback != null) {
                     callback.actionPerformed(e);
@@ -193,7 +230,43 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
             removeActionListener(actListener);
         }
 
-        setSelected(status);
+
+        String groupname = (String) GraphicController.getController().getProperty(uid, __GO_UI_GROUP_NAME__);
+        if (groupname != null && groupname.equals("") == false) {
+            // use setSelected of ButtonGroup instead of JRadioButton
+            GroupManager.getGroupManager().setSelected(getModel(), groupname, status);
+
+            //update model with changes
+            Enumeration<AbstractButton> elements = GroupManager.getGroupManager().getGroupElements(groupname);
+            while (elements.hasMoreElements()) {
+
+                AbstractButton aButton = elements.nextElement();
+                Integer id = 0;
+                boolean selected = false;
+
+                if (aButton instanceof SwingScilabRadioButton) {
+                    id = ((SwingScilabRadioButton)aButton).getId();
+                    selected = ((SwingScilabRadioButton)aButton).isSelected();
+                } else if (aButton instanceof SwingScilabCheckBox) {
+                    id = ((SwingScilabCheckBox)aButton).getId();
+                    selected = ((SwingScilabCheckBox)aButton).isSelected();
+                } else {
+                    continue;
+                }
+
+                // update model with min value
+                Double newValue[] = new Double[1];
+                if (selected) {
+                    newValue[0] = (Double) GraphicController.getController().getProperty(id, __GO_UI_MAX__);
+                } else {
+                    newValue[0] = (Double) GraphicController.getController().getProperty(id, __GO_UI_MIN__);
+                }
+                GraphicController.getController().setProperty(id, __GO_UI_VALUE__, newValue);
+            }
+
+        } else {
+            setSelected(status);
+        }
 
         /* Put back the listener */
         if (actListener != null) {
@@ -259,10 +332,10 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
     }
 
     /**
-     * Generic update method
-     * @param property property name
-     * @param value property value
-     */
+    * Generic update method
+    * @param property property name
+    * @param value property value
+    */
     public void update(int property, Object value) {
         SwingViewWidget.update(this, property, value);
     }

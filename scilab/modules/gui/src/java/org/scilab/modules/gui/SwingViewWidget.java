@@ -13,8 +13,8 @@
 
 package org.scilab.modules.gui;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
@@ -43,13 +43,18 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VALID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GROUP_NAME__;
 
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
+
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
+import org.scilab.modules.gui.bridge.groupmanager.GroupManager;
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
 import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
@@ -430,6 +435,19 @@ public final class SwingViewWidget {
                 /* Update position */
                 SwingViewWidget.update(uiControl, __GO_POSITION__,
                                        GraphicController.getController().getProperty(uid, __GO_POSITION__));
+                break;
+            case __GO_UI_GROUP_NAME__ :
+                if (uiControl instanceof SwingScilabRadioButton
+                        || uiControl instanceof SwingScilabCheckBox) {
+                    String groupName = (String)value;
+                    if (groupName == null || groupName.equals("")) {
+                        //remove rb from buttonGroup Map
+                        GroupManager.getGroupManager().removeFromGroup((AbstractButton) uiControl);
+                    } else {
+                        GroupManager.getGroupManager().addToGroup(groupName, (AbstractButton) uiControl);
+                    }
+                }
+
                 break;
             default :
                 //System.err.println("[SwingScilabWidget.update] Property not mapped: " + property);

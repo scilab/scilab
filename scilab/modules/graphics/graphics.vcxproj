@@ -287,6 +287,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_grid_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_grid_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_grid_thickness_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_groupname_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_handle_visible_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_hidden_axis_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_hidden_color_property.c" />
@@ -354,6 +355,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\set_figure_resizefcn_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_grid_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_grid_thickness_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_groupname_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_infobar_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_layout_options_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_layout_property.c" />

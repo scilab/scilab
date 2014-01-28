@@ -71,6 +71,7 @@ static const char* propertiesNames[] =
     "layout",
     "margins"
     "borders",
+    "groupname"
 };
 
 /*--------------------------------------------------------------------------*/
@@ -317,7 +318,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                     {
                         getGraphicObjectProperty(iParentUID, __GO_STYLE__, jni_int, (void **)&piParentStyle);
                         if (iParentType != __GO_UICONTROL__ ||
-                            (iParentStyle != __GO_UI_FRAME__ && iParentStyle != __GO_UI_TAB__ && iParentStyle != __GO_UI_LAYER__))
+                                (iParentStyle != __GO_UI_FRAME__ && iParentStyle != __GO_UI_TAB__ && iParentStyle != __GO_UI_LAYER__))
                         {
                             Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
                                      "Frame uicontrol");
@@ -370,7 +371,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                 {
                     getGraphicObjectProperty(iParentUID, __GO_STYLE__, jni_int, (void **)&piParentStyle);
                     if (iParentType != __GO_UICONTROL__ ||
-                        (iParentStyle != __GO_UI_FRAME__ && iParentStyle != __GO_UI_TAB__ && iParentStyle != __GO_UI_LAYER__))
+                            (iParentStyle != __GO_UI_FRAME__ && iParentStyle != __GO_UI_TAB__ && iParentStyle != __GO_UI_LAYER__))
                     {
                         Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
                                  "Frame uicontrol");

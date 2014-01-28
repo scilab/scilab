@@ -335,6 +335,8 @@ src/c/getHandleProperty/get_layout_options_property.c \
 src/c/getHandleProperty/set_layout_options_property.c \
 src/c/getHandleProperty/get_borders_property.c \
 src/c/getHandleProperty/set_borders_property.c \
+src/c/getHandleProperty/get_groupname_property.c \
+src/c/getHandleProperty/set_groupname_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \
