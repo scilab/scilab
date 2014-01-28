@@ -15,24 +15,29 @@
         <title>Description</title>
         <para>
             This function is used inside a function definition.
-            It gives the number of actual inputs arguments (<literal>rhs</literal>)
-            and output arguments (<literal>lhs</literal>) passed to the function when the function is 
+            It gives the number of actual inputs arguments (<varname>rhs</varname>)
+            and output arguments (<varname>lhs</varname>) passed to the function when the function is 
             called. It is usually used in function definitions to deal with 
             optional arguments.
+        </para>
+        <para>
+            Note that <varname>lhs</varname> is always greater than or equal to 1. That is to say, even if a function
+            is called without having mentioned an output argument, <varname>lhs</varname> will be equal to 1.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 function concat=myOwnFunction(name,optional)
-  [lhs,rhs]=argn(0) 
+  [lhs,rhs]=argn(0);
+  disp(lhs);
   if rhs <= 1 then
-  	 optional="my Optional value"
+  	 optional="my Optional value";
   end
   if rhs == 0 then
-  	 error("Expect at least one argument")
+  	 error("Expect at least one argument");
   end
-  concat=name+" "+optional
+  concat=name+" "+optional;
 endfunction
  ]]></programlisting>
     </refsection>

@@ -15,9 +15,29 @@
         <title>Description</title>
         <para>
             Cette fonction est utilisée à l'intérieur d'une définition de fonction.
-            Elle donne le nombre effectif (au moment de l'appel) d'arguments d'entrée <literal>rhs</literal>
-            et de sortie <literal>lhs</literal>. Elle permet d'utiliser des arguments optionnels.
+            Elle donne le nombre effectif (au moment de l'appel) d'arguments d'entrée <varname>rhs</varname>
+            et de sortie <varname>lhs</varname>. Elle permet d'utiliser des arguments optionnels.
         </para>
+        <para>
+            Notez que <varname>lhs</varname> est toujours supérieur ou égal à 1. Autrement dit, même si une
+            fonction est appelée sans avoir mentionné un argument de sortie, <varname>lhs</varname> sera égal à 1.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
+function concat=maFonction(nom,option)
+  [lhs,rhs]=argn(0);
+  disp(lhs);
+  if rhs <= 1 then
+  	 option="mon argument optionnel";
+  end
+  if rhs == 0 then
+  	 error("Au moins un argument attendu");
+  end
+  concat=nom+" "+option;
+endfunction
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

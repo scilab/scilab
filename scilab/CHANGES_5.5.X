@@ -462,6 +462,8 @@ Xcos
 
 * Bug #13172 fixed - Logic bloc help file had some typo.
 
+* Bug #13175 fixed - argn help page updated with specific cases.
+
 
                  Changes between version 5.4.1 and 5.5.0-beta-1
                  ==============================================
