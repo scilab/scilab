@@ -21,7 +21,7 @@
 #include "MALLOC.h" /* MALLOC */
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
-BOOL setenvc(char *stringIn, char *valueIn)
+BOOL setenvc(const char *stringIn, const char *valueIn)
 {
     BOOL ret = TRUE;
     int len_env = 0;
