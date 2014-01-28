@@ -36,7 +36,7 @@
 #include "sciquit.h"
 #include "getCommonPart.h"
 
-static void doCompletion(char *wk_buf, unsigned int *cursor, unsigned int *cursor_max);
+static void doCompletion(char **wk_buf, unsigned int *cursor, unsigned int *cursor_max);
 
 static char *getLineBeforeCaret(char *wk_buf, unsigned int *cursor);
 
@@ -48,10 +48,10 @@ static void erase_nchar(int n);
 
 static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFiles,
                                   char *lineBeforeCaret, char *lineAfterCaret, char *filePattern, char *defaultPattern,
-                                  char *wk_buf, unsigned int *cursor, unsigned int *cursor_max);
-static int CopyLineAtPrompt(char *wk_buf, char *line, unsigned int *cursor, unsigned int *cursor_max);
+                                  char **wk_buf, unsigned int *cursor, unsigned int *cursor_max);
+static int CopyLineAtPrompt(char **wk_buf, char *line, unsigned int *cursor, unsigned int *cursor_max);
 
-static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, char *defaultPattern, char *wk_buf, unsigned int *cursor,
+static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, char *defaultPattern, char **wk_buf, unsigned int *cursor,
                                 unsigned int *cursor_max);
 
 static void displayCompletionDictionary(char **dictionary, int sizedictionary, char *namedictionary);
@@ -71,7 +71,8 @@ void autoCompletionInConsoleMode(wchar_t ** commandLine, unsigned int *cursorLoc
 
     multiByteString = wide_string_to_UTF8(*commandLine);
     nbrCharInString = wcslen(*commandLine);
-    doCompletion(multiByteString, cursorLocation, &nbrCharInString);
+    doCompletion(&multiByteString, cursorLocation, &nbrCharInString);
+
     wideString = to_wide_string(multiByteString);
     /* Copy the new string in a buffer wich size is a multiple of 1024 */
     sizeToAlloc = 1024 * (wcslen(wideString) / 1024 + 1);
@@ -82,11 +83,11 @@ void autoCompletionInConsoleMode(wchar_t ** commandLine, unsigned int *cursorLoc
     FREE(multiByteString);
 }
 
-static void doCompletion(char *wk_buf, unsigned int *cursor, unsigned int *cursor_max)
+static void doCompletion(char **wk_buf, unsigned int *cursor, unsigned int *cursor_max)
 {
-    char *LineBeforeCaret = getLineBeforeCaret(wk_buf, cursor);
+    char *LineBeforeCaret = getLineBeforeCaret(*wk_buf, cursor);
 
-    char *LineAfterCaret = getLineAfterCaret(wk_buf, cursor, cursor_max);
+    char *LineAfterCaret = getLineAfterCaret(*wk_buf, cursor, cursor_max);
 
     char *fileSearchedPattern = getFilePartLevel(LineBeforeCaret);
 
@@ -196,7 +197,7 @@ static void erase_nchar(int n)
 
 static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFiles,
                                   char *lineBeforeCaret, char *lineAfterCaret, char *filePattern, char *defaultPattern,
-                                  char *wk_buf, unsigned int *cursor, unsigned int *cursor_max)
+                                  char **wk_buf, unsigned int *cursor, unsigned int *cursor_max)
 {
     if (dictionaryFiles)
     {
@@ -213,7 +214,6 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 
                 backspace(*cursor);
                 erase_nchar(*cursor_max);
-                wk_buf[0] = '\0';
                 *cursor = *cursor_max = 0;
 
                 CopyLineAtPrompt(wk_buf, buflinetmp, cursor, cursor_max);
@@ -230,7 +230,6 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 
             backspace(*cursor);
             erase_nchar(*cursor_max);
-            wk_buf[0] = '\0';
             *cursor = *cursor_max = 0;
 
             printPrompt(WRITE_PROMPT);
@@ -290,21 +289,28 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
     }
 }
 
-static int CopyLineAtPrompt(char *wk_buf, char *line, unsigned int *cursor, unsigned int *cursor_max)
+static int CopyLineAtPrompt(char **wk_buf, char *line, unsigned int *cursor, unsigned int *cursor_max)
 {
+    FREE(*wk_buf);
     if (line)
     {
         //** Copy line to current command buffer, usefull in completion case.
-        strcpy(wk_buf, line);
+        *wk_buf = MALLOC(sizeof(char) * strlen(line) + 1);
+        strcpy(*wk_buf, line);
         backspace(*cursor);     /* backspace to beginning of line */
-        printf("%s", wk_buf);   /* copy to screen */
+        printf("%s", *wk_buf);   /* copy to screen */
 
-        *cursor = strlen(wk_buf);   /* cursor set at end of line */
+        *cursor = strlen(*wk_buf);   /* cursor set at end of line */
 
         /* erase extra characters left over if any */
         erase_nchar(GET_MAX(0, (*cursor_max - *cursor)));
         *cursor_max = *cursor;
         return 1;
+    }
+    else
+    {
+        *wk_buf = (char*) MALLOC(sizeof(char));
+        (*wk_buf)[0] = '\0';
     }
     return 0;
 }
@@ -380,7 +386,7 @@ static char **concatenateStrings(int *sizearrayofstring, char *string1, char *st
     return arrayOfString;
 }
 
-static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, char *defaultPattern, char *wk_buf, unsigned int *cursor,
+static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, char *defaultPattern, char **wk_buf, unsigned int *cursor,
                                 unsigned int *cursor_max)
 {
     if (defaultPattern)
@@ -470,7 +476,6 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
 
                     backspace(*cursor);
                     erase_nchar(*cursor_max);
-                    wk_buf[0] = '\0';
                     *cursor = *cursor_max = 0;
 
                     CopyLineAtPrompt(wk_buf, buflinetmp, cursor, cursor_max);
@@ -536,7 +541,6 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
 
                 backspace(*cursor);
                 erase_nchar(*cursor_max);
-                wk_buf[0] = '\0';
                 *cursor = *cursor_max = 0;
 
                 printPrompt(WRITE_PROMPT);
