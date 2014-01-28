@@ -85,9 +85,9 @@ public final class PositionConverter {
         //
         //		return new Position(xCoord, yCoord);
 
-        SwingScilabAxes parentAxes = (SwingScilabAxes) parent;
+        
         int xCoord = javaPosition.x;
-        int yCoord = parentAxes.getHeight() - javaPosition.y - objectSize.height;
+        int yCoord = parent.getHeight() - javaPosition.y - objectSize.height;
 
         return new Position(xCoord, yCoord);
     }

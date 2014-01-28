@@ -181,7 +181,7 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
 
     /** Contains the canvas and widgets */
     private SwingScilabAxes contentPane;
-    private JPanel uiContentPane;
+    private JLayeredPane uiContentPane;
     private JLayeredPane layerdPane;
 
     /** Scroll the axes */
@@ -309,8 +309,9 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
         layerdPane = new JLayeredPane();
         layerdPane.setLayout(null);
         layerdPane.add(canvas, JLayeredPane.FRAME_CONTENT_LAYER);
-        uiContentPane = new JPanel();
+        uiContentPane = new JLayeredPane();
         uiContentPane.setOpaque(false);
+        uiContentPane.setLayout(null);
         uiContentPane.setSize(new Dimension(800, 800));
         layerdPane.add(uiContentPane, JLayeredPane.DEFAULT_LAYER + 1, 0);
 
@@ -740,7 +741,11 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
             uiContentPane.add((Component) member, constraints);
             uiContentPane.revalidate();
         } else {
-            uiContentPane.add((Component) member);
+            if (member instanceof SwingScilabFrame) {
+                uiContentPane.add((Component) member, JLayeredPane.FRAME_CONTENT_LAYER);
+            } else {
+                uiContentPane.add((Component) member, JLayeredPane.DEFAULT_LAYER + 1);
+            }
         }
     }
 

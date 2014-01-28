@@ -46,13 +46,13 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
     private SwingScilabCanvas canvas;
     private Figure figure;
     private Component comp;
-    private JPanel uiContent;
+    private Container uiContent;
 
     /**
      * Create a new Scroll pane around an axes.
      * @param axes axes to scroll
      */
-    public SwingScilabScrollPane(Component comp, SwingScilabCanvas canvas, JPanel uiContentPane, Figure figure) {
+    public SwingScilabScrollPane(Component comp, SwingScilabCanvas canvas, Container uiContentPane, Figure figure) {
         super(comp);
         this.comp = comp;
         this.canvas = canvas;
