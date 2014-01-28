@@ -155,6 +155,7 @@ public class ScilabAboutBox {
             acknowledgements = new javax.swing.JToggleButton();
             ackScrollPane = new javax.swing.JScrollPane();
             ackText = new javax.swing.JTextPane();
+            ackText.setContentType("text/plain; charset=utf-8");
 
             setLayout(new java.awt.BorderLayout());
 
