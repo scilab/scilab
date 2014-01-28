@@ -63,6 +63,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VALID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_WAITBAR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
+
 import static org.scilab.modules.gui.utils.Debug.DEBUG;
 
 import java.awt.CardLayout;
@@ -581,6 +583,8 @@ public final class SwingView implements GraphicView {
                                GraphicController.getController().getProperty(id, __GO_UI_VERTICALALIGNMENT__));
         SwingViewWidget.update(uiControlObject, __GO_POSITION__,
                                GraphicController.getController().getProperty(id, __GO_POSITION__));
+        SwingViewWidget.update(uiControlObject, __GO_LAYOUT__,
+                               GraphicController.getController().getProperty(id, __GO_LAYOUT__));
     }
 
     public void deleteObject(Integer id) {

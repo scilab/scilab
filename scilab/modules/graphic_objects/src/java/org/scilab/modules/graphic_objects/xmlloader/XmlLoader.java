@@ -18,17 +18,20 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_EDIT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LAYER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_POPUPMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RADIOBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.HashMap;
@@ -72,7 +75,8 @@ public class XmlLoader extends DefaultHandler {
         nameToGO.put("UILayer", __GO_UI_FRAME__);
         nameToGO.put("Panel", __GO_UI_FRAME__);
         nameToGO.put("Frame", __GO_UI_FRAME__);
-        nameToGO.put("Layer", __GO_UI_FRAME__);
+
+        nameToGO.put("Layer", __GO_UI_LAYER__);
 
         nameToGO.put("UIButton", __GO_UI_PUSHBUTTON__);
         nameToGO.put("PushButton", __GO_UI_PUSHBUTTON__);
@@ -129,6 +133,7 @@ public class XmlLoader extends DefaultHandler {
             ret = parse(filename);
         }
 
+        //clean model before leave.
         Set<String> entries = models.keySet();
         for (String key : entries) {
             HashMap<String, Entry<Integer, Map<String, String>>> map = models.get(key);
@@ -144,6 +149,12 @@ public class XmlLoader extends DefaultHandler {
     public int parse(String filename) throws SAXException {
         this.filename = filename;
         File f = new File(filename);
+        FileInputStream in = null;
+        try {
+            in = new FileInputStream(f);
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        }
 
         SAXParser parser;
         try {
@@ -158,7 +169,7 @@ public class XmlLoader extends DefaultHandler {
         }
 
         try {
-            parser.parse(f, this);
+            parser.parse(in, this);
         } catch (SAXException e) {
             if (locator != null) {
                 throw new SAXException(String.format("Parse error at line %d: %s", locator.getLineNumber(), e.getMessage()));
@@ -167,6 +178,10 @@ public class XmlLoader extends DefaultHandler {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                in.close();
+            } catch (IOException e) { }
         }
 
         return uid;
@@ -221,34 +236,6 @@ public class XmlLoader extends DefaultHandler {
             namespace = attributes.getValue("namespace");
             isWaitingModelName = true;
         } else {
-
-
-            for (int i = 0 ; i < attributes.getLength() ; i++) {
-                String val = attributes.getValue(i);
-                //System.out.print(attributes.getLocalName(i) + ":");
-                if (val != null) {
-                    //System.out.println(val);
-                    try {
-                        Map<String, String> map = CSSParser.parseLine(val);
-                        if (map.size() != 0) {
-                            Set<Entry<String, String>> entries = map.entrySet();
-                            for (Entry<String, String> entry : entries) {
-                                //System.out.println(entry.getKey() + " -> " + entry.getValue());
-                            }
-                        }
-                    } catch (CSSParserException e) {
-                    }
-                } else {
-                    //System.out.println("");
-                }
-            }
-
-            //System.out.println("");
-
-
-
-
-
             Integer uitype = getTypeFromName(localName);
             Integer go = 0;
             if (uitype != null && uitype.intValue() > 0) {

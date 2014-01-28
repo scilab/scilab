@@ -13,8 +13,9 @@
 
 package org.scilab.modules.gui;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
@@ -44,17 +45,24 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VALID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GROUP_NAME__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
+import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
+import org.scilab.modules.graphic_objects.utils.LayoutType;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.groupmanager.GroupManager;
+import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
 import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
@@ -447,7 +455,29 @@ public final class SwingViewWidget {
                         GroupManager.getGroupManager().addToGroup(groupName, (AbstractButton) uiControl);
                     }
                 }
-
+                break;
+            case __GO_LAYOUT__ :
+                if (uiControl instanceof SwingScilabFrame) {
+                    SwingScilabFrame frame = (SwingScilabFrame)uiControl;
+                    LayoutType newLayout = LayoutType.intToEnum((Integer) value);
+                    switch (newLayout) {
+                        case BORDER :
+                            Integer[] padding = (Integer[]) GraphicController.getController().getProperty(frame.getId(), __GO_BORDER_OPT_PADDING__);
+                            frame.setLayout(new BorderLayout(padding[0], padding[1]));
+                            break;
+                        case GRIDBAG :
+                            frame.setLayout(new GridBagLayout());
+                            break;
+                        case GRID :
+                            frame.setLayout(new GridLayout());
+                            break;
+                        case NONE :
+                        default:
+                            frame.setLayout(null);
+                            break;
+                    }
+                } else {
+                }
                 break;
             default :
                 //System.err.println("[SwingScilabWidget.update] Property not mapped: " + property);
