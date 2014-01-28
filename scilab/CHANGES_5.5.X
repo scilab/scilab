@@ -289,6 +289,8 @@ Scilab Bug Fixes
 
 * Bug #12440 fixed - Unitary test added for bitxor.
 
+* Bug #12465 fixed - ATOMS Default categories names were not localized.
+
 * Bug #12472 fixed - grand and link error messages fixed.
 
 * Bug #12481 fixed - xlabel could not be used with Scilab property names.
