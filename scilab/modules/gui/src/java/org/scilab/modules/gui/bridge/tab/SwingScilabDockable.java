@@ -664,9 +664,7 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
                 default:
                     break;
             }
-
         } else if (uiContentPane.getLayout() instanceof GridBagLayout) {
-
             GridBagConstraints constraints = new GridBagConstraints();
 
             // Grid
