@@ -107,13 +107,12 @@ public class ScilabJarCreator {
                 closeJarArchive(jarOutputStream);
                 deleteJarArchive(jarFilePath);
             } catch (Exception e2) {}
-            e.printStackTrace();
-            throw new ScilabJavaException(String.format("Cannot create jar archive %s : %s\n", jarFilePath, e.getMessage()));
+            throw new ScilabJavaException(String.format("Cannot create jar archive %s: %s", jarFilePath, e.getMessage()));
         }
     }
 
     /**
-     * Recursively list all chidren file paths contained in a list of paths
+     * Recursively list all children file paths contained in a list of paths
      * @param paths the paths to expand
      */
     private static List<String> expandPaths(String... paths) throws IOException {
@@ -236,7 +235,7 @@ public class ScilabJarCreator {
                 jarOutputStream.close();
             }
         } catch (IOException e) {
-            throw new ScilabJavaException(String.format("Cannot close jar stream : %s\n", e.getMessage()));
+            throw new ScilabJavaException(String.format("Cannot close jar stream: %s\n", e.getMessage()));
         }
     }
 
@@ -252,10 +251,10 @@ public class ScilabJarCreator {
                     throw new ScilabJavaException(String.format("Cannot delete jar archive %s.\n", jarFilePath));
                 }
             } else {
-                throw new ScilabJavaException(String.format("Cannot delete jar archive %s : File is write protected.\n", jarFilePath));
+                throw new ScilabJavaException(String.format("Cannot delete jar archive %s: File is write protected.\n", jarFilePath));
             }
         } else {
-            throw new ScilabJavaException(String.format("Cannot delete jar archive %s : No such file.\n", jarFilePath));
+            throw new ScilabJavaException(String.format("Cannot delete jar archive %s: No such file.\n", jarFilePath));
         }
     }
 }
