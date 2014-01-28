@@ -76,7 +76,7 @@ int set_parent_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType,
         {
             getGraphicObjectProperty(iParentUID, __GO_STYLE__, jni_int, (void **)&piParentStyle);
             if (iParentType != __GO_UICONTROL__ ||
-                (iParentStyle != __GO_UI_FRAME__ && iParentStyle != __GO_UI_TAB__))
+                (iParentStyle != __GO_UI_FRAME__ && iParentStyle != __GO_UI_TAB__ && iParentStyle != __GO_UI_LAYER__))
             {
                 Scierror(999, _("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
                 return SET_PROPERTY_ERROR;

@@ -77,6 +77,10 @@ int CreateUIControl(char *style)
     {
         iObjUID = createGraphicObject(__GO_UI_TAB__);
     }
+    else if (strcmp(style, "layer") == 0)
+    {
+        iObjUID = createGraphicObject(__GO_UI_LAYER__);
+    }
 
     return iObjUID;
 }

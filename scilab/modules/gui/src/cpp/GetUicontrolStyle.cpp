@@ -51,6 +51,8 @@ char *IntToStyle(int _iStyle)
             return "text";
         case __GO_UI_TAB__ :
             return "tab";
+        case __GO_UI_LAYER__ :
+            return "layer";
     }
 
     return NULL;

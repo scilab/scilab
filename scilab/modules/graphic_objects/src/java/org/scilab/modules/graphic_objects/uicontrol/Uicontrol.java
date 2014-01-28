@@ -13,6 +13,9 @@
 
 package org.scilab.modules.graphic_objects.uicontrol;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT_SET__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARGINS__;
@@ -38,6 +41,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRIDBAG_WEIGHT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LAYER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOX__;
@@ -61,9 +65,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
 
 import java.util.Arrays;
 import java.util.StringTokenizer;
@@ -71,8 +72,6 @@ import java.util.StringTokenizer;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.utils.LayoutType;
-
-import sun.font.EAttribute;
 
 /**
  * @author Bruno JOFRET
@@ -286,8 +285,6 @@ public class Uicontrol extends GraphicObject {
     private FillType gridbagFill = FillType.NONE;
     private AnchorType gridbagAnchor = AnchorType.CENTER;
     private Integer[] gridbagPadding = new Integer[] {0, 0};
-    private Integer[] gridGrid = new Integer[] {0, 0};
-    private Integer[] gridPadding = new Integer[] {0, 0};
     private BorderLayoutType borderPosition = BorderLayoutType.CENTER;
 
     /** layout options */
@@ -357,7 +354,8 @@ public class Uicontrol extends GraphicObject {
         TABLE,
         TEXT,
         TABGROUP,
-        TAB
+        TAB,
+        LAYER
     };
 
     /**
@@ -399,6 +397,8 @@ public class Uicontrol extends GraphicObject {
                 return __GO_UI_TEXT__;
             case TAB:
                 return __GO_UI_TAB__;
+            case LAYER:
+                return __GO_UI_LAYER__;
             default :
                 return -1;
         }
@@ -435,6 +435,8 @@ public class Uicontrol extends GraphicObject {
                 return UicontrolStyle.TEXT;
             case __GO_UI_TAB__:
                 return UicontrolStyle.TAB;
+            case __GO_UI_LAYER__:
+                return UicontrolStyle.LAYER;
             default :
                 return null;
         }
