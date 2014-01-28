@@ -229,36 +229,6 @@ sciSetDefaultValues (void)
     return 0;
 }
 
-/**sciSetSelectedSubWin
- * Determines wich SubWin is selected or not. WARNING TO BE DEFINED.
- * It has been adapted to the MVC. Its should be implemented entirely
- * within the MVC (as the setGraphicObjectRelationship function).
- * @param char * psubwinobj: the pointer to the entity sub window
- * @return 0 if OK or -1 if NOT OK
- */
-int
-sciSetSelectedSubWin (int iObjUID)
-{
-    int iType = -1;
-    int *piType = &iType;
-    int iParent = 0;
-    int* piParent = &iParent;
-
-    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
-
-    /* Check that the object is an AXES */
-    if (iType != __GO_AXES__)
-    {
-        Scierror(999, _("Handle is not a SubWindow.\n"));
-        return -1;
-    }
-
-    iParent = getParentObject(iObjUID);
-    setGraphicObjectProperty(iParent, __GO_SELECTED_CHILD__, &iObjUID, jni_int, 1);
-
-    return 0;
-}
-
 /*-------------------------------------------------------------------------------*/
 
 /**sciSetPoint
