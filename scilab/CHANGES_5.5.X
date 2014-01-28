@@ -895,6 +895,9 @@ Scilab Bug Fixes
 
 * Bug #10213 fixed - sci2exp help page updated to document the impact of format function.
 
+* Bug #10214 fixed - Update help page of evstr function to mention that input argument must not be composed of
+                     continuation marks (..).
+
 * Bug #10216 fixed - Invalid syntaxes for zeros, ones, eye, rand, like zeros(2,:).
 
 * Bug #10226 fixed - When a // <empty session> line was deleted, all sessions

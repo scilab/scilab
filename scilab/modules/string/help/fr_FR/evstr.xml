@@ -76,6 +76,9 @@
         </para>
         <para>Nan et Nan seront interpretés comme %nan.</para>
         <para>Inf sera interpreté comme %inf</para>
+        <note>
+            Note : <varname>Z</varname> ne doit pas comporter de marques de suite (..).
+        </note>
     </refsection>
     <refsection>
         <title>Exemples</title>
