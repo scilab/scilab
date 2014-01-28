@@ -164,6 +164,9 @@ Scilab Bug Fixes
 
 * Bug #10175 fixed - Clearer example added for sp2adj to adj2sp conversion (and backwards conversion).
 
+* Bug #10214 fixed - Update help page of evstr function to mention that input argument must not be composed of
+                     continuation marks (..).
+
 * Bug #10221 fixed - ifftshift function did not exist in Scilab.
 
 * Bug #10234 fixed - reglin function moved from CACSD to Statistics module.
@@ -433,6 +436,8 @@ Scilab Bug Fixes
 * Bug #13203 fixed - Some error messages typos fixed.
 
 * Bug #13205 fixed - group accepted continuous transfer functions.
+
+* Bug #13210 fixed - Incorrect argument description in the mseek help page.
 
 
 Xcos
@@ -894,9 +899,6 @@ Scilab Bug Fixes
 * Bug #10180 fixed - det was not defined for sparse matrices.
 
 * Bug #10213 fixed - sci2exp help page updated to document the impact of format function.
-
-* Bug #10214 fixed - Update help page of evstr function to mention that input argument must not be composed of
-                     continuation marks (..).
 
 * Bug #10216 fixed - Invalid syntaxes for zeros, ones, eye, rand, like zeros(2,:).
 

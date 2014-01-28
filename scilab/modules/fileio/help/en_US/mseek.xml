@@ -26,7 +26,7 @@
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>a positive scalar: the offset from origin in a number of bytes.</para>
+                    <para>a scalar: the offset in a number of bytes.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -53,7 +53,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            The function <function>mseek</function> sets the position of the next input or output operation on the stream <varname>fd</varname>. The new position is at the signed distance given by <varname>n</varname> bytes from the beginning, from the current position, or from the end of the file, according  to the <varname>flag</varname> value which can be <literal>'set'</literal>, <literal>'cur'</literal> or <literal>'end'</literal>.
+            The function <function>mseek</function> sets the position of the next input or output operation on the stream <varname>fd</varname>. The new position is at the signed distance given by <varname>n</varname> bytes from the beginning, from the current position, or from the end of the file, according  to the <varname>flag</varname> value which can be <literal>'set'</literal>, <literal>'cur'</literal> or <literal>'end'</literal>. This is the reason why <varname>n</varname>  must be positive when <varname>flag</varname> is equal to <literal>'set'</literal>.
         </para>
         <para>
             <function>mseek</function> allows the file position indicator to be 
