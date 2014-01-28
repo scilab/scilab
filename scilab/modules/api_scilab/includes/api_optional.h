@@ -9,16 +9,14 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
-#ifndef __OPTIONAL_API__
-#define __OPTIONAL_API__
+#ifndef __OPTINAL_API__
+#define __OPTINAL_API__
 
 #if !defined(__INTERNAL_API_SCILAB__)
-#error Do not include api_optional.h. Include api_scilab.h instead.
+#error Do not include api_optinal.h. Include api_scilab.h instead.
 #endif
 
-#if !defined(__SCILAB_TOOLBOX__) || defined(__USE_DEPRECATED_STACK_FUNCTIONS__)
 #include "stack-c.h"
-#endif
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -34,4 +32,4 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-#endif /* __OPTIONAL_API__ */
+#endif /* __OPTINAL_API__ */
