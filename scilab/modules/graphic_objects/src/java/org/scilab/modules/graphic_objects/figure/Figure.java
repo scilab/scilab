@@ -398,9 +398,9 @@ public class Figure extends GraphicObject {
     private LayoutType layout;
 
     /** layout options */
-    private Integer[] gridOptGrid = new Integer[2];
-    private Integer[] gridOptPadding = new Integer[2];
-    private Integer[] borderOptPadding = new Integer[2];
+    private Integer[] gridOptGrid = new Integer[] {0, 0};
+    private Integer[] gridOptPadding = new Integer[] {0, 0};
+    private Integer[] borderOptPadding = new Integer[] {0, 0};
 
     /** Constructor */
     public Figure() {
@@ -438,7 +438,10 @@ public class Figure extends GraphicObject {
         copy.colorMap = new ColorMap(this.colorMap);
         copy.renderingMode = new RenderingMode(this.renderingMode);
         copy.eventHandler = new EventHandler(this.eventHandler);
-
+        
+        copy.gridOptGrid = new Integer[] {0, 0};
+        copy.gridOptPadding = new Integer[] {0, 0};
+        copy.borderOptPadding = new Integer[] {0, 0};
         copy.setValid(true);
 
         return copy;
