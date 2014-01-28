@@ -788,9 +788,8 @@ public final class SwingView implements GraphicView {
                         parent.add(meAsAMenuItem);
                         break;
                     case UiChildMenu:
-                        Integer parentId = (Integer) GraphicController.getController().getProperty(id, __GO_PARENT__);
                         SwingScilabMenuItem childMenu = (SwingScilabMenuItem) allObjects.get(id).getValue();
-                        SwingScilabMenu parentMenu = (SwingScilabMenu) allObjects.get(parentId).getValue();
+                        JComponent parentMenu = (JComponent) childMenu.getParent();
 
                         int index = parentMenu.getComponentZOrder(childMenu);
                         parentMenu.remove(childMenu);

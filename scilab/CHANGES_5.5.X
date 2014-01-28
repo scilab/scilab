@@ -415,6 +415,9 @@ Scilab Bug Fixes
 
 * Bug #13174 fixed - Scilab crashed after XML element removal.
 
+* Bug #13185 fixed - When the "checked" option of an uimenu was set to "on" for
+                     the first time, the display order of others uimenus was changed.
+
 * Bug #13188 fixed - The output argument of eomday function was not pre-dimensioned.
 
 * Bug #13191 fixed - isempty(rational) returned an error message.
