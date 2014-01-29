@@ -16,7 +16,7 @@ AM_CXXFLAGS=@CXXFLAGS@
 AM_FFLAGS=@FFLAGS@
 AM_LDFLAGS=@LDFLAGS@
 
-ACLOCAL_AMFLAGS = -I m4/
+ACLOCAL_AMFLAGS = -I m4
 
 # Definitions are already in machine.h, avoid double definition errors
 DEFS=
