@@ -284,7 +284,8 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
         uiContentPane.setLayout(null);
         layerdPane.add(uiContentPane, JLayeredPane.DEFAULT_LAYER + 1, 0);
 
-        scrolling = new SwingScilabScrollPane(layerdPane, canvas, uiContentPane, figure);
+        scrolling = new SwingScilabScrollPane(layerdPane, uiContentPane, figure);
+        scrolling.setCanvas(canvas);
 
         contentCanvas.addKeyListener(this);
 

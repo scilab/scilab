@@ -427,9 +427,9 @@ public final class SwingView implements GraphicView {
                 tab.setParentWindowId(window.getId());
 
                 tab.setEventHandler(figure.getEventHandlerString());
-                tab.setEventHandlerEnabled(figure.getEventHandlerEnable());                
+                tab.setEventHandlerEnabled(figure.getEventHandlerEnable());
 
-                
+
                 tab.setVisible(true);
                 tab.setName(figureTitle);
 
@@ -621,13 +621,16 @@ public final class SwingView implements GraphicView {
 
                                 @Override
                                 public void run() {
-                                    final SwingScilabDockablePanel tab = (SwingScilabDockablePanel) requestedObject.getValue();
-                                    tab.disablePaint();
-                                    DockingManager.close(tab);
-                                    DockingManager.unregisterDockable((Dockable) tab);
-                                    ClosingOperationsManager.unregisterClosingOperation(tab);
-                                    ClosingOperationsManager.removeDependency(tab);
-                                    ClosingOperationsManager.checkTabForClosing(tab);
+                                    final SwingScilabPanel tab = (SwingScilabPanel) requestedObject.getValue();
+                                    if (tab instanceof SwingScilabDockablePanel) {
+                                        final SwingScilabDockablePanel dockableTab = (SwingScilabDockablePanel) tab;
+                                        dockableTab.disablePaint();
+                                        DockingManager.close(dockableTab);
+                                        DockingManager.unregisterDockable((Dockable) dockableTab);
+                                        ClosingOperationsManager.unregisterClosingOperation(dockableTab);
+                                        ClosingOperationsManager.removeDependency(dockableTab);
+                                        ClosingOperationsManager.checkTabForClosing(dockableTab);
+                                    }
                                     tab.close();
                                 }
 

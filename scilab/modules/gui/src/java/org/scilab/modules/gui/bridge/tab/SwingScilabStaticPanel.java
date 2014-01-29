@@ -14,48 +14,27 @@ package org.scilab.modules.gui.bridge.tab;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTORESIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_ENABLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_NAME__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ID__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFOBAR_VISIBLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFO_MESSAGE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MENUBAR_VISIBLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_NAME__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_RESIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TOOLBAR_VISIBLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.utils.LayoutType;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.ToolBarBuilder;
 
-public class SwingScilabStaticPanel extends JPanel implements SwingScilabPanel {
+public class SwingScilabStaticPanel extends SwingScilabScrollPane implements SwingScilabPanel {
 
     private Integer id;
     private TextBox infoBar;
@@ -69,33 +48,52 @@ public class SwingScilabStaticPanel extends JPanel implements SwingScilabPanel {
     private JLayeredPane uiContentPane;
     private JLayeredPane layerdPane;
 
-    /** Scroll the axes */
-    private SwingScilabScrollPane scrolling;
-    
     public SwingScilabStaticPanel(String figureTitle, Integer figureId, Figure figure) {
-        super();
-        setId(figureId);
+        super(new JLayeredPane(), new JLayeredPane(), figure);
+        uiContentPane = (JLayeredPane) getUIComponent();
+        layerdPane = (JLayeredPane) getGlobalComponent();
         setVisible(true);
-        setLayout(new BorderLayout());
         
-        //layerdPane = new JLayeredPane();
-        //layerdPane.setLayout(null);
-        //layerdPane.add(canvas, JLayeredPane.FRAME_CONTENT_LAYER);
-        uiContentPane = new JLayeredPane();
-        uiContentPane.setOpaque(false);
+        layerdPane.setLayout(null);
+        layerdPane.setOpaque(false);
+        
+        uiContentPane.setOpaque(true);
         uiContentPane.setLayout(null);
-        add(uiContentPane, BorderLayout.CENTER);
+        layerdPane.add(uiContentPane, JLayeredPane.DEFAULT_LAYER + 1, 0);
 
-        //scrolling = new SwingScilabScrollPane(layerdPane, null, uiContentPane, figure);
-        //add(scrolling, BorderLayout.CENTER);
-        //scrolling.setSize(500, 500);
-        //add(uiContentPane);
-        //layerdPane.setVisible(true);
-        //scrolling.setVisible(true);
+        layerdPane.setVisible(true);
         uiContentPane.setVisible(true);
-        //setSize(500, 500);
-        //setPreferredSize(new Dimension(500, 500));
-        setVisible(true);
+        
+        /* Manage figure_size property */
+        addComponentListener(new ComponentListener() {
+
+            public void componentShown(ComponentEvent arg0) {
+            }
+
+            public void componentResized(ComponentEvent arg0) {
+
+                /* Update the figure_size property */
+                Size parentSize =  SwingScilabWindow.allScilabWindows.get(parentWindowId).getDims();
+                Integer[] newSize = new Integer[] {parentSize.getWidth(), parentSize.getHeight()};
+
+                GraphicController.getController().setProperty(id, __GO_SIZE__, newSize);
+
+                Boolean autoreSize = (Boolean) GraphicController.getController().getProperty(id, __GO_AUTORESIZE__);
+
+                if (autoreSize != null && autoreSize) {
+                    /* Update the axes_size property */
+                    Integer[] newAxesSize = new Integer[] {getContentPane().getWidth(), getContentPane().getHeight()};
+                    GraphicController.getController().setProperty(id, __GO_AXES_SIZE__, newAxesSize);
+                }
+            }
+
+            public void componentMoved(ComponentEvent arg0) {
+            }
+
+            public void componentHidden(ComponentEvent arg0) {
+            }
+        });
+
     }
 
     public void setId(Integer id) {
@@ -173,10 +171,11 @@ public class SwingScilabStaticPanel extends JPanel implements SwingScilabPanel {
     }
 
     public Container getContentPane() {
-        return this;
+        return this.getAsContainer();
     }
     
     public void close() {
     }
+
     
 }

@@ -13,7 +13,6 @@
 package org.scilab.modules.graphic_objects.graphicController;
 
 import java.awt.GraphicsEnvironment;
-import java.rmi.server.UID;
 import java.util.Collections;
 import java.util.ConcurrentModificationException;
 import java.util.HashSet;
