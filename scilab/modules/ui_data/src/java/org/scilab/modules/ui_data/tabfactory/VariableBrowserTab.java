@@ -15,7 +15,7 @@ package org.scilab.modules.ui_data.tabfactory;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser;
@@ -32,8 +32,8 @@ public class VariableBrowserTab {
      *            the uuid to restore
      * @return a new SciNotes instance
      */
-    public static SwingScilabDockable getVariableBrowserInstance() {
-        final SwingScilabDockable varbrowser = ScilabVariableBrowser
+    public static SwingScilabDockablePanel getVariableBrowserInstance() {
+        final SwingScilabDockablePanel varbrowser = ScilabVariableBrowser
                                           .createVarBrowserTab();
         ScilabTabFactory.getInstance().addToCache(varbrowser);
 
@@ -51,13 +51,13 @@ public class VariableBrowserTab {
             }
 
             @Override
-            public String askForClosing(final List<SwingScilabDockable> list) {
+            public String askForClosing(final List<SwingScilabDockablePanel> list) {
                 return null;
             }
 
             @Override
-            public void updateDependencies(List<SwingScilabDockable> list,
-                                           ListIterator<SwingScilabDockable> it) {
+            public void updateDependencies(List<SwingScilabDockablePanel> list,
+                                           ListIterator<SwingScilabDockablePanel> it) {
             }
         });
 

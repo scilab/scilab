@@ -12,12 +12,12 @@
 
 package org.scilab.modules.scinotes;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Map;
-import java.util.HashMap;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JPopupMenu;
 import javax.swing.KeyStroke;
@@ -25,30 +25,28 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
+import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
+import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
-import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
-import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
-import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.window.SimpleWindow;
 import org.scilab.modules.localization.Messages;
-import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  * Class SciNotesGUI handles menus, bar, ...
@@ -86,7 +84,7 @@ public final class SciNotesGUI {
      * @param editorInstance SciNotes
      * @param title the title
      */
-    public static void init(SimpleWindow mainWindow, final SciNotes editorInstance, String title) {
+    public static void init(SwingScilabWindow mainWindow, final SciNotes editorInstance, String title) {
         mainWindow.setTitle(title);
         mainWindow.addTab(editorInstance);
 

@@ -37,7 +37,7 @@ import javax.swing.table.TableRowSorter;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
@@ -92,7 +92,7 @@ import org.scilab.modules.ui_data.variablebrowser.rowfilter.VariableBrowserRowTy
  * Swing implementation of Scilab Variable browser
  * uses JTable
  */
-public final class SwingScilabVariableBrowser extends SwingScilabDockable implements SimpleVariableBrowser {
+public final class SwingScilabVariableBrowser extends SwingScilabDockablePanel implements SimpleVariableBrowser {
 
     public static final String VARBROWSERUUID = "3b649047-6a71-4998-bd8e-00d367a4793c";
 
@@ -406,17 +406,17 @@ public final class SwingScilabVariableBrowser extends SwingScilabDockable implem
 
             Menu menuPlot = ScilabMenu.createMenu();
             menuPlot.setText(UiDataMessages.PLOTALL);
-            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockable)SwingScilabVariableBrowser.this, "plot2d", false));
-            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockable)SwingScilabVariableBrowser.this, "Matplot", false));
-            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockable)SwingScilabVariableBrowser.this, "grayplot", false));
-            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockable)SwingScilabVariableBrowser.this, "Sgrayplot", false));
-            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockable)SwingScilabVariableBrowser.this, "champ", false));
-            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockable)SwingScilabVariableBrowser.this, "histplot", false));
-            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockable)SwingScilabVariableBrowser.this, "mesh", false));
-            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockable)SwingScilabVariableBrowser.this, "surf", false));
-            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockable)SwingScilabVariableBrowser.this, "hist3d", false));
-            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockable)SwingScilabVariableBrowser.this, "contour2d", false));
-            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockable)SwingScilabVariableBrowser.this, "pie", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockablePanel)SwingScilabVariableBrowser.this, "plot2d", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockablePanel)SwingScilabVariableBrowser.this, "Matplot", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockablePanel)SwingScilabVariableBrowser.this, "grayplot", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockablePanel)SwingScilabVariableBrowser.this, "Sgrayplot", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockablePanel)SwingScilabVariableBrowser.this, "champ", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockablePanel)SwingScilabVariableBrowser.this, "histplot", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockablePanel)SwingScilabVariableBrowser.this, "mesh", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockablePanel)SwingScilabVariableBrowser.this, "surf", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockablePanel)SwingScilabVariableBrowser.this, "hist3d", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockablePanel)SwingScilabVariableBrowser.this, "contour2d", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabDockablePanel)SwingScilabVariableBrowser.this, "pie", false));
             menu.add(menuPlot);
 
             menu.setVisible(true);
@@ -626,7 +626,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabDockable implem
      * Get this browser as a Tab object
      * @return the tab
      */
-    public SwingScilabDockable getBrowserTab() {
+    public SwingScilabDockablePanel getBrowserTab() {
         return this;
     }
 

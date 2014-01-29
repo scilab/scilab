@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import org.scilab.modules.gui.bridge.CallScilabBridge;
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 
 /**
  * Action executed when the user clicks on the "Help button"
@@ -27,13 +27,13 @@ public class SciHelpOnComponentAction extends AbstractAction {
 
     private static final long serialVersionUID = 1L;
 
-    private SwingScilabDockable associatedTab;
+    private SwingScilabDockablePanel associatedTab;
 
     /**
      * Constructor
      * @param tab the associated tab
      */
-    public SciHelpOnComponentAction(SwingScilabDockable tab) {
+    public SciHelpOnComponentAction(SwingScilabDockablePanel tab) {
         associatedTab = tab;
     }
 

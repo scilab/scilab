@@ -23,7 +23,7 @@ import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
 import org.flexdock.view.View;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 
 /**
  * Action executed when the user clicks on the "Close button"
@@ -35,14 +35,14 @@ public class SciClosingAction extends AbstractAction {
 
     private static final long serialVersionUID = 1L;
 
-    private SwingScilabDockable associatedTab;
+    private SwingScilabDockablePanel associatedTab;
     private Action action;
 
     /**
      * Constructor
      * @param tab the associated tab
      */
-    public SciClosingAction(SwingScilabDockable tab) {
+    public SciClosingAction(SwingScilabDockablePanel tab) {
         this(tab, null);
     }
 
@@ -51,7 +51,7 @@ public class SciClosingAction extends AbstractAction {
      * @param tab the associated tab
      * @param action the action
      */
-    public SciClosingAction(SwingScilabDockable tab, Action action) {
+    public SciClosingAction(SwingScilabDockablePanel tab, Action action) {
         this.associatedTab = tab;
         this.action = action;
     }

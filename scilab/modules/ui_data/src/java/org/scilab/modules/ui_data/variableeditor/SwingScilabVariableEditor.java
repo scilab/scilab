@@ -25,7 +25,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.TableModel;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -73,7 +73,7 @@ import org.scilab.modules.ui_data.variableeditor.undo.CellsUndoManager;
  * @author Allan SIMON
  * @author Calixte DENIZET
  */
-public class SwingScilabVariableEditor extends SwingScilabDockable implements SimpleVariableEditor {
+public class SwingScilabVariableEditor extends SwingScilabDockablePanel implements SimpleVariableEditor {
 
     /**
      * Prefix used in the tabs titles.

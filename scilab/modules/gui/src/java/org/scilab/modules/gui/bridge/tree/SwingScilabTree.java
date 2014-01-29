@@ -28,7 +28,7 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -187,8 +187,8 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
         // Scilab tree
         SwingScilabTree swingScilabTree = new SwingScilabTree(tree);
 
-        SwingScilabWindow window = new SwingScilabWindow();
-        final SwingScilabDockable tab = new SwingScilabDockable(Messages.gettext("Tree Overview"));
+        SwingScilabWindow window = SwingScilabWindow.createWindow(true);
+        final SwingScilabDockablePanel tab = new SwingScilabDockablePanel(Messages.gettext("Tree Overview"));
         tab.setCallback(new CommonCallBack("", CallBack.UNTYPED) {
             private static final long serialVersionUID = 8418506008885202932L;
 

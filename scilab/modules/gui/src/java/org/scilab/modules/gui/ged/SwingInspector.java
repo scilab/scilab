@@ -18,7 +18,7 @@ import javax.swing.ScrollPaneConstants;
 
 import org.scilab.modules.gui.ged.actions.CloseAction;
 import org.scilab.modules.gui.ged.actions.ShowHide;
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -33,7 +33,7 @@ import org.scilab.modules.gui.utils.WindowsConfigurationManager;
  *
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
-public class SwingInspector extends SwingScilabDockable {
+public class SwingInspector extends SwingScilabDockablePanel {
     private static SwingInspector instance;
     private JScrollPane desktop;
     private static JPanel pReceive;

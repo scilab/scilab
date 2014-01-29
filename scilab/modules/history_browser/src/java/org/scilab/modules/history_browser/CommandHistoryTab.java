@@ -15,7 +15,7 @@ package org.scilab.modules.history_browser;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 
@@ -31,8 +31,8 @@ public class CommandHistoryTab {
      *            the uuid to restore
      * @return a new Command History tab
      */
-    public static SwingScilabDockable getCommandHistoryInstance(String uuid) {
-        final SwingScilabDockable cmdh = CommandHistory.createCommandHistoryTab();
+    public static SwingScilabDockablePanel getCommandHistoryInstance(String uuid) {
+        final SwingScilabDockablePanel cmdh = CommandHistory.createCommandHistoryTab();
         ScilabTabFactory.getInstance().addToCache(cmdh);
 
         ClosingOperationsManager.registerClosingOperation(cmdh, new ClosingOperationsManager.ClosingOperation() {
@@ -48,12 +48,12 @@ public class CommandHistoryTab {
             }
 
             @Override
-            public String askForClosing(final List<SwingScilabDockable> list) {
+            public String askForClosing(final List<SwingScilabDockablePanel> list) {
                 return null;
             }
 
             @Override
-            public void updateDependencies(List<SwingScilabDockable> list, ListIterator<SwingScilabDockable> it) {
+            public void updateDependencies(List<SwingScilabDockablePanel> list, ListIterator<SwingScilabDockablePanel> it) {
             }
         });
 

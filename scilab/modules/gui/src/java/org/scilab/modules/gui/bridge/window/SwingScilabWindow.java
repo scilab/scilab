@@ -16,40 +16,6 @@
 
 package org.scilab.modules.gui.bridge.window;
 
-import org.flexdock.docking.Dockable;
-import org.flexdock.docking.DockingManager;
-import org.flexdock.docking.DockingPort;
-import org.flexdock.docking.activation.ActiveDockableTracker;
-import org.flexdock.docking.defaults.DefaultDockingPort;
-import org.flexdock.docking.defaults.DefaultDockingStrategy;
-import org.flexdock.docking.drag.effects.EffectsManager;
-import org.flexdock.docking.drag.preview.GhostPreview;
-import org.flexdock.docking.event.hierarchy.DockingPortTracker;
-import org.scilab.modules.action_binding.InterpreterManagement;
-import org.scilab.modules.commons.gui.ScilabKeyStroke;
-import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
-import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
-import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
-import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.menubar.SimpleMenuBar;
-import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.textbox.SimpleTextBox;
-import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.toolbar.SimpleToolBar;
-import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.utils.ClosingOperationsManager;
-import org.scilab.modules.gui.utils.Position;
-import org.scilab.modules.gui.utils.SciDockingListener;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
-import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.window.SimpleWindow;
-
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-import javax.swing.WindowConstants;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Point;
@@ -63,10 +29,35 @@ import java.lang.reflect.InvocationTargetException;
 import java.rmi.server.UID;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
+
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
+
+import org.flexdock.docking.DockingPort;
+import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.commons.gui.ScilabKeyStroke;
+import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
+import org.scilab.modules.gui.bridge.tab.SwingScilabPanel;
+import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
+import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
+import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.menubar.SimpleMenuBar;
+import org.scilab.modules.gui.tab.SimpleTab;
+import org.scilab.modules.gui.textbox.SimpleTextBox;
+import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.SimpleToolBar;
+import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
+import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
+import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.window.SimpleWindow;
 
 /**
  * Swing implementation for Scilab windows in GUIs
@@ -77,7 +68,7 @@ import java.util.UUID;
  * @author Sylvestre LEDRU (Mac OS X port)
 
  */
-public class SwingScilabWindow extends JFrame implements SimpleWindow {
+public abstract class SwingScilabWindow extends JFrame implements SimpleWindow {
 
     private static final long serialVersionUID = -5661926417765805660L;
 
@@ -86,32 +77,21 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 
     public static Map<String, SwingScilabWindow> allScilabWindows = Collections.synchronizedMap(new HashMap<String, SwingScilabWindow>());
 
-    static {
-        DefaultDockingStrategy.setDefaultResizeWeight(0.5);
-        DefaultDockingStrategy.keepConstantPercentage(true);
-    }
-
-    private DefaultDockingPort sciDockingPort;
-    private SciDockingListener sciDockingListener;
-    private SimpleMenuBar menuBar;
-    private SimpleToolBar toolBar;
-    private SimpleTextBox infoBar;
+    protected SimpleMenuBar menuBar;
+    protected SimpleToolBar toolBar;
+    protected SimpleTextBox infoBar;
     private String uuid;
     private int elementId; // the id of the Window which contains this SimpleWindow
-    private String windowUID;
+    protected String windowUID;
     private final boolean MAC_OS_X = (System.getProperty("os.name").toLowerCase().startsWith("mac os x"));
     private Dimension lastDimension;
     private Point lastPosition;
     private boolean isRestoring;
-
-    public SwingScilabWindow() {
-        this(true);
-    }
     
     /**
      * Constructor
      */
-    public SwingScilabWindow(boolean enableDocking) {
+    public SwingScilabWindow() {
         super();
         this.uuid = UUID.randomUUID().toString();
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -134,21 +114,6 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         super.setLayout(new java.awt.BorderLayout());
         windowUID = new UID().toString();
         allScilabWindows.put(windowUID, this);
-
-        if (enableDocking) {
-            /* Create automatically a docking port associated to the window */
-            sciDockingPort = new DefaultDockingPort();
-
-            EffectsManager.setPreview(new GhostPreview());
-
-            /* The docking port is the center of the Layout of the Window */
-            super.add(sciDockingPort, java.awt.BorderLayout.CENTER);
-            sciDockingListener = new SciDockingListener();
-            sciDockingPort.addDockingListener(sciDockingListener);
-            sciDockingListener.setAssociatedWindowId(windowUID);
-        } else {
-            sciDockingPort = null;
-        }
 
         /* there is no menuBar, no toolBar and no infoBar at creation */
         this.menuBar = null;
@@ -291,8 +256,11 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      * Creates a swing Scilab window
      * @return the created window
      */
-    public static SimpleWindow createWindow() {
-        return new SwingScilabWindow();
+    public static SwingScilabWindow createWindow(boolean isDockingPort) {
+        if (isDockingPort) {
+            return new SwingScilabDockingWindow();
+        }
+        return new SwingScilabStaticWindow();
     }
 
     /**
@@ -433,64 +401,28 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      * Gets the docking port associated to the window (created by default at window creation)
      * @return the docking port associated to the window
      */
-    public DockingPort getDockingPort() {
-        //return (DockingPort) centerFrame.getContentPane();
-        return sciDockingPort;
-    }
+    public abstract DockingPort getDockingPort();
 
     /**
      * Add a Scilab tab to a Scilab window
      * @param newTab the Scilab tab to add to the Scilab window
      * @see org.scilab.modules.gui.window.Window#addTab(org.scilab.modules.gui.tab.Tab)
      */
-    @Override
-    public void addTab(SimpleTab newTab) {
-        SwingScilabDockable tab = (SwingScilabDockable) newTab;
-        tab.setParentWindowId(this.windowUID);
-        DockingManager.dock(tab, this.getDockingPort());
-        ActiveDockableTracker.requestDockableActivation(tab);
-    }
+    public abstract void addTab(SwingScilabPanel newTab);
 
     /**
      * Remove a Scilab tab from a Scilab window
      * @param tabs the Scilab tabs to remove from the Scilab window
      * @see org.scilab.modules.gui.window.Window#removeTab(org.scilab.modules.gui.tab.Tab)
      */
-    public void removeTabs(SwingScilabDockable[] tabs) {
-        for (SwingScilabDockable tab : tabs) {
-            DockingManager.unregisterDockable((Dockable) tab);
-            tab.close();
-            DockingManager.close(tab);
-        }
-
-        if (getDockingPort() == null || getDockingPort().getDockables().isEmpty()) {
-            // remove xxxBars
-            if (toolBar != null) {
-                ((SwingScilabToolBar) toolBar).close();
-            }
-            if (menuBar != null) {
-                ((SwingScilabMenuBar) menuBar).close();
-            }
-
-            // clean all
-            this.removeAll();
-            close();
-        } else {
-            /* Make sur a Tab is active */
-            Set<SwingScilabDockable> docks = sciDockingPort.getDockables();
-            Iterator<SwingScilabDockable> it = docks.iterator();
-            ActiveDockableTracker.requestDockableActivation(it.next());
-        }
-    }
-
+    public abstract void removeTabs(SwingScilabPanel[] tabs);
     /**
      * Remove a Scilab tab from a Scilab window
      * @param tab the Scilab tab to remove from the Scilab window
      * @see org.scilab.modules.gui.window.Window#removeTab(org.scilab.modules.gui.tab.Tab)
      */
-    @Override
     public void removeTab(SimpleTab tab) {
-        removeTabs(new SwingScilabDockable[] {(SwingScilabDockable) tab});
+        removeTabs(new SwingScilabDockablePanel[] {(SwingScilabDockablePanel) tab});
     }
 
     /**
@@ -630,30 +562,13 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      * @see org.scilab.modules.gui.window.SimpleWindow#close()
      */
     @Override
-    public void close() {
-        try {
-            dispose();
-            // disable docking port
-            ActiveDockableTracker.getTracker(this).setActive(null);
-            if (sciDockingPort != null) {
-                sciDockingPort.removeDockingListener(sciDockingListener);
-                sciDockingPort = null;
-                sciDockingListener = null;
-            }
-            DockingPortTracker.remove(this);
-        } catch (IllegalStateException e) {
-            enableInputMethods(false);
-        }
-        allScilabWindows.remove(windowUID);
-    }
+    public abstract void close();
 
     /**
      * @return number of objects (tabs) docked in this window
      */
     @Override
-    public int getNbDockedObjects() {
-        return sciDockingPort.getDockables().size();
-    }
+    public abstract int getNbDockedObjects();
 
     /**
      * Update the dimension of the window and its component.

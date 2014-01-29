@@ -38,7 +38,7 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -72,7 +72,7 @@ import org.scilab.modules.localization.Messages;
  * @author Calixte DENIZET
  */
 @SuppressWarnings(value = { "serial" })
-public final class CommandHistory extends SwingScilabDockable implements SimpleTab {
+public final class CommandHistory extends SwingScilabDockablePanel implements SimpleTab {
 
     public static final String COMMANDHISTORYUUID = "856207f6-0a60-47a0-b9f4-232feedd4bf4";
 
@@ -86,7 +86,7 @@ public final class CommandHistory extends SwingScilabDockable implements SimpleT
     private static DefaultMutableTreeNode scilabHistoryRootNode;
     private static DefaultMutableTreeNode currentSessionNode;
     private static DefaultTreeModel scilabHistoryTreeModel;
-    private static SwingScilabDockable browserTab;
+    private static SwingScilabDockablePanel browserTab;
     private static JScrollPane scrollPane;
 
     private static boolean modelLoaded;
@@ -162,7 +162,7 @@ public final class CommandHistory extends SwingScilabDockable implements SimpleT
      * Create a new Command History tab
      * @return the corresponding tab
      */
-    public static SwingScilabDockable createCommandHistoryTab() {
+    public static SwingScilabDockablePanel createCommandHistoryTab() {
         browserTab = new CommandHistory();
         WindowsConfigurationManager.restorationFinished(browserTab);
 
@@ -391,7 +391,7 @@ public final class CommandHistory extends SwingScilabDockable implements SimpleT
     /**
      * @return the browserTab
      */
-    public static SwingScilabDockable getBrowserTab() {
+    public static SwingScilabDockablePanel getBrowserTab() {
         return browserTab;
     }
 

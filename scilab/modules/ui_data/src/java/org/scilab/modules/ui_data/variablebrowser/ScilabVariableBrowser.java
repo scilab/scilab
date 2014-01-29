@@ -13,7 +13,7 @@ package org.scilab.modules.ui_data.variablebrowser;
 
 import javax.swing.SwingUtilities;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
@@ -132,7 +132,7 @@ public final class ScilabVariableBrowser implements VariableBrowser {
      * Close Variable Browser
      */
     public void close() {
-        ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabDockable) browserTab);
+        ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabDockablePanel) browserTab);
     }
 
     /**

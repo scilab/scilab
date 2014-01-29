@@ -28,7 +28,7 @@ import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.gui.SwingView;
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.localization.Messages;
@@ -82,7 +82,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
     public SwingScilabExportFileChooser(Integer figureUID) {
         super();
         this.figureUID = figureUID;
-        SwingScilabDockable tab = (SwingScilabDockable) SwingView.getFromId(figureUID);
+        SwingScilabDockablePanel tab = (SwingScilabDockablePanel) SwingView.getFromId(figureUID);
         setParentFrame(tab.getParentWindow());
         exportCustomFileChooser(figureUID);
     }
@@ -289,7 +289,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
      * @param userExtension extension caught by the user
      */
     public void vectorialExport(String userExtension) {
-        SwingScilabDockable tab = (SwingScilabDockable) SwingView.getFromId(figureUID);
+        SwingScilabDockablePanel tab = (SwingScilabDockablePanel) SwingView.getFromId(figureUID);
         Component c = DrawerVisitor.getVisitor(figureUID).getComponent();
         ExportData exportData = new ExportData(figureUID, this.exportName, userExtension, null);
 

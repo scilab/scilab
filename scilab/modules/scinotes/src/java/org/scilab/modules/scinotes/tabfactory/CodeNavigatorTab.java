@@ -15,7 +15,7 @@ package org.scilab.modules.scinotes.tabfactory;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
@@ -44,7 +44,7 @@ public class CodeNavigatorTab {
             ScilabTabFactory.getInstance().addToCache(nav);
         }
 
-        ClosingOperationsManager.registerClosingOperation((SwingScilabDockable) nav,
+        ClosingOperationsManager.registerClosingOperation((SwingScilabDockablePanel) nav,
         new ClosingOperationsManager.ClosingOperation() {
 
             @Override
@@ -58,18 +58,18 @@ public class CodeNavigatorTab {
             }
 
             @Override
-            public String askForClosing(final List<SwingScilabDockable> list) {
+            public String askForClosing(final List<SwingScilabDockablePanel> list) {
                 return null;
             }
 
             @Override
-            public void updateDependencies(List<SwingScilabDockable> list,
-                                           ListIterator<SwingScilabDockable> it) {
+            public void updateDependencies(List<SwingScilabDockablePanel> list,
+                                           ListIterator<SwingScilabDockablePanel> it) {
             }
         });
 
         WindowsConfigurationManager.registerEndedRestoration(
-            (SwingScilabDockable) nav,
+            (SwingScilabDockablePanel) nav,
         new WindowsConfigurationManager.EndedRestoration() {
 
             @Override
@@ -78,8 +78,8 @@ public class CodeNavigatorTab {
             }
         });
 
-        ClosingOperationsManager.addDependency((SwingScilabDockable) editor,
-                                               (SwingScilabDockable) nav);
+        ClosingOperationsManager.addDependency((SwingScilabDockablePanel) editor,
+                                               (SwingScilabDockablePanel) nav);
 
         return nav;
     }

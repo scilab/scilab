@@ -15,7 +15,7 @@ package org.scilab.modules.scinotes.tabfactory;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
@@ -44,7 +44,7 @@ public class SearchInFilesTab {
             ScilabTabFactory.getInstance().addToCache(sf);
         }
 
-        ClosingOperationsManager.registerClosingOperation((SwingScilabDockable) sf,
+        ClosingOperationsManager.registerClosingOperation((SwingScilabDockablePanel) sf,
         new ClosingOperationsManager.ClosingOperation() {
 
             @Override
@@ -58,18 +58,18 @@ public class SearchInFilesTab {
             }
 
             @Override
-            public String askForClosing(final List<SwingScilabDockable> list) {
+            public String askForClosing(final List<SwingScilabDockablePanel> list) {
                 return null;
             }
 
             @Override
-            public void updateDependencies(List<SwingScilabDockable> list,
-                                           ListIterator<SwingScilabDockable> it) {
+            public void updateDependencies(List<SwingScilabDockablePanel> list,
+                                           ListIterator<SwingScilabDockablePanel> it) {
             }
         });
 
         WindowsConfigurationManager.registerEndedRestoration(
-            (SwingScilabDockable) sf,
+            (SwingScilabDockablePanel) sf,
         new WindowsConfigurationManager.EndedRestoration() {
 
             @Override
@@ -78,8 +78,8 @@ public class SearchInFilesTab {
             }
         });
 
-        ClosingOperationsManager.addDependency((SwingScilabDockable) editor,
-                                               (SwingScilabDockable) sf);
+        ClosingOperationsManager.addDependency((SwingScilabDockablePanel) editor,
+                                               (SwingScilabDockablePanel) sf);
 
         return sf;
     }

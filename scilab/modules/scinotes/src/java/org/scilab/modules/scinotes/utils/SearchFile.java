@@ -46,7 +46,7 @@ import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
@@ -76,7 +76,7 @@ import org.w3c.dom.NodeList;
  * @author Calixte DENIZET
  */
 @SuppressWarnings(value = { "serial" })
-public class SearchFile extends SwingScilabDockable {
+public class SearchFile extends SwingScilabDockablePanel {
 
     public static final String SEARCHDONE = "SearchFile.SearchDone";
 
@@ -116,7 +116,7 @@ public class SearchFile extends SwingScilabDockable {
      * Set the parent window
      */
     public void setParentWindow() {
-        parentWindow = new SwingScilabWindow();
+        parentWindow = SwingScilabWindow.createWindow(true);
         parentWindow.addTab(this);
         parentWindow.setVisible(true);
     }
@@ -171,8 +171,8 @@ public class SearchFile extends SwingScilabDockable {
      */
     public void changeToolBar() {
         SwingScilabWindow win = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
-        Set<SwingScilabDockable> set = win.getDockingPort().getDockables();
-        for (SwingScilabDockable tab : set) {
+        Set<SwingScilabDockablePanel> set = win.getDockingPort().getDockables();
+        for (SwingScilabDockablePanel tab : set) {
             if (tab == editor) {
                 addToolBar(editor.getToolBar());
                 break;
@@ -308,7 +308,7 @@ public class SearchFile extends SwingScilabDockable {
         CommonCallBack callback = new CommonCallBack(null) {
             @Override
             public void callBack() {
-                ClosingOperationsManager.startClosingOperation((SwingScilabDockable) SearchFile.this);
+                ClosingOperationsManager.startClosingOperation((SwingScilabDockablePanel) SearchFile.this);
             }
 
             @Override

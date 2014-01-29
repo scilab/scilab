@@ -35,7 +35,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.utils.MenuBarBuilder;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
@@ -187,7 +187,7 @@ public class Scilab {
             MenuBarBuilder.buildConsoleMenuBar(consoleId);
 
             SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
-            SwingScilabDockable consoleTab = (SwingScilabDockable) sciConsole.getParent();
+            SwingScilabDockablePanel consoleTab = (SwingScilabDockablePanel) sciConsole.getParent();
 
             WindowsConfigurationManager.restorationFinished(consoleTab);
 

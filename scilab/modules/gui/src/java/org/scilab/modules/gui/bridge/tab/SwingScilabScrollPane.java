@@ -24,7 +24,6 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
@@ -59,7 +58,9 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
         this.figure = figure;
         this.uiContent = uiContentPane;
         // use the axes background as default one
-        setRealBackground(canvas.getBackground());
+        if (canvas != null) {
+            setRealBackground(canvas.getBackground());
+        }
         GraphicController.getController().register(this);
 
         if (figure.getAutoResize()) {
@@ -145,11 +146,15 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
                 comp.setSize(d);
                 uiContent.setSize(d);
                 uiContent.setPreferredSize(d);
-                canvas.setBounds(0, 0, figure.getAxesSize()[0], figure.getAxesSize()[1]);
+                if (canvas != null) {
+                    canvas.setBounds(0, 0, figure.getAxesSize()[0], figure.getAxesSize()[1]);
+                }
             }
 
             if (property == __GO_BACKGROUND__) {
-                canvas.setBackground(ColorFactory.createColor(figure.getColorMap(), figure.getBackground()));
+                if (canvas != null) {
+                    canvas.setBackground(ColorFactory.createColor(figure.getColorMap(), figure.getBackground()));
+                }
             }
         }
 

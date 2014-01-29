@@ -42,7 +42,7 @@ public abstract class GraphicObject implements Cloneable {
     public static final int USER_DATA_DEFAULT_SIZE = 0;
 
     /** Graphic objects types */
-    public enum Type { ARC, AXES, AXESMODEL, AXIS, CHAMP, COMPOUND, FAC3D, FEC, FIGURE, FIGUREMODEL, GRAYPLOT,
+    public enum Type { ARC, AXES, AXESMODEL, AXIS, CHAMP, COMPOUND, FAC3D, FEC, FIGURE, WINDOW, FIGUREMODEL, GRAYPLOT,
                        LABEL, LEGEND, MATPLOT, PLOT3D, POLYLINE, RECTANGLE, SEGS, TEXT, CHECKBOX, EDIT, FRAME,
                        IMAGE, LISTBOX, POPUPMENU, PUSHBUTTON, RADIOBUTTON, CONSOLE, JAVACONSOLE, SLIDER, TABLE, UITEXT, UIMENU, UIMENUMODEL,
                        PROGRESSIONBAR, WAITBAR, UICONTEXTMENU, DATATIP, LIGHT, TABGROUP, TAB, LAYER, BORDER, UNKNOWNOBJECT
@@ -168,6 +168,8 @@ public abstract class GraphicObject implements Cloneable {
                 return Type.FEC;
             case __GO_FIGURE__ :
                 return Type.FIGURE;
+            case __GO_WINDOW__ :
+                return Type.WINDOW;
             case __GO_FIGUREMODEL__ :
                 return Type.FIGUREMODEL;
             case __GO_GRAYPLOT__ :

@@ -36,7 +36,7 @@ public class AwtScilabScrollPane implements ScilabScrollPane {
 
     private AwtCustomScrollPane scrolling;
 
-    private SwingScilabDockable parentTab;
+    private SwingScilabDockablePanel parentTab;
 
     /**
      * AWT ScrollPane are not able to change their scrollbars policy once created.
@@ -120,7 +120,7 @@ public class AwtScilabScrollPane implements ScilabScrollPane {
      * @param axes axes to scroll
      * @param parentTab parentTab of the scrollPane
      */
-    public AwtScilabScrollPane(SwingScilabAxes axes, SwingScilabDockable parentTab) {
+    public AwtScilabScrollPane(SwingScilabAxes axes, SwingScilabDockablePanel parentTab) {
         //super(ScrollPane.SCROLLBARS_AS_NEEDED);
         if (axes.getAutoResizeMode()) {
             this.scrolling = new AwtCustomScrollPane(axes, ScrollPane.SCROLLBARS_NEVER);

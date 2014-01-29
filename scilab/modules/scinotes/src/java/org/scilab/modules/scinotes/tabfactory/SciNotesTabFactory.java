@@ -15,7 +15,7 @@ package org.scilab.modules.scinotes.tabfactory;
 import java.util.List;
 import java.util.UUID;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.tabfactory.AbstractScilabTabFactory;
 
 import org.scilab.modules.scinotes.SciNotes;
@@ -47,7 +47,7 @@ public class SciNotesTabFactory extends AbstractScilabTabFactory {
     /**
      * {@inheritDoc}
      */
-    public SwingScilabDockable getTab(String uuid) {
+    public SwingScilabDockablePanel getTab(String uuid) {
         return SciNotesTab.getEditorInstance(uuid);
     }
 

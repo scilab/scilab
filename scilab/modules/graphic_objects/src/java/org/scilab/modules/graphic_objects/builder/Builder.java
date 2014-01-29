@@ -313,7 +313,7 @@ public final class Builder {
             }
         }
     }
-
+    
     public final static int createNewFigureWithAxes() {
         GraphicController controller = GraphicController.getController();
         Integer figModel  = GraphicModel.getFigureModel().getIdentifier();

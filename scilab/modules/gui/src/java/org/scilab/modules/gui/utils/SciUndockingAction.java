@@ -25,7 +25,7 @@ import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
 import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.view.View;
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 
 /**
@@ -39,13 +39,13 @@ public class SciUndockingAction extends AbstractAction {
 
     private static final int UNDOCK_OFFSET = 30;
 
-    private SwingScilabDockable associatedTab;
+    private SwingScilabDockablePanel associatedTab;
 
     /**
      * Constructor
      * @param tab the associated tab
      */
-    public SciUndockingAction(SwingScilabDockable tab) {
+    public SciUndockingAction(SwingScilabDockablePanel tab) {
         associatedTab = tab;
     }
 
@@ -56,8 +56,7 @@ public class SciUndockingAction extends AbstractAction {
      */
     public void actionPerformed(ActionEvent arg0) {
         /** Create a new Window to dock the tab into */
-        SwingScilabWindow newWindow = new SwingScilabWindow();
-
+        SwingScilabWindow newWindow = SwingScilabWindow.createWindow(true);
         /** Save the tab dimensions to set them back after docking */
         Size oldtabSize = associatedTab.getDims();
         /** Save the old parent Window position to use it to set the new Window position */
@@ -81,7 +80,7 @@ public class SciUndockingAction extends AbstractAction {
         DockingManager.undock((Dockable) associatedTab);
         iter = port.getDockables().iterator();
         if (iter.hasNext()) {
-            SwingScilabDockable tab = (SwingScilabDockable) iter.next();
+            SwingScilabDockablePanel tab = (SwingScilabDockablePanel) iter.next();
             BarUpdater.updateBars(tab.getParentWindowId(), tab.getMenuBar(), tab.getToolBar(), tab.getInfoBar(), tab.getName(), tab.getWindowIcon());
         }
         DockingManager.dock(associatedTab, newWindow.getDockingPort());

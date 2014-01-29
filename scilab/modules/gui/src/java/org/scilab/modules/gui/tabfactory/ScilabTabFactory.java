@@ -21,7 +21,7 @@ import javax.swing.JTextArea;
 
 import org.flexdock.docking.DockableFactory;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.jvm.LoadClassPath;
 import org.scilab.modules.localization.Messages;
@@ -43,7 +43,7 @@ public class ScilabTabFactory extends DockableFactory.Stub {
       Certains components could depend an other Tab and this last one could be created before
       to be requested by the Tab restorator. So we cache it to be sure to have the same instance.
     */
-    private Map<String, SwingScilabDockable> cache = new HashMap<String, SwingScilabDockable>();
+    private Map<String, SwingScilabDockablePanel> cache = new HashMap<String, SwingScilabDockablePanel>();
     private Map<String, AbstractScilabTabFactory> factories = new HashMap<String, AbstractScilabTabFactory>();
 
     /**
@@ -109,8 +109,8 @@ public class ScilabTabFactory extends DockableFactory.Stub {
      * @param uuid the uuid
      * @return the corresponding tab
      */
-    public SwingScilabDockable getTab(String uuid) {
-        SwingScilabDockable tab = cache.get(uuid);
+    public SwingScilabDockablePanel getTab(String uuid) {
+        SwingScilabDockablePanel tab = cache.get(uuid);
         if (tab != null) {
             return tab;
         }
@@ -177,11 +177,11 @@ public class ScilabTabFactory extends DockableFactory.Stub {
         cache.remove(uuid);
     }
 
-    public SwingScilabDockable getFromCache(String uuid) {
+    public SwingScilabDockablePanel getFromCache(String uuid) {
         return cache.get(uuid);
     }
 
-    public void addToCache(SwingScilabDockable tab) {
+    public void addToCache(SwingScilabDockablePanel tab) {
         if (tab != null) {
             cache.put(tab.getPersistentId(), tab);
         }
@@ -198,13 +198,13 @@ public class ScilabTabFactory extends DockableFactory.Stub {
      * Make an empty tab
      * @return an empty tab
      */
-    private static final SwingScilabDockable makeEmptyTab(String uuid) {
+    private static final SwingScilabDockablePanel makeEmptyTab(String uuid) {
         String u = uuid;
         if (uuid == null || uuid.isEmpty()) {
             u = NULLUUID;
         }
 
-        SwingScilabDockable tab = new SwingScilabDockable(EMPTYTAB, u);
+        SwingScilabDockablePanel tab = new SwingScilabDockablePanel(EMPTYTAB, u);
         String text = String.format(ERROR, u, System.getProperty("user.home"));
         JTextArea textarea = new JTextArea(text);
         textarea.setEditable(false);

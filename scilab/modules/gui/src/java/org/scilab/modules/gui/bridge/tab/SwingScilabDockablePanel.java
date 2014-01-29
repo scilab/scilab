@@ -18,38 +18,15 @@ package org.scilab.modules.gui.bridge.tab;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTORESIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CLOSEREQUESTFCN__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_ENABLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_NAME__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ID__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFOBAR_VISIBLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFO_MESSAGE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MENUBAR_VISIBLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_NAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_RESIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TOOLBAR_VISIBLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHECKEDMENU__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHILDMENU__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIPARENTMENU__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
@@ -67,7 +44,6 @@ import java.util.ListIterator;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
@@ -84,10 +60,6 @@ import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
-import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
-import org.scilab.modules.graphic_objects.utils.LayoutType;
-import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
@@ -118,7 +90,6 @@ import org.scilab.modules.gui.editor.EditorEventListener;
 import org.scilab.modules.gui.events.GlobalEventWatcher;
 import org.scilab.modules.gui.events.ScilabEventListener;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
@@ -142,7 +113,6 @@ import org.scilab.modules.gui.utils.SciHelpOnComponentAction;
 import org.scilab.modules.gui.utils.SciUndockingAction;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.ToolBarBuilder;
 
 /**
  * Swing implementation for Scilab tabs in GUIs
@@ -153,9 +123,9 @@ import org.scilab.modules.gui.utils.ToolBarBuilder;
  * @author Jean-Baptiste SILVY
  */
 
-public class SwingScilabDockable extends View implements SimpleTab, FocusListener, KeyListener, SwingScilabPanel {
+public class SwingScilabDockablePanel extends View implements SimpleTab, FocusListener, KeyListener, SwingScilabPanel {
 
-    public static final String GRAPHICS_TOOLBAR_DESCRIPTOR = System.getenv("SCI") + "/modules/gui/etc/graphics_toolbar.xml";
+    
 
     private static final Image SCILAB_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")).getImage();
 
@@ -203,7 +173,7 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
      * @param name the name of the tab
      * @param uuid an uuid to identify the tab
      */
-    public SwingScilabDockable(String name, String uuid) {
+    public SwingScilabDockablePanel(String name, String uuid) {
         super(uuid, name, name);
         //This button is "overloaded" when we add a callback
         //this.addAction(DockingConstants.CLOSE_ACTION);
@@ -230,7 +200,7 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
      * @param name name of the tab
      * @param figureId id of the displayed figure
      */
-    public SwingScilabDockable(String name, int figureId) {
+    public SwingScilabDockablePanel(String name, int figureId) {
         super(name, name, name);
 
         // This button is "overloaded" when we add a callback
@@ -261,7 +231,7 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
      * Constructor
      * @param name the name of the tab (used to identify it)
      */
-    public SwingScilabDockable(String name) {
+    public SwingScilabDockablePanel(String name) {
         this(name, name);
     }
 
@@ -281,7 +251,7 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
         return helpID;
     }
 
-    public static void removeActions(SwingScilabDockable tab) {
+    public static void removeActions(SwingScilabDockablePanel tab) {
         tab.setActionBlocked(DockingConstants.CLOSE_ACTION, true);
         tab.setActionBlocked(UNDOCK, true);
         if (tab.getTitlebar() != null) {
@@ -289,13 +259,13 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
         }
     }
 
-    public static void addActions(SwingScilabDockable tab) {
+    public static void addActions(SwingScilabDockablePanel tab) {
         tab.setActionBlocked(DockingConstants.CLOSE_ACTION, false);
         tab.setActionBlocked(UNDOCK, false);
         tab.getTitlebar().revalidate();
     }
 
-    public SwingScilabDockable(String figureTitle, int figureId, final Figure figure) {
+    public SwingScilabDockablePanel(String figureTitle, int figureId, final Figure figure) {
         this(figureTitle, figureId);
         /* OpenGL context */
         SwingScilabCanvas canvas = new SwingScilabCanvas(figureId, figure);
@@ -312,7 +282,6 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
         uiContentPane = new JLayeredPane();
         uiContentPane.setOpaque(false);
         uiContentPane.setLayout(null);
-        uiContentPane.setSize(new Dimension(800, 800));
         layerdPane.add(uiContentPane, JLayeredPane.DEFAULT_LAYER + 1, 0);
 
         scrolling = new SwingScilabScrollPane(layerdPane, canvas, uiContentPane, figure);
@@ -369,7 +338,7 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
         });
 
         /* Manage closerequestfcn */
-        ClosingOperationsManager.registerClosingOperation(SwingScilabDockable.this, new ClosingOperationsManager.ClosingOperation() {
+        ClosingOperationsManager.registerClosingOperation(SwingScilabDockablePanel.this, new ClosingOperationsManager.ClosingOperation() {
 
             public int canClose() {
                 String closeRequestFcn = (String) GraphicController.getController().getProperty(getId(), __GO_CLOSEREQUESTFCN__);
@@ -389,12 +358,12 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
             public void destroy() {
             }
 
-            public String askForClosing(final List<SwingScilabDockable> list) {
+            public String askForClosing(final List<SwingScilabDockablePanel> list) {
                 return null;
             }
 
             @Override
-            public void updateDependencies(List<SwingScilabDockable> list, ListIterator<SwingScilabDockable> it) {
+            public void updateDependencies(List<SwingScilabDockablePanel> list, ListIterator<SwingScilabDockablePanel> it) {
 
             }
         });
@@ -412,7 +381,7 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
         } else if (getContentPane() != null) {
             getContentPane().requestFocus();
         } else {
-            SwingScilabDockable.this.requestFocusInWindow();
+            SwingScilabDockablePanel.this.requestFocusInWindow();
         }
     }
 
@@ -466,8 +435,8 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
         if (port.getDockables().size() > 1) {
             while (iter.hasNext()) {
                 Object d = iter.next();
-                if (d instanceof SwingScilabDockable) {
-                    SwingScilabDockable view = (SwingScilabDockable) d;
+                if (d instanceof SwingScilabDockablePanel) {
+                    SwingScilabDockablePanel view = (SwingScilabDockablePanel) d;
                     addActions(view);
                 }
             }
@@ -484,7 +453,7 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
                     if (getParentWindow() != null) {
                         setParentWindowId(getParentWindow().getId());
                     } else {
-                        System.err.println("No window for tab:" + SwingScilabDockable.this.getClass().getName() + " after docking complete");
+                        System.err.println("No window for tab:" + SwingScilabDockablePanel.this.getClass().getName() + " after docking complete");
                     }
                 }
             });
@@ -643,110 +612,7 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
      * @param member the member to add
      */
     public void addMember(SwingViewObject member) {
-        //member.get
-        Uicontrol uicontrol = (Uicontrol) GraphicModel.getModel().getObjectFromId(member.getId());
-
-        if (uiContentPane.getLayout() instanceof BorderLayout) {
-            switch (uicontrol.getBorderPositionAsEnum()) {
-                case SOUTH:
-                    uiContentPane.add((Component) member, BorderLayout.SOUTH);
-                    break;
-                case NORTH:
-                    uiContentPane.add((Component) member, BorderLayout.NORTH);
-                    break;
-                case WEST:
-                    uiContentPane.add((Component) member, BorderLayout.WEST);
-                    break;
-                case EAST:
-                    uiContentPane.add((Component) member, BorderLayout.EAST);
-                    break;
-                case CENTER:
-                    uiContentPane.add((Component) member, BorderLayout.CENTER);
-                    break;
-                default:
-                    break;
-            }
-        } else if (uiContentPane.getLayout() instanceof GridBagLayout) {
-            GridBagConstraints constraints = new GridBagConstraints();
-
-            // Grid
-            Integer[] grid = uicontrol.getGridBagGrid();
-            constraints.gridx = grid[0];
-            constraints.gridy = grid[1];
-            constraints.gridwidth = grid[2];
-            constraints.gridheight = grid[3];
-
-            // Weight
-            Double[] weight = uicontrol.getGridBagWeight();
-            constraints.weightx = weight[0];
-            constraints.weighty = weight[1];
-
-            // Anchor
-            switch (uicontrol.getGridBagAnchorAsEnum()) {
-                case LEFT :
-                    constraints.anchor = GridBagConstraints.EAST;
-                    break;
-                case UPPER :
-                    constraints.anchor = GridBagConstraints.NORTH;
-                    break;
-                case LOWER:
-                    constraints.anchor = GridBagConstraints.SOUTH;
-                    break;
-                case LOWER_LEFT:
-                    constraints.anchor = GridBagConstraints.SOUTHEAST;
-                    break;
-                case LOWER_RIGHT:
-                    constraints.anchor = GridBagConstraints.SOUTHWEST;
-                    break;
-                case RIGHT:
-                    constraints.anchor = GridBagConstraints.WEST;
-                    break;
-                case UPPER_LEFT:
-                    constraints.anchor = GridBagConstraints.NORTHEAST;
-                    break;
-                case UPPER_RIGHT:
-                    constraints.anchor = GridBagConstraints.NORTHWEST;
-                    break;
-                case CENTER :
-                default :
-                    constraints.anchor = GridBagConstraints.CENTER;
-                    break;
-            }
-
-            // Fill
-            switch (uicontrol.getGridBagFillAsEnum()) {
-                case BOTH :
-                    constraints.fill = GridBagConstraints.BOTH;
-                    break;
-                case HORIZONTAL:
-                    constraints.fill = GridBagConstraints.HORIZONTAL;
-                    break;
-                case VERTICAL:
-                    constraints.fill = GridBagConstraints.VERTICAL;
-                    break;
-                case NONE:
-                default:
-                    constraints.fill = GridBagConstraints.NONE;
-                    break;
-            }
-
-            // Insets
-            // TODO : add Insets
-
-            // Padding
-            Integer[] padding = uicontrol.getGridBagPadding();
-            constraints.ipadx = padding[0];
-            constraints.ipady = padding[1];
-
-            uiContentPane.add((Component) member, constraints);
-            uiContentPane.revalidate();
-        } else {
-            if (member instanceof SwingScilabFrame) {
-                uiContentPane.add((Component) member, JLayeredPane.FRAME_CONTENT_LAYER);
-            } else {
-                uiContentPane.add((Component) member, JLayeredPane.DEFAULT_LAYER + 1);
-            }
-        }
+        SwingScilabCommonPanel.addMember(this, member);
     }
 
     /**
@@ -1557,167 +1423,7 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
      * @see org.scilab.modules.gui.SwingViewObject#update(java.lang.String, java.lang.Object)
      */
     public void update(int property, Object value) {
-        String name;
-        Integer figureId;
-        switch (property) {
-            case  __GO_NAME__ :
-                name = ((String) value);
-                figureId = (Integer) GraphicController.getController().getProperty(getId(), __GO_ID__);
-                updateTitle(name, figureId);
-                break;
-            case __GO_ID__ :
-                /* Update title */
-                figureId = ((Integer) value);
-                name = (String) GraphicController.getController().getProperty(getId(), __GO_NAME__);
-                updateTitle(name, figureId);
-
-                /** Update tool bar */
-                setToolBar(ToolBarBuilder.buildToolBar(GRAPHICS_TOOLBAR_DESCRIPTOR, figureId));
-                SwingScilabWindow parentWindow = SwingScilabWindow.allScilabWindows.get(getParentWindowId());
-
-                /* Update callback */
-                String closingCommand =
-                    "if (get_figure_handle(" + figureId + ") <> []) then"
-                    +      "  if (get(get_figure_handle(" + figureId + "), 'event_handler_enable') == 'on') then"
-                    +      "    execstr(get(get_figure_handle(" + figureId + "), 'event_handler')+'(" + figureId + ", -1, -1, -1000)', 'errcatch', 'm');"
-                    +      "  end;"
-                    +      "  delete(get_figure_handle(" + figureId + "));"
-                    +      "end;";
-                setCallback(null);
-                setCallback(ScilabCloseCallBack.create(getId(), closingCommand));
-                /* Update menus callback */
-                Integer[] children = (Integer[]) GraphicController.getController().getProperty(getId(), __GO_CHILDREN__);
-                updateChildrenCallbacks(children, figureId);
-                break;
-            case __GO_SIZE__ :
-                Integer[] size = (Integer[]) value;
-                SwingScilabWindow figure = SwingScilabWindow.allScilabWindows.get(parentWindowId);
-                Size oldFigureSize = figure.getDims();
-                figure.setDims(new Size(size[0], size[1]));
-                int deltaFigureX = size[0] - oldFigureSize.getWidth();
-                int deltaFigureY = size[1] - oldFigureSize.getHeight();
-                if ( oldFigureSize.getWidth() != 0 && oldFigureSize.getHeight() != 0
-                        && ((oldFigureSize.getWidth() != size[0]) || (oldFigureSize.getHeight() != size[1]))
-                        && ((Boolean) GraphicController.getController().getProperty(getId(), __GO_AUTORESIZE__))
-                   ) {
-                    Integer[] axesSize = (Integer[]) GraphicController.getController().getProperty(getId(), __GO_AXES_SIZE__);
-                    Integer[] newAxesSize = {axesSize[0] + deltaFigureX, axesSize[1] + deltaFigureY};
-                    GraphicController.getController().setProperty(getId(), __GO_AXES_SIZE__, newAxesSize);
-                }
-                break;
-            case __GO_POSITION__ :
-                Integer[] position = (Integer[]) value;
-                SwingScilabWindow.allScilabWindows.get(parentWindowId).setPosition(new Position(position[0], position[1]));
-                break;
-            case __GO_AXES_SIZE__ :
-                Integer[] axesSize = (Integer[]) value;
-                Dimension oldAxesSize = getContentPane().getSize();
-                if ( oldAxesSize.getWidth() != 0 && oldAxesSize.getHeight() != 0
-                        && ((oldAxesSize.getWidth() != axesSize[0]) || (oldAxesSize.getHeight() != axesSize[1]))
-                        && ((Boolean) GraphicController.getController().getProperty(getId(), __GO_AUTORESIZE__))
-                   ) {
-                    // TODO manage tabs when there are docked (do not change the window size if more than one tab docked)
-                    int deltaX = axesSize[0] - (int) oldAxesSize.getWidth();
-                    int deltaY = axesSize[1] - (int) oldAxesSize.getHeight();
-                    Size parentWindowSize = SwingScilabWindow.allScilabWindows.get(parentWindowId).getDims();
-                    SwingScilabWindow.allScilabWindows.get(parentWindowId).setDims(
-                        new Size(parentWindowSize.getWidth() + deltaX, parentWindowSize.getHeight() + deltaY));
-                    Integer figureSize[] = {parentWindowSize.getWidth() + deltaX, parentWindowSize.getHeight() + deltaY};
-                    GraphicController.getController().setProperty(getId(), __GO_SIZE__, figureSize);
-                }
-                break;
-            case __GO_INFO_MESSAGE__ :
-                if (getInfoBar() != null) {
-                    getInfoBar().setText((String) value);
-                }
-                break;
-            case __GO_EVENTHANDLER_ENABLE__ :
-                Boolean enabled = (Boolean) GraphicController.getController().getProperty(getId(), __GO_EVENTHANDLER_ENABLE__);
-                setEventHandlerEnabled(enabled);
-                break;
-            case __GO_EVENTHANDLER_NAME__ :
-                String eventHandlerName = (String) GraphicController.getController().getProperty(getId(), __GO_EVENTHANDLER_NAME__);
-                setEventHandler(eventHandlerName);
-                break;
-            case __GO_VISIBLE__ :
-                layerdPane.setVisible((Boolean) value);
-                break;
-            case __GO_INFOBAR_VISIBLE__ :
-                getInfoBar().setVisible((Boolean) value);
-                break;
-            case __GO_TOOLBAR_VISIBLE__ :
-                getToolBar().setVisible((Boolean) value);
-                break;
-            case __GO_MENUBAR_VISIBLE__ :
-                getMenuBar().setVisible((Boolean) value);
-                break;
-            case __GO_RESIZE__ :
-                getParentWindow().setResizable((Boolean) value);
-                break;
-            case __GO_LAYOUT__ :
-                LayoutType newLayout = LayoutType.intToEnum((Integer) value);
-                switch (newLayout) {
-                    case BORDER :
-                        Integer[] padding = (Integer[]) GraphicController.getController().getProperty(getId(), __GO_BORDER_OPT_PADDING__);
-                        uiContentPane.setLayout(new BorderLayout(padding[0], padding[1]));
-                        uiContentPane.setLayout(new BorderLayout());
-                        break;
-                    case GRIDBAG :
-                        uiContentPane.setLayout(new GridBagLayout());
-                        break;
-                    case GRID :
-                        uiContentPane.setLayout(new GridLayout());
-                        break;
-                    case NONE :
-                    default:
-                        uiContentPane.setLayout(null);
-                        break;
-                }
-                break;
-        }
-    }
-
-    /**
-     * Update the menus callbacks when they are linked to the figure ID
-     * @param children the children UID
-     * @param parentFigureId the figure ID
-     */
-    private void updateChildrenCallbacks(Integer[] children, int parentFigureId) {
-        for (int kChild = 0; kChild < children.length; kChild++) {
-            Integer childType = (Integer) GraphicController.getController().getProperty(children[kChild], __GO_TYPE__);
-            if (childType != null && (
-                        childType == __GO_UIMENU__
-                        || childType == __GO_UIPARENTMENU__
-                        || childType == __GO_UICHILDMENU__
-                        || childType == __GO_UICHECKEDMENU__)) {
-                String cb = (String) GraphicController.getController().getProperty(children[kChild], __GO_CALLBACK__);
-                SwingView.getFromId(children[kChild]).update(__GO_CALLBACK__, replaceFigureID(cb, parentFigureId));
-                Integer[] menuChildren = (Integer[]) GraphicController.getController().getProperty(children[kChild], __GO_CHILDREN__);
-                updateChildrenCallbacks(menuChildren, parentFigureId);
-            }
-        }
-    }
-
-    /**
-     * Replace pattern [SCILAB_FIGURE_ID] by the figure index
-     * @param initialString string read in XML file
-     * @param parentFigureId the figure ID
-     * @return callback string
-     */
-    private String replaceFigureID(String initialString, Integer parentFigureId) {
-        return initialString.replaceAll("\\[SCILAB_FIGURE_ID\\]", Integer.toString(parentFigureId));
-    }
-
-    /**
-     * Update the title of the Tab
-     * @param figureName figure_name property
-     * @param figureId figure_id property
-     */
-    private void updateTitle(String figureName, Integer figureId) {
-        if ((figureName != null) && (figureId != null)) {
-            String figureTitle = figureName.replaceFirst("%d", figureId.toString());
-            setName(figureTitle);
-        }
+        SwingScilabCommonPanel.update(this, property, value);
     }
 
     /**
@@ -1774,5 +1480,9 @@ public class SwingScilabDockable extends View implements SimpleTab, FocusListene
             win.toFront();
             input.dispatchEvent(new KeyEvent(input, KeyEvent.KEY_TYPED, System.currentTimeMillis(), e.getModifiers(), e.getKeyCode(), e.getKeyChar(), e.getKeyLocation()));
         }
+    }
+    
+    public JLayeredPane getWidgetPane() {
+        return uiContentPane;
     }
 }

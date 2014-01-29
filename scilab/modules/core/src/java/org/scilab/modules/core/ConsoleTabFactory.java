@@ -13,7 +13,7 @@
 package org.scilab.modules.core;
 
 import org.scilab.modules.gui.SwingView;
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.tabfactory.AbstractScilabTabFactory;
 
 /**
@@ -35,9 +35,9 @@ public class ConsoleTabFactory extends AbstractScilabTabFactory {
      */
     public ConsoleTabFactory() { }
 
-    public SwingScilabDockable getTab(String uuid) {
+    public SwingScilabDockablePanel getTab(String uuid) {
         if (isAValidUUID(uuid)) {
-            return (SwingScilabDockable) ConsoleTab.getConsoleTab(uuid).getAsSimpleTab();
+            return (SwingScilabDockablePanel) ConsoleTab.getConsoleTab(uuid).getAsSimpleTab();
         }
         return null;
     }

@@ -47,7 +47,7 @@ import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.commons.xml.XConfigurationEvent;
 import org.scilab.modules.commons.xml.XConfigurationListener;
 import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.tab.Tab;
@@ -75,7 +75,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
     private static final String WINDOWS_CONFIG_FILE = System.getenv(SCI) + "/modules/gui/etc/windowsConfiguration.xml";
     private static final String DEFAULT_WINDOWS_CONFIG_FILE = System.getenv(SCI) + "/modules/gui/etc/integratedConfiguration.xml";
     private static final String NULLUUID = new UUID(0L, 0L).toString();
-    private static final Map<SwingScilabDockable, EndedRestoration> endedRestoration = new HashMap<SwingScilabDockable, EndedRestoration>();
+    private static final Map<SwingScilabDockablePanel, EndedRestoration> endedRestoration = new HashMap<SwingScilabDockablePanel, EndedRestoration>();
     private static final List<String> alreadyRestoredWindows = new ArrayList<String>();
     private static final Map<String, Object> defaultWinAttributes = new HashMap<String, Object>();
     private static final List<String> currentlyRestored = new ArrayList<String>();
@@ -225,7 +225,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * @param tab the associated tab
      * @param ended the closing operation
      */
-    public static void registerEndedRestoration(SwingScilabDockable tab, EndedRestoration ended) {
+    public static void registerEndedRestoration(SwingScilabDockablePanel tab, EndedRestoration ended) {
         endedRestoration.put(tab, ended);
     }
 
@@ -235,7 +235,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * @param ended the closing operation
      */
     public static void registerEndedRestoration(Tab tab, EndedRestoration ended) {
-        registerEndedRestoration((SwingScilabDockable) tab.getAsSimpleTab(), ended);
+        registerEndedRestoration((SwingScilabDockablePanel) tab.getAsSimpleTab(), ended);
     }
 
     /**
@@ -277,7 +277,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
             win.appendChild(serializer.serialize(doc, layoutNode));
 
             for (Dockable dockable : (Set<Dockable>) window.getDockingPort().getDockables()) {
-                saveTabProperties((SwingScilabDockable) dockable, false);
+                saveTabProperties((SwingScilabDockablePanel) dockable, false);
             }
 
             writeDocument();
@@ -326,7 +326,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
             attrs.putAll(defaultWinAttributes);
         }
 
-        SwingScilabWindow window = new SwingScilabWindow();
+        SwingScilabWindow window = SwingScilabWindow.createWindow(true);
         window.setVisible(false);
 
         final String localUUID;
@@ -367,11 +367,11 @@ public class WindowsConfigurationManager implements XConfigurationListener {
 
     public static SwingScilabWindow restoreWindow(String uuid) {
         String winuuid = UUID.randomUUID().toString();
-        SwingScilabWindow win = new SwingScilabWindow();
+        SwingScilabWindow win = SwingScilabWindow.createWindow(true);
         win.setUUID(winuuid);
         win.setIsRestoring(true);
 
-        final SwingScilabDockable tab = ScilabTabFactory.getInstance().getTab(uuid);
+        final SwingScilabDockablePanel tab = ScilabTabFactory.getInstance().getTab(uuid);
         win.addTab(tab);
         BarUpdater.forceUpdateBars(tab.getParentWindowId(), tab.getMenuBar(), tab.getToolBar(), tab.getInfoBar(), tab.getName(), tab.getWindowIcon());
 
@@ -420,21 +420,21 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                 LayoutNode layoutNode = (LayoutNode) serializer.deserialize(dockingPort);
                 window.getDockingPort().importLayout(layoutNode);
             } else if (defaultTabUuid != null && !defaultTabUuid.isEmpty()) {
-                SwingScilabDockable defaultTab = ScilabTabFactory.getInstance().getTab(defaultTabUuid);
+                SwingScilabDockablePanel defaultTab = ScilabTabFactory.getInstance().getTab(defaultTabUuid);
                 defaultTab.setParentWindowId(window.getId());
                 DockingManager.dock(defaultTab, window.getDockingPort());
             }
 
-            for (SwingScilabDockable tab : (Set<SwingScilabDockable>) window.getDockingPort().getDockables()) {
+            for (SwingScilabDockablePanel tab : (Set<SwingScilabDockablePanel>) window.getDockingPort().getDockables()) {
                 tab.setParentWindowId(window.getId());
             }
 
-            SwingScilabDockable[] tabs = new SwingScilabDockable[window.getNbDockedObjects()];
-            tabs = ((Set<SwingScilabDockable>) window.getDockingPort().getDockables()).toArray(tabs);
+            SwingScilabDockablePanel[] tabs = new SwingScilabDockablePanel[window.getNbDockedObjects()];
+            tabs = ((Set<SwingScilabDockablePanel>) window.getDockingPort().getDockables()).toArray(tabs);
 
             // Be sur that the main tab will have the focus.
             // Get the elder tab and activate it
-            final SwingScilabDockable mainTab = ClosingOperationsManager.getElderTab(new ArrayList(Arrays.asList(tabs)));
+            final SwingScilabDockablePanel mainTab = ClosingOperationsManager.getElderTab(new ArrayList(Arrays.asList(tabs)));
             BarUpdater.forceUpdateBars(mainTab.getParentWindowId(), mainTab.getMenuBar(), mainTab.getToolBar(), mainTab.getInfoBar(), mainTab.getName(), mainTab.getWindowIcon());
 
             if (!ScilabConsole.isExistingConsole() && tabs.length == 1 && tabs[0].getPersistentId().equals(NULLUUID)) {
@@ -442,7 +442,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                 return null;
             }
 
-            for (SwingScilabDockable tab : tabs) {
+            for (SwingScilabDockablePanel tab : tabs) {
                 // each tab has now a window so it can be useful for the tab to set an icon window or to center a dialog...
                 EndedRestoration ended = endedRestoration.get(tab);
                 if (ended != null) {
@@ -453,11 +453,11 @@ public class WindowsConfigurationManager implements XConfigurationListener {
 
             if (tabs.length == 1) {
                 // we remove undock and close buttons when there is only one View in the DockingPort
-                SwingScilabDockable.removeActions(tabs[0]);
+                SwingScilabDockablePanel.removeActions(tabs[0]);
             } else {
                 // we add undock and close buttons
-                for (SwingScilabDockable tab : tabs) {
-                    SwingScilabDockable.addActions(tab);
+                for (SwingScilabDockablePanel tab : tabs) {
+                    SwingScilabDockablePanel.addActions(tab);
                 }
             }
 
@@ -526,7 +526,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * Must be called when the restoration is finished
      * @param tab the tab
      */
-    public static final void restorationFinished(SwingScilabDockable tab) {
+    public static final void restorationFinished(SwingScilabDockablePanel tab) {
         synchronized (currentlyRestored) {
             currentlyRestored.remove(tab.getPersistentId());
 
@@ -584,7 +584,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
             ScilabTabFactory factory = ScilabTabFactory.getInstance();
             factory.addTabFactory(e.getAttribute("load"), e.getAttribute("factory"));
             currentlyRestored.add(e.getAttribute("uuid"));
-            SwingScilabDockable tab = factory.getTab(e.getAttribute("uuid"));
+            SwingScilabDockablePanel tab = factory.getTab(e.getAttribute("uuid"));
             if (!e.getAttribute("width").isEmpty() && !e.getAttribute("height").isEmpty()) {
                 tab.setMinimumSize(nullDims);
                 tab.setPreferredSize(new Dimension(Integer.parseInt(e.getAttribute("width")), Integer.parseInt(e.getAttribute("width"))));
@@ -956,7 +956,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * @param tab the tab
      * @param nullWin if true, the winuuid will be set to 0 (the tab is not docked)
      */
-    public static void saveTabProperties(SwingScilabDockable tab, boolean nullWin) {
+    public static void saveTabProperties(SwingScilabDockablePanel tab, boolean nullWin) {
         if (ScilabConstants.isGUI()) {
             readDocument();
 

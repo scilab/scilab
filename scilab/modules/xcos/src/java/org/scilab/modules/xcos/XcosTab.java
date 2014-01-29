@@ -37,7 +37,7 @@ import org.scilab.modules.graph.actions.ZoomOutAction;
 import org.scilab.modules.graph.event.ArrowKeyListener;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.menu.Menu;
@@ -120,7 +120,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 // CSOFF: ClassFanOutComplexity
 // CSOFF: ClassDataAbstractionCoupling
 @SuppressWarnings(value = { "serial" })
-public class XcosTab extends SwingScilabDockable implements SimpleTab {
+public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
     public static final String DEFAULT_WIN_UUID = "xcos-default-window";
     public static final String DEFAULT_TAB_UUID = "xcos-default-tab";
 
@@ -186,7 +186,7 @@ public class XcosTab extends SwingScilabDockable implements SimpleTab {
         }
 
         @Override
-        public String askForClosing(final List<SwingScilabDockable> list) {
+        public String askForClosing(final List<SwingScilabDockablePanel> list) {
             final XcosDiagram diag = graph.get();
             if (diag == null) {
                 return null;
@@ -196,7 +196,7 @@ public class XcosTab extends SwingScilabDockable implements SimpleTab {
         }
 
         @Override
-        public void updateDependencies(List<SwingScilabDockable> list, ListIterator<SwingScilabDockable> it) {
+        public void updateDependencies(List<SwingScilabDockablePanel> list, ListIterator<SwingScilabDockablePanel> it) {
             final PaletteManagerView palette = PaletteManagerView.get();
 
             /*
@@ -322,9 +322,9 @@ public class XcosTab extends SwingScilabDockable implements SimpleTab {
             BarUpdater.updateBars(tab.getParentWindowId(), tab.getMenuBar(), tab.getToolBar(), tab.getInfoBar(), tab.getName(), tab.getWindowIcon());
         }
 
-        ClosingOperationsManager.addDependencyWithRoot((SwingScilabDockable) tab);
-        ClosingOperationsManager.registerClosingOperation((SwingScilabDockable) tab, new ClosingOperation(graph));
-        WindowsConfigurationManager.registerEndedRestoration((SwingScilabDockable) tab, new EndedRestoration(graph));
+        ClosingOperationsManager.addDependencyWithRoot((SwingScilabDockablePanel) tab);
+        ClosingOperationsManager.registerClosingOperation((SwingScilabDockablePanel) tab, new ClosingOperation(graph));
+        WindowsConfigurationManager.registerEndedRestoration((SwingScilabDockablePanel) tab, new EndedRestoration(graph));
     }
 
     /*
@@ -684,7 +684,7 @@ public class XcosTab extends SwingScilabDockable implements SimpleTab {
         if (configuration != null) {
             win = configuration;
         } else {
-            win = new SwingScilabWindow();
+            win = SwingScilabWindow.createWindow(true);
         }
 
         win.addTab(this);

@@ -44,7 +44,7 @@ import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTabGroup;
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.canvas.Canvas;
@@ -524,7 +524,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * @return index of member in ArrayList
      */
     public int addMember(Tab member) {
-        return this.addMember((SwingScilabDockable) member.getAsSimpleTab());
+        return this.addMember((SwingScilabDockablePanel) member.getAsSimpleTab());
     }
     //	 TODO : Check if it should be possible to add a Tab to a frame and how it should behave
     /**
@@ -532,7 +532,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * @param member the member to add
      * @return index of member in ArrayList
      */
-    private int addMember(SwingScilabDockable member) {
+    private int addMember(SwingScilabDockablePanel member) {
         this.add(member);
         return this.getComponentZOrder(member);
     }

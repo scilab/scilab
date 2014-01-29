@@ -160,8 +160,8 @@ public class Figure extends GraphicObject {
          * Default constructor
          */
         public FigureDimensions() {
-            position = new Integer[2];
-            size = new Integer[2];
+            position = new Integer[] {0,0};
+            size = new Integer[] {0,0};
         }
 
         /**
@@ -408,7 +408,7 @@ public class Figure extends GraphicObject {
         dimensions = new FigureDimensions();
         canvas = new Canvas();
         figureName = new FigureName();
-        infoMessage = null;
+        infoMessage = "";
         colorMap = new ColorMap();
 
         renderingMode = new RenderingMode();

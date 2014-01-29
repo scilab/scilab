@@ -219,6 +219,11 @@ public final class GraphicModel {
             case FIGURE:
                 createdObject = new Figure();
                 break;
+            case WINDOW:
+                createdObject = new Figure();
+                System.err.println("[GraphicModel] setDockable FALSE !");
+                ((Figure) createdObject).setDockable(false);
+                break;
             case FIGUREMODEL:
                 createdObject = new Figure();
                 createdObject.setValid(false);

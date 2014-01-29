@@ -12,7 +12,7 @@
 
 package org.scilab.modules.ui_data.tabfactory;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.tabfactory.AbstractScilabTabFactory;
 import org.scilab.modules.ui_data.filebrowser.SwingScilabFileBrowser;
 
@@ -42,7 +42,7 @@ public class FileBrowserTabFactory extends AbstractScilabTabFactory {
     /**
      * {@inheritDoc}
      */
-    public SwingScilabDockable getTab(String uuid) {
+    public SwingScilabDockablePanel getTab(String uuid) {
         return FileBrowserTab.getFileBrowserInstance();
     }
 

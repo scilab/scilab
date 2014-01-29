@@ -12,7 +12,7 @@
 package org.scilab.modules.gui.plotbrowser;
 
 import javax.swing.SwingUtilities;
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -114,7 +114,7 @@ public class PlotBrowser {
      * Close PlotBrowser
      */
     public void close() {
-        ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabDockable) plotBrowserTab);
+        ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabDockablePanel) plotBrowserTab);
     }
 
     /**

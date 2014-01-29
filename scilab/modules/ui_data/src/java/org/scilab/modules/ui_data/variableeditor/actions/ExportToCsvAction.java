@@ -16,7 +16,7 @@ import javax.swing.JTable;
 
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
@@ -41,14 +41,14 @@ public final class ExportToCsvAction extends CommonCallBack {
     private static final String CREATE = "Export to CSV";
     private static final int GAP = 5;
 
-    private final SwingScilabDockable editor;
+    private final SwingScilabDockablePanel editor;
 
     /**
      * Constructor
      * @param editor the editor
      * @param name the name of the action
      */
-    public ExportToCsvAction(SwingScilabDockable editor, String name) {
+    public ExportToCsvAction(SwingScilabDockablePanel editor, String name) {
         super(name);
         this.editor = editor;
     }
@@ -57,7 +57,7 @@ public final class ExportToCsvAction extends CommonCallBack {
      * @param editor the editor
      * @param table where to put the action
      */
-    public static void registerAction(SwingScilabDockable editor, JTable table) {
+    public static void registerAction(SwingScilabDockablePanel editor, JTable table) {
         table.getActionMap().put(CREATE, new ExportToCsvAction(editor, CREATE));
         table.getInputMap().put(ScilabKeyStroke.getKeyStroke(KEY), CREATE);
     }
@@ -103,7 +103,7 @@ public final class ExportToCsvAction extends CommonCallBack {
      * @param title the menu title
      * @return the menu item
      */
-    public static MenuItem createMenuItem(SwingScilabDockable editor, String title) {
+    public static MenuItem createMenuItem(SwingScilabDockablePanel editor, String title) {
         MenuItem menu = ScilabMenuItem.createMenuItem();
         menu.setCallback(new ExportToCsvAction(editor, title));
         menu.setText(title);
@@ -118,7 +118,7 @@ public final class ExportToCsvAction extends CommonCallBack {
      * @param title the menu title
      * @return the menu item
      */
-    public static SwingScilabMenuItem createJMenuItem(SwingScilabDockable editor, String title) {
+    public static SwingScilabMenuItem createJMenuItem(SwingScilabDockablePanel editor, String title) {
         return (SwingScilabMenuItem) createMenuItem(editor, title).getAsSimpleMenuItem();
     }
 

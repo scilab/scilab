@@ -64,7 +64,7 @@ import org.scilab.modules.commons.xml.XConfiguration;
 import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
 import org.scilab.modules.core.Scilab;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.filechooser.Juigetfile;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
@@ -121,7 +121,7 @@ import org.scilab.modules.scinotes.utils.SearchFile;
  * @author Bruno JOFRET
  * @author Calixte DENIZET
  */
-public class SciNotes extends SwingScilabDockable {
+public class SciNotes extends SwingScilabDockablePanel {
 
     private static final long serialVersionUID = -6410183357490518676L;
 
@@ -286,7 +286,7 @@ public class SciNotes extends SwingScilabDockable {
     }
 
     public void setParentWindow() {
-        this.parentWindow = new SwingScilabWindow();
+        this.parentWindow = SwingScilabWindow.createWindow(true);
         setWindowIcon("accessories-text-editor");
         parentWindow.setLocation(150, 50);
         parentWindow.setSize(650, 550);
@@ -616,7 +616,7 @@ public class SciNotes extends SwingScilabDockable {
         if (b) {
             ed.closeTabAtWithoutConfirmation(ed.getTabPane().getSelectedIndex());
             if (ed.getTabPane().getTabCount() == 0) {
-                ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabDockable) ed);
+                ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabDockablePanel) ed);
                 ConfigSciNotesManager.removeEditorUUID(ed.uuid.toString());
             }
         }
@@ -874,9 +874,9 @@ public class SciNotes extends SwingScilabDockable {
 
     public static void closeEditor(SciNotes ed) {
         if (scinotesList.size() > 1) {
-            ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabDockable) ed);
+            ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabDockablePanel) ed);
         } else {
-            ClosingOperationsManager.startClosingOperation((SwingScilabDockable) ed);
+            ClosingOperationsManager.startClosingOperation((SwingScilabDockablePanel) ed);
         }
     }
 

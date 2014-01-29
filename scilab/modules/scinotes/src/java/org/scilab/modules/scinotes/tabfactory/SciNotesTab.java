@@ -15,7 +15,7 @@ package org.scilab.modules.scinotes.tabfactory;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
@@ -46,7 +46,7 @@ public class SciNotesTab {
 
         final SciNotes ed = editorInstance;
         ClosingOperationsManager.registerClosingOperation(
-            (SwingScilabDockable) editorInstance,
+            (SwingScilabDockablePanel) editorInstance,
         new ClosingOperationsManager.ClosingOperation() {
 
             @Override
@@ -60,18 +60,18 @@ public class SciNotesTab {
             }
 
             @Override
-            public String askForClosing(final List<SwingScilabDockable> list) {
+            public String askForClosing(final List<SwingScilabDockablePanel> list) {
                 return ed.askForClosing();
             }
 
             @Override
-            public void updateDependencies(List<SwingScilabDockable> list,
-                                           ListIterator<SwingScilabDockable> it) {
+            public void updateDependencies(List<SwingScilabDockablePanel> list,
+                                           ListIterator<SwingScilabDockablePanel> it) {
             }
         });
 
         WindowsConfigurationManager.registerEndedRestoration(
-            (SwingScilabDockable) editorInstance,
+            (SwingScilabDockablePanel) editorInstance,
         new WindowsConfigurationManager.EndedRestoration() {
 
             @Override
@@ -81,7 +81,7 @@ public class SciNotesTab {
         });
 
         ClosingOperationsManager
-        .addDependencyWithRoot((SwingScilabDockable) editorInstance);
+        .addDependencyWithRoot((SwingScilabDockablePanel) editorInstance);
 
         return editorInstance;
     }

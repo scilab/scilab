@@ -59,7 +59,7 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.colorchooser.ColorChooser;
 import org.scilab.modules.gui.colorchooser.ScilabColorChooser;
 import org.scilab.modules.gui.console.ScilabConsole;
@@ -241,7 +241,7 @@ public class CallScilabBridge {
      * @param status true to set the menu enabled
      */
     public static void setMenuEnabled(int parentUID, String menuName, boolean status) {
-        SwingScilabDockable parentTab = (SwingScilabDockable) SwingView.getFromId(parentUID);
+        SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) SwingView.getFromId(parentUID);
         if (parentTab != null) { /** Parent must exist */
             parentTab.getMenuBar().getAsSimpleMenuBar().setMenuEnabled(menuName, status);
         }
@@ -255,7 +255,7 @@ public class CallScilabBridge {
      * @param status true to set the menu enabled
      */
     public static void setSubMenuEnabled(int parentUID, String parentMenuName, int menuItemPosition, boolean status) {
-        SwingScilabDockable parentTab = (SwingScilabDockable) SwingView.getFromId(parentUID);
+        SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) SwingView.getFromId(parentUID);
         if (parentTab != null) { /** Parent must exist */
             parentTab.getMenuBar().getAsSimpleMenuBar().setSubMenuEnabled(parentMenuName, menuItemPosition, status);
         }
@@ -273,7 +273,7 @@ public class CallScilabBridge {
      * @param menuName the name of the menu
      */
     public static void removeMenu(int parentUID, String menuName) {
-        SwingScilabDockable parentTab = (SwingScilabDockable) SwingView.getFromId(parentUID);
+        SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) SwingView.getFromId(parentUID);
         if (parentTab != null) { /** Parent must exist */
             parentTab.getMenuBar().getAsSimpleMenuBar().removeMenu(menuName);
         }
@@ -479,7 +479,7 @@ public class CallScilabBridge {
      * @param status true to set the Toolbar visible
      */
     public static void setToolbarVisible(int parentUID, boolean status) {
-        SwingScilabDockable parentTab = (SwingScilabDockable) SwingView.getFromId(parentUID);
+        SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) SwingView.getFromId(parentUID);
         if (parentTab != null) {
             boolean oldStatus = parentTab.getToolBar().getAsSimpleToolBar().isVisible();
             if (oldStatus != status) {
@@ -496,7 +496,7 @@ public class CallScilabBridge {
      * @return true to set the Toolbar visible
      */
     public static boolean isToolbarVisible(int parentUID) {
-        SwingScilabDockable parentTab = (SwingScilabDockable) SwingView.getFromId(parentUID);
+        SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) SwingView.getFromId(parentUID);
         if (parentTab != null) {
             return parentTab.getToolBar().getAsSimpleToolBar().isVisible();
         } else {
@@ -901,7 +901,7 @@ public class CallScilabBridge {
                 Figure figure = (Figure) GraphicController.getController().getObjectFromId(figID);
                 int figureID = figure.getId();
                 SwingScilabCanvas canvas;
-                canvas = ((SwingScilabDockable) SwingView.getFromId(figID)).getContentCanvas();
+                canvas = ((SwingScilabDockablePanel) SwingView.getFromId(figID)).getContentCanvas();
                 ScilabPrint scilabPrint = new ScilabPrint(canvas.dumpAsBufferedImage(), printerJob, scilabPageFormat);
                 if (scilabPrint != null) {
                     return true;
@@ -1337,7 +1337,7 @@ public class CallScilabBridge {
     /******************/
 
     public static void fireClosingFinished(int figUID) {
-        SwingScilabDockable parentTab = (SwingScilabDockable) SwingView.getFromId(figUID);
+        SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) SwingView.getFromId(figUID);
         ClosingOperationsManager.removeFromDunnoList(parentTab);
     }
 }

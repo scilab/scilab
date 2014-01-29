@@ -12,10 +12,16 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
+import java.awt.Container;
+
+import javax.swing.JLayeredPane;
+
+import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.SwingViewObject;
 
 public interface SwingScilabPanel extends SwingViewObject {
     
@@ -31,8 +37,18 @@ public interface SwingScilabPanel extends SwingViewObject {
     public void setEventHandlerEnabled(boolean enabled);
     
     public void setParentWindowId(String parentWindowId);
+    public String getParentWindowId();
+    
+    public SwingScilabWindow getParentWindow();
+    public Container getContentPane();
+    public JLayeredPane getWidgetPane();
+    
     public void setVisible(boolean isVisible);
     public void setWindowIcon(String windowIcon);
     public void addMember(SwingViewObject member);
     public void revalidate();
+    
+    public void setCallback(CommonCallBack callback);
+    
+    public void close();
 }

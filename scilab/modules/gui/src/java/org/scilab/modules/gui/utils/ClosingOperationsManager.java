@@ -28,7 +28,7 @@ import javax.swing.JCheckBox;
 import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
@@ -57,17 +57,17 @@ public class ClosingOperationsManager {
     private static final String CONFIRMATION_PATH = "//general/confirmation-dialogs/body/tools/tool[@id='console-exit']";
     private static final String EXIT = Messages.gettext("Exit");
     private static final String NULLUUID = new UUID(0L, 0L).toString();
-    private static final Map<SwingScilabDockable, ClosingOperation> closingOps = new HashMap<SwingScilabDockable, ClosingOperation>();
-    private static final Map<SwingScilabDockable, List<SwingScilabDockable>> deps = new HashMap<SwingScilabDockable, List<SwingScilabDockable>>();
+    private static final Map<SwingScilabDockablePanel, ClosingOperation> closingOps = new HashMap<SwingScilabDockablePanel, ClosingOperation>();
+    private static final Map<SwingScilabDockablePanel, List<SwingScilabDockablePanel>> deps = new HashMap<SwingScilabDockablePanel, List<SwingScilabDockablePanel>>();
 
-    private static final List<SwingScilabDockable> dunnoList = new ArrayList<SwingScilabDockable>();
-    private static List<SwingScilabDockable> savedList;
+    private static final List<SwingScilabDockablePanel> dunnoList = new ArrayList<SwingScilabDockablePanel>();
+    private static List<SwingScilabDockablePanel> savedList;
     private static boolean savedMustSave;
 
-    private static SwingScilabDockable root;
+    private static SwingScilabDockablePanel root;
 
     static {
-        deps.put(null, new ArrayList<SwingScilabDockable>());
+        deps.put(null, new ArrayList<SwingScilabDockablePanel>());
     }
 
     /**
@@ -78,7 +78,7 @@ public class ClosingOperationsManager {
      * @param op
      *            the closing operation
      */
-    public static void registerClosingOperation(SwingScilabDockable tab, ClosingOperation op) {
+    public static void registerClosingOperation(SwingScilabDockablePanel tab, ClosingOperation op) {
         if (tab != null) {
             closingOps.put(tab, op);
         }
@@ -94,7 +94,7 @@ public class ClosingOperationsManager {
      */
     public static void registerClosingOperation(Tab tab, ClosingOperation op) {
         if (tab != null) {
-            registerClosingOperation((SwingScilabDockable) tab.getAsSimpleTab(), op);
+            registerClosingOperation((SwingScilabDockablePanel) tab.getAsSimpleTab(), op);
         }
     }
 
@@ -103,13 +103,13 @@ public class ClosingOperationsManager {
      *
      * @param tab the associated tab
      */
-    public static void unregisterClosingOperation(SwingScilabDockable tab) {
+    public static void unregisterClosingOperation(SwingScilabDockablePanel tab) {
         if (tab != null) {
             closingOps.remove(tab);
         }
     }
 
-    public static void checkTabForClosing(SwingScilabDockable tab) {
+    public static void checkTabForClosing(SwingScilabDockablePanel tab) {
         if (tab != null && !dunnoList.isEmpty()) {
             if (dunnoList.contains(tab)) {
                 dunnoList.remove(tab);
@@ -122,7 +122,7 @@ public class ClosingOperationsManager {
         }
     }
 
-    public static void removeFromDunnoList(SwingScilabDockable tab) {
+    public static void removeFromDunnoList(SwingScilabDockablePanel tab) {
         if (tab != null && !dunnoList.isEmpty() && dunnoList.contains(tab)) {
             dunnoList.remove(tab);
         }
@@ -144,8 +144,8 @@ public class ClosingOperationsManager {
                 return startClosingOperation(win, true, true);
             } else if (deps.get(null).size() != 0) {
                 // NW mode
-                List<SwingScilabDockable> list = new ArrayList<SwingScilabDockable>();
-                for (SwingScilabDockable tab : deps.get(null)) {
+                List<SwingScilabDockablePanel> list = new ArrayList<SwingScilabDockablePanel>();
+                for (SwingScilabDockablePanel tab : deps.get(null)) {
                     collectTabsToClose(tab, list);
                 }
                 return close(list, null, true, true);
@@ -170,8 +170,8 @@ public class ClosingOperationsManager {
             startClosingOperation(win, false, false);
         } else if (deps.get(null).size() != 0) {
             // NW mode
-            List<SwingScilabDockable> list = new ArrayList<SwingScilabDockable>();
-            for (SwingScilabDockable tab : deps.get(null)) {
+            List<SwingScilabDockablePanel> list = new ArrayList<SwingScilabDockablePanel>();
+            for (SwingScilabDockablePanel tab : deps.get(null)) {
                 collectTabsToClose(tab, list);
             }
             close(list, null, false, false);
@@ -185,7 +185,7 @@ public class ClosingOperationsManager {
      *            the tab to close
      * @return true if the closing operation succeeded
      */
-    public static boolean startClosingOperation(SwingScilabDockable tab) {
+    public static boolean startClosingOperation(SwingScilabDockablePanel tab) {
         return close(collectTabsToClose(tab), getWindow(tab), true, true);
     }
 
@@ -197,7 +197,7 @@ public class ClosingOperationsManager {
      * @return true if the closing operation succeeded
      */
     public static boolean startClosingOperation(Tab tab) {
-        return startClosingOperation((SwingScilabDockable) tab.getAsSimpleTab());
+        return startClosingOperation((SwingScilabDockablePanel) tab.getAsSimpleTab());
     }
 
     /**
@@ -207,7 +207,7 @@ public class ClosingOperationsManager {
      *            the tab to close
      * @return true if the closing operation succeeded
      */
-    public static boolean startClosingOperation(SwingScilabDockable tab, boolean askToExit, boolean mustSave) {
+    public static boolean startClosingOperation(SwingScilabDockablePanel tab, boolean askToExit, boolean mustSave) {
         return close(collectTabsToClose(tab), getWindow(tab), askToExit, mustSave);
     }
 
@@ -218,7 +218,7 @@ public class ClosingOperationsManager {
      *            the tabs to close
      * @return true if the closing operation succeeded
      */
-    public static boolean startClosingOperation(List<SwingScilabDockable> tabs, boolean askToExit, boolean mustSave) {
+    public static boolean startClosingOperation(List<SwingScilabDockablePanel> tabs, boolean askToExit, boolean mustSave) {
         final SwingScilabWindow win;
         if (tabs.isEmpty()) {
             // use the null window to select the console tab.
@@ -237,7 +237,7 @@ public class ClosingOperationsManager {
      * @return true if the closing operation succeeded
      */
     public static boolean startClosingOperation(Tab tab, boolean askToExit, boolean mustSave) {
-        return startClosingOperation((SwingScilabDockable) tab.getAsSimpleTab(), askToExit, mustSave);
+        return startClosingOperation((SwingScilabDockablePanel) tab.getAsSimpleTab(), askToExit, mustSave);
     }
 
     /**
@@ -247,7 +247,7 @@ public class ClosingOperationsManager {
      *            the tab to close
      * @return true if the closing operation succeeded
      */
-    public static boolean startClosingOperationWithoutSave(SwingScilabDockable tab) {
+    public static boolean startClosingOperationWithoutSave(SwingScilabDockablePanel tab) {
         return close(collectTabsToClose(tab), getWindow(tab), true, false);
     }
 
@@ -259,7 +259,7 @@ public class ClosingOperationsManager {
      * @return true if the closing operation succeeded
      */
     public static boolean startClosingOperationWithoutSave(Tab tab) {
-        return startClosingOperationWithoutSave((SwingScilabDockable) tab.getAsSimpleTab());
+        return startClosingOperationWithoutSave((SwingScilabDockablePanel) tab.getAsSimpleTab());
     }
 
     /**
@@ -291,11 +291,11 @@ public class ClosingOperationsManager {
         // blocks the shutting down. If it is not done, the Scilab process could stay alive.
         try {
             if (window != null) {
-                List<SwingScilabDockable> list = new ArrayList<SwingScilabDockable>();
+                List<SwingScilabDockablePanel> list = new ArrayList<SwingScilabDockablePanel>();
                 if (window.getDockingPort() != null) {
                     Object[] dockArray = window.getDockingPort().getDockables().toArray();
                     for (int i = 0; i < dockArray.length; i++) {
-                        collectTabsToClose((SwingScilabDockable) dockArray[i], list);
+                        collectTabsToClose((SwingScilabDockablePanel) dockArray[i], list);
                     }
                     return close(list, window, askToExit, mustSave);
                 } else {
@@ -332,11 +332,11 @@ public class ClosingOperationsManager {
      * @param child
      *            the child tab
      */
-    public static void addDependency(SwingScilabDockable parent, SwingScilabDockable child) {
+    public static void addDependency(SwingScilabDockablePanel parent, SwingScilabDockablePanel child) {
         if (parent != null && child != null) {
-            List<SwingScilabDockable> children = deps.get(parent);
+            List<SwingScilabDockablePanel> children = deps.get(parent);
             if (children == null) {
-                children = new ArrayList<SwingScilabDockable>();
+                children = new ArrayList<SwingScilabDockablePanel>();
                 deps.put(parent, children);
             }
             children.add(child);
@@ -347,9 +347,9 @@ public class ClosingOperationsManager {
      * Remove the given children from its parent
      * @param child teh child to remove
      */
-    public static void removeDependency(SwingScilabDockable child) {
-        for (SwingScilabDockable tab : deps.keySet()) {
-            List<SwingScilabDockable> children = deps.get(tab);
+    public static void removeDependency(SwingScilabDockablePanel child) {
+        for (SwingScilabDockablePanel tab : deps.keySet()) {
+            List<SwingScilabDockablePanel> children = deps.get(tab);
             if (children != null) {
                 children.remove(child);
             }
@@ -366,7 +366,7 @@ public class ClosingOperationsManager {
      */
     public static void addDependency(Tab parent, Tab child) {
         if (parent != null && child != null) {
-            addDependency((SwingScilabDockable) parent.getAsSimpleTab(), (SwingScilabDockable) child.getAsSimpleTab());
+            addDependency((SwingScilabDockablePanel) parent.getAsSimpleTab(), (SwingScilabDockablePanel) child.getAsSimpleTab());
         }
     }
 
@@ -378,9 +378,9 @@ public class ClosingOperationsManager {
      * @param child
      *            the child tab
      */
-    public static void addDependency(SwingScilabDockable parent, Tab child) {
+    public static void addDependency(SwingScilabDockablePanel parent, Tab child) {
         if (parent != null && child != null) {
-            addDependency(parent, (SwingScilabDockable) child.getAsSimpleTab());
+            addDependency(parent, (SwingScilabDockablePanel) child.getAsSimpleTab());
         }
     }
 
@@ -392,9 +392,9 @@ public class ClosingOperationsManager {
      * @param child
      *            the child tab
      */
-    public static void addDependency(Tab parent, SwingScilabDockable child) {
+    public static void addDependency(Tab parent, SwingScilabDockablePanel child) {
         if (parent != null && child != null) {
-            addDependency((SwingScilabDockable) parent.getAsSimpleTab(), child);
+            addDependency((SwingScilabDockablePanel) parent.getAsSimpleTab(), child);
         }
     }
 
@@ -404,7 +404,7 @@ public class ClosingOperationsManager {
      * @param child
      *            the child tab
      */
-    public static void addDependencyWithRoot(SwingScilabDockable child) {
+    public static void addDependencyWithRoot(SwingScilabDockablePanel child) {
         if (child != null) {
             addDependency(root, child);
         }
@@ -418,7 +418,7 @@ public class ClosingOperationsManager {
      */
     public static void addDependencyWithRoot(Tab child) {
         if (child != null) {
-            addDependency(root, (SwingScilabDockable) child.getAsSimpleTab());
+            addDependency(root, (SwingScilabDockablePanel) child.getAsSimpleTab());
         }
     }
 
@@ -428,8 +428,8 @@ public class ClosingOperationsManager {
      * @param root
      *            the root element
      */
-    public static void setRoot(SwingScilabDockable tab) {
-        List<SwingScilabDockable> list = deps.get(root);
+    public static void setRoot(SwingScilabDockablePanel tab) {
+        List<SwingScilabDockablePanel> list = deps.get(root);
         deps.remove(root);
         deps.put(tab, list);
         root = tab;
@@ -442,7 +442,7 @@ public class ClosingOperationsManager {
      *            the root element
      */
     public static void setRoot(Tab tab) {
-        setRoot((SwingScilabDockable) tab.getAsSimpleTab());
+        setRoot((SwingScilabDockablePanel) tab.getAsSimpleTab());
     }
 
     /**
@@ -452,9 +452,9 @@ public class ClosingOperationsManager {
      *            the child
      * @return the parent tab
      */
-    private static SwingScilabDockable getParent(SwingScilabDockable tab) {
-        for (SwingScilabDockable key : deps.keySet()) {
-            List<SwingScilabDockable> list = deps.get(key);
+    private static SwingScilabDockablePanel getParent(SwingScilabDockablePanel tab) {
+        for (SwingScilabDockablePanel key : deps.keySet()) {
+            List<SwingScilabDockablePanel> list = deps.get(key);
             if (list != null && list.contains(tab)) {
                 return key;
             }
@@ -469,16 +469,16 @@ public class ClosingOperationsManager {
      *            the child
      * @return the parent tab
      */
-    public static SwingScilabDockable getElderTab(List<SwingScilabDockable> tabs) {
+    public static SwingScilabDockablePanel getElderTab(List<SwingScilabDockablePanel> tabs) {
         if (tabs == null || tabs.size() == 0) {
             return null;
         }
 
         int min = Integer.MAX_VALUE;
-        SwingScilabDockable elder = null;
-        for (SwingScilabDockable tab : tabs) {
+        SwingScilabDockablePanel elder = null;
+        for (SwingScilabDockablePanel tab : tabs) {
             int level = 0;
-            SwingScilabDockable t = getParent(tab);
+            SwingScilabDockablePanel t = getParent(tab);
             while (t != null) {
                 level++;
                 t = getParent(t);
@@ -505,15 +505,15 @@ public class ClosingOperationsManager {
      *            if true, the configuration is saved
      * @return true if the closing operation succeeded
      */
-    private static final boolean close(List<SwingScilabDockable> list, SwingScilabWindow window, boolean askToExit, boolean mustSave) {
+    private static final boolean close(List<SwingScilabDockablePanel> list, SwingScilabWindow window, boolean askToExit, boolean mustSave) {
         boolean ret = false;
         if (!askToExit || canClose(list, window, mustSave)) {
             ret = true;
-            SwingScilabDockable console = null;
+            SwingScilabDockablePanel console = null;
             try {
                 // First thing we get the console (if it is here) to be sure to
                 // kill it !
-                for (SwingScilabDockable tab : list) {
+                for (SwingScilabDockablePanel tab : list) {
                     if (tab.getPersistentId().equals(NULLUUID)) {
                         console = tab;
                         break;
@@ -524,8 +524,8 @@ public class ClosingOperationsManager {
                 // ClosingOperation
                 // To avoid annoying situations the tab will be undocked and
                 // closed
-                List<SwingScilabDockable> tabsToRemove = new ArrayList<SwingScilabDockable>();
-                for (SwingScilabDockable tab : list) {
+                List<SwingScilabDockablePanel> tabsToRemove = new ArrayList<SwingScilabDockablePanel>();
+                for (SwingScilabDockablePanel tab : list) {
                     if (closingOps.get(tab) == null) {
                         tab.setVisible(false);
                         tab.getActionButton("undock").getAction().actionPerformed(null);
@@ -533,7 +533,7 @@ public class ClosingOperationsManager {
                         if (action == null) {
                             SwingScilabWindow win = getWindow(tab);
                             if (win != null) {
-                                win.removeTabs(new SwingScilabDockable[] { tab });
+                                win.removeTabs(new SwingScilabDockablePanel[] { tab });
                             }
                         } else {
                             action.actionPerformed(null);
@@ -544,12 +544,12 @@ public class ClosingOperationsManager {
                 list.removeAll(tabsToRemove);
 
                 // we group the tabs by win
-                Map<SwingScilabWindow, List<SwingScilabDockable>> map = new HashMap<SwingScilabWindow, List<SwingScilabDockable>>();
-                for (SwingScilabDockable tab : list) {
+                Map<SwingScilabWindow, List<SwingScilabDockablePanel>> map = new HashMap<SwingScilabWindow, List<SwingScilabDockablePanel>>();
+                for (SwingScilabDockablePanel tab : list) {
                     SwingScilabWindow win = getWindow(tab);
                     if (win != null) {
                         if (!map.containsKey(win)) {
-                            map.put(win, new ArrayList<SwingScilabDockable>());
+                            map.put(win, new ArrayList<SwingScilabDockablePanel>());
                         }
                         map.get(win).add(tab);
                     }
@@ -558,7 +558,7 @@ public class ClosingOperationsManager {
                 List<SwingScilabWindow> winsWithOneTab = new ArrayList<SwingScilabWindow>();
                 List<SwingScilabWindow> windowsToClose = new ArrayList<SwingScilabWindow>();
                 for (SwingScilabWindow win : map.keySet()) {
-                    List<SwingScilabDockable> listTabs = map.get(win);
+                    List<SwingScilabDockablePanel> listTabs = map.get(win);
                     int nbDockedTabs = win.getNbDockedObjects();
                     if (nbDockedTabs == listTabs.size()) {
                         // all the tabs in the window are removed so we save the
@@ -573,7 +573,7 @@ public class ClosingOperationsManager {
                         }
                         // the window will stay opened
                         if (mustSave) {
-                            for (SwingScilabDockable tab : listTabs) {
+                            for (SwingScilabDockablePanel tab : listTabs) {
                                 WindowsConfigurationManager.saveTabProperties(tab, true);
                             }
                         }
@@ -583,8 +583,8 @@ public class ClosingOperationsManager {
                 // If a parent and a child are removed, we make a dependency
                 // between them
                 // The parent restoration will imply the child one
-                for (SwingScilabDockable tab : list) {
-                    SwingScilabDockable parent = getParent(tab);
+                for (SwingScilabDockablePanel tab : list) {
+                    SwingScilabDockablePanel parent = getParent(tab);
                     if (list.contains(parent) || parent == null) {
                         if (parent != null) {
                             WindowsConfigurationManager.makeDependency(parent.getPersistentId(), tab.getPersistentId());
@@ -600,7 +600,7 @@ public class ClosingOperationsManager {
 
                 WindowsConfigurationManager.clean();
                 // We destroy all the tabs: children before parents.
-                for (SwingScilabDockable tab : list) {
+                for (SwingScilabDockablePanel tab : list) {
                     tab.setVisible(false);
                     if (!tab.getPersistentId().equals(NULLUUID)) {
                         try {
@@ -619,13 +619,13 @@ public class ClosingOperationsManager {
                 // ActiveDockableTracker tryes to give the activation to a
                 // removed tab
                 for (SwingScilabWindow win : map.keySet()) {
-                    win.removeTabs(map.get(win).toArray(new SwingScilabDockable[0]));
+                    win.removeTabs(map.get(win).toArray(new SwingScilabDockablePanel[0]));
                 }
 
                 // It stays one docked tab so we remove close and undock action
                 for (SwingScilabWindow win : winsWithOneTab) {
                     Object[] dockArray = win.getDockingPort().getDockables().toArray();
-                    SwingScilabDockable.removeActions((SwingScilabDockable) dockArray[0]);
+                    SwingScilabDockablePanel.removeActions((SwingScilabDockablePanel) dockArray[0]);
                 }
 
                 // We wait until all the windows are definitly closed
@@ -643,10 +643,10 @@ public class ClosingOperationsManager {
                 }
 
                 // We remove the tabs from the cache
-                for (SwingScilabDockable tab : list) {
+                for (SwingScilabDockablePanel tab : list) {
                     ScilabTabFactory.getInstance().removeFromCache(tab.getPersistentId());
-                    SwingScilabDockable parent = getParent(tab);
-                    List<SwingScilabDockable> l = deps.get(parent);
+                    SwingScilabDockablePanel parent = getParent(tab);
+                    List<SwingScilabDockablePanel> l = deps.get(parent);
                     if (l != null) {
                         l.remove(tab);
                     }
@@ -677,7 +677,7 @@ public class ClosingOperationsManager {
      *            the window to use to center the modal dialog
      * @return true if all the tabs can be closed
      */
-    private static final boolean canClose(List<SwingScilabDockable> list,
+    private static final boolean canClose(List<SwingScilabDockablePanel> list,
                                           SwingScilabWindow window,
                                           boolean mustSave) {
         CheckExitConfirmation cec = XConfiguration.get(CheckExitConfirmation.class, XConfiguration.getXConfigurationDocument(), CONFIRMATION_PATH)[0];
@@ -708,7 +708,7 @@ public class ClosingOperationsManager {
             }
         }
 
-        for (SwingScilabDockable t : list) {
+        for (SwingScilabDockablePanel t : list) {
             ClosingOperation op = closingOps.get(t);
             if (op != null) {
                 int ret = op.canClose();
@@ -726,7 +726,7 @@ public class ClosingOperationsManager {
             return true;
         }
 
-        for (SwingScilabDockable tab : dunnoList) {
+        for (SwingScilabDockablePanel tab : dunnoList) {
             list.remove(tab);
         }
 
@@ -743,10 +743,10 @@ public class ClosingOperationsManager {
      *            the list of the tabs to close
      * @return the question
      */
-    private static final String makeQuestion(List<SwingScilabDockable> list) {
+    private static final String makeQuestion(List<SwingScilabDockablePanel> list) {
         List<String> apps = new ArrayList<String>();
-        List<SwingScilabDockable> toBeRemoved = Collections.unmodifiableList(list);
-        for (SwingScilabDockable t : list) {
+        List<SwingScilabDockablePanel> toBeRemoved = Collections.unmodifiableList(list);
+        for (SwingScilabDockablePanel t : list) {
             ClosingOperation op = closingOps.get(t);
             if (op != null) {
                 String name = op.askForClosing(toBeRemoved);
@@ -779,11 +779,11 @@ public class ClosingOperationsManager {
      * @param list
      *            the list
      */
-    private static final void collectTabsToClose(SwingScilabDockable tab,
-            List<SwingScilabDockable> list) {
-        List<SwingScilabDockable> children = deps.get(tab);
+    private static final void collectTabsToClose(SwingScilabDockablePanel tab,
+            List<SwingScilabDockablePanel> list) {
+        List<SwingScilabDockablePanel> children = deps.get(tab);
         if (children != null) {
-            for (SwingScilabDockable t : children) {
+            for (SwingScilabDockablePanel t : children) {
                 collectTabsToClose(t, list);
             }
         }
@@ -794,9 +794,9 @@ public class ClosingOperationsManager {
         /*
          * Update the tab list in case of hidden (eg. dynamic) dependencies
          */
-        final List<SwingScilabDockable> ro = Collections.unmodifiableList(list);
-        for (ListIterator<SwingScilabDockable> it = list.listIterator(); it.hasNext();) {
-            final SwingScilabDockable t = it.next();
+        final List<SwingScilabDockablePanel> ro = Collections.unmodifiableList(list);
+        for (ListIterator<SwingScilabDockablePanel> it = list.listIterator(); it.hasNext();) {
+            final SwingScilabDockablePanel t = it.next();
 
             final ClosingOperation op = closingOps.get(t);
             if (op != null) {
@@ -812,9 +812,9 @@ public class ClosingOperationsManager {
      *            the current tab
      * @return the list of the tabs to close
      */
-    private static final List<SwingScilabDockable> collectTabsToClose(
-        SwingScilabDockable tab) {
-        final List<SwingScilabDockable> list = new ArrayList<SwingScilabDockable>();
+    private static final List<SwingScilabDockablePanel> collectTabsToClose(
+        SwingScilabDockablePanel tab) {
+        final List<SwingScilabDockablePanel> list = new ArrayList<SwingScilabDockablePanel>();
         collectTabsToClose(tab, list);
         return list;
     }
@@ -826,9 +826,9 @@ public class ClosingOperationsManager {
      *            the current tabs
      * @return the list of the tabs to close
      */
-    private static final List<SwingScilabDockable> collectTabsToClose(List<SwingScilabDockable> tabs) {
-        final List<SwingScilabDockable> list = new ArrayList<SwingScilabDockable>();
-        for (final SwingScilabDockable tab : tabs) {
+    private static final List<SwingScilabDockablePanel> collectTabsToClose(List<SwingScilabDockablePanel> tabs) {
+        final List<SwingScilabDockablePanel> list = new ArrayList<SwingScilabDockablePanel>();
+        for (final SwingScilabDockablePanel tab : tabs) {
             collectTabsToClose(tab, list);
         }
         return list;
@@ -841,7 +841,7 @@ public class ClosingOperationsManager {
      *            the tab
      * @return the corresponding window
      */
-    private static final SwingScilabWindow getWindow(SwingScilabDockable tab) {
+    private static final SwingScilabWindow getWindow(SwingScilabDockablePanel tab) {
         return (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, tab);
     }
 
@@ -865,7 +865,7 @@ public class ClosingOperationsManager {
          * @return non null String if the tab requires a
          *         "Are you sure you want to close FOO ?..."
          */
-        public String askForClosing(final List<SwingScilabDockable> list);
+        public String askForClosing(final List<SwingScilabDockablePanel> list);
 
         /**
          * Update the dependency list to handle specific dependency
@@ -875,7 +875,7 @@ public class ClosingOperationsManager {
          * @param it
          *            the iterator to update
          */
-        public void updateDependencies(final List<SwingScilabDockable> list, final ListIterator<SwingScilabDockable> it);
+        public void updateDependencies(final List<SwingScilabDockablePanel> list, final ListIterator<SwingScilabDockablePanel> it);
     }
 
     @XConfAttribute

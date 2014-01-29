@@ -14,7 +14,7 @@ package org.scilab.modules.gui.ged;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockable;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 
@@ -25,8 +25,8 @@ import org.scilab.modules.gui.utils.ClosingOperationsManager;
 */
 public class InspectorTab {
 
-    public static SwingScilabDockable getInspectorInstance(Integer objectID) {
-        final SwingScilabDockable inspector = Inspector.createInspectorTab(objectID);
+    public static SwingScilabDockablePanel getInspectorInstance(Integer objectID) {
+        final SwingScilabDockablePanel inspector = Inspector.createInspectorTab(objectID);
         ScilabTabFactory.getInstance().addToCache(inspector);
 
         ClosingOperationsManager.registerClosingOperation(inspector,
@@ -43,13 +43,13 @@ public class InspectorTab {
             }
 
             //@Override
-            public String askForClosing(final List<SwingScilabDockable> list) {
+            public String askForClosing(final List<SwingScilabDockablePanel> list) {
                 return null;
             }
 
             //@Override
-            public void updateDependencies(List<SwingScilabDockable> list,
-            ListIterator<SwingScilabDockable> it) {
+            public void updateDependencies(List<SwingScilabDockablePanel> list,
+            ListIterator<SwingScilabDockablePanel> it) {
             }
         });
 
