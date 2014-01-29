@@ -243,7 +243,9 @@ static setHashTableCouple propertySetTable[] =
     {"rect", set_rect_property},
     {"layout_options", set_layout_options_property},
     {"borders", set_borders_property},
-    {"groupname", set_groupname_property}
+    {"groupname", set_groupname_property},
+    {"title_position", set_title_position_property},
+    {"title_scroll", set_title_scroll_property}
 };
 
 /*--------------------------------------------------------------------------*/

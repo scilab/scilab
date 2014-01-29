@@ -12,19 +12,22 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TITLE_POSITION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TITLE_SCROLL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
 import javax.swing.JTabbedPane;
 
+import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 import org.scilab.modules.gui.SwingViewObject;
 
-public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject{
+public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject {
     private Integer id;
-    
+
     public SwingScilabTabGroup() {
         super();
     }
-    
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -34,8 +37,36 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject{
     }
 
     public void update(int property, Object value) {
-        if (property == __GO_VISIBLE__) {
-            setVisible((Boolean) value);
+
+        switch (property) {
+            case __GO_VISIBLE__ :
+                setVisible((Boolean) value);
+                break;
+            case __GO_UI_TITLE_POSITION__ :
+                Integer pos = (Integer)value;
+                switch (Uicontrol.TitlePositionType.intToEnum(pos)) {
+                    case BOTTOM:
+                        setTabPlacement(JTabbedPane.BOTTOM);
+                        break;
+                    case LEFT:
+                        setTabPlacement(JTabbedPane.LEFT);
+                        break;
+                    case RIGHT:
+                        setTabPlacement(JTabbedPane.RIGHT);
+                        break;
+                    case TOP:
+                    default:
+                        setTabPlacement(JTabbedPane.TOP);
+                        break;
+                }
+                break;
+            case __GO_UI_TITLE_SCROLL__ :
+                if ((Boolean)value) {
+                    setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+                } else {
+                    setTabLayoutPolicy(JTabbedPane.WRAP_TAB_LAYOUT);
+                }
+                break;
         }
     }
 

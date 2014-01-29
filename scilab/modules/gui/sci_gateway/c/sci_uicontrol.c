@@ -71,7 +71,9 @@ static const char* propertiesNames[] =
     "layout",
     "margins"
     "borders",
-    "groupname"
+    "groupname",
+    "title_position",
+    "title_scroll"
 };
 
 /*--------------------------------------------------------------------------*/

@@ -67,6 +67,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TITLE_POSITION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TITLE_SCROLL__;
 
 import java.util.Arrays;
 import java.util.StringTokenizer;
@@ -80,6 +82,23 @@ import org.scilab.modules.graphic_objects.utils.LayoutType;
  * @author Vincent COUVERT
  */
 public class Uicontrol extends GraphicObject {
+
+    public enum TitlePositionType {
+        TOP, LEFT, BOTTOM, RIGHT;
+        public static TitlePositionType intToEnum(Integer value) {
+            switch (value) {
+                case 0:
+                    return TOP;
+                case 1:
+                    return LEFT;
+                default:
+                case 2:
+                    return BOTTOM;
+                case 3:
+                    return RIGHT;
+            }
+        }
+    }
 
     public enum BorderLayoutType {
         SOUTH, NORTH, CENTER, WEST, EAST;
@@ -300,6 +319,9 @@ public class Uicontrol extends GraphicObject {
     /** groupname for radiobutton */
     private String groupName = "";
 
+    /** tab properties */
+    private Boolean titleScroll = false;
+    private TitlePositionType titlePosition = TitlePositionType.TOP;
     /**
      * All uicontrol properties
      */
@@ -345,7 +367,9 @@ public class Uicontrol extends GraphicObject {
         GRIDOPT_PADDING,
         BORDEROPT_PADDING,
         FRAMEBORDER,
-        GROUPNAME
+        GROUPNAME,
+        TITLE_POSITION,
+        TITLE_SCROLL
     };
 
     /**
@@ -548,6 +572,10 @@ public class Uicontrol extends GraphicObject {
                 return UicontrolProperty.FRAMEBORDER;
             case __GO_UI_GROUP_NAME__:
                 return UicontrolProperty.GROUPNAME;
+            case __GO_UI_TITLE_POSITION__:
+                return UicontrolProperty.TITLE_POSITION;
+            case __GO_UI_TITLE_SCROLL__:
+                return UicontrolProperty.TITLE_SCROLL;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -639,6 +667,10 @@ public class Uicontrol extends GraphicObject {
             return getFrameBorder();
         } else if (property == UicontrolProperty.GROUPNAME) {
             return getGroupName();
+        } else if (property == UicontrolProperty.TITLE_POSITION) {
+            return getTitlePosition();
+        } else if (property == UicontrolProperty.TITLE_SCROLL) {
+            return getTitleScroll();
         } else {
             return super.getProperty(property);
         }
@@ -727,15 +759,19 @@ public class Uicontrol extends GraphicObject {
                 return setFrameBorder((Integer) value);
             case GROUPNAME:
                 return setGroupName((String) value);
+            case TITLE_POSITION:
+                return setTitlePosition((Integer) value);
+            case TITLE_SCROLL:
+                return setTitleScroll((Boolean) value);
             default:
                 return super.setProperty(property, value);
         }
     }
 
     /**
-     * Get the style
-     * @return the style
-     */
+         * Get the style
+         * @return the style
+         */
     public Integer getStyle() {
         return styleEnumToInt(this.style);
     }
@@ -1326,6 +1362,42 @@ public class Uicontrol extends GraphicObject {
         groupName = value;
         return UpdateStatus.Success;
     }
+
+    public Boolean getTitleScroll() {
+        return titleScroll;
+    }
+
+    public UpdateStatus setTitleScroll(Boolean value) {
+        if (titleScroll == value) {
+            return UpdateStatus.NoChange;
+        }
+
+        titleScroll = value;
+        return UpdateStatus.Success;
+    }
+
+    public Integer getTitlePosition() {
+        return titlePosition.ordinal();
+    }
+
+    public TitlePositionType getTitlePositionAsEnum() {
+        return titlePosition;
+    }
+
+
+    public UpdateStatus setTitlePosition(Integer value) {
+        return setTitlePosition(TitlePositionType.intToEnum(value));
+    }
+
+    public UpdateStatus setTitlePosition(TitlePositionType value) {
+        if (titlePosition == value) {
+            return UpdateStatus.NoChange;
+        }
+
+        titlePosition = value;
+        return UpdateStatus.Success;
+    }
+
 
     public void accept(Visitor visitor) {
     }

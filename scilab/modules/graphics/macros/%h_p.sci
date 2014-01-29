@@ -962,26 +962,7 @@ function %h_p(h)
                 b = b(1);
                 b = b(1);
             end
-            if h.style == "tabgroup" then
-                t=[t;
-                "Parent: "+h.parent.type
-                "Children: "+fmtchildren(h.children)
-                "Enable = "+sci2exp(h.enable)
-                "Position = "+sci2exp(h.position,0)
-                "Relief = "+h.relief
-                "Style = "+h.style
-                "Visible = "+sci2exp(h.visible)
-                "Callback = "+h.callback
-                "Callback_Type = "+sci2exp(h.callback_type,0)
-                "Layout = "+sci2exp(h.layout)
-                "Layout_options = "+sci2exp(l)
-                "Constraints = "+sci2exp(h.constraints)
-                "Margins = "+sci2exp(h.margins)
-                "Value = "+sci2exp(h.value)
-                "Userdata = "+fmtuser_data(u)
-                "Tag = "+h.tag
-                ]
-            elseif h.style == "tab" then
+            if h.style == "tab" then
                 t=[t;
                 "Parent: "+h.parent.type
                 "Children: "+fmtchildren(h.children)
@@ -996,8 +977,10 @@ function %h_p(h)
                 "Callback_Type = "+sci2exp(h.callback_type,0)
                 "Layout = "+sci2exp(h.layout)
                 "Layout_options = "+sci2exp(l)
-                "Constraints = "+sci2exp(h.constraints)
+                "Constraints = "+sci2exp(c)
                 "Margins = "+sci2exp(h.margins)
+                "Title_position = "+sci2exp(h.title_position)
+                "Title_scroll = "+sci2exp(h.title_scroll)
                 "Userdata = "+fmtuser_data(u)
                 "Tag = "+h.tag
                 ]
