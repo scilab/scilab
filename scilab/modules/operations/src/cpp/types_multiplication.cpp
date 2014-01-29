@@ -851,7 +851,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
     {
         //poly1(0) * poly2(0)
         int* piRank = new int[1];
-        piRank[0] = _pPoly1->get(0)->getRank() + _pPoly2->get(0)->getRank() - 1;
+        piRank[0] = _pPoly1->get(0)->getRealRank() + _pPoly2->get(0)->getRealRank() + 1;
 
         (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), 1, 1, piRank);
         if (bComplex1 || bComplex2)
@@ -925,7 +925,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
         int* piRank = new int[_pPoly2->getSize()];
         for (int i = 0 ; i < _pPoly2->getSize() ; i++)
         {
-            piRank[i] = _pPoly1->get(0)->getRank() + _pPoly2->get(i)->getRank() - 1;
+            piRank[i] = _pPoly1->get(0)->getRealRank() + _pPoly2->get(i)->getRealRank() + 1;
         }
 
         (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), _pPoly2->getDims(), _pPoly2->getDimsArray(), piRank);
@@ -1010,7 +1010,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
         int* piRank = new int[_pPoly1->getSize()];
         for (int i = 0 ; i < _pPoly1->getSize() ; i++)
         {
-            piRank[i] = _pPoly2->get(0)->getRank() * _pPoly1->get(i)->getRank();
+            piRank[i] = _pPoly2->get(0)->getRealRank() + _pPoly1->get(i)->getRealRank() + 1;
         }
 
         (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), _pPoly1->getDims(), _pPoly1->getDimsArray(), piRank);
