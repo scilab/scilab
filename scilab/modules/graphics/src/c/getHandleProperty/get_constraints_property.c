@@ -122,14 +122,14 @@ int get_constraints_property(void* _pvCtx, int iObjUID)
             int* piPadding = NULL;
 
             getGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_GRID__, jni_int_vector, (void **)&piGrid);
-            if (pdblGrid == NULL)
+            if (piGrid == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
                 return -1;
             }
 
             getGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_WEIGHT__, jni_double_vector, (void **)&pdblWeight);
-            if (pdblGrid == NULL)
+            if (pdblWeight == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
                 return -1;
@@ -150,7 +150,7 @@ int get_constraints_property(void* _pvCtx, int iObjUID)
             }
 
             getGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_PADDING__, jni_int_vector, (void **)&piPadding);
-            if (pdblGrid == NULL)
+            if (piPadding == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
                 return -1;

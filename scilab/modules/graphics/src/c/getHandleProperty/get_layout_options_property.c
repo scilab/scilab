@@ -62,14 +62,14 @@ int get_layout_options_property(void* _pvCtx, int iObjUID)
             int* piPadding = NULL;
 
             getGraphicObjectProperty(iObjUID, __GO_GRID_OPT_GRID__, jni_int_vector, (void **)&piGrid);
-            if (pdblGrid == NULL)
+            if (piGrid == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "layout_options");
                 return -1;
             }
 
             getGraphicObjectProperty(iObjUID, __GO_GRID_OPT_PADDING__, jni_int_vector, (void **)&piPadding);
-            if (pdblGrid == NULL)
+            if (piPadding == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "layout_options");
                 return -1;
