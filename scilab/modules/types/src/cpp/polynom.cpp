@@ -319,7 +319,7 @@ Double* Polynom::getCoef(void)
         for (int i = 0 ; i < getSize() ; i++)
         {
             SinglePoly *pPoly	= get(i);
-            if (iRank > pPoly->getRank())
+            if (iRank > pPoly->getRealRank())
             {
                 pCoefR[iRank * getSize() + i] = 0;
                 if (isComplex())

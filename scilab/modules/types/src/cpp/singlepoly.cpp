@@ -104,6 +104,11 @@ int SinglePoly::getRank()
     return m_iRank;
 }
 
+int SinglePoly::getRealRank()
+{
+    return m_iRank - 1;
+}
+
 bool SinglePoly::setRank(int _iRank, bool bSave)
 {
     double *pR	= NULL;

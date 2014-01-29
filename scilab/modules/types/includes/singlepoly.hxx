@@ -46,6 +46,7 @@ public :
     void                    setComplex(bool _bComplex);
 
     int                     getRank();
+    int                     getRealRank();
     bool                    setRank(int _iRank, bool bSave = false);
     Double*                 getCoef();
     double*                 getCoefReal();
