@@ -258,6 +258,8 @@ Scilab Bug Fixes
 
 * Bug #12714 fixed - csvDefault("decimal", ",") returned %f while this value is accepted.
 
+* Bug #12725 fixed - Datatips did not work in logarithmic scale.
+
 * Bug #12733 fixed - There was no way to direct graphs to nothing with driver function.
 
 * Bug #12769 fixed - xset("window", 1) did not set the current axes.
@@ -382,6 +384,8 @@ Scilab Bug Fixes
 
 * Bug #13071 fixed - Three unused functions in Xcos macros now specified as not mandatory
                      to write new blocks.
+
+* Bug #13085 fixed - A datatip cound not be moved on a circle.
 
 * Bug #13092 fixed - Optimizations now check the user function output (must be a real).
 

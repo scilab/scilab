@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Gustavo Barbosa Libotte
+ * Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,10 +12,6 @@
  */
 
 package org.scilab.modules.gui.datatip;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
@@ -38,17 +35,28 @@ public class DatatipDelete {
         Integer parent = (Integer) controller.getProperty(datatipUid, GraphicObjectProperties.__GO_PARENT__);
         //get parent datatips
         Integer[] tips = (Integer[]) controller.getProperty(parent, GraphicObjectProperties.__GO_DATATIPS__);
-        //convert [] in list
-        List<Integer> l = new LinkedList<Integer>(Arrays.asList(tips));
-        //remove me
-        l.remove((Object) datatipUid);
-        //convert list in []
-        Integer[] var = new Integer[l.size()];
-        l.toArray(var);
-        //update parent datatips without me
-        controller.setProperty(parent, GraphicObjectProperties.__GO_DATATIPS__, var);
-        //self destruction !
-        controller.deleteObject(datatipUid);
+        int index = -1;
+        for (int i = 0; i < tips.length; i++) {
+            if (tips[i] == datatipUid) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index != -1) {
+            Integer[] var = new Integer[tips.length - 1];
+            for (int i = 0; i < tips.length; i++) {
+                if (i < index) {
+                    var[i] = tips[i];
+                } else if (i > index) {
+                    var[i - 1] = tips[i];
+                }
+            }
+
+            controller.setProperty(parent, GraphicObjectProperties.__GO_DATATIPS__, var);
+            //self destruction !
+            controller.deleteObject(datatipUid);
+        }
     }
 
     /**
@@ -71,5 +79,4 @@ public class DatatipDelete {
     public static void datatipRemoveProgramHandler(int datatipUid, int figureUid) {
         deleteDatatip(datatipUid);
     }
-
 }

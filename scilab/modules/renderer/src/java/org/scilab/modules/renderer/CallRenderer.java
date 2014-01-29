@@ -155,6 +155,24 @@ public final class CallRenderer {
         return point2d;
     }
 
+    public static double[][] getPixelFrom3dCoordinates(int id, double[] coordsX, double[] coordsY, double[] coordsZ) {
+        GraphicObject object = GraphicController.getController().getObjectFromId(id);
+        if (object instanceof Axes) {
+            return AxesDrawer.computePixelFrom3dCoordinates((Axes) object, coordsX, coordsY, coordsZ);
+        }
+
+        return null;
+    }
+
+    public static double[] getPixelFrom3dCoordinates(int id, double[] coord) {
+        GraphicObject object = GraphicController.getController().getObjectFromId(id);
+        if (object instanceof Axes) {
+            return AxesDrawer.computePixelFrom3dCoordinates((Axes) object, coord);
+        }
+
+        return null;
+    }
+
     /**
      * Computes and returns the viewing area of the Axes object given by the identifier.
      * The viewing area is defined by its upper-left corner and its dimensions, all values

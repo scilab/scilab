@@ -901,9 +901,11 @@ public class AxesDrawer {
         double[] coords = coordinates;
 
         if (currentVisitor != null) {
+            boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
             Integer[] size = currentVisitor.getFigure().getAxesSize();
             Dimension canvasDimension = new Dimension(size[0], size[1]);
             double[][] factors = axes.getScaleTranslateFactors();
+            ScaleUtils.applyLogScale(coords, logFlags);
 
             axesDrawer = currentVisitor.getAxesDrawer();
             coords[0] = coords[0] * factors[0][0] + factors[1][0];
@@ -920,6 +922,8 @@ public class AxesDrawer {
             coords[0] = (coords[0] - factors[1][0]) / factors[0][0];
             coords[1] = (coords[1] - factors[1][1]) / factors[0][1];
             coords[2] = (coords[2] - factors[1][2]) / factors[0][2];
+
+            ScaleUtils.applyInverseLogScale(coords, logFlags);
         }
 
         return coords;
@@ -1014,6 +1018,50 @@ public class AxesDrawer {
     }
 
     /**
+     * Computes and returns the pixel coordinates from a point's coordinates expressed in the current
+     * 3d view coordinate frame, using the given Axes. The returned pixel coordinates are expressed
+     * in the AWT's 2d coordinate frame.
+     * @param axes the given Axes.
+     * @param coordinates the 3d view coordinates (3-element array: x, y, z).
+     * @returns the pixel coordinates (2-element array: x, y).
+     */
+    public static double[][] computePixelFrom3dCoordinates(Axes axes, double[] coordsX, double[] coordsY, double[] coordsZ) {
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+
+        if (currentVisitor != null) {
+            AxesDrawer axesDrawer = currentVisitor.getAxesDrawer();
+            Integer[] size = currentVisitor.getFigure().getAxesSize();
+            Dimension canvasDimension = new Dimension(size[0], size[1]);
+            double height = (double) size[1];
+            boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
+            double[][] factors = axes.getScaleTranslateFactors();
+            double[] coords = new double[3];
+            double[][] ret = new double[coordsX.length][2];
+            Transformation projection = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), canvasDimension, false);
+
+            for (int i = 0; i < coordsX.length; i++) {
+                coords[0] = coordsX[i];
+                coords[1] = coordsY[i];
+                coords[2] = coordsZ[i];
+                ScaleUtils.applyLogScale(coords, logFlags);
+
+                coords[0] = coords[0] * factors[0][0] + factors[1][0];
+                coords[1] = coords[1] * factors[0][1] + factors[1][1];
+                coords[2] = coords[2] * factors[0][2] + factors[1][2];
+
+                Vector3d point = new Vector3d(coords);
+                point = projection.project(point);
+                ret[i][0] = point.getX();
+                ret[i][1] = height - point.getY();
+            }
+
+            return ret;
+        }
+
+        return null;
+    }
+
+    /**
      * Computes and returns the coordinates of a point onto the 3d view plane.
      * To compute them, the point is projected using the object to window coordinate projection, then
      * unprojected using the object to window coordinate projection corresponding to the 3d view
@@ -1034,9 +1082,11 @@ public class AxesDrawer {
                 return new double[] {coords[0], coords[1], coords[2]};
             }
 
+            boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
             Integer[] size = currentVisitor.getFigure().getAxesSize();
             Dimension canvasDimension = new Dimension(size[0], size[1]);
             double[][] factors = axes.getScaleTranslateFactors();
+            ScaleUtils.applyLogScale(coords, logFlags);
 
             axesDrawer = currentVisitor.getAxesDrawer();
             coords[0] = coords[0] * factors[0][0] + factors[1][0];
@@ -1054,6 +1104,8 @@ public class AxesDrawer {
             coords[0] = (coords[0] - factors[1][0]) / factors[0][0];
             coords[1] = (coords[1] - factors[1][1]) / factors[0][1];
             coords[2] = (coords[2] - factors[1][2]) / factors[0][2];
+
+            ScaleUtils.applyInverseLogScale(coords, logFlags);
         }
 
         return coords;

@@ -17,6 +17,7 @@ package org.scilab.modules.gui.editor;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.graphic_objects.PolylineData;
@@ -24,13 +25,13 @@ import org.scilab.modules.graphic_objects.SurfaceData;
 
 
 /**
-* Implements all object common manipulation functions for the editor.
-*
-* @author Caio Souza <caioc2bolado@gmail.com>
-* @author Pedro Souza <bygrandao@gmail.com>
-*
-* @since 2012-07-26
-*/
+ * Implements all object common manipulation functions for the editor.
+ *
+ * @author Caio Souza <caioc2bolado@gmail.com>
+ * @author Pedro Souza <bygrandao@gmail.com>
+ *
+ * @since 2012-07-26
+ */
 public class CommonHandler {
     /**
      * Checks if the object exists.
@@ -65,6 +66,26 @@ public class CommonHandler {
      */
     public static Boolean isMarkEnabled(Integer uid) {
         return (Boolean)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_MODE__);
+    }
+
+    /**
+     * Checks if the object uses mark mode.
+     *
+     * @param uid object unique identifier.
+     * @return the polyline style.
+     */
+    public static int getStyle(Integer uid) {
+        return (Integer) GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_POLYLINE_STYLE__);
+    }
+
+    /**
+     * Checks if the object uses mark mode.
+     *
+     * @param uid object unique identifier.
+     * @return the bar width.
+     */
+    public static int getBarWidth(Integer uid) {
+        return (Integer) GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_BAR_WIDTH__);
     }
 
     /**
@@ -105,22 +126,21 @@ public class CommonHandler {
      * @return Returns the old color of the object.
      */
     public static Integer setColor(Integer uid, Integer newColor) {
-
         if (uid == null) {
             return 0;
         }
+
         Integer oldColor;
         Boolean markon = isMarkEnabled(uid);
         if (markon == true) {
-            oldColor = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
+            oldColor = (Integer) GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
             GraphicController.getController().setProperty(uid, GraphicObjectProperties.__GO_MARK_FOREGROUND__, newColor );
         } else {
-            oldColor = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_LINE_COLOR__);
+            oldColor = (Integer) GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_LINE_COLOR__);
             GraphicController.getController().setProperty(uid, GraphicObjectProperties.__GO_LINE_COLOR__, newColor );
         }
 
         return oldColor;
-
     }
 
     /**
@@ -148,7 +168,6 @@ public class CommonHandler {
             return null;
         }
         return dup;
-
     }
 
     /**
@@ -158,9 +177,7 @@ public class CommonHandler {
      * @param uid object unique identifier.
      */
     public static void insert(Integer axes, Integer uid) {
-
         Integer typeName = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_TYPE__);
-
         if (typeName == GraphicObjectProperties.__GO_POLYLINE__) {
             Integer newCompound = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_COMPOUND__));
             GraphicController.getController().setGraphicObjectRelationship(axes, newCompound);
@@ -288,11 +305,11 @@ public class CommonHandler {
     }
 
     /**
-    * Clone the object background color(if colormap from both figures are different this won't work)
-    *
-    * @param objectFrom The object to get the backgound color
-    * @param objectTo The object to set the background color
-    */
+     * Clone the object background color(if colormap from both figures are different this won't work)
+     *
+     * @param objectFrom The object to get the backgound color
+     * @param objectTo The object to set the background color
+     */
     public static void cloneBackgroundColor(Integer objectFrom, Integer objectTo) {
 
         Integer color = getBackground(objectFrom);
@@ -349,6 +366,38 @@ public class CommonHandler {
         return data;
     }
 
+    public static void toLogScale(double[] data, boolean[] logScale) {
+        if (logScale[0] || logScale[1] || logScale[2]) {
+            for (int i = 0; i < data.length; i += 3) {
+                if (logScale[0]) {
+                    data[i] = Math.log10(data[i]);
+                }
+                if (logScale[1]) {
+                    data[i + 1] = Math.log10(data[i + 1]);
+                }
+                if (logScale[2]) {
+                    data[i + 2] = Math.log10(data[i + 2]);
+                }
+            }
+        }
+    }
+
+    public static void toInverseLogScale(double[] data, boolean[] logScale) {
+        if (logScale[0] || logScale[1] || logScale[2]) {
+            for (int i = 0; i < data.length; i += 3) {
+                if (logScale[0]) {
+                    data[i] = Math.pow(10., data[i]);
+                }
+                if (logScale[1]) {
+                    data[i + 1] = Math.pow(10., data[i + 1]);
+                }
+                if (logScale[2]) {
+                    data[i + 2] = Math.pow(10., data[i + 2]);
+                }
+            }
+        }
+    }
+
     /**
      * Used to compute the correct position to insert a point
      * R1: Given index i, it calculates the straight line between the points i and i+1 from curPolyline
@@ -362,11 +411,14 @@ public class CommonHandler {
      * @return The position in 3d coordinates (x, y ,z) and ratio between polyline data and interpoled data ( dx, dy )
      */
     public static double[] computeIntersection(Integer polyline, int i, double[] point2d) {
-
         double[] datax = (double[])PolylineData.getDataX(polyline);
         double[] datay = (double[])PolylineData.getDataY(polyline);
         double[] dataz = (double[])PolylineData.getDataZ(polyline);
         Integer axes = (Integer)GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_PARENT_AXES__);
+        boolean[] logFlags = new boolean[] {(Boolean)GraphicController.getController().getProperty(axes, __GO_X_AXIS_LOG_FLAG__),
+                                            (Boolean)GraphicController.getController().getProperty(axes, __GO_Y_AXIS_LOG_FLAG__),
+                                            (Boolean)GraphicController.getController().getProperty(axes, __GO_Z_AXIS_LOG_FLAG__)
+                                           };
         Axes obj = (Axes)GraphicController.getController().getObjectFromId(axes);
         //Points of R1
         double[] c3d1 = AxesDrawer.compute3dViewCoordinates(obj, new double[] { point2d[0], point2d[1], 1.0});
@@ -374,6 +426,11 @@ public class CommonHandler {
         //Points of R2
         double[] p3d1 = {datax[i], datay[i], dataz[i]};
         double[] p3d2 = {datax[i + 1], datay[i + 1], dataz[i + 1]};
+
+        toLogScale(c3d1, logFlags);
+        toLogScale(c3d2, logFlags);
+        toLogScale(p3d1, logFlags);
+        toLogScale(p3d2, logFlags);
 
         /*
          * Computes the intersection between the lines
@@ -388,10 +445,9 @@ public class CommonHandler {
         double u = (dot(nl, q0) - dot(nl, p0)) / dot(nl, p1);
         double[] point = plus(p0, scalar(p1, u));
 
-        double dx = (point[0] - p3d1[0]) / (p3d2[0] - p3d1[0]);
-        double dy = (point[1] - p3d1[1]) / (p3d2[1] - p3d1[1]);
+        toInverseLogScale(point, logFlags);
 
-        return new double[] {point[0], point[1], point[2], dx, dy};
+        return new double[] {point[0], point[1], point[2], u, u};
     }
 
     private static double dot(double[] p, double[] q) {

@@ -45,7 +45,7 @@ import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 public class Polyline extends ClippableContouredObject {
     /** TBD: data */
     // Data data -> Data Model
-    /* TBD: properties relative to the data model */
+    /* TODO: properties relative to the data model */
     /** Polyline properties names */
     private enum PolylineProperty { CLOSED, ARROWSIZEFACTOR, POLYLINESTYLE,
                                     INTERPCOLORVECTOR, INTERPCOLORVECTORSET, INTERPCOLORMODE,
@@ -154,35 +154,37 @@ public class Polyline extends ClippableContouredObject {
      * @return the property value
      */
     public Object getProperty(Object property) {
-        if (property == PolylineProperty.CLOSED) {
-            return getClosed();
-        } else if (property == PolylineProperty.ARROWSIZEFACTOR) {
-            return getArrowSizeFactor();
-        } else if (property == PolylineProperty.POLYLINESTYLE) {
-            return getPolylineStyle();
-        } else if (property == PolylineProperty.INTERPCOLORVECTOR) {
-            return getInterpColorVector();
-        } else if (property == PolylineProperty.INTERPCOLORVECTORSET) {
-            return getInterpColorVectorSet();
-        } else if (property == PolylineProperty.INTERPCOLORMODE) {
-            return getInterpColorMode();
-        } else if (property == PolylineProperty.XSHIFT) {
-            return getXShift();
-        } else if (property == PolylineProperty.YSHIFT) {
-            return getYShift();
-        } else if (property == PolylineProperty.ZSHIFT) {
-            return getZShift();
-        } else if (property == PolylineProperty.BARWIDTH) {
-            return getBarWidth();
-        } else if (property == PolylineProperty.DATATIPS) {
-            return getDatatips();
-        } else if (property == PolylineProperty.DATATIPSCOUNT) {
-            return datatips.size();
-        } else if (property == PolylineProperty.TIP_DISPLAY_FNC) {
-            return getDisplayFunction();
-        } else {
-            return super.getProperty(property);
+        if (property instanceof PolylineProperty) {
+            switch ((PolylineProperty) property) {
+                case CLOSED:
+                    return getClosed();
+                case ARROWSIZEFACTOR:
+                    return getArrowSizeFactor();
+                case POLYLINESTYLE:
+                    return getPolylineStyle();
+                case INTERPCOLORVECTOR:
+                    return getInterpColorVector();
+                case INTERPCOLORVECTORSET:
+                    return getInterpColorVectorSet();
+                case INTERPCOLORMODE:
+                    return getInterpColorMode();
+                case XSHIFT:
+                    return getXShift();
+                case YSHIFT:
+                    return getYShift();
+                case ZSHIFT:
+                    return getZShift();
+                case BARWIDTH:
+                    return getBarWidth();
+                case DATATIPS:
+                    return getDatatips();
+                case DATATIPSCOUNT:
+                    return datatips.size();
+                case TIP_DISPLAY_FNC:
+                    return getDisplayFunction();
+            }
         }
+        return super.getProperty(property);
     }
 
     /**
@@ -193,34 +195,44 @@ public class Polyline extends ClippableContouredObject {
      */
     public UpdateStatus setProperty(Object property, Object value) {
         synchronized (this) {
-            if (property == PolylineProperty.CLOSED) {
-                setClosed((Boolean) value);
-            } else if (property == PolylineProperty.ARROWSIZEFACTOR) {
-                return setArrowSizeFactor((Double) value);
-            } else if (property == PolylineProperty.POLYLINESTYLE) {
-                return setPolylineStyle((Integer) value);
-            } else if (property == PolylineProperty.INTERPCOLORVECTOR) {
-                setInterpColorVector((Integer[]) value);
-            } else if (property == PolylineProperty.INTERPCOLORVECTORSET) {
-                setInterpColorVectorSet((Boolean) value);
-            } else if (property == PolylineProperty.INTERPCOLORMODE) {
-                return setInterpColorMode((Boolean) value);
-            } else if (property == PolylineProperty.XSHIFT) {
-                setXShift((double[]) value);
-            } else if (property == PolylineProperty.YSHIFT) {
-                setYShift((double[]) value);
-            } else if (property == PolylineProperty.ZSHIFT) {
-                setZShift((double[]) value);
-            } else if (property == PolylineProperty.BARWIDTH) {
-                setBarWidth((Double) value);
-            } else if (property == PolylineProperty.DATATIPS) {
-                setDatatips((Integer[]) value);
-            } else if (property == PolylineProperty.TIP_DISPLAY_FNC) {
-                setDisplayFunction((String) value);
-            } else {
-                return super.setProperty(property, value);
+            if (property instanceof PolylineProperty) {
+                switch ((PolylineProperty) property) {
+                    case CLOSED:
+                        setClosed((Boolean) value);
+                        break;
+                    case ARROWSIZEFACTOR:
+                        return setArrowSizeFactor((Double) value);
+                    case POLYLINESTYLE:
+                        return setPolylineStyle((Integer) value);
+                    case INTERPCOLORVECTOR:
+                        setInterpColorVector((Integer[]) value);
+                        break;
+                    case INTERPCOLORVECTORSET:
+                        setInterpColorVectorSet((Boolean) value);
+                        break;
+                    case INTERPCOLORMODE:
+                        return setInterpColorMode((Boolean) value);
+                    case XSHIFT:
+                        setXShift((double[]) value);
+                        break;
+                    case YSHIFT:
+                        setYShift((double[]) value);
+                        break;
+                    case ZSHIFT:
+                        setZShift((double[]) value);
+                        break;
+                    case BARWIDTH:
+                        setBarWidth((Double) value);
+                        break;
+                    case DATATIPS:
+                        setDatatips((Integer[]) value);
+                        break;
+                    case TIP_DISPLAY_FNC:
+                        setDisplayFunction((String) value);
+                        break;
+                }
             }
-            return UpdateStatus.Success;
+            return super.setProperty(property, value);
         }
     }
 
