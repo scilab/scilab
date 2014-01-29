@@ -929,6 +929,8 @@ Scilab Bug Fixes
 * Bug #10823 fixed - fullpath returned different results under Windows and Linux for
                     non-existent file.
 
+* Bug #10856 fixed - analpf did not return the right result.
+
 * Bug #10862 fixed - Add a without Internet connection installation
                     global configuration in the installer.
 
