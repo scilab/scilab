@@ -449,6 +449,8 @@ Xcos
 
 * tbx_build_pal_loader function added to ease external module creation (See SEP #120).
 
+* Bug #11975 fixed - Inverted Pendulum demonstration did not compile.
+
 * Bug #12423 fixed - Data types of SWITCH2_m were not documented.
 
 * Bug #12685 fixed - The lincos and steadycos functions did not load
