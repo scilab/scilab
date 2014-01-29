@@ -34,7 +34,7 @@ public class LogView implements GraphicView {
         return me;
     }
     
-    private static HashMap<Integer, String> pierreDeRosette = new HashMap<Integer, String>();
+    public static HashMap<Integer, String> pierreDeRosette = new HashMap<Integer, String>();
     
     static {
         Field[] fields = GraphicObjectProperties.class.getFields();
