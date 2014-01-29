@@ -19,6 +19,8 @@
 /*        handle                                                          */
 /*------------------------------------------------------------------------*/
 
+#include "graphicObjectProperties.h"
+#include "getGraphicObjectProperty.h"
 #include "getHandleProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
@@ -33,11 +35,29 @@ int get_default_axes_property(void* _pvCtx, int iObjUID)
 
     if (iObjUID != 0)
     {
-        /* This property should not be called on an handle */
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "default_axes");
-        return -1;
+        /* This property exists for figures since Scilab 5.5.0 */
+
+        int iVisible = 0;
+        int* piVisible = &iVisible;
+        getGraphicObjectProperty(iObjUID, __GO_DEFAULT_AXES__, jni_bool, (void **)&piVisible);
+
+        if (piVisible == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "default_axes");
+            return FALSE;
+        }
+
+        if (iVisible == 0)
+        {
+            return sciReturnString(_pvCtx, "off");
+        }
+        else
+        {
+            return sciReturnString(_pvCtx, "on");
+        }
     }
 
+    /* Return default axes (gda()) */
     return sciReturnHandle(_pvCtx, getHandle(getAxesModel()));
 }
 /*--------------------------------------------------------------------------*/

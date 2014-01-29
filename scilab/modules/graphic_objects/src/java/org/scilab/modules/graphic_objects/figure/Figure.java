@@ -20,6 +20,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CLOSEREQUESTFCN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COLORMAP_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COLORMAP__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DEFAULT_AXES__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DOCKABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_NAME__;
@@ -61,7 +62,7 @@ public class Figure extends GraphicObject {
         INFOMESSAGE, COLORMAP, COLORMAPSIZE, BACKGROUND, ROTATIONTYPE,
         RESIZEFCN, CLOSEREQUESTFCN, RESIZE, TOOLBAR, TOOLBAR_VISIBLE,
         MENUBAR, MENUBAR_VISIBLE, INFOBAR_VISIBLE, DOCKABLE, LAYOUT, LAYOUT_SET,
-        GRIDOPT_GRID, GRIDOPT_PADDING, BORDEROPT_PADDING
+        GRIDOPT_GRID, GRIDOPT_PADDING, BORDEROPT_PADDING, DEFAULT_AXES
     };
 
     /** Specifies whether rotation applies to a single subwindow or to all the figure's subwindows */
@@ -160,8 +161,8 @@ public class Figure extends GraphicObject {
          * Default constructor
          */
         public FigureDimensions() {
-            position = new Integer[] {0,0};
-            size = new Integer[] {0,0};
+            position = new Integer[] {0, 0};
+            size = new Integer[] {0, 0};
         }
 
         /**
@@ -402,6 +403,9 @@ public class Figure extends GraphicObject {
     private Integer[] gridOptPadding = new Integer[] {0, 0};
     private Integer[] borderOptPadding = new Integer[] {0, 0};
 
+    /** default axes management */
+    private Boolean defaultAxes;
+
     /** Constructor */
     public Figure() {
         super();
@@ -425,6 +429,7 @@ public class Figure extends GraphicObject {
         infobarVisible = true;
         dockable = true;
         layout = LayoutType.NONE;
+        defaultAxes = true;
     }
 
     @Override
@@ -523,6 +528,8 @@ public class Figure extends GraphicObject {
                 return FigureProperty.GRIDOPT_PADDING;
             case __GO_BORDER_OPT_PADDING__ :
                 return FigureProperty.BORDEROPT_PADDING;
+            case __GO_DEFAULT_AXES__ :
+                return FigureProperty.DEFAULT_AXES;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -598,6 +605,8 @@ public class Figure extends GraphicObject {
             return getGridOptPadding();
         } else if (property == FigureProperty.BORDEROPT_PADDING) {
             return getBorderOptPadding();
+        } else if (property == FigureProperty.DEFAULT_AXES) {
+            return hasDefaultAxes();
         } else {
             return super.getProperty(property);
         }
@@ -648,6 +657,8 @@ public class Figure extends GraphicObject {
                     return setGridOptPadding((Integer[]) value);
                 case BORDEROPT_PADDING:
                     return setBorderOptPadding((Integer[]) value);
+                case DEFAULT_AXES:
+                    return setDefaultAxes((Boolean) value);
                 default:
                     break;
             }
@@ -778,7 +789,6 @@ public class Figure extends GraphicObject {
      * @return the axes size
      */
     public Integer[] getAxesSize() {
-        //System.out.println("getAxesSize : (" + canvas.axesSize[0] + "," + canvas.axesSize[1] + ")");
         Integer[] retAxesSize = new Integer[2];
 
         retAxesSize[0] = canvas.axesSize[0];
@@ -791,7 +801,6 @@ public class Figure extends GraphicObject {
      * @param axesSize the axes size to set
      */
     public UpdateStatus setAxesSize(Integer[] axesSize) {
-        //System.out.println("setAxesSize : (" + axesSize[0] + "," + axesSize[1] + ")");
         if (Arrays.equals(canvas.axesSize, axesSize)) {
             //must return Success to broadcast information
             return UpdateStatus.Success;
@@ -855,7 +864,6 @@ public class Figure extends GraphicObject {
      * @return the figure size
      */
     public Integer[] getSize() {
-        //System.out.println("getSize : (" + dimensions.size[0] + "," + dimensions.size[1] + ")");
         Integer[] retSize = new Integer[2];
 
         retSize[0] = dimensions.size[0];
@@ -868,7 +876,6 @@ public class Figure extends GraphicObject {
      * @param size the size to set
      */
     public UpdateStatus setSize(Integer[] size) {
-        //System.out.println("setSize : (" + size[0] + "," + size[1] + ")");
         if (Arrays.equals(dimensions.size, size)) {
             return UpdateStatus.NoChange;
         }
@@ -1383,6 +1390,19 @@ public class Figure extends GraphicObject {
         }
 
         return status;
+    }
+
+    public Boolean hasDefaultAxes() {
+        return defaultAxes;
+    }
+
+    public UpdateStatus setDefaultAxes(Boolean status) {
+        if (status.equals(defaultAxes)) {
+            return UpdateStatus.NoChange;
+        }
+
+        defaultAxes = status;
+        return UpdateStatus.Success;
     }
 
 

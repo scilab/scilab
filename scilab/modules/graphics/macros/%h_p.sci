@@ -335,6 +335,7 @@ function %h_p(h)
             "dockable = "+sci2exp(h.dockable)
             "layout = "+sci2exp(h.layout)
             "layout_options = "+sci2exp(l)
+            "default_axes = "+sci2exp(h.default_axes)
             "tag = "+sci2exp(h.tag)
             ]
 
