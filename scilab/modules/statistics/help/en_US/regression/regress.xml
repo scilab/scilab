@@ -13,7 +13,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="regress">
     <refnamediv>
         <refname>regress</refname>
-        <refpurpose>regression coefficients of two variables</refpurpose>
+        <refpurpose>
+                regression coefficients of two variables. <emphasis role="bold">This function is obsolete.</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -39,6 +41,8 @@
             1x2 matrix such that  <literal>Y=a+bX</literal> will be the equation of
             the ordinary least square approximation to our data.
         </para>
+        <warning>This function is obsolete.</warning>
+        It is better to use <link linkend="reglin">reglin</link> instead of <function>regress</function>.
     </refsection>
     <refsection>
         <title>References</title>
@@ -58,8 +62,22 @@ coefs=regress(x,y)
         <title>See Also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="reglin">reglin</link>
+            </member>
+            <member>
                 <link linkend="covar">covar</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    Function tagged as obsolete. Will be removed in 5.5.1. Please use <link linkend="reglin">reglin</link> instead.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

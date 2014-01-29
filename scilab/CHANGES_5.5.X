@@ -646,6 +646,9 @@ Obsolete & Removed Functions
 * fprintf removed, please use mfprintf for files opened with mopen or write for files
   opened with file instead.
 
+* regress tagged as obsolete. Will be removed in Scilab 5.5.1.
+  Please use reglin instead.
+
 
 Scilab Bug Fixes
 ================
@@ -773,6 +776,8 @@ Scilab Bug Fixes
 
 * Bug #8234 fixed - strtod did not return an empty matrix when the input argument was an
                     empty matrix.
+
+* Bug #8247 fixed - regress tagged as obsolete.
 
 * Bug #8264 fixed - Matlab to Scilab dictionary help page updated for atan2.
 
