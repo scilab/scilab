@@ -35,7 +35,7 @@ function xk=mfft(x,flag,dim)
     //      dim=[3,2,3]
     //
     //!
-
-    xk=matrix(fft(matrix(x,dim),flag),size(x))
+    warnobsolete("fft", "5.5.1");
+    xk=matrix(fft(matrix(x,dim),flag),size(x));
 
 endfunction

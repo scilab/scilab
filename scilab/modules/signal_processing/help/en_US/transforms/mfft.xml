@@ -2,7 +2,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="mfft">
     <refnamediv>
         <refname>mfft</refname>
-        <refpurpose>multi-dimensional fft</refpurpose>
+        <refpurpose>
+            multi-dimensional fft. <emphasis role="bold">This function is obsolete.</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -29,7 +31,7 @@
                 <term>dim</term>
                 <listitem>
                     <para>
-                        dimension vector which gives the number of values of <literal>x</literal> for each of its indices
+                        dimension vector which gives the number of values of <varname>x</varname> for each of its indices.
                     </para>
                 </listitem>
             </varlistentry>
@@ -38,7 +40,7 @@
                 <listitem>
                     <para>
                         output of multidimensional fft in same format as for
-                        <literal>x</literal>
+                        <varname>x</varname>
                     </para>
                 </listitem>
             </varlistentry>
@@ -64,14 +66,37 @@ x=[x(1,1,1),x(2,1,1),x(3,1,1),...
    x(1,2,3),x(2,2,3),x(3,2,3)]
  ]]></programlisting>
         <para>
-            and the <literal>dim</literal> vector is:
+            and the <varname>dim</varname> vector is:
             <literal>dim=[3,2,3]</literal>
         </para>
         <para>
-            <literal>mfft</literal> is superseeded by <link
+            <function>mfft</function> is superseeded by <link
       linkend="fft">fft</link>: <literal> mfft(x,flag,dim)</literal>
             is equivalent to
             <literal>matrix(fft(matrix(x,dim),flag),size(x))</literal>.
         </para>
+        <para>
+            <warning>This function is obsolete.</warning>
+            It is better to use <link linkend="fft">fft</link> instead of <function>mfft</function>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fft">fft</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    Function tagged as obsolete. Will be removed in 5.5.1. Please use <link linkend="fft">fft</link> instead.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
