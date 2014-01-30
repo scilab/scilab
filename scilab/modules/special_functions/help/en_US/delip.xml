@@ -139,9 +139,6 @@ intg(0,1,f)    //OK since real solution!
                 <link linkend="amell">amell</link>
             </member>
             <member>
-                <link linkend="percentasn">%asn</link>
-            </member>
-            <member>
                 <link linkend="percentsn">%sn</link>
             </member>
         </simplelist>

@@ -52,9 +52,6 @@
             <member>
                 <link linkend="percentsn">%sn</link>
             </member>
-            <member>
-                <link linkend="percentasn">%asn</link>
-            </member>
         </simplelist>
     </refsection>
 </refentry>

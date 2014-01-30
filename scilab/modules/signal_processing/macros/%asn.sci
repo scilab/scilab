@@ -17,6 +17,7 @@ function [y]=%asn(x,m)
     //  y :Value of the integral
     //
     //!
+    warnobsolete("delip","5.5.1");
     m=real(m);
 
     if m<0|m>1 then
