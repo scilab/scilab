@@ -55,6 +55,8 @@ Scilab Bug Fixes
 
 * Bug #4401 fixed - isnum did not recognize all constants or some complex numbers.
 
+* Bug #4490 fixed - Input argument of sinc function must be in rad: help page updated.
+
 * Bug #4649 fixed - License issue in the xs2ppm help page fixed.
 
 * Bug #4677 fixed - xclick did not return correct mouse position on keyboard event.
@@ -96,6 +98,8 @@ Scilab Bug Fixes
 * Bug #7038 fixed - Toolbar button managing datatip mode did not toggle.
 
 * Bug #7047 fixed - milk_drop is now obsolete. It will be removed in Scilab 5.5.1, but will be kept as a demo.
+
+* Bug #7051 fixed - Help page of fieldnames function updated.
 
 * Bug #7084 fixed - Old, not documented and deprecated gr_menu function removed.
 
@@ -188,6 +192,8 @@ Scilab Bug Fixes
 * Bug #10645 fixed - File encoding could not be given as argument in xmlRead.
 
 * Bug #10816 fixed - Typo in part error message fixed.
+
+* Bug #10856 fixed - analpf did not return the right result.
 
 * Bug #10936 fixed - Scilab hung with invalid strf in plot2d.
 
@@ -742,8 +748,6 @@ Scilab Bug Fixes
 
 * Bug #7026 fixed - There was no unit test for plot2d.
 
-* Bug #7051 fixed - Help page of fieldnames function updated.
-
 * Bug #7080 fixed - Some graphic macros did not use standard error messages.
 
 * Bug #7204 fixed - geomean applied to a hypermatrix gave wrong results.
@@ -956,8 +960,6 @@ Scilab Bug Fixes
 
 * Bug #10823 fixed - fullpath returned different results under Windows and Linux for
                     non-existent file.
-
-* Bug #10856 fixed - analpf did not return the right result.
 
 * Bug #10862 fixed - Add a without Internet connection installation
                     global configuration in the installer.
