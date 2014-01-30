@@ -95,6 +95,10 @@ public class DatatipManagerMode {
         DrawerVisitor.getVisitor(figureUid).getInteractionManager().setTranslationEnable(enabled);
     }
 
+    public boolean isInteractiveZoom() {
+        return DrawerVisitor.getVisitor(figureUid).getInteractionManager().isInteractiveZoom();
+    }
+
     /**
      * Set figure uid
      *
@@ -103,7 +107,6 @@ public class DatatipManagerMode {
     public void setFigure(Integer uid) {
         figureUid = uid;
     }
-
 
     /**
      * Highlight the datatip mark when selected

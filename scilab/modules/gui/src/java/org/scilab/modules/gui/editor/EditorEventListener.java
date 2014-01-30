@@ -85,6 +85,10 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
         return datatipManagerMode.isEnabled();
     }
 
+    public boolean canProcess() {
+        return enabled && !GlobalEventWatcher.isActivated() && !datatipManagerMode.isInteractiveZoom();
+    }
+
     public void onExit() {
         EditorManager.deleteEditor(editor.getFigureUid());
         DatatipManager.deleteDatatipManager(windowUid);
@@ -129,7 +133,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
      * @param arg0 MouseEvent
      */
     public void mousePressed(MouseEvent arg0) {
-        if (enabled && !GlobalEventWatcher.isActivated() && arg0.getButton() == 1) {
+        if (canProcess() && arg0.getButton() == 1) {
             isLeftButtonPressed = true;
             if (!datatipManagerMode.isEnabled()) {
                 editor.onLeftMouseDown(arg0);
@@ -166,7 +170,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
      * @param arg0 MouseEvent
      */
     public void mouseReleased(MouseEvent arg0) {
-        if (enabled && !GlobalEventWatcher.isActivated()) {
+        if (canProcess()) {
             if (!datatipManagerMode.isEnabled()) {
                 if (arg0.getButton() == 3) {
                     if (!isInRotation) {
@@ -194,7 +198,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
      * drag/ change datatip orientation
      */
     public void mouseDragged(MouseEvent arg0) {
-        if (enabled && !GlobalEventWatcher.isActivated()) {
+        if (canProcess()) {
 
             if (!datatipManagerMode.isEnabled()) {
 
