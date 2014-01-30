@@ -151,6 +151,9 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
                         lastDatatip = DatatipCreate.createDatatip(windowUid, arg0.getX(), arg0.getY());
                         changeOrientation = true;
                     }
+                } else {
+                    // we are in datatip mode and we clicked on a datatip
+                    datatipManagerMode.enableTranslation(false);
                 }
             }
         }
@@ -172,11 +175,11 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
                 } else if (arg0.getButton() == 1) {
                     editor.onLeftMouseRelease(arg0);
                 }
-
             } else {
                 if (arg0.getButton() == 3 && !isInRotation) {
                     datatipManagerMode.pickAndDelete(arg0.getX(), arg0.getY());
                 }
+                datatipManagerMode.enableTranslation(true);
             }
             isInRotation = false;
             isLeftButtonPressed = false;
@@ -192,6 +195,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
      */
     public void mouseDragged(MouseEvent arg0) {
         if (enabled && !GlobalEventWatcher.isActivated()) {
+
             if (!datatipManagerMode.isEnabled()) {
 
                 if (isLeftButtonPressed) {

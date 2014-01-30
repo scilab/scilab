@@ -16,6 +16,7 @@ import org.scilab.modules.localization.Messages;
 import org.scilab.modules.gui.editor.EntityPicker;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 
 /**
  * Manage the datatip mode activation
@@ -48,34 +49,34 @@ public class DatatipManagerMode {
     }
 
     /**
-    * Get instance
-    * @return instance
-    */
+     * Get instance
+     * @return instance
+     */
     public static DatatipManagerMode getInstance() {
         return instance;
     }
 
     /**
-    * Get the actual color of mark
-    * @return markColor
-    */
+     * Get the actual color of mark
+     * @return markColor
+     */
     public Integer getMarkColor() {
         return markColor;
     }
 
     /**
-    * Set mark color
-    * @param newColor scilab color
-    */
+     * Set mark color
+     * @param newColor scilab color
+     */
     public void setMarkColor(Integer newColor) {
         markColor = newColor;
     }
 
     /**
-    * Get the datatip's actual manager mode
-    *
-    * @return Datatip manager mode status.
-    */
+     * Get the datatip's actual manager mode
+     *
+     * @return Datatip manager mode status.
+     */
     public boolean isEnabled() {
         return datatipManagerModeStatus;
     }
@@ -90,26 +91,28 @@ public class DatatipManagerMode {
         return selectedTip;
     }
 
-
+    public void enableTranslation(boolean enabled) {
+        DrawerVisitor.getVisitor(figureUid).getInteractionManager().setTranslationEnable(enabled);
+    }
 
     /**
-    * Set figure uid
-    *
-    * @param uid Figure unique identifier.
-    */
+     * Set figure uid
+     *
+     * @param uid Figure unique identifier.
+     */
     public void setFigure(Integer uid) {
         figureUid = uid;
     }
 
 
     /**
-    * Highlight the datatip mark when selected
-    *
-    * @param newTip datatip to highlight.
-    * @param odTip datatip to restore the orginal color.
-    * @param oldTipColor coor to restore.
-    * @return the original datatip mark color.
-    */
+     * Highlight the datatip mark when selected
+     *
+     * @param newTip datatip to highlight.
+     * @param odTip datatip to restore the orginal color.
+     * @param oldTipColor coor to restore.
+     * @return the original datatip mark color.
+     */
     private Integer highlightSelected(Integer newTip, Integer oldTip, Integer oldTipColor) {
 
         Integer color = 0;

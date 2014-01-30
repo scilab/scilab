@@ -285,6 +285,8 @@ Scilab Bug Fixes
 
 * Bug #12943 fixed - Datatips misworked when 2D plots were rotated.
 
+* Bug #12945 fixed - Datatips could not correctly dragged in zoomed axes.
+
 * Bug #12948 fixed - When host is not found, getURL caused a Crash To Desktop.
 
 * Bug #12950 fixed - getURL ignored the proxy settings on Windows.
