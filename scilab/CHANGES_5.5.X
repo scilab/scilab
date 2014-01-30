@@ -742,6 +742,8 @@ Scilab Bug Fixes
 
 * Bug #7026 fixed - There was no unit test for plot2d.
 
+* Bug #7051 fixed - Help page of fieldnames function updated.
+
 * Bug #7080 fixed - Some graphic macros did not use standard error messages.
 
 * Bug #7204 fixed - geomean applied to a hypermatrix gave wrong results.
