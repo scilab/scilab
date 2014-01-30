@@ -367,6 +367,7 @@ void Polynom::setCoef(Double *_pCoef)
         }
 
         pPoly->setCoef(pTemp);
+        delete pTemp;
     }
 }
 

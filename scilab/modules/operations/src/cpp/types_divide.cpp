@@ -22,6 +22,7 @@ extern "C"
 #include "localization.h"
 #include "charEncoding.h"
 #include "warningmode.h"
+#include "elem_common.h"
 }
 
 using namespace types;
@@ -125,7 +126,7 @@ InternalType *GenericDotRDivide(InternalType *_pLeftOperand, InternalType *_pRig
     }
 
     /*
-    ** DOUBLE / DOUBLE
+    ** DOUBLE ./ DOUBLE
     */
     if (TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
     {
@@ -133,6 +134,21 @@ InternalType *GenericDotRDivide(InternalType *_pLeftOperand, InternalType *_pRig
         Double *pR  = _pRightOperand->getAs<Double>();
 
         iResult = DotRDivideDoubleByDouble(pL, pR, (Double**)&pResult);
+    }
+
+    if (TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
+    {
+        Polynom *pL = _pLeftOperand->getAs<Polynom>();
+        Double *pR  = _pRightOperand->getAs<Double>();
+
+        // ou exclusif
+        if(pL->isScalar() ^ pR->isScalar())
+        {
+            // call overload
+            return NULL;
+        }
+
+        iResult = DotRDividePolyByDouble(pL, pR, (Polynom**)&pResult);
     }
 
     //manage errors
@@ -154,7 +170,7 @@ InternalType *GenericDotRDivide(InternalType *_pLeftOperand, InternalType *_pRig
                 break;
                 //            default : throw ast::ScilabError(_W("Operator / : Error %d not yet managed.\n"), iResult);
             default :
-                sciprint(_("Operator / : Error %d not yet managed.\n"), iResult);
+                sciprint(_("Operator ./ : Error %d not yet managed.\n"), iResult);
         }
     }
 
@@ -614,8 +630,6 @@ int DotRDivideDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDo
         int iIncOut     = 1;
         int iSizeResult = _pDouble1->getSize();
 
-        *_pDoubleOut    = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), bComplex1 || bComplex2);
-
         if (bComplex1 == false && bComplex2 == false)
         {
             // r ./ R
@@ -649,5 +663,111 @@ int DotRDivideDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDo
                        (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
         }
     }
+    return iErr;
+}
+
+int DotRDividePolyByDouble(Polynom* _pPoly1, Double* _pDouble2, Polynom** _pPolyOut)
+{
+    int iErr        = 0;
+    bool bComplex1  = _pPoly1->isComplex();
+    bool bComplex2  = _pDouble2->isComplex();
+
+    //X ./ Y
+    //check dimension compatibilities ( same number of dimension and same size for each dimension
+    int iDims1      = _pPoly1->getDims();
+    int* piDims1    = _pPoly1->getDimsArray();
+    int iMaxRank    = _pPoly1->getMaxRank();
+    int iSizePoly   = _pPoly1->getSize();
+    int iDims2      = _pDouble2->getDims();
+    int* piDims2    = _pDouble2->getDimsArray();
+
+    if (iDims1 != iDims2)
+    {
+        return 1;
+    }
+
+    for (int i = 0 ; i < iDims1 ; i++)
+    {
+        if (piDims1[i] != piDims2[i])
+        {
+            return 1;
+        }
+    }
+
+    // compute output ranks
+    int* piRanks = new int[iSizePoly];
+    for(int i = 0; i < iSizePoly; i++)
+    {
+        piRanks[i] = iMaxRank;
+    }
+
+    // create output and working table
+    (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), iDims2, piDims2, piRanks);
+    delete[] piRanks;
+    Double* pDblCoefOut = new Double(_pPoly1->getRows(), _pPoly1->getCols() * iMaxRank, bComplex1 || bComplex2);
+    double* pdblCoef2   = new double[_pPoly1->getRows() * _pPoly1->getCols() * iMaxRank];
+    Double* pDblCoef1   = _pPoly1->getCoef();
+
+    int iZero = 0;
+    double* pdbl = _pDouble2->get();
+    for(int i = 0; i < iSizePoly; i++)
+    {
+        C2F(dcopy)(&iMaxRank, pdbl + i, &iZero, pdblCoef2 + i, &iSizePoly);
+    }
+
+    int iInc1       = 1;
+    int iInc2       = 1;
+    int iIncOut     = 1;
+    int iSizeResult = pDblCoefOut->getSize();
+
+    if (bComplex1 == false && bComplex2 == false)
+    {
+        // r ./ R
+        iErr = iRightDivisionRealMatrixByRealMatrix(
+                   pDblCoef1->getReal(), iInc1,
+                   pdblCoef2, iInc2,
+                   pDblCoefOut->getReal(), iIncOut, iSizeResult);
+    }
+    else if (bComplex1 == false && bComplex2 == true)
+    {
+        // r ./ C
+//        iErr = iRightDivisionRealMatrixByComplexMatrix(
+//                   _pDouble1->getReal(), iInc1,
+//                   _pDouble2->getReal(), _pDouble2->getImg(), iInc2,
+//                   (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
+
+        // waiting for polynom rewrite about complex
+        iErr = 10;
+    }
+    else if (bComplex1 == true && bComplex2 == false)
+    {
+        // c ./ R
+//        iErr = iRightDivisionComplexMatrixByRealMatrix(
+//                   _pDouble1->getReal(), _pDouble1->getImg(), iInc1,
+//                   _pDouble2->getReal(), iInc2,
+//                   (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
+
+        // waiting for polynom rewrite about complex
+        iErr = 10;
+    }
+    else if (bComplex1 == true && bComplex2 == true)
+    {
+        // c ./ C
+//        iErr = iRightDivisionComplexMatrixByComplexMatrix(
+//                   _pDouble1->getReal(), _pDouble1->getImg(), iInc1,
+//                   _pDouble2->getReal(), _pDouble2->getImg(), iInc2,
+//                   (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
+
+        // waiting for polynom rewrite about complex
+        iErr = 10;
+    }
+
+    (*_pPolyOut)->setCoef(pDblCoefOut);
+    (*_pPolyOut)->updateRank();
+
+    delete pDblCoefOut;
+    delete pDblCoef1;
+    delete[] pdblCoef2;
+
     return iErr;
 }
