@@ -62,7 +62,7 @@ function libn = ilib_compile(lib_name, ..
     if getos() == "Windows" then
         //** ----------- Windows section  -----------------
 
-        // Load dynamic_link Internal lib if it's not already loaded
+        // Load dynamic_link Internal lib if it"s not already loaded
         if ~ exists("dynamic_linkwindowslib") then
             load("SCI/modules/dynamic_link/macros/windows/lib");
         end
@@ -92,7 +92,7 @@ function libn = ilib_compile(lib_name, ..
 
         // Binary version
         if isdir(SCI+"/../../include/scilab/") & ~ScilabTreeFound then
-            cflags="-I"+SCI+"/../../include/scilab/ -I"+SCI+"/../../include/" + cflags
+            cflags="-I"+SCI+"/../../include/scilab/ " + cflags
             fflags="-I"+SCI+"/../../include/scilab/ " + fflags
             ScilabTreeFound=%t
         end
