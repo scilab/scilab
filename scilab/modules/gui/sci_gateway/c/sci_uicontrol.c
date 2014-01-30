@@ -69,7 +69,7 @@ static const char* propertiesNames[] =
     "tooltipstring",
     "constraints",
     "layout",
-    "margins"
+    "margins",
     "borders",
     "groupname",
     "title_position",
@@ -550,7 +550,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                     return 1;
                 }
 
-                if (inputIndex == 21 || inputIndex == 23)   /* User data settings */
+                if (inputIndex == 21 || inputIndex == 23 || inputIndex == 31)   /* User data and border settings */
                 {
                     nbRow = -1;
                     nbCol = -1;

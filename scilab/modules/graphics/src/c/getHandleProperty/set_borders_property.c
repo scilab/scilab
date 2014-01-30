@@ -29,10 +29,7 @@
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "LayoutType.h"
 #include "BorderLayoutType.h"
-#include "FillType.h"
-#include "AnchorType.h"
 /*------------------------------------------------------------------------*/
 int clearBorders(int iObjUID);
 int createBorder(void* _pvCtx, int* _piAddrList, int _iParent);
@@ -154,7 +151,6 @@ int clearBorders(int iObjUID)
         return SET_PROPERTY_ERROR;
     }
 
-
     return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/
@@ -174,7 +170,15 @@ int createLineBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
     int iThickness = 0;
     int* piAddr4 = NULL;
     int bRounded = 0;
+    int iCount = 0;
 
+    sciErr = getListItemNumber(_pvCtx, _piAddrList, &iCount);
+    if (sciErr.iErr)
+    {
+        return SET_PROPERTY_ERROR;
+    }
+
+    //color
     sciErr = getListItemAddress(_pvCtx, _piAddrList, 2, &piAddr2);
     if (sciErr.iErr)
     {
@@ -186,28 +190,37 @@ int createLineBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
         return SET_PROPERTY_ERROR;
     }
 
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 3, &piAddr3);
-    if (sciErr.iErr)
+
+    //thickness
+    if (iCount > 2)
     {
-        return SET_PROPERTY_ERROR;
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, 3, &piAddr3);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (getScalarDouble(_pvCtx, piAddr3, &dblThickness))
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        iThickness = (int)dblThickness;
     }
 
-    if (getScalarDouble(_pvCtx, piAddr3, &dblThickness))
+    //rounded
+    if (iCount > 3)
     {
-        return SET_PROPERTY_ERROR;
-    }
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, 4, &piAddr4);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
 
-    iThickness = (int)dblThickness;
-
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 4, &piAddr4);
-    if (sciErr.iErr)
-    {
-        return SET_PROPERTY_ERROR;
-    }
-
-    if (getScalarBoolean(_pvCtx, piAddr4, &bRounded))
-    {
-        return SET_PROPERTY_ERROR;
+        if (getScalarBoolean(_pvCtx, piAddr4, &bRounded))
+        {
+            return SET_PROPERTY_ERROR;
+        }
     }
 
     //get current border
@@ -227,10 +240,18 @@ int createLineBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
 
     setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_STYLE__, &iStyle, jni_int, 1);
     setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_COLOR__, pstColor, jni_string, 1);
-    setGraphicObjectProperty(iBorder, __GO_LINE_THICKNESS__, &iThickness, jni_int, 1);
-    setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_ROUNDED__, &bRounded, jni_bool, 1);
-
     freeAllocatedSingleString(pstColor);
+
+    if (iCount > 2)
+    {
+        setGraphicObjectProperty(iBorder, __GO_LINE_THICKNESS__, &iThickness, jni_int, 1);
+    }
+
+    if (iCount > 3)
+    {
+        setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_ROUNDED__, &bRounded, jni_bool, 1);
+    }
+
 
     return iBorder;
 }
@@ -267,6 +288,13 @@ int createCommonBevelBorder(void* _pvCtx, int* _piAddrList, int _iObjUID, int _i
     char* pstShadowOutColor = NULL;
     int* piAddr6 = NULL;
     char* pstShadowInColor = NULL;
+    int iCount = 0;
+
+    sciErr = getListItemNumber(_pvCtx, _piAddrList, &iCount);
+    if (sciErr.iErr)
+    {
+        return SET_PROPERTY_ERROR;
+    }
 
     //type
     sciErr = getListItemAddress(_pvCtx, _piAddrList, 2, &piAddr2);
@@ -291,52 +319,59 @@ int createCommonBevelBorder(void* _pvCtx, int* _piAddrList, int _iObjUID, int _i
 
     freeAllocatedSingleString(pstType);
 
-    //highlight out
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 3, &piAddr3);
-    if (sciErr.iErr)
+    //highlight out and highlight in or hl and shadow
+    if (iCount > 2)
     {
-        return SET_PROPERTY_ERROR;
+        //highlight out
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, 3, &piAddr3);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (getAllocatedSingleString(_pvCtx, piAddr3, &pstHlOutColor))
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        //highlight in
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, 4, &piAddr4);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (getAllocatedSingleString(_pvCtx, piAddr4, &pstHlInColor))
+        {
+            return SET_PROPERTY_ERROR;
+        }
     }
 
-    if (getAllocatedSingleString(_pvCtx, piAddr3, &pstHlOutColor))
+    if (iCount > 4)
     {
-        return SET_PROPERTY_ERROR;
-    }
+        //shadow out
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, 5, &piAddr5);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
 
-    //highlight in
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 4, &piAddr4);
-    if (sciErr.iErr)
-    {
-        return SET_PROPERTY_ERROR;
-    }
+        if (getAllocatedSingleString(_pvCtx, piAddr5, &pstShadowOutColor))
+        {
+            return SET_PROPERTY_ERROR;
+        }
 
-    if (getAllocatedSingleString(_pvCtx, piAddr4, &pstHlInColor))
-    {
-        return SET_PROPERTY_ERROR;
-    }
+        //shadow in
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, 6, &piAddr6);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
 
-    //shadow out
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 5, &piAddr5);
-    if (sciErr.iErr)
-    {
-        return SET_PROPERTY_ERROR;
-    }
-
-    if (getAllocatedSingleString(_pvCtx, piAddr5, &pstShadowOutColor))
-    {
-        return SET_PROPERTY_ERROR;
-    }
-
-    //shadow in
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 6, &piAddr6);
-    if (sciErr.iErr)
-    {
-        return SET_PROPERTY_ERROR;
-    }
-
-    if (getAllocatedSingleString(_pvCtx, piAddr6, &pstShadowInColor))
-    {
-        return SET_PROPERTY_ERROR;
+        if (getAllocatedSingleString(_pvCtx, piAddr6, &pstShadowInColor))
+        {
+            return SET_PROPERTY_ERROR;
+        }
     }
 
     //get current border
@@ -355,11 +390,31 @@ int createCommonBevelBorder(void* _pvCtx, int* _piAddrList, int _iObjUID, int _i
     }
 
     setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_STYLE__, &_iStyle, jni_int, 1);
-    setGraphicObjectProperty(iBorder, __GO_TYPE__, &iType, jni_int, 1);
-    setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_HIGHLIGHT_OUT__, pstHlOutColor, jni_string, 1);
-    setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_HIGHLIGHT_IN__, pstHlInColor, jni_string, 1);
-    setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_SHADOW_OUT__, pstShadowOutColor, jni_string, 1);
-    setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_SHADOW_IN__, pstShadowInColor, jni_string, 1);
+    setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_TYPE__, &iType, jni_int, 1);
+
+    if (iCount > 2)
+    {
+        if (iCount == 4)
+        {
+            setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_HIGHLIGHT_OUT__, pstHlOutColor, jni_string, 1);
+            setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_SHADOW_OUT__, pstHlInColor, jni_string, 1);
+
+            freeAllocatedSingleString(pstHlOutColor);
+            freeAllocatedSingleString(pstHlInColor);
+        }
+        else
+        {
+            setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_HIGHLIGHT_OUT__, pstHlOutColor, jni_string, 1);
+            setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_HIGHLIGHT_IN__, pstHlInColor, jni_string, 1);
+            setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_SHADOW_OUT__, pstShadowOutColor, jni_string, 1);
+            setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_SHADOW_IN__, pstShadowInColor, jni_string, 1);
+
+            freeAllocatedSingleString(pstHlOutColor);
+            freeAllocatedSingleString(pstHlInColor);
+            freeAllocatedSingleString(pstShadowOutColor);
+            freeAllocatedSingleString(pstShadowInColor);
+        }
+    }
 
     return iBorder;
 }
@@ -381,53 +436,68 @@ int createEtchedBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
     char* pstHlOutColor = NULL;
     int* piAddr4 = NULL;
     char* pstShadowOutColor = NULL;
+    int iCount = 0;
 
-    //type
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 2, &piAddr2);
+    sciErr = getListItemNumber(_pvCtx, _piAddrList, &iCount);
     if (sciErr.iErr)
     {
         return SET_PROPERTY_ERROR;
     }
 
-    if (getAllocatedSingleString(_pvCtx, piAddr2, &pstType))
+    if (iCount == 2 || iCount == 4)
     {
-        return SET_PROPERTY_ERROR;
+        //type
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, 2, &piAddr2);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (getAllocatedSingleString(_pvCtx, piAddr2, &pstType))
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (stricmp(pstType, "raised") == 0)
+        {
+            iType = 0;
+        }
+        else if (stricmp(pstType, "lowered") == 0)
+        {
+            iType = 1;
+        }
+
+        freeAllocatedSingleString(pstType);
     }
 
-    if (stricmp(pstType, "raised") == 0)
+    if (iCount == 3 || iCount == 4)
     {
-        iType = 0;
-    }
-    else if (stricmp(pstType, "lowered") == 0)
-    {
-        iType = 1;
+        int iPos = iCount - 1;
+        //highlight out
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, iPos, &piAddr3);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (getAllocatedSingleString(_pvCtx, piAddr3, &pstHlOutColor))
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        //shadow out
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, iPos + 1, &piAddr4);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (getAllocatedSingleString(_pvCtx, piAddr4, &pstShadowOutColor))
+        {
+            return SET_PROPERTY_ERROR;
+        }
     }
 
-    freeAllocatedSingleString(pstType);
-
-    //highlight out
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 3, &piAddr3);
-    if (sciErr.iErr)
-    {
-        return SET_PROPERTY_ERROR;
-    }
-
-    if (getAllocatedSingleString(_pvCtx, piAddr3, &pstHlOutColor))
-    {
-        return SET_PROPERTY_ERROR;
-    }
-
-    //shadow out
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 4, &piAddr4);
-    if (sciErr.iErr)
-    {
-        return SET_PROPERTY_ERROR;
-    }
-
-    if (getAllocatedSingleString(_pvCtx, piAddr4, &pstShadowOutColor))
-    {
-        return SET_PROPERTY_ERROR;
-    }
 
 
     //get current border
@@ -446,9 +516,19 @@ int createEtchedBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
     }
 
     setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_STYLE__, &iStyle, jni_int, 1);
-    setGraphicObjectProperty(iBorder, __GO_TYPE__, &iType, jni_int, 1);
-    setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_HIGHLIGHT_OUT__, pstHlOutColor, jni_string, 1);
-    setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_SHADOW_OUT__, pstShadowOutColor, jni_string, 1);
+    if (iCount == 2 || iCount == 4)
+    {
+        setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_TYPE__, &iType, jni_int, 1);
+    }
+
+    if (iCount == 3 || iCount == 4)
+    {
+        setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_HIGHLIGHT_OUT__, pstHlOutColor, jni_string, 1);
+        setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_SHADOW_OUT__, pstShadowOutColor, jni_string, 1);
+
+        freeAllocatedSingleString(pstHlOutColor);
+        freeAllocatedSingleString(pstShadowOutColor);
+    }
 
     return iBorder;
 }
@@ -476,173 +556,208 @@ int createTitledBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
     char* pstJustification = NULL;
     int iJustification = 0;
     int* piAddr5 = NULL;
-    char* pstFontName = NULL;
-    int* piAddr6 = NULL;
-    char* pstFontAngle = NULL;
-    int* piAddr7 = NULL;
-    double dblFontSize = 0;
-    int iFontSize = 0;
-    int* piAddr8 = NULL;
-    char* pstFontWeight = NULL;
-    int* piAddr9 = NULL;
-    char* pstPosition = NULL;
     int iPosition = 0;
-    int* piAddr10 = NULL;
+    char* pstPosition = NULL;
+    int* piAddr6 = NULL;
+    int* piFont = NULL;
+    int* piAddr7 = NULL;
     char* pstColor = NULL;
 
-    //child border
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 2, &piAddr2);
+    //font data
+    char* pstFontName = NULL;
+    int iFontSize = 0;
+    char* pstFontAngle = NULL;
+    char* pstFontWeight = NULL;
+
+    int iCount = 0;
+
+    sciErr = getListItemNumber(_pvCtx, _piAddrList, &iCount);
     if (sciErr.iErr)
     {
         return SET_PROPERTY_ERROR;
     }
 
-    //title
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 3, &piAddr3);
-    if (sciErr.iErr)
+    if (iCount == 2)
     {
-        return SET_PROPERTY_ERROR;
+        //child border or title
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, 2, &piAddr2);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
     }
 
-    if (getAllocatedSingleString(_pvCtx, piAddr3, &pstTitle))
+    if (iCount > 2)
     {
-        return SET_PROPERTY_ERROR;
+        //child border
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, 2, &piAddr2);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        //title
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, 3, &piAddr3);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (getAllocatedSingleString(_pvCtx, piAddr3, &pstTitle))
+        {
+            return SET_PROPERTY_ERROR;
+        }
     }
 
-    //justification
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 4, &piAddr4);
-    if (sciErr.iErr)
+    if (iCount > 3)
     {
-        return SET_PROPERTY_ERROR;
+        //justification
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, 4, &piAddr4);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (getAllocatedSingleString(_pvCtx, piAddr4, &pstJustification))
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (stricmp(pstJustification, "leading") == 0)
+        {
+            iJustification = 0;
+        }
+        else if (stricmp(pstJustification, "left") == 0)
+        {
+            iJustification = 1;
+        }
+        else if (stricmp(pstJustification, "center") == 0)
+        {
+            iJustification = 2;
+        }
+        else if (stricmp(pstJustification, "right") == 0)
+        {
+            iJustification = 3;
+        }
+        else if (stricmp(pstJustification, "trailing") == 0)
+        {
+            iJustification = 4;
+        }
+
+        freeAllocatedSingleString(pstJustification);
+
+        //position
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, 5, &piAddr5);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (getAllocatedSingleString(_pvCtx, piAddr5, &pstPosition))
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (stricmp(pstPosition, "top") == 0)
+        {
+            iPosition = 0;
+        }
+        else if (stricmp(pstPosition, "above_top") == 0)
+        {
+            iPosition = 1;
+        }
+        else if (stricmp(pstPosition, "below_top") == 0)
+        {
+            iPosition = 2;
+        }
+        else if (stricmp(pstPosition, "bottom") == 0)
+        {
+            iPosition = 3;
+        }
+        else if (stricmp(pstPosition, "above_bottom") == 0)
+        {
+            iPosition = 4;
+        }
+        else if (stricmp(pstPosition, "below_bottom") == 0)
+        {
+            iPosition = 5;
+        }
+
+        freeAllocatedSingleString(pstPosition);
     }
 
-    if (getAllocatedSingleString(_pvCtx, piAddr4, &pstJustification))
+    if (iCount > 5)
     {
-        return SET_PROPERTY_ERROR;
+        int* piAddrFont = NULL;
+        double dblFontSize = 0;
+        //font
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, 6, &piAddr6);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        //read data from font tlist
+        sciErr = getListItemAddress(_pvCtx, piAddr6, 2, &piAddrFont);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (getAllocatedSingleString(_pvCtx, piAddrFont, &pstFontName))
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        sciErr = getListItemAddress(_pvCtx, piAddr6, 3, &piAddrFont);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (getScalarDouble(_pvCtx, piAddrFont, &dblFontSize))
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        iFontSize = (int)dblFontSize;
+
+        sciErr = getListItemAddress(_pvCtx, piAddr6, 4, &piAddrFont);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (getAllocatedSingleString(_pvCtx, piAddrFont, &pstFontAngle))
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        sciErr = getListItemAddress(_pvCtx, piAddr6, 5, &piAddrFont);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (getAllocatedSingleString(_pvCtx, piAddrFont, &pstFontWeight))
+        {
+            return SET_PROPERTY_ERROR;
+        }
     }
 
-    if (stricmp(pstJustification, "leading") == 0)
+    if (iCount > 6)
     {
-        iJustification = 0;
-    }
-    else if (stricmp(pstJustification, "left") == 0)
-    {
-        iJustification = 1;
-    }
-    else if (stricmp(pstJustification, "center") == 0)
-    {
-        iJustification = 2;
-    }
-    else if (stricmp(pstJustification, "right") == 0)
-    {
-        iJustification = 3;
-    }
-    else if (stricmp(pstJustification, "trailing") == 0)
-    {
-        iJustification = 4;
-    }
+        //color
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, 7, &piAddr7);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
 
-    freeAllocatedSingleString(pstJustification);
-
-    //fontname
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 5, &piAddr5);
-    if (sciErr.iErr)
-    {
-        return SET_PROPERTY_ERROR;
-    }
-
-    if (getAllocatedSingleString(_pvCtx, piAddr5, &pstFontName))
-    {
-        return SET_PROPERTY_ERROR;
-    }
-
-    //fontangle
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 6, &piAddr6);
-    if (sciErr.iErr)
-    {
-        return SET_PROPERTY_ERROR;
-    }
-
-    if (getAllocatedSingleString(_pvCtx, piAddr6, &pstFontAngle))
-    {
-        return SET_PROPERTY_ERROR;
-    }
-
-    //fontsize
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 7, &piAddr7);
-    if (sciErr.iErr)
-    {
-        return SET_PROPERTY_ERROR;
-    }
-
-    if (getScalarDouble(_pvCtx, piAddr7, &dblFontSize))
-    {
-        return SET_PROPERTY_ERROR;
-    }
-
-    iFontSize = (int)dblFontSize;
-
-    //fontweight
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 8, &piAddr8);
-    if (sciErr.iErr)
-    {
-        return SET_PROPERTY_ERROR;
-    }
-
-    if (getAllocatedSingleString(_pvCtx, piAddr8, &pstFontWeight))
-    {
-        return SET_PROPERTY_ERROR;
-    }
-
-    //position
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 9, &piAddr9);
-    if (sciErr.iErr)
-    {
-        return SET_PROPERTY_ERROR;
-    }
-
-    if (getAllocatedSingleString(_pvCtx, piAddr9, &pstPosition))
-    {
-        return SET_PROPERTY_ERROR;
-    }
-
-    if (stricmp(pstPosition, "top") == 0)
-    {
-        iPosition = 0;
-    }
-    else if (stricmp(pstPosition, "above_top") == 0)
-    {
-        iPosition = 1;
-    }
-    else if (stricmp(pstPosition, "below_top") == 0)
-    {
-        iPosition = 2;
-    }
-    else if (stricmp(pstPosition, "bottom") == 0)
-    {
-        iPosition = 3;
-    }
-    else if (stricmp(pstPosition, "above_bottom") == 0)
-    {
-        iPosition = 4;
-    }
-    else if (stricmp(pstPosition, "below_bottom") == 0)
-    {
-        iPosition = 5;
-    }
-
-    freeAllocatedSingleString(pstPosition);
-
-    //color
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 10, &piAddr10);
-    if (sciErr.iErr)
-    {
-        return SET_PROPERTY_ERROR;
-    }
-
-    if (getAllocatedSingleString(_pvCtx, piAddr10, &pstColor))
-    {
-        return SET_PROPERTY_ERROR;
+        if (getAllocatedSingleString(_pvCtx, piAddr7, &pstColor))
+        {
+            return SET_PROPERTY_ERROR;
+        }
     }
 
     //get current border
@@ -660,23 +775,75 @@ int createTitledBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
         return SET_PROPERTY_ERROR;
     }
 
-    iChildBorder = createBorder(_pvCtx, piAddr2, iBorder);
-    if (iChildBorder == 0)
+    setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_STYLE__, &iStyle, jni_int, 1);
+
+    if (iCount == 2)
     {
-        return SET_PROPERTY_ERROR;
+        if (isTListType(_pvCtx, piAddr2))
+        {
+            iChildBorder = createBorder(_pvCtx, piAddr2, iBorder);
+            if (iChildBorder == 0)
+            {
+                return SET_PROPERTY_ERROR;
+            }
+
+            setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_TITLE__, &iChildBorder, jni_int, 1);
+
+        }
+        else //title
+        {
+            if (getAllocatedSingleString(_pvCtx, piAddr2, &pstTitle))
+            {
+                return SET_PROPERTY_ERROR;
+            }
+
+            setGraphicObjectProperty(iBorder, __GO_TITLE__, pstTitle, jni_string, 1);
+
+            freeAllocatedSingleString(pstTitle);
+        }
+
+        return iBorder;
     }
 
 
-    setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_STYLE__, &iStyle, jni_int, 1);
-    setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_TITLE__, &iChildBorder, jni_int, 1);
-    setGraphicObjectProperty(iBorder, __GO_TITLE__, pstTitle, jni_string, 1);
-    setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_JUSTIFICATION__, &iJustification, jni_int, 1);
-    setGraphicObjectProperty(iBorder, __GO_UI_FONTNAME__, pstFontName, jni_string, 1);
-    setGraphicObjectProperty(iBorder, __GO_UI_FONTANGLE__, pstFontAngle, jni_string, 1);
-    setGraphicObjectProperty(iBorder, __GO_UI_FONTSIZE__, &iFontSize, jni_int, 1);
-    setGraphicObjectProperty(iBorder, __GO_UI_FONTWEIGHT__, pstFontWeight, jni_string, 1);
-    setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_POSITION__, &iPosition, jni_int, 1);
-    setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_COLOR__, pstColor, jni_string, 1);
+    if (iCount > 2)
+    {
+        iChildBorder = createBorder(_pvCtx, piAddr2, iBorder);
+        if (iChildBorder == 0)
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_TITLE__, &iChildBorder, jni_int, 1);
+        setGraphicObjectProperty(iBorder, __GO_TITLE__, pstTitle, jni_string, 1);
+
+        freeAllocatedSingleString(pstTitle);
+    }
+
+    if (iCount > 3)
+    {
+        setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_JUSTIFICATION__, &iJustification, jni_int, 1);
+        setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_POSITION__, &iPosition, jni_int, 1);
+    }
+
+    if (iCount > 5)
+    {
+        setGraphicObjectProperty(iBorder, __GO_UI_FONTNAME__, pstFontName, jni_string, 1);
+        setGraphicObjectProperty(iBorder, __GO_UI_FONTANGLE__, pstFontAngle, jni_string, 1);
+        setGraphicObjectProperty(iBorder, __GO_UI_FONTSIZE__, &iFontSize, jni_int, 1);
+        setGraphicObjectProperty(iBorder, __GO_UI_FONTWEIGHT__, pstFontWeight, jni_string, 1);
+
+        freeAllocatedSingleString(pstFontName);
+        freeAllocatedSingleString(pstFontAngle);
+        freeAllocatedSingleString(pstFontWeight);
+    }
+
+    if (iCount > 6)
+    {
+        setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_COLOR__, pstColor, jni_string, 1);
+
+        freeAllocatedSingleString(pstColor);
+    }
 
     return iBorder;
 }
@@ -696,53 +863,63 @@ int createEmptyBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
     int* piAddr4 = NULL;
     int* piAddr5 = NULL;
     double pdblPosition[4];
+    int iCount = 0;
 
-    //top
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 2, &piAddr2);
+    sciErr = getListItemNumber(_pvCtx, _piAddrList, &iCount);
     if (sciErr.iErr)
     {
         return SET_PROPERTY_ERROR;
     }
 
-    if (getScalarDouble(_pvCtx, piAddr2, &pdblPosition[0]))
+    if (iCount > 1)
     {
-        return SET_PROPERTY_ERROR;
-    }
+        //top
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, 2, &piAddr2);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
 
-    //left
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 3, &piAddr3);
-    if (sciErr.iErr)
-    {
-        return SET_PROPERTY_ERROR;
-    }
+        if (getScalarDouble(_pvCtx, piAddr2, &pdblPosition[0]))
+        {
+            return SET_PROPERTY_ERROR;
+        }
 
-    if (getScalarDouble(_pvCtx, piAddr3, &pdblPosition[1]))
-    {
-        return SET_PROPERTY_ERROR;
-    }
+        //left
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, 3, &piAddr3);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
 
-    //bottom
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 4, &piAddr4);
-    if (sciErr.iErr)
-    {
-        return SET_PROPERTY_ERROR;
-    }
+        if (getScalarDouble(_pvCtx, piAddr3, &pdblPosition[1]))
+        {
+            return SET_PROPERTY_ERROR;
+        }
 
-    if (getScalarDouble(_pvCtx, piAddr4, &pdblPosition[2]))
-    {
-        return SET_PROPERTY_ERROR;
-    }
+        //bottom
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, 4, &piAddr4);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
 
-    //right
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 5, &piAddr5);
-    if (sciErr.iErr)
-    {
-        return SET_PROPERTY_ERROR;
-    }
+        if (getScalarDouble(_pvCtx, piAddr4, &pdblPosition[2]))
+        {
+            return SET_PROPERTY_ERROR;
+        }
 
-    if (getScalarDouble(_pvCtx, piAddr5, &pdblPosition[3]))
-    {
-        return SET_PROPERTY_ERROR;
+        //right
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, 5, &piAddr5);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (getScalarDouble(_pvCtx, piAddr5, &pdblPosition[3]))
+        {
+            return SET_PROPERTY_ERROR;
+        }
     }
 
     //get current border
@@ -761,7 +938,12 @@ int createEmptyBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
     }
 
     setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_STYLE__, &iStyle, jni_int, 1);
-    setGraphicObjectProperty(iBorder, __GO_POSITION__, pdblPosition, jni_double_vector, 4);
+
+    if (iCount > 1)
+    {
+        setGraphicObjectProperty(iBorder, __GO_POSITION__, pdblPosition, jni_double_vector, 4);
+    }
+
     return iBorder;
 }
 /*------------------------------------------------------------------------*/
@@ -775,33 +957,42 @@ int createCompoundBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
     int iChildBorderOut = 0;
     int* piAddr3 = NULL;
     int iChildBorderIn = 0;
+    int iCount = 0;
 
-    //child border out
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 2, &piAddr2);
+    sciErr = getListItemNumber(_pvCtx, _piAddrList, &iCount);
     if (sciErr.iErr)
     {
         return SET_PROPERTY_ERROR;
     }
 
-    iChildBorderOut = createBorder(_pvCtx, piAddr2, _iObjUID);
-    if (iChildBorderOut == 0)
+    if (iCount > 1)
     {
-        return SET_PROPERTY_ERROR;
-    }
+        //child border out
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, 2, &piAddr2);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
 
-    //child border in
-    sciErr = getListItemAddress(_pvCtx, _piAddrList, 3, &piAddr3);
-    if (sciErr.iErr)
-    {
-        return SET_PROPERTY_ERROR;
-    }
+        iChildBorderOut = createBorder(_pvCtx, piAddr2, _iObjUID);
+        if (iChildBorderOut == 0)
+        {
+            return SET_PROPERTY_ERROR;
+        }
 
-    iChildBorderIn = createBorder(_pvCtx, piAddr3, _iObjUID);
-    if (iChildBorderIn == 0)
-    {
-        return SET_PROPERTY_ERROR;
-    }
+        //child border in
+        sciErr = getListItemAddress(_pvCtx, _piAddrList, 3, &piAddr3);
+        if (sciErr.iErr)
+        {
+            return SET_PROPERTY_ERROR;
+        }
 
+        iChildBorderIn = createBorder(_pvCtx, piAddr3, _iObjUID);
+        if (iChildBorderIn == 0)
+        {
+            return SET_PROPERTY_ERROR;
+        }
+    }
     //get current border
     getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER__, jni_int, (void**)&piBorder);
     if (piBorder != NULL && iBorder != 0)
@@ -818,8 +1009,13 @@ int createCompoundBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
     }
 
     setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_STYLE__, &iStyle, jni_int, 1);
-    setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_OUT_BORDER__, &iChildBorderOut, jni_int, 1);
-    setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_IN_BORDER__, &iChildBorderIn, jni_int, 1);
+
+    if (iCount > 1)
+    {
+        setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_OUT_BORDER__, &iChildBorderOut, jni_int, 1);
+        setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_IN_BORDER__, &iChildBorderIn, jni_int, 1);
+    }
+
     return iBorder;
 }
 /*------------------------------------------------------------------------*/
@@ -841,6 +1037,13 @@ int createMatteBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
     double pdblPosition[4];
     int* piAddr6 = NULL;
     char* pstColor = NULL;
+    int iCount = 0;
+
+    sciErr = getListItemNumber(_pvCtx, _piAddrList, &iCount);
+    if (sciErr.iErr)
+    {
+        return SET_PROPERTY_ERROR;
+    }
 
     //top
     sciErr = getListItemAddress(_pvCtx, _piAddrList, 2, &piAddr2);
@@ -919,7 +1122,10 @@ int createMatteBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
 
     setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_STYLE__, &iStyle, jni_int, 1);
     setGraphicObjectProperty(iBorder, __GO_POSITION__, pdblPosition, jni_double_vector, 4);
+
     setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_COLOR__, pstColor, jni_string, 1);
+    freeAllocatedSingleString(pstColor);
+
     return iBorder;
 }
 /*------------------------------------------------------------------------*/

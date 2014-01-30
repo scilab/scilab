@@ -1,12 +1,12 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -126,7 +126,7 @@ int getNoBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUI
 {
     SciErr sciErr;
     int* piAddrList = NULL;
-    char * pstFieldList[] = {"NoBorder"};
+    char* pstFieldList[] = {"NoBorder"};
     if (_piParent)
     {
         sciErr = createTListInList(_pvCtx, _iVar, _piParent, _iPos, 1, &piAddrList);
@@ -141,7 +141,7 @@ int getNoBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUI
         return -1;
     }
 
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 1, 1, 1, (const char * const*)&pstFieldList);
+    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 1, 1, 1, pstFieldList);
     if (sciErr.iErr)
     {
         return -1;
@@ -154,13 +154,14 @@ int getLineBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObj
 {
     SciErr sciErr;
     int* piAddrList = NULL;
-    char * pstFieldList[] = {"LineBorder", "color", "thickness", "rounded"};
+    char* pstFieldList[] = {"LineBorder", "color", "thickness", "rounded"};
     char* pstColor = NULL;
     int iThickness = 0;
     double dblThickness = 0;
     int* piThickness = &iThickness;
     int iRounded = 0;
     int* piRounded = &iRounded;
+    int iListSize = 4;
 
     getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_COLOR__, jni_string, (void **)&pstColor);
     if (pstColor == NULL)
@@ -170,28 +171,25 @@ int getLineBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObj
     }
 
     getGraphicObjectProperty(_iObjUID, __GO_LINE_THICKNESS__, jni_int, (void **)&piThickness);
-    if (piThickness == NULL)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
-    }
-
-    dblThickness = (double)iThickness;
-
     getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_ROUNDED__, jni_bool, (void **)&piRounded);
+
     if (piRounded == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
+        iListSize = 3;
+    }
+
+    if (piThickness == NULL)
+    {
+        iListSize = 2;
     }
 
     if (_piParent)
     {
-        sciErr = createTListInList(_pvCtx, _iVar, _piParent, _iPos, 4, &piAddrList);
+        sciErr = createTListInList(_pvCtx, _iVar, _piParent, _iPos, iListSize, &piAddrList);
     }
     else
     {
-        sciErr = createTList(_pvCtx, _iVar, 4, &piAddrList);
+        sciErr = createTList(_pvCtx, _iVar, iListSize, &piAddrList);
     }
 
     if (sciErr.iErr)
@@ -199,7 +197,7 @@ int getLineBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObj
         return -1;
     }
 
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 1, 1, 4, (const char * const*)&pstFieldList);
+    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 1, 1, iListSize, pstFieldList);
     if (sciErr.iErr)
     {
         return -1;
@@ -211,16 +209,23 @@ int getLineBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObj
         return -1;
     }
 
-    sciErr = createMatrixOfDoubleInList(_pvCtx, _iVar, piAddrList, 3, 1, 1, &dblThickness);
-    if (sciErr.iErr)
+    if (iListSize > 2)
     {
-        return -1;
+        dblThickness = (double)iThickness;
+        sciErr = createMatrixOfDoubleInList(_pvCtx, _iVar, piAddrList, 3, 1, 1, &dblThickness);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
     }
 
-    sciErr = createMatrixOfBooleanInList(_pvCtx, _iVar, piAddrList, 4, 1, 1, &iRounded);
-    if (sciErr.iErr)
+    if (iListSize > 3)
     {
-        return -1;
+        sciErr = createMatrixOfBooleanInList(_pvCtx, _iVar, piAddrList, 4, 1, 1, &iRounded);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
     }
 
     return 0;
@@ -240,8 +245,12 @@ int getCommonBevelBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, in
 {
     SciErr sciErr;
     int* piAddrList = NULL;
-    char * pstFieldList[] = {"BevelBorder", "type", "hlouter", "hlinner", "shadowouter", "shadowinner"};
-    char * pstSoftFieldList[] = {"SoftBevelBorder", "type", "hlouter", "hlinner", "shadowouter", "shadowinner"};
+    char* pstFieldList1[] = {"BevelBorder", "type", "hlouter", "hlinner", "shadowouter", "shadowinner"};
+    char* pstFieldList2[] = {"BevelBorder", "type", "hlouter", "shadowouter"};
+    char** pstFieldList = pstFieldList1;
+    char* pstSoftFieldList1[] = {"SoftBevelBorder", "type", "hlouter", "hlinner", "shadowouter", "shadowinner"};
+    char* pstSoftFieldList2[] = {"SoftBevelBorder", "type", "hlouter", "shadowouter"};
+    char** pstSoftFieldList = pstSoftFieldList1;
     int iType = 0;
     int* piType = &iType;
     char* pstType[] = {"raised", "lowered"};
@@ -249,8 +258,9 @@ int getCommonBevelBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, in
     char* pstHlInColor = NULL;
     char* pstShadowOutColor = NULL;
     char* pstShadowInColor = NULL;
+    int iListSize = 6;
 
-    getGraphicObjectProperty(_iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_TYPE__, jni_int, (void **)&piType);
     if (piType == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
@@ -258,40 +268,31 @@ int getCommonBevelBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, in
     }
 
     getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_HIGHLIGHT_OUT__, jni_string, (void **)&pstHlOutColor);
-    if (pstHlOutColor == NULL)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
-    }
-
     getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_HIGHLIGHT_IN__, jni_string, (void **)&pstHlInColor);
-    if (pstHlInColor == NULL)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
-    }
-
     getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_SHADOW_OUT__, jni_string, (void **)&pstShadowOutColor);
-    if (pstShadowOutColor == NULL)
+    getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_SHADOW_IN__, jni_string, (void **)&pstShadowInColor);
+
+    if (pstHlInColor == NULL || pstShadowInColor == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
+        iListSize = 4;
+        pstFieldList = pstFieldList2;
+        pstSoftFieldList = pstSoftFieldList2;
     }
 
-    getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_SHADOW_IN__, jni_string, (void **)&pstShadowInColor);
-    if (pstShadowInColor == NULL)
+    if (pstHlOutColor == NULL || pstShadowOutColor == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
+        iListSize = 2;
+        pstFieldList = pstFieldList2;
+        pstSoftFieldList = pstSoftFieldList2;
     }
 
     if (_piParent)
     {
-        sciErr = createTListInList(_pvCtx, _iVar, _piParent, _iPos, 6, &piAddrList);
+        sciErr = createTListInList(_pvCtx, _iVar, _piParent, _iPos, iListSize, &piAddrList);
     }
     else
     {
-        sciErr = createTList(_pvCtx, _iVar, 6, &piAddrList);
+        sciErr = createTList(_pvCtx, _iVar, iListSize, &piAddrList);
     }
     if (sciErr.iErr)
     {
@@ -300,11 +301,11 @@ int getCommonBevelBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, in
 
     if (_iBevel == 1)
     {
-        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 1, 1, 6, (const char * const*)&pstFieldList);
+        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 1, 1, iListSize, pstFieldList);
     }
     else
     {
-        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 1, 1, 6, (const char * const*)&pstSoftFieldList);
+        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 1, 1, iListSize, pstSoftFieldList);
     }
 
     if (sciErr.iErr)
@@ -318,28 +319,45 @@ int getCommonBevelBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, in
         return -1;
     }
 
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 3, 1, 1, &pstHlOutColor);
-    if (sciErr.iErr)
+    if (iListSize == 4)
     {
-        return -1;
-    }
+        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 3, 1, 1, &pstHlOutColor);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
 
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 4, 1, 1, &pstHlInColor);
-    if (sciErr.iErr)
-    {
-        return -1;
+        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 4, 1, 1, &pstShadowOutColor);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
     }
-
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 5, 1, 1, &pstShadowOutColor);
-    if (sciErr.iErr)
+    else if (iListSize == 6)
     {
-        return -1;
-    }
+        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 3, 1, 1, &pstHlOutColor);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
 
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 6, 1, 1, &pstShadowInColor);
-    if (sciErr.iErr)
-    {
-        return -1;
+        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 4, 1, 1, &pstHlInColor);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
+
+        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 5, 1, 1, &pstShadowOutColor);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
+
+        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 6, 1, 1, &pstShadowInColor);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
     }
 
     return 0;
@@ -349,41 +367,51 @@ int getEtchedBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iO
 {
     SciErr sciErr;
     int* piAddrList = NULL;
-    char * pstFieldList[] = {"EtchedBorder", "type", "hl", "shadow"};
+    char* pstFieldList1[] = {"EtchedBorder", "type", "hl", "shadow"};
+    char* pstFieldList2[] = {"EtchedBorder", "hl", "shadow"};
+    char** pstFieldList = pstFieldList1;
     int iType = 0;
     int* piType = &iType;
     char* pstType[] = {"raised", "lowered"};
     char* pstHlOutColor = NULL;
     char* pstShadowOutColor = NULL;
+    int iListSize = 4;
 
-    getGraphicObjectProperty(_iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_HIGHLIGHT_OUT__, jni_string, (void **)&pstHlOutColor);
+    getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_SHADOW_OUT__, jni_string, (void **)&pstShadowOutColor);
+
     if (piType == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
+        if (pstHlOutColor == NULL || pstShadowOutColor == NULL)
+        {
+            iListSize = 1;
+        }
+        else
+        {
+            iListSize = 3;
+            pstFieldList = pstFieldList2;
+        }
     }
-
-    getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_HIGHLIGHT_OUT__, jni_string, (void **)&pstHlOutColor);
-    if (pstHlOutColor == NULL)
+    else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
-    }
-
-    getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_SHADOW_OUT__, jni_string, (void **)&pstShadowOutColor);
-    if (pstShadowOutColor == NULL)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
+        if (pstHlOutColor == NULL || pstShadowOutColor == NULL)
+        {
+            iListSize = 2;
+        }
+        else
+        {
+            iListSize = 4;
+        }
     }
 
     if (_piParent)
     {
-        sciErr = createTListInList(_pvCtx, _iVar, _piParent, _iPos, 4, &piAddrList);
+        sciErr = createTListInList(_pvCtx, _iVar, _piParent, _iPos, iListSize, &piAddrList);
     }
     else
     {
-        sciErr = createTList(_pvCtx, _iVar, 4, &piAddrList);
+        sciErr = createTList(_pvCtx, _iVar, iListSize, &piAddrList);
     }
 
     if (sciErr.iErr)
@@ -391,30 +419,35 @@ int getEtchedBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iO
         return -1;
     }
 
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 1, 1, 4, (const char * const*)&pstFieldList);
+    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 1, 1, iListSize, pstFieldList);
     if (sciErr.iErr)
     {
         return -1;
     }
 
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 2, 1, 1, &pstType[iType]);
-    if (sciErr.iErr)
+    if (iListSize == 2 || iListSize == 4)
     {
-        return -1;
+        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 2, 1, 1, &pstType[iType]);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
     }
 
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 3, 1, 1, &pstHlOutColor);
-    if (sciErr.iErr)
+    if (iListSize == 3 || iListSize == 4)
     {
-        return -1;
-    }
+        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, iListSize - 1, 1, 1, &pstHlOutColor);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
 
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 4, 1, 1, &pstShadowOutColor);
-    if (sciErr.iErr)
-    {
-        return -1;
+        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, iListSize, 1, 1, &pstShadowOutColor);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
     }
-
     return 0;
 }
 /*------------------------------------------------------------------------*/
@@ -422,7 +455,9 @@ int getTitledBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iO
 {
     SciErr sciErr;
     int* piAddrList = NULL;
-    char * pstFieldList[] = {"TitledBorder", "border", "title", "justification", "fontname", "fontangle", "fontsize", "fontweight", "position", "color"};
+    char* pstFieldList1[] = {"TitledBorder", "border", "title", "justification", "position", "font", "color"};
+    char* pstFieldList2[] = {"TitledBorder", "title"};
+    char** pstFieldList = pstFieldList1;
     char* pstJustification[] = {"leading" , "left" , "center" , "right" , "trailing"};
     char* pstPosition[] = {"top" , "above_top" , "below_top" , "bottom" , "above_bottom", "below_bottom"};
     int iChildBorder = 0;
@@ -439,138 +474,147 @@ int getTitledBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iO
     int iPosition = 0;
     int* piPosition = &iPosition;
     char* pstColor = NULL;
+    int iListSize = 7;
 
     getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_TITLE__, jni_int, (void **)&piChildBorder);
-    if (piChildBorder == NULL)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
-    }
-
     getGraphicObjectProperty(_iObjUID, __GO_TITLE__, jni_string, (void **)&pstTitle);
-    if (pstTitle == NULL)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
-    }
-
     getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_JUSTIFICATION__, jni_int, (void **)&piJustification);
-    if (piJustification == NULL)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
-    }
-
     getGraphicObjectProperty(_iObjUID, __GO_UI_FONTNAME__, jni_string, (void **)&pstFontName);
-    if (pstFontName == NULL)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
-    }
-
     getGraphicObjectProperty(_iObjUID, __GO_UI_FONTANGLE__, jni_string, (void **)&pstFontAngle);
-    if (pstFontAngle == NULL)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
-    }
-
     getGraphicObjectProperty(_iObjUID, __GO_UI_FONTSIZE__, jni_int, (void **)&piFontSize);
-    if (piFontSize == NULL)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
-    }
-
-    dblFontSize = (double)iFontSize;
     getGraphicObjectProperty(_iObjUID, __GO_UI_FONTWEIGHT__, jni_string, (void **)&pstFontWeight);
-    if (pstFontWeight == NULL)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
-    }
-
     getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_POSITION__, jni_int, (void **)&piPosition);
-    if (piPosition == NULL)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
-    }
-
     getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_COLOR__, jni_string, (void **)&pstColor);
+
+    //2 3 5 6 7
     if (pstColor == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
+        iListSize = 6;
     }
+
+    if (pstFontName == NULL || pstFontAngle == NULL || piFontSize == NULL || pstFontWeight == NULL)
+    {
+        iListSize = 5;
+    }
+
+    if (piJustification == NULL)
+    {
+        iListSize = 3;
+    }
+
+    if (pstTitle == NULL)
+    {
+        iListSize = 2;
+    }
+
+    if (piChildBorder == NULL)
+    {
+        iListSize = 2;
+        pstFieldList = pstFieldList2;
+    }
+
+
+    dblFontSize = (double)iFontSize;
 
     if (_piParent)
     {
-        sciErr = createTListInList(_pvCtx, _iVar, _piParent, _iPos, 10, &piAddrList);
+        sciErr = createTListInList(_pvCtx, _iVar, _piParent, _iPos, iListSize, &piAddrList);
     }
     else
     {
-        sciErr = createTList(_pvCtx, _iVar, 10, &piAddrList);
+        sciErr = createTList(_pvCtx, _iVar, iListSize, &piAddrList);
     }
 
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 1, 1, 10, (const char * const*)&pstFieldList);
+    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 1, 1, iListSize, pstFieldList);
     if (sciErr.iErr)
     {
         return -1;
     }
 
-    //get child information and fill current list
-    if (getBorders(_pvCtx, _iVar, piAddrList, 2, iChildBorder))
+    if (piChildBorder)
     {
-        return -1;
+        //get child information and fill current list
+        if (getBorders(_pvCtx, _iVar, piAddrList, 2, iChildBorder))
+        {
+            return -1;
+        }
     }
 
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 3, 1, 1, &pstTitle);
-    if (sciErr.iErr)
+    if (pstTitle)
     {
-        return -1;
+        //pos 2 or 3
+        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, piChildBorder == NULL ? 2 : 3, 1, 1, &pstTitle);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
     }
 
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 4, 1, 1, &pstJustification[iJustification]);
-    if (sciErr.iErr)
+    if (iListSize > 3)
     {
-        return -1;
+        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 4, 1, 1, &pstJustification[iJustification]);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
+
+        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 5, 1, 1, &pstPosition[iPosition]);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
     }
 
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 5, 1, 1, &pstFontName);
-    if (sciErr.iErr)
+    if (iListSize > 5)
     {
-        return -1;
+        //create a Font Border
+        int* piFont = NULL;
+        char* pstFontBorder[] = {"FontBorder", "name", "size", "angle", "weight"};
+
+        sciErr = createTListInList(_pvCtx, _iVar, piAddrList, 6, 5, &piFont);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
+
+        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piFont, 1, 1, 5, pstFontBorder);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
+
+        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piFont, 2, 1, 1, &pstFontName);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
+
+        sciErr = createMatrixOfDoubleInList(_pvCtx, _iVar, piFont, 3, 1, 1, &dblFontSize);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
+
+        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piFont, 4, 1, 1, &pstFontAngle);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
+
+        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piFont, 5, 1, 1, &pstFontWeight);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
     }
 
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 6, 1, 1, &pstFontAngle);
-    if (sciErr.iErr)
+    if (iListSize > 6)
     {
-        return -1;
-    }
-
-    sciErr = createMatrixOfDoubleInList(_pvCtx, _iVar, piAddrList, 7, 1, 1, &dblFontSize);
-    if (sciErr.iErr)
-    {
-        return -1;
-    }
-
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 8, 1, 1, &pstFontWeight);
-    if (sciErr.iErr)
-    {
-        return -1;
-    }
-
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 9, 1, 1, &pstPosition[iPosition]);
-    if (sciErr.iErr)
-    {
-        return -1;
-    }
-
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 10, 1, 1, &pstColor);
-    if (sciErr.iErr)
-    {
-        return -1;
+        sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 7, 1, 1, &pstColor);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
     }
 
     return 0;
@@ -580,53 +624,57 @@ int getEmptyBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iOb
 {
     SciErr sciErr;
     int* piAddrList = NULL;
-    char * pstFieldList[] = {"EmptyBorder", "top", "left", "bottom", "right"};
+    char* pstFieldList[] = {"EmptyBorder", "top", "left", "bottom", "right"};
     double* pdblPosition = NULL;
+    int iListSize = 5;
 
     getGraphicObjectProperty(_iObjUID, __GO_POSITION__, jni_double_vector, (void **)&pdblPosition);
+
     if (pdblPosition == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
+        iListSize = 1;
     }
 
     if (_piParent)
     {
-        sciErr = createTListInList(_pvCtx, _iVar, _piParent, _iPos, 5, &piAddrList);
+        sciErr = createTListInList(_pvCtx, _iVar, _piParent, _iPos, iListSize, &piAddrList);
     }
     else
     {
-        sciErr = createTList(_pvCtx, _iVar, 5, &piAddrList);
+        sciErr = createTList(_pvCtx, _iVar, iListSize, &piAddrList);
     }
 
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 1, 1, 5, (const char * const*)&pstFieldList);
+    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 1, 1, iListSize, pstFieldList);
     if (sciErr.iErr)
     {
         return -1;
     }
 
-    sciErr = createMatrixOfDoubleInList(_pvCtx, _iVar, piAddrList, 2, 1, 1, &pdblPosition[0]);
-    if (sciErr.iErr)
+    if (iListSize > 1)
     {
-        return -1;
-    }
+        sciErr = createMatrixOfDoubleInList(_pvCtx, _iVar, piAddrList, 2, 1, 1, &pdblPosition[0]);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
 
-    sciErr = createMatrixOfDoubleInList(_pvCtx, _iVar, piAddrList, 3, 1, 1, &pdblPosition[1]);
-    if (sciErr.iErr)
-    {
-        return -1;
-    }
+        sciErr = createMatrixOfDoubleInList(_pvCtx, _iVar, piAddrList, 3, 1, 1, &pdblPosition[1]);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
 
-    sciErr = createMatrixOfDoubleInList(_pvCtx, _iVar, piAddrList, 4, 1, 1, &pdblPosition[2]);
-    if (sciErr.iErr)
-    {
-        return -1;
-    }
+        sciErr = createMatrixOfDoubleInList(_pvCtx, _iVar, piAddrList, 4, 1, 1, &pdblPosition[2]);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
 
-    sciErr = createMatrixOfDoubleInList(_pvCtx, _iVar, piAddrList, 5, 1, 1, &pdblPosition[3]);
-    if (sciErr.iErr)
-    {
-        return -1;
+        sciErr = createMatrixOfDoubleInList(_pvCtx, _iVar, piAddrList, 5, 1, 1, &pdblPosition[3]);
+        if (sciErr.iErr)
+        {
+            return -1;
+        }
     }
 
     return 0;
@@ -636,50 +684,48 @@ int getCompoundBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _
 {
     SciErr sciErr;
     int* piAddrList = NULL;
-    char * pstFieldList[] = {"CompoundBorder", "outer", "inner"};
+    char* pstFieldList[] = {"CompoundBorder", "outer", "inner"};
     int iChildBorderOut = 0;
     int* piChildBorderOut = &iChildBorderOut;
     int iChildBorderIn = 0;
     int* piChildBorderIn = &iChildBorderIn;
+    int iListSize = 3;
 
     getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_OUT_BORDER__, jni_int, (void **)&piChildBorderOut);
-    if (piChildBorderOut == NULL)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
-    }
-
     getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_IN_BORDER__, jni_int, (void **)&piChildBorderIn);
-    if (piChildBorderIn == NULL)
+
+    if (piChildBorderOut == NULL || piChildBorderIn == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
+        iListSize = 1;
     }
 
     if (_piParent)
     {
-        sciErr = createTListInList(_pvCtx, _iVar, _piParent, _iPos, 3, &piAddrList);
+        sciErr = createTListInList(_pvCtx, _iVar, _piParent, _iPos, iListSize, &piAddrList);
     }
     else
     {
-        sciErr = createTList(_pvCtx, _iVar, 3, &piAddrList);
+        sciErr = createTList(_pvCtx, _iVar, iListSize, &piAddrList);
     }
 
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 1, 1, 3, (const char * const*)&pstFieldList);
+    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 1, 1, iListSize, pstFieldList);
     if (sciErr.iErr)
     {
         return -1;
     }
 
-    //get child information and fill current list
-    if (getBorders(_pvCtx, _iVar, piAddrList, 2, iChildBorderOut))
+    if (iListSize > 1)
     {
-        return -1;
-    }
+        //get child information and fill current list
+        if (getBorders(_pvCtx, _iVar, piAddrList, 2, iChildBorderOut))
+        {
+            return -1;
+        }
 
-    if (getBorders(_pvCtx, _iVar, piAddrList, 3, iChildBorderIn))
-    {
-        return -1;
+        if (getBorders(_pvCtx, _iVar, piAddrList, 3, iChildBorderIn))
+        {
+            return -1;
+        }
     }
 
     return 0;
@@ -689,34 +735,24 @@ int getMatteBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iOb
 {
     SciErr sciErr;
     int* piAddrList = NULL;
-    char * pstFieldList[] = {"MatteBorder", "top", "left", "bottom", "right", "color"};
+    char* pstFieldList[] = {"MatteBorder", "top", "left", "bottom", "right", "color"};
     double* pdblPosition = NULL;
     char* pstColor = NULL;
+    int iListSize = 6;
 
     getGraphicObjectProperty(_iObjUID, __GO_POSITION__, jni_double_vector, (void **)&pdblPosition);
-    if (pdblPosition == NULL)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
-    }
-
     getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_COLOR__, jni_string, (void **)&pstColor);
-    if (pstColor == NULL)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
-        return -1;
-    }
 
     if (_piParent)
     {
-        sciErr = createTListInList(_pvCtx, _iVar, _piParent, _iPos, 6, &piAddrList);
+        sciErr = createTListInList(_pvCtx, _iVar, _piParent, _iPos, iListSize, &piAddrList);
     }
     else
     {
-        sciErr = createTList(_pvCtx, _iVar, 6, &piAddrList);
+        sciErr = createTList(_pvCtx, _iVar, iListSize, &piAddrList);
     }
 
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 1, 1, 6, (const char * const*)&pstFieldList);
+    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddrList, 1, 1, iListSize, pstFieldList);
     if (sciErr.iErr)
     {
         return -1;

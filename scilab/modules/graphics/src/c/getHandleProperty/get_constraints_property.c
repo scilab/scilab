@@ -88,16 +88,16 @@ int get_constraints_property(void* _pvCtx, int iObjUID)
                 case BORDER_CENTER :
                     addStringToReturnedList(tList, "center");
                     break;
-                case BORDER_SOUTH :
+                case BORDER_BOTTOM :
                     addStringToReturnedList(tList, "bottom");
                     break;
-                case BORDER_NORTH :
+                case BORDER_TOP :
                     addStringToReturnedList(tList, "top");
                     break;
-                case BORDER_WEST :
+                case BORDER_LEFT :
                     addStringToReturnedList(tList, "left");
                     break;
-                case BORDER_EAST :
+                case BORDER_RIGHT :
                     addStringToReturnedList(tList, "right");
                     break;
             }

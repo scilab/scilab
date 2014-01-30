@@ -18,6 +18,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_NAME__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFOBAR_VISIBLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFO_MESSAGE__;
@@ -171,23 +173,60 @@ public class SwingScilabCommonPanel {
             case __GO_LAYOUT__ :
                 LayoutType newLayout = LayoutType.intToEnum((Integer) value);
                 switch (newLayout) {
-                    case BORDER :
+                    case BORDER : {
                         Integer[] padding = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_BORDER_OPT_PADDING__);
                         component.getWidgetPane().setLayout(new BorderLayout(padding[0], padding[1]));
                         component.getWidgetPane().setLayout(new BorderLayout());
                         break;
-                    case GRIDBAG :
+                    }
+                    case GRIDBAG : {
                         component.getWidgetPane().setLayout(new GridBagLayout());
                         break;
-                    case GRID :
-                        component.getWidgetPane().setLayout(new GridLayout());
+                    }
+                    case GRID : {
+                        Integer[] padding = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_GRID_OPT_PADDING__);
+                        Integer[] grid = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_GRID_OPT_GRID__);
+                        if (grid[0] == 0 && grid[1] == 0) {
+                            grid[0] = 1;
+                        }
+                        component.getWidgetPane().setLayout(new GridLayout(grid[0], grid[1], padding[0], padding[1]));
                         break;
+                    }
                     case NONE :
                     default:
                         component.getWidgetPane().setLayout(null);
                         break;
                 }
                 break;
+            case __GO_GRID_OPT_PADDING__ :
+            case __GO_GRID_OPT_GRID__ : {
+                Integer layout = (Integer) GraphicController.getController().getProperty(component.getId(), __GO_LAYOUT__);
+                LayoutType layoutType = LayoutType.intToEnum(layout);
+
+                if (layoutType != LayoutType.GRID) {
+                    break;
+                }
+
+                Integer[] padding = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_GRID_OPT_PADDING__);
+                Integer[] grid = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_GRID_OPT_GRID__);
+                if (grid[0] == 0 && grid[1] == 0) {
+                    grid[0] = 1;
+                }
+                component.getWidgetPane().setLayout(new GridLayout(grid[0], grid[1], padding[0], padding[1]));
+                break;
+            }
+            case __GO_BORDER_OPT_PADDING__ : {
+                Integer layout = (Integer) GraphicController.getController().getProperty(component.getId(), __GO_LAYOUT__);
+                LayoutType layoutType = LayoutType.intToEnum(layout);
+
+                if (layoutType != LayoutType.BORDER) {
+                    break;
+                }
+
+                Integer[] padding = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_BORDER_OPT_PADDING__);
+                component.getWidgetPane().setLayout(new BorderLayout(padding[0], padding[1]));
+                component.getWidgetPane().setLayout(new BorderLayout());
+            }
         }
     }
 
@@ -243,16 +282,16 @@ public class SwingScilabCommonPanel {
         Uicontrol uicontrol = (Uicontrol) GraphicModel.getModel().getObjectFromId(member.getId());
         if (component.getWidgetPane().getLayout() instanceof BorderLayout) {
             switch (uicontrol.getBorderPositionAsEnum()) {
-                case SOUTH:
+                case BOTTOM:
                     component.getWidgetPane().add((Component) member, BorderLayout.SOUTH);
                     break;
-                case NORTH:
+                case TOP:
                     component.getWidgetPane().add((Component) member, BorderLayout.NORTH);
                     break;
-                case WEST:
+                case LEFT:
                     component.getWidgetPane().add((Component) member, BorderLayout.WEST);
                     break;
-                case EAST:
+                case RIGHT:
                     component.getWidgetPane().add((Component) member, BorderLayout.EAST);
                     break;
                 case CENTER:

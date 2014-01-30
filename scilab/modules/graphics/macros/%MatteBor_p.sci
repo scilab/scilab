@@ -6,6 +6,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 function %MatteBor_p(t)
+    count = size(t(1), "*");
+
     printf("Matte Border\n");
     printf("  Top    : %s\n", sci2exp(t.top));
     printf("  Left   : %s\n", sci2exp(t.left));

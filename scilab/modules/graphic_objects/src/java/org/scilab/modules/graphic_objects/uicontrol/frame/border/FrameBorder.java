@@ -2,9 +2,7 @@ package org.scilab.modules.graphic_objects.uicontrol.frame.border;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LINE_THICKNESS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER_STYLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TITLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTNAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTSIZE__;
@@ -19,7 +17,9 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER_ROUNDED__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER_SHADOW_IN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER_SHADOW_OUT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER_STYLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER_TITLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
 
 import java.util.Arrays;
@@ -66,7 +66,7 @@ public class FrameBorder extends GraphicObject {
 
         public static BorderType stringToEnum(String value) {
             if (value == null || value.equals("")) {
-                return RAISED;
+                return null;
             }
 
             char[] chars = value.toCharArray();
@@ -99,7 +99,7 @@ public class FrameBorder extends GraphicObject {
 
         public static JustificationType stringToEnum(String value) {
             if (value == null || value.equals("")) {
-                return LEADING;
+                return null;
             }
 
             char[] chars = value.toCharArray();
@@ -151,7 +151,7 @@ public class FrameBorder extends GraphicObject {
 
         public static TitlePositionType stringToEnum(String value) {
             if (value == null || value.equals("")) {
-                return TOP;
+                return null;
             }
 
             if (value.equalsIgnoreCase("above_top")) {
@@ -178,33 +178,27 @@ public class FrameBorder extends GraphicObject {
         }
     };
 
-    private static final Integer DEFAULTFONTSIZE = 10;
-    private static final String DEFAULTFONTNAME = "helvetica";
-    private static final String DEFAULTFONTWEIGHT = "normal";
-    private static final String DEFAULTFONTANGLE = DEFAULTFONTWEIGHT;
-    private static final String DEFAULTCOLOR = "black";
-
-    private BorderType type = BorderType.RAISED;
-    private String color = DEFAULTCOLOR;
-    private String hlOutColor = DEFAULTCOLOR;
-    private String hlInColor = DEFAULTCOLOR;
-    private String shadowOutColor = DEFAULTCOLOR;
-    private String shadowInColor = DEFAULTCOLOR;
-    private Integer thickness = 1;
-    private Boolean rounded = false;
-    private FrameBorderType style = FrameBorderType.ETCHED;
-    private String title = "";
-    private JustificationType justification = JustificationType.LEADING;
-    private String fontAngle = DEFAULTFONTANGLE;
-    private String fontName = DEFAULTFONTNAME;
-    private Integer fontSize = DEFAULTFONTSIZE;
-    private String fontWeight = DEFAULTFONTWEIGHT;
+    private BorderType type = null;//BorderType.NONE;
+    private String color = null;
+    private String hlOutColor = null;
+    private String hlInColor = null;
+    private String shadowOutColor = null;
+    private String shadowInColor = null;
+    private Integer thickness = null;
+    private Boolean rounded = null;
+    private FrameBorderType style = null;//FrameBorderType.ETCHED;
+    private String title = null;
+    private JustificationType justification = null;//JustificationType.LEADING;
+    private String fontAngle = null;
+    private String fontName = null;
+    private Integer fontSize = null;
+    private String fontWeight = null;
     private TitlePositionType titlePosition = TitlePositionType.TOP;
-    private Double[] position = new Double[] {0.0, 0.0, 0.0, 0.0};//TLBR
+    private Double[] position = null;//new Double[] {0.0, 0.0, 0.0, 0.0};//TLBR
 
-    private Integer titleBorder = 0;
-    private Integer inBorder = 0;
-    private Integer outBorder = 0;
+    private Integer titleBorder = null;
+    private Integer inBorder = null;
+    private Integer outBorder = null;
 
     public FrameBorder() {
 
@@ -255,7 +249,7 @@ public class FrameBorder extends GraphicObject {
                 return FrameBorderProperty.TITLE_BORDER;
             case __GO_UI_FRAME_BORDER_POSITION__:
                 return FrameBorderProperty.TITLE_POSITION;
-            case __GO_TYPE__:
+            case __GO_UI_FRAME_BORDER_TYPE__:
                 return FrameBorderProperty.TYPE;
             default:
                 return super.getPropertyFromName(propertyName);
@@ -361,7 +355,7 @@ public class FrameBorder extends GraphicObject {
 
     /** type */
     public Integer getBorderType() {
-        return type.ordinal();
+        return type == null ? null : type.ordinal();
     }
 
     public BorderType getBorderTypeAsEnum() {
@@ -383,7 +377,7 @@ public class FrameBorder extends GraphicObject {
 
     /** titleposition */
     public Integer getTitlePosition() {
-        return titlePosition.ordinal();
+        return titlePosition == null ? null : titlePosition.ordinal();
     }
 
     public TitlePositionType getTitlePositionAsEnum() {
@@ -409,7 +403,7 @@ public class FrameBorder extends GraphicObject {
     }
 
     public UpdateStatus setTitleBorder(Integer value) {
-        if (titleBorder.equals(value)) {
+        if (titleBorder != null && titleBorder.equals(value)) {
             return UpdateStatus.NoChange;
         }
 
@@ -423,7 +417,7 @@ public class FrameBorder extends GraphicObject {
     }
 
     public UpdateStatus setTitle(String value) {
-        if (title.equals(value)) {
+        if (title != null && title.equals(value)) {
             return UpdateStatus.NoChange;
         }
 
@@ -437,7 +431,7 @@ public class FrameBorder extends GraphicObject {
     }
 
     public UpdateStatus setThickness(Integer value) {
-        if (thickness.equals(value)) {
+        if (thickness != null && thickness.equals(value)) {
             return UpdateStatus.NoChange;
         }
 
@@ -447,7 +441,7 @@ public class FrameBorder extends GraphicObject {
 
     /** style */
     public Integer getStyle() {
-        return style.ordinal();
+        return style == null ? null : style.ordinal();
     }
 
     public FrameBorderType getStyleAsEnum() {
@@ -459,7 +453,7 @@ public class FrameBorder extends GraphicObject {
     }
 
     public UpdateStatus setStyle(FrameBorderType value) {
-        if (style.equals(value)) {
+        if (style != null && style.equals(value)) {
             return UpdateStatus.NoChange;
         }
 
@@ -473,7 +467,7 @@ public class FrameBorder extends GraphicObject {
     }
 
     public UpdateStatus setShadowOut(String value) {
-        if (shadowOutColor.equals(value)) {
+        if (shadowOutColor != null && shadowOutColor.equals(value)) {
             return UpdateStatus.NoChange;
         }
 
@@ -487,7 +481,7 @@ public class FrameBorder extends GraphicObject {
     }
 
     public UpdateStatus setShadowIn(String value) {
-        if (shadowInColor.equals(value)) {
+        if (shadowInColor != null && shadowInColor.equals(value)) {
             return UpdateStatus.NoChange;
         }
 
@@ -501,7 +495,7 @@ public class FrameBorder extends GraphicObject {
     }
 
     public UpdateStatus setRounded(Boolean value) {
-        if (rounded.equals(value)) {
+        if (rounded != null && rounded.equals(value)) {
             return UpdateStatus.NoChange;
         }
 
@@ -515,7 +509,7 @@ public class FrameBorder extends GraphicObject {
     }
 
     public UpdateStatus setPosition(Double[] value) {
-        if (Arrays.equals(position, value)) {
+        if (position != null && Arrays.equals(position, value)) {
             return UpdateStatus.NoChange;
         }
 
@@ -529,7 +523,7 @@ public class FrameBorder extends GraphicObject {
     }
 
     public UpdateStatus setOutBorder(Integer value) {
-        if (outBorder.equals(value)) {
+        if (outBorder != null && outBorder.equals(value)) {
             return UpdateStatus.NoChange;
         }
 
@@ -539,7 +533,7 @@ public class FrameBorder extends GraphicObject {
 
     /** justification */
     public Integer getJustification() {
-        return justification.ordinal();
+        return justification == null ? null : justification.ordinal();
     }
 
     public JustificationType getJustificationAsEnum() {
@@ -565,7 +559,7 @@ public class FrameBorder extends GraphicObject {
     }
 
     public UpdateStatus setInBorder(Integer value) {
-        if (inBorder.equals(value)) {
+        if (inBorder != null && inBorder.equals(value)) {
             return UpdateStatus.NoChange;
         }
 
@@ -579,7 +573,7 @@ public class FrameBorder extends GraphicObject {
     }
 
     public UpdateStatus setHlOut(String value) {
-        if (hlOutColor.equals(value)) {
+        if (hlOutColor != null && hlOutColor.equals(value)) {
             return UpdateStatus.NoChange;
         }
 
@@ -593,7 +587,7 @@ public class FrameBorder extends GraphicObject {
     }
 
     public UpdateStatus setHlIn(String value) {
-        if (hlInColor.equals(value)) {
+        if (hlInColor != null && hlInColor.equals(value)) {
             return UpdateStatus.NoChange;
         }
 
@@ -607,7 +601,7 @@ public class FrameBorder extends GraphicObject {
     }
 
     public UpdateStatus setFontWeight(String value) {
-        if (fontWeight.equals(value)) {
+        if (fontWeight != null && fontWeight.equals(value)) {
             return UpdateStatus.NoChange;
         }
 
@@ -621,7 +615,7 @@ public class FrameBorder extends GraphicObject {
     }
 
     public UpdateStatus setFontSize(Integer value) {
-        if (fontSize.equals(value)) {
+        if (fontSize != null && fontSize.equals(value)) {
             return UpdateStatus.NoChange;
         }
 
@@ -635,7 +629,7 @@ public class FrameBorder extends GraphicObject {
     }
 
     public UpdateStatus setFontName(String value) {
-        if (fontName.equals(value)) {
+        if (fontName != null && fontName.equals(value)) {
             return UpdateStatus.NoChange;
         }
 
@@ -649,7 +643,7 @@ public class FrameBorder extends GraphicObject {
     }
 
     public UpdateStatus setFontAngle(String value) {
-        if (fontAngle.equals(value)) {
+        if (fontAngle != null && fontAngle.equals(value)) {
             return UpdateStatus.NoChange;
         }
 
@@ -663,7 +657,7 @@ public class FrameBorder extends GraphicObject {
     }
 
     public UpdateStatus setColor(String value) {
-        if (color.equals(value)) {
+        if (color != null && color.equals(value)) {
             return UpdateStatus.NoChange;
         }
 

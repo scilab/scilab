@@ -6,7 +6,26 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 function %EtchedBo_p(t)
+    count = size(t(1), "*");
+
     printf("Etched Border\n");
+
+    if count == 1 then
+        printf("  No option\n");
+        return;
+    end
+
+    if count == 2 then
+        printf("  Type      : %s\n", sci2exp(t.type));
+        return;
+    end
+
+    if count == 3 then
+        printf("  Highlight : %s\n", sci2exp(t.hl));
+        printf("  Shadow    : %s\n", sci2exp(t.shadow));
+        return;
+    end
+
     printf("  Type      : %s\n", sci2exp(t.type));
     printf("  Highlight : %s\n", sci2exp(t.hl));
     printf("  Shadow    : %s\n", sci2exp(t.shadow));

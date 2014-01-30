@@ -390,5 +390,6 @@
 #define __GO_UI_GROUP_NAME__ 368
 #define __GO_UI_TITLE_POSITION__ 369
 #define __GO_UI_TITLE_SCROLL__ 370
+#define __GO_UI_FRAME_BORDER_TYPE__ 371
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */

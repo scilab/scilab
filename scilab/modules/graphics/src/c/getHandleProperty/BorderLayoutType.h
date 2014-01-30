@@ -12,10 +12,10 @@
 
 typedef enum BorderLayoutType
 {
-    BORDER_SOUTH = 0,
-    BORDER_NORTH,
+    BORDER_BOTTOM = 0,
+    BORDER_TOP,
     BORDER_CENTER,
-    BORDER_WEST,
-    BORDER_EAST
+    BORDER_LEFT,
+    BORDER_RIGHT
 };
 

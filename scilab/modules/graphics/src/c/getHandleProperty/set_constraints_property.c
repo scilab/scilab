@@ -97,19 +97,19 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             }
             else if (stricmp(pstPos, "bottom") == 0)
             {
-                iPos = BORDER_SOUTH;
+                iPos = BORDER_BOTTOM;
             }
             else if (stricmp(pstPos, "top") == 0)
             {
-                iPos = BORDER_NORTH;
+                iPos = BORDER_TOP;
             }
             else if (stricmp(pstPos, "left") == 0)
             {
-                iPos = BORDER_WEST;
+                iPos = BORDER_LEFT;
             }
             else if (stricmp(pstPos, "right") == 0)
             {
-                iPos = BORDER_EAST;
+                iPos = BORDER_RIGHT;
             }
             else
             {

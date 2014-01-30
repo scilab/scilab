@@ -6,7 +6,15 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 function %EmptyBor_p(t)
+    count = size(t(1), "*");
+
     printf("Empty Border\n");
+
+    if count == 1 then
+        printf("  No option\n");
+        return;
+    end
+
     printf("  Top    : %s\n", sci2exp(t.top));
     printf("  Left   : %s\n", sci2exp(t.left));
     printf("  Bottom : %s\n", sci2exp(t.bottom));

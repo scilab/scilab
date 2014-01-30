@@ -391,5 +391,6 @@ public class GraphicObjectProperties {
     public static final int __GO_UI_GROUP_NAME__ = 368;
     public static final int __GO_UI_TITLE_POSITION__ = 369;
     public static final int __GO_UI_TITLE_SCROLL__ = 370;
+    public static final int __GO_UI_FRAME_BORDER_TYPE__ = 371;
 
 }

@@ -14,10 +14,8 @@
 package org.scilab.modules.gui.bridge.frame;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -25,13 +23,13 @@ import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 
 import javax.swing.JPanel;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
-import org.scilab.modules.graphic_objects.utils.LayoutType;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
@@ -143,16 +141,16 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
         Uicontrol uicontrol = (Uicontrol) GraphicModel.getModel().getObjectFromId(member.getId());
         if (getLayout() instanceof BorderLayout) {
             switch (uicontrol.getBorderPositionAsEnum()) {
-                case SOUTH:
+                case BOTTOM:
                     add((Component) member, BorderLayout.SOUTH);
                     break;
-                case NORTH:
+                case TOP:
                     add((Component) member, BorderLayout.NORTH);
                     break;
-                case WEST:
+                case LEFT:
                     add((Component) member, BorderLayout.WEST);
                     break;
-                case EAST:
+                case RIGHT:
                     add((Component) member, BorderLayout.EAST);
                     break;
                 case CENTER:
@@ -179,7 +177,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             // Anchor
             switch (uicontrol.getGridBagAnchorAsEnum()) {
                 case LEFT :
-                    constraints.anchor = GridBagConstraints.EAST;
+                    constraints.anchor = GridBagConstraints.WEST;
                     break;
                 case UPPER :
                     constraints.anchor = GridBagConstraints.NORTH;
@@ -188,19 +186,19 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
                     constraints.anchor = GridBagConstraints.SOUTH;
                     break;
                 case LOWER_LEFT:
-                    constraints.anchor = GridBagConstraints.SOUTHEAST;
-                    break;
-                case LOWER_RIGHT:
                     constraints.anchor = GridBagConstraints.SOUTHWEST;
                     break;
+                case LOWER_RIGHT:
+                    constraints.anchor = GridBagConstraints.SOUTHEAST;
+                    break;
                 case RIGHT:
-                    constraints.anchor = GridBagConstraints.WEST;
+                    constraints.anchor = GridBagConstraints.EAST;
                     break;
                 case UPPER_LEFT:
-                    constraints.anchor = GridBagConstraints.NORTHEAST;
+                    constraints.anchor = GridBagConstraints.NORTHWEST;
                     break;
                 case UPPER_RIGHT:
-                    constraints.anchor = GridBagConstraints.NORTHWEST;
+                    constraints.anchor = GridBagConstraints.NORTHEAST;
                     break;
                 case CENTER :
                 default :
@@ -226,7 +224,10 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             }
 
             // Insets
-            // TODO : add Insets
+            Double[] margins = uicontrol.getMargins();
+            constraints.insets = new Insets(
+                margins[0].intValue(), margins[1].intValue(),
+                margins[2].intValue(), margins[2].intValue());
 
             // Padding
             Integer[] padding = uicontrol.getGridBagPadding();
@@ -235,6 +236,8 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
 
             add((Component) member, constraints);
             revalidate();
+        } else if (getLayout() instanceof GridLayout) {
+            this.add((Component) member, 0);
         } else {
             this.add((Component) member);
         }
@@ -634,7 +637,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        //setBorder(ScilabRelief.getBorderFromRelief(reliefType));
     }
 
     /**
@@ -716,6 +719,8 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
                         }
                     }
                 }
+                break;
+            default :
                 break;
         }
     }

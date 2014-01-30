@@ -14,14 +14,16 @@
 package org.scilab.modules.gui;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_STYLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_USER_DATA__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
@@ -30,22 +32,23 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTUNITS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTWEIGHT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GROUP_NAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TOOLTIPSTRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_UNITS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_USER_DATA__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VALID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GROUP_NAME__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -54,15 +57,14 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
 import javax.swing.AbstractButton;
-import javax.swing.ButtonGroup;
+import javax.swing.border.Border;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
-import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 import org.scilab.modules.graphic_objects.utils.LayoutType;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
-import org.scilab.modules.gui.bridge.groupmanager.GroupManager;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
+import org.scilab.modules.gui.bridge.groupmanager.GroupManager;
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
 import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
@@ -70,12 +72,12 @@ import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
 import org.scilab.modules.gui.bridge.uiimage.SwingScilabUiImage;
 import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
+import org.scilab.modules.gui.utils.BorderConvertor;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.UnitsConverter;
 import org.scilab.modules.gui.utils.UnitsConverter.UicontrolUnits;
 import org.scilab.modules.gui.widget.Widget;
-
 /**
  * @author Bruno JOFRET
  * @author Vincent COUVERT
@@ -110,6 +112,7 @@ public final class SwingViewWidget {
         Double[] allColors = null;
         double maxValue = 0;
 
+        GraphicController controller = GraphicController.getController();
         switch (property) {
             case __GO_UI_BACKGROUNDCOLOR__ :
                 allColors = ((Double[]) value);
@@ -118,11 +121,11 @@ public final class SwingViewWidget {
                                                   (int) (allColors[2] * COLORS_COEFF)));
                 break;
             case __GO_CALLBACK__ :
-                int cbType = (Integer) GraphicController.getController().getProperty(uid, __GO_CALLBACKTYPE__);
+                int cbType = (Integer) controller.getProperty(uid, __GO_CALLBACKTYPE__);
                 uiControl.setCallback(CommonCallBack.createCallback((String) value, cbType, uid));
                 break;
             case __GO_CALLBACKTYPE__ :
-                String cbString = (String) GraphicController.getController().getProperty(uid, __GO_CALLBACK__);
+                String cbString = (String) controller.getProperty(uid, __GO_CALLBACK__);
                 if ((Integer) value == CallBack.UNTYPED) { /* Deactivate callback */
                     uiControl.setCallback(null);
                 } else {
@@ -168,7 +171,7 @@ public final class SwingViewWidget {
                 }
                 break;
             case __GO_UI_FONTSIZE__ :
-                UicontrolUnits fontUnitsProperty = UnitsConverter.stringToUnitsEnum((String) GraphicController.getController()
+                UicontrolUnits fontUnitsProperty = UnitsConverter.stringToUnitsEnum((String) controller
                                                    .getProperty(uid, __GO_UI_FONTUNITS__));
                 Double dblFontSize = UnitsConverter.convertToPoint((Double) value, fontUnitsProperty, uiControl, false);
                 font = uiControl.getFont();
@@ -222,16 +225,16 @@ public final class SwingViewWidget {
                 break;
             case __GO_UI_MAX__ :
                 maxValue = ((Double) value);
-                Double[] allValues = (Double[]) GraphicController.getController().getProperty(uid, __GO_UI_VALUE__);
+                Double[] allValues = (Double[]) controller.getProperty(uid, __GO_UI_VALUE__);
                 if ((allValues == null) || (allValues.length == 0)) {
                     return;
                 }
                 double uicontrolValue = allValues[0];
                 if (uiControl instanceof SwingScilabSlider) {
                     // Update the slider properties
-                    double minValue = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
+                    double minValue = (Double) controller.getProperty(uid, __GO_UI_MIN__);
                     ((SwingScilabSlider) uiControl).setMaximumValue(maxValue);
-                    Double[] sliderStep = ((Double[]) GraphicController.getController().getProperty(uid, __GO_UI_SLIDERSTEP__));
+                    Double[] sliderStep = ((Double[]) controller.getProperty(uid, __GO_UI_SLIDERSTEP__));
                     double minorSliderStep = sliderStep[0].doubleValue();
                     double majorSliderStep = sliderStep[1].doubleValue();
                     if (minValue <= maxValue) {
@@ -240,7 +243,7 @@ public final class SwingViewWidget {
                     }
                 } else if (uiControl instanceof SwingScilabListBox) {
                     // Enable/Disable multiple selection
-                    double minValue = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
+                    double minValue = (Double) controller.getProperty(uid, __GO_UI_MIN__);
                     ((SwingScilabListBox) uiControl).setMultipleSelectionEnabled(maxValue - minValue > 1);
                 } else if (uiControl instanceof SwingScilabCheckBox) {
                     // Check/Uncheck the CheckBox
@@ -254,9 +257,9 @@ public final class SwingViewWidget {
                 double minValue = ((Double) value);
                 if (uiControl instanceof SwingScilabSlider) {
                     // Update the slider properties
-                    maxValue = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+                    maxValue = (Double) controller.getProperty(uid, __GO_UI_MAX__);
                     ((SwingScilabSlider) uiControl).setMinimumValue(minValue);
-                    Double[] sliderStep = ((Double[]) GraphicController.getController().getProperty(uid, __GO_UI_SLIDERSTEP__));
+                    Double[] sliderStep = ((Double[]) controller.getProperty(uid, __GO_UI_SLIDERSTEP__));
                     double minorSliderStep = sliderStep[0].doubleValue();
                     double majorSliderStep = sliderStep[1].doubleValue();
                     if (minValue <= maxValue) {
@@ -265,7 +268,7 @@ public final class SwingViewWidget {
                     }
                 } else if (uiControl instanceof SwingScilabListBox) {
                     // Enable/Disable multiple selection
-                    maxValue = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+                    maxValue = (Double) controller.getProperty(uid, __GO_UI_MAX__);
                     ((SwingScilabListBox) uiControl).setMultipleSelectionEnabled(maxValue - minValue > 1);
                 }
                 break;
@@ -274,10 +277,10 @@ public final class SwingViewWidget {
                 UicontrolUnits unitsProperty = UnitsConverter.stringToUnitsEnum((String) GraphicController
                                                .getController().getProperty(uid, __GO_UI_UNITS__));
                 Double[] dblValues = UnitsConverter.convertPositionToPixels((Double[]) value, unitsProperty, uiControl);
-                /* Set dimensions before position because position is adjusted according to size */
+                // Set dimensions before position because position is adjusted according to size
                 uiControl.setDims(new Size(dblValues[WIDTH_INDEX].intValue(), dblValues[HEIGHT_INDEX].intValue()));
                 uiControl.setPosition(new Position(dblValues[X_INDEX].intValue(), dblValues[Y_INDEX].intValue()));
-                /* Manage sliders orientation */
+                // Manage sliders orientation
                 if (uiControl instanceof SwingScilabSlider) {
                     if (dblValues[WIDTH_INDEX].intValue() > dblValues[HEIGHT_INDEX].intValue()) {
                         ((SwingScilabSlider) uiControl).setHorizontal();
@@ -306,7 +309,7 @@ public final class SwingViewWidget {
                 if (uiControl instanceof SwingScilabUiTable) {
                     // Update column names
                     String[] stringValue = (String[]) value;
-                    int colNb = ((Integer) GraphicController.getController().getProperty(uid, __GO_UI_STRING_COLNB__));
+                    int colNb = ((Integer) controller.getProperty(uid, __GO_UI_STRING_COLNB__));
                     String[] colNames = new String[colNb - 1];
                     for (int k = 1; k < colNb; k++) {
                         colNames[k - 1] = stringValue[k * (stringValue.length / colNb)];
@@ -385,11 +388,11 @@ public final class SwingViewWidget {
                     ((SwingScilabPopupMenu) uiControl).setUserSelectedIndex(intValue[0]);
                 } else if (uiControl instanceof SwingScilabCheckBox) {
                     // Check the checkbox if the value is equal to MAX property
-                    maxValue = ((Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__)).intValue();
+                    maxValue = ((Double) controller.getProperty(uid, __GO_UI_MAX__)).intValue();
                     ((SwingScilabCheckBox) uiControl).setChecked(maxValue == intValue[0]);
                 } else if (uiControl instanceof SwingScilabRadioButton) {
                     // Check the radiobutton if the value is equal to MAX property
-                    maxValue = ((Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__)).intValue();
+                    maxValue = ((Double) controller.getProperty(uid, __GO_UI_MAX__)).intValue();
                     ((SwingScilabRadioButton) uiControl).setChecked(maxValue == intValue[0]);
                 } else if (uiControl instanceof SwingScilabSlider) {
                     // Update the slider value
@@ -442,7 +445,7 @@ public final class SwingViewWidget {
             case __GO_PARENT__ :
                 /* Update position */
                 SwingViewWidget.update(uiControl, __GO_POSITION__,
-                                       GraphicController.getController().getProperty(uid, __GO_POSITION__));
+                                       controller.getProperty(uid, __GO_POSITION__));
                 break;
             case __GO_UI_GROUP_NAME__ :
                 if (uiControl instanceof SwingScilabRadioButton
@@ -461,16 +464,23 @@ public final class SwingViewWidget {
                     SwingScilabFrame frame = (SwingScilabFrame)uiControl;
                     LayoutType newLayout = LayoutType.intToEnum((Integer) value);
                     switch (newLayout) {
-                        case BORDER :
-                            Integer[] padding = (Integer[]) GraphicController.getController().getProperty(frame.getId(), __GO_BORDER_OPT_PADDING__);
+                        case BORDER : {
+                            Integer[] padding = (Integer[]) controller.getProperty(frame.getId(), __GO_BORDER_OPT_PADDING__);
                             frame.setLayout(new BorderLayout(padding[0], padding[1]));
                             break;
+                        }
                         case GRIDBAG :
                             frame.setLayout(new GridBagLayout());
                             break;
-                        case GRID :
-                            frame.setLayout(new GridLayout());
+                        case GRID : {
+                            Integer[] padding = (Integer[]) controller.getProperty(frame.getId(), __GO_GRID_OPT_PADDING__);
+                            Integer[] grid = (Integer[]) controller.getProperty(frame.getId(), __GO_GRID_OPT_GRID__);
+                            if (grid[0] == 0 && grid[1] == 0) {
+                                grid[0] = 1;
+                            }
+                            frame.setLayout(new GridLayout(grid[0], grid[1], padding[0], padding[1]));
                             break;
+                        }
                         case NONE :
                         default:
                             frame.setLayout(null);
@@ -479,6 +489,13 @@ public final class SwingViewWidget {
                 } else {
                 }
                 break;
+            case __GO_UI_FRAME_BORDER__ :
+                if (uiControl instanceof SwingScilabFrame) {
+                    SwingScilabFrame frame = (SwingScilabFrame)uiControl;
+                    Integer borderId = (Integer)value;
+                    Border border = BorderConvertor.getBorder(borderId);
+                    frame.setBorder(border);
+                }
             default :
                 //System.err.println("[SwingScilabWidget.update] Property not mapped: " + property);
         }

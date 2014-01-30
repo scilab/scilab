@@ -43,6 +43,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTUNITS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTWEIGHT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
@@ -123,6 +124,7 @@ import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.BorderConvertor;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
@@ -428,7 +430,6 @@ public final class SwingView implements GraphicView {
 
                 tab.setEventHandler(figure.getEventHandlerString());
                 tab.setEventHandlerEnabled(figure.getEventHandlerEnable());
-
                 tab.setVisible(true);
                 tab.setName(figureTitle);
 
@@ -451,6 +452,10 @@ public final class SwingView implements GraphicView {
                 SwingScilabFrame frame = new SwingScilabFrame();
                 frame.setId(id);
                 setDefaultProperties(frame, id);
+                Integer borderId = (Integer)GraphicController.getController().getProperty(id, __GO_UI_FRAME_BORDER__);
+                if (borderId != 0) {
+                    frame.setBorder(BorderConvertor.getBorder(borderId));
+                }
                 return frame;
             case Image:
                 SwingScilabUiImage image = new SwingScilabUiImage();

@@ -101,20 +101,20 @@ public class Uicontrol extends GraphicObject {
     }
 
     public enum BorderLayoutType {
-        SOUTH, NORTH, CENTER, WEST, EAST;
+        BOTTOM, TOP, CENTER, LEFT, RIGHT;
         public static BorderLayoutType intToEnum(Integer value) {
             switch (value) {
                 case 0:
-                    return BorderLayoutType.SOUTH;
+                    return BorderLayoutType.BOTTOM;
                 case 1:
-                    return BorderLayoutType.NORTH;
+                    return BorderLayoutType.TOP;
                 default:
                 case 2:
                     return BorderLayoutType.CENTER;
                 case 3:
-                    return BorderLayoutType.WEST;
+                    return BorderLayoutType.LEFT;
                 case 4:
-                    return BorderLayoutType.EAST;
+                    return BorderLayoutType.RIGHT;
             }
         }
 
@@ -124,20 +124,20 @@ public class Uicontrol extends GraphicObject {
             }
 
             char[] chars = value.toCharArray();
-            if (chars[0] == 't' || chars[0] == 'T') {
-                return NORTH;
+            if (chars[0] == 'n' || chars[0] == 'N') {
+                return TOP;
             }
 
-            if (chars[0] == 'l' || chars[0] == 'L') {
-                return EAST;
+            if (chars[0] == 'e' || chars[0] == 'E') {
+                return RIGHT;
             }
 
-            if (chars[0] == 'b' || chars[0] == 'B') {
-                return SOUTH;
+            if (chars[0] == 's' || chars[0] == 'S') {
+                return BOTTOM;
             }
 
-            if (chars[0] == 'r' || chars[0] == 'R') {
-                return WEST;
+            if (chars[0] == 'w' || chars[0] == 'W') {
+                return LEFT;
             }
 
             return CENTER;
@@ -1342,7 +1342,7 @@ public class Uicontrol extends GraphicObject {
     }
 
     public UpdateStatus setFrameBorder(Integer value) {
-        if (value.equals(frameBorder)) {
+        if (frameBorder.equals(value)) {
             return UpdateStatus.NoChange;
         }
 

@@ -1,7 +1,5 @@
 package org.scilab.modules.graphic_objects.xmlloader;
 
-import java.awt.GridBagConstraints;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -23,7 +21,7 @@ public class XmlTools {
         }
 
         Double[] values = new Double[propString.length];
-        for (int i = 0 ; i < propString.length ; i++) {
+        for (int i = 0; i < propString.length; i++) {
             String value = map.get(propString[i]);
             if (value == null || value.equals("")) {
                 values[i] = 0.0;
@@ -161,4 +159,3 @@ public class XmlTools {
         return getFromMap(map, field, "");
     }
 }
-

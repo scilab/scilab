@@ -4,6 +4,10 @@ public enum FrameBorderType {
     NONE, LINE, BEVEL, SOFTBEVEL, ETCHED, TITLED, EMPTY, COMPOUND, MATTE;
 
     public static FrameBorderType intToEnum(Integer value) {
+        if (value == null) {
+            return null;
+        }
+
         switch (value) {
             default :
             case 0 :
@@ -29,7 +33,7 @@ public enum FrameBorderType {
 
     public static FrameBorderType stringToEnum(String value) {
         if (value == null || value.equals("")) {
-            return NONE;
+            return null;
         }
 
         char[] chars = value.toCharArray();

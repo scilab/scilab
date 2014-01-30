@@ -66,7 +66,7 @@ public class XmlLoader extends DefaultHandler {
     private GraphicController controller;
 
     static {
-        //init map to convert control name to id
+        // init map to convert control name to id
         nameToGO.put("UIScilabWindow", __GO_FIGURE__);
         nameToGO.put("Figure", __GO_FIGURE__);
 
@@ -133,7 +133,7 @@ public class XmlLoader extends DefaultHandler {
             ret = parse(filename);
         }
 
-        //clean model before leave.
+        // clean model before leave.
         Set<String> entries = models.keySet();
         for (String key : entries) {
             HashMap<String, Entry<Integer, Map<String, String>>> map = models.get(key);
@@ -181,7 +181,8 @@ public class XmlLoader extends DefaultHandler {
         } finally {
             try {
                 in.close();
-            } catch (IOException e) { }
+            } catch (IOException e) {
+            }
         }
 
         return uid;
@@ -206,7 +207,7 @@ public class XmlLoader extends DefaultHandler {
             } else if (stackGO.size() > 0) {
                 Integer parent = stackGO.peek();
                 controller.setGraphicObjectRelationship(parent, go);
-                controller.setProperty(go,  __GO_VISIBLE__, true);
+                controller.setProperty(go, __GO_VISIBLE__, true);
             } else {
                 uid = go;
             }
@@ -221,12 +222,11 @@ public class XmlLoader extends DefaultHandler {
         isFirst = true;
     }
 
-    public void startElement(String uri, String localName, String qName,
-                             Attributes attributes) throws SAXException {
+    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 
         if (localName.equals("interface")) {
             if (isFirst) {
-                myURI =  attributes.getValue("xmlns");
+                myURI = attributes.getValue("xmlns");
                 isFirst = false;
             }
         } else if (localName.equals("include")) {
@@ -240,7 +240,7 @@ public class XmlLoader extends DefaultHandler {
             Integer go = 0;
             if (uitype != null && uitype.intValue() > 0) {
                 if (uitype == __GO_FIGURE__) {
-                    //never create a new figure, clone figure model !
+                    // never create a new figure, clone figure model !
                     go = GOBuilder.figureBuilder(controller, attributes);
                 } else {
                     int parent = 0;
@@ -249,17 +249,17 @@ public class XmlLoader extends DefaultHandler {
                     }
                     go = GOBuilder.uicontrolBuilder(controller, uitype, attributes, parent);
                 }
-            } else { //namespace or bad name ...
+            } else { // namespace or bad name ...
                 if (myURI.equals(uri)) {
-                    //bad name
+                    // bad name
                 } else {
                     HashMap<String, Entry<Integer, Map<String, String>>> m = models.get(uri);
                     if (m == null) {
-                        //bad namespace
+                        // bad namespace
                     } else {
                         Entry<Integer, Map<String, String>> entry = m.get(localName);
                         go = entry.getKey();
-                        //need to clone object and children
+                        // need to clone object and children
                         Integer newgo = cloneObject(go);
                         GOBuilder.uicontrolUpdater(controller, newgo, attributes, stackGO.peek(), entry.getValue());
                         go = newgo;
@@ -274,15 +274,16 @@ public class XmlLoader extends DefaultHandler {
                 if (isWaitingModelName) {
                     String name = attributes.getValue("modele-name");
                     if (name == null) {
-                        //unmaned model ? :s
+                        // unmaned model ? :s
                     } else {
                         if (models.get(namespace) == null) {
                             models.put(namespace, new HashMap<String, Entry<Integer, Map<String, String>>>());
                         }
 
-                        //copy attributes to a Map, i do not know why a can use attributes ? Oo
+                        // copy attributes to a Map, i do not know why a can use
+                        // attributes ? Oo
                         Map<String, String> attrib = new HashMap<String, String>();
-                        for (int i = 0 ; i < attributes.getLength() ; i++) {
+                        for (int i = 0; i < attributes.getLength(); i++) {
                             attrib.put(attributes.getLocalName(i), attributes.getValue(i));
                         }
 
@@ -299,8 +300,8 @@ public class XmlLoader extends DefaultHandler {
 
     Integer cloneObject(Integer root) {
         Integer newGo = controller.cloneObject(root);
-        Integer[] children = (Integer[])controller.getProperty(root, __GO_CHILDREN__);
-        for (int i = 0 ; i < children.length ; i++) {
+        Integer[] children = (Integer[]) controller.getProperty(root, __GO_CHILDREN__);
+        for (int i = 0; i < children.length; i++) {
             Integer newChild = cloneObject(children[i]);
             controller.setGraphicObjectRelationship(newGo, newChild);
         }
@@ -309,8 +310,8 @@ public class XmlLoader extends DefaultHandler {
     }
 
     private void deleteObject(Integer root) {
-        Integer[] children = (Integer[])controller.getProperty(root, __GO_CHILDREN__);
-        for (int i = 0 ; i < children.length ; i++) {
+        Integer[] children = (Integer[]) controller.getProperty(root, __GO_CHILDREN__);
+        for (int i = 0; i < children.length; i++) {
             deleteObject(children[i]);
         }
 

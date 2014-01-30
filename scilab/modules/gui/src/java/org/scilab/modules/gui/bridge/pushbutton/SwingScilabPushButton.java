@@ -142,7 +142,11 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
      */
     public void setDims(Size newSize) {
         setSize(newSize.getWidth(), newSize.getHeight());
-        setPreferredSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
+        if (newSize.getWidth() == 0 && newSize.getHeight() == 0) {
+            setPreferredSize(null);
+        } else {
+            setPreferredSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
+        }
     }
 
     /**

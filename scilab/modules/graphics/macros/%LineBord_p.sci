@@ -6,8 +6,20 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 function %LineBord_p(t)
+    count = size(t(1), "*");
+
     printf("Line Border\n");
     printf("  Color     : %s\n", sci2exp(t.color));
+
+    if count < 3 then
+        return;
+    end
+
     printf("  Thickness : %s\n", sci2exp(t.thickness));
+
+    if count < 4 then
+        return;
+    end
+
     printf("  Rounded   : %s\n", sci2exp(t.rounded));
 endfunction
