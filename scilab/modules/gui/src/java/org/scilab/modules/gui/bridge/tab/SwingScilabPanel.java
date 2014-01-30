@@ -45,7 +45,10 @@ public interface SwingScilabPanel extends SwingViewObject {
     
     public void setVisible(boolean isVisible);
     public void setWindowIcon(String windowIcon);
+    
     public void addMember(SwingViewObject member);
+    public void removeMember(SwingViewObject member);
+    
     public void revalidate();
     
     public void setCallback(CommonCallBack callback);

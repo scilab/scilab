@@ -22,6 +22,7 @@ import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axis.Axis;
 import org.scilab.modules.graphic_objects.fec.Fec;
 import org.scilab.modules.graphic_objects.figure.Figure;
+import org.scilab.modules.graphic_objects.figure.Figure.BarType;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
@@ -312,6 +313,31 @@ public final class Builder {
                 cloneMenus(children[i], newMenu);
             }
         }
+    }
+        
+    public final static int createFigure(boolean dockable, int menubarType, int toolbarType, boolean defaultAxes, boolean visible) {
+        GraphicController controller =  GraphicController.getController();
+        Integer figModel = GraphicModel.getFigureModel().getIdentifier();
+        Integer figId = controller.cloneObject(figModel, false);
+        Figure figure = (Figure) controller.getObjectFromId(figId);
+        figure.setDockable(dockable);
+        figure.setMenubar(menubarType);
+        figure.setToolbar(toolbarType);
+        figure.setVisible(visible);
+        
+        controller.objectCreated(figId);
+        ScilabNativeView.ScilabNativeView__setCurrentFigure(figId);
+        
+        if (menubarType == BarType.FIGURE.ordinal()) {
+            cloneMenus(figModel, figId);
+        }
+        
+        if (defaultAxes) {
+            //clone default axes
+            cloneAxesModel(figId);
+        }
+
+        return figId;
     }
     
     public final static int createNewFigureWithAxes() {

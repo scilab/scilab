@@ -30,9 +30,8 @@ BUILT_SOURCES = 	includes/graphicObjectsProperties.h
 #src/java/org/scilab/modules/graphic_objects/graphicObject/GraphicObjectProperties.java
 
 GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp \
-                              src/jni/GraphicObjectBuilder.cpp \
                               src/jni/Builder.cpp \
-                              src/jni/CallXmlLoader.cpp                              
+                              src/jni/CallXmlLoader.cpp
 
 GRAPHIC_OBJECTS_C_SOURCES = src/jni/DataLoader_wrap.c \
 							src/jni/ScilabNativeView_wrap.c \
@@ -98,13 +97,13 @@ libscigraphic_objects_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/core/includes/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ 
+			-I$(top_srcdir)/modules/output_stream/includes/
 			$(AM_CPPFLAGS)
 
 # Without the graphic_objects module
 libscigraphic_objects_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ 
+			-I$(top_srcdir)/modules/output_stream/includes/
 			$(AM_CPPFLAGS)
 
 GRAPHIC_OBJECTS_DISABLE_C_SOURCES = src/nographic_objects/nographic_objects.c

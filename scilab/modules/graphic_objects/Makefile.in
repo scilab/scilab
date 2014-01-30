@@ -189,7 +189,6 @@ am__objects_2 = src/jni/libscigraphic_objects_la-DataLoader_wrap.lo \
 	src/jni/libscigraphic_objects_la-ObjectData_wrap.lo
 am__objects_3 =  \
 	src/jni/libscigraphic_objects_la-CallGraphicController.lo \
-	src/jni/libscigraphic_objects_la-GraphicObjectBuilder.lo \
 	src/jni/libscigraphic_objects_la-Builder.lo \
 	src/jni/libscigraphic_objects_la-CallXmlLoader.lo
 am__objects_4 =  \
@@ -687,9 +686,8 @@ BUILT_SOURCES = includes/graphicObjectsProperties.h $(am__append_2) \
 #This file is also generated, but can not be listed to prevent GCJ call.
 #src/java/org/scilab/modules/graphic_objects/graphicObject/GraphicObjectProperties.java
 GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp \
-                              src/jni/GraphicObjectBuilder.cpp \
                               src/jni/Builder.cpp \
-                              src/jni/CallXmlLoader.cpp                              
+                              src/jni/CallXmlLoader.cpp
 
 GRAPHIC_OBJECTS_C_SOURCES = src/jni/DataLoader_wrap.c \
 							src/jni/ScilabNativeView_wrap.c \
@@ -750,13 +748,13 @@ libscigraphic_objects_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/core/includes/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ 
+			-I$(top_srcdir)/modules/output_stream/includes/
 
 
 # Without the graphic_objects module
 libscigraphic_objects_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ 
+			-I$(top_srcdir)/modules/output_stream/includes/
 
 GRAPHIC_OBJECTS_DISABLE_C_SOURCES = src/nographic_objects/nographic_objects.c
 libscigraphic_objects_disable_la_SOURCES = $(GRAPHIC_OBJECTS_DISABLE_C_SOURCES)
@@ -882,8 +880,6 @@ src/jni/libscigraphic_objects_la-SurfaceData_wrap.lo:  \
 src/jni/libscigraphic_objects_la-ObjectData_wrap.lo:  \
 	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
 src/jni/libscigraphic_objects_la-CallGraphicController.lo:  \
-	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
-src/jni/libscigraphic_objects_la-GraphicObjectBuilder.lo:  \
 	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
 src/jni/libscigraphic_objects_la-Builder.lo: src/jni/$(am__dirstamp) \
 	src/jni/$(DEPDIR)/$(am__dirstamp)
@@ -1032,7 +1028,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscigraphic_objects_la-CallGraphicController.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscigraphic_objects_la-CallXmlLoader.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscigraphic_objects_la-DataLoader_wrap.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscigraphic_objects_la-GraphicObjectBuilder.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscigraphic_objects_la-ObjectData_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscigraphic_objects_la-PolylineData_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscigraphic_objects_la-ScilabNativeView_wrap.Plo@am__quote@
@@ -1135,13 +1130,6 @@ src/jni/libscigraphic_objects_la-CallGraphicController.lo: src/jni/CallGraphicCo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/CallGraphicController.cpp' object='src/jni/libscigraphic_objects_la-CallGraphicController.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscigraphic_objects_la-CallGraphicController.lo `test -f 'src/jni/CallGraphicController.cpp' || echo '$(srcdir)/'`src/jni/CallGraphicController.cpp
-
-src/jni/libscigraphic_objects_la-GraphicObjectBuilder.lo: src/jni/GraphicObjectBuilder.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscigraphic_objects_la-GraphicObjectBuilder.lo -MD -MP -MF src/jni/$(DEPDIR)/libscigraphic_objects_la-GraphicObjectBuilder.Tpo -c -o src/jni/libscigraphic_objects_la-GraphicObjectBuilder.lo `test -f 'src/jni/GraphicObjectBuilder.cpp' || echo '$(srcdir)/'`src/jni/GraphicObjectBuilder.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscigraphic_objects_la-GraphicObjectBuilder.Tpo src/jni/$(DEPDIR)/libscigraphic_objects_la-GraphicObjectBuilder.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/GraphicObjectBuilder.cpp' object='src/jni/libscigraphic_objects_la-GraphicObjectBuilder.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscigraphic_objects_la-GraphicObjectBuilder.lo `test -f 'src/jni/GraphicObjectBuilder.cpp' || echo '$(srcdir)/'`src/jni/GraphicObjectBuilder.cpp
 
 src/jni/libscigraphic_objects_la-Builder.lo: src/jni/Builder.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscigraphic_objects_la-Builder.lo -MD -MP -MF src/jni/$(DEPDIR)/libscigraphic_objects_la-Builder.Tpo -c -o src/jni/libscigraphic_objects_la-Builder.lo `test -f 'src/jni/Builder.cpp' || echo '$(srcdir)/'`src/jni/Builder.cpp

@@ -621,7 +621,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the member to remove
      */
     public void removeMember(SwingViewObject member) {
-        uiContentPane.remove((Component) member);
+        SwingScilabCommonPanel.removeMember(this, member);
     }
 
     /**

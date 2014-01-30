@@ -50,6 +50,7 @@ GRAPHIC_OBJECTS_IMPEXP int cloneAxesModel(int iParent);
 GRAPHIC_OBJECTS_IMPEXP int createHiddenLabel(int iParent);
 GRAPHIC_OBJECTS_IMPEXP int createLabel(int iParent, int type);
 GRAPHIC_OBJECTS_IMPEXP int createNewFigureWithAxes();
+GRAPHIC_OBJECTS_IMPEXP int createFigure(int _bDockable, int _iMenubarType, int _iToolbarType, int _bDefaultAxes, int _bVisible);
 GRAPHIC_OBJECTS_IMPEXP int createSubWin(int iParent);
 GRAPHIC_OBJECTS_IMPEXP int createText(int iParentsubwinUID, char** text, int nbRow, int nbCol, double x, double y, BOOL autoSize, double* userSize, int  centerPos, int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, int align);
 GRAPHIC_OBJECTS_IMPEXP int createRect(int iParentsubwinUID, double x, double y, double height, double width, int foreground, int background, int isfilled, int isline);

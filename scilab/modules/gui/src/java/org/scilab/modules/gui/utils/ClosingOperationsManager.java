@@ -299,6 +299,7 @@ public class ClosingOperationsManager {
                     }
                     return close(list, window, askToExit, mustSave);
                 } else {
+                    window.close();
                     return true;
                 }
             }

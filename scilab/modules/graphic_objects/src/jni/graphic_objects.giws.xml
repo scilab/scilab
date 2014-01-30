@@ -1,18 +1,5 @@
 <?xml version="1.0"?>
 <package name="org.scilab.modules.graphic_objects">
-    <object name="GraphicObjectBuilder">
-        <method name="constructRectangles" returnType="int" modifier="static">
-            <parameter name="pparentsubwinUID" type="int"/>
-            <parameter name="x" type="double"/>
-            <parameter name="y" type="double"/>
-            <parameter name="height" type="double"/>
-            <parameter name="width" type="double"/>
-            <parameter name="foreground" type="int"/>
-            <parameter name="background" type="int"/>
-            <parameter name="isfilled" type="int"/>
-            <parameter name="isline" type="int"/>
-        </method>
-    </object>
     <object name="CallXmlLoader">
         <method name="Load" returnType="int" modifier="static">
             <parameter name="xmlFile" type="String"/>

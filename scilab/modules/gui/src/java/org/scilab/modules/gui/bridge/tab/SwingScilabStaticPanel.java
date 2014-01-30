@@ -15,9 +15,9 @@ package org.scilab.modules.gui.bridge.tab;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTORESIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
@@ -44,7 +44,7 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
     private boolean eventHandlerEnabled;
     private String parentWindowId;
     private String windowIcon;
-    
+
     private JLayeredPane uiContentPane;
     private JLayeredPane layerdPane;
 
@@ -53,17 +53,17 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
         uiContentPane = (JLayeredPane) getUIComponent();
         layerdPane = (JLayeredPane) getGlobalComponent();
         setVisible(true);
-        
+
         layerdPane.setLayout(null);
         layerdPane.setOpaque(false);
-        
+
         uiContentPane.setOpaque(true);
         uiContentPane.setLayout(null);
         layerdPane.add(uiContentPane, JLayeredPane.DEFAULT_LAYER + 1, 0);
 
         layerdPane.setVisible(true);
         uiContentPane.setVisible(true);
-        
+
         /* Manage figure_size property */
         addComponentListener(new ComponentListener() {
 
@@ -93,7 +93,6 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
             public void componentHidden(ComponentEvent arg0) {
             }
         });
-
     }
 
     public void setId(Integer id) {
@@ -167,15 +166,32 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
 
     public void setCallback(CommonCallBack callback) {
         // TODO Auto-generated method stub
-        
+
     }
 
     public Container getContentPane() {
         return this.getAsContainer();
     }
-    
+
     public void close() {
+        setMenuBar(null);
+        setToolBar(null);
+        setInfoBar(null);
+        removeAll();
+        // without this children canvas are not released.
+        getParentWindow().setVisible(false);
+        Container dummyContainer = new Container();
+        getParentWindow().setContentPane(dummyContainer);
+        setVisible(false);
     }
 
-    
+    /**
+     * Remove a SwingViewObject (from SwingView.java)
+     * @param member the member to remove
+     */
+    public void removeMember(SwingViewObject member) {
+        SwingScilabCommonPanel.removeMember(this, member);
+    }
+
+
 }

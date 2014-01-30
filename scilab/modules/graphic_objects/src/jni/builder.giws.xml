@@ -31,6 +31,13 @@
             <parameter name="type" type="int"/>
         </method>
         <method name="createNewFigureWithAxes" returnType="int" modifier="static" />
+        <method name="createFigure" returnType="int" modifier="static">
+          <parameter name="dockable" type="boolean" />
+          <parameter name="menubarType" type="int" />
+          <parameter name="toolbarType" type="int" />
+          <parameter name="defaultAxes" type="boolean" />
+          <parameter name="visible" type="boolean" />
+        </method>
         <method name="cloneMenus" returnType="void" modifier="static">
             <parameter name="model" type="int"/>
             <parameter name="newParent" type="int"/>

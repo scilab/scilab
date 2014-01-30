@@ -152,6 +152,9 @@ public class SwingScilabCommonPanel {
                 break;
             case __GO_VISIBLE__ :
                 component.getContentPane().setVisible((Boolean) value);
+                if (component.getParentWindow().getNbDockedObjects() == 1) {
+                    component.getParentWindow().setVisible((Boolean) value);
+                }
                 break;
             case __GO_INFOBAR_VISIBLE__ :
                 component.getInfoBar().setVisible((Boolean) value);
@@ -339,5 +342,9 @@ public class SwingScilabCommonPanel {
                 component.getWidgetPane().add((Component) member, JLayeredPane.DEFAULT_LAYER + 1);
             }
         }
+    }
+    
+    protected static void  removeMember(SwingScilabPanel component,SwingViewObject member) {
+        component.getWidgetPane().remove((Component) member);
     }
 }
