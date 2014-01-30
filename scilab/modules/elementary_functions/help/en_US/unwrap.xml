@@ -264,9 +264,9 @@ end
 sda();
 drawnow()
         ]]></programlisting>
-        <scilab:image>
+        <!--<scilab:image>
             %_unwrap("2D")
-        </scilab:image>
+        </scilab:image>-->
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
