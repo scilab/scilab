@@ -106,6 +106,9 @@ int C2F(sci_warning)(char *fname, unsigned long fname_len)
             int i = 0;
             if ( getWarningMode() && m1 * n1 > 1)
             {
+                int len = strlen(_("WARNING: %s\n")) - strlen("%s\n");
+                char * whites = (char *)MALLOC(sizeof(char) * (len + 1));
+
                 if (strlen(Input_Strings[0]) > 0)
                 {
                     if (Input_Strings[i][strlen(Input_Strings[0]) - 1] == '\n')
@@ -122,8 +125,6 @@ int C2F(sci_warning)(char *fname, unsigned long fname_len)
                     sciprint(_("WARNING: %s\n"), "");
                 }
 
-                int len = strlen(_("WARNING: %s\n")) - strlen("%s\n");
-                char * whites = (char *)MALLOC(sizeof(char) * (len + 1));
                 memset(whites, ' ', len);
                 whites[len] = '\0';
 
