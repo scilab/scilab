@@ -113,7 +113,6 @@ public class SwingScilabCommonPanel {
                    ) {
                     Integer[] axesSize = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_AXES_SIZE__);
                     Integer[] newAxesSize = {axesSize[0] + deltaFigureX, axesSize[1] + deltaFigureY};
-                    System.err.println("New Axes Size = " + newAxesSize);
                     GraphicController.getController().setProperty(component.getId(), __GO_AXES_SIZE__, newAxesSize);
                 }
                 break;

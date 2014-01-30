@@ -429,7 +429,7 @@ public final class SwingView implements GraphicView {
                 tab.setEventHandler(figure.getEventHandlerString());
                 tab.setEventHandlerEnabled(figure.getEventHandlerEnable());                
 
-                window.setVisible(true);
+                
                 tab.setVisible(true);
                 tab.setName(figureTitle);
 
@@ -442,6 +442,7 @@ public final class SwingView implements GraphicView {
                 tab.update(__GO_SIZE__, GraphicController.getController().getProperty(id, __GO_SIZE__));
                 tab.update(__GO_POSITION__, GraphicController.getController().getProperty(id, __GO_POSITION__));
                 // TODO set other default properties
+                window.pack();
                 return tab;
             case Frame:
                 SwingScilabFrame frame = new SwingScilabFrame();
