@@ -141,6 +141,8 @@ Scilab Bug Fixes
 
 * Bug #8337 fixed - mtlb_rand now uses the "uniform" rule, whatever the random rule set is.
 
+* Bug #8379 fixed - It was not possible to delete the selected datatip with DELETE or BACKSPACE.
+
 * Bug #8745 fixed - Extracting from an empty matrix automatically returned an empty matrix.
 
 * Bug #9031 fixed - Misalignment of text when using xstring with a matrix fixed.

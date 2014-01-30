@@ -99,10 +99,17 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
             editor.onKeyPressed(arg0);
             if (datatipManagerMode.isEnabled()) {
                 if (datatipManagerMode.getSelectedTip() != null) {
-                    if (arg0.getKeyCode() == KeyEvent.VK_RIGHT) {
-                        DatatipMove.moveRight(datatipManagerMode.getSelectedTip());
-                    } else if (arg0.getKeyCode() == KeyEvent.VK_LEFT) {
-                        DatatipMove.moveLeft(datatipManagerMode.getSelectedTip());
+                    switch (arg0.getKeyCode()) {
+                        case KeyEvent.VK_RIGHT:
+                            DatatipMove.moveRight(datatipManagerMode.getSelectedTip());
+                            break;
+                        case KeyEvent.VK_LEFT:
+                            DatatipMove.moveLeft(datatipManagerMode.getSelectedTip());
+                            break;
+                        case KeyEvent.VK_DELETE:
+                        case KeyEvent.VK_BACK_SPACE:
+                            DatatipDelete.deleteDatatip(datatipManagerMode.getSelectedTip());
+                            break;
                     }
                 }
             }
