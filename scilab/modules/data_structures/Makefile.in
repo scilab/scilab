@@ -177,8 +177,7 @@ am__v_lt_1 =
 @MAINTAINER_MODE_FALSE@am_libscidata_structures_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscidata_structures_algo_la_rpath =
 libscidata_structures_la_DEPENDENCIES = libscidata_structures-algo.la
-am__objects_2 = sci_gateway/c/libscidata_structures_la-sci_lsslist.lo \
-	sci_gateway/c/libscidata_structures_la-sci_glist.lo \
+am__objects_2 = sci_gateway/c/libscidata_structures_la-sci_glist.lo \
 	sci_gateway/c/libscidata_structures_la-sci_definedfields.lo \
 	sci_gateway/c/libscidata_structures_la-gw_data_structures1.lo \
 	sci_gateway/c/libscidata_structures_la-gw_data_structures2.lo
@@ -580,7 +579,6 @@ src/fortran/mlist.f \
 src/fortran/insertfield.f
 
 GATEWAY_C_SOURCES = \
-sci_gateway/c/sci_lsslist.c \
 sci_gateway/c/sci_glist.c \
 sci_gateway/c/sci_definedfields.c \
 sci_gateway/c/gw_data_structures1.c \
@@ -819,9 +817,6 @@ sci_gateway/c/$(am__dirstamp):
 sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
 	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscidata_structures_la-sci_lsslist.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscidata_structures_la-sci_glist.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -883,7 +878,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscidata_structures_la-gw_data_structures2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscidata_structures_la-sci_definedfields.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscidata_structures_la-sci_glist.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscidata_structures_la-sci_lsslist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidata_structures_la-data_structures_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidata_structures_la-sci_getfield.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidata_structures_la-sci_rlist.Plo@am__quote@
@@ -912,13 +906,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
-
-sci_gateway/c/libscidata_structures_la-sci_lsslist.lo: sci_gateway/c/sci_lsslist.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidata_structures_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscidata_structures_la-sci_lsslist.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscidata_structures_la-sci_lsslist.Tpo -c -o sci_gateway/c/libscidata_structures_la-sci_lsslist.lo `test -f 'sci_gateway/c/sci_lsslist.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lsslist.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscidata_structures_la-sci_lsslist.Tpo sci_gateway/c/$(DEPDIR)/libscidata_structures_la-sci_lsslist.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_lsslist.c' object='sci_gateway/c/libscidata_structures_la-sci_lsslist.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidata_structures_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscidata_structures_la-sci_lsslist.lo `test -f 'sci_gateway/c/sci_lsslist.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lsslist.c
 
 sci_gateway/c/libscidata_structures_la-sci_glist.lo: sci_gateway/c/sci_glist.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidata_structures_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscidata_structures_la-sci_glist.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscidata_structures_la-sci_glist.Tpo -c -o sci_gateway/c/libscidata_structures_la-sci_glist.lo `test -f 'sci_gateway/c/sci_glist.c' || echo '$(srcdir)/'`sci_gateway/c/sci_glist.c

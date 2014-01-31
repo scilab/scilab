@@ -15,7 +15,6 @@ src/fortran/mlist.f \
 src/fortran/insertfield.f
 
 GATEWAY_C_SOURCES = \
-sci_gateway/c/sci_lsslist.c \
 sci_gateway/c/sci_glist.c \
 sci_gateway/c/sci_definedfields.c \
 sci_gateway/c/gw_data_structures1.c \

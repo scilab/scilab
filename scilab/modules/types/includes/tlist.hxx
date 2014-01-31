@@ -61,6 +61,8 @@ public :
 
     String*                         getFieldNames();
 
+    bool                            toString(std::wostringstream& ostr);
+
 private :
 };
 }

@@ -191,4 +191,43 @@ String* TList::getFieldNames()
     return (*m_plData)[0]->getAs<types::String>();
 }
 
+/**
+** toString to display TLists
+** FIXME : Find a better indentation process
+*/
+bool TList::toString(std::wostringstream& ostr)
+{
+    if (getSize() == 0)
+    {
+        ostr << L"()" << std::endl;
+    }
+    else if((*m_plData)[0]->isString() &&
+            (*m_plData)[0]->getAs<types::String>()->getSize() > 0 &&
+            wcscmp((*m_plData)[0]->getAs<types::String>()->get(0), L"lss") == 0)
+    {
+        int iPosition = 1;
+        wchar_t* wcsDesc[7] = {L"  (state-space system:)", L"= A matrix =", L"= B matrix =", L"= C matrix =", L"= D matrix =", L"= X0 (initial state) =", L"= Time domain ="};
+        std::vector<InternalType *>::iterator itValues;
+        for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
+        {
+            ostr << L"     (" << iPosition << L") " << wcsDesc[iPosition-1] << std::endl;
+            //maange lines
+            bool bFinish = (*itValues)->toString(ostr);
+            ostr << std::endl;
+        }
+    }
+    else
+    {
+        int iPosition = 1;
+        std::vector<InternalType *>::iterator itValues;
+        for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
+        {
+            ostr << L"     (" << iPosition << L")" << std::endl;
+            //maange lines
+            bool bFinish = (*itValues)->toString(ostr);
+            ostr << std::endl;
+        }
+    }
+    return true;
+}
 }
