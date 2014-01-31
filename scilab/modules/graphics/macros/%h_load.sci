@@ -566,7 +566,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
             mark_background=mget(1,"il",fd) // mark_background
         end
 
-        if is_higher_than([5 5 0 1]) then
+        if is_higher_than([5 4 0 1]) then
             mark_offset=mget(1,"il",fd) // mark_offset
             mark_stride=mget(1,"il",fd) // mark_stride
         end
