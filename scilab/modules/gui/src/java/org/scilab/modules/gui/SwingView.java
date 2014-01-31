@@ -624,7 +624,7 @@ public final class SwingView implements GraphicView {
                             ClosingOperationsManager.checkTabForClosing(dockableTab);
                             tab.close();
                         } else {
-                            tab.getParentWindow().close();
+                            tab.close();
                         }
                     } else {
                         try {
@@ -643,7 +643,7 @@ public final class SwingView implements GraphicView {
                                         ClosingOperationsManager.checkTabForClosing(dockableTab);
                                         tab.close();
                                     } else {
-                                        tab.getParentWindow().close();
+                                        tab.close();
                                     }
                                 }
 

@@ -12,19 +12,40 @@
 
 package org.scilab.modules.gui.bridge.window;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CLOSEREQUESTFCN__;
+
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import org.flexdock.docking.DockingPort;
+import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.bridge.tab.SwingScilabPanel;
+import org.scilab.modules.gui.bridge.tab.SwingScilabStaticPanel;
 
 public class SwingScilabStaticWindow extends SwingScilabWindow {
 
+    private SwingScilabStaticPanel panel;
+
     public SwingScilabStaticWindow() {
         super();
-        setLayout(new BorderLayout());        
+        setLayout(new BorderLayout());
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                String closeRequestFcn = (String) GraphicController.getController().getProperty(panel.getId(), __GO_CLOSEREQUESTFCN__);
+                if (!closeRequestFcn.equals("")) {
+                    String closeCommand = "if exists(\"gcbo\") then %oldgcbo = gcbo; end;" + "gcbo = getcallbackobject(" + panel.getId() + ");" + closeRequestFcn
+                            + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;";
+                    InterpreterManagement.requestScilabExec(closeCommand);
+                } else {
+                    GraphicController.getController().deleteObject(panel.getId());
+                }
+            }
+        });
     }
-    
+
     /**
      * @return number of objects (tabs) docked in this window
      */
@@ -32,7 +53,7 @@ public class SwingScilabStaticWindow extends SwingScilabWindow {
     public int getNbDockedObjects() {
         return 1;
     }
-    
+
     /**
      * Close the window
      * @see org.scilab.modules.gui.window.SimpleWindow#close()
@@ -54,6 +75,7 @@ public class SwingScilabStaticWindow extends SwingScilabWindow {
 
     public void addTab(SwingScilabPanel tab) {
         add((Component) tab, BorderLayout.CENTER);
+        this.panel = (SwingScilabStaticPanel) tab;
     }
 
     public void removeTabs(SwingScilabPanel[] tabs) {

@@ -23,7 +23,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.rmi.server.UID;
@@ -53,7 +52,6 @@ import org.scilab.modules.gui.textbox.SimpleTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
@@ -129,13 +127,6 @@ public abstract class SwingScilabWindow extends JFrame implements SimpleWindow {
         // let the OS choose the window position if not specified by user.
         setLocationByPlatform(true);
 
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                ClosingOperationsManager.startClosingOperation(SwingScilabWindow.this);
-            }
-        });
-
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
@@ -155,9 +146,6 @@ public abstract class SwingScilabWindow extends JFrame implements SimpleWindow {
         if (MAC_OS_X) {
             registerForMacOSXEvents();
         }
-
-
-
 
     }
 
@@ -417,13 +405,14 @@ public abstract class SwingScilabWindow extends JFrame implements SimpleWindow {
      * @see org.scilab.modules.gui.window.Window#removeTab(org.scilab.modules.gui.tab.Tab)
      */
     public abstract void removeTabs(SwingScilabPanel[] tabs);
+
     /**
      * Remove a Scilab tab from a Scilab window
      * @param tab the Scilab tab to remove from the Scilab window
      * @see org.scilab.modules.gui.window.Window#removeTab(org.scilab.modules.gui.tab.Tab)
      */
     public void removeTab(SimpleTab tab) {
-        removeTabs(new SwingScilabDockablePanel[] {(SwingScilabDockablePanel) tab});
+        removeTabs(new SwingScilabDockablePanel[] { (SwingScilabDockablePanel) tab });
     }
 
     /**

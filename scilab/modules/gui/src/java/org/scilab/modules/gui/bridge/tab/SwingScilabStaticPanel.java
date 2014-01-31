@@ -15,7 +15,6 @@ package org.scilab.modules.gui.bridge.tab;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTORESIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
 import java.awt.Container;
 import java.awt.event.ComponentEvent;
@@ -178,9 +177,10 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
         setInfoBar(null);
         removeAll();
         // without this children canvas are not released.
-        getParentWindow().setVisible(false);
+        SwingScilabWindow win = getParentWindow();
         Container dummyContainer = new Container();
-        getParentWindow().setContentPane(dummyContainer);
+        win.setContentPane(dummyContainer);
+        win.close();
         setVisible(false);
     }
 

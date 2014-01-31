@@ -12,6 +12,8 @@
 
 package org.scilab.modules.gui.bridge.window;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -28,6 +30,7 @@ import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.tab.SwingScilabPanel;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.SciDockingListener;
 
 public class SwingScilabDockingWindow extends SwingScilabWindow {
@@ -52,6 +55,14 @@ public class SwingScilabDockingWindow extends SwingScilabWindow {
         sciDockingListener = new SciDockingListener();
         sciDockingPort.addDockingListener(sciDockingListener);
         sciDockingListener.setAssociatedWindowId(windowUID);
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                ClosingOperationsManager.startClosingOperation(SwingScilabDockingWindow.this);
+            }
+        });
+
     }
 
     /**
