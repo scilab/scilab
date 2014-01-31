@@ -87,7 +87,7 @@ public abstract class SwingScilabWindow extends JFrame implements SimpleWindow {
     private Dimension lastDimension;
     private Point lastPosition;
     private boolean isRestoring;
-    
+
     /**
      * Constructor
      */
@@ -160,7 +160,7 @@ public abstract class SwingScilabWindow extends JFrame implements SimpleWindow {
 
 
     }
-    
+
     public void setIsRestoring(boolean b) {
         isRestoring = b;
     }
@@ -201,9 +201,9 @@ public abstract class SwingScilabWindow extends JFrame implements SimpleWindow {
         try {
             // Generate and register the OSXAdapter, passing it a hash of all the methods we wish to
             // use as delegates for various com.apple.eawt.ApplicationListener methods
-            OSXAdapter.setAboutHandler(this, getClass().getDeclaredMethod("macosxAbout", (Class[]) null));
-            OSXAdapter.setQuitHandler(this, getClass().getDeclaredMethod("macosxQuit", (Class[]) null));
-            OSXAdapter.setPreferencesHandler(this, getClass().getDeclaredMethod("macosxPreferences", (Class[]) null));
+            OSXAdapter.setAboutHandler(this, getClass().getMethod("macosxAbout", (Class[]) null));
+            OSXAdapter.setQuitHandler(this, getClass().getMethod("macosxQuit", (Class[]) null));
+            OSXAdapter.setPreferencesHandler(this, getClass().getMethod("macosxPreferences", (Class[]) null));
             OSXAdapter.setDockIcon(new ImageIcon(ScilabSwingUtilities.findIcon("puffin", "256x256")));
         } catch (java.lang.NoSuchMethodException e) {
             System.err.println("OSXAdapter could not find the method: " + e.getLocalizedMessage());
@@ -320,7 +320,7 @@ public abstract class SwingScilabWindow extends JFrame implements SimpleWindow {
     @Override
     public Size getDims() {
         return new Size(getSize().width, getSize().height);
-        
+
     }
 
     /**
