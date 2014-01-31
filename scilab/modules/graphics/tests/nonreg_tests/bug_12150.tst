@@ -21,6 +21,6 @@ plot(x,y,"bo-");
 e=gce();
 p=e.children(1);
 t=datatipCreate(p,1);
-assert_checktrue(p.user_data.datatips.tips.children.children(2).data - [20 190] < [5d-2 5d-2]);
-assert_checkequal(p.user_data.datatips.tips.children.children(2).text, ["X: 20";"Y: 1.9e+02"]);
+assert_checkequal(p.datatips(1).data, [20 190 0]);
+assert_checkequal(p.datatips(1).text, ["X:20";"Y:190"]);
 close
