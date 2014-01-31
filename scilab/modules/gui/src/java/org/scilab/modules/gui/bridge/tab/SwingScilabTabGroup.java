@@ -12,16 +12,28 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTNAME__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTSIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTWEIGHT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TITLE_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TITLE_SCROLL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
+import java.awt.Component;
+import java.awt.Font;
+
+import javax.swing.Icon;
+import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 import org.scilab.modules.gui.SwingViewObject;
 
 public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject {
+    private static final long serialVersionUID = 965704348405077905L;
+
     private Integer id;
 
     public SwingScilabTabGroup() {
@@ -67,8 +79,58 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject 
                     setTabLayoutPolicy(JTabbedPane.WRAP_TAB_LAYOUT);
                 }
                 break;
+            case __GO_UI_FONTNAME__ :
+            case __GO_UI_FONTANGLE__ :
+            case __GO_UI_FONTSIZE__ :
+            case __GO_UI_FONTWEIGHT__ : {
+                for (int i = 0 ; i < getTabCount() ; i++) {
+                    setTitleAt(i, null);
+                }
+            }
         }
     }
 
+    public void insertTab(String title, Icon icon, Component component, String tooltip, int index) {
+        super.insertTab(title, icon, component, tooltip, index);
+        setTitleAt(index, title);
+    }
+
+    public void setTitleAt(int index, String title) {
+        //super.setTitleAt(index, title);
+        String fontName = (String)GraphicController.getController().getProperty(getId(), __GO_UI_FONTNAME__);
+        Double fontSize = (Double)GraphicController.getController().getProperty(getId(), __GO_UI_FONTSIZE__);
+        String fontAngle = (String)GraphicController.getController().getProperty(getId(), __GO_UI_FONTANGLE__);
+        String fontWeight = (String)GraphicController.getController().getProperty(getId(), __GO_UI_FONTWEIGHT__);
+
+        int fontStyle = Font.PLAIN;
+        if (fontAngle.equals("italic")) {
+            fontStyle |= Font.ITALIC;
+        }
+
+        if (fontWeight.equals("bold")) {
+            fontStyle |= Font.BOLD;
+        }
+
+        JLabel label = null;
+        Component comp = getTabComponentAt(index);
+        if (comp instanceof JLabel) {
+            label = (JLabel)comp;
+        } else {
+            label = new JLabel();
+        }
+
+        Font oldFont = label.getFont();
+        Font font = new Font(
+                fontName.equals("") == false ? fontName : oldFont.getFontName(), 
+                        fontStyle,
+                        fontSize != 0.0 ? fontSize.intValue() : oldFont.getSize());
+        
+        label.setFont(font);
+
+        if (title != null) {
+            label.setText(title);
+        }
+        setTabComponentAt(index, label);
+    }
 
 }

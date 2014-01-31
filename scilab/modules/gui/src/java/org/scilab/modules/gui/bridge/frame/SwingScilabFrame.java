@@ -229,7 +229,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             Double[] margins = uicontrol.getMargins();
             constraints.insets = new Insets(
                 margins[0].intValue(), margins[1].intValue(),
-                margins[2].intValue(), margins[2].intValue());
+                margins[2].intValue(), margins[3].intValue());
 
             // Padding
             Integer[] padding = uicontrol.getGridBagPadding();

@@ -14,8 +14,6 @@
 
 package org.scilab.modules.gui.bridge.pushbutton;
 
-//import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
-
 import java.awt.Dimension;
 import java.awt.Font;
 import java.beans.PropertyChangeEvent;
@@ -27,10 +25,9 @@ import javax.swing.JButton;
 
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 import org.scilab.modules.graphic_objects.console.Console;
-//import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-//import org.scilab.modules.graphic_objects.uicontrol.frame.border.FrameBorderType;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.SimplePushButton;
@@ -150,11 +147,6 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
      */
     public void setDims(Size newSize) {
         setSize(newSize.getWidth(), newSize.getHeight());
-        if (newSize.getWidth() == 0 && newSize.getHeight() == 0) {
-            setPreferredSize(null);
-        } else {
-            setPreferredSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
-        }
     }
 
     /**

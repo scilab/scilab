@@ -177,32 +177,11 @@ public final class SwingView implements GraphicView {
     }
 
     private enum UielementType {
-        Console,
-        CheckBox,
-        Edit,
-        Frame,
-        Figure,
-        Image,
-        ListBox,
-        PopupMenu,
-        Progressbar,
-        PushButton,
-        RadioButton,
-        Slider,
-        Table,
-        Text,
-        Uimenu,
-        UiParentMenu,
-        UiChildMenu,
-        UiCheckedMenu,
-        UiContextMenu,
-        Waitbar,
-        Tab,
-        Layer
+        Console, CheckBox, Edit, Frame, Figure, Image, ListBox, PopupMenu, Progressbar, PushButton, RadioButton, Slider, Table, Text, Uimenu, UiParentMenu, UiChildMenu, UiCheckedMenu, UiContextMenu, Waitbar, Tab, Layer
     }
 
     private class TypedObject {
-        private UielementType   _type;
+        private UielementType _type;
         private SwingViewObject _value;
         private Set<Integer> _children;
 
@@ -263,11 +242,7 @@ public final class SwingView implements GraphicView {
 
         if (!headless && !GraphicsEnvironment.isHeadless()) {
             DEBUG("SwingWiew", "Object Created : " + id + "with type : " + objectType);
-            if (objectType == __GO_FIGURE__
-                    || objectType == __GO_UICONTEXTMENU__
-                    || objectType == __GO_UIMENU__
-                    || objectType == __GO_CONSOLE__
-                    || objectType == __GO_PROGRESSIONBAR__
+            if (objectType == __GO_FIGURE__ || objectType == __GO_UICONTEXTMENU__ || objectType == __GO_UIMENU__ || objectType == __GO_CONSOLE__ || objectType == __GO_PROGRESSIONBAR__
                     || objectType == __GO_WAITBAR__) {
                 allObjects.put(id, CreateObjectFromType(objectType, id));
                 return;
@@ -288,49 +263,49 @@ public final class SwingView implements GraphicView {
     private UielementType StyleToEnum(int style) {
         DEBUG("SwingView", "StyleToEnum(" + style + ")");
         switch (style) {
-            case __GO_FIGURE__ :
+            case __GO_FIGURE__:
                 return UielementType.Figure;
-            case __GO_CONSOLE__ :
+            case __GO_CONSOLE__:
                 return UielementType.Console;
-            case __GO_UI_CHECKBOX__ :
+            case __GO_UI_CHECKBOX__:
                 return UielementType.CheckBox;
-            case __GO_UI_EDIT__ :
+            case __GO_UI_EDIT__:
                 return UielementType.Edit;
-            case __GO_UI_FRAME__ :
+            case __GO_UI_FRAME__:
                 return UielementType.Frame;
-            case __GO_UI_IMAGE__ :
+            case __GO_UI_IMAGE__:
                 return UielementType.Image;
-            case __GO_UI_LISTBOX__ :
+            case __GO_UI_LISTBOX__:
                 return UielementType.ListBox;
-            case __GO_UI_POPUPMENU__ :
+            case __GO_UI_POPUPMENU__:
                 return UielementType.PopupMenu;
-            case __GO_UI_PUSHBUTTON__ :
+            case __GO_UI_PUSHBUTTON__:
                 return UielementType.PushButton;
-            case __GO_UI_RADIOBUTTON__ :
+            case __GO_UI_RADIOBUTTON__:
                 return UielementType.RadioButton;
-            case __GO_UI_SLIDER__ :
+            case __GO_UI_SLIDER__:
                 return UielementType.Slider;
-            case __GO_UI_TABLE__ :
+            case __GO_UI_TABLE__:
                 return UielementType.Table;
-            case __GO_UI_TEXT__ :
+            case __GO_UI_TEXT__:
                 return UielementType.Text;
-            case __GO_UIMENU__ :
+            case __GO_UIMENU__:
                 return UielementType.UiChildMenu;
-            case __GO_UIPARENTMENU__ :
+            case __GO_UIPARENTMENU__:
                 return UielementType.UiParentMenu;
-            case __GO_UICHILDMENU__ :
+            case __GO_UICHILDMENU__:
                 return UielementType.UiChildMenu;
-            case __GO_UICHECKEDMENU__ :
+            case __GO_UICHECKEDMENU__:
                 return UielementType.UiCheckedMenu;
-            case __GO_PROGRESSIONBAR__ :
+            case __GO_PROGRESSIONBAR__:
                 return UielementType.Progressbar;
-            case __GO_WAITBAR__ :
+            case __GO_WAITBAR__:
                 return UielementType.Waitbar;
-            case __GO_UICONTEXTMENU__ :
+            case __GO_UICONTEXTMENU__:
                 return UielementType.UiContextMenu;
-            case __GO_UI_TAB__ :
+            case __GO_UI_TAB__:
                 return UielementType.Tab;
-            case __GO_UI_LAYER__ :
+            case __GO_UI_LAYER__:
                 return UielementType.Layer;
         }
         return null;
@@ -453,7 +428,7 @@ public final class SwingView implements GraphicView {
                 SwingScilabFrame frame = new SwingScilabFrame();
                 frame.setId(id);
                 setDefaultProperties(frame, id);
-                Integer borderId = (Integer)GraphicController.getController().getProperty(id, __GO_UI_FRAME_BORDER__);
+                Integer borderId = (Integer) GraphicController.getController().getProperty(id, __GO_UI_FRAME_BORDER__);
                 if (borderId != 0) {
                     frame.setBorder(BorderConvertor.getBorder(borderId));
                 }
@@ -540,6 +515,7 @@ public final class SwingView implements GraphicView {
                 SwingScilabTabGroup TabGroup = new SwingScilabTabGroup();
                 TabGroup.setId(id);
                 //setDefaultProperties(TabGroup, id);
+                //TabGroup.update(property, value);
                 return TabGroup;
             case Layer:
                 SwingScilabFrame layer = new SwingScilabFrame();
@@ -558,22 +534,14 @@ public final class SwingView implements GraphicView {
      * @param id the uimenu id
      */
     private void setMenuDefaultProperties(Widget uiMenuObject, Integer id) {
-        SwingViewMenu.update(uiMenuObject, __GO_CHILDREN__,
-                             GraphicController.getController().getProperty(id, __GO_CHILDREN__));
-        SwingViewMenu.update(uiMenuObject, __GO_CALLBACK__,
-                             GraphicController.getController().getProperty(id, __GO_CALLBACK__));
-        SwingViewMenu.update(uiMenuObject, __GO_CALLBACKTYPE__,
-                             GraphicController.getController().getProperty(id, __GO_CALLBACKTYPE__));
-        SwingViewMenu.update(uiMenuObject, __GO_UI_CHECKED__,
-                             GraphicController.getController().getProperty(id, __GO_UI_CHECKED__));
-        SwingViewMenu.update(uiMenuObject, __GO_UI_ENABLE__,
-                             GraphicController.getController().getProperty(id, __GO_UI_ENABLE__));
-        SwingViewMenu.update(uiMenuObject, __GO_UI_FOREGROUNDCOLOR__,
-                             GraphicController.getController().getProperty(id, __GO_UI_FOREGROUNDCOLOR__));
-        SwingViewMenu.update(uiMenuObject, __GO_UI_LABEL__,
-                             GraphicController.getController().getProperty(id, __GO_UI_LABEL__));
-        SwingViewMenu.update(uiMenuObject, __GO_UI_ICON__,
-                             GraphicController.getController().getProperty(id, __GO_UI_ICON__));
+        SwingViewMenu.update(uiMenuObject, __GO_CHILDREN__, GraphicController.getController().getProperty(id, __GO_CHILDREN__));
+        SwingViewMenu.update(uiMenuObject, __GO_CALLBACK__, GraphicController.getController().getProperty(id, __GO_CALLBACK__));
+        SwingViewMenu.update(uiMenuObject, __GO_CALLBACKTYPE__, GraphicController.getController().getProperty(id, __GO_CALLBACKTYPE__));
+        SwingViewMenu.update(uiMenuObject, __GO_UI_CHECKED__, GraphicController.getController().getProperty(id, __GO_UI_CHECKED__));
+        SwingViewMenu.update(uiMenuObject, __GO_UI_ENABLE__, GraphicController.getController().getProperty(id, __GO_UI_ENABLE__));
+        SwingViewMenu.update(uiMenuObject, __GO_UI_FOREGROUNDCOLOR__, GraphicController.getController().getProperty(id, __GO_UI_FOREGROUNDCOLOR__));
+        SwingViewMenu.update(uiMenuObject, __GO_UI_LABEL__, GraphicController.getController().getProperty(id, __GO_UI_LABEL__));
+        SwingViewMenu.update(uiMenuObject, __GO_UI_ICON__, GraphicController.getController().getProperty(id, __GO_UI_ICON__));
     }
 
     /**
@@ -582,37 +550,25 @@ public final class SwingView implements GraphicView {
      * @param id the uicontrol id
      */
     private void setDefaultProperties(Widget uiControlObject, Integer id) {
-        /* Visible property is set first to avoid to see the object rendered before all its properties to be set (See bug #10346) */
-        SwingViewWidget.update(uiControlObject, __GO_VISIBLE__,
-                               GraphicController.getController().getProperty(id, __GO_VISIBLE__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_BACKGROUNDCOLOR__,
-                               GraphicController.getController().getProperty(id, __GO_UI_BACKGROUNDCOLOR__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_ENABLE__,
-                               GraphicController.getController().getProperty(id, __GO_UI_ENABLE__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_FONTANGLE__,
-                               GraphicController.getController().getProperty(id, __GO_UI_FONTANGLE__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_FONTNAME__,
-                               GraphicController.getController().getProperty(id, __GO_UI_FONTNAME__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_FONTUNITS__,
-                               GraphicController.getController().getProperty(id, __GO_UI_FONTUNITS__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_FONTSIZE__,
-                               GraphicController.getController().getProperty(id, __GO_UI_FONTSIZE__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_FONTWEIGHT__,
-                               GraphicController.getController().getProperty(id, __GO_UI_FONTWEIGHT__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_FOREGROUNDCOLOR__,
-                               GraphicController.getController().getProperty(id, __GO_UI_FOREGROUNDCOLOR__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_HORIZONTALALIGNMENT__,
-                               GraphicController.getController().getProperty(id, __GO_UI_HORIZONTALALIGNMENT__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_RELIEF__,
-                               GraphicController.getController().getProperty(id, __GO_UI_RELIEF__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_STRING__,
-                               GraphicController.getController().getProperty(id, __GO_UI_STRING__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_VERTICALALIGNMENT__,
-                               GraphicController.getController().getProperty(id, __GO_UI_VERTICALALIGNMENT__));
-        SwingViewWidget.update(uiControlObject, __GO_POSITION__,
-                               GraphicController.getController().getProperty(id, __GO_POSITION__));
-        SwingViewWidget.update(uiControlObject, __GO_LAYOUT__,
-                               GraphicController.getController().getProperty(id, __GO_LAYOUT__));
+        /*
+         * Visible property is set first to avoid to see the object rendered
+         * before all its properties to be set (See bug #10346)
+         */
+        SwingViewWidget.update(uiControlObject, __GO_VISIBLE__, GraphicController.getController().getProperty(id, __GO_VISIBLE__));
+        SwingViewWidget.update(uiControlObject, __GO_UI_BACKGROUNDCOLOR__, GraphicController.getController().getProperty(id, __GO_UI_BACKGROUNDCOLOR__));
+        SwingViewWidget.update(uiControlObject, __GO_UI_ENABLE__, GraphicController.getController().getProperty(id, __GO_UI_ENABLE__));
+        SwingViewWidget.update(uiControlObject, __GO_UI_FONTANGLE__, GraphicController.getController().getProperty(id, __GO_UI_FONTANGLE__));
+        SwingViewWidget.update(uiControlObject, __GO_UI_FONTNAME__, GraphicController.getController().getProperty(id, __GO_UI_FONTNAME__));
+        SwingViewWidget.update(uiControlObject, __GO_UI_FONTUNITS__, GraphicController.getController().getProperty(id, __GO_UI_FONTUNITS__));
+        SwingViewWidget.update(uiControlObject, __GO_UI_FONTSIZE__, GraphicController.getController().getProperty(id, __GO_UI_FONTSIZE__));
+        SwingViewWidget.update(uiControlObject, __GO_UI_FONTWEIGHT__, GraphicController.getController().getProperty(id, __GO_UI_FONTWEIGHT__));
+        SwingViewWidget.update(uiControlObject, __GO_UI_FOREGROUNDCOLOR__, GraphicController.getController().getProperty(id, __GO_UI_FOREGROUNDCOLOR__));
+        SwingViewWidget.update(uiControlObject, __GO_UI_HORIZONTALALIGNMENT__, GraphicController.getController().getProperty(id, __GO_UI_HORIZONTALALIGNMENT__));
+        SwingViewWidget.update(uiControlObject, __GO_UI_RELIEF__, GraphicController.getController().getProperty(id, __GO_UI_RELIEF__));
+        SwingViewWidget.update(uiControlObject, __GO_UI_STRING__, GraphicController.getController().getProperty(id, __GO_UI_STRING__));
+        SwingViewWidget.update(uiControlObject, __GO_UI_VERTICALALIGNMENT__, GraphicController.getController().getProperty(id, __GO_UI_VERTICALALIGNMENT__));
+        SwingViewWidget.update(uiControlObject, __GO_POSITION__, GraphicController.getController().getProperty(id, __GO_POSITION__));
+        SwingViewWidget.update(uiControlObject, __GO_LAYOUT__, GraphicController.getController().getProperty(id, __GO_LAYOUT__));
     }
 
     public void deleteObject(Integer id) {
@@ -668,7 +624,8 @@ public final class SwingView implements GraphicView {
                     //try close the Property List (GED)
                     try {
                         Inspector.getInspector().close();
-                    } catch (NullPointerException e) { }
+                    } catch (NullPointerException e) {
+                    }
                     break;
                 case Progressbar:
                 case Waitbar:
@@ -696,9 +653,7 @@ public final class SwingView implements GraphicView {
             }
         }
 
-        if (registeredObject != null &&
-                property == __GO_VALID__ &&
-                ((Boolean) GraphicController.getController().getProperty(id, __GO_VALID__))) {
+        if (registeredObject != null && property == __GO_VALID__ && ((Boolean) GraphicController.getController().getProperty(id, __GO_VALID__))) {
             if (registeredObject.getValue() instanceof SwingScilabDockablePanel) {
                 final Runnable r = new Runnable() {
                     @Override
@@ -756,7 +711,7 @@ public final class SwingView implements GraphicView {
     public void updateObjectOnEDT(TypedObject registeredObject, final Integer id, final int property) {
         /* Removes the swing object if its parent is not display */
         if (registeredObject != null && property == __GO_PARENT__) {
-            Integer parentId = (Integer)GraphicController.getController().getProperty(id, __GO_PARENT__);
+            Integer parentId = (Integer) GraphicController.getController().getProperty(id, __GO_PARENT__);
             TypedObject registeredParent = allObjects.get(parentId);
             if (registeredParent == null) {
                 allObjects.remove(id);
@@ -772,40 +727,41 @@ public final class SwingView implements GraphicView {
                     /*
                      * FIGURE CHILDREN UPDATE
                      */
-                case __GO_FIGURE__ :
+                case __GO_FIGURE__:
                     updateFigureChildren(registeredObject, newChildren);
                     break;
                     /*
                      * CONSOLE CHILDREN UPDATE
                      */
-                case __GO_CONSOLE__ :
+                case __GO_CONSOLE__:
                     updateConsoleChildren(registeredObject, newChildren);
                     break;
                     /*
                      * MENU CHILDREN UPDATE
                      */
-                case __GO_UIMENU__ :
+                case __GO_UIMENU__:
                     updateMenuChildren(registeredObject, id, newChildren);
                     break;
                     /*
                      * CONTEXTMENU CHILDREN UPDATE
                      */
-                case __GO_UICONTEXTMENU__ :
+                case __GO_UICONTEXTMENU__:
                     updateContextMenuChildren(registeredObject, newChildren);
                     break;
                     /*
                      * UICONTROL "FRAME" CHILDREN UPDATE
                      */
-                case __GO_UICONTROL__ :
+                case __GO_UICONTROL__:
+
                     int style = (Integer) GraphicController.getController().getProperty(id, __GO_STYLE__);
                     switch (style) {
-                        case __GO_UI_LAYER__ :
+                        case __GO_UI_LAYER__:
                             updateLayerChildren(registeredObject, newChildren);
                             break;
-                        case __GO_UI_FRAME__ :
+                        case __GO_UI_FRAME__:
                             updateFrameChildren(registeredObject, newChildren);
                             break;
-                        case __GO_UI_TAB__ :
+                        case __GO_UI_TAB__:
                             updateTabGroupChildren(registeredObject, newChildren);
                             break;
                     }
@@ -814,8 +770,9 @@ public final class SwingView implements GraphicView {
         }
 
         /*
-         * When the CHECKED property is updated for a UIMENU,
-         * the object is converted to a SwingScilabCheckBoxMenuItem is not already of this type
+         * When the CHECKED property is updated for a UIMENU, the object is
+         * converted to a SwingScilabCheckBoxMenuItem is not already of this
+         * type
          */
         if (registeredObject != null && property == __GO_UI_CHECKED__) {
             if (type == __GO_UIMENU__) {
@@ -847,16 +804,17 @@ public final class SwingView implements GraphicView {
         }
 
         /*
-         * When the SEPARATOR property is updated for a UIMENU,
-         * When the property is set to TRUE: A separator is added if not already done
-         * When the property is set to FALSE: The previous separator is removed if it exists
+         * When the SEPARATOR property is updated for a UIMENU, When the
+         * property is set to TRUE: A separator is added if not already done
+         * When the property is set to FALSE: The previous separator is removed
+         * if it exists
          */
         if (registeredObject != null && property == __GO_UI_SEPARATOR__) {
             if (type == __GO_UIMENU__) {
                 Integer parentId = (Integer) GraphicController.getController().getProperty(id, __GO_PARENT__);
                 int menuPosition = -1;
                 Component currentComponent = (Component) registeredObject.getValue();
-                Component[] allChildren =  ((SwingScilabMenu) allObjects.get(parentId).getValue()).getMenuComponents();
+                Component[] allChildren = ((SwingScilabMenu) allObjects.get(parentId).getValue()).getMenuComponents();
                 for (int kChild = 0; kChild < allChildren.length; kChild++) {
                     if (allChildren[kChild] == currentComponent) {
                         menuPosition = kChild;
@@ -1098,7 +1056,13 @@ public final class SwingView implements GraphicView {
 
                 /* Add an uicontrol */
                 if (childType == __GO_UICONTROL__) {
-                    updatedComponent.addTab("Tab", (Component) allObjects.get(childId).getValue());
+                    String str = "Tab";
+                    String[] text = (String[]) GraphicController.getController().getProperty(childId, __GO_UI_STRING__);
+                    if (text != null && text[0] != null) {
+                        str = text[0];
+                    }
+
+                    updatedComponent.insertTab(str, null, (Component) allObjects.get(childId).getValue(), "", 0);
                     needRevalidate = true;
                 }
             }
@@ -1127,6 +1091,7 @@ public final class SwingView implements GraphicView {
             updatedComponent.revalidate();
         }
     }
+
     /**
      * Update the Console menus (called by generic updateObject method)
      * @param id the id of the console object
@@ -1166,7 +1131,7 @@ public final class SwingView implements GraphicView {
         // Remove children which have been deleted
         Set<Integer> newChildrenSet = new HashSet<Integer>(Arrays.asList(newChildren));
         Object[] updatedObjectChildren = updatedObject.getChildren().toArray();
-        for (int i = 0 ; i < updatedObjectChildren.length ; ++i) {
+        for (int i = 0; i < updatedObjectChildren.length; ++i) {
             Integer childId = (Integer) updatedObjectChildren[i];
             if (!newChildrenSet.contains(childId)) {
 
@@ -1188,7 +1153,8 @@ public final class SwingView implements GraphicView {
     }
 
     /**
-     * Update the children of a menu menus (called by generic updateObject method)
+     * Update the children of a menu menus (called by generic updateObject
+     * method)
      * @param id the id of the menu object
      * @param newChildren the new children IDs list
      */
@@ -1284,7 +1250,10 @@ public final class SwingView implements GraphicView {
                                     break;
                                 default: /* UiParentMenu */
                                     /* Java can not add a JMenu in a JMenu */
-                                    /* We need to convert the child into a MenuItem */
+                                    /*
+                                     * We need to convert the child into a
+                                     * MenuItem
+                                     */
                                     TypedObject newMenu = CreateObjectFromType(__GO_UIMENU__, childId);
                                     allObjects.put(childId, newMenu);
                                     updatedMenu.add((SwingScilabMenuItem) newMenu.getValue());
@@ -1327,8 +1296,10 @@ public final class SwingView implements GraphicView {
             updatedComponent.validate();
         }
     }
+
     /**
-     * Update the children of a contextmenu (called by generic updateObject method)
+     * Update the children of a contextmenu (called by generic updateObject
+     * method)
      * @param id the id of the contextmenu object
      * @param newChildren the new children IDs list
      */

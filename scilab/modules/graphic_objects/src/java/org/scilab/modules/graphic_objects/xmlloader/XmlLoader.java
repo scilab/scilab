@@ -72,10 +72,10 @@ public class XmlLoader extends DefaultHandler {
 
         nameToGO.put("UIPanel", __GO_UI_FRAME__);
         nameToGO.put("UIFrame", __GO_UI_FRAME__);
-        nameToGO.put("UILayer", __GO_UI_FRAME__);
         nameToGO.put("Panel", __GO_UI_FRAME__);
         nameToGO.put("Frame", __GO_UI_FRAME__);
 
+        nameToGO.put("UILayer", __GO_UI_LAYER__);
         nameToGO.put("Layer", __GO_UI_LAYER__);
 
         nameToGO.put("UIButton", __GO_UI_PUSHBUTTON__);
@@ -102,7 +102,7 @@ public class XmlLoader extends DefaultHandler {
         nameToGO.put("List", __GO_UI_LISTBOX__);
         nameToGO.put("ListBox", __GO_UI_LISTBOX__);
 
-        nameToGO.put("UICombobox", __GO_UI_POPUPMENU__);
+        nameToGO.put("UIComboBox", __GO_UI_POPUPMENU__);
         nameToGO.put("ComboBox", __GO_UI_POPUPMENU__);
         nameToGO.put("PopupMenu", __GO_UI_POPUPMENU__);
 
@@ -120,6 +120,12 @@ public class XmlLoader extends DefaultHandler {
         nameToGO.put("Label", __GO_UI_TEXT__);
 
         nameToGO.put("UITab", __GO_UI_TAB__);
+
+
+        /** sdsdf*/
+        nameToGO.put("UITextarea", __GO_UI_PUSHBUTTON__);
+        nameToGO.put("UIScilabPlot", __GO_UI_PUSHBUTTON__);
+
     }
 
     public XmlLoader(String filename) {

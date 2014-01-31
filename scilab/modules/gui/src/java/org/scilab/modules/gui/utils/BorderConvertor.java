@@ -26,6 +26,8 @@ import java.awt.Font;
 import java.lang.reflect.Field;
 
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
@@ -244,7 +246,10 @@ public class BorderConvertor {
                                     fontStyle |= Font.BOLD;
                                 }
 
-                                Font font = new Font(fontName, fontStyle, fontSize);
+                                Font defaultFont = UIManager.getFont("Button.font");
+                                Font font = new Font(fontName.equals("") == false ? fontName : defaultFont.getFontName(),
+                                        fontStyle,
+                                        fontSize != 0 ? fontSize : defaultFont.getSize());
                                 border = BorderFactory.createTitledBorder(border1, title, justify, position, font, getColor(color));
                             } else {
                                 border = BorderFactory.createTitledBorder(border1, title, justify, position);
