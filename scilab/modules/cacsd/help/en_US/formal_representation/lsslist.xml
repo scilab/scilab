@@ -25,11 +25,11 @@
         <title>Description</title>
         <para>
             <literal>lsslist(A, B, C, X0, dt)</literal> is a shortcut to
-            <literal>tlist(['lss','A';'B';'C';'X0','dt'], A, B, C, X0, dt)</literal>.
+            <literal>tlist(["lss", "A", "B", "C", "D", "X0", "dt"], A, B, C, D, X0, dt)</literal>.
         </para>
         <para>
-            Creates a <literal>tlist</literal> with  <literal>['lss','A';'B';'C';'X0','dt']</literal> as
-            first entry and  <varname>A</varname>, <varname>B</varname>, <varname>C</varname>,<varname>X0</varname>,<varname>dt</varname> 
+            Creates a <literal>tlist</literal> with  <literal>["lss", "A", "B", "C", "D", "X0", "dt"]</literal> as
+            first entry and  <varname>A</varname>, <varname>B</varname>, <varname>C</varname>,<varname>X0</varname>,<varname>dt</varname>
             as next entries if any. No type nor size
             checking is done on input variables.
         </para>

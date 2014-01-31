@@ -14,13 +14,13 @@
         <title>Description</title>
         <para>
             <literal>lsslist(A, B, C, X0, dt)</literal> est équivalent à la commande
-            <literal>tlist(['lss','A';'B';'C';'X0','dt'], A, B, C, X0, dt)</literal> 
+            <literal>tlist(["lss", "A", "B", "C", "D", "X0", "dt"], A, B, C, D, X0, dt)</literal>
         </para>
         <para>
-            Crée une <literal>tlist</literal> avec <literal>['lss','A';'B';'C';'X0','dt']</literal> pour le premier champ, et 
-            <varname>A</varname>, <varname>B</varname>, <varname>C</varname>,<varname>X0</varname>,<varname>dt</varname> 
-            pour les termes suivants, s'ils sont spécifiés. Aucune vérification de taille ou de type n'est faite sur 
-            les paramètres d'entrée. 
+            Crée une <literal>tlist</literal> avec <literal>["lss", "A", "B", "C", "D", "X0", "dt"]</literal> pour le premier champ, et
+            <varname>A</varname>, <varname>B</varname>, <varname>C</varname>,<varname>X0</varname>,<varname>dt</varname>
+            pour les termes suivants, s'ils sont spécifiés. Aucune vérification de taille ou de type n'est faite sur
+            les paramètres d'entrée.
         </para>
         <para>
         </para>

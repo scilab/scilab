@@ -27,10 +27,10 @@
         <title>Описание</title>
         <para>
             <literal>lsslist(A, B, C, X0, dt)</literal> является сокращением для
-            <literal>tlist(['lss','A';'B';'C';'X0','dt'], A, B, C, X0, dt)</literal>.
+            <literal>tlist(["lss", "A", "B", "C", "D", "X0", "dt"], A, B, C, D, X0, dt)</literal>.
         </para>
         <para>
-            Создаёт <literal>tlist</literal> с <literal>['lss','A';'B';'C';'X0','dt']</literal> на месте первого элемента и 
+            Создаёт <literal>tlist</literal> с <literal>["lss", "A", "B", "C", "D", "X0", "dt"]</literal> на месте первого элемента и
             <varname>A</varname>, <varname>B</varname>, <varname>C</varname>,<varname>X0</varname>,<varname>dt</varname> -тыми на месте последующих элементов, если они есть. Ни проверки типа, ни проверки размера <varname>ai</varname>-тых не делается.
         </para>
     </refsection>

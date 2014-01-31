@@ -27,11 +27,11 @@
         <title>Descrição</title>
         <para>
             <literal>lsslist(A, B, C, X0, dt)</literal> é um atalho para
-            <literal>tlist(['lss','A';'B';'C';'X0','dt'], A, B, C, X0, dt)</literal>
+            <literal>tlist(["lss", "A", "B", "C", "D", "X0", "dt"], A, B, C, D, X0, dt)</literal>
         </para>
         <para>
             Cria um <literal>tlist</literal> com
-            <literal>['lss','A';'B';'C';'X0','dt']</literal> como primeiras entradas e
+            <literal>["lss", "A", "B", "C", "D", "X0", "dt"]</literal> como primeiras entradas e
             os A, B, C, X0, dt
             como próximas entradas, se tiver algum. Não é
             feita verificação de tipo ou tamanho nos <varname>A</varname>, <varname>B</varname>, <varname>C</varname>,<varname>X0</varname>,<varname>dt</varname>.
