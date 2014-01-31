@@ -13,7 +13,7 @@
 package org.scilab.modules.graphic_objects.uicontrol.uiimage;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGE__;
-
+import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
 /**
@@ -29,6 +29,22 @@ public class UiImage extends Uicontrol {
         setStyle(__GO_UI_IMAGE__);
         Double[] imageInfos = {1.0, 1.0, 0.0, 0.0, 0.0}; // {XScale, YScale, XShear, YShear, RotationAngle}
         setUiValue(imageInfos);
+        if (Console.getConsole().getUseDeprecatedLF()) {
+            setRelief(RAISED_RELIEF);
+            setBackgroundColor(new Double[] {
+                                   DEFAULT_RED_BACKGROUND,
+                                   DEFAULT_GREEN_BACKGROUND,
+                                   DEFAULT_BLUE_BACKGROUND
+                               });
+
+            setHorizontalAlignment("center");
+            setVerticalAlignment("middle");
+
+            setFontName(DEFAULTFONTNAME);
+            setFontSize(DEFAULTFONTSIZE);
+            setFontAngle(DEFAULTFONTANGLE);
+            setFontWeight(DEFAULTFONTWEIGHT);
+        }
     }
 
 }

@@ -255,6 +255,7 @@ public class Uicontrol extends GraphicObject {
         }
     }
 
+    protected static final String NONE_RELIEF   = "";
     protected static final String FLAT_RELIEF   = "flat";
     protected static final String RAISED_RELIEF = "raised";
     protected static final String SUNKEN_RELIEF = "sunken";
@@ -262,43 +263,43 @@ public class Uicontrol extends GraphicObject {
     protected static final String RIDGE_RELIEF  = "ridge";
     protected static final String SOLID_RELIEF  = "solid";
 
-    private static final double DEFAULT_RED_BACKGROUND = 0.8;
-    private static final double DEFAULT_GREEN_BACKGROUND = 0.8;
-    private static final double DEFAULT_BLUE_BACKGROUND = 0.8;
+    protected static final double DEFAULT_RED_BACKGROUND = 0.8;
+    protected static final double DEFAULT_GREEN_BACKGROUND = 0.8;
+    protected static final double DEFAULT_BLUE_BACKGROUND = 0.8;
 
     private static final double DEFAULT_X = 20.0;
     private static final double DEFAULT_Y = 40.0;
     private static final double DEFAULT_WIDTH = 40.0;
     private static final double DEFAULT_HEIGHT = 20.0;
 
-    private static final double DEFAULTFONTSIZE = 10;
-    private static final String DEFAULTFONTNAME = "helvetica";
-    private static final String DEFAULTFONTWEIGHT = "normal";
-    private static final String DEFAULTFONTANGLE = DEFAULTFONTWEIGHT;
+    protected static final double DEFAULTFONTSIZE = 10;
+    protected static final String DEFAULTFONTNAME = "helvetica";
+    protected static final String DEFAULTFONTWEIGHT = "normal";
+    protected static final String DEFAULTFONTANGLE = "normal";
     private static final String STRING_SEPARATOR = "|";
 
     private UicontrolStyle style;
-    private Double[] backgroundColor = {DEFAULT_RED_BACKGROUND, DEFAULT_GREEN_BACKGROUND, DEFAULT_BLUE_BACKGROUND};
+    private Double[] backgroundColor = { -1.0, -1.0, -1.0};
     private boolean enable = true;
-    private String fontAngle = DEFAULTFONTANGLE;
-    private String fontName = DEFAULTFONTNAME;
-    private double fontSize = DEFAULTFONTSIZE;
+    private String fontAngle = "";
+    private String fontName = "";
+    private double fontSize = 0;
     private String fontUnits = "points";
-    private String fontWeight = DEFAULTFONTWEIGHT;
+    private String fontWeight = "";
     private Double[] foregroundColor = {0.0, 0.0, 0.0};
-    private String horizontalAlignment = "center";
+    private String horizontalAlignment = "";
     private Integer[] listboxTop;
     private double max = 1.0;
     private double min;
     private Double[] position = {DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT};
-    private String relief = RAISED_RELIEF;
+    private String relief = NONE_RELIEF;
     private Double[] sliderStep = {0.01, 0.1};
     private String[] string = {""};
     private int stringColNb = 1; // Used for tables
     private String[] tooltipString = {""};
     private String units = "pixels";
     private Double[] value;
-    private String verticalAlignment = "middle";
+    private String verticalAlignment = "";
     private LayoutType layout = LayoutType.NONE;
     private Double[] margins = new Double[] {0.0, 0.0, 0.0, 0.0};
     private Integer[] gridbagGrid = new Integer[] {0, 0, 0, 0};

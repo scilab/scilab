@@ -14,6 +14,7 @@ package org.scilab.modules.graphic_objects.uicontrol.edit;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_EDIT__;
 
+import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
 /**
@@ -27,7 +28,22 @@ public class Edit extends Uicontrol {
     public Edit() {
         super();
         setStyle(__GO_UI_EDIT__);
-        setRelief(SUNKEN_RELIEF);
-    }
 
+        if (Console.getConsole().getUseDeprecatedLF()) {
+            setRelief(SUNKEN_RELIEF);
+            setBackgroundColor(new Double[] {
+                                   DEFAULT_RED_BACKGROUND,
+                                   DEFAULT_GREEN_BACKGROUND,
+                                   DEFAULT_BLUE_BACKGROUND
+                               });
+
+            setHorizontalAlignment("center");
+            setVerticalAlignment("middle");
+
+            setFontName(DEFAULTFONTNAME);
+            setFontSize(DEFAULTFONTSIZE);
+            setFontAngle(DEFAULTFONTANGLE);
+            setFontWeight(DEFAULTFONTWEIGHT);
+        }
+    }
 }

@@ -66,3 +66,5 @@ SetUicontrolString
 SetUicontrolTooltipString
 SetUimenuLabel
 SetUiobjectEnable
+GetConsoleUseDeprecatedLF
+SetConsoleUseDeprecatedLF

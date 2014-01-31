@@ -14,6 +14,7 @@ package org.scilab.modules.graphic_objects.uicontrol.slider;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
 
+import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
 /**
@@ -27,12 +28,27 @@ public class Slider extends Uicontrol {
     public Slider() {
         super();
         setStyle(__GO_UI_SLIDER__);
-        setRelief(FLAT_RELIEF);
 
         // Default value is the min value
         Double[] value = new Double[1];
         value[0] = getMin();
         setUiValue(value);
-    }
 
+        if (Console.getConsole().getUseDeprecatedLF()) {
+            setRelief(FLAT_RELIEF);
+            setBackgroundColor(new Double[] {
+                                   DEFAULT_RED_BACKGROUND,
+                                   DEFAULT_GREEN_BACKGROUND,
+                                   DEFAULT_BLUE_BACKGROUND
+                               });
+
+            setHorizontalAlignment("center");
+            setVerticalAlignment("middle");
+
+            setFontName(DEFAULTFONTNAME);
+            setFontSize(DEFAULTFONTSIZE);
+            setFontAngle(DEFAULTFONTANGLE);
+            setFontWeight(DEFAULTFONTWEIGHT);
+        }
+    }
 }

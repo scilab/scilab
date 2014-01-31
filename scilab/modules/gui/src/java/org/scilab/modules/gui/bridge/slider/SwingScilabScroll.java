@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
+ * Copyright (C) 2007 - INRIA - Vincent Couvert
+ * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,21 +15,16 @@ package org.scilab.modules.gui.bridge.slider;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
-import java.awt.event.ActionEvent;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 
-import javax.swing.AbstractAction;
 import javax.swing.JScrollBar;
-import javax.swing.JSlider;
-import javax.swing.KeyStroke;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
+import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.slider.SimpleSlider;
@@ -45,9 +41,11 @@ import org.scilab.modules.gui.utils.Size;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabSlider extends JSlider implements SwingViewObject, SimpleSlider {
+public class SwingScilabScroll extends JScrollBar implements SwingViewObject, SimpleSlider {
 
     private static final long serialVersionUID = -4262320156090829309L;
+
+    private static final int MIN_KNOB_SIZE = 40;
 
     private static final int MINIMUM_VALUE = 0;
     private static final int MAXIMUM_VALUE = 10000;
@@ -56,103 +54,27 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Simpl
 
     private CommonCallBack callback;
 
-    private ChangeListener changeListener;
-
-    class CtrlLeftAction extends AbstractAction {
-        private static final long serialVersionUID = -3289281207742516486L;
-
-        public void actionPerformed(ActionEvent arg0) {
-            double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
-            double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
-            Double[] step = (Double[]) GraphicController.getController().getProperty(uid, __GO_UI_SLIDERSTEP__);
-            int value = SwingScilabSlider.this.getValue();
-
-            double ratio = (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin);
-            int newValue = Math.max(MINIMUM_VALUE, value - (int)(step[1] * ratio));
-            setValue(newValue);
-        }
-    }
-
-    class LeftAction extends AbstractAction {
-        private static final long serialVersionUID = 2099826485447918397L;
-
-        public void actionPerformed(ActionEvent arg0) {
-            double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
-            double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
-            Double[] step = (Double[]) GraphicController.getController().getProperty(uid, __GO_UI_SLIDERSTEP__);
-            int value = SwingScilabSlider.this.getValue();
-
-            double ratio = (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin);
-            int newValue = Math.max(MINIMUM_VALUE, value - (int)(step[0] * ratio));
-            setValue(newValue);
-        }
-    }
-
-    class RightAction extends AbstractAction {
-        private static final long serialVersionUID = 8666161246122371904L;
-
-        public void actionPerformed(ActionEvent arg0) {
-            double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
-            double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
-            Double[] step = (Double[]) GraphicController.getController().getProperty(uid, __GO_UI_SLIDERSTEP__);
-            int value = SwingScilabSlider.this.getValue();
-
-            double ratio = (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin);
-            int newValue = Math.min(MAXIMUM_VALUE, value + (int)(step[0] * ratio));
-            setValue(newValue);
-        }
-    }
-
-    class CtrlRightAction extends AbstractAction {
-        private static final long serialVersionUID = -1364255463511656338L;
-
-        public void actionPerformed(ActionEvent arg0) {
-            double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
-            double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
-            Double[] step = (Double[]) GraphicController.getController().getProperty(uid, __GO_UI_SLIDERSTEP__);
-            int value = SwingScilabSlider.this.getValue();
-
-            double ratio = (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin);
-            int newValue = Math.min(MAXIMUM_VALUE, value + (int)(step[1] * ratio));
-            setValue(newValue);
-        }
-    }
+    private AdjustmentListener adjustmentListener;
 
     /**
      * Constructor
      */
-    public SwingScilabSlider() {
+    public SwingScilabScroll() {
         super();
         // needed to have slider working with GLCanvas
         setOpaque(true);
+        setFocusable(true); /* Enable to manage the slider using keyboard (See bug #10840) */
         setMinimum(MINIMUM_VALUE);
-        setMaximum(MAXIMUM_VALUE);
-        setValue(0);
-
-        /* some keys binding */
-        getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "LeftAction");
-        getInputMap().put(KeyStroke.getKeyStroke("LEFT"), "LeftAction");
-        getActionMap().put("LeftAction", new LeftAction());
-        getInputMap().put(KeyStroke.getKeyStroke("UP"), "RightAction");
-        getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), "RightAction");
-        getActionMap().put("RightAction", new RightAction());
-        getInputMap().put(KeyStroke.getKeyStroke("control UP"), "CtrlRightAction");
-        getInputMap().put(KeyStroke.getKeyStroke("control RIGHT"), "CtrlRightAction");
-        getActionMap().put("CtrlRightAction", new CtrlRightAction());
-        getInputMap().put(KeyStroke.getKeyStroke("control DOWN"), "CtrlLeftAction");
-        getInputMap().put(KeyStroke.getKeyStroke("control LEFT"), "CtrlLeftAction");
-        getActionMap().put("CtrlLeftAction", new CtrlLeftAction());
-
-
-        changeListener = new ChangeListener() {
-            public void stateChanged(ChangeEvent arg0) {
+        setMaximum(MAXIMUM_VALUE + getVisibleAmount());
+        adjustmentListener = new AdjustmentListener() {
+            public void adjustmentValueChanged(AdjustmentEvent arg0) {
                 updateModel();
                 if (callback != null) {
                     callback.actionPerformed(null);
                 }
             }
         };
-        addChangeListener(changeListener);
+        addAdjustmentListener(adjustmentListener);
     }
 
     /**
@@ -312,13 +234,19 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Simpl
      * @param space the increment value
      */
     public void setMajorTickSpacing(double space) {
+        /* Remove the listener to avoid the callback to be executed */
+        removeAdjustmentListener(adjustmentListener);
+
         double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
         double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+        setBlockIncrement((int) (space * (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin)));
+        int oldMax = getMaximum() - getVisibleAmount();
+        setVisibleAmount(Math.max((int) ((MAXIMUM_VALUE - MINIMUM_VALUE) / space), MIN_KNOB_SIZE));
+        setMaximum(oldMax + getVisibleAmount());
 
-        double ratio = (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin);
-        int newspace = (int)(space * ratio);
-        System.out.println("major : " + newspace);
-        super.setMajorTickSpacing(newspace);
+        System.out.println("old major = " + (int) (space * (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin)));
+        /* Put back the listener */
+        addAdjustmentListener(adjustmentListener);
     }
 
     /**
@@ -326,13 +254,16 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Simpl
      * @param space the increment value
      */
     public void setMinorTickSpacing(double space) {
+        /* Remove the listener to avoid the callback to be executed */
+        removeAdjustmentListener(adjustmentListener);
+
         double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
         double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+        setUnitIncrement((int) (space * (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin)));
+        System.out.println("old minor = " + (int) (space * (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin)));
 
-        double ratio = (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin);
-        int newspace = (int)(space * ratio);
-        System.out.println("minor : " + newspace);
-        super.setMinorTickSpacing(newspace);
+        /* Put back the listener */
+        addAdjustmentListener(adjustmentListener);
     }
 
     /**
@@ -380,14 +311,14 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Simpl
      */
     public void setUserValue(double value) {
         /* Remove the listener to avoid the callback to be executed */
-        removeChangeListener(changeListener);
+        removeAdjustmentListener(adjustmentListener);
 
         double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
         double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
-        setValue(MINIMUM_VALUE + (int) ((value - userMin) * (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin)));
+        super.setValue(MINIMUM_VALUE + (int) ((value - userMin) * (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin)));
 
         /* Put back the listener */
-        addChangeListener(changeListener);
+        addAdjustmentListener(adjustmentListener);
     }
 
     /**

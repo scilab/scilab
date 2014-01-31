@@ -62,7 +62,7 @@ public class SwingScilabDockingWindow extends SwingScilabWindow {
                 ClosingOperationsManager.startClosingOperation(SwingScilabDockingWindow.this);
             }
         });
-
+        setVisible(true);
     }
 
     /**

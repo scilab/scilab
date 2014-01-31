@@ -14,6 +14,7 @@ package org.scilab.modules.graphic_objects.uicontrol.frame;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
 
+import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
 /**
@@ -27,7 +28,24 @@ public class Frame extends Uicontrol {
     public Frame() {
         super();
         setStyle(__GO_UI_FRAME__);
-        setRelief(RIDGE_RELIEF);
-    }
+        if (Console.getConsole().getUseDeprecatedLF()) {
 
+            if (Console.getConsole().getUseDeprecatedLF()) {
+                setRelief(RIDGE_RELIEF);
+                setBackgroundColor(new Double[] {
+                                       DEFAULT_RED_BACKGROUND,
+                                       DEFAULT_GREEN_BACKGROUND,
+                                       DEFAULT_BLUE_BACKGROUND
+                                   });
+
+                setHorizontalAlignment("center");
+                setVerticalAlignment("middle");
+
+                setFontName(DEFAULTFONTNAME);
+                setFontSize(DEFAULTFONTSIZE);
+                setFontAngle(DEFAULTFONTANGLE);
+                setFontWeight(DEFAULTFONTWEIGHT);
+            }
+        }
+    }
 }

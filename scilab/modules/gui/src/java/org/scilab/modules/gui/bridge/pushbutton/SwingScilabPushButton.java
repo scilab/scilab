@@ -14,6 +14,8 @@
 
 package org.scilab.modules.gui.bridge.pushbutton;
 
+//import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.beans.PropertyChangeEvent;
@@ -24,6 +26,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
+import org.scilab.modules.graphic_objects.console.Console;
+//import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+//import org.scilab.modules.graphic_objects.uicontrol.frame.border.FrameBorderType;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
@@ -61,9 +66,12 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
         super();
         setFocusable(false);
 
-        /* Avoid the L&F to erase user background settings */
-        setContentAreaFilled(false);
-        setOpaque(true);
+        if (Console.getConsole().getUseDeprecatedLF()) {
+            /* Avoid the L&F to erase user background settings */
+            setContentAreaFilled(false);
+            setOpaque(true);
+        }
+
         addPropertyChangeListener(ICON_CHANGED_PROPERTY, new PropertyChangeListener() {
             public void propertyChange(PropertyChangeEvent evt) {
                 final Icon newIcon = (Icon) evt.getNewValue();
@@ -253,7 +261,9 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (reliefType.equals("") == false) {
+            setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        }
     }
 
     /**

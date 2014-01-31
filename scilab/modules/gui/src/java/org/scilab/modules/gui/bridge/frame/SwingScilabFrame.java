@@ -15,6 +15,7 @@ package org.scilab.modules.gui.bridge.frame;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 
 import java.awt.BorderLayout;
@@ -30,6 +31,7 @@ import javax.swing.JPanel;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
+import org.scilab.modules.graphic_objects.uicontrol.frame.border.FrameBorderType;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
@@ -41,7 +43,7 @@ import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
-import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
+import org.scilab.modules.gui.bridge.slider.SwingScilabScroll;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTabGroup;
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
@@ -465,7 +467,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      */
     public int addMember(Slider member) {
         //		 FIXME replace member with member.getAsSimpleSlider() when ready
-        return this.addMember((SwingScilabSlider) member);
+        return this.addMember((SwingScilabScroll) member);
     }
 
     /**
@@ -473,7 +475,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * @param member the member to add
      * @return index of member in ArrayList
      */
-    private int addMember(SwingScilabSlider member) {
+    private int addMember(SwingScilabScroll member) {
         this.add(member);
         return this.getComponentZOrder(member);
     }
@@ -637,7 +639,9 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        //setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (org.scilab.modules.graphic_objects.console.Console.getConsole().getUseDeprecatedLF()) {
+            setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        }
     }
 
     /**

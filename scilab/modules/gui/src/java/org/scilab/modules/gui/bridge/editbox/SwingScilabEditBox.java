@@ -14,6 +14,7 @@
 
 package org.scilab.modules.gui.bridge.editbox;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 
 import java.awt.event.ActionEvent;
@@ -24,6 +25,7 @@ import java.awt.event.FocusListener;
 import javax.swing.JTextField;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.uicontrol.frame.border.FrameBorderType;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.SwingViewObject;
@@ -212,7 +214,9 @@ public class SwingScilabEditBox extends JTextField implements SwingViewObject, S
      * @param alignment the value for the alignment (See ScilabAlignment.java)
      */
     public void setHorizontalAlignment(String alignment) {
-        setHorizontalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+        if (alignment.equals("") == false) {
+            setHorizontalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+        }
     }
 
     /**
@@ -220,7 +224,9 @@ public class SwingScilabEditBox extends JTextField implements SwingViewObject, S
      * @param alignment the value for the alignment (See ScilabAlignment.java)
      */
     public void setVerticalAlignment(String alignment) {
-        // NOTHING TO DO HERE UNTIL WE HAVE MULTI-LINE EDIT UICONTROLS
+        if (alignment.equals("") == false) {
+            // NOTHING TO DO HERE UNTIL WE HAVE MULTI-LINE EDIT UICONTROLS
+        }
     }
 
     /**
@@ -228,7 +234,9 @@ public class SwingScilabEditBox extends JTextField implements SwingViewObject, S
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (reliefType.equals("") == false) {
+            setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        }
     }
 
     /**

@@ -281,7 +281,9 @@ public class SwingScilabCheckBox extends JCheckBox implements SwingViewObject, S
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (reliefType.equals("") == false) {
+            setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        }
     }
 
     /**

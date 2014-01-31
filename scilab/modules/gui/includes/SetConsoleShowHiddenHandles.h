@@ -28,5 +28,16 @@
  * @return true if the set has been correcty done
  */
 GUI_IMPEXP int SetConsoleShowHiddenHandles(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
+/**
+ * Set UseDeprecatedSkin property of the console
+ *
+ * @param pobj Scilab object corresponding to the console
+ * @param stackPointer position on the stack of the status to set
+ * @param valueType type of the value on stack
+ * @param nbRow number of rows of the value on stack
+ * @param nbCol number of columns of the value on stack
+ * @return true if the set has been correcty done
+ */
+GUI_IMPEXP int SetConsoleUseDeprecatedLF(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
 
 #endif /* !__SETCONSOLESHOWHIDDENHANDLES_H__ */

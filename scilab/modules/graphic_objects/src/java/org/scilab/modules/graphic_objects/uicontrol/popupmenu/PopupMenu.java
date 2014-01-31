@@ -14,6 +14,7 @@ package org.scilab.modules.graphic_objects.uicontrol.popupmenu;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_POPUPMENU__;
 
+import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
 /**
@@ -27,7 +28,24 @@ public class PopupMenu extends Uicontrol {
     public PopupMenu() {
         super();
         setStyle(__GO_UI_POPUPMENU__);
-        setRelief(FLAT_RELIEF);
+
+        if (Console.getConsole().getUseDeprecatedLF()) {
+            setRelief(FLAT_RELIEF);
+            setBackgroundColor(new Double[] {
+                                   DEFAULT_RED_BACKGROUND,
+                                   DEFAULT_GREEN_BACKGROUND,
+                                   DEFAULT_BLUE_BACKGROUND
+                               });
+
+            setHorizontalAlignment("center");
+            setVerticalAlignment("middle");
+
+            setFontName(DEFAULTFONTNAME);
+            setFontSize(DEFAULTFONTSIZE);
+            setFontAngle(DEFAULTFONTANGLE);
+            setFontWeight(DEFAULTFONTWEIGHT);
+        }
+
     }
 
 }

@@ -29,6 +29,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
+import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.SwingViewObject;
@@ -130,7 +131,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      * To set the Background color of the element.
      * @param color the Color
      */
-    public void setBackground(Color color) {
+    public void setListBackground(Color color) {
         getList().setBackground(color);
     }
 
@@ -439,7 +440,9 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (reliefType.equals("") == false) {
+            setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        }
     }
 
     /**

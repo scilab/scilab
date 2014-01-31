@@ -210,6 +210,7 @@ static getHashTableCouple propertyGetTable[] =
     {"anti_aliasing", get_anti_aliasing_property},
     {"UID", get_UID},
     {"showhiddenhandles", GetConsoleShowHiddenHandles},
+    {"usedeprecatedskin", GetConsoleUseDeprecatedLF},
     {"resizefcn", get_figure_resizefcn_property},
     {"tooltipstring", GetUicontrolTooltipString},
     {"closerequestfcn", get_figure_closerequestfcn_property},

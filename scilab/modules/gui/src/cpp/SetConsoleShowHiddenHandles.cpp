@@ -46,3 +46,30 @@ int SetConsoleShowHiddenHandles(void* _pvCtx, int iObjUID, void* _pvData, int va
         return SET_PROPERTY_ERROR;
     }
 }
+int SetConsoleUseDeprecatedLF(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+{
+    int b = (int)FALSE;
+    BOOL status = FALSE;
+
+    b = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, const_cast < char *>("UseDeprecatedSkin"));
+
+    if (b == NOT_A_BOOLEAN_VALUE)
+    {
+        return SET_PROPERTY_ERROR;
+    }
+
+    status = setGraphicObjectProperty(iObjUID, __GO_USEDEPRECATEDLF__, &b, jni_bool, 1);
+
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "UseDeprecatedSkin");
+        return SET_PROPERTY_ERROR;
+    }
+}
+
+
+

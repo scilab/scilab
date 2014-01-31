@@ -73,7 +73,7 @@ import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
 import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
-import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
+import org.scilab.modules.gui.bridge.slider.SwingScilabScroll;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.bridge.tree.SwingScilabTree;
 import org.scilab.modules.gui.bridge.uidisplaytree.SwingScilabUiDisplayTree;
@@ -125,7 +125,7 @@ import org.scilab.modules.gui.utils.Size;
 
 public class SwingScilabDockablePanel extends View implements SimpleTab, FocusListener, KeyListener, SwingScilabPanel {
 
-    
+
 
     private static final Image SCILAB_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")).getImage();
 
@@ -975,7 +975,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @return index of member in ArrayList
      */
     public int addMember(Slider member) {
-        return this.addMember((SwingScilabSlider) member.getAsSimpleSlider());
+        return this.addMember((SwingScilabScroll) member.getAsSimpleSlider());
     }
 
     /**
@@ -983,7 +983,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the member to add
      * @return index of member in ArrayList
      */
-    private int addMember(SwingScilabSlider member) {
+    private int addMember(SwingScilabScroll member) {
         return contentPane.addWidget(member);
     }
 
@@ -993,14 +993,14 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      */
     @Override
     public void removeMember(Slider member) {
-        this.removeMember((SwingScilabSlider) member.getAsSimpleSlider());
+        this.removeMember((SwingScilabScroll) member.getAsSimpleSlider());
     }
 
     /**
      * Remove a Slider from its container
      * @param member the Slider to remove
      */
-    private void removeMember(SwingScilabSlider member) {
+    private void removeMember(SwingScilabScroll member) {
         contentPane.removeWidget(member);
     }
 
@@ -1482,7 +1482,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
             input.dispatchEvent(new KeyEvent(input, KeyEvent.KEY_TYPED, System.currentTimeMillis(), e.getModifiers(), e.getKeyCode(), e.getKeyChar(), e.getKeyLocation()));
         }
     }
-    
+
     public JLayeredPane getWidgetPane() {
         return uiContentPane;
     }

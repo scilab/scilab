@@ -20,13 +20,9 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collection;
 import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.AbstractButton;
-import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -287,7 +283,9 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (reliefType.equals("") == false) {
+            setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        }
     }
 
     /**

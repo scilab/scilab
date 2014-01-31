@@ -14,6 +14,7 @@ package org.scilab.modules.graphic_objects.uicontrol.pushbutton;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 
+import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
 /**
@@ -31,7 +32,24 @@ public class PushButton extends Uicontrol {
     public PushButton() {
         super();
         setStyle(__GO_UI_PUSHBUTTON__);
-        setBackgroundColor(new Double[] {BUTTON_RED_BACKGROUND, BUTTON_GREEN_BACKGROUND, BUTTON_BLUE_BACKGROUND});
+
+
+        if (Console.getConsole().getUseDeprecatedLF()) {
+            setRelief(RAISED_RELIEF);
+            setBackgroundColor(new Double[] {
+                                   BUTTON_RED_BACKGROUND,
+                                   BUTTON_GREEN_BACKGROUND,
+                                   BUTTON_BLUE_BACKGROUND
+                               });
+
+            setHorizontalAlignment("center");
+            setVerticalAlignment("middle");
+
+            setFontName(DEFAULTFONTNAME);
+            setFontSize(DEFAULTFONTSIZE);
+            setFontAngle(DEFAULTFONTANGLE);
+            setFontWeight(DEFAULTFONTWEIGHT);
+        }
     }
 
 }

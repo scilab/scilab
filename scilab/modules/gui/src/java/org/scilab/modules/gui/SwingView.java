@@ -107,6 +107,7 @@ import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
+import org.scilab.modules.gui.bridge.slider.SwingScilabScroll;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
 import org.scilab.modules.gui.bridge.tab.SwingScilabCommonPanel;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
@@ -237,13 +238,13 @@ public final class SwingView implements GraphicView {
     };
 
     private static final Set<Integer> managedTypes = new HashSet<Integer>(Arrays.asList(
-            GraphicObjectProperties.__GO_FIGURE__,
-            GraphicObjectProperties.__GO_UICONTEXTMENU__,
-            GraphicObjectProperties.__GO_UIMENU__,
-            GraphicObjectProperties.__GO_CONSOLE__,
-            GraphicObjectProperties.__GO_PROGRESSIONBAR__,
-            GraphicObjectProperties.__GO_WAITBAR__,
-            GraphicObjectProperties.__GO_UICONTROL__
+                GraphicObjectProperties.__GO_FIGURE__,
+                GraphicObjectProperties.__GO_UICONTEXTMENU__,
+                GraphicObjectProperties.__GO_UIMENU__,
+                GraphicObjectProperties.__GO_CONSOLE__,
+                GraphicObjectProperties.__GO_PROGRESSIONBAR__,
+                GraphicObjectProperties.__GO_WAITBAR__,
+                GraphicObjectProperties.__GO_UICONTROL__
             ));
 
     @Override
@@ -488,10 +489,17 @@ public final class SwingView implements GraphicView {
                 setDefaultProperties(radioButton, id);
                 return radioButton;
             case Slider:
-                SwingScilabSlider slider = new SwingScilabSlider();
-                slider.setId(id);
-                setDefaultProperties(slider, id);
-                return slider;
+                if (Console.getConsole().getUseDeprecatedLF()) {
+                    SwingScilabScroll slider = new SwingScilabScroll();
+                    slider.setId(id);
+                    setDefaultProperties(slider, id);
+                    return slider;
+                } else {
+                    SwingScilabSlider slider = new SwingScilabSlider();
+                    slider.setId(id);
+                    setDefaultProperties(slider, id);
+                    return slider;
+                }
             case Table:
                 SwingScilabUiTable table = new SwingScilabUiTable();
                 table.setId(id);
@@ -551,21 +559,21 @@ public final class SwingView implements GraphicView {
      */
     private void setMenuDefaultProperties(Widget uiMenuObject, Integer id) {
         SwingViewMenu.update(uiMenuObject, __GO_CHILDREN__,
-                GraphicController.getController().getProperty(id, __GO_CHILDREN__));
+                             GraphicController.getController().getProperty(id, __GO_CHILDREN__));
         SwingViewMenu.update(uiMenuObject, __GO_CALLBACK__,
-                GraphicController.getController().getProperty(id, __GO_CALLBACK__));
+                             GraphicController.getController().getProperty(id, __GO_CALLBACK__));
         SwingViewMenu.update(uiMenuObject, __GO_CALLBACKTYPE__,
-                GraphicController.getController().getProperty(id, __GO_CALLBACKTYPE__));
+                             GraphicController.getController().getProperty(id, __GO_CALLBACKTYPE__));
         SwingViewMenu.update(uiMenuObject, __GO_UI_CHECKED__,
-                GraphicController.getController().getProperty(id, __GO_UI_CHECKED__));
+                             GraphicController.getController().getProperty(id, __GO_UI_CHECKED__));
         SwingViewMenu.update(uiMenuObject, __GO_UI_ENABLE__,
-                GraphicController.getController().getProperty(id, __GO_UI_ENABLE__));
+                             GraphicController.getController().getProperty(id, __GO_UI_ENABLE__));
         SwingViewMenu.update(uiMenuObject, __GO_UI_FOREGROUNDCOLOR__,
-                GraphicController.getController().getProperty(id, __GO_UI_FOREGROUNDCOLOR__));
+                             GraphicController.getController().getProperty(id, __GO_UI_FOREGROUNDCOLOR__));
         SwingViewMenu.update(uiMenuObject, __GO_UI_LABEL__,
-                GraphicController.getController().getProperty(id, __GO_UI_LABEL__));
+                             GraphicController.getController().getProperty(id, __GO_UI_LABEL__));
         SwingViewMenu.update(uiMenuObject, __GO_UI_ICON__,
-                GraphicController.getController().getProperty(id, __GO_UI_ICON__));
+                             GraphicController.getController().getProperty(id, __GO_UI_ICON__));
     }
 
     /**
@@ -576,35 +584,35 @@ public final class SwingView implements GraphicView {
     private void setDefaultProperties(Widget uiControlObject, Integer id) {
         /* Visible property is set first to avoid to see the object rendered before all its properties to be set (See bug #10346) */
         SwingViewWidget.update(uiControlObject, __GO_VISIBLE__,
-                GraphicController.getController().getProperty(id, __GO_VISIBLE__));
+                               GraphicController.getController().getProperty(id, __GO_VISIBLE__));
         SwingViewWidget.update(uiControlObject, __GO_UI_BACKGROUNDCOLOR__,
-                GraphicController.getController().getProperty(id, __GO_UI_BACKGROUNDCOLOR__));
+                               GraphicController.getController().getProperty(id, __GO_UI_BACKGROUNDCOLOR__));
         SwingViewWidget.update(uiControlObject, __GO_UI_ENABLE__,
-                GraphicController.getController().getProperty(id, __GO_UI_ENABLE__));
+                               GraphicController.getController().getProperty(id, __GO_UI_ENABLE__));
         SwingViewWidget.update(uiControlObject, __GO_UI_FONTANGLE__,
-                GraphicController.getController().getProperty(id, __GO_UI_FONTANGLE__));
+                               GraphicController.getController().getProperty(id, __GO_UI_FONTANGLE__));
         SwingViewWidget.update(uiControlObject, __GO_UI_FONTNAME__,
-                GraphicController.getController().getProperty(id, __GO_UI_FONTNAME__));
+                               GraphicController.getController().getProperty(id, __GO_UI_FONTNAME__));
         SwingViewWidget.update(uiControlObject, __GO_UI_FONTUNITS__,
-                GraphicController.getController().getProperty(id, __GO_UI_FONTUNITS__));
+                               GraphicController.getController().getProperty(id, __GO_UI_FONTUNITS__));
         SwingViewWidget.update(uiControlObject, __GO_UI_FONTSIZE__,
-                GraphicController.getController().getProperty(id, __GO_UI_FONTSIZE__));
+                               GraphicController.getController().getProperty(id, __GO_UI_FONTSIZE__));
         SwingViewWidget.update(uiControlObject, __GO_UI_FONTWEIGHT__,
-                GraphicController.getController().getProperty(id, __GO_UI_FONTWEIGHT__));
+                               GraphicController.getController().getProperty(id, __GO_UI_FONTWEIGHT__));
         SwingViewWidget.update(uiControlObject, __GO_UI_FOREGROUNDCOLOR__,
-                GraphicController.getController().getProperty(id, __GO_UI_FOREGROUNDCOLOR__));
+                               GraphicController.getController().getProperty(id, __GO_UI_FOREGROUNDCOLOR__));
         SwingViewWidget.update(uiControlObject, __GO_UI_HORIZONTALALIGNMENT__,
-                GraphicController.getController().getProperty(id, __GO_UI_HORIZONTALALIGNMENT__));
+                               GraphicController.getController().getProperty(id, __GO_UI_HORIZONTALALIGNMENT__));
         SwingViewWidget.update(uiControlObject, __GO_UI_RELIEF__,
-                GraphicController.getController().getProperty(id, __GO_UI_RELIEF__));
+                               GraphicController.getController().getProperty(id, __GO_UI_RELIEF__));
         SwingViewWidget.update(uiControlObject, __GO_UI_STRING__,
-                GraphicController.getController().getProperty(id, __GO_UI_STRING__));
+                               GraphicController.getController().getProperty(id, __GO_UI_STRING__));
         SwingViewWidget.update(uiControlObject, __GO_UI_VERTICALALIGNMENT__,
-                GraphicController.getController().getProperty(id, __GO_UI_VERTICALALIGNMENT__));
+                               GraphicController.getController().getProperty(id, __GO_UI_VERTICALALIGNMENT__));
         SwingViewWidget.update(uiControlObject, __GO_POSITION__,
-                GraphicController.getController().getProperty(id, __GO_POSITION__));
+                               GraphicController.getController().getProperty(id, __GO_POSITION__));
         SwingViewWidget.update(uiControlObject, __GO_LAYOUT__,
-                GraphicController.getController().getProperty(id, __GO_LAYOUT__));
+                               GraphicController.getController().getProperty(id, __GO_LAYOUT__));
     }
 
     public void deleteObject(Integer id) {
@@ -761,9 +769,9 @@ public final class SwingView implements GraphicView {
             final Integer[] newChildren = (Integer[]) GraphicController.getController().getProperty(id, __GO_CHILDREN__);
 
             switch (type) {
-                /*
-                 * FIGURE CHILDREN UPDATE
-                 */
+                    /*
+                     * FIGURE CHILDREN UPDATE
+                     */
                 case __GO_FIGURE__ :
                     updateFigureChildren(registeredObject, newChildren);
                     break;

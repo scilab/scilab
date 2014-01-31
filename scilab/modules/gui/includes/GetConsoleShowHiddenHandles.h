@@ -25,4 +25,12 @@
  */
 GUI_IMPEXP int GetConsoleShowHiddenHandles(void* _pvCtx, int iObjUID);
 
+/**
+ * Get UseDeprecatedSkin property of the console
+ *
+ * @param pobj Scilab object corresponding to the console
+ * @return true if the get has been correcty done
+ */
+GUI_IMPEXP int GetConsoleUseDeprecatedLF(void* _pvCtx, int iObjUID);
+
 #endif /* !__GETCONSOLESHOWHIDDENHANDLES_H__ */

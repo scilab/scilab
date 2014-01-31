@@ -1030,6 +1030,7 @@ function %h_p(h)
             t=[t;
             "Children: "+fmtchildren(h.children)
             "ShowHiddenHandles: "+sci2exp(h.showhiddenhandles)
+            "UseDeprecatedSkin: "+sci2exp(h.usedeprecatedskin)
             ]
             // Light
             // =====================================================================

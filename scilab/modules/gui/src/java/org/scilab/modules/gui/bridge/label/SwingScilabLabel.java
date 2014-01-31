@@ -13,6 +13,8 @@
  */
 package org.scilab.modules.gui.bridge.label;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -33,6 +35,8 @@ import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.StyleSheet;
 
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.uicontrol.frame.border.FrameBorderType;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
@@ -263,7 +267,9 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (reliefType.equals("") == false) {
+            setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        }
     }
 
     /**
@@ -368,7 +374,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
             JTextPane newLabel = new JTextPane();
             newLabel.addHyperlinkListener(urlOpener);
             newLabel.setContentType("text/html");
-            newLabel.setEditable(false);         
+            newLabel.setEditable(false);
             StyleSheet styleSheet = ((HTMLDocument) newLabel.getDocument()).getStyleSheet();
             styleSheet.addRule("body {font-family:" + font.getName() + ";}");
             styleSheet.addRule("body {font-size:" + font.getSize() + "pt;}");
@@ -410,45 +416,45 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         gbc.gridheight = 1;
 
         switch (ScilabAlignment.toSwingAlignment(horizontalAlignment)) {
-        case SwingConstants.LEFT:
-            switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
-            case SwingConstants.TOP:
-                gbc.anchor = GridBagConstraints.NORTHWEST;
+            case SwingConstants.LEFT:
+                switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
+                    case SwingConstants.TOP:
+                        gbc.anchor = GridBagConstraints.NORTHWEST;
+                        break;
+                    case SwingConstants.CENTER:
+                        gbc.anchor = GridBagConstraints.WEST;
+                        break;
+                    default: // SwingConstants.BOTTOM
+                        gbc.anchor = GridBagConstraints.SOUTHWEST;
+                        break;
+                }
                 break;
             case SwingConstants.CENTER:
-                gbc.anchor = GridBagConstraints.WEST;
+                switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
+                    case SwingConstants.TOP:
+                        gbc.anchor = GridBagConstraints.NORTH;
+                        break;
+                    case SwingConstants.CENTER:
+                        gbc.anchor = GridBagConstraints.CENTER;
+                        break;
+                    default: // SwingConstants.BOTTOM
+                        gbc.anchor = GridBagConstraints.SOUTH;
+                        break;
+                }
                 break;
-            default: // SwingConstants.BOTTOM
-            gbc.anchor = GridBagConstraints.SOUTHWEST;
-            break;
-            }
-            break;
-        case SwingConstants.CENTER:
-            switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
-            case SwingConstants.TOP:
-                gbc.anchor = GridBagConstraints.NORTH;
+            default: // SwingConstants.RIGHT
+                switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
+                    case SwingConstants.TOP:
+                        gbc.anchor = GridBagConstraints.NORTHEAST;
+                        break;
+                    case SwingConstants.CENTER:
+                        gbc.anchor = GridBagConstraints.EAST;
+                        break;
+                    default: // SwingConstants.BOTTOM
+                        gbc.anchor = GridBagConstraints.SOUTHEAST;
+                        break;
+                }
                 break;
-            case SwingConstants.CENTER:
-                gbc.anchor = GridBagConstraints.CENTER;
-                break;
-            default: // SwingConstants.BOTTOM
-            gbc.anchor = GridBagConstraints.SOUTH;
-            break;
-            }
-            break;
-        default: // SwingConstants.RIGHT
-            switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
-            case SwingConstants.TOP:
-                gbc.anchor = GridBagConstraints.NORTHEAST;
-                break;
-            case SwingConstants.CENTER:
-                gbc.anchor = GridBagConstraints.EAST;
-                break;
-            default: // SwingConstants.BOTTOM
-            gbc.anchor = GridBagConstraints.SOUTHEAST;
-            break;
-            }
-            break;
         }
 
         alignmentLayout.setConstraints(label, gbc);
