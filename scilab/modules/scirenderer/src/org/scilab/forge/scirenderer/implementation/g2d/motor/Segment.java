@@ -30,10 +30,11 @@ import org.scilab.forge.scirenderer.tranformations.Vector4d;
  */
 public class Segment extends ConvexObject implements Comparable<Segment> {
 
-    private Integer hash;
+    private int hash = -1;
     protected G2DStroke stroke;
     protected List<ConvexObject> segmentOn;
     protected boolean is2D;
+    protected double[] clip = new double[] {Double.NaN, Double.NaN, Double.NaN, Double.NaN};
 
     public Segment(Vector3d[] vertices, Color[] colors, G2DStroke stroke, boolean is2D) throws InvalidPolygonException {
         super(vertices, colors);
@@ -103,7 +104,7 @@ public class Segment extends ConvexObject implements Comparable<Segment> {
     public boolean equals(Object o) {
         if (o instanceof Segment) {
             Segment s = (Segment) o;
-            return (s.vertices[0].equals(vertices[0]) && s.vertices[1].equals(vertices[1]) && s.colors[0].equals(colors[0]) && s.colors[1].equals(colors[1])) || (s.vertices[1].equals(vertices[0]) && s.vertices[0].equals(vertices[1]) && s.colors[1].equals(colors[0]) && s.colors[0].equals(colors[1]));
+            return (s.vertices[0].equals(vertices[0]) && s.vertices[1].equals(vertices[1]) && s.getColor(0).equals(getColor(0)) && s.getColor(1).equals(getColor(1))) || (s.vertices[1].equals(vertices[0]) && s.vertices[0].equals(vertices[1]) && s.getColor(1).equals(getColor(0)) && s.getColor(0).equals(getColor(1)));
         }
 
         return false;
@@ -134,9 +135,9 @@ public class Segment extends ConvexObject implements Comparable<Segment> {
         double[] vv = v.getData();
 
         if (is2D && vv[2] == 0) {
-            makeClip(vv);
+            ConvexObject.makeClip(clip, vv);
         }
-
+        getNormal();
         Vector3d np = new Vector3d(vv);
         boolean a = isBehind(vertices[0], np, vv[3]);
         boolean b = isBehind(vertices[1], np, vv[3]);
@@ -153,14 +154,14 @@ public class Segment extends ConvexObject implements Comparable<Segment> {
 
         double c = (vv[3] + vertices[1].scalar(np)) / v0.scalar(np);
         Vector3d p = Vector3d.getBarycenter(vertices[0], vertices[1], c, 1 - c);
-        Color color = getColorsBarycenter(colors[0], colors[1], c, 1 - c);
+        Color color = getColorsBarycenter(getColor(0), getColor(1), c, 1 - c);
         Segment s;
 
         try {
             if (a) {
-                s = new Segment(new Vector3d[] {vertices[0], p}, new Color[] {colors[0], color}, this.stroke, this.is2D);
+                s = new Segment(new Vector3d[] {vertices[0], p}, new Color[] {getColor(0), color}, this.stroke, this.is2D);
             } else {
-                s = new Segment(new Vector3d[] {p, vertices[1]}, new Color[] {color, colors[1]}, this.stroke, this.is2D);
+                s = new Segment(new Vector3d[] {p, vertices[1]}, new Color[] {color, getColor(1)}, this.stroke, this.is2D);
             }
 
             List<ConvexObject> list = new ArrayList<ConvexObject>(1);
@@ -173,21 +174,22 @@ public class Segment extends ConvexObject implements Comparable<Segment> {
     }
 
     public List<Segment> breakObject(Vector3d p, Vector3d u, Vector3d n) {
+        getNormal();
         double c = vertices[1].minus(p).scalar(n) / v0.scalar(n);
         if (c > 0 && !isNull(c) && c < 1 && !isEqual(c, 1)) {
             List<Segment> list = new ArrayList<Segment>(2);
             Vector3d q = Vector3d.getBarycenter(vertices[0], vertices[1], c, 1 - c);
-            Color color = getColorsBarycenter(colors[0], colors[1], c, 1 - c);
+            Color color = getColorsBarycenter(getColor(0), getColor(1), c, 1 - c);
             try {
-                list.add(new Segment(new Vector3d[] {vertices[0], q}, new Color[] {colors[0], color}, stroke, this.is2D));
-                list.add(new Segment(new Vector3d[] {q, vertices[1]}, new Color[] {color, colors[1]}, stroke, this.is2D));
+                list.add(new Segment(new Vector3d[] {vertices[0], q}, new Color[] {getColor(0), color}, stroke, this.is2D));
+                list.add(new Segment(new Vector3d[] {q, vertices[1]}, new Color[] {color, getColor(1)}, stroke, this.is2D));
 
                 return list;
             } catch (InvalidPolygonException e) { }
         } else {
             List<Segment> list = new ArrayList<Segment>(1);
             try {
-                list.add(new Segment(new Vector3d[] {vertices[0], vertices[1]}, new Color[] {colors[0], colors[1]}, stroke, this.is2D));
+                list.add(new Segment(new Vector3d[] {vertices[0], vertices[1]}, new Color[] {getColor(0), getColor(1)}, stroke, this.is2D));
 
                 return list;
             } catch (InvalidPolygonException e) { }
@@ -200,14 +202,14 @@ public class Segment extends ConvexObject implements Comparable<Segment> {
     public void draw(Graphics2D g2d) {
         if (segmentOn == null || segmentOn.isEmpty()) {
             Path2D polyline = getProjectedPolyLine();
-            g2d.setColor(colors[0]);
+            g2d.setColor(getColor(0));
             Stroke oldStroke = g2d.getStroke();
             if (oldStroke != stroke) {
                 g2d.setStroke(stroke);
             }
 
             Shape oldClip = g2d.getClip();
-            Shape newClip = getClip();
+            Shape newClip = ConvexObject.getClip(clip);
             if (newClip != null) {
                 g2d.clip(newClip);
             }
@@ -228,8 +230,12 @@ public class Segment extends ConvexObject implements Comparable<Segment> {
 
     @Override
     public int hashCode() {
-        if (hash == null) {
-            hash = Arrays.hashCode(vertices) + 19 * Arrays.hashCode(colors);
+        if (hash == -1) {
+            if (colors != null) {
+                hash = Arrays.hashCode(vertices) + 19 * Arrays.hashCode(colors);
+            } else {
+                hash = Arrays.hashCode(vertices) + 19 * getColor(0).hashCode();
+            }
         }
         return hash;
     }

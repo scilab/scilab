@@ -439,6 +439,8 @@ Scilab Bug Fixes
 
 * Bug #13146 fixed - profile failed when a comment was on the same line as a function declaration.
 
+* Bug #13150 fixed - Vectorial export used too much memory for grayplot.
+
 * Bug #13152 fixed - Typo fixed in syslin french help page.
 
 * Bug #13174 fixed - Scilab crashed after XML element removal.

@@ -242,14 +242,19 @@ public class Motor3D {
      * @param tri the triangle to add
      */
     private void add(Triangle tri) {
-        Vector3d normal = tri.getNormal();
-        if (normal != null) {
-            //normal = transf.projectDirection(normal);
-            if ((mode == FaceCullingMode.CW && normal.getZ() > 0) || (mode == FaceCullingMode.CCW && normal.getZ() < 0) || mode == FaceCullingMode.BOTH) {
-                Scene.addToRoot(is2DView(), tri);
-            }
+        final boolean is2d = is2DView();
+        if (is2d) {
+            Scene.addToRoot(is2d, tri);
         } else {
-            Scene.addToRoot(is2DView(), tri);
+            Vector3d normal = tri.getNormal();
+            if (normal != null) {
+                //normal = transf.projectDirection(normal);
+                if ((mode == FaceCullingMode.CW && normal.getZ() > 0) || (mode == FaceCullingMode.CCW && normal.getZ() < 0) || mode == FaceCullingMode.BOTH) {
+                    Scene.addToRoot(is2d, tri);
+                }
+            } else {
+                Scene.addToRoot(is2d, tri);
+            }
         }
     }
 

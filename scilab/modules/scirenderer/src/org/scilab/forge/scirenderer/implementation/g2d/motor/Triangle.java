@@ -130,7 +130,7 @@ public class Triangle extends ConvexObject {
     }
 
     public List<ConvexObject> breakObject(Triangle o) {
-        Vector3d n = Vector3d.product(this.v0v1, o.v0v1);
+        Vector3d n = Vector3d.product(getNormal(), o.getNormal());
         n = n.times(1 / n.getNorm2());
         Vector3d u = Vector3d.product(o.v0v1, n);
         Vector3d v = Vector3d.product(n, this.v0v1);
@@ -152,14 +152,14 @@ public class Triangle extends ConvexObject {
 
         List<ConvexObject> list = new ArrayList<ConvexObject>(5);
         Vector3d p = Vector3d.getBarycenter(o.vertices[0], o.vertices[1], c, 1 - c);
-        Color cc = getColorsBarycenter(o.colors[0], o.colors[1], c, 1 - c);
+        Color cc = getColorsBarycenter(o.getColor(0), o.getColor(1), c, 1 - c);
 
         try {
-            list.add(new Segment(new Vector3d[] {o.vertices[0], p}, new Color[] {o.colors[0], cc}, o.stroke, o.is2D));
-            list.add(new Segment(new Vector3d[] {p, o.vertices[1]}, new Color[] {cc, o.colors[1]}, o.stroke, o.is2D));
+            list.add(new Segment(new Vector3d[] {o.vertices[0], p}, new Color[] {o.getColor(0), cc}, o.stroke, o.is2D));
+            list.add(new Segment(new Vector3d[] {p, o.vertices[1]}, new Color[] {cc, o.getColor(1)}, o.stroke, o.is2D));
         } catch (InvalidPolygonException e) { }
 
-        List<ConvexObject> list1 = breakTriangleOnLine(this, p, Vector3d.product(v0v1, vertices[0].minus(p)));
+        List<ConvexObject> list1 = breakTriangleOnLine(this, p, Vector3d.product(getNormal(), vertices[0].minus(p)));
         list.addAll(list1);
 
         return list;
@@ -180,25 +180,28 @@ public class Triangle extends ConvexObject {
             Path2D contour = getProjectedContour();
             Area area = new Area(contour);
             // Trick to paint the triangle and its outline
-            area.add(new Area(stroke.createStrokedShape(contour)));
+            //area.add(new Area(stroke.createStrokedShape(contour)));
             g2d.clip(area);//getProjectedContour());
             sprite.draw(g2d);
             g2d.setClip(oldClip);
         } else if (image != null) {
             Object key = filter == Texture.Filter.LINEAR ? RenderingHints.VALUE_INTERPOLATION_BILINEAR : RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR;
             DrawTools.drawTriangleTexture(g2d, image, new double[] {textureCoords[0].getX(), textureCoords[1].getX(), textureCoords[2].getX()}, new double[] {textureCoords[0].getY(), textureCoords[1].getY(), textureCoords[2].getY()}, new double[] {vertices[0].getX(), vertices[1].getX(), vertices[2].getX()}, new double[] {vertices[0].getY(), vertices[1].getY(), vertices[2].getY()}, key);
-        } else if (colors[0].equals(colors[1]) && colors[1].equals(colors[2])) {
+        } else if (isMonochromatic()) {
             Path2D contour = getProjectedContour();
-            Area area = new Area(contour);
+            //Area area = new Area(contour);
             // Trick to paint the triangle and its outline
             // TODO: the newly created Area contains in fact two areas
             // it should be better to have one area where its border
             // is the external outline of the contour...
             // (it would reduce eps/ps/pdf/svg file size)
-            area.add(new Area(stroke.createStrokedShape(contour)));
-            g2d.setStroke(EMPTYSTROKE);
-            g2d.setColor(colors[0]);
-            g2d.fill(area);
+            // fill(area) is very very slow... (for a grayplot 500x500, fill(area) is 10 times slower than fill(contour))...
+            //area.add(new Area(stroke.createStrokedShape(contour)));
+            if (g2d.getStroke() != EMPTYSTROKE) {
+                g2d.setStroke(EMPTYSTROKE);
+            }
+            g2d.setColor(getColor(0));
+            g2d.fill(contour);
         } else {
             DrawTools.fillGouraud(g2d, this);
         }
@@ -226,7 +229,7 @@ public class Triangle extends ConvexObject {
             return null;
         }
 
-        Vector3d n = Vector3d.product(this.v0v1, np);
+        Vector3d n = Vector3d.product(getNormal(), np);
         n = n.times(1 / n.getNorm2());
         Vector3d u = Vector3d.product(np, n);
         Vector3d w = Vector3d.product(n, this.v0v1);
@@ -249,6 +252,7 @@ public class Triangle extends ConvexObject {
 
     protected boolean isPointInside(final Vector3d v, final boolean checkCoplanarity) {
         Vector3d v2 = v.minus(vertices[0]);
+        getNormal();
         if (checkCoplanarity && !isNull(v2.scalar(v0v1))) {
             return false;
         }
@@ -268,12 +272,12 @@ public class Triangle extends ConvexObject {
     }
 
     protected boolean isCoplanar(final Segment s) {
-        double sc = vertices[0].scalar(v0v1);
+        double sc = vertices[0].scalar(getNormal());
         return isEqual(sc, s.vertices[0].scalar(v0v1)) && isEqual(sc, s.vertices[1].scalar(v0v1));
     }
 
     protected boolean isCoplanar(final Triangle t) {
-        double sc = vertices[0].scalar(v0v1);
+        double sc = vertices[0].scalar(getNormal());
         return isEqual(sc, t.vertices[0].scalar(v0v1)) && isEqual(sc, t.vertices[1].scalar(v0v1)) && isEqual(sc, t.vertices[2].scalar(v0v1));
     }
 
@@ -304,7 +308,7 @@ public class Triangle extends ConvexObject {
     protected boolean isSegmentIntersects(final Segment s) {
         Vector3d v3 = s.vertices[0].minus(vertices[0]);
         Vector3d v4 = s.vertices[1].minus(vertices[0]);
-        double c = v3.scalar(v0v1);
+        double c = v3.scalar(getNormal());
 
         if (Math.signum(c) == Math.signum(v4.scalar(v0v1))) {
             return false;
@@ -322,7 +326,7 @@ public class Triangle extends ConvexObject {
 
     protected double getSegmentIntersection(final Segment s) {
         Vector3d v = s.vertices[1].minus(vertices[0]);
-        double c = v.scalar(v0v1) / s.v0.scalar(v0v1);
+        double c = v.scalar(getNormal()) / s.v0.scalar(getNormal());
 
         if (isNegativeOrNull(c) || isGreaterOrEqual(c, 1)) {
             return Double.NaN;
@@ -344,11 +348,11 @@ public class Triangle extends ConvexObject {
 
         List<ConvexObject> list = new ArrayList<ConvexObject>(2);
         Vector3d p = Vector3d.getBarycenter(s.vertices[0], s.vertices[1], c, 1 - c);
-        Color cc = getColorsBarycenter(s.colors[0], s.colors[1], c, 1 - c);
+        Color cc = getColorsBarycenter(s.getColor(0), s.getColor(1), c, 1 - c);
 
         try {
-            list.add(new Segment(new Vector3d[] {s.vertices[0], p}, new Color[] {s.colors[0], cc}, s.stroke, s.is2D));
-            list.add(new Segment(new Vector3d[] {p, s.vertices[1]}, new Color[] {cc, s.colors[1]}, s.stroke, s.is2D));
+            list.add(new Segment(new Vector3d[] {s.vertices[0], p}, new Color[] {s.getColor(0), cc}, s.stroke, s.is2D));
+            list.add(new Segment(new Vector3d[] {p, s.vertices[1]}, new Color[] {cc, s.getColor(1)}, s.stroke, s.is2D));
         } catch (InvalidPolygonException e) { }
 
 
@@ -364,6 +368,7 @@ public class Triangle extends ConvexObject {
      * @return a list of triangles
      */
     protected static List<ConvexObject> breakTriangleOnLine(Triangle t, Vector3d p, Vector3d n) {
+        t.getNormal();
         // aP0+(1-a)P1
         double a = t.vertices[1].minus(p).scalar(n) / t.v0.scalar(n);
         // bP0+(1-b)P2
@@ -415,11 +420,11 @@ public class Triangle extends ConvexObject {
             if (weight >= 0 && weight <= 1) {
                 // We break into two triangles
                 Vector3d vb = Vector3d.getBarycenter(t.vertices[j], t.vertices[k], weight, 1 - weight);
-                Color cb = getColorsBarycenter(t.colors[j], t.colors[k], weight, 1 - weight);
+                Color cb = getColorsBarycenter(t.getColor(j), t.getColor(k), weight, 1 - weight);
                 Vector3d[] vertices1 = new Vector3d[] {t.vertices[i], t.vertices[j], vb};
                 Vector3d[] vertices2 = new Vector3d[] {t.vertices[i], vb, t.vertices[k]};
-                Color[] colors1 = new Color[] {t.colors[i], t.colors[j], cb};
-                Color[] colors2 = new Color[] {t.colors[i], cb, t.colors[k]};
+                Color[] colors1 = new Color[] {t.getColor(i), t.getColor(j), cb};
+                Color[] colors2 = new Color[] {t.getColor(i), cb, t.getColor(k)};
 
                 Vector3d[] tvertices1 = null;
                 Vector3d[] tvertices2 = null;
@@ -463,8 +468,8 @@ public class Triangle extends ConvexObject {
             k = 1;
             u = Vector3d.getBarycenter(t.vertices[1], t.vertices[2], c, 1 - c);
             v = Vector3d.getBarycenter(t.vertices[0], t.vertices[2], b, 1 - b);
-            cu = getColorsBarycenter(t.colors[1], t.colors[2], c, 1 - c);
-            cv = getColorsBarycenter(t.colors[0], t.colors[2], b, 1 - b);
+            cu = getColorsBarycenter(t.getColor(1), t.getColor(2), c, 1 - c);
+            cv = getColorsBarycenter(t.getColor(0), t.getColor(2), b, 1 - b);
             if (t.textureCoords != null) {
                 tu = Vector3d.getBarycenter(t.textureCoords[1], t.textureCoords[2], c, 1 - c);
                 tv = Vector3d.getBarycenter(t.textureCoords[0], t.textureCoords[2], b, 1 - b);
@@ -475,8 +480,8 @@ public class Triangle extends ConvexObject {
             k = 0;
             u = Vector3d.getBarycenter(t.vertices[0], t.vertices[1], a, 1 - a);
             v = Vector3d.getBarycenter(t.vertices[1], t.vertices[2], c, 1 - c);
-            cu = getColorsBarycenter(t.colors[0], t.colors[1], a, 1 - a);
-            cv = getColorsBarycenter(t.colors[1], t.colors[2], c, 1 - c);
+            cu = getColorsBarycenter(t.getColor(0), t.getColor(1), a, 1 - a);
+            cv = getColorsBarycenter(t.getColor(1), t.getColor(2), c, 1 - c);
             if (t.textureCoords != null) {
                 tu = Vector3d.getBarycenter(t.textureCoords[0], t.textureCoords[1], a, 1 - a);
                 tv = Vector3d.getBarycenter(t.textureCoords[1], t.textureCoords[2], c, 1 - c);
@@ -487,8 +492,8 @@ public class Triangle extends ConvexObject {
             k = 2;
             u = Vector3d.getBarycenter(t.vertices[0], t.vertices[2], b, 1 - b);
             v = Vector3d.getBarycenter(t.vertices[0], t.vertices[1], a, 1 - a);
-            cu = getColorsBarycenter(t.colors[0], t.colors[2], b, 1 - b);
-            cv = getColorsBarycenter(t.colors[0], t.colors[1], a, 1 - a);
+            cu = getColorsBarycenter(t.getColor(0), t.getColor(2), b, 1 - b);
+            cv = getColorsBarycenter(t.getColor(0), t.getColor(1), a, 1 - a);
             if (t.textureCoords != null) {
                 tu = Vector3d.getBarycenter(t.textureCoords[0], t.textureCoords[2], b, 1 - b);
                 tv = Vector3d.getBarycenter(t.textureCoords[0], t.textureCoords[1], a, 1 - a);
@@ -496,11 +501,11 @@ public class Triangle extends ConvexObject {
         }
 
         Vector3d[] vertices1 = new Vector3d[] {u, t.vertices[i], v};
-        Color[] colors1 = new Color[] {cu, t.colors[i], cv};
+        Color[] colors1 = new Color[] {cu, t.getColor(i), cv};
         Vector3d[] vertices2 = new Vector3d[] {u, v, t.vertices[j]};
-        Color[] colors2 = new Color[] {cu, cv, t.colors[j]};
+        Color[] colors2 = new Color[] {cu, cv, t.getColor(j)};
         Vector3d[] vertices3 = new Vector3d[] {u, t.vertices[j], t.vertices[k]};
-        Color[] colors3 = new Color[] {cu, t.colors[j], t.colors[k]};
+        Color[] colors3 = new Color[] {cu, t.getColor(j), t.getColor(k)};
 
         Vector3d[] tvertices1 = null;
         Vector3d[] tvertices2 = null;
@@ -564,7 +569,7 @@ public class Triangle extends ConvexObject {
      * @return an array of length 2 containing the resulting triangles for t1 and t2.
      */
     protected static List<ConvexObject> breakIntersectingTriangles(Triangle t1, Triangle t2) {
-        Vector3d n = Vector3d.product(t1.v0v1, t2.v0v1);
+        Vector3d n = Vector3d.product(t1.getNormal(), t2.getNormal());
         n = n.times(1 / n.getNorm2());
         Vector3d u = Vector3d.product(t2.v0v1, n);
         Vector3d v = Vector3d.product(n, t1.v0v1);
@@ -578,6 +583,6 @@ public class Triangle extends ConvexObject {
     }
 
     public String toString() {
-        return "Triangle: " + vertices[0].toString() + " " + vertices[1].toString() + " " + vertices[2].toString() + "\nColor: " + colors[0] + "\nPrecedence: " + precedence;
+        return "Triangle: " + vertices[0].toString() + " " + vertices[1].toString() + " " + vertices[2].toString() + "\nColor: " + getColor(0) + "\nPrecedence: " + precedence;
     }
 }

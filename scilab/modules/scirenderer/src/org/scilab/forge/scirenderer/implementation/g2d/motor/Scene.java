@@ -158,7 +158,7 @@ final class Scene {
                 }
                 if (toAdd != null) {
                     for (ConvexObject co : toAdd) {
-                        add(is2D, co);
+                        add(false, co);
                     }
                 }
             }

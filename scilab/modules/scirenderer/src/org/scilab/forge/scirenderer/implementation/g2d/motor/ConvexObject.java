@@ -78,7 +78,7 @@ public abstract class ConvexObject extends AbstractDrawable3DObject implements C
      */
     public boolean areCoplanar(ConvexObject o) {
         if (!(this instanceof Segment)) {
-            double sc = vertices[0].scalar(v0v1);
+            double sc = vertices[0].scalar(getNormal());
             if (o instanceof Segment) {
                 return isEqual(sc, o.vertices[0].scalar(v0v1)) && isEqual(sc, o.vertices[1].scalar(v0v1));
             }
@@ -93,6 +93,8 @@ public abstract class ConvexObject extends AbstractDrawable3DObject implements C
             return true;
         }
 
+        getNormal();
+        o.getNormal();
         Vector3d v = Vector3d.product(v0, o.v0);
         return isNull(v.scalar(vertices[0].minus(o.vertices[0])));
     }
@@ -106,10 +108,8 @@ public abstract class ConvexObject extends AbstractDrawable3DObject implements C
         BoundingBox bbox = getBBox();
         BoundingBox obbox = o.getBBox();
         // Quick test in using bounding boxes
-        if (!bbox.isIntersecting(obbox)) {
-            if (bbox.xCompare(obbox) != 0 || bbox.yCompare(obbox) != 0) {
-                return 0;
-            }
+        if (bbox.isNonZOverlapping(obbox)) {
+            return 0;
         }
 
         // Check if the two objects intersect in projection plane or not
