@@ -73,8 +73,8 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
             public void componentResized(ComponentEvent arg0) {
 
                 /* Update the figure_size property */
-                Size parentSize =  SwingScilabWindow.allScilabWindows.get(parentWindowId).getDims();
-                Integer[] newSize = new Integer[] {parentSize.getWidth(), parentSize.getHeight()};
+                Size parentSize = SwingScilabWindow.allScilabWindows.get(parentWindowId).getDims();
+                Integer[] newSize = new Integer[] { parentSize.getWidth(), parentSize.getHeight() };
 
                 GraphicController.getController().setProperty(id, __GO_SIZE__, newSize);
 
@@ -82,7 +82,7 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
 
                 if (autoreSize != null && autoreSize) {
                     /* Update the axes_size property */
-                    Integer[] newAxesSize = new Integer[] {getContentPane().getWidth(), getContentPane().getHeight()};
+                    Integer[] newAxesSize = new Integer[] { getContentPane().getWidth(), getContentPane().getHeight() };
                     GraphicController.getController().setProperty(id, __GO_AXES_SIZE__, newAxesSize);
                 }
             }
@@ -159,7 +159,6 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
         return (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
     }
 
-
     public JLayeredPane getWidgetPane() {
         return uiContentPane;
     }
@@ -193,5 +192,8 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
         SwingScilabCommonPanel.removeMember(this, member);
     }
 
-
+    public void setName(String name) {
+        super.setName(name);
+        getParentWindow().setName(name);
+    }
 }
