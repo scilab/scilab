@@ -31,18 +31,18 @@
         <title>Description</title>
         <para>
             In a function <code>return</code> stops the execution of the function,
-            <literal>[x1,..,xn]=return(a1,..,an)</literal> stops the execution of the function and put 
+            <literal>[x1,..,xn]=return(a1,..,an)</literal> stops the execution of the function and put
             the local variables <varname>ai</varname> in calling environment under names
             <varname>xi</varname>.
         </para>
         <para>
-            In <code>pause</code> mode, it allows to return to upper level.
-            <literal>[x1,..,xn]=return(a1,..,an)</literal> returns to upper level and put the local 
+            In <code>pause</code> mode, it allows to return to lower level.
+            <literal>[x1,..,xn]=return(a1,..,an)</literal> returns to lower level and put the local
             variables <varname>ai</varname> in calling environment under names <varname>xi</varname>.
         </para>
         <para>
             In an <code>execstr</code> called by a function
-            <literal>[x1,..,xn]=return(a1,..,an)</literal> stops the execution of the function and put 
+            <literal>[x1,..,xn]=return(a1,..,an)</literal> stops the execution of the function and put
             the local variables <varname>ai</varname> in calling environment under names
             <varname>xi</varname>.
         </para>

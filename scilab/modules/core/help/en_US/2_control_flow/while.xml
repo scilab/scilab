@@ -24,7 +24,7 @@
             <listitem>
                 <para>
                     The only constraint is that each <literal>then</literal> or
-                    <literal>do</literal> keyword must be on the same line line as
+                    <literal>do</literal> keyword must be on the same line as
                     <literal>while</literal> keyword.
                 </para>
             </listitem>
@@ -34,13 +34,13 @@
                     be replaced by a carriage return or a comma. For compatibility
                     with Matlab it is also possible, but not recommended, to put a
                     space between the end of the expression and the beginning of
-                    the first instruction. 
+                    the first instruction.
                 </para>
             </listitem>
             <listitem>
                 <para>
                     The optional <literal>[,else instructions]</literal> construction
-                    allows to gives <literal>instructions</literal> which are executed when 
+                    allows to gives <literal>instructions</literal> which are executed when
                     <literal>expr</literal> expression becomes false.
                 </para>
             </listitem>
@@ -70,9 +70,9 @@
         </para>
         <programlisting role=""><![CDATA[
       i = 0
-      while i<5 
+      while i<5
           disp("i");
-          i = i + 1; 
+          i = i + 1;
       end
 ]]></programlisting>
         <para>
@@ -89,11 +89,11 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 e=1; a=1; k=1;
-while norm(a-(a+e),1) > %eps, 
-    e=e/2; 
-    k=k+1; 
+while norm(a-(a+e),1) > %eps,
+    e=e/2;
+    k=k+1;
 end
 e,k
  ]]></programlisting>

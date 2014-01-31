@@ -56,14 +56,14 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    The only constraint is that each <literal>then</literal>  keyword  must be on 
-                    the same line line as corresponding <literal>case</literal> keyword (or use a 
+                    The only constraint is that each <literal>then</literal>  keyword  must be on
+                    the same line as corresponding <literal>case</literal> keyword (or use a
                     continuation mark, see <link linkend="dot">dot</link>).
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    The keyword <literal>"then"</literal>  can be replaced by a carriage return or a comma. 
+                    The keyword <literal>"then"</literal>  can be replaced by a carriage return or a comma.
                     <literal>instructions1</literal> are executed if <literal>expr1=expr</literal>, etc.
                 </para>
             </listitem>
@@ -116,11 +116,11 @@ A = 2;select A case 1 then disp(1); case 2 then disp(2); else  disp(3); end
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 while %t do
     n=round(10*rand(1,1))
     select n
-        case 0 then 
+        case 0 then
         disp(0)
     case 1 then
         disp(1)
