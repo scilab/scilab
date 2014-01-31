@@ -74,7 +74,7 @@ public class LabelManager {
         final Label[] labels = new Label[] {xl, yl, tl};
         final LabelPositioner[] positioners = new LabelPositioner[] {drawer.getXAxisLabelPositioner(axes), drawer.getYAxisLabelPositioner(axes), drawer.getTitlePositioner(axes) };
         for (int i = 0; i < 3; i++) {
-            if (!labels[i].isEmpty() && labels[i].getAutoPosition() && labels[i].getAutoRotation()) {
+            if (labels[i] != null && !labels[i].isEmpty() && labels[i].getAutoPosition() && labels[i].getAutoRotation()) {
                 final Texture texture = getTexture(colorMap, labels[i]);
                 dims[i] = texture.getDataProvider().getTextureSize();
                 final double a = positioners[i].getAutoRotationAngle();
@@ -93,7 +93,7 @@ public class LabelManager {
 
     public Dimension getXLabelSize(ColorMap colorMap, Axes axes, AxesDrawer drawer) {
         final Label xl = (Label) GraphicController.getController().getObjectFromId(axes.getXAxisLabel());
-        if (!xl.isEmpty()) {
+        if (xl != null && !xl.isEmpty()) {
             final Texture texture = getTexture(colorMap, xl);
             return texture.getDataProvider().getTextureSize();
         }
