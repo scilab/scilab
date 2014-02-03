@@ -85,22 +85,16 @@ void visitprivate(const MatrixExp &e)
 
                 GenericType* pGTResult = poRow->getAs<GenericType>();
 
-                if(pGT->isList() || pGTResult->isList())
+                if (pGT->isList() || pGTResult->isList())
                 {
                     poRow = callOverload(L"c", pGTResult, pGT);
-                    poRow->IncreaseRef();
+                    continue;
+                }
 
-                    if (pGTResult->isDeletable())
-                    {
-                        delete pGTResult;
-                    }
-
-                    if (pGT->isDeletable())
-                    {
-                        delete pGT;
-                    }
-
-                    poRow->DecreaseRef();
+                // hypermatrix case, will call %hm_c_hm
+                if (pGT->getDims() > 2)
+                {
+                    poRow = callOverload(L"c", pGTResult, pGT);
                     continue;
                 }
 
@@ -152,22 +146,16 @@ void visitprivate(const MatrixExp &e)
             //check dimension
             GenericType* pGTResult = poResult->getAs<GenericType>();
 
-            if(pGT->isList() || pGTResult->isList())
+            if (pGT->isList() || pGTResult->isList())
             {
                 poResult = callOverload(L"f", pGTResult, pGT);
-                poResult->IncreaseRef();
+                continue;
+            }
 
-                if (pGTResult->isDeletable())
-                {
-                    delete pGTResult;
-                }
-
-                if (pGT->isDeletable())
-                {
-                    delete pGT;
-                }
-
-                poResult->DecreaseRef();
+            // hypermatrix case, will call %hm_f_hm
+            if (pGT->getDims() > 2)
+            {
+                poResult = callOverload(L"f", pGTResult, pGT);
                 continue;
             }
 
@@ -231,10 +219,31 @@ types::InternalType* callOverload(std::wstring strType, types::InternalType* _pa
     in.push_back(_paramL);
     in.push_back(_paramR);
 
-    Overload::call(L"%" + _paramL->getAs<List>()->getShortTypeStr() + L"_" + strType + L"_" +_paramR->getAs<List>()->getShortTypeStr(), in, 1, out, this);
+    if (_paramR->isGenericType() && _paramR->getAs<types::GenericType>()->getDims() > 2)
+    {
+        Overload::call(L"%hm_" + strType + L"_hm", in, 1, out, this);
+    }
+    else
+    {
+        Overload::call(L"%" + _paramL->getAs<List>()->getShortTypeStr() + L"_" + strType + L"_" + _paramR->getAs<List>()->getShortTypeStr(), in, 1, out, this);
+    }
 
     _paramL->DecreaseRef();
     _paramR->DecreaseRef();
+
+    out[0]->IncreaseRef();
+
+    if (_paramL->isDeletable())
+    {
+        delete _paramL;
+    }
+
+    if (_paramR->isDeletable())
+    {
+        delete _paramR;
+    }
+
+    out[0]->DecreaseRef();
 
     return out[0];
 }
