@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,6 +13,8 @@
  */
 
 #include <string.h>
+#include "Scierror.h"
+#include "api_scilab.h"
 #include "stack-c.h"
 #include "librarieslist.h"
 #include "stackinfo.h"
@@ -36,18 +39,17 @@ char **getlibrarieslist(int *sizearray)
             int Ltotal = 0;
             int j = 0;
             int i = 0;
-            int lw = 0;
-            int fin = 0;
 
             C2F(getvariablesinfo)(&Ltotal, &Lused);
 
             for (j = 1; j < Lused + 1; ++j)
             {
-                char *NameVariable = getLocalNamefromId(j);
-                if (C2F(objptr)(NameVariable, &lw, &fin, (unsigned long)strlen(NameVariable)))
+                char * NameVariable = getLocalNamefromId(j);
+                int * header = NULL;
+                SciErr sciErr = getVarAddressFromName(pvApiCtx, NameVariable, &header);
+                if (!sciErr.iErr)
                 {
-                    int *header = istk( iadr(*Lstk(fin)));
-                    if ( (header) && (header[0] == sci_lib ) )
+                    if (header && (header[0] == sci_lib))
                     {
                         librarieslist[i] = strdup(NameVariable);
                         i++;
@@ -84,14 +86,13 @@ static int getnumberoflibraries(void)
 
     for (j = 1; j < Lused + 1; ++j)
     {
-        int lw = 0;
-        int fin = 0;
         char *NameVariable = getLocalNamefromId(j);
+        int * header = NULL;
+        SciErr sciErr = getVarAddressFromName(pvApiCtx, NameVariable, &header);
 
-        if (C2F(objptr)(NameVariable, &lw, &fin, (unsigned long)strlen(NameVariable)))
+        if (!sciErr.iErr)
         {
-            int *header = istk( iadr(*Lstk(fin)));
-            if ( (header) && (header[0] == sci_lib ) )
+            if (header && (header[0] == sci_lib))
             {
                 nbrlibraries++;
             }

@@ -193,6 +193,8 @@ Scilab Bug Fixes
 
 * Bug #10273 fixed - spchol help page now displays an example showing how to use its output arguments.
 
+* Bug #10391 fixed - Error when using completion after a global variable clear fixed.
+
 * Bug #10645 fixed - File encoding could not be given as argument in xmlRead.
 
 * Bug #10816 fixed - Typo in part error message fixed.
