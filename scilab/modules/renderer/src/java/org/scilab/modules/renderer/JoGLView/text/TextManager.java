@@ -144,9 +144,7 @@ public class TextManager {
      */
     protected Vector3d[] computeTextBoxVectors(Transformation projection, Text text, Dimension dimension, Axes parentAxes) {
         Double[] textBox = text.getTextBox();
-
         Vector3d[] textBoxVectors = new Vector3d[2];
-
         double[][] factors = parentAxes.getScaleTranslateFactors();
         Double[] pos = text.getPosition();
 
@@ -177,7 +175,6 @@ public class TextManager {
         /* Applies inverse logarithmic scaling */
         textWidth = ScaleUtils.applyInverseLogScale(textWidth, logFlags);
         textHeight = ScaleUtils.applyInverseLogScale(textHeight, logFlags);
-
 
         textWidth = textWidth.minus(textPosition);
         textHeight = textHeight.minus(textPosition);
@@ -280,7 +277,6 @@ public class TextManager {
      */
     protected Vector3d[] computeTextPosition(Transformation projection, Text text, Vector3d[] textBoxVectors, Dimension spriteDim) throws DegenerateMatrixException {
         Vector3d[] cornerPositions = new Vector3d[2];
-
         Integer parentAxesId = text.getParentAxes();
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentAxesId);
         double[][] factors = parentAxes.getScaleTranslateFactors();
