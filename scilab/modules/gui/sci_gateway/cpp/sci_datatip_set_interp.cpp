@@ -63,7 +63,7 @@ int sci_datatip_set_interp(char *fname, unsigned long fname_len)
         if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
         {
             getGraphicObjectProperty(iDatatipUID, __GO_TYPE__, jni_int, (void**) &piType);
-            if (iType == __GO_DATATIP__)
+            if (iType == __GO_DATATIP__ || iType == __GO_POLYLINE__)
             {
                 if (checkInputArgumentType(pvApiCtx, 2, sci_boolean))
                 {

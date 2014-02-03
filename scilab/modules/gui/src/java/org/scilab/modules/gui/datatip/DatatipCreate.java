@@ -22,6 +22,7 @@ import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.graphic_objects.datatip.Datatip;
 import org.scilab.modules.gui.editor.CommonHandler;
 import org.scilab.modules.gui.editor.EntityPicker;
 import org.scilab.modules.renderer.CallRenderer;
@@ -133,7 +134,7 @@ public class DatatipCreate {
         GraphicController controller = GraphicController.getController();
         Integer newDatatip = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_DATATIP__));
         Double[] indexes = null;
-        Integer axesUid = (Integer)controller.getProperty(polyline, GraphicObjectProperties.__GO_PARENT_AXES__);
+        Integer axesUid = (Integer) controller.getProperty(polyline, GraphicObjectProperties.__GO_PARENT_AXES__);
         Integer viewInfo = (Integer) controller.getProperty(axesUid, __GO_VIEW__);
 
         //do not set relationship, only set parent to be able to go up in hierarchy
@@ -143,7 +144,7 @@ public class DatatipCreate {
         controller.setProperty(newDatatip, GraphicObjectProperties.__GO_DATATIP_INDEXES__, new Double[] {coord[0], coord[1]});
 
         //get current polyline datatips
-        Integer[] tips = (Integer[])controller.getProperty(polyline, GraphicObjectProperties.__GO_DATATIPS__);
+        Integer[] tips = (Integer[]) controller.getProperty(polyline, GraphicObjectProperties.__GO_DATATIPS__);
 
         //insert new tip in children array
         List<Integer> l = new LinkedList<Integer>(Arrays.asList(tips));
@@ -168,7 +169,17 @@ public class DatatipCreate {
      * @param datatipUid datatip unique identifier.
      * @param interpMode boolean for the interpolation mode.
      */
-    private static void datatipSetInterp(int datatipUid, boolean interpMode) {
-        GraphicController.getController().setProperty(datatipUid, GraphicObjectProperties.__GO_DATATIP_INTERP_MODE__, interpMode);
+    private static void datatipSetInterp(int uid, boolean interpMode) {
+        GraphicController controller = GraphicController.getController();
+        Object o = controller.getObjectFromId(uid);
+        if (o instanceof Datatip) {
+            controller.setProperty(uid, GraphicObjectProperties.__GO_DATATIP_INTERP_MODE__, interpMode);
+        } else {
+            Integer[] tips = (Integer[]) controller.getProperty(uid, GraphicObjectProperties.__GO_DATATIPS__);
+            Boolean b = new Boolean(interpMode);
+            for (int i = 0; i < tips.length; i++) {
+                controller.setProperty(tips[i], GraphicObjectProperties.__GO_DATATIP_INTERP_MODE__, b);
+            }
+        }
     }
 }

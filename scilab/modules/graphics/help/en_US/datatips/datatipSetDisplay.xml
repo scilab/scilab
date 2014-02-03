@@ -16,15 +16,15 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            datatipSetDisplay(tip_handle,"fun")
-            datatipSetDisplay(tip_handle, fun)
+            datatipSetDisplay(handle,"fun")
+            datatipSetDisplay(handle, fun)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>datatip_handle or datatip_parent_handle</term>
+                <term>handle</term>
                 <listitem>
                     <para>
                         A handle on a datatip or its parent.
@@ -50,7 +50,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Set the function used to format the text to be displayed at the datatip point.
+            Set the function used to format the text to be displayed at the datatip point. If the handle of the parent of the datatip is given as first argument, then all the datatips which don't have a display function will have same one.
         </para>
     </refsection>
     <refsection>

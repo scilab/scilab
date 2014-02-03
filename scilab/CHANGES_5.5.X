@@ -407,6 +407,8 @@ Scilab Bug Fixes
 * Bug #13071 fixed - Three unused functions in Xcos macros now specified as not mandatory
                      to write new blocks.
 
+* Bug #13084 fixed - interp_mode property could not be set on all datatips of the same polyline.
+
 * Bug #13085 fixed - A datatip cound not be moved on a circle.
 
 * Bug #13092 fixed - Optimizations now check the user function output (must be a real).
