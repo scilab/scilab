@@ -407,6 +407,8 @@ Scilab Bug Fixes
 * Bug #13071 fixed - Three unused functions in Xcos macros now specified as not mandatory
                      to write new blocks.
 
+* Bug #13083 fixed - Datatip marks did not inherit colors from the parent polyline.
+
 * Bug #13084 fixed - interp_mode property could not be set on all datatips of the same polyline.
 
 * Bug #13085 fixed - A datatip cound not be moved on a circle.

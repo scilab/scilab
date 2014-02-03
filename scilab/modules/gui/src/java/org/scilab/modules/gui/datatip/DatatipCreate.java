@@ -136,12 +136,18 @@ public class DatatipCreate {
         Double[] indexes = null;
         Integer axesUid = (Integer) controller.getProperty(polyline, GraphicObjectProperties.__GO_PARENT_AXES__);
         Integer viewInfo = (Integer) controller.getProperty(axesUid, __GO_VIEW__);
+        Integer fg = (Integer)controller.getProperty(polyline, GraphicObjectProperties.__GO_LINE_COLOR__);
+        Integer bg = (Integer)controller.getProperty(polyline, GraphicObjectProperties.__GO_BACKGROUND__);
 
         //do not set relationship, only set parent to be able to go up in hierarchy
         controller.setProperty(newDatatip, GraphicObjectProperties.__GO_PARENT__, polyline);
 
         //set dataIndex and ratio from polyline
         controller.setProperty(newDatatip, GraphicObjectProperties.__GO_DATATIP_INDEXES__, new Double[] {coord[0], coord[1]});
+
+        //set colors
+        controller.setProperty(newDatatip, GraphicObjectProperties.__GO_MARK_FOREGROUND__, fg);
+        controller.setProperty(newDatatip, GraphicObjectProperties.__GO_MARK_BACKGROUND__, bg);
 
         //get current polyline datatips
         Integer[] tips = (Integer[]) controller.getProperty(polyline, GraphicObjectProperties.__GO_DATATIPS__);
