@@ -79,7 +79,7 @@ void visitprivate(const AssignExp  &e)
                 std::wostringstream ostr;
                 ostr << pVar->name_get().name_get() << L"  = " << std::endl << std::endl;
                 scilabWriteW(ostr.str().c_str());
-                VariableToString(pIT);
+                VariableToString(pIT, pVar->name_get().name_get().c_str());
             }
             return;
         }
@@ -202,16 +202,20 @@ void visitprivate(const AssignExp  &e)
                 if (e.is_verbose() && ConfigVariable::isPromptShow())
                 {
                     std::wostringstream ostr;
+                    const wchar_t* wcsVarName;
                     if (pVar)
                     {
                         ostr << pVar->name_get().name_get() << L"  = " << std::endl;
+                        wcsVarName = pVar->name_get().name_get().c_str();
                     }
                     else
                     {
                         ostr << L"???" << L"  = " << std::endl;
+                        wcsVarName = L"???";
                     }
+
                     ostr << std::endl;
-                    VariableToString(pOut);
+                    VariableToString(pOut, wcsVarName);
                 }
             }
             else
@@ -781,18 +785,22 @@ void visitprivate(const AssignExp  &e)
                 if (e.is_verbose() && ConfigVariable::isPromptShow())
                 {
                     std::wostringstream ostr;
+                    const wchar_t* wcsVarName;
+
                     if (pVar)
                     {
                         ostr << pVar->name_get().name_get() << L"  = " << std::endl;
+                        wcsVarName = pVar->name_get().name_get().c_str();
                     }
                     else
                     {
                         ostr << *getStructNameFromExp(&pCall->name_get()) << L"  = " << std::endl;
+                        wcsVarName = getStructNameFromExp(&pCall->name_get())->c_str();
                     }
 
                     ostr << std::endl;
                     scilabWriteW(ostr.str().c_str());
-                    VariableToString(pOut);
+                    VariableToString(pOut, wcsVarName);
                 }
             }
             else
@@ -1055,7 +1063,7 @@ void visitprivate(const AssignExp  &e)
                 std::wostringstream ostr;
                 ostr << *pstName << L"  = " << std::endl << std::endl;
                 scilabWriteW(ostr.str().c_str());
-                VariableToString(pPrint);
+                VariableToString(pPrint, pstName->c_str());
             }
 
             result_clear();

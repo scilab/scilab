@@ -339,7 +339,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                     {
                         //TODO manage multiple returns
                         scilabWriteW(L" ans  =\n\n");
-                        execMe.VariableToString(pITAns);
+                        execMe.VariableToString(pITAns, L"ans");
                     }
                 }
             }

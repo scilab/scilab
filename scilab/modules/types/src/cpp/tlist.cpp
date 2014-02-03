@@ -21,6 +21,11 @@
 #include "inspector.hxx"
 #endif
 
+extern "C"
+{
+    #include "os_wcsdup.h"
+}
+
 namespace types
 {
 /**
@@ -197,9 +202,12 @@ String* TList::getFieldNames()
 */
 bool TList::toString(std::wostringstream& ostr)
 {
+    wchar_t* wcsVarName = os_wcsdup(ostr.str().c_str());
+    ostr.str(L"");
+
     if (getSize() == 0)
     {
-        ostr << L"()" << std::endl;
+        ostr << wcsVarName << L"()" << std::endl;
     }
     else if((*m_plData)[0]->isString() &&
             (*m_plData)[0]->getAs<types::String>()->getSize() > 0 &&
@@ -210,7 +218,7 @@ bool TList::toString(std::wostringstream& ostr)
         std::vector<InternalType *>::iterator itValues;
         for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
         {
-            ostr << L"     (" << iPosition << L") " << wcsDesc[iPosition-1] << std::endl;
+            ostr << "     " << wcsVarName << L"(" << iPosition << L") " << wcsDesc[iPosition-1] << std::endl;
             //maange lines
             bool bFinish = (*itValues)->toString(ostr);
             ostr << std::endl;
@@ -222,12 +230,14 @@ bool TList::toString(std::wostringstream& ostr)
         std::vector<InternalType *>::iterator itValues;
         for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
         {
-            ostr << L"     (" << iPosition << L")" << std::endl;
+            ostr << "     " << wcsVarName << L"(" << iPosition << L")" << std::endl;
             //maange lines
             bool bFinish = (*itValues)->toString(ostr);
             ostr << std::endl;
         }
     }
+
+    free(wcsVarName);
     return true;
 }
 }

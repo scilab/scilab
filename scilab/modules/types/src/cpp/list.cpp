@@ -26,6 +26,7 @@ extern "C"
 {
 #include "localization.h"
 #include "charEncoding.h"
+#include "os_wcsdup.h"
 }
 
 namespace types
@@ -126,9 +127,12 @@ GenericType* List::getColumnValues(int _iPos)
 */
 bool List::toString(std::wostringstream& ostr)
 {
+    wchar_t* wcsVarName = os_wcsdup(ostr.str().c_str());
+    ostr.str(L"");
+
     if (getSize() == 0)
     {
-        ostr << L"()" << std::endl;
+        ostr << wcsVarName << L"()" << std::endl;
     }
     else
     {
@@ -136,12 +140,14 @@ bool List::toString(std::wostringstream& ostr)
         std::vector<InternalType *>::iterator itValues;
         for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
         {
-            ostr << L"     (" << iPosition << L")" << std::endl;
+            ostr << "     " << wcsVarName << L"(" << iPosition << L")" << std::endl;
             //maange lines
             bool bFinish = (*itValues)->toString(ostr);
             ostr << std::endl;
         }
     }
+
+    free(wcsVarName);
     return true;
 }
 
