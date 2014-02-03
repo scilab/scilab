@@ -60,6 +60,7 @@ import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
+import org.scilab.modules.gui.bridge.tab.SwingScilabPanel;
 import org.scilab.modules.gui.colorchooser.ColorChooser;
 import org.scilab.modules.gui.colorchooser.ScilabColorChooser;
 import org.scilab.modules.gui.console.ScilabConsole;
@@ -273,7 +274,7 @@ public class CallScilabBridge {
      * @param menuName the name of the menu
      */
     public static void removeMenu(int parentUID, String menuName) {
-        SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) SwingView.getFromId(parentUID);
+        SwingScilabPanel parentTab = (SwingScilabPanel) SwingView.getFromId(parentUID);
         if (parentTab != null) { /** Parent must exist */
             parentTab.getMenuBar().getAsSimpleMenuBar().removeMenu(menuName);
         }
