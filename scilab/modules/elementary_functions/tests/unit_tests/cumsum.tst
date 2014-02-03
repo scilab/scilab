@@ -8,18 +8,17 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-warning("off")
 // Check error
 //==============================================================================
 //float matrices
 d=[1 10;254 9];
 
 assert_checkfalse(execstr("cumsum(d, ""orient"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("Wrong argument #%d.\n"), 2);
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "cumsum",2,"""*"",""r"",""c"",""m"",""native"",""double""");
 assert_checkerror("cumsum(d, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("cumsum(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("Wrong size for argument #%d.\n"), 2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "cumsum", 2);
 assert_checkerror("cumsum(d, [""r"", ""c""])", refMsg);
 
 //==============================================================================
@@ -27,59 +26,57 @@ assert_checkerror("cumsum(d, [""r"", ""c""])", refMsg);
 i = uint8(d);
 
 assert_checkfalse(execstr("cumsum(i, ""orient"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("Wrong argument #%d.\n"), 2);
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "cumsum",2,"""*"",""r"",""c"",""m"",""native"",""double""");
 assert_checkerror("cumsum(i, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("cumsum(i, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("Wrong size for argument #%d.\n"), 2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "cumsum", 2);
 assert_checkerror("cumsum(i, [""r"", ""c""])", refMsg);
 
 assert_checkfalse(execstr("cumsum(i,""r"", ""nat"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("Wrong value for argument #%d.\n"), 3);
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: %s or %s expected.\n"),"cumsum", 3, """native""", """double""");
 assert_checkerror("cumsum(i,""r"", ""nat"")", refMsg);
 
 assert_checkfalse(execstr("cumsum(i,""r"", [""nat"" ""dble""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("Wrong size for argument #%d.\n"), 3);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "cumsum", 3);
 assert_checkerror("cumsum(i,""r"", [""nat"" ""dble""])", refMsg);
 
 assert_checkfalse(execstr("cumsum(i,""orient"", ""t"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("Wrong argument #%d.\n"), 2);
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "cumsum",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("cumsum(i,""orient"", ""t"")", refMsg);
 
 assert_checkfalse(execstr("cumsum(i,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("Wrong type for argument #%d: String expected.\n"), 3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: String expected.\n"), "cumsum", 3);
 assert_checkerror("cumsum(i,1,1)", refMsg);
 
 //==============================================================================
 // sparse matrices
 d = sparse(d);
-assert_checkfalse(execstr("cumsum(d, ""orient"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-            "cumsum",2,"""*"",""r"",""c"",""m""");
+assert_checkfalse(execstr("cumsum(d, ""orient"")","errcatch") == 0);
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "cumsum",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("cumsum(d, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("cumsum(d, [""r"", ""c""])"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumsum",2);
 assert_checkerror("cumsum(d, [""r"", ""c""])", refMsg);
-
 
 //==============================================================================
 // boolean matrices
 d = [%f %t;%t %f];
 assert_checkfalse(execstr("cumsum(d, ""orient"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"cumsum",2,"""*"",""r"",""c"",""m""");
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"cumsum",2,"""*"",""r"",""c"",""m"",""native"",""double""");
 assert_checkerror("cumsum(d, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("cumsum(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumsum",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"),"cumsum",2);
 assert_checkerror("cumsum(d, [""r"", ""c""])", refMsg);
 
 assert_checkfalse(execstr("cumsum(d,""r"", ""nat"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: ""%s"" or ""%s"" expected.\n"),"cumsum", 3, "native", "double");
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: %s or %s expected.\n"),"cumsum", 3, """native""", """double""");
 assert_checkerror("cumsum(d,""r"", ""nat"")", refMsg);
 
 assert_checkfalse(execstr("cumsum(d,""r"", [""nat"" ""dble""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumsum",3);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"),"cumsum",3);
 assert_checkerror("cumsum(d,""r"", [""nat"" ""dble""])", refMsg);
 
 assert_checkfalse(execstr("cumsum(d,""orient"", ""t"")"   ,"errcatch") == 0);
@@ -122,15 +119,13 @@ assert_checkerror("cumsum(d,1,1)", refMsg);
 
 //==============================================================================
 // hypermatrices
-d = [1 2;3 4];
-d(:,:,2) = [1 0;1 0];
+d = rand(2,2,2);
 assert_checkfalse(execstr("cumsum(d, ""orient"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-            "cumsum",2,"""*"",""r"",""c"",""m""");
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "cumsum",2,"""*"",""r"",""c"",""m"",""native"",""double""");
 assert_checkerror("cumsum(d, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("cumsum(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumsum",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"),"cumsum",2);
 assert_checkerror("cumsum(d, [""r"", ""c""])", refMsg);
 
 //==============================================================================
@@ -138,12 +133,11 @@ assert_checkerror("cumsum(d, [""r"", ""c""])", refMsg);
 s = poly(0, "s");
 d = [s s^2;s*%i 1];
 assert_checkfalse(execstr("cumsum(d, ""orient"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-            "cumsum",2,"""*"",""r"",""c"",""m""");
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"cumsum",2,"""*"",""r"",""c"",""m"",""native"",""double""");
 assert_checkerror("cumsum(d, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("cumsum(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumsum",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"),"cumsum",2);
 assert_checkerror("cumsum(d, [""r"", ""c""])", refMsg);
 
 //==============================================================================
@@ -215,11 +209,11 @@ assert_checkequal(cumsum(i,3,'double'), double(i));
 //with hypermatrices
 i=uint8([1 10;254 9]);i(1,1,2)=uint8(1);
 for typ=list(list(),list('native'));
-    assert_checkequal(cumsum(i,typ(:)), hypermat([2,2,2],[1;255;9;18;19;19;19;19]));
-    assert_checkequal(cumsum(i,'*',typ(:)), hypermat([2,2,2],[1;255;9;18;19;19;19;19]));
-    assert_checkequal(cumsum(i,1,typ(:)), hypermat([2,2,2],[1;255;10;19;1;1;0;0]));
-    assert_checkequal(cumsum(i,2,typ(:)), hypermat([2,2,2],[1;254;11;7;1;0;1;0]));
-    assert_checkequal(cumsum(i,3,typ(:)), hypermat([2,2,2],[1;254;10;9;2;254;10;9]));
+    assert_checkequal(cumsum(i,typ(:)), hypermat([2,2,2],uint8([1;255;9;18;19;19;19;19])));
+    assert_checkequal(cumsum(i,'*',typ(:)), hypermat([2,2,2],uint8([1;255;9;18;19;19;19;19])));
+    assert_checkequal(cumsum(i,1,typ(:)), hypermat([2,2,2],uint8([1;255;10;19;1;1;0;0])));
+    assert_checkequal(cumsum(i,2,typ(:)), hypermat([2,2,2],uint8([1;254;11;7;1;0;1;0])));
+    assert_checkequal(cumsum(i,3,typ(:)), hypermat([2,2,2],uint8([1;254;10;9;2;254;10;9])));
     assert_checkequal(cumsum(i,5,typ(:)), double(i));
 end
 

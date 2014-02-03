@@ -30,7 +30,7 @@ function a=%sp_sum(a,d,typ)
         d=find(d==["m","*","r","c"])
         if d==[] then
             error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-            "sum",2,"""*"",""r"",""c"",""m"",1:"+string(ndims(a))))
+            "sum",2,"""*"",""r"",""c"",""m"""))
         end
         d=d-2
     end
@@ -40,9 +40,10 @@ function a=%sp_sum(a,d,typ)
         d=find(dims>1,1)
         if d==[] then d=0,end
     end
+
     if d<0 then
         error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-        "sum",2,"""*"",""r"",""c"",""m"",1:"+string(ndims(a))))
+        "sum",2,"""*"",""r"",""c"",""m"",""native"",""double"""))
     end
 
     select d

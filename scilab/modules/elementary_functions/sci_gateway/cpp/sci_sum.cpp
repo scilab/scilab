@@ -148,31 +148,6 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
         return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
     }
 
-    if (in.size() == 3)
-    {
-        if (in[2]->isString() == false)
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "sum", 3);
-            return types::Function::Error;
-        }
-
-        wchar_t* wcsString = in[2]->getAs<types::String>()->get(0);
-
-        if (wcscmp(wcsString, L"native") == 0)
-        {
-            iOuttype = 1;
-        }
-        else if (wcscmp(wcsString, L"double") == 0)
-        {
-            iOuttype = 2;
-        }
-        else
-        {
-            Scierror(999, _("%s: Wrong value for input argument #%d : It must be one of the following strings : native or double.\n"), "sum", 3);
-            return types::Function::Error;
-        }
-    }
-
     if (in.size() >= 2)
     {
         if (in[1]->isDouble())
@@ -181,7 +156,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
             if (pDbl->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d : A positive scalar expected.\n"), "sum", 2);
+                Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), "sum", 2);
                 return types::Function::Error;
             }
 
@@ -189,13 +164,21 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
             if (iOrientation <= 0)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d : A positive scalar expected.\n"), "sum", 2);
+                Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), "sum", 2);
                 return types::Function::Error;
             }
         }
         else if (in[1]->isString())
         {
-            wchar_t* wcsString = in[1]->getAs<types::String>()->get(0);
+            types::String* pStr = in[1]->getAs<types::String>();
+
+            if (pStr->isScalar() == false)
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "sum", 2);
+                return types::Function::Error;
+            }
+
+            wchar_t* wcsString = pStr->get(0);
 
             if (wcscmp(wcsString, L"*") == 0)
             {
@@ -245,21 +228,56 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
             }
             else
             {
+                char* pstrExpected = NULL;
                 if (in.size() == 2)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d : It must be one of the following strings : *, r, c, m, native or double.\n"), "sum", 2);
+                    pstrExpected = "\"*\",\"r\",\"c\",\"m\",\"native\",\"double\"";
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d : It must be one of the following strings : *, r, c or m.\n"), "sum", 2);
+                    pstrExpected = "\"*\",\"r\",\"c\",\"m\"";
                 }
 
+                Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "sum", 2, pstrExpected);
                 return types::Function::Error;
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix or a string expected.\n"), "sum", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix or a string expected.\n"), "sum", 2);
+            return types::Function::Error;
+        }
+    }
+
+    if (in.size() == 3)
+    {
+        if (in[2]->isString() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "sum", 3);
+            return types::Function::Error;
+        }
+
+        types::String* pStr = in[2]->getAs<types::String>();
+
+        if (pStr->isScalar() == false)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "sum", 3);
+            return types::Function::Error;
+        }
+
+        wchar_t* wcsString = pStr->get(0);
+
+        if (wcscmp(wcsString, L"native") == 0)
+        {
+            iOuttype = 1;
+        }
+        else if (wcscmp(wcsString, L"double") == 0)
+        {
+            iOuttype = 2;
+        }
+        else
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: %s or %s expected.\n"), "sum", 3, "\"native\"", "\"double\"");
             return types::Function::Error;
         }
     }

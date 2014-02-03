@@ -9,86 +9,88 @@
 // <-- CLI SHELL MODE -->
 // Check error
 d=[1 10;254 9];
+
 assert_checkfalse(execstr("sum(d, ""orient"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("Wrong argument #%d.\n"), 2);
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "sum",2,"""*"",""r"",""c"",""m"",""native"",""double""");
 assert_checkerror("sum(d, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("sum(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("Wrong size for argument #%d.\n"), 2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "sum", 2);
 assert_checkerror("sum(d, [""r"", ""c""])", refMsg);
 
 assert_checkfalse(execstr("sum(d, ""e"", ""double"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("Wrong argument #%d.\n"), 2);
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "sum",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("sum(d, ""e"", ""double"")", refMsg);
 
 assert_checkfalse(execstr("sum(d, -1.5, ""double"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("Wrong argument #%d.\n"), 2);
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), "sum", 2);
 assert_checkerror("sum(d, -1.5, ""double"")", refMsg);
 
 //==============================================================================
 // matrices of integer
 i = uint8(d);
+
 assert_checkfalse(execstr("sum(i, ""orient"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("Wrong argument #%d.\n"), 2);
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "sum",2,"""*"",""r"",""c"",""m"",""native"",""double""");
 assert_checkerror("sum(i, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("sum(i, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("Wrong size for argument #%d.\n"), 2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "sum", 2);
 assert_checkerror("sum(i, [""r"", ""c""])", refMsg);
 
 assert_checkfalse(execstr("sum(i,""r"", ""nat"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("Wrong value for argument #%d.\n"), 3);
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: %s or %s expected.\n"),"sum", 3, """native""", """double""");
 assert_checkerror("sum(i,""r"", ""nat"")", refMsg);
 
 assert_checkfalse(execstr("sum(i,""r"", [""nat"" ""dble""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("Wrong size for argument #%d.\n"), 3);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "sum", 3);
 assert_checkerror("sum(i,""r"", [""nat"" ""dble""])", refMsg);
 
 assert_checkfalse(execstr("sum(i,""orient"", ""t"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("Wrong argument #%d.\n"), 2);
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "sum",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("sum(i,""orient"", ""t"")", refMsg);
 
 assert_checkfalse(execstr("sum(i,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("Wrong type for argument #%d: String expected.\n"), 3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: String expected.\n"), "sum", 3);
 assert_checkerror("sum(i,1,1)", refMsg);
 
 //==============================================================================
 // sparse matrices
 d = sparse(d);
-assert_checkfalse(execstr("sum(d, ""orient"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("Wrong argument #%d.\n"), 2);
-assert_checkerror("sum(d, ""orient"")", refMsg);
-
-assert_checkfalse(execstr("sum(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("Wrong size for argument #%d.\n"), 2);
-assert_checkerror("sum(d, [""r"", ""c""])", refMsg);
-
-//==============================================================================
-// boolean matrices
-d = [%f %t;%t %f];
-assert_checkfalse(execstr("sum(d, ""orient"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"sum",2,"""*"",""r"",""c"",""m""");
+assert_checkfalse(execstr("sum(d, ""orient"")","errcatch") == 0);
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "sum",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("sum(d, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("sum(d, [""r"", ""c""])"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"sum",2);
 assert_checkerror("sum(d, [""r"", ""c""])", refMsg);
 
+//==============================================================================
+// boolean matrices
+d = [%f %t;%t %f];
+assert_checkfalse(execstr("sum(d, ""orient"")"   ,"errcatch") == 0);
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"sum",2,"""*"",""r"",""c"",""m"",""native"",""double""");
+assert_checkerror("sum(d, ""orient"")", refMsg);
+
+assert_checkfalse(execstr("sum(d, [""r"", ""c""])"   ,"errcatch") == 0);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"),"sum",2);
+assert_checkerror("sum(d, [""r"", ""c""])", refMsg);
+
 assert_checkfalse(execstr("sum(d,""r"", ""nat"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: ""%s"" or ""%s"" expected.\n"),"sum", 3, "native", "double");
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: %s or %s expected.\n"),"sum", 3, """native""", """double""");
 assert_checkerror("sum(d,""r"", ""nat"")", refMsg);
 
 assert_checkfalse(execstr("sum(d,""r"", [""nat"" ""dble""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"sum",3);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"),"sum",3);
 assert_checkerror("sum(d,""r"", [""nat"" ""dble""])", refMsg);
 
 assert_checkfalse(execstr("sum(d,""orient"", ""t"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-"sum",2,"""*"",""r"",""c"",""m""");
+            "sum",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("sum(d,""orient"", ""t"")", refMsg);
 
 assert_checkfalse(execstr("sum(d,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "sum", 3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"sum",3);
 assert_checkerror("sum(d,1,1)", refMsg);
 
 //==============================================================================
@@ -96,7 +98,7 @@ assert_checkerror("sum(d,1,1)", refMsg);
 d = sparse(d);
 assert_checkfalse(execstr("sum(d, ""orient"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-"sum",2,"""*"",""r"",""c"",""m""");
+            "sum",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("sum(d, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("sum(d, [""r"", ""c""])"   ,"errcatch") == 0);
@@ -113,7 +115,7 @@ assert_checkerror("sum(d,""r"", [""nat"" ""dble""])", refMsg);
 
 assert_checkfalse(execstr("sum(d,""orient"", ""t"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-"sum",2,"""*"",""r"",""c"",""m""");
+            "sum",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("sum(d,""orient"", ""t"")", refMsg);
 
 assert_checkfalse(execstr("sum(d,1,1)"   ,"errcatch") == 0);
@@ -124,12 +126,11 @@ assert_checkerror("sum(d,1,1)", refMsg);
 // hypermatrices
 d = rand(2,2,2);
 assert_checkfalse(execstr("sum(d, ""orient"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-"sum",2,"""*"",""r"",""c"",""m""");
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "sum",2,"""*"",""r"",""c"",""m"",""native"",""double""");
 assert_checkerror("sum(d, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("sum(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"sum",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"),"sum",2);
 assert_checkerror("sum(d, [""r"", ""c""])", refMsg);
 
 //==============================================================================
@@ -137,12 +138,11 @@ assert_checkerror("sum(d, [""r"", ""c""])", refMsg);
 s = poly(0, "s");
 d = [s s^2;s*%i 1];
 assert_checkfalse(execstr("sum(d, ""orient"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-"sum",2,"""*"",""r"",""c"",""m""");
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"sum",2,"""*"",""r"",""c"",""m"",""native"",""double""");
 assert_checkerror("sum(d, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("sum(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"sum",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"),"sum",2);
 assert_checkerror("sum(d, [""r"", ""c""])", refMsg);
 
 //==============================================================================
@@ -151,7 +151,7 @@ s = poly(0, "s");
 d = [1/s 1/s^2; 1/s 1];
 assert_checkfalse(execstr("sum(d, ""orient"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-"sum",2,"""*"",""r"",""c"",""m""");
+            "sum",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("sum(d, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("sum(d, [""r"", ""c""])"   ,"errcatch") == 0);
@@ -219,7 +219,7 @@ for typ=T
     assert_checkequal(sum(i, 1, typ(:)), hypermat([1,2,2],uint8([255;19;1;0])));
     assert_checkequal(sum(i, 2, typ(:)), hypermat([2,1,2],uint8([11;263;1;0])));
     assert_checkequal(sum(i, 3, typ(:)), uint8([2,10;254,9]));
-    assert_checkequal(sum(i, 5, typ(:)), i);
+    assert_checkequal(sum(i, 5, typ(:)), double(i));
 end
 
 assert_checkequal(sum(i, "double"), 275);
@@ -284,7 +284,7 @@ assert_checkequal(sum(b, 1, "native"), b);
 assert_checkequal(sum(b, 2, "native"), %t);
 assert_checkequal(sum(b, 3, "native"), b);
 
-//with hypermatrices 
+//with hypermatrices
 b=[%t %t %f %t];b(1,1,2)=%f;
 T = list(list(),list('double'));
 for typ=T
