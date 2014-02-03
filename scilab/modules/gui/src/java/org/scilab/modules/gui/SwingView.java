@@ -51,6 +51,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LABEL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LAYER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_POPUPMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RADIOBUTTON__;
@@ -550,6 +552,7 @@ public final class SwingView implements GraphicView {
      * @param id the uicontrol id
      */
     private void setDefaultProperties(Widget uiControlObject, Integer id) {
+
         /*
          * Visible property is set first to avoid to see the object rendered
          * before all its properties to be set (See bug #10346)
@@ -569,6 +572,8 @@ public final class SwingView implements GraphicView {
         SwingViewWidget.update(uiControlObject, __GO_UI_VERTICALALIGNMENT__, GraphicController.getController().getProperty(id, __GO_UI_VERTICALALIGNMENT__));
         SwingViewWidget.update(uiControlObject, __GO_POSITION__, GraphicController.getController().getProperty(id, __GO_POSITION__));
         SwingViewWidget.update(uiControlObject, __GO_LAYOUT__, GraphicController.getController().getProperty(id, __GO_LAYOUT__));
+        SwingViewWidget.update(uiControlObject, __GO_UI_MIN__, GraphicController.getController().getProperty(id, __GO_UI_MIN__));
+        SwingViewWidget.update(uiControlObject, __GO_UI_MAX__, GraphicController.getController().getProperty(id, __GO_UI_MAX__));
     }
 
     public void deleteObject(Integer id) {

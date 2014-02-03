@@ -63,6 +63,7 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.graphic_objects.utils.LayoutType;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
+import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.groupmanager.GroupManager;
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
@@ -254,11 +255,6 @@ public final class SwingViewWidget {
                 break;
             case __GO_UI_MAX__:
                 maxValue = ((Double) value);
-                Double[] allValues = (Double[]) controller.getProperty(uid, __GO_UI_VALUE__);
-                if ((allValues == null) || (allValues.length == 0)) {
-                    return;
-                }
-                double uicontrolValue = allValues[0];
                 if (uiControl instanceof SwingScilabScroll) {
                     // Update the slider properties
                     double minValue = (Double) controller.getProperty(uid, __GO_UI_MIN__);
@@ -286,14 +282,34 @@ public final class SwingViewWidget {
                     double minValue = (Double) controller.getProperty(uid, __GO_UI_MIN__);
                     ((SwingScilabListBox) uiControl).setMultipleSelectionEnabled(maxValue - minValue > 1);
                 } else if (uiControl instanceof SwingScilabCheckBox) {
+                    Double[] allValues = (Double[]) controller.getProperty(uid, __GO_UI_VALUE__);
+                    if ((allValues == null) || (allValues.length == 0)) {
+                        return;
+                    }
+                    double uicontrolValue = allValues[0];
                     // Check/Uncheck the CheckBox
                     ((SwingScilabCheckBox) uiControl).setChecked(maxValue == uicontrolValue);
                 } else if (uiControl instanceof SwingScilabRadioButton) {
+                    Double[] allValues = (Double[]) controller.getProperty(uid, __GO_UI_VALUE__);
+                    if ((allValues == null) || (allValues.length == 0)) {
+                        return;
+                    }
+                    double uicontrolValue = allValues[0];
                     // Check/Uncheck the RadioButton
                     ((SwingScilabRadioButton) uiControl).setChecked(maxValue == uicontrolValue);
                 } else if (uiControl instanceof SwingScilabTextBox) {
-                    System.out.println("max value be come columns for textfield");
+                    //System.out.println("max value be come columns for textfield");
                     //((SwingScilabTextBox) uiControl).setColumns((int)maxValue);
+                } else if (uiControl instanceof SwingScilabEditBox) {
+                    double min = ((Double) controller.getProperty(uid, __GO_UI_MIN__));
+                    double max = ((Double) controller.getProperty(uid, __GO_UI_MAX__));
+                    if (max - min > 1.0) {
+                        ((SwingScilabEditBox) uiControl).setMultiLineText(true);
+                    } else {
+                        ((SwingScilabEditBox) uiControl).setMultiLineText(false);
+                    }
+                    // Force String update
+                    update(uiControl, __GO_UI_STRING__, GraphicController.getController().getProperty(uid, __GO_UI_STRING__));
                 }
                 break;
             case __GO_UI_MIN__:
@@ -324,6 +340,16 @@ public final class SwingViewWidget {
                     // Enable/Disable multiple selection
                     maxValue = (Double) controller.getProperty(uid, __GO_UI_MAX__);
                     ((SwingScilabListBox) uiControl).setMultipleSelectionEnabled(maxValue - minValue > 1);
+                } else if (uiControl instanceof SwingScilabEditBox) {
+                    double min = ((Double) controller.getProperty(uid, __GO_UI_MIN__));
+                    double max = ((Double) controller.getProperty(uid, __GO_UI_MAX__));
+                    if (max - min > 1.0) {
+                        ((SwingScilabEditBox) uiControl).setMultiLineText(true);
+                    } else {
+                        ((SwingScilabEditBox) uiControl).setMultiLineText(false);
+                    }
+                    // Force String update
+                    update(uiControl, __GO_UI_STRING__, GraphicController.getController().getProperty(uid, __GO_UI_STRING__));
                 }
                 break;
             case __GO_POSITION__:
@@ -404,6 +430,16 @@ public final class SwingViewWidget {
                 } else if (uiControl instanceof SwingScilabPopupMenu) {
                     // Popupmenus manage string vectors
                     ((SwingScilabPopupMenu) uiControl).setText((String[]) value);
+                } else if (uiControl instanceof SwingScilabEditBox) {
+                    double min = ((Double) controller.getProperty(uid, __GO_UI_MIN__));
+                    double max = ((Double) controller.getProperty(uid, __GO_UI_MAX__));
+                    if (max - min > 1.0) {
+                        ((SwingScilabEditBox) uiControl).setText((String[]) value);
+                        ((SwingScilabEditBox) uiControl).setMultiLineText(true);
+                    } else {
+                        uiControl.setText(((String[]) value)[0]);
+                        ((SwingScilabEditBox) uiControl).setMultiLineText(false);
+                    }
                 } else {
                     uiControl.setText(((String[]) value)[0]);
                 }

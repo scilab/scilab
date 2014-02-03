@@ -41,7 +41,7 @@ int SetUicontrolString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, 
 
     // Check size according to uicontrol style
     getGraphicObjectProperty(iObjUID, __GO_STYLE__, jni_int, (void**) &piObjectStyle);
-    if (objectStyle == __GO_UI_LISTBOX__ || objectStyle == __GO_UI_POPUPMENU__)
+    if (objectStyle == __GO_UI_LISTBOX__ || objectStyle == __GO_UI_POPUPMENU__ || objectStyle == __GO_UI_EDIT__)
     {
         // Value can be string or a string vector
         if (nbCol > 1 && nbRow > 1)

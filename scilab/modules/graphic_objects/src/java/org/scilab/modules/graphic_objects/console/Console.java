@@ -35,7 +35,7 @@ public final class Console extends GraphicObject {
 
     private ScilabMode scilabMode;
 
-    private boolean useDeprecatedLF = true;
+    private boolean useDeprecatedLF = false;
 
     /** Console properties names */
     private enum ConsoleProperty {
