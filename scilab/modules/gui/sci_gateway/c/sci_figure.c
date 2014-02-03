@@ -228,10 +228,10 @@ int sci_figure(char * fname, unsigned long fname_len)
                 return 1;
             }
             if (stricmp(pstProName, "dockable") != 0
-                && stricmp(pstProName, "toolbar") != 0
-                && stricmp(pstProName, "menubar") != 0
-                && stricmp(pstProName, "default_axes") != 0
-                && stricmp(pstProName, "visible") != 0 )
+                    && stricmp(pstProName, "toolbar") != 0
+                    && stricmp(pstProName, "menubar") != 0
+                    && stricmp(pstProName, "default_axes") != 0
+                    && stricmp(pstProName, "visible") != 0 )
             {
                 freeAllocatedSingleString(pstProName);
                 continue;
@@ -457,19 +457,19 @@ int sci_figure(char * fname, unsigned long fname_len)
                     _pvData = (void*)piAddrData;         /* In this case l3 is the list position in stack */
                     break;
             }
+        }
 
-            callSetProperty(pvApiCtx, iFig, _pvData, iType, iRows, iCols, pstProName);
-            if (iType == sci_strings)
+        callSetProperty(pvApiCtx, iFig, _pvData, iType, iRows, iCols, pstProName);
+        if (iType == sci_strings)
+        {
+            //free allacted data
+            if (isMatrixOfString == 1)
             {
-                //free allacted data
-                if (isMatrixOfString == 1)
-                {
-                    freeAllocatedMatrixOfString(iRows, iCols, (char**)_pvData);
-                }
-                else
-                {
-                    freeAllocatedSingleString((char*)_pvData);
-                }
+                freeAllocatedMatrixOfString(iRows, iCols, (char**)_pvData);
+            }
+            else
+            {
+                freeAllocatedSingleString((char*)_pvData);
             }
         }
     }
