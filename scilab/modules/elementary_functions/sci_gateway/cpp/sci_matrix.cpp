@@ -48,7 +48,9 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    if (in[0]->isArrayOf() == false)
+    if (in[0]->isArrayOf()      == false &&
+        in[0]->isSparse()       == false &&
+        in[0]->isSparseBool()   == false)
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_matrix";
         return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
