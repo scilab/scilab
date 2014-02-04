@@ -317,7 +317,6 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Simpl
 
         double ratio = (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin);
         int newspace = (int)(space * ratio);
-        System.out.println("major : " + newspace);
         super.setMajorTickSpacing(newspace);
     }
 
@@ -331,7 +330,6 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Simpl
 
         double ratio = (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin);
         int newspace = (int)(space * ratio);
-        System.out.println("minor : " + newspace);
         super.setMinorTickSpacing(newspace);
     }
 
