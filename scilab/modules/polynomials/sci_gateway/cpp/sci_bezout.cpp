@@ -21,7 +21,7 @@ extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
-    extern int C2F(recbez)(double*, int*, double*, int*, double*, int*, double*, int*);
+    extern void C2F(recbez)(double*, int*, double*, int*, double*, int*, double*, double*);
 }
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_bezout(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -29,7 +29,7 @@ types::Function::ReturnValue sci_bezout(types::typed_list &in, int _iRetCount, t
     bool bComplex     = false;
     double* pdblIn[2] = {NULL, NULL};
     int piDegree[2]   = {0, 0};
-    int iErr          = 0;
+    double dblErr     = 0;
     int iOne          = 1;
 
     std::wstring wstrName = L"";
@@ -89,12 +89,13 @@ types::Function::ReturnValue sci_bezout(types::typed_list &in, int _iRetCount, t
     }
 
     // perform operation
-    int iMaxRank     = max(piDegree[0], piDegree[1]) + 1;
+    int iMaxRank     = (std::max)(piDegree[0], piDegree[1]) + 1;
+    int iMinRank     = (std::min)(piDegree[0], piDegree[1]);
     double* pdblWork = new double[10 * iMaxRank + 3 * iMaxRank * iMaxRank];
-    double* pdblOut  = new double[piDegree[0] + 9];
+    double* pdblOut  = new double[2 * (piDegree[0] + piDegree[1]) + iMinRank + 3];
     int ipb[6];
 
-    C2F(recbez)(pdblIn[0], &piDegree[0], pdblIn[1], &piDegree[1], pdblOut, ipb, pdblWork, &iErr);
+    C2F(recbez)(pdblIn[0], piDegree, pdblIn[1], piDegree + 1, pdblOut, ipb, pdblWork, &dblErr);
     delete pdblWork;
 
     // create result
@@ -132,7 +133,7 @@ types::Function::ReturnValue sci_bezout(types::typed_list &in, int _iRetCount, t
 
     if (_iRetCount == 3)
     {
-        out.push_back(new types::Double((double)iErr));
+        out.push_back(new types::Double(dblErr));
     }
 
     return types::Function::OK;
