@@ -17,6 +17,7 @@
 package org.scilab.modules.gui.bridge.canvas;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTORESIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -41,6 +42,7 @@ import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvas;
 import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvasFactory;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.events.GlobalEventWatcher;
@@ -57,7 +59,7 @@ import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
  * @author Marouane BEN JELLOUL
  * @author Jean-Baptiste Silvy
  */
-public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
+public class SwingScilabCanvas extends JPanel implements SimpleCanvas, SwingViewObject {
 
     private static final long serialVersionUID = 6101347094617535625L;
 
@@ -65,13 +67,15 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
     private final Canvas rendererCanvas;
 
     /** The drawn figure */
-    private final Figure figure;
+    private Figure figure;
 
     /** The drawer visitor used to draw the figure */
-    private final DrawerVisitor drawerVisitor;
+    private DrawerVisitor drawerVisitor;
 
     /** The drawable component where the draw is performed */
     private final Component drawableComponent;
+
+    private Integer id;
 
     static {
         try {
@@ -81,7 +85,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
         }
     }
 
-    public SwingScilabCanvas(int figureId, final Figure figure) {
+    public SwingScilabCanvas(final Figure figure) {
         super(new PanelLayout());
         this.figure = figure;
 
@@ -93,14 +97,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
         add(drawableComponent, PanelLayout.GL_CANVAS);
 
         rendererCanvas = JoGLCanvasFactory.createCanvas((GLAutoDrawable) drawableComponent);
-        drawerVisitor = new DrawerVisitor(drawableComponent, rendererCanvas, figure);
-        rendererCanvas.setMainDrawer(drawerVisitor);
-        drawableComponent.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                GlobalEventWatcher.setAxesUID(figure.getIdentifier());
-            }
-        });
+        drawerVisitor = null;
 
         /* Workaround for bug 12682: setFocusable(false) did not work...
            the GLJPanel always got the focus after zooming. So when it gets it, the
@@ -403,5 +400,27 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
     public boolean isAutoResize() {
         Boolean b = (Boolean) GraphicController.getController().getProperty(figure.getIdentifier(), __GO_AUTORESIZE__);
         return b == null ? false : b;
+    }
+
+    public void setId(Integer id) {
+       this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void update(int property, Object value) {
+        if (property == __GO_PARENT__) {
+            final Figure figure = (Figure) GraphicController.getController().getObjectFromId((Integer) value);
+            this.figure = figure;
+            drawerVisitor = new DrawerVisitor(drawableComponent, rendererCanvas, figure);
+            rendererCanvas.setMainDrawer(drawerVisitor);
+            drawableComponent.addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent e) {
+                    GlobalEventWatcher.setAxesUID(figure.getIdentifier());
+                }
+            });
+        }
     }
 }

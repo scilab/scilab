@@ -13,6 +13,7 @@
 package org.scilab.modules.gui;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
@@ -51,8 +52,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LABEL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LAYER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOX__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_POPUPMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RADIOBUTTON__;
@@ -96,6 +97,7 @@ import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
+import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
@@ -179,7 +181,7 @@ public final class SwingView implements GraphicView {
     }
 
     private enum UielementType {
-        Console, CheckBox, Edit, Frame, Figure, Image, ListBox, PopupMenu, Progressbar, PushButton, RadioButton, Slider, Table, Text, Uimenu, UiParentMenu, UiChildMenu, UiCheckedMenu, UiContextMenu, Waitbar, Tab, Layer
+        Console, CheckBox, Edit, Frame, Figure, Axes, Image, ListBox, PopupMenu, Progressbar, PushButton, RadioButton, Slider, Table, Text, Uimenu, UiParentMenu, UiChildMenu, UiCheckedMenu, UiContextMenu, Waitbar, Tab, Layer
     }
 
     private class TypedObject {
@@ -220,6 +222,7 @@ public final class SwingView implements GraphicView {
 
     private static final Set<Integer> managedTypes = new HashSet<Integer>(Arrays.asList(
                 GraphicObjectProperties.__GO_FIGURE__,
+                GraphicObjectProperties.__GO_AXES__,
                 GraphicObjectProperties.__GO_UICONTEXTMENU__,
                 GraphicObjectProperties.__GO_UIMENU__,
                 GraphicObjectProperties.__GO_CONSOLE__,
@@ -244,8 +247,7 @@ public final class SwingView implements GraphicView {
 
         if (!headless && !GraphicsEnvironment.isHeadless()) {
             DEBUG("SwingWiew", "Object Created : " + id + "with type : " + objectType);
-            if (objectType == __GO_FIGURE__ || objectType == __GO_UICONTEXTMENU__ || objectType == __GO_UIMENU__ || objectType == __GO_CONSOLE__ || objectType == __GO_PROGRESSIONBAR__
-                    || objectType == __GO_WAITBAR__) {
+            if (objectType != __GO_UICONTROL__) {
                 allObjects.put(id, CreateObjectFromType(objectType, id));
                 return;
             }
@@ -267,6 +269,8 @@ public final class SwingView implements GraphicView {
         switch (style) {
             case __GO_FIGURE__:
                 return UielementType.Figure;
+            case __GO_AXES__ :
+                return UielementType.Axes;
             case __GO_CONSOLE__:
                 return UielementType.Console;
             case __GO_UI_CHECKBOX__:
@@ -426,6 +430,9 @@ public final class SwingView implements GraphicView {
                     window.setVisible(figure.getVisible());
                 }
                 return tab;
+            case Axes:
+                SwingScilabCanvas axes = new SwingScilabCanvas(null);
+                return axes;
             case Frame:
                 SwingScilabFrame frame = new SwingScilabFrame();
                 frame.setId(id);
@@ -868,7 +875,13 @@ public final class SwingView implements GraphicView {
                 updatedObject.addChild(childId);
 
                 int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
-
+                
+                /* Add an Axes */
+                if (childType == __GO_AXES__) {
+                    SwingViewObject canvas = allObjects.get(childId).getValue();
+                    ((SwingScilabPanel) updatedComponent).addMember(canvas);
+                }
+                
                 /* Add an uicontrol */
                 if (childType == __GO_UICONTROL__) {
                     SwingViewObject uiContol = allObjects.get(childId).getValue();

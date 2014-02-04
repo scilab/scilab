@@ -166,7 +166,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     private EditorEventListener editorEventHandler = null;
 
     /** A reference to the canvas used for event handling management */
-    SwingScilabCanvas contentCanvas;
+    private SwingScilabCanvas contentCanvas = null;
 
     /**
      * Constructor
@@ -268,30 +268,30 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     public SwingScilabDockablePanel(String figureTitle, int figureId, final Figure figure) {
         this(figureTitle, figureId);
         /* OpenGL context */
-        SwingScilabCanvas canvas = new SwingScilabCanvas(figureId, figure);
-        contentCanvas = canvas;
+        //SwingScilabCanvas canvas = new SwingScilabCanvas(figureId, figure);
+        //contentCanvas = canvas;
 
         editorEventHandler = new EditorEventListener(figure.getIdentifier());
-        contentCanvas.addEventHandlerKeyListener(editorEventHandler);
-        contentCanvas.addEventHandlerMouseListener(editorEventHandler);
-        contentCanvas.addEventHandlerMouseMotionListener(editorEventHandler);
+        //contentCanvas.addEventHandlerKeyListener(editorEventHandler);
+        //contentCanvas.addEventHandlerMouseListener(editorEventHandler);
+        //contentCanvas.addEventHandlerMouseMotionListener(editorEventHandler);
 
         layerdPane = new JLayeredPane();
         layerdPane.setLayout(null);
-        layerdPane.add(canvas, JLayeredPane.FRAME_CONTENT_LAYER);
+        //layerdPane.add(canvas, JLayeredPane.FRAME_CONTENT_LAYER);
         uiContentPane = new JLayeredPane();
         uiContentPane.setOpaque(false);
         uiContentPane.setLayout(null);
         layerdPane.add(uiContentPane, JLayeredPane.DEFAULT_LAYER + 1, 0);
 
         scrolling = new SwingScilabScrollPane(layerdPane, uiContentPane, figure);
-        scrolling.setCanvas(canvas);
+        //scrolling.setCanvas(canvas);
 
-        contentCanvas.addKeyListener(this);
+        //contentCanvas.addKeyListener(this);
 
         setContentPane(scrolling.getAsContainer());
         //setContentPane(uiContentPane);
-        canvas.setVisible(true);
+        //canvas.setVisible(true);
         uiContentPane.setVisible(true);
 
         /* Manage figure_position property */
@@ -614,6 +614,20 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      */
     public void addMember(SwingViewObject member) {
         SwingScilabCommonPanel.addMember(this, member);
+        if (member instanceof SwingScilabCanvas) {
+            if (contentCanvas == null) {
+                contentCanvas = (SwingScilabCanvas) member;
+                contentCanvas.addEventHandlerKeyListener(editorEventHandler);
+                contentCanvas.addEventHandlerMouseListener(editorEventHandler);
+                contentCanvas.addEventHandlerMouseMotionListener(editorEventHandler);
+
+                layerdPane.add(contentCanvas, JLayeredPane.FRAME_CONTENT_LAYER);
+
+                scrolling.setCanvas(contentCanvas);
+
+                contentCanvas.addKeyListener(this);
+            }
+        }
     }
 
     /**
@@ -1449,16 +1463,18 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * Turn on event handling.
      */
     private void enableEventHandler() {
-        contentCanvas.addEventHandlerKeyListener(eventHandler);
-        contentCanvas.addEventHandlerMouseListener(eventHandler);
-        contentCanvas.addEventHandlerMouseMotionListener(eventHandler);
+        if (contentCanvas != null) {
+            contentCanvas.addEventHandlerKeyListener(eventHandler);
+            contentCanvas.addEventHandlerMouseListener(eventHandler);
+            contentCanvas.addEventHandlerMouseMotionListener(eventHandler);
+        }
     }
 
     /**
      * Turn off event handling.
      */
     private void disableEventHandler() {
-        if (eventHandler != null) {
+        if (eventHandler != null && contentCanvas != null) {
             contentCanvas.removeEventHandlerKeyListener(eventHandler);
             contentCanvas.removeEventHandlerMouseListener(eventHandler);
             contentCanvas.removeEventHandlerMouseMotionListener(eventHandler);

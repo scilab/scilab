@@ -26,6 +26,7 @@ import javax.swing.SwingUtilities;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -46,6 +47,8 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
 
     private JLayeredPane uiContentPane;
     private JLayeredPane layerdPane;
+    
+    private SwingScilabCanvas contentCanvas;
 
     public SwingScilabStaticPanel(String figureTitle, Integer figureId, Figure figure) {
         super(new JLayeredPane(), new JLayeredPane(), figure);
@@ -56,7 +59,7 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
         layerdPane.setLayout(null);
         layerdPane.setOpaque(false);
 
-        uiContentPane.setOpaque(true);
+        uiContentPane.setOpaque(false);
         uiContentPane.setLayout(null);
         layerdPane.add(uiContentPane, JLayeredPane.DEFAULT_LAYER + 1, 0);
 
@@ -148,6 +151,19 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
 
     public void addMember(SwingViewObject member) {
         SwingScilabCommonPanel.addMember(this, member);
+        if (member instanceof SwingScilabCanvas) {
+            if (contentCanvas == null) {
+                contentCanvas = (SwingScilabCanvas) member;
+                //contentCanvas.addEventHandlerKeyListener(editorEventHandler);
+                //contentCanvas.addEventHandlerMouseListener(editorEventHandler);
+                //contentCanvas.addEventHandlerMouseMotionListener(editorEventHandler);
+                layerdPane.add(contentCanvas, JLayeredPane.FRAME_CONTENT_LAYER);
+
+                setCanvas(contentCanvas);
+
+                //contentCanvas.addKeyListener(this);
+            }
+        }
     }
 
     public String getParentWindowId() {
