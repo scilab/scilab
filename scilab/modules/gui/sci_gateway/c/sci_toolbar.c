@@ -47,6 +47,9 @@ int sci_toolbar(char *fname, unsigned long l)
     char **param = NULL;
     int figNum = -2;
 
+    int iIsVisible = 0;
+    int *piIsVisible = NULL;
+
     int iParentUID = 0;
     int iParentType = -1;
     int *piParentType = &iParentType;
@@ -176,9 +179,11 @@ int sci_toolbar(char *fname, unsigned long l)
 
             if ((strcmp(param[0], "off") == 0) || (strcmp(param[0], "on") == 0))
             {
-                int iIsVisible = strcmp(param[0], "on") == 0;
+                iIsVisible = strcmp(param[0], "on") == 0;
                 if (iParentUID != getConsoleIdentifier() || getScilabMode() == SCILAB_STD)
-                setGraphicObjectProperty(iParentUID, __GO_TOOLBAR_VISIBLE__, &iIsVisible, jni_bool, 1);
+                {
+                    setGraphicObjectProperty(iParentUID, __GO_TOOLBAR_VISIBLE__, &iIsVisible, jni_bool, 1);
+                }
                 freeAllocatedMatrixOfString(nbRow, nbCol, param);
             }
             else
@@ -196,8 +201,7 @@ int sci_toolbar(char *fname, unsigned long l)
     }
 
     /* Returned value */
-    int iIsVisible = 0;
-    int *piIsVisible = &iIsVisible;
+    piIsVisible = &iIsVisible;
     getGraphicObjectProperty(iParentUID, __GO_TOOLBAR_VISIBLE__, jni_bool, (void **)&piIsVisible);
     if (iIsVisible)
     {
