@@ -110,8 +110,8 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
         {
             case 0 : // sim(poly, poly)
             {
-                types::Polynom* pNum = in[0]->getAs<types::Polynom>();
-                types::Polynom* pDen = in[1]->getAs<types::Polynom>();
+                types::Polynom* pNum = in[0]->clone()->getAs<types::Polynom>();
+                types::Polynom* pDen = in[1]->clone()->getAs<types::Polynom>();
 
                 wstrName = pNum->getVariableName();
 
@@ -178,12 +178,14 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                 }
 
                 delete pdblWork;
+                delete pNum;
+                delete pDen;
                 break;
             }
             case 1 : // sim(double, poly)
             {
-                types::Double* pNum  = in[0]->getAs<types::Double>();
-                types::Polynom* pDen = in[1]->getAs<types::Polynom>();
+                types::Double* pNum  = in[0]->clone()->getAs<types::Double>();
+                types::Polynom* pDen = in[1]->clone()->getAs<types::Polynom>();
 
                 wstrName    = pDen->getVariableName();
                 iMaxDegrDen = pDen->getMaxRank() - 1;
@@ -242,12 +244,14 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                 }
 
                 delete pdblWork;
+                delete pNum;
+                delete pDen;
                 break;
             }
             case 2 : // sim(poly, double)
             {
-                types::Polynom* pNum = in[0]->getAs<types::Polynom>();
-                types::Double* pDen  = in[1]->getAs<types::Double>();
+                types::Polynom* pNum = in[0]->clone()->getAs<types::Polynom>();
+                types::Double* pDen  = in[1]->clone()->getAs<types::Double>();
 
                 wstrName    = pNum->getVariableName();
                 iMaxDegrNum = pNum->getMaxRank() - 1;
@@ -306,6 +310,8 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                 }
 
                 delete pdblWork;
+                delete pNum;
+                delete pDen;
                 break;
             }
         }
