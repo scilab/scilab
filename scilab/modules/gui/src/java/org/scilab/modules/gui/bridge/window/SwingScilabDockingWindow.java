@@ -100,10 +100,10 @@ public class SwingScilabDockingWindow extends SwingScilabWindow {
         if (getDockingPort() == null || getDockingPort().getDockables().isEmpty()) {
             // remove xxxBars
             if (toolBar != null) {
-                ((SwingScilabToolBar) toolBar).close();
+                ((SwingScilabToolBar) toolBar).removeAll();
             }
             if (menuBar != null) {
-                ((SwingScilabMenuBar) menuBar).close();
+                ((SwingScilabMenuBar) menuBar).removeAll();
             }
 
             // clean all

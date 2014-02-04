@@ -46,6 +46,8 @@ import java.awt.GridLayout;
 
 import javax.swing.JLayeredPane;
 
+import org.scilab.modules.graphic_objects.figure.Figure;
+import org.scilab.modules.graphic_objects.figure.Figure.BarType;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
@@ -55,6 +57,7 @@ import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
@@ -81,12 +84,18 @@ public class SwingScilabCommonPanel {
             case __GO_ID__ :
                 /* Update title */
                 figureId = ((Integer) value);
-                name = (String) GraphicController.getController().getProperty(component.getId(), __GO_NAME__);
+                Figure localFigure = (Figure) GraphicController.getController().getObjectFromId(component.getId());
+                name = localFigure.getName();
                 updateTitle(component, name, figureId);
 
                 /** Update tool bar */
-                component.setToolBar(ToolBarBuilder.buildToolBar(GRAPHICS_TOOLBAR_DESCRIPTOR, figureId));
-                SwingScilabWindow parentWindow = SwingScilabWindow.allScilabWindows.get(component.getParentWindowId());
+                if (localFigure.getToolbarAsEnum() == BarType.FIGURE) {
+                    SwingScilabWindow parentWindow = SwingScilabWindow.allScilabWindows.get(component.getParentWindowId());
+                    ToolBar toolbar = ToolBarBuilder.buildToolBar(GRAPHICS_TOOLBAR_DESCRIPTOR, figureId);
+                    toolbar.setVisible(localFigure.getToolbarVisible());
+                    component.setToolBar(toolbar);
+                    parentWindow.addToolBar(toolbar);
+                }
 
                 /* Update callback */
                 String closingCommand =

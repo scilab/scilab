@@ -1214,12 +1214,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      */
     @Override
     public void setToolBar(ToolBar newToolBar) {
-        if (this.toolBar != newToolBar) {
-            if (this.toolBar != null) {
-                ((SwingScilabToolBar) this.toolBar.getAsSimpleToolBar()).close();
-            }
-            this.toolBar = newToolBar;
-        }
+        this.toolBar = newToolBar;
     }
 
     /**

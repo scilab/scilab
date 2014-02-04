@@ -124,6 +124,7 @@ import org.scilab.modules.gui.bridge.waitbar.SwingScilabWaitBar;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.ged.Inspector;
+import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -382,8 +383,6 @@ public final class SwingView implements GraphicView {
                 SwingScilabPanel tab;
                 if (figure.getDockable()) {
                     tab = new SwingScilabDockablePanel(figureTitle, figureId, figure);
-                    DockingManager.dock((SwingScilabDockablePanel) tab, window.getDockingPort());
-                    ActiveDockableTracker.requestDockableActivation((SwingScilabDockablePanel) tab);
                 } else {
                     tab = new SwingScilabStaticPanel(figureTitle, figureId, figure);
                     window.addTab(tab);
@@ -391,20 +390,27 @@ public final class SwingView implements GraphicView {
                 tab.setId(id);
 
                 /* MENUBAR */
-                tab.setMenuBar(ScilabMenuBar.createMenuBar());
+                MenuBar menuBar = ScilabMenuBar.createMenuBar();
+                menuBar.setVisible(figure.getMenubarVisible());
+                tab.setMenuBar(menuBar);
+                window.addMenuBar(menuBar);
+                
                 /* TOOLBAR */
-                if (figure.getToolbarAsEnum() == Figure.BarType.FIGURE) {
-                    ToolBar toolBar = ToolBarBuilder.buildToolBar(SwingScilabCommonPanel.GRAPHICS_TOOLBAR_DESCRIPTOR, figureId);
-                    tab.setToolBar(toolBar);
-                } else {
-                    tab.setToolBar(ScilabToolBar.createToolBar());
-                }
+                ToolBar toolbar = ScilabToolBar.createToolBar();
+                toolbar.setVisible(figure.getToolbarVisible());
+                tab.setToolBar(toolbar);
+                window.addToolBar(toolbar);
+                
                 /* INFOBAR */
                 TextBox infoBar = ScilabTextBox.createTextBox();
-                tab.setInfoBar(ScilabTextBox.createTextBox());
-                window.addMenuBar(tab.getMenuBar());
-                window.addToolBar(tab.getToolBar());
-                window.addInfoBar(tab.getInfoBar());
+                infoBar.setVisible(figure.getInfobarVisible());
+                tab.setInfoBar(infoBar);
+                window.addInfoBar(infoBar);
+                
+                if (figure.getDockable()) {
+                    DockingManager.dock((SwingScilabDockablePanel) tab, window.getDockingPort());
+                    ActiveDockableTracker.requestDockableActivation((SwingScilabDockablePanel) tab);
+                }
 
                 tab.setWindowIcon("graphic-window");
 
