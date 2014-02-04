@@ -129,6 +129,8 @@ public final class Console extends GraphicObject {
     public Object getPropertyFromName(int propertyName) {
         if (propertyName == __GO_SHOWHIDDENHANDLES__) {
             return ConsoleProperty.SHOWHIDDENHANDLES;
+        } else if (propertyName == __GO_USEDEPRECATEDLF__) {
+            return ConsoleProperty.USEDEPRECATEDLF;
         } else if (propertyName == __GO_TOOLBAR_VISIBLE__) {
             return ConsoleProperty.TOOLBARVISIBLE;
         } else {
