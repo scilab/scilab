@@ -42,7 +42,7 @@ public class SwingScilabDockingWindow extends SwingScilabWindow {
 
     private DefaultDockingPort sciDockingPort;
     private SciDockingListener sciDockingListener;
-    
+
     public SwingScilabDockingWindow() {
         super();
         /* Create automatically a docking port associated to the window */
@@ -62,7 +62,6 @@ public class SwingScilabDockingWindow extends SwingScilabWindow {
                 ClosingOperationsManager.startClosingOperation(SwingScilabDockingWindow.this);
             }
         });
-        setVisible(true);
     }
 
     /**
@@ -73,7 +72,7 @@ public class SwingScilabDockingWindow extends SwingScilabWindow {
         //return (DockingPort) centerFrame.getContentPane();
         return sciDockingPort;
     }
-    
+
     /**
      * Add a Scilab tab to a Scilab window
      * @param newTab the Scilab tab to add to the Scilab window
@@ -117,7 +116,7 @@ public class SwingScilabDockingWindow extends SwingScilabWindow {
             ActiveDockableTracker.requestDockableActivation(it.next());
         }
     }
-    
+
     /**
      * @return number of objects (tabs) docked in this window
      */
@@ -125,7 +124,7 @@ public class SwingScilabDockingWindow extends SwingScilabWindow {
     public int getNbDockedObjects() {
         return sciDockingPort.getDockables().size();
     }
-    
+
     /**
      * Close the window
      * @see org.scilab.modules.gui.window.SimpleWindow#close()
