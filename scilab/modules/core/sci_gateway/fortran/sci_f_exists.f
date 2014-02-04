@@ -34,7 +34,7 @@ c
       if(rhs.eq.2) then
          if(.not.getsmat('exists',topk,top,m,n,1,1,il,n1)) return
          if(.not.checkval('exists',m*n,1) ) return
-c     on the first char is tested
+c     only the first char is tested
          if(istk(il).eq.local)then
             flag=1
          elseif(istk(il).eq.nolocal) then

@@ -62,7 +62,7 @@ function y = A ( x, t )
                 <term>Ap</term>
                 <listitem>
                     <para>
-                        function returning <literal>A'*x</literal>. It must have the followinf header :
+                        function returning <literal>A'*x</literal>. It must have the following header :
                     </para>
                     <programlisting role=""><![CDATA[
 function y = Ap ( x )

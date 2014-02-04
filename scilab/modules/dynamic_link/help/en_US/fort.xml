@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -116,7 +116,7 @@
                 <term>"out"</term>
                 <listitem>
                     <para>is a keyword used to separate input variables from output
-                        variables. when this key word is present it is assumes that the long
+                        variables. when this key word is present it is assumed that the long
                         form will be used and when it is not prsent, the short form is
                         used.
                     </para>
@@ -160,16 +160,16 @@
             condition <literal>mxk*nxk &gt;= myl*nyl</literal>.
         </para>
         <para>For example the following program:</para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 subroutine foof(c,a,b,n,m)
   integer n,m
   double precision a(*),b,c(*)
-  do 10 i=1,m*n 
+  do 10 i=1,m*n
     c(i) = sin(a(i))+b
   10 continue
 end
  ]]></programlisting>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 link("foof"+getdynlibext(),"foof")
 a=[1,2,3;4,5,6];b= %pi;
 [m,n]=size(a);
@@ -180,25 +180,25 @@ a=[1,2,3;4,5,6];b= %pi;
 // m                5     integer
 // Outputs:
 // c is in position 1 and double with size [m,n]
-c=fort("foof",a,2,"d",b,3,"d",n,4,"i",m,5,"i","out",[m,n],1,"d");   
+c=fort("foof",a,2,"d",b,3,"d",n,4,"i",m,5,"i","out",[m,n],1,"d");
  ]]></programlisting>
         <para>
             returns the matrix <literal>c=2*a+b</literal>.
         </para>
         <para>The same example coded in C:</para>
-        <programlisting role=""><![CDATA[ 
-void fooc(c,a,b,m,n) 
+        <programlisting role=""><![CDATA[
+void fooc(c,a,b,m,n)
 double a[],*b,c[];
 int *m,*n;
-{ 
+{
    double sin();
    int i;
-   for ( i =0 ; i < (*m)*(*n) ; i++) 
-       c[i] = sin(a[i]) + *b; 
+   for ( i =0 ; i < (*m)*(*n) ; i++)
+       c[i] = sin(a[i]) + *b;
 }
 ]]></programlisting>
-        <programlisting role=""><![CDATA[ 
-link("fooc"+getdynlibext(),"fooc","C") // note the third argument 
+        <programlisting role=""><![CDATA[
+link("fooc"+getdynlibext(),"fooc","C") // note the third argument
 a=[1,2,3;4,5,6];b= %pi;
 [m,n]=size(a);
 c=fort("fooc",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");

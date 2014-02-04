@@ -122,7 +122,7 @@
                 <term>"out"</term>
                 <listitem>
                     <para>is a keyword used to separate input variables from output
-                        variables. when this key word is present it is assumes that the long
+                        variables. when this key word is present it is assumed that the long
                         form will be used and when it is not prsent, the short form is
                         used.
                     </para>
@@ -224,7 +224,7 @@
             //using the new primitive
             a=[1,2,3;4,5,6];b= %pi;
             [m,n]=size(a);
-            c=call("foof",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d"); 
+            c=call("foof",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");
         </programlisting>
         <refsection>
             <title>Limitations to Shared Library Support</title>

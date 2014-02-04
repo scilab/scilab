@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [i_bin, counts, outside] = %c_dsearch(T, bins, discrete)
 
@@ -27,9 +27,9 @@ function [i_bin, counts, outside] = %c_dsearch(T, bins, discrete)
         tmp = find(inds(2:$)~=inds(1:$-1))+1
         counts(inds(tmp(1:$-1))) = tmp(2:$)-tmp(1:$-1)
         counts($) = sum(T==bins($))
-        
-    // SORTED CASE
-    // -----------
+
+        // SORTED CASE
+        // -----------
     else
         if or(bins2~=bins)
             msg = _("%c: input argument #%d must be sorted in lexicographic order\n")
@@ -37,7 +37,7 @@ function [i_bin, counts, outside] = %c_dsearch(T, bins, discrete)
         end
         T0 = T
         [T, k] = gsort(T0,"g","i")
-        
+
         // index of the first T(i) >= bins(1)
         i0 = min(find(strcmp(T(:), bins(1))>=0))
         if i0==[] then
@@ -46,7 +46,7 @@ function [i_bin, counts, outside] = %c_dsearch(T, bins, discrete)
         // Initializations
         i_bin = zeros(T)
         counts = zeros(bins(2:$))
-        
+
         // Loop over the bins
         nT = size(T,"*")
         for i = 1:size(bins,"*")-1
@@ -62,7 +62,7 @@ function [i_bin, counts, outside] = %c_dsearch(T, bins, discrete)
                 break
             end
         end
-        
+
         // Taking into account the original T order
         i_bin = i_bin(:)
         i_bin(k(:)) = i_bin

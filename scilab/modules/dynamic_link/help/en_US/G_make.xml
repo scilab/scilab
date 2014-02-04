@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -50,8 +50,8 @@
             On Unix like systems <literal>G_make</literal> calls the <literal>make</literal> utility for building target <literal>files</literal>
             and returns the value of <literal>files</literal> in the variable <literal>Rfiles</literal>.
             On windows platforms, <literal>G_make</literal> calls the <literal>nmake</literal> utility for building target <literal>dllname</literal> and it
-            returns the value of <literal>dllname</literal> in the variable <literal>Rfiles</literal>. 
-            Of course <literal>G_make</literal> will work if apropriate Makefiles are 
+            returns the value of <literal>dllname</literal> in the variable <literal>Rfiles</literal>.
+            Of course <literal>G_make</literal> will work if appropriate Makefiles are
             provided in the current Scilab directory.
         </para>
         <para>
@@ -60,7 +60,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 if getos() == 'Windows' then
   txt = ['ex1c.dll:',
          '  @echo ------------------------------------------',
@@ -68,11 +68,11 @@ if getos() == 'Windows' then
          '  @echo ------------------------------------------',
          ' '];
   mputl(txt,TMPDIR+'/makefile.mak')
-  current_dir = pwd();  
+  current_dir = pwd();
   cd TMPDIR
-  files=G_make([TMPDIR+'/ex1cI.o',TMPDIR+'/ex1c.o'],'ex1c.dll');// compilation 
+  files=G_make([TMPDIR+'/ex1cI.o',TMPDIR+'/ex1c.o'],'ex1c.dll');// compilation
   //
-  //addinter(files,'foobar','foubare'); // link 
+  //addinter(files,'foobar','foubare'); // link
   cd(current_dir);
 end
  ]]></programlisting>
