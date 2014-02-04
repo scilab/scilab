@@ -24,6 +24,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_STYLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
@@ -49,6 +50,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_USER_DATA__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VALID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LAYER__;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -65,6 +68,7 @@ import org.scilab.modules.graphic_objects.utils.LayoutType;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
+import org.scilab.modules.gui.bridge.frame.SwingScilabLayer;
 import org.scilab.modules.gui.bridge.groupmanager.GroupManager;
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
 import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
@@ -81,6 +85,8 @@ import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.UnitsConverter;
 import org.scilab.modules.gui.utils.UnitsConverter.UicontrolUnits;
 import org.scilab.modules.gui.widget.Widget;
+
+import com.sun.org.apache.bcel.internal.generic.AllocationInstruction;
 
 /**
  * @author Bruno JOFRET
@@ -189,7 +195,11 @@ public final class SwingViewWidget {
 
                         font = new Font(name, font.getStyle(), font.getSize());
 
-                        uiControl.setFont(font);
+                        if (uiControl instanceof SwingScilabEditBox) {
+                            ((SwingScilabEditBox)uiControl).setEditFont(font);
+                        } else {
+                            uiControl.setFont(font);
+                        }
                     }
                 }
                 break;
@@ -542,6 +552,10 @@ public final class SwingViewWidget {
                     shear[1] = imageParams[3];
                     ((SwingScilabUiImage) uiControl).setShear(shear);
                     ((SwingScilabUiImage) uiControl).setRotate(imageParams[4]);
+                } else if (uiControl instanceof SwingScilabLayer) {
+                    SwingScilabLayer layer = (SwingScilabLayer)uiControl;
+                    //if intValue[0] is out of bounds, do not update view but let "wrong" value in model
+                    layer.setActiveLayer(intValue[0]);
                 }
                 break;
             case __GO_UI_VERTICALALIGNMENT__ : {
@@ -551,9 +565,35 @@ public final class SwingViewWidget {
                 }
                 break;
             }
-            case __GO_VISIBLE__ :
-                uiControl.setVisible(((Boolean) value).booleanValue());
+            case __GO_VISIBLE__ : {
+                boolean needUpdate = true;
+                if (uiControl instanceof SwingScilabFrame) {
+                    SwingScilabFrame frame = (SwingScilabFrame) uiControl;
+                    Integer parent = (Integer) controller.getProperty(frame.getId(), __GO_PARENT__);
+                    if (parent != 0) {
+                        Integer type = (Integer) controller.getProperty(parent, __GO_TYPE__);
+                        if (type == __GO_UICONTROL__) {
+                            Integer style = (Integer) controller.getProperty(parent, __GO_STYLE__);
+                            if (style == __GO_UI_LAYER__) {
+                                //no no no don't touch visible on layer children !
+                                Boolean visible = (Boolean)value;
+                                SwingScilabLayer layer = (SwingScilabLayer) SwingView.getFromId(parent);
+                                Boolean isActive = layer.isLayerActive(frame);
+                                if (isActive != visible ) {
+                                    controller.setProperty(frame.getId(), __GO_VISIBLE__, isActive);
+                                }
+
+                                needUpdate = false;
+                            }
+                        }
+                    }
+                }
+
+                if (needUpdate) {
+                    uiControl.setVisible(((Boolean) value).booleanValue());
+                }
                 break;
+            }
             case __GO_PARENT__:
                 /* Update position */
                 SwingViewWidget.update(uiControl, __GO_POSITION__, controller.getProperty(uid, __GO_POSITION__));

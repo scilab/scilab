@@ -14,7 +14,6 @@
 
 package org.scilab.modules.gui.bridge.editbox;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 
 import java.awt.Color;
@@ -43,8 +42,8 @@ import javax.swing.text.StyledEditorKit;
 import javax.swing.text.View;
 import javax.swing.text.ViewFactory;
 
+import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.uicontrol.frame.border.FrameBorderType;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
@@ -109,8 +108,8 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
                     offsets[i] += offset;
                 }
             } else {
-                // TOP_ALIGNEMENT or other 
-                // default behaviour : do nothing special 
+                // TOP_ALIGNEMENT or other
+                // default behaviour : do nothing special
             }
         }
     }
@@ -174,7 +173,10 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
         InputMap map = textPane.getInputMap();
         enterKeyAction = map.get(enterKey);
 
-        StyleConstants.setAlignment(docAttributes, StyleConstants.ALIGN_CENTER);
+        if (Console.getConsole().getUseDeprecatedLF() == false) {
+            setEditFont(getFont());
+        }
+        //StyleConstants.setAlignment(docAttributes, StyleConstants.ALIGN_CENTER);
     }
 
     /**
@@ -405,8 +407,8 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
             StyleConstants.setBackground(docAttributes, bg);
         }
     }
-    
-    public void setFont(Font font) {
+
+    public void setEditFont(Font font) {
         super.setFont(font);
         if (textPane != null) {
             textPane.setFont(font);

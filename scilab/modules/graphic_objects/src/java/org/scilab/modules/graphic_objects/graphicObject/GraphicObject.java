@@ -679,6 +679,10 @@ public abstract class GraphicObject implements Cloneable {
      * @return TODO
      */
     public UpdateStatus setVisible(Boolean visible) {
+        if (this.visible == visible) {
+            return UpdateStatus.NoChange;
+        }
+
         this.visible = visible;
         return UpdateStatus.Success;
     }

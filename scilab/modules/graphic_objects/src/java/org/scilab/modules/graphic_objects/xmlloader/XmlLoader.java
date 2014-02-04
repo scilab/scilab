@@ -125,6 +125,7 @@ public class XmlLoader extends DefaultHandler {
         /** sdsdf*/
         nameToGO.put("UITextarea", __GO_UI_PUSHBUTTON__);
         nameToGO.put("UIScilabPlot", __GO_UI_PUSHBUTTON__);
+        nameToGO.put("UIComboColor", __GO_UI_POPUPMENU__);
 
     }
 

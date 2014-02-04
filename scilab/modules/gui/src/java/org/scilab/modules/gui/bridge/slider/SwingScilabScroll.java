@@ -244,7 +244,6 @@ public class SwingScilabScroll extends JScrollBar implements SwingViewObject, Si
         setVisibleAmount(Math.max((int) ((MAXIMUM_VALUE - MINIMUM_VALUE) / space), MIN_KNOB_SIZE));
         setMaximum(oldMax + getVisibleAmount());
 
-        System.out.println("old major = " + (int) (space * (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin)));
         /* Put back the listener */
         addAdjustmentListener(adjustmentListener);
     }
@@ -260,7 +259,6 @@ public class SwingScilabScroll extends JScrollBar implements SwingViewObject, Si
         double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
         double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
         setUnitIncrement((int) (space * (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin)));
-        System.out.println("old minor = " + (int) (space * (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin)));
 
         /* Put back the listener */
         addAdjustmentListener(adjustmentListener);

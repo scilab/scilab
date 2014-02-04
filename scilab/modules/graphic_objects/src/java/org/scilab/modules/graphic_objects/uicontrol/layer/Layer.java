@@ -28,5 +28,4 @@ public class Layer extends Uicontrol {
         super();
         setStyle(__GO_UI_LAYER__);
     }
-
 }

@@ -15,7 +15,6 @@ package org.scilab.modules.gui.bridge.frame;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 
 import java.awt.BorderLayout;
@@ -31,7 +30,6 @@ import javax.swing.JPanel;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
-import org.scilab.modules.graphic_objects.uicontrol.frame.border.FrameBorderType;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
