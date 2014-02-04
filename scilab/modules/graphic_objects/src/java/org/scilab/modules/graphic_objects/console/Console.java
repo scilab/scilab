@@ -13,10 +13,13 @@
 package org.scilab.modules.graphic_objects.console;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CONSOLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SHOWHIDDENHANDLES__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TOOLBAR_VISIBLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_USEDEPRECATEDLF__;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 /**
  * @author Vincent COUVERT
@@ -37,10 +40,13 @@ public final class Console extends GraphicObject {
 
     private boolean useDeprecatedLF = false;
 
+    private boolean toolbarVisible = false;
+
     /** Console properties names */
     private enum ConsoleProperty {
         SHOWHIDDENHANDLES,
-        USEDEPRECATEDLF
+        USEDEPRECATEDLF,
+        TOOLBARVISIBLE
     };
 
     /**
@@ -123,8 +129,8 @@ public final class Console extends GraphicObject {
     public Object getPropertyFromName(int propertyName) {
         if (propertyName == __GO_SHOWHIDDENHANDLES__) {
             return ConsoleProperty.SHOWHIDDENHANDLES;
-        } else if (propertyName == __GO_USEDEPRECATEDLF__) {
-            return ConsoleProperty.USEDEPRECATEDLF;
+        } else if (propertyName == __GO_TOOLBAR_VISIBLE__) {
+            return ConsoleProperty.TOOLBARVISIBLE;
         } else {
             return super.getPropertyFromName(propertyName);
         }
@@ -139,6 +145,8 @@ public final class Console extends GraphicObject {
             return getShowHiddenHandles();
         } else if (property == ConsoleProperty.USEDEPRECATEDLF) {
             return getUseDeprecatedLF();
+        } else if (property == ConsoleProperty.TOOLBARVISIBLE) {
+            return getToolbarVisible();
         } else {
             return super.getProperty(property);
         }
@@ -155,6 +163,8 @@ public final class Console extends GraphicObject {
             setShowHiddenHandles((Boolean) value);
         } else if (property == ConsoleProperty.USEDEPRECATEDLF) {
             setUseDeprecatedLF((Boolean) value);
+        } else if (property == ConsoleProperty.TOOLBARVISIBLE) {
+            setToolbarVisible((Boolean) value);
         } else {
             return super.setProperty(property, value);
         }
@@ -173,5 +183,16 @@ public final class Console extends GraphicObject {
         return UpdateStatus.Success;
     }
 
+    public Boolean getToolbarVisible() {
+        return toolbarVisible;
+    }
 
+    public UpdateStatus setToolbarVisible(Boolean status) {
+        if (status.equals(toolbarVisible)) {
+            return UpdateStatus.NoChange;
+        }
+
+        toolbarVisible = status;
+        return UpdateStatus.Success;
+    }
 }

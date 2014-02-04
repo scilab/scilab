@@ -100,8 +100,6 @@ jmethodID voidsetMessageBoxColumnLabelsjintintjobjectArray_java_lang_Stringjava_
 jmethodID voidsetMessageBoxDefaultInputjintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
 jmethodID voidsetMessageBoxModaljintintjbooleanbooleanID; // cache method id
 jmethodID voidsetMessageBoxIconjintintjstringjava_lang_StringID; // cache method id
-jmethodID jbooleanisToolbarVisiblejintintID; // cache method id
-jmethodID voidsetToolbarVisiblejintintjbooleanbooleanID; // cache method id
 jmethodID voidlaunchHelpBrowserjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_StringID; // cache method id
 jmethodID voidsearchKeywordjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID; // cache method id
 jmethodID jintnewExportFileChooserjintintID; // cache method id
@@ -244,10 +242,6 @@ static void setMessageBoxDefaultInput(JavaVM * jvm_, int id, char const* const* 
 static void setMessageBoxModal(JavaVM * jvm_, int id, bool status);
 
 static void setMessageBoxIcon(JavaVM * jvm_, int id, char const* name);
-
-static bool isToolbarVisible(JavaVM * jvm_, int parentUID);
-
-static void setToolbarVisible(JavaVM * jvm_, int parentUID, bool status);
 
 static void launchHelpBrowser(JavaVM * jvm_, char const* const* helps, int helpsSize, char const* language);
 

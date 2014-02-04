@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -339,7 +339,6 @@
     <ClCompile Include="..\cpp\SetUiobjectEnable.cpp" />
     <ClCompile Include="..\cpp\SetUiobjectForegroundColor.cpp" />
     <ClCompile Include="setVisibleMainWindow.c" />
-    <ClCompile Include="..\cpp\Toolbar.cpp" />
     <ClCompile Include="..\cpp\UnitsConversion.cpp" />
     <ClCompile Include="..\cpp\Widget.cpp" />
   </ItemGroup>
@@ -470,7 +469,6 @@
     <ClInclude Include="..\..\includes\SetUiobjectEnable.h" />
     <ClInclude Include="..\..\includes\SetUiobjectForegroundColor.h" />
     <ClInclude Include="..\..\includes\TerminateGui.h" />
-    <ClInclude Include="..\..\includes\Toolbar.h" />
     <ClInclude Include="..\..\includes\Widget.h" />
     <ClInclude Include="..\jni\DatatipCreate.hxx" />
     <ClInclude Include="..\jni\DatatipSetStyle.hxx" />
@@ -537,7 +535,6 @@
     <ClInclude Include="..\cpp\SetUimenuLabel.hxx" />
     <ClInclude Include="..\cpp\SetUiobjectEnable.hxx" />
     <ClInclude Include="..\cpp\SetUiobjectForegroundColor.hxx" />
-    <ClInclude Include="..\cpp\Toolbar.hxx" />
     <ClInclude Include="..\cpp\UnitsConversion.hxx" />
     <ClInclude Include="..\cpp\Widget.hxx" />
     <ClInclude Include="..\jni\CallScilabBridge.hxx" />

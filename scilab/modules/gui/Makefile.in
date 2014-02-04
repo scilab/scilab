@@ -200,7 +200,6 @@ am__objects_2 = src/cpp/libscigui_algo_la-InitUIMenu.lo \
 	src/cpp/libscigui_algo_la-CallMessageBox.lo \
 	src/cpp/libscigui_algo_la-CallHelpBrowser.lo \
 	src/cpp/libscigui_algo_la-ContextMenu.lo \
-	src/cpp/libscigui_algo_la-Toolbar.lo \
 	src/cpp/libscigui_algo_la-Widget.lo \
 	src/cpp/libscigui_algo_la-SetUimenuLabel.lo \
 	src/cpp/libscigui_algo_la-GetUimenuLabel.lo \
@@ -747,7 +746,6 @@ src/cpp/CallFontChooser.cpp \
 src/cpp/CallMessageBox.cpp \
 src/cpp/CallHelpBrowser.cpp \
 src/cpp/ContextMenu.cpp \
-src/cpp/Toolbar.cpp \
 src/cpp/Widget.cpp \
 src/cpp/SetUimenuLabel.cpp \
 src/cpp/GetUimenuLabel.cpp \
@@ -1291,8 +1289,6 @@ src/cpp/libscigui_algo_la-CallHelpBrowser.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscigui_algo_la-ContextMenu.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
-src/cpp/libscigui_algo_la-Toolbar.lo: src/cpp/$(am__dirstamp) \
-	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscigui_algo_la-Widget.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscigui_algo_la-SetUimenuLabel.lo: src/cpp/$(am__dirstamp) \
@@ -1744,7 +1740,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-SetUimenuLabel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-SetUiobjectEnable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-SetUiobjectForegroundColor.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-Toolbar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-UnitsConversion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-Widget.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-displaytree.Plo@am__quote@
@@ -2158,13 +2153,6 @@ src/cpp/libscigui_algo_la-ContextMenu.lo: src/cpp/ContextMenu.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ContextMenu.cpp' object='src/cpp/libscigui_algo_la-ContextMenu.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscigui_algo_la-ContextMenu.lo `test -f 'src/cpp/ContextMenu.cpp' || echo '$(srcdir)/'`src/cpp/ContextMenu.cpp
-
-src/cpp/libscigui_algo_la-Toolbar.lo: src/cpp/Toolbar.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscigui_algo_la-Toolbar.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscigui_algo_la-Toolbar.Tpo -c -o src/cpp/libscigui_algo_la-Toolbar.lo `test -f 'src/cpp/Toolbar.cpp' || echo '$(srcdir)/'`src/cpp/Toolbar.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscigui_algo_la-Toolbar.Tpo src/cpp/$(DEPDIR)/libscigui_algo_la-Toolbar.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/Toolbar.cpp' object='src/cpp/libscigui_algo_la-Toolbar.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscigui_algo_la-Toolbar.lo `test -f 'src/cpp/Toolbar.cpp' || echo '$(srcdir)/'`src/cpp/Toolbar.cpp
 
 src/cpp/libscigui_algo_la-Widget.lo: src/cpp/Widget.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscigui_algo_la-Widget.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscigui_algo_la-Widget.Tpo -c -o src/cpp/libscigui_algo_la-Widget.lo `test -f 'src/cpp/Widget.cpp' || echo '$(srcdir)/'`src/cpp/Widget.cpp

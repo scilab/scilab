@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -356,9 +356,6 @@
     <ClCompile Include="setVisibleMainWindow.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\Toolbar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\UnitsConversion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -668,9 +665,6 @@
     <ClInclude Include="..\cpp\SetUiobjectForegroundColor.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\cpp\Toolbar.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\cpp\UnitsConversion.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -864,9 +858,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\TerminateGui.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\Toolbar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\Widget.h">

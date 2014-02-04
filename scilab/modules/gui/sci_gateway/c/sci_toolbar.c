@@ -17,11 +17,11 @@
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "localization.h"
-#include "Toolbar.h"
 #include "FigureList.h"
 #include "HandleManagement.h"
 #include "GetProperty.h"
 #include "freeArrayOfString.h"
+#include "scilabmode.h"
 #if _MSC_VER
 #include "strdup_windows.h"
 #endif
@@ -177,6 +177,7 @@ int sci_toolbar(char *fname, unsigned long l)
             if ((strcmp(param[0], "off") == 0) || (strcmp(param[0], "on") == 0))
             {
                 int iIsVisible = strcmp(param[0], "on") == 0;
+                if (iParentUID != getConsoleIdentifier() || getScilabMode() == SCILAB_STD)
                 setGraphicObjectProperty(iParentUID, __GO_TOOLBAR_VISIBLE__, &iIsVisible, jni_bool, 1);
                 freeAllocatedMatrixOfString(nbRow, nbCol, param);
             }
@@ -195,7 +196,10 @@ int sci_toolbar(char *fname, unsigned long l)
     }
 
     /* Returned value */
-    if (isToolbarVisible(iParentUID))
+    int iIsVisible = 0;
+    int *piIsVisible = &iIsVisible;
+    getGraphicObjectProperty(iParentUID, __GO_TOOLBAR_VISIBLE__, jni_bool, (void **)&piIsVisible);
+    if (iIsVisible)
     {
         Output = strdup("on");
     }

@@ -73,7 +73,6 @@ src/cpp/CallFontChooser.cpp \
 src/cpp/CallMessageBox.cpp \
 src/cpp/CallHelpBrowser.cpp \
 src/cpp/ContextMenu.cpp \
-src/cpp/Toolbar.cpp \
 src/cpp/Widget.cpp \
 src/cpp/SetUimenuLabel.cpp \
 src/cpp/GetUimenuLabel.cpp \

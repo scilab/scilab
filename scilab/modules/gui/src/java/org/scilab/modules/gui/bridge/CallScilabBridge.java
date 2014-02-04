@@ -468,43 +468,6 @@ public class CallScilabBridge {
         ((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setIcon(name);
     }
 
-    /******************/
-    /*                */
-    /* TOOLBAR BRIDGE */
-    /*                */
-    /******************/
-
-    /**
-     * Set the visibility of a Toolbar
-     * @param parentUID the parent (figure or console) UID
-     * @param status true to set the Toolbar visible
-     */
-    public static void setToolbarVisible(int parentUID, boolean status) {
-        SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) SwingView.getFromId(parentUID);
-        if (parentTab != null) {
-            boolean oldStatus = parentTab.getToolBar().getAsSimpleToolBar().isVisible();
-            if (oldStatus != status) {
-                parentTab.getToolBar().getAsSimpleToolBar().setVisible(status);
-                BarUpdater.updateBars(parentTab.getParentWindowId(), parentTab.getMenuBar(),
-                                      parentTab.getToolBar(), parentTab.getInfoBar(), parentTab.getName(), parentTab.getWindowIcon());
-            }
-        }
-    }
-
-    /**
-     * Get the visibility of a Toolbar
-     * @param parentUID the parent (figure or console) UID
-     * @return true to set the Toolbar visible
-     */
-    public static boolean isToolbarVisible(int parentUID) {
-        SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) SwingView.getFromId(parentUID);
-        if (parentTab != null) {
-            return parentTab.getToolBar().getAsSimpleToolBar().isVisible();
-        } else {
-            return false;
-        }
-    }
-
     /**********************/
     /*                    */
     /* HELPBROWSER BRIDGE */
