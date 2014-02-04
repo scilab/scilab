@@ -39,6 +39,7 @@ extern "C" {
 #include "stack1.h"
 #include "stack2.h"
 #include "stack3.h"
+#include "stack-optional.h"
 #include "sci_types.h"
 
     /*-------------------------------------------------
@@ -133,15 +134,7 @@ extern "C" {
     /* to retreive handles on the stack */
 #define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
 
-#define CheckOpt(first) if ( C2F(checkopt)(first) ) {return 0;}
 
-#define FirstOpt() C2F(firstopt)()
-
-#define FindOpt(str,opts) C2F(findopt)(str,opts)
-
-#define NumOpt() C2F(numopt)()
-
-#define IsOpt(k,name) C2F(isopt)((c_local=k,&c_local),name,nlgh)
 
 #define Maxvol(n,ct)  C2F(maxvol)((c_local=n,&c_local),ct,1L)
 
@@ -327,19 +320,6 @@ extern "C" {
 #define CheckListScalar(lpos,pos,m,n) if (! check_list_scalar(lpos,pos,m,n)) return 0;
 #define CheckListOneDim(lpos,pos,dim,val,valref) if (! check_list_one_dim(lpos,pos,dim,val,valref)) return 0;
 
-    /*-------------------------------------------------
-     * structure used for optional arguments in interfaces
-     * -------------------------------------------------*/
-
-    typedef struct rhs_opts__
-    {
-        int iPos ; /** stack position : -1 if not present */
-        char* pstName;
-        int iType;// -1 not yet defined
-        int iRows;
-        int iCols;
-        int* piAddr;
-    } rhs_opts;
 
     int get_optionals(char *name, rhs_opts opts[]);
 

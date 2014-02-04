@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
+ * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,14 +9,15 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
-#ifndef __OPTINAL_API__
-#define __OPTINAL_API__
+#ifndef __OPTIONAL_API__
+#define __OPTIONAL_API__
 
 #if !defined(__INTERNAL_API_SCILAB__)
-#error Do not include api_optinal.h. Include api_scilab.h instead.
+#error Do not include api_optional.h. Include api_scilab.h instead.
 #endif
 
-#include "stack-c.h"
+#include "stack-optional.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -32,4 +33,4 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-#endif /* __OPTINAL_API__ */
+#endif /* __OPTIONAL_API__ */

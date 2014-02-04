@@ -479,6 +479,7 @@ cd ..
     <ClInclude Include="..\..\includes\stack2.h" />
     <ClInclude Include="..\..\includes\stack3.h" />
     <ClInclude Include="..\..\includes\stackinfo.h" />
+    <ClInclude Include="..\..\includes\stack-optional.h" />
     <ClInclude Include="..\..\includes\storeCommand.h" />
     <ClInclude Include="saveCWDInPreferences.h" />
     <ClInclude Include="str2sci.h" />
