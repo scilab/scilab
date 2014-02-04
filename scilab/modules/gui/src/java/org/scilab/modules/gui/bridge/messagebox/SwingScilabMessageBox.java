@@ -51,6 +51,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.event.HyperlinkEvent;
@@ -496,13 +497,18 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
                     localGroup.addComponent(rowLabels[row]);
                 }
                 horizontalGroup.addGroup(localGroup);
+                horizontalGroup.addGap(18, 18, 18);
             }
             for (int col = 0 ; col < numberOfColumns - 1; col++) {
-                final ParallelGroup localGroup = layout.createParallelGroup(Alignment.LEADING);
+                if (col > 0) {
+                    horizontalGroup.addPreferredGap(ComponentPlacement.RELATED);
+                }
+
+                final ParallelGroup localGroup = layout.createParallelGroup(Alignment.CENTER);
 
                 if (colLabels != null) {
                     // center the labels to be rendered like a spreadsheet
-                    localGroup.addComponent(colLabels[col + 1], Alignment.CENTER);
+                    localGroup.addComponent(colLabels[col + 1]);
                 }
 
                 // common case for the initial values
@@ -523,8 +529,13 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
                     localGroup.addComponent(colLabels[col]);
                 }
                 verticalGroup.addGroup(localGroup);
+                verticalGroup.addGap(18, 18, 18);
             }
             for (int row = 0; row < lineLabels.length; row++) {
+                if (row > 0) {
+                    verticalGroup.addPreferredGap(ComponentPlacement.RELATED);
+                }
+
                 final ParallelGroup localGroup = layout.createParallelGroup(Alignment.BASELINE);
                 localGroup.addComponent(rowLabels[row]);
                 for (int col = 0 ; col < numberOfColumns - 1; col++) {

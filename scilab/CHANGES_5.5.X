@@ -462,6 +462,8 @@ Scilab Bug Fixes
 
 * Bug #13200 fixed - about() ACKNOWLEDGEMENTS did not render utf-8 characters.
 
+* Bug #13201 fixed - x_mdialog entries had no margin.
+
 * Bug #13202 fixed - kernel help page improved.
 
 * Bug #13203 fixed - Some error messages typos fixed.
