@@ -480,6 +480,8 @@ Scilab Bug Fixes
 
 * Bug #13218 fixed - Typos fixed in core module help pages.
 
+* Bug #13226 fixed - Completion with accentued chars could lead to a crash.
+
 
 Xcos
 ====

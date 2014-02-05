@@ -1,13 +1,13 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Karim Mamode
-*
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
-*/
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Karim Mamode
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ */
 
 #include <string.h>
 #include <wchar.h>
@@ -62,7 +62,6 @@ static char **concatenateStrings(int *sizearrayofstring, char *string1, char *st
 void autoCompletionInConsoleMode(wchar_t ** commandLine, unsigned int *cursorLocation)
 {
     char *multiByteString = NULL;
-
     wchar_t *wideString = NULL;
 
     int sizeToAlloc = 0;
@@ -86,15 +85,10 @@ void autoCompletionInConsoleMode(wchar_t ** commandLine, unsigned int *cursorLoc
 static void doCompletion(char **wk_buf, unsigned int *cursor, unsigned int *cursor_max)
 {
     char *LineBeforeCaret = getLineBeforeCaret(*wk_buf, cursor);
-
     char *LineAfterCaret = getLineAfterCaret(*wk_buf, cursor, cursor_max);
-
     char *fileSearchedPattern = getFilePartLevel(LineBeforeCaret);
-
     char *SearchedPattern = getPartLevel(LineBeforeCaret);
-
     char **completionDictionaryFiles = NULL;
-
     int sizecompletionDictionaryFiles = 0;
 
     completionDictionaryFiles = completionOnFiles(fileSearchedPattern, &sizecompletionDictionaryFiles);
@@ -135,9 +129,11 @@ static void doCompletion(char **wk_buf, unsigned int *cursor, unsigned int *curs
 static char *getLineBeforeCaret(char *wk_buf, unsigned int *cursor)
 {
     char *line = NULL;
+    wchar_t * wtmp = to_wide_string(wk_buf);
 
-    line = strdup(wk_buf);
-    line[*cursor] = '\0';
+    wtmp[*cursor] = 0;
+    line = wide_string_to_UTF8(wtmp);
+    FREE(wtmp);
 
     return line;
 }
@@ -149,12 +145,14 @@ static char *getLineAfterCaret(char *wk_buf, unsigned int *cursor, unsigned int 
         if (*cursor != *cursor_max)
         {
             int len = *cursor_max - *cursor;
+            wchar_t * wtmp = to_wide_string(wk_buf);
+            wchar_t aftercaret[WK_BUF_SIZE];
 
-            char aftercaret[WK_BUF_SIZE];
-
-            strcpy(aftercaret, &wk_buf[*cursor]);
+            wcscpy(aftercaret, &wtmp[*cursor]);
             aftercaret[len + 1] = '\0';
-            return strdup(aftercaret);
+            FREE(wtmp);
+
+            return wide_string_to_UTF8(aftercaret);
         }
     }
     return strdup("");
@@ -294,13 +292,16 @@ static int CopyLineAtPrompt(char **wk_buf, char *line, unsigned int *cursor, uns
     FREE(*wk_buf);
     if (line)
     {
+        wchar_t *wtmp = NULL;
         //** Copy line to current command buffer, usefull in completion case.
         *wk_buf = MALLOC(sizeof(char) * strlen(line) + 1);
         strcpy(*wk_buf, line);
         backspace(*cursor);     /* backspace to beginning of line */
         printf("%s", *wk_buf);   /* copy to screen */
 
-        *cursor = strlen(*wk_buf);   /* cursor set at end of line */
+        wtmp = to_wide_string(*wk_buf);
+        *cursor = wcslen(wtmp); /* cursor set at end of line */
+        FREE(wtmp);
 
         /* erase extra characters left over if any */
         erase_nchar(GET_MAX(0, (*cursor_max - *cursor)));
