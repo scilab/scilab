@@ -338,7 +338,16 @@ int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
         _pPoly->getRank(&iRank);
         for (int i = 0 ; i < _pDouble->getSize() ; i++)
         {
-            piRank[i] = ((iRank - 1) * (int)_pDouble->get(i)) + 1;
+            int iInputRank = (int)_pDouble->get(i);
+            if(iInputRank < 0)
+            {
+                //call overload
+                _pOut = NULL;
+                delete[] piRank;
+                return 0;
+            }
+
+            piRank[i] = ((iRank - 1) * iInputRank) + 1;
         }
 
         Polynom* pOut = new Polynom(_pPoly->getVariableName(), _pDouble->getRows(), _pDouble->getCols(), piRank);
