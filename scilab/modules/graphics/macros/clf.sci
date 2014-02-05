@@ -46,6 +46,10 @@ function clf(varargin)
 
     nbHandles = size(h,"*");
 
+    if nbHandles == 0 then
+        return;
+    end
+
     // check that all the handles are figures
     for k=1:nbHandles
         curFig = h(k);
@@ -63,11 +67,11 @@ function clf(varargin)
         curFig.immediate_drawing = "off";
 
         delete(curFig.children);
-        
+
         // drawnow
         curFig.immediate_drawing = immediateMode;
     end
-    
+
     curFig.info_message = "";
 
     // reset figures to default values if needed

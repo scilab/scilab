@@ -478,6 +478,8 @@ Scilab Bug Fixes
 
 * Bug #13210 fixed - Incorrect argument description in the mseek help page.
 
+* Bug #13215 fixed - clf(1001) returned an error.
+
 * Bug #13218 fixed - Typos fixed in core module help pages.
 
 * Bug #13226 fixed - Completion with accentued chars could lead to a crash.
