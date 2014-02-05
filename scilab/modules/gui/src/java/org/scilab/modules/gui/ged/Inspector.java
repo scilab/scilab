@@ -86,7 +86,7 @@ public class Inspector {
             boolean success = WindowsConfigurationManager.restoreUUID(SwingInspector.INSPECTORUUID);
             if (!success) {
                 InspectorTab.getInspectorInstance(objectID);
-                SwingScilabWindow window = (SwingScilabWindow) ScilabWindow.createWindow().getAsSimpleWindow();
+                SwingScilabWindow window = SwingScilabWindow.createWindow(true);
                 window.addTab(inspectorTab);
                 window.setLocation(0, 0);
                 window.setSize(300, 700);

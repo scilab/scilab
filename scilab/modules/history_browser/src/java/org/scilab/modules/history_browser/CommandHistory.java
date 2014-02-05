@@ -403,7 +403,7 @@ public final class CommandHistory extends SwingScilabDockablePanel implements Si
             boolean success = WindowsConfigurationManager.restoreUUID(COMMANDHISTORYUUID);
             if (!success) {
                 CommandHistoryTabFactory.getInstance().getTab(COMMANDHISTORYUUID);
-                SwingScilabWindow window = (SwingScilabWindow) ScilabWindow.createWindow().getAsSimpleWindow();
+                SwingScilabWindow window = SwingScilabWindow.createWindow(true);
                 window.addTab(browserTab);
                 window.setLocation(0, 0);
                 window.setSize(500, 500);

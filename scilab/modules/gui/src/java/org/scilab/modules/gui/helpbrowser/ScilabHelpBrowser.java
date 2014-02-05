@@ -44,8 +44,6 @@ import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
 
 /**
@@ -71,7 +69,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
     }
 
     private SimpleHelpBrowser component;
-    private Window parentWindow;
+    private SwingScilabWindow parentWindow;
 
     /**
      * Constructor
@@ -159,7 +157,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
             if (!success) {
                 HelpBrowserTabFactory.getInstance().getTab(HELPUUID);
                 ((ScilabHelpBrowser) instance).setParentWindow();
-                ((ScilabHelpBrowser) instance).parentWindow.addTab(helpTab);
+                ((ScilabHelpBrowser) instance).parentWindow.addTab((SwingScilabDockablePanel) helpTab.getAsSimpleTab());
                 ((ScilabHelpBrowser) instance).parentWindow.setVisible(true);
             }
 
@@ -182,10 +180,9 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      * Set a default parent window
      */
     public void setParentWindow() {
-        this.parentWindow = ScilabWindow.createWindow();
-        SwingScilabWindow window = (SwingScilabWindow) parentWindow.getAsSimpleWindow();
-        window.setLocation(0, 0);
-        window.setSize(500, 500);
+        this.parentWindow = SwingScilabWindow.createWindow(true);
+        parentWindow.setLocation(0, 0);
+        parentWindow.setSize(500, 500);
     }
 
     /**

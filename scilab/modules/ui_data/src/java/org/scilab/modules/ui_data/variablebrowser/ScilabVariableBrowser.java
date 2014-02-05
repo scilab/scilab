@@ -76,7 +76,7 @@ public final class ScilabVariableBrowser implements VariableBrowser {
             boolean success = WindowsConfigurationManager.restoreUUID(SwingScilabVariableBrowser.VARBROWSERUUID);
             if (!success) {
                 VariableBrowserTab.getVariableBrowserInstance();
-                SwingScilabWindow window = (SwingScilabWindow) ScilabWindow.createWindow().getAsSimpleWindow();
+                SwingScilabWindow window = SwingScilabWindow.createWindow(true);
                 window.addTab(browserTab);
                 window.setLocation(0, 0);
                 window.setSize(500, 500);

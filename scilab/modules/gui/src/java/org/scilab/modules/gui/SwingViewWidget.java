@@ -86,8 +86,6 @@ import org.scilab.modules.gui.utils.UnitsConverter;
 import org.scilab.modules.gui.utils.UnitsConverter.UicontrolUnits;
 import org.scilab.modules.gui.widget.Widget;
 
-import com.sun.org.apache.bcel.internal.generic.AllocationInstruction;
-
 /**
  * @author Bruno JOFRET
  * @author Vincent COUVERT
@@ -646,6 +644,7 @@ public final class SwingViewWidget {
                     Border border = BorderConvertor.getBorder(borderId);
                     frame.setBorder(border);
                 }
+                break;
             default:
                 //System.err.println("[SwingScilabWidget.update] Property not mapped: " + property);
         }

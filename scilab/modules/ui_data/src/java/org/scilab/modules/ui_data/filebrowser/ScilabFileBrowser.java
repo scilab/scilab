@@ -84,7 +84,7 @@ public final class ScilabFileBrowser {
             boolean success = WindowsConfigurationManager.restoreUUID(SwingScilabFileBrowser.FILEBROWSERUUID);
             if (!success) {
                 FileBrowserTab.getFileBrowserInstance();
-                SwingScilabWindow window = (SwingScilabWindow) ScilabWindow.createWindow().getAsSimpleWindow();
+                SwingScilabWindow window = SwingScilabWindow.createWindow(true);
                 window.addTab(instance);
                 window.setLocation(0, 0);
                 window.setSize(500, 500);
