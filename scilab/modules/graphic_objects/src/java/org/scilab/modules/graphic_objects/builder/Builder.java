@@ -52,7 +52,7 @@ public final class Builder {
             return 0;
         }
 
-        Integer iRect = controller.askObject(Type.RECTANGLE);
+        Integer iRect = controller.askObject(Type.RECTANGLE, false);
 
         /*
          * Sets the rectangle's parent in order to initialize the former's Contoured properties
@@ -174,7 +174,7 @@ public final class Builder {
 
         GraphicController controller = GraphicController.getController();
 
-        Integer iLabel = controller.askObject(Type.LABEL);
+        Integer iLabel = controller.askObject(Type.LABEL, false);
         Label label = (Label) controller.getObjectFromId(iLabel);
 
         //Hide Label as they are non explicit children
@@ -386,7 +386,7 @@ public final class Builder {
                                        boolean isFilled, int align) {
 
         GraphicController controller = GraphicController.getController();
-        int iText = controller.askObject(Type.TEXT);
+        int iText = controller.askObject(Type.TEXT, false);
 
         Axes axes = (Axes) controller.getObjectFromId(iParentsubwinUID);
         Text text = (Text) controller.getObjectFromId(iText);
@@ -457,7 +457,7 @@ public final class Builder {
                                       boolean filled, boolean line) {
 
         GraphicController controller = GraphicController.getController();
-        int iArc = controller.askObject(Type.ARC);
+        int iArc = controller.askObject(Type.ARC, false);
 
         Axes axes = (Axes) controller.getObjectFromId(parent);
         Arc arc = (Arc) controller.getObjectFromId(iArc);
@@ -505,7 +505,7 @@ public final class Builder {
                                        int fontSize, int textColor, int ticsColor, boolean seg) {
 
         GraphicController controller = GraphicController.getController();
-        int iAxis = controller.askObject(Type.AXIS);
+        int iAxis = controller.askObject(Type.AXIS, false);
 
         Axes axes = (Axes) controller.getObjectFromId(parent);
         Axis axis = (Axis) controller.getObjectFromId(iAxis);
@@ -542,7 +542,6 @@ public final class Builder {
     public static int createCompound(int parent, int[] children) {
         GraphicController controller = GraphicController.getController();
         int iCompound = controller.askObject(Type.COMPOUND);
-        controller.objectCreated(iCompound);
 
         GraphicObject obj = controller.getObjectFromId(parent);
         for (int i = 0 ; i < children.length ; i++) {
@@ -557,7 +556,6 @@ public final class Builder {
     public static int createCompoundSeq(int parent, int childrenCount) {
         GraphicController controller = GraphicController.getController();
         int iCompound = controller.askObject(Type.COMPOUND);
-        controller.objectCreated(iCompound);
         GraphicObject axes = controller.getObjectFromId(parent);
 
         Integer[] children = axes.getChildren();
@@ -590,7 +588,7 @@ public final class Builder {
     public static int createFec(int parent, double[] zminmax, int[] colminmax, int[] colout, boolean with_mesh) {
 
         GraphicController controller = GraphicController.getController();
-        int iFec = controller.askObject(Type.FEC);
+        int iFec = controller.askObject(Type.FEC, false);
         Axes axes = (Axes) controller.getObjectFromId(parent);
         Fec fec = (Fec) controller.getObjectFromId(iFec);
 
@@ -619,7 +617,7 @@ public final class Builder {
         int[] objectTypes = new int[] {GraphicObjectProperties.__GO_GRAYPLOT__, GraphicObjectProperties.__GO_MATPLOT__, GraphicObjectProperties.__GO_MATPLOT__};
 
         GraphicController controller = GraphicController.getController();
-        int iPlot = controller.askObject(GraphicObject.getTypeFromName(objectTypes[type]));
+        int iPlot = controller.askObject(GraphicObject.getTypeFromName(objectTypes[type]), false);
         Axes axes = (Axes) controller.getObjectFromId(parent);
         Imageplot plot = (Imageplot) controller.getObjectFromId(iPlot);
 
@@ -656,7 +654,7 @@ public final class Builder {
                                      boolean isline, boolean isfilled, boolean ismark, boolean isinterp) {
 
         GraphicController controller = GraphicController.getController();
-        int iPoly = controller.askObject(Type.POLYLINE);
+        int iPoly = controller.askObject(Type.POLYLINE, false);
         Axes axes = (Axes) controller.getObjectFromId(parent);
         Polyline poly = (Polyline) controller.getObjectFromId(iPoly);
 
@@ -721,7 +719,7 @@ public final class Builder {
         }
 
 
-        int iLeg = controller.askObject(Type.LEGEND);
+        int iLeg = controller.askObject(Type.LEGEND, false);
         Legend leg = (Legend)controller.getObjectFromId(iLeg);
 
         leg.setParent(parent);
@@ -766,7 +764,7 @@ public final class Builder {
                                  int[] style, double arsize) {
         GraphicController controller = GraphicController.getController();
         Axes axes = (Axes) controller.getObjectFromId(parent);
-        int iSegs = controller.askObject(Type.SEGS);
+        int iSegs = controller.askObject(Type.SEGS, false);
         Segs segs = (Segs)controller.getObjectFromId(iSegs);
 
         segs.setVisible(axes.getVisible());
@@ -820,7 +818,7 @@ public final class Builder {
         GraphicController controller = GraphicController.getController();
         Axes axes = (Axes) controller.getObjectFromId(parent);
 
-        int iChamp = controller.askObject(Type.CHAMP);
+        int iChamp = controller.askObject(Type.CHAMP, false);
         Champ champ = (Champ)controller.getObjectFromId(iChamp);
 
         champ.setVisible(axes.getVisible());
@@ -875,7 +873,7 @@ public final class Builder {
         GraphicController controller = GraphicController.getController();
         Axes axes = (Axes) controller.getObjectFromId(parent);
 
-        int iSurf = controller.askObject(GraphicObject.getTypeFromName(typeof3d));
+        int iSurf = controller.askObject(GraphicObject.getTypeFromName(typeof3d), false);
         Surface surf = (Surface) controller.getObjectFromId(iSurf);
 
         surf.setVisible(axes.getVisible());
@@ -1111,7 +1109,7 @@ public final class Builder {
                                   double[] dir, double[] ambient, double[] diffuse, double[] specular) {
         GraphicController controller = GraphicController.getController();
 
-        int iLight = controller.askObject(Type.LIGHT);
+        int iLight = controller.askObject(Type.LIGHT, false);
         Light light = (Light) controller.getObjectFromId(iLight);
 
         light.setVisible(visible);

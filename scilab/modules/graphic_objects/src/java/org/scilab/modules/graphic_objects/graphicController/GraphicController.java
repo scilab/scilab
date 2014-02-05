@@ -185,12 +185,14 @@ public class GraphicController {
      * @param type the object type
      * @return the created object's id
      */
-    public Integer askObject(Type type) {
+    public Integer askObject(Type type, boolean broadcastMessage) {
 
         try {
             Integer id = createUID();
             GraphicModel.getModel().createObject(id, type);
-            objectCreated(id);
+            if (broadcastMessage) {
+                objectCreated(id);
+            }
 
             return id;
         } catch (Exception e) {
@@ -230,6 +232,10 @@ public class GraphicController {
         return cloneObject(id, true);
     }
 
+    public Integer askObject(Type type) {
+        return askObject(type, true);
+    }
+    
     /**
      * Deletes an object
      * @param id the deleted object's id
