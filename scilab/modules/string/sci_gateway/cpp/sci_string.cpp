@@ -294,6 +294,7 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
         }
         case GenericType::RealTList :
         case GenericType::RealMList :
+        case GenericType::RealPoly :
         {
             std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_string";
             return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());

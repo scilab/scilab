@@ -916,6 +916,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
                 pCoefOut->get(), pCoefOut->getImg(), pPolyOut->getRank());
         }
 
+        (*_pPolyOut)->updateRank();
         return 0;
     }
 
@@ -1001,6 +1002,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
             }
         }
 
+        (*_pPolyOut)->updateRank();
         return 0;
     }
 
@@ -1085,6 +1087,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
             }
         }
 
+        (*_pPolyOut)->updateRank();
         return 0;
     }
 

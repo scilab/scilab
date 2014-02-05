@@ -26,16 +26,14 @@ extern "C"
 #include "charEncoding.h"
 }
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_ones(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_ones(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    Double* pOut = NULL;
+    types::Double* pOut = NULL;
     if (in.size() == 0)
     {
-        out.push_back(new Double(1));
-        return Function::OK;
+        out.push_back(new types::Double(1));
+        return types::Function::OK;
     }
     else if (in.size() == 1)
     {
@@ -61,7 +59,7 @@ Function::ReturnValue sci_ones(types::typed_list &in, int _iRetCount, types::typ
             return types::Function::Error;
         }
 
-        pOut = new Double(iDims, piDims);
+        pOut = new types::Double(iDims, piDims);
     }
     else //size > 1
     {
@@ -115,7 +113,15 @@ Function::ReturnValue sci_ones(types::typed_list &in, int _iRetCount, types::typ
                     Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "ones", i + 1);
                     return Function::Error;
             }
+
+            if(piDims[i] < 1)
+            {
+                delete[] piDims;
+                out.push_back(types::Double::Empty());
+                return types::Function::OK;
+            }
         }
+
         pOut = new Double(iDims, piDims);
         delete[] piDims;
     }
