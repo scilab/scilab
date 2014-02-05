@@ -150,7 +150,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     private boolean paintEnable = true;
 
     /** Contains the canvas and widgets */
-    private SwingScilabAxes contentPane;
     private JLayeredPane uiContentPane;
     private JLayeredPane layerdPane;
 
@@ -613,10 +612,9 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the member to add
      */
     public void addMember(SwingViewObject member) {
-        SwingScilabCommonPanel.addMember(this, member);
-        if (member instanceof SwingScilabCanvas) {
+        if (member instanceof SwingScilabAxes) {
             if (contentCanvas == null) {
-                contentCanvas = (SwingScilabCanvas) member;
+                contentCanvas = new SwingScilabCanvas((Figure) GraphicController.getController().getObjectFromId(((SwingScilabAxes) member).getFigureId()));
                 contentCanvas.addEventHandlerKeyListener(editorEventHandler);
                 contentCanvas.addEventHandlerMouseListener(editorEventHandler);
                 contentCanvas.addEventHandlerMouseMotionListener(editorEventHandler);
@@ -624,10 +622,12 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
                 layerdPane.add(contentCanvas, JLayeredPane.FRAME_CONTENT_LAYER);
 
                 scrolling.setCanvas(contentCanvas);
-
                 contentCanvas.addKeyListener(this);
             }
+            return;
         }
+        
+        SwingScilabCommonPanel.addMember(this, member);
     }
 
     /**
@@ -696,7 +696,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabFrame member) {
-        return contentPane.addFrame(member);
+        return 0;
     }
 
     /**
@@ -713,7 +713,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the Frame to remove
      */
     private void removeMember(SwingScilabFrame member) {
-        contentPane.removeFrame(member);
     }
 
     /**
@@ -732,9 +731,8 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabPushButton member) {
-        int res = contentPane.addWidget(member);
         repaint();
-        return res;
+        return 0;
     }
 
     /**
@@ -770,7 +768,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabEditBox member) {
-        return contentPane.addWidget(member);
+        return 0;
     }
 
     /**
@@ -787,7 +785,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the EditBox to remove
      */
     private void removeMember(SwingScilabEditBox member) {
-        contentPane.removeWidget(member);
     }
 
     /**
@@ -806,7 +803,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabLabel member) {
-        return contentPane.addWidget(member);
+        return 0;
     }
 
     /**
@@ -823,7 +820,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the Label to remove
      */
     private void removeMember(SwingScilabLabel member) {
-        contentPane.removeWidget(member);
     }
 
     /**
@@ -842,7 +838,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabCheckBox member) {
-        return contentPane.addWidget(member);
+        return 0;
     }
 
     /**
@@ -859,7 +855,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the CheckBox to remove
      */
     private void removeMember(SwingScilabCheckBox member) {
-        contentPane.removeWidget(member);
     }
 
     /**
@@ -878,7 +873,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabRadioButton member) {
-        return contentPane.addWidget(member);
+        return 0;
     }
 
     /**
@@ -895,7 +890,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the RadioButton to remove
      */
     private void removeMember(SwingScilabRadioButton member) {
-        contentPane.removeWidget(member);
     }
 
     /**
@@ -904,7 +898,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabUiImage member) {
-        return contentPane.addWidget(member);
+        return 0;
     }
 
     /**
@@ -912,7 +906,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the Image to remove
      */
     private void removeMember(SwingScilabUiImage member) {
-        contentPane.removeWidget(member);
     }
 
     /**
@@ -930,7 +923,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabUiDisplayTree member) {
-        return contentPane.addWidget(member);
+        return 0;
     }
 
     /**
@@ -946,7 +939,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the Tree to remove
      */
     private void removeMember(SwingScilabUiDisplayTree member) {
-        contentPane.removeWidget(member);
     }
 
     /**
@@ -964,7 +956,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabUiTable member) {
-        return contentPane.addWidget(member);
+        return 0;
     }
 
     /**
@@ -980,7 +972,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the UiTable to remove
      */
     private void removeMember(SwingScilabUiTable member) {
-        contentPane.removeWidget(member);
     }
 
     /**
@@ -998,7 +989,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabScroll member) {
-        return contentPane.addWidget(member);
+        return 0;
     }
 
     /**
@@ -1015,7 +1006,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the Slider to remove
      */
     private void removeMember(SwingScilabScroll member) {
-        contentPane.removeWidget(member);
     }
 
     /**
@@ -1034,7 +1024,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabListBox member) {
-        return contentPane.addWidget(member);
+        return 0;
     }
 
     /**
@@ -1051,7 +1041,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the ListBox to remove
      */
     private void removeMember(SwingScilabListBox member) {
-        contentPane.removeWidget(member);
     }
 
     /**
@@ -1070,7 +1059,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabPopupMenu member) {
-        return contentPane.addWidget(member);
+        return 0;
     }
 
     /**
@@ -1087,7 +1076,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the PopupMenu to remove
      */
     private void removeMember(SwingScilabPopupMenu member) {
-        contentPane.removeWidget(member);
     }
 
     /**
@@ -1106,7 +1094,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @return index of member in ArrayList
      */
     public int addMember(SwingScilabTree member) {
-        return contentPane.addWidget(member.getAsComponent());
+        return 0;
     }
 
     /**
@@ -1133,7 +1121,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the PopupMenu to remove
      */
     private void removeMember(SwingScilabTree member) {
-        contentPane.removeTree(member);
     }
 
     /**
@@ -1296,7 +1283,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     @Override
     public void setBackground(double red, double green, double blue) {
         Color newColor = new Color((float) red, (float) green, (float) blue);
-        contentPane.setBackground(red, green, blue);
         uiContentPane.setBackground(newColor);
         scrolling.setBackground(red, green, blue);
         setBackground(newColor);

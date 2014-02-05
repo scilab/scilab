@@ -17,7 +17,6 @@
 package org.scilab.modules.gui.bridge.canvas;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTORESIZE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -59,7 +58,7 @@ import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
  * @author Marouane BEN JELLOUL
  * @author Jean-Baptiste Silvy
  */
-public class SwingScilabCanvas extends JPanel implements SimpleCanvas, SwingViewObject {
+public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
 
     private static final long serialVersionUID = 6101347094617535625L;
 
@@ -108,7 +107,14 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas, SwingView
                 SwingScilabCanvas.this.requestFocus();
             }
         });
-
+        
+        drawerVisitor = new DrawerVisitor(drawableComponent, rendererCanvas, figure);
+        rendererCanvas.setMainDrawer(drawerVisitor);
+        drawableComponent.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                GlobalEventWatcher.setAxesUID(figure.getIdentifier());
+            }
+        });
         setBackground(Color.white);
         setFocusable(true);
         setEnabled(true);
@@ -155,14 +161,6 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas, SwingView
      */
     public static SwingScilabCanvas createCanvas(int figureIndex, int antialiasingQuality) {
         return null;
-    }
-
-    /**
-     * Drawable component getter.
-     * @return the drawable component.
-     */
-    private Component getDrawableComponent() {
-        return drawableComponent;
     }
 
     /**
@@ -279,7 +277,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas, SwingView
      * @param newCursor cursor to apply on the canvas
      */
     public void setCursor(Cursor newCursor) {
-        getParentAxes().setCursor(newCursor);
+        setCursor(newCursor);
     }
 
     /**
@@ -295,7 +293,6 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas, SwingView
      * @param listener listener to add
      */
     public void removeFocusListener(FocusListener listener) {
-        getParentAxes().removeFocusListener(listener);
     }
 
     /**
@@ -303,7 +300,6 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas, SwingView
      * @param listener listener to add
      */
     public void addMouseListener(MouseListener listener) {
-        getParentAxes().addMouseListener(listener);
     }
 
     /**
@@ -311,7 +307,6 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas, SwingView
      * @param listener listener to add
      */
     public void removeMouseListener(MouseListener listener) {
-        getParentAxes().removeMouseListener(listener);
     }
 
     /**
@@ -319,7 +314,6 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas, SwingView
      * @param listener listener to add
      */
     public void addMouseMotionListener(MouseMotionListener listener) {
-        getParentAxes().addMouseMotionListener(listener);
     }
 
     /**
@@ -327,7 +321,6 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas, SwingView
      * @param listener listener to add
      */
     public void removeMouseMotionListener(MouseMotionListener listener) {
-        getParentAxes().removeMouseMotionListener(listener);
     }
 
     /**
@@ -408,19 +401,5 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas, SwingView
 
     public Integer getId() {
         return id;
-    }
-
-    public void update(int property, Object value) {
-        if (property == __GO_PARENT__) {
-            final Figure figure = (Figure) GraphicController.getController().getObjectFromId((Integer) value);
-            this.figure = figure;
-            drawerVisitor = new DrawerVisitor(drawableComponent, rendererCanvas, figure);
-            rendererCanvas.setMainDrawer(drawerVisitor);
-            drawableComponent.addMouseListener(new MouseAdapter() {
-                public void mouseEntered(MouseEvent e) {
-                    GlobalEventWatcher.setAxesUID(figure.getIdentifier());
-                }
-            });
-        }
     }
 }

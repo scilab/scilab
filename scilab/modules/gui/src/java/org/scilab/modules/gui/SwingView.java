@@ -70,7 +70,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_WAITBAR__;
 import static org.scilab.modules.gui.utils.Debug.DEBUG;
 
-import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.GraphicsEnvironment;
@@ -97,7 +96,6 @@ import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
-import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
@@ -114,7 +112,7 @@ import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabScroll;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
-import org.scilab.modules.gui.bridge.tab.SwingScilabCommonPanel;
+import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.tab.SwingScilabPanel;
 import org.scilab.modules.gui.bridge.tab.SwingScilabStaticPanel;
@@ -134,7 +132,6 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.BorderConvertor;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.widget.Widget;
 
@@ -436,7 +433,7 @@ public final class SwingView implements GraphicView {
                 window.pack();
                 return tab;
             case Axes:
-                SwingScilabCanvas axes = new SwingScilabCanvas(null);
+                SwingScilabAxes axes = new SwingScilabAxes();
                 return axes;
             case Frame:
                 SwingScilabFrame frame = new SwingScilabFrame();

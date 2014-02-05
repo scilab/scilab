@@ -150,10 +150,9 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
     }
 
     public void addMember(SwingViewObject member) {
-        SwingScilabCommonPanel.addMember(this, member);
-        if (member instanceof SwingScilabCanvas) {
+        if (member instanceof SwingScilabAxes) {
             if (contentCanvas == null) {
-                contentCanvas = (SwingScilabCanvas) member;
+                contentCanvas = new SwingScilabCanvas((Figure) GraphicController.getController().getObjectFromId(((SwingScilabAxes) member).getFigureId()));
                 //contentCanvas.addEventHandlerKeyListener(editorEventHandler);
                 //contentCanvas.addEventHandlerMouseListener(editorEventHandler);
                 //contentCanvas.addEventHandlerMouseMotionListener(editorEventHandler);
@@ -163,7 +162,10 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
 
                 //contentCanvas.addKeyListener(this);
             }
+            return;
         }
+
+        SwingScilabCommonPanel.addMember(this, member);
     }
 
     public String getParentWindowId() {
