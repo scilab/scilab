@@ -58,7 +58,7 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
         this.figure = figure;
         //this.uiContent = uiContentPane;
         // use the axes background as default one
- 
+        setBorder(null);
         GraphicController.getController().register(this);
 
         if (figure.getAutoResize()) {
@@ -167,15 +167,15 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
             setRealBackground(canvas.getBackground());
         }
     }
-    
+
     public Component getGlobalComponent() {
         return comp;
     }
-    
+
     public Container getUIComponent() {
         return uiContent;
     }
-    
+
     public void createObject(Integer id) {
     }
 

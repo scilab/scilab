@@ -277,10 +277,12 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
 
         layerdPane = new JLayeredPane();
         layerdPane.setLayout(null);
+        layerdPane.setBorder(null);
         //layerdPane.add(canvas, JLayeredPane.FRAME_CONTENT_LAYER);
         uiContentPane = new JLayeredPane();
         uiContentPane.setOpaque(false);
         uiContentPane.setLayout(null);
+        uiContentPane.setBorder(null);
         layerdPane.add(uiContentPane, JLayeredPane.DEFAULT_LAYER + 1, 0);
 
         scrolling = new SwingScilabScrollPane(layerdPane, uiContentPane, figure);
@@ -626,7 +628,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
             }
             return;
         }
-        
+
         SwingScilabCommonPanel.addMember(this, member);
     }
 
