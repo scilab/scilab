@@ -136,6 +136,7 @@ static setHashTableCouple propertySetTable[] =
     {"axes_bounds", set_axes_bounds_property},
     {"data_bounds", set_data_bounds_property},
     {"margins", set_margins_property},
+    {"auto_margins", set_auto_margins_property},
     {"tics_color", set_tics_color_property},
     {"tics_style", set_tics_style_property},
     {"sub_tics", set_sub_tics_property},

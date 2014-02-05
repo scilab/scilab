@@ -133,6 +133,7 @@ static getHashTableCouple propertyGetTable[] =
     {"axes_bounds", get_axes_bounds_property},
     {"data_bounds", get_data_bounds_property},
     {"margins", get_margins_property},
+    {"auto_margins", get_auto_margins_property},
     {"tics_color", get_tics_color_property},
     {"tics_style", get_tics_style_property},
     {"sub_tics", get_sub_tics_property},

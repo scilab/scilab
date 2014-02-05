@@ -166,8 +166,6 @@ public class AxesDrawer {
             double w = ((double) (int) size[0]) / 2;
             double h = ((double) (int) size[1]) / 2;
 
-            //computeMargins(axes);
-
             Transformation windowTrans = TransformationFactory.getAffineTransformation(new Vector3d(w, h, 1), new Vector3d(w, h, 0));
             Transformation zoneProjection = computeZoneProjection(axes);
             Transformation transformation = computeBoxTransformation(axes, new Dimension(size[0], size[1]), false);
@@ -180,7 +178,7 @@ public class AxesDrawer {
     }
 
     public void computeMargins(Axes axes) {
-        if (axes.getViewAsEnum() == ViewType.VIEW_2D) {
+        if (axes.getAutoMargins() && axes.getViewAsEnum() == ViewType.VIEW_2D) {
             ColorMap colorMap = visitor.getColorMap();
             Dimension[] marginLabels = labelManager.getLabelsSize(colorMap, axes, this);
             Integer[] size = visitor.getFigure().getAxesSize();
@@ -458,10 +456,10 @@ public class AxesDrawer {
         double[] matrix = transformation.getMatrix();
         try {
             return TransformationFactory.getScaleTransformation(
-                       matrix[2] < 0 ? 1 : -1,
-                       matrix[6] < 0 ? 1 : -1,
-                       matrix[10] < 0 ? 1 : -1
-                   );
+                matrix[2] < 0 ? 1 : -1,
+                matrix[6] < 0 ? 1 : -1,
+                matrix[10] < 0 ? 1 : -1
+                );
         } catch (DegenerateMatrixException e) {
             // Should never happen.
             return TransformationFactory.getIdentity();
@@ -522,29 +520,29 @@ public class AxesDrawer {
     private Transformation computeDataTransformation(Axes axes) throws DegenerateMatrixException {
         // Reverse data if needed.
         Transformation transformation = TransformationFactory.getScaleTransformation(
-                                            axes.getAxes()[0].getReverse() ? 1 : -1,
-                                            axes.getAxes()[1].getReverse() ? 1 : -1,
-                                            axes.getAxes()[2].getReverse() ? 1 : -1
-                                        );
+            axes.getAxes()[0].getReverse() ? 1 : -1,
+            axes.getAxes()[1].getReverse() ? 1 : -1,
+            axes.getAxes()[2].getReverse() ? 1 : -1
+            );
 
         if (axes.getZoomEnabled()) {
             Double[] bounds = axes.getCorrectedBounds();
 
             // Scale data.
             Transformation scaleTransformation = TransformationFactory.getScaleTransformation(
-                    2.0 / (bounds[1] - bounds[0]),
-                    2.0 / (bounds[3] - bounds[2]),
-                    2.0 / (bounds[5] - bounds[4])
-                                                 );
+                2.0 / (bounds[1] - bounds[0]),
+                2.0 / (bounds[3] - bounds[2]),
+                2.0 / (bounds[5] - bounds[4])
+                );
             transformation = transformation.rightTimes(scaleTransformation);
 
 
             // Translate data.
             Transformation translateTransformation = TransformationFactory.getTranslateTransformation(
-                        -(bounds[0] + bounds[1]) / 2.0,
-                        -(bounds[2] + bounds[3]) / 2.0,
-                        -(bounds[4] + bounds[5]) / 2.0
-                    );
+                -(bounds[0] + bounds[1]) / 2.0,
+                -(bounds[2] + bounds[3]) / 2.0,
+                -(bounds[4] + bounds[5]) / 2.0
+                );
             transformation = transformation.rightTimes(translateTransformation);
 
             return transformation;

@@ -190,6 +190,7 @@ function %h_p(h)
             "data_bounds = "+sci2exp(h.data_bounds,0)
             "zoom_box = "+sci2exp(h.zoom_box,0)
             "margins = "+sci2exp(h.margins,0)
+            "auto_margins = "+sci2exp(h.auto_margins)
             "axes_bounds = "+sci2exp(h.axes_bounds,0)
             " "
             "auto_clear = "+sci2exp(h.auto_clear)

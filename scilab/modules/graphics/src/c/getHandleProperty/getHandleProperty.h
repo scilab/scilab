@@ -220,5 +220,6 @@ int get_title_scroll_property(void* _pvCtx, int iObjUID);
 int get_scrollable_property(void* _pvCtx, int iObjUID);
 int get_line_width_property(void* _pvCtx, int iObjUID);
 int get_marks_count_property(void* _pvCtx, int iObjUID);
+int get_auto_margins_property(void* _pvCtx, int iObjUID);
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

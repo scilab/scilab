@@ -481,6 +481,14 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
+                            <term>auto_margins: </term>
+                            <listitem>
+                                <para>A property to allow the automatic computation of the margins accordint to their contents.
+				If value is <literal>"on"</literal>, then the automatic computation is activated.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
                             <term>axes_bounds: </term>
                             <listitem>
                                 <para>
@@ -961,6 +969,7 @@ a.y_ticks = tlist(["ticks", "locations", "labels"], (-2:0.5:2)', ["0";"1";"2";"3
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>line_style values 9 and 10 can be used to have respectively longblank dot and bigblank dot styles.</revremark>
+                <revremark>auto_margins property added to allow automatic computation of the margins.</revremark>
             </revision>
         </revhistory>
     </refsection>

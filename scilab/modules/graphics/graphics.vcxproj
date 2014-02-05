@@ -225,6 +225,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_auto_resize_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_auto_rotation_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_auto_scale_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_auto_margins_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_auto_ticks_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_axes_bounds_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_axes_reverse_property.c" />
@@ -498,6 +499,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\set_auto_resize_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_auto_rotation_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_auto_scale_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_auto_margins_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_auto_ticks_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_axes_bounds_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_axes_reverse_property.c" />
