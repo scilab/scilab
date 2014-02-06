@@ -14,7 +14,12 @@
 s = poly(0, 's');
 H = [1/s, (s+2)/s/(s+1)^2; 1/(s^2*(s+2)), 2/(s+2)];
 [N, D] = lcmdiag(H);
-N*D^(-1), H;
+
+computed = N*D^(-1);
+expected = H;
+
+assert_checkalmostequal(coeff(computed.num), coeff(expected.num));
+assert_checkalmostequal(coeff(computed.den), coeff(expected.den));
 
 // Trying to call lcmdiag with wrong types
 H = ["string"];
