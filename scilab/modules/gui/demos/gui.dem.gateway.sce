@@ -26,6 +26,9 @@ function subdemolist = demo_gateway()
     subdemolist = [ subdemolist ;
     _("Listboxes and Popupmenus") ,  "uicontrol_listbox_popupmenu.dem.sce" ];
 
+    subdemolist = [ subdemolist ;
+    _("Uicontrols rendering") ,  "usedeprecatedskin.dem.sce" ];
+
     subdemolist(:,2) = demopath + subdemolist(:,2);
 endfunction
 

@@ -586,7 +586,6 @@ public class XMLDomLoader {
         int newId = ScilabNativeView.ScilabNativeView__getValidDefaultFigureId();
 
         controller.setProperty(fig,  __GO_ID__, newId);
-        System.out.println("setId : " + newId);
         for (int i = 0 ; i < attr.getLength() ; i++) {
             Node prop = attr.item(i);
             Pair<Integer, ModelType> pair = figPropToGO.get(prop.getNodeName());

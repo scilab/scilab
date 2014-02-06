@@ -433,7 +433,6 @@ int sci_figure(char * fname, unsigned long fname_len)
             continue;
         }
 
-        sciprint("prop : %s\n", pstProName);
         //get address of value on stack
         sciErr = getVarAddressFromPosition(pvApiCtx, i + 1, &piAddrData);
         if (sciErr.iErr)
