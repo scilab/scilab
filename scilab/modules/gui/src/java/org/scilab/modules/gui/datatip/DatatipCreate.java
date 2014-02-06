@@ -138,6 +138,7 @@ public class DatatipCreate {
         Integer viewInfo = (Integer) controller.getProperty(axesUid, __GO_VIEW__);
         Integer fg = (Integer)controller.getProperty(polyline, GraphicObjectProperties.__GO_LINE_COLOR__);
         Integer bg = (Integer)controller.getProperty(polyline, GraphicObjectProperties.__GO_BACKGROUND__);
+        Integer style = (Integer)controller.getProperty(polyline, GraphicObjectProperties.__GO_DATATIP_MARK__);
 
         //do not set relationship, only set parent to be able to go up in hierarchy
         controller.setProperty(newDatatip, GraphicObjectProperties.__GO_PARENT__, polyline);
@@ -148,6 +149,9 @@ public class DatatipCreate {
         //set colors
         controller.setProperty(newDatatip, GraphicObjectProperties.__GO_MARK_FOREGROUND__, fg);
         controller.setProperty(newDatatip, GraphicObjectProperties.__GO_MARK_BACKGROUND__, bg);
+
+        //set style
+        controller.setProperty(newDatatip, GraphicObjectProperties.__GO_MARK_STYLE__, style);
 
         //get current polyline datatips
         Integer[] tips = (Integer[]) controller.getProperty(polyline, GraphicObjectProperties.__GO_DATATIPS__);

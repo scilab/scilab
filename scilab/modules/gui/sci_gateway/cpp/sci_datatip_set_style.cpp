@@ -74,38 +74,38 @@ int sci_datatip_set_style(char *fname, unsigned long fname_len)
                 datatipSetStyleOption = DatatipSetStyle::datatipSetStyleWindow(getScilabJavaVM());
                 switch (datatipSetStyleOption)
                 {
-                    case (1):
+                    case 0:
+                        //Do nothing.
+                        AssignOutputVariable(pvApiCtx, 1) = 0;
+                        ReturnArguments(pvApiCtx);
+                        return 0;
+                    case 1:
                         DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), iPolylineUID, 1, true, true);
                         AssignOutputVariable(pvApiCtx, 1) = 0;
                         ReturnArguments(pvApiCtx);
                         return 0;
-                    case (2):
+                    case 2:
                         DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), iPolylineUID, 1, false, true);
                         AssignOutputVariable(pvApiCtx, 1) = 0;
                         ReturnArguments(pvApiCtx);
                         return 0;
-                    case (3):
+                    case 3:
                         DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), iPolylineUID, 1, false, false);
                         AssignOutputVariable(pvApiCtx, 1) = 0;
                         ReturnArguments(pvApiCtx);
                         return 0;
-                    case (4):
+                    case 4:
                         DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), iPolylineUID, 2, true, true);
                         AssignOutputVariable(pvApiCtx, 1) = 0;
                         ReturnArguments(pvApiCtx);
                         return 0;
-                    case (5):
+                    case 5:
                         DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), iPolylineUID, 2, false, true);
                         AssignOutputVariable(pvApiCtx, 1) = 0;
                         ReturnArguments(pvApiCtx);
                         return 0;
-                    case (6):
+                    case 6:
                         DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), iPolylineUID, 2, false, false);
-                        AssignOutputVariable(pvApiCtx, 1) = 0;
-                        ReturnArguments(pvApiCtx);
-                        return 0;
-                    case (0):
-                        //Do nothing.
                         AssignOutputVariable(pvApiCtx, 1) = 0;
                         ReturnArguments(pvApiCtx);
                         return 0;

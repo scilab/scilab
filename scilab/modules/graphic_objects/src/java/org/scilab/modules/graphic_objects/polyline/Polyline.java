@@ -18,6 +18,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIPS_COUNT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIPS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_DISPLAY_FNC__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_MARK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INTERP_COLOR_MODE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INTERP_COLOR_VECTOR_SET__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INTERP_COLOR_VECTOR__;
@@ -49,7 +50,7 @@ public class Polyline extends ClippableContouredObject {
     /** Polyline properties names */
     private enum PolylineProperty { CLOSED, ARROWSIZEFACTOR, POLYLINESTYLE,
                                     INTERPCOLORVECTOR, INTERPCOLORVECTORSET, INTERPCOLORMODE,
-                                    XSHIFT, YSHIFT, ZSHIFT, BARWIDTH, DATATIPS, DATATIPSCOUNT, TIP_DISPLAY_FNC
+                                    XSHIFT, YSHIFT, ZSHIFT, BARWIDTH, DATATIPS, DATATIPSCOUNT, TIP_DISPLAY_FNC, TIP_MARK
                                   };
 
     /** Specifies whether the polyline is closed */
@@ -88,6 +89,8 @@ public class Polyline extends ClippableContouredObject {
     /** Display function*/
     private String displayFnc;
 
+    private Integer tipMark;
+
     /** Constructor */
     public Polyline() {
         super();
@@ -103,6 +106,7 @@ public class Polyline extends ClippableContouredObject {
         barWidth = 0.0;
         datatips = new ArrayList<Integer>();
         displayFnc = "";
+        tipMark = 11;
     }
 
     @Override
@@ -143,6 +147,8 @@ public class Polyline extends ClippableContouredObject {
                 return PolylineProperty.DATATIPSCOUNT;
             case __GO_DATATIP_DISPLAY_FNC__ :
                 return PolylineProperty.TIP_DISPLAY_FNC;
+            case __GO_DATATIP_MARK__ :
+                return PolylineProperty.TIP_MARK;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -182,6 +188,8 @@ public class Polyline extends ClippableContouredObject {
                     return datatips.size();
                 case TIP_DISPLAY_FNC:
                     return getDisplayFunction();
+                case TIP_MARK:
+                    return getTipMark();
             }
         }
         return super.getProperty(property);
@@ -229,6 +237,9 @@ public class Polyline extends ClippableContouredObject {
                         break;
                     case TIP_DISPLAY_FNC:
                         setDisplayFunction((String) value);
+                        break;
+                    case TIP_MARK:
+                        setTipMark((Integer) value);
                         break;
                 }
             }
@@ -449,5 +460,19 @@ public class Polyline extends ClippableContouredObject {
             tip.updateText();
         }
         return UpdateStatus.Success;
+    }
+
+    public Integer getTipMark() {
+        return tipMark;
+    }
+
+    public UpdateStatus setTipMark(Integer tipMark) {
+        if (!this.tipMark.equals(tipMark)) {
+            this.tipMark = tipMark;
+
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
     }
 }
