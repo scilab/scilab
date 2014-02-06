@@ -906,6 +906,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         /*
          * Check if property is CHILDREN and if there is a new child I should care about
          */
+        Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        if (id != figure.getIdentifier() &&  (type == GraphicObjectProperties.__GO_UICONTROL__ || type == GraphicObjectProperties.__GO_UIMENU__)) {
+            return;
+        }
+        
         if (property == GraphicObjectProperties.__GO_CHILDREN__) {
             if (id != figure.getIdentifier()) {
                 /* Ignore children that are not mine */
@@ -1078,6 +1083,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void deleteObject(Integer id) {
+        Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        if (type == GraphicObjectProperties.__GO_UICONTROL__ || type == GraphicObjectProperties.__GO_UIMENU__) {
+            return; // Not of my managed openGL children
+        }
+        
         openGLChildren.remove(id);
 
         if (isImmediateDrawing(id)) {
