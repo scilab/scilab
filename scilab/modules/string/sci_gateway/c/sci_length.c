@@ -374,9 +374,9 @@ static int lengthMList(const char *fname, int *piAddressVar)
             }
             else
             {
-                char key[]="hm ";
+                char key[] = "hm ";
                 // Case of an hypermat
-                if (strncmp(key, pstrData[0],2) == 0 && strlen(pstrData[0]) == 2)
+                if (strncmp(key, pstrData[0], 2) == 0 && strlen(pstrData[0]) == 2)
                 {
                     int* piAddrChild3;
                     int iRows = 0;
@@ -390,16 +390,11 @@ static int lengthMList(const char *fname, int *piAddressVar)
                         return sciErr.iErr;
                     }
                     sciErr = getVarType(pvApiCtx, piAddrChild3, &iType);
-                    if (iType == sci_matrix)
+                    if (iType == sci_strings)
                     {
-                        sciErr = getMatrixOfDouble(pvApiCtx, piAddrChild3, &iRows, &iCols, &pdblReal);
-                        if (sciErr.iErr)
-                        {
-                            printError(&sciErr, 0);
-                            return sciErr.iErr;
-                        }
-                        return lengthDefault(piAddrChild3);
+                        return lengthList(piAddressVar);
                     }
+                    return lengthDefault(piAddrChild3);
                 }
                 else
                 {
