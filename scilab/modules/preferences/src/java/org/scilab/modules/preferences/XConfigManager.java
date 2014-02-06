@@ -14,9 +14,10 @@
 
 package org.scilab.modules.preferences;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
@@ -45,6 +46,10 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
@@ -346,6 +351,13 @@ public final class XConfigManager extends XCommonManager {
             return true;
         }
         if (callback.equals("Default")) {
+            if (ScilabModalDialog.show(dialog, new String[] {Messages.gettext("Are you sure you want to reset all settings to the default values?")}, Messages.gettext("Reset"), IconType.QUESTION_ICON, ButtonType.YES_NO) == AnswerOption.NO_OPTION) {
+                return false;
+            }
+
+            Cursor oldCursor = dialog.getContentPane().getCursor();
+            dialog.getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
             XConfiguration.invalidate();
             XConfiguration.addModifiedPath("ALL");
             reloadTransformer(SCILAB_CONFIG_XSL);
@@ -360,6 +372,8 @@ public final class XConfigManager extends XCommonManager {
             readUserDocuments();
             updated = false;
             refreshDisplay();
+
+            dialog.getContentPane().setCursor(oldCursor);
 
             return true;
         }

@@ -455,6 +455,8 @@ Scilab Bug Fixes
 
 * Bug #13152 fixed - Typo fixed in syslin french help page.
 
+* Bug #13165 fixed - Preferences reset did not show a confirmation pop-up.
+
 * Bug #13174 fixed - Scilab crashed after XML element removal.
 
 * Bug #13185 fixed - When the "checked" option of an uimenu was set to "on" for
