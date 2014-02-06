@@ -14,8 +14,9 @@
 
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "autoCompletionCli.h"
 #include "MALLOC.h"
+
+extern void autoCompletionInConsoleMode(wchar_t ** commandLine, unsigned int *cursorLocation);
 
 /*--------------------------------------------------------------------------*/
 int sci_completecommandline(char *fname, unsigned long fname_len)

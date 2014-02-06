@@ -40,7 +40,7 @@ else
     SCI_LIB     = strsubst(SCI,"/share\/scilab$/","lib/scilab"     ,"r");
     SCI_INCLUDE = strsubst(SCI,"/share\/scilab$/","include/scilab" ,"r");
     libs        = SCI_LIB + "/libsciconsole";
-    cflags      = "-I " + SCI_INCLUDE
+    cflags      = "-I " + SCI_INCLUDE;
 end
 
 // name known in scilab , C function called
