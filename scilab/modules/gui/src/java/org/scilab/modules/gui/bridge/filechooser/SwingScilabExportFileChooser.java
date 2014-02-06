@@ -216,6 +216,24 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
         return null;
     }
 
+    public void updateFileName(File file) {
+        if (file != null) {
+            String fileName = file.getName();
+            int i = fileName.lastIndexOf('.');
+            if (i != -1) {
+                fileName = fileName.substring(0, i);
+            }
+
+            FileMask ft = (FileMask) super.getFileFilter();
+            String ext = ft.getExtensionFromFilter();
+
+            if (ext != null && !ext.equals(allFiles)) {
+                fileName += "." + ext;
+                setSelectedFile(new File(fileName));
+            }
+        }
+    }
+
     /**
      * Manage the export (bitmap/vectorial format) and export errors
      */

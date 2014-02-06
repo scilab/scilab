@@ -94,9 +94,13 @@ public class ImagePreview extends JComponent implements PropertyChangeListener {
             file = null;
             update = true;
         } else if (JFileChooser.SELECTED_FILE_CHANGED_PROPERTY.equals(prop)) {
-            file = (File) e.getNewValue();
-            update = true;
+            if (e.getNewValue() != null) {
+                file = (File) e.getNewValue();
+                update = true;
+            }
         } else if (JFileChooser.FILE_FILTER_CHANGED_PROPERTY.equals(prop)) {
+            ((SwingScilabExportFileChooser) fc).updateFileName(file);
+
             // Crappy workaround to clear the selection when the filter has changed
             fc.setMultiSelectionEnabled(true);
             fc.setMultiSelectionEnabled(false);
