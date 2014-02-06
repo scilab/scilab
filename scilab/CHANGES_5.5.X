@@ -107,6 +107,8 @@ Scilab Bug Fixes
 
 * Bug #7169 fixed - It was not possible to specify different option value (thickness, style, ...) for X and Y grids.
 
+* Bug #7205 fixed - length(H) applied to a non-string hypermat returned 3 instead of size(H,"*").
+
 * Bug #7244 fixed - Extraction from a struct array with a boolean vector had a strange behavior.
 
 * Bug #7417 fixed - Auto-positionning of datatips did not take the curvature into account.

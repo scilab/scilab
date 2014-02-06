@@ -374,23 +374,53 @@ static int lengthMList(const char *fname, int *piAddressVar)
             }
             else
             {
-                strcpy(overloadFunctionName, "%");
-                strcat(overloadFunctionName, pstrData[0]);
-                freeAllocatedMatrixOfString(m, n, pstrData);
-                pstrData = NULL;
-
-                strcat(overloadFunctionName, "_");
-                strcat(overloadFunctionName, fname);
-
-                if (isScilabFunction(overloadFunctionName))
+                char key[]="hm ";
+                // Case of an hypermat
+                if (strncmp(key, pstrData[0],2) == 0 && strlen(pstrData[0]) == 2)
                 {
-                    int lw = 1 + Top - Rhs;
-                    C2F(overload)(&lw, (char*)fname, (unsigned long)strlen(fname));
-                    return 0;
+                    int* piAddrChild3;
+                    int iRows = 0;
+                    int iCols = 0;
+                    double* pdblReal = NULL;
+                    int iType = 0;
+                    sciErr = getListItemAddress(pvApiCtx, piAddressVar, 3, &piAddrChild3);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return sciErr.iErr;
+                    }
+                    sciErr = getVarType(pvApiCtx, piAddrChild3, &iType);
+                    if (iType == sci_matrix)
+                    {
+                        sciErr = getMatrixOfDouble(pvApiCtx, piAddrChild3, &iRows, &iCols, &pdblReal);
+                        if (sciErr.iErr)
+                        {
+                            printError(&sciErr, 0);
+                            return sciErr.iErr;
+                        }
+                        return lengthDefault(piAddrChild3);
+                    }
                 }
                 else
                 {
-                    return lengthList(piAddressVar);
+                    strcpy(overloadFunctionName, "%");
+                    strcat(overloadFunctionName, pstrData[0]);
+                    freeAllocatedMatrixOfString(m, n, pstrData);
+                    pstrData = NULL;
+
+                    strcat(overloadFunctionName, "_");
+                    strcat(overloadFunctionName, fname);
+
+                    if (isScilabFunction(overloadFunctionName))
+                    {
+                        int lw = 1 + Top - Rhs;
+                        C2F(overload)(&lw, (char*)fname, (unsigned long)strlen(fname));
+                        return 0;
+                    }
+                    else
+                    {
+                        return lengthList(piAddressVar);
+                    }
                 }
             }
         }
