@@ -488,6 +488,8 @@ Scilab Bug Fixes
 
 * Bug #13226 fixed - Completion with accentued chars could lead to a crash.
 
+* Bug #13227 fixed - Invalid windowsConfiguration.xml file could avoid Scilab's startup.
+
 
 Xcos
 ====

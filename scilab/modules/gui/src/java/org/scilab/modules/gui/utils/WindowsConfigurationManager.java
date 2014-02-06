@@ -50,8 +50,11 @@ import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
+import org.scilab.modules.localization.Messages;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -63,6 +66,10 @@ import org.w3c.dom.NodeList;
  * @author Calixte DENIZET
  */
 public class WindowsConfigurationManager implements XConfigurationListener {
+
+    private static final String RESTORATION_ERROR = Messages.gettext("Restoration error");
+    private static final String ERROR_IN_LOADING = Messages.gettext("The configuration file has been corrupted and reset to the default one.");
+    private static final String FATAL_ERROR = Messages.gettext("The configuration file has been corrupted. Scilab needs to restart.");
 
     private static final int DEFAULTX = 0;
     private static final int DEFAULTY = 0;
@@ -137,6 +144,13 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         XConfiguration.addXConfigurationListener(this);
     }
 
+    /**
+     * Reset the layout
+     */
+    public static void resetLayout() {
+        mustInvalidate = true;
+    }
+
     public void configurationChanged(XConfigurationEvent e) {
         if (e.getModifiedPaths().contains(LAYOUT_PATH)) {
             Options options = getOptions();
@@ -189,19 +203,74 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         }
 
         if (doc == null && !oneTry) {
-            System.err.println("Try to reload the default configuration file.");
-            File f = new File(USER_WINDOWS_CONFIG_FILE);
-            if (f.exists() && f.isFile()) {
-                f.delete();
-            }
-            oneTry = true;
-            readDocument();
+            reload();
         } else if (doc == null && oneTry) {
             System.err.println("Serious problem to copy and parse the configuration file.");
             System.err.println("Please check if you have the rights to write the file: " + USER_WINDOWS_CONFIG_FILE);
             System.err.println("If the previous file exists, please check if it is a valid XML");
             System.err.println("and if yes, please report a bug: http://bugzilla.scilab.org");
+        } else if (doc != null) {
+            // We check that the file contains a NULLUUID (used for the console) and only one
+            // No console == no Scilab !
+            Element root = doc.getDocumentElement();
+            List<Element> list = ScilabXMLUtilities.getElementsWithAttributeEquals(root, "uuid", NULLUUID);
+            if (list == null || list.isEmpty() || list.size() >= 2) {
+                reload();
+            } else {
+                Element console = list.get(0);
+                // Check the factory
+                if (console == null || !"org.scilab.modules.core.ConsoleTabFactory".equals(console.getAttribute("factory"))) {
+                    // the factory is not correct => crash so we reload the conf file
+                    reload();
+                }
+            }
         }
+    }
+
+    /**
+     * Display an error
+     */
+    private static void displayLoadError() {
+        System.err.println("Try to reload the default configuration file.");
+        ScilabModalDialog.show(null, ERROR_IN_LOADING, RESTORATION_ERROR, IconType.ERROR_ICON);
+    }
+
+    /**
+     * Display a fatal error
+     */
+    private static void displayFatalError() {
+        System.err.println("The configuration file is severely corrupted and cannot be read. It will be deleted.");
+        ScilabModalDialog.show(null, FATAL_ERROR, RESTORATION_ERROR, IconType.ERROR_ICON);
+    }
+
+    /**
+     * Delete configuration file
+     */
+    private static void deleteConfFile() {
+        File f = new File(USER_WINDOWS_CONFIG_FILE);
+        if (f.exists() && f.isFile()) {
+            f.delete();
+        }
+    }
+
+    /**
+     * Reload the xml configuration file
+     */
+    private static void reload() {
+        doc = null;
+        displayLoadError();
+        deleteConfFile();
+        oneTry = true;
+        readDocument();
+    }
+
+    /**
+     * Kill scilab
+     */
+    private static void killScilab() {
+        deleteConfFile();
+        displayFatalError();
+        System.exit(1);
     }
 
     /**
@@ -1064,7 +1133,11 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         }
 
         if (SwingUtilities.isEventDispatchThread()) {
-            startRestoration(uuid);
+            try {
+                startRestoration(uuid);
+            } catch (Exception e) {
+                killScilab();
+            }
         } else {
             try {
                 SwingUtilities.invokeAndWait(new Runnable() {
@@ -1072,10 +1145,8 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                         startRestoration(uuid);
                     }
                 });
-            } catch (InvocationTargetException e) {
-                System.err.println(e);
-            } catch (InterruptedException e) {
-                System.err.println(e);
+            } catch (Exception e) {
+                killScilab();
             }
         }
 

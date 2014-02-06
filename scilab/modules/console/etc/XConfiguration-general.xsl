@@ -164,6 +164,9 @@
                         <xsl:call-template name="context"/>
                     </actionPerformed>
                 </Checkbox>
+                <Button gridx="3" gridy="6" weightx="0" text="_(Reset layout)" listener="ActionListener">
+                    <actionPerformed callback="Reset layout"/>
+                </Button>
             </Grid>
         </Title>
     </xsl:template>
