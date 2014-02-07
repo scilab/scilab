@@ -124,7 +124,7 @@ public class XmlLoader extends DefaultHandler {
 
         /** sdsdf*/
         nameToGO.put("UITextarea", __GO_UI_PUSHBUTTON__);
-        nameToGO.put("UIScilabPlot", __GO_UI_PUSHBUTTON__);
+        nameToGO.put("UIScilabPlot", __GO_UI_FRAME__);
         nameToGO.put("UIComboColor", __GO_UI_POPUPMENU__);
 
     }
@@ -214,7 +214,7 @@ public class XmlLoader extends DefaultHandler {
             } else if (stackGO.size() > 0) {
                 Integer parent = stackGO.peek();
                 controller.setGraphicObjectRelationship(parent, go);
-                controller.setProperty(go, __GO_VISIBLE__, true);
+                //controller.setProperty(go, __GO_VISIBLE__, true);
             } else {
                 uid = go;
             }

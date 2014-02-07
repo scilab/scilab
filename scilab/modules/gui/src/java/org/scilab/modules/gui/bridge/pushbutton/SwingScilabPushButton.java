@@ -59,7 +59,7 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
      */
     public SwingScilabPushButton() {
         super();
-        setFocusable(false);
+        //setFocusable(false);
 
         if (Console.getConsole().getUseDeprecatedLF()) {
             /* Avoid the L&F to erase user background settings */

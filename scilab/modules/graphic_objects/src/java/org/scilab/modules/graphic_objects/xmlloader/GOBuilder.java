@@ -52,7 +52,11 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_SCROLLABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
 
+import java.awt.Color;
+import java.lang.reflect.Field;
 import java.util.Map;
 
 import org.scilab.modules.graphic_objects.builder.Builder;
@@ -186,15 +190,27 @@ public class GOBuilder {
 
             //visible
             item = attributes.getValue("visible");
-            if (item != null) {
-                if (item == null || item.equals("true")) {
-                    System.out.println("setVisible true");
-                    controller.setProperty(uic, __GO_VISIBLE__, true);
-                } else {
-                    System.out.println("setVisible false");
-                    controller.setProperty(uic, __GO_VISIBLE__, false);
-                }
+            if (item == null || item.equals("true") || item.equals("on")) {
+                controller.setProperty(uic, __GO_VISIBLE__, true);
+            } else {
+                controller.setProperty(uic, __GO_VISIBLE__, false);
             }
+
+            //enable
+            item = attributes.getValue("enable");
+            if (item == null || item.equals("true") || item.equals("on")) {
+                controller.setProperty(uic, __GO_UI_ENABLE__, true);
+            } else {
+                controller.setProperty(uic, __GO_UI_ENABLE__, false);
+            }
+
+            //backgroundcolor
+            item = attributes.getValue("background");
+            if (item != null) {
+
+                controller.setProperty(uic, __GO_UI_BACKGROUNDCOLOR__, getColor(item));
+            }
+
             // constraints
 
             // get parent layout
@@ -503,4 +519,13 @@ public class GOBuilder {
         return border;
     }
 
+    private static Double[] getColor(String str) {
+        try {
+            Field field = Class.forName("java.awt.Color").getField(str);
+            Color color = (Color) field.get(null);
+            return new Double[] {(double) color.getRed() / 255, (double) color.getGreen() / 255, (double) color.getBlue() / 255};
+        } catch (Exception e) {
+            return new Double[] {(double) Color.black.getRed() / 255, (double) Color.black.getGreen() / 255, (double) Color.black.getBlue() / 255};
+        }
+    }
 }

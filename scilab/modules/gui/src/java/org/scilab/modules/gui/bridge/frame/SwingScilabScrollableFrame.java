@@ -118,7 +118,6 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
      */
     public void setDims(Size newSize) {
         setSize(newSize.getWidth(), newSize.getHeight());
-        panel.setMinimumSize(getSize());
     }
 
     /**
