@@ -242,7 +242,7 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
      * @return an image
      */
     public BufferedImage getImage() {
-        while (!canvasAnimator.isAnimating() || !displayFinished) {
+        while (canvasAnimator.isAnimating() || !displayFinished) {
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
