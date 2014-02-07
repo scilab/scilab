@@ -37,6 +37,7 @@ import java.awt.Dimension;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -45,7 +46,7 @@ import java.util.Set;
  */
 public class JoGLTextureManager implements TextureManager {
 
-    private final Set<JoGLTexture> allTextures = new HashSet<JoGLTexture>();
+    private final Set<JoGLTexture> allTextures = Collections.synchronizedSet(new HashSet<JoGLTexture>());
     JoGLCanvas canvas;
 
     public JoGLTextureManager(JoGLCanvas canvas) {
@@ -131,8 +132,10 @@ public class JoGLTextureManager implements TextureManager {
 
     /** Called when gl context is gone. */
     public void glReload() {
-        for (JoGLTexture texture : allTextures) {
-            texture.glReload();
+        synchronized (allTextures) {
+            for (JoGLTexture texture : allTextures) {
+                texture.glReload();
+            }
         }
     }
 
