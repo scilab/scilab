@@ -98,6 +98,8 @@ Scilab Bug Fixes
 
 * Bug #6404 fixed - xrects help page was not clear about argument specification.
 
+* Bug #6512 fixed - %asn function tagged as obsolete.
+
 * Bug #6615 fixed - ui(get|put)file did not center the file dialog on the last focused window.
 
 * Bug #6689 & #6690 fixed - grand now works with complexes, polynomials, booleans, integers, sparses and strings,
@@ -144,6 +146,8 @@ Scilab Bug Fixes
 
 * Bug #7739 fixed - Axis position was invalid in log modes.
 
+* Bug #7772 fixed - There was no description, no example about line_style property.
+
 * Bug #7858 fixed - variance and variancef can now return the mean of the input
                     in a new output argument and take the a priori mean as input.
 
@@ -162,6 +166,8 @@ Scilab Bug Fixes
 * Bug #8196 fixed - Wrong error message with negative thickness.
 
 * Bug #8231 fixed - xrect help page did not say that clipping property was inherited.
+
+* Bug #8247 fixed - regress tagged as obsolete.
 
 * Bug #8337 fixed - mtlb_rand now uses the "uniform" rule, whatever the random rule set is.
 
@@ -475,6 +481,8 @@ Scilab Bug Fixes
 
 * Bug #13174 fixed - Scilab crashed after XML element removal.
 
+* Bug #13175 fixed - argn help page updated with specific cases.
+
 * Bug #13177 fixed - Error when changing x_ticks.locations on axes fixed.
 
 * Bug #13185 fixed - When the "checked" option of an uimenu was set to "on" for
@@ -532,8 +540,6 @@ Xcos
 * Bug #13059 fixed - Nan propagated at startup made the simulation fail.
 
 * Bug #13172 fixed - Logic bloc help file had some typo.
-
-* Bug #13175 fixed - argn help page updated with specific cases.
 
 
                  Changes between version 5.4.1 and 5.5.0-beta-1
@@ -774,8 +780,6 @@ Scilab Bug Fixes
 
 * Bug #6466 fixed - Example with vectorized input added in mprintf and msprintf help pages.
 
-* Bug #6512 fixed - %asn function tagged as obsolete.
-
 * Bug #6638 fixed - The profiler output was incorrect by a factor of 1000 under Windows.
 
 * Bug #6693 fixed - modulo did not accept polynomial inputs. Help page was not updated.
@@ -842,8 +846,6 @@ Scilab Bug Fixes
 
 * Bug #8234 fixed - strtod did not return an empty matrix when the input argument was an
                     empty matrix.
-
-* Bug #8247 fixed - regress tagged as obsolete.
 
 * Bug #8264 fixed - Matlab to Scilab dictionary help page updated for atan2.
 
