@@ -14,7 +14,6 @@
 
 package org.scilab.modules.gui.bridge.pushbutton;
 
-import java.awt.Dimension;
 import java.awt.Font;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -25,7 +24,6 @@ import javax.swing.JButton;
 
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 import org.scilab.modules.graphic_objects.console.Console;
-import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;

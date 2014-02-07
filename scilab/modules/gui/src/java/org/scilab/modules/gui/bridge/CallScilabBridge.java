@@ -59,6 +59,7 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
+import org.scilab.modules.gui.bridge.frame.SwingScilabScrollableFrame;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.tab.SwingScilabPanel;
 import org.scilab.modules.gui.colorchooser.ColorChooser;
@@ -72,7 +73,6 @@ import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
 import org.scilab.modules.gui.messagebox.MessageBox;
 import org.scilab.modules.gui.messagebox.ScilabMessageBox;
-import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.ImageExporter;
@@ -1246,7 +1246,9 @@ public class CallScilabBridge {
      */
     public static void requestFocus(int uicontrolUID) {
         SwingViewObject uicontrol = SwingView.getFromId(uicontrolUID);
-        if (uicontrol instanceof SwingScilabFrame) {
+        if (uicontrol instanceof SwingScilabScrollableFrame) {
+            ((SwingScilabScrollableFrame) uicontrol).requestFocus();
+        } else if (uicontrol instanceof SwingScilabFrame) {
             ((SwingScilabFrame) uicontrol).requestFocus();
         } else {
             ((Widget) uicontrol).requestFocus();

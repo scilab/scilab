@@ -1,7 +1,7 @@
 package org.scilab.modules.graphic_objects.xmlloader;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DOCKABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFOBAR_VISIBLE__;
@@ -46,10 +46,12 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SCROLLABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_SCROLLABLE__;
 
 import java.util.Map;
 
@@ -129,7 +131,13 @@ public class GOBuilder {
         XmlTools.setPropAsBoolean(fig, __GO_RESIZE__, attributes.getValue("resizable"));
 
         // layout and layout_options
-        setLayoutProperty(controller, fig, attributes.getValue("layout"));
+        item = attributes.getValue("layout");
+        if (item == null) {
+            item = "name:border"; //default layout is border
+        }
+
+
+        setLayoutProperty(controller, fig, item);
 
         // visible
         XmlTools.setPropAsBoolean(fig, __GO_VISIBLE__, attributes.getValue("visible"));
@@ -138,6 +146,13 @@ public class GOBuilder {
     }
 
     public static Integer uicontrolBuilder(GraphicController controller, int type, Attributes attributes, int parent) {
+        if (type == __GO_UI_FRAME__) {
+            String item = attributes.getValue("scrollable");
+            if (item != null && item.equals("true")) {
+                type = __GO_UI_FRAME_SCROLLABLE__;
+            }
+        }
+
         Integer uic = controller.askObject(GraphicObject.getTypeFromName(type));
         return uicontrolUpdater(controller, uic, attributes, parent);
     }
@@ -158,11 +173,28 @@ public class GOBuilder {
 
             // layout and layout_options
             item = attributes.getValue("layout");
-            if (item == null && fromModel != null) {
-                item = fromModel.get("layout");
+            if (item == null) {
+                if (fromModel != null) {
+                    item = fromModel.get("layout");
+                }
+            }
+
+            if (item == null) {
+                item = "name:none";
             }
             setLayoutProperty(controller, uic, item);
 
+            //visible
+            item = attributes.getValue("visible");
+            if (item != null) {
+                if (item == null || item.equals("true")) {
+                    System.out.println("setVisible true");
+                    controller.setProperty(uic, __GO_VISIBLE__, true);
+                } else {
+                    System.out.println("setVisible false");
+                    controller.setProperty(uic, __GO_VISIBLE__, false);
+                }
+            }
             // constraints
 
             // get parent layout
@@ -253,6 +285,14 @@ public class GOBuilder {
                     if (text[0] != null) {
                         controller.setProperty(uic, __GO_UI_STRING__, text);
                     }
+
+                    item = attributes.getValue("scrollable");
+                    if (item == null || item.equals("false")) {
+                        controller.setProperty(uic, __GO_UI_SCROLLABLE__, false);
+                    } else {
+                        controller.setProperty(uic, __GO_UI_SCROLLABLE__, true);
+                    }
+
                     break;
                 }
 
@@ -315,42 +355,40 @@ public class GOBuilder {
 
     private static void setLayoutProperty(GraphicController controller, Integer uid, String item) {
         try {
-            if (item != null) {
-                Map<String, String> map = null;
-                map = CSSParser.parseLine(item);
-                item = map.get("name");
-                LayoutType layout = LayoutType.stringToEnum(item);
-                controller.setProperty(uid, __GO_LAYOUT__, layout.ordinal());
+            Map<String, String> map = null;
+            map = CSSParser.parseLine(item);
+            item = map.get("name");
+            LayoutType layout = LayoutType.stringToEnum(item);
+            controller.setProperty(uid, __GO_LAYOUT__, layout.ordinal());
 
-                // layout_options
-                switch (layout) {
-                    case BORDER: {
-                        Integer[] pad = new Integer[] { 0, 0 };
-                        pad[0] = Integer.parseInt(XmlTools.getFromMap(map, "hgap", "0"));
-                        pad[1] = Integer.parseInt(XmlTools.getFromMap(map, "vgap", "0"));
+            // layout_options
+            switch (layout) {
+                case BORDER: {
+                    Integer[] pad = new Integer[] { 0, 0 };
+                    pad[0] = Integer.parseInt(XmlTools.getFromMap(map, "hgap", "0"));
+                    pad[1] = Integer.parseInt(XmlTools.getFromMap(map, "vgap", "0"));
 
-                        controller.setProperty(uid, __GO_BORDER_OPT_PADDING__, pad);
-                        break;
-                    }
-                    case GRID: {
-                        Integer[] grid = new Integer[] { 0, 0 };
-                        grid[0] = Integer.parseInt(XmlTools.getFromMap(map, "rows", "0"));
-                        grid[1] = Integer.parseInt(XmlTools.getFromMap(map, "cols", "0"));
-
-                        Integer[] pad = new Integer[] { 0, 0 };
-                        pad[0] = Integer.parseInt(XmlTools.getFromMap(map, "hgap", "0"));
-                        pad[1] = Integer.parseInt(XmlTools.getFromMap(map, "vgap", "0"));
-
-                        controller.setProperty(uid, __GO_GRID_OPT_GRID__, grid);
-                        controller.setProperty(uid, __GO_GRID_OPT_PADDING__, pad);
-                        break;
-                    }
-                    default:
-                    case GRIDBAG:
-                    case NONE:
-                        // nothing to do
-                        break;
+                    controller.setProperty(uid, __GO_BORDER_OPT_PADDING__, pad);
+                    break;
                 }
+                case GRID: {
+                    Integer[] grid = new Integer[] { 0, 0 };
+                    grid[0] = Integer.parseInt(XmlTools.getFromMap(map, "rows", "0"));
+                    grid[1] = Integer.parseInt(XmlTools.getFromMap(map, "cols", "0"));
+
+                    Integer[] pad = new Integer[] { 0, 0 };
+                    pad[0] = Integer.parseInt(XmlTools.getFromMap(map, "hgap", "0"));
+                    pad[1] = Integer.parseInt(XmlTools.getFromMap(map, "vgap", "0"));
+
+                    controller.setProperty(uid, __GO_GRID_OPT_GRID__, grid);
+                    controller.setProperty(uid, __GO_GRID_OPT_PADDING__, pad);
+                    break;
+                }
+                default:
+                case GRIDBAG:
+                case NONE:
+                    // nothing to do
+                    break;
             }
         } catch (CSSParserException e) {
             e.printStackTrace();
@@ -438,7 +476,7 @@ public class GOBuilder {
                 String fontAngle = XmlTools.getFromMap(map, "italic", "false") == "false" ? "normal" : "italic";
                 Integer fontSize = Integer.parseInt(XmlTools.getFromMap(map, "font-size", "0"));
                 String fontWeight = XmlTools.getFromMap(map, "bold", "false") == "false" ? "normal" : "bold";
-                
+
                 FrameBorder.TitlePositionType position = FrameBorder.TitlePositionType.stringToEnum(XmlTools.getFromMap(map, "position", "leading"));
 
                 String color = XmlTools.getFromMap(map, "color", "black");

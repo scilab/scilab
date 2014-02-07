@@ -45,6 +45,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTWEIGHT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_SCROLLABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
@@ -68,6 +69,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VALID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_WAITBAR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SCROLLABLE__;
 import static org.scilab.modules.gui.utils.Debug.DEBUG;
 
 import java.awt.Component;
@@ -83,7 +85,6 @@ import java.util.Set;
 import java.util.UUID;
 
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingUtilities;
 
@@ -102,6 +103,7 @@ import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
+import org.scilab.modules.gui.bridge.frame.SwingScilabScrollableFrame;
 import org.scilab.modules.gui.bridge.frame.SwingScilabLayer;
 import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
@@ -435,15 +437,28 @@ public final class SwingView implements GraphicView {
             case Axes:
                 SwingScilabAxes axes = new SwingScilabAxes();
                 return axes;
-            case Frame:
-                SwingScilabFrame frame = new SwingScilabFrame();
-                frame.setId(id);
-                setDefaultProperties(frame, id);
-                Integer borderId = (Integer) GraphicController.getController().getProperty(id, __GO_UI_FRAME_BORDER__);
-                if (borderId != 0) {
-                    frame.setBorder(BorderConvertor.getBorder(borderId));
+            case Frame: {
+                Boolean scrollable = (Boolean) GraphicController.getController().getProperty(id, __GO_UI_SCROLLABLE__);
+                if (scrollable) {
+                    SwingScilabScrollableFrame frame = new SwingScilabScrollableFrame();
+                    frame.setId(id);
+                    setDefaultProperties(frame, id);
+                    Integer borderId = (Integer) GraphicController.getController().getProperty(id, __GO_UI_FRAME_BORDER__);
+                    if (borderId != 0) {
+                        frame.setBorder(BorderConvertor.getBorder(borderId));
+                    }
+                    return frame;
+                } else {
+                    SwingScilabFrame frame = new SwingScilabFrame();
+                    frame.setId(id);
+                    setDefaultProperties(frame, id);
+                    Integer borderId = (Integer) GraphicController.getController().getProperty(id, __GO_UI_FRAME_BORDER__);
+                    if (borderId != 0) {
+                        frame.setBorder(BorderConvertor.getBorder(borderId));
+                    }
+                    return frame;
                 }
-                return frame;
+            }
             case Image:
                 SwingScilabUiImage image = new SwingScilabUiImage();
                 image.setId(id);
@@ -752,7 +767,11 @@ public final class SwingView implements GraphicView {
                             updateLayerChildren(registeredObject, newChildren);
                             break;
                         case __GO_UI_FRAME__:
-                            updateFrameChildren(registeredObject, newChildren);
+                            if (registeredObject.getValue() instanceof SwingScilabFrame) {
+                                updateFrameChildren(registeredObject, newChildren);
+                            } else if (registeredObject.getValue() instanceof SwingScilabScrollableFrame) {
+                                updateScrollableFrameChildren(registeredObject, newChildren);
+                            }
                             break;
                         case __GO_UI_TAB__:
                             updateTabGroupChildren(registeredObject, newChildren);
@@ -941,7 +960,7 @@ public final class SwingView implements GraphicView {
      * @param newChildren the new children IDs list
      */
     private void updateFrameChildren(TypedObject updatedObject, Integer[] newChildren) {
-        Container updatedComponent = (SwingScilabFrame) updatedObject.getValue();
+        SwingScilabFrame updatedComponent = (SwingScilabFrame) updatedObject.getValue();
         boolean needRevalidate = false;
 
         // Add new children
@@ -955,7 +974,7 @@ public final class SwingView implements GraphicView {
 
                 /* Add an uicontrol */
                 if (childType == __GO_UICONTROL__) {
-                    ((SwingScilabFrame) updatedComponent).addMember(allObjects.get(childId).getValue());
+                    updatedComponent.addMember(allObjects.get(childId).getValue());
                     needRevalidate = true;
                 }
             }
@@ -981,7 +1000,52 @@ public final class SwingView implements GraphicView {
             }
         }
         if (needRevalidate && updatedComponent != null) {
-            ((JPanel) updatedComponent).revalidate();
+            updatedComponent.revalidate();
+        }
+    }
+
+    private void updateScrollableFrameChildren(TypedObject updatedObject, Integer[] newChildren) {
+        SwingScilabScrollableFrame updatedComponent = (SwingScilabScrollableFrame) updatedObject.getValue();
+        boolean needRevalidate = false;
+
+        // Add new children
+        for (Integer childId : newChildren) {
+            if (!updatedObject.hasChild(childId)) {
+
+                // Add the child
+                updatedObject.addChild(childId);
+
+                int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
+
+                /* Add an uicontrol */
+                if (childType == __GO_UICONTROL__) {
+                    updatedComponent.addMember(allObjects.get(childId).getValue());
+                    needRevalidate = true;
+                }
+            }
+        }
+
+        // Remove children which have been deleted
+        Set<Integer> newChildrenSet = new HashSet<Integer>(Arrays.asList(newChildren));
+        // Clone the children set to avoid concurrent accesses
+        Integer[] oldChildrenSet = updatedObject.getChildren().toArray(new Integer[updatedObject.getChildren().size()]);
+        for (Integer childId : oldChildrenSet) {
+            if (!newChildrenSet.contains(childId)) {
+
+                // Remove the child
+                updatedObject.removeChild(childId);
+
+                int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
+
+                /* Remove an uicontrol */
+                if (childType == __GO_UICONTROL__) {
+                    updatedComponent.remove((Component) allObjects.get(childId).getValue());
+                    needRevalidate = true;
+                }
+            }
+        }
+        if (needRevalidate && updatedComponent != null) {
+            updatedComponent.revalidate();
         }
     }
 
@@ -991,7 +1055,7 @@ public final class SwingView implements GraphicView {
      * @param newChildren the new children IDs list
      */
     private void updateLayerChildren(TypedObject updatedObject, Integer[] newChildren) {
-        Container updatedComponent = (SwingScilabFrame) updatedObject.getValue();
+        SwingScilabLayer updatedComponent = (SwingScilabLayer) updatedObject.getValue();
 
         // Add new children
         for (Integer childId : newChildren) {
@@ -1006,7 +1070,12 @@ public final class SwingView implements GraphicView {
                 if (childType == __GO_UICONTROL__) {
                     int childStyle = (Integer) GraphicController.getController().getProperty(childId, __GO_STYLE__);
                     if (childStyle == __GO_UI_FRAME__) {
-                        ((SwingScilabLayer) updatedComponent).addMember((SwingScilabFrame) allObjects.get(childId).getValue());
+                        SwingViewObject obj = allObjects.get(childId).getValue();
+                        if (obj instanceof SwingScilabScrollableFrame) {
+                            updatedComponent.addMember((SwingScilabScrollableFrame)obj);
+                        } else {
+                            updatedComponent.addMember((SwingScilabFrame)obj);
+                        }
                     }
                 }
             }
@@ -1028,7 +1097,12 @@ public final class SwingView implements GraphicView {
                 if (childType == __GO_UICONTROL__) {
                     int childStyle = (Integer) GraphicController.getController().getProperty(childId, __GO_STYLE__);
                     if (childStyle == __GO_UI_FRAME__) {
-                        ((SwingScilabLayer) updatedComponent).removeMember((SwingScilabFrame) allObjects.get(childId).getValue());
+                        SwingViewObject obj = allObjects.get(childId).getValue();
+                        if (obj instanceof SwingScilabScrollableFrame) {
+                            updatedComponent.removeMember((SwingScilabScrollableFrame)obj);
+                        } else {
+                            updatedComponent.removeMember((SwingScilabFrame)obj);
+                        }
                     }
                 }
             }

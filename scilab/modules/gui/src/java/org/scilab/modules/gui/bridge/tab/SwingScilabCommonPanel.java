@@ -55,6 +55,7 @@ import org.scilab.modules.graphic_objects.utils.LayoutType;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
+import org.scilab.modules.gui.bridge.frame.SwingScilabScrollableFrame;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -384,15 +385,15 @@ public class SwingScilabCommonPanel {
             component.getWidgetPane().add((Component) member, constraints);
             component.getWidgetPane().revalidate();
         } else {
-            if (member instanceof SwingScilabFrame) {
+            if (member instanceof SwingScilabScrollableFrame || member instanceof SwingScilabFrame) {
                 component.getWidgetPane().add((Component) member, JLayeredPane.FRAME_CONTENT_LAYER);
             } else {
                 component.getWidgetPane().add((Component) member, JLayeredPane.DEFAULT_LAYER + 1);
             }
         }
     }
-    
-    protected static void  removeMember(SwingScilabPanel component,SwingViewObject member) {
+
+    protected static void  removeMember(SwingScilabPanel component, SwingViewObject member) {
         component.getWidgetPane().remove((Component) member);
     }
 }

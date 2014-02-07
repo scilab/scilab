@@ -328,6 +328,10 @@ public final class GraphicModel {
             case BORDER:
                 createdObject = new FrameBorder();
                 break;
+            case FRAME_SCROLLABLE:
+                createdObject = new Frame();
+                ((Frame)createdObject).setScrollable(true);
+                break;
             default:
                 createdObject = null;
         }

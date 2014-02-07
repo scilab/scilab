@@ -73,7 +73,8 @@ static const char* propertiesNames[] =
     "borders",
     "groupname",
     "title_position",
-    "title_scroll"
+    "title_scroll",
+    "scrollable"
 };
 
 /*--------------------------------------------------------------------------*/

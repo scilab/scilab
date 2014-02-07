@@ -69,6 +69,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TITLE_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TITLE_SCROLL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SCROLLABLE__;
 
 import java.util.Arrays;
 import java.util.StringTokenizer;
@@ -302,7 +303,7 @@ public class Uicontrol extends GraphicObject {
     private String verticalAlignment = "";
     private LayoutType layout = LayoutType.NONE;
     private Double[] margins = new Double[] {0.0, 0.0, 0.0, 0.0};
-    private Integer[] gridbagGrid = new Integer[] {0, 0, 0, 0};
+    private Integer[] gridbagGrid = new Integer[] { -1, -1, 1, 1};
     private Double[] gridbagWeight = new Double[] {0.0, 0.0};
     private FillType gridbagFill = FillType.NONE;
     private AnchorType gridbagAnchor = AnchorType.CENTER;
@@ -323,6 +324,10 @@ public class Uicontrol extends GraphicObject {
     /** tab properties */
     private Boolean titleScroll = false;
     private TitlePositionType titlePosition = TitlePositionType.TOP;
+
+    /** Scrollable */
+    private Boolean scrollable = false;
+
     /**
      * All uicontrol properties
      */
@@ -370,7 +375,8 @@ public class Uicontrol extends GraphicObject {
         FRAMEBORDER,
         GROUPNAME,
         TITLE_POSITION,
-        TITLE_SCROLL
+        TITLE_SCROLL,
+        SCROLLABLE
     };
 
     /**
@@ -577,6 +583,8 @@ public class Uicontrol extends GraphicObject {
                 return UicontrolProperty.TITLE_POSITION;
             case __GO_UI_TITLE_SCROLL__:
                 return UicontrolProperty.TITLE_SCROLL;
+            case __GO_UI_SCROLLABLE__:
+                return UicontrolProperty.SCROLLABLE;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -672,6 +680,8 @@ public class Uicontrol extends GraphicObject {
             return getTitlePosition();
         } else if (property == UicontrolProperty.TITLE_SCROLL) {
             return getTitleScroll();
+        } else if (property == UicontrolProperty.SCROLLABLE) {
+            return getScrollable();
         } else {
             return super.getProperty(property);
         }
@@ -764,6 +774,8 @@ public class Uicontrol extends GraphicObject {
                 return setTitlePosition((Integer) value);
             case TITLE_SCROLL:
                 return setTitleScroll((Boolean) value);
+            case SCROLLABLE:
+                return setScrollable((Boolean) value);
             default:
                 return super.setProperty(property, value);
         }
@@ -1399,6 +1411,18 @@ public class Uicontrol extends GraphicObject {
         return UpdateStatus.Success;
     }
 
+    public UpdateStatus setScrollable(Boolean scrollable) {
+        if (this.scrollable == scrollable) {
+            return UpdateStatus.NoChange;
+        }
+
+        this.scrollable = scrollable;
+        return UpdateStatus.Success;
+    }
+
+    public Boolean getScrollable() {
+        return scrollable;
+    }
 
     public void accept(Visitor visitor) {
     }

@@ -1019,6 +1019,7 @@ function %h_p(h)
                 "Borders = "+sci2exp(b)
                 "Margins = "+sci2exp(h.margins)
                 "Groupname = "+sci2exp(h.groupname)
+                "Scrollable = "+sci2exp(h.scrollable)
                 "Userdata = "+fmtuser_data(u)
                 "Tag = "+h.tag
                 ]

@@ -340,6 +340,8 @@ src/c/getHandleProperty/get_groupname_property.c \
 src/c/getHandleProperty/set_groupname_property.c \
 src/c/getHandleProperty/get_tabtitle_property.c \
 src/c/getHandleProperty/set_tabtitle_property.c \
+src/c/getHandleProperty/get_scrollable_property.c \
+src/c/getHandleProperty/set_scrollable_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \

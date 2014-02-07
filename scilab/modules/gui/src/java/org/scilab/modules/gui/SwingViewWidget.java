@@ -25,6 +25,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_STYLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
@@ -34,8 +35,10 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTWEIGHT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GROUP_NAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LAYER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
@@ -50,16 +53,16 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_USER_DATA__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VALID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LAYER__;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
 import javax.swing.AbstractButton;
+import javax.swing.JComponent;
 import javax.swing.border.Border;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -69,6 +72,7 @@ import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.frame.SwingScilabLayer;
+import org.scilab.modules.gui.bridge.frame.SwingScilabScrollableFrame;
 import org.scilab.modules.gui.bridge.groupmanager.GroupManager;
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
 import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
@@ -360,7 +364,7 @@ public final class SwingViewWidget {
                     update(uiControl, __GO_UI_STRING__, GraphicController.getController().getProperty(uid, __GO_UI_STRING__));
                 }
                 break;
-            case __GO_POSITION__:
+            case __GO_POSITION__: {
 
                 /* Convert value according to units */
                 UicontrolUnits unitsProperty = UnitsConverter.stringToUnitsEnum((String) GraphicController.getController().getProperty(uid, __GO_UI_UNITS__));
@@ -368,6 +372,22 @@ public final class SwingViewWidget {
                 // Set dimensions before position because position is adjusted according to size
                 uiControl.setDims(new Size(dblValues[WIDTH_INDEX].intValue(), dblValues[HEIGHT_INDEX].intValue()));
                 uiControl.setPosition(new Position(dblValues[X_INDEX].intValue(), dblValues[Y_INDEX].intValue()));
+
+                Integer parent = (Integer)controller.getProperty(uid, __GO_PARENT__);
+                if (parent != 0) {
+                    Integer type = (Integer)controller.getProperty(parent, __GO_TYPE__);
+                    if (type == __GO_UICONTROL__) {
+
+                        Integer style = (Integer)controller.getProperty(parent, __GO_STYLE__);
+                        if (style == __GO_UI_FRAME__) {
+                            SwingViewObject obj = SwingView.getFromId(parent);
+                            if (obj instanceof SwingScilabScrollableFrame) {
+                                SwingScilabScrollableFrame frame = (SwingScilabScrollableFrame) SwingView.getFromId(parent);
+                                frame.updateChildPosition((JComponent)uiControl);
+                            }
+                        }
+                    }
+                }
                 // Manage sliders orientation
                 if (uiControl instanceof SwingScilabScroll) {
                     if (dblValues[WIDTH_INDEX].intValue() > dblValues[HEIGHT_INDEX].intValue()) {
@@ -383,6 +403,7 @@ public final class SwingViewWidget {
                     }
                 }
                 break;
+            }
             case __GO_UI_RELIEF__:
                 uiControl.setRelief((String) value);
                 break;
@@ -565,9 +586,9 @@ public final class SwingViewWidget {
             }
             case __GO_VISIBLE__ : {
                 boolean needUpdate = true;
-                if (uiControl instanceof SwingScilabFrame) {
-                    SwingScilabFrame frame = (SwingScilabFrame) uiControl;
-                    Integer parent = (Integer) controller.getProperty(frame.getId(), __GO_PARENT__);
+                if (uiControl instanceof SwingScilabFrame || uiControl instanceof SwingScilabScrollableFrame) {
+                    Component frame = (Component) uiControl;
+                    Integer parent = (Integer) controller.getProperty(uid, __GO_PARENT__);
                     if (parent != 0) {
                         Integer type = (Integer) controller.getProperty(parent, __GO_TYPE__);
                         if (type == __GO_UICONTROL__) {
@@ -578,7 +599,7 @@ public final class SwingViewWidget {
                                 SwingScilabLayer layer = (SwingScilabLayer) SwingView.getFromId(parent);
                                 Boolean isActive = layer.isLayerActive(frame);
                                 if (isActive != visible ) {
-                                    controller.setProperty(frame.getId(), __GO_VISIBLE__, isActive);
+                                    controller.setProperty(uid, __GO_VISIBLE__, isActive);
                                 }
 
                                 needUpdate = false;
@@ -607,8 +628,34 @@ public final class SwingViewWidget {
                     }
                 }
                 break;
-            case __GO_LAYOUT__:
-                if (uiControl instanceof SwingScilabFrame) {
+            case __GO_LAYOUT__: {
+                if (uiControl instanceof SwingScilabScrollableFrame) {
+                    SwingScilabScrollableFrame frame = (SwingScilabScrollableFrame) uiControl;
+                    LayoutType newLayout = LayoutType.intToEnum((Integer) value);
+                    switch (newLayout) {
+                        case BORDER: {
+                            Integer[] padding = (Integer[]) controller.getProperty(frame.getId(), __GO_BORDER_OPT_PADDING__);
+                            frame.setLayout(new BorderLayout(padding[0], padding[1]));
+                            break;
+                        }
+                        case GRIDBAG:
+                            frame.setLayout(new GridBagLayout());
+                            break;
+                        case GRID: {
+                            Integer[] padding = (Integer[]) controller.getProperty(frame.getId(), __GO_GRID_OPT_PADDING__);
+                            Integer[] grid = (Integer[]) controller.getProperty(frame.getId(), __GO_GRID_OPT_GRID__);
+                            if (grid[0] == 0 && grid[1] == 0) {
+                                grid[0] = 1;
+                            }
+                            frame.setLayout(new GridLayout(grid[0], grid[1], padding[0], padding[1]));
+                            break;
+                        }
+                        case NONE:
+                        default:
+                            frame.setLayout(null);
+                            break;
+                    }
+                } else if (uiControl instanceof SwingScilabFrame) {
                     SwingScilabFrame frame = (SwingScilabFrame) uiControl;
                     LayoutType newLayout = LayoutType.intToEnum((Integer) value);
                     switch (newLayout) {
@@ -634,16 +681,22 @@ public final class SwingViewWidget {
                             frame.setLayout(null);
                             break;
                     }
-                } else {
                 }
                 break;
+            }
             case __GO_UI_FRAME_BORDER__:
-                if (uiControl instanceof SwingScilabFrame) {
+                if (uiControl instanceof SwingScilabScrollableFrame) {
+                    SwingScilabScrollableFrame frame = (SwingScilabScrollableFrame) uiControl;
+                    Integer borderId = (Integer) value;
+                    Border border = BorderConvertor.getBorder(borderId);
+                    frame.setBorder(border);
+                } else if (uiControl instanceof SwingScilabFrame) {
                     SwingScilabFrame frame = (SwingScilabFrame) uiControl;
                     Integer borderId = (Integer) value;
                     Border border = BorderConvertor.getBorder(borderId);
                     frame.setBorder(border);
                 }
+
                 break;
             default:
                 //System.err.println("[SwingScilabWidget.update] Property not mapped: " + property);

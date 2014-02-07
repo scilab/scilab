@@ -66,6 +66,7 @@ import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
+import org.scilab.modules.gui.bridge.frame.SwingScilabScrollableFrame;
 import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
 import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
@@ -91,6 +92,7 @@ import org.scilab.modules.gui.events.GlobalEventWatcher;
 import org.scilab.modules.gui.events.ScilabEventListener;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.frame.SimpleFrame;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
@@ -689,7 +691,12 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      */
     @Override
     public int addMember(Frame member) {
-        return this.addMember((SwingScilabFrame) member.getAsSimpleFrame());
+        SimpleFrame frame = member.getAsSimpleFrame();
+        if (frame instanceof SwingScilabFrame) {
+            return this.addMember((SwingScilabFrame) member.getAsSimpleFrame());
+        } else {
+            return this.addMember((SwingScilabScrollableFrame) member.getAsSimpleFrame());
+        }
     }
 
     /**
@@ -697,6 +704,10 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the member to add
      * @return index of member in ArrayList
      */
+    private int addMember(SwingScilabScrollableFrame member) {
+        return 0;
+    }
+
     private int addMember(SwingScilabFrame member) {
         return 0;
     }
@@ -707,13 +718,21 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      */
     @Override
     public void removeMember(Frame member) {
-        this.removeMember((SwingScilabFrame) member.getAsSimpleFrame());
+        SimpleFrame frame = member.getAsSimpleFrame();
+        if (frame instanceof SwingScilabFrame) {
+            this.removeMember((SwingScilabFrame) member.getAsSimpleFrame());
+        } else {
+            this.removeMember((SwingScilabScrollableFrame) member.getAsSimpleFrame());
+        }
     }
 
     /**
      * Remove a Frame from its container
      * @param member the Frame to remove
      */
+    private void removeMember(SwingScilabScrollableFrame member) {
+    }
+
     private void removeMember(SwingScilabFrame member) {
     }
 

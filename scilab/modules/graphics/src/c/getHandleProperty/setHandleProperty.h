@@ -219,5 +219,6 @@ int set_groupname_property(void* _pvCtx, int iObj, void* _pvData, int valueType,
 int set_title_position_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_title_scroll_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_default_axes_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_scrollable_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 
 #endif /* _SET_HANDLE_PROPERTY_H_ */
