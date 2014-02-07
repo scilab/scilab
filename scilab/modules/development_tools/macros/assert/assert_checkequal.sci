@@ -54,6 +54,18 @@ function [flag,errmsg] = assert_checkequal ( computed , expected )
         errmsg = sprintf ( gettext ( "%s: Incompatible input arguments #%d and #%d: Same types expected.\n" ) , "assert_checkequal" , 1 , 2 )
         error(errmsg)
     end
+
+    //
+    // Check hypermat type
+    if (typeof(computed) == "hypermat") then
+        // Check on first element type
+        if (typeof(computed(1)) <> typeof(expected(1))) then
+            errmsg = sprintf ( gettext ( "%s: Incompatible input arguments #%d and #%d: Same types expected.\n" ) , "assert_checkequal" , 1 , 2 )
+            error(errmsg)
+        end
+    end
+
+
     //
     // Check sizes of variables
     if ( or(type(computed)==[16 17]) ) then
