@@ -41,6 +41,12 @@ Obsolete & Removed Functions
 * with_embedded_jre removed.
 
 
+Compilation
+============
+
+* Minimal version of JoGL (2.1.4) enforced.
+
+
 Scilab Bug Fixes
 ================
 
