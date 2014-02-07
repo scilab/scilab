@@ -166,9 +166,10 @@ public class ExportOptionWindow implements ActionListener {
 
             int orientation = exportData.getExportProperties().elementAt(0).equalsIgnoreCase("landscape") ? ExportParams.LANDSCAPE : ExportParams.PORTRAIT;
 
+            Cursor old = parentWindow.getCursor();
             parentWindow.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             String err = FileExporter.fileExport(figId, fileName, exportData.getExportExtension(), 1f, orientation);// 1f is the jpeg quality compression and it is useless here
-            parentWindow.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            parentWindow.setCursor(old);
 
             if (err.length() != 0) {
                 ScilabModalDialog.show(parentTab, String.format(Messages.gettext("An error occurred during export: %s"), err), Messages.gettext("Export error"), IconType.ERROR_ICON);
