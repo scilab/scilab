@@ -29,6 +29,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 import javax.swing.text.html.HTMLDocument;
@@ -486,4 +487,10 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         SwingViewWidget.update(this, property, value);
     }
 
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Label.background");
+        if (color != null) {
+            setBackground(color);
+        }
+    }
 }

@@ -12,11 +12,13 @@
 
 package org.scilab.modules.gui.bridge.checkboxmenuitem;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.UIManager;
 import javax.swing.JToggleButton.ToggleButtonModel;
 
 import org.scilab.modules.commons.utils.StringBlockingResult;
@@ -417,6 +419,14 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Sw
          */
         public void forceSelected(boolean status) {
             super.setSelected(status);
+        }
+
+    }
+
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("CheckBoxMenuItem.background");
+        if (color != null) {
+            setBackground(color);
         }
     }
 }

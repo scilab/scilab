@@ -12,14 +12,15 @@
  */
 package org.scilab.modules.gui.bridge.uiimage;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.UIManager;
 
-import org.scilab.forge.scirenderer.shapes.appearance.Color;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
@@ -293,5 +294,12 @@ public class SwingScilabUiImage extends JLabel implements SwingViewObject, Simpl
      */
     public void update(int property, Object value) {
         SwingViewWidget.update(this, property, value);
+    }
+
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Label.background");
+        if (color != null) {
+            setBackground(color);
+        }
     }
 }

@@ -256,4 +256,10 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
         ScilabBridge.requestFocus(this);
     }
 
+    @Override
+    public void resetBackground() {
+        // TODO Auto-generated method stub
+
+    }
+
 }

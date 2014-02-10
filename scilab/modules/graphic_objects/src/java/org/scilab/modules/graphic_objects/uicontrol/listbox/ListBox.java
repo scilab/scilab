@@ -14,6 +14,9 @@ package org.scilab.modules.graphic_objects.uicontrol.listbox;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOX__;
 
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+
 import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
@@ -35,20 +38,18 @@ public class ListBox extends Uicontrol {
         setUiValue(value);
 
         if (Console.getConsole().getUseDeprecatedLF()) {
-            setRelief(FLAT_RELIEF);
-            setBackgroundColor(new Double[] {
-                                   DEFAULT_RED_BACKGROUND,
-                                   DEFAULT_GREEN_BACKGROUND,
-                                   DEFAULT_BLUE_BACKGROUND
-                               });
+            setRelief(RELIEF_FLAT);
+        } else {
+            UIDefaults defaults = UIManager.getDefaults();
 
-            setHorizontalAlignment("center");
+            //font
+            setFont(defaults.getFont("List.font"));
+
+            //h-alignment
+            setHorizontalAlignment("left");
+
+            //v-alignement
             setVerticalAlignment("middle");
-
-            setFontName(DEFAULTFONTNAME);
-            setFontSize(DEFAULTFONTSIZE);
-            setFontAngle(DEFAULTFONTANGLE);
-            setFontWeight(DEFAULTFONTWEIGHT);
         }
     }
 

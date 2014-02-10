@@ -23,6 +23,7 @@ import javax.swing.Icon;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.UIManager;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
@@ -351,12 +352,15 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
     }
 
     public void setVisible(boolean newVisibleState) {
-        // TODO Auto-generated method stub
-
     }
 
-    @Override
     public void setToolTipText(String tooltipText) {
-        // TODO Auto-generated method stub
+    }
+
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Tree.background");
+        if (color != null) {
+            setBackground(color);
+        }
     }
 }

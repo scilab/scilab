@@ -243,4 +243,10 @@ public class ScilabLabel extends ScilabWidget implements Label {
         // TODO Auto-generated method stub
     }
 
+    @Override
+    public void resetBackground() {
+        // TODO Auto-generated method stub
+
+    }
+
 }

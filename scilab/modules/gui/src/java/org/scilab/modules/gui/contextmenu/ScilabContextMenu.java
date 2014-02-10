@@ -258,4 +258,10 @@ public class ScilabContextMenu extends ScilabWidget implements ContextMenu {
         // TODO Auto-generated method stub
     }
 
+    @Override
+    public void resetBackground() {
+        // TODO Auto-generated method stub
+
+    }
+
 }

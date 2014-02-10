@@ -16,10 +16,12 @@ package org.scilab.modules.gui.bridge.popupmenu;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
+import javax.swing.UIManager;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewWidget;
@@ -392,6 +394,11 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
     public void update(int property, Object value) {
         SwingViewWidget.update(this, property, value);
     }
+
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("ComboBox.background");
+        if (color != null) {
+            setBackground(color);
+        }
+    }
 }
-
-

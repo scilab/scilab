@@ -14,6 +14,9 @@ package org.scilab.modules.graphic_objects.uicontrol.pushbutton;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+
 import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
@@ -21,10 +24,6 @@ import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
  * @author Bruno JOFRET
  */
 public class PushButton extends Uicontrol {
-
-    private static final double BUTTON_RED_BACKGROUND = 0.6;
-    private static final double BUTTON_GREEN_BACKGROUND = 0.6;
-    private static final double BUTTON_BLUE_BACKGROUND = 0.6;
 
     /**
      * Constructor
@@ -35,20 +34,18 @@ public class PushButton extends Uicontrol {
 
 
         if (Console.getConsole().getUseDeprecatedLF()) {
-            setRelief(RAISED_RELIEF);
-            setBackgroundColor(new Double[] {
-                                   BUTTON_RED_BACKGROUND,
-                                   BUTTON_GREEN_BACKGROUND,
-                                   BUTTON_BLUE_BACKGROUND
-                               });
+            setRelief(RELIEF_RAISED);
+        } else {
+            UIDefaults defaults = UIManager.getDefaults();
 
+            //font
+            setFont(defaults.getFont("Button.font"));
+
+            //h-alignment
             setHorizontalAlignment("center");
-            setVerticalAlignment("middle");
 
-            setFontName(DEFAULTFONTNAME);
-            setFontSize(DEFAULTFONTSIZE);
-            setFontAngle(DEFAULTFONTANGLE);
-            setFontWeight(DEFAULTFONTWEIGHT);
+            //v-alignement
+            setVerticalAlignment("middle");
         }
     }
 

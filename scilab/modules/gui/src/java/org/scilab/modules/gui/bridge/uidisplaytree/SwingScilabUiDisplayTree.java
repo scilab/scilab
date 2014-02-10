@@ -16,6 +16,7 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.swing.UIManager;
 
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.uidisplaytree.SimpleUiDisplayTree;
@@ -280,5 +281,12 @@ public class SwingScilabUiDisplayTree extends JScrollPane implements SimpleUiDis
     public void setData(String[] text) {
         sst = new SwingScilabTree(ScilabDisplayTree.uicontrolScilabDisplayTree(text));
         getViewport().add(sst.getJTree());
+    }
+
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("ScrollPane.background");
+        if (color != null) {
+            setBackground(color);
+        }
     }
 }

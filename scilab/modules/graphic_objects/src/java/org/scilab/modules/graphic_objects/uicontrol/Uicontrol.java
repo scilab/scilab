@@ -61,6 +61,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TITLE_POSITION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TITLE_SCROLL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TOOLTIPSTRING_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TOOLTIPSTRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_UNITS__;
@@ -71,9 +73,11 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TITLE_SCROLL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SCROLLABLE__;
 
+import java.awt.Font;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.utils.LayoutType;
@@ -256,13 +260,13 @@ public class Uicontrol extends GraphicObject {
         }
     }
 
-    protected static final String NONE_RELIEF   = "";
-    protected static final String FLAT_RELIEF   = "flat";
-    protected static final String RAISED_RELIEF = "raised";
-    protected static final String SUNKEN_RELIEF = "sunken";
-    protected static final String GROOVE_RELIEF = "groove";
-    protected static final String RIDGE_RELIEF  = "ridge";
-    protected static final String SOLID_RELIEF  = "solid";
+    protected static final String RELIEF_NONE   = "";
+    protected static final String RELIEF_FLAT   = "flat";
+    protected static final String RELIEF_RAISED = "raised";
+    protected static final String RELIEF_SUNKEN = "sunken";
+    protected static final String RELIEF_GROOVE = "groove";
+    protected static final String RELIEF_RIDGE  = "ridge";
+    protected static final String RELIEF_SOLID  = "solid";
 
     protected static final double DEFAULT_RED_BACKGROUND = 0.8;
     protected static final double DEFAULT_GREEN_BACKGROUND = 0.8;
@@ -273,10 +277,10 @@ public class Uicontrol extends GraphicObject {
     private static final double DEFAULT_WIDTH = 40.0;
     private static final double DEFAULT_HEIGHT = 20.0;
 
-    protected static final double DEFAULTFONTSIZE = 10;
-    protected static final String DEFAULTFONTNAME = "helvetica";
-    protected static final String DEFAULTFONTWEIGHT = "normal";
-    protected static final String DEFAULTFONTANGLE = "normal";
+    protected static final double DEFAULT_FONTSIZE = 10;
+    protected static final String DEFAULT_FONTNAME = "helvetica";
+    protected static final String DEFAULT_FONTWEIGHT = "normal";
+    protected static final String DEFAULT_FONTANGLE = "normal";
     private static final String STRING_SEPARATOR = "|";
 
     private UicontrolStyle style;
@@ -289,18 +293,18 @@ public class Uicontrol extends GraphicObject {
     private String fontWeight = "";
     private Double[] foregroundColor = {0.0, 0.0, 0.0};
     private String horizontalAlignment = "";
+    private String verticalAlignment = "";
     private Integer[] listboxTop;
     private double max = 1.0;
     private double min;
     private Double[] position = {DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT};
-    private String relief = NONE_RELIEF;
+    private String relief = RELIEF_NONE;
     private Double[] sliderStep = {0.01, 0.1};
     private String[] string = {""};
     private int stringColNb = 1; // Used for tables
     private String[] tooltipString = {""};
     private String units = "pixels";
     private Double[] value;
-    private String verticalAlignment = "";
     private LayoutType layout = LayoutType.NONE;
     private Double[] margins = new Double[] {0.0, 0.0, 0.0, 0.0};
     private Integer[] gridbagGrid = new Integer[] { -1, -1, 1, 1};
@@ -405,6 +409,22 @@ public class Uicontrol extends GraphicObject {
     public Uicontrol() {
         super();
         setVisible(false); /* To avoid to see the object rendered before all its properties to be set (See bug #10346) */
+
+        if (Console.getConsole().getUseDeprecatedLF()) {
+            setBackgroundColor(new Double[] {
+                                   DEFAULT_RED_BACKGROUND,
+                                   DEFAULT_GREEN_BACKGROUND,
+                                   DEFAULT_BLUE_BACKGROUND
+                               });
+
+            setHorizontalAlignment("center");
+            setVerticalAlignment("middle");
+
+            setFontName(DEFAULT_FONTNAME);
+            setFontSize(DEFAULT_FONTSIZE);
+            setFontAngle(DEFAULT_FONTANGLE);
+            setFontWeight(DEFAULT_FONTWEIGHT);
+        }
     }
 
     /**
@@ -792,7 +812,6 @@ public class Uicontrol extends GraphicObject {
     /**
      * Set the style
      * @param style the style
-     * @return TODO
      */
     public UpdateStatus setStyle(int style) {
         UicontrolStyle val =  intToStyleEnum(style);
@@ -1422,6 +1441,27 @@ public class Uicontrol extends GraphicObject {
 
     public Boolean getScrollable() {
         return scrollable;
+    }
+
+    public void setFont(Font font) {
+        if (font == null) {
+            return;
+        }
+
+        setFontName(font.getName());
+        setFontSize(font.getSize());
+
+        if (font.isItalic()) {
+            setFontAngle("italic");
+        } else {
+            setFontAngle("normal");
+        }
+
+        if (font.isBold()) {
+            setFontWeight("bold");
+        } else {
+            setFontWeight("normal");
+        }
     }
 
     public void accept(Visitor visitor) {

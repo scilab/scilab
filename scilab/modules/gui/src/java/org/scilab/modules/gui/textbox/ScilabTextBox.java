@@ -246,4 +246,10 @@ public class ScilabTextBox extends ScilabText implements TextBox {
         // TODO Auto-generated method stub
     }
 
+    @Override
+    public void resetBackground() {
+        // TODO Auto-generated method stub
+
+    }
+
 }

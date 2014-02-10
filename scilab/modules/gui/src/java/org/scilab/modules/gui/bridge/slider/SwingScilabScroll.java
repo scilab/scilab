@@ -17,10 +17,12 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
+import java.awt.Color;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 
 import javax.swing.JScrollBar;
+import javax.swing.UIManager;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewWidget;
@@ -353,5 +355,12 @@ public class SwingScilabScroll extends JScrollBar implements SwingViewObject, Si
         double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
         value[0] = userMin + ((getValue() - MINIMUM_VALUE) * (userMax - userMin) / (MAXIMUM_VALUE - MINIMUM_VALUE));
         GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, value);
+    }
+
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("ScrollBar.background");
+        if (color != null) {
+            setBackground(color);
+        }
     }
 }

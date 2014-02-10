@@ -14,9 +14,11 @@ package org.scilab.modules.gui.bridge.contextmenu;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 
+import java.awt.Color;
 import java.awt.MouseInfo;
 
 import javax.swing.JPopupMenu;
+import javax.swing.UIManager;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 
@@ -369,4 +371,10 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
         }
     }
 
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("PopupMenu.background");
+        if (color != null) {
+            setBackground(color);
+        }
+    }
 }

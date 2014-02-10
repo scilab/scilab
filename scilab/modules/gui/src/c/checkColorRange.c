@@ -21,6 +21,11 @@ static int checkColorComponent(double c)
 /*--------------------------------------------------------------------------*/
 int checkColorRange(double r, double g, double b)
 {
+    if (r == -1 && g == -1 && b == -1)
+    {
+        return 1;
+    }
+
     return checkColorComponent(r) && checkColorComponent(g) && checkColorComponent(b);
 }
 /*--------------------------------------------------------------------------*/

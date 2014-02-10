@@ -14,10 +14,12 @@
 
 package org.scilab.modules.gui.bridge.menu;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JMenu;
+import javax.swing.UIManager;
 
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 import org.scilab.modules.gui.SwingViewMenu;
@@ -463,5 +465,12 @@ public class SwingScilabMenu extends JMenu implements SwingViewObject, SimpleMen
      */
     public void update(int property, Object value) {
         SwingViewMenu.update(this, property, value);
+    }
+
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Menu.background");
+        if (color != null) {
+            setBackground(color);
+        }
     }
 }

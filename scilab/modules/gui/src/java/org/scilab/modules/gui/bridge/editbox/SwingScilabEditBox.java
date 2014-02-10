@@ -28,6 +28,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.UIManager;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.BoxView;
 import javax.swing.text.ComponentView;
@@ -444,6 +445,13 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
             setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
             textPane.getInputMap().remove(enterKey);
             textPane.getInputMap().put(enterKey, "none");
+        }
+    }
+
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("TextField.background");
+        if (color != null) {
+            setBackground(color);
         }
     }
 }

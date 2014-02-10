@@ -14,6 +14,9 @@ package org.scilab.modules.graphic_objects.uicontrol.layer;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LAYER__;
 
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
 /**
@@ -27,5 +30,15 @@ public class Layer extends Uicontrol {
     public Layer() {
         super();
         setStyle(__GO_UI_LAYER__);
+        UIDefaults defaults = UIManager.getDefaults();
+
+        //font
+        setFont(defaults.getFont("Panel.font"));
+
+        //h-alignment
+        setHorizontalAlignment("left");
+
+        //v-alignement
+        setVerticalAlignment("middle");
     }
 }

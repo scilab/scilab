@@ -17,12 +17,14 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.JScrollBar;
 import javax.swing.JSlider;
 import javax.swing.KeyStroke;
+import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -422,5 +424,12 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Simpl
         double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
         value[0] = userMin + ((getValue() - MINIMUM_VALUE) * (userMax - userMin) / (MAXIMUM_VALUE - MINIMUM_VALUE));
         GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, value);
+    }
+
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Slider.background");
+        if (color != null) {
+            setBackground(color);
+        }
     }
 }

@@ -13,6 +13,10 @@
 package org.scilab.modules.graphic_objects.uicontrol.uiimage;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGE__;
+
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+
 import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
@@ -30,20 +34,18 @@ public class UiImage extends Uicontrol {
         Double[] imageInfos = {1.0, 1.0, 0.0, 0.0, 0.0}; // {XScale, YScale, XShear, YShear, RotationAngle}
         setUiValue(imageInfos);
         if (Console.getConsole().getUseDeprecatedLF()) {
-            setRelief(RAISED_RELIEF);
-            setBackgroundColor(new Double[] {
-                                   DEFAULT_RED_BACKGROUND,
-                                   DEFAULT_GREEN_BACKGROUND,
-                                   DEFAULT_BLUE_BACKGROUND
-                               });
+            setRelief(RELIEF_RAISED);
+        } else {
+            UIDefaults defaults = UIManager.getDefaults();
 
-            setHorizontalAlignment("center");
+            //font
+            setFont(defaults.getFont("Panel.font"));
+
+            //h-alignment
+            setHorizontalAlignment("left");
+
+            //v-alignement
             setVerticalAlignment("middle");
-
-            setFontName(DEFAULTFONTNAME);
-            setFontSize(DEFAULTFONTSIZE);
-            setFontAngle(DEFAULTFONTANGLE);
-            setFontWeight(DEFAULTFONTWEIGHT);
         }
     }
 

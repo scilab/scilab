@@ -32,6 +32,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -524,6 +525,13 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
     public void setBackground(Color bg) {
         if (panel != null) {
             panel.setBackground(bg);
+        }
+    }
+
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("ScrollPane.background");
+        if (color != null) {
+            setBackground(color);
         }
     }
 

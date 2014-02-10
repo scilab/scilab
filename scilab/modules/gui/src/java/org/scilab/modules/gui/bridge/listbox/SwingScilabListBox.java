@@ -28,6 +28,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
@@ -329,7 +330,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
             updateNeeded = true;
         } else {
             for (int k = 0; k < text.length; k++) {
-                if (text[k].compareTo(previousText[k]) != 0) {
+                if (text[k].equals(previousText[k]) == false) {
                     updateNeeded = true;
                     break;
                 }
@@ -344,6 +345,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
             model.addElement(text[i]);
         }
         getList().setModel(model);
+        getList().revalidate();
         revalidate();
     }
 
@@ -513,5 +515,12 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      */
     public void update(int property, Object value) {
         SwingViewWidget.update(this, property, value);
+    }
+
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("List.background");
+        if (color != null) {
+            getList().setBackground(color);
+        }
     }
 }

@@ -12,7 +12,10 @@
  */
 package org.scilab.modules.gui.bridge.textbox;
 
+import java.awt.Color;
+
 import javax.swing.JTextArea;
+import javax.swing.UIManager;
 
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -204,4 +207,10 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
         throw new UnsupportedOperationException();
     }
 
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("TextArea.background");
+        if (color != null) {
+            setBackground(color);
+        }
+    }
 }

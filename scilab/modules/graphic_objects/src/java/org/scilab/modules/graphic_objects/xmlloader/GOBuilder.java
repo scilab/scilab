@@ -356,7 +356,6 @@ public class GOBuilder {
 
                     String columns = attributes.getValue("columns");
                     if (columns != null) {
-                        System.out.println("columns : " + columns);
                         controller.setProperty(uic, __GO_UI_MAX__, Double.parseDouble(columns));
                     }
                     break;

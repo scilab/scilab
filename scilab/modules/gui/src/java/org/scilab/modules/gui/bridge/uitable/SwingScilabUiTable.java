@@ -19,6 +19,7 @@ import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.swing.UIManager;
 
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.SwingViewObject;
@@ -420,4 +421,10 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
         SwingViewWidget.update(this, property, value);
     }
 
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("ScrollPane.background");
+        if (color != null) {
+            setBackground(color);
+        }
+    }
 }

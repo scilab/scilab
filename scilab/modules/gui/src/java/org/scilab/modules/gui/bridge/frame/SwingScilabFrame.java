@@ -18,6 +18,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -26,6 +27,7 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
@@ -749,6 +751,13 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             for (int compIndex = 0; compIndex < components.length; compIndex++) {
                 components[compIndex].setEnabled(false);
             }
+        }
+    }
+
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Panel.background");
+        if (color != null) {
+            setBackground(color);
         }
     }
 }

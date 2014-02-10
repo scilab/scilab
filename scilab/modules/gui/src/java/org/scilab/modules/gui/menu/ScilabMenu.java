@@ -311,4 +311,10 @@ public class ScilabMenu extends ScilabWidget implements Menu {
         // TODO Auto-generated method stub
     }
 
+    @Override
+    public void resetBackground() {
+        // TODO Auto-generated method stub
+
+    }
+
 }
