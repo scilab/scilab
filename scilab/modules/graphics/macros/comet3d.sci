@@ -184,7 +184,6 @@ function comet3d(varargin)
                 tail(l).data=[ tail(l).data;[x(i-k,l),y(i-k,l),z(i-k,l)]];
             end
             if modulo(i,step)==0 then
-                //draw(axes),
                 fig.immediate_drawing = "on"
                 fig.immediate_drawing = "off"
             end

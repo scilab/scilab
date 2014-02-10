@@ -77,7 +77,6 @@ plot2d // draw these axes and children later...
 subplot(211) // Warning: we change the axes
 plot2d1 // default drawing mode
 
-draw(a) // ...axes only is visible providing you not redraw the window
 drawnow() // all is visible
  ]]></programlisting>
     </refsection>

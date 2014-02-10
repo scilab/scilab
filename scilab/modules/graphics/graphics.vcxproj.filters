@@ -527,9 +527,6 @@
     <ClCompile Include="sci_gateway\c\sci_demo.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_draw.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_drawaxis.c">
       <Filter>Source Files</Filter>
     </ClCompile>

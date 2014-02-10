@@ -40,6 +40,8 @@ Obsolete & Removed Functions
 
 * with_embedded_jre removed.
 
+* draw removed.
+
 
 Compilation
 ============

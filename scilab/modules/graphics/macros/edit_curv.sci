@@ -99,7 +99,7 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
 
     // Set menus and callbacks
     menu_d = ["Read","Save","Clear"]
-    menu_e = ["Undo","Size","Replot","Ok","Abort"]
+    menu_e = ["Undo","Size","Ok","Abort"]
     menus  = list(["Edit","Data"],menu_e,menu_d)
     w="menus(2)(";rpar=")"
     Edit=w(ones(menu_e))+string(1:size(menu_e,"*"))+rpar(ones(menu_e))
@@ -239,9 +239,6 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
 
         case "Save" then
             savexy(x,y)
-
-        case "Replot" then
-            draw(f)
 
         case "edit" then
             npt=prod(size(x))

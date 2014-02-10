@@ -78,7 +78,6 @@ plot2d // これらの軸と子に後で描画します...
 subplot(211) //警告: 軸を変更します
 plot2d1 // デフォルトの描画モード
 
-draw(a) // ...指定した軸のみが可視で,ウインドウは再描画されません
 drawnow() // 全て可視
  ]]></programlisting>
     </refsection>

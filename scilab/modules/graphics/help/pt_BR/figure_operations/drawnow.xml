@@ -50,8 +50,6 @@ plot2d(x,sin(2*x),5);
 subplot(236);
 plot2d(t,tan(2*t));  
  
-draw(gca()); //desenhando os eixos correntes e seus galhos
-draw(f.children([3 4])); // desenhando os eixos especificados e seus galhos
 drawnow(); // desenhando a figura corrente
  ]]></programlisting>
     </refsection>

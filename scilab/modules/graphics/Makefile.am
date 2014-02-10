@@ -413,7 +413,6 @@ sci_gateway/c/sci_drawaxis.c \
 sci_gateway/c/sci_demo.c \
 sci_gateway/c/sci_plot2d1.c \
 sci_gateway/c/sci_xrect.c \
-sci_gateway/c/sci_draw.c \
 sci_gateway/c/sci_xarrows.c \
 sci_gateway/c/sci_plot3d.c \
 sci_gateway/c/sci_move.c \

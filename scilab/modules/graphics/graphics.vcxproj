@@ -425,7 +425,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="sci_gateway\c\sci_copy.c" />
     <ClCompile Include="sci_gateway\c\sci_delete.c" />
     <ClCompile Include="sci_gateway\c\sci_demo.c" />
-    <ClCompile Include="sci_gateway\c\sci_draw.c" />
     <ClCompile Include="sci_gateway\c\sci_drawaxis.c" />
     <ClCompile Include="sci_gateway\c\sci_drawlater.c" />
     <ClCompile Include="sci_gateway\c\sci_drawnow.c" />
